@@ -17,23 +17,25 @@
 
 import re
 import logging
+
+from collections import OrderedDict
+from copy import deepcopy
+
 import pandas as pd
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
 
 from plotly.exceptions import PlotlyError
-from collections import OrderedDict
-from copy import deepcopy
 
-from utils import mean, stdev
+from pal_utils import mean, stdev
 
 
-COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
-          "Chocolate", "Brown", "Magenta", "Cyan", "Orange", "Black",
-          "Violet", "Blue", "Yellow", "BurlyWood", "CadetBlue", "Crimson",
-          "DarkBlue", "DarkCyan", "DarkGreen", "Green", "GoldenRod",
-          "LightGreen", "LightSeaGreen", "LightSkyBlue", "Maroon",
-          "MediumSeaGreen", "SeaGreen", "LightSlateGrey"]
+COLORS = [u"SkyBlue", u"Olive", u"Purple", u"Coral", u"Indigo", u"Pink",
+          u"Chocolate", u"Brown", u"Magenta", u"Cyan", u"Orange", u"Black",
+          u"Violet", u"Blue", u"Yellow", u"BurlyWood", u"CadetBlue", u"Crimson",
+          u"DarkBlue", u"DarkCyan", u"DarkGreen", u"Green", u"GoldenRod",
+          u"LightGreen", u"LightSeaGreen", u"LightSkyBlue", u"Maroon",
+          u"MediumSeaGreen", u"SeaGreen", u"LightSlateGrey"]
 
 REGEX_NIC = re.compile(r'\d*ge\dp\d\D*\d*-')
 
@@ -47,22 +49,32 @@ def generate_plots(spec, data):
     :type data: InputData
     """
 
-    logging.info("Generating the plots ...")
+    generator = {
+        u"plot_nf_reconf_box_name": plot_nf_reconf_box_name,
+        u"plot_perf_box_name": plot_perf_box_name,
+        u"plot_lat_err_bars_name": plot_lat_err_bars_name,
+        u"plot_tsa_name": plot_tsa_name,
+        u"plot_http_server_perf_box": plot_http_server_perf_box,
+        u"plot_nf_heatmap": plot_nf_heatmap
+    }
+
+    logging.info(u"Generating the plots ...")
     for index, plot in enumerate(spec.plots):
         try:
-            logging.info("  Plot nr {0}: {1}".format(index + 1,
-                                                     plot.get("title", "")))
-            plot["limits"] = spec.configuration["limits"]
-            eval(plot["algorithm"])(plot, data)
-            logging.info("  Done.")
+            logging.info(f"  Plot nr {index + 1}: {plot.get(u'title', u'')}")
+            plot[u"limits"] = spec.configuration[u"limits"]
+            generator[plot[u"algorithm"]](plot, data)
+            logging.info(u"  Done.")
         except NameError as err:
-            logging.error("Probably algorithm '{alg}' is not defined: {err}".
-                          format(alg=plot["algorithm"], err=repr(err)))
-    logging.info("Done.")
+            logging.error(
+                f"Probably algorithm {plot[u'algorithm']} is not defined: "
+                f"{repr(err)}"
+            )
+    logging.info(u"Done.")
 
 
-def plot_service_density_reconf_box_name(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_service_density_reconf_box_name
+def plot_nf_reconf_box_name(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_nf_reconf_box_name
     specified in the specification file.
 
     :param plot: Plot to generate.
@@ -72,13 +84,15 @@ def plot_service_density_reconf_box_name(plot, input_data):
     """
 
     # Transform the data
-    plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logging.info(
+        f"    Creating the data set for the {plot.get(u'type', u'')} "
+        f"{plot.get(u'title', u'')}."
+    )
     data = input_data.filter_tests_by_name(
-        plot, params=["result", "parent", "tags", "type"])
+        plot, params=[u"result", u"parent", u"tags", u"type"]
+    )
     if data is None:
-        logging.error("No data.")
+        logging.error(u"No data.")
         return
 
     # Prepare the data for the plot
@@ -87,14 +101,14 @@ def plot_service_density_reconf_box_name(plot, input_data):
     for job in data:
         for build in job:
             for test in build:
-                if y_vals.get(test["parent"], None) is None:
-                    y_vals[test["parent"]] = list()
-                    loss[test["parent"]] = list()
+                if y_vals.get(test[u"parent"], None) is None:
+                    y_vals[test[u"parent"]] = list()
+                    loss[test[u"parent"]] = list()
                 try:
-                    y_vals[test["parent"]].append(test["result"]["time"])
-                    loss[test["parent"]].append(test["result"]["loss"])
+                    y_vals[test[u"parent"]].append(test[u"result"][u"time"])
+                    loss[test[u"parent"]].append(test[u"result"][u"loss"])
                 except (KeyError, TypeError):
-                    y_vals[test["parent"]].append(None)
+                    y_vals[test[u"parent"]].append(None)
 
     # Add None to the lists with missing data
     max_len = 0
@@ -103,54 +117,58 @@ def plot_service_density_reconf_box_name(plot, input_data):
         if len(val) > max_len:
             max_len = len(val)
         nr_of_samples.append(len(val))
-    for key, val in y_vals.items():
+    for val in y_vals.values():
         if len(val) < max_len:
             val.extend([None for _ in range(max_len - len(val))])
 
     # Add plot traces
     traces = list()
-    df = pd.DataFrame(y_vals)
-    df.head()
-    for i, col in enumerate(df.columns):
-        tst_name = re.sub(REGEX_NIC, "",
-                          col.lower().replace('-ndrpdr', '').
-                          replace('2n1l-', ''))
-        tst_name = "-".join(tst_name.split("-")[3:-2])
-        name = "{nr}. ({samples:02d} run{plural}, packets lost average: " \
-               "{loss:.1f}) {name}".format(
-                    nr=(i + 1),
-                    samples=nr_of_samples[i],
-                    plural='s' if nr_of_samples[i] > 1 else '',
-                    name=tst_name,
-                    loss=mean(loss[col]))
+    df_y = pd.DataFrame(y_vals)
+    df_y.head()
+    for i, col in enumerate(df_y.columns):
+        tst_name = re.sub(REGEX_NIC, u"",
+                          col.lower().replace(u'-ndrpdr', u'').
+                          replace(u'2n1l-', u''))
 
-        traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
-                               y=[y if y else None for y in df[col]],
-                               name=name,
-                               hoverinfo="y+name"))
+        traces.append(plgo.Box(
+            x=[str(i + 1) + u'.'] * len(df_y[col]),
+            y=[y if y else None for y in df_y[col]],
+            name=(
+                f"{i + 1}. "
+                f"({nr_of_samples[i]:02d} "
+                f"run{u's' if nr_of_samples[i] > 1 else u''}, "
+                f"packets lost average: {mean(loss[col]):.1f}) "
+                f"{u'-'.join(tst_name.split(u'-')[3:-2])}"
+            ),
+            hoverinfo=u"y+name"
+        ))
     try:
         # Create plot
-        layout = deepcopy(plot["layout"])
-        layout["title"] = "<b>Time Lost:</b> {0}".format(layout["title"])
-        layout["yaxis"]["title"] = "<b>Implied Time Lost [s]</b>"
-        layout["legend"]["font"]["size"] = 14
-        layout["yaxis"].pop("range")
+        layout = deepcopy(plot[u"layout"])
+        layout[u"title"] = f"<b>Time Lost:</b> {layout[u'title']}"
+        layout[u"yaxis"][u"title"] = u"<b>Implied Time Lost [s]</b>"
+        layout[u"legend"][u"font"][u"size"] = 14
+        layout[u"yaxis"].pop(u"range")
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
-        file_type = plot.get("output-file-type", ".html")
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], file_type))
-        ploff.plot(plpl, show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"], file_type))
+        file_type = plot.get(u"output-file-type", u".html")
+        logging.info(f"    Writing file {plot[u'output-file']}{file_type}.")
+        ploff.plot(
+            plpl,
+            show_link=False,
+            auto_open=False,
+            filename=f"{plot[u'output-file']}{file_type}"
+        )
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
+        logging.error(
+            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+        )
         return
 
 
-def plot_performance_box_name(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_performance_box_name
+def plot_perf_box_name(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_perf_box_name
     specified in the specification file.
 
     :param plot: Plot to generate.
@@ -160,13 +178,14 @@ def plot_performance_box_name(plot, input_data):
     """
 
     # Transform the data
-    plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logging.info(
+        f"    Creating data set for the {plot.get(u'type', u'')} "
+        f"{plot.get(u'title', u'')}."
+    )
     data = input_data.filter_tests_by_name(
-        plot, params=["throughput", "parent", "tags", "type"])
+        plot, params=[u"throughput", u"parent", u"tags", u"type"])
     if data is None:
-        logging.error("No data.")
+        logging.error(u"No data.")
         return
 
     # Prepare the data for the plot
@@ -174,25 +193,24 @@ def plot_performance_box_name(plot, input_data):
     for job in data:
         for build in job:
             for test in build:
-                if y_vals.get(test["parent"], None) is None:
-                    y_vals[test["parent"]] = list()
+                if y_vals.get(test[u"parent"], None) is None:
+                    y_vals[test[u"parent"]] = list()
                 try:
-                    if test["type"] in ("NDRPDR", ):
-                        if "-pdr" in plot_title.lower():
-                            y_vals[test["parent"]].\
-                                append(test["throughput"]["PDR"]["LOWER"])
-                        elif "-ndr" in plot_title.lower():
-                            y_vals[test["parent"]]. \
-                                append(test["throughput"]["NDR"]["LOWER"])
-                        else:
-                            continue
-                    elif test["type"] in ("SOAK", ):
-                        y_vals[test["parent"]].\
-                            append(test["throughput"]["LOWER"])
+                    if (test[u"type"] in (u"NDRPDR", ) and
+                            u"-pdr" in plot.get(u"title", u"").lower()):
+                        y_vals[test[u"parent"]].\
+                            append(test[u"throughput"][u"PDR"][u"LOWER"])
+                    elif (test[u"type"] in (u"NDRPDR", ) and
+                          u"-ndr" in plot.get(u"title", u"").lower()):
+                        y_vals[test[u"parent"]]. \
+                            append(test[u"throughput"][u"NDR"][u"LOWER"])
+                    elif test[u"type"] in (u"SOAK", ):
+                        y_vals[test[u"parent"]].\
+                            append(test[u"throughput"][u"LOWER"])
                     else:
                         continue
                 except (KeyError, TypeError):
-                    y_vals[test["parent"]].append(None)
+                    y_vals[test[u"parent"]].append(None)
 
     # Add None to the lists with missing data
     max_len = 0
@@ -201,62 +219,66 @@ def plot_performance_box_name(plot, input_data):
         if len(val) > max_len:
             max_len = len(val)
         nr_of_samples.append(len(val))
-    for key, val in y_vals.items():
+    for val in y_vals.values():
         if len(val) < max_len:
             val.extend([None for _ in range(max_len - len(val))])
 
     # Add plot traces
     traces = list()
-    df = pd.DataFrame(y_vals)
-    df.head()
+    df_y = pd.DataFrame(y_vals)
+    df_y.head()
     y_max = list()
-    for i, col in enumerate(df.columns):
-        tst_name = re.sub(REGEX_NIC, "",
-                          col.lower().replace('-ndrpdr', '').
-                          replace('2n1l-', ''))
-        name = "{nr}. ({samples:02d} run{plural}) {name}".\
-            format(nr=(i + 1),
-                   samples=nr_of_samples[i],
-                   plural='s' if nr_of_samples[i] > 1 else '',
-                   name=tst_name)
-
-        logging.debug(name)
-        traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
-                               y=[y / 1000000 if y else None for y in df[col]],
-                               name=name,
-                               hoverinfo="y+name"))
+    for i, col in enumerate(df_y.columns):
+        tst_name = re.sub(REGEX_NIC, u"",
+                          col.lower().replace(u'-ndrpdr', u'').
+                          replace(u'2n1l-', u''))
+        traces.append(
+            plgo.Box(
+                x=[str(i + 1) + u'.'] * len(df_y[col]),
+                y=[y / 1000000 if y else None for y in df_y[col]],
+                name=(
+                    f"{i + 1}. "
+                    f"({nr_of_samples[i]:02d} "
+                    f"run{u's' if nr_of_samples[i] > 1 else u''}) "
+                    f"{tst_name}"
+                ),
+                hoverinfo=u"y+name"
+            )
+        )
         try:
-            val_max = max(df[col])
-        except ValueError as err:
+            val_max = max(df_y[col])
+            if val_max:
+                y_max.append(int(val_max / 1000000) + 2)
+        except (ValueError, TypeError) as err:
             logging.error(repr(err))
             continue
-        if val_max:
-            y_max.append(int(val_max / 1000000) + 2)
 
     try:
         # Create plot
-        layout = deepcopy(plot["layout"])
-        if layout.get("title", None):
-            layout["title"] = "<b>Throughput:</b> {0}". \
-                format(layout["title"])
+        layout = deepcopy(plot[u"layout"])
+        if layout.get(u"title", None):
+            layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
         if y_max:
-            layout["yaxis"]["range"] = [0, max(y_max)]
+            layout[u"yaxis"][u"range"] = [0, max(y_max)]
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
-        file_type = plot.get("output-file-type", ".html")
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], file_type))
-        ploff.plot(plpl, show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"], file_type))
+        logging.info(f"    Writing file {plot[u'output-file']}.html.")
+        ploff.plot(
+            plpl,
+            show_link=False,
+            auto_open=False,
+            filename=f"{plot[u'output-file']}.html"
+        )
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
+        logging.error(
+            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+        )
         return
 
 
-def plot_latency_error_bars_name(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_latency_error_bars_name
+def plot_lat_err_bars_name(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_lat_err_bars_name
     specified in the specification file.
 
     :param plot: Plot to generate.
@@ -266,13 +288,14 @@ def plot_latency_error_bars_name(plot, input_data):
     """
 
     # Transform the data
-    plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    plot_title = plot.get(u"title", u"")
+    logging.info(
+        f"    Creating data set for the {plot.get(u'type', u'')} {plot_title}."
+    )
     data = input_data.filter_tests_by_name(
-        plot, params=["latency", "parent", "tags", "type"])
+        plot, params=[u"latency", u"parent", u"tags", u"type"])
     if data is None:
-        logging.error("No data.")
+        logging.error(u"No data.")
         return
 
     # Prepare the data for the plot
@@ -281,12 +304,11 @@ def plot_latency_error_bars_name(plot, input_data):
         for build in job:
             for test in build:
                 try:
-                    logging.debug("test['latency']: {0}\n".
-                                  format(test["latency"]))
+                    logging.debug(f"test[u'latency']: {test[u'latency']}\n")
                 except ValueError as err:
                     logging.warning(repr(err))
-                if y_tmp_vals.get(test["parent"], None) is None:
-                    y_tmp_vals[test["parent"]] = [
+                if y_tmp_vals.get(test[u"parent"], None) is None:
+                    y_tmp_vals[test[u"parent"]] = [
                         list(),  # direction1, min
                         list(),  # direction1, avg
                         list(),  # direction1, max
@@ -295,31 +317,30 @@ def plot_latency_error_bars_name(plot, input_data):
                         list()   # direction2, max
                     ]
                 try:
-                    if test["type"] in ("NDRPDR", ):
-                        if "-pdr" in plot_title.lower():
-                            ttype = "PDR"
-                        elif "-ndr" in plot_title.lower():
-                            ttype = "NDR"
-                        else:
-                            logging.warning("Invalid test type: {0}".
-                                            format(test["type"]))
-                            continue
-                        y_tmp_vals[test["parent"]][0].append(
-                            test["latency"][ttype]["direction1"]["min"])
-                        y_tmp_vals[test["parent"]][1].append(
-                            test["latency"][ttype]["direction1"]["avg"])
-                        y_tmp_vals[test["parent"]][2].append(
-                            test["latency"][ttype]["direction1"]["max"])
-                        y_tmp_vals[test["parent"]][3].append(
-                            test["latency"][ttype]["direction2"]["min"])
-                        y_tmp_vals[test["parent"]][4].append(
-                            test["latency"][ttype]["direction2"]["avg"])
-                        y_tmp_vals[test["parent"]][5].append(
-                            test["latency"][ttype]["direction2"]["max"])
-                    else:
-                        logging.warning("Invalid test type: {0}".
-                                        format(test["type"]))
+                    if test[u"type"] not in (u"NDRPDR", ):
+                        logging.warning(f"Invalid test type: {test[u'type']}")
                         continue
+                    if u"-pdr" in plot_title.lower():
+                        ttype = u"PDR"
+                    elif u"-ndr" in plot_title.lower():
+                        ttype = u"NDR"
+                    else:
+                        logging.warning(
+                            f"Invalid test type: {test[u'type']}"
+                        )
+                        continue
+                    y_tmp_vals[test[u"parent"]][0].append(
+                        test[u"latency"][ttype][u"direction1"][u"min"])
+                    y_tmp_vals[test[u"parent"]][1].append(
+                        test[u"latency"][ttype][u"direction1"][u"avg"])
+                    y_tmp_vals[test[u"parent"]][2].append(
+                        test[u"latency"][ttype][u"direction1"][u"max"])
+                    y_tmp_vals[test[u"parent"]][3].append(
+                        test[u"latency"][ttype][u"direction2"][u"min"])
+                    y_tmp_vals[test[u"parent"]][4].append(
+                        test[u"latency"][ttype][u"direction2"][u"avg"])
+                    y_tmp_vals[test[u"parent"]][5].append(
+                        test[u"latency"][ttype][u"direction2"][u"max"])
                 except (KeyError, TypeError) as err:
                     logging.warning(repr(err))
 
@@ -329,8 +350,8 @@ def plot_latency_error_bars_name(plot, input_data):
     y_maxs = list()
     nr_of_samples = list()
     for key, val in y_tmp_vals.items():
-        name = re.sub(REGEX_NIC, "", key.replace('-ndrpdr', '').
-                      replace('2n1l-', ''))
+        name = re.sub(REGEX_NIC, u"", key.replace(u'-ndrpdr', u'').
+                      replace(u'2n1l-', u''))
         x_vals.append(name)  # dir 1
         y_vals.append(mean(val[1]) if val[1] else None)
         y_mins.append(mean(val[0]) if val[0] else None)
@@ -345,22 +366,22 @@ def plot_latency_error_bars_name(plot, input_data):
     traces = list()
     annotations = list()
 
-    for idx in range(len(x_vals)):
+    for idx, _ in enumerate(x_vals):
         if not bool(int(idx % 2)):
-            direction = "West-East"
+            direction = u"West-East"
         else:
-            direction = "East-West"
-        hovertext = ("No. of Runs: {nr}<br>"
-                     "Test: {test}<br>"
-                     "Direction: {dir}<br>".format(test=x_vals[idx],
-                                                   dir=direction,
-                                                   nr=nr_of_samples[idx]))
+            direction = u"East-West"
+        hovertext = (
+            f"No. of Runs: {nr_of_samples[idx]}<br>"
+            f"Test: {x_vals[idx]}<br>"
+            f"Direction: {direction}<br>"
+        )
         if isinstance(y_maxs[idx], float):
-            hovertext += "Max: {max:.2f}uSec<br>".format(max=y_maxs[idx])
+            hovertext += f"Max: {y_maxs[idx]:.2f}uSec<br>"
         if isinstance(y_vals[idx], float):
-            hovertext += "Mean: {avg:.2f}uSec<br>".format(avg=y_vals[idx])
+            hovertext += f"Mean: {y_vals[idx]:.2f}uSec<br>"
         if isinstance(y_mins[idx], float):
-            hovertext += "Min: {min:.2f}uSec".format(min=y_mins[idx])
+            hovertext += f"Min: {y_mins[idx]:.2f}uSec"
 
         if isinstance(y_maxs[idx], float) and isinstance(y_vals[idx], float):
             array = [y_maxs[idx] - y_vals[idx], ]
@@ -376,9 +397,9 @@ def plot_latency_error_bars_name(plot, input_data):
             name=x_vals[idx],
             legendgroup=x_vals[idx],
             showlegend=bool(int(idx % 2)),
-            mode="markers",
+            mode=u"markers",
             error_y=dict(
-                type='data',
+                type=u"data",
                 symmetric=False,
                 array=array,
                 arrayminus=arrayminus,
@@ -389,48 +410,49 @@ def plot_latency_error_bars_name(plot, input_data):
                 color=COLORS[int(idx / 2)],
             ),
             text=hovertext,
-            hoverinfo="text",
+            hoverinfo=u"text",
         ))
         annotations.append(dict(
             x=idx,
             y=0,
-            xref="x",
-            yref="y",
-            xanchor="center",
-            yanchor="top",
-            text="E-W" if bool(int(idx % 2)) else "W-E",
+            xref=u"x",
+            yref=u"y",
+            xanchor=u"center",
+            yanchor=u"top",
+            text=u"E-W" if bool(int(idx % 2)) else u"W-E",
             font=dict(
                 size=16,
             ),
-            align="center",
+            align=u"center",
             showarrow=False
         ))
 
     try:
         # Create plot
-        file_type = plot.get("output-file-type", ".html")
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], file_type))
-        layout = deepcopy(plot["layout"])
-        if layout.get("title", None):
-            layout["title"] = "<b>Latency:</b> {0}".\
-                format(layout["title"])
-        layout["annotations"] = annotations
+        file_type = plot.get(u"output-file-type", u".html")
+        logging.info(f"    Writing file {plot[u'output-file']}{file_type}.")
+        layout = deepcopy(plot[u"layout"])
+        if layout.get(u"title", None):
+            layout[u"title"] = f"<b>Latency:</b> {layout[u'title']}"
+        layout[u"annotations"] = annotations
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
-        ploff.plot(plpl,
-                   show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"], file_type))
+        ploff.plot(
+            plpl,
+            show_link=False, auto_open=False,
+            filename=f"{plot[u'output-file']}{file_type}"
+        )
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
+        logging.error(
+            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+        )
         return
 
 
-def plot_throughput_speedup_analysis_name(plot, input_data):
+def plot_tsa_name(plot, input_data):
     """Generate the plot(s) with algorithm:
-    plot_throughput_speedup_analysis_name
+    plot_tsa_name
     specified in the specification file.
 
     :param plot: Plot to generate.
@@ -440,46 +462,51 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
     """
 
     # Transform the data
-    plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    plot_title = plot.get(u"title", u"")
+    logging.info(
+        f"    Creating data set for the {plot.get(u'type', u'')} {plot_title}."
+    )
     data = input_data.filter_tests_by_name(
-        plot, params=["throughput", "parent", "tags", "type"])
+        plot, params=[u"throughput", u"parent", u"tags", u"type"])
     if data is None:
-        logging.error("No data.")
+        logging.error(u"No data.")
         return
 
     y_vals = OrderedDict()
     for job in data:
         for build in job:
             for test in build:
-                if y_vals.get(test["parent"], None) is None:
-                    y_vals[test["parent"]] = {"1": list(),
-                                              "2": list(),
-                                              "4": list()}
+                if y_vals.get(test[u"parent"], None) is None:
+                    y_vals[test[u"parent"]] = {
+                        u"1": list(),
+                        u"2": list(),
+                        u"4": list()
+                    }
                 try:
-                    if test["type"] in ("NDRPDR",):
-                        if "-pdr" in plot_title.lower():
-                            ttype = "PDR"
-                        elif "-ndr" in plot_title.lower():
-                            ttype = "NDR"
-                        else:
-                            continue
-                        if "1C" in test["tags"]:
-                            y_vals[test["parent"]]["1"]. \
-                                append(test["throughput"][ttype]["LOWER"])
-                        elif "2C" in test["tags"]:
-                            y_vals[test["parent"]]["2"]. \
-                                append(test["throughput"][ttype]["LOWER"])
-                        elif "4C" in test["tags"]:
-                            y_vals[test["parent"]]["4"]. \
-                                append(test["throughput"][ttype]["LOWER"])
+                    if test[u"type"] not in (u"NDRPDR",):
+                        continue
+
+                    if u"-pdr" in plot_title.lower():
+                        ttype = u"PDR"
+                    elif u"-ndr" in plot_title.lower():
+                        ttype = u"NDR"
+                    else:
+                        continue
+
+                    if u"1C" in test[u"tags"]:
+                        y_vals[test[u"parent"]][u"1"]. \
+                            append(test[u"throughput"][ttype][u"LOWER"])
+                    elif u"2C" in test[u"tags"]:
+                        y_vals[test[u"parent"]][u"2"]. \
+                            append(test[u"throughput"][ttype][u"LOWER"])
+                    elif u"4C" in test[u"tags"]:
+                        y_vals[test[u"parent"]][u"4"]. \
+                            append(test[u"throughput"][ttype][u"LOWER"])
                 except (KeyError, TypeError):
                     pass
 
     if not y_vals:
-        logging.warning("No data for the plot '{}'".
-                        format(plot.get("title", "")))
+        logging.warning(f"No data for the plot {plot.get(u'title', u'')}")
         return
 
     y_1c_max = dict()
@@ -487,7 +514,7 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
         for key, test_val in test_vals.items():
             if test_val:
                 avg_val = sum(test_val) / len(test_val)
-                y_vals[test_name][key] = (avg_val, len(test_val))
+                y_vals[test_name][key] = [avg_val, len(test_val)]
                 ideal = avg_val / (int(key) * 1000000.0)
                 if test_name not in y_1c_max or ideal > y_1c_max[test_name]:
                     y_1c_max[test_name] = ideal
@@ -496,32 +523,40 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
     y_max = list()
     nic_limit = 0
     lnk_limit = 0
-    pci_limit = plot["limits"]["pci"]["pci-g3-x8"]
+    pci_limit = plot[u"limits"][u"pci"][u"pci-g3-x8"]
     for test_name, test_vals in y_vals.items():
         try:
-            if test_vals["1"][1]:
-                name = re.sub(REGEX_NIC, "", test_name.replace('-ndrpdr', '').
-                              replace('2n1l-', ''))
+            if test_vals[u"1"][1]:
+                name = re.sub(
+                    REGEX_NIC,
+                    u"",
+                    test_name.replace(u'-ndrpdr', u'').replace(u'2n1l-', u'')
+                )
                 vals[name] = OrderedDict()
-                y_val_1 = test_vals["1"][0] / 1000000.0
-                y_val_2 = test_vals["2"][0] / 1000000.0 if test_vals["2"][0] \
+                y_val_1 = test_vals[u"1"][0] / 1000000.0
+                y_val_2 = test_vals[u"2"][0] / 1000000.0 if test_vals[u"2"][0] \
                     else None
-                y_val_4 = test_vals["4"][0] / 1000000.0 if test_vals["4"][0] \
+                y_val_4 = test_vals[u"4"][0] / 1000000.0 if test_vals[u"4"][0] \
                     else None
 
-                vals[name]["val"] = [y_val_1, y_val_2, y_val_4]
-                vals[name]["rel"] = [1.0, None, None]
-                vals[name]["ideal"] = [y_1c_max[test_name],
-                                       y_1c_max[test_name] * 2,
-                                       y_1c_max[test_name] * 4]
-                vals[name]["diff"] = [(y_val_1 - y_1c_max[test_name]) * 100 /
-                                      y_val_1, None, None]
-                vals[name]["count"] = [test_vals["1"][1],
-                                       test_vals["2"][1],
-                                       test_vals["4"][1]]
+                vals[name][u"val"] = [y_val_1, y_val_2, y_val_4]
+                vals[name][u"rel"] = [1.0, None, None]
+                vals[name][u"ideal"] = [
+                    y_1c_max[test_name],
+                    y_1c_max[test_name] * 2,
+                    y_1c_max[test_name] * 4
+                ]
+                vals[name][u"diff"] = [
+                    (y_val_1 - y_1c_max[test_name]) * 100 / y_val_1, None, None
+                ]
+                vals[name][u"count"] = [
+                    test_vals[u"1"][1],
+                    test_vals[u"2"][1],
+                    test_vals[u"4"][1]
+                ]
 
                 try:
-                    val_max = max(vals[name]["val"])
+                    val_max = max(vals[name][u"val"])
                 except ValueError as err:
                     logging.error(repr(err))
                     continue
@@ -529,42 +564,42 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
                     y_max.append(val_max)
 
                 if y_val_2:
-                    vals[name]["rel"][1] = round(y_val_2 / y_val_1, 2)
-                    vals[name]["diff"][1] = \
-                        (y_val_2 - vals[name]["ideal"][1]) * 100 / y_val_2
+                    vals[name][u"rel"][1] = round(y_val_2 / y_val_1, 2)
+                    vals[name][u"diff"][1] = \
+                        (y_val_2 - vals[name][u"ideal"][1]) * 100 / y_val_2
                 if y_val_4:
-                    vals[name]["rel"][2] = round(y_val_4 / y_val_1, 2)
-                    vals[name]["diff"][2] = \
-                        (y_val_4 - vals[name]["ideal"][2]) * 100 / y_val_4
+                    vals[name][u"rel"][2] = round(y_val_4 / y_val_1, 2)
+                    vals[name][u"diff"][2] = \
+                        (y_val_4 - vals[name][u"ideal"][2]) * 100 / y_val_4
         except IndexError as err:
-            logging.warning("No data for '{0}'".format(test_name))
+            logging.warning(f"No data for {test_name}")
             logging.warning(repr(err))
 
         # Limits:
-        if "x520" in test_name:
-            limit = plot["limits"]["nic"]["x520"]
-        elif "x710" in test_name:
-            limit = plot["limits"]["nic"]["x710"]
-        elif "xxv710" in test_name:
-            limit = plot["limits"]["nic"]["xxv710"]
-        elif "xl710" in test_name:
-            limit = plot["limits"]["nic"]["xl710"]
-        elif "x553" in test_name:
-            limit = plot["limits"]["nic"]["x553"]
+        if u"x520" in test_name:
+            limit = plot[u"limits"][u"nic"][u"x520"]
+        elif u"x710" in test_name:
+            limit = plot[u"limits"][u"nic"][u"x710"]
+        elif u"xxv710" in test_name:
+            limit = plot[u"limits"][u"nic"][u"xxv710"]
+        elif u"xl710" in test_name:
+            limit = plot[u"limits"][u"nic"][u"xl710"]
+        elif u"x553" in test_name:
+            limit = plot[u"limits"][u"nic"][u"x553"]
         else:
             limit = 0
         if limit > nic_limit:
             nic_limit = limit
 
-        mul = 2 if "ge2p" in test_name else 1
-        if "10ge" in test_name:
-            limit = plot["limits"]["link"]["10ge"] * mul
-        elif "25ge" in test_name:
-            limit = plot["limits"]["link"]["25ge"] * mul
-        elif "40ge" in test_name:
-            limit = plot["limits"]["link"]["40ge"] * mul
-        elif "100ge" in test_name:
-            limit = plot["limits"]["link"]["100ge"] * mul
+        mul = 2 if u"ge2p" in test_name else 1
+        if u"10ge" in test_name:
+            limit = plot[u"limits"][u"link"][u"10ge"] * mul
+        elif u"25ge" in test_name:
+            limit = plot[u"limits"][u"link"][u"25ge"] * mul
+        elif u"40ge" in test_name:
+            limit = plot[u"limits"][u"link"][u"40ge"] * mul
+        elif u"100ge" in test_name:
+            limit = plot[u"limits"][u"link"][u"100ge"] * mul
         else:
             limit = 0
         if limit > lnk_limit:
@@ -584,28 +619,28 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
     traces.append(plgo.Scatter(
         x=x_vals,
         y=[nic_limit, ] * len(x_vals),
-        name="NIC: {0:.2f}Mpps".format(nic_limit),
+        name=f"NIC: {nic_limit:.2f}Mpps",
         showlegend=False,
-        mode="lines",
+        mode=u"lines",
         line=dict(
-            dash="dot",
+            dash=u"dot",
             color=COLORS[-1],
             width=1),
-        hoverinfo="none"
+        hoverinfo=u"none"
     ))
     annotations.append(dict(
         x=1,
         y=nic_limit,
-        xref="x",
-        yref="y",
-        xanchor="left",
-        yanchor="bottom",
-        text="NIC: {0:.2f}Mpps".format(nic_limit),
+        xref=u"x",
+        yref=u"y",
+        xanchor=u"left",
+        yanchor=u"bottom",
+        text=f"NIC: {nic_limit:.2f}Mpps",
         font=dict(
             size=14,
             color=COLORS[-1],
         ),
-        align="left",
+        align=u"left",
         showarrow=False
     ))
     y_max.append(nic_limit)
@@ -615,275 +650,146 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
         traces.append(plgo.Scatter(
             x=x_vals,
             y=[lnk_limit, ] * len(x_vals),
-            name="Link: {0:.2f}Mpps".format(lnk_limit),
+            name=f"Link: {lnk_limit:.2f}Mpps",
             showlegend=False,
-            mode="lines",
+            mode=u"lines",
             line=dict(
-                dash="dot",
+                dash=u"dot",
                 color=COLORS[-2],
                 width=1),
-            hoverinfo="none"
+            hoverinfo=u"none"
         ))
         annotations.append(dict(
             x=1,
             y=lnk_limit,
-            xref="x",
-            yref="y",
-            xanchor="left",
-            yanchor="bottom",
-            text="Link: {0:.2f}Mpps".format(lnk_limit),
+            xref=u"x",
+            yref=u"y",
+            xanchor=u"left",
+            yanchor=u"bottom",
+            text=f"Link: {lnk_limit:.2f}Mpps",
             font=dict(
                 size=14,
                 color=COLORS[-2],
             ),
-            align="left",
+            align=u"left",
             showarrow=False
         ))
         y_max.append(lnk_limit)
 
     pci_limit /= 1000000.0
     if (pci_limit < threshold and
-        (pci_limit < lnk_limit * 0.95 or lnk_limit > lnk_limit * 1.05)):
+            (pci_limit < lnk_limit * 0.95 or lnk_limit > lnk_limit * 1.05)):
         traces.append(plgo.Scatter(
             x=x_vals,
             y=[pci_limit, ] * len(x_vals),
-            name="PCIe: {0:.2f}Mpps".format(pci_limit),
+            name=f"PCIe: {pci_limit:.2f}Mpps",
             showlegend=False,
-            mode="lines",
+            mode=u"lines",
             line=dict(
-                dash="dot",
+                dash=u"dot",
                 color=COLORS[-3],
                 width=1),
-            hoverinfo="none"
+            hoverinfo=u"none"
         ))
         annotations.append(dict(
             x=1,
             y=pci_limit,
-            xref="x",
-            yref="y",
-            xanchor="left",
-            yanchor="bottom",
-            text="PCIe: {0:.2f}Mpps".format(pci_limit),
+            xref=u"x",
+            yref=u"y",
+            xanchor=u"left",
+            yanchor=u"bottom",
+            text=f"PCIe: {pci_limit:.2f}Mpps",
             font=dict(
                 size=14,
                 color=COLORS[-3],
             ),
-            align="left",
+            align=u"left",
             showarrow=False
         ))
         y_max.append(pci_limit)
 
     # Perfect and measured:
     cidx = 0
-    for name, val in vals.iteritems():
+    for name, val in vals.items():
         hovertext = list()
         try:
-            for idx in range(len(val["val"])):
+            for idx in range(len(val[u"val"])):
                 htext = ""
-                if isinstance(val["val"][idx], float):
-                    htext += "No. of Runs: {1}<br>" \
-                             "Mean: {0:.2f}Mpps<br>".format(val["val"][idx],
-                                                            val["count"][idx])
-                if isinstance(val["diff"][idx], float):
-                    htext += "Diff: {0:.0f}%<br>".format(
-                        round(val["diff"][idx]))
-                if isinstance(val["rel"][idx], float):
-                    htext += "Speedup: {0:.2f}".format(val["rel"][idx])
+                if isinstance(val[u"val"][idx], float):
+                    htext += (
+                        f"No. of Runs: {val[u'count'][idx]}<br>"
+                        f"Mean: {val[u'val'][idx]:.2f}Mpps<br>"
+                    )
+                if isinstance(val[u"diff"][idx], float):
+                    htext += f"Diff: {round(val[u'diff'][idx]):.0f}%<br>"
+                if isinstance(val[u"rel"][idx], float):
+                    htext += f"Speedup: {val[u'rel'][idx]:.2f}"
                 hovertext.append(htext)
-            traces.append(plgo.Scatter(x=x_vals,
-                                       y=val["val"],
-                                       name=name,
-                                       legendgroup=name,
-                                       mode="lines+markers",
-                                       line=dict(
-                                           color=COLORS[cidx],
-                                           width=2),
-                                       marker=dict(
-                                           symbol="circle",
-                                           size=10
-                                       ),
-                                       text=hovertext,
-                                       hoverinfo="text+name"
-                                       ))
-            traces.append(plgo.Scatter(x=x_vals,
-                                       y=val["ideal"],
-                                       name="{0} perfect".format(name),
-                                       legendgroup=name,
-                                       showlegend=False,
-                                       mode="lines",
-                                       line=dict(
-                                           color=COLORS[cidx],
-                                           width=2,
-                                           dash="dash"),
-                                       text=["Perfect: {0:.2f}Mpps".format(y)
-                                             for y in val["ideal"]],
-                                       hoverinfo="text"
-                                       ))
+            traces.append(
+                plgo.Scatter(
+                    x=x_vals,
+                    y=val[u"val"],
+                    name=name,
+                    legendgroup=name,
+                    mode=u"lines+markers",
+                    line=dict(
+                        color=COLORS[cidx],
+                        width=2),
+                    marker=dict(
+                        symbol=u"circle",
+                        size=10
+                    ),
+                    text=hovertext,
+                    hoverinfo=u"text+name"
+                )
+            )
+            traces.append(
+                plgo.Scatter(
+                    x=x_vals,
+                    y=val[u"ideal"],
+                    name=f"{name} perfect",
+                    legendgroup=name,
+                    showlegend=False,
+                    mode=u"lines",
+                    line=dict(
+                        color=COLORS[cidx],
+                        width=2,
+                        dash=u"dash"),
+                    text=[f"Perfect: {y:.2f}Mpps" for y in val[u"ideal"]],
+                    hoverinfo=u"text"
+                )
+            )
             cidx += 1
         except (IndexError, ValueError, KeyError) as err:
-            logging.warning("No data for '{0}'".format(name))
-            logging.warning(repr(err))
+            logging.warning(f"No data for {name}\n{repr(err)}")
 
     try:
         # Create plot
-        file_type = plot.get("output-file-type", ".html")
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], file_type))
-        layout = deepcopy(plot["layout"])
-        if layout.get("title", None):
-            layout["title"] = "<b>Speedup Multi-core:</b> {0}". \
-                format(layout["title"])
-        layout["yaxis"]["range"] = [0, int(max(y_max) * 1.1)]
-        layout["annotations"].extend(annotations)
+        file_type = plot.get(u"output-file-type", u".html")
+        logging.info(f"    Writing file {plot[u'output-file']}{file_type}.")
+        layout = deepcopy(plot[u"layout"])
+        if layout.get(u"title", None):
+            layout[u"title"] = f"<b>Speedup Multi-core:</b> {layout[u'title']}"
+        layout[u"yaxis"][u"range"] = [0, int(max(y_max) * 1.1)]
+        layout[u"annotations"].extend(annotations)
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
-        ploff.plot(plpl,
-                   show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"], file_type))
+        ploff.plot(
+            plpl,
+            show_link=False,
+            auto_open=False,
+            filename=f"{plot[u'output-file']}{file_type}"
+        )
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
+        logging.error(
+            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+        )
         return
 
 
-def plot_performance_box(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_performance_box
-    specified in the specification file.
-
-    TODO: Remove when not needed.
-
-    :param plot: Plot to generate.
-    :param input_data: Data to process.
-    :type plot: pandas.Series
-    :type input_data: InputData
-    """
-
-    # Transform the data
-    plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
-    data = input_data.filter_data(plot)
-    if data is None:
-        logging.error("No data.")
-        return
-
-    # Prepare the data for the plot
-    y_vals = dict()
-    y_tags = dict()
-    for job in data:
-        for build in job:
-            for test in build:
-                if y_vals.get(test["parent"], None) is None:
-                    y_vals[test["parent"]] = list()
-                    y_tags[test["parent"]] = test.get("tags", None)
-                try:
-                    if test["type"] in ("NDRPDR", ):
-                        if "-pdr" in plot_title.lower():
-                            y_vals[test["parent"]].\
-                                append(test["throughput"]["PDR"]["LOWER"])
-                        elif "-ndr" in plot_title.lower():
-                            y_vals[test["parent"]]. \
-                                append(test["throughput"]["NDR"]["LOWER"])
-                        else:
-                            continue
-                    elif test["type"] in ("SOAK", ):
-                        y_vals[test["parent"]].\
-                            append(test["throughput"]["LOWER"])
-                    else:
-                        continue
-                except (KeyError, TypeError):
-                    y_vals[test["parent"]].append(None)
-
-    # Sort the tests
-    order = plot.get("sort", None)
-    if order and y_tags:
-        y_sorted = OrderedDict()
-        y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
-        for tag in order:
-            logging.debug(tag)
-            for suite, tags in y_tags_l.items():
-                if "not " in tag:
-                    tag = tag.split(" ")[-1]
-                    if tag.lower() in tags:
-                        continue
-                else:
-                    if tag.lower() not in tags:
-                        continue
-                try:
-                    y_sorted[suite] = y_vals.pop(suite)
-                    y_tags_l.pop(suite)
-                    logging.debug(suite)
-                except KeyError as err:
-                    logging.error("Not found: {0}".format(repr(err)))
-                finally:
-                    break
-    else:
-        y_sorted = y_vals
-
-    # Add None to the lists with missing data
-    max_len = 0
-    nr_of_samples = list()
-    for val in y_sorted.values():
-        if len(val) > max_len:
-            max_len = len(val)
-        nr_of_samples.append(len(val))
-    for key, val in y_sorted.items():
-        if len(val) < max_len:
-            val.extend([None for _ in range(max_len - len(val))])
-
-    # Add plot traces
-    traces = list()
-    df = pd.DataFrame(y_sorted)
-    df.head()
-    y_max = list()
-    for i, col in enumerate(df.columns):
-        tst_name = re.sub(REGEX_NIC, "",
-                          col.lower().replace('-ndrpdr', '').
-                          replace('2n1l-', ''))
-        name = "{nr}. ({samples:02d} run{plural}) {name}".\
-            format(nr=(i + 1),
-                   samples=nr_of_samples[i],
-                   plural='s' if nr_of_samples[i] > 1 else '',
-                   name=tst_name)
-
-        logging.debug(name)
-        traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
-                               y=[y / 1000000 if y else None for y in df[col]],
-                               name=name,
-                               **plot["traces"]))
-        try:
-            val_max = max(df[col])
-        except ValueError as err:
-            logging.error(repr(err))
-            continue
-        if val_max:
-            y_max.append(int(val_max / 1000000) + 2)
-
-    try:
-        # Create plot
-        layout = deepcopy(plot["layout"])
-        if layout.get("title", None):
-            layout["title"] = "<b>Throughput:</b> {0}". \
-                format(layout["title"])
-        if y_max:
-            layout["yaxis"]["range"] = [0, max(y_max)]
-        plpl = plgo.Figure(data=traces, layout=layout)
-
-        # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
-        ploff.plot(plpl, show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"],
-                                            plot["output-file-type"]))
-    except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
-        return
-
-
-def plot_soak_bars(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_soak_bars
+def plot_http_server_perf_box(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_http_server_perf_box
     specified in the specification file.
 
     :param plot: Plot to generate.
@@ -893,813 +799,13 @@ def plot_soak_bars(plot, input_data):
     """
 
     # Transform the data
-    plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logging.info(
+        f"    Creating the data set for the {plot.get(u'type', u'')} "
+        f"{plot.get(u'title', u'')}."
+    )
     data = input_data.filter_data(plot)
     if data is None:
-        logging.error("No data.")
-        return
-
-    # Prepare the data for the plot
-    y_vals = dict()
-    y_tags = dict()
-    for job in data:
-        for build in job:
-            for test in build:
-                if y_vals.get(test["parent"], None) is None:
-                    y_tags[test["parent"]] = test.get("tags", None)
-                try:
-                    if test["type"] in ("SOAK", ):
-                        y_vals[test["parent"]] = test["throughput"]
-                    else:
-                        continue
-                except (KeyError, TypeError):
-                    y_vals[test["parent"]] = dict()
-
-    # Sort the tests
-    order = plot.get("sort", None)
-    if order and y_tags:
-        y_sorted = OrderedDict()
-        y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
-        for tag in order:
-            logging.debug(tag)
-            for suite, tags in y_tags_l.items():
-                if "not " in tag:
-                    tag = tag.split(" ")[-1]
-                    if tag.lower() in tags:
-                        continue
-                else:
-                    if tag.lower() not in tags:
-                        continue
-                try:
-                    y_sorted[suite] = y_vals.pop(suite)
-                    y_tags_l.pop(suite)
-                    logging.debug(suite)
-                except KeyError as err:
-                    logging.error("Not found: {0}".format(repr(err)))
-                finally:
-                    break
-    else:
-        y_sorted = y_vals
-
-    idx = 0
-    y_max = 0
-    traces = list()
-    for test_name, test_data in y_sorted.items():
-        idx += 1
-        name = "{nr}. {name}".\
-            format(nr=idx, name=test_name.lower().replace('-soak', ''))
-        if len(name) > 50:
-            name_lst = name.split('-')
-            name = ""
-            split_name = True
-            for segment in name_lst:
-                if (len(name) + len(segment) + 1) > 50 and split_name:
-                    name += "<br>    "
-                    split_name = False
-                name += segment + '-'
-            name = name[:-1]
-
-        y_val = test_data.get("LOWER", None)
-        if y_val:
-            y_val /= 1000000
-            if y_val > y_max:
-                y_max = y_val
-
-        time = "No Information"
-        result = "No Information"
-        hovertext = ("{name}<br>"
-                     "Packet Throughput: {val:.2f}Mpps<br>"
-                     "Final Duration: {time}<br>"
-                     "Result: {result}".format(name=name,
-                                               val=y_val,
-                                               time=time,
-                                               result=result))
-        traces.append(plgo.Bar(x=[str(idx) + '.', ],
-                               y=[y_val, ],
-                               name=name,
-                               text=hovertext,
-                               hoverinfo="text"))
-    try:
-        # Create plot
-        layout = deepcopy(plot["layout"])
-        if layout.get("title", None):
-            layout["title"] = "<b>Packet Throughput:</b> {0}". \
-                format(layout["title"])
-        if y_max:
-            layout["yaxis"]["range"] = [0, y_max + 1]
-        plpl = plgo.Figure(data=traces, layout=layout)
-        # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
-        ploff.plot(plpl, show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"],
-                                            plot["output-file-type"]))
-    except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
-        return
-
-
-def plot_soak_boxes(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_soak_boxes
-    specified in the specification file.
-
-    :param plot: Plot to generate.
-    :param input_data: Data to process.
-    :type plot: pandas.Series
-    :type input_data: InputData
-    """
-
-    # Transform the data
-    plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
-    data = input_data.filter_data(plot)
-    if data is None:
-        logging.error("No data.")
-        return
-
-    # Prepare the data for the plot
-    y_vals = dict()
-    y_tags = dict()
-    for job in data:
-        for build in job:
-            for test in build:
-                if y_vals.get(test["parent"], None) is None:
-                    y_tags[test["parent"]] = test.get("tags", None)
-                try:
-                    if test["type"] in ("SOAK", ):
-                        y_vals[test["parent"]] = test["throughput"]
-                    else:
-                        continue
-                except (KeyError, TypeError):
-                    y_vals[test["parent"]] = dict()
-
-    # Sort the tests
-    order = plot.get("sort", None)
-    if order and y_tags:
-        y_sorted = OrderedDict()
-        y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
-        for tag in order:
-            logging.debug(tag)
-            for suite, tags in y_tags_l.items():
-                if "not " in tag:
-                    tag = tag.split(" ")[-1]
-                    if tag.lower() in tags:
-                        continue
-                else:
-                    if tag.lower() not in tags:
-                        continue
-                try:
-                    y_sorted[suite] = y_vals.pop(suite)
-                    y_tags_l.pop(suite)
-                    logging.debug(suite)
-                except KeyError as err:
-                    logging.error("Not found: {0}".format(repr(err)))
-                finally:
-                    break
-    else:
-        y_sorted = y_vals
-
-    idx = 0
-    y_max = 0
-    traces = list()
-    for test_name, test_data in y_sorted.items():
-        idx += 1
-        name = "{nr}. {name}".\
-            format(nr=idx, name=test_name.lower().replace('-soak', '').
-                   replace('2n1l-', ''))
-        if len(name) > 55:
-            name_lst = name.split('-')
-            name = ""
-            split_name = True
-            for segment in name_lst:
-                if (len(name) + len(segment) + 1) > 55 and split_name:
-                    name += "<br>    "
-                    split_name = False
-                name += segment + '-'
-            name = name[:-1]
-
-        y_val = test_data.get("UPPER", None)
-        if y_val:
-            y_val /= 1000000
-            if y_val > y_max:
-                y_max = y_val
-
-        y_base = test_data.get("LOWER", None)
-        if y_base:
-            y_base /= 1000000
-
-        hovertext = ("Upper bound: {upper:.2f}<br>"
-                     "Lower bound: {lower:.2f}".format(upper=y_val,
-                                                           lower=y_base))
-        traces.append(plgo.Bar(x=[str(idx) + '.', ],
-                               # +0.05 to see the value in case lower == upper
-                               y=[y_val - y_base + 0.05, ],
-                               base=y_base,
-                               name=name,
-                               text=hovertext,
-                               hoverinfo="text"))
-    try:
-        # Create plot
-        layout = deepcopy(plot["layout"])
-        if layout.get("title", None):
-            layout["title"] = "<b>Throughput:</b> {0}". \
-                format(layout["title"])
-        if y_max:
-            layout["yaxis"]["range"] = [0, y_max + 1]
-        plpl = plgo.Figure(data=traces, layout=layout)
-        # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
-        ploff.plot(plpl, show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"],
-                                            plot["output-file-type"]))
-    except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
-        return
-
-
-def plot_latency_error_bars(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_latency_error_bars
-    specified in the specification file.
-
-    TODO: Remove when not needed.
-
-    :param plot: Plot to generate.
-    :param input_data: Data to process.
-    :type plot: pandas.Series
-    :type input_data: InputData
-    """
-
-    # Transform the data
-    plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
-    data = input_data.filter_data(plot)
-    if data is None:
-        logging.error("No data.")
-        return
-
-    # Prepare the data for the plot
-    y_tmp_vals = dict()
-    y_tags = dict()
-    for job in data:
-        for build in job:
-            for test in build:
-                try:
-                    logging.debug("test['latency']: {0}\n".
-                                 format(test["latency"]))
-                except ValueError as err:
-                    logging.warning(repr(err))
-                if y_tmp_vals.get(test["parent"], None) is None:
-                    y_tmp_vals[test["parent"]] = [
-                        list(),  # direction1, min
-                        list(),  # direction1, avg
-                        list(),  # direction1, max
-                        list(),  # direction2, min
-                        list(),  # direction2, avg
-                        list()   # direction2, max
-                    ]
-                    y_tags[test["parent"]] = test.get("tags", None)
-                try:
-                    if test["type"] in ("NDRPDR", ):
-                        if "-pdr" in plot_title.lower():
-                            ttype = "PDR"
-                        elif "-ndr" in plot_title.lower():
-                            ttype = "NDR"
-                        else:
-                            logging.warning("Invalid test type: {0}".
-                                            format(test["type"]))
-                            continue
-                        y_tmp_vals[test["parent"]][0].append(
-                            test["latency"][ttype]["direction1"]["min"])
-                        y_tmp_vals[test["parent"]][1].append(
-                            test["latency"][ttype]["direction1"]["avg"])
-                        y_tmp_vals[test["parent"]][2].append(
-                            test["latency"][ttype]["direction1"]["max"])
-                        y_tmp_vals[test["parent"]][3].append(
-                            test["latency"][ttype]["direction2"]["min"])
-                        y_tmp_vals[test["parent"]][4].append(
-                            test["latency"][ttype]["direction2"]["avg"])
-                        y_tmp_vals[test["parent"]][5].append(
-                            test["latency"][ttype]["direction2"]["max"])
-                    else:
-                        logging.warning("Invalid test type: {0}".
-                                        format(test["type"]))
-                        continue
-                except (KeyError, TypeError) as err:
-                    logging.warning(repr(err))
-    logging.debug("y_tmp_vals: {0}\n".format(y_tmp_vals))
-
-    # Sort the tests
-    order = plot.get("sort", None)
-    if order and y_tags:
-        y_sorted = OrderedDict()
-        y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
-        for tag in order:
-            logging.debug(tag)
-            for suite, tags in y_tags_l.items():
-                if "not " in tag:
-                    tag = tag.split(" ")[-1]
-                    if tag.lower() in tags:
-                        continue
-                else:
-                    if tag.lower() not in tags:
-                        continue
-                try:
-                    y_sorted[suite] = y_tmp_vals.pop(suite)
-                    y_tags_l.pop(suite)
-                    logging.debug(suite)
-                except KeyError as err:
-                    logging.error("Not found: {0}".format(repr(err)))
-                finally:
-                    break
-    else:
-        y_sorted = y_tmp_vals
-
-    logging.debug("y_sorted: {0}\n".format(y_sorted))
-    x_vals = list()
-    y_vals = list()
-    y_mins = list()
-    y_maxs = list()
-    nr_of_samples = list()
-    for key, val in y_sorted.items():
-        name = re.sub(REGEX_NIC, "", key.replace('-ndrpdr', '').
-                      replace('2n1l-', ''))
-        x_vals.append(name)  # dir 1
-        y_vals.append(mean(val[1]) if val[1] else None)
-        y_mins.append(mean(val[0]) if val[0] else None)
-        y_maxs.append(mean(val[2]) if val[2] else None)
-        nr_of_samples.append(len(val[1]) if val[1] else 0)
-        x_vals.append(name)  # dir 2
-        y_vals.append(mean(val[4]) if val[4] else None)
-        y_mins.append(mean(val[3]) if val[3] else None)
-        y_maxs.append(mean(val[5]) if val[5] else None)
-        nr_of_samples.append(len(val[3]) if val[3] else 0)
-
-    logging.debug("x_vals :{0}\n".format(x_vals))
-    logging.debug("y_vals :{0}\n".format(y_vals))
-    logging.debug("y_mins :{0}\n".format(y_mins))
-    logging.debug("y_maxs :{0}\n".format(y_maxs))
-    logging.debug("nr_of_samples :{0}\n".format(nr_of_samples))
-    traces = list()
-    annotations = list()
-
-    for idx in range(len(x_vals)):
-        if not bool(int(idx % 2)):
-            direction = "West-East"
-        else:
-            direction = "East-West"
-        hovertext = ("No. of Runs: {nr}<br>"
-                     "Test: {test}<br>"
-                     "Direction: {dir}<br>".format(test=x_vals[idx],
-                                                   dir=direction,
-                                                   nr=nr_of_samples[idx]))
-        if isinstance(y_maxs[idx], float):
-            hovertext += "Max: {max:.2f}uSec<br>".format(max=y_maxs[idx])
-        if isinstance(y_vals[idx], float):
-            hovertext += "Mean: {avg:.2f}uSec<br>".format(avg=y_vals[idx])
-        if isinstance(y_mins[idx], float):
-            hovertext += "Min: {min:.2f}uSec".format(min=y_mins[idx])
-
-        if isinstance(y_maxs[idx], float) and isinstance(y_vals[idx], float):
-            array = [y_maxs[idx] - y_vals[idx], ]
-        else:
-            array = [None, ]
-        if isinstance(y_mins[idx], float) and isinstance(y_vals[idx], float):
-            arrayminus = [y_vals[idx] - y_mins[idx], ]
-        else:
-            arrayminus = [None, ]
-        logging.debug("y_vals[{1}] :{0}\n".format(y_vals[idx], idx))
-        logging.debug("array :{0}\n".format(array))
-        logging.debug("arrayminus :{0}\n".format(arrayminus))
-        traces.append(plgo.Scatter(
-            x=[idx, ],
-            y=[y_vals[idx], ],
-            name=x_vals[idx],
-            legendgroup=x_vals[idx],
-            showlegend=bool(int(idx % 2)),
-            mode="markers",
-            error_y=dict(
-                type='data',
-                symmetric=False,
-                array=array,
-                arrayminus=arrayminus,
-                color=COLORS[int(idx / 2)]
-            ),
-            marker=dict(
-                size=10,
-                color=COLORS[int(idx / 2)],
-            ),
-            text=hovertext,
-            hoverinfo="text",
-        ))
-        annotations.append(dict(
-            x=idx,
-            y=0,
-            xref="x",
-            yref="y",
-            xanchor="center",
-            yanchor="top",
-            text="E-W" if bool(int(idx % 2)) else "W-E",
-            font=dict(
-                size=16,
-            ),
-            align="center",
-            showarrow=False
-        ))
-
-    try:
-        # Create plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
-        layout = deepcopy(plot["layout"])
-        if layout.get("title", None):
-            layout["title"] = "<b>Latency:</b> {0}".\
-                format(layout["title"])
-        layout["annotations"] = annotations
-        plpl = plgo.Figure(data=traces, layout=layout)
-
-        # Export Plot
-        ploff.plot(plpl,
-                   show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"],
-                                            plot["output-file-type"]))
-    except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
-        return
-
-
-def plot_throughput_speedup_analysis(plot, input_data):
-    """Generate the plot(s) with algorithm:
-    plot_throughput_speedup_analysis
-    specified in the specification file.
-
-    TODO: Remove when not needed.
-
-    :param plot: Plot to generate.
-    :param input_data: Data to process.
-    :type plot: pandas.Series
-    :type input_data: InputData
-    """
-
-    # Transform the data
-    plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
-    data = input_data.filter_data(plot)
-    if data is None:
-        logging.error("No data.")
-        return
-
-    y_vals = dict()
-    y_tags = dict()
-    for job in data:
-        for build in job:
-            for test in build:
-                if y_vals.get(test["parent"], None) is None:
-                    y_vals[test["parent"]] = {"1": list(),
-                                              "2": list(),
-                                              "4": list()}
-                    y_tags[test["parent"]] = test.get("tags", None)
-                try:
-                    if test["type"] in ("NDRPDR",):
-                        if "-pdr" in plot_title.lower():
-                            ttype = "PDR"
-                        elif "-ndr" in plot_title.lower():
-                            ttype = "NDR"
-                        else:
-                            continue
-                        if "1C" in test["tags"]:
-                            y_vals[test["parent"]]["1"]. \
-                                append(test["throughput"][ttype]["LOWER"])
-                        elif "2C" in test["tags"]:
-                            y_vals[test["parent"]]["2"]. \
-                                append(test["throughput"][ttype]["LOWER"])
-                        elif "4C" in test["tags"]:
-                            y_vals[test["parent"]]["4"]. \
-                                append(test["throughput"][ttype]["LOWER"])
-                except (KeyError, TypeError):
-                    pass
-
-    if not y_vals:
-        logging.warning("No data for the plot '{}'".
-                        format(plot.get("title", "")))
-        return
-
-    y_1c_max = dict()
-    for test_name, test_vals in y_vals.items():
-        for key, test_val in test_vals.items():
-            if test_val:
-                avg_val = sum(test_val) / len(test_val)
-                y_vals[test_name][key] = (avg_val, len(test_val))
-                ideal = avg_val / (int(key) * 1000000.0)
-                if test_name not in y_1c_max or ideal > y_1c_max[test_name]:
-                    y_1c_max[test_name] = ideal
-
-    vals = dict()
-    y_max = list()
-    nic_limit = 0
-    lnk_limit = 0
-    pci_limit = plot["limits"]["pci"]["pci-g3-x8"]
-    for test_name, test_vals in y_vals.items():
-        try:
-            if test_vals["1"][1]:
-                name = re.sub(REGEX_NIC, "", test_name.replace('-ndrpdr', '').
-                              replace('2n1l-', ''))
-                vals[name] = dict()
-                y_val_1 = test_vals["1"][0] / 1000000.0
-                y_val_2 = test_vals["2"][0] / 1000000.0 if test_vals["2"][0] \
-                    else None
-                y_val_4 = test_vals["4"][0] / 1000000.0 if test_vals["4"][0] \
-                    else None
-
-                vals[name]["val"] = [y_val_1, y_val_2, y_val_4]
-                vals[name]["rel"] = [1.0, None, None]
-                vals[name]["ideal"] = [y_1c_max[test_name],
-                                       y_1c_max[test_name] * 2,
-                                       y_1c_max[test_name] * 4]
-                vals[name]["diff"] = [(y_val_1 - y_1c_max[test_name]) * 100 /
-                                      y_val_1, None, None]
-                vals[name]["count"] = [test_vals["1"][1],
-                                       test_vals["2"][1],
-                                       test_vals["4"][1]]
-
-                try:
-                    # val_max = max(max(vals[name]["val"], vals[name]["ideal"]))
-                    val_max = max(vals[name]["val"])
-                except ValueError as err:
-                    logging.error(err)
-                    continue
-                if val_max:
-                    # y_max.append(int((val_max / 10) + 1) * 10)
-                    y_max.append(val_max)
-
-                if y_val_2:
-                    vals[name]["rel"][1] = round(y_val_2 / y_val_1, 2)
-                    vals[name]["diff"][1] = \
-                        (y_val_2 - vals[name]["ideal"][1]) * 100 / y_val_2
-                if y_val_4:
-                    vals[name]["rel"][2] = round(y_val_4 / y_val_1, 2)
-                    vals[name]["diff"][2] = \
-                        (y_val_4 - vals[name]["ideal"][2]) * 100 / y_val_4
-        except IndexError as err:
-            logging.warning("No data for '{0}'".format(test_name))
-            logging.warning(repr(err))
-
-        # Limits:
-        if "x520" in test_name:
-            limit = plot["limits"]["nic"]["x520"]
-        elif "x710" in test_name:
-            limit = plot["limits"]["nic"]["x710"]
-        elif "xxv710" in test_name:
-            limit = plot["limits"]["nic"]["xxv710"]
-        elif "xl710" in test_name:
-            limit = plot["limits"]["nic"]["xl710"]
-        elif "x553" in test_name:
-            limit = plot["limits"]["nic"]["x553"]
-        else:
-            limit = 0
-        if limit > nic_limit:
-            nic_limit = limit
-
-        mul = 2 if "ge2p" in test_name else 1
-        if "10ge" in test_name:
-            limit = plot["limits"]["link"]["10ge"] * mul
-        elif "25ge" in test_name:
-            limit = plot["limits"]["link"]["25ge"] * mul
-        elif "40ge" in test_name:
-            limit = plot["limits"]["link"]["40ge"] * mul
-        elif "100ge" in test_name:
-            limit = plot["limits"]["link"]["100ge"] * mul
-        else:
-            limit = 0
-        if limit > lnk_limit:
-            lnk_limit = limit
-
-    # Sort the tests
-    order = plot.get("sort", None)
-    if order and y_tags:
-        y_sorted = OrderedDict()
-        y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
-        for tag in order:
-            for test, tags in y_tags_l.items():
-                if tag.lower() in tags:
-                    name = re.sub(REGEX_NIC, "",
-                                  test.replace('-ndrpdr', '').
-                                  replace('2n1l-', ''))
-                    try:
-                        y_sorted[name] = vals.pop(name)
-                        y_tags_l.pop(test)
-                    except KeyError as err:
-                        logging.error("Not found: {0}".format(err))
-                    finally:
-                        break
-    else:
-        y_sorted = vals
-
-    traces = list()
-    annotations = list()
-    x_vals = [1, 2, 4]
-
-    # Limits:
-    try:
-        threshold = 1.1 * max(y_max)  # 10%
-    except ValueError as err:
-        logging.error(err)
-        return
-    nic_limit /= 1000000.0
-    # if nic_limit < threshold:
-    traces.append(plgo.Scatter(
-        x=x_vals,
-        y=[nic_limit, ] * len(x_vals),
-        name="NIC: {0:.2f}Mpps".format(nic_limit),
-        showlegend=False,
-        mode="lines",
-        line=dict(
-            dash="dot",
-            color=COLORS[-1],
-            width=1),
-        hoverinfo="none"
-    ))
-    annotations.append(dict(
-        x=1,
-        y=nic_limit,
-        xref="x",
-        yref="y",
-        xanchor="left",
-        yanchor="bottom",
-        text="NIC: {0:.2f}Mpps".format(nic_limit),
-        font=dict(
-            size=14,
-            color=COLORS[-1],
-        ),
-        align="left",
-        showarrow=False
-    ))
-    # y_max.append(int((nic_limit / 10) + 1) * 10)
-    y_max.append(nic_limit)
-
-    lnk_limit /= 1000000.0
-    if lnk_limit < threshold:
-        traces.append(plgo.Scatter(
-            x=x_vals,
-            y=[lnk_limit, ] * len(x_vals),
-            name="Link: {0:.2f}Mpps".format(lnk_limit),
-            showlegend=False,
-            mode="lines",
-            line=dict(
-                dash="dot",
-                color=COLORS[-2],
-                width=1),
-            hoverinfo="none"
-        ))
-        annotations.append(dict(
-            x=1,
-            y=lnk_limit,
-            xref="x",
-            yref="y",
-            xanchor="left",
-            yanchor="bottom",
-            text="Link: {0:.2f}Mpps".format(lnk_limit),
-            font=dict(
-                size=14,
-                color=COLORS[-2],
-            ),
-            align="left",
-            showarrow=False
-        ))
-        # y_max.append(int((lnk_limit / 10) + 1) * 10)
-        y_max.append(lnk_limit)
-
-    pci_limit /= 1000000.0
-    if (pci_limit < threshold and
-        (pci_limit < lnk_limit * 0.95 or lnk_limit > lnk_limit * 1.05)):
-        traces.append(plgo.Scatter(
-            x=x_vals,
-            y=[pci_limit, ] * len(x_vals),
-            name="PCIe: {0:.2f}Mpps".format(pci_limit),
-            showlegend=False,
-            mode="lines",
-            line=dict(
-                dash="dot",
-                color=COLORS[-3],
-                width=1),
-            hoverinfo="none"
-        ))
-        annotations.append(dict(
-            x=1,
-            y=pci_limit,
-            xref="x",
-            yref="y",
-            xanchor="left",
-            yanchor="bottom",
-            text="PCIe: {0:.2f}Mpps".format(pci_limit),
-            font=dict(
-                size=14,
-                color=COLORS[-3],
-            ),
-            align="left",
-            showarrow=False
-        ))
-        # y_max.append(int((pci_limit / 10) + 1) * 10)
-        y_max.append(pci_limit)
-
-    # Perfect and measured:
-    cidx = 0
-    for name, val in y_sorted.iteritems():
-        hovertext = list()
-        try:
-            for idx in range(len(val["val"])):
-                htext = ""
-                if isinstance(val["val"][idx], float):
-                    htext += "No. of Runs: {1}<br>" \
-                             "Mean: {0:.2f}Mpps<br>".format(val["val"][idx],
-                                                            val["count"][idx])
-                if isinstance(val["diff"][idx], float):
-                    htext += "Diff: {0:.0f}%<br>".format(round(val["diff"][idx]))
-                if isinstance(val["rel"][idx], float):
-                    htext += "Speedup: {0:.2f}".format(val["rel"][idx])
-                hovertext.append(htext)
-            traces.append(plgo.Scatter(x=x_vals,
-                                       y=val["val"],
-                                       name=name,
-                                       legendgroup=name,
-                                       mode="lines+markers",
-                                       line=dict(
-                                           color=COLORS[cidx],
-                                           width=2),
-                                       marker=dict(
-                                           symbol="circle",
-                                           size=10
-                                       ),
-                                       text=hovertext,
-                                       hoverinfo="text+name"
-                                       ))
-            traces.append(plgo.Scatter(x=x_vals,
-                                       y=val["ideal"],
-                                       name="{0} perfect".format(name),
-                                       legendgroup=name,
-                                       showlegend=False,
-                                       mode="lines",
-                                       line=dict(
-                                           color=COLORS[cidx],
-                                           width=2,
-                                           dash="dash"),
-                                       text=["Perfect: {0:.2f}Mpps".format(y)
-                                             for y in val["ideal"]],
-                                       hoverinfo="text"
-                                       ))
-            cidx += 1
-        except (IndexError, ValueError, KeyError) as err:
-            logging.warning("No data for '{0}'".format(name))
-            logging.warning(repr(err))
-
-    try:
-        # Create plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
-        layout = deepcopy(plot["layout"])
-        if layout.get("title", None):
-            layout["title"] = "<b>Speedup Multi-core:</b> {0}". \
-                format(layout["title"])
-        # layout["yaxis"]["range"] = [0, int((max(y_max) / 10) + 1) * 10]
-        layout["yaxis"]["range"] = [0, int(max(y_max) * 1.1)]
-        layout["annotations"].extend(annotations)
-        plpl = plgo.Figure(data=traces, layout=layout)
-
-        # Export Plot
-        ploff.plot(plpl,
-                   show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"],
-                                            plot["output-file-type"]))
-    except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
-        return
-
-
-def plot_http_server_performance_box(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_http_server_performance_box
-    specified in the specification file.
-
-    :param plot: Plot to generate.
-    :param input_data: Data to process.
-    :type plot: pandas.Series
-    :type input_data: InputData
-    """
-
-    # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot.get("title", "")))
-    data = input_data.filter_data(plot)
-    if data is None:
-        logging.error("No data.")
+        logging.error(u"No data.")
         return
 
     # Prepare the data for the plot
@@ -1707,12 +813,12 @@ def plot_http_server_performance_box(plot, input_data):
     for job in data:
         for build in job:
             for test in build:
-                if y_vals.get(test["name"], None) is None:
-                    y_vals[test["name"]] = list()
+                if y_vals.get(test[u"name"], None) is None:
+                    y_vals[test[u"name"]] = list()
                 try:
-                    y_vals[test["name"]].append(test["result"])
+                    y_vals[test[u"name"]].append(test[u"result"])
                 except (KeyError, TypeError):
-                    y_vals[test["name"]].append(None)
+                    y_vals[test[u"name"]].append(None)
 
     # Add None to the lists with missing data
     max_len = 0
@@ -1721,53 +827,59 @@ def plot_http_server_performance_box(plot, input_data):
         if len(val) > max_len:
             max_len = len(val)
         nr_of_samples.append(len(val))
-    for key, val in y_vals.items():
+    for val in y_vals.values():
         if len(val) < max_len:
             val.extend([None for _ in range(max_len - len(val))])
 
     # Add plot traces
     traces = list()
-    df = pd.DataFrame(y_vals)
-    df.head()
-    for i, col in enumerate(df.columns):
-        name = "{nr}. ({samples:02d} run{plural}) {name}".\
-            format(nr=(i + 1),
-                   samples=nr_of_samples[i],
-                   plural='s' if nr_of_samples[i] > 1 else '',
-                   name=col.lower().replace('-ndrpdr', ''))
+    df_y = pd.DataFrame(y_vals)
+    df_y.head()
+    for i, col in enumerate(df_y.columns):
+        name = \
+            f"{i + 1}. " \
+            f"({nr_of_samples[i]:02d} " \
+            f"run{u's' if nr_of_samples[i] > 1 else u''}) " \
+            f"{col.lower().replace(u'-ndrpdr', u'')}"
         if len(name) > 50:
-            name_lst = name.split('-')
-            name = ""
+            name_lst = name.split(u'-')
+            name = u""
             split_name = True
             for segment in name_lst:
                 if (len(name) + len(segment) + 1) > 50 and split_name:
-                    name += "<br>    "
+                    name += u"<br>    "
                     split_name = False
-                name += segment + '-'
+                name += segment + u'-'
             name = name[:-1]
 
-        traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
-                               y=df[col],
+        traces.append(plgo.Box(x=[str(i + 1) + u'.'] * len(df_y[col]),
+                               y=df_y[col],
                                name=name,
-                               **plot["traces"]))
+                               **plot[u"traces"]))
     try:
         # Create plot
-        plpl = plgo.Figure(data=traces, layout=plot["layout"])
+        plpl = plgo.Figure(data=traces, layout=plot[u"layout"])
 
         # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
-        ploff.plot(plpl, show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"],
-                                            plot["output-file-type"]))
+        logging.info(
+            f"    Writing file {plot[u'output-file']}"
+            f"{plot[u'output-file-type']}."
+        )
+        ploff.plot(
+            plpl,
+            show_link=False,
+            auto_open=False,
+            filename=f"{plot[u'output-file']}{plot[u'output-file-type']}"
+        )
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
+        logging.error(
+            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+        )
         return
 
 
-def plot_service_density_heatmap(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_service_density_heatmap
+def plot_nf_heatmap(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_nf_heatmap
     specified in the specification file.
 
     :param plot: Plot to generate.
@@ -1776,729 +888,320 @@ def plot_service_density_heatmap(plot, input_data):
     :type input_data: InputData
     """
 
-    REGEX_CN = re.compile(r'^(\d*)R(\d*)C$')
-    REGEX_TEST_NAME = re.compile(r'^.*-(\d+ch|\d+pl)-'
+    regex_cn = re.compile(r'^(\d*)R(\d*)C$')
+    regex_test_name = re.compile(r'^.*-(\d+ch|\d+pl)-'
                                  r'(\d+mif|\d+vh)-'
                                  r'(\d+vm\d+t|\d+dcr\d+t).*$')
-
-    txt_chains = list()
-    txt_nodes = list()
     vals = dict()
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {plot.get(u'type', u'')} "
+        f"{plot.get(u'title', u'')}."
+    )
     data = input_data.filter_data(plot, continue_on_error=True)
     if data is None or data.empty:
-        logging.error("No data.")
+        logging.error(u"No data.")
         return
 
     for job in data:
         for build in job:
             for test in build:
-                for tag in test['tags']:
-                    groups = re.search(REGEX_CN, tag)
+                for tag in test[u"tags"]:
+                    groups = re.search(regex_cn, tag)
                     if groups:
-                        c = str(groups.group(1))
-                        n = str(groups.group(2))
+                        chain = str(groups.group(1))
+                        node = str(groups.group(2))
                         break
                 else:
                     continue
-                groups = re.search(REGEX_TEST_NAME, test["name"])
+                groups = re.search(regex_test_name, test[u"name"])
                 if groups and len(groups.groups()) == 3:
-                    hover_name = "{chain}-{vhost}-{vm}".format(
-                        chain=str(groups.group(1)),
-                        vhost=str(groups.group(2)),
-                        vm=str(groups.group(3)))
+                    hover_name = (
+                        f"{str(groups.group(1))}-"
+                        f"{str(groups.group(2))}-"
+                        f"{str(groups.group(3))}"
+                    )
                 else:
-                    hover_name = ""
-                if vals.get(c, None) is None:
-                    vals[c] = dict()
-                if vals[c].get(n, None) is None:
-                    vals[c][n] = dict(name=hover_name,
-                                      vals=list(),
-                                      nr=None,
-                                      mean=None,
-                                      stdev=None)
+                    hover_name = u""
+                if vals.get(chain, None) is None:
+                    vals[chain] = dict()
+                if vals[chain].get(node, None) is None:
+                    vals[chain][node] = dict(
+                        name=hover_name,
+                        vals=list(),
+                        nr=None,
+                        mean=None,
+                        stdev=None
+                    )
                 try:
-                    if plot["include-tests"] == "MRR":
-                        result = test["result"]["receive-rate"]  # .avg
-                    elif plot["include-tests"] == "PDR":
-                        result = test["throughput"]["PDR"]["LOWER"]
-                    elif plot["include-tests"] == "NDR":
-                        result = test["throughput"]["NDR"]["LOWER"]
+                    if plot[u"include-tests"] == u"MRR":
+                        result = test[u"result"][u"receive-rate"]
+                    elif plot[u"include-tests"] == u"PDR":
+                        result = test[u"throughput"][u"PDR"][u"LOWER"]
+                    elif plot[u"include-tests"] == u"NDR":
+                        result = test[u"throughput"][u"NDR"][u"LOWER"]
                     else:
                         result = None
                 except TypeError:
                     result = None
 
                 if result:
-                    vals[c][n]["vals"].append(result)
+                    vals[chain][node][u"vals"].append(result)
 
     if not vals:
-        logging.error("No data.")
+        logging.error(u"No data.")
         return
 
-    for key_c in vals.keys():
+    txt_chains = list()
+    txt_nodes = list()
+    for key_c in vals:
         txt_chains.append(key_c)
         for key_n in vals[key_c].keys():
             txt_nodes.append(key_n)
-            if vals[key_c][key_n]["vals"]:
-                vals[key_c][key_n]["nr"] = len(vals[key_c][key_n]["vals"])
-                vals[key_c][key_n]["mean"] = \
-                    round(mean(vals[key_c][key_n]["vals"]) / 1000000, 1)
-                vals[key_c][key_n]["stdev"] = \
-                    round(stdev(vals[key_c][key_n]["vals"]) / 1000000, 1)
+            if vals[key_c][key_n][u"vals"]:
+                vals[key_c][key_n][u"nr"] = len(vals[key_c][key_n][u"vals"])
+                vals[key_c][key_n][u"mean"] = \
+                    round(mean(vals[key_c][key_n][u"vals"]) / 1000000, 1)
+                vals[key_c][key_n][u"stdev"] = \
+                    round(stdev(vals[key_c][key_n][u"vals"]) / 1000000, 1)
     txt_nodes = list(set(txt_nodes))
 
-    txt_chains = sorted(txt_chains, key=lambda chain: int(chain))
-    txt_nodes = sorted(txt_nodes, key=lambda node: int(node))
+    def sort_by_int(value):
+        """Makes possible to sort a list of strings which represent integers.
+
+        :param value: Integer as a string.
+        :type value: str
+        :returns: Integer representation of input parameter 'value'.
+        :rtype: int
+        """
+        return int(value)
+
+    txt_chains = sorted(txt_chains, key=sort_by_int)
+    txt_nodes = sorted(txt_nodes, key=sort_by_int)
 
     chains = [i + 1 for i in range(len(txt_chains))]
     nodes = [i + 1 for i in range(len(txt_nodes))]
 
     data = [list() for _ in range(len(chains))]
-    for c in chains:
-        for n in nodes:
+    for chain in chains:
+        for node in nodes:
             try:
-                val = vals[txt_chains[c - 1]][txt_nodes[n - 1]]["mean"]
+                val = vals[txt_chains[chain - 1]][txt_nodes[node - 1]][u"mean"]
             except (KeyError, IndexError):
                 val = None
-            data[c - 1].append(val)
+            data[chain - 1].append(val)
 
-    # Colorscales:
-    my_green = [[0.0, 'rgb(235, 249, 242)'],
-                [1.0, 'rgb(45, 134, 89)']]
+    # Color scales:
+    my_green = [[0.0, u"rgb(235, 249, 242)"],
+                [1.0, u"rgb(45, 134, 89)"]]
 
-    my_blue = [[0.0, 'rgb(236, 242, 248)'],
-               [1.0, 'rgb(57, 115, 172)']]
+    my_blue = [[0.0, u"rgb(236, 242, 248)"],
+               [1.0, u"rgb(57, 115, 172)"]]
 
-    my_grey = [[0.0, 'rgb(230, 230, 230)'],
-               [1.0, 'rgb(102, 102, 102)']]
+    my_grey = [[0.0, u"rgb(230, 230, 230)"],
+               [1.0, u"rgb(102, 102, 102)"]]
 
     hovertext = list()
     annotations = list()
 
-    text = ("Test: {name}<br>"
-            "Runs: {nr}<br>"
-            "Thput: {val}<br>"
-            "StDev: {stdev}")
+    text = (u"Test: {name}<br>"
+            u"Runs: {nr}<br>"
+            u"Thput: {val}<br>"
+            u"StDev: {stdev}")
 
-    for c in range(len(txt_chains)):
+    for chain, _ in enumerate(txt_chains):
         hover_line = list()
-        for n in range(len(txt_nodes)):
-            if data[c][n] is not None:
-                annotations.append(dict(
-                    x=n+1,
-                    y=c+1,
-                    xref="x",
-                    yref="y",
-                    xanchor="center",
-                    yanchor="middle",
-                    text=str(data[c][n]),
-                    font=dict(
-                        size=14,
-                    ),
-                    align="center",
-                    showarrow=False
-                ))
+        for node, _ in enumerate(txt_nodes):
+            if data[chain][node] is not None:
+                annotations.append(
+                    dict(
+                        x=node+1,
+                        y=chain+1,
+                        xref=u"x",
+                        yref=u"y",
+                        xanchor=u"center",
+                        yanchor=u"middle",
+                        text=str(data[chain][node]),
+                        font=dict(
+                            size=14,
+                        ),
+                        align=u"center",
+                        showarrow=False
+                    )
+                )
                 hover_line.append(text.format(
-                    name=vals[txt_chains[c]][txt_nodes[n]]["name"],
-                    nr=vals[txt_chains[c]][txt_nodes[n]]["nr"],
-                    val=data[c][n],
-                    stdev=vals[txt_chains[c]][txt_nodes[n]]["stdev"]))
+                    name=vals[txt_chains[chain]][txt_nodes[node]][u"name"],
+                    nr=vals[txt_chains[chain]][txt_nodes[node]][u"nr"],
+                    val=data[chain][node],
+                    stdev=vals[txt_chains[chain]][txt_nodes[node]][u"stdev"]))
         hovertext.append(hover_line)
 
     traces = [
-        plgo.Heatmap(x=nodes,
-                     y=chains,
-                     z=data,
-                     colorbar=dict(
-                         title=plot.get("z-axis", ""),
-                         titleside="right",
-                         titlefont=dict(
-                            size=16
-                         ),
-                         tickfont=dict(
-                             size=16,
-                         ),
-                         tickformat=".1f",
-                         yanchor="bottom",
-                         y=-0.02,
-                         len=0.925,
-                     ),
-                     showscale=True,
-                     colorscale=my_green,
-                     text=hovertext,
-                     hoverinfo="text")
+        plgo.Heatmap(
+            x=nodes,
+            y=chains,
+            z=data,
+            colorbar=dict(
+                title=plot.get(u"z-axis", u""),
+                titleside=u"right",
+                titlefont=dict(
+                    size=16
+                ),
+                tickfont=dict(
+                    size=16,
+                ),
+                tickformat=u".1f",
+                yanchor=u"bottom",
+                y=-0.02,
+                len=0.925,
+            ),
+            showscale=True,
+            colorscale=my_green,
+            text=hovertext,
+            hoverinfo=u"text"
+        )
     ]
 
     for idx, item in enumerate(txt_nodes):
         # X-axis, numbers:
-        annotations.append(dict(
-            x=idx+1,
-            y=0.05,
-            xref="x",
-            yref="y",
-            xanchor="center",
-            yanchor="top",
-            text=item,
-            font=dict(
-                size=16,
-            ),
-            align="center",
-            showarrow=False
-        ))
+        annotations.append(
+            dict(
+                x=idx+1,
+                y=0.05,
+                xref=u"x",
+                yref=u"y",
+                xanchor=u"center",
+                yanchor=u"top",
+                text=item,
+                font=dict(
+                    size=16,
+                ),
+                align=u"center",
+                showarrow=False
+            )
+        )
     for idx, item in enumerate(txt_chains):
         # Y-axis, numbers:
-        annotations.append(dict(
-            x=0.35,
-            y=idx+1,
-            xref="x",
-            yref="y",
-            xanchor="right",
-            yanchor="middle",
-            text=item,
+        annotations.append(
+            dict(
+                x=0.35,
+                y=idx+1,
+                xref=u"x",
+                yref=u"y",
+                xanchor=u"right",
+                yanchor=u"middle",
+                text=item,
+                font=dict(
+                    size=16,
+                ),
+                align=u"center",
+                showarrow=False
+            )
+        )
+    # X-axis, title:
+    annotations.append(
+        dict(
+            x=0.55,
+            y=-0.15,
+            xref=u"paper",
+            yref=u"y",
+            xanchor=u"center",
+            yanchor=u"bottom",
+            text=plot.get(u"x-axis", u""),
             font=dict(
                 size=16,
             ),
-            align="center",
+            align=u"center",
             showarrow=False
-        ))
-    # X-axis, title:
-    annotations.append(dict(
-        x=0.55,
-        y=-0.15,
-        xref="paper",
-        yref="y",
-        xanchor="center",
-        yanchor="bottom",
-        text=plot.get("x-axis", ""),
-        font=dict(
-            size=16,
-        ),
-        align="center",
-        showarrow=False
-    ))
+        )
+    )
     # Y-axis, title:
-    annotations.append(dict(
-        x=-0.1,
-        y=0.5,
-        xref="x",
-        yref="paper",
-        xanchor="center",
-        yanchor="middle",
-        text=plot.get("y-axis", ""),
-        font=dict(
-            size=16,
-        ),
-        align="center",
-        textangle=270,
-        showarrow=False
-    ))
+    annotations.append(
+        dict(
+            x=-0.1,
+            y=0.5,
+            xref=u"x",
+            yref=u"paper",
+            xanchor=u"center",
+            yanchor=u"middle",
+            text=plot.get(u"y-axis", u""),
+            font=dict(
+                size=16,
+            ),
+            align=u"center",
+            textangle=270,
+            showarrow=False
+        )
+    )
     updatemenus = list([
         dict(
             x=1.0,
             y=0.0,
-            xanchor='right',
-            yanchor='bottom',
-            direction='up',
+            xanchor=u"right",
+            yanchor=u"bottom",
+            direction=u"up",
             buttons=list([
                 dict(
-                    args=[{"colorscale": [my_green, ], "reversescale": False}],
-                    label="Green",
-                    method="update"
+                    args=[
+                        {
+                            u"colorscale": [my_green, ],
+                            u"reversescale": False
+                        }
+                    ],
+                    label=u"Green",
+                    method=u"update"
                 ),
                 dict(
-                    args=[{"colorscale": [my_blue, ], "reversescale": False}],
-                    label="Blue",
-                    method="update"
+                    args=[
+                        {
+                            u"colorscale": [my_blue, ],
+                            u"reversescale": False
+                        }
+                    ],
+                    label=u"Blue",
+                    method=u"update"
                 ),
                 dict(
-                    args=[{"colorscale": [my_grey, ], "reversescale": False}],
-                    label="Grey",
-                    method="update"
+                    args=[
+                        {
+                            u"colorscale": [my_grey, ],
+                            u"reversescale": False
+                        }
+                    ],
+                    label=u"Grey",
+                    method=u"update"
                 )
             ])
         )
     ])
 
     try:
-        layout = deepcopy(plot["layout"])
+        layout = deepcopy(plot[u"layout"])
     except KeyError as err:
-        logging.error("Finished with error: No layout defined")
-        logging.error(repr(err))
+        logging.error(f"Finished with error: No layout defined\n{repr(err)}")
         return
 
-    layout["annotations"] = annotations
-    layout['updatemenus'] = updatemenus
+    layout[u"annotations"] = annotations
+    layout[u'updatemenus'] = updatemenus
 
     try:
         # Create plot
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
-        ploff.plot(plpl, show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"],
-                                            plot["output-file-type"]))
-    except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
-        return
-
-
-def plot_service_density_heatmap_compare(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_service_density_heatmap_compare
-    specified in the specification file.
-
-    :param plot: Plot to generate.
-    :param input_data: Data to process.
-    :type plot: pandas.Series
-    :type input_data: InputData
-    """
-
-    REGEX_CN = re.compile(r'^(\d*)R(\d*)C$')
-    REGEX_TEST_NAME = re.compile(r'^.*-(\d+ch|\d+pl)-'
-                                 r'(\d+mif|\d+vh)-'
-                                 r'(\d+vm\d+t|\d+dcr\d+t).*$')
-    REGEX_THREADS = re.compile(r'^(\d+)(VM|DCR)(\d+)T$')
-
-    txt_chains = list()
-    txt_nodes = list()
-    vals = dict()
-
-    # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot.get("title", "")))
-    data = input_data.filter_data(plot, continue_on_error=True)
-    if data is None or data.empty:
-        logging.error("No data.")
-        return
-
-    for job in data:
-        for build in job:
-            for test in build:
-                for tag in test['tags']:
-                    groups = re.search(REGEX_CN, tag)
-                    if groups:
-                        c = str(groups.group(1))
-                        n = str(groups.group(2))
-                        break
-                else:
-                    continue
-                groups = re.search(REGEX_TEST_NAME, test["name"])
-                if groups and len(groups.groups()) == 3:
-                    hover_name = "{chain}-{vhost}-{vm}".format(
-                        chain=str(groups.group(1)),
-                        vhost=str(groups.group(2)),
-                        vm=str(groups.group(3)))
-                else:
-                    hover_name = ""
-                if vals.get(c, None) is None:
-                    vals[c] = dict()
-                if vals[c].get(n, None) is None:
-                    vals[c][n] = dict(name=hover_name,
-                                      vals_r=list(),
-                                      vals_c=list(),
-                                      nr_r=None,
-                                      nr_c=None,
-                                      mean_r=None,
-                                      mean_c=None,
-                                      stdev_r=None,
-                                      stdev_c=None)
-                try:
-                    if plot["include-tests"] == "MRR":
-                        result = test["result"]["receive-rate"]  # .avg
-                    elif plot["include-tests"] == "PDR":
-                        result = test["throughput"]["PDR"]["LOWER"]
-                    elif plot["include-tests"] == "NDR":
-                        result = test["throughput"]["NDR"]["LOWER"]
-                    else:
-                        result = None
-                except TypeError:
-                    result = None
-
-                if result:
-                    for tag in test['tags']:
-                        groups = re.search(REGEX_THREADS, tag)
-                        if groups and len(groups.groups()) == 3:
-                            if str(groups.group(3)) == \
-                                    plot["reference"]["include"]:
-                                vals[c][n]["vals_r"].append(result)
-                            elif str(groups.group(3)) == \
-                                    plot["compare"]["include"]:
-                                vals[c][n]["vals_c"].append(result)
-                            break
-    if not vals:
-        logging.error("No data.")
-        return
-
-    for key_c in vals.keys():
-        txt_chains.append(key_c)
-        for key_n in vals[key_c].keys():
-            txt_nodes.append(key_n)
-            if vals[key_c][key_n]["vals_r"]:
-                vals[key_c][key_n]["nr_r"] = len(vals[key_c][key_n]["vals_r"])
-                vals[key_c][key_n]["mean_r"] = \
-                    mean(vals[key_c][key_n]["vals_r"])
-                vals[key_c][key_n]["stdev_r"] = \
-                    round(stdev(vals[key_c][key_n]["vals_r"]) / 1000000, 1)
-            if vals[key_c][key_n]["vals_c"]:
-                vals[key_c][key_n]["nr_c"] = len(vals[key_c][key_n]["vals_c"])
-                vals[key_c][key_n]["mean_c"] = \
-                    mean(vals[key_c][key_n]["vals_c"])
-                vals[key_c][key_n]["stdev_c"] = \
-                    round(stdev(vals[key_c][key_n]["vals_c"]) / 1000000, 1)
-
-    txt_nodes = list(set(txt_nodes))
-
-    txt_chains = sorted(txt_chains, key=lambda chain: int(chain))
-    txt_nodes = sorted(txt_nodes, key=lambda node: int(node))
-
-    chains = [i + 1 for i in range(len(txt_chains))]
-    nodes = [i + 1 for i in range(len(txt_nodes))]
-
-    data_r = [list() for _ in range(len(chains))]
-    data_c = [list() for _ in range(len(chains))]
-    diff = [list() for _ in range(len(chains))]
-    for c in chains:
-        for n in nodes:
-            try:
-                val_r = vals[txt_chains[c - 1]][txt_nodes[n - 1]]["mean_r"]
-            except (KeyError, IndexError):
-                val_r = None
-            try:
-                val_c = vals[txt_chains[c - 1]][txt_nodes[n - 1]]["mean_c"]
-            except (KeyError, IndexError):
-                val_c = None
-            if val_c is not None and val_r:
-                val_d = (val_c - val_r) * 100 / val_r
-            else:
-                val_d = None
-
-            if val_r is not None:
-                val_r = round(val_r / 1000000, 1)
-            data_r[c - 1].append(val_r)
-            if val_c is not None:
-                val_c = round(val_c / 1000000, 1)
-            data_c[c - 1].append(val_c)
-            if val_d is not None:
-                val_d = int(round(val_d, 0))
-            diff[c - 1].append(val_d)
-
-    # Colorscales:
-    my_green = [[0.0, 'rgb(235, 249, 242)'],
-                [1.0, 'rgb(45, 134, 89)']]
-
-    my_blue = [[0.0, 'rgb(236, 242, 248)'],
-               [1.0, 'rgb(57, 115, 172)']]
-
-    my_grey = [[0.0, 'rgb(230, 230, 230)'],
-               [1.0, 'rgb(102, 102, 102)']]
-
-    hovertext = list()
-
-    annotations = list()
-    annotations_r = list()
-    annotations_c = list()
-    annotations_diff = list()
-
-    text = ("Test: {name}"
-            "<br>{title_r}: {text_r}"
-            "<br>{title_c}: {text_c}{text_diff}")
-    text_r = "Thput: {val_r}; StDev: {stdev_r}; Runs: {nr_r}"
-    text_c = "Thput: {val_c}; StDev: {stdev_c}; Runs: {nr_c}"
-    text_diff = "<br>Relative Difference {title_c} vs. {title_r}: {diff}%"
-
-    for c in range(len(txt_chains)):
-        hover_line = list()
-        for n in range(len(txt_nodes)):
-            point = dict(
-                x=n + 1,
-                y=c + 1,
-                xref="x",
-                yref="y",
-                xanchor="center",
-                yanchor="middle",
-                text="",
-                font=dict(
-                    size=14,
-                ),
-                align="center",
-                showarrow=False
-            )
-
-            point_text_r = "Not present"
-            point_text_c = "Not present"
-            point_text_diff = ""
-            try:
-                point_r = data_r[c][n]
-                if point_r is not None:
-                    point_text_r = text_r.format(
-                        val_r=point_r,
-                        stdev_r=vals[txt_chains[c]][txt_nodes[n]]["stdev_r"],
-                        nr_r=vals[txt_chains[c]][txt_nodes[n]]["nr_r"])
-            except KeyError:
-                point_r = None
-            point["text"] = "" if point_r is None else point_r
-            annotations_r.append(deepcopy(point))
-
-            try:
-                point_c = data_c[c][n]
-                if point_c is not None:
-                    point_text_c = text_c.format(
-                        val_c=point_c,
-                        stdev_c=vals[txt_chains[c]][txt_nodes[n]]["stdev_c"],
-                        nr_c=vals[txt_chains[c]][txt_nodes[n]]["nr_c"])
-            except KeyError:
-                point_c = None
-            point["text"] = "" if point_c is None else point_c
-            annotations_c.append(deepcopy(point))
-
-            try:
-                point_d = diff[c][n]
-                if point_d is not None:
-                    point_text_diff = text_diff.format(
-                        title_r=plot["reference"]["name"],
-                        title_c=plot["compare"]["name"],
-                        diff=point_d)
-            except KeyError:
-                point_d = None
-            point["text"] = "" if point_d is None else point_d
-            annotations_diff.append(deepcopy(point))
-
-            try:
-                name = vals[txt_chains[c]][txt_nodes[n]]["name"]
-            except KeyError:
-                continue
-
-            hover_line.append(text.format(
-                name=name,
-                title_r=plot["reference"]["name"],
-                text_r=point_text_r,
-                title_c=plot["compare"]["name"],
-                text_c=point_text_c,
-                text_diff=point_text_diff
-            ))
-
-        hovertext.append(hover_line)
-
-    traces = [
-        plgo.Heatmap(x=nodes,
-                     y=chains,
-                     z=data_r,
-                     visible=True,
-                     colorbar=dict(
-                         title=plot.get("z-axis", ""),
-                         titleside="right",
-                         titlefont=dict(
-                            size=16
-                         ),
-                         tickfont=dict(
-                             size=16,
-                         ),
-                         tickformat=".1f",
-                         yanchor="bottom",
-                         y=-0.02,
-                         len=0.925,
-                     ),
-                     showscale=True,
-                     colorscale=my_green,
-                     reversescale=False,
-                     text=hovertext,
-                     hoverinfo="text"),
-        plgo.Heatmap(x=nodes,
-                     y=chains,
-                     z=data_c,
-                     visible=False,
-                     colorbar=dict(
-                         title=plot.get("z-axis", ""),
-                         titleside="right",
-                         titlefont=dict(
-                             size=16
-                         ),
-                         tickfont=dict(
-                             size=16,
-                         ),
-                         tickformat=".1f",
-                         yanchor="bottom",
-                         y=-0.02,
-                         len=0.925,
-                     ),
-                     showscale=True,
-                     colorscale=my_blue,
-                     reversescale=False,
-                     text=hovertext,
-                     hoverinfo="text"),
-        plgo.Heatmap(x=nodes,
-                     y=chains,
-                     z=diff,
-                     name="Diff",
-                     visible=False,
-                     colorbar=dict(
-                         title="Relative Difference {name_c} vs. {name_r} [%]".
-                             format(name_c=plot["compare"]["name"],
-                                    name_r=plot["reference"]["name"]),
-                         titleside="right",
-                         titlefont=dict(
-                             size=16
-                         ),
-                         tickfont=dict(
-                             size=16,
-                         ),
-                         tickformat=".1f",
-                         yanchor="bottom",
-                         y=-0.02,
-                         len=0.925,
-                     ),
-                     showscale=True,
-                     colorscale=my_grey,
-                     reversescale=False,
-                     text=hovertext,
-                     hoverinfo="text")
-    ]
-
-    for idx, item in enumerate(txt_nodes):
-        # X-axis, numbers:
-        annotations.append(dict(
-            x=idx+1,
-            y=0.05,
-            xref="x",
-            yref="y",
-            xanchor="center",
-            yanchor="top",
-            text=item,
-            font=dict(
-                size=16,
-            ),
-            align="center",
-            showarrow=False
-        ))
-    for idx, item in enumerate(txt_chains):
-        # Y-axis, numbers:
-        annotations.append(dict(
-            x=0.35,
-            y=idx+1,
-            xref="x",
-            yref="y",
-            xanchor="right",
-            yanchor="middle",
-            text=item,
-            font=dict(
-                size=16,
-            ),
-            align="center",
-            showarrow=False
-        ))
-    # X-axis, title:
-    annotations.append(dict(
-        x=0.55,
-        y=-0.15,
-        xref="paper",
-        yref="y",
-        xanchor="center",
-        yanchor="bottom",
-        text=plot.get("x-axis", ""),
-        font=dict(
-            size=16,
-        ),
-        align="center",
-        showarrow=False
-    ))
-    # Y-axis, title:
-    annotations.append(dict(
-        x=-0.1,
-        y=0.5,
-        xref="x",
-        yref="paper",
-        xanchor="center",
-        yanchor="middle",
-        text=plot.get("y-axis", ""),
-        font=dict(
-            size=16,
-        ),
-        align="center",
-        textangle=270,
-        showarrow=False
-    ))
-    updatemenus = list([
-        dict(
-            active=0,
-            x=1.0,
-            y=0.0,
-            xanchor='right',
-            yanchor='bottom',
-            direction='up',
-            buttons=list([
-                dict(
-                    label=plot["reference"]["name"],
-                    method="update",
-                    args=[
-                        {
-                            "visible": [True, False, False]
-                        },
-                        {
-                            "colorscale": [my_green, ],
-                            "reversescale": False,
-                            "annotations": annotations + annotations_r,
-                        },
-                    ]
-                ),
-                dict(
-                    label=plot["compare"]["name"],
-                    method="update",
-                    args=[
-                        {
-                            "visible": [False, True, False]
-                        },
-                        {
-                            "colorscale": [my_blue, ],
-                            "reversescale": False,
-                            "annotations": annotations + annotations_c,
-                        },
-                    ]
-                ),
-                dict(
-                    label="Diff",
-                    method="update",
-                    args=[
-                        {
-                            "visible": [False, False, True]
-                        },
-                        {
-                            "colorscale": [my_grey, ],
-                            "reversescale": False,
-                            "annotations": annotations + annotations_diff,
-                        },
-                    ]
-                ),
-            ])
+        logging.info(
+            f"    Writing file {plot[u'output-file']}"
+            f"{plot[u'output-file-type']}."
         )
-    ])
-
-    try:
-        layout = deepcopy(plot["layout"])
-    except KeyError as err:
-        logging.error("Finished with error: No layout defined")
-        logging.error(repr(err))
-        return
-
-    layout["annotations"] = annotations + annotations_r
-    layout['updatemenus'] = updatemenus
-
-    try:
-        # Create plot
-        plpl = plgo.Figure(data=traces, layout=layout)
-
-        # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
-        ploff.plot(plpl, show_link=False, auto_open=False,
-                   filename='{0}{1}'.format(plot["output-file"],
-                                            plot["output-file-type"]))
+        ploff.plot(
+            plpl,
+            show_link=False,
+            auto_open=False,
+            filename=f"{plot[u'output-file']}{plot[u'output-file-type']}"
+        )
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
+        logging.error(
+            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+        )
         return
