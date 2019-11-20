@@ -22,7 +22,7 @@ from os import makedirs
 from os.path import isdir
 from shutil import rmtree, copytree, Error
 
-from .errors import PresentationError
+from pal_errors import PresentationError
 
 
 def prepare_static_content(spec):
@@ -42,8 +42,8 @@ def prepare_static_content(spec):
 
     # Copy all the static content to the build directory:
     logging.info("Copying the static content ...")
-    logging.info("  Source:      {0}".format(src))
-    logging.info("  Destination: {0}".format(dst))
+    logging.info(f"  Source:      {src}")
+    logging.info(f"  Destination: {dst}")
 
     try:
         if isdir(dst):
@@ -54,7 +54,9 @@ def prepare_static_content(spec):
         makedirs(spec.environment["paths"]["DIR[WORKING,SRC,STATIC]"])
 
     except (Error, OSError) as err:
-        raise PresentationError("Not possible to process the static content.",
-                                str(err))
+        raise PresentationError(
+            "Not possible to process the static content.",
+            repr(err)
+        )
 
     logging.info("Done.")

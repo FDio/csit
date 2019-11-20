@@ -18,17 +18,17 @@ import sys
 import argparse
 import logging
 
-from .errors import PresentationError
-from .environment import Environment, clean_environment
-from .specification_parser import Specification
-from .input_data_parser import InputData
-from .generator_tables import generate_tables
-from .generator_plots import generate_plots
-from .generator_files import generate_files
-from .static_content import prepare_static_content
-from .generator_report import generate_report
-from .generator_CPTA import generate_cpta
-from .generator_alerts import Alerting, AlertingError
+from pal_errors import PresentationError
+from environment import Environment, clean_environment
+from specification_parser import Specification
+from input_data_parser import InputData
+from generator_tables import generate_tables
+from generator_plots import generate_plots
+from generator_files import generate_files
+from static_content import prepare_static_content
+from generator_report import generate_report
+from generator_cpta import generate_cpta
+from generator_alerts import Alerting, AlertingError
 
 
 def parse_args():
@@ -89,53 +89,51 @@ def main():
         return 1
 
     if spec.output["output"] not in ("report", "CPTA"):
-        logging.critical("The output '{0}' is not supported.".
-                         format(spec.output["output"]))
+        logging.critical(
+            f"The output {spec.output['output']} is not supported."
+        )
         return 1
 
-    # ret_code = 1
-    # try:
-    env = Environment(spec.environment, args.force)
-    env.set_environment()
+    ret_code = 1
+    try:
+        env = Environment(spec.environment, args.force)
+        env.set_environment()
 
-    prepare_static_content(spec)
+        prepare_static_content(spec)
 
-    data = InputData(spec)
-    data.download_and_parse_data(repeat=1)
+        data = InputData(spec)
+        data.download_and_parse_data(repeat=1)
 
-    generate_tables(spec, data)
-    generate_plots(spec, data)
-    generate_files(spec, data)
+        generate_tables(spec, data)
+        generate_plots(spec, data)
+        generate_files(spec, data)
 
-    if spec.output["output"] == "report":
-        generate_report(args.release, spec, args.week)
-        logging.info("Successfully finished.")
-    elif spec.output["output"] == "CPTA":
-        sys.stdout.write(generate_cpta(spec, data))
-        try:
-            alert = Alerting(spec)
-            alert.generate_alerts()
-        except AlertingError as err:
-            logging.warning(repr(err))
-        logging.info("Successfully finished.")
-    ret_code = 0
+        if spec.output["output"] == "report":
+            generate_report(args.release, spec, args.week)
+            logging.info("Successfully finished.")
+        elif spec.output["output"] == "CPTA":
+            sys.stdout.write(generate_cpta(spec, data))
+            try:
+                alert = Alerting(spec)
+                alert.generate_alerts()
+            except AlertingError as err:
+                logging.warning(repr(err))
+            logging.info("Successfully finished.")
+        ret_code = 0
 
-    # except AlertingError as err:
-    #     logging.critical("Finished with an alerting error.")
-    #     logging.critical(repr(err))
-    # except PresentationError as err:
-    #     logging.critical("Finished with an PAL error.")
-    #     logging.critical(repr(err))
-    # except (KeyError, ValueError) as err:
-    #     logging.critical("Finished with an error.")
-    #     logging.critical(repr(err))
-    # except Exception as err:
-    #     logging.critical("Finished with an unexpected error.")
-    #     logging.critical(repr(err))
-    # finally:
-    #     if spec is not None:
-    #         clean_environment(spec.environment)
-    #     return ret_code
+    except AlertingError as err:
+        logging.critical("Finished with an alerting error.")
+        logging.critical(repr(err))
+    except PresentationError as err:
+        logging.critical("Finished with an PAL error.")
+        logging.critical(repr(err))
+    except (KeyError, ValueError) as err:
+        logging.critical("Finished with an error.")
+        logging.critical(repr(err))
+    finally:
+        if spec is not None:
+            clean_environment(spec.environment)
+    return ret_code
 
 
 if __name__ == '__main__':
