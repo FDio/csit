@@ -356,33 +356,6 @@ There is no parameters check functionality. Passing required arguments is in
 coder responsibility. All the above parameters are required to calculate the
 correct cpu placement. See documentation for the full reference.
 
-Kubernetes
-~~~~~~~~~~
-
-For the future use, Kubernetes is implemented as separate library
-``KubernetesUtils.py``, with a class with the same name. This utility provides
-an API for L2 Robot Keywords to control ``kubectl`` installed on each of DUTs.
-One time initialization script, ``resources/libraries/bash/k8s_setup.sh``
-does reset/init kubectl, and initializes the ``csit`` namespace. CSIT
-namespace is required to not to interfere with existing setups and it
-further simplifies apply/get/delete Pod/ConfigMap operations on SUTs.
-
-Kubernetes utility is based on YAML templates to avoid crafting the huge
-YAML configuration files, what would lower the readability of code and
-requires complicated algorithms.
-
-Two types of YAML templates are defined:
-
-- Static - do not change between deployments, that is infrastructure
-  containers like Kafka, Calico, ETCD.
-
-- Dynamic - per test suite/case topology YAML files.
-
-Making own python wrapper library of ``kubectl`` instead of using the
-official Python package allows to control and deploy environment over
-the SSH library without the need of using isolated driver running on
-each of DUTs.
-
 Tested Topologies
 ~~~~~~~~~~~~~~~~~
 
@@ -418,4 +391,3 @@ References
 .. [apparmor] `Ubuntu AppArmor <https://wiki.ubuntu.com/AppArmor>`_.
 .. [seccomp] `SECure COMPuting with filters <https://www.kernel.org/doc/Documentation/prctl/seccomp_filter.txt>`_.
 .. [docker] `Docker <https://www.docker.com/what-docker>`_.
-.. [k8sdoc] `Kubernetes documentation <https://kubernetes.io/docs/home/>`_.

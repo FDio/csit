@@ -139,9 +139,6 @@ class Constants(object):
     # vat templates location
     RESOURCES_TPL_VAT = 'resources/templates/vat'
 
-    # Kubernetes templates location
-    RESOURCES_TPL_K8S = 'resources/templates/kubernetes'
-
     # KernelVM templates location
     RESOURCES_TPL_VM = 'resources/templates/vm'
 
