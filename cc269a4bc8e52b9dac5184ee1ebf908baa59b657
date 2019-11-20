@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14a78750_9e22a004",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-20T19:09:41Z",
+      "side": 1,
+      "message": "Missing space.",
+      "range": {
+        "startLine": 661,
+        "startChar": 42,
+        "endLine": 661,
+        "endChar": 44
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ea5f4de_8cb7e39c",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-20T19:09:41Z",
+      "side": 1,
+      "message": "This is the part which could be incompatible with the new bytes MAC addresses.",
+      "range": {
+        "startLine": 707,
+        "startChar": 23,
+        "endLine": 707,
+        "endChar": 41
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09493f00_cf39d62d",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-20T19:09:41Z",
+      "side": 1,
+      "message": "How strict are we on the unicode prefix, should this become u\"\"\"?",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 7
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8d846cf_f5873e29",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-20T19:09:41Z",
+      "side": 1,
+      "message": "Is this the form the new pylint wants? If yes, I can get used to it, but currently I still prefer the old form.",
+      "range": {
+        "startLine": 163,
+        "startChar": 8,
+        "endLine": 163,
+        "endChar": 9
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59e34584_2f224e1d",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-20T19:09:41Z",
+      "side": 1,
+      "message": ":d}",
+      "range": {
+        "startLine": 56,
+        "startChar": 38,
+        "endLine": 56,
+        "endChar": 41
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd7507e1_7d461655",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-20T19:09:41Z",
+      "side": 1,
+      "message": "Why is this \u0027f\u0027 (instead of \u0027u\u0027)?\nNo substitution happens he (the result is a template, substitution happens in a cycle where values change), doubling braces only makes the cource less readable.\nApplies to line 106 too.",
+      "range": {
+        "startLine": 86,
+        "startChar": 26,
+        "endLine": 86,
+        "endChar": 27
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af623e6f_1becc4b3",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-20T19:09:41Z",
+      "side": 1,
+      "message": "Trailing space.",
+      "range": {
+        "startLine": 96,
+        "startChar": 62,
+        "endLine": 96,
+        "endChar": 63
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95dd118d_c6d74450",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-20T19:09:41Z",
+      "side": 1,
+      "message": "Parenthesis not needed, but Base has them, so okay.",
+      "range": {
+        "startLine": 105,
+        "startChar": 28,
+        "endLine": 105,
+        "endChar": 29
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8712a23_f57120b8",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-20T19:09:41Z",
+      "side": 1,
+      "message": "This assumes no call site was relying on any bash expansion [0] here.\n\\\" would be safer here.\n\n[0] https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html",
+      "range": {
+        "startLine": 242,
+        "startChar": 45,
+        "endLine": 242,
+        "endChar": 46
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
