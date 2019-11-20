@@ -1490,7 +1490,7 @@ At first, the .csv tables are generated (only the table for 1t1c is shown):
     -
       type: "table"
       title: "Performance trending dashboard"
-      algorithm: "table_performance_trending_dashboard"
+      algorithm: "table_perf_trending_dash"
       output-file-ext: ".csv"
       output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c"
       data: "plot-performance-trending-all"
@@ -1513,7 +1513,7 @@ Then, html tables stored inside .rst files are generated:
     -
       type: "table"
       title: "HTML performance trending dashboard 1t1c"
-      algorithm: "table_performance_trending_dashboard_html"
+      algorithm: "table_perf_trending_dash_html"
       input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c.csv"
       output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c.rst"
 
