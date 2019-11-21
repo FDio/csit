@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0be6b718_bd5c0eb2",
+        "filename": "tests/vpp/device/l2bd/eth2p-ethipv4-l2bdbasemaclrn-macip-iacl-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-21T11:52:46Z",
+      "side": 1,
+      "message": "I am surprised to see this in a l2bd suite. Is this needed?\nThe existing macip perf suites (e.g. 10ge2p1x710-eth-l2bdbasemaclrn-macip-iacl10sl-10kflows-ndrpdr.robot) do not contain this step.",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 23
+      },
+      "revId": "4b45d3a42b0939687a6a7e0543e423e8af96907f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
