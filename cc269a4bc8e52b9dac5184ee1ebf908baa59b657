@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9cbe401f_ed41274a",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-21T17:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14a78750_9e22a004",
+      "range": {
+        "startLine": 661,
+        "startChar": 42,
+        "endLine": 661,
+        "endChar": 44
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ea5f4de_8cb7e39c",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2019-11-20T19:09:41Z",
       "side": 1,
       "message": "This is the part which could be incompatible with the new bytes MAC addresses.",
+      "range": {
+        "startLine": 707,
+        "startChar": 23,
+        "endLine": 707,
+        "endChar": 41
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1b35b9b_5d418b56",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-21T17:47:59Z",
+      "side": 1,
+      "message": "You cannot provide the bytes string to JSON as it is not able to process some special bytes. That was the reason to use hexlify and unhexlify from binascii module when data need to be transferred in JSON format.",
+      "parentUuid": "4ea5f4de_8cb7e39c",
       "range": {
         "startLine": 707,
         "startChar": 23,
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "48e13f4f_cf31e479",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-21T17:47:59Z",
+      "side": 1,
+      "message": "I fully agree with Peter.",
+      "parentUuid": "cebe9a03_8fcf98ec",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 7
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8d846cf_f5873e29",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 4
@@ -106,6 +178,30 @@
       "writtenOn": "2019-11-20T19:09:41Z",
       "side": 1,
       "message": "Is this the form the new pylint wants? If yes, I can get used to it, but currently I still prefer the old form.",
+      "range": {
+        "startLine": 163,
+        "startChar": 8,
+        "endLine": 163,
+        "endChar": 9
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e3eab2e_6308b2e5",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-21T17:47:59Z",
+      "side": 1,
+      "message": "Well, I haven\u0027t check pylint until now as I want to first do the migration of all affected files to be able to run tests under Python3. Then I will check pylint issues.\n\n\nI stareted with this form as it increases readability of the code. But, of course, we can still discuss and vote what approach to use.",
+      "parentUuid": "d8d846cf_f5873e29",
       "range": {
         "startLine": 163,
         "startChar": 8,
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "b121067a_e105e151",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-21T17:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59e34584_2f224e1d",
+      "range": {
+        "startLine": 56,
+        "startChar": 38,
+        "endLine": 56,
+        "endChar": 41
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd7507e1_7d461655",
         "filename": "resources/libraries/python/autogen/Testcase.py",
         "patchSetId": 4
@@ -152,6 +272,30 @@
       "writtenOn": "2019-11-20T19:09:41Z",
       "side": 1,
       "message": "Why is this \u0027f\u0027 (instead of \u0027u\u0027)?\nNo substitution happens he (the result is a template, substitution happens in a cycle where values change), doubling braces only makes the cource less readable.\nApplies to line 106 too.",
+      "range": {
+        "startLine": 86,
+        "startChar": 26,
+        "endLine": 86,
+        "endChar": 27
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9adc9d04_9e6c95ae",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-21T17:47:59Z",
+      "side": 1,
+      "message": "{suite_id} is substituted here.",
+      "parentUuid": "dd7507e1_7d461655",
       "range": {
         "startLine": 86,
         "startChar": 26,
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "b73876ce_e81bffb6",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-21T17:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af623e6f_1becc4b3",
+      "range": {
+        "startLine": 96,
+        "startChar": 62,
+        "endLine": 96,
+        "endChar": 63
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95dd118d_c6d74450",
         "filename": "resources/libraries/python/ssh.py",
         "patchSetId": 4
@@ -210,6 +378,30 @@
     },
     {
       "key": {
+        "uuid": "052fa21e_f47becf0",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-21T17:47:59Z",
+      "side": 1,
+      "message": "Parenthesis removed.",
+      "parentUuid": "95dd118d_c6d74450",
+      "range": {
+        "startLine": 105,
+        "startChar": 28,
+        "endLine": 105,
+        "endChar": 29
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8712a23_f57120b8",
         "filename": "resources/libraries/python/ssh.py",
         "patchSetId": 4
@@ -221,6 +413,30 @@
       "writtenOn": "2019-11-20T19:09:41Z",
       "side": 1,
       "message": "This assumes no call site was relying on any bash expansion [0] here.\n\\\" would be safer here.\n\n[0] https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html",
+      "range": {
+        "startLine": 242,
+        "startChar": 45,
+        "endLine": 242,
+        "endChar": 46
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56c28657_42e55a8b",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-21T17:47:59Z",
+      "side": 1,
+      "message": "OK. Going to apply on all occurrences.",
+      "parentUuid": "e8712a23_f57120b8",
       "range": {
         "startLine": 242,
         "startChar": 45,
