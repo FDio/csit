@@ -21,9 +21,19 @@ function ansible_hosts () {
     # Run ansible playbook on hosts in working topology file. Ansible scope is
     # determined by tags passed as parameters to this function.
     #
+    # While unexpected failures result in "die",
+    # failure of the ansible command itself leads to "return 1",
+    # so the caller can decide what to do.
+    # Typical example: If one of testbed machines is found unresponsive
+    # in the initial cleanup after reservation,
+    # we want to write a loud message about needing human intervention,
+    # leave the testbed reserved, but continue to reserve another testbed.
+    #
     # Variable read:
     # - ${WORKING_TOPOLOGY} - Reserved working topology.
     # - ${TOOLS_DIR} - CSIT tools directory, where testbed-setup is located.
+    # Functions called:
+    # - die - Print to stderr and exit.
 
     set -exuo pipefail
 
@@ -40,13 +50,20 @@ function ansible_hosts () {
         die "Failed to read hosts from working topology!"
     }
     pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
+    set +e
     ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook \
         --vault-password-file=vault_pass \
         --extra-vars '@vault.yml' \
         --inventory inventories/lf_inventory/hosts site.yaml \
         --limit "$(echo ${hosts[@]//\"})" \
-        --tags "$(echo $@)" || die "Failed to run ansible on host!"
+        --tags "$(echo $@)"
+    status="${?}"
+    set -e
     popd || die "Popd failed!"
+    if [[ "0" != "${status}" ]]; then
+        warn "Failed to run ansible on host!"
+        return 1
+    fi
 }
 
 function installed () {
