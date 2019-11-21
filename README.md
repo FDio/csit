@@ -72,12 +72,10 @@ A brief bottom-up description is provided here:
    - Test suites with test cases;
    - Functional tests using VIRL environment:
      - VPP;
-     - TLDK;
    - Performance tests using physical testbed environment:
      - VPP;
      - DPDK-Testpmd;
      - DPDK-L3Fwd;
-     - VPP Container K8s orchestrated topologies;
    - Tools:
      - Documentation generator;
      - Report generator;
@@ -94,12 +92,6 @@ A brief bottom-up description is provided here:
     ├── dpdk
     │   ├── dpdk_scripts            # DPDK helper scripts
     │   └── perf                    # DPDK performance tests
-    ├── kubernetes
-    │   └── perf                    # VPP K8S orchestration performance tests
-    ├── tldk
-    │   ├── func                    # TLDK functional VIRL tests
-    │   ├── tldk_scripts            # TLDK helper scripts
-    │   └── tldk_testconfig         # TLDK test configuration
     └── vpp
         ├── device                  # VPP device tests
         ├── func                    # VPP functional VIRL tests
@@ -113,11 +105,8 @@ A brief bottom-up description is provided here:
 resources
 └── libraries
     ├── bash
-    │   ├── config
     │   ├── entry                   # Main bootstrap entry directory
     │   ├── function                # Bootstrap function library
-    │   ├── qemu_patches            # Custom QEMU patches (see KVM methodology)
-    │   └── shell                   # Various functions
     ├── python                      # Python L1 KWs
     └── robot                       # Robot Framework L2 KWs
 ```
