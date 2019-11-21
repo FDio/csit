@@ -569,11 +569,22 @@ function reserve_and_cleanup_testbed () {
             result="$?"
             set -e
             if [[ "${result}" == "0" ]]; then
-                # Trap unreservation before cleanup check,
-                # so multiple jobs showing failed cleanup improve chances
-                # of humans to notice and fix.
+                # Cleanup check before trap unreservation.
+                # We prefer testbeds staying reserved upon failure,
+                # instead of showing failure in multiple runs.
                 WORKING_TOPOLOGY="${topo}"
                 echo "Reserved: ${WORKING_TOPOLOGY}"
+                # Cleanup check.
+                set +e
+                ansible_hosts "cleanup"
+                result="$?"
+                set -e
+                if [[ "${result}" != "0" ]]; then
+                    warn "CLEANUP FAILED, TESTBED PROBABLY UNUSABLE."
+                    warn "LEAVING TESTBED RESERVED, HUMAN INTERVENTION NEEDED."
+                    WORKING_TOPOLOGY=""
+                    continue
+                fi
                 trap "untrap_and_unreserve_testbed" EXIT || {
                     message="TRAP ATTEMPT AND UNRESERVE FAILED, FIX MANUALLY."
                     untrap_and_unreserve_testbed "${message}" || {
@@ -581,16 +592,8 @@ function reserve_and_cleanup_testbed () {
                     }
                     die "Trap attempt failed, unreserve succeeded. Aborting."
                 }
-                # Cleanup check.
-                set +e
-                ansible_hosts "cleanup"
-                result="$?"
-                set -e
-                if [[ "${result}" == "0" ]]; then
-                    break
-                fi
-                warn "Testbed cleanup failed: ${topo}"
-                untrap_and_unreserve_testbed "Fail of unreserve after cleanup."
+                # Reserved and all checks passed, time to exit the testbed loop.
+                break
             fi
             # Else testbed is accessible but currently reserved, moving on.
         done
