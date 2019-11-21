@@ -302,10 +302,6 @@ performance tested across a range of NIC drivers and NIC models:
 | IPSecSW               | IPSec encryption with AES-GCM, CBC-SHA-256   |
 |                       | ciphers, in combination with IPv4 routing.   |
 +-----------------------+----------------------------------------------+
-| K8s Containers Memif  | K8s orchestrated container VPP service chain |
-|                       | topologies connected over the memif virtual  |
-|                       | interface.                                   |
-+-----------------------+----------------------------------------------+
 | KVM VMs vhost-user    | Virtual topologies with service              |
 |                       | chains of 1 VM using vhost-user              |
 |                       | interfaces, with different VPP forwarding    |
