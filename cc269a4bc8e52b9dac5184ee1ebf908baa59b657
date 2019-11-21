@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "cebe9a03_8fcf98ec",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-21T08:20:56Z",
+      "side": 1,
+      "message": "I think documentation is not u\"\". Simply it is not code and interpreter is removing all comment before executing. Any Py3 doc tool should be handling it properly with converting to unicode",
+      "parentUuid": "09493f00_cf39d62d",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 7
+      },
+      "revId": "cc269a4bc8e52b9dac5184ee1ebf908baa59b657",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8d846cf_f5873e29",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 4
