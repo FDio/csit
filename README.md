@@ -72,7 +72,6 @@ A brief bottom-up description is provided here:
    - Test suites with test cases;
    - Functional tests using VIRL environment:
      - VPP;
-     - TLDK;
    - Performance tests using physical testbed environment:
      - VPP;
      - DPDK-Testpmd;
@@ -96,10 +95,6 @@ A brief bottom-up description is provided here:
     │   └── perf                    # DPDK performance tests
     ├── kubernetes
     │   └── perf                    # VPP K8S orchestration performance tests
-    ├── tldk
-    │   ├── func                    # TLDK functional VIRL tests
-    │   ├── tldk_scripts            # TLDK helper scripts
-    │   └── tldk_testconfig         # TLDK test configuration
     └── vpp
         ├── device                  # VPP device tests
         ├── func                    # VPP functional VIRL tests
