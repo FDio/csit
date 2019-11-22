@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cc5180ec_9d239160",
+        "filename": "resources/tools/presentation/specification_CPTA.yaml",
+        "patchSetId": 44
+      },
+      "lineNbr": 1339,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-11-22T06:53:08Z",
+      "side": 1,
+      "message": "probably not, 1. In this case it is easier to use filter; 2. The whole PAL should/will/might be replaced by a new PAL.",
+      "parentUuid": "121b4bf7_4c162236",
+      "range": {
+        "startLine": 1339,
+        "startChar": 6,
+        "endLine": 1339,
+        "endChar": 12
+      },
+      "revId": "924aeeff71514b676baf5fa793f31cf5b26339ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2b81e821_4f113e70",
         "filename": "resources/tools/presentation/specification_CPTA.yaml",
         "patchSetId": 44
