@@ -91,10 +91,6 @@ A brief bottom-up description is provided here:
     ├── dpdk
     │   ├── dpdk_scripts            # DPDK helper scripts
     │   └── perf                    # DPDK performance tests
-    ├── tldk
-    │   ├── func                    # TLDK functional VIRL tests
-    │   ├── tldk_scripts            # TLDK helper scripts
-    │   └── tldk_testconfig         # TLDK test configuration
     └── vpp
         ├── device                  # VPP device tests
         ├── func                    # VPP functional VIRL tests
