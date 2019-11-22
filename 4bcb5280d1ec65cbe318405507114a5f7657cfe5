@@ -45,6 +45,75 @@
       "revId": "4bcb5280d1ec65cbe318405507114a5f7657cfe5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55c47be9_9c49ea6a",
+        "filename": "resources/libraries/python/FilteredLogger.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T18:15:04Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 47,
+        "startChar": 48,
+        "endLine": 47,
+        "endChar": 49
+      },
+      "revId": "4bcb5280d1ec65cbe318405507114a5f7657cfe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d5fd7f8_1b9decf5",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T18:15:04Z",
+      "side": 1,
+      "message": "Few NICs are missing. Add a TODO to define a mapping in Constants.py to keep it near the other NIC mappings.",
+      "range": {
+        "startLine": 647,
+        "startChar": 33,
+        "endLine": 647,
+        "endChar": 48
+      },
+      "revId": "4bcb5280d1ec65cbe318405507114a5f7657cfe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dadf942f_0452666d",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T18:15:04Z",
+      "side": 1,
+      "message": "Add a docstring.\nAlso, \"nd\" looks too short for a proper argument name.",
+      "range": {
+        "startLine": 717,
+        "startChar": 41,
+        "endLine": 717,
+        "endChar": 42
+      },
+      "revId": "4bcb5280d1ec65cbe318405507114a5f7657cfe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
