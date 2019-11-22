@@ -22,6 +22,52 @@
       "revId": "3a3eb7f009ff57d65ae889e788124fac7cace3e5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53baf069_20caaf91",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T17:11:43Z",
+      "side": 1,
+      "message": "I prefer f\" with {kwargs[u\u0027guest_dir\u0027]} and such.\nI still hope we will get rid of **kwargs some day, so all arguments are documented.",
+      "range": {
+        "startLine": 228,
+        "startChar": 56,
+        "endLine": 228,
+        "endChar": 63
+      },
+      "revId": "3a3eb7f009ff57d65ae889e788124fac7cace3e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8db267a7_b2572cdc",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T17:11:43Z",
+      "side": 1,
+      "message": "Not sure whether u\" is better or not.",
+      "range": {
+        "startLine": 456,
+        "startChar": 12,
+        "endLine": 456,
+        "endChar": 14
+      },
+      "revId": "3a3eb7f009ff57d65ae889e788124fac7cace3e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
