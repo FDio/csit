@@ -3547,25 +3547,6 @@
   - "name"
   - "conf-history"
 
-## Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw
-#- type: "table"
-#  title: "Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw"
-#  algorithm: "table_details"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTR,PERF,COT,3N,HSW]}/cot_performance_results_3n_hsw"
-#  columns:
-#  - title: "Name"
-#    data: "data name"
-#  - title: "Status"
-#    data: "data msg"
-#  rows: "generated"
-#  data: "ligato-perf-results-3n-hsw"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
-
 # Detailed Test Results - VPP Device Results - Ubuntu
 - type: "table"
   title: "Detailed Test Results - VPP Device Results - Ubuntu"
