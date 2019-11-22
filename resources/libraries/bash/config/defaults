@@ -1,8 +1,0 @@
-#!/bin/bash
-
-typeset -A cfg
-cfg=( # set default values in config array
-    [K8S_CALICO]="${SCRIPT_DIR}/../../templates/kubernetes/calico_v2.6.3.yaml"
-    [K8S_CONTIV_VPP]="https://raw.githubusercontent.com/contiv/vpp/master/k8s/contiv-vpp.yaml"
-    [K8S_CSIT]="${SCRIPT_DIR}/../../templates/kubernetes/csit.yaml"
-)
