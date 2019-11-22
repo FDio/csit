@@ -82,7 +82,6 @@ rst_epilog = """
 .. _CSIT DPDK Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.dpdk.perf.html
 .. _CSIT VPP Functional Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.func.html
 .. _CSIT VPP Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.perf.html
-.. _CSIT DMM Functional Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.dmm.func.html
 .. _CSIT VPP Device Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.device.html
 .. _VPP test framework documentation: https://docs.fd.io/vpp/{vpprelease}/vpp_make_test/html/
 .. _FD.io CSIT Testbeds - Xeon Haswell: https://git.fd.io/csit/tree/docs/lab/testbeds_ucs_hsw_hw_bios_cfg.md?h={release}
@@ -102,7 +101,6 @@ rst_epilog = """
 .. _FD.io test executor vpp functional jobs using CentOs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-centos7-virl
 .. _FD.io test executor vpp device jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-device-{srelease}-ubuntu1804-1n-skx
 .. _FD.io test executor Honeycomb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-{srelease}-ubuntu1604
-.. _FD.io test executor DMM functional jobs: https://jenkins.fd.io/view/csit/job/csit-dmm-functional-{srelease}-ubuntu1604-virl
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1604/
 .. _FD.io DPDK compile job: https://jenkins.fd.io/view/deb-dpdk/job/deb_dpdk-merge-{sdpdkrelease}-ubuntu1604/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
