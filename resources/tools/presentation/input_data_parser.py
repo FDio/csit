@@ -34,9 +34,9 @@ from os import remove
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
-from jumpavg.AvgStdevMetadataFactory import AvgStdevMetadataFactory
 
-from input_data_files import download_and_unzip_data_file
+from resources.libraries.python import jumpavg
+from .input_data_files import download_and_unzip_data_file
 
 
 # Separator used in file names
@@ -147,7 +147,9 @@ class ExecutionChecker(ResultVisitor):
                 "type": "MRR" | "BMRR",
                 "status": "PASS" | "FAIL",
                 "result": {
-                    "receive-rate": AvgStdevMetadata,
+                    "receive-rate": float,
+                    # Average of a list, computed using AvgStdevStats.
+                    # In CSIT-1180, replace with List[float].
                 }
             }
 
@@ -832,17 +834,13 @@ class ExecutionChecker(ResultVisitor):
                     items_str = groups.group(1)
                     items_float = [float(item.strip()) for item
                                    in items_str.split(",")]
-                    metadata = AvgStdevMetadataFactory.from_data(items_float)
-                    # Next two lines have been introduced in CSIT-1179,
-                    # to be removed in CSIT-1180.
-                    metadata.size = 1
-                    metadata.stdev = 0.0
-                    test_result["result"]["receive-rate"] = metadata
+                    # Use whole list in CSIT-1180.
+                    stats = jumpavg.AvgStdevStats.for_runs(items_float)
+                    test_result["result"]["receive-rate"] = stats.avg
                 else:
                     groups = re.search(self.REGEX_MRR, test.message)
                     test_result["result"]["receive-rate"] = \
-                        AvgStdevMetadataFactory.from_data([
-                            float(groups.group(3)) / float(groups.group(1)), ])
+                        float(groups.group(3)) / float(groups.group(1))
 
             elif test_result["type"] == "RECONF":
                 test_result["result"] = None

@@ -12,5 +12,7 @@
 # limitations under the License.
 
 """
-__init__ file for "jumpavg" Python package.
+__init__ file for directory presentation
+
+This makes the presentation a part of the great CSIT resources package.
 """

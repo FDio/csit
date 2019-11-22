@@ -14,8 +14,8 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
 
 setup(
     name="jumpavg",
-    version="0.1.4",  # This is currently the only place listing the version.
-    description="Library for finding changes in time series by grouping results.",
+    version="0.2.0",  # This is currently the only place listing the version.
+    description="Library for locating changes in time series by grouping results.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
     # TODO: Create a separate webpage for jumpavg library.
@@ -32,7 +32,7 @@ setup(
         "Programming Language :: Python :: 2.7",
         "Topic :: Scientific/Engineering :: Information Analysis"
     ],
-    keywords="progression regression anomaly detection",
+    keywords="progression regression anomaly detection statistics metadata bits",
     packages=find_packages(exclude=[]),
     # TODO: python_requires="~=2.7"
     install_requires=[],
