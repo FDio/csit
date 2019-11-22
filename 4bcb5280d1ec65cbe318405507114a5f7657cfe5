@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb945d3f_c5a02ae1",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T17:54:27Z",
+      "side": 1,
+      "message": "\u0027 is simpler",
+      "range": {
+        "startLine": 532,
+        "startChar": 30,
+        "endLine": 532,
+        "endChar": 32
+      },
+      "revId": "4bcb5280d1ec65cbe318405507114a5f7657cfe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6586bb4_14e575ea",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T17:54:27Z",
+      "side": 1,
+      "message": "Remove, replace with \" or move asterisks out.",
+      "range": {
+        "startLine": 634,
+        "startChar": 49,
+        "endLine": 634,
+        "endChar": 50
+      },
+      "revId": "4bcb5280d1ec65cbe318405507114a5f7657cfe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
