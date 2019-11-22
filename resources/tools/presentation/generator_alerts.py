@@ -19,8 +19,8 @@ from email.mime.multipart import MIMEMultipart
 from os.path import isdir
 from collections import OrderedDict
 
-from utils import get_last_completed_build_number
-from errors import PresentationError
+from .utils import get_last_completed_build_number
+from .errors import PresentationError
 
 
 class AlertingError(PresentationError):

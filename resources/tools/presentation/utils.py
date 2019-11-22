@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -28,8 +28,8 @@ from shutil import move, Error
 from datetime import datetime
 from pandas import Series
 
-from errors import PresentationError
-from jumpavg.BitCountingClassifier import BitCountingClassifier
+from resources.libraries.python import jumpavg
+from .errors import PresentationError
 
 
 def mean(items):
@@ -270,30 +270,30 @@ def classify_anomalies(data):
     :returns: Classification and trend values
     :rtype: 2-tuple, list of strings and list of floats
     """
-    # Nan mean something went wrong.
+    # Nan means something went wrong.
     # Use 0.0 to cause that being reported as a severe regression.
-    bare_data = [0.0 if np.isnan(sample.avg) else sample
-                 for _, sample in data.iteritems()]
-    # TODO: Put analogous iterator into jumpavg library.
-    groups = BitCountingClassifier().classify(bare_data)
-    groups.reverse()  # Just to use .pop() for FIFO.
+    bare_data = [0.0 if np.isnan(sample) else sample
+                 for sample in data.itervalues()]
+    # TODO: Make BitCountingGroupList a subclass of list again?
+    group_list = jumpavg.classify(bare_data).group_list
+    group_list.reverse()  # Just to use .pop() for FIFO.
     classification = []
     avgs = []
     active_group = None
     values_left = 0
     avg = 0.0
-    for _, sample in data.iteritems():
-        if np.isnan(sample.avg):
+    for sample in data.itervalues():
+        if np.isnan(sample):
             classification.append("outlier")
-            avgs.append(sample.avg)
+            avgs.append(sample)
             continue
         if values_left < 1 or active_group is None:
             values_left = 0
             while values_left < 1:  # Ignore empty groups (should not happen).
-                active_group = groups.pop()
-                values_left = len(active_group.values)
-            avg = active_group.metadata.avg
-            classification.append(active_group.metadata.classification)
+                active_group = group_list.pop()
+                values_left = len(active_group.run_list)
+            avg = active_group.stats.avg
+            classification.append(active_group.comment)
             avgs.append(avg)
             values_left -= 1
             continue
