@@ -157,8 +157,15 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
             # Choose rate and start traffic:
             client.start(ports=ports, mult=rate, duration=warmup_time)
 
-            # Block until done:
-            client.wait_on_traffic(ports=ports, timeout=warmup_time+30)
+            # Block until done. Function is responsible for waiting reasonable amount
+            # of time for all valid traffic to reach from TX port to RX port. This
+            # implies that it must wait for duration + time needed for slowest packet
+            # to arrive in t=duration via the topology. It is hard to find balance as
+            # driver is the same for a various logical topologies.
+            # Here: 
+            #   timeout: Time for function to be blocking.
+            #   rx_delay_ms: Time to wait (in milliseconds) after last packet was sent.
+            client.wait_on_traffic(ports=ports, timeout=warmup_time+1, rx_delay_ms=1500)
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -196,8 +203,15 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
                 xsnap1 = client.ports[1].get_xstats().reference_stats
                 print("Xstats snapshot 1: {s!r}".format(s=xsnap1))
         else:
-            # Block until done:
-            client.wait_on_traffic(ports=ports, timeout=duration+30)
+            # Block until done. Function is responsible for waiting reasonable amount
+            # of time for all valid traffic to reach from TX port to RX port. This
+            # implies that it must wait for duration + time needed for slowest packet
+            # to arrive in t=duration via the topology. It is hard to find balance as
+            # driver is the same for a various logical topologies.
+            # Here: 
+            #   timeout: Time for function to be blocking.
+            #   rx_delay_ms: Time to wait (in milliseconds) after last packet was sent.
+            client.wait_on_traffic(ports=ports, timeout=duration+1, rx_delay_ms=1500)
 
             if client.get_warnings():
                 for warning in client.get_warnings():

@@ -237,7 +237,7 @@ class Constants(object):
         "Intel-X553": 14880952,
         "Intel-X710": 14880952,
         "Intel-XL710": 18750000,
-        "Intel-XXV710": 18750000,
+        "Intel-XXV710": 37200000,
         "Mellanox-CX556A": 60000000, #148809523,
         "virtual": 14880952,
     }
