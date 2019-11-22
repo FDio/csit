@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c6c7b27_608670d7",
+        "filename": "resources/libraries/python/TestConfig.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T19:18:57Z",
+      "side": 1,
+      "message": "Strange, I would expect it is a bool already. Where should I look to see why it is not?",
+      "range": {
+        "startLine": 196,
+        "startChar": 26,
+        "endLine": 196,
+        "endChar": 31
+      },
+      "revId": "886d35023f93271f9191555a73a2987188d5f53c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
