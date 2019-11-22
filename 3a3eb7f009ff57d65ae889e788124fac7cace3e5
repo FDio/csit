@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8339f175_051a5807",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T16:26:19Z",
+      "side": 1,
+      "message": "Why not do it just once, at line 399?",
+      "range": {
+        "startLine": 406,
+        "startChar": 52,
+        "endLine": 406,
+        "endChar": 58
+      },
+      "revId": "3a3eb7f009ff57d65ae889e788124fac7cace3e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
