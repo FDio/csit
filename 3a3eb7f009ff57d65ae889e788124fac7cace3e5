@@ -68,6 +68,52 @@
       "revId": "3a3eb7f009ff57d65ae889e788124fac7cace3e5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "411c1af8_6d8dc9c5",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T17:45:26Z",
+      "side": 1,
+      "message": "\u0027 is simpler here.",
+      "range": {
+        "startLine": 133,
+        "startChar": 33,
+        "endLine": 133,
+        "endChar": 35
+      },
+      "revId": "3a3eb7f009ff57d65ae889e788124fac7cace3e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c99d4bc_df0a9046",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T17:45:26Z",
+      "side": 1,
+      "message": "I wonder how does this work when node is said to be a dict.\nAnyway, not the job of this Change to touch that.",
+      "range": {
+        "startLine": 353,
+        "startChar": 64,
+        "endLine": 353,
+        "endChar": 70
+      },
+      "revId": "3a3eb7f009ff57d65ae889e788124fac7cace3e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
