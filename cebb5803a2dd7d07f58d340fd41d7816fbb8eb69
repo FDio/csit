@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22b1822c_004c3a96",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-22T14:56:30Z",
+      "side": 0,
+      "message": "that is why i changed is to \"For the future use\". Kubernetes is fully implemented, and downstream users are using this api so documentation is in place but no tests are there yet. So i would leave the section as it has nothing with previous ligato testing.",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 21
+      },
+      "revId": "cebb5803a2dd7d07f58d340fd41d7816fbb8eb69",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
