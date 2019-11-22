@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae5a79ad_1ef1e284",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T16:16:45Z",
+      "side": 1,
+      "message": "u\"\n\n:)",
+      "range": {
+        "startLine": 361,
+        "startChar": 27,
+        "endLine": 361,
+        "endChar": 28
+      },
+      "revId": "77f4884f2e4b63bad048e723fcbcc9c3bf30920b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4aba8b86_73cadf6a",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T16:16:45Z",
+      "side": 1,
+      "message": "u\"\n\nApplies to all open() calls.",
+      "range": {
+        "startLine": 211,
+        "startChar": 36,
+        "endLine": 211,
+        "endChar": 37
+      },
+      "revId": "77f4884f2e4b63bad048e723fcbcc9c3bf30920b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b13dbfcb_d8fa634a",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T16:16:45Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 351,
+        "startChar": 45,
+        "endLine": 351,
+        "endChar": 46
+      },
+      "revId": "77f4884f2e4b63bad048e723fcbcc9c3bf30920b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93e8ad60_46d3351a",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-22T16:16:45Z",
+      "side": 1,
+      "message": "B",
+      "range": {
+        "startLine": 56,
+        "startChar": 41,
+        "endLine": 56,
+        "endChar": 44
+      },
+      "revId": "77f4884f2e4b63bad048e723fcbcc9c3bf30920b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
