@@ -56,7 +56,7 @@ class TrafficStreamsBaseClass(object):
         :returns: The generated payload.
         :rtype: str
         """
-        payload = ""
+        payload = u""
         for _ in range(length):
             payload += choice(ascii_letters)
 
@@ -78,8 +78,8 @@ class TrafficStreamsBaseClass(object):
             ip1 = socket.inet_pton(socket.AF_INET6, start_ip)
             ip2 = socket.inet_pton(socket.AF_INET6, end_ip)
 
-            hi1, lo1 = struct.unpack('!QQ', ip1)
-            hi2, lo2 = struct.unpack('!QQ', ip2)
+            hi1, lo1 = struct.unpack(u'!QQ', ip1)
+            hi2, lo2 = struct.unpack(u'!QQ', ip2)
 
             if ((hi1 << 64) | lo1) > ((hi2 << 64) | lo2):
                 raise ValueError("IPv6: start_ip is greater then end_ip")
