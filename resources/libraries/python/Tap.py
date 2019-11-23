@@ -41,7 +41,7 @@ class Tap(object):
         """
         if isinstance(tap_name, unicode):
             tap_name = str(tap_name)
-        cmd = 'tap_create_v2'
+        cmd = u'tap_create_v2'
         args = dict(
             id=Constants.BITWISE_NON_ZERO,
             use_random_mac=0 if mac else 1,
@@ -56,8 +56,8 @@ class Tap(object):
             host_ip4_gw=4 * b'\x00',
             host_ip6_gw=16 * b'\x00'
         )
-        err_msg = 'Failed to create tap interface {tap} on host {host}'.format(
-            tap=tap_name, host=node['host'])
+        err_msg = f"Failed to create tap interface {tap_name} on \
+host {node['host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
@@ -130,9 +130,8 @@ class Tap(object):
             tap_dump['host_ip6_addr'] = ip_address(tap_dump['host_ip6_addr'])
             return tap_dump
 
-        cmd = 'sw_interface_tap_v2_dump'
-        err_msg = 'Failed to get TAP dump on host {host}'.format(
-            host=node['host'])
+        cmd = u'sw_interface_tap_v2_dump'
+        err_msg = "Failed to get TAP dump on host {node['host']}"
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd).get_details(err_msg)
 
@@ -144,5 +143,5 @@ class Tap(object):
                 data = process_tap_dump(dump)
                 break
 
-        logger.debug('TAP data:\n{tap_data}'.format(tap_data=data))
+        logger.debug(f"TAP data:\n{data}")
         return data
