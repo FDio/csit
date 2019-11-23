@@ -78,8 +78,8 @@ class SRv6(object):
         :returns: SRv6 SID list object.
         :rtype: list
         """
-        sid_list = list(0 for _ in xrange(16))
-        for i in xrange(len(sids)):
+        sid_list = list(0 for _ in range(16))
+        for i in range(len(sids)):
             sid_list[i] = SRv6.create_srv6_sid_object(sids[i])
         return dict(num_sids=len(sids), weight=1, sids=sid_list)
 
@@ -133,29 +133,24 @@ class SRv6(object):
                 if next_hop is None or out_if is None or in_if is None or \
                         src_addr is None or sid_list is None:
                     raise ValueError(
-                        'Required parameter(s) missing.\n'
-                        'next_hop:{nh}\n'
-                        'out_if:{oif}\n'
-                        'in_if:{iif}\n'
-                        'src_addr:{saddr}\n'
-                        'sid_list:{sids}'.format(
-                            nh=next_hop, oif=out_if, iif=in_if, saddr=src_addr,
-                            sids=sid_list))
+                        f"Required parameter(s) missing.\n \
+next_hop:{next_hop}\n \
+out_if:{out_if}\n \
+in_if:{in_if}\n \
+src_addr:{src_addr}\n \
+sid_list:{sid_list}"
                 sid_conf = 'next ' + ' next '.join(sid_list)
-                params = 'nh {nh} oif {oif} iif {iif} src {saddr} {sids}'.\
-                    format(nh=next_hop, oif=out_if, iif=in_if, saddr=src_addr,
-                           sids=sid_conf)
+                params = f"nh {next_hop} oif {out_if} iif {in_if} \
+src {src_addr} {sid_conf}"
             else:
                 if next_hop is None or out_if is None or in_if is None:
                     raise ValueError(
-                        'Required parameter(s) missing.\nnext_hop:{0}\n'
-                        'out_if:{1}\nin_if:{2}'.format(next_hop, out_if, in_if))
-                params = 'nh {0} oif {1} iif {2}'.format(
-                    next_hop, out_if, in_if)
+                        f"Required parameter(s) missing.\nnext_hop:{next_hop}\n \
+out_if:{out_if}\nin_if:{in_if}")
+                params = f'nh {next_hop} oif {out_if} iif {in_if}'
 
-            cli_cmd = 'sr localsid address {l_sid} behavior {beh} {params}'.\
-                format(l_sid=local_sid, beh=behavior, params=params)
-
+            cli_cmd = f"sr localsid address {local_sid} behavior {behavior} \
+{params}"
             PapiSocketExecutor.run_cli_cmd(node, cli_cmd)
             return
 
@@ -171,17 +166,14 @@ class SRv6(object):
             nh_addr6=0,
             nh_addr4=0
         )
-        err_msg = 'Failed to add SR localSID {lsid} on host {host}'.format(
-            lsid=local_sid, host=node['host'])
-
+        err_msg = f"Failed to add SR localSID {local_sid} on host {node['host']}"
         if beh in (getattr(SRv6Behavior, 'END_X').name,
                    getattr(SRv6Behavior, 'END_DX4').name,
                    getattr(SRv6Behavior, 'END_DX6').name):
             if interface is None or next_hop is None:
-                raise ValueError('Required parameter(s) missing.\n'
-                                 'interface:{ifc}\n'
-                                 'next_hop:{nh}'.
-                                 format(ifc=interface, nh=next_hop))
+                raise ValueError(f"Required parameter(s) missing.\n \
+interface:{interface}\n \
+next_hop:{next_hop}")
             args['sw_if_index'] = InterfaceUtil.get_interface_index(
                 node, interface)
             next_hop = ip_address(unicode(next_hop))
@@ -191,15 +183,15 @@ class SRv6(object):
                 args['nh_addr4'] = next_hop.packed
         elif beh == getattr(SRv6Behavior, 'END_DX2').name:
             if interface is None:
-                raise ValueError('Required parameter missing.\ninterface:{ifc}'.
-                                 format(ifc=interface))
+                raise ValueError(f'Required parameter missing.\ninterface:\
+{interface}')
             args['sw_if_index'] = InterfaceUtil.get_interface_index(
                 node, interface)
         elif beh in (getattr(SRv6Behavior, 'END_DT4').name,
                      getattr(SRv6Behavior, 'END_DT6').name):
             if fib_table is None:
-                raise ValueError('Required parameter missing.\n'
-                                 'fib_table: {fib}'.format(fib=fib_table))
+                raise ValueError(f'Required parameter missing.\n\
+                                 fib_table: {fib_table}')
             args['fib_table'] = fib_table
 
         with PapiSocketExecutor(node) as papi_exec:
@@ -213,8 +205,7 @@ class SRv6(object):
         :type node: dict
         """
         cmd = 'sr_localsids_dump'
-        err_msg = 'Failed to get SR localSID dump on host {host}'.format(
-            host=node['host'])
+        err_msg = f"Failed to get SR localSID dump on host {node['host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd).get_details(err_msg)
@@ -239,8 +230,8 @@ class SRv6(object):
             is_encap=1 if mode == 'encap' else 0,
             sids=SRv6.create_srv6_sid_list(sid_list)
         )
-        err_msg = 'Failed to add SR policy for BindingSID {bsid} ' \
-                  'on host {host}'.format(bsid=bsid, host=node['host'])
+        err_msg = f"Failed to add SR policy for BindingSID {bsid} \
+on host {node['host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -253,8 +244,7 @@ class SRv6(object):
         :type node: dict
         """
         cmd = 'sr_policies_dump'
-        err_msg = 'Failed to get SR policies dump on host {host}'.format(
-            host=node['host'])
+        err_msg = f"Failed to get SR policies dump on host {node['host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd).get_details(err_msg)
@@ -286,16 +276,16 @@ class SRv6(object):
         """
         if mode.lower() == 'l2':
             if interface is None:
-                raise ValueError('Required data missing.\ninterface:{ifc}'.
-                                 format(ifc=interface))
+                raise ValueError(f'Required data missing.\ninterface:\
+{interface}')
             sw_if_index = InterfaceUtil.get_interface_index(node, interface)
             mask_width = 0
             prefix_addr = 16 * b'\x00'
             traffic_type = getattr(SRv6PolicySteeringTypes, 'SR_STEER_L2').value
         elif mode.lower() == 'l3':
             if ip_addr is None or prefix is None:
-                raise ValueError('Required data missing.\nIP address:{0}\n'
-                                 'mask:{1}'.format(ip_addr, prefix))
+                raise ValueError(f'Required data missing.\n \
+IP address:{ip_addr}\n mask:{prefix}')
             sw_if_index = Constants.BITWISE_NON_ZERO
             ip_addr = ip_address(unicode(ip_addr))
             prefix_addr = ip_addr.packed
@@ -308,7 +298,7 @@ class SRv6(object):
                 traffic_type = getattr(
                     SRv6PolicySteeringTypes, 'SR_STEER_IPV6').value
         else:
-            raise ValueError('Unsupported mode: {0}'.format(mode))
+            raise ValueError(f'Unsupported mode: {mode}')
 
         return sw_if_index, mask_width, prefix_addr, traffic_type
 
@@ -351,8 +341,8 @@ class SRv6(object):
             sw_if_index=sw_if_index,
             traffic_type=traffic_type
         )
-        err_msg = 'Failed to add SRv6 steering policy for BindingSID {bsid} ' \
-                  'on host {host}'.format(bsid=bsid, host=node['host'])
+        err_msg = f"Failed to add SRv6 steering policy for BindingSID {bsid} \
+on host {node['host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -365,8 +355,8 @@ class SRv6(object):
         :type node: dict
         """
         cmd = 'sr_steering_pol_dump'
-        err_msg = 'Failed to get SR localSID dump on host {host}'.format(
-            host=node['host'])
+        err_msg = f"Failed to get SR localSID dump on host {node['host']}"
+            
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd).get_details(err_msg)
@@ -382,8 +372,8 @@ class SRv6(object):
         """
         cmd = 'sr_set_encap_source'
         args = dict(encaps_source=IPv6Address(unicode(ip6_addr)).packed)
-        err_msg = 'Failed to set SRv6 encapsulation source address {addr} ' \
-                  'on host {host}'.format(addr=ip6_addr, host=node['host'])
+        err_msg = f"Failed to set SRv6 encapsulation source address {ip6_addr} \
+on host {node['host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
