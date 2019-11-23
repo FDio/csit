@@ -28,14 +28,14 @@ class TrafficStreamsBaseClass(object):
     """Base class for stream profiles for T-rex traffic generator."""
     STREAM_TABLE = {
         'IMIX_v4': [
-            {'size': 60, 'pps': 28, 'isg': 0},
-            {'size': 590, 'pps': 20, 'isg': 0.1},
-            {'size': 1514, 'pps': 4, 'isg': 0.2}
+            {u'size': 60, u'pps': 28, u'isg': 0},
+            {u'size': 590, u'pps': 20, u'isg': 0.1},
+            {u'size': 1514, u'pps': 4, u'isg': 0.2}
         ],
         'IMIX_v4_1': [
-            {'size': 64, 'pps': 28, 'isg': 0},
-            {'size': 570, 'pps': 16, 'isg': 0.1},
-            {'size': 1518, 'pps': 4, 'isg': 0.2}
+            {u'size': 64, u'pps': 28, u'isg': 0},
+            {u'size': 570, u'pps': 16, u'isg': 0.1},
+            {u'size': 1518, u'pps': 4, u'isg': 0.2}
         ]
     }
 
@@ -56,7 +56,7 @@ class TrafficStreamsBaseClass(object):
         :returns: The generated payload.
         :rtype: str
         """
-        payload = ""
+        payload = u""
         for _ in range(length):
             payload += choice(ascii_letters)
 
@@ -78,11 +78,11 @@ class TrafficStreamsBaseClass(object):
             ip1 = socket.inet_pton(socket.AF_INET6, start_ip)
             ip2 = socket.inet_pton(socket.AF_INET6, end_ip)
 
-            hi1, lo1 = struct.unpack('!QQ', ip1)
-            hi2, lo2 = struct.unpack('!QQ', ip2)
+            hi1, lo1 = struct.unpack(u'!QQ', ip1)
+            hi2, lo2 = struct.unpack(u'!QQ', ip2)
 
             if ((hi1 << 64) | lo1) > ((hi2 << 64) | lo2):
-                raise ValueError("IPv6: start_ip is greater then end_ip")
+                raise ValueError(u"IPv6: start_ip is greater then end_ip")
 
             return lo1, abs(int(lo1) - int(lo2))
 
@@ -165,8 +165,8 @@ class TrafficStreamsBaseClass(object):
             stream2 = []
 
             for stream in self.STREAM_TABLE[self.framesize]:
-                payload_len_a = max(0, stream['size'] - len(base_pkt_a) - 4)
-                payload_len_b = max(0, stream['size'] - len(base_pkt_b) - 4)
+                payload_len_a = max(0, stream[u'size'] - len(base_pkt_a) - 4)
+                payload_len_b = max(0, stream[u'size'] - len(base_pkt_b) - 4)
                 # Create a base packet and pad it to size
                 pkt_a = STLPktBuilder(
                     pkt=base_pkt_a / self._gen_payload(payload_len_a),
@@ -177,11 +177,11 @@ class TrafficStreamsBaseClass(object):
 
                 # Create the streams:
                 stream1.append(STLStream(packet=pkt_a,
-                                         isg=stream['isg'],
-                                         mode=STLTXCont(pps=stream['pps'])))
+                                         isg=stream[u'isg'],
+                                         mode=STLTXCont(pps=stream[u'pps'])))
                 stream2.append(STLStream(packet=pkt_b,
-                                         isg=stream['isg'],
-                                         mode=STLTXCont(pps=stream['pps'])))
+                                         isg=stream[u'isg'],
+                                         mode=STLTXCont(pps=stream[u'pps'])))
             streams = list()
             streams.extend(stream1)
             streams.extend(stream2)
@@ -198,6 +198,6 @@ class TrafficStreamsBaseClass(object):
         :returns: Traffic streams.
         :rtype: list
         """
-        self.framesize = kwargs['framesize']
+        self.framesize = kwargs[u'framesize']
 
         return self.create_streams()
