@@ -36,17 +36,17 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         super(TrafficStreamsBaseClass, self).__init__()
 
-        self.p2_dst_start_mac = '02:02:00:00:00:00'
-        self.p2_dst_end_mac = '02:02:00:00:00:07'
+        self.p2_dst_start_mac = u'02:02:00:00:00:00'
+        self.p2_dst_end_mac = u'02:02:00:00:00:07'
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = '10.0.0.1'
-        self.p1_dst_start_ip = '20.0.0.0'
-        self.p1_dst_end_ip = '20.0.1.143'
+        self.p1_src_start_ip = u'10.0.0.1'
+        self.p1_dst_start_ip = u'20.0.0.0'
+        self.p1_dst_end_ip = u'20.0.1.143'
 
-        self.p2_src_start_ip = '20.0.0.1'
-        self.p2_dst_start_ip = '10.0.0.0'
-        self.p2_dst_end_ip = '10.0.1.143'
+        self.p2_src_start_ip = u'20.0.0.1'
+        self.p2_dst_start_ip = u'10.0.0.0'
+        self.p2_dst_end_ip = u'10.0.1.143'
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
@@ -69,24 +69,24 @@ class TrafficStreams(TrafficStreamsBaseClass):
                          proto=61))
 
         # Direction 0 --> 1
-        vm1 = STLScVmRaw([STLVmFlowVar(name="dst",
+        vm1 = STLScVmRaw([STLVmFlowVar(name=u"dst",
                                        min_value=self.p1_dst_start_ip,
                                        max_value=self.p1_dst_end_ip,
-                                       size=4, op="inc"),
-                          STLVmWrFlowVar(fv_name="dst", pkt_offset="IP.dst"),
-                          STLVmFixIpv4(offset="IP")])
+                                       size=4, op=u"inc"),
+                          STLVmWrFlowVar(fv_name=u"dst", pkt_offset=u"IP.dst"),
+                          STLVmFixIpv4(offset=u"IP")])
         # Direction 1 --> 0
-        vm2 = STLScVmRaw([STLVmFlowVar(name="mac_dst",
+        vm2 = STLScVmRaw([STLVmFlowVar(name=u"mac_dst",
                                        min_value=0,
                                        max_value=7,
-                                       size=1, op="inc"),
-                          STLVmWrFlowVar(fv_name="mac_dst", pkt_offset=5),
-                          STLVmFlowVar(name="dst",
+                                       size=1, op=u"inc"),
+                          STLVmWrFlowVar(fv_name=u"mac_dst", pkt_offset=5),
+                          STLVmFlowVar(name=u"dst",
                                        min_value=self.p2_dst_start_ip,
                                        max_value=self.p2_dst_end_ip,
-                                       size=4, op="inc"),
-                          STLVmWrFlowVar(fv_name="dst", pkt_offset="IP.dst"),
-                          STLVmFixIpv4(offset="IP")])
+                                       size=4, op=u"inc"),
+                          STLVmWrFlowVar(fv_name=u"dst", pkt_offset=u"IP.dst"),
+                          STLVmFixIpv4(offset=u"IP")])
 
         return base_pkt_a, base_pkt_b, vm1, vm2
 
