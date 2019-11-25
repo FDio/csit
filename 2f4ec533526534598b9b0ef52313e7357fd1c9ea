@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ca4eb592_3f6977d6",
+        "filename": "resources/tools/presentation/environment.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-11-25T14:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94bd92c7_ae878d98",
+      "range": {
+        "startLine": 63,
+        "startChar": 25,
+        "endLine": 63,
+        "endChar": 26
+      },
+      "revId": "2f4ec533526534598b9b0ef52313e7357fd1c9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42eed530_0c9e55e9",
         "filename": "resources/tools/presentation/generator_alerts.py",
         "patchSetId": 22
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ff175f87_b7a148cf",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-11-25T14:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42eed530_0c9e55e9",
+      "range": {
+        "startLine": 359,
+        "startChar": 30,
+        "endLine": 359,
+        "endChar": 31
+      },
+      "revId": "2f4ec533526534598b9b0ef52313e7357fd1c9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1b7b2d6_a70798d2",
         "filename": "resources/tools/presentation/generator_cpta.py",
         "patchSetId": 22
@@ -68,6 +116,30 @@
       "revId": "2f4ec533526534598b9b0ef52313e7357fd1c9ea",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97e3b740_3f426de2",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-11-25T14:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1b7b2d6_a70798d2",
+      "range": {
+        "startLine": 351,
+        "startChar": 19,
+        "endLine": 351,
+        "endChar": 25
+      },
+      "revId": "2f4ec533526534598b9b0ef52313e7357fd1c9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "f72938e1_b2f2aa81",
+        "filename": "resources/tools/presentation/generator_report.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-11-25T14:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5802a76c_c0b5284d",
+      "range": {
+        "startLine": 126,
+        "startChar": 46,
+        "endLine": 126,
+        "endChar": 53
+      },
+      "revId": "2f4ec533526534598b9b0ef52313e7357fd1c9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdfc6a46_e982c3d2",
         "filename": "resources/tools/presentation/generator_report.py",
         "patchSetId": 22
@@ -137,6 +233,30 @@
       "revId": "2f4ec533526534598b9b0ef52313e7357fd1c9ea",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d828d078_f3df2a4d",
+        "filename": "resources/tools/presentation/generator_report.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-11-25T14:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdfc6a46_e982c3d2",
+      "range": {
+        "startLine": 147,
+        "startChar": 19,
+        "endLine": 147,
+        "endChar": 20
+      },
+      "revId": "2f4ec533526534598b9b0ef52313e7357fd1c9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "89f7c9b8_048ba3b2",
+        "filename": "resources/tools/presentation/generator_tables.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-11-25T14:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74b08ad5_8bfe95b9",
+      "range": {
+        "startLine": 213,
+        "startChar": 20,
+        "endLine": 213,
+        "endChar": 21
+      },
+      "revId": "2f4ec533526534598b9b0ef52313e7357fd1c9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d22883e_00feccc1",
         "filename": "resources/tools/presentation/generator_tables.py",
         "patchSetId": 22
@@ -183,6 +327,30 @@
       "revId": "2f4ec533526534598b9b0ef52313e7357fd1c9ea",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f178e15e_6589884b",
+        "filename": "resources/tools/presentation/generator_tables.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-11-25T14:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d22883e_00feccc1",
+      "range": {
+        "startLine": 1346,
+        "startChar": 34,
+        "endLine": 1346,
+        "endChar": 39
+      },
+      "revId": "2f4ec533526534598b9b0ef52313e7357fd1c9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
