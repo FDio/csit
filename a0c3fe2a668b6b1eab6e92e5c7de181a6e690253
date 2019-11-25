@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a629fb58_094682ea",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T18:09:19Z",
+      "side": 1,
+      "message": "Adjusting privileges goes a step beyond just verifying.\nNot sure if renaming is worth the trouble, but \"ensure_vpp\" or \"ensure_vpp_is_ready\" would probably be better for people reading the code.",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 18
+      },
+      "revId": "a0c3fe2a668b6b1eab6e92e5c7de181a6e690253",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
