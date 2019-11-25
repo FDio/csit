@@ -1,0 +1,395 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65f01687_e7aa332b",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "When doing edits, we should choose a better code:\n    sid_list \u003d map(SRv6.create_srv6_sid_object, sids)\n\nSee [1] on what to do when something fails.\n\n[1] https://stackoverflow.com/a/38702484",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 62
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f755185e_101988ad",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 126,
+        "startChar": 31,
+        "endLine": 126,
+        "endChar": 32
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b964aa4c_da35754d",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 129,
+        "startChar": 41,
+        "endLine": 129,
+        "endChar": 42
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13923df1_0aed9e2f",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "You can write multiple f\" strings (one per line), the interpreter will concatenate them.",
+      "range": {
+        "startLine": 136,
+        "startChar": 59,
+        "endLine": 136,
+        "endChar": 60
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3d9b037_69f252b9",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "Close the bracket from line 136.",
+      "range": {
+        "startLine": 141,
+        "startChar": 19,
+        "endLine": 141,
+        "endChar": 20
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc14c4ea_42233d5c",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "f\"",
+      "range": {
+        "startLine": 142,
+        "startChar": 27,
+        "endLine": 142,
+        "endChar": 28
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51b30542_f249e0ec",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 157,
+        "startChar": 14,
+        "endLine": 157,
+        "endChar": 15
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cda75865_c1562dbc",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\u0027",
+      "range": {
+        "startLine": 169,
+        "startChar": 72,
+        "endLine": 169,
+        "endChar": 73
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caa14078_06a1fe60",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 170,
+        "startChar": 41,
+        "endLine": 170,
+        "endChar": 42
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e3c85b8_e17e1e91",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 177,
+        "startChar": 17,
+        "endLine": 177,
+        "endChar": 18
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e61729f5_16630d43",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 277,
+        "startChar": 27,
+        "endLine": 277,
+        "endChar": 28
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e13d8f2e_ad82090b",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 284,
+        "startChar": 60,
+        "endLine": 284,
+        "endChar": 61
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14b562f7_9a3be772",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "Do not trail whitespace please.",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 12
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02f7b93e_4c5d1d02",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 65,
+        "startChar": 45,
+        "endLine": 65,
+        "endChar": 46
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6af955b4_269e6fea",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 87,
+        "startChar": 52,
+        "endLine": 87,
+        "endChar": 53
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c3ee78a_da5efeaf",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 123,
+        "startChar": 21,
+        "endLine": 123,
+        "endChar": 22
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91fbd2e4_b14f2cc6",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-25T13:58:16Z",
+      "side": 1,
+      "message": "b\"",
+      "range": {
+        "startLine": 124,
+        "startChar": 71,
+        "endLine": 124,
+        "endChar": 72
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
