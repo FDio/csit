@@ -22,6 +22,30 @@
       "revId": "a0c3fe2a668b6b1eab6e92e5c7de181a6e690253",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ab53103_7f1c350f",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-26T07:17:32Z",
+      "side": 1,
+      "message": "Could be, i realize i want to go fully unprivileged rather then doing hooks to pretend so i will work on decreasing privileges globally.",
+      "parentUuid": "a629fb58_094682ea",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 18
+      },
+      "revId": "a0c3fe2a668b6b1eab6e92e5c7de181a6e690253",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }

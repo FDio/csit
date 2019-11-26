@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "32542a1c_f1a1cbca",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-26T07:17:32Z",
+      "side": 0,
+      "message": "To see real hardware counters, hardware information (like rss, number of rxq/txq/txd/rxd, and lots of others, CRC errors) but we are not using them currently. Then show hardware is reporting driver counters (DPDK) which are very useful, but with RDMA and AVF and all other internal interfaces there is no useful output at all. I am more wondering if this is bug in VPP or laziness of vpp-dev to add the full HW info. \n(note: similar to trex stats vs xstats)",
+      "parentUuid": "6d88bf1a_0c2d29ae",
+      "range": {
+        "startLine": 137,
+        "startChar": 19,
+        "endLine": 137,
+        "endChar": 40
+      },
+      "revId": "497f606967363d88b4b36b74859ad360eba9eccd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4e96cdba_19d6d894",
         "filename": "resources/libraries/python/VppCounters.py",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2019-11-25T18:09:19Z",
       "side": 0,
       "message": "Again, consider enabling on demand (also for show memory).",
+      "range": {
+        "startLine": 225,
+        "startChar": 20,
+        "endLine": 225,
+        "endChar": 36
+      },
+      "revId": "497f606967363d88b4b36b74859ad360eba9eccd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd718eb9_e0bd3607",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-26T07:17:32Z",
+      "side": 0,
+      "message": "sh runtime in this stage is pointless. same as memory. Memory is useful in teardown (which i can add), also runtime requires special sequence to be captured during traffic run not outside. Runtime is covered in clear and show... and memory i will add to teardown.",
+      "parentUuid": "4e96cdba_19d6d894",
       "range": {
         "startLine": 225,
         "startChar": 20,
