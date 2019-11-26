@@ -32,6 +32,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PythonThree import raise_from
+from resources.libraries.python.DataStore import DataStore
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
@@ -343,8 +344,12 @@ class PapiSocketExecutor(object):
         """
         self.crc_checker.report_initial_conflicts()
         if history:
-            PapiHistory.add_to_papi_history(
-                self._node, csit_papi_command, **kwargs)
+            args = list()
+            for key, val in kwargs.iteritems():
+                args.append("{key}={val!r}".format(key=key, val=val))
+            item = "{cmd}({args})".format(cmd=csit_papi_command,
+                                          args=",".join(args))
+            DataStore.add_papi_history_item(self._node, item)
         self.crc_checker.check_api_name(csit_papi_command)
         self._api_command_list.append(
             dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)))

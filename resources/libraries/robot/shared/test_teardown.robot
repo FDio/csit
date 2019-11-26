@@ -15,7 +15,7 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/container.robot
-| Library | resources.libraries.python.PapiHistory
+| Library | resources.libraries.python.DataStore
 | Library | resources.libraries.python.topology.Topology
 | Variables | resources/libraries/python/Constants.py
 | ...
@@ -32,7 +32,6 @@
 | | [Arguments] | @{actions}
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show PAPI History On All DUTs | ${nodes}
 | | Show Log On All DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Get Core Files on All Nodes | ${nodes}
@@ -41,6 +40,7 @@
 | | :FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | Clean Sockets On All Nodes | ${nodes}
+| | Dump Datastore
 
 | Additional Test Tear Down Action For performance
 | | [Documentation]

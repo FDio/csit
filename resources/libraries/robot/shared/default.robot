@@ -12,9 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
-| Variables | resources/libraries/python/topology.py
-| Variables | resources/libraries/python/PapiHistory.py
 | Variables | resources/libraries/python/Constants.py
+| Variables | resources/libraries/python/DataStore.py
+| Variables | resources/libraries/python/topology.py
 | ...
 | Library | Collections
 | Library | OperatingSystem
@@ -24,6 +24,7 @@
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.CoreDumpUtil
 | Library | resources.libraries.python.Cop
+| Library | resources.libraries.python.DataStore
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
@@ -347,13 +348,13 @@
 | Set up functional test
 | | [Documentation] | Common test setup for functional tests.
 | | ...
+| | Reset Datastore
 | | Restart Vpp Service On All Duts | ${nodes}
 | | Verify Vpp On All Duts | ${nodes}
 | | VPP Enable Traces On All Duts | ${nodes}
 | | Save VPP PIDs
 | | All TGs Set Interface Default Driver | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes}
-| | Reset PAPI History On All DUTs | ${nodes}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
@@ -369,3 +370,4 @@
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
 | | Clean Sockets On All Nodes | ${nodes}
+| | Dump Datastore

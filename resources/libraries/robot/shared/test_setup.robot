@@ -14,7 +14,7 @@
 """Keywords used in test setups."""
 
 *** Settings ***
-| Library | resources.libraries.python.PapiHistory
+| Library | resources.libraries.python.DataStore
 | ...
 | Documentation | Test Setup keywords.
 
@@ -28,7 +28,7 @@
 | | ...
 | | [Arguments] | @{actions}
 | | ...
-| | Reset PAPI History On All DUTs | ${nodes}
+| | Reset Datastore
 | | Create base startup configuration of VPP on all DUTs
 | | :FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Setup Action For ${action}
