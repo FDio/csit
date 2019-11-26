@@ -77,11 +77,11 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize L2 xconnect in 2-node circular topology
-| | Then Find NDR and PDR intervals using optimized search
+#| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2xcbase-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-l2xcbase-ndrpdr
