@@ -22,7 +22,7 @@ import argparse
 import json
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.61/scripts/automation/"
+sys.path.insert(0, "/opt/trex-core-2.54/scripts/automation/"
                    "trex_control_plane/interactive/")
 from trex.stl.api import *
 
