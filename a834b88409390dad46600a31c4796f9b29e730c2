@@ -114,6 +114,98 @@
       "revId": "a834b88409390dad46600a31c4796f9b29e730c2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40bed402_b5d71313",
+        "filename": "resources/libraries/python/VhostUser.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T10:30:41Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 42,
+        "startChar": 63,
+        "endLine": 42,
+        "endChar": 77
+      },
+      "revId": "a834b88409390dad46600a31c4796f9b29e730c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8522d65_8a48876a",
+        "filename": "resources/libraries/python/VhostUser.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T10:30:41Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 43,
+        "startChar": 61,
+        "endLine": 43,
+        "endChar": 75
+      },
+      "revId": "a834b88409390dad46600a31c4796f9b29e730c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49373acf_50b9401b",
+        "filename": "resources/libraries/python/VhostUser.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T10:30:41Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 153,
+        "startChar": 45,
+        "endLine": 153,
+        "endChar": 59
+      },
+      "revId": "a834b88409390dad46600a31c4796f9b29e730c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "957da42b_252960cb",
+        "filename": "resources/libraries/python/VhostUser.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T10:30:41Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 155,
+        "startChar": 45,
+        "endLine": 155,
+        "endChar": 58
+      },
+      "revId": "a834b88409390dad46600a31c4796f9b29e730c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
