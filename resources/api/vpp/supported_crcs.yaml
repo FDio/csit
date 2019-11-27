@@ -270,7 +270,7 @@
 
 
 # https://gerrit.fd.io/r/c/vpp/+/21551
-21551/12:
+21551/27:
     acl_add_replace: '0x13bc8539'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
     acl_details: '0xf89d7a88'  # perf teardown
@@ -295,7 +295,7 @@
     # bridge_domain_dump / details # honeycomb
     classify_add_del_session: '0xf20879f0'  # dev
     classify_add_del_session_reply: '0xe8d4e804'  # dev
-    classify_add_del_table: '0x66bec737'  # dev
+    classify_add_del_table: '0x6849e39e'  # dev
     classify_add_del_table_reply: '0x05486349'  # dev
     # classify_session_dump / details # honeycomb
     # classify_table_by_interface / reply # honeycomb
