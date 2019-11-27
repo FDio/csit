@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d1f52378_c26c9302",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T12:39:39Z",
+      "side": 1,
+      "message": "these are not lists but strings. or make one call with list",
+      "range": {
+        "startLine": 517,
+        "startChar": 0,
+        "endLine": 519,
+        "endChar": 62
+      },
+      "revId": "373303f0b22328accc31595b1e79765260e5a83a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14333f8c_84c42db2",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T12:39:39Z",
+      "side": 1,
+      "message": "these are not lists but strings. or make one call with list",
+      "range": {
+        "startLine": 540,
+        "startChar": 8,
+        "endLine": 540,
+        "endChar": 62
+      },
+      "revId": "373303f0b22328accc31595b1e79765260e5a83a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc147ad4_acb15e96",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T12:39:39Z",
+      "side": 1,
+      "message": "this must be \u0027echo \"{out}\".....\u0027 not \"\"\"\"",
+      "range": {
+        "startLine": 564,
+        "startChar": 17,
+        "endLine": 564,
+        "endChar": 45
+      },
+      "revId": "373303f0b22328accc31595b1e79765260e5a83a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
