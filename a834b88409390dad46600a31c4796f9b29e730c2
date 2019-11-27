@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a8eedb7_a70b23d4",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T10:13:26Z",
+      "side": 1,
+      "message": "remove format",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 50
+      },
+      "revId": "a834b88409390dad46600a31c4796f9b29e730c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "136f81df_a98e14fe",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T10:13:26Z",
+      "side": 1,
+      "message": "remove format",
+      "range": {
+        "startLine": 252,
+        "startChar": 1,
+        "endLine": 255,
+        "endChar": 50
+      },
+      "revId": "a834b88409390dad46600a31c4796f9b29e730c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a6a4bc8_187bbd01",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T10:13:26Z",
+      "side": 1,
+      "message": "remove format",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 51
+      },
+      "revId": "a834b88409390dad46600a31c4796f9b29e730c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c74b6ff4_a5159281",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T10:13:26Z",
+      "side": 1,
+      "message": "remove format",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 51
+      },
+      "revId": "a834b88409390dad46600a31c4796f9b29e730c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b058b630_2618d82b",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T10:13:26Z",
+      "side": 1,
+      "message": "space required",
+      "range": {
+        "startLine": 906,
+        "startChar": 27,
+        "endLine": 906,
+        "endChar": 30
+      },
+      "revId": "a834b88409390dad46600a31c4796f9b29e730c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
