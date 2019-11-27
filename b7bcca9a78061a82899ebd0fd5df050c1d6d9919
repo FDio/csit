@@ -232,6 +232,29 @@
     },
     {
       "key": {
+        "uuid": "453e391e_2ace7088",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-27T16:08:33Z",
+      "side": 1,
+      "message": "unicode does not exists in py3, please fix everywhere.",
+      "range": {
+        "startLine": 228,
+        "startChar": 34,
+        "endLine": 228,
+        "endChar": 41
+      },
+      "revId": "b7bcca9a78061a82899ebd0fd5df050c1d6d9919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e61729f5_16630d43",
         "filename": "resources/libraries/python/SRv6.py",
         "patchSetId": 3
