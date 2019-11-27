@@ -112,10 +112,6 @@ class VPPUtil(object):
         :param node: Topology node.
         :type node: dict
         """
-        cmd = 'echo "show pci" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock'
-        exec_cmd_no_error(
-            node, cmd, sudo=False, message='VPP failed to start!', retries=120)
-
         cmd = ('vppctl show pci 2>&1 | '
                'fgrep -v "Connection refused" | '
                'fgrep -v "No such file or directory"')
