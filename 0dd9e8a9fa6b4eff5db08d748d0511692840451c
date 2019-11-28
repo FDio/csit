@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d07c0e1_42a56771",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T15:14:02Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 129,
+        "startChar": 42,
+        "endLine": 129,
+        "endChar": 43
+      },
+      "revId": "0dd9e8a9fa6b4eff5db08d748d0511692840451c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a3d424a_aec20088",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T15:14:02Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 173,
+        "startChar": 42,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "0dd9e8a9fa6b4eff5db08d748d0511692840451c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bad456b3_3ce5892c",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T15:14:02Z",
+      "side": 1,
+      "message": "Delete this space-filled line.",
+      "range": {
+        "startLine": 365,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 12
+      },
+      "revId": "0dd9e8a9fa6b4eff5db08d748d0511692840451c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
