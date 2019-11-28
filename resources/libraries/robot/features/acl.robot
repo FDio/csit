@@ -141,14 +141,14 @@
 | |
 | | [Arguments] | ${dut} | ${dut_if1}=${NONE} | ${dut_if2}=${NONE}
 | | ${src_ip_int} = | Evaluate
-| | ... | int(ipaddress.ip_address(unicode($src_ip_start))) - $ip_step
+| | ... | int(ipaddress.ip_address($src_ip_start)) - $ip_step
 | | ... | modules=ipaddress
 | | ${dst_ip_int} = | Evaluate
-| | ... | int(ipaddress.ip_address(unicode($dst_ip_start))) - $ip_step
+| | ... | int(ipaddress.ip_address($dst_ip_start)) - $ip_step
 | | ... | modules=ipaddress
 | | ${ip_limit} = | Set Variable | 255.255.255.255
 | | ${ip_limit_int} = | Evaluate
-| | ... | int(ipaddress.ip_address(unicode($ip_limit))) | modules=ipaddress
+| | ... | int(ipaddress.ip_address($ip_limit)) | modules=ipaddress
 | | ${sport}= | Evaluate | $sport_start - $port_step
 | | ${dport}= | Evaluate | $dport_start - $port_step
 | | ${port_limit}= | Set Variable | ${65535}

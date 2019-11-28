@@ -251,7 +251,8 @@ class VatTerminal:
             self._tty = self._ssh.interactive_terminal_open()
         except Exception:
             raise RuntimeError(
-                f"Cannot open interactive terminal on node {self._node}"
+                f"Cannot open interactive terminal on node "
+                f"{self._node[u'host']}"
             )
 
         for _ in range(3):
