@@ -109,18 +109,19 @@ class VPPUtil(object):
     def verify_vpp_started(node):
         """Verify that VPP is started on the specified topology node.
 
+        We are using socat here instead of vppctl, because there is
+        a race condition during VPP startup, when vppctl gets stuck
+        (leads to SSHTimeout), instead of passing or failing fast.
+
+        We are hoping that subsequent checks (PAPI) will be done during
+        that vulnerability period, so later vppctl calls will work reliably.
+
         :param node: Topology node.
         :type node: dict
         """
         cmd = 'echo "show pci" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock'
         exec_cmd_no_error(
             node, cmd, sudo=False, message='VPP failed to start!', retries=120)
-
-        cmd = ('vppctl show pci 2>&1 | '
-               'fgrep -v "Connection refused" | '
-               'fgrep -v "No such file or directory"')
-        exec_cmd_no_error(
-            node, cmd, sudo=True, message='VPP failed to start!', retries=120)
 
     @staticmethod
     def verify_vpp(node):
