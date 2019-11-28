@@ -159,10 +159,11 @@ class SRv6:
                     )
                 params = f"nh {next_hop} oif {out_if} iif {in_if}"
 
-            cli_cmd = f"sr localsid address {local_sid} behavior {behavior}" \
+            cli_cmd = f"sr localsid address {local_sid} behavior {behavior} " \
                 f"{params}"
 
             PapiSocketExecutor.run_cli_cmd(node, cli_cmd)
+            return
 
         cmd = u"sr_localsid_add_del"
         args = dict(
