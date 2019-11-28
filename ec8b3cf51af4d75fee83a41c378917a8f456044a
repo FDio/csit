@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50ba48ab_99a57895",
+        "filename": "resources/tools/integrated/check_crc.py",
+        "patchSetId": 67
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T16:19:37Z",
+      "side": 1,
+      "message": "You can take one @ away to make space for \\n.",
+      "range": {
+        "startLine": 43,
+        "startChar": 77,
+        "endLine": 43,
+        "endChar": 78
+      },
+      "revId": "ec8b3cf51af4d75fee83a41c378917a8f456044a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
