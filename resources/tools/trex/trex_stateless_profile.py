@@ -22,7 +22,7 @@ import argparse
 import json
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.61/scripts/automation/"
+sys.path.insert(0, "/opt/trex-core-2.54/scripts/automation/"
                    "trex_control_plane/interactive/")
 from trex.stl.api import *
 
@@ -219,12 +219,12 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
                 lat_obj = stats["latency"][0]["latency"]
                 lat_a = fmt_latency(
                     str(lat_obj["total_min"]), str(lat_obj["average"]),
-                    str(lat_obj["total_max"]), str(lat_obj["hdrh"]))
+                    str(lat_obj["total_max"]), str(lat_obj.get("hdrh", "")))
                 if traffic_directions > 1:
                     lat_obj = stats["latency"][1]["latency"]
                     lat_b = fmt_latency(
                         str(lat_obj["total_min"]), str(lat_obj["average"]),
-                        str(lat_obj["total_max"]), str(lat_obj["hdrh"]))
+                        str(lat_obj["total_max"]), str(lat_obj.get("hdrh", "")))
 
             if traffic_directions > 1:
                 total_sent = stats[0]["opackets"] + stats[1]["opackets"]
