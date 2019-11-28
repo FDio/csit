@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a103d221_c8f7b810",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 66
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T16:06:38Z",
+      "side": 1,
+      "message": "Still needs to be mentioned in the commit message.",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "915a32e5_54fb38e4",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 66
@@ -87,6 +110,121 @@
         "startChar": 26,
         "endLine": 196,
         "endChar": 31
+      },
+      "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f780344d_18ed3b50",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 66
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T16:06:38Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 211,
+        "startChar": 36,
+        "endLine": 211,
+        "endChar": 37
+      },
+      "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00e08dda_d9d4883e",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 66
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T16:06:38Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 255,
+        "startChar": 32,
+        "endLine": 255,
+        "endChar": 33
+      },
+      "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f064d61_6aea0d97",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 66
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T16:06:38Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 286,
+        "startChar": 32,
+        "endLine": 286,
+        "endChar": 33
+      },
+      "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9a6ba49_0ba374ab",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 66
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T16:06:38Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 349,
+        "startChar": 35,
+        "endLine": 349,
+        "endChar": 36
+      },
+      "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bdd8895_298ade01",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 66
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T16:06:38Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 351,
+        "startChar": 45,
+        "endLine": 351,
+        "endChar": 46
       },
       "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
