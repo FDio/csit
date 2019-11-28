@@ -22,6 +22,52 @@
       "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4fb23e0_e065451b",
+        "filename": "resources/libraries/python/FilteredLogger.py",
+        "patchSetId": 66
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T15:41:20Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 47,
+        "startChar": 48,
+        "endLine": 47,
+        "endChar": 49
+      },
+      "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d429914_283342db",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 66
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T15:41:20Z",
+      "side": 1,
+      "message": "Docstring is missing.",
+      "range": {
+        "startLine": 717,
+        "startChar": 45,
+        "endLine": 717,
+        "endChar": 46
+      },
+      "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
