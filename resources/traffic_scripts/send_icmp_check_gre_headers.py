@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # Copyright (c) 2016 Cisco and/or its affiliates.
-# Licensed under the Apache License, Version 2.0 (the "License");
+# Licensed under the Apache License, Version 2.0 (the u"License');
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
 #
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
+# distributed under the License is distributed on an u"AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
@@ -19,7 +19,7 @@ where GRE encapsulated packet is expected.
 import sys
 
 from robot.api import logger
-from scapy.all import Ether
+from scapy.layers.l2 import Ether
 from scapy.layers.inet import IP_PROTOS
 from scapy.layers.inet import IP
 from scapy.layers.inet import ICMP
@@ -34,14 +34,14 @@ def main():
          'inner_src_ip', 'inner_dst_ip',
          'outer_src_ip', 'outer_dst_ip'])
 
-    tx_if = args.get_arg('tx_if')
-    rx_if = args.get_arg('rx_if')
-    tx_dst_mac = args.get_arg('tx_dst_mac')
-    rx_dst_mac = args.get_arg('rx_dst_mac')
-    inner_src_ip = args.get_arg('inner_src_ip')
-    inner_dst_ip = args.get_arg('inner_dst_ip')
-    outer_src_ip = args.get_arg('outer_src_ip')
-    outer_dst_ip = args.get_arg('outer_dst_ip')
+    tx_if = args.get_arg(u'tx_if')
+    rx_if = args.get_arg(u'rx_if')
+    tx_dst_mac = args.get_arg(u'tx_dst_mac')
+    rx_dst_mac = args.get_arg(u'rx_dst_mac')
+    inner_src_ip = args.get_arg(u'inner_src_ip')
+    inner_dst_ip = args.get_arg(u'inner_dst_ip')
+    outer_src_ip = args.get_arg(u'outer_src_ip')
+    outer_dst_ip = args.get_arg(u'outer_dst_ip')
 
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
@@ -56,37 +56,40 @@ def main():
     ether = rxq.recv(2)
 
     if ether is None:
-        raise RuntimeError("ICMP echo Rx timeout")
+        raise RuntimeError(f'ICMP echo Rx timeout')
 
     # Check RX headers
     if ether.dst != rx_dst_mac:
-        raise RuntimeError("Matching of received destination MAC unsuccessful.")
-    logger.debug("Comparison of received destination MAC: OK.")
+        raise RuntimeError(f'Matching of received destination '
+                        f'MAC unsuccessful.')
+    logger.debug(f'Comparison of received destination MAC: OK.')
 
     if ether['IP'].src != outer_src_ip:
-        raise RuntimeError("Matching of received outer source IP unsuccessful.")
-    logger.debug("Comparison of received outer source IP: OK.")
+        raise RuntimeError(f'Matching of received outer '
+                        f'source IP unsuccessful.')
+    logger.debug(f'Comparison of received outer source IP: OK.')
 
     if ether['IP'].dst != outer_dst_ip:
         raise RuntimeError(
-            "Matching of received outer destination IP unsuccessful.")
-    logger.debug("Comparison of received outer destination IP: OK.")
+            u'Matching of received outer destination IP unsuccessful.')
+    logger.debug(f'Comparison of received outer destination IP: OK.')
 
     if ether['IP'].proto != IP_PROTOS.gre:
-        raise RuntimeError("IP protocol is no GRE.")
-    logger.debug("Comparison of received GRE protocol: OK.")
+        raise RuntimeError(f'IP protocol is no GRE.')
+    logger.debug(f'Comparison of received GRE protocol: OK.')
 
     if ether['IP']['GRE']['IP'].src != inner_src_ip:
-        raise RuntimeError("Matching of received inner source IP unsuccessful.")
-    logger.debug("Comparison of received inner source IP: OK.")
+        raise RuntimeError(f'Matching of received inner '
+                        f'source IP unsuccessful.')
+    logger.debug(f'Comparison of received inner source IP: OK.')
 
     if ether['IP']['GRE']['IP'].dst != inner_dst_ip:
         raise RuntimeError(
-            "Matching of received inner destination IP unsuccessful.")
-    logger.debug("Comparison of received inner destination IP: OK.")
+            u'Matching of received inner destination IP unsuccessful.')
+    logger.debug(f'Comparison of received inner destination IP: OK.')
 
     sys.exit(0)
 
 
-if __name__ == "__main__":
+if __name__ == u"__main__":
     main()

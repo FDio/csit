@@ -30,8 +30,8 @@ def is_discover(pkt):
     else return False. False is returned also if exception occurs."""
     dhcp_discover = 1
     try:
-        dhcp_options = pkt['BOOTP']['DHCP options'].options
-        message_type = filter(lambda x: x[0] == 'message-type',
+        dhcp_options = pkt[u'BOOTP'][u'DHCP options'].options
+        message_type = filter(lambda x: x[0] == u'message-type',
                               dhcp_options)
         message_type = message_type[0][1]
         return message_type == dhcp_discover
@@ -44,8 +44,8 @@ def is_request(pkt):
     else return False. False is returned also if exception occurs."""
     dhcp_request = 3
     try:
-        dhcp_options = pkt['BOOTP']['DHCP options'].options
-        message_type = filter(lambda x: x[0] == 'message-type',
+        dhcp_options = pkt[u'BOOTP'][u'DHCP options'].options
+        message_type = filter(lambda x: x[0] == u'message-type',
                               dhcp_options)
         message_type = message_type[0][1]
         return message_type == dhcp_request
@@ -55,23 +55,23 @@ def is_request(pkt):
 
 def main():
     """Main function of the script file."""
-    args = TrafficScriptArg(['client_mac', 'server_mac', 'server_ip',
-                             'client_ip', 'client_mask'],
-                            ['hostname', 'offer_xid'])
+    args = TrafficScriptArg([u'client_mac', u'server_mac', u'server_ip',
+                             u'client_ip', u'client_mask'],
+                            [u'hostname', u'offer_xid'])
 
-    server_if = args.get_arg('rx_if')
-    server_mac = args.get_arg('server_mac')
-    server_ip = args.get_arg('server_ip')
+    server_if = args.get_arg(u'rx_if')
+    server_mac = args.get_arg(u'server_mac')
+    server_ip = args.get_arg(u'server_ip')
 
-    client_mac = args.get_arg('client_mac')
-    client_ip = args.get_arg('client_ip')
-    client_mask = args.get_arg('client_mask')
+    client_mac = args.get_arg(u'client_mac')
+    client_ip = args.get_arg(u'client_ip')
+    client_mask = args.get_arg(u'client_mask')
 
-    hostname = args.get_arg('hostname')
-    offer_xid = args.get_arg('offer_xid')
+    hostname = args.get_arg(u'hostname')
+    offer_xid = args.get_arg(u'offer_xid')
 
-    rx_src_ip = '0.0.0.0'
-    rx_dst_ip = '255.255.255.255'
+    rx_src_ip = u'0.0.0.0'
+    rx_dst_ip = u'255.255.255.255'
 
     rxq = RxQueue(server_if)
     txq = TxQueue(server_if)
@@ -82,7 +82,7 @@ def main():
         if is_discover(dhcp_discover):
             break
     else:
-        raise RuntimeError("DHCP DISCOVER Rx error.")
+        raise RuntimeError(u"DHCP DISCOVER Rx error.")
 
     dhcp_offer = Ether(src=server_mac, dst=dhcp_discover.src)
     dhcp_offer /= IP(src=server_ip, dst="255.255.255.255")
@@ -91,14 +91,14 @@ def main():
                         # if offer_xid differs from xid value in DHCP DISCOVER
                         # the DHCP OFFER has to be discarded
                         xid=int(offer_xid) if offer_xid
-                        else dhcp_discover['BOOTP'].xid,
+                        else dhcp_discover[u'BOOTP'].xid,
                         yiaddr=client_ip,
                         siaddr=server_ip,
-                        chaddr=dhcp_discover['BOOTP'].chaddr)
-    dhcp_offer_options = [("message-type", "offer"),  # Option 53
-                          ("subnet_mask", client_mask),  # Option 1
-                          ("server_id", server_ip),  # Option 54, dhcp server
-                          ("lease_time", 43200),  # Option 51
+                        chaddr=dhcp_discover[u'BOOTP'].chaddr)
+    dhcp_offer_options = [(u"message-type", u"offer"),  # Option 53
+                          (u"subnet_mask", client_mask),  # Option 1
+                          (u"server_id", server_ip),  # Option 54, dhcp server
+                          (u"lease_time", 43200),  # Option 51
                           "end"]
     dhcp_offer /= DHCP(options=dhcp_offer_options)
 
@@ -109,108 +109,108 @@ def main():
     for _ in range(0, max_other_pkts):
         dhcp_request = rxq.recv(5, sent_packets)
         if not dhcp_request:
-            raise RuntimeError("DHCP REQUEST Rx timeout.")
+            raise RuntimeError(u"DHCP REQUEST Rx timeout.")
         if is_request(dhcp_request):
             break
     else:
-        raise RuntimeError("Max RX packet limit reached.")
+        raise RuntimeError(u"Max RX packet limit reached.")
 
     if offer_xid:
         # if offer_xid differs from xid value in DHCP DISCOVER the DHCP OFFER
         # has to be discarded
-        raise RuntimeError("DHCP REQUEST received. DHCP OFFER with wrong XID "
-                           "has not been discarded.")
+        raise RuntimeError(f"DHCP REQUEST received. DHCP OFFER with wrong XID "
+                           f"has not been discarded.")
 
     # CHECK ETHER, IP, UDP
     if dhcp_request.dst != dhcp_discover.dst:
-        raise RuntimeError("Destination MAC error.")
-    print "Destination MAC: OK."
+        raise RuntimeError(u"Destination MAC error.")
+    print (f"Destination MAC: OK.")
 
     if dhcp_request.src != dhcp_discover.src:
-        raise RuntimeError("Source MAC error.")
-    print "Source MAC: OK."
+        raise RuntimeError(u"Source MAC error.")
+    print (f"Source MAC: OK.")
 
-    if dhcp_request['IP'].dst != rx_dst_ip:
-        raise RuntimeError("Destination IP error.")
-    print "Destination IP: OK."
+    if dhcp_request[u'IP'].dst != rx_dst_ip:
+        raise RuntimeError(u"Destination IP error.")
+    print (f"Destination IP: OK.")
 
-    if dhcp_request['IP'].src != rx_src_ip:
-        raise RuntimeError("Source IP error.")
-    print "Source IP: OK."
+    if dhcp_request[u'IP'].src != rx_src_ip:
+        raise RuntimeError(u"Source IP error.")
+    print (f"Source IP: OK.")
 
-    if dhcp_request['IP']['UDP'].dport != UDP_SERVICES.bootps:
-        raise RuntimeError("BOOTPs error.")
-    print "BOOTPs: OK."
+    if dhcp_request[u'IP'][u'UDP'].dport != UDP_SERVICES.bootps:
+        raise RuntimeError(u"BOOTPs error.")
+    print (f"BOOTPs: OK.")
 
-    if dhcp_request['IP']['UDP'].sport != UDP_SERVICES.bootpc:
-        raise RuntimeError("BOOTPc error.")
-    print "BOOTPc: OK."
+    if dhcp_request[u'IP'][u'UDP'].sport != UDP_SERVICES.bootpc:
+        raise RuntimeError(u"BOOTPc error.")
+    print (f"BOOTPc: OK.")
 
     # CHECK BOOTP
-    if dhcp_request['BOOTP'].op != dhcp_discover['BOOTP'].op:
-        raise RuntimeError("BOOTP operation error.")
-    print "BOOTP operation: OK"
+    if dhcp_request[u'BOOTP'].op != dhcp_discover[u'BOOTP'].op:
+        raise RuntimeError(u"BOOTP operation error.")
+    print (f"BOOTP operation: OK")
 
-    if dhcp_request['BOOTP'].xid != dhcp_discover['BOOTP'].xid:
-        raise RuntimeError("BOOTP XID error.")
-    print "BOOTP XID: OK"
+    if dhcp_request[u'BOOTP'].xid != dhcp_discover[u'BOOTP'].xid:
+        raise RuntimeError(u"BOOTP XID error.")
+    print (f"BOOTP XID: OK")
 
-    if dhcp_request['BOOTP'].ciaddr != '0.0.0.0':
-        raise RuntimeError("BOOTP ciaddr error.")
-    print "BOOTP ciaddr: OK"
+    if dhcp_request[u'BOOTP'].ciaddr != u'0.0.0.0':
+        raise RuntimeError(u"BOOTP ciaddr error.")
+    print (f"BOOTP ciaddr: OK")
 
-    ca = dhcp_request['BOOTP'].chaddr[:dhcp_request['BOOTP'].hlen].encode('hex')
-    if ca != client_mac.replace(':', ''):
-        raise RuntimeError("BOOTP client hardware address error.")
-    print "BOOTP client hardware address: OK"
+    ca = dhcp_request[u'BOOTP'].chaddr[:dhcp_request[u'BOOTP'].hlen].encode(u'hex')
+    if ca != client_mac.replace(u':', u''):
+        raise RuntimeError(u"BOOTP client hardware address error.")
+    print (f"BOOTP client hardware address: OK")
 
-    if dhcp_request['BOOTP'].options != dhcp_discover['BOOTP'].options:
-        raise RuntimeError("DHCP options error.")
-    print "DHCP options: OK"
+    if dhcp_request[u'BOOTP'].options != dhcp_discover[u'BOOTP'].options:
+        raise RuntimeError(u"DHCP options error.")
+    print (f"DHCP options: OK")
 
     # CHECK DHCP OPTIONS
-    dhcp_options = dhcp_request['DHCP options'].options
+    dhcp_options = dhcp_request[u'DHCP options'].options
 
-    hn = filter(lambda x: x[0] == 'hostname', dhcp_options)
+    hn = filter(lambda x: x[0] == u'hostname', dhcp_options)
     if hostname:
         try:
             if hn[0][1] != hostname:
-                raise RuntimeError("Client's hostname doesn't match.")
+                raise RuntimeError(u"Client's hostname doesn't match.")
         except IndexError:
-            raise RuntimeError("Option list doesn't contain hostname option.")
+            raise RuntimeError(u"Option list doesn't contain hostname option.")
     else:
         if len(hn) != 0:
-            raise RuntimeError("Option list contains hostname option.")
-    print "Option 12 hostname: OK"
+            raise RuntimeError(u"Option list contains hostname option.")
+    print (f"Option 12 hostname: OK")
 
     # Option 50
-    ra = filter(lambda x: x[0] == 'requested_addr', dhcp_options)[0][1]
+    ra = filter(lambda x: x[0] == u'requested_addr', dhcp_options)[0][1]
     if ra != client_ip:
-        raise RuntimeError("Option 50 requested_addr error.")
-    print "Option 50 requested_addr: OK"
+        raise RuntimeError(u"Option 50 requested_addr error.")
+    print (f"Option 50 requested_addr: OK")
 
     # Option 53
-    mt = filter(lambda x: x[0] == 'message-type', dhcp_options)[0][1]
+    mt = filter(lambda x: x[0] == u'message-type', dhcp_options)[0][1]
     if mt != 3:  # request
-        raise RuntimeError("Option 53 message-type error.")
-    print "Option 53 message-type: OK"
+        raise RuntimeError(u"Option 53 message-type error.")
+    print (f"Option 53 message-type: OK")
 
     # Option 54
-    sid = filter(lambda x: x[0] == 'server_id', dhcp_options)[0][1]
+    sid = filter(lambda x: x[0] == u'server_id', dhcp_options)[0][1]
     if sid != server_ip:
-        raise RuntimeError("Option 54 server_id error.")
-    print "Option 54 server_id: OK"
+        raise RuntimeError(u"Option 54 server_id error.")
+    print (f"Option 54 server_id: OK")
 
     # Option 55
-    prl = filter(lambda x: x[0] == 'param_req_list', dhcp_options)[0][1]
-    if prl != '\x01\x1c\x02\x03\x0f\x06w\x0c,/\x1ay*':
-        raise RuntimeError("Option 55 param_req_list error.")
-    print "Option 55 param_req_list: OK"
+    prl = filter(lambda x: x[0] == u'param_req_list', dhcp_options)[0][1]
+    if prl != u'\x01\x1c\x02\x03\x0f\x06w\x0c,/\x1ay*':
+        raise RuntimeError(u"Option 55 param_req_list error.")
+    print (f"Option 55 param_req_list: OK")
 
     # Option 255
-    if 'end' not in dhcp_options:
-        raise RuntimeError("end option error.")
-    print "end option: OK"
+    if u'end' not in dhcp_options:
+        raise RuntimeError(u"end option error.")
+    print (f"end option: OK")
 
     sys.exit(0)
 

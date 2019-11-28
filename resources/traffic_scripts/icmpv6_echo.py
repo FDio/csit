@@ -20,9 +20,9 @@ import logging
 
 # pylint: disable=no-name-in-module
 # pylint: disable=import-error
-logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
+logging.getLogger(u"scapy.runtime").setLevel(logging.ERROR)
 
-from scapy.all import Ether
+from scapy.layers.l2 import Ether
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NA, ICMPv6ND_NS
 from scapy.layers.inet6 import ICMPv6NDOptDstLLAddr
 from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply
@@ -33,23 +33,23 @@ from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 
 def main():
-    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip'])
+    args = TrafficScriptArg([u'src_mac', u'dst_mac', u'src_ip', u'dst_ip'])
 
-    rxq = RxQueue(args.get_arg('rx_if'))
-    txq = TxQueue(args.get_arg('tx_if'))
+    rxq = RxQueue(args.get_arg(u'rx_if'))
+    txq = TxQueue(args.get_arg(u'tx_if'))
 
-    src_mac = args.get_arg('src_mac')
-    dst_mac = args.get_arg('dst_mac')
-    src_ip = args.get_arg('src_ip')
-    dst_ip = args.get_arg('dst_ip')
+    src_mac = args.get_arg(u'src_mac')
+    dst_mac = args.get_arg(u'dst_mac')
+    src_ip = args.get_arg(u'src_ip')
+    dst_ip = args.get_arg(u'dst_ip')
     echo_id = 0xa
     echo_seq = 0x1
 
     sent_packets = []
 
     # send ICMPv6 neighbor advertisement message
-    pkt_send = (Ether(src=src_mac, dst='ff:ff:ff:ff:ff:ff') /
-                IPv6(src=src_ip, dst='ff02::1:ff00:2') /
+    pkt_send = (Ether(src=src_mac, dst=u'ff:ff:ff:ff:ff:ff') /
+                IPv6(src=src_ip, dst=u'ff02::1:ff00:2') /
                 ICMPv6ND_NA(tgt=src_ip, R=0) /
                 ICMPv6NDOptDstLLAddr(lladdr=src_mac))
     sent_packets.append(pkt_send)
@@ -66,7 +66,7 @@ def main():
     while True:
         ether = rxq.recv(2, sent_packets)
         if ether is None:
-            raise RuntimeError('ICMPv6 echo reply Rx timeout')
+            raise RuntimeError(f'ICMPv6 echo reply Rx timeout')
 
         if ether.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
@@ -76,30 +76,29 @@ def main():
             break
 
     if not ether.haslayer(IPv6):
-        raise RuntimeError('Unexpected packet with no IPv6 received {0}'.
-                           format(ether.__repr__()))
+        raise RuntimeError(f'Unexpected packet with no IPv6 received'
+                           f' {ether.__repr__()}')
 
     ipv6 = ether[IPv6]
 
     if not ipv6.haslayer(ICMPv6EchoReply):
-        raise RuntimeError('Unexpected packet with no ICMPv6 echo reply '
-                           'received {0}'.format(ipv6.__repr__()))
+        raise RuntimeError(f'Unexpected packet with no ICMPv6 echo reply '
+                           f'received {ipv6.__repr__()}')
 
     icmpv6 = ipv6[ICMPv6EchoReply]
 
     # check identifier and sequence number
     if icmpv6.id != echo_id or icmpv6.seq != echo_seq:
-        raise RuntimeError('Invalid ICMPv6 echo reply received ID {0} seq {1} '
-                           'should be ID {2} seq {3}'.
-                           format(icmpv6.id, icmpv6.seq, echo_id, echo_seq))
+        raise RuntimeError(f'Invalid ICMPv6 echo reply'
+                           f' received ID {icmpv6.id} seq {icmpv6.seq} '
+                           f'should be ID {echo_id} seq {echo_seq}')
 
     # verify checksum
     cksum = icmpv6.cksum
     del icmpv6.cksum
     tmp = ICMPv6EchoReply(str(icmpv6))
     if not checksum_equal(tmp.cksum, cksum):
-        raise RuntimeError('Invalid checksum {0} should be {1}'.
-                           format(cksum, tmp.cksum))
+        raise RuntimeError(f'Invalid checksum {cksum} should be {tmp.cksum}')
 
     sys.exit(0)
 

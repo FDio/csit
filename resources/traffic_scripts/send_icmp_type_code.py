@@ -63,19 +63,19 @@ def main():
     """Send IP ICMPv4/ICMPv6 packet from one traffic generator interface to
     the other one."""
 
-    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
-                            'icmp_type', 'icmp_code'])
+    args = TrafficScriptArg([u'src_mac', u'dst_mac', u'src_ip', u'dst_ip',
+                            u'icmp_type', u'icmp_code'])
 
-    src_mac = args.get_arg('src_mac')
-    dst_mac = args.get_arg('dst_mac')
-    src_ip = args.get_arg('src_ip')
-    dst_ip = args.get_arg('dst_ip')
+    src_mac = args.get_arg(u'src_mac')
+    dst_mac = args.get_arg(u'dst_mac')
+    src_ip = args.get_arg(u'src_ip')
+    dst_ip = args.get_arg(u'dst_ip')
 
-    tx_if = args.get_arg('tx_if')
-    rx_if = args.get_arg('rx_if')
+    tx_if = args.get_arg(u'tx_if')
+    rx_if = args.get_arg(u'rx_if')
 
-    icmp_type = int(args.get_arg('icmp_type'))
-    icmp_code = int(args.get_arg('icmp_code'))
+    icmp_type = int(args.get_arg(u'icmp_type'))
+    icmp_code = int(args.get_arg(u'icmp_code'))
 
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
@@ -94,9 +94,9 @@ def main():
                    IPv6(src=src_ip, dst=dst_ip) /
                    ICMPv6EchoRequest(code=icmp_code, type=icmp_type))
         ip_format = IPv6
-        icmp_format = 'ICMPv6'
+        icmp_format = u'ICMPv6'
     else:
-        raise ValueError("IP(s) not in correct format")
+        raise ValueError(f'IP(s) not in correct format')
 
     # Send created packet on one interface and receive on the other
     sent_packets.append(pkt_raw)
@@ -105,7 +105,7 @@ def main():
     while True:
         ether = rxq.recv(2)
         if ether is None:
-            raise RuntimeError('ICMP echo Rx timeout')
+            raise RuntimeError(u'ICMP echo Rx timeout')
 
         if ether.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
@@ -116,14 +116,12 @@ def main():
 
     # Check whether received packet contains layers IP and ICMP
     if not ether.haslayer(ip_format):
-        raise RuntimeError('Not an IP packet received {0}'.
-                           format(ether.__repr__()))
+        raise RuntimeError(u'Not an IP packet received {ether.__repr__()}')
 
     # Cannot use haslayer for ICMPv6, every type of ICMPv6 is a separate layer
     # Next header value of 58 means the next header is ICMPv6
     if not ether.haslayer(icmp_format) and ether[ip_format].nh != 58:
-        raise RuntimeError('Not an ICMP packet received {0}'.
-                           format(ether.__repr__()))
+        raise RuntimeError(u'Not an ICMP packet received {ether.__repr__()}')
 
     sys.exit(0)
 

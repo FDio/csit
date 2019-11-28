@@ -28,7 +28,7 @@ from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 def _is_udp_in_ipv4(pkt):
     """If UDP is in IPv4 packet return True,
     else return False. False is returned also if exception occurs."""
-    ipv4_type = int('0x0800', 16)  # IPv4
+    ipv4_type = int(u'0x0800', 16)  # IPv4
     try:
         if pkt.type == ipv4_type:
             if pkt.payload.proto == 17:  # UDP
@@ -40,22 +40,22 @@ def _is_udp_in_ipv4(pkt):
 
 def main():  # pylint: disable=too-many-statements, too-many-locals
     """Main function of the script file."""
-    args = TrafficScriptArg(['tx_dst_mac', 'tx_src_mac',
-                             'tx_dst_ipv6', 'tx_src_ipv6',
-                             'tx_dst_ipv4', 'tx_src_ipv4', 'tx_src_udp_port',
-                             'rx_dst_mac', 'rx_src_mac'])
-    rx_if = args.get_arg('rx_if')
-    tx_if = args.get_arg('tx_if')
-    tx_src_mac = args.get_arg('tx_src_mac')
-    tx_dst_mac = args.get_arg('tx_dst_mac')
-    tx_dst_ipv6 = args.get_arg('tx_dst_ipv6')
-    tx_src_ipv6 = args.get_arg('tx_src_ipv6')
-    tx_dst_ipv4 = args.get_arg('tx_dst_ipv4')
-    tx_src_ipv4 = args.get_arg('tx_src_ipv4')
-    tx_src_udp_port = int(args.get_arg('tx_src_udp_port'))
+    args = TrafficScriptArg([u'tx_dst_mac', u'tx_src_mac',
+                             u'tx_dst_ipv6', u'tx_src_ipv6',
+                             u'tx_dst_ipv4', u'tx_src_ipv4', u'tx_src_udp_port',
+                             u'rx_dst_mac', u'rx_src_mac'])
+    rx_if = args.get_arg(u'rx_if')
+    tx_if = args.get_arg(u'tx_if')
+    tx_src_mac = args.get_arg(u'tx_src_mac')
+    tx_dst_mac = args.get_arg(u'tx_dst_mac')
+    tx_dst_ipv6 = args.get_arg(u'tx_dst_ipv6')
+    tx_src_ipv6 = args.get_arg(u'tx_src_ipv6')
+    tx_dst_ipv4 = args.get_arg(u'tx_dst_ipv4')
+    tx_src_ipv4 = args.get_arg(u'tx_src_ipv4')
+    tx_src_udp_port = int(args.get_arg(u'tx_src_udp_port'))
     tx_dst_udp_port = 20000
-    rx_dst_mac = args.get_arg('rx_dst_mac')
-    rx_src_mac = args.get_arg('rx_src_mac')
+    rx_dst_mac = args.get_arg(u'rx_dst_mac')
+    rx_src_mac = args.get_arg(u'rx_src_mac')
 
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
@@ -76,49 +76,45 @@ def main():  # pylint: disable=too-many-statements, too-many-locals
             ether = pkt
             break
     else:
-        raise RuntimeError("UDP in IPv4 Rx error.")
+        raise RuntimeError(f'UDP in IPv4 Rx error.')
 
     # check ethernet
     if ether.dst != rx_dst_mac:
-        raise RuntimeError("Destination MAC error {} != {}.".
+        raise RuntimeError(f'Destination MAC error {ether.dst} != {rx_dst_mac}.'.
                            format(ether.dst, rx_dst_mac))
-    print "Destination MAC: OK."
+    print (u"Destination MAC: OK.")
 
     if ether.src != rx_src_mac:
-        raise RuntimeError("Source MAC error {} != {}.".
+        raise RuntimeError(f'Source MAC error {ether.src} != {rx_src_mac}.'.
                            format(ether.src, rx_src_mac))
-    print "Source MAC: OK."
+    print (u"Source MAC: OK.")
 
     ipv4 = ether.payload
 
     # check ipv4
     if ipv4.dst != tx_dst_ipv4:
-        raise RuntimeError("Destination IPv4 error {} != {}.".
-                           format(ipv4.dst, tx_dst_ipv4))
-    print "Destination IPv4: OK."
+        raise RuntimeError(f'Destination IPv4 error '
+                           f'{ipv4.dst} != {tx_dst_ipv4}.')
+    print (u"Destination IPv4: OK.")
 
     if ipv4.src != tx_src_ipv4:
-        raise RuntimeError("Source IPv4 error {} != {}.".
-                           format(ipv4.src, tx_src_ipv4))
-    print "Source IPv4: OK."
+        raise RuntimeError(f'Source IPv4 error {ipv4.src} != {tx_src_ipv4}.')
+    print (u"Source IPv4: OK.")
 
     if ipv4.proto != 17:  # UDP
-        raise RuntimeError("IPv4 protocol error {} != UDP.".
-                           format(ipv4.proto))
-    print "IPv4 protocol: OK."
+        raise RuntimeError(f'IPv4 protocol error {ipv4.proto} != UDP.')
+    print (u"IPv4 protocol: OK.")
 
     udp = ipv4.payload
 
     # check udp
     if udp.dport != tx_dst_udp_port:
-        raise RuntimeError("UDP dport error {} != {}.".
-                           format(udp.dport, tx_dst_udp_port))
-    print "UDP dport: OK."
+        raise RuntimeError(f'UDP dport error {udp.dport} != {tx_dst_udp_port}.')
+    print (u"UDP dport: OK.")
 
     if udp.sport != tx_src_udp_port:
-        raise RuntimeError("UDP sport error {} != {}.".
-                           format(udp.sport, tx_src_udp_port))
-    print "UDP sport: OK."
+        raise RuntimeError(f'UDP sport error {udp.sport} != {tx_src_udp_port}.')
+    print (u"UDP sport: OK.")
 
     sys.exit(0)
 

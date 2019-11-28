@@ -63,39 +63,39 @@ def main():
     """Send IP ICMPv4/ICMPv6 packet from one traffic generator interface to
     the other one. Dot1q or Dot1ad tagging of the ethernet frame can be set.
     """
-    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip'],
-                            ['encaps', 'vlan1', 'vlan2', 'encaps_rx',
-                             'vlan1_rx', 'vlan2_rx'])
+    args = TrafficScriptArg([u'src_mac', u'dst_mac', u'src_ip', u'dst_ip'],
+                            [u'encaps', u'vlan1', u'vlan2', u'encaps_rx',
+                             u'vlan1_rx', u'vlan2_rx'])
 
-    src_mac = args.get_arg('src_mac')
-    dst_mac = args.get_arg('dst_mac')
-    src_ip = args.get_arg('src_ip')
-    dst_ip = args.get_arg('dst_ip')
+    src_mac = args.get_arg(u'src_mac')
+    dst_mac = args.get_arg(u'dst_mac')
+    src_ip = args.get_arg(u'src_ip')
+    dst_ip = args.get_arg(u'dst_ip')
 
-    encaps = args.get_arg('encaps')
-    vlan1 = args.get_arg('vlan1')
-    vlan2 = args.get_arg('vlan2')
-    encaps_rx = args.get_arg('encaps_rx')
-    vlan1_rx = args.get_arg('vlan1_rx')
-    vlan2_rx = args.get_arg('vlan2_rx')
+    encaps = args.get_arg(u'encaps')
+    vlan1 = args.get_arg(u'vlan1')
+    vlan2 = args.get_arg(u'vlan2')
+    encaps_rx = args.get_arg(u'encaps_rx')
+    vlan1_rx = args.get_arg(u'vlan1_rx')
+    vlan2_rx = args.get_arg(u'vlan2_rx')
 
-    tx_if = args.get_arg('tx_if')
-    rx_if = args.get_arg('rx_if')
+    tx_if = args.get_arg(u'tx_if')
+    rx_if = args.get_arg(u'rx_if')
 
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
 
     sent_packets = []
-    ip_format = ''
-    icmp_format = ''
+    ip_format = u''
+    icmp_format = u''
     # Create empty ip ICMP packet and add padding before sending
     if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
-        if encaps == 'Dot1q':
+        if encaps == u'Dot1q':
             pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
                        Dot1Q(vlan=int(vlan1)) /
                        IP(src=src_ip, dst=dst_ip) /
                        ICMP())
-        elif encaps == 'Dot1ad':
+        elif encaps == u'Dot1ad':
             pkt_raw = (Ether(src=src_mac, dst=dst_mac, type=0x88A8) /
                        Dot1Q(vlan=int(vlan1), type=0x8100) /
                        Dot1Q(vlan=int(vlan2)) /
@@ -108,12 +108,12 @@ def main():
         ip_format = IP
         icmp_format = ICMP
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
-        if encaps == 'Dot1q':
+        if encaps == u'Dot1q':
             pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
                        Dot1Q(vlan=int(vlan1)) /
                        IPv6(src=src_ip, dst=dst_ip) /
                        ICMPv6EchoRequest())
-        elif encaps == 'Dot1ad':
+        elif encaps == u'Dot1ad':
             pkt_raw = (Ether(src=src_mac, dst=dst_mac, type=0x88A8) /
                        Dot1Q(vlan=int(vlan1), type=0x8100) /
                        Dot1Q(vlan=int(vlan2)) /
@@ -136,7 +136,7 @@ def main():
     while True:
         ether = rxq.recv(2,)
         if ether is None:
-            raise RuntimeError('ICMP echo Rx timeout')
+            raise RuntimeError(u'ICMP echo Rx timeout')
 
         if ether.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
@@ -148,36 +148,36 @@ def main():
     # Check whether received packet contains layers IP/IPv6 and
     # ICMP/ICMPv6EchoRequest
     if encaps_rx:
-        if encaps_rx == 'Dot1q':
+        if encaps_rx == u'Dot1q':
             if not vlan1_rx:
                 vlan1_rx = vlan1
             if not ether.haslayer(Dot1Q):
-                raise RuntimeError('Not VLAN tagged Eth frame received:\n{0}'.
-                                   format(ether.__repr__()))
+                raise RuntimeError(f'Not VLAN tagged Eth frame received:\n'
+                                   f'{ether.__repr__()}')
             elif ether[Dot1Q].vlan != int(vlan1_rx):
-                raise RuntimeError('Ethernet frame with wrong VLAN tag ({}) '
-                                   'received ({} expected):\n{}'.
-                                   format(ether[Dot1Q].vlan, vlan1_rx,
-                                          ether.__repr__()))
-        elif encaps_rx == 'Dot1ad':
+                raise RuntimeError(f'Ethernet frame with wrong VLAN tag '
+                                   f'({ether[Dot1Q].vlan}) u'
+                                   f'received ({vlan1_rx} expected):\n'
+                                   f'{ether.__repr__()}')
+        elif encaps_rx == u'Dot1ad':
             if not vlan1_rx:
                 vlan1_rx = vlan1
             if not vlan2_rx:
                 vlan2_rx = vlan2
             # TODO
-            raise RuntimeError('Encapsulation {0} not implemented yet.'.
-                               format(encaps_rx))
+            raise RuntimeError(f'Encapsulation {encaps_rx} '
+                               f'not implemented yet.')
         else:
-            raise RuntimeError('Unsupported encapsulation expected: {0}'.
-                               format(encaps_rx))
+            raise RuntimeError(f'Unsupported encapsulation expected: '
+                               f'{encaps_rx}')
 
     if not ether.haslayer(ip_format):
-        raise RuntimeError('Not an IP/IPv6 packet received:\n{0}'.
-                           format(ether.__repr__()))
+        raise RuntimeError(f'Not an IP/IPv6 packet received:\n'
+                           f'{ether.__repr__()}')
 
     if not ether.haslayer(icmp_format):
-        raise RuntimeError('Not an ICMP/ICMPv6EchoRequest packet received:\n'
-                           '{0}'.format(ether.__repr__()))
+        raise RuntimeError(f'Not an ICMP/ICMPv6EchoRequest packet received:\n'
+                           f'{ether.__repr__()}')
 
     sys.exit(0)
 

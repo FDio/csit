@@ -25,123 +25,123 @@ from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 
 def main():
-    args = TrafficScriptArg(['rx_src_mac'], ['hostname'])
+    args = TrafficScriptArg([u'rx_src_mac'], [u'hostname'])
 
-    rx_if = args.get_arg('rx_if')
-    rx_src_mac = args.get_arg('rx_src_mac')
-    hostname = args.get_arg('hostname')
+    rx_if = args.get_arg(u'rx_if')
+    rx_src_mac = args.get_arg(u'rx_src_mac')
+    hostname = args.get_arg(u'hostname')
 
-    rx_dst_mac = 'ff:ff:ff:ff:ff:ff'
-    rx_src_ip = '0.0.0.0'
-    rx_dst_ip = '255.255.255.255'
+    rx_dst_mac = u'ff:ff:ff:ff:ff:ff'
+    rx_src_ip = u'0.0.0.0'
+    rx_dst_ip = u'255.255.255.255'
     boot_request = 1
-    dhcp_magic = 'c\x82Sc'
+    dhcp_magic = u'c\x82Sc'
 
     rxq = RxQueue(rx_if)
 
     ether = rxq.recv(10)
 
     if ether is None:
-        raise RuntimeError("DHCP DISCOVER Rx timeout.")
+        raise RuntimeError(u"DHCP DISCOVER Rx timeout.")
 
     if ether.dst != rx_dst_mac:
-        raise RuntimeError("Destination MAC address error.")
-    print "Destination MAC address: OK."
+        raise RuntimeError(u"Destination MAC address error.")
+    print (u"Destination MAC address: OK.")
 
     if ether.src != rx_src_mac:
-        raise RuntimeError("Source MAC address error.")
-    print "Source MAC address: OK."
+        raise RuntimeError(u"Source MAC address error.")
+    print (u"Source MAC address: OK.")
 
-    if ether['IP'].dst != rx_dst_ip:
-        raise RuntimeError("Destination IP address error.")
-    print "Destination IP address: OK."
+    if ether[u'IP'].dst != rx_dst_ip:
+        raise RuntimeError(u"Destination IP address error.")
+    print (u"Destination IP address: OK.")
 
-    if ether['IP'].src != rx_src_ip:
-        raise RuntimeError("Source IP address error.")
-    print "Source IP address: OK."
+    if ether[u'IP'].src != rx_src_ip:
+        raise RuntimeError(u"Source IP address error.")
+    print (u"Source IP address: OK.")
 
-    if ether['IP']['UDP'].dport != UDP_SERVICES.bootps:
-        raise RuntimeError("UDP destination port error.")
-    print "UDP destination port: OK."
+    if ether[u'IP'][u'UDP'].dport != UDP_SERVICES.bootps:
+        raise RuntimeError(u"UDP destination port error.")
+    print (u"UDP destination port: OK.")
 
-    if ether['IP']['UDP'].sport != UDP_SERVICES.bootpc:
-        raise RuntimeError("UDP source port error.")
-    print "UDP source port: OK."
+    if ether[u'IP'][u'UDP'].sport != UDP_SERVICES.bootpc:
+        raise RuntimeError(u"UDP source port error.")
+    print (u"UDP source port: OK.")
 
-    bootp = ether['BOOTP']
+    bootp = ether[u'BOOTP']
 
     if bootp.op != boot_request:
-        raise RuntimeError("BOOTP message type error.")
-    print "BOOTP message type: OK"
+        raise RuntimeError(u"BOOTP message type error.")
+    print (u"BOOTP message type: OK")
 
-    if bootp.ciaddr != '0.0.0.0':
-        raise RuntimeError("BOOTP client IP address error.")
-    print "BOOTP client IP address: OK"
+    if bootp.ciaddr != u'0.0.0.0':
+        raise RuntimeError(u"BOOTP client IP address error.")
+    print (u"BOOTP client IP address: OK")
 
-    if bootp.yiaddr != '0.0.0.0':
-        raise RuntimeError("BOOTP 'your' (client) IP address error.")
-    print "BOOTP 'your' (client) IP address: OK"
+    if bootp.yiaddr != u'0.0.0.0':
+        raise RuntimeError(u"BOOTP u'your' (client) IP address error.")
+    print (u"BOOTP u'your' (client) IP address: OK")
 
-    if bootp.siaddr != '0.0.0.0':
-        raise RuntimeError("BOOTP next server IP address error.")
-    print "BOOTP next server IP address: OK"
+    if bootp.siaddr != u'0.0.0.0':
+        raise RuntimeError(u"BOOTP next server IP address error.")
+    print (u"BOOTP next server IP address: OK")
 
-    if bootp.giaddr != '0.0.0.0':
-        raise RuntimeError("BOOTP relay agent IP address error.")
-    print "BOOTP relay agent IP address: OK"
+    if bootp.giaddr != u'0.0.0.0':
+        raise RuntimeError(u"BOOTP relay agent IP address error.")
+    print (u"BOOTP relay agent IP address: OK")
 
-    chaddr = bootp.chaddr[:bootp.hlen].encode('hex')
-    if chaddr != rx_src_mac.replace(':', ''):
-        raise RuntimeError("BOOTP client hardware address error.")
-    print "BOOTP client hardware address: OK"
+    chaddr = bootp.chaddr[:bootp.hlen].encode(u'hex')
+    if chaddr != rx_src_mac.replace(u':', u''):
+        raise RuntimeError(u"BOOTP client hardware address error.")
+    print (u"BOOTP client hardware address: OK")
 
     # Check hostname
     if bootp.sname != 64*'\x00':
-        raise RuntimeError("BOOTP server name error.")
-    print "BOOTP server name: OK"
+        raise RuntimeError(u"BOOTP server name error.")
+    print (u"BOOTP server name: OK")
 
     # Check boot file
     if bootp.file != 128*'\x00':
-        raise RuntimeError("BOOTP boot file name error.")
-    print "BOOTP boot file name: OK"
+        raise RuntimeError(u"BOOTP boot file name error.")
+    print (u"BOOTP boot file name: OK")
 
     # Check bootp magic
     if bootp.options != dhcp_magic:
-        raise RuntimeError("DHCP magic error.")
-    print "DHCP magic: OK"
+        raise RuntimeError(u"DHCP magic error.")
+    print (u"DHCP magic: OK")
 
     # Check options
-    dhcp_options = ether['DHCP options'].options
+    dhcp_options = ether[u'DHCP options'].options
 
     # Option 12
-    hn = filter(lambda x: x[0] == 'hostname', dhcp_options)
+    hn = filter(lambda x: x[0] == u'hostname', dhcp_options)
     if hostname:
         try:
             if hn[0][1] != hostname:
-                raise RuntimeError("Client's hostname doesn't match.")
+                raise RuntimeError(u"Client's hostname doesn't match.")
         except IndexError:
-            raise RuntimeError("Option list doesn't contain hostname option.")
+            raise RuntimeError(u"Option list doesn't contain hostname option.")
     else:
         if len(hn) != 0:
-            raise RuntimeError("Option list contains hostname option.")
-    print "Option 12 hostname: OK"
+            raise RuntimeError(u"Option list contains hostname option.")
+    print (u"Option 12 hostname: OK")
 
     # Option 53
-    mt = filter(lambda x: x[0] == 'message-type', dhcp_options)[0][1]
+    mt = filter(lambda x: x[0] == u'message-type', dhcp_options)[0][1]
     if mt != 1:
-        raise RuntimeError("Option 53 message-type error.")
-    print "Option 53 message-type: OK"
+        raise RuntimeError(u"Option 53 message-type error.")
+    print (u"Option 53 message-type: OK")
 
     # Option 55
-    prl = filter(lambda x: x[0] == 'param_req_list', dhcp_options)[0][1]
-    if prl != '\x01\x1c\x02\x03\x0f\x06w\x0c,/\x1ay*':
-        raise RuntimeError("Option 55 param_req_list error.")
-    print "Option 55 param_req_list: OK"
+    prl = filter(lambda x: x[0] == u'param_req_list', dhcp_options)[0][1]
+    if prl != u'\x01\x1c\x02\x03\x0f\x06w\x0c,/\x1ay*':
+        raise RuntimeError(u"Option 55 param_req_list error.")
+    print (u"Option 55 param_req_list: OK")
 
     # Option 255
-    if 'end' not in dhcp_options:
-        raise RuntimeError("end option error.")
-    print "end option: OK"
+    if u'end' not in dhcp_options:
+        raise RuntimeError(u"end option error.")
+    print (u"end option: OK")
 
     sys.exit(0)
 

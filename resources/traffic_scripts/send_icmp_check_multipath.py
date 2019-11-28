@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Copyright (c) 2016 Cisco and/or its affiliates.
-# Licensed under the Apache License, Version 2.0 (the "License");
+# Licensed under the Apache License, Version 2.0 (the "License');
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
 #
@@ -64,16 +64,16 @@ def main():
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
     sent_packets = []
-    ip_format = ''
-    pkt_raw = ''
-    separator = ''
+    ip_format = u''
+    pkt_raw = u''
+    separator = u''
 
     if valid_ipv4(src_ip):
-        separator = '.'
+        separator = u'.'
     elif valid_ipv6(src_ip):
-        separator = ':'
+        separator = u':'
     else:
-        raise ValueError("Source address not in correct format")
+        raise ValueError(f'Source address not in correct format')
 
     src_ip_base = (src_ip.rsplit(separator, 1))[0] + separator
 
@@ -82,14 +82,14 @@ def main():
             pkt_raw = (Ether(src=tg_if1_mac, dst=dut_if1_mac) /
                        IP(src=src_ip_base+str(i), dst=dst_ip) /
                        ICMP())
-            ip_format = 'IP'
+            ip_format = u'IP'
         elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
             pkt_raw = (Ether(src=tg_if1_mac, dst=dut_if1_mac) /
                        IPv6(src=src_ip_base+str(i), dst=dst_ip) /
                        ICMPv6EchoRequest())
-            ip_format = 'IPv6'
+            ip_format = u'IPv6'
         else:
-            raise ValueError("IP not in correct format")
+            raise ValueError(f'IP not in correct format')
 
         sent_packets.append(pkt_raw)
         txq.send(pkt_raw)
@@ -107,33 +107,32 @@ def main():
                 break
 
         if ether is None:
-            raise RuntimeError("ICMP echo Rx timeout")
+            raise RuntimeError(f'ICMP echo Rx timeout')
         if not ether.haslayer(ip_format):
-            raise RuntimeError("Not an IP packet received {0}".
-                               format(ether.__repr__()))
+            raise RuntimeError(f'Not an IP packet received {ether.__repr__()}')
 
         if ether[Ether].src != dut_if2_mac:
-            raise RuntimeError("Source MAC address error")
+            raise RuntimeError(f'Source MAC address error')
 
         if ether[Ether].dst == path_1_mac:
             path_1_counter += 1
         elif ether[Ether].dst == path_2_mac:
             path_2_counter += 1
         else:
-            raise RuntimeError("Destination MAC address error")
+            raise RuntimeError(f'Destination MAC address error')
 
     if (path_1_counter + path_2_counter) != 100:
-        raise RuntimeError("Packet loss: recevied only {} packets of 100 ".
-                           format(path_1_counter + path_2_counter))
+        raise RuntimeError(f'Packet loss: recevied only '
+                           f'{path_1_counter + path_2_counter} packets of 100 ')
 
     if path_1_counter == 0:
-        raise RuntimeError("Path 1 error!")
+        raise RuntimeError(f'Path 1 error!')
 
     if path_2_counter == 0:
-        raise RuntimeError("Path 2 error!")
+        raise RuntimeError(f'Path 2 error!')
 
-    print "Path_1 counter: {}".format(path_1_counter)
-    print "Path_2 counter: {}".format(path_2_counter)
+    print (f"Path_1 counter: {path_1_counter}")
+    print (f"Path_2 counter: {path_2_counter}")
 
     sys.exit(0)
 

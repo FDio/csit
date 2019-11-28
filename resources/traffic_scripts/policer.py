@@ -22,7 +22,7 @@ import logging
 # pylint: disable=import-error
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
-from scapy.all import Ether
+from scapy.layers.l2 import Ether
 from scapy.layers.inet import IP, TCP
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NS
 from ipaddress import ip_address
@@ -41,17 +41,15 @@ def check_ipv4(pkt_recv, dscp):
     :raises RuntimeError: If received packet is invalid.
     """
     if not pkt_recv.haslayer(IP):
-        raise RuntimeError('Not an IPv4 packet received: {0}'.
-                           format(pkt_recv.__repr__()))
+        raise RuntimeError(f'Not an IPv4 packet received: u'
+                           f'{pkt_recv.__repr__()}')
 
     rx_dscp = pkt_recv[IP].tos >> 2
     if rx_dscp != dscp:
-        raise RuntimeError('Invalid DSCP {0} should be {1}'.
-                           format(rx_dscp, dscp))
+        raise RuntimeError(f'Invalid DSCP {rx_dscp} should be {dscp}')
 
     if not pkt_recv.haslayer(TCP):
-        raise RuntimeError('Not a TCP packet received: {0}'.
-                           format(pkt_recv.__repr__()))
+        raise RuntimeError(f'Not a TCP packet received: {pkt_recv.__repr__()}')
 
 
 def check_ipv6(pkt_recv, dscp):
@@ -64,33 +62,32 @@ def check_ipv6(pkt_recv, dscp):
     :raises RuntimeError: If received packet is invalid.
     """
     if not pkt_recv.haslayer(IPv6):
-        raise RuntimeError('Not an IPv6 packet received: {0}'.
-                           format(pkt_recv.__repr__()))
+        raise RuntimeError(f'Not an IPv6 packet received: '
+                           f'{pkt_recv.__repr__()}')
 
     rx_dscp = pkt_recv[IPv6].tc >> 2
     if rx_dscp != dscp:
-        raise RuntimeError('Invalid DSCP {0} should be {1}'.
-                           format(rx_dscp, dscp))
+        raise RuntimeError(f'Invalid DSCP {rx_dscp} should be {dscp}')
 
     if not pkt_recv.haslayer(TCP):
-        raise RuntimeError('Not a TCP packet received: {0}'.
-                           format(pkt_recv.__repr__()))
+        raise RuntimeError(f'Not a TCP packet received: {pkt_recv.__repr__()}')
 
 
 # pylint: disable=too-many-locals
 # pylint: disable=too-many-statements
 def main():
     """Send and receive TCP packet."""
-    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip', 'dscp'])
+    args = TrafficScriptArg(\
+        [u'src_mac', u'dst_mac', u'src_ip', u'dst_ip', u'dscp'])
 
-    rxq = RxQueue(args.get_arg('rx_if'))
-    txq = TxQueue(args.get_arg('tx_if'))
+    rxq = RxQueue(args.get_arg(u'rx_if'))
+    txq = TxQueue(args.get_arg(u'tx_if'))
 
-    src_mac = args.get_arg('src_mac')
-    dst_mac = args.get_arg('dst_mac')
-    src_ip = args.get_arg('src_ip')
-    dst_ip = args.get_arg('dst_ip')
-    dscp = int(args.get_arg('dscp'))
+    src_mac = args.get_arg(u'src_mac')
+    dst_mac = args.get_arg(u'dst_mac')
+    src_ip = args.get_arg(u'src_ip')
+    dst_ip = args.get_arg(u'dst_ip')
+    dscp = int(args.get_arg(u'dscp'))
 
     if 6 == ip_address(unicode(src_ip)).version:
         is_ipv4 = False
@@ -115,7 +112,7 @@ def main():
     while True:
         pkt_recv = rxq.recv(2, sent_packets)
         if pkt_recv is None:
-            raise RuntimeError('ICMPv6 echo reply Rx timeout')
+            raise RuntimeError(u'ICMPv6 echo reply Rx timeout')
 
         if pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
@@ -125,7 +122,7 @@ def main():
             break
 
     if pkt_recv is None:
-        raise RuntimeError('Rx timeout')
+        raise RuntimeError(u'Rx timeout')
 
     if is_ipv4:
         check_ipv4(pkt_recv, dscp)

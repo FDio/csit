@@ -17,7 +17,7 @@
 import sys
 import ipaddress
 
-from scapy.all import Ether
+from scapy.layers.l2 import Ether
 from scapy.layers.inet import ICMP, IP
 from scapy.layers.inet6 import IPv6, ICMPv6EchoRequest, ICMPv6ND_NS
 
@@ -37,8 +37,8 @@ def is_icmp_reply(pkt, ipformat):
     """
     # pylint: disable=bare-except
     try:
-        if pkt[ipformat['IPType']][ipformat['ICMP_rep']].type == \
-                ipformat['Type']:
+        if pkt[ipformat[u'IPType']][ipformat[u'ICMP_rep']].type == \
+                ipformat[u'Type']:
             return True
         else:
             return False
@@ -60,8 +60,8 @@ def address_check(request, reply, ipformat):
     """
     # pylint: disable=bare-except
     try:
-        r_src = reply[ipformat['IPType']].src == request[ipformat['IPType']].dst
-        r_dst = reply[ipformat['IPType']].dst == request[ipformat['IPType']].src
+        r_src = reply[ipformat[u'IPType']].src == request[ipformat[u'IPType']].dst
+        r_dst = reply[ipformat[u'IPType']].dst == request[ipformat[u'IPType']].src
         return r_src and r_dst
     except: # pylint: disable=bare-except
         return False
@@ -102,8 +102,8 @@ def valid_ipv6(ip):
 def main():
     """Send ICMP echo request and wait for ICMP echo reply. It ignores all other
     packets."""
-    args = TrafficScriptArg(['dst_mac', 'src_mac', 'dst_ip', 'src_ip',
-                             'timeout'])
+    args = TrafficScriptArg([u'dst_mac', u'src_mac', u'dst_ip', u'src_ip',
+                             u'timeout'])
 
     dst_mac = args.get_arg('dst_mac')
     src_mac = args.get_arg('src_mac')
@@ -123,14 +123,14 @@ def main():
         icmp_request = (Ether(src=src_mac, dst=dst_mac) /
                         IP(src=src_ip, dst=dst_ip) /
                         ICMP())
-        ip_format = {'IPType': 'IP', 'ICMP_req': 'ICMP',
-                     'ICMP_rep': 'ICMP', 'Type': 0}
+        ip_format = {'IPType': u'IP', u'ICMP_req': u'ICMP',
+                     u'ICMP_rep': u'ICMP', u'Type': 0}
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
         icmp_request = (Ether(src=src_mac, dst=dst_mac) /
                         IPv6(src=src_ip, dst=dst_ip) /
                         ICMPv6EchoRequest())
-        ip_format = {'IPType': 'IPv6', 'ICMP_req': 'ICMPv6 Echo Request',
-                     'ICMP_rep': 'ICMPv6 Echo Reply', 'Type': 129}
+        ip_format = {'IPType': u'IPv6', u'ICMP_req': u'ICMPv6 Echo Request',
+                     u'ICMP_rep': u'ICMPv6 Echo Reply', u'Type': 129}
     else:
         raise ValueError("IP not in correct format")
 
@@ -144,7 +144,7 @@ def main():
             if icmp_reply is None:
                 timeout -= wait_step
                 if timeout < 0:
-                    raise RuntimeError("ICMP echo Rx timeout")
+                    raise RuntimeError(u'ICMP echo Rx timeout')
 
             elif icmp_reply.haslayer(ICMPv6ND_NS):
                 # read another packet in the queue in case of ICMPv6ND_NS packet
@@ -157,9 +157,9 @@ def main():
             if address_check(icmp_request, icmp_reply, ip_format):
                 break
     else:
-        raise RuntimeError("Max packet count limit reached")
+        raise RuntimeError(u'Max packet count limit reached')
 
-    print "ICMP echo reply received."
+    print (f'ICMP echo reply received.')
 
     sys.exit(0)
 

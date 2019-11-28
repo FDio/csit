@@ -32,7 +32,7 @@ def mac_to_ipv6_linklocal(mac):
     :rtype: str
     """
     # Remove the most common delimiters: dots, dashes, etc.
-    mac_value = int(mac.translate(None, ' .:-'), 16)
+    mac_value = int(mac.translate(None, u' .:-'), 16)
 
     # Split out the bytes that slot into the IPv6 address
     # XOR the most significant byte with 0x02, inverting the
@@ -42,8 +42,7 @@ def mac_to_ipv6_linklocal(mac):
     low1 = mac_value >> 16 & 0xff
     low2 = mac_value & 0xffff
 
-    return 'fe80::{:04x}:{:02x}ff:fe{:02x}:{:04x}'.format(
-        high2, high1, low1, low2)
+    return u'fe80::{high2:04x}:{high1:02x}ff:fe{low1:02x}:{low2:04x}'
 
 
 def main():
@@ -51,18 +50,18 @@ def main():
      part.
     """
 
-    args = TrafficScriptArg(['src_mac', 'interval'])
+    args = TrafficScriptArg([u'src_mac', u'interval'])
 
-    rx_if = args.get_arg('rx_if')
-    src_mac = args.get_arg('src_mac')
-    interval = int(args.get_arg('interval'))
+    rx_if = args.get_arg(u'rx_if')
+    src_mac = args.get_arg(u'src_mac')
+    interval = int(args.get_arg(u'interval'))
     rxq = RxQueue(rx_if)
 
     # receive ICMPv6ND_RA packet
     while True:
         ether = rxq.recv(max(5, interval))
         if ether is None:
-            raise RuntimeError('ICMP echo Rx timeout')
+            raise RuntimeError(u'ICMP echo Rx timeout')
 
         if ether.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
@@ -73,28 +72,27 @@ def main():
 
     # Check if received packet contains layer RA and check other values
     if not ether.haslayer(ICMPv6ND_RA):
-        raise RuntimeError('Not an RA packet received {0}'.
-                           format(ether.__repr__()))
+        raise RuntimeError(u'Not an RA packet received {ether.__repr__()}')
 
-    src_address = ipaddress.IPv6Address(unicode(ether['IPv6'].src))
-    dst_address = ipaddress.IPv6Address(unicode(ether['IPv6'].dst))
+    src_address = ipaddress.IPv6Address(unicode(ether[u'IPv6'].src))
+    dst_address = ipaddress.IPv6Address(unicode(ether[u'IPv6'].dst))
     link_local = ipaddress.IPv6Address(unicode(mac_to_ipv6_linklocal(src_mac)))
     all_nodes_multicast = ipaddress.IPv6Address(u'ff02::1')
 
     if src_address != link_local:
-        raise RuntimeError('Source address ({0}) not matching link local '
-                           'address ({1})'.format(src_address, link_local))
+        raise RuntimeError(f'Source address ({src_address}) '
+                        f'not matching link local u'
+                        f'address ({link_local})')
     if dst_address != all_nodes_multicast:
-        raise RuntimeError('Packet destination address ({0}) is not the all'
-                           ' nodes multicast address ({1}).'.
-                           format(dst_address, all_nodes_multicast))
+        raise RuntimeError(f'Packet destination address ({dst_address})'
+                        f' is not the all'
+                        f' nodes multicast address ({all_nodes_multicast}).')
     if ether[IPv6].hlim != 255:
-        raise RuntimeError('Hop limit not correct: {0}!=255'.
-                           format(ether[IPv6].hlim))
+        raise RuntimeError(f'Hop limit not correct: {ether[IPv6].hlim}!=255')
 
     ra_code = ether[ICMPv6ND_RA].code
     if ra_code != 0:
-        raise RuntimeError('ICMP code: {0} not correct. '.format(ra_code))
+        raise RuntimeError(f'ICMP code: {ra_code} not correct. u')
 
     sys.exit(0)
 

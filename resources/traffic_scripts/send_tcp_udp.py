@@ -19,7 +19,7 @@ from one interface to the other.
 import sys
 import ipaddress
 
-from scapy.all import Ether
+from scapy.layers.l2 import Ether
 from scapy.layers.inet import IP, UDP, TCP
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NS
 
@@ -62,33 +62,33 @@ def valid_ipv6(ip):
 def main():
     """Send TCP or UDP packet from one traffic generator interface to the other.
     """
-    args = TrafficScriptArg(['tx_mac', 'rx_mac', 'src_ip', 'dst_ip', 'protocol',
-                             'source_port', 'destination_port'])
+    args = TrafficScriptArg([u'tx_mac', u'rx_mac', u'src_ip', u'dst_ip', 
+                             u'protocol', u'source_port', u'destination_port'])
 
-    src_mac = args.get_arg('tx_mac')
-    dst_mac = args.get_arg('rx_mac')
-    src_ip = args.get_arg('src_ip')
-    dst_ip = args.get_arg('dst_ip')
-    tx_if = args.get_arg('tx_if')
-    rx_if = args.get_arg('rx_if')
+    src_mac = args.get_arg(u'tx_mac')
+    dst_mac = args.get_arg(u'rx_mac')
+    src_ip = args.get_arg(u'src_ip')
+    dst_ip = args.get_arg(u'dst_ip')
+    tx_if = args.get_arg(u'tx_if')
+    rx_if = args.get_arg(u'rx_if')
 
-    protocol = args.get_arg('protocol')
-    source_port = args.get_arg('source_port')
-    destination_port = args.get_arg('destination_port')
+    protocol = args.get_arg(u'protocol')
+    source_port = args.get_arg(u'source_port')
+    destination_port = args.get_arg(u'destination_port')
 
     if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
         ip_version = IP
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
         ip_version = IPv6
     else:
-        ValueError("Invalid IP version!")
+        ValueError(f'Invalid IP version!')
 
-    if protocol.upper() == 'TCP':
+    if protocol.upper() == u'TCP':
         protocol = TCP
-    elif protocol.upper() == 'UDP':
+    elif protocol.upper() == u'UDP':
         protocol = UDP
     else:
-        raise ValueError("Invalid protocol type!")
+        raise ValueError(f'Invalid protocol type!')
 
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
@@ -102,7 +102,7 @@ def main():
     while True:
         ether = rxq.recv(2)
         if ether is None:
-            raise RuntimeError('TCP/UDP Rx timeout')
+            raise RuntimeError(u'TCP/UDP Rx timeout')
 
         if ether.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
@@ -117,8 +117,8 @@ def main():
     elif UDP in ether:
         print ("UDP packet received.")
     else:
-        raise RuntimeError("Not an TCP or UDP packet received {0}".
-                           format(ether.__repr__()))
+        raise RuntimeError(f'Not an TCP or UDP packet '
+                           f'received {ether.__repr__()}')
 
     sys.exit(0)
 

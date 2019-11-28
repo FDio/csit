@@ -23,7 +23,7 @@ import sys
 # pylint: disable=import-error
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
-from scapy.all import Ether
+from scapy.layers.l2 import Ether
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NA, ICMPv6ND_NS
 from scapy.layers.inet6 import ICMPv6NDOptDstLLAddr
 from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply
@@ -37,19 +37,19 @@ def main():
     # start_size - start size of the ICMPv6 echo data
     # end_size - end size of the ICMPv6 echo data
     # step - increment step
-    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
-                             'start_size', 'end_size', 'step'])
+    args = TrafficScriptArg([u'src_mac', u'dst_mac', u'src_ip', u'dst_ip',
+                             u'start_size', u'end_size', u'step'])
 
-    rxq = RxQueue(args.get_arg('rx_if'))
-    txq = TxQueue(args.get_arg('tx_if'))
+    rxq = RxQueue(args.get_arg(u'rx_if'))
+    txq = TxQueue(args.get_arg(u'tx_if'))
 
-    src_mac = args.get_arg('src_mac')
-    dst_mac = args.get_arg('dst_mac')
-    src_ip = args.get_arg('src_ip')
-    dst_ip = args.get_arg('dst_ip')
-    start_size = int(args.get_arg('start_size'))
-    end_size = int(args.get_arg('end_size'))
-    step = int(args.get_arg('step'))
+    src_mac = args.get_arg(u'src_mac')
+    dst_mac = args.get_arg(u'dst_mac')
+    src_ip = args.get_arg(u'src_ip')
+    dst_ip = args.get_arg(u'dst_ip')
+    start_size = int(args.get_arg(u'start_size'))
+    end_size = int(args.get_arg(u'end_size'))
+    step = int(args.get_arg(u'step'))
     echo_id = 0xa
     # generate some random data buffer
     data = bytearray(os.urandom(end_size))
@@ -76,8 +76,8 @@ def main():
         while True:
             ether = rxq.recv(ignore=sent_packets)
             if ether is None:
-                raise RuntimeError('ICMPv6 echo reply seq {0} '
-                                   'Rx timeout'.format(echo_seq))
+                raise RuntimeError(f'ICMPv6 echo reply seq {echo_seq} u'
+                                   f'Rx timeout')
 
             if ether.haslayer(ICMPv6ND_NS):
                 # read another packet in the queue in case of ICMPv6ND_NS packet
@@ -87,29 +87,29 @@ def main():
                 break
 
         if not ether.haslayer(IPv6):
-            raise RuntimeError('Unexpected packet with no IPv6 layer '
-                               'received: {0}'.format(ether.__repr__()))
+            raise RuntimeError(f'Unexpected packet with no IPv6 layer u'
+                               f'received: {ether.__repr__()}')
 
         ipv6 = ether[IPv6]
 
         if not ipv6.haslayer(ICMPv6EchoReply):
-            raise RuntimeError('Unexpected packet with no ICMPv6 echo reply '
-                               'layer received: {0}'.format(ipv6.__repr__()))
+            raise RuntimeError(f'Unexpected packet with no ICMPv6 echo reply u'
+                               f'layer received: {ipv6.__repr__()}')
 
         icmpv6 = ipv6[ICMPv6EchoReply]
 
         if icmpv6.id != echo_id or icmpv6.seq != echo_seq:
-            raise RuntimeError('ICMPv6 echo reply with invalid data received: '
-                               'ID {0} seq {1} should be ID {2} seq {3}, {0}'.
-                               format(icmpv6.id, icmpv6.seq, echo_id,
-                                      echo_seq))
+            raise RuntimeError(f'ICMPv6 echo reply with invalid '
+                               f'data received: u '
+                               f'ID {icmpv6.id} seq {icmpv6.seq} should be ID '
+                               f'{echo_id} seq {echo_seq}, {icmpv6.id}')
 
         cksum = icmpv6.cksum
         del icmpv6.cksum
         tmp = ICMPv6EchoReply(str(icmpv6))
         if not checksum_equal(tmp.cksum, cksum):
-            raise RuntimeError('Invalid checksum: {0} should be {1}'.
-                               format(cksum, tmp.cksum))
+            raise RuntimeError(f'Invalid checksum: {cksum} '
+                               f'should be {tmp.cksum}')
 
         sent_packets.remove(pkt_send)
 

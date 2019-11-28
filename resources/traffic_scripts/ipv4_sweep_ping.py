@@ -24,26 +24,26 @@ from resources.libraries.python.PacketVerifier import RxQueue, TxQueue, \
     create_gratuitous_arp_request, checksum_equal
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 from scapy.layers.inet import IP, ICMP
-from scapy.all import Ether, Raw
+from scapy.layers.l2 import Ether, Raw
 
 
 def main():
     # start_size - start size of the ICMPv4 echo data
     # end_size - end size of the ICMPv4 echo data
     # step - increment step
-    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
-                             'start_size', 'end_size', 'step'])
+    args = TrafficScriptArg([u'src_mac', u'dst_mac', u'src_ip', u'dst_ip',
+                             u'start_size', u'end_size', u'step'])
 
-    rxq = RxQueue(args.get_arg('rx_if'))
-    txq = TxQueue(args.get_arg('tx_if'))
+    rxq = RxQueue(args.get_arg(u'rx_if'))
+    txq = TxQueue(args.get_arg(u'tx_if'))
 
-    src_mac = args.get_arg('src_mac')
-    dst_mac = args.get_arg('dst_mac')
-    src_ip = args.get_arg('src_ip')
-    dst_ip = args.get_arg('dst_ip')
-    start_size = int(args.get_arg('start_size'))
-    end_size = int(args.get_arg('end_size'))
-    step = int(args.get_arg('step'))
+    src_mac = args.get_arg(u'src_mac')
+    dst_mac = args.get_arg(u'dst_mac')
+    src_ip = args.get_arg(u'src_ip')
+    dst_ip = args.get_arg(u'dst_ip')
+    start_size = int(args.get_arg(u'start_size'))
+    end_size = int(args.get_arg(u'end_size'))
+    step = int(args.get_arg(u'step'))
     echo_id = 0xa
     # generate some random data buffer
     data = bytearray(os.urandom(end_size))
@@ -66,42 +66,40 @@ def main():
         ether = rxq.recv(ignore=sent_packets)
         if ether is None:
             raise RuntimeError(
-                'ICMP echo reply seq {0} Rx timeout'.format(echo_seq))
+                f'ICMP echo reply seq {echo_seq} Rx timeout')
 
         if not ether.haslayer(IP):
             raise RuntimeError(
-                'Unexpected packet with no IPv4 received {0}'.format(
-                    ether.__repr__()))
+                f'Unexpected packet with no IPv4 received {ether.__repr__()}')
 
-        ipv4 = ether['IP']
+        ipv4 = ether[u'IP']
 
         if not ipv4.haslayer(ICMP):
             raise RuntimeError(
-                'Unexpected packet with no ICMP received {0}'.format(
-                    ipv4.__repr__()))
+                f'Unexpected packet with no ICMP received {ipv4.__repr__()}')
 
-        icmpv4 = ipv4['ICMP']
+        icmpv4 = ipv4[u'ICMP']
 
         if icmpv4.id != echo_id or icmpv4.seq != echo_seq:
             raise RuntimeError(
-                'Invalid ICMP echo reply received ID {0} seq {1} should be '
-                'ID {2} seq {3}, {0}'.format(icmpv4.id, icmpv4.seq, echo_id,
-                                             echo_seq))
+                f'Invalid ICMP echo reply received ID '
+                f'{icmpv4.id} seq {icmpv4.seq} should be u'
+                f'ID {echo_id} seq {echo_seq}, {icmpv4.id}')
 
         chksum = icmpv4.chksum
         del icmpv4.chksum
         tmp = ICMP(str(icmpv4))
         if not checksum_equal(tmp.chksum, chksum):
             raise RuntimeError(
-                'Invalid checksum {0} should be {1}'.format(chksum, tmp.chksum))
+                f'Invalid checksum {chksum} should be {tmp.chksum}')
 
-        if 'Raw' in icmpv4:
-            load = icmpv4['Raw'].load
+        if u'Raw' in icmpv4:
+            load = icmpv4[u'Raw'].load
         else:
             load = ""
         if load != data[0:echo_seq]:
             raise RuntimeError(
-                'Received ICMP payload does not match sent payload')
+                f'Received ICMP payload does not match sent payload')
 
         sent_packets.remove(pkt_send)
 

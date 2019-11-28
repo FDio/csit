@@ -19,7 +19,7 @@ interface to the other, where is expected ICMPv4 without GRE header.
 import sys
 
 from robot.api import logger
-from scapy.all import Ether
+from scapy.layers.l2 import Ether
 from scapy.layers.inet import IP_PROTOS
 from scapy.layers.inet import IP
 from scapy.layers.inet import ICMP
@@ -31,18 +31,18 @@ from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 def main():
     args = TrafficScriptArg(
-        ['tx_dst_mac', 'rx_dst_mac',
-         'inner_src_ip', 'inner_dst_ip',
-         'outer_src_ip', 'outer_dst_ip'])
+        [u'tx_dst_mac', u'rx_dst_mac',
+         u'inner_src_ip', u'inner_dst_ip',
+         u'outer_src_ip', u'outer_dst_ip'])
 
-    tx_if = args.get_arg('tx_if')
-    rx_if = args.get_arg('rx_if')
-    tx_dst_mac = args.get_arg('tx_dst_mac')
-    rx_dst_mac = args.get_arg('rx_dst_mac')
-    inner_src_ip = args.get_arg('inner_src_ip')
-    inner_dst_ip = args.get_arg('inner_dst_ip')
-    outer_src_ip = args.get_arg('outer_src_ip')
-    outer_dst_ip = args.get_arg('outer_dst_ip')
+    tx_if = args.get_arg(u'tx_if')
+    rx_if = args.get_arg(u'rx_if')
+    tx_dst_mac = args.get_arg(u'tx_dst_mac')
+    rx_dst_mac = args.get_arg(u'rx_dst_mac')
+    inner_src_ip = args.get_arg(u'inner_src_ip')
+    inner_dst_ip = args.get_arg(u'inner_dst_ip')
+    outer_src_ip = args.get_arg(u'outer_src_ip')
+    outer_dst_ip = args.get_arg(u'outer_dst_ip')
 
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
@@ -59,25 +59,25 @@ def main():
     ether = rxq.recv(2)
 
     if ether is None:
-        raise RuntimeError("ICMP echo Rx timeout")
+        raise RuntimeError(f'ICMP echo Rx timeout')
 
     # Check RX headers
     if ether.dst != rx_dst_mac:
-        raise RuntimeError("Matching of received destination MAC unsuccessful.")
-    logger.debug("Comparison of received destination MAC: OK.")
+        raise RuntimeError(f'Matching of received destination MAC unsuccessful.')
+    logger.debug(f'Comparison of received destination MAC: OK.')
 
-    if ether['IP'].src != inner_src_ip:
-        raise RuntimeError("Matching of received inner source IP unsuccessful.")
-    logger.debug("Comparison of received outer source IP: OK.")
+    if ether[u'IP'].src != inner_src_ip:
+        raise RuntimeError(f'Matching of received inner source IP unsuccessful.')
+    logger.debug(f'Comparison of received outer source IP: OK.')
 
-    if ether['IP'].dst != inner_dst_ip:
+    if ether[u'IP'].dst != inner_dst_ip:
         raise RuntimeError(
-            "Matching of received inner destination IP unsuccessful.")
-    logger.debug("Comparison of received outer destination IP: OK.")
+            f'Matching of received inner destination IP unsuccessful.')
+    logger.debug(f'Comparison of received outer destination IP: OK.')
 
-    if ether['IP'].proto != IP_PROTOS.icmp:
-        raise RuntimeError("IP protocol is other than ICMP.")
-    logger.debug("Comparison of received ICMP protocol: OK.")
+    if ether[u'IP'].proto != IP_PROTOS.icmp:
+        raise RuntimeError(f'IP protocol is other than ICMP.')
+    logger.debug(f'Comparison of received ICMP protocol: OK.')
 
     sys.exit(0)
 

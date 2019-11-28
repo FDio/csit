@@ -65,37 +65,37 @@ def imcpv6nd_solicit(tx_if, src_mac, dst_mac, src_ip, dst_ip):
             break
 
     if ether is None:
-        raise RuntimeError('ICMPv6ND Proxy response timeout.')
+        raise RuntimeError(u'ICMPv6ND Proxy response timeout.')
 
     if ether.src != dst_mac:
-        raise RuntimeError("Source MAC address error: {} != {}".
-                           format(ether.src, dst_mac))
-    print "Source MAC address: OK."
+        raise RuntimeError(f'Source MAC address error: u'
+                           f'{ether.src} != {dst_mac}')
+    print (f"Source MAC address: OK.")
 
     if ether.dst != src_mac:
-        raise RuntimeError("Destination MAC address error: {} != {}".
-                           format(ether.dst, src_mac))
-    print "Destination MAC address: OK."
+        raise RuntimeError(f'Destination MAC address error: u'
+                           f'{ether.dst} != {src_mac}')
+    print (f"Destination MAC address: OK.")
 
     if ether[IPv6].src != dst_ip:
-        raise RuntimeError("Source IP address error: {} != {}".
-                           format(ether[IPv6].src, dst_ip))
-    print "Source IP address: OK."
+        raise RuntimeError(f'Source IP address error: u'
+                           f'{ether[IPv6].src} != {dst_ip}')
+    print (f"Source IP address: OK.")
 
     if ether[IPv6].dst != src_ip:
-        raise RuntimeError("Destination IP address error: {} != {}".
-                           format(ether[IPv6].dst, src_ip))
-    print "Destination IP address: OK."
+        raise RuntimeError(f'Destination IP address error: u'
+                           f'{ether[IPv6].dst} != {src_ip}')
+    print (f"Destination IP address: OK.")
 
     try:
         target_addr = ether[IPv6][ICMPv6ND_NA].tgt
     except (KeyError, AttributeError):
-        raise RuntimeError("Not an ICMPv6ND Neighbor Advertisement packet.")
+        raise RuntimeError(f'Not an ICMPv6ND Neighbor Advertisement packet.')
 
     if target_addr != dst_ip:
-        raise RuntimeError("ICMPv6 field 'Target address' error: {} != {}".
-                           format(target_addr, dst_ip))
-    print "Target address field: OK."
+        raise RuntimeError(f'ICMPv6 field u'Target address' error: u'
+                           f'{target_addr} != {dst_ip}')
+    print (f"Target address field: OK.")
 
 
 def ipv6_ping(src_if, dst_if, src_mac, dst_mac,
@@ -142,12 +142,12 @@ def ipv6_ping(src_if, dst_if, src_mac, dst_mac,
             break
 
     if ether is None:
-        raise RuntimeError('ICMPv6 Echo Request timeout.')
+        raise RuntimeError(f'ICMPv6 Echo Request timeout.')
     try:
-        ether[IPv6]["ICMPv6 Echo Request"]
+        ether[IPv6][u"ICMPv6 Echo Request"]
     except KeyError:
-        raise RuntimeError("Received packet is not an ICMPv6 Echo Request.")
-    print "ICMP Echo: OK."
+        raise RuntimeError(f"Received packet is not an ICMPv6 Echo Request.")
+    print (u"ICMP Echo: OK.")
 
     rxq = RxQueue(src_if)
     txq = TxQueue(dst_if)
@@ -171,29 +171,29 @@ def ipv6_ping(src_if, dst_if, src_mac, dst_mac,
             break
 
     if ether is None:
-        raise RuntimeError('DHCPv6 SOLICIT timeout')
+        raise RuntimeError(f'DHCPv6 SOLICIT timeout')
     try:
-        ether[IPv6]["ICMPv6 Echo Reply"]
+        ether[IPv6][u"ICMPv6 Echo Reply"]
     except KeyError:
-        raise RuntimeError("Received packet is not an ICMPv6 Echo Reply.")
+        raise RuntimeError(f"Received packet is not an ICMPv6 Echo Reply.")
 
-    print "ICMP Reply: OK."
+    print (f"ICMP Reply: OK.")
 
 
 def main():
     """Send DHCPv6 proxy messages."""
 
-    args = TrafficScriptArg(['src_ip', 'dst_ip', 'src_mac', 'dst_mac',
-                             'proxy_to_src_mac', 'proxy_to_dst_mac'])
+    args = TrafficScriptArg([u'src_ip', u'dst_ip', u'src_mac', u'dst_mac',
+                             u'proxy_to_src_mac', u'proxy_to_dst_mac'])
 
-    src_if = args.get_arg('tx_if')
-    dst_if = args.get_arg('rx_if')
-    src_ip = args.get_arg("src_ip")
-    dst_ip = args.get_arg("dst_ip")
-    src_mac = args.get_arg('src_mac')
-    dst_mac = args.get_arg('dst_mac')
-    proxy_to_src_mac = args.get_arg('proxy_to_src_mac')
-    proxy_to_dst_mac = args.get_arg('proxy_to_dst_mac')
+    src_if = args.get_arg(u'tx_if')
+    dst_if = args.get_arg(u'rx_if')
+    src_ip = args.get_arg(u'src_ip')
+    dst_ip = args.get_arg(u'dst_ip')
+    src_mac = args.get_arg(u'src_mac')
+    dst_mac = args.get_arg(u'dst_mac')
+    proxy_to_src_mac = args.get_arg(u'proxy_to_src_mac')
+    proxy_to_dst_mac = args.get_arg(u'proxy_to_dst_mac')
 
     # Neighbor solicitation
     imcpv6nd_solicit(src_if, src_mac, proxy_to_src_mac, src_ip, dst_ip)
