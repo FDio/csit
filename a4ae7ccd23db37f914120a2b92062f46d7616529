@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5fea2b78_48fed2de",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 59
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-28T11:09:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0375dc4e_99f9302e",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 338,
+        "endChar": 27
+      },
+      "revId": "a4ae7ccd23db37f914120a2b92062f46d7616529",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb7cf471_6464469b",
         "filename": "resources/libraries/python/autogen/Testcase.py",
         "patchSetId": 59
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0f1323a0_efed7703",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 59
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-28T11:09:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb7cf471_6464469b",
+      "range": {
+        "startLine": 56,
+        "startChar": 41,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "a4ae7ccd23db37f914120a2b92062f46d7616529",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ea4c5fa4_0f9c2c5b",
         "filename": "resources/libraries/robot/shared/traffic.robot",
         "patchSetId": 59
@@ -68,6 +116,30 @@
       "revId": "a4ae7ccd23db37f914120a2b92062f46d7616529",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4da6644e_c76b8ea9",
+        "filename": "resources/libraries/robot/shared/traffic.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-28T11:09:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea4c5fa4_0f9c2c5b",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 409,
+        "endChar": 77
+      },
+      "revId": "a4ae7ccd23db37f914120a2b92062f46d7616529",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
