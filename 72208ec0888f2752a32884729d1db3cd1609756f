@@ -68,6 +68,29 @@
       "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60d552dd_aa79b694",
+        "filename": "resources/libraries/python/TestConfig.py",
+        "patchSetId": 66
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-28T15:46:37Z",
+      "side": 1,
+      "message": "I still do not get it. The comparison result is already a bool, the not result is a bool. Why do you convert?",
+      "range": {
+        "startLine": 196,
+        "startChar": 26,
+        "endLine": 196,
+        "endChar": 31
+      },
+      "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
