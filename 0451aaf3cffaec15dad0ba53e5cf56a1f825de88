@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "858257b1_acbde087",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 60
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-28T11:08:38Z",
+      "side": 1,
+      "message": "remove \u0027d\u0027",
+      "range": {
+        "startLine": 56,
+        "startChar": 41,
+        "endLine": 56,
+        "endChar": 42
+      },
+      "revId": "0451aaf3cffaec15dad0ba53e5cf56a1f825de88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
