@@ -330,7 +330,7 @@ class TrafficGenerator(AbstractMeasurer):
 
             # Start TRex.
             cmd = ("sh -c 'cd {dir}/scripts/ && "
-                   "nohup ./t-rex-64 --hdrh{mode} --prefix $(hostname)"
+                   "nohup ./t-rex-64{mode} --prefix $(hostname)"
                    " -i -c 7 > /tmp/trex.log 2>&1 &' > /dev/null"
                    .format(dir=Constants.TREX_INSTALL_DIR,
                            mode=' --astf' if osi_layer == 'L7' else ''))
