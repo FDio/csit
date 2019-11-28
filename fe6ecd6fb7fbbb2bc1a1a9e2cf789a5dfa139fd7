@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5185007c_986dba59",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-28T08:36:12Z",
+      "side": 1,
+      "message": "Pylint error - use only space after comma",
+      "range": {
+        "startLine": 129,
+        "startChar": 39,
+        "endLine": 129,
+        "endChar": 42
+      },
+      "revId": "fe6ecd6fb7fbbb2bc1a1a9e2cf789a5dfa139fd7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9281817e_dc271327",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-28T08:36:12Z",
+      "side": 1,
+      "message": "no trailing spaces please",
+      "range": {
+        "startLine": 136,
+        "startChar": 59,
+        "endLine": 136,
+        "endChar": 60
+      },
+      "revId": "fe6ecd6fb7fbbb2bc1a1a9e2cf789a5dfa139fd7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d8a4560_7b2ada58",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-28T08:36:12Z",
+      "side": 1,
+      "message": "blank space?",
+      "range": {
+        "startLine": 138,
+        "startChar": 26,
+        "endLine": 138,
+        "endChar": 27
+      },
+      "revId": "fe6ecd6fb7fbbb2bc1a1a9e2cf789a5dfa139fd7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffc4e28d_6a7cc07d",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-28T08:36:12Z",
+      "side": 1,
+      "message": "not needed if you do \n\ngetattr(\n    SRv6....\n)",
+      "range": {
+        "startLine": 287,
+        "startChar": 61,
+        "endLine": 287,
+        "endChar": 62
+      },
+      "revId": "fe6ecd6fb7fbbb2bc1a1a9e2cf789a5dfa139fd7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fb70b46_b6bdfa09",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-28T08:36:12Z",
+      "side": 1,
+      "message": "no trailing spaces",
+      "range": {
+        "startLine": 364,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 12
+      },
+      "revId": "fe6ecd6fb7fbbb2bc1a1a9e2cf789a5dfa139fd7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e2d5758_233cd418",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-28T08:36:12Z",
+      "side": 1,
+      "message": "not sure if this will have an effect.",
+      "range": {
+        "startLine": 142,
+        "startChar": 44,
+        "endLine": 142,
+        "endChar": 58
+      },
+      "revId": "fe6ecd6fb7fbbb2bc1a1a9e2cf789a5dfa139fd7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
