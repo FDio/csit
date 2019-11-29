@@ -118,7 +118,7 @@ class CoreDumpUtil:
                 self.enable_coredump_limit(node, vpp_pid)
 
     def get_core_files_on_all_nodes(self, nodes, disable_on_success=True):
-        """Process all core files and remove the original core files on al
+        """Process all core files and remove the original core files on all
         nodes.
 
         :param nodes: Nodes in the topology.
@@ -128,12 +128,12 @@ class CoreDumpUtil:
         :type disable_on_success: bool
         """
         for node in nodes.values():
-            command = f"for f in {Constants.CORE_DUMP_DIR}/*.core; do " \
-                f"sudo gdb /usr/bin/vpp ${{f}} " \
-                f"--eval-command=\"set pagination off\" " \
-                f"--eval-command=\"thread apply all bt\" " \
-                f"--eval-command=\"quit\"; " \
-                f"sudo rm -f ${{f}}; done"
+            command = (
+                f"for f in {Constants.CORE_DUMP_DIR}/*.core; do sudo gdb"
+                f" /usr/bin/vpp ${{f}} -ex 'source -v {Constants.REMOTE_FW_DIR}"
+                f"/resources/tools/scripts/gdb-commands' -ex quit;"
+                f" sudo rm -f ${{f}}; done"
+            )
             try:
                 exec_cmd_no_error(node, command, timeout=3600)
                 if disable_on_success:
