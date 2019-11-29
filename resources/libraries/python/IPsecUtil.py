@@ -21,6 +21,7 @@ from random import choice
 from string import ascii_letters
 
 from ipaddress import ip_network, ip_address
+from robot.api import logger
 
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
@@ -270,7 +271,9 @@ class IPsecUtil:
         """
         err_msg = f"Failed to dump IPsec backends on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(u"ipsec_backend_dump").get_details(err_msg)
+            data = papi_exec.add(u"ipsec_backend_dump").get_details(err_msg)
+
+        logger.debug(f"IPSEC backend data:\n{data}")
 
     @staticmethod
     def vpp_ipsec_add_sad_entry(
@@ -871,9 +874,8 @@ class IPsecUtil:
             os.remove(tmp_fn2)
 
             with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
-                raddr = ip_network(if1_ip_addr + u"/8", False)
                 tmp_f2.write(
-                    f"exec ip route add {raddr} via {if2_n} {if2_ip - 1}\n"
+                    f"exec ip route add {if1_ip}/8 via {if2_ip - 1} {if2_n}\n"
                 )
                 for i in range(n_tunnels):
                     tmp_f1.write(
