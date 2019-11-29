@@ -17,7 +17,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECINT | NIC_Intel-X710 | BASE
-| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI | TEST
 |
 | Suite Setup | Setup suite single link | performance | ipsechw
 | Suite Teardown | Tear down suite | performance
