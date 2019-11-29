@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_10000
-| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1
+| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | BASE
 | ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI | TEST
 |
 | Suite Setup | Setup suite single link | performance
@@ -67,14 +67,14 @@
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
-| ${n_tunnels}= | ${11}
+| ${n_tunnels}= | ${10}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPSec tunneling AES_128_CBC / HMAC_SHA_512 config.
+| | ... | [Cfg] DUT runs IPSec tunneling AES_128_CBC / HMAC_SHA_512 config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | |
@@ -109,38 +109,38 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+| tc01-64B-1c-ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+| tc02-64B-2c-ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+| tc03-64B-4c-ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+| tc04-1518B-1c-ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+| tc05-1518B-2c-ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+| tc06-1518B-4c-ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+| tc10-IMIX-1c-ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+| tc11-IMIX-2c-ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+| tc12-IMIX-4c-ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
