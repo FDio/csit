@@ -340,19 +340,19 @@ class TestConfig:
         dst_ip_start = ip_address(dst_ip_start)
 
         if vxlan_count > 1:
-            sw_idx_vxlan = Topology.get_interface_sw_index(node, node_vxlan_if)
+            idx_vxlan_if = Topology.get_interface_sw_index(node, node_vxlan_if)
             commands = list()
             for i in range(0, vxlan_count):
                 dst_ip = dst_ip_start + i * ip_step
                 commands.append(
-                    f"ip_neighbor_add_del sw_if_index {sw_idx_vxlan} "
+                    f"ip_neighbor_add_del sw_if_index {idx_vxlan_if} "
                     f"dst {dst_ip} "
                     f"mac {Topology.get_interface_mac(op_node, op_node_if)}\n"
                 )
                 commands.append(
                     f"ip_route_add_del "
                     f"{dst_ip}/{128 if dst_ip.version == 6 else 32} count 1 "
-                    f"via {dst_ip} sw_if_index {sw_idx_vxlan}\n"
+                    f"via {dst_ip} sw_if_index {idx_vxlan_if}\n"
                 )
                 sw_idx_vxlan = Topology.get_interface_sw_index(
                     node, f"vxlan_tunnel{i + 1}"
