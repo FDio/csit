@@ -151,6 +151,25 @@ class VPPUtil(object):
                 VPPUtil.verify_vpp(node)
 
     @staticmethod
+    def loop_vppctl_show_pci():
+        """Loop "vppctl show pci" command.
+
+        This is a test against VPP-1805, run on a first DUT.
+
+        :raises SSHTimeout: If VPP-1805 symptom is triggered.
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                for _ in range(120):
+                    cmd = ('vppctl show pci 2>&1 | '
+                           'fgrep -v "Connection refused" | '
+                           'fgrep -v "No such file or directory"')
+                    exec_cmd(node, cmd, sudo=True)
+                    # Even if SSHTimeout does not happen,
+                    # teardown can detect PID has changed.
+                break
+
+    @staticmethod
     def vpp_show_version(node, verbose=True):
         """Run "show_version" PAPI command.
 
