@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3efc3f88_ae9f3cd5",
+        "filename": "gdb-commands",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-29T15:05:52Z",
+      "side": 1,
+      "message": "you need thread apply all",
+      "revId": "0a7c52045a5c65d2fff18a10ecb58df2d9b6cd6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
