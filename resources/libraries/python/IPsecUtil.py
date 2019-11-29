@@ -262,17 +262,6 @@ class IPsecUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_ipsec_backend_dump(node):
-        """Dump IPsec backends.
-
-        :param node: VPP node to dump IPsec backend on.
-        :type node: dict
-        """
-        err_msg = f"Failed to dump IPsec backends on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(u"ipsec_backend_dump").get_details(err_msg)
-
-    @staticmethod
     def vpp_ipsec_add_sad_entry(
             node, sad_id, spi, crypto_alg, crypto_key, integ_alg=None,
             integ_key=u"", tunnel_src=None, tunnel_dst=None):
@@ -871,9 +860,8 @@ class IPsecUtil:
             os.remove(tmp_fn2)
 
             with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
-                raddr = ip_network(if1_ip_addr + u"/8", False)
                 tmp_f2.write(
-                    f"exec ip route add {raddr} via {if2_n} {if2_ip - 1}\n"
+                    f"exec ip route add {if1_ip}/8 via {if2_ip - 1} {if2_n}\n"
                 )
                 for i in range(n_tunnels):
                     tmp_f1.write(
