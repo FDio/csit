@@ -112,15 +112,13 @@ class VPPUtil(object):
         :param node: Topology node.
         :type node: dict
         """
-        cmd = 'echo "show pci" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock'
-        exec_cmd_no_error(
-            node, cmd, sudo=False, message='VPP failed to start!', retries=120)
-
-        cmd = ('vppctl show pci 2>&1 | '
+        # We were using "show pci" previously, but that triggers VPP-1805.
+        cmd = ('vppctl show version 2>&1 | '
                'fgrep -v "Connection refused" | '
                'fgrep -v "No such file or directory"')
         exec_cmd_no_error(
             node, cmd, sudo=True, message='VPP failed to start!', retries=120)
+        # TODO: Is there a safe way to wait until VPP sees all the PCI devices?
 
     @staticmethod
     def verify_vpp(node):
