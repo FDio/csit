@@ -252,6 +252,30 @@
       "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e85e513_60fbb7db",
+        "filename": "resources/tools/papi/vpp_papi_provider.py",
+        "patchSetId": 66
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-29T15:52:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "af9e3445_d8ab1a6a",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "72208ec0888f2752a32884729d1db3cd1609756f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
