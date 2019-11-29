@@ -75,7 +75,6 @@ from scapy.packet import Raw
 
 # Enable libpcap's L2listen
 conf.use_pcap = True
-import scapy.arch.pcapdnet  # pylint: disable=C0413, unused-import
 
 __all__ = [
     u"RxQueue", u"TxQueue", u"Interface", u"create_gratuitous_arp_request",

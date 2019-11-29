@@ -20,6 +20,8 @@ from collections import OrderedDict, Counter
 from io import open
 from string import Template
 
+from robot.libraries.BuiltIn import BuiltIn
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
@@ -442,8 +444,6 @@ class ContainerEngine:
         )
         self.execute(u"supervisorctl start vpp")
 
-        # pylint: disable=import-outside-toplevel
-        from robot.libraries.BuiltIn import BuiltIn
         topo_instance = BuiltIn().get_library_instance(
             u"resources.libraries.python.topology.Topology"
         )

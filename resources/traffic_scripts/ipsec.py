@@ -19,9 +19,10 @@ import sys
 import logging
 
 from ipaddress import ip_address
-# pylint: disable=no-name-in-module
-# pylint: disable=import-error
+# TODO: Is this even needed?
+# Pylint complains and some other traffic scripts do not use this.
 logging.getLogger(u"scapy.runtime").setLevel(logging.ERROR)
+
 from scapy.layers.inet import IP
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NS
 from scapy.layers.ipsec import SecurityAssociation, ESP
@@ -122,8 +123,7 @@ def check_ip(pkt_recv, ip_layer, src_ip, dst_ip):
         )
 
 
-# pylint: disable=too-many-locals
-# pylint: disable=too-many-statements
+# TODO: Pylint says too-many-locals and too-many-statements. Refactor!
 def main():
     """Send and receive IPsec packet."""
 

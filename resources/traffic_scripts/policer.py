@@ -19,8 +19,8 @@ import sys
 import logging
 
 from ipaddress import ip_address
-# pylint: disable=no-name-in-module
-# pylint: disable=import-error
+# TODO: Is this even needed?
+# Pylint complains and some other traffic scripts do not use this.
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
 from scapy.layers.l2 import Ether
@@ -72,8 +72,7 @@ def check_ipv6(pkt_recv, dscp):
         raise RuntimeError(f"Not a TCP packet received: {pkt_recv!r}")
 
 
-# pylint: disable=too-many-locals
-# pylint: disable=too-many-statements
+# TODO: Pylint says too-many-locals and too-many-statements. Refactor!
 def main():
     """Send and receive TCP packet."""
     args = TrafficScriptArg(

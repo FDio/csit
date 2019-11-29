@@ -41,15 +41,19 @@ def load_topo_from_yaml():
         return safe_load(work_file.read())[u"nodes"]
 
 
-# pylint: disable=invalid-name
 
 class NodeType:
     """Defines node types used in topology dictionaries."""
+    # TODO: Two letter initialisms are well-known, but too short for pylint.
+    # Can we use (at least) three letter ones?
+
     # Device Under Test (this node has VPP running on it)
     DUT = u"DUT"
     # Traffic Generator (this node has traffic generator on it)
+    # pylint: disable=invalid-name
     TG = u"TG"
     # Virtual Machine (this node running on DUT node)
+    # pylint: disable=invalid-name
     VM = u"VM"
 
 
