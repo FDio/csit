@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "360d33ef_c676e493",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-29T08:01:35Z",
+      "side": 1,
+      "message": "This does not make sense to me, describe closer.\nFirst you wanted to delete SOCAT tests (so tests were passing), then you are saying that vppctl should be deleted (so tests are passing). So clearly to me you have no idea where the race condition is. As it might be that race condition could be PAPI itself.\nWhat are the sequences tried so far? Does the reversed order of SOCAT/VPPCTL check helps? It the issue reproducible manually without CSIT?",
+      "range": {
+        "startLine": 13,
+        "startChar": 28,
+        "endLine": 15,
+        "endChar": 58
+      },
+      "revId": "19f3fb6f9feab60ebe30c45c093541a97586eaad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "79905dc9_cbcf0a20",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
