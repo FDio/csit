@@ -17,7 +17,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_10000
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
-| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI | TEST
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -67,7 +67,7 @@
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
-| ${n_tunnels}= | ${10000}
+| ${n_tunnels}= | ${11}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
@@ -103,6 +103,8 @@
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
 | | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | VPP Ipsec Backend Dump | ${dut1}
+| | VPP Ipsec Backend Dump | ${dut2}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
