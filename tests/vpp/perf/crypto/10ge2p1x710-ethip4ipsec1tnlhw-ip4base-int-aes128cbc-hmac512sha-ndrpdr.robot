@@ -17,7 +17,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECINT | NIC_Intel-X710 | BASE
-| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI | TEST
 |
 | Suite Setup | Setup suite single link | performance | ipsechw
 | Suite Teardown | Tear down suite | performance
@@ -103,6 +103,8 @@
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
 | | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | VPP Get IP Tables | ${dut1}
+| | VPP Get IP Tables | ${dut2}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
