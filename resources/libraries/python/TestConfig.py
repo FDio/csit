@@ -13,6 +13,8 @@
 
 """Special test configurations library."""
 
+from time import sleep
+
 from ipaddress import ip_address, AddressValueError
 from robot.api import logger
 
@@ -20,6 +22,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
 from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.L2Util import L2VtrOp
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
@@ -66,31 +69,33 @@ class TestConfig:
         :type ip_step: int
         :type bd_id_start: int
         """
-        # configure IPs, create VXLAN interfaces and VLAN sub-interfaces
+        # configure IPs, ARPs and routes, create VXLAN interfaces and
+        # VLAN sub-interfaces
         vxlan_count = TestConfig.vpp_create_vxlan_and_vlan_interfaces(
             node, node_vxlan_if, node_vlan_if, n_tunnels, vni_start,
-            src_ip_start, dst_ip_start, ip_step
+            src_ip_start, dst_ip_start, ip_step, op_node, op_node_if
+        )
+
+        print(u"Sleeping for 1s")
+        sleep(1)
+        # configure bridge domains
+        TestConfig.vpp_put_vxlan_and_vlan_interfaces_to_bridge_domain(
+            node, vxlan_count, bd_id_start, node_vlan_if
         )
 
         # update topology with VXLAN interfaces and VLAN sub-interfaces data
         # and put interfaces up
         TestConfig.vpp_put_vxlan_and_vlan_interfaces_up(
-            node, vxlan_count, node_vlan_if
-        )
-
-        # configure bridge domains, ARPs and routes
-        TestConfig.vpp_put_vxlan_and_vlan_interfaces_to_bridge_domain(
-            node, node_vxlan_if, vxlan_count, op_node, op_node_if, dst_ip_start,
-            ip_step, bd_id_start
+            node, vxlan_count
         )
 
     @staticmethod
     def vpp_create_vxlan_and_vlan_interfaces(
             node, node_vxlan_if, node_vlan_if, vxlan_count, vni_start,
-            src_ip_start, dst_ip_start, ip_step):
+            src_ip_start, dst_ip_start, ip_step, op_node, op_node_if):
         """
-        Configure IPs, create VXLAN interfaces and VLAN sub-interfaces on VPP
-        node.
+        Configure IPs, ARPs and routes for VXLAN interfaces, create VXLAN
+        interfaces and VLAN sub-interfaces on VPP node.
 
         :param node: VPP node.
         :param node_vxlan_if: VPP node interface key to create VXLAN tunnel
@@ -102,6 +107,9 @@ class TestConfig:
         :param src_ip_start: VXLAN tunnel source IP address start.
         :param dst_ip_start: VXLAN tunnel destination IP address start.
         :param ip_step: IP address incremental step.
+        :param op_node: Opposite VPP node for VXLAN tunnel interfaces.
+        :param op_node_if: Opposite VPP node interface key for VXLAN tunnel
+            interfaces.
         :type node: dict
         :type node_vxlan_if: str
         :type node_vlan_if: str
@@ -110,6 +118,8 @@ class TestConfig:
         :type src_ip_start: str
         :type dst_ip_start: str
         :type ip_step: int
+        :type op_node: dict
+        :type op_node_if:
         :returns: Number of created VXLAN interfaces.
         :rtype: int
         """
@@ -117,6 +127,7 @@ class TestConfig:
         dst_ip_start = ip_address(dst_ip_start)
 
         if vxlan_count > 10:
+            idx_vxlan_if = Topology.get_interface_sw_index(node, node_vxlan_if)
             commands = list()
             for i in range(0, vxlan_count):
                 try:
@@ -143,6 +154,17 @@ class TestConfig:
                     f"{Topology.get_interface_sw_index(node, node_vlan_if)} "
                     f"vlan {i + 1}\n"
                 )
+                commands.append(
+                    f"ip_neighbor_add_del sw_if_index {idx_vxlan_if} "
+                    f"dst {dst_ip} "
+                    f"mac {Topology.get_interface_mac(op_node, op_node_if)}\n"
+                )
+                commands.append(
+                    f"ip_route_add_del "
+                    f"{dst_ip}/{128 if dst_ip.version == 6 else 32} count 1 "
+                    f"via {dst_ip} sw_if_index {idx_vxlan_if}\n"
+                )
+
             VatExecutor().write_and_execute_script(
                 node, u"/tmp/create_vxlan_interfaces.config", commands
             )
@@ -155,8 +177,33 @@ class TestConfig:
             del_all=False,
             prefix=None
         )
-        cmd2 = u"vxlan_add_del_tunnel"
+        cmd2 = u"ip_neighbor_add_del"
+        neighbor = dict(
+            sw_if_index=Topology.get_interface_sw_index(node, node_vxlan_if),
+            flags=0,
+            mac_address=Topology.get_interface_mac(op_node, op_node_if),
+            ip_address=u""
+        )
         args2 = dict(
+            is_add=1,
+            neighbor=neighbor
+        )
+        cmd3 = u"ip_route_add_del"
+        kwargs = dict(
+            interface=node_vxlan_if,
+            gateway=str(dst_ip_start)
+        )
+        route = IPUtil.compose_vpp_route_structure(
+            node, str(dst_ip_start),
+            128 if dst_ip_start.version == 6 else 32, **kwargs
+        )
+        args3 = dict(
+            is_add=1,
+            is_multipath=0,
+            route=route
+        )
+        cmd4 = u"vxlan_add_del_tunnel"
+        args4 = dict(
             is_add=1,
             is_ipv6=0,
             instance=Constants.BITWISE_NON_ZERO,
@@ -167,8 +214,8 @@ class TestConfig:
             decap_next_index=Constants.BITWISE_NON_ZERO,
             vni=None
         )
-        cmd3 = u"create_vlan_subif"
-        args3 = dict(
+        cmd5 = u"create_vlan_subif"
+        args5 = dict(
             sw_if_index=InterfaceUtil.get_interface_index(
                 node, node_vlan_if),
             vlan_id=None
@@ -189,70 +236,52 @@ class TestConfig:
                 args1[u"prefix"] = IPUtil.create_prefix_object(
                     src_ip, 128 if src_ip_start.version == 6 else 32
                 )
-                args2[u"src_address"] = getattr(src_ip, u"packed")
-                args2[u"dst_address"] = getattr(dst_ip, u"packed")
-                args2[u"vni"] = int(vni_start) + i
-                args3[u"vlan_id"] = i + 1
+                args2[u"neighbor"][u"ip_address"] = \
+                    str(dst_ip_start + i * ip_step)
+                args3[u"route"][u"prefix"][u"address"][u"un"] = \
+                    IPUtil.union_addr(dst_ip_start + i * ip_step)
+                args3[u"route"][u"paths"][0][u"nh"][u"address"] = \
+                    IPUtil.union_addr(dst_ip_start + i * ip_step)
+                args4[u"src_address"] = getattr(src_ip, u"packed")
+                args4[u"dst_address"] = getattr(dst_ip, u"packed")
+                args4[u"vni"] = int(vni_start) + i
+                args5[u"vlan_id"] = i + 1
                 history = bool(not 1 < i < vxlan_count - 1)
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2).\
-                    add(cmd3, history=history, **args3)
+                    add(cmd3, history=history, **args3). \
+                    add(cmd4, history=history, **args4). \
+                    add(cmd5, history=history, **args5)
             papi_exec.get_replies()
 
         return vxlan_count
 
     @staticmethod
-    def vpp_put_vxlan_and_vlan_interfaces_up(node, vxlan_count, node_vlan_if):
+    def vpp_put_vxlan_and_vlan_interfaces_up(node, vxlan_count):
         """
-        Update topology with VXLAN interfaces and VLAN sub-interfaces data
-        and put interfaces up.
+        Put interfaces up.
 
         :param node: VPP node.
         :param vxlan_count: Number of tunnel interfaces.
-        :param node_vlan_if: VPP node interface key where VLAN sub-interfaces
-            have been created.
         :type node: dict
         :type vxlan_count: int
-        :type node_vlan_if: str
         """
         if vxlan_count > 10:
             commands = list()
             for i in range(0, vxlan_count):
-                vxlan_subif_key = Topology.add_new_port(node, u"vxlan_tunnel")
-                vxlan_subif_name = f"vxlan_tunnel{i}"
-                founds = dict(vxlan=False, vlan=False)
-                vxlan_subif_idx = None
-                vlan_subif_key = Topology.add_new_port(node, u"vlan_subif")
-                vlan_subif_name = \
-                    f"{Topology.get_interface_name(node, node_vlan_if)}.{i + 1}"
-                vlan_idx = None
-                for data in InterfaceUtil.vpp_get_interface_data(node):
-                    if_name = data[u"interface_name"]
-                    if not founds[u"vxlan"] and if_name == vxlan_subif_name:
-                        vxlan_subif_idx = data[u"sw_if_index"]
-                        founds[u"vxlan"] = True
-                    elif not founds[u"vlan"] and if_name == vlan_subif_name:
-                        vlan_idx = data[u"sw_if_index"]
-                        founds[u"vlan"] = True
-                    if founds[u"vxlan"] and founds[u"vlan"]:
-                        break
-                Topology.update_interface_sw_if_index(
-                    node, vxlan_subif_key, vxlan_subif_idx)
-                Topology.update_interface_name(
-                    node, vxlan_subif_key, vxlan_subif_name)
+                vxlan_subif_idx = Topology.get_interface_sw_index(
+                    node, f"vxlan_tunnel{i + 1}"
+                )
                 commands.append(
                     f"sw_interface_set_flags sw_if_index {vxlan_subif_idx} "
                     f"admin-up link-up\n"
                 )
-                Topology.update_interface_sw_if_index(
-                    node, vlan_subif_key, vlan_idx
-                )
-                Topology.update_interface_name(
-                    node, vlan_subif_key, vlan_subif_name
+                vlan_subif_idx = Topology.get_interface_sw_index(
+                    node, f"vlan_subif{i + 1}"
                 )
                 commands.append(
-                    f"sw_interface_set_flags sw_if_index {vlan_idx} admin-up "
-                    f"link-up\n"
+                    f"sw_interface_set_flags sw_if_index {vlan_subif_idx} "
+                    f"admin-up link-up\n"
                 )
             VatExecutor().write_and_execute_script(
                 node, u"/tmp/put_subinterfaces_up.config", commands
@@ -271,39 +300,12 @@ class TestConfig:
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in range(0, vxlan_count):
-                vxlan_subif_key = Topology.add_new_port(node, u"vxlan_tunnel")
-                vxlan_subif_name = f"vxlan_tunnel{i}"
-                founds = dict(vxlan=False, vlan=False)
-                vxlan_subif_idx = None
-                vlan_subif_key = Topology.add_new_port(node, u"vlan_subif")
-                vlan_subif_name = \
-                    f"{Topology.get_interface_name(node, node_vlan_if)}.{i+1}"
-                vlan_idx = None
-                for data in InterfaceUtil.vpp_get_interface_data(node):
-                    if not founds[u"vxlan"] \
-                            and data[u"interface_name"] == vxlan_subif_name:
-                        vxlan_subif_idx = data[u"sw_if_index"]
-                        founds[u"vxlan"] = True
-                    elif not founds[u"vlan"] \
-                            and data[u"interface_name"] == vlan_subif_name:
-                        vlan_idx = data[u"sw_if_index"]
-                        founds[u"vlan"] = True
-                    if founds[u"vxlan"] and founds[u"vlan"]:
-                        break
-                Topology.update_interface_sw_if_index(
-                    node, vxlan_subif_key, vxlan_subif_idx
+                args1[u"sw_if_index"] = Topology.get_interface_sw_index(
+                    node, f"vxlan_tunnel{i+1}"
                 )
-                Topology.update_interface_name(
-                    node, vxlan_subif_key, vxlan_subif_name
+                args2[u"sw_if_index"] = Topology.get_interface_sw_index(
+                    node, f"vlan_subif{i+1}"
                 )
-                args1[u"sw_if_index"] = vxlan_subif_idx
-                Topology.update_interface_sw_if_index(
-                    node, vlan_subif_key, vlan_idx
-                )
-                Topology.update_interface_name(
-                    node, vlan_subif_key, vlan_subif_name
-                )
-                args2[u"sw_if_index"] = vlan_idx
                 history = bool(not 1 < i < vxlan_count - 1)
                 papi_exec.add(cmd, history=history, **args1). \
                     add(cmd, history=history, **args2)
@@ -312,60 +314,59 @@ class TestConfig:
 
     @staticmethod
     def vpp_put_vxlan_and_vlan_interfaces_to_bridge_domain(
-            node, node_vxlan_if, vxlan_count, op_node, op_node_if, dst_ip_start,
-            ip_step, bd_id_start):
+            node, vxlan_count, bd_id_start, node_vlan_if):
         """
-        Configure ARPs and routes for VXLAN interfaces and put each pair of
-        VXLAN tunnel interface and VLAN sub-interface to separate bridge-domain.
+        Update topology with VXLAN interfaces and VLAN sub-interfaces data
+        and put each pair of VXLAN tunnel interface and VLAN sub-interface to
+        separate bridge-domain.
 
         :param node: VPP node.
-        :param node_vxlan_if: VPP node interface key where VXLAN tunnel
-            interfaces have been created.
         :param vxlan_count: Number of tunnel interfaces.
-        :param op_node: Opposite VPP node for VXLAN tunnel interfaces.
-        :param op_node_if: Opposite VPP node interface key for VXLAN tunnel
-            interfaces.
-        :param dst_ip_start: VXLAN tunnel destination IP address start.
-        :param ip_step: IP address incremental step.
         :param bd_id_start: Bridge-domain ID start.
+        :param node_vlan_if: VPP node interface key where VLAN sub-interfaces
+            have been created.
         :type node: dict
-        :type node_vxlan_if: str
         :type vxlan_count: int
-        :type op_node: dict
-        :type op_node_if:
-        :type dst_ip_start: str
-        :type ip_step: int
         :type bd_id_start: int
+        :type node_vlan_if: str
         """
-        dst_ip_start = ip_address(dst_ip_start)
-
         if vxlan_count > 1:
-            sw_idx_vxlan = Topology.get_interface_sw_index(node, node_vxlan_if)
             commands = list()
             for i in range(0, vxlan_count):
-                dst_ip = dst_ip_start + i * ip_step
+                vxlan_subif_key = Topology.add_new_port(node, u"vxlan_tunnel")
+                vxlan_subif_name = f"vxlan_tunnel{i}"
+                founds = dict(vxlan=False, vlan=False)
+                vxlan_subif_idx = None
+                vlan_subif_key = Topology.add_new_port(node, u"vlan_subif")
+                vlan_subif_name = \
+                    f"{Topology.get_interface_name(node, node_vlan_if)}.{i + 1}"
+                vlan_subif_idx = None
+                for data in InterfaceUtil.vpp_get_interface_data(node):
+                    if_name = data[u"interface_name"]
+                    if not founds[u"vxlan"] and if_name == vxlan_subif_name:
+                        vxlan_subif_idx = data[u"sw_if_index"]
+                        founds[u"vxlan"] = True
+                    elif not founds[u"vlan"] and if_name == vlan_subif_name:
+                        vlan_subif_idx = data[u"sw_if_index"]
+                        founds[u"vlan"] = True
+                    if founds[u"vxlan"] and founds[u"vlan"]:
+                        break
+                Topology.update_interface_sw_if_index(
+                    node, vxlan_subif_key, vxlan_subif_idx)
+                Topology.update_interface_name(
+                    node, vxlan_subif_key, vxlan_subif_name)
                 commands.append(
-                    f"ip_neighbor_add_del sw_if_index {sw_idx_vxlan} "
-                    f"dst {dst_ip} "
-                    f"mac {Topology.get_interface_mac(op_node, op_node_if)}\n"
-                )
-                commands.append(
-                    f"ip_route_add_del "
-                    f"{dst_ip}/{128 if dst_ip.version == 6 else 32} count 1 "
-                    f"via {dst_ip} sw_if_index {sw_idx_vxlan}\n"
-                )
-                sw_idx_vxlan = Topology.get_interface_sw_index(
-                    node, f"vxlan_tunnel{i + 1}"
-                )
-                commands.append(
-                    f"sw_interface_set_l2_bridge sw_if_index {sw_idx_vxlan} "
+                    f"sw_interface_set_l2_bridge sw_if_index {vxlan_subif_idx} "
                     f"bd_id {bd_id_start + i} shg 0 enable\n"
                 )
-                sw_idx_vlan = Topology.get_interface_sw_index(
-                    node, f"vlan_subif{i + 1}"
+                Topology.update_interface_sw_if_index(
+                    node, vlan_subif_key, vlan_subif_idx
+                )
+                Topology.update_interface_name(
+                    node, vlan_subif_key, vlan_subif_name
                 )
                 commands.append(
-                    f"sw_interface_set_l2_bridge sw_if_index {sw_idx_vlan} "
+                    f"sw_interface_set_l2_bridge sw_if_index {vlan_subif_idx} "
                     f"bd_id {bd_id_start + i} shg 0 enable\n"
                 )
             VatExecutor().write_and_execute_script(
@@ -374,40 +375,23 @@ class TestConfig:
             )
             return
 
-        cmd1 = u"ip_neighbor_add_del"
-        neighbor = dict(
-            sw_if_index=Topology.get_interface_sw_index(node, node_vxlan_if),
-            flags=0,
-            mac_address=Topology.get_interface_mac(op_node, op_node_if),
-            ip_address=u""
+        cmd0 = u"l2_interface_vlan_tag_rewrite"
+        args0 = dict(
+            sw_if_index=None,
+            vtr_op = getattr(L2VtrOp, u"L2_VTR_POP_1").value,
+            push_dot1q=int(True),
+            tag1=0,
+            tag2=0
         )
+        cmd1 = u"sw_interface_set_l2_bridge"
         args1 = dict(
-            is_add=1,
-            neighbor=neighbor
-        )
-        cmd2 = u"ip_route_add_del"
-        kwargs = dict(
-            interface=node_vxlan_if,
-            gateway=str(dst_ip_start)
-        )
-        route = IPUtil.compose_vpp_route_structure(
-            node, str(dst_ip_start),
-            128 if dst_ip_start.version == 6 else 32, **kwargs
-        )
-        args2 = dict(
-            is_add=1,
-            is_multipath=0,
-            route=route
-        )
-        cmd3 = u"sw_interface_set_l2_bridge"
-        args3 = dict(
             rx_sw_if_index=None,
             bd_id=None,
             shg=0,
             port_type=0,
             enable=1
         )
-        args4 = dict(
+        args2 = dict(
             rx_sw_if_index=None,
             bd_id=None,
             shg=0,
@@ -417,23 +401,44 @@ class TestConfig:
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in range(0, vxlan_count):
-                args1[u"neighbor"][u"ip_address"] = \
-                    str(dst_ip_start + i * ip_step)
-                args2[u"route"][u"prefix"][u"address"][u"un"] = \
-                    IPUtil.union_addr(dst_ip_start + i * ip_step)
-                args2[u"route"][u"paths"][0][u"nh"][u"address"] = \
-                    IPUtil.union_addr(dst_ip_start + i * ip_step)
-                args3[u"rx_sw_if_index"] = Topology.get_interface_sw_index(
-                    node, f"vxlan_tunnel{i+1}"
+                vxlan_subif_key = Topology.add_new_port(node, u"vxlan_tunnel")
+                vxlan_subif_name = f"vxlan_tunnel{i}"
+                founds = dict(vxlan=False, vlan=False)
+                vxlan_subif_idx = None
+                vlan_subif_key = Topology.add_new_port(node, u"vlan_subif")
+                vlan_subif_name = \
+                    f"{Topology.get_interface_name(node, node_vlan_if)}.{i + 1}"
+                vlan_subif_idx = None
+                for data in InterfaceUtil.vpp_get_interface_data(node):
+                    if not founds[u"vxlan"] \
+                            and data[u"interface_name"] == vxlan_subif_name:
+                        vxlan_subif_idx = data[u"sw_if_index"]
+                        founds[u"vxlan"] = True
+                    elif not founds[u"vlan"] \
+                            and data[u"interface_name"] == vlan_subif_name:
+                        vlan_subif_idx = data[u"sw_if_index"]
+                        founds[u"vlan"] = True
+                    if founds[u"vxlan"] and founds[u"vlan"]:
+                        break
+                Topology.update_interface_sw_if_index(
+                    node, vxlan_subif_key, vxlan_subif_idx
                 )
-                args3[u"bd_id"] = int(bd_id_start+i)
-                args4[u"rx_sw_if_index"] = Topology.get_interface_sw_index(
-                    node, f"vlan_subif{i+1}"
+                Topology.update_interface_name(
+                    node, vxlan_subif_key, vxlan_subif_name
                 )
-                args4[u"bd_id"] = int(bd_id_start+i)
+                Topology.update_interface_sw_if_index(
+                    node, vlan_subif_key, vlan_subif_idx
+                )
+                Topology.update_interface_name(
+                    node, vlan_subif_key, vlan_subif_name
+                )
+                args0[u"sw_if_index"] = vlan_subif_idx
+                args1[u"rx_sw_if_index"] = vxlan_subif_idx
+                args1[u"bd_id"] = int(bd_id_start + i)
+                args2[u"rx_sw_if_index"] = vlan_subif_idx
+                args2[u"bd_id"] = int(bd_id_start+i)
                 history = bool(not 1 < i < vxlan_count - 1)
-                papi_exec.add(cmd1, history=history, **args1). \
-                    add(cmd2, history=history, **args2). \
-                    add(cmd3, history=history, **args3). \
-                    add(cmd3, history=history, **args4)
+                papi_exec.add(cmd0, history=history, **args0). \
+                    add(cmd1, history=history, **args1). \
+                    add(cmd1, history=history, **args2)
             papi_exec.get_replies()
