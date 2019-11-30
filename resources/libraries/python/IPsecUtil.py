@@ -844,7 +844,8 @@ class IPsecUtil:
                         f"local_crypto_key {ckey} remote_crypto_key {ckey} "
                         f"{integ} "
                         f"local_ip {if1_ip + i * addr_incr} "
-                        f"remote_ip {if2_ip}\n"
+                        f"remote_ip {if2_ip} "
+                        f"instance {i}\n"
                     )
                     tmp_f2.write(
                         f"ipsec_tunnel_if_add_del "
@@ -853,7 +854,8 @@ class IPsecUtil:
                         f"local_crypto_key {ckey} remote_crypto_key {ckey} "
                         f"{integ} "
                         f"local_ip {if2_ip} "
-                        f"remote_ip {if1_ip + i * addr_incr}\n"
+                        f"remote_ip {if1_ip + i * addr_incr} "
+                        f"instance {i}\n"
                     )
             vat.execute_script(
                 tmp_fn1, nodes[u"DUT1"], timeout=1800, json_out=False,
@@ -875,16 +877,16 @@ class IPsecUtil:
                 )
                 for i in range(n_tunnels):
                     tmp_f1.write(
-                        f"exec set interface unnumbered ipsec{i} use {if1_n}\n"
-                        f"exec set interface state ipsec{i} up\n"
+                        f"exec set interface unnumbered ipip{i} use {if1_n}\n"
+                        f"exec set interface state ipip{i} up\n"
                         f"exec ip route add {raddr_ip2 + i}/{mask2} "
-                        f"via ipsec{i}\n"
+                        f"via ipip{i}\n"
                     )
                     tmp_f2.write(
-                        f"exec set interface unnumbered ipsec{i} use {if2_n}\n"
-                        f"exec set interface state ipsec{i} up\n"
+                        f"exec set interface unnumbered ipip{i} use {if2_n}\n"
+                        f"exec set interface state ipip{i} up\n"
                         f"exec ip route add {raddr_ip1 + i}/{mask2} "
-                        f"via ipsec{i}\n"
+                        f"via ipip{i}\n"
                     )
             vat.execute_script(
                 tmp_fn1, nodes[u"DUT1"], timeout=1800, json_out=False,
