@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cea46896_b74c8460",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-30T17:01:22Z",
+      "side": 0,
+      "message": "put back! how many times should i write it?",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 79
+      },
+      "revId": "497f606967363d88b4b36b74859ad360eba9eccd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

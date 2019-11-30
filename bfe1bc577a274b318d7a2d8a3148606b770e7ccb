@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a39c3626_05ca2fb5",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-30T17:01:22Z",
+      "side": 1,
+      "message": "no TODO questions please, question please on @csit-dev lists",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 79
+      },
+      "revId": "bfe1bc577a274b318d7a2d8a3148606b770e7ccb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
