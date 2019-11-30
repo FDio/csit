@@ -540,6 +540,7 @@ class PapiSocketExecutor:
                     logger.trace(u"Reconnected.")
                     reply = papi_fn(**command[u"api_args"])
             except (AttributeError, IOError, struct.error) as err:
+                logger.debug(f"Failure:\n{err!r}")
                 raise AssertionError(err_msg) from err
             # *_dump commands return list of objects, convert, ordinary reply.
             if not isinstance(reply, list):
