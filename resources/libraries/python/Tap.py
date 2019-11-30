@@ -13,7 +13,8 @@
 
 """Tap utilities library."""
 
-from ipaddress import ip_address
+from enum import IntEnum
+
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
@@ -23,37 +24,46 @@ from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 
 
+class TapFlags(IntEnum):
+    """TAP interface flags."""
+
+    TAP_FLAG_GSO = 1
+
+
 class Tap:
     """Tap utilities."""
 
     @staticmethod
-    def add_tap_interface(node, tap_name, mac=None):
+    def add_tap_interface(node, tap_name, mac=None, num_rx_queues=1):
         """Add tap interface with name and optionally with MAC.
 
         :param node: Node to add tap on.
         :param tap_name: Tap interface name for linux tap.
         :param mac: Optional MAC address for VPP tap.
+        :param num_rx_queues: Number of RX queues.
         :type node: dict
         :type tap_name: str
         :type mac: str
+        :type num_rx_queues: int
         :returns: Returns a interface index.
         :rtype: int
         """
         cmd = u"tap_create_v2"
         args = dict(
             id=Constants.BITWISE_NON_ZERO,
-            use_random_mac=0 if mac else 1,
-            mac_address=L2Util.mac_to_bin(mac) if mac else 6 * b"\0",
-            host_namespace=64 * b"\0",
-            host_mac_addr=6 * b"\0",
-            host_if_name_set=1,
-            host_if_name=tap_name.encode(encoding=u"utf-8") +
-            (64 - len(tap_name)) * b"\0",
-            host_bridge=64 * b"\0",
-            host_ip4_addr=4 * b"\0",
-            host_ip6_addr=16 * b"\0",
-            host_ip4_gw=4 * b"\0",
-            host_ip6_gw=16 * b"\0"
+            use_random_mac=bool(mac is None),
+            mac_address=L2Util.mac_to_bin(mac) if mac else None,
+            num_rx_queues=int(num_rx_queues),
+            host_mtu_set=False,
+            host_mac_addr_set=False,
+            host_ip4_prefix_set=False,
+            host_ip6_prefix_set=False,
+            host_ip4_gw_set=False,
+            host_ip6_gw_set=False,
+            host_namespace_set=False,
+            host_if_name_set=True,
+            host_if_name=tap_name,
+            host_bridge_set=False
         )
         err_msg = f"Failed to create tap interface {tap_name} " \
             f"on host {node[u'host']}"
@@ -119,11 +129,18 @@ class Tap:
             :returns: Processed tap interface dump.
             :rtype: dict
             """
-            tap_dump[u"host_mac_addr"] = L2Util.bin_to_mac(
-                tap_dump[u"host_mac_addr"]
-            )
-            tap_dump[u"host_ip4_addr"] = ip_address(tap_dump[u"host_ip4_addr"])
-            tap_dump[u"host_ip6_addr"] = ip_address(tap_dump[u"host_ip6_addr"])
+            tap_dump[u"host_mac_addr"] = str(tap_dump[u"host_mac_addr"])
+            tap_dump[u"host_ip4_prefix"] = str(tap_dump[u"host_ip4_prefix"])
+            tap_dump[u"host_ip6_prefix"] = str(tap_dump[u"host_ip6_prefix"])
+            tap_dump[u"tap_flags"] = tap_dump[u"tap_flags"].value \
+                if hasattr(tap_dump[u"tap_flags"], u"value") \
+                else int(tap_dump[u"tap_flags"])
+            tap_dump[u"host_namespace"] = None \
+                if tap_dump[u"host_namespace"] == u"(nil)" \
+                else tap_dump[u"host_namespace"]
+            tap_dump[u"host_bridge"] = None \
+                if tap_dump[u"host_bridge"] == u"(nil)" \
+                else tap_dump[u"host_bridge"]
 
             return tap_dump
 
