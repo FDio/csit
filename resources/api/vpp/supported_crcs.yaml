@@ -338,15 +338,15 @@
     hw_interface_set_mtu_reply: '0xe8d4e804'  # dev
     input_acl_set_interface: '0xde7ad708'  # dev
     input_acl_set_interface_reply: '0xe8d4e804'  # dev
-    ip_address_details: '0x7002eee7'  # dev
-    ip_address_dump: '0x6b7bcd0a'  # dev
-    ip_neighbor_add_del: '0x029dad44'  # dev
+    ip_address_details: '0xb1199745'  # dev
+    ip_address_dump: '0x2d033de4'  # dev
+    ip_neighbor_add_del: '0x105518b6'  # dev
     ip_neighbor_add_del_reply: '0x1992deab'  # dev
     # ip_probe_neighbor / reply # unused L1 keyword vpp_ip_probe
-    ip_route_add_del: '0x5ceee41c'  # dev
+    ip_route_add_del: '0xc1ff832d'  # dev
     ip_route_add_del_reply: '0x1992deab'  # dev
     # ip_source_check_interface_add_del / reply # unused L1 keyword vpp_ip_source_check_setup
-    ip_table_add_del: '0xe5d378f2'  # dev
+    ip_table_add_del: '0x0ffdaec0'  # dev
     ip_table_add_del_reply: '0xe8d4e804'  # dev
     ipsec_interface_add_del_spd: '0x1e3b8286'  # dev
     ipsec_interface_add_del_spd_reply: '0xe8d4e804'  # dev
@@ -468,7 +468,7 @@
     sw_interface_details: '0x17b69fa2'  # dev setup
     sw_interface_dump: '0xaa610c27'  # dev setup
     # sw_interface_get_table / reply # honeycomb
-    sw_interface_ip6nd_ra_config: '0xc3f02daa'  # dev
+    sw_interface_ip6nd_ra_config: '0x3eb00b1c'  # dev
     sw_interface_ip6nd_ra_config_reply: '0xe8d4e804'  # dev
     sw_interface_rx_placement_details: '0xf6d7d024'  # perf
     sw_interface_rx_placement_dump: '0xf9e6675e'  # perf
