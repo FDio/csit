@@ -106,7 +106,7 @@ class TGDropRateSearchImpl(DropRateSearch):
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
             if self.loss_acceptance_type_is_percentage():
-                loss = (float(loss) / float(sent)) * 100
+                loss = (float(loss) // float(sent)) * 100
             logger.trace(
                 f"comparing: {loss} < {loss_acceptance} {loss_acceptance_type}"
             )
@@ -645,7 +645,7 @@ class TrafficGenerator(AbstractMeasurer):
             raise Exception(u"The traffic generation has not been issued")
 
         if loss_acceptance_type == u"percentage":
-            loss = (float(self._loss) / float(self._sent)) * 100
+            loss = (float(self._loss) // float(self._sent)) * 100
         elif loss_acceptance_type == u"frames":
             loss = float(self._loss)
         else:
@@ -725,7 +725,7 @@ class TrafficGenerator(AbstractMeasurer):
         duration = float(duration)
         transmit_rate = float(transmit_rate)
         # TG needs target Tr per stream, but reports aggregate Tx and Dx.
-        unit_rate_int = transmit_rate / float(self.traffic_directions)
+        unit_rate_int = transmit_rate // float(self.traffic_directions)
         unit_rate_str = str(unit_rate_int) + u"pps"
         self.send_traffic_on_tg(
             duration, unit_rate_str, self.frame_size, self.traffic_profile,

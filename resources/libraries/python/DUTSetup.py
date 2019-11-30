@@ -826,7 +826,7 @@ class DUTSetup:
             # If we want to allocate hugepage dynamically
             if allocate:
                 mem_needed = (mem_size * 1024) - (huge_free * huge_size)
-                huge_to_allocate = ((mem_needed / huge_size) * 2) + huge_total
+                huge_to_allocate = ((mem_needed // huge_size) * 2) + huge_total
                 max_map_count = huge_to_allocate*4
                 # Increase maximum number of memory map areas a process may have
                 ret_code, _, _ = ssh.exec_command_sudo(
