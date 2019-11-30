@@ -117,12 +117,10 @@ class IPUtil:
         if not sw_if_index:
             return list()
 
-        is_ipv6 = 1 if ip_version == u"ipv6" else 0
-
         cmd = u"ip_address_dump"
         args = dict(
             sw_if_index=sw_if_index,
-            is_ipv6=is_ipv6
+            is_ipv6=bool(ip_version == u"ipv6")
         )
         err_msg = f"Failed to get L2FIB dump on host {node[u'host']}"
 
@@ -430,7 +428,7 @@ class IPUtil:
         )
         cmd = u"ip_neighbor_add_del"
         args = dict(
-            is_add=1,
+            is_add=True,
             neighbor=neighbor
         )
         err_msg = f"Failed to add IP neighbor on interface {iface_key}"
@@ -607,8 +605,8 @@ class IPUtil:
         net_addr = ip_address(network)
         cmd = u"ip_route_add_del"
         args = dict(
-            is_add=1,
-            is_multipath=int(kwargs.get(u"multipath", False)),
+            is_add=True,
+            is_multipath=kwargs.get(u"multipath", False),
             route=None
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
@@ -656,11 +654,11 @@ class IPUtil:
         cmd = u"ip_table_add_del"
         table = dict(
             table_id=int(table_id),
-            is_ip6=int(ipv6)
+            is_ip6=ipv6
         )
         args = dict(
             table=table,
-            is_add=1
+            is_add=True
         )
         err_msg = f"Failed to add FIB table on host {node[u'host']}"
 
