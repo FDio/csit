@@ -30,8 +30,8 @@
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 # https://logs.fd.io/production/vex-yul-rot-jenkins-1
-# /vpp-merge-master-ubuntu1804/251/
-20.01-rc0~828:
+# /vpp-merge-master-ubuntu1804/xxx/
+20.01-rc0~yyy:
     acl_add_replace: '0x13bc8539'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
     acl_details: '0xf89d7a88'  # perf teardown
@@ -73,8 +73,8 @@
     create_subif_reply: '0x5383d31f'  # perf
     # ^^ tc01-64B-1c-dot1ad-l2xcbase-mrr
     # ^ 3n: dot1adANDl2xcfwd
-    create_vhost_user_if: '0xa3438cd4'  # dev
-    create_vhost_user_if_reply: '0xfda5941f'  # dev
+    create_vhost_user_if: '0x591ee951'  # dev
+    create_vhost_user_if_reply: '0x5383d31f'  # dev
     create_vlan_subif: '0xaf34ac8b'  # dev
     create_vlan_subif_reply: '0x5383d31f'  # dev
     # dhcp_proxy_dump / details # honeycomb
@@ -257,8 +257,8 @@
     # sw_interface_span_dump / details # honeycomb
     sw_interface_tap_v2_dump: '0xf9e6675e'  # dev
     sw_interface_tap_v2_details: '0xe53c16de'  # dev
-    sw_interface_vhost_user_details: '0x91ff3307'  # dev
-    sw_interface_vhost_user_dump: '0x51077d14'  # dev
+    sw_interface_vhost_user_details: '0x98530df1'  # dev
+    sw_interface_vhost_user_dump: '0xf9e6675e'  # dev
     tap_create_v2: '0x445835fd'  # dev
     tap_create_v2_reply: '0x5383d31f'  # dev
     vxlan_add_del_tunnel: '0x00f4bdd0'  # dev
