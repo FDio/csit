@@ -16,7 +16,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | SRv6 | IP6FWD | FEATURE | SRv6_PROXY
-| ... | SRv6_PROXY_MASQ | MEMIF | LXC | DRV_VFIO_PCI
+| ... | SRv6_PROXY_MASQ | MEMIF | DOCKER | DRV_VFIO_PCI
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -30,7 +30,7 @@
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6-SRH-IPv6 on DUT1-DUT2, DUTn-LXC\
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv6-SRH-IPv6 on DUT1-DUT2, DUTn-CNT\
 | ... | and DUTn->TG, Eth-IPv6 on TG->DUTn for IPv6 routing over SRv6.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6\
 | ... | routing and static route, SR policy and steering policy for one\
@@ -88,7 +88,7 @@
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip6-ip6src253
 # Container
-| ${container_engine}= | LXC
+| ${container_engine}= | Docker
 | ${container_chain_topology}= | chain
 
 *** Keywords ***
