@@ -24,29 +24,6 @@ class VhostUser:
     """Vhost-user interfaces L1 library."""
 
     @staticmethod
-    def _sw_interface_vhost_user_dump(node):
-        """Get the Vhost-user dump on the given node.
-
-        :param node: Given node to get Vhost dump from.
-        :type node: dict
-        :returns: List of Vhost-user interfaces data extracted from Papi
-            response.
-        :rtype: list
-        """
-        cmd = u"sw_interface_vhost_user_dump"
-
-        with PapiSocketExecutor(node) as papi_exec:
-            details = papi_exec.add(cmd).get_details()
-
-        for vhost in details:
-            vhost[u"interface_name"] = vhost[u"interface_name"]
-            vhost[u"sock_filename"] = vhost[u"sock_filename"]
-
-        logger.debug(f"VhostUser details:\n{details}")
-
-        return details
-
-    @staticmethod
     def vpp_create_vhost_user_interface(node, socket):
         """Create Vhost-user interface on VPP node.
 
@@ -61,7 +38,7 @@ class VhostUser:
         err_msg = f"Failed to create Vhost-user interface " \
             f"on host {node[u'host']}"
         args = dict(
-            sock_filename=str(socket).encode(encoding=u"utf-8")
+            sock_filename=str(socket)
         )
 
         with PapiSocketExecutor(node) as papi_exec:
@@ -112,15 +89,6 @@ class VhostUser:
         return InterfaceUtil.vpp_get_interface_mac(node, sw_if_index)
 
     @staticmethod
-    def vpp_show_vhost(node):
-        """Get Vhost-user data for the given node.
-
-        :param node: VPP node to get interface data from.
-        :type node: dict
-        """
-        VhostUser._sw_interface_vhost_user_dump(node)
-
-    @staticmethod
     def show_vpp_vhost_on_all_duts(nodes):
         """Show Vhost-user on all DUTs.
 
@@ -129,7 +97,7 @@ class VhostUser:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                VhostUser.vpp_show_vhost(node)
+                VhostUser.vhost_user_dump(node)
 
     @staticmethod
     def vhost_user_dump(node):
