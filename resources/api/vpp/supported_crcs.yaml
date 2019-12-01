@@ -30,8 +30,8 @@
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 # https://logs.fd.io/production/vex-yul-rot-jenkins-1
-# /vpp-merge-master-ubuntu1804/254/
-20.01-rc0~831:
+# /vpp-merge-master-ubuntu1804/262/
+20.01-rc0~839:
     acl_add_replace: '0x13bc8539'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
     acl_details: '0xf89d7a88'  # perf teardown
@@ -194,7 +194,7 @@
     policer_classify_set_interface_reply: '0xe8d4e804'  # dev
     # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
     rdma_create: '0x541ffa8e'  # perf
-    rdma_create_reply: '0xfda5941f'  # perf
+    rdma_create_reply: '0x5383d31f'  # perf
     # show_lisp_map_register_state / reply # honeycomb
     # show_lisp_map_request_mode / reply # honeycomb
     # show_lisp_pitr / reply # honeycomb
@@ -269,8 +269,8 @@
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 
-# https://gerrit.fd.io/r/c/vpp/+/23829
-23829/1:
+# https://gerrit.fd.io/r/c/vpp/+/23830
+23830/1:
     acl_add_replace: '0x13bc8539'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
     acl_details: '0xf89d7a88'  # perf teardown
@@ -283,7 +283,7 @@
     #     tc01-64B-1c-ethip4udp-ip4base-iacl1sl-10kflows-mrr
     # ^^ ip4fwdANDiaclANDacl10AND100_flows
     avf_create: '0xdaab8ae2'  # dev
-    avf_create_reply: '0xfda5941f'  # dev
+    avf_create_reply: '0x5383d31f'  # dev
     bond_create: '0x48883c7e'  # perf
     bond_create_reply: '0x5383d31f'  # perf
     bond_enslave: '0x076ecfa7'  # perf
