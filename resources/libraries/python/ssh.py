@@ -302,10 +302,11 @@ class SSH:
         buf = u""
         while not buf.endswith((u":~# ", u":~$ ", u"~]$ ", u"~]# ")):
             try:
-                chunk = chan.recv(self.__MAX_RECV_BUF)
-                if not chunk:
+                s_out = chan.recv(self.__MAX_RECV_BUF)
+                if not s_out:
                     break
-                buf += chunk
+                buf += s_out.decode(encoding=u'utf-8', errors=u'ignore') \
+                    if isinstance(s_out, bytes) else s_out
                 if chan.exit_status_ready():
                     logger.error(u"Channel exit status ready")
                     break
@@ -335,10 +336,11 @@ class SSH:
         buf = u""
         while not buf.endswith(prompt):
             try:
-                chunk = chan.recv(self.__MAX_RECV_BUF)
-                if not chunk:
+                s_out = chan.recv(self.__MAX_RECV_BUF)
+                if not s_out:
                     break
-                buf += chunk
+                buf += s_out.decode(encoding=u'utf-8', errors=u'ignore') \
+                    if isinstance(s_out, bytes) else s_out
                 if chan.exit_status_ready():
                     logger.error(u"Channel exit status ready")
                     break
