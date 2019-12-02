@@ -25,8 +25,7 @@ this script votes -1 (by exiting with code 1), otherwise it votes +1 (exit 0).
 import json
 import sys
 
-from jumpavg.BitCountingMetadataFactory import BitCountingMetadataFactory
-from jumpavg.BitCountingClassifier import BitCountingClassifier
+from resources.libraries.python import jumpavg
 
 
 def hack(value_list):
@@ -75,10 +74,8 @@ while 1:
         sys.exit(1)
     parent_iterations.append(parent_lines)
     current_iterations.append(current_lines)
-classifier = BitCountingClassifier()
 exit_code = 0
 for test_index in range(num_tests):
-    val_max = 1.0
     parent_values = list()
     current_values = list()
     for iteration_index in range(len(parent_iterations)):
@@ -92,35 +89,42 @@ for test_index in range(num_tests):
     print(f"Time-ordered MRR values for current build: {current_values}")
     parent_values = hack(parent_values)
     current_values = hack(current_values)
-    parent_max = BitCountingMetadataFactory.find_max_value(parent_values)
-    current_max = BitCountingMetadataFactory.find_max_value(current_values)
-    val_max = max(val_max, parent_max, current_max)
-    factory = BitCountingMetadataFactory(val_max)
-    parent_stats = factory.from_data(parent_values)
-    current_factory = BitCountingMetadataFactory(val_max, parent_stats.avg)
-    current_stats = current_factory.from_data(current_values)
-    both_stats = factory.from_data(parent_values + current_values)
+    max_value = max([1.0] + parent_values + current_values)
+    parent_stats = jumpavg.AvgStdevStats.for_runs(parent_values)
+    current_stats = jumpavg.AvgStdevStats.for_runs(current_values)
+    parent_group_list = jumpavg.BitCountingGroupList(
+        max_value=max_value).append_group_of_runs([parent_stats])
+    combined_group_list = parent_group_list.copy().extend_runs_to_last_group(
+        [current_stats])
+    separated_group_list = parent_group_list.append_group_of_runs(
+        [current_stats])
     print(f"Value-ordered MRR values for parent build: {parent_values}")
     print(f"Value-ordered MRR values for current build: {current_values}")
-    difference = (current_stats.avg - parent_stats.avg) / parent_stats.avg
-    print(f"Difference of averages relative to parent: {100 * difference}%")
+    avg_diff = (current_stats.avg - parent_stats.avg) / parent_stats.avg
+    print(f"Difference of averages relative to parent: {100 * avg_diff}%")
     print(f"Jumpavg representation of parent group: {parent_stats}")
     print(f"Jumpavg representation of current group: {current_stats}")
-    print(f"Jumpavg representation of both as one group: {both_stats}")
-    bits = parent_stats.bits + current_stats.bits - both_stats.bits
-    compared = u"longer" if bits >= 0 else u"shorter"
     print(
-        f"Separate groups are {compared} than single group by {abs(bits)} bits"
+        f"Jumpavg representation of both as one group:"
+        f" {combined_group_list[0].stats}"
     )
-    classified_list = classifier.classify([parent_stats, current_stats])
+    bits_diff = separated_group_list.bits - combined_group_list.bits
+    compared = u"longer" if bits_diff >= 0 else u"shorter"
+    print(
+        f"Separate groups are {compared} than single group"
+        f" by {abs(bits_diff)} bits"
+    )
+    # TODO: Version of classify that takes max_value and list of stats?
+    # That matters if only stats (not list of floats) are given.
+    classified_list = jumpavg.classify([parent_values, current_values])
     if len(classified_list) < 2:
         print(f"Test test_index {test_index}: normal (no anomaly)")
         continue
-    anomaly = classified_list[1].metadata.classification
+    anomaly = classified_list[1].comment
     if anomaly == u"regression":
         print(f"Test test_index {test_index}: anomaly regression")
-        exit_code = 1
+        exit_code = 3  # 1 or 2 can be caused by other errors
         continue
     print(f"Test test_index {test_index}: anomaly {anomaly}")
-print(f"Exit code {exit_code}")
+print(f"Exit code: {exit_code}")
 sys.exit(exit_code)
