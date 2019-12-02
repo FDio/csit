@@ -181,7 +181,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         if "dpdk" in job_name:
             hover_text.append(hover_str.format(
                 date=date,
-                value=int(in_data[idx].avg),
+                value=int(in_data[idx]),
                 sut="dpdk",
                 build=build_info[job_name][str(idx)][1].rsplit('~', 1)[0],
                 period="weekly",
@@ -190,7 +190,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         elif "vpp" in job_name:
             hover_text.append(hover_str.format(
                 date=date,
-                value=int(in_data[idx].avg),
+                value=int(in_data[idx]),
                 sut="vpp",
                 build=build_info[job_name][str(idx)][1].rsplit('~', 1)[0],
                 period="daily",
@@ -228,7 +228,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
 
     trace_samples = plgo.Scatter(
         x=xaxis,
-        y=[y.avg for y in data_y],
+        y=[y for y in data_y],  # Was: y.avg
         mode='markers',
         line={
             "width": 1
@@ -364,8 +364,7 @@ def _generate_all_charts(spec, input_data):
             tst_lst = list()
             for bld in builds_dict[job_name]:
                 itm = tst_data.get(int(bld), '')
-                if not isinstance(itm, str):
-                    itm = itm.avg
+                # CSIT-1180: Itm will be list, compute stats.
                 tst_lst.append(str(itm))
             csv_tbl.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
 
