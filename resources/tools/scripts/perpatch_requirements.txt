@@ -13,4 +13,3 @@
 
 # TODO: Convert to use the code from cloned CSIT git, not from pip.
 jumpavg==0.1.3
-ply==3.11
