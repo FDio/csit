@@ -39,6 +39,8 @@ source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 common_dirs || die
 set_perpatch_vpp_dir || die
 activate_virtualenv "${VPP_DIR}" || die
+pip freeze || true
+pip3 freeze || true
 # TODO: Create bash functions for the following one-liners?
 make json-api-files || die "Generation of .api.json files failed."
 python3 csit/resources/tools/integrated/check_crc.py
