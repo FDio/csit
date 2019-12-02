@@ -1,40 +1,47 @@
+#!/usr/bin/env python3
+
 """A setup module for setuptools.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
 """
 
-from setuptools import setup, find_packages
+from setuptools import (setup, find_packages)
 from os import path
 from io import open
 
 here = path.abspath(path.dirname(__file__))
-with open(path.join(here, "README.rst"), encoding="utf-8") as f:
+with open(path.join(here, u"README.rst"), encoding=u"utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="jumpavg",
-    version="0.1.4",  # This is currently the only place listing the version.
-    description="Library for finding changes in time series by grouping results.",
+    name=u"jumpavg",
+    version=u"0.2.0",  # This is currently the only place listing the version.
+    description=(
+        u"Library for locating changes in time series by grouping results."
+    ),
     long_description=long_description,
-    long_description_content_type="text/x-rst",
+    long_description_content_type=u"text/x-rst",
     # TODO: Create a separate webpage for jumpavg library.
-    url="https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/jumpavg;hb=refs/heads/master",
-    author="Cisco Systems Inc. and/or its affiliates",
-    author_email="csit-dev@lists.fd.io",
+    url=(
+        u"https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/jumpavg"
+        u";hb=refs/heads/master"
+    ),
+    author=u"Cisco Systems Inc. and/or its affiliates",
+    author_email=u"csit-dev@lists.fd.io",
     classifiers=[
-        "Development Status :: 3 - Alpha",
-        "Intended Audience :: Science/Research",
+        u"Development Status :: 3 - Alpha",
+        u"Intended Audience :: Science/Research",
         # Pick your license as you wish
-        "License :: OSI Approved :: Apache Software License",
-        "Natural Language :: English",
+        u"License :: OSI Approved :: Apache Software License",
+        u"Natural Language :: English",
         # TODO: Test which Python versions is the code compatible with.
-        "Programming Language :: Python :: 2.7",
-        "Topic :: Scientific/Engineering :: Information Analysis"
+        u"Programming Language :: Python :: 2.7",
+        u"Topic :: Scientific/Engineering :: Information Analysis"
     ],
-    keywords="progression regression anomaly detection",
+    keywords=u"progression regression anomaly detection statistics bits",
     packages=find_packages(exclude=[]),
-    # TODO: python_requires="~=2.7"
+    python_requires="~=3.6"
     install_requires=[],
     # TODO: Include simulator and tests.
     extras_require={
@@ -42,11 +49,14 @@ setup(
     package_data={
     },
     entry_points={
-        "console_scripts": [
+        u"console_scripts": [
         ],
     },
     project_urls={
-        "Bug Reports": "https://jira.fd.io/projects/CSIT/issues",
-        "Source": "https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/jumpavg;hb=refs/heads/master",
+        u"Bug Reports": u"https://jira.fd.io/projects/CSIT/issues",
+        u"Source": (
+            u"https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/jumpavg"
+            u";hb=refs/heads/master"
+        ),
     },
 )
