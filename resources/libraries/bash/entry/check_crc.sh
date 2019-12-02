@@ -41,5 +41,5 @@ set_perpatch_vpp_dir || die
 activate_virtualenv "${VPP_DIR}" || die
 # TODO: Create bash functions for the following one-liners?
 make json-api-files || die "Generation of .api.json files failed."
-python csit/resources/tools/integrated/check_crc.py
+python3 csit/resources/tools/integrated/check_crc.py
 # RuntimeError causes nonzero return code, to vote -1.
