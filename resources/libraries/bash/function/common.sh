@@ -116,15 +116,21 @@ function activate_virtualenv () {
     pip install --upgrade virtualenv || {
         die "Virtualenv package install failed."
     }
+    which -a virtualenv || true
+    virtualenv --version || true
     virtualenv "${env_dir}" || {
         die "Virtualenv creation failed."
     }
     set +u
     source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
     set -u
+    pip freeze || true
+    pip3 freeze || true
     pip install --upgrade -r "${req_path}" || {
         die "Requirements installation failed."
     }
+    pip freeze || true
+    pip3 freeze || true
     # Most CSIT Python scripts assume PYTHONPATH is set and exported.
     export PYTHONPATH="${CSIT_DIR}" || die "Export failed."
 }
