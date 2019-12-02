@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be7d938c_ff9d7604",
+        "filename": "resources/traffic_profiles/trex/profile_trex_stateless_base_class.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-02T11:24:36Z",
+      "side": 1,
+      "message": "There was agreed to use form u\"\", f\"\" of strings, i.e. with quotation marks not with apostrophes - please, fix everywhere/ in all files.",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 15
+      },
+      "revId": "06590fb01595353784a2777e6cbd7042848a9d22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f126e345_ae793a24",
+        "filename": "resources/traffic_profiles/trex/profile_trex_stateless_base_class.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-02T11:24:36Z",
+      "side": 1,
+      "message": "Please, use indendation format as used in the main python migration patch: https://gerrit.fd.io/r/c/csit/+/23478\n\n           stream2 \u003d STLStream(\n               packet\u003dpkt_b, isg\u003d10.0, mode\u003dSTLTXCont(pps\u003d9000)\n           )\n\nPlease, fix everywhere / in all files.",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 146,
+        "endChar": 3
+      },
+      "revId": "06590fb01595353784a2777e6cbd7042848a9d22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
