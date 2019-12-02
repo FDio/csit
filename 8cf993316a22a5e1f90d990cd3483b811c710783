@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05e2b49d_c0a7d464",
+        "filename": "gdb-commands",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-02T06:36:39Z",
+      "side": 1,
+      "message": "Move it somewhere into tools/scripts",
+      "revId": "8cf993316a22a5e1f90d990cd3483b811c710783",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
