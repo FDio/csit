@@ -213,7 +213,7 @@ def _tpc_modify_displayed_test_name(test_name):
 def _tpc_insert_data(target, src, include_tests):
     try:
         if include_tests == "MRR":
-            target.append(src["result"]["receive-rate"].avg)
+            target.append(src["result"]["receive-rate"])  # .avg)
         elif include_tests == "PDR":
             target.append(src["throughput"]["PDR"]["LOWER"])
         elif include_tests == "NDR":
@@ -876,7 +876,7 @@ def table_nics_comparison(table, input_data):
                                               "cmp-data": list()}
                 try:
                     if table["include-tests"] == "MRR":
-                        result = tst_data["result"]["receive-rate"].avg
+                        result = tst_data["result"]["receive-rate"]  # .avg
                     elif table["include-tests"] == "PDR":
                         result = tst_data["throughput"]["PDR"]["LOWER"]
                     elif table["include-tests"] == "NDR":
@@ -998,7 +998,7 @@ def table_soak_vs_ndr(table, input_data):
                     try:
                         if tst_data["type"] in ("NDRPDR", "MRR", "BMRR"):
                             if table["include-tests"] == "MRR":
-                                result = tst_data["result"]["receive-rate"].avg
+                                result = tst_data["result"]["receive-rate"]
                             elif table["include-tests"] == "PDR":
                                 result = tst_data["throughput"]["PDR"]["LOWER"]
                             elif table["include-tests"] == "NDR":
