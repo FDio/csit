@@ -11,5 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# TODO: Ply should be installed as system package, fix bootstrap to see it.
-ply==3.11
+"""
+__init__ file for directory presentation
+
+This makes the presentation a part of the great CSIT resources package.
+"""
