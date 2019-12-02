@@ -22,8 +22,8 @@ from yaml import load, YAMLError
 from pprint import pformat
 
 from errors import PresentationError
-from utils import get_last_successful_build_number
-from utils import get_last_completed_build_number
+from utils import (
+    get_last_successful_build_number, get_last_completed_build_number)
 
 
 class Specification:
