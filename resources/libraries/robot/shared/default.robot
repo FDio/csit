@@ -351,31 +351,3 @@
 | | ... | ${setup_vpp_pids} | ${teardown_vpp_pids}
 | | Run Keyword And Return If | '${rc}'=='FAIL' | Log | ${err_msg}
 | | ... | console=yes | level=WARN
-
-# TODO: Cleanup when VIRL is gone.
-| Set up functional test
-| | [Documentation] | Common test setup for functional tests.
-| |
-| | Restart Vpp Service On All Duts | ${nodes}
-| | Verify Vpp On All Duts | ${nodes}
-| | VPP Enable Traces On All Duts | ${nodes}
-| | Save VPP PIDs
-| | All TGs Set Interface Default Driver | ${nodes}
-| | Update All Interface Data On All Nodes | ${nodes}
-| | Reset PAPI History On All DUTs | ${nodes}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | FOR | ${dut} | IN | @{duts}
-| | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
-| | | Add New Socket | ${nodes['${dut}']} | STATS | ${dut} | ${SOCKSTAT_PATH}
-| | END
-
-# TODO: Cleanup when VIRL is gone.
-| Tear down functional test
-| | [Documentation] | Common test teardown for functional tests.
-| |
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show Packet Trace on All DUTs | ${nodes}
-| | Show PAPI History On All DUTs | ${nodes}
-| | Vpp Show Errors On All DUTs | ${nodes}
-| | Verify VPP PID in Teardown
-| | Clean Sockets On All Nodes | ${nodes}
