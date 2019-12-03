@@ -83,7 +83,7 @@ Vagrant.configure("2") do |config|
        ./bootstrap_vpp_device.sh csit-vpp-device-master-ubuntu1804-1n-vbox
 
     For more information please visit:
-       https://docs.fd.io/csit/rls1810/report/index.html
+       https://docs.fd.io/csit/rls1908/report/index.html
        https://docs.fd.io/csit/master/trending/
 
     MESSAGE

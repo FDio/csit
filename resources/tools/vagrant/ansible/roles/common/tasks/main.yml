@@ -1,19 +1,15 @@
 ---
 # file: common/tasks/main.yml
 
-- name: Update and upgrade system packages and update cache if it's older then 1 hour
-  apt:
-    upgrade: dist
-    cache_valid_time: 3600
-
 - name: Install required common system packages
   apt:
     name:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - software-properties-common
-    state: latest
+      - 'apt-transport-https'
+      - 'ca-certificates'
+      - 'curl'
+      - 'software-properties-common'
+    state: 'latest'
+    cache_valid_time: 3600
 
 - name: Set /bin/sh to bash instead of dash
   alternatives:

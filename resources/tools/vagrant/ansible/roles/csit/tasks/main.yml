@@ -3,82 +3,90 @@
 
 - name: Upload config to rename network interfaces
   copy:
-    src: files/99-vppdevice.yaml
-    dest: /etc/netplan/99-vppdevice.yaml
-    owner: root
-    group: root
+    src: 'files/99-vppdevice.yaml'
+    dest: '/etc/netplan/99-vppdevice.yaml'
+    owner: 'root'
+    group: 'root'
     mode: 0644
 
 - name: Apply network config changes
-  command: /usr/sbin/netplan apply
+  command: '/usr/sbin/netplan apply'
 
 - name: Install required system tools and packages
   apt:
     name:
-      - wget
-      - curl
-      - python-pip
-      - virtualenv
-      - libpcap-dev
-    state: present
+      - 'curl'
+      - 'libpcap-dev'
+      - 'python3-all'
+      - 'python3-apt'
+      - 'python3-cffi'
+      - 'python3-cffi-backend'
+      - 'python3-dev'
+      - 'python3-pip'
+      - 'python3-setuptools'
+      - 'virtualenv'
+      - 'wget'
+    state: 'present'
+    cache_valid_time: 3600
 
 - name: Adjust number of hugepages
   sysctl:
-    name: vm.nr_hugepages
+    name: 'vm.nr_hugepages'
     value: 512
-    state: present
-    sysctl_file: /etc/sysctl.d/90-csit.conf
-    reload: yes
+    state: 'present'
+    sysctl_file: '/etc/sysctl.d/90-csit.conf'
+    reload: 'yes'
 
 - name: Add an Apt signing key, for docker-ce repository
   apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
+    url: 'https://download.docker.com/linux/ubuntu/gpg'
+    state: 'present'
 
 - name: Add docker-ce apt repository if not present
   apt_repository:
-    repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
-    state: present
+    repo: 'deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable'
+    state: 'present'
 
 - name: Install docker-ce if it's not already installed
   apt:
-    name: docker-ce
-    state: present
+    name: 'docker-ce'
+    state: 'present'
+    cache_valid_time: 3600
 
 - name: "Add user for running tests: {{ csit.test_user.name }}"
   user:
-    name: "{{ csit.test_user.name }}"
-    password: "{{ csit.test_user.password }}"
-    home: "{{ csit.test_user.home }}"
-    shell: "{{ csit.test_user.shell }}"
+    name: '{{ csit.test_user.name }}'
+    password: '{{ csit.test_user.password }}'
+    home: '{{ csit.test_user.home }}'
+    shell: '{{ csit.test_user.shell }}'
 
 - name: "Allow passwordless sudo for user: {{ csit.test_user.name }}"
   lineinfile:
-    path: "/etc/sudoers.d/{{ csit.test_user.name }}"
-    line: "{{ csit.test_user.name }} ALL=(ALL) NOPASSWD:ALL"
+    path: '/etc/sudoers.d/{{ csit.test_user.name }}'
+    line: '{{ csit.test_user.name }} ALL=(ALL) NOPASSWD:ALL'
     create: yes
 
 - name: Add vagrant user to docker group
   user:
-    name: vagrant
+    name: 'vagrant'
     groups:
       - docker
 
 - name: Reload groups for current session
-  command: /usr/bin/newgrp docker
+  command: '/usr/bin/newgrp docker'
 
 - name: Load required kernel modules
   modprobe:
-    name: "{{ item }}"
-    state: present
+    name: '{{ item }}'
+    state: 'present'
   with_items:
     - vfio-pci
 
 - name: Enable required kernel modules on boot
   lineinfile:
-    path: /etc/modules
-    line: "{{ item }}"
-    state: present
+    path: '/etc/modules'
+    line: '{{ item }}'
+    state: 'present'
     insertafter: EOF
   with_items:
     - vfio-pci
@@ -86,31 +94,32 @@
 - name: Clone CSIT repository
   become_user: vagrant
   git:
-    repo: "{{ csit.repository.url }}"
-    dest: "{{ csit.home }}"
+    repo: '{{ csit.repository.url }}'
+    dest: '{{ csit.home }}'
     accept_hostkey: yes
-    version: "{{ csit.repository.version }}"
+    version: '{{ csit.repository.version }}'
 
 - name: Install and update pip and virtualenv
   become_user: vagrant
   pip:
     name:
-      - pip
-      - virtualenv
-    state: latest
+      - 'virtualenv'
+    state: 'latest'
 
 - name: Prepare python virtual environmant for CSIT
   become_user: vagrant
-  command: "/usr/bin/virtualenv {{ csit.home }}/env"
+  command: '/usr/bin/virtualenv --python=/usr/bin/python3 {{ csit.home }}/env'
   args:
-    chdir: "{{ csit.home }}"
-    creates: "{{ csit.home }}/env/bin/activate"
+    chdir: '{{ csit.home }}'
+    creates: '{{ csit.home }}/env/bin/activate'
 
 - name: Install python dependencies (from {{ csit.home }}/requirements.txt)
   become_user: vagrant
-  shell: source {{ csit.home }}/env/bin/activate && pip install --timeout 300 -r {{ csit.home }}/requirements.txt
+  shell: |
+      source '{{ csit.home }}/env/bin/activate' &&
+      pip3 install --timeout 300 -r '{{ csit.home }}/requirements.txt'
   args:
-    executable: /bin/bash
+    executable: '/bin/bash'
 
 - name: Load csit docker image from local drive if it exists (/vagrant/csit-sut.tar)
   shell: |
