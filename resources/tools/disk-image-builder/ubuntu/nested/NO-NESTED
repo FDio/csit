@@ -1,8 +1,0 @@
-NESTED_VERSION=NO_NESTED
-
-This is a placeholder file to be placed on the ubuntu if nested VM
-testing is not desired, or if the main VM is going to overwrite the
-nested VM image by means of startup scripts.
-
-Unless separate steps are taken to provide a valid image within the
-VM, NESTED VM TESTCASES WILL FAIL.
