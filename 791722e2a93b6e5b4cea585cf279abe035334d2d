@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "17acbb11_6b8b5284",
+        "filename": "tests/vpp/perf/ip6/2n1l-10ge2p1x710-ethip6-ip6scale200k-rnd-ndrpdr.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-03T06:48:03Z",
+      "side": 1,
+      "message": "empty ... is not valid anymore with new Robot. Replace with just |",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 5
+      },
+      "revId": "791722e2a93b6e5b4cea585cf279abe035334d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
