@@ -427,12 +427,11 @@ class ExecutionChecker(ResultVisitor):
                 self._msg_type = None
             text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
                           r"PAPI command history:", u"",
-                          msg.message, count=1). \
-                replace(u"\n\n", u"\n").replace(u'\n', u' |br| ').\
-                replace(u'\r', u'').replace(u'"', u"'")
+                          msg.message, count=1).replace(u'\n', u' |br| ').\
+                replace(u'"', u"'")
 
             self._data[u"tests"][self._test_id][u"conf-history"] += (
-                f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
+                f" |br| **DUT{str(self._conf_history_lookup_nr)}:** |br| {text}"
             )
 
     def _get_show_run(self, msg):
