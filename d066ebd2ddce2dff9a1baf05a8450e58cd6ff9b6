@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eef68c74_b0473969",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst10000.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-04T13:36:05Z",
+      "side": 0,
+      "message": "Gerrit does not recognize these files as moved, just because I removed executable flag.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "d066ebd2ddce2dff9a1baf05a8450e58cd6ff9b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
