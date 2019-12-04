@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d27234a_470eedc4",
+        "filename": "resources/traffic_scripts/ipsec.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-04T11:28:16Z",
+      "side": 1,
+      "message": "No excess logs seen [0], removing.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/4605/archives/log.html.gz#s1-s1-s1-s2-s1-t1-k2-k13-k11",
+      "range": {
+        "startLine": 22,
+        "startChar": 9,
+        "endLine": 22,
+        "endChar": 29
+      },
+      "revId": "cfbc5110b5dc2d3b1a02a13d6886ab7c6da79aad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
