@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96293afa_f6157c35",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale200k-rnd-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-04T18:51:08Z",
+      "side": 1,
+      "message": "100k",
+      "range": {
+        "startLine": 41,
+        "startChar": 72,
+        "endLine": 41,
+        "endChar": 74
+      },
+      "revId": "334b35e1345591d39cb1895969fbcfb5e3461ae8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72fff1bd_517dcdbb",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale20k-rnd-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-04T18:51:08Z",
+      "side": 1,
+      "message": "10k",
+      "range": {
+        "startLine": 41,
+        "startChar": 72,
+        "endLine": 41,
+        "endChar": 74
+      },
+      "revId": "334b35e1345591d39cb1895969fbcfb5e3461ae8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
