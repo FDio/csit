@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "041b1b42_82b4d9a3",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-04T14:39:58Z",
+      "side": 0,
+      "message": "leave this one, kubernetes support is still there",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 421,
+        "endChar": 75
+      },
+      "revId": "af2aca6ced6ca7f2520315fba0596a132c4815cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
