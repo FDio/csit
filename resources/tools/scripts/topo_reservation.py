@@ -84,7 +84,7 @@ def main():
     )
     args = parser.parse_args()
 
-    with open(args.topo, "r") as topo_file:
+    with open(args.topo, u"rt") as topo_file:
         topology = yaml.safe_load(topo_file.read())[u"nodes"]
 
     # Even if TG is not guaranteed to be a Linux host,

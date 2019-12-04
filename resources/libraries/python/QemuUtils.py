@@ -236,7 +236,7 @@ class QemuUtils:
         template = f"{Constants.RESOURCES_TPL_VM}/{self._opt.get(u'vnf')}.exec"
         exec_cmd_no_error(self._node, f"rm -f {running}", sudo=True)
 
-        with open(template, "r") as src_file:
+        with open(template, u"rt") as src_file:
             src = Template(src_file.read())
             exec_cmd_no_error(
                 self._node, f"echo '{src.safe_substitute(**kwargs)}' | "
@@ -296,7 +296,7 @@ class QemuUtils:
         init = self._temp.get(u"ini")
         exec_cmd_no_error(self._node, f"rm -f {init}", sudo=True)
 
-        with open(template, "r") as src_file:
+        with open(template, u"rt") as src_file:
             src = Template(src_file.read())
             exec_cmd_no_error(
                 self._node, f"echo '{src.safe_substitute(**kwargs)}' | "
