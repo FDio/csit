@@ -19,10 +19,6 @@ import sys
 import logging
 
 from ipaddress import ip_address
-# pylint: disable=no-name-in-module
-# pylint: disable=import-error
-logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-
 from scapy.layers.l2 import Ether
 from scapy.layers.inet import IP, TCP
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NS
@@ -72,8 +68,7 @@ def check_ipv6(pkt_recv, dscp):
         raise RuntimeError(f"Not a TCP packet received: {pkt_recv!r}")
 
 
-# pylint: disable=too-many-locals
-# pylint: disable=too-many-statements
+# TODO: Pylint says too-many-locals and too-many-statements. Refactor!
 def main():
     """Send and receive TCP packet."""
     args = TrafficScriptArg(
