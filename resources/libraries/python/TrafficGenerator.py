@@ -125,7 +125,8 @@ class TGDropRateSearchImpl(DropRateSearch):
         return tg_instance.get_latency_int()
 
 
-# pylint: disable=too-many-instance-attributes
+# TODO: Pylint says too-many-instance-attributes.
+# A fix is developed in https://gerrit.fd.io/r/c/csit/+/22221
 class TrafficGenerator(AbstractMeasurer):
     """Traffic Generator.
 
@@ -201,7 +202,8 @@ class TrafficGenerator(AbstractMeasurer):
         """
         return self._latency
 
-    # pylint: disable=too-many-locals
+    # TODO: pylint says disable=too-many-locals.
+    # A fix is developed in https://gerrit.fd.io/r/c/csit/+/22221
     def initialize_traffic_generator(
             self, tg_node, tg_if1, tg_if2, tg_if1_adj_node, tg_if1_adj_if,
             tg_if2_adj_node, tg_if2_adj_if, osi_layer, tg_if1_dst_mac=None,
