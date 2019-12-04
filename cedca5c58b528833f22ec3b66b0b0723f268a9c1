@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1eac5024_a95e37ed",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-04T12:37:23Z",
+      "side": 1,
+      "message": "You can still do copy of packages as a part of VPP installation to avoid this. Not there as part of class init (there are multiple ways). So remove pylint disable and make it TODO:",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 60
+      },
+      "revId": "cedca5c58b528833f22ec3b66b0b0723f268a9c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
