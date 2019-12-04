@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a9921c2_a9fc6f1d",
+        "filename": "pylint.cfg",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-04T12:20:10Z",
+      "side": 1,
+      "message": "Not seen any of the three when running pylint locally.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 1
+      },
+      "revId": "cbc8dec8ef668ab7458f99b4b2efcd46c1314e71",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "29f17830_591032b3",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 3
