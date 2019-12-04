@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8978717f_cd2b5ee5",
+        "filename": "tests/vpp/perf/ip6/2n1l-10ge2p1x710-ethip6-ip6scale2m-rnd-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-04T07:46:44Z",
+      "side": 1,
+      "message": "i write it earlier, REMOVE ALL ... at the end of lines!",
+      "range": {
+        "startLine": 75,
+        "startChar": 2,
+        "endLine": 75,
+        "endChar": 7
+      },
+      "revId": "4ce635b6812c76984cc228d55007a7c4dd825d8b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
