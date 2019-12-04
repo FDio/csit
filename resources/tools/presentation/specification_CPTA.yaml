@@ -1314,7 +1314,7 @@
 -
   type: "table"
   title: "Performance trending dashboard 2t1c-2n-clx"
-  algorithm: "table_performance_trending_dashboard"
+  algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx"
   data: "plot-performance-trending-vpp-2n-clx"
@@ -1329,7 +1329,7 @@
 -
   type: "table"
   title: "Performance trending dashboard 4t2c-2n-clx"
-  algorithm: "table_performance_trending_dashboard"
+  algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-clx"
   data: "plot-performance-trending-vpp-2n-clx"
@@ -1344,7 +1344,7 @@
 -
   type: "table"
   title: "Performance trending dashboard 8t4c-2n-clx"
-  algorithm: "table_performance_trending_dashboard"
+  algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-2n-clx"
   data: "plot-performance-trending-vpp-2n-clx"
@@ -1359,7 +1359,7 @@
 -
   type: "table"
   title: "HTML performance trending dashboard 2t1c-2n-clx"
-  algorithm: "table_performance_trending_dashboard_html"
+  algorithm: "table_perf_trending_dash_html"
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx.rst"
   testbed: "2n-clx"
@@ -1367,7 +1367,7 @@
 -
   type: "table"
   title: "HTML performance trending dashboard 4t2c-2n-clx"
-  algorithm: "table_performance_trending_dashboard_html"
+  algorithm: "table_perf_trending_dash_html"
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-clx.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-clx.rst"
   testbed: "2n-clx"
@@ -1375,7 +1375,7 @@
 -
   type: "table"
   title: "HTML performance trending dashboard 8t4c-2n-clx"
-  algorithm: "table_performance_trending_dashboard_html"
+  algorithm: "table_perf_trending_dash_html"
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-2n-clx.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-2n-clx.rst"
   testbed: "2n-clx"
