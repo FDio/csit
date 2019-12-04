@@ -73,7 +73,7 @@ class TGDropRateSearchImpl(DropRateSearch):
         :param loss_acceptance: Permitted drop ratio or frames count.
         :param loss_acceptance_type: Type of permitted loss.
         :param traffic_profile: Module name as a traffic profile identifier.
-            See resources/traffic_profiles/trex for implemented modules.
+            See GPL/traffic_profiles/trex for implemented modules.
         :param skip_warmup: Start TRex without warmup traffic if true.
         :type rate: float
         :type frame_size: str
@@ -355,8 +355,8 @@ class TrafficGenerator(AbstractMeasurer):
                 raise RuntimeError(u"Start TRex failed!")
 
             # Test if TRex starts successfuly.
-            cmd = f"sh -c \"{Constants.REMOTE_FW_DIR}/resources/tools/trex/" \
-                f"trex_server_info.py\""
+            cmd = f"sh -c '{Constants.REMOTE_FW_DIR}/GPL/tools/trex/"
+            cmd += f"/trex_server_info.py'"
             try:
                 exec_cmd_no_error(
                     self._node, cmd, sudo=True, message=u"Test TRex failed!",
@@ -438,7 +438,7 @@ class TrafficGenerator(AbstractMeasurer):
                 value = value.replace(u"'", u"\"")
                 x_args += f" --xstat{index}='\"'\"'{value}'\"'\"'"
         stdout, _ = exec_cmd_no_error(
-            node, f"sh -c '{Constants.REMOTE_FW_DIR}/resources/tools/trex/"
+            node, f"sh -c '{Constants.REMOTE_FW_DIR}/GPL/tools/trex/"
             f"trex_stateless_stop.py{x_args}'",
             message=u"TRex stateless runtime error"
         )
@@ -457,7 +457,7 @@ class TrafficGenerator(AbstractMeasurer):
         :param rate: Traffic rate expressed with units (pps, %)
         :param frame_size: L2 frame size to send (without padding and IPG).
         :param traffic_profile: Module name as a traffic profile identifier.
-            See resources/traffic_profiles/trex for implemented modules.
+            See GPL/traffic_profiles/trex for implemented modules.
         :param async_call: If enabled then don't wait for all incomming trafic.
         :param latency: With latency measurement.
         :param warmup_time: Warmup time period.
@@ -488,9 +488,9 @@ class TrafficGenerator(AbstractMeasurer):
         if not isinstance(warmup_time, (float, int)):
             warmup_time = float(warmup_time)
         command = f"sh -c \"" \
-            f"{Constants.REMOTE_FW_DIR}/resources/tools/trex/" \
+            f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex/" \
             f"trex_stateless_profile.py" \
-            f" --profile {Constants.REMOTE_FW_DIR}/resources/" \
+            f" --profile {Constants.REMOTE_FW_DIR}/GPL/" \
             f"traffic_profiles/trex/{traffic_profile}.py" \
             f" --duration {duration!r} --frame_size {frame_size} " \
             f"--rate {rate!r} --warmup_time {warmup_time!r} " \
@@ -571,7 +571,7 @@ class TrafficGenerator(AbstractMeasurer):
         :param rate: Offered load per interface (e.g. 1%, 3gbps, 4mpps, ...).
         :param frame_size: Frame size (L2) in Bytes.
         :param traffic_profile: Module name as a traffic profile identifier.
-            See resources/traffic_profiles/trex for implemented modules.
+            See GPL/traffic_profiles/trex for implemented modules.
         :param warmup_time: Warmup phase in seconds.
         :param async_call: Async mode.
         :param latency: With latency measurement.
@@ -661,7 +661,7 @@ class TrafficGenerator(AbstractMeasurer):
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
-            See resources/traffic_profiles/trex for implemented modules.
+            See GPL/traffic_profiles/trex for implemented modules.
         :param warmup_time: Traffic duration before measurement starts [s].
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
@@ -751,7 +751,7 @@ class OptimizedSearch:
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
-            See resources/traffic_profiles/trex for implemented modules.
+            See GPL/traffic_profiles/trex for implemented modules.
         :param minimum_transmit_rate: Minimal uni-directional
             target transmit rate [pps].
         :param maximum_transmit_rate: Maximal uni-directional
@@ -819,7 +819,7 @@ class OptimizedSearch:
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
-            See resources/traffic_profiles/trex for implemented modules.
+            See GPL/traffic_profiles/trex for implemented modules.
         :param minimum_transmit_rate: Minimal uni-directional
             target transmit rate [pps].
         :param maximum_transmit_rate: Maximal uni-directional
