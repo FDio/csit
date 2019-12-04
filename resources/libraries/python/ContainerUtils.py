@@ -11,14 +11,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Bug workaround in pylint for abstract classes.
-# pylint: disable=W0223
-
 """Library to manipulate Containers."""
 
 from collections import OrderedDict, Counter
 from io import open
 from string import Template
+
+from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import SSH
@@ -442,8 +441,6 @@ class ContainerEngine:
         )
         self.execute(u"supervisorctl start vpp")
 
-        # pylint: disable=import-outside-toplevel
-        from robot.libraries.BuiltIn import BuiltIn
         topo_instance = BuiltIn().get_library_instance(
             u"resources.libraries.python.topology.Topology"
         )
@@ -651,6 +648,13 @@ class LXC(ContainerEngine):
             raise RuntimeError(u"Failed to create container.")
 
         self._configure_cgroup(u"lxc")
+
+    def build(self):
+        """Build container (compile).
+
+        TODO: Remove from parent class if no sibling implements this.
+        """
+        raise NotImplementedError
 
     def create(self):
         """Create/deploy an application inside a container on system.
@@ -869,6 +873,13 @@ class Docker(ContainerEngine):
 
         if self.container.cpuset_cpus:
             self._configure_cgroup(u"docker")
+
+    def build(self):
+        """Build container (compile).
+
+        TODO: Remove from parent class if no sibling implements this.
+        """
+        raise NotImplementedError
 
     def create(self):
         """Create/deploy container.

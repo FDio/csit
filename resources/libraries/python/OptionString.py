@@ -92,11 +92,16 @@ class OptionString:
         self.parts.extend(other.parts)
         return self
 
-    def _check_and_add(self, part, prefixed):
+    def check_and_add(self, part, prefixed):
         """Convert to string, strip, conditionally add prefixed if non-empty.
 
         Value of None is converted to empty string.
         Emptiness is tested before adding prefix.
+
+        This could be a protected method (name starting with underscore),
+        but then pylint does not understand add_equals and add_with_value
+        are allowed to call this on the temp instance.
+        TODO: Is there a way to make pylint understand?
 
         :param part: Unchecked part to add to list of parts.
         :param prefixed: Whether to add prefix when adding.
@@ -123,7 +128,7 @@ class OptionString:
         :returns: Self, to enable method chaining.
         :rtype: OptionString
         """
-        self._check_and_add(parameter, prefixed=True)
+        self.check_and_add(parameter, prefixed=True)
         return self
 
     def add_if(self, parameter, condition):
@@ -160,11 +165,8 @@ class OptionString:
         :rtype: OptionString
         """
         temp = OptionString(prefix=self.prefix)
-        # TODO: Is pylint really that ignorant?
-        # How could it not understand temp is of type of this class?
-        # pylint: disable=protected-access
-        if temp._check_and_add(parameter, prefixed=True):
-            if temp._check_and_add(value, prefixed=False):
+        if temp.check_and_add(parameter, prefixed=True):
+            if temp.check_and_add(value, prefixed=False):
                 self.extend(temp)
         return self
 
@@ -183,9 +185,8 @@ class OptionString:
         :rtype: OptionString
         """
         temp = OptionString(prefix=self.prefix)
-        # pylint: disable=protected-access
-        if temp._check_and_add(parameter, prefixed=True):
-            if temp._check_and_add(value, prefixed=False):
+        if temp.check_and_add(parameter, prefixed=True):
+            if temp.check_and_add(value, prefixed=False):
                 self.parts.append(u"=".join(temp.parts))
         return self
 

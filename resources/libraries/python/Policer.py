@@ -84,7 +84,11 @@ class DSCP(IntEnum):
 class Policer:
     """Policer utilities."""
 
-    # pylint: disable=too-many-arguments, too-many-locals
+    # TODO: Pylint says too-many-arguments and too-many-locals.
+    # It is right, we should refactor the code
+    # and group similar arguments together (into documented classes).
+    # Note that even the call from Robot Framework
+    # is not very readable with this many arguments.
     @staticmethod
     def policer_set_configuration(
             node, policer_name, cir, eir, cbs, ebs, rate_type, round_type,

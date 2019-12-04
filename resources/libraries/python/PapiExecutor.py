@@ -196,6 +196,11 @@ class PapiSocketExecutor:
             # Package path has to be one level above the vpp_papi directory.
             package_path = package_path.rsplit(u"/", 1)[0]
             sys.path.append(package_path)
+            # Only now, interpreter has a chance to locate the code to import.
+            # That means the import statement here is in the correct place.
+            # No refactor allows the import to be moved to where pylint wants,
+            # and pylint does not execute the logic for locating the code,
+            # so, dear pylint, please ignore these offences.
             # pylint: disable=import-outside-toplevel, import-error
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
             vpp_class.apidir = api_json_directory
