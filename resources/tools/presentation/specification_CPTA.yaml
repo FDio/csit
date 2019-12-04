@@ -412,6 +412,13 @@
           - 701
           - 702
 
+    plot-performance-trending-vpp-2n-clx:
+      csit-vpp-perf-mrr-daily-master-2n-clx:
+        start: 89
+        end: "lastCompletedBuild"
+        skip:
+          - 97
+
     plot-performance-trending-dpdk-2n-skx:
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 57
