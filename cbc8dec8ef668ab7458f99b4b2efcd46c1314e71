@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29f17830_591032b3",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-04T12:18:32Z",
+      "side": 1,
+      "message": "Not removing immediately here, in case such a sibling exists in downstream.",
+      "range": {
+        "startLine": 655,
+        "startChar": 14,
+        "endLine": 655,
+        "endChar": 20
+      },
+      "revId": "cbc8dec8ef668ab7458f99b4b2efcd46c1314e71",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
