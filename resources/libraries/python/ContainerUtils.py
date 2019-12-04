@@ -559,7 +559,7 @@ class ContainerEngine:
 
         template = f"{Constants.RESOURCES_TPL_CONTAINER}/{template_file}"
 
-        with open(template, "r") as src_file:
+        with open(template, u"rt") as src_file:
             src = Template(src_file.read())
             self.execute(f'echo "{src.safe_substitute(**kwargs)}" > {running}')
 

@@ -316,5 +316,5 @@ def convert_csv_to_pretty_txt(csv_file_name, txt_file_name):
                 txt_table.add_row(row)
         txt_table.align[u"Test case"] = u"l"
     if txt_table:
-        with open(txt_file_name, u"w") as txt_file:
+        with open(txt_file_name, u"wt") as txt_file:
             txt_file.write(str(txt_table))
