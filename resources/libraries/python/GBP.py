@@ -43,8 +43,9 @@ class GBPBridgeDomainFlags(IntEnum):
 class GBPSubnetType(IntEnum):
     """GBP Subnet Type."""
     GBP_API_SUBNET_TRANSPORT = 1
-    GBP_API_SUBNET_STITCHED_INTERNAL = 2  # pylint: disable=invalid-name
-    GBP_API_SUBNET_STITCHED_EXTERNAL = 3  # pylint: disable=invalid-name
+    # TODO: Names too long for pylint, fix in VPP.
+    GBP_API_SUBNET_STITCHED_INTERNAL = 2
+    GBP_API_SUBNET_STITCHED_EXTERNAL = 3
     GBP_API_SUBNET_L3_OUT = 4
     GBP_API_SUBNET_ANON_L3_OUT = 5
 

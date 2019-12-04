@@ -20,6 +20,8 @@ from os import remove
 from paramiko.ssh_exception import SSHException
 from robot.api import logger
 
+import resources.libraries.python.DUTSetup as PidLib
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import SSH, SSHTimeout
@@ -60,8 +62,6 @@ def get_vpp_pid(node):
         running on the DUT node.
     :rtype: int or list
     """
-    # pylint: disable=import-outside-toplevel
-    import resources.libraries.python.DUTSetup as PidLib
     pid = PidLib.DUTSetup.get_vpp_pid(node)
     return pid
 

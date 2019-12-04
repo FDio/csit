@@ -75,7 +75,6 @@ from scapy.packet import Raw
 
 # Enable libpcap's L2listen
 conf.use_pcap = True
-import scapy.arch.pcapdnet  # pylint: disable=C0413, unused-import
 
 __all__ = [
     u"RxQueue", u"TxQueue", u"Interface", u"create_gratuitous_arp_request",
@@ -235,7 +234,11 @@ class RxQueue(PacketVerifier):
             pkt_pad = str(auto_pad(pkt))
             print(f"Received packet on {self._ifname} of len {len(pkt)}")
             if verbose:
-                pkt.show2()  # pylint: disable=no-member
+                if hasattr(pkt, u"show2"):
+                    pkt.show2()
+                else:
+                    # Never happens in practice, but Pylint does not know that.
+                    print(f"Unexpected instance: {pkt!r}")
                 print()
             if pkt_pad in ignore_list:
                 ignore_list.remove(pkt_pad)
