@@ -33,7 +33,7 @@ class SchedUtils:
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = u"cat /proc/`pidof vpp`/task/*/stat | grep -i vpp_wk" \
+        cmd = u"cat '/proc/'`pidof vpp`'/task/'*'/stat' | grep -i 'vpp_wk'" \
             u" | awk '{print $1}'"
 
         for _ in range(3):

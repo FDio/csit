@@ -637,14 +637,14 @@ class DUTSetup:
                     )
                     # workaround to avoid installation of vpp-api-python
                     exec_cmd_no_error(
-                        node, u"rm -f {vpp_pkg_dir}vpp-api-python.deb",
+                        node, u"rm -f '{vpp_pkg_dir}vpp-api-python.deb'",
                         timeout=120, sudo=True
                     )
                     exec_cmd_no_error(
-                        node, f"dpkg -i --force-all {vpp_pkg_dir}*.deb",
+                        node, f"dpkg -i --force-all '{vpp_pkg_dir}'*'.deb'",
                         timeout=120, sudo=True, message=message
                     )
-                    exec_cmd_no_error(node, u"dpkg -l | grep vpp", sudo=True)
+                    exec_cmd_no_error(node, u"dpkg -l | grep 'vpp'", sudo=True)
                     if DUTSetup.running_in_container(node):
                         DUTSetup.restart_service(node, Constants.VPP_UNIT)
                 else:
@@ -654,14 +654,14 @@ class DUTSetup:
                     )
                     # workaround to avoid installation of vpp-api-python
                     exec_cmd_no_error(
-                        node, u"rm -f {vpp_pkg_dir}vpp-api-python.rpm",
+                        node, u"rm -f '{vpp_pkg_dir}vpp-api-python.rpm'",
                         timeout=120, sudo=True
                     )
                     exec_cmd_no_error(
-                        node, f"rpm -ivh {vpp_pkg_dir}*.rpm",
+                        node, f"rpm -ivh '{vpp_pkg_dir}'*'.rpm'",
                         timeout=120, sudo=True, message=message
                     )
-                    exec_cmd_no_error(node, u"rpm -qai *vpp*", sudo=True)
+                    exec_cmd_no_error(node, u"rpm -qai '*vpp*'", sudo=True)
                     DUTSetup.restart_service(node, Constants.VPP_UNIT)
 
     @staticmethod
