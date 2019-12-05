@@ -632,7 +632,7 @@ class DUTSetup:
 
                 if stdout.strip() == u"Ubuntu":
                     exec_cmd_no_error(
-                        node, u"apt-get purge -y '*vpp*' || true",
+                        node, u"apt-get purge -y *'vpp'* || true",
                         timeout=120, sudo=True
                     )
                     # workaround to avoid installation of vpp-api-python
@@ -649,7 +649,7 @@ class DUTSetup:
                         DUTSetup.restart_service(node, Constants.VPP_UNIT)
                 else:
                     exec_cmd_no_error(
-                        node, u"yum -y remove '*vpp*' || true",
+                        node, u"yum -y remove *'vpp'* || true",
                         timeout=120, sudo=True
                     )
                     # workaround to avoid installation of vpp-api-python
@@ -661,7 +661,7 @@ class DUTSetup:
                         node, f"rpm -ivh {vpp_pkg_dir}*.rpm",
                         timeout=120, sudo=True, message=message
                     )
-                    exec_cmd_no_error(node, u"rpm -qai *vpp*", sudo=True)
+                    exec_cmd_no_error(node, u"rpm -qai *'vpp'*", sudo=True)
                     DUTSetup.restart_service(node, Constants.VPP_UNIT)
 
     @staticmethod
