@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1ddac73_5231375f",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-05T14:25:52Z",
+      "side": 1,
+      "message": "I see in code that the default depends on action.",
+      "range": {
+        "startLine": 454,
+        "startChar": 29,
+        "endLine": 454,
+        "endChar": 31
+      },
+      "revId": "46210ac803751612417550f42fdb2b1d3d049122",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
