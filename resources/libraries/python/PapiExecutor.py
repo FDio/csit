@@ -36,8 +36,10 @@ from resources.libraries.python.ssh import (
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
-
 __all__ = [u"PapiExecutor", u"PapiSocketExecutor"]
+
+
+logger.console(f"PapiExecutor is being imported here")
 
 
 def dictize(obj):
