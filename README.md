@@ -69,12 +69,12 @@ A brief bottom-up description is provided here:
      - Suite setup, suite teardown;
      - Test setup, test teardown;
 1. Tests - Robot
-   - Test suites with test cases;
+   - Device tests using containerized environment with SR-IOV access to a NIC;
+     - VPP;
    - Performance tests using physical testbed environment:
      - VPP;
      - DPDK-Testpmd;
      - DPDK-L3Fwd;
-     - VPP Container K8s orchestrated topologies;
    - Tools:
      - Documentation generator;
      - Report generator;
@@ -93,7 +93,6 @@ A brief bottom-up description is provided here:
     │   └── perf                    # DPDK performance tests
     └── vpp
         ├── device                  # VPP device tests
-        ├── func                    # VPP functional VIRL tests
         └── perf                    # VPP performance tests
 ```
 
@@ -103,11 +102,11 @@ A brief bottom-up description is provided here:
 .
 resources
 └── libraries
-    ├── bash
-    │   ├── config
+    ├── bash                        # Contains a dependency of KubernetesUtils
+    │   ├── config                  # Config for KubernetesUtils dependency
     │   ├── entry                   # Main bootstrap entry directory
     │   ├── function                # Bootstrap function library
-    │   └── shell                   # Various functions
+    │   └── shell                   # Various functions for KubernetesUtils
     ├── python                      # Python L1 KWs
     └── robot                       # Robot Framework L2 KWs
 ```
