@@ -117,7 +117,7 @@ function activate_virtualenv () {
         die "Virtualenv package install failed."
     }
     virtualenv -p $(which python3) "${env_dir}" || {
-        die "Virtualenv creation for $(which python) failed."
+        die "Virtualenv creation for $(which python3) failed."
     }
     set +u
     source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
@@ -565,7 +565,7 @@ function reserve_and_cleanup_testbed () {
             set +e
             scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
             opts=("-t" "${topo}" "-r" "${BUILD_TAG:-Unknown}")
-            python "${scrpt}" "${opts[@]}"
+            python3 "${scrpt}" "${opts[@]}"
             result="$?"
             set -e
             if [[ "${result}" == "0" ]]; then
@@ -637,7 +637,6 @@ function run_pybot () {
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
-    python -V
     robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
     PYBOT_EXIT_STATUS="$?"
     set -e
@@ -1029,7 +1028,7 @@ function untrap_and_unreserve_testbed () {
         warn "Testbed looks unreserved already. Trap removal failed before?"
     else
         ansible_hosts "cleanup" || true
-        python "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
+        python3 "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
             die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
         }
         WORKING_TOPOLOGY=""

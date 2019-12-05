@@ -48,8 +48,10 @@ RUN apt-get -q update \
         dkms \
         gfortran \
         libblas-dev \
+        libffi-dev \
         liblapack-dev \
         libpcap-dev \
+        libssl-dev \
         python-all \
         python-apt \
         python-cffi \
