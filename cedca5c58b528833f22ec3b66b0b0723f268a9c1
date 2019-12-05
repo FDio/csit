@@ -22,6 +22,30 @@
       "revId": "cedca5c58b528833f22ec3b66b0b0723f268a9c1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b228043b_25aa77ad",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-05T09:38:53Z",
+      "side": 1,
+      "message": "I verified using [0] and as you can see in [1] it would not work. Imports are done before anything started by keywords is executed. And ever if we worked around that (e.g. perform frameworks setup on import, not waiting for keywords), a disable and comment for import-error would need to remain here (as the tox job does not have a VPP to install).\n\n10:31:40 ++ robot --outputdir /w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/archive --loglevel TRACE --variable TOPOLOGY_PATH:/tmp/topology.yaml --suite tests.vpp.device --noncritical EXPECTED_FAILING /w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/generated/tests/\n10:31:41 \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n10:31:41 Tests                                                                         \n10:31:41 \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n10:31:41 Tests.Vpp                                                                     \n10:31:41 \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n10:31:41 PapiExecutor is being imported here\n10:31:41 Tests.Vpp.Device                                                              \n10:31:41 \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n10:32:03 Framework packed to /tmp/csit-testing-chtyr3a6.tgz\n\n[0] https://gerrit.fd.io/r/c/csit/+/23811\n[1] https://jenkins.fd.io/job/csit-vpp-device-master-ubuntu1804-1n-skx/4655/console",
+      "parentUuid": "1eac5024_a95e37ed",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 60
+      },
+      "revId": "cedca5c58b528833f22ec3b66b0b0723f268a9c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
