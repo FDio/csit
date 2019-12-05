@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fde50f61_d5f253f1",
+        "filename": "tests/vpp/device/lb/eth2p-ethipv4-loadbalancer-l3dsr-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-05T15:03:13Z",
+      "side": 1,
+      "message": "l3dsr",
+      "range": {
+        "startLine": 26,
+        "startChar": 32,
+        "endLine": 26,
+        "endChar": 38
+      },
+      "revId": "8b28e2bd710f9d34ffd28075c98b5d8b46364f53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ce748c8_67c69518",
+        "filename": "tests/vpp/device/lb/eth2p-ethipv4-loadbalancer-l3dsr-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-05T15:03:13Z",
+      "side": 1,
+      "message": "l3dsr",
+      "range": {
+        "startLine": 30,
+        "startChar": 69,
+        "endLine": 30,
+        "endChar": 75
+      },
+      "revId": "8b28e2bd710f9d34ffd28075c98b5d8b46364f53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ff49a36_172eeebb",
+        "filename": "tests/vpp/device/lb/eth2p-ethipv4-loadbalancer-nat4-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-05T15:03:13Z",
+      "side": 1,
+      "message": "nat4",
+      "range": {
+        "startLine": 30,
+        "startChar": 69,
+        "endLine": 30,
+        "endChar": 75
+      },
+      "revId": "8b28e2bd710f9d34ffd28075c98b5d8b46364f53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
