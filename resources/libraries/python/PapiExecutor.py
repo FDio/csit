@@ -18,6 +18,7 @@ import binascii
 import copy
 import glob
 import json
+import os
 import shutil
 import struct  # vpp-papi can raise struct.error
 import subprocess
@@ -198,12 +199,22 @@ class PapiSocketExecutor(object):
             package_path = package_path.rsplit('/', 1)[0]
             sys.path.append(package_path)
             # pylint: disable=import-error
-            from vpp_papi.vpp_papi import VPPApiClient as vpp_class
+            try:
+                from vpp_papi.vpp_papi import VPPApiClient as vpp_class
+            except ImportError:
+                from vpp_papi.vpp_papi import VPP as vpp_class
             vpp_class.apidir = api_json_directory
             # We need to create instance before removing from sys.path.
-            cls.vpp_instance = vpp_class(
-                use_socket=True, server_address="TBD", async_thread=False,
-                read_timeout=14, logger=FilteredLogger(logger, "INFO"))
+            try:
+                cls.vpp_instance = vpp_class(
+                    use_socket=True, server_address="TBD", async_thread=False,
+                    read_timeout=14, logger=FilteredLogger(logger, "INFO"))
+            except vpp_class.VPPApiError:
+                # Old apidir convention.
+                os.environ['VPP_API_DIR'] = api_json_directory
+                cls.vpp_instance = vpp_class(
+                    use_socket=True, server_address="TBD", async_thread=False,
+                    read_timeout=14, logger=FilteredLogger(logger, "INFO"))
             # Cannot use loglevel parameter, robot.api.logger lacks support.
             # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
         finally:
@@ -218,9 +229,37 @@ class PapiSocketExecutor(object):
         in a temporary directory, because VIRL runs 3 pybots at once,
         so harcoding local filenames does not work.
 
+        Most logic is in an internal function,
+        as multiple tries may be needed for old VPP builds.
+
         :returns: self
         :rtype: PapiSocketExecutor
         """
+        try:
+            self.__enter_internal(self._remote_vpp_socket)
+        except self.vpp_instance.VPPApiError:
+            run(["ssh", "-S", self._ssh_control_socket, "-O", "exit", "0.0.0.0"],
+                check=False)
+            shutil.rmtree(self._temp_dir)
+            self.__enter_internal(self._remote_vpp_socket.replace(
+                "/run/vpp/api.sock", "/run/vpp-api.sock"))
+        return self
+
+    def __enter_internal(self, remote_vpp_socket):
+        """Create a tunnel, connect VPP instance.
+
+        Only at this point a local socket names are created
+        in a temporary directory, because VIRL runs 3 pybots at once,
+        so harcoding local filenames does not work.
+
+        :param remote_vpp_socket: File path to API socket on VPP machine.
+        :type remote_vpp_socket: str
+        :returns: self
+        :rtype: PapiSocketExecutor
+        :raises VPPApiError: If both dis- and connect fail, sign of old VPP.
+        :raises RuntimeError: If there are other errors on connect.
+        """
+        logger.debug("Internal enter with {rs!r}".format(rs=remote_vpp_socket))
         # Parsing takes longer than connecting, prepare instance before tunnel.
         vpp_instance = self.vpp_instance
         node = self._node
@@ -244,7 +283,7 @@ class PapiSocketExecutor(object):
         # On VIRL, the ssh user is not added to "vpp" group,
         # so we need to change remote socket file access rights.
         exec_cmd_no_error(
-            node, "chmod o+rwx " + self._remote_vpp_socket, sudo=True)
+            node, "chmod o+rwx " + remote_vpp_socket, sudo=True)
         # We use sleep command. The ssh command will exit in 10 second,
         # unless a local socket connection is established,
         # in which case the ssh command will exit only when
@@ -254,7 +293,7 @@ class PapiSocketExecutor(object):
             "ssh", "-S", ssh_socket, "-M",
             "-o", "LogLevel=ERROR", "-o", "UserKnownHostsFile=/dev/null",
             "-o", "StrictHostKeyChecking=no", "-o", "ExitOnForwardFailure=yes",
-            "-L", self._local_vpp_socket + ':' + self._remote_vpp_socket,
+            "-L", self._local_vpp_socket + ':' + remote_vpp_socket,
             "-p", str(node['port']), node['username'] + "@" + node['host'],
             "sleep", "10"]
         priv_key = node.get("priv_key")
@@ -291,19 +330,14 @@ class PapiSocketExecutor(object):
             key_file.close()
         # Everything is ready, set the local socket address and connect.
         vpp_instance.transport.server_address = self._local_vpp_socket
-        # It seems we can get read error even if every preceding check passed.
-        # Single retry seems to help.
-        for _ in xrange(2):
-            try:
-                vpp_instance.connect_sync("csit_socket")
-            except (IOError, struct.error) as err:
-                logger.warn("Got initial connect error {err!r}".format(err=err))
-                vpp_instance.disconnect()
-            else:
-                break
+        try:
+            vpp_instance.connect_sync("csit_socket")
+        except (IOError, struct.error) as err:
+            logger.warn("Got initial connect error {err!r}".format(err=err))
+            vpp_instance.disconnect()
         else:
-            raise RuntimeError("Failed to connect to VPP over a socket.")
-        return self
+            return self
+        raise RuntimeError("Failed to connect to VPP over a socket.")
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Disconnect the vpp instance, tear down the SHH tunnel.
@@ -311,7 +345,10 @@ class PapiSocketExecutor(object):
         Also remove the local sockets by deleting the temporary directory.
         Arguments related to possible exception are entirely ignored.
         """
-        self.vpp_instance.disconnect()
+        try:
+            self.vpp_instance.disconnect()
+        except self.vpp_instance.VPPApiError:
+            pass
         run(["ssh", "-S", self._ssh_control_socket, "-O", "exit", "0.0.0.0"],
             check=False)
         shutil.rmtree(self._temp_dir)
