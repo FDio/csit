@@ -22,6 +22,30 @@
       "revId": "7482d7a93bf3f7af2f82d2986deaf83f3cd65f92",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04b86167_0fcf4a58",
+        "filename": "requirements.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-05T14:39:11Z",
+      "side": 1,
+      "message": "vppapigen",
+      "parentUuid": "68556674_d2827328",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 3
+      },
+      "revId": "7482d7a93bf3f7af2f82d2986deaf83f3cd65f92",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
