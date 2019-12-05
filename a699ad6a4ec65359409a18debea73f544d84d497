@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ff1f990_bc36a063",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain_ipsec/10ge2p1x710-ethip4ipsec10000tnlsw-l2bd-1ch-16mif-8drc1c-vppip4-aes256gcm-ndrpdr.robot",
+        "patchSetId": 44
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-05T13:09:16Z",
+      "side": 1,
+      "message": "| DRV_VFIO_PCI",
+      "range": {
+        "startLine": 20,
+        "startChar": 24,
+        "endLine": 20,
+        "endChar": 25
+      },
+      "revId": "a699ad6a4ec65359409a18debea73f544d84d497",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
