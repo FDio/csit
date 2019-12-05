@@ -70,13 +70,10 @@ A brief bottom-up description is provided here:
      - Test setup, test teardown;
 1. Tests - Robot
    - Test suites with test cases;
-   - Functional tests using VIRL environment:
-     - VPP;
    - Performance tests using physical testbed environment:
      - VPP;
      - DPDK-Testpmd;
      - DPDK-L3Fwd;
-     - VPP Container K8s orchestrated topologies;
    - Tools:
      - Documentation generator;
      - Report generator;
@@ -93,11 +90,8 @@ A brief bottom-up description is provided here:
     ├── dpdk
     │   ├── dpdk_scripts            # DPDK helper scripts
     │   └── perf                    # DPDK performance tests
-    ├── kubernetes
-    │   └── perf                    # VPP K8S orchestration performance tests
     └── vpp
         ├── device                  # VPP device tests
-        ├── func                    # VPP functional VIRL tests
         └── perf                    # VPP performance tests
 ```
 
@@ -107,12 +101,11 @@ A brief bottom-up description is provided here:
 .
 resources
 └── libraries
-    ├── bash
-    │   ├── config
+    ├── bash                        # Contains a dependency of KubernetesUtils
+    │   ├── config                  # Config for KubernetesUtils dependency
     │   ├── entry                   # Main bootstrap entry directory
     │   ├── function                # Bootstrap function library
-    │   ├── qemu_patches            # Custom QEMU patches (see KVM methodology)
-    │   └── shell                   # Various functions
+    │   └── shell                   # Various functions for KubernetesUtils
     ├── python                      # Python L1 KWs
     └── robot                       # Robot Framework L2 KWs
 ```
@@ -138,7 +131,6 @@ resources
 │   │   ├── topology                # Helper scripts for topology manipulation
 │   │   ├── trex                    # TRex driver
 │   │   ├── vagrant                 # VPP device vagrant environment
-│   │   ├── virl                    # VIRL helper scripts
 │   │   └── wrk                     # WRK driver
 │   ├── topology_schemas
 │   ├── traffic_profiles            # Performance tests traffic profiles

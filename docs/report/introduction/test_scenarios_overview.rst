@@ -48,12 +48,6 @@ Brief overview of test scenarios covered in this report:
    cover vNIC-to-vNIC vNIC-to-nestedVM-to-vNIC forwarding topologies.
    Scapy is used as a traffic generator.
 
-..
-    #. **Honeycomb Functional**: Honeycomb functional tests are executed in
-       virtual FD.io testbeds, focusing on Honeycomb management and
-       programming functionality of VPP. Tests cover a range of CRUD
-       operations executed against VPP.
-
 All CSIT test data included in this report is auto-
 generated from :abbr:`RF (Robot Framework)` :file:`output.xml` files
 produced by :abbr:`LF (Linux Foundation)` FD.io Jenkins jobs executed

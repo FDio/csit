@@ -418,4 +418,3 @@ References
 .. [apparmor] `Ubuntu AppArmor <https://wiki.ubuntu.com/AppArmor>`_.
 .. [seccomp] `SECure COMPuting with filters <https://www.kernel.org/doc/Documentation/prctl/seccomp_filter.txt>`_.
 .. [docker] `Docker <https://www.docker.com/what-docker>`_.
-.. [k8sdoc] `Kubernetes documentation <https://kubernetes.io/docs/home/>`_.
