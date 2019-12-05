@@ -44,9 +44,9 @@ source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
-build_vpp_ubuntu_amd64 "CURRENT" || die
+build_vpp_ubuntu "CURRENT" || die
 set_aside_commit_build_artifacts || die
-build_vpp_ubuntu_amd64 "PARENT" || die
+build_vpp_ubuntu "PARENT" || die
 set_aside_parent_build_artifacts || die
 ## Replace previous 4 lines with this to speed up testing.
 #download_builds "REPLACE_WITH_URL" || die
