@@ -661,7 +661,7 @@ class DUTSetup:
                         node, f"rpm -ivh {vpp_pkg_dir}*.rpm",
                         timeout=120, sudo=True, message=message
                     )
-                    exec_cmd_no_error(node, u"rpm -qai *vpp*", sudo=True)
+                    exec_cmd_no_error(node, u"rpm -qai '*vpp*'", sudo=True)
                     DUTSetup.restart_service(node, Constants.VPP_UNIT)
 
     @staticmethod
