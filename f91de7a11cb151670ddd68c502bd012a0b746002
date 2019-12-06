@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c73dda29_b58febfc",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst-rnd10000.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T14:03:02Z",
+      "side": 1,
+      "message": "u\"ipv6_dst\"\n\nAt least that is what the other ipv6 profiles do.",
+      "range": {
+        "startLine": 71,
+        "startChar": 35,
+        "endLine": 71,
+        "endChar": 41
+      },
+      "revId": "f91de7a11cb151670ddd68c502bd012a0b746002",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
