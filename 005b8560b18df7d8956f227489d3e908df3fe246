@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30f576d1_f3a56421",
+        "filename": "resources/traffic_scripts/send_tcp_udp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T15:44:22Z",
+      "side": 1,
+      "message": "Other traffic scripts are executing this line before sending:\n\npkt_raw /\u003d Raw()",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 5
+      },
+      "revId": "005b8560b18df7d8956f227489d3e908df3fe246",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d73b6ca_06bd6b91",
+        "filename": "resources/traffic_scripts/send_tcp_udp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T15:44:22Z",
+      "side": 1,
+      "message": "Other traffic scripts add ignore\u003dsent_packets here. See them on how do the construct the sent_packets array.",
+      "range": {
+        "startLine": 109,
+        "startChar": 26,
+        "endLine": 109,
+        "endChar": 27
+      },
+      "revId": "005b8560b18df7d8956f227489d3e908df3fe246",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "146a3067_eb0691b6",
+        "filename": "resources/traffic_scripts/send_tcp_udp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T15:44:22Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 132,
+        "startChar": 15,
+        "endLine": 132,
+        "endChar": 16
+      },
+      "revId": "005b8560b18df7d8956f227489d3e908df3fe246",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
