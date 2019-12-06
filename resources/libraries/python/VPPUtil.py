@@ -13,12 +13,14 @@
 
 """VPP util library."""
 
+import time
+
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import (exec_cmd_no_error, exec_cmd)
 from resources.libraries.python.topology import NodeType
 
 
@@ -148,6 +150,29 @@ class VPPUtil:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 VPPUtil.verify_vpp(node)
+
+    @staticmethod
+    def vpp_1805_scenario(nodes):
+        """Restart vpp service and loop "vppctl show pci" command.
+
+        This is a test against VPP-1805, run on a first DUT.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        :raises SSHTimeout: If VPP-1805 symptom is triggered.
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                exec_cmd_no_error(node, u"service vpp restart", timeout=180, sudo=True)
+                for _ in range(120):
+                    cmd = u"vppctl show pci 2>&1"
+                    cmd += u" | fgrep -v 'Connection refused'"
+                    cmd += u" | fgrep -v 'No such file or directory'"
+                    exec_cmd(node, cmd, sudo=True)
+                    # Even if SSHTimeout does not happen,
+                    # teardown can detect PID has changed.
+                    time.sleep(0.01)
+                break
 
     @staticmethod
     def vpp_show_version(node):
