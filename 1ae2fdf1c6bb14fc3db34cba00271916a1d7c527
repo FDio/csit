@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f027767_cdff0870",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T12:03:10Z",
+      "side": 0,
+      "message": "These last two TODOs are not addressed yet, they should not be removed.\nAlternatively, mention our decision in the commit message.",
+      "range": {
+        "startLine": 533,
+        "startChar": 10,
+        "endLine": 533,
+        "endChar": 14
+      },
+      "revId": "1ae2fdf1c6bb14fc3db34cba00271916a1d7c527",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47c019b9_aa029cb6",
+        "filename": "resources/tools/presentation/input_data_parser.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T12:03:10Z",
+      "side": 0,
+      "message": "Keep processing also the old keyword, otherwise the pre-release renders of report (on master) will not show the old data correctly.",
+      "range": {
+        "startLine": 917,
+        "startChar": 45,
+        "endLine": 917,
+        "endChar": 53
+      },
+      "revId": "1ae2fdf1c6bb14fc3db34cba00271916a1d7c527",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

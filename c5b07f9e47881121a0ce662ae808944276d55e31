@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68e2e678_aed3e7b5",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T12:03:10Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 114,
+        "startChar": 14,
+        "endLine": 114,
+        "endChar": 15
+      },
+      "revId": "c5b07f9e47881121a0ce662ae808944276d55e31",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf68184a_8b26035b",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T12:03:10Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 116,
+        "startChar": 42,
+        "endLine": 116,
+        "endChar": 43
+      },
+      "revId": "c5b07f9e47881121a0ce662ae808944276d55e31",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2404136c_dc135788",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T12:03:10Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 194,
+        "startChar": 18,
+        "endLine": 194,
+        "endChar": 19
+      },
+      "revId": "c5b07f9e47881121a0ce662ae808944276d55e31",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92821b4b_b318fe5f",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T12:03:10Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 205,
+        "startChar": 20,
+        "endLine": 205,
+        "endChar": 22
+      },
+      "revId": "c5b07f9e47881121a0ce662ae808944276d55e31",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce171f95_55dd5394",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T12:03:10Z",
+      "side": 1,
+      "message": "If you create a keyword for the 79-83 block, you can call it here twice, and once after soak.",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 5
+      },
+      "revId": "c5b07f9e47881121a0ce662ae808944276d55e31",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
