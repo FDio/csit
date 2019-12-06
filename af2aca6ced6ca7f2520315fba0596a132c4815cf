@@ -22,6 +22,30 @@
       "revId": "af2aca6ced6ca7f2520315fba0596a132c4815cf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8829b9c_b0a4b15d",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-06T13:20:05Z",
+      "side": 0,
+      "message": "Some kubernetes code remains, but no reference to \"k8sdoc\" is used anywhere, so this is an unused link. Removed again in patch set #9.",
+      "parentUuid": "041b1b42_82b4d9a3",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 421,
+        "endChar": 75
+      },
+      "revId": "af2aca6ced6ca7f2520315fba0596a132c4815cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
