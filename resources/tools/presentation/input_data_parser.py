@@ -452,10 +452,12 @@ class ExecutionChecker(ResultVisitor):
                 host = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
                            group(1))
             except (AttributeError, IndexError):
-                host = u""
+                host = self._data[u"tests"][self._test_id][u"show-run"].\
+                           count(u"DUT:") + 1
             try:
                 socket = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
                              group(2))
+                socket = f"/{socket}"
             except (AttributeError, IndexError):
                 socket = u""
             runtime = loads(
@@ -526,7 +528,7 @@ class ExecutionChecker(ResultVisitor):
                 txt_table.align[u"Vectors/Calls"] = u"r"
 
                 text += txt_table.get_string(sortby=u"Name") + u'\n'
-            text = f" \n **DUT: {host}/{socket}** \n {text}".\
+            text = f" \n**DUT: {host}{socket}**\n{text}".\
                 replace(u'\n', u' |br| ').\
                 replace(u'\r', u'').\
                 replace(u'"', u"'")

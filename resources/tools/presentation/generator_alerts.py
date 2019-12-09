@@ -314,7 +314,7 @@ class Alerting:
 
         in_file = (
             f"{self.configs[alert[u'way']][u'output-dir']}/"
-            f"cpta-{re_pro}-{alert[u'urls'][idx].split(u'/')[-1]}.txt"
+            f"{re_pro}-{alert[u'urls'][idx].split(u'/')[-1]}.txt"
         )
         out_file = (
             f"{self.configs[alert[u'way']][u'output-dir']}/"
