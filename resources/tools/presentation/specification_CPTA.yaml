@@ -196,7 +196,7 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 853
+        start: 990  # 853
         end: "lastCompletedBuild"
         skip:
           - 855
@@ -231,7 +231,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 853
+        start: 990  # 853
         end: "lastCompletedBuild"
         skip:
           - 855
@@ -269,7 +269,7 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 602
+        start: 730  # 602
         end: "lastCompletedBuild"
         skip:
           - 603
@@ -304,7 +304,7 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 602
+        start: 730  # 602
         end: "lastCompletedBuild"
         skip:
           - 603
@@ -342,7 +342,7 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 607
+        start: 755  # 607
         end: "lastCompletedBuild"
         skip:
           - 608
@@ -380,7 +380,7 @@
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 607
+        start: 755  # 607
         end: "lastCompletedBuild"
         skip:
           - 608
@@ -412,7 +412,7 @@
 
     plot-performance-trending-vpp-2n-clx:
       csit-vpp-perf-mrr-daily-master-2n-clx:
-        start: 89
+        start: 135  # 89
         end: "lastCompletedBuild"
         skip:
           - 97
@@ -450,7 +450,7 @@
 
     plot-performance-trending-vpp-3n-dnv:
       csit-vpp-perf-mrr-daily-master-3n-dnv:
-        start: 82
+        start: 230  # 82
         end: "lastCompletedBuild"
         skip:
           - 83
@@ -501,7 +501,7 @@
 
     plot-performance-trending-vpp-2n-dnv:
       csit-vpp-perf-mrr-daily-master-2n-dnv:
-        start: 81
+        start: 231  # 81
         end: "lastCompletedBuild"
         skip:
           - 83
@@ -559,9 +559,9 @@
       height: 800
       yaxis:
         showticklabels: True
-        tickformat: ".4s"
-        title: "Throughput [pps]"
-        hoverformat: ".4s"
+        tickformat: ".5s"
+        title: "Throughput [Mpps]"
+        hoverformat: ".5s"
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
         showline: True
@@ -610,9 +610,8 @@
         l: 70
       legend:
         orientation: "h"
-        xanchor: "center"
+        xanchor: "auto"
         traceorder: "normal"  # "grouped" does not work: bug https://github.com/plotly/plotly.js/issues/1913
-        tracegroupgap: 20
         bordercolor: "rgb(238, 238, 238)"
       paper_bgcolor: "#fff"
       plot_bgcolor: "#fff"
@@ -644,7 +643,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 853
+      start: 990  # 853
       end: "lastCompletedBuild"
       skip:
         - 855
@@ -679,7 +678,7 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 602
+      start: 730  # 602
       end: "lastCompletedBuild"
       skip:
         - 603
@@ -714,7 +713,7 @@
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
-      start: 607
+      start: 755  # 607
       end: "lastCompletedBuild"
       skip:
         - 608
@@ -757,7 +756,7 @@
         - 66
 
     csit-vpp-perf-mrr-daily-master-2n-clx:
-      start: 89
+      start: 135  # 89
       end: "lastCompletedBuild"
       skip:
         - 97
@@ -771,7 +770,7 @@
 
     # 3n-dnv
     csit-vpp-perf-mrr-daily-master-3n-dnv:
-      start: 82
+      start: 230  # 82
       end: "lastCompletedBuild"
       skip:
         - 83
@@ -822,7 +821,7 @@
 
     # 2n-dnv
     csit-vpp-perf-mrr-daily-master-2n-dnv:
-      start: 81
+      start: 231  # 81
       end: "lastCompletedBuild"
       skip:
         - 83
