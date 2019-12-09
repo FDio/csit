@@ -39,7 +39,7 @@ def hack(value_list):
     :rtype: list of float
     """
     tmp = sorted(value_list)
-    eight = len(tmp) / 8
+    eight = len(tmp) // 8
     ret = tmp[3*eight:-eight]
     return tmp # ret
 
