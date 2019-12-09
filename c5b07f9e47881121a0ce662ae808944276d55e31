@@ -114,6 +114,30 @@
       "revId": "c5b07f9e47881121a0ce662ae808944276d55e31",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1e52141_ea2fd619",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-09T07:14:32Z",
+      "side": 1,
+      "message": "The target is to simplify the output in HTML and remove unnecessary nesting that is bloating HTML",
+      "parentUuid": "ce171f95_55dd5394",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 5
+      },
+      "revId": "c5b07f9e47881121a0ce662ae808944276d55e31",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
