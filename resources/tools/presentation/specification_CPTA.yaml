@@ -559,9 +559,9 @@
       height: 800
       yaxis:
         showticklabels: True
-        tickformat: ".4s"
-        title: "Throughput [pps]"
-        hoverformat: ".4s"
+        tickformat: ".5s"
+        title: "Throughput [Mpps]"
+        hoverformat: ".5s"
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
         showline: True
@@ -610,9 +610,8 @@
         l: 70
       legend:
         orientation: "h"
-        xanchor: "center"
+        xanchor: "auto"
         traceorder: "normal"  # "grouped" does not work: bug https://github.com/plotly/plotly.js/issues/1913
-        tracegroupgap: 20
         bordercolor: "rgb(238, 238, 238)"
       paper_bgcolor: "#fff"
       plot_bgcolor: "#fff"
