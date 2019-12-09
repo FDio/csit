@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b88da24a_14310440",
+        "filename": "resources/traffic_scripts/send_tcp_udp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-09T16:56:11Z",
+      "side": 1,
+      "message": "Why are the parentheses doubled? Use either \"(\",\nor \"(str(\" if you want to accept more types.",
+      "range": {
+        "startLine": 41,
+        "startChar": 29,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "f672771c376147f7323e19fbb9997d1a408312fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e047ca3c_5eb255c9",
+        "filename": "resources/traffic_scripts/send_tcp_udp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-09T16:56:11Z",
+      "side": 1,
+      "message": "f\"{ether!r}\"",
+      "range": {
+        "startLine": 131,
+        "startChar": 12,
+        "endLine": 131,
+        "endChar": 33
+      },
+      "revId": "f672771c376147f7323e19fbb9997d1a408312fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bb8618e_600aca74",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-nat44-dev.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-09T16:56:11Z",
+      "side": 1,
+      "message": "Single space, as Robot does not like the double space:\n\nCollapsing consecutive whitespace during parsing is deprecated. Fix \u0027on receive TG verifies packet for correctness of respective header.  \\\\\u0027 in file \u0027/w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/generated/tests/vpp/device/ip4/eth2p-ethip4-ip4base-nat44-dev.robot\u0027 on line 40.",
+      "range": {
+        "startLine": 40,
+        "startChar": 75,
+        "endLine": 40,
+        "endChar": 77
+      },
+      "revId": "f672771c376147f7323e19fbb9997d1a408312fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
