@@ -592,7 +592,8 @@ function reserve_and_cleanup_testbed () {
                 warn "Testbed cleanup failed: ${topo}"
                 untrap_and_unreserve_testbed "Fail of unreserve after cleanup."
             fi
-            # Else testbed is accessible but currently reserved, moving on.
+            # Else testbed is accessible but currently reserved,
+            # or some unexpected error has happened. Moving on to next testbed.
         done
 
         if [[ -n "${WORKING_TOPOLOGY-}" ]]; then

@@ -31,17 +31,42 @@ RESERVATION_DIR = u"/tmp/reservation_dir"
 RESERVATION_NODE = u"TG"
 
 
-def diag_cmd(node, cmd):
-    """Execute cmd, print cmd and stdout, ignore stderr and rc; return None.
+def diagnose(node, res_dir):
+    """Run a ls command, print processed output; return None.
 
     :param node: Node object as parsed from topology file to execute cmd on.
-    :param cmd: Command to execute.
-    :type node: dict
-    :type cmd: str
+    :param res_dir: Reservation directory to investigate.
+    :type ssh: dict
+    :type res_dir: str
     """
-    print(f"+ {cmd}")
-    _, stdout, _ = exec_cmd(node, cmd)
-    print(stdout)
+    command = "ls --full-time -ac -I .. '{res_dir}' | tail -n 1"
+    ret, stdout, _ = exec_cmd(node, command)
+    # The default Bash does not have "-o pipefail",
+    # and tail does not fail on empty string.
+    if ret or not stdout:
+        print(u"Reservation dir not found, the testbed appears to be free.")
+        return
+    try:
+        _, filename = stdout.rstrip(u"\n").rsplit(u" ", 1)
+    except ValueError:
+        print(f"ls output is not parseable. More info:")
+        print(f"  Command: {command}")
+        print(f"  Stdout: {stdout}")
+        return
+    if filename == u".":
+        print(f"Reservation dir present but empty. More info:")
+        print(f"  Command: {command}")
+        print(f"  Stdout: {stdout}")
+        return
+    print(f"Testbed appears to be reserved by: {filename}")
+    dash_parts = filename.split(u"-")
+    if len(dash_parts) < 3:
+        return
+    if dash_parts[0] != u"jenkins":
+        return
+    job_name = u"-".join(dash_parts[1:-1])
+    run_number = dash_parts[-1]
+    print(f"URL: https://jenkins.fd.io/job/{job_name}/{run_number}")
 
 
 def main():
@@ -68,8 +93,10 @@ def main():
     If it does not, the caller probably wants to stop trying
     to reserve this system. Therefore this script can return 3 different codes.
     Return code 0 means the reservation was successful.
-    Return code 1 means the system is inaccessible (or similarly unsuitable).
-    Return code 2 means the system is accessible, but already reserved.
+    Return code 1 means the system is inaccessible (or similarly unsuitable),
+    or invocation of this script failed (e.g. python3 command not found).
+    Return code 2 means this script was not found (can happend during refactor).
+    Return code 3 means the system is accessible, but already reserved.
     The reason unsuitable systems return 1 is because that is also the value
     Python returns on encountering and unexcepted exception.
     """
@@ -104,17 +131,15 @@ def main():
             print(f"Cancellation unsuccessful:\n{err!r}")
         return ret
     # Before critical section, output can be outdated already.
-    print(u"Diagnostic commands:")
-    # -d and * are to suppress "total <size>", see https://askubuntu.com/a/61190
-    diag_cmd(node, f"ls --full-time -cd '{RESERVATION_DIR}'/*")
+    print(u"Diagnosing the testbed.")
+    diagnose(node, RESERVATION_DIR)
     print(u"Attempting testbed reservation.")
     # Entering critical section.
     ret, _, _ = exec_cmd(node, f"mkdir '{RESERVATION_DIR}'")
     # Critical section is over.
     if ret:
-        _, stdo, _ = exec_cmd(node, f"ls '{RESERVATION_DIR}'/*")
-        print(f"Testbed already reserved by:\n{stdo}")
-        return 2
+        print(u"Testbed already reserved, see the diagnostic output above.")
+        return 3
     # Here the script knows it is the only owner of the testbed.
     print(u"Reservation success, writing additional info to reservation dir.")
     ret, _, err = exec_cmd(
