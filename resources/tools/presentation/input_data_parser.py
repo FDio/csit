@@ -442,6 +442,7 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
+
         if u"show-run" not in self._data[u"tests"][self._test_id].keys():
             self._data[u"tests"][self._test_id][u"show-run"] = str()
 
@@ -451,6 +452,9 @@ class ExecutionChecker(ResultVisitor):
                        group(1))
             socket = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
                          group(2))
+            logging.info(f"host: {host}")
+            logging.info(f"socket: {socket}")
+            logging.info(msg.message)
             runtime = loads(
                 str(msg.message).
                 replace(u' ', u'').
@@ -460,6 +464,7 @@ class ExecutionChecker(ResultVisitor):
                 replace(u'u"', u'"').
                 split(u":", 1)[1]
             )
+            logging.info(runtime)
             try:
                 threads_nr = len(runtime[0][u"clocks"])
             except (IndexError, KeyError):
