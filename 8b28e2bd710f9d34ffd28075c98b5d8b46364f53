@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3b901011_eed46d3a",
+        "filename": "tests/vpp/device/lb/eth2p-ethipv4-loadbalancer-l3dsr-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1822
+      },
+      "writtenOn": "2019-12-09T04:44:11Z",
+      "side": 1,
+      "message": "Ack, addressed in patchset8",
+      "parentUuid": "fde50f61_d5f253f1",
+      "range": {
+        "startLine": 26,
+        "startChar": 32,
+        "endLine": 26,
+        "endChar": 38
+      },
+      "revId": "8b28e2bd710f9d34ffd28075c98b5d8b46364f53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ce748c8_67c69518",
         "filename": "tests/vpp/device/lb/eth2p-ethipv4-loadbalancer-l3dsr-dev.robot",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8a5cdb53_fdd77b40",
+        "filename": "tests/vpp/device/lb/eth2p-ethipv4-loadbalancer-l3dsr-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1822
+      },
+      "writtenOn": "2019-12-09T04:44:11Z",
+      "side": 1,
+      "message": "Done, addressed in patchset8",
+      "parentUuid": "5ce748c8_67c69518",
+      "range": {
+        "startLine": 30,
+        "startChar": 69,
+        "endLine": 30,
+        "endChar": 75
+      },
+      "revId": "8b28e2bd710f9d34ffd28075c98b5d8b46364f53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ff49a36_172eeebb",
         "filename": "tests/vpp/device/lb/eth2p-ethipv4-loadbalancer-nat4-dev.robot",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "8b28e2bd710f9d34ffd28075c98b5d8b46364f53",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46b749d2_17a731f7",
+        "filename": "tests/vpp/device/lb/eth2p-ethipv4-loadbalancer-nat4-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1822
+      },
+      "writtenOn": "2019-12-09T04:44:11Z",
+      "side": 1,
+      "message": "Done,addressed in patchset8",
+      "parentUuid": "4ff49a36_172eeebb",
+      "range": {
+        "startLine": 30,
+        "startChar": 69,
+        "endLine": 30,
+        "endChar": 75
+      },
+      "revId": "8b28e2bd710f9d34ffd28075c98b5d8b46364f53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
