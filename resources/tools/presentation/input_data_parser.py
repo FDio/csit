@@ -429,7 +429,6 @@ class ExecutionChecker(ResultVisitor):
                           r"PAPI command history:", u"",
                           msg.message, count=1).replace(u'\n', u' |br| ').\
                 replace(u'"', u"'")
-
             self._data[u"tests"][self._test_id][u"conf-history"] += (
                 f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
             )
@@ -528,7 +527,7 @@ class ExecutionChecker(ResultVisitor):
                 txt_table.align[u"Vectors/Calls"] = u"r"
 
                 text += txt_table.get_string(sortby=u"Name") + u'\n'
-            text = f" \n**DUT: {host}{socket}**\n{text}".\
+            text = f"\n**DUT: {host}{socket}**\n{text}".\
                 replace(u'\n', u' |br| ').\
                 replace(u'\r', u'').\
                 replace(u'"', u"'")
