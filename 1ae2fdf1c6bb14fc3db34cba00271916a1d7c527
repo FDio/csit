@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2e679a3e_0fee3a9a",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-09T17:20:17Z",
+      "side": 0,
+      "message": "\u003e TODO are supposed to be simple sentences what needs to be done.\n\nThe the original should be converted into two TODOs:\n| TODO1: Discuss and decide whether we should make sure the traffic is stopped on any failure.\n| TODO2: If yes, implement that.\n\nThe point of not discussing it immediately is that we do not need to do TODO1 until we have a resource ready to do TODO2 right after we decide.\nFor example, I am currently undecided, which is fine as I do not have time for TODO2.\n\nMaybe Jira tickets are better for such delayed and under-specified TODOs.\nBut having a TODO in the code is good both for pointing out the location the future work will be around, and for pylint to keep reminding the code is perhaps not final yet.",
+      "parentUuid": "371e2b8f_2ce5fbf4",
+      "range": {
+        "startLine": 533,
+        "startChar": 10,
+        "endLine": 533,
+        "endChar": 14
+      },
+      "revId": "1ae2fdf1c6bb14fc3db34cba00271916a1d7c527",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47c019b9_aa029cb6",
         "filename": "resources/tools/presentation/input_data_parser.py",
         "patchSetId": 13

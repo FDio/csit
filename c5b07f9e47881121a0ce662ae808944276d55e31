@@ -138,6 +138,30 @@
       "revId": "c5b07f9e47881121a0ce662ae808944276d55e31",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a94a8c69_e79e58bc",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-09T17:20:17Z",
+      "side": 1,
+      "message": "Hmm, what about only moving lines 79-80 to a Python keyword? It would save one line per block (an the remaining line will be simpler).\nLong term, I can make the result classes aware of the number of traffic directions, but that will not come soon.",
+      "parentUuid": "a1e52141_ea2fd619",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 5
+      },
+      "revId": "c5b07f9e47881121a0ce662ae808944276d55e31",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
