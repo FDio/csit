@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37a4456c_004ccc8a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst-rnd10000.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-09T11:37:06Z",
+      "side": 1,
+      "message": "This is a string...\n\n\u003e self.min_value  \u003d convert_val (min_value);\n\n... and converting it assumes it is IPv4.\n\nOverall, your idea in patch set #5 is the right one. To get to trex-sl-3n-ethip6-ip6dst-rnd10000.py you should start editing a copy of trex-sl-3n-ethip6-ip6dst10000.py, not a copy of trex-sl-2n-ethip4-ip4dst-rnd10000.py.",
+      "range": {
+        "startLine": 72,
+        "startChar": 40,
+        "endLine": 72,
+        "endChar": 60
+      },
+      "revId": "4d37982ad63098278babfdef29dafb246515f12b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
