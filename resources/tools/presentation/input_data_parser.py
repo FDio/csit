@@ -442,6 +442,7 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
+        logging.info(msg.message)
         if u"show-run" not in self._data[u"tests"][self._test_id].keys():
             self._data[u"tests"][self._test_id][u"show-run"] = str()
 
@@ -460,6 +461,7 @@ class ExecutionChecker(ResultVisitor):
                 replace(u'u"', u'"').
                 split(u":", 1)[1]
             )
+            logging.info(runtime)
             try:
                 threads_nr = len(runtime[0][u"clocks"])
             except (IndexError, KeyError):
