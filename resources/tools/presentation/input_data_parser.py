@@ -420,6 +420,7 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
         if msg.message.count(u"PAPI command history:"):
+            logging.info(msg.message)
             self._conf_history_lookup_nr += 1
             if self._conf_history_lookup_nr == 1:
                 self._data[u"tests"][self._test_id][u"conf-history"] = str()
@@ -528,7 +529,7 @@ class ExecutionChecker(ResultVisitor):
                 txt_table.align[u"Vectors/Calls"] = u"r"
 
                 text += txt_table.get_string(sortby=u"Name") + u'\n'
-            text = f" \n**DUT: {host}{socket}**\n{text}".\
+            text = f"\n**DUT: {host}{socket}**\n{text}".\
                 replace(u'\n', u' |br| ').\
                 replace(u'\r', u'').\
                 replace(u'"', u"'")
