@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c23f718_d4008dca",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-09T16:45:03Z",
+      "side": 1,
+      "message": "Kids, do not attempt to run \"rm\" and \"git add\" commands close together, or you risk deleting your changes (when you do not hit enter after \"rm\" properly).",
+      "revId": "acd79bde2776b389dd43c7797203c958aa828fa5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
