@@ -460,6 +460,7 @@ class ExecutionChecker(ResultVisitor):
                 replace(u'u"', u'"').
                 split(u":", 1)[1]
             )
+            logging.info(runtime)
             try:
                 threads_nr = len(runtime[0][u"clocks"])
             except (IndexError, KeyError):
