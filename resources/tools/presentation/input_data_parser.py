@@ -442,15 +442,22 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
+
         if u"show-run" not in self._data[u"tests"][self._test_id].keys():
             self._data[u"tests"][self._test_id][u"show-run"] = str()
 
         if msg.message.count(u"stats runtime") or \
                 msg.message.count(u"Runtime"):
-            host = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
-                       group(1))
-            socket = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
-                         group(2))
+            try:
+                host = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
+                           group(1))
+            except (AttributeError, IndexError):
+                host = u""
+            try:
+                socket = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
+                             group(2))
+            except (AttributeError, IndexError):
+                socket = u""
             runtime = loads(
                 str(msg.message).
                 replace(u' ', u'').
@@ -524,6 +531,8 @@ class ExecutionChecker(ResultVisitor):
                 replace(u'\r', u'').\
                 replace(u'"', u"'")
             self._data[u"tests"][self._test_id][u"show-run"] += text
+
+            logging.info(self._data[u"tests"][self._test_id][u"show-run"])
 
     def _get_ndrpdr_throughput(self, msg):
         """Get NDR_LOWER, NDR_UPPER, PDR_LOWER and PDR_UPPER from the test
