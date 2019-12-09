@@ -169,7 +169,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
     """
 
     data_x = list(in_data.keys())
-    data_y = list(in_data.values())
+    data_y = [float(item) / 1e6 for item in in_data.values()]
 
     hover_text = list()
     xaxis = list()

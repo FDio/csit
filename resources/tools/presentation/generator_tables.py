@@ -124,7 +124,7 @@ def table_details(table, input_data):
                         u"data"].split(" ")[1]]).replace(u'"', u'""')
                     if column[u"data"].split(u" ")[1] in \
                         (u"conf-history", u"show-run"):
-                        col_data = col_data.replace(u" |br| ", u"", )
+                        col_data = col_data.replace(u" |br| ", u"", 1)
                         col_data = f" |prein| {col_data[:-5]} |preout| "
                     row_lst.append(f'"{col_data}"')
                 except KeyError:
