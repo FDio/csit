@@ -22,6 +22,30 @@
       "revId": "ac9dd038f9c5fc0ea2cf31181ee8d4954201ce65",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf786945_a8a25acb",
+        "filename": "tests/vpp/device/lb/eth2p-ethipv4-loadbalancer-l3dsr-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1822
+      },
+      "writtenOn": "2019-12-09T04:44:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6383e367_2f99a069",
+      "range": {
+        "startLine": 79,
+        "startChar": 33,
+        "endLine": 79,
+        "endChar": 36
+      },
+      "revId": "ac9dd038f9c5fc0ea2cf31181ee8d4954201ce65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
