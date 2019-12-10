@@ -182,10 +182,9 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"snergster/csit-arm-sut:latest"
 
     # TRex install directory
-    TREX_INSTALL_DIR = u"/opt/trex-core-2.61"
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.73"
 
     # TRex limit memory.
-    # 4096 pages (4 GB) is used just due to the current testbed settings.
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY ", 4096)
 
     # TRex number of cores
