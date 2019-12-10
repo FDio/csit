@@ -556,18 +556,18 @@ def _generate_all_charts(spec, input_data):
 
     anomaly_classifications = dict()
 
-    # Create the header:
+    # Create the table header:
     csv_tables = dict()
     for job_name in builds_dict:
         if csv_tables.get(job_name, None) is None:
             csv_tables[job_name] = list()
-        header = u"Build Number:," + u",".join(builds_dict[job_name]) + u'\n'
+        header = f"Build Number:,{u','.join(builds_dict[job_name])}\n"
         csv_tables[job_name].append(header)
         build_dates = [x[0] for x in build_info[job_name].values()]
-        header = u"Build Date:," + u",".join(build_dates) + u'\n'
+        header = f"Build Date:,{u','.join(build_dates)}\n"
         csv_tables[job_name].append(header)
         versions = [x[1] for x in build_info[job_name].values()]
-        header = u"Version:," + u",".join(versions) + u'\n'
+        header = f"Version:,{u','.join(versions)}\n"
         csv_tables[job_name].append(header)
 
     for chart in spec.cpta[u"plots"]:
@@ -583,7 +583,7 @@ def _generate_all_charts(spec, input_data):
 
     # Write the tables:
     for job_name, csv_table in csv_tables.items():
-        file_name = spec.cpta[u"output-file"] + u"-" + job_name + u"-trending"
+        file_name = f"{spec.cpta[u'output-file']}/{job_name}-trending"
         with open(f"{file_name}.csv", u"w") as file_handler:
             file_handler.writelines(csv_table)
 
