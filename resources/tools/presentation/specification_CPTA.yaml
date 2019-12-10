@@ -1689,211 +1689,280 @@
 ################################################################################
 # NFV
 
-    - title: "VPP 2T1C NF Service Density VNFc 64B MRR Trending 2n-skx"
+    - title: "VPP 2T1C NF Service Density VNFc IMIX MRR Trending 2n-skx"
       output-file-name: "2n-skx-xxv710-imix-2t1c-vhost-chains-i40e"
       data: "plot-performance-trending-vpp-nfv-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'VM' and 'CHAIN' and 'MRR' and 'IMIX' and '2T1C' and 'L2BDMACLRN'"
+      filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'VM' and 'CHAIN' and 'MRR' and 'IMIX' and '2T1C' and 'L2BDMACLRN' and not 'VXLAN'"
       groups:
-      - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
-      - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C"]
-      - ["4R1C", "4R2C", "4R4C"]
-      - ["6R1C", "6R2C"]
-      - ["8R1C", "8R2C"]
-      - ["10R1C"]
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+        - ["8R1C", "8R2C"]
+        - ["10R1C", "10R2C"]
       group-names:
-      - "1 Chain"
-      - "2 Chains"
-      - "4 Chains"
-      - "6 Chains"
-      - "8 Chains"
-      - "10 Chains"
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+        - "8 Chains"
+        - "10 Chains"
       parameters:
-      - "result"
-      - "tags"
+        - "result"
+        - "tags"
       layout: "plot-cpta"
 
-    - title: "VPP 4T2C NF Service Density VNFc 64B MRR Trending 2n-skx"
+    - title: "VPP 4T2C NF Service Density VNFc IMIX MRR Trending 2n-skx"
       output-file-name: "2n-skx-xxv710-imix-4t2c-vhost-chains-i40e"
       data: "plot-performance-trending-vpp-nfv-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'VM' and 'CHAIN' and 'MRR' and 'IMIX' and '4T2C' and 'L2BDMACLRN'"
+      filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'VM' and 'CHAIN' and 'MRR' and 'IMIX' and '4T2C' and 'L2BDMACLRN' and not 'VXLAN'"
       groups:
-      - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
-      - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C"]
-      - ["4R1C", "4R2C", "4R4C"]
-      - ["6R1C", "6R2C"]
-      - ["8R1C", "8R2C"]
-      - ["10R1C"]
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+        - ["8R1C", "8R2C"]
+        - ["10R1C", "10R2C"]
       group-names:
-      - "1 Chain"
-      - "2 Chains"
-      - "4 Chains"
-      - "6 Chains"
-      - "8 Chains"
-      - "10 Chains"
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+        - "8 Chains"
+        - "10 Chains"
       parameters:
-      - "result"
-      - "tags"
+        - "result"
+        - "tags"
       layout: "plot-cpta"
 
-    - title: "VPP 8T4C NF Service Density VNFc 64B MRR Trending 2n-skx"
+    - title: "VPP 8T4C NF Service Density VNFc IMIX MRR Trending 2n-skx"
       output-file-name: "2n-skx-xxv710-imix-8t4c-vhost-chains-i40e"
       data: "plot-performance-trending-vpp-nfv-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'VM' and 'CHAIN' and 'MRR' and 'IMIX' and '8T4C' and 'L2BDMACLRN'"
+      filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'VM' and 'CHAIN' and 'MRR' and 'IMIX' and '8T4C' and 'L2BDMACLRN' and not 'VXLAN'"
       groups:
-      - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
-      - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C"]
-      - ["4R1C", "4R2C", "4R4C"]
-      - ["6R1C", "6R2C"]
-      - ["8R1C", "8R2C"]
-      - ["10R1C"]
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+        - ["8R1C", "8R2C"]
+        - ["10R1C", "10R2C"]
       group-names:
-      - "1 Chain"
-      - "2 Chains"
-      - "4 Chains"
-      - "6 Chains"
-      - "8 Chains"
-      - "10 Chains"
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+        - "8 Chains"
+        - "10 Chains"
       parameters:
-      - "result"
-      - "tags"
+        - "result"
+        - "tags"
       layout: "plot-cpta"
 
-    - title: "VPP 2T1C NF Service Density CNFc 64B MRR Trending 2n-skx"
+    - title: "VPP 2T1C NF Service Density VNFc VXLAN IMIX MRR Trending 2n-skx"
+      output-file-name: "2n-skx-xxv710-imix-2t1c-vhost-chains-vxlan-i40e"
+      data: "plot-performance-trending-vpp-nfv-2n-skx"
+      filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'VM' and 'CHAIN' and 'MRR' and 'IMIX' and '2T1C' and 'L2BDMACLRN' and 'VXLAN'"
+      groups:
+        - ["1R1C", ]
+        - ["2R1C", ]
+        - ["4R1C", ]
+        - ["6R1C", ]
+        - ["8R1C", ]
+        - ["10R1C", ]
+      group-names:
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+        - "8 Chains"
+        - "10 Chains"
+      parameters:
+        - "result"
+        - "tags"
+      layout: "plot-cpta"
+
+    - title: "VPP 4T2C NF Service Density VNFc VXLAN IMIX MRR Trending 2n-skx"
+      output-file-name: "2n-skx-xxv710-imix-4t2c-vhost-chains-vxlan-i40e"
+      data: "plot-performance-trending-vpp-nfv-2n-skx"
+      filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'VM' and 'CHAIN' and 'MRR' and 'IMIX' and '4T2C' and 'L2BDMACLRN' and 'VXLAN'"
+      groups:
+        - ["1R1C", ]
+        - ["2R1C", ]
+        - ["4R1C", ]
+        - ["6R1C", ]
+        - ["8R1C", ]
+        - ["10R1C", ]
+      group-names:
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+        - "8 Chains"
+        - "10 Chains"
+      parameters:
+        - "result"
+        - "tags"
+      layout: "plot-cpta"
+
+    - title: "VPP 8T4C NF Service Density VNFc VXLAN IMIX MRR Trending 2n-skx"
+      output-file-name: "2n-skx-xxv710-imix-8t4c-vhost-chains-vxlan-i40e"
+      data: "plot-performance-trending-vpp-nfv-2n-skx"
+      filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'VM' and 'CHAIN' and 'MRR' and 'IMIX' and '8T4C' and 'L2BDMACLRN' and 'VXLAN'"
+      groups:
+        - ["1R1C", ]
+        - ["2R1C", ]
+        - ["4R1C", ]
+        - ["6R1C", ]
+        - ["8R1C", ]
+        - ["10R1C", ]
+      group-names:
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+        - "8 Chains"
+        - "10 Chains"
+      parameters:
+        - "result"
+        - "tags"
+      layout: "plot-cpta"
+
+    - title: "VPP 2T1C NF Service Density CNFc IMIX MRR Trending 2n-skx"
       output-file-name: "2n-skx-xxv710-imix-2t1c-memif-chains-i40e"
       data: "plot-performance-trending-vpp-nfv-2n-skx"
       filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'DOCKER' and 'CHAIN' and 'MRR' and 'IMIX' and '2T1C' and 'L2BDMACLRN'"
       groups:
-      - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
-      - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C"]
-      - ["4R1C", "4R2C", "4R4C"]
-      - ["6R1C", "6R2C"]
-      - ["8R1C", "8R2C"]
-      - ["10R1C"]
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+        - ["8R1C", "8R2C"]
+        - ["10R1C", "10R2C"]
       group-names:
-      - "1 Chain"
-      - "2 Chains"
-      - "4 Chains"
-      - "6 Chains"
-      - "8 Chains"
-      - "10 Chains"
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+        - "8 Chains"
+        - "10 Chains"
       parameters:
-      - "result"
-      - "tags"
+        - "result"
+        - "tags"
       layout: "plot-cpta"
 
-    - title: "VPP 4T2C NF Service Density CNFc 64B MRR Trending 2n-skx"
+    - title: "VPP 4T2C NF Service Density CNFc IMIX MRR Trending 2n-skx"
       output-file-name: "2n-skx-xxv710-imix-4t2c-memif-chains-i40e"
       data: "plot-performance-trending-vpp-nfv-2n-skx"
       filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'DOCKER' and 'CHAIN' and 'MRR' and 'IMIX' and '4T2C' and 'L2BDMACLRN'"
       groups:
-      - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
-      - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C"]
-      - ["4R1C", "4R2C", "4R4C"]
-      - ["6R1C", "6R2C"]
-      - ["8R1C", "8R2C"]
-      - ["10R1C"]
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+        - ["8R1C", "8R2C"]
+        - ["10R1C", "10R2C"]
       group-names:
-      - "1 Chain"
-      - "2 Chains"
-      - "4 Chains"
-      - "6 Chains"
-      - "8 Chains"
-      - "10 Chains"
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+        - "8 Chains"
+        - "10 Chains"
       parameters:
-      - "result"
-      - "tags"
+        - "result"
+        - "tags"
       layout: "plot-cpta"
 
-    - title: "VPP 8T4C NF Service Density CNFc 64B MRR Trending 2n-skx"
+    - title: "VPP 8T4C NF Service Density CNFc IMIX MRR Trending 2n-skx"
       output-file-name: "2n-skx-xxv710-imix-8t4c-memif-chains-i40e"
       data: "plot-performance-trending-vpp-nfv-2n-skx"
       filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'DOCKER' and 'CHAIN' and 'MRR' and 'IMIX' and '8T4C' and 'L2BDMACLRN'"
       groups:
-      - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
-      - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C"]
-      - ["4R1C", "4R2C", "4R4C"]
-      - ["6R1C", "6R2C"]
-      - ["8R1C", "8R2C"]
-      - ["10R1C"]
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+        - ["8R1C", "8R2C"]
+        - ["10R1C", "10R2C"]
       group-names:
-      - "1 Chain"
-      - "2 Chains"
-      - "4 Chains"
-      - "6 Chains"
-      - "8 Chains"
-      - "10 Chains"
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+        - "8 Chains"
+        - "10 Chains"
       parameters:
-      - "result"
-      - "tags"
+        - "result"
+        - "tags"
       layout: "plot-cpta"
 
-    - title: "VPP 2T1C NF Service Density CNFp 64B MRR Trending 2n-skx"
+    - title: "VPP 2T1C NF Service Density CNFp IMIX MRR Trending 2n-skx"
       output-file-name: "2n-skx-xxv710-imix-2t1c-memif-pipelines-i40e"
       data: "plot-performance-trending-vpp-nfv-2n-skx"
       filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'DOCKER' and 'PIPELINE' and 'MRR' and 'IMIX' and '2T1C' and 'L2BDMACLRN'"
       groups:
-      - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
-      - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C"]
-      - ["4R1C", "4R2C", "4R4C"]
-      - ["6R1C", "6R2C"]
-      - ["8R1C", "8R2C"]
-      - ["10R1C"]
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+        - ["8R1C", "8R2C"]
+        - ["10R1C", "10R2C"]
       group-names:
-      - "1 Pipe"
-      - "2 Pipes"
-      - "4 Pipes"
-      - "6 Pipes"
-      - "8 Pipes"
-      - "10 Pipes"
+        - "1 Pipe"
+        - "2 Pipes"
+        - "4 Pipes"
+        - "6 Pipes"
+        - "8 Pipes"
+        - "10 Pipes"
       parameters:
-      - "result"
-      - "tags"
+        - "result"
+        - "tags"
       layout: "plot-cpta"
 
-    - title: "VPP 4T2C NF Service Density CNFp 64B MRR Trending 2n-skx"
+    - title: "VPP 4T2C NF Service Density CNFp IMIX MRR Trending 2n-skx"
       output-file-name: "2n-skx-xxv710-imix-4t2c-memif-pipelines-i40e"
       data: "plot-performance-trending-vpp-nfv-2n-skx"
       filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'DOCKER' and 'PIPELINE' and 'MRR' and 'IMIX' and '4T2C' and 'L2BDMACLRN'"
       groups:
-      - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
-      - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C"]
-      - ["4R1C", "4R2C", "4R4C"]
-      - ["6R1C", "6R2C"]
-      - ["8R1C", "8R2C"]
-      - ["10R1C"]
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+        - ["8R1C", "8R2C"]
+        - ["10R1C", "10R2C"]
       group-names:
-      - "1 Pipe"
-      - "2 Pipes"
-      - "4 Pipes"
-      - "6 Pipes"
-      - "8 Pipes"
-      - "10 Pipes"
+        - "1 Pipe"
+        - "2 Pipes"
+        - "4 Pipes"
+        - "6 Pipes"
+        - "8 Pipes"
+        - "10 Pipes"
       parameters:
       - "result"
       - "tags"
       layout: "plot-cpta"
 
-    - title: "VPP 8T4C NF Service Density CNFp 64B MRR Trending 2n-skx"
+    - title: "VPP 8T4C NF Service Density CNFp IMIX MRR Trending 2n-skx"
       output-file-name: "2n-skx-xxv710-imix-8t4c-memif-pipelines-i40e"
       data: "plot-performance-trending-vpp-nfv-2n-skx"
       filter: "'NIC_Intel-XXV710' and 'NF_DENSITY' and 'DOCKER' and 'PIPELINE' and 'MRR' and 'IMIX' and '8T4C' and 'L2BDMACLRN'"
       groups:
-      - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
-      - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C"]
-      - ["4R1C", "4R2C", "4R4C"]
-      - ["6R1C", "6R2C"]
-      - ["8R1C", "8R2C"]
-      - ["10R1C"]
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+        - ["8R1C", "8R2C"]
+        - ["10R1C", "10R2C"]
       group-names:
-      - "1 Pipe"
-      - "2 Pipes"
-      - "4 Pipes"
-      - "6 Pipes"
-      - "8 Pipes"
-      - "10 Pipes"
+        - "1 Pipe"
+        - "2 Pipes"
+        - "4 Pipes"
+        - "6 Pipes"
+        - "8 Pipes"
+        - "10 Pipes"
       parameters:
-      - "result"
-      - "tags"
+        - "result"
+        - "tags"
       layout: "plot-cpta"
 
 ################################################################################
