@@ -185,7 +185,7 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"snergster/csit-arm-sut:latest"
 
     # TRex install directory
-    TREX_INSTALL_DIR = u"/opt/trex-core-2.61"
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.72"
 
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
