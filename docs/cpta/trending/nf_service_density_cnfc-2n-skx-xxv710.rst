@@ -53,7 +53,7 @@ CNF Service Chains Routing
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-master-2n-skx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-imix-4t2c-memif-chains-i40e.html.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-imix-4t2c-memif-chains-i40e.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -67,6 +67,6 @@ CNF Service Chains Routing
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-master-2n-skx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-imix-8t4c-memif-chains-i40e.html.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-imix-8t4c-memif-chains-i40e.html"></iframe>
     <p><br><br></p>
     </center>
