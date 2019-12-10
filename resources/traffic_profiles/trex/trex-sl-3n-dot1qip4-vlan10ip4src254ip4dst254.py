@@ -34,7 +34,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
     """Stream profile."""
 
     def __init__(self):
-        """Initialization and setting of streams' parameters."""
+        """Initialization and setting of streams" parameters."""
 
         super(TrafficStreamsBaseClass, self).__init__()
 
@@ -49,17 +49,17 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = '10.0.0.1'
-        self.p1_src_end_ip = '10.0.0.254'
+        self.p1_src_start_ip = u"10.0.0.1"
+        self.p1_src_end_ip = u"10.0.0.254"
 
-        self.p1_dst_start_ip = '20.0.0.1'
-        self.p1_dst_end_ip = '20.0.0.254'
+        self.p1_dst_start_ip = u"20.0.0.1"
+        self.p1_dst_end_ip = u"20.0.0.254"
 
-        self.p2_src_start_ip = '20.0.0.1'
-        self.p2_src_end_ip = '20.0.0.254'
+        self.p2_src_start_ip = u"20.0.0.1"
+        self.p2_src_end_ip = u"20.0.0.254"
 
-        self.p2_dst_start_ip = '10.0.0.1'
-        self.p2_dst_end_ip = '10.0.0.254'
+        self.p2_dst_start_ip = u"10.0.0.1"
+        self.p2_dst_end_ip = u"10.0.0.254"
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
@@ -84,41 +84,54 @@ class TrafficStreams(TrafficStreamsBaseClass):
                          proto=61))
 
         # Direction 0 --> 1
-        vm1 = STLScVmRaw([STLVmFlowVar(name="vlan",
-                                       min_value=self.p1_vlan_start,
-                                       max_value=self.p1_vlan_end,
-                                       size=2, op="inc"),
-                          STLVmWrFlowVar(fv_name="vlan",
-                                         pkt_offset="Dot1Q.vlan"),
-                          STLVmFlowVar(name="ip_src",
-                                       min_value=self.p1_src_start_ip,
-                                       max_value=self.p1_src_end_ip,
-                                       size=4, op="random"),
-                          STLVmWrFlowVar(fv_name="ip_src", pkt_offset="IP.src"),
-                          STLVmFlowVar(name="ip_dst",
-                                       min_value=self.p1_dst_start_ip,
-                                       max_value=self.p1_dst_end_ip,
-                                       size=4, op="random"),
-                          STLVmWrFlowVar(fv_name="ip_dst", pkt_offset="IP.dst"),
-                          STLVmFixIpv4(offset="IP")])
+        vm1 = STLScVmRaw([STLVmFlowVar(\
+                              name=u"vlan",
+                              min_value=self.p1_vlan_start,
+                              max_value=self.p1_vlan_end,
+                              size=2, op=u"inc"),
+                          STLVmWrFlowVar(\
+                              fv_name=u"vlan",
+                              pkt_offset=u"Dot1Q.vlan"),
+                          STLVmFlowVar(\
+                              name=u"ip_src",
+                              min_value=self.p1_src_start_ip,
+                              max_value=self.p1_src_end_ip,
+                              size=4, op=u"random"),
+                          STLVmWrFlowVar(\
+                              fv_name=u"ip_src", pkt_offset=u"IP.src"),
+                          STLVmFlowVar(\
+                              name=u"ip_dst",
+                              min_value=self.p1_dst_start_ip,
+                              max_value=self.p1_dst_end_ip,
+                              size=4, op=u"random"),
+                          STLVmWrFlowVar(\
+                              fv_name=u"ip_dst", pkt_offset=u"IP.dst"),
+                          STLVmFixIpv4(\
+                              offset=u"IP")])
         # Direction 1 --> 0
-        vm2 = STLScVmRaw([STLVmFlowVar(name="vlan",
-                                       min_value=self.p2_vlan_start,
-                                       max_value=self.p2_vlan_end,
-                                       size=2, op="inc"),
-                          STLVmWrFlowVar(fv_name="vlan",
-                                         pkt_offset="Dot1Q.vlan"),
-                          STLVmFlowVar(name="ip_src",
-                                       min_value=self.p2_src_start_ip,
-                                       max_value=self.p2_src_end_ip,
-                                       size=4, op="random"),
-                          STLVmWrFlowVar(fv_name="ip_src", pkt_offset="IP.src"),
-                          STLVmFlowVar(name="ip_dst",
-                                       min_value=self.p2_dst_start_ip,
-                                       max_value=self.p2_dst_end_ip,
-                                       size=4, op="random"),
-                          STLVmWrFlowVar(fv_name="ip_dst", pkt_offset="IP.dst"),
-                          STLVmFixIpv4(offset="IP")])
+        vm2 = STLScVmRaw([STLVmFlowVar(\
+                              name=u"vlan",
+                              min_value=self.p2_vlan_start,
+                              max_value=self.p2_vlan_end,
+                              size=2, op=u"inc"),
+                          STLVmWrFlowVar(\
+                              fv_name=u"vlan",
+                              pkt_offset=u"Dot1Q.vlan"),
+                          STLVmFlowVar(\
+                              name=u"ip_src",
+                              min_value=self.p2_src_start_ip,
+                              max_value=self.p2_src_end_ip,
+                              size=4, op=u"random"),
+                          STLVmWrFlowVar(\
+                              fv_name=u"ip_src", pkt_offset=u"IP.src"),
+                          STLVmFlowVar(name=u"ip_dst",
+                              min_value=self.p2_dst_start_ip,
+                              max_value=self.p2_dst_end_ip,
+                              size=4, op=u"random"),
+                          STLVmWrFlowVar(\
+                              fv_name=u"ip_dst", pkt_offset=u"IP.dst"),
+                          STLVmFixIpv4(\
+                              offset=u"IP")])
 
         return base_pkt_a, base_pkt_b, vm1, vm2
 

@@ -36,18 +36,18 @@ class TrafficStreams(TrafficStreamsBaseClass):
     """Stream profile."""
 
     def __init__(self):
-        """Initialization and setting of streams' parameters."""
+        """Initialization and setting of streams" parameters."""
 
         super(TrafficStreamsBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = '20.0.0.0'
-        self.p1_src_end_ip = '20.0.0.0'
-        self.p1_dst_start_ip = '12.0.0.2'
+        self.p1_src_start_ip = u"20.0.0.0"
+        self.p1_src_end_ip = u"20.0.0.0"
+        self.p1_dst_start_ip = u"12.0.0.2"
 
-        self.p2_src_start_ip = '12.0.0.2'
-        self.p2_src_end_ip = '12.0.0.2'
-        self.p2_dst_start_ip = '200.0.0.0'
+        self.p2_src_start_ip = u"12.0.0.2"
+        self.p2_src_end_ip = u"12.0.0.2"
+        self.p2_dst_start_ip = u"200.0.0.0"
 
         # UDP ports used in packet headers.
         self.p1_src_start_udp_port = 1024
@@ -84,19 +84,23 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # Direction 0 --> 1
         vm1 = STLScVmRaw([
-            STLVmFlowVar(name="sport",
-                         min_value=self.p1_src_start_udp_port,
-                         max_value=self.p1_src_end_udp_port,
-                         size=2, op="inc"),
-            STLVmWrFlowVar(fv_name="sport", pkt_offset="UDP.sport")
+            STLVmFlowVar(\
+                name=u"sport",
+                min_value=self.p1_src_start_udp_port,
+                max_value=self.p1_src_end_udp_port,
+                size=2, op=u"inc"),
+            STLVmWrFlowVar(\
+                fv_name=u"sport", pkt_offset=u"UDP.sport")
         ])
         # Direction 0 --> 1
         vm2 = STLScVmRaw([
-            STLVmFlowVar(name="dport",
-                         min_value=self.p2_dst_start_udp_port,
-                         max_value=self.p2_dst_end_udp_port,
-                         size=2, op="inc"),
-            STLVmWrFlowVar(fv_name="dport", pkt_offset="UDP.dport")
+            STLVmFlowVar(\
+                name=u"dport",
+                min_value=self.p2_dst_start_udp_port,
+                max_value=self.p2_dst_end_udp_port,
+                size=2, op=u"inc"),
+            STLVmWrFlowVar(\
+                fv_name=u"dport", pkt_offset=u"UDP.dport")
         ])
 
         return base_pkt_a, base_pkt_b, vm1, vm2

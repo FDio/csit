@@ -36,18 +36,18 @@ class TrafficStreams(TrafficStreamsBaseClass):
     """Stream profile."""
 
     def __init__(self):
-        """Initialization and setting of streams' parameters."""
+        """Initialization and setting of streams" parameters."""
 
         super(TrafficStreamsBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = '20.0.0.0'
-        self.p1_src_end_ip = '20.0.3.231'
-        self.p1_dst_start_ip = '12.0.0.2'
+        self.p1_src_start_ip = u"20.0.0.0"
+        self.p1_src_end_ip = u"20.0.3.231"
+        self.p1_dst_start_ip = u"12.0.0.2"
 
-        self.p2_src_start_ip = '12.0.0.2'
-        self.p2_src_end_ip = '12.0.0.2'
-        self.p2_dst_start_ip = '200.0.0.0'
+        self.p2_src_start_ip = u"12.0.0.2"
+        self.p2_src_end_ip = u"12.0.0.2"
+        self.p2_dst_start_ip = u"200.0.0.0"
 
         # UDP ports used in packet headers.
         self.p1_src_start_udp_port = 1024
@@ -84,22 +84,27 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # Direction 0 --> 1
         vm1 = STLScVmRaw([
-            STLVmTupleGen(ip_min=self.p1_src_start_ip,
-                          ip_max=self.p1_src_end_ip,
-                          port_min=self.p1_src_start_udp_port,
-                          port_max=self.p1_src_end_udp_port,
-                          name="tuple"),
-            STLVmWrFlowVar(fv_name="tuple.ip", pkt_offset="IP.src"),
-            STLVmFixIpv4(offset="IP"),
-            STLVmWrFlowVar(fv_name="tuple.port", pkt_offset="UDP.sport")
+            STLVmTupleGen(\
+                ip_min=self.p1_src_start_ip,
+                ip_max=self.p1_src_end_ip,
+                port_min=self.p1_src_start_udp_port,
+                port_max=self.p1_src_end_udp_port,
+                name=u"tuple"),
+            STLVmWrFlowVar(\
+                fv_name=u"tuple.ip", pkt_offset=u"IP.src"),
+            STLVmFixIpv4(\
+                offset=u"IP"),
+            STLVmWrFlowVar(\
+                fv_name=u"tuple.port", pkt_offset=u"UDP.sport")
         ])
         # Direction 0 --> 1
         vm2 = STLScVmRaw([
-            STLVmFlowVar(name="dport",
-                         min_value=self.p2_dst_start_udp_port,
-                         max_value=self.p2_dst_end_udp_port,
-                         size=2, op="inc"),
-            STLVmWrFlowVar(fv_name="dport", pkt_offset="UDP.dport")
+            STLVmFlowVar(\
+                name=u"dport",
+                min_value=self.p2_dst_start_udp_port,
+                max_value=self.p2_dst_end_udp_port,
+                size=2, op=u"inc"),
+            STLVmWrFlowVar(fv_name=u"dport", pkt_offset=u"UDP.dport")
         ])
 
         return base_pkt_a, base_pkt_b, vm1, vm2

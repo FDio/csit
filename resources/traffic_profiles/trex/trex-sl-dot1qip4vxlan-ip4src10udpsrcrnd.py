@@ -46,17 +46,17 @@ from profile_trex_stateless_base_class import TrafficStreamsBaseClass
 # RFC 7348 - Virtual eXtensible Local Area Network (VXLAN):
 # A Framework for Overlaying Virtualized Layer 2 Networks over Layer 3 Networks
 # http://tools.ietf.org/html/rfc7348
-_VXLAN_FLAGS = list('R'*24 + "RRRIRRRRR")
+_VXLAN_FLAGS = list(u"R"*24 + u"RRRIRRRRR")
 
 
 class VXLAN(Packet):
-    name = 'VXLAN'
-    fields_desc = [FlagsField('flags', 0x08000000, 32, _VXLAN_FLAGS),
-                   ThreeBytesField('vni', 0),
-                   XByteField('reserved', 0x00)]
+    name = u"VXLAN"
+    fields_desc = [FlagsField(u"flags", 0x08000000, 32, _VXLAN_FLAGS),
+                   ThreeBytesField(u"vni", 0),
+                   XByteField(u"reserved", 0x00)]
 
     def mysummary(self):
-        return self.sprintf("VXLAN (vni=%VXLAN.vni%)")
+        return self.sprintf(u"VXLAN (vni=%VXLAN.vni%)")
 
 
 bind_layers(UDP, VXLAN, dport=4789)
@@ -67,7 +67,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
     """Stream profile."""
 
     def __init__(self):
-        """Initialization and setting of streams' parameters."""
+        """Initialization and setting of streams" parameters."""
 
         super(TrafficStreamsBaseClass, self).__init__()
 
@@ -86,60 +86,60 @@ class TrafficStreams(TrafficStreamsBaseClass):
         base_pkt_a = (
             Ether()/
             Dot1Q(vlan=100) /
-            IP(src='172.17.0.2', dst='172.16.0.1')/
+            IP(src=u"172.17.0.2", dst=u"172.16.0.1")/
             UDP(sport=1024, dport=4789)/
             VXLAN(vni=0)/
-            Ether(src='00:aa:aa:00:00:00', dst='00:bb:bb:00:00:00')/
-            IP(src='10.0.0.2', dst='10.0.0.1', proto=61))
+            Ether(src=u"00:aa:aa:00:00:00", dst=u"00:bb:bb:00:00:00")/
+            IP(src=u"10.0.0.2", dst=u"10.0.0.1", proto=61))
 
         # Direction 1 --> 0
         base_pkt_b = (
             Ether()/
             Dot1Q(vlan=200) /
-            IP(src='172.27.0.2', dst='172.26.0.1')/
+            IP(src=u"172.27.0.2", dst=u"172.26.0.1")/
             UDP(sport=1024, dport=4789)/
             VXLAN(vni=0)/
-            Ether(src='00:bb:bb:00:00:00', dst='00:aa:aa:00:00:00')/
-            IP(src='10.0.0.1', dst='10.0.0.2', proto=61))
+            Ether(src=u"00:bb:bb:00:00:00", dst=u"00:aa:aa:00:00:00")/
+            IP(src=u"10.0.0.1", dst=u"10.0.0.2", proto=61))
 
         # Direction 0 --> 1
         vm1 = STLScVmRaw([
-            STLVmFlowVar(name='nf_id', size=1, op='inc',
+            STLVmFlowVar(name=u"nf_id", size=1, op=u"inc",
                          min_value=0, max_value=self.nf_chains - 1),
-            STLVmFlowVar(name='in_mac', size=2, op='inc',
+            STLVmFlowVar(name=u"in_mac", size=2, op=u"inc",
                          min_value=0, max_value=255),
-            STLVmFlowVar(name='in_ip', size=1, op='inc',
+            STLVmFlowVar(name=u"in_ip", size=1, op=u"inc",
                          min_value=0, max_value=255),
-            STLVmFlowVar(name='src_port', size=2, op='random',
+            STLVmFlowVar(name=u"src_port", size=2, op=u"random",
                          min_value=1024, max_value=65535),
-            STLVmWrFlowVar(fv_name='nf_id', pkt_offset=32),
-            STLVmWrFlowVar(fv_name='src_port', pkt_offset='UDP.sport'),
-            STLVmWrFlowVar(fv_name='nf_id', pkt_offset=52),
-            STLVmWrFlowVar(fv_name='in_mac', pkt_offset=58),
-            STLVmWrFlowVar(fv_name='in_mac', pkt_offset=64),
-            STLVmWrFlowVar(fv_name='in_ip', pkt_offset=82),
-            STLVmWrFlowVar(fv_name='in_ip', pkt_offset=86),
-            STLVmFixIpv4(offset = 'IP')
+            STLVmWrFlowVar(fv_name=u"nf_id", pkt_offset=32),
+            STLVmWrFlowVar(fv_name=u"src_port", pkt_offset=u"UDP.sport"),
+            STLVmWrFlowVar(fv_name=u"nf_id", pkt_offset=52),
+            STLVmWrFlowVar(fv_name=u"in_mac", pkt_offset=58),
+            STLVmWrFlowVar(fv_name=u"in_mac", pkt_offset=64),
+            STLVmWrFlowVar(fv_name=u"in_ip", pkt_offset=82),
+            STLVmWrFlowVar(fv_name=u"in_ip", pkt_offset=86),
+            STLVmFixIpv4(offset = u"IP")
         ])
 
         # Direction 1 --> 0
         vm2 = STLScVmRaw([
-            STLVmFlowVar(name='nf_id', size=1, op='inc',
+            STLVmFlowVar(name=u"nf_id", size=1, op=u"inc",
                          min_value=0, max_value=self.nf_chains - 1),
-            STLVmFlowVar(name='in_mac', size=2, op='inc',
+            STLVmFlowVar(name=u"in_mac", size=2, op=u"inc",
                          min_value=0, max_value=255),
-            STLVmFlowVar(name='in_ip', size=1, op='inc',
+            STLVmFlowVar(name=u"in_ip", size=1, op=u"inc",
                          min_value=0, max_value=255),
-            STLVmFlowVar(name='src_port', size=2, op='random',
+            STLVmFlowVar(name=u"src_port", size=2, op=u"random",
                          min_value=1024, max_value=65535),
-            STLVmWrFlowVar(fv_name='nf_id', pkt_offset=32),
-            STLVmWrFlowVar(fv_name='src_port', pkt_offset='UDP.sport'),
-            STLVmWrFlowVar(fv_name='nf_id', pkt_offset=52),
-            STLVmWrFlowVar(fv_name='in_mac', pkt_offset=58),
-            STLVmWrFlowVar(fv_name='in_mac', pkt_offset=64),
-            STLVmWrFlowVar(fv_name='in_ip', pkt_offset=82),
-            STLVmWrFlowVar(fv_name='in_ip', pkt_offset=86),
-            STLVmFixIpv4(offset = 'IP')
+            STLVmWrFlowVar(fv_name=u"nf_id", pkt_offset=32),
+            STLVmWrFlowVar(fv_name=u"src_port", pkt_offset=u"UDP.sport"),
+            STLVmWrFlowVar(fv_name=u"nf_id", pkt_offset=52),
+            STLVmWrFlowVar(fv_name=u"in_mac", pkt_offset=58),
+            STLVmWrFlowVar(fv_name=u"in_mac", pkt_offset=64),
+            STLVmWrFlowVar(fv_name=u"in_ip", pkt_offset=82),
+            STLVmWrFlowVar(fv_name=u"in_ip", pkt_offset=86),
+            STLVmFixIpv4(offset = u"IP")
         ])
 
         return base_pkt_a, base_pkt_b, vm1, vm2
