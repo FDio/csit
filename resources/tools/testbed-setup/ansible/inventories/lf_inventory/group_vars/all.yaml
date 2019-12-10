@@ -25,7 +25,7 @@ name_servers: "1.1.1.1, 8.8.8.8"
 # TRex settings.
 trex:
   target_dir: '/opt'
-  version: '2.61'
+  version: '2.72'
 
 # DPDK settings.
 dpdk:
