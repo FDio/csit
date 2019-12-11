@@ -22,6 +22,30 @@
       "revId": "d0b01cd57de5ac69208357af99e4b6b708cd01ae",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "457ee163_c2af6c8b",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-11T11:27:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "31fc1b30_ea7117b2",
+      "range": {
+        "startLine": 123,
+        "startChar": 20,
+        "endLine": 123,
+        "endChar": 24
+      },
+      "revId": "d0b01cd57de5ac69208357af99e4b6b708cd01ae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
