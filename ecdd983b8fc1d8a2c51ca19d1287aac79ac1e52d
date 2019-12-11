@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b817429_863fd2d3",
+        "filename": "resources/traffic_profiles/trex/profile_trex_stateless_base_class.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-11T14:36:41Z",
+      "side": 1,
+      "message": "Why did you change this file? It was already python3 compatible.. Please, revert these changes.",
+      "revId": "ecdd983b8fc1d8a2c51ca19d1287aac79ac1e52d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1afd824_6a6dd2bc",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c1n.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-11T14:36:41Z",
+      "side": 1,
+      "message": "As already commented here https://gerrit.fd.io/r/c/csit/+/23615/5/resources/traffic_profiles/trex/profile_trex_stateless_base_class.py#146\nThe indendation should be done in this was:\nvm1 \u003d STLScVmRaw(\n    [\n\t    STLVmFlowVar(\n\t\t    name\u003du\"mac_dst\",\n\t\t\tmin_value\u003d1,\n\t\t\tmax_value\u003dself.nf_chains*self.nf_nodes,\n\t\t\tsize\u003d1, step\u003dself.nf_nodes, op\u003du\"inc\"\n\t\t),\n\t\tSTLVmWrFlowVar(fv_name\u003du\"mac_dst\", pkt_offset\u003d4),\n\t\tSTLVmFlowVar(\n\t\t    name\u003du\"src\",\n\t\t\tmin_value\u003dself.p1_src_start_ip,\n\t\t\tmax_value\u003dself.p1_src_end_ip,\n\t\t\tsize\u003d4, op\u003du\"inc\"\n\t\t),\n\t\tSTLVmWrFlowVar(fv_name\u003du\"src\", pkt_offset\u003du\"IP.src\"),\n\t\tSTLVmFixIpv4(offset\u003du\"IP\")\n\t]\n)\n\nPlease, apply in all t-rex traffic profile files.",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 4
+      },
+      "revId": "ecdd983b8fc1d8a2c51ca19d1287aac79ac1e52d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab78bad8_b90ebf5e",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c2n.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-11T14:36:41Z",
+      "side": 1,
+      "message": "use quotation marks not apostrophes",
+      "range": {
+        "startLine": 46,
+        "startChar": 33,
+        "endLine": 46,
+        "endChar": 34
+      },
+      "revId": "ecdd983b8fc1d8a2c51ca19d1287aac79ac1e52d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
