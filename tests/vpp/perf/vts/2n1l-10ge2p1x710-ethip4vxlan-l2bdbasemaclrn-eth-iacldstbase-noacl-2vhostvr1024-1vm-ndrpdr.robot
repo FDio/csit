@@ -14,9 +14,9 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | VM | VHOST_1024 | VTS | ACL_PERMIT | DRV_VFIO_PCI
+| ... | VHOST | VM | VHOST_1024 | VTS | DRV_VFIO_PCI
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -28,14 +28,14 @@
 | Documentation | *RFC2544: Packet throughput L2BD test cases with VXLANoIPv4
 | ... | and vhost*
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
-| ... | Eth-IPv4-VXLAN-Eth-IPv4 is applied on link between DUT1 and DUT2.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-
+| ... | Eth-IPv4-VXLAN-Eth-IPv4 is applied on link from/to TG.
+| ... | *[Cfg] DUT configuration:* DUTs are configured with L2 bridge-
 | ... | domain and MAC learning enabled. Qemu VNFs are connected \
 | ... | to VPP via vhost-user interfaces. Guest is running VPP l2xc \
-| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1/DUT2 is \
+| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUTs are \
 | ... | tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
@@ -51,7 +51,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | acl_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
@@ -61,13 +61,10 @@
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
-| ${dut1_bd_id1}= | 1
-| ${dut1_bd_id2}= | 2
-| ${dut2_bd_id1}= | 1
 # Traffic profile:
 | ${traffic_profile}=
 | ... | trex-sl-ethip4vxlan-ip4src${nf_chains}udpsrcrnd
-| ${acl_type}= | permit
+| ${acl_type}= | ${EMPTY}
 
 *** Keywords ***
 | Local Template
@@ -92,68 +89,64 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | &{vxlan1} = | Create Dictionary | vni=0 | vtep=172.17.0.2
-| | &{vxlan2} = | Create Dictionary | vni=0 | vtep=172.27.0.2
-| | @{dut1_vxlans} = | Create List | ${vxlan1}
-| | @{dut2_vxlans} = | Create List | ${vxlan2}
-| | When Init L2 bridge domains with single DUT with Vhost-User and VXLANoIPv4 in 3-node circular topology
-| | ... | 172.16.0.1 | 16 | 172.26.0.1 | 16 | 172.16.0.2 | 172.26.0.2
-| | ... | ${dut1_vxlans} | ${dut2_vxlans} | 172.17.0.0 | 16 | 172.27.0.0 | 16
+| | And Initialize layer ip4vxlan
+| | ... | count=${nf_chains}
+| | And Initialize L2 bridge domains for multiple chains with Vhost-User
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | @{permit_list} = | Create List | 10.0.0.1/32 | 10.0.0.2/32
 | | Run Keyword If | '${acl_type}' != '${EMPTY}'
 | | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
 | | ... | ${acl_type} | @{permit_list}
-| | And Configure chains of NFs connected via vhost-user on single node
-| | ... | node=DUT1 | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
-| | ... | jumbo=${jumbo} | use_tuned_cfs=${False} | auto_scale=${True}
-| | ... | vnf=vpp_chain_l2xc
+| | And Configure chains of NFs connected via vhost-user
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
+| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-114B-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc01-114B-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 114B | 1C
 | | frame_size=${114} | phy_cores=${1}
 
-| tc02-114B-2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc02-114B-2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 114B | 2C
 | | frame_size=${114} | phy_cores=${2}
 
-| tc03-114B-4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc03-114B-4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 114B | 4C
 | | frame_size=${114} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc04-1518B-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc05-1518B-2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc06-1518B-4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc07-9000B-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc08-9000B-2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc09-9000B-4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc10-IMIX-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc11-IMIX-2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+| tc12-IMIX-4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
