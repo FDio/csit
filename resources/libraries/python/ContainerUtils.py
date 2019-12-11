@@ -310,9 +310,9 @@ class ContainerManager:
         mid1 = kwargs[u"mid1"]
         mid2 = kwargs[u"mid2"]
         role1 = u"master"
-        role2 = u"master" if node in (kwargs[u"nodes"], 1) else u"slave"
-        kwargs[u"mid2"] = kwargs[u"mid2"] if node in (kwargs[u"nodes"], 1) \
-            else kwargs[u"mid2"] + 1
+        role2 = u"master" if node == kwargs[u"nodes"] else u"slave"
+        kwargs[u"mid2"] = kwargs[u"mid2"] \
+            if node == kwargs[u"nodes"] else kwargs[u"mid2"] + 1
         vif1_mac = kwargs[u"tg_if1_mac"] \
             if (kwargs[u"mid1"] - 1) % kwargs[u"nodes"] + 1 == 1 \
             else f"52:54:00:00:{(kwargs[u'mid1'] - 1):02X}:02"
