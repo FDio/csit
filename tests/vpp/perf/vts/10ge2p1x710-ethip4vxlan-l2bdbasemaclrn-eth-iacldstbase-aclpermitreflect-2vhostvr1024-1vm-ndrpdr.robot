@@ -14,7 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ... | VHOST | VM | VHOST_1024 | VTS | ACL_PERMIT_REFLECT | DRV_VFIO_PCI
 |
@@ -28,14 +28,14 @@
 | Documentation | *RFC2544: Packet throughput L2BD test cases with VXLANoIPv4
 | ... | and vhost*
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
-| ... | Eth-IPv4-VXLAN-Eth-IPv4 is applied on link between DUT1 and DUT2.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-
+| ... | Eth-IPv4-VXLAN-Eth-IPv4 is applied on link from/to TG.
+| ... | *[Cfg] DUT configuration:* DUTs are configured with L2 bridge-
 | ... | domain and MAC learning enabled. Qemu VNFs are connected \
 | ... | to VPP via vhost-user interfaces. Guest is running VPP l2xc \
-| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1/DUT2 is \
+| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUTs are \
 | ... | tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
@@ -61,9 +61,6 @@
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
-| ${dut1_bd_id1}= | 1
-| ${dut1_bd_id2}= | 2
-| ${dut2_bd_id1}= | 1
 # Traffic profile:
 | ${traffic_profile}=
 | ... | trex-sl-ethip4vxlan-ip4src${nf_chains}udpsrcrnd
@@ -80,7 +77,6 @@
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer
 | | ... | - phy_cores - Number of worker threads to be used. Type: integer
 | | ... | - rxq - Number of Rx queues to be used. Type: integer
-| | ... | - acl_type - FIXME.
 | |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
@@ -92,21 +88,15 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | &{vxlan1} = | Create Dictionary | vni=0 | vtep=172.17.0.2
-| | &{vxlan2} = | Create Dictionary | vni=0 | vtep=172.27.0.2
-| | @{dut1_vxlans} = | Create List | ${vxlan1}
-| | @{dut2_vxlans} = | Create List | ${vxlan2}
-| | When Init L2 bridge domains with single DUT with Vhost-User and VXLANoIPv4 in 3-node circular topology
-| | ... | 172.16.0.1 | 16 | 172.26.0.1 | 16 | 172.16.0.2 | 172.26.0.2
-| | ... | ${dut1_vxlans} | ${dut2_vxlans} | 172.17.0.0 | 16 | 172.27.0.0 | 16
+| | And Initialize layer ip4vxlan
+| | ... | count=${nf_chains}
 | | @{permit_list} = | Create List | 10.0.0.1/32 | 10.0.0.2/32
 | | Run Keyword If | '${acl_type}' != '${EMPTY}'
 | | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
 | | ... | ${acl_type} | @{permit_list}
-| | And Configure chains of NFs connected via vhost-user on single node
-| | ... | node=DUT1 | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
-| | ... | jumbo=${jumbo} | use_tuned_cfs=${False} | auto_scale=${True}
-| | ... | vnf=vpp_chain_l2xc
+| | And Configure chains of NFs connected via vhost-user
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
+| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
