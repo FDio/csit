@@ -22,6 +22,29 @@
       "revId": "b53d255d4c9d788c78ddc9737340e7358aa4e0c0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b3de6be_6b8351bb",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-11T15:59:07Z",
+      "side": 1,
+      "message": "The correct hotfix was to put the new CRC values into the second collection (changing its name to the accidentally merged 23887/2).",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 8
+      },
+      "revId": "b53d255d4c9d788c78ddc9737340e7358aa4e0c0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
