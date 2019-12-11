@@ -169,21 +169,22 @@ def _generate_trending_traces(in_data, job_name, build_info,
     """
 
     data_x = list(in_data.keys())
-    data_y = [float(item) / 1e6 for item in in_data.values()]
+    data_y_pps = list(in_data.values())
+    data_y_mpps = [float(item) / 1e6 for item in data_y_pps]
 
     hover_text = list()
     xaxis = list()
-    for idx in data_x:
+    for idx in data_x_mpps:
         date = build_info[job_name][str(idx)][0]
         hover_str = (u"date: {date}<br>"
-                     u"value: {value:,}<br>"
+                     u"value [Mpps]: {value:,}<br>"
                      u"{sut}-ref: {build}<br>"
                      u"csit-ref: mrr-{period}-build-{build_nr}<br>"
                      u"testbed: {testbed}")
         if u"dpdk" in job_name:
             hover_text.append(hover_str.format(
                 date=date,
-                value=int(in_data[idx]),
+                value=data_y_mpps[idx],
                 sut=u"dpdk",
                 build=build_info[job_name][str(idx)][1].rsplit(u'~', 1)[0],
                 period=u"weekly",
@@ -192,7 +193,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         elif u"vpp" in job_name:
             hover_text.append(hover_str.format(
                 date=date,
-                value=int(in_data[idx]),
+                value=data_y_mpps[idx],
                 sut=u"vpp",
                 build=build_info[job_name][str(idx)][1].rsplit(u'~', 1)[0],
                 period=u"daily",
@@ -203,7 +204,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
                               int(date[9:11]), int(date[12:])))
 
     data_pd = OrderedDict()
-    for key, value in zip(xaxis, data_y):
+    for key, value in zip(xaxis, data_y_pps):
         data_pd[key] = value
 
     anomaly_classification, avgs = classify_anomalies(data_pd)
@@ -220,7 +221,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         for idx, (key, value) in enumerate(data_pd.items()):
             if anomaly_classification[idx] in \
                     (u"outlier", u"regression", u"progression"):
-                anomalies[key] = value
+                anomalies[key] = value / 1e6
                 anomalies_colors.append(
                     anomaly_color[anomaly_classification[idx]])
                 anomalies_avgs.append(avgs[idx])
@@ -230,7 +231,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
 
     trace_samples = plgo.Scatter(
         x=xaxis,
-        y=data_y,
+        y=data_y_mpps,
         mode=u"markers",
         line={
             u"width": 1
@@ -261,7 +262,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
             showlegend=False,
             legendgroup=name,
             name=f"{name}",
-            text=[f"trend: {int(avg):,}" for avg in avgs],
+            text=[f"trend [Mpps]: {avg:,}" for avg in avgs],
             hoverinfo=u"text+name"
         )
         traces.append(trace_trend)
