@@ -16,6 +16,24 @@
       "revId": "8fc9b28d7a0381981e2cb614b02783b8238f65f2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fd322be_cabf571a",
+        "filename": "VPP_STABLE_VER_UBUNTU_BIONIC",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-11T14:36:00Z",
+      "side": 1,
+      "message": "Yes, as xenial packages are not built and uploaded anymore. But we should refactor framework to use only \"VPP_STABLE_VER_UBUNTU\" file and we can remove \"VPP_STABLE_VER_UBUNTU_BIONIC\"",
+      "parentUuid": "d8824b74_4722b980",
+      "revId": "8fc9b28d7a0381981e2cb614b02783b8238f65f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
