@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "0e812ed5_4105d560",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-11T13:35:08Z",
+      "side": 1,
+      "message": "It\u0027s better to use IPUtil.create_prefix_object method here. This method has already been adapted to the ip api changes and we will avoid duplicated work when another ip api change is applied.\n\n- valid for all occurrences",
+      "range": {
+        "startLine": 118,
+        "startChar": 20,
+        "endLine": 121,
+        "endChar": 17
+      },
+      "revId": "b49d7b52b60c0ef6346c0e5b73b4399f7353d329",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1521183_de6892b3",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-11T13:35:08Z",
+      "side": 1,
+      "message": "It\u0027s better to use IPUtil.create_ip_address_object method here. This method has already been adapted to the ip api changes and we will avoid duplicated work when another ip api change is applied.\n\n- valid for all occurrences",
+      "range": {
+        "startLine": 181,
+        "startChar": 27,
+        "endLine": 181,
+        "endChar": 63
+      },
+      "revId": "b49d7b52b60c0ef6346c0e5b73b4399f7353d329",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d44cc38_bda56424",
         "filename": "resources/traffic_scripts/send_tcp_udp.py",
         "patchSetId": 11
