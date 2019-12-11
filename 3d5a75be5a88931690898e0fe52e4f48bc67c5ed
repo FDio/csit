@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec6a0c4_b2699d98",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst4-4cnf.py",
+        "patchSetId": 53
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-11T16:47:47Z",
+      "side": 1,
+      "message": "How can this be with max_value\u003d3 (line 77)? That is for MAC address range, but I expect TRex to only create 4 flows, as the file name suggests.",
+      "range": {
+        "startLine": 21,
+        "startChar": 46,
+        "endLine": 21,
+        "endChar": 56
+      },
+      "revId": "3d5a75be5a88931690898e0fe52e4f48bc67c5ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
