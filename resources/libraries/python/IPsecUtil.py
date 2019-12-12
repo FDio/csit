@@ -83,8 +83,8 @@ class IntegAlg(Enum):
 
 class IPsecProto(IntEnum):
     """IPsec protocol."""
-    ESP = 1
-    SEC_AH = 0
+    IPSEC_API_PROTO_ESP = 50
+    IPSEC_API_PROTO_AH = 51
 
 
 class IPsecSadFlags(IntEnum):
@@ -229,7 +229,7 @@ class IPsecUtil:
         :returns: IPsecProto enum ESP object.
         :rtype: IPsecProto
         """
-        return int(IPsecProto.ESP)
+        return int(IPsecProto.IPSEC_API_PROTO_ESP)
 
     @staticmethod
     def ipsec_proto_ah():
@@ -238,7 +238,7 @@ class IPsecUtil:
         :returns: IPsecProto enum AH object.
         :rtype: IPsecProto
         """
-        return int(IPsecProto.SEC_AH)
+        return int(IPsecProto.IPSEC_API_PROTO_AH)
 
     @staticmethod
     def vpp_ipsec_select_backend(node, protocol, index=1):
@@ -327,10 +327,10 @@ class IPsecUtil:
             flags=flags,
             tunnel_src=str(src_addr),
             tunnel_dst=str(dst_addr),
-            protocol=int(IPsecProto.ESP)
+            protocol=int(IPsecProto.IPSEC_API_PROTO_ESP)
         )
         args = dict(
-            is_add=1,
+            is_add=True,
             entry=sad_entry
         )
         with PapiSocketExecutor(node) as papi_exec:
@@ -436,10 +436,10 @@ class IPsecUtil:
             flags=flags,
             tunnel_src=str(src_addr),
             tunnel_dst=str(dst_addr),
-            protocol=int(IPsecProto.ESP)
+            protocol=int(IPsecProto.IPSEC_API_PROTO_ESP)
         )
         args = dict(
-            is_add=1,
+            is_add=True,
             entry=sad_entry
         )
         with PapiSocketExecutor(node) as papi_exec:
@@ -547,7 +547,7 @@ class IPsecUtil:
         err_msg = f"Failed to add Security Policy Database " \
             f"on host {node[u'host']}"
         args = dict(
-            is_add=1,
+            is_add=True,
             spd_id=int(spd_id)
         )
         with PapiSocketExecutor(node) as papi_exec:
@@ -568,7 +568,7 @@ class IPsecUtil:
         err_msg = f"Failed to add interface {interface} to Security Policy " \
             f"Database {spd_id} on host {node[u'host']}"
         args = dict(
-            is_add=1,
+            is_add=True,
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
             spd_id=int(spd_id)
         )
@@ -628,7 +628,7 @@ class IPsecUtil:
         spd_entry = dict(
             spd_id=int(spd_id),
             priority=int(priority),
-            is_outbound=0 if inbound else 1,
+            is_outbound=not inbound,
             sa_id=int(sa_id) if sa_id else 0,
             policy=action.policy_int_repr,
             protocol=int(proto) if proto else 0,
@@ -654,7 +654,7 @@ class IPsecUtil:
             else 65535
         )
         args = dict(
-            is_add=1,
+            is_add=True,
             entry=spd_entry
         )
         with PapiSocketExecutor(node) as papi_exec:
@@ -718,7 +718,7 @@ class IPsecUtil:
         spd_entry = dict(
             spd_id=int(spd_id),
             priority=int(priority),
-            is_outbound=0 if inbound else 1,
+            is_outbound=not inbound,
             sa_id=int(sa_id) if sa_id else 0,
             policy=IPsecUtil.policy_action_protect().policy_int_repr,
             protocol=0,
@@ -736,7 +736,7 @@ class IPsecUtil:
             local_port_stop=65535
         )
         args = dict(
-            is_add=1,
+            is_add=True,
             entry=spd_entry
         )
 
@@ -966,7 +966,7 @@ class IPsecUtil:
             )
             cmd2 = u"ipsec_tunnel_if_add_del"
             args2 = dict(
-                is_add=1,
+                is_add=True,
                 local_ip=None,
                 remote_ip=None,
                 local_spi=0,
@@ -1077,7 +1077,7 @@ class IPsecUtil:
             # Configure IPsec tunnel interfaces
             cmd2 = u"ipsec_tunnel_if_add_del"
             args2 = dict(
-                is_add=1,
+                is_add=True,
                 local_ip=IPUtil.create_ip_address_object(if2_ip),
                 remote_ip=None,
                 local_spi=0,
