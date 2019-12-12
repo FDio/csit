@@ -121,7 +121,7 @@ class L2Util:
             mac=L2Util.mac_to_bin(mac),
             bd_id=int(bd_id),
             sw_if_index=sw_if_index,
-            is_add=1,
+            is_add=True,
             static_mac=int(static_mac),
             filter_mac=int(filter_mac),
             bvi_mac=int(bvi_mac)
@@ -132,7 +132,8 @@ class L2Util:
 
     @staticmethod
     def create_l2_bd(
-            node, bd_id, flood=1, uu_flood=1, forward=1, learn=1, arp_term=0):
+            node, bd_id, flood=True, uu_flood=True, forward=True, learn=True,
+            arp_term=False):
         """Create an L2 bridge domain on a VPP node.
 
         :param node: Node where we wish to crate the L2 bridge domain.
@@ -149,22 +150,22 @@ class L2Util:
             (Default value = 1)
         :type node: dict
         :type bd_id: int or str
-        :type flood: int or str
-        :type uu_flood: int or str
-        :type forward: int or str
-        :type learn: int or str
-        :type arp_term: int or str
+        :type flood: bool
+        :type uu_flood: bool
+        :type forward: bool
+        :type learn: bool
+        :type arp_term: bool
         """
         cmd = u"bridge_domain_add_del"
         err_msg = f"Failed to create L2 bridge domain on host {node[u'host']}"
         args = dict(
             bd_id=int(bd_id),
-            flood=int(flood),
-            uu_flood=int(uu_flood),
-            forward=int(forward),
-            learn=int(learn),
-            arp_term=int(arp_term),
-            is_add=1
+            flood=flood,
+            uu_flood=uu_flood,
+            forward=forward,
+            learn=learn,
+            arp_term=arp_term,
+            is_add=True
         )
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -197,7 +198,7 @@ class L2Util:
             bd_id=int(bd_id),
             shg=int(shg),
             port_type=int(port_type),
-            enable=1
+            enable=True
         )
 
         with PapiSocketExecutor(node) as papi_exec:
@@ -220,17 +221,16 @@ class L2Util:
         """
         sw_if_index1 = Topology.get_interface_sw_index(node, port_1)
         sw_if_index2 = Topology.get_interface_sw_index(node, port_2)
-        learn_int = 1 if learn else 0
 
         cmd1 = u"bridge_domain_add_del"
         args1 = dict(
             bd_id=int(bd_id),
-            flood=1,
-            uu_flood=1,
-            forward=1,
-            learn=learn_int,
-            arp_term=0,
-            is_add=1
+            flood=True,
+            uu_flood=True,
+            forward=True,
+            learn=learn,
+            arp_term=False,
+            is_add=True
         )
 
         cmd2 = u"sw_interface_set_l2_bridge"
@@ -239,7 +239,7 @@ class L2Util:
             bd_id=int(bd_id),
             shg=0,
             port_type=0,
-            enable=1
+            enable=True
         )
 
         args3 = dict(
@@ -247,7 +247,7 @@ class L2Util:
             bd_id=int(bd_id),
             shg=0,
             port_type=0,
-            enable=1
+            enable=True
         )
 
         err_msg = f"Failed to add L2 bridge domain with 2 interfaces " \
@@ -282,12 +282,12 @@ class L2Util:
         args1 = dict(
             rx_sw_if_index=sw_iface1,
             tx_sw_if_index=sw_iface2,
-            enable=1
+            enable=True
         )
         args2 = dict(
             rx_sw_if_index=sw_iface2,
             tx_sw_if_index=sw_iface1,
-            enable=1
+            enable=True
         )
         err_msg = f"Failed to add L2 cross-connect between two interfaces " \
             f"on host {node['host']}"
@@ -320,12 +320,12 @@ class L2Util:
         args1 = dict(
             rx_sw_if_index=sw_iface1,
             tx_sw_if_index=sw_iface2,
-            is_add=1
+            is_add=True
         )
         args2 = dict(
             rx_sw_if_index=sw_iface2,
             tx_sw_if_index=sw_iface1,
-            is_add=1
+            is_add=True
         )
         err_msg = f"Failed to add L2 patch between two interfaces " \
             f"on host {node['host']}"
