@@ -84,44 +84,74 @@ implementation for automating the VPP API "Flag Day" algorithm:
    but a patch that affects the way CRCs are computed is also an API change.
 #. The api-crc job detects the API CRC values have changed
    for some messages used by CSIT.
-   Note: This requires a new CSIT test described below in the
-   section "CSIT VPP API CHANGE DETECTION TEST".
 #. The api-crc job runs in parallel with any other VPP verify job,
    so other jobs can hint at the impact on CSIT.
    Some API changes do not need any edit on CSIT side, except for the CRC value.
-   If the api-crc job fails, an email with the appropriate reason
+   Such changes are called "trivial" in this document.
+   Example of such trivial VPP change: https://gerrit.fd.io/r/c/vpp/+/23829
+#. If the api-crc job fails, an email with the appropriate reason
    is sent to the VPP patch submitter and vpp-api-dev@lists.fd.io
    including the VPP patch information and API change(s) that were detected.
 #. The VPP patch developer and CSIT team create a CSIT JIRA ticket
    to identify the work required to support the new VPP API version.
 #. CSIT developer creates a patch to existing CSIT tests to support
    the new VPP API version and new features in the VPP patch as required.
+   This step is skipped for trivial changes, later confirmed by verify jobs.
 #. CSIT developer runs CI verification tests (without CRC checks)
    for the CSIT patch against the VPP patch (aka "Patch-On-Patch verification").
    This process verifies support for the new VPP API, associated VPP
    features and CSIT tests.  Both developers iterate until the
-   verification passes.
-#. CSIT developer creates a separate change, that only edits the CSIT CRC list
-   to include both stable VPP CRCs, and CRCs of the VPP change under review.
-#. CSIT committer requires proofs both CRCs are included correctly
-   (for example the api-crc job is run with overriden CSIT_REF parameter).
+   verification passes. (Again skipped for trivial changes.)
+#. CSIT developer creates a separate change, that only adds a new collection
+   to the CSIT CRC list.  In the resulting state, the CSIT CRC list
+   should contain two collections.  One related to a VPP build from merged code
+   (known as "stable vpp" version), and one for the unmerged VPP code
+   with the changed API. If there already is a collection for a different
+   API change, the process for that change has to be finished first.
+   Example for trivial change: https://gerrit.fd.io/r/c/csit/+/23956
+#. CSIT committer requires proofs both CRCs are included correctly.
+   The stable vpp collection is verified by csit verify jobs.
+   The newly added collection can be verified for example by running
+   the api-crc job with overriden CSIT_REF parameter.
+   But as the risk is low, verification of the new collection can be done later,
+   by a recheck on the VPP API change.
 #. When CSIT committer sees both CSIT changes are ready,
    the CRC-editing change is merged to CSIT master branch
    and cherry-picked to the latest oper branch.
    This does not break any jobs.
-#. VPP developer issues a recheck on the VPP patch
+#. VPP developer issues a recheck on the VPP patch.
+#. On failure, VPP and CSIT committers analyze what went wrong.
+   Typically, the new CRC collection is matching only an older patch set,
+   but a newer patch set needs a different collection.
+   Either due to improvements on the VPP change in question,
+   or due to a rebase over previously merged (unrelated) API change.
+   VPP perhaps needs to rebase, and CSIT definitely needs
+   to merge edits to the new collection.  Then issue a recheck again,
+   and iterate until success.
 #. On success, VPP Committer merges the patch.
+   This is also the delayed verification of the newly added CRC collection.
 #. VPP committer sends an e-mail to vpp-api-dev stating the support for
    the previous CRC values will soon be removed.
 #. VPP merge jobs create and upload new VPP packages.
    This breaks trending jobs, but both VPP and CSIT verify jobs still work.
 #. CSIT developer bumps stable vpp version in the test affecting change
-   and rechecks it still works.
+   (a new change for trivial APi changes),
+   deletes the old CRC collection, renames the new collection
+   according to the new stable vpp version.  And triggers any manual jobs
+   needed to verify the tests using the edited APIs are still working.
+   We currently do not have clean enough example for a trivial change,
+   but https://gerrit.fd.io/r/c/csit/+/22526 shows:
+
+   + Crc edits: supported_crcs.yaml
+   + Version bump: VPP_STABLE_VER_UBUNTU_BIONIC
+   + And even a way to work around failing tests:
+     eth2p-ethicmpv4-ip4base-eth-1tap-dev.robot
+
+   A brave CSIT committer may sqash this change with collection-adding change
+   for next API change: https://gerrit.fd.io/r/c/csit/+/23965
 #. CSIT committer merges this change (to both master and oper).
    This fixes trending jobs. Both VPP and CSIT verify jobs continue to work.
-#. CSIT committer creates a patch that removes the old CRC values.
-#. CSIT committer merges that patch.
-   This breaks verify jobs for old changes in VPP.
+   This also breaks some verify jobs for old changes in VPP.
 #. CSIT committer sends an e-mail to vpp-api-dev stating the support for
    the previous CRC values has been removed, and rebase is needed
    for all affected VPP changes.
