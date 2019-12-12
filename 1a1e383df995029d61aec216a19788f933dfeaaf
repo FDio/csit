@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0bcd550_5a6d3b7a",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-12T13:58:06Z",
+      "side": 1,
+      "message": "Rebase might be required in some cases.",
+      "range": {
+        "startLine": 122,
+        "startChar": 26,
+        "endLine": 122,
+        "endChar": 34
+      },
+      "revId": "1a1e383df995029d61aec216a19788f933dfeaaf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
