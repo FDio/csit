@@ -53,7 +53,7 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
 | | | Run keyword | ${dut}.Add api segment global size | 2G
@@ -68,6 +68,7 @@
 | | | Run keyword | ${dut}.Add session v4 halfopen table memory | 3g
 | | | Run keyword | ${dut}.Add session local endpoints table buckets | 2500000
 | | | Run keyword | ${dut}.Add session local endpoints table memory | 3g
+| | END
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface

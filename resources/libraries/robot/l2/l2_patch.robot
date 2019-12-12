@@ -22,6 +22,7 @@
 | | ... | each DUT. Interfaces are brought up.
 | |
 | | Set interfaces in path up
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | VPP Setup Bidirectional L2 patch
 | | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
+| | END
