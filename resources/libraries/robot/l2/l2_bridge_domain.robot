@@ -44,7 +44,6 @@
 | |
 | | [Arguments] | ${dut_node} | ${bd_id} | ${learn}=${TRUE}
 | |
-| | ${learn} = | Set Variable If | ${learn} == ${TRUE} | ${1} | ${0}
 | | Create L2 BD | ${dut_node} | ${bd_id} | learn=${learn}
 
 | Add interface to bridge domain
