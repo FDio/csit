@@ -246,7 +246,7 @@ class GBP:
         err_msg = u"Failed to add external GBP interface on {node[u'host']}!"
 
         args_in = dict(
-            is_add=1,
+            is_add=True,
             ext_itf=dict(
                 sw_if_index=sw_if_index,
                 bd_id=bd_id,
@@ -281,7 +281,7 @@ class GBP:
         err_msg = f"Failed to add GBP subnet on {node[u'host']}!"
 
         args_in = dict(
-            is_add=1,
+            is_add=True,
             subnet=dict(
                 type=getattr(GBPSubnetType, u"GBP_API_SUBNET_L3_OUT").value,
                 sw_if_index=sw_if_index,
@@ -330,7 +330,7 @@ class GBP:
         rules = [rule_permit, rule_permit]
 
         args_in = dict(
-            is_add=1,
+            is_add=True,
             contract=dict(
                 acl_index=acl_index,
                 sclass=sclass,
