@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5cca55b8_ba16fda8",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-12T21:35:11Z",
+      "side": 1,
+      "message": "How is this breakage fixed?  Rebasing???",
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
