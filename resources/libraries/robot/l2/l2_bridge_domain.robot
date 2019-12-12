@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -44,7 +44,6 @@
 | |
 | | [Arguments] | ${dut_node} | ${bd_id} | ${learn}=${TRUE}
 | |
-| | ${learn} = | Set Variable If | ${learn} == ${TRUE} | ${1} | ${0}
 | | Create L2 BD | ${dut_node} | ${bd_id} | learn=${learn}
 
 | Add interface to bridge domain
