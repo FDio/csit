@@ -753,6 +753,14 @@ function select_tags () {
     esac
 
     sed_nic_sub_cmd="sed s/\${default_nic}/${default_nic}/"
+    sed_nics_sub_cmd="sed -e s/ANDxxv710/ANDnic_intel-xxv710/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDx710/ANDnic_intel-x710/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDxl710/ANDnic_intel-xl710/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDx520-da2/ANDnic_intel-x520-da2/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDx553/ANDnic_intel-x553/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDcx556a/ANDnic_mellanox-cx556a/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDvic1227/ANDnic_cisco-vic-1227/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDvic1385/ANDnic_cisco-vic-1385/"
     # Tag file directory shorthand.
     tfd="${BASH_FUNCTION_DIR}"
     case "${TEST_CODE}" in
@@ -761,8 +769,9 @@ function select_tags () {
             readarray -t test_tag_array < "${tfd}/mlr-weekly.txt" || die
             ;;
         *"mrr-daily"* )
-            readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
-                ${tfd}/mrr-daily-${FLAVOR}.txt) || die
+            readarray -t test_tag_array <<< $(sed 's/ //g' \
+                ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.txt |
+                eval ${sed_nics_sub_cmd}) || die
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
