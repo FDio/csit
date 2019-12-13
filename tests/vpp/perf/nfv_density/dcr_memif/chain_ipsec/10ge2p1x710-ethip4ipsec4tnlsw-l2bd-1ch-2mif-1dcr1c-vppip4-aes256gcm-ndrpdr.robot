@@ -14,29 +14,25 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST | 1VM | VHOST_1024
-| ... | NF_VPPL2XC | DRV_VFIO_PCI
-| ... | dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_4
+| ... | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | 1DCR
+| ... | DOCKER | 2R1C | NF_DENSITY | CHAIN | NF_VPPIP4 | 1DCR1T
+| ... | AES_256_GCM | AES | DRV_VFIO_PCI
+| ... | ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
-| Test Teardown | Tear down test | performance | vhost
+| Test Teardown | Tear down test | performance | container
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput L2XC test cases with vhost*
+| Documentation | **RFC2544: Pkt throughput L2BD test cases with memif 1 chain
+| ... | 1 docker container*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect. 802.1q
-| ... | tagging is applied on link between DUT1 and DUT2.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
-| ... | connect. Qemu VNFs are \
-| ... | connected to VPP via vhost-user interfaces. Guest is running VPP l2xc \
-| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1/DUT2 is \
-| ... | tested with ${nic_name}.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 bridge domain.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -47,28 +43,41 @@
 | ... | flow-group) with all packets containing Ethernet header, IPv4 header
 | ... | with IP protocol=61 and static payload. MAC addresses are matching MAC
 | ... | addresses of the TG node interfaces.
-| ... | *[Ref] Applicable standard specifications:* RFC2544.
+| ... | *[Ref] Applicable standard specifications:* RFC4303 and RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
+| ... | crypto_ia32_plugin.so | crypto_ipsecmb_plugin.so
+| ... | crypto_openssl_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${osi_layer}= | L2
-| ${overhead}= | ${4}
-| ${subid}= | 10
-| ${tag_rewrite}= | pop-1
+| ${osi_layer}= | L3
+| ${overhead}= | ${54}
+| ${tg_if1_ip4}= | 192.168.10.254
+| ${dut1_if1_ip4}= | 192.168.10.1
+| ${dut1_if2_ip4}= | 100.0.0.254
+| ${dut2_if1_ip4}= | 200.0.0.1
+| ${dut2_if2_ip4}= | 192.168.20.1
+| ${tg_if2_ip4}= | 192.168.20.254
+| ${raddr_ip4}= | 20.0.0.0
+| ${laddr_ip4}= | 10.0.0.0
+| ${addr_range}= | ${24}
+| ${n_instances}= | ${1}
+| ${n_tunnels}= | ${4}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
-| ${nf_chains}= | ${1}
-| ${nf_nodes}= | ${1}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}-${n_instances}cnf
+# Container
+| ${container_engine}= | Docker
+| ${container_chain_topology}= | chain_ipsec
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config.
+| | ... | [Cfg] DUT1 runs IPSec tunneling AES_256_GCM config to ${n_instances}.
+| | ... | containers.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | |
@@ -82,64 +91,61 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
+| | # These are enums (not strings) so they cannot be in Variables table.
+| | ${encr_alg}= | Crypto Alg AES GCM 256
+| | ${auth_alg}= | Set Variable | ${None}
+| | ${ipsec_proto} = | IPsec Proto ESP
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize L2 xconnect with Vhost-User and VLAN in circular topology
-| | ... | ${subid} | ${tag_rewrite}
-| | And Configure chains of NFs connected via vhost-user
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
-| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
+| | And Initialize IPSec in 3-node circular topology
+| | And Stop VPP service on all DUTs | ${nodes}
+| | And VPP IPsec Create Tunnel Interfaces in Containers
+| | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${auth_alg}
+| | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range} | ${n_instances}
+| | And Start containers for test
+| | ... | nf_chains=${1} | nf_nodes=${n_instances} | auto_scale=${False}
+| | ... | pinning=${False}
+| | And Start vswitch in container | phy_cores=${phy_cores} | rx_queues=${rxq}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+| tc01-64B-1c-ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+| tc02-64B-2c-ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+| tc03-64B-4c-ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+| tc04-1518B-1c-ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+| tc05-1518B-2c-ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+| tc06-1518B-4c-ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
-| | [Tags] | 9000B | 1C
-| | frame_size=${9000} | phy_cores=${1}
-
-| tc08-9000B-2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
-| | [Tags] | 9000B | 2C
-| | frame_size=${9000} | phy_cores=${2}
-
-| tc09-9000B-4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
-| | [Tags] | 9000B | 4C
-| | frame_size=${9000} | phy_cores=${4}
-
-| tc10-IMIX-1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+| tc10-IMIX-1c-ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+| tc11-IMIX-2c-ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+| tc12-IMIX-4c-ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
