@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92ab7dad_f0d421af",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c1n.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-13T08:14:08Z",
+      "side": 1,
+      "message": "Please,use correct indendation for closing brackets too:\nvm1 \u003d STLScVmRaw(\n    [\n\tSTLVmFlowVar(\n\t    name\u003du\"mac_dst\",\n\t    min_value\u003d1,\n\t    max_value\u003dself.nf_chains*self.nf_nodes,\n\t    size\u003d1, step\u003dself.nf_nodes, op\u003du\"inc\"\n\t),\n\tSTLVmWrFlowVar(fv_name\u003du\"mac_dst\", pkt_offset\u003d4),\n\tSTLVmFlowVar(\n\t    name\u003du\"src\",\n\t    min_value\u003dself.p1_src_start_ip,\n\t    max_value\u003dself.p1_src_end_ip,\n\t    size\u003d4, op\u003du\"inc\"\n\t),\n\tSTLVmWrFlowVar(fv_name\u003du\"src\", pkt_offset\u003du\"IP.src\"),\n\tSTLVmFixIpv4(offset\u003du\"IP\")\n    ]\n)\n\nCheck in all t-rex profile files.",
+      "range": {
+        "startLine": 79,
+        "startChar": 14,
+        "endLine": 93,
+        "endChar": 3
+      },
+      "revId": "8b81c5684a62a457a74da8887f071ef41cc994e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
