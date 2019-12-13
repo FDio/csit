@@ -69,6 +69,30 @@
       "revId": "9280b183de20571edcf6ad7b9e1820e8d28da29b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f97c1a2_2facd5bb",
+        "filename": "resources/tools/scripts/perpatch_requirements.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T13:15:48Z",
+      "side": 1,
+      "message": "\u003e this makes this file useless\n\njumpavg is still needed with the current parent. I will uncomment ply in later patch to see the difference.\n\n\u003e use our global pip list\n\nI agree, assuming the global requirements are well documented (e.g. ply # just for make json-api-files).",
+      "parentUuid": "829a3bdb_6437364a",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 10
+      },
+      "revId": "9280b183de20571edcf6ad7b9e1820e8d28da29b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
