@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6310e56_73d916eb",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-13T12:47:21Z",
+      "side": 1,
+      "message": "is it me or you are not in latest master which means any testing is ...\nbut anyway under virtualenv -p python3 you have both PIP and PIP3 sharing same binary (a.k.a symlinked), so no point of comparing.\nThe whole root cause is i think virtualenv that is causing the behavior, not the pip or apt itself.\n\nVirtualenv must take \"/usr/lib/python3/dist-packages\". It is easily reproducible:\n\n\n\n(csit_env3) ➜  csit git:(master) ✗ sudo apt-get install python3-ply                            \nThe following NEW packages will be installed:                                                  \n  python3-ply                                                                                  \n...\n\n(csit_env3) ➜  csit git:(master) ✗ ../vpp/src/tools/vppapigen/vppapigen.py                     \nTraceback (most recent call last):                                                             \n  File \"../vpp/src/tools/vppapigen/vppapigen.py\", line 3, in \u003cmodule\u003e                          \n    import ply.lex as lex                                                                      \nModuleNotFoundError: No module named \u0027ply\u0027                                                     \n\n(csit_env3) ➜  csit git:(master) ✗ ll /usr/lib/python3/dist-packages | grep ply                \ndrwxr-xr-x  3 root root 4.0K Dec 13 12:40 ply                                                  \ndrwxr-xr-x  2 root root 4.0K Dec 13 12:40 ply-3.11.egg-info                                                                                                                                \n\n...testing outside virtualenv:\n\ncsit git:(master) ✗ ../vpp/src/tools/vppapigen/vppapigen.py\n^CKeyboardInterrupt:\n\nThis means that adding  --system-site-packages should do the trick:\n\n➜  csit git:(master) ✗ virtualenv  --system-site-packages -p /usr/bin/python3 ../csit_env3; source ../csit_env3/bin/activate; export PYTHONPATH\u003d.\nAlready using interpreter /usr/bin/python3\nUsing base prefix \u0027/usr\u0027\nNew python executable in /home/pmikus/fd.io/csit_env3/bin/python3\nAlso creating executable in /home/pmikus/fd.io/csit_env3/bin/python\nInstalling setuptools, pkg_resources, pip, wheel...done.\n(csit_env3) ➜  csit git:(master) ✗ ../vpp/src/tools/vppapigen/vppapigen.py\n^CKeyboardInterrupt:\n(csit_env3) ➜  csit git:(master) ✗",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 8
+      },
+      "revId": "9280b183de20571edcf6ad7b9e1820e8d28da29b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "829a3bdb_6437364a",
+        "filename": "resources/tools/scripts/perpatch_requirements.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-13T12:47:21Z",
+      "side": 1,
+      "message": "this makes this file useless. Similarly per_patch script has a bug that runs vppapigen before this requirement.txt so even adding ply here was useless. \nGoing forward we need to migrate all our bootstrap to this function (including report/trending/tox/perpatch...) and to use our global pip list. The tax for installing global requirements.txt is lower then maintaining multiple requirements files in repo in multiple places.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 10
+      },
+      "revId": "9280b183de20571edcf6ad7b9e1820e8d28da29b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
