@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99e044b9_1a521804",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T16:08:25Z",
+      "side": 1,
+      "message": "-1.\n\nCSIT code should install all its dependencies via requirements.txt file.\nCSIt code should not rely on the system having pre-installed something we do not list but still need.",
+      "range": {
+        "startLine": 119,
+        "startChar": 15,
+        "endLine": 119,
+        "endChar": 37
+      },
+      "revId": "bb7cbb52176ed42330fcdda11a81cb485852b687",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
