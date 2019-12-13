@@ -1,7 +1,22 @@
-!nf_density
+# 2n-skx
+## ./container_memif:
+### intel-xxv710
+1c AND 64b AND mrr AND nic_intel-xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1dcr
+2c AND 64b AND mrr AND nic_intel-xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1dcr
+4c AND 64b AND mrr AND nic_intel-xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1dcr
 
-# container_memif
-mrrAND${default_nic}ANDmemifANDbaseAND64bANDdrv_vfio_pci
+1c AND 64b AND mrr AND nic_intel-xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+2c AND 64b AND mrr AND nic_intel-xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+4c AND 64b AND mrr AND nic_intel-xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+
+1c AND 64b AND mrr AND nic_intel-xxv710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+2c AND 64b AND mrr AND nic_intel-xxv710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+4c AND 64b AND mrr AND nic_intel-xxv710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+
+
+
+
+mrrAND${default_nic}ANDmemifANDbaseAND64b
 
 # crypto
 mrrAND${default_nic}ANDscaleANDipsecswANDimixNOTipsectunNOThmac_sha_256NOTaes_128_gcmNOTtnl_40NOTtnl_400NOTtnl_5000NOTtnl_20000NOTtnl_40000NOTtnl_60000ANDdrv_vfio_pci
@@ -39,12 +54,13 @@ mrrANDl2bdmaclrnANDscaleANDfib_1mAND64bNOTmemifNOTvhostNOTvxlanANDdrv_vfio_pci
 mrrAND${default_nic}ANDfeatureANDsrv6AND78bANDdrv_vfio_pci
 
 # vm_vhost
-mrrAND${default_nic}ANDvhostAND64bANDdrv_vfio_pci
+mrrAND${default_nic}ANDvhostAND64b
 mrrANDvhostAND64bANDlbondANDdrv_vfio_pci
 
 # vts
 mrrAND${default_nic}ANDvtsAND114bANDdrv_vfio_pci
 
+!nf_density
 !ipsectun
 !hmac_sha_256
 !aes_128_gcm

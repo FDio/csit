@@ -643,7 +643,7 @@ function run_pybot () {
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
-    robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
+    robot --dryrun "${all_options[@]}" "${GENERATED_DIR}/tests/"
     PYBOT_EXIT_STATUS="$?"
     set -e
 
@@ -762,7 +762,7 @@ function select_tags () {
             ;;
         *"mrr-daily"* )
             readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
-                ${tfd}/mrr-daily-${FLAVOR}.txt) || die
+                ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.txt) || die
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
@@ -772,11 +772,13 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
-                                "mrrAND${default_nic}AND1cAND78bANDip6base"
-                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
-                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
-                                "!dot1q" "!drv_avf")
+#                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
+#                                "mrrAND${default_nic}AND1cAND78bANDip6base"
+#                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
+#                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
+#                                "!dot1q" "!drv_avf")
+                readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
+                    ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.txt) || die
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })

@@ -1,5 +1,3 @@
-!nf_density
-
 # container_memif
 mrrAND${default_nic}ANDmemifANDbaseAND64bANDdrv_vfio_pci
 
@@ -39,3 +37,5 @@ mrrAND${default_nic}ANDfeatureANDsrv6AND78bANDdrv_vfio_pci
 
 # vm_vhost
 mrrAND${default_nic}ANDvhostANDbaseAND64bANDdrv_vfio_pci
+
+!nf_density
