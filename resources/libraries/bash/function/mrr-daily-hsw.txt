@@ -28,12 +28,13 @@ mrrAND${default_nic}ANDl2bdmaclrnANDscaleANDfib_1mAND64bANDdrv_vfio_pci
 mrrAND${default_nic}ANDfeatureANDsrv6AND78bANDdrv_vfio_pci
 
 # vm_vhost
-mrrAND${default_nic}ANDvhostANDbaseAND64bNOTvxlanNOTlbondNOTdot1qANDdrv_vfio_pci
+mrrAND${default_nic}ANDvhostANDbaseAND64bNOTvxlanNOTlbondNOTdot1q
 mrrAND${default_nic}ANDvhostANDl2bdmaclrnAND64bANDdot1qNOTlbondNOTvxlanANDdrv_vfio_pci
 
 # vts
 mrrAND${default_nic}ANDvtsAND114bANDdrv_vfio_pci
 
+!nf_density
 !ipsectun
 !hmac_sha_256
 !aes_128_gcm
