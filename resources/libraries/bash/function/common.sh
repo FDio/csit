@@ -53,10 +53,13 @@ function activate_docker_topology () {
             hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3) || die
             ssh="ssh root@${hostname} -p 6022"
             run="activate_wrapper ${NODENESS} ${FLAVOR} ${device_image}"
+            # The "declare -f" output is long and boring.
+            set +x
             # backtics to avoid https://midnight-commander.org/ticket/2142
             env_vars=`${ssh} "$(declare -f); ${run}"` || {
                 die "Topology reservation via shim-dcr failed!"
             }
+            set -x
             set -a
             source <(echo "$env_vars" | grep -v /usr/bin/docker) || {
                 die "Source failed!"
@@ -332,9 +335,12 @@ function deactivate_docker_topology () {
             hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3) || die
             ssh="ssh root@${hostname} -p 6022"
             env_vars=$(env | grep CSIT_ | tr '\n' ' ' ) || die
+            # The "declare -f" output is long and boring.
+            set +x
             ${ssh} "$(declare -f); deactivate_wrapper ${env_vars}" || {
                 die "Topology cleanup via shim-dcr failed!"
             }
+            set -x
             ;;
         "1n_vbox")
             enter_mutex || die
