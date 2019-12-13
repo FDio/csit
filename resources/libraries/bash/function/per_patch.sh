@@ -108,10 +108,6 @@ function compare_test_results () {
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    # Ply is installed as system level package, but not seen for some reason.
-    pip3 install -r "${PYTHON_SCRIPTS_DIR}/perpatch_requirements.txt" || {
-        die "Compare script Python requirements installation failed."
-    }
     # Reusing CSIT main virtualenv.
     python3 "${TOOLS_DIR}/integrated/compare_perpatch.py"
     # The exit code determines the vote result.

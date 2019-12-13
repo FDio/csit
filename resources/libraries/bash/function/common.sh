@@ -116,7 +116,7 @@ function activate_virtualenv () {
     pip3 install --upgrade virtualenv || {
         die "Virtualenv package install failed."
     }
-    virtualenv -p $(which python3) "${env_dir}" || {
+    virtualenv --system-site-packages -p $(which python3) "${env_dir}" || {
         die "Virtualenv creation for $(which python3) failed."
     }
     set +u
