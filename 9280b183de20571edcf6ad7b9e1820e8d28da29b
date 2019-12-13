@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "03269854_5f524e75",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T15:35:55Z",
+      "side": 1,
+      "message": "\u003e keep all in PIP and remove apt-get entirely (expect PIP, except virtualenv?)\n\nMy preference is the following solution with three levels:\n1. apt-get with bare minimum (pip3).\n2. During image creation, initialize python cache: create and activate a vritual env, install vpp+csit requirements (downloads), deactivate and delete the virtual env.\n3. During job run, use the python cache: create and activate virtual env, install csit requirements (copies from disk cache).",
+      "parentUuid": "75e9b634_1401b83f",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 8
+      },
+      "revId": "9280b183de20571edcf6ad7b9e1820e8d28da29b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "829a3bdb_6437364a",
         "filename": "resources/tools/scripts/perpatch_requirements.txt",
         "patchSetId": 3
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Which parent? older commits? report was rewritten, shall per patch use similar approach?",
       "parentUuid": "8f97c1a2_2facd5bb",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 10
+      },
+      "revId": "9280b183de20571edcf6ad7b9e1820e8d28da29b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c96636b_d7f72eca",
+        "filename": "resources/tools/scripts/perpatch_requirements.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T15:35:55Z",
+      "side": 1,
+      "message": "This is 23727/3, when creating I set its parent to be 23421/2.\nParent of 23727/4 is set to 23207/30.\nThis is still investigation phase, I will propose a solution when I understand why ply availability seems to depends on python version.",
+      "parentUuid": "b49253d4_7c39574a",
       "range": {
         "startLine": 14,
         "startChar": 0,
