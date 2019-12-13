@@ -1,5 +1,3 @@
-# !nf_density
-
 # container_memif
 mrrAND${default_nic}ANDmemifANDbaseAND64bANDdrv_vfio_pci
 
