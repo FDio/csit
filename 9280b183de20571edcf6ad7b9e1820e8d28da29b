@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "689e3f7e_dc465460",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T13:12:00Z",
+      "side": 1,
+      "message": "\u003e you are not in latest master\n\nYes, this patch\u0027s parent is just before the first Python3 change. Later patch will have parent at that first Python3 change, so I can compare console outputs.\n\n\u003e virtualenv that is causing the behavior\n\nCurrently I think the Python2 code was using virtualenv from system (15.1.0), not from pip (16.7.8). That is why I want to see output of the which command in line 119. The freezes are there only to confirm whether --system-site-packages has been applied (indirectly, by seeing the pre-installed ply), as that is NOT enabled by default in recent virtualenv versions. Although now I checked and 15.1.0 also should not enable --system-site-packages by default, so I am probably wrong. Another difference may be pip version, but I do not see how that would work.\n\n\u003e adding --system-site-packages should do the trick\n\nI agree, if that is what we want. In OpenDaylight we have seen failures caused by image upgrades removing dependencies we did not know we had, so currently I prefer having ply in CSIT requirements.",
+      "parentUuid": "c6310e56_73d916eb",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 8
+      },
+      "revId": "9280b183de20571edcf6ad7b9e1820e8d28da29b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "829a3bdb_6437364a",
         "filename": "resources/tools/scripts/perpatch_requirements.txt",
         "patchSetId": 3
