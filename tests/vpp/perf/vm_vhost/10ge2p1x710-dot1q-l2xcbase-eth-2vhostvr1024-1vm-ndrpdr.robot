@@ -88,7 +88,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
+| | And Initialize L2 xconnect with Vhost-User and VLAN in circular topology
 | | ... | ${subid} | ${tag_rewrite}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}

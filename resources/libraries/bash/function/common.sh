@@ -643,7 +643,7 @@ function run_pybot () {
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
-    robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
+    robot --dryrun "${all_options[@]}" "${GENERATED_DIR}/tests/"
     PYBOT_EXIT_STATUS="$?"
     set -e
 
@@ -753,6 +753,15 @@ function select_tags () {
     esac
 
     sed_nic_sub_cmd="sed s/\${default_nic}/${default_nic}/"
+    sed_daily_sub_cmd="sed 's/ //g'"
+    sed_nics_sub_cmd="sed -e s/ANDxxv710/ANDnic_intel-xxv710/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDx710/ANDnic_intel-x710/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDxl710/ANDnic_intel-xl710/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDx520-da2/ANDnic_intel-x520-da2/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDx553/ANDnic_intel-x553/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDcx556a/ANDnic_mellanox-cx556a/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDvic1227/ANDnic_cisco-vic-1227/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDvic1385/ANDnic_cisco-vic-1385/"
     # Tag file directory shorthand.
     tfd="${BASH_FUNCTION_DIR}"
     case "${TEST_CODE}" in
@@ -762,7 +771,7 @@ function select_tags () {
             ;;
         *"mrr-daily"* )
             readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
-                ${tfd}/mrr-daily-${FLAVOR}.txt) || die
+                ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.txt) || die
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
@@ -772,11 +781,14 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
-                                "mrrAND${default_nic}AND1cAND78bANDip6base"
-                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
-                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
-                                "!dot1q" "!drv_avf")
+#                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
+#                                "mrrAND${default_nic}AND1cAND78bANDip6base"
+#                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
+#                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
+#                                "!dot1q" "!drv_avf")
+                readarray -t test_tag_array <<< $(sed 's/ //g' \
+                    ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.txt |
+                    eval ${sed_nics_sub_cmd}) || die
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
