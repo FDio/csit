@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9361ab33_a201b071",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T15:16:57Z",
+      "side": 1,
+      "message": "Eventually decided to not mention trivial changes at all.",
+      "parentUuid": "50a42c2f_ee61ad63",
+      "range": {
+        "startLine": 91,
+        "startChar": 3,
+        "endLine": 91,
+        "endChar": 75
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "10f2d0e9_36bf341d",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
