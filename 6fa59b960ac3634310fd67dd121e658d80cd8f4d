@@ -2,6 +2,167 @@
   "comments": [
     {
       "key": {
+        "uuid": "415ab7e7_5793dda7",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-13T08:41:35Z",
+      "side": 1,
+      "message": "Instead of link, describe closer the \"trivial change\", include the examples directly into document. From the link itself it is not clear what it means \"trivial\"",
+      "range": {
+        "startLine": 91,
+        "startChar": 3,
+        "endLine": 91,
+        "endChar": 75
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10f2d0e9_36bf341d",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-13T08:41:35Z",
+      "side": 1,
+      "message": "I would naively say that no VPP patch developer will not know what changes are required assuming that he just change the code and expect thayt test will test its functionality?",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 68
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bd18de6_ba8dac6b",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-13T08:41:35Z",
+      "side": 1,
+      "message": "I would strictly separate \"trivial change\". As in #87 you mentioned that some code changes are needed in CRC collection. Someone who is reading this first time is confused what changes are in fact needed.\n\nI would introduce the term of functional change (real change of API) and crc change (no functionality, just crc recalc). But more I am thinking of this, the more I am convinced that the problem of the whole process is why CRC is changed if nothing is changed. iow: Why CSIT need to change anything for changes that does not affect anything. I agree with DaveB in that \"trivial changes\" MUST NOT trigger the process or the process should be dormant.",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 76
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92317720_ee73063b",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-13T08:41:35Z",
+      "side": 1,
+      "message": "double space (grep for \"  \")",
+      "range": {
+        "startLine": 107,
+        "startChar": 34,
+        "endLine": 107,
+        "endChar": 36
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9c49f47_891ce93a",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-13T08:41:35Z",
+      "side": 1,
+      "message": "i do not understand how the proof looks like, how it can be produced?",
+      "range": {
+        "startLine": 112,
+        "startChar": 27,
+        "endLine": 112,
+        "endChar": 34
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b8f1f3f_61ce33b5",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-13T08:41:35Z",
+      "side": 1,
+      "message": "API",
+      "range": {
+        "startLine": 138,
+        "startChar": 29,
+        "endLine": 138,
+        "endChar": 33
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aeff97ec_7a381be6",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-13T08:41:35Z",
+      "side": 1,
+      "message": "please remove \"brave\"",
+      "range": {
+        "startLine": 150,
+        "startChar": 5,
+        "endLine": 150,
+        "endChar": 11
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5cca55b8_ba16fda8",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
