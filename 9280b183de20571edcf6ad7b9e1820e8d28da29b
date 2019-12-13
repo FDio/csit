@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "75e9b634_1401b83f",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-13T13:17:39Z",
+      "side": 1,
+      "message": "my preference would be to keep all in PIP and remove apt-get entirely (expect PIP, except virtualenv?) but this is harder way as removing them means VPP scripts should be ready to start using virtualenv and pip, which ....",
+      "parentUuid": "689e3f7e_dc465460",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 8
+      },
+      "revId": "9280b183de20571edcf6ad7b9e1820e8d28da29b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "829a3bdb_6437364a",
         "filename": "resources/tools/scripts/perpatch_requirements.txt",
         "patchSetId": 3
