@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d732912e_e5f919d0",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T15:16:57Z",
+      "side": 1,
+      "message": "Backported from [0] and improved.\n\n[0] https://gerrit.fd.io/r/c/csit/+/22354",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 6
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5665386_f7b4d6ef",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T15:16:57Z",
+      "side": 1,
+      "message": "Still not sure opening/closing is better than preparation/support or some other pair.",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 14
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
