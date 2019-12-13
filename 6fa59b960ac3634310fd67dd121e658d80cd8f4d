@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "50a42c2f_ee61ad63",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T12:54:37Z",
+      "side": 1,
+      "message": "I agree, will do.",
+      "parentUuid": "415ab7e7_5793dda7",
+      "range": {
+        "startLine": 91,
+        "startChar": 3,
+        "endLine": 91,
+        "endChar": 75
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "10f2d0e9_36bf341d",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-12-13T08:41:35Z",
       "side": 1,
       "message": "I would naively say that no VPP patch developer will not know what changes are required assuming that he just change the code and expect thayt test will test its functionality?",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 68
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a80c0873_d3edeb60",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T12:54:37Z",
+      "side": 1,
+      "message": "Ideally, the VPP contributor has edited make test, and has seen devicetest failures. Not sure such details are needed to be mentioned in this document.",
+      "parentUuid": "10f2d0e9_36bf341d",
       "range": {
         "startLine": 95,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "efc4ac3d_7308582e",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T12:54:37Z",
+      "side": 1,
+      "message": "Yeah, I need to rewrite this part. Jan is not really skipping this step. He is just testing the prepared change locally, and only uploading for line 137.\n\nThe issue with trivial (will rename) changes is that they are often changing functionality, just not for the values CSIT uses. Converting from u8 to bool changes handling of values larger than 1. Converting from u8[] to string[] changes (hopefully) handling of null byte and non-ascii characters. Only converting from u32 to interface_index does not do anything (yet). CRC values have to inform all users of binary APIs, not just PAPI users. Until VPP introduces a weaker \"papi-crc\", CSIT has to check even the \"trivial\" changes.\n\nFinally, Jan started to do edit in tests (replacing 1 with True and similar), so CSIT wants to be notified also about the \"trivial\" changes.",
+      "parentUuid": "7bd18de6_ba8dac6b",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 76
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92317720_ee73063b",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2019-12-13T08:41:35Z",
       "side": 1,
       "message": "double space (grep for \"  \")",
+      "range": {
+        "startLine": 107,
+        "startChar": 34,
+        "endLine": 107,
+        "endChar": 36
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "075afd0d_41e64afb",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T12:54:37Z",
+      "side": 1,
+      "message": "Dave has introduced the USA way of spacing (see from line 169 onwards), but I agree most of CSIT document uses the European way. Will convert.",
+      "parentUuid": "92317720_ee73063b",
       "range": {
         "startLine": 107,
         "startChar": 34,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "4f574e71_e07ce037",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T12:54:37Z",
+      "side": 1,
+      "message": "Pass of a CRC checking job, as explained in lines 113-117. Will probably rewrite in the next patch.",
+      "parentUuid": "a9c49f47_891ce93a",
+      "range": {
+        "startLine": 112,
+        "startChar": 27,
+        "endLine": 112,
+        "endChar": 34
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b8f1f3f_61ce33b5",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
@@ -128,6 +248,30 @@
       "writtenOn": "2019-12-13T08:41:35Z",
       "side": 1,
       "message": "API",
+      "range": {
+        "startLine": 138,
+        "startChar": 29,
+        "endLine": 138,
+        "endChar": 33
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f3ec164_135b12de",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T12:54:37Z",
+      "side": 1,
+      "message": "Will fix.",
+      "parentUuid": "0b8f1f3f_61ce33b5",
       "range": {
         "startLine": 138,
         "startChar": 29,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "e4d7a377_f9b50d7e",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T12:54:37Z",
+      "side": 1,
+      "message": "Will reformulate.",
+      "parentUuid": "aeff97ec_7a381be6",
+      "range": {
+        "startLine": 150,
+        "startChar": 5,
+        "endLine": 150,
+        "endChar": 11
+      },
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5cca55b8_ba16fda8",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
@@ -174,6 +342,24 @@
       "writtenOn": "2019-12-12T21:35:11Z",
       "side": 1,
       "message": "How is this breakage fixed?  Rebasing???",
+      "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7438106e_a3f0e29f",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-13T12:54:37Z",
+      "side": 1,
+      "message": "Yes, will make more explicit.",
+      "parentUuid": "5cca55b8_ba16fda8",
       "revId": "6fa59b960ac3634310fd67dd121e658d80cd8f4d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
