@@ -32,7 +32,7 @@ class DUTSetup:
         :type node: dict
         :type service: str
         """
-        command = u"echo $(< /tmp/*supervisor*.log)"\
+        command = u"echo $(< /tmp/vppd.log)"\
             if DUTSetup.running_in_container(node) \
             else f"journalctl --no-pager --unit={service} " \
             f"--since=\"$(echo `systemctl show -p ActiveEnterTimestamp " \
