@@ -171,7 +171,8 @@ class Topology:
         """
         port_types = (
             u"subinterface", u"vlan_subif", u"memif", u"tap", u"vhost",
-            u"loopback", u"gre_tunnel", u"vxlan_tunnel", u"eth_bond", u"eth_avf"
+            u"loopback", u"gre_tunnel", u"vxlan_tunnel", u"eth_bond",
+            u"eth_avf", u"eth_rdma"
         )
 
         for node_data in nodes.values():
@@ -1051,8 +1052,10 @@ class Topology:
 
         :param node: Node to set numa_node on.
         :param iface_key: Interface key from topology file.
+        :param numa_node_id: Num_node ID.
         :type node: dict
         :type iface_key: str
+        :type numa_node_id: int
         :returns: Return iface_key or None if not found.
         """
         try:
