@@ -156,7 +156,7 @@
 | | | ... | nf_nodes=${nf_nodes}
 | | END
 
-| Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
+| Initialize L2 xconnect with Vhost-User and VLAN in circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Cross
 | | ... | connect each Vhost interface with one physical interface.
@@ -174,19 +174,30 @@
 | | [Arguments] | ${subid} | ${tag_rewrite}
 | |
 | | Set interfaces in path up
-| | Initialize VLAN dot1q sub-interfaces in circular topology
+| |
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
-| | Configure L2 tag rewrite method on interfaces
-| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
-| | ... | ${tag_rewrite}
+| | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
+| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | ELSE | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
+| |
 | | Configure vhost interfaces
 | | ... | ${dut1} | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
-| | Configure vhost interfaces
+| |
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure vhost interfaces
 | | ... | ${dut2} | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
-| | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
-| | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
 | Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | [Documentation]
