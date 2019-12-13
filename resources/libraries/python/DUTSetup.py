@@ -295,7 +295,7 @@ class DUTSetup:
         :type pf_pci_addr: str
         :type vf_id: int
         :returns: Virtual Function PCI address.
-        :rtype: int
+        :rtype: str
         :raises RuntimeError: If failed to get Virtual Function PCI address.
         """
         command = f"sh -c \"basename $(readlink " \

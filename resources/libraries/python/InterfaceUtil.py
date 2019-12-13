@@ -1138,17 +1138,21 @@ class InterfaceUtil:
         return if_key
 
     @staticmethod
-    def add_eth_interface(node, ifc_name=None, sw_if_index=None, ifc_pfx=None):
+    def add_eth_interface(
+            node, ifc_name=None, sw_if_index=None, ifc_pfx=None,
+            host_if_key=None):
         """Add ethernet interface to current topology.
 
         :param node: DUT node from topology.
         :param ifc_name: Name of the interface.
         :param sw_if_index: SW interface index.
         :param ifc_pfx: Interface key prefix.
+        :param host_if_key: Host interface key from topology file.
         :type node: dict
         :type ifc_name: str
         :type sw_if_index: int
         :type ifc_pfx: str
+        :type ifc_pfx: host_if_key
         """
         if_key = Topology.add_new_port(node, ifc_pfx)
 
@@ -1161,16 +1165,23 @@ class InterfaceUtil:
         Topology.update_interface_name(node, if_key, ifc_name)
         ifc_mac = InterfaceUtil.vpp_get_interface_mac(node, sw_if_index)
         Topology.update_interface_mac_address(node, if_key, ifc_mac)
+        if host_if_key is not None:
+            Topology.set_interface_numa_node(
+                node, if_key, Topology.get_interface_numa_node(
+                    node, host_if_key
+                )
+            )
 
     @staticmethod
-    def vpp_create_avf_interface(node, vf_pci_addr, num_rx_queues=None):
+    def vpp_create_avf_interface(node, if_key, num_rx_queues=None):
         """Create AVF interface on VPP node.
 
         :param node: DUT node from topology.
-        :param vf_pci_addr: PCI address binded to i40evf driver.
+        :param if_key: Interface key from topology file of interface
+            to be bound to i40evf driver.
         :param num_rx_queues: Number of RX queues.
         :type node: dict
-        :type vf_pci_addr: str
+        :type if_key: str
         :type num_rx_queues: int
         :returns: Interface key (name) in topology.
         :rtype: str
@@ -1182,6 +1193,7 @@ class InterfaceUtil:
         )
 
         cmd = u"avf_create"
+        vf_pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
             pci_addr=InterfaceUtil.pci_to_int(vf_pci_addr),
             enable_elog=0,
@@ -1194,28 +1206,31 @@ class InterfaceUtil:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         InterfaceUtil.add_eth_interface(
-            node, sw_if_index=sw_if_index, ifc_pfx=u"eth_avf"
+            node, sw_if_index=sw_if_index, ifc_pfx=u"eth_avf",
+            host_if_key=if_key
         )
         if_key = Topology.get_interface_by_sw_index(node, sw_if_index)
 
         return if_key
 
     @staticmethod
-    def vpp_create_rdma_interface(node, pci_addr, num_rx_queues=None):
+    def vpp_create_rdma_interface(node, if_key, num_rx_queues=None):
         """Create RDMA interface on VPP node.
 
         :param node: DUT node from topology.
-        :param pci_addr: PCI address binded to rdma-core driver.
+        :param if_key: Physical interface key from topology file of interface
+            to be bound to rdma-core driver.
         :param num_rx_queues: Number of RX queues.
         :type node: dict
-        :type pci_addr: str
+        :type if_key: str
         :type num_rx_queues: int
-        :returns: Interface key (name) in topology.
+        :returns: Interface key (name) in topology file.
         :rtype: str
         :raises RuntimeError: If it is not possible to create RDMA interface on
             the node.
         """
         cmd = u"rdma_create"
+        pci_addr =Topology.get_interface_pci_addr(node, if_key)
         args = dict(
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
             host_if=InterfaceUtil.pci_to_eth(node, pci_addr),
@@ -1228,11 +1243,11 @@ class InterfaceUtil:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         InterfaceUtil.add_eth_interface(
-            node, sw_if_index=sw_if_index, ifc_pfx=u"eth_rdma"
+            node, sw_if_index=sw_if_index, ifc_pfx=u"eth_rdma",
+            host_if_key=if_key
         )
-        if_key = Topology.get_interface_by_sw_index(node, sw_if_index)
 
-        return if_key
+        return Topology.get_interface_by_sw_index(node, sw_if_index)
 
     @staticmethod
     def vpp_enslave_physical_interface(node, interface, bond_if):
@@ -1606,8 +1621,9 @@ class InterfaceUtil:
             )
 
             pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
-            InterfaceUtil.set_linux_interface_trust_on(node, pf_dev,
-                                                       vf_id=vf_id)
+            InterfaceUtil.set_linux_interface_trust_on(
+                node, pf_dev, vf_id=vf_id
+            )
             if osi_layer == u"L2":
                 InterfaceUtil.set_linux_interface_spoof_off(
                     node, pf_dev, vf_id=vf_id
@@ -1628,6 +1644,11 @@ class InterfaceUtil:
             )
             Topology.update_interface_mac_address(node, vf_ifc_key, vf_mac_addr)
             Topology.update_interface_pci_address(node, vf_ifc_key, vf_pci_addr)
+            Topology.set_interface_numa_node(
+                node, vf_ifc_key, Topology.get_interface_numa_node(
+                    node, ifc_key
+                )
+            )
             vf_ifc_keys.append(vf_ifc_key)
 
         return vf_ifc_keys

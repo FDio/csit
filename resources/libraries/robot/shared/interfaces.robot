@@ -261,16 +261,12 @@
 | | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
 | | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
 | | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
-| | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
-| | ... | ${${dut}_if1_vf0}
-| | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
-| | ... | ${${dut}_if2_vf0}
 | | ${dut_new_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${if1_pci} | ${rxq_count_int}
+| | ... | ${${dut}_if1_vf0} | ${rxq_count_int}
 | | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if1}
 | | ${dut_new_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${if2_pci} | ${rxq_count_int}
+| | ... | ${${dut}_if2_vf0} | ${rxq_count_int}
 | | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if2}
 | | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
@@ -296,16 +292,12 @@
 | | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
 | | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
 | | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
-| | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
-| | ... | ${${dut}_if1}
-| | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
-| | ... | ${${dut}_if2}
 | | ${dut_new_if1}= | VPP Create Rdma Interface | ${nodes['${dut}']}
-| | ... | ${if1_pci} | ${rxq_count_int}
+| | ... | ${${dut}_if1} | ${rxq_count_int}
 | | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if1}
 | | ${dut_new_if2}= | VPP Create Rdma Interface | ${nodes['${dut}']}
-| | ... | ${if2_pci} | ${rxq_count_int}
+| | ... | ${${dut}_if2} | ${rxq_count_int}
 | | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if2}
 | | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
