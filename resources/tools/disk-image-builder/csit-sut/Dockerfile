@@ -14,7 +14,7 @@
 FROM ubuntu:18.04
 MAINTAINER csit-dev <csit-dev@lists.fd.io>
 LABEL Description="CSIT vpp-device ubuntu 18.04 SUT image"
-LABEL Version="0.7"
+LABEL Version="1.0"
 
 # Setup the environment
 ENV DEBIAN_FRONTEND=noninteractive
@@ -57,7 +57,6 @@ RUN apt-get -q update \
         python-cffi \
         python-cffi-backend \
         python-dev \
-        python-enum34 \
         python-pip \
         python-setuptools \
         python-virtualenv \
@@ -115,6 +114,7 @@ RUN pip3 install \
         scapy==2.4.3 \
         scp==0.13.2 \
         ansible==2.7.8 \
+        ply==3.11 \
         dill==0.2.8.2 \
         numpy==1.17.3 \
         hdrhistogram==0.6.1 \
