@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d90c425e_c26220b8",
+        "filename": "resources/tools/integrated/compare_perpatch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-15T06:16:51Z",
+      "side": 1,
+      "message": "print(, stderr)",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 13
+      },
+      "revId": "ab640935799c4594a7d52c024b71f4bebabf722a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
