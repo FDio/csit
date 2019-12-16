@@ -22,6 +22,30 @@
       "revId": "867611477c274082acf96b7a8e1bacb7928d1ca2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad8193a0_53e34c03",
+        "filename": "resources/tools/integrated/compare_perpatch.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-16T12:18:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75a2d353_5169de48",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 23
+      },
+      "revId": "867611477c274082acf96b7a8e1bacb7928d1ca2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
