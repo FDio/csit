@@ -27,6 +27,8 @@ function ansible_hosts () {
 
     set -exuo pipefail
 
+    return 0
+
     if ! installed sshpass; then
         die "Please install sshpass!"
     fi
