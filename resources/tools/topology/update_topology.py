@@ -37,7 +37,7 @@ def load_topology(args):
     :rtype: dict
     """
     data = None
-    with open(args.topology, "r") as stream:
+    with open(args.topology, u"rt") as stream:
         try:
             data = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
@@ -153,7 +153,7 @@ def dump_updated_topology(topology, args):
                     f"overwrite this file, add -f as a parameter to this script"
                 )
                 return 1
-        with open(args.output_file, "w") as stream:
+        with open(args.output_file, u"wt") as stream:
             yaml.dump(topology, stream, default_flow_style=False)
     else:
         print(yaml.dump(topology, default_flow_style=False))

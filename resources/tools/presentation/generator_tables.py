@@ -138,7 +138,7 @@ def table_details(table, input_data):
                 f"{table[u'output-file-ext']}"
             )
             logging.info(f"      Writing file: {file_name}")
-            with open(file_name, u"w") as file_handler:
+            with open(file_name, u"wt") as file_handler:
                 file_handler.write(u",".join(header) + u"\n")
                 for item in table_lst:
                     file_handler.write(u",".join(item) + u"\n")
@@ -212,7 +212,7 @@ def table_merged_details(table, input_data):
                 f"{table[u'output-file-ext']}"
             )
             logging.info(f"      Writing file: {file_name}")
-            with open(file_name, u"w") as file_handler:
+            with open(file_name, u"wt") as file_handler:
                 file_handler.write(u",".join(header) + u"\n")
                 for item in table_lst:
                     file_handler.write(u",".join(item) + u"\n")
@@ -622,7 +622,7 @@ def table_perf_comparison(table, input_data):
 
     # Generate csv tables:
     csv_file = f"{table[u'output-file']}.csv"
-    with open(csv_file, u"w") as file_handler:
+    with open(csv_file, u"wt") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
             file_handler.write(u",".join([str(item) for item in test]) + u"\n")
@@ -857,7 +857,7 @@ def table_perf_comparison_nic(table, input_data):
 
     # Generate csv tables:
     csv_file = f"{table[u'output-file']}.csv"
-    with open(csv_file, u"w") as file_handler:
+    with open(csv_file, u"wt") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
             file_handler.write(u",".join([str(item) for item in test]) + u"\n")
@@ -983,7 +983,7 @@ def table_nics_comparison(table, input_data):
     tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
 
     # Generate csv tables:
-    with open(f"{table[u'output-file']}.csv", u"w") as file_handler:
+    with open(f"{table[u'output-file']}.csv", u"wt") as file_handler:
         file_handler.write(u",".join(header) + u"\n")
         for test in tbl_lst:
             file_handler.write(u",".join([str(item) for item in test]) + u"\n")
@@ -1117,7 +1117,7 @@ def table_soak_vs_ndr(table, input_data):
 
     # Generate csv tables:
     csv_file = f"{table[u'output-file']}.csv"
-    with open(csv_file, u"w") as file_handler:
+    with open(csv_file, u"wt") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
             file_handler.write(u",".join([str(item) for item in test]) + u"\n")
@@ -1240,7 +1240,7 @@ def table_perf_trending_dash(table, input_data):
     file_name = f"{table[u'output-file']}{table[u'output-file-ext']}"
 
     logging.info(f"    Writing file: {file_name}")
-    with open(file_name, u"w") as file_handler:
+    with open(file_name, u"wt") as file_handler:
         file_handler.write(header_str)
         for test in tbl_sorted:
             file_handler.write(u",".join([str(item) for item in test]) + u'\n')
@@ -1548,7 +1548,7 @@ def table_last_failed_tests(table, input_data):
 
     file_name = f"{table[u'output-file']}{table[u'output-file-ext']}"
     logging.info(f"    Writing file: {file_name}")
-    with open(file_name, u"w") as file_handler:
+    with open(file_name, u"wt") as file_handler:
         for test in tbl_list:
             file_handler.write(test + u'\n')
 
@@ -1653,7 +1653,7 @@ def table_failed_tests(table, input_data):
 
     file_name = f"{table[u'output-file']}{table[u'output-file-ext']}"
     logging.info(f"    Writing file: {file_name}")
-    with open(file_name, u"w") as file_handler:
+    with open(file_name, u"wt") as file_handler:
         file_handler.write(u",".join(header) + u"\n")
         for test in tbl_sorted:
             file_handler.write(u",".join([str(item) for item in test]) + u'\n')
