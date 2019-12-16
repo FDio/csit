@@ -132,7 +132,7 @@ class VppApiCrcChecker:
         file_path = os.path.normpath(os.path.join(
             os.path.dirname(os.path.abspath(__file__)), u"..", u"..",
             u"api", u"vpp", u"supported_crcs.yaml"))
-        with open(file_path, "r") as file_in:
+        with open(file_path, u"rt") as file_in:
             collections_dict = yaml.safe_load(file_in.read())
         for collection_name, name_to_crc_mapping in collections_dict.items():
             self._register_collection(collection_name, name_to_crc_mapping)
@@ -242,7 +242,7 @@ class VppApiCrcChecker:
             for filename in files:
                 if not filename.endswith(u".api.json"):
                     continue
-                with open(f"{root}/{filename}", "r") as file_in:
+                with open(f"{root}/{filename}", u"rt") as file_in:
                     json_obj = json.load(file_in)
                 msgs = json_obj[u"messages"]
                 for msg_obj in msgs:

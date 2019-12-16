@@ -61,7 +61,7 @@ class WrkTrafficProfile:
         self.profile_name = profile_name
 
         try:
-            with open(self.profile_name, "r") as profile_file:
+            with open(self.profile_name, u"rt") as profile_file:
                 self.traffic_profile = load(profile_file)
         except IOError as err:
             raise WrkError(
