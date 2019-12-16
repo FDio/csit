@@ -24,44 +24,62 @@ import sys
 
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
-# TODO: Read FDIO_VPP_DIR environment variable, or some other input,
-# instead of using hardcoded relative path?
 
-API_DIR = op.normpath(
-    op.join(
+def main():
+    """Execute the logic, return the return code.
+
+    From current location, construct path to .api file subtree,
+    initialize and run the CRC checker, print result consequences
+    to stderr, return the return code to return from the script.
+
+    :returns: Return code to return. 0 if OK, 1 if CRC mismatch.
+    :rtype: int
+    """
+
+    # TODO: Read FDIO_VPP_DIR environment variable, or some other input,
+    # instead of using hardcoded relative path?
+
+    api_dir = op.normpath(op.join(
         op.dirname(op.abspath(__file__)), u"..", u"..", u"..", u"..",
-        u"build-root", u"install-vpp-native", u"vpp", u"share", u"vpp", u"api"
-    )
-)
-CHECKER = VppApiCrcChecker(API_DIR)
-try:
-    CHECKER.report_initial_conflicts(report_missing=True)
-except RuntimeError as err:
-    sys.stderr.write(f"{err!r}\n")
-    sys.stderr.write(
-        u"\n"
-        u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
-        u"\n"
-        u"VPP CSIT API CHECK FAIL!\n"
-        u"\n"
-        u"This means the patch under test has missing messages,\n"
-        u"or messages with unexpected CRCs compared to what CSIT needs.\n"
-        u"Either this Change and/or its ancestors were editing .api files,\n"
-        u"or your chain is not rebased upon the recent enough VPP codebase.\n"
-        u"\n"
-        u"Please rebase the patch to see if that fixes the problem.\n"
-        u"If that fails email csit-dev@lists.fd.io for a new\n"
-        u"operational branch supporting the api changes.\n"
-        u"\n"
-        u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
-    )
-    sys.exit(1)
-else:
-    sys.stderr.write(
-        u"\n"
-        u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
-        u"\n"
-        u"VPP CSIT API CHECK PASS!\n"
-        u"\n"
-        u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
-    )
+        u"build-root", u"install-vpp-native", u"vpp", u"share", u"vpp",
+        u"api"
+    ))
+    checker = VppApiCrcChecker(api_dir)
+    try:
+        checker.report_initial_conflicts(report_missing=True)
+    except RuntimeError as err:
+        stderr_lines = [
+            f"{err!r}",
+            u"",
+            u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+            u"",
+            u"VPP CSIT API CHECK FAIL!",
+            u"",
+            u"This means the patch under test has missing messages,",
+            u"or messages with unexpected CRCs compared to what CSIT needs.",
+            u"Either this Change and/or its ancestors were editing .api files,",
+            u"or your chain is not rebased upon a recent enough VPP codebase.",
+            u"",
+            u"Please rebase the patch to see if that fixes the problem.",
+            u"If that fails email csit-dev@lists.fd.io for a new",
+            u"operational branch supporting the api changes.",
+            u"",
+            u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+        ]
+        ret_code = 1
+    else:
+        stderr_lines = [
+            u"",
+            u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+            u"",
+            u"VPP CSIT API CHECK PASS!",
+            u"",
+            u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+        ]
+        ret_code = 0
+    for stderr_line in stderr_lines:
+        print(stderr_line, file=sys.stderr)
+    return ret_code
+
+if __name__ == u"__main__":
+    sys.exit(main())
