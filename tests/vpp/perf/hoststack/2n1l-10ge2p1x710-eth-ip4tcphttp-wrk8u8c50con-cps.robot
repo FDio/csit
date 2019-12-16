@@ -16,13 +16,13 @@
 | Library  | resources.tools.wrk.wrk
 | Resource | resources/libraries/robot/wrk/wrk_utils.robot
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/tcp/tcp_setup.robot
+| Resource | resources/libraries/robot/hoststack/tcp_setup.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | HTTP | TCP | TCP_CPS | NIC_Intel-X710 | DRV_VFIO_PCI
 |
 | Suite Setup | Setup suite single link | wrk
-| Suite Teardown | Tear down suite
+| Suite Teardown | Tear down suite | wrk
 | Test Setup | Setup test
 | Test Teardown | Tear down test
 |
@@ -41,14 +41,17 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | http_static_plugin.so
 | ... | hs_apps_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | Intel-X710
+| ${nic_name}= | Intel-XL710
 | ${nic_driver}= | vfio-pci
+| ${overhead}= | ${0}
+| ${frame_size}= | IMIX_v4_1
 | ${traffic_profile}= | wrk-sf-2n-ethip4tcphttp-8u8c50con-cps
 | ${http_static_plugin}= | ${false}
 
 *** Keywords ***
 | Local template
 | | [Arguments] | ${phy_cores} | ${rxq}=${None}
+
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
