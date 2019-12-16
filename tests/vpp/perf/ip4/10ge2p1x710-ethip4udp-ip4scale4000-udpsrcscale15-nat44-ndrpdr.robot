@@ -48,9 +48,10 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | nat_plugin.so
-| ${osi_layer}= | L3
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4udp-4000u15p
