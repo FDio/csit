@@ -291,8 +291,8 @@ function get_available_interfaces () {
             # Add Intel Corporation 82545EM Gigabit Ethernet Controller to the
             # whitelist.
             pci_id="0x100f"
-            tg_netdev=(enpTGa enpTGb)
-            dut1_netdev=(enpSUTa enpSUTb)
+            tg_netdev=(enp0s8 enp0s9)
+            dut1_netdev=(enp0s16 enp0s17)
             ;;
         *)
             die "Unknown specification: ${case_text}!"

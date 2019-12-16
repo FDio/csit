@@ -1,0 +1,37 @@
+---
+# file: csit/defaults/main.yml
+
+csit_packages: "{{ csit_packages_base + csit_packages_by_distro[ansible_distribution|lower] }}"
+
+csit_packages_base:
+  - 'curl'
+  - 'python3-cffi'
+  - 'python3-pip'
+  - 'python3-setuptools'
+  - 'virtualenv'
+  - 'wget'
+
+csit_packages_by_distro:
+  centos:
+    - 'autoconf'
+    - 'automake'
+    - 'binutils'
+    - 'bison'
+    - 'flex'
+    - 'gcc'
+    - 'gcc-c++'
+    - 'gdb'
+    - 'glibc-devel'
+    - 'libpcap-devel'
+    - 'libtool'
+    - 'make'
+    - 'pkgconf'
+    - 'pkgconf-m4'
+    - 'pkgconf-pkg-config'
+    - 'redhat-rpm-config'
+    - 'rpm-build'
+    - 'rpm-sign'
+    - 'strace'
+  ubuntu:
+    - 'build-essential'
+    - 'libpcap-dev'
