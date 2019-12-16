@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de0cc496_440c67ac",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c1n.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-16T11:11:16Z",
+      "side": 1,
+      "message": "Also here we should use correct indend:\n\nbase_pkt_a \u003d (\n    Ether(dst\u003dself.p1_dst_start_mac) /\n    IP(src\u003dself.p1_src_start_ip,\n       dst\u003dself.p1_dst_start_ip,\n       proto\u003d61)\n)",
+      "range": {
+        "startLine": 68,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 1
+      },
+      "revId": "a4c734b3d6d27ae5f3d82baf1ba29c2b647fd702",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72012ccb_761f9f40",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c1n.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-16T11:11:16Z",
+      "side": 1,
+      "message": "Seperate line for every argument (better readability).",
+      "range": {
+        "startLine": 85,
+        "startChar": 28,
+        "endLine": 85,
+        "endChar": 50
+      },
+      "revId": "a4c734b3d6d27ae5f3d82baf1ba29c2b647fd702",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d21c07a0_01a570e8",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c1n.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-16T11:11:16Z",
+      "side": 1,
+      "message": "All closing brackets need to be indented correctly.\n\nCheck everywhere.",
+      "range": {
+        "startLine": 85,
+        "startChar": 53,
+        "endLine": 85,
+        "endChar": 5
+      },
+      "revId": "a4c734b3d6d27ae5f3d82baf1ba29c2b647fd702",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb6fee04_63acfd9f",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c1n.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-16T11:11:16Z",
+      "side": 1,
+      "message": "All closing brackets need to be indented correctly.",
+      "range": {
+        "startLine": 93,
+        "startChar": 42,
+        "endLine": 93,
+        "endChar": 3
+      },
+      "revId": "a4c734b3d6d27ae5f3d82baf1ba29c2b647fd702",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
