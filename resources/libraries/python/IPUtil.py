@@ -12,6 +12,7 @@
 # limitations under the License.
 
 """Common IP utilities library."""
+from robot.api import logger
 
 import re
 
@@ -349,6 +350,65 @@ class IPUtil:
             cmd = f"ip addr add {ip_addr}/{prefix} dev {interface}"
 
         exec_cmd_no_error(node, cmd, timeout=5, sudo=True)
+
+    @staticmethod
+    def delete_linux_interface_ip(
+            node, interface, ip_addr, prefix, namespace=None):
+        """Delete IP address from interface in linux.
+
+        :param node: VPP/TG node.
+        :param interface: Interface in namespace.
+        :param ip_addr: IP to be deleted from interface.
+        :param prefix: IP prefix length.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type ip_addr: str
+        :type prefix: int
+        :type namespace: str
+        :raises RuntimeError: IP could not be deleted.
+        """
+        if namespace is not None:
+            cmd = f"ip netns exec {namespace} ip addr del {ip_addr}/{prefix}" \
+                f" dev {interface}"
+        else:
+            cmd = f"ip addr del {ip_addr}/{prefix} dev {interface}"
+
+        exec_cmd_no_error(node, cmd, timeout=5, sudo=True)
+
+    @staticmethod
+    def linux_interface_has_ip(
+            node, interface, ip_addr, prefix, namespace=None):
+        """Return True if interface in linux has IP address.
+
+        :param node: VPP/TG node.
+        :param interface: Interface in namespace.
+        :param ip_addr: IP to be queried on interface.
+        :param prefix: IP prefix.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type ip_addr: str
+        :type prefix: int
+        :type namespace: str
+        :rtype boolean
+        :raises RuntimeError: Request fails.
+        """
+        ip_addr_with_prefix = f"{ip_addr}/{prefix}"
+        if namespace is not None:
+            cmd = f"ip netns exec {namespace} ip addr show dev {interface}"
+        else:
+            cmd = f"ip addr show dev {interface}"
+
+        cmd += u" | grep 'inet ' | awk -e '{print $2}'"
+        cmd += f" | grep '{ip_addr_with_prefix}'"
+        _, stdout, _ = exec_cmd(node, cmd, timeout=5, sudo=True)
+
+        has_ip = stdout.rstrip()
+        if has_ip == ip_addr_with_prefix:
+            return True
+        else:
+            return False
 
     @staticmethod
     def add_linux_route(node, ip_addr, prefix, gateway, namespace=None):
