@@ -158,11 +158,11 @@ def generate_html_report(release, spec, report_version):
         build_dir=spec.environment[u"paths"][u"DIR[BUILD,HTML]"])
     execute_command(cmd)
 
-    with open(spec.environment[u"paths"][u"DIR[CSS_PATCH_FILE]"], u"w") as \
+    with open(spec.environment[u"paths"][u"DIR[CSS_PATCH_FILE]"], u"wt") as \
             css_file:
         css_file.write(THEME_OVERRIDES)
 
-    with open(spec.environment[u"paths"][u"DIR[CSS_PATCH_FILE2]"], u"w") as \
+    with open(spec.environment[u"paths"][u"DIR[CSS_PATCH_FILE2]"], u"wt") as \
             css_file:
         css_file.write(THEME_OVERRIDES)
 

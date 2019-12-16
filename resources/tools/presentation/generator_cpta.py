@@ -587,7 +587,7 @@ def _generate_all_charts(spec, input_data):
     # Write the tables:
     for job_name, csv_table in csv_tables.items():
         file_name = f"{spec.cpta[u'output-file']}/{job_name}-trending"
-        with open(f"{file_name}.csv", u"w") as file_handler:
+        with open(f"{file_name}.csv", u"wt") as file_handler:
             file_handler.writelines(csv_table)
 
         txt_table = None
@@ -613,7 +613,7 @@ def _generate_all_charts(spec, input_data):
                         )
                 line_nr += 1
             txt_table.align[u"Build Number:"] = u"l"
-        with open(f"{file_name}.txt", u"w") as txt_file:
+        with open(f"{file_name}.txt", u"wt") as txt_file:
             txt_file.write(str(txt_table))
 
     # Evaluate result:
