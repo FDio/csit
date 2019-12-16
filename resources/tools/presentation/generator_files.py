@@ -114,7 +114,7 @@ def file_test_results(file_spec, input_data):
     suites = input_data.merge_data(suites)
     suites.sort_index(inplace=True)
 
-    with open(file_name, u"w") as file_handler:
+    with open(file_name, u"wt") as file_handler:
         file_handler.write(rst_header)
         for suite_longname, suite in suites.items():
             if len(suite_longname.split(u".")) <= \
