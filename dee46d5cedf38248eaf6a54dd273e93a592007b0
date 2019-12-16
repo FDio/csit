@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac9c2c5c_a73d6a06",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-16T12:36:50Z",
+      "side": 1,
+      "message": ":raises NotImplementedError: If the container engine does not support building.",
+      "range": {
+        "startLine": 112,
+        "startChar": 32,
+        "endLine": 112,
+        "endChar": 33
+      },
+      "revId": "dee46d5cedf38248eaf6a54dd273e93a592007b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
