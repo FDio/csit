@@ -256,6 +256,47 @@ class Constants:
         u"Mellanox-CX556A": u"100ge2p1cx556a",
     }
 
+    # Not each driver is supported by each NIC.
+    NIC_NAME_TO_DRIVER = {
+        u"Cisco-VIC-1227": [u"vfio-pci"],
+        u"Cisco-VIC-1385": [u"vfio-pci"],
+        u"Intel-X520-DA2": [u"vfio-pci"],
+        u"Intel-X553": [u"vfio-pci"],
+        u"Intel-X710": [u"vfio-pci", u"avf"],
+        u"Intel-XL710": [u"vfio-pci", u"avf"],
+        u"Intel-XXV710": [u"vfio-pci", u"avf"],
+        u"Mellanox-CX556A": [u"rdma-core"],
+    }
+
+    # Each driver needs different prugin to work.
+    NIC_DRIVER_TO_PLUGINS = {
+        u"vfio-pci": u"dpdk_plugin.so",
+        u"avf": u"avf_plugin.so",
+        u"rdma-core": u"rdma_plugin.so",
+    }
+
+    # Tags to differentiate tests for different NIC driver.
+    NIC_DRIVER_TO_TAG = {
+        u"vfio-pci": u"DRV_VFIO_PCI",
+        u"avf": u"DRV_AVF",
+        u"rdma-core": u"DRV_RDMA_CORE",
+    }
+
+    # Suite names have to be different, add prefix.
+    NIC_DRIVER_TO_SUITE_PREFIX = {
+        u"vfio-pci": u"",
+        u"avf": u"avf-",
+        u"rdma-core": u"rdma-",
+    }
+
+    # Additional step for perf needs to know driver type.
+    # Contains part of suite setup line, matching both single and double link.
+    NIC_DRIVER_TO_SETUP_ARG = {
+        u"vfio-pci": u"le link | performance",
+        u"avf": u"le link | performance_avf",
+        u"rdma-core": u"le link | performance_rdma",
+    }
+
     # TODO CSIT-1481: Crypto HW should be read from topology file instead.
     NIC_NAME_TO_CRYPTO_HW = {
         u"Intel-X553": u"HW_C3xxx",
