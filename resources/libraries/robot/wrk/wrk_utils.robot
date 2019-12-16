@@ -21,6 +21,12 @@
 | Documentation | L2 keywords to set up wrk and to measure performance
 | ... | parameters using wrk.
 
+*** Variables ***
+| ${wrk_ip_prefix}= | 24
+| @{wrk_ip_addrs}= | 192.168.10.1 | 192.168.20.1 | 192.168.30.1
+| ... | 192.168.40.1 | 192.168.50.1 | 192.168.60.1 | 192.168.70.1
+| ... | 192.168.80.1
+
 *** Keywords ***
 | Measure throughput
 | | [Documentation]
