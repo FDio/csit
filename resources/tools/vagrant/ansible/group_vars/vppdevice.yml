@@ -1,4 +1,6 @@
 ---
+# Ansible interpreter (for PIP)
+ansible_python_interpreter: 'python3'
 # Settings for VPP Device host group
 csit:
   home: '/home/vagrant/csit'
