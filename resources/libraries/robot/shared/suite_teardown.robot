@@ -48,3 +48,20 @@
 | | | Cleanup DPDK Environment
 | | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
 | | END
+
+| Additional Suite Tear Down Action For wrk
+| | [Documentation]
+| | ... | Additional teardown for suites which uses wrk.
+| |
+| | ${intf_name}= | Get Linux interface name | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | FOR | ${ip_addr} | IN | @{wrk_ip_addrs}
+| | | ${ip_addr_on_intf}= | Linux Interface Has IP | ${tg} | ${intf_name}
+| | | ... | ${ip_addr} | ${wrk_ip_prefix}
+| | | Run Keyword If | ${ip_addr_on_intf}==${True} | Delete Linux Interface IP
+| | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${wrk_ip_prefix}
+| | END
+| | Run Keyword And Ignore Error | PCI Driver Unbind
+| | ... | ${tg} | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | Run Keyword And Ignore Error | PCI Driver Unbind
+| | ... | ${tg} | ${tg['interfaces']['${tg_if2}']['pci_address']}
