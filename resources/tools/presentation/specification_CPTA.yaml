@@ -38,10 +38,6 @@
     DIR[WORKING,SRC]: "{DIR[WORKING]}/src"
     DIR[WORKING,SRC,STATIC]: "{DIR[WORKING,SRC]}/_static"
 
-    # .css patch file
-    DIR[CSS_PATCH_FILE]: "{DIR[STATIC]}/theme_overrides.css"
-    DIR[CSS_PATCH_FILE2]: "{DIR[WORKING,SRC,STATIC]}/theme_overrides.css"
-
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[NEXUS,LOG]: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"

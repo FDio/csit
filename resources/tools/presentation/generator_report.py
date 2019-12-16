@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,70 +21,6 @@ from shutil import make_archive
 
 from pal_utils import get_files, execute_command, archive_input_data
 
-
-# .css file for the html format of the report
-THEME_OVERRIDES = u"""/* override table width restrictions */
-@media screen and (min-width: 767px) {
-    .wy-table-responsive table td, .wy-table-responsive table th {
-        white-space: normal !important;
-    }
-
-    .wy-table-responsive {
-        font-size: small;
-        margin-bottom: 24px;
-        max-width: 100%;
-        overflow: visible !important;
-    }
-}
-.rst-content blockquote {
-    margin-left: 0px;
-    line-height: 18px;
-    margin-bottom: 0px;
-}
-.wy-menu-vertical a {
-    display: inline-block;
-    line-height: 18px;
-    padding: 0 2em;
-    display: block;
-    position: relative;
-    font-size: 90%;
-    color: #d9d9d9
-}
-.wy-menu-vertical li.current a {
-    color: gray;
-    border-right: solid 1px #c9c9c9;
-    padding: 0 3em;
-}
-.wy-menu-vertical li.toctree-l2.current > a {
-    background: #c9c9c9;
-    padding: 0 3em;
-}
-.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
-    display: block;
-    background: #c9c9c9;
-    padding: 0 4em;
-}
-.wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a {
-    display: block;
-    background: #bdbdbd;
-    padding: 0 5em;
-}
-.wy-menu-vertical li.on a, .wy-menu-vertical li.current > a {
-    color: #404040;
-    padding: 0 2em;
-    font-weight: bold;
-    position: relative;
-    background: #fcfcfc;
-    border: none;
-        border-top-width: medium;
-        border-bottom-width: medium;
-        border-top-style: none;
-        border-bottom-style: none;
-        border-top-color: currentcolor;
-        border-bottom-color: currentcolor;
-    padding-left: 2em -4px;
-}
-"""
 
 # Command to build the html format of the report
 HTML_BUILDER = u'sphinx-build -v -c . -a ' \
@@ -157,14 +93,6 @@ def generate_html_report(release, spec, report_version):
         working_dir=working_dir,
         build_dir=spec.environment[u"paths"][u"DIR[BUILD,HTML]"])
     execute_command(cmd)
-
-    with open(spec.environment[u"paths"][u"DIR[CSS_PATCH_FILE]"], u"w") as \
-            css_file:
-        css_file.write(THEME_OVERRIDES)
-
-    with open(spec.environment[u"paths"][u"DIR[CSS_PATCH_FILE2]"], u"w") as \
-            css_file:
-        css_file.write(THEME_OVERRIDES)
 
     logging.info(u"  Done.")
 
