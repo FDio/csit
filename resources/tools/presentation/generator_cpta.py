@@ -169,44 +169,47 @@ def _generate_trending_traces(in_data, job_name, build_info,
     """
 
     data_x = list(in_data.keys())
-    data_y = [float(item) / 1e6 for item in in_data.values()]
+    data_y_pps = list(in_data.values())
+    data_y_mpps = [float(item) / 1e6 for item in data_y_pps]
 
     hover_text = list()
     xaxis = list()
-    for idx in data_x:
-        date = build_info[job_name][str(idx)][0]
+    for index, key in enumerate(data_x):
+        str_key = str(key)
+        date = build_info[job_name][str_key][0]
         hover_str = (u"date: {date}<br>"
-                     u"value: {value:,}<br>"
+                     u"value [Mpps]: {value:.3f}<br>"
                      u"{sut}-ref: {build}<br>"
                      u"csit-ref: mrr-{period}-build-{build_nr}<br>"
                      u"testbed: {testbed}")
         if u"dpdk" in job_name:
             hover_text.append(hover_str.format(
                 date=date,
-                value=int(in_data[idx]),
+                value=data_y_mpps[index],
                 sut=u"dpdk",
-                build=build_info[job_name][str(idx)][1].rsplit(u'~', 1)[0],
+                build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
                 period=u"weekly",
-                build_nr=idx,
-                testbed=build_info[job_name][str(idx)][2]))
+                build_nr=str_key,
+                testbed=build_info[job_name][str_key][2]))
         elif u"vpp" in job_name:
             hover_text.append(hover_str.format(
                 date=date,
-                value=int(in_data[idx]),
+                value=data_y_mpps[index],
                 sut=u"vpp",
-                build=build_info[job_name][str(idx)][1].rsplit(u'~', 1)[0],
+                build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
                 period=u"daily",
-                build_nr=idx,
-                testbed=build_info[job_name][str(idx)][2]))
+                build_nr=str_key,
+                testbed=build_info[job_name][str_key][2]))
 
         xaxis.append(datetime(int(date[0:4]), int(date[4:6]), int(date[6:8]),
                               int(date[9:11]), int(date[12:])))
 
     data_pd = OrderedDict()
-    for key, value in zip(xaxis, data_y):
+    for key, value in zip(xaxis, data_y_pps):
         data_pd[key] = value
 
-    anomaly_classification, avgs = classify_anomalies(data_pd)
+    anomaly_classification, avgs_pps = classify_anomalies(data_pd)
+    avgs_mpps = [avg_pps / 1e6 for avg_pps in avgs_pps]
 
     anomalies = OrderedDict()
     anomalies_colors = list()
@@ -217,20 +220,20 @@ def _generate_trending_traces(in_data, job_name, build_info,
         u"progression": 1.0
     }
     if anomaly_classification:
-        for idx, (key, value) in enumerate(data_pd.items()):
-            if anomaly_classification[idx] in \
+        for index, (key, value) in enumerate(data_pd.items()):
+            if anomaly_classification[index] in \
                     (u"outlier", u"regression", u"progression"):
-                anomalies[key] = value
+                anomalies[key] = value / 1e6
                 anomalies_colors.append(
-                    anomaly_color[anomaly_classification[idx]])
-                anomalies_avgs.append(avgs[idx])
+                    anomaly_color[anomaly_classification[index]])
+                anomalies_avgs.append(avgs_mpps[index])
         anomalies_colors.extend([0.0, 0.5, 1.0])
 
     # Create traces
 
     trace_samples = plgo.Scatter(
         x=xaxis,
-        y=data_y,
+        y=data_y_mpps,
         mode=u"markers",
         line={
             u"width": 1
@@ -251,7 +254,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
     if show_trend_line:
         trace_trend = plgo.Scatter(
             x=xaxis,
-            y=avgs,
+            y=avgs_mpps,
             mode=u"lines",
             line={
                 u"shape": u"linear",
@@ -261,7 +264,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
             showlegend=False,
             legendgroup=name,
             name=f"{name}",
-            text=[f"trend: {int(avg):,}" for avg in avgs],
+            text=[f"trend [Mpps]: {avg:.3f}" for avg in avgs_mpps],
             hoverinfo=u"text+name"
         )
         traces.append(trace_trend)
