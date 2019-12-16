@@ -20,7 +20,7 @@ See LLD for the structure of a wrk traffic profile.
 from os.path import isfile
 from pprint import pformat
 
-from yaml import load, YAMLError
+from yaml import safe_load, YAMLError
 from robot.api import logger
 
 from resources.tools.wrk.wrk_errors import WrkError
@@ -62,7 +62,7 @@ class WrkTrafficProfile:
 
         try:
             with open(self.profile_name, "r") as profile_file:
-                self.traffic_profile = load(profile_file)
+                self.traffic_profile = safe_load(profile_file)
         except IOError as err:
             raise WrkError(
                 msg=f"An error occurred while opening the file "
