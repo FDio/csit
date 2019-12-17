@@ -62,7 +62,7 @@ def get_vpp_pid(node):
         running on the DUT node.
     :rtype: int or list
     """
-    pid = PidLib.DUTSetup.get_vpp_pid(node)
+    pid = PidLib.DUTSetup.get_pid(node, u"vpp")
     return pid
 
 
