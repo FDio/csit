@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df9bcf9b_77c36442",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:02:49Z",
+      "side": 1,
+      "message": "Little bit weird as IP4_PREFIX can have 32 values. If you meant default per note, then use DEFAULT_IP4_PREFIX? or something shorted...not sure.",
+      "range": {
+        "startLine": 222,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 22
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa55861d_3f83fa1a",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:02:49Z",
+      "side": 1,
+      "message": "f\"command -v {program}\"\n\nJust to keep some naming conventions\n\n[0] http://www.linfo.org/pid.html",
+      "range": {
+        "startLine": 168,
+        "startChar": 15,
+        "endLine": 168,
+        "endChar": 35
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "407292fc_7f57ef79",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:02:49Z",
+      "side": 1,
+      "message": "f\"{program} is not installed!\"",
+      "range": {
+        "startLine": 169,
+        "startChar": 17,
+        "endLine": 169,
+        "endChar": 45
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce36f8fa_41e97181",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:02:49Z",
+      "side": 1,
+      "message": "I would expect function to return bool True/False?",
+      "range": {
+        "startLine": 170,
+        "startChar": 3,
+        "endLine": 171,
+        "endChar": 38
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb0f76aa_b685bc49",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:02:49Z",
+      "side": 1,
+      "message": "i would maybe do only get_pid(node, process). In Linux we have processes and theirs PIDs (which are unique instance IDs).",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 19
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "388bb1b9_fd42bd44",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:02:49Z",
+      "side": 1,
+      "message": "exec_cmd_no_error(...)",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 75
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5cbfeb2_356919de",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:02:49Z",
+      "side": 1,
+      "message": "see below, use clean_up_namespaces(...)\n\nOptional: You can add force\u003dTrue parameter to force deleting prior creating",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 75
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f00f3e28_255ba7c1",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:02:49Z",
+      "side": 1,
+      "message": "Holy cow. Another example of state full useless class :)\n\nI would prefer put parameter:\n\n@staticmethod\ndef clean_up_namespaces(node, namespace\u003dNone):\n    if namespace:\n       delete\n    else\n       delete all from parameter",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 40
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
