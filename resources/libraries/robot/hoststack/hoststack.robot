@@ -23,7 +23,7 @@
 
 *** Variables ***
 | ${quic_crypto_engine}= | nocrypto
-| ${quic_fifo_size}= | 4Mb
+| ${quic_fifo_size}= | 4M
 | &{vpp_hoststack_attr}=
 | ... | rxq=${None}
 | ... | phy_cores=${1}
@@ -43,6 +43,7 @@
 | ... | sess_lcl_endpt_tbl_mem=3g
 | &{vpp_echo_server_attr}=
 | ... | role=server
+| ... | cfg_vpp_feature=${None}
 | ... | namespace=default
 | ... | vpp_api_socket=${vpp_hoststack_attr.vpp_api_socket}
 | ... | json_output=json
@@ -52,13 +53,14 @@
 | ... | nclients=1
 | ... | quic_streams=1
 | ... | time=sconnect:lastbyte
-| ... | fifo_size=4Mb
+| ... | fifo_size=4M
 | ... | rx_bytes=0
 | ... | tx_bytes=0
 | ... | rx_results_diff=${False}
 | ... | tx_results_diff=${False}
 | &{vpp_echo_client_attr}=
 | ... | role=client
+| ... | cfg_vpp_feature=${None}
 | ... | namespace=default
 | ... | vpp_api_socket=${vpp_hoststack_attr.vpp_api_socket}
 | ... | json_output=json
@@ -68,7 +70,7 @@
 | ... | nclients=1
 | ... | quic_streams=1
 | ... | time=sconnect:lastbyte
-| ... | fifo_size=4Mb
+| ... | fifo_size=4M
 | ... | rx_bytes=0
 | ... | tx_bytes=0
 | ... | rx_results_diff=${False}
@@ -81,6 +83,7 @@
 | | ... | in the vpp_echo_server_attr dictionary.
 | |
 | | ... | *Arguments:*
+| | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: String
 | | ... | - ${namespace} - Namespace Type: String
 | | ... | - ${nclients} - Number of clients Type: String
 | | ... | - ${quic_streams} - Number of quic streams Type: String
@@ -97,6 +100,7 @@
 | | ... | \| tx_bytes=${tx_bytes} \|
 | |
 | | [Arguments]
+| | ... | ${cfg_vpp_feature}=${vpp_echo_server_attr.cfg_vpp_feature}
 | | ... | ${namespace}=${vpp_echo_server_attr.namespace}
 | | ... | ${nclients}=${vpp_echo_server_attr.nclients}
 | | ... | ${quic_streams}=${vpp_echo_server_attr.quic_streams}
@@ -107,6 +111,7 @@
 | | ... | ${rx_results_diff}=${vpp_echo_server_attr.rx_results_diff}
 | | ... | ${tx_results_diff}=${vpp_echo_server_attr.tx_results_diff}
 | |
+| | Set To Dictionary | ${vpp_echo_server_attr} | cfg_vpp_feature | ${cfg_vpp_feature}
 | | Set To Dictionary | ${vpp_echo_server_attr} | namespace | ${namespace}
 | | Set To Dictionary | ${vpp_echo_server_attr} | nclients | ${nclients}
 | | Set To Dictionary | ${vpp_echo_server_attr} | quic_streams | ${quic_streams}
@@ -123,6 +128,7 @@
 | | ... | in the vpp_echo_client_attr dictionary.
 | |
 | | ... | *Arguments:*
+| | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: String
 | | ... | - ${namespace} - Namespace Type: String
 | | ... | - ${nclients} - Number of clients Type: String
 | | ... | - ${fifo_size} - Session Fifo Size Type: Integer
@@ -138,6 +144,7 @@
 | | ... | \| tx_bytes=${tx_bytes} \|
 | |
 | | [Arguments]
+| | ... | ${cfg_vpp_feature}=${vpp_echo_client_attr.cfg_vpp_feature}
 | | ... | ${namespace}=${vpp_echo_client_attr.namespace}
 | | ... | ${nclients}=${vpp_echo_client_attr.nclients}
 | | ... | ${quic_streams}=${vpp_echo_server_attr.quic_streams}
@@ -148,6 +155,7 @@
 | | ... | ${rx_results_diff}=${vpp_echo_client_attr.rx_results_diff}
 | | ... | ${tx_results_diff}=${vpp_echo_client_attr.tx_results_diff}
 | |
+| | Set To Dictionary | ${vpp_echo_client_attr} | cfg_vpp_feature | ${cfg_vpp_feature}
 | | Set To Dictionary | ${vpp_echo_client_attr} | namespace | ${namespace}
 | | Set To Dictionary | ${vpp_echo_client_attr} | nclients | ${nclients}
 | | Set To Dictionary | ${vpp_echo_client_attr} | quic_streams | ${quic_streams}
@@ -158,10 +166,10 @@
 | | Set To Dictionary | ${vpp_echo_client_attr} | rx_results_diff | ${rx_results_diff}
 | | Set To Dictionary | ${vpp_echo_client_attr} | tx_results_diff | ${tx_results_diff}
 
-| Run hoststack external app on DUT
+| Run hoststack test program on DUT
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start the specified
-| | ... | HostStack external app on the specified DUT.
+| | ... | HostStack test program on the specified DUT.
 | |
 | | ... | *Arguments:*
 | | ... | - ${node} - VPP DUT node Type: Node
@@ -169,32 +177,46 @@
 | | ... | - ${ip4_addr} - VPP DUT node interface ip4 address Type: String
 | | ... | - ${ip4_mask} - VPP DUT node interface ip4 network mask Type: String
 | | ... | - ${namespace} - Network namespace to run app in Type: string
-| | ... | - ${external_app} - Host Stack external external app Type: string
-| | ... | - @{app_args} - List of args for the external app
+| | ... | - ${cfg_vpp_feature} - VPP hoststack feature requiring
+| | ... | additional VPP configuration Type: string
+| | ... | - ${test_program} - Host Stack test program Type: string
+| | ... | - @{test_program_args} - List of args for the test program
 | | ... | Type: List of strings
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Run hoststack external app on DUT \| ${dut1} \| ${dut1_if1} \|
+| | ... | \| Run hoststack test program on DUT \| ${dut1} \| ${dut1_if1} \|
 | | ... | \| ${dut1_if1_ip4_addr} \| ${dut1_if1_ip4_mask} \| default \|
-| | ... | \| vcl_test_client \| @{client_args} \|
+| | ... | \| quic \| vcl_test_client \| @{client_program_args} \|
 | |
 | | [Arguments] | ${node} | ${intf} | ${ip4_addr} | ${ip4_mask}
-| | | ... | ${namespace} | ${external_app} | @{app_args}
+| | | ... | ${namespace} | ${cfg_vpp_feature} | ${test_program} | @{test_program_args}
 | |
 | | Hoststack session enable | ${node}
 | | Run Keyword If | ${vpp_nsim_attr.output_feature_enable}
 | | ... | Configure VPP NSIM | ${node} | ${vpp_nsim_attr} | ${intf}
-| | Set hoststack quic fifo size | ${node} | ${quic_fifo_size}
-| | Set hoststack quic crypto engine | ${node} | ${quic_crypto_engine}
+| | Run Keyword IF | '${cfg_vpp_feature}' != ''
+| | ... | Additional VPP Config for Feature ${cfg_vpp_feature} | ${node}
 | | VPP Get Interface Data | ${node}
 | | Set Interface State | ${node} | ${intf} | up
 | | VPP Interface Set IP Address | ${node} | ${intf} | ${ip4_addr}
 | | ... | ${ip4_mask}
 | | Vpp Node Interfaces Ready Wait | ${node}
-| | ${hoststack_external_app_pid}= | Start Hoststack External App
-| | ... | ${node} | ${namespace} | ${external_app} | @{app_args}
-| | Return From Keyword | ${hoststack_external_app_pid}
+| | ${hoststack_test_program_pid}= | Start Hoststack Test Program
+| | ... | ${node} | ${namespace} | ${test_program} | @{test_program_args}
+| | Return From Keyword | ${hoststack_test_program_pid}
+
+| Additional VPP Config For Feature quic
+| | [Documentation]
+| | ... | Configure VPP quic attributes on the specified DUT.
+| |
+| | ... | *Arguments:*
+| | ... | - ${node} - VPP DUT node Type: Node
+| |
+| | [Arguments] | ${node}
+| |
+| | Set hoststack quic fifo size | ${node} | ${quic_fifo_size}
+| | Set hoststack quic crypto engine | ${node} | ${quic_crypto_engine}
 
 | Configure VPP hoststack attributes on all DUTs
 | | [Documentation]
@@ -238,32 +260,34 @@
 | Get Test Results From Hoststack VPP Echo Test
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start the specified
-| | ... | HostStack external app on the specified DUT.
+| | ... | HostStack test program on the specified DUT.
 | |
 | | Set To Dictionary | ${vpp_echo_server_attr} | uri_ip4_addr
 | | ... | ${dut2_if1_ip4_addr}
 | | Set To Dictionary | ${vpp_echo_client_attr} | uri_ip4_addr
 | | ... | ${dut2_if1_ip4_addr}
 | | Configure VPP Hoststack Attributes on all DUTs
-| | ${server_app} | @{server_app_args}=
+| | ${server_program} | @{server_program_args}=
 | | ... | Get VPP Echo Command | ${vpp_echo_server_attr}
-| | ${server_pid}= | Run hoststack external app on DUT
+| | ${server_pid}= | Run hoststack test program on DUT
 | | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
-| | ... | ${vpp_echo_server_attr.namespace} | ${server_app} | @{server_app_args}
-| | ${client_app} | @{client_app_args}=
+| | ... | ${vpp_echo_server_attr.namespace} | ${vpp_echo_server_attr.cfg_vpp_feature}
+| | ... | ${server_program} | @{server_program_args}
+| | ${client_program} | @{client_program_args}=
 | | ... | Get VPP Echo Command | ${vpp_echo_client_attr}
-| | ${client_pid}= | Run hoststack external app on DUT
+| | ${client_pid}= | Run hoststack test program on DUT
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
-| | ... | ${vpp_echo_client_attr.namespace} | ${client_app} | @{client_app_args}
-| | When Hoststack External App Finished | ${dut1} | ${client_pid}
+| | ... | ${vpp_echo_client_attr.namespace} | ${vpp_echo_client_attr.cfg_vpp_feature}
+| | ... | ${client_program} | @{client_program_args}
+| | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
 | | ${client_no_results} | ${client_output}=
-| | ... | Analyze hoststack external app output | ${dut1} | Client
-| | ... | ${vpp_nsim_attr} | ${client_app} | ${client_app_args}
+| | ... | Analyze hoststack test program output | ${dut1} | Client
+| | ... | ${vpp_nsim_attr} | ${client_program} | ${client_program_args}
 | | Then Set test message | ${client_output}
-| | And Hoststack External App Finished | ${dut2} | ${server_pid}
+| | And Hoststack Test Program Finished | ${dut2} | ${server_pid}
 | | ${server_no_results} | ${server_output}=
-| | ... | Analyze hoststack external app output | ${dut2} | Server
-| | ... | ${vpp_nsim_attr} | ${server_app} | ${server_app_args}
+| | ... | Analyze hoststack test program output | ${dut2} | Server
+| | ... | ${vpp_nsim_attr} | ${server_program} | ${server_program_args}
 | | Set test message | ${server_output} | append=True
-| | Run Keyword And Return | No Hoststack External App Results
+| | Run Keyword And Return | No Hoststack Test Program Results
 | | ... | ${server_no_results} | ${client_no_results}
