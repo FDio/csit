@@ -157,11 +157,27 @@ class DUTSetup:
                 DUTSetup.stop_service(node, service)
 
     @staticmethod
-    def get_vpp_pid(node):
-        """Get PID of running VPP process.
+    def verify_app_installed(node, app):
+        """Verify that app is installed on the specified topology node.
+
+        :param node: Topology node.
+        :param app: Application name
+        :type node: dict
+        :type app: str
+        """
+        cmd = 'command -v %s' % app
+        errmsg = '%s is not installed!' % app
+        exec_cmd_no_error(
+            node, cmd, message=errmsg)
+
+    @staticmethod
+    def get_app_pid(node, app):
+        """Get PID of running process.
 
         :param node: DUT node.
+        :param app: application name.
         :type node: dict
+        :type app: str
         :returns: PID
         :rtype: int
         :raises RuntimeError: If it is not possible to get the PID.
@@ -171,24 +187,24 @@ class DUTSetup:
 
         retval = None
         for i in range(3):
-            logger.trace(f"Try {i}: Get VPP PID")
-            ret_code, stdout, stderr = ssh.exec_command(u"pidof vpp")
+            logger.trace(f"Try {i}: Get {app} PID")
+            ret_code, stdout, stderr = ssh.exec_command(f"pidof {app}")
 
             if int(ret_code):
                 raise RuntimeError(
-                    f"Not possible to get PID of VPP process on node: "
+                    f"Not possible to get PID of {app} process on node: "
                     f"{node[u'host']}\n {stdout + stderr}"
                 )
 
             pid_list = stdout.split()
             if len(pid_list) == 1:
-                retval = int(stdout)
+                return [int(stdout)]
             elif not pid_list:
-                logger.debug(f"No VPP PID found on node {node[u'host']}")
+                logger.debug(f"No {app} PID found on node {node[u'host']}")
                 continue
             else:
                 logger.debug(
-                    f"More then one VPP PID found on node {node[u'host']}"
+                    f"More then one {app} PID found on node {node[u'host']}"
                 )
                 retval = [int(pid) for pid in pid_list]
 
@@ -206,7 +222,7 @@ class DUTSetup:
         pids = dict()
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                pids[node[u"host"]] = DUTSetup.get_vpp_pid(node)
+                pids[node[u"host"]] = DUTSetup.get_app_pid(node, u"vpp")
         return pids
 
     @staticmethod

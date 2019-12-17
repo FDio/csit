@@ -13,6 +13,7 @@
 
 """Linux namespace utilities library."""
 
+from robot.api import logger
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 
 
@@ -29,8 +30,15 @@ class Namespaces:
         :type node: dict
         :type namespace_name: str
         """
-        cmd = f"ip netns add {namespace_name}"
+        cmd = f"ip netns list {namespace_name}"
+        stdout, _ = exec_cmd_no_error(node, cmd, sudo=True)
+        if stdout is not None:
+            cmd = f"ip netns delete {namespace_name}"
+            (ret_code, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
+            if ret_code != 0:
+                raise RuntimeError('Could not delete namespace: {}'.stderr)
 
+        cmd = f"ip netns add {namespace_name}"
         exec_cmd_no_error(node, cmd, sudo=True)
         self._namespaces.append(namespace_name)
 
@@ -59,6 +67,21 @@ class Namespaces:
             raise RuntimeError(
                 f"Could not set interface state, reason:\n{stderr}"
             )
+
+    @staticmethod
+    def add_default_route_to_namespace(node, namespace, default_route):
+        """Add IPv4 default route to interface in namespace.
+
+        :param node: Node where to execute command.
+        :param namespace: Namespace to execute command on.
+        :param default_route:  Default route address.
+        :type node: dict
+        :type namespace: str
+        :type default_route: str
+        """
+        cmd = f"ip netns exec {namespace} ip route add default " \
+              f"via {default_route}"
+        exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def create_bridge_for_int_in_namespace(
@@ -93,8 +116,13 @@ class Namespaces:
         :raises RuntimeError: Namespaces could not be cleaned properly.
         """
         for namespace in self._namespaces:
-            print(f"Cleaning namespace {namespace}")
-            cmd = f"ip netns delete {namespace}"
-            ret_code, _, _ = exec_cmd(node, cmd, timeout=5, sudo=True)
-            if ret_code != 0:
-                raise RuntimeError(u"Could not delete namespace")
+            cmd = f"ip netns list {namespace}"
+            stdout, _ = exec_cmd_no_error(node, cmd, sudo=True)
+            if stdout != '':
+                msg = f"Cleaning namespace {namespace}"
+                logger.trace(msg)
+                print(msg)
+                cmd = f"ip netns delete {namespace}"
+                ret_code, _, stderr = exec_cmd(node, cmd, timeout=5, sudo=True)
+                if ret_code != 0:
+                    raise RuntimeError(f"Could not delete namespace ({namespace}): {stderr}")
