@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ab75feb_147a6c5d",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c1n.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-17T13:27:08Z",
+      "side": 1,
+      "message": "Please, address all comments from here: https://gerrit.fd.io/r/c/csit/+/23953/3/resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c1n.py#85\nand here:\nhttps://gerrit.fd.io/r/c/csit/+/23953/2/resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c1n.py#93",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 3
+      },
+      "revId": "e29fface1303d717e73174b95960059b9255f6f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
