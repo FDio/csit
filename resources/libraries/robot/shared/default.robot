@@ -113,6 +113,30 @@
 | | Verify Kernel Module on All DUTs | ${nodes} | ${module}
 | | ... | force_load=${force_load}
 
+| Get Keyname for DUT
+| | [Documentation]
+| | ... | Get the Keyname for the DUT in the keyname list.
+| |
+| | ... | *Arguments:*
+| | ... | - dutx - DUT to find keyname. Type: dict
+| | ... | - dut_keys - DUT Keynames to search. Type: list
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Get Keyname for DUT \| ${dutx} \| ${duts} \|
+| |
+| | [Arguments] | ${dutx} | ${dut_keys}
+| |
+| | FOR | ${key} | IN | @{dut_keys}
+| | | ${found_key} | ${value}= | Run Keyword and Ignore Error
+| | | ... | Dictionaries Should Be Equal | ${nodes['${key}']} | ${dutx}
+| | | Run Keyword If | '${found_key}' == 'PASS' | EXIT FOR LOOP
+| | END
+| | Run Keyword If | '${found_key}' != 'PASS'
+| | ... | Fatal Error | Keyname for ${dutx} not found
+| | ${keyname}= | Convert To Lowercase | ${key}
+| | Return From Keyword | ${keyname}
+
 | Create base startup configuration of VPP on all DUTs
 | | [Documentation] | Create base startup configuration of VPP to all DUTs.
 | |

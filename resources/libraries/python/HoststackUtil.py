@@ -19,7 +19,8 @@ from robot.api import logger
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.DUTSetup import DUTSetup
-get_hoststack_app_pid = DUTSetup.get_app_pid
+
+get_pid = DUTSetup.get_pid
 
 class HoststackUtil(object):
     """Implementation of the Host Stack utilities.
@@ -29,7 +30,7 @@ class HoststackUtil(object):
     def get_vpp_echo_command (vpp_echo_attributes):
         """Construct the vpp_echo command using the specified attributes
 
-        :param vpp_echo_attributes: vpp_echo application attributes
+        :param vpp_echo_attributes: vpp_echo test program attributes
         :type vpp_echo_attributes: dict
         :returns vpp_echo command
         :rtype: list
@@ -113,40 +114,40 @@ class HoststackUtil(object):
                 raise
 
     @staticmethod
-    def get_hoststack_app_logs (node, app):
-        """Get HostStack external application stdout log.
+    def get_hoststack_test_program_logs (node, program):
+        """Get HostStack test program stdout log.
 
         :param node: DUT node
-        :param app: External application name
+        :param program: test program name
         :type node: dict
-        :type app: str
+        :type program: str
         """
-                             
-        cmd = f"sh -c \'cat /tmp/{app}_stdout.log\'"
+        cmd = f"sh -c \'cat /tmp/{program}_stdout.log\'"
         stdout_log, _ = exec_cmd_no_error(node, cmd, sudo=True,
-            message=f"Get {app} stdout log failed!")
+            message=f"Get {program} stdout log failed!")
 
-        cmd = f"sh -c \'cat /tmp/{app}_stderr.log\'"
+        cmd = f"sh -c \'cat /tmp/{program}_stderr.log\'"
         stderr_log, _ = exec_cmd_no_error(node, cmd, sudo=True,
-            message=f"Get {app} stderr log failed!")
+            message=f"Get {program} stderr log failed!")
         return stdout_log, stderr_log
 
     @staticmethod
-    def start_hoststack_external_app(node, namespace, app, *args):
-        """Startup sequence for HostStack external application.
+    def start_hoststack_test_program(node, namespace, program, *args):
+        """Startup sequence for HostStack test program.
 
         :param node: DUT node
-        :param namespace: Net Namespace to run app in
-        :param app: External application name
-        :param args: List of application args
+        :param namespace: Net Namespace to run program in
+        :param program: test program name
+        :param args: List of test program args
         :type node: dict
         :type namespace: str
-        :type app: str
+        :type program: str
         :type args list
-        :returns App Process ID
+        :returns Process ID
         :rtype: int
         :raises RuntimeError: If node subtype is not a DUT or startup failed.
         """
+        # TODO: Pin test program to core(s) on same numa node as VPP.
         if node[u"type"] != u"DUT":
             raise RuntimeError(u"Node type is not a DUT!")
 
@@ -155,101 +156,101 @@ class HoststackUtil(object):
         else:
             shell_cmd=f"ip netns exec {namespace} sh -c"
 
-        # Kill HostStack App only if it is already running.
-        cmd = f"{shell_cmd} 'sudo rm -f /tmp/*.log && pgrep {app} && " \
-              f"pkill -9 {app} && sleep 1 && sudo rm -f /tmp/*.log || true'"
+        # Kill HostStack test program only if it is already running.
+        cmd = f"{shell_cmd} 'sudo rm -f /tmp/*.log && pgrep {program} && " \
+              f"pkill -9 {program} && sleep 1 && sudo rm -f /tmp/*.log || true'"
         exec_cmd_no_error(
-            node, cmd, message=f"Kill {app} failed!", sudo=True)
-        
+            node, cmd, message=f"Kill {program} failed!", sudo=True)
+
         opts=u" ".join([str(x) for x in args])
-        cmd = f"{shell_cmd} '{app} {opts} >/tmp/{hsa}_stdout.log" \
-            f" 2>/tmp/{hsa}_stderr.log &'"
+        cmd = f"{shell_cmd} '{program} {opts} >/tmp/{program}_stdout.log" \
+            f" 2>/tmp/{program}_stderr.log &'"
         try:
             exec_cmd_no_error(node, cmd, sudo=True)
-            return get_hoststack_app_pid(node, app)[0]
+            return get_pid(node, program)[0]
         except RuntimeError:
             stdout_log, stderr_log = \
-                HoststackUtil.get_hoststack_app_logs(node, app)
-            raise RuntimeError(f"Start {app} failed!\nSTDERR:\n{stderr_log}" \
-                               f"nSTDOUT:\n{stdout_log}")
+                HoststackUtil.get_hoststack_test_program_logs(node, program)
+            raise RuntimeError(f"Start {program} failed!\nSTDERR:\n" \
+                               f"{stderr_log}\nSTDOUT:\n{stdout_log}")
         return None
 
     @staticmethod
-    def stop_hoststack_external_app(node, app, pid):
-        """Startup sequence for HostStack external application.
+    def stop_hoststack_test_program(node, program, pid):
+        """Startup sequence for HostStack test program.
 
         :param node: DUT node
-        :param app: External application name
-        :param pid: Process ID of external application
+        :param program: test program name
+        :param pid: Process ID of test program
         :type node: dict
-        :type app: str
+        :type program: str
         :type pid: int
         """
 
-        if app == u"nginx":
+        if program == u"nginx":
             cmd = u"nginx -s quit"
             errmsg = u"Quit nginx failed!"
         else:
-            cmd = f'if [-n "$(ps {pid} | grep {app})" ] ; ' \
+            cmd = f'if [-n "$(ps {pid} | grep {program})" ] ; ' \
                 f'then kill -s SIGTERM {pid}'
-            errmsg = f"Kill {app} ({pid)} failed!"
+            errmsg = f"Kill {program} ({pid}) failed!"
 
         exec_cmd_no_error(node, cmd, message=errmsg, sudo=True)
 
     @staticmethod
-    def hoststack_external_app_finished(node, app_pid):
-        """Startup sequence for HostStack external application.
+    def hoststack_test_program_finished(node, program_pid):
+        """Startup sequence for HostStack test program.
 
         :param node: DUT node
-        :param app_pid: External application pid
+        :param program_pid: test program pid
         :type node: dict
-        :type app_pid: str
+        :type program_pid: str
         :raises RuntimeError: If node subtype is not a DUT.
         """
         if node[u"type"] != u"DUT":
             raise RuntimeError(u"Node type is not a DUT!")
 
-        cmd = f"sh -c 'strace -qqe trace=none -p {app_pid}' || true"
+        cmd = f"sh -c 'strace -qqe trace=none -p {program_pid}' || true"
         exec_cmd_no_error(node, cmd, sudo=True)
         sleep(1)
 
     @staticmethod
-    def analyze_hoststack_external_app_output(node, role, nsim_attr,
-                                              app, app_args):
-        """Startup sequence for HostStack external application.
+    def analyze_hoststack_test_program_output(node, role, nsim_attr,
+                                              program, program_args):
+        """Startup sequence for HostStack test program.
 
         :param node: DUT node
-        :param role: Role (client|server) of application
+        :param role: Role (client|server) of test program
         :param nsim_attr: Network Simulation Attributes
-        :param app: External application name
-        :param app_args: List of application args
+        :param program: test program name
+        :param program_args: List of test program args
         :type node: dict
         :type role: str
         :type nsim_attr: dict
-        :type app: str
-        :type app_args str
-        :returns application results
+        :type program: str
+        :type program_args str
+        :returns test program results
         :rtype str
         :raises RuntimeError: If node subtype is not a DUT.
         """
         if node[u"type"] != u"DUT":
             raise RuntimeError(u"Node type is not a DUT!")
 
-        app_stdout, app_stderr = \
-            HoststackUtil.get_hoststack_app_logs(node, app)
-        if len(app_stdout) == 0 and len(app_stderr) == 0:
-            logger.trace(f"Retrying {app} log retrieval")
-            app_stdout, app_stderr = 
-               HoststackUtil.get_hoststack_app_logs(node, app)
+        program_stdout, program_stderr = \
+            HoststackUtil.get_hoststack_test_program_logs(node, program)
+        if len(program_stdout) == 0 and len(program_stderr) == 0:
+            logger.trace(f"Retrying {program} log retrieval")
+            program_stdout, program_stderr = \
+               HoststackUtil.get_hoststack_test_program_logs(node, program)
 
-        logger.trace(f"app_stdout = |{app_stdout}|")
-        logger.trace(f"app_stderr = |{app_stderr}|")
+        logger.trace(f"program_stdout = |{program_stdout}|")
+        logger.trace(f"program_stderr = |{program_stderr}|")
 
         no_results = False
-        app_cmd = f"{app}"
-        for x in app_args:
-            app_cmd += f" {x}"
-        test_results = f"Test Results of '{app_cmd}':\n"
+        program_cmd = f"{program}"
+        for x in program_args:
+            program_cmd += f" {x}"
+        test_results = f"Test Results of '{program_cmd}':\n"
 
         if nsim_attr[u"output_feature_enable"] == True or \
             nsim_attr[u"cross_connect_feature_enable"] == True:
@@ -265,25 +266,25 @@ class HoststackUtil(object):
                 f"avg-pkt-size {pkt_sz}, bandwidth {bw} bits/sec, " \
                 f"pkt-drop-rate {drop_rate} pkts/drop\n"
 
-        if u"ERROR" in app_stderr or u"error" in app_stderr:
+        if u"ERROR" in program_stderr or u"error" in program_stderr:
             test_results += u"ERROR DETECTED:\n"
-            stderr_list = app_stderr.splitlines()
+            stderr_list = program_stderr.splitlines()
             for x in stderr_list:
                 test_results += f"{x}\n"
             raise RuntimeError(test_results)
-        elif len(app_stdout) == 0:
+        elif len(program_stdout) == 0:
             no_results = True
             warning_msg=u"!!!!! DANGER, WILL ROBINSON, DANGER !!!!!"
-            test_results += f"\n{warning_msg}\nNo {app} test data retrieved!\n"
+            test_results += f"\n{warning_msg}\nNo {program} test data retrieved!\n"
             cmd=u"ls -l /tmp/*.log"
             ls_stdout, _ = exec_cmd_no_error(node, cmd, sudo=True)
             test_results += f"{ls_stdout}{warning_msg}\n"
         else:
             bad_test_results = False
-            if app == u"vpp_echo" and not u"JSON stats" in app_stdout:
+            if program == u"vpp_echo" and not u"JSON stats" in program_stdout:
                 test_results += u"Invalid test data output!\n"
                 bad_test_results = True
-            stdout_list = app_stdout.splitlines()
+            stdout_list = program_stdout.splitlines()
             for x in stdout_list:
                 test_results += f"{x}\n"
             if bad_test_results == True:
@@ -295,13 +296,13 @@ class HoststackUtil(object):
         test_results += f"\n{role} VPP 'show errors' on host {host}:\n" \
                         f"{show_errors}\n"
 
-        # TODO: Restore no_results retval after vpp_echo app stops crashing
+        # TODO: Restore no_results retval after vpp_echo stops crashing
         no_results = False
         return no_results, test_results
 
 
     @staticmethod
-    def no_hoststack_external_app_results(server_no_results, client_no_results):
+    def no_hoststack_test_program_results(server_no_results, client_no_results):
         return server_no_results and client_no_results
 
     @staticmethod
