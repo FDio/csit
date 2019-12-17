@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd43a666_5993a481",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:09:51Z",
+      "side": 1,
+      "message": "this can be very dangerous. PLease see DPDKUtil (L3FWD.py and l2FWD.py) how we dealt with it. Maybe one can generate the functionality to DUTSetup.py.",
+      "range": {
+        "startLine": 160,
+        "startChar": 31,
+        "endLine": 160,
+        "endChar": 44
+      },
+      "revId": "349409c007cbe0d23e3dfa6468fc557d1fa615d6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
