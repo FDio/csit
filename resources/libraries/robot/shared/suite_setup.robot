@@ -14,12 +14,13 @@
 """Keywords used in suite setups."""
 
 *** Settings ***
-| Library  | resources.libraries.python.DPDK.DPDKTools
-| Library  | resources.libraries.python.InterfaceUtil
-| Library  | resources.libraries.python.NodePath
-| Library  | resources.libraries.python.topology.Topology
-| Library  | resources.libraries.python.TrafficGenerator
-| Library  | resources.tools.wrk.wrk
+| Library | resources.libraries.python.DPDK.DPDKTools
+| Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.TrafficGenerator
+| Library | resources.tools.wrk.wrk
+| Variables | resources/libraries/python/Constants.py
 | Resource | resources/libraries/robot/wrk/wrk_utils.robot
 
 |
@@ -85,6 +86,64 @@
 | | Set Suite Variable | ${tg_if1_mac}
 | | Set Suite Variable | ${tg_if2}
 | | Set Suite Variable | ${tg_if2_mac}
+| | FOR | ${action} | IN | @{actions}
+| | | Run Keyword | Additional Suite setup Action For ${action}
+| | END
+
+| Setup suite single link no tg
+| | [Documentation]
+| | ... | Common suite setup for single link tests.
+| | ... |
+| | ... | Compute path for testing on two given nodes in circular topology
+| | ... | based on interface model provided as an argument and set
+| | ... | corresponding suite variables.
+| |
+| | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - duts - List of DUT nodes
+| | ... | - duts_count - Number of DUT nodes.
+| | ... | - dut{n} - DUTx node
+| | ... | - dut{n}_if1 - 1st DUT interface.
+| | ... | - dut{n}_if1_mac - 1st DUT interface MAC address.
+| | ... | - dut{n}_if2 - 2nd DUT interface.
+| | ... | - dut{n}_if2_mac - 2nd DUT interface MAC address.
+| |
+| | ... | *Arguments:*
+| | ... | - ${actions} - Additional setup action. Type: list
+| |
+| | [Arguments] | @{actions}
+| |
+| | ${nic_model_list}= | Create list | ${nic_name}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | FOR | ${dut} | IN | @{duts}
+| | | Append Node | ${nodes['${dut}']} | filter_list=${nic_model_list}
+| | END
+| | Append Node | ${nodes['@{duts}[0]']} | filter_list=${nic_model_list}
+| | Compute Path | always_same_link=${FALSE}
+| | FOR | ${i} | IN RANGE | 1 | ${DATAPATH_INTERFACES_MAX}
+| | | ${dutx_if} | ${dutx}= | Next Interface
+| | | RUN KEYWORD IF | '${dutx_if}' == 'None' | EXIT FOR LOOP
+| | | ${dutx_if_mac}= | Get Interface MAC | ${dutx} | ${dutx_if}
+| | | ${dutx_if_ip4_addr}= | Get Interface Ip4 | ${dutx} | ${dutx_if}
+| | | ${dutx_if_ip4_prefix_length}= | Get Interface Ip4 Prefix Length
+| | | ... | ${dutx} | ${dutx_if}
+| | | ${dut_str}= | Get Keyname For DUT | ${dutx} | ${duts}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut_str}_if1}
+| | | ${if_name}= | Set Variable If | '${if1_status}' == 'PASS'
+| | | ... | if2 | if1
+| | | Set Suite Variable | ${${dut_str}} | ${dutx}
+| | | Set Suite Variable | ${${dut_str}_${if_name}} | ${dutx_if}
+| | | Set Suite Variable | ${${dut_str}_${if_name}_mac} | ${dutx_if_mac}
+| | | Set Suite Variable | ${${dut_str}_${if_name}_ip4_addr}
+| | | ... | ${dutx_if_ip4_addr}
+| | | Set Suite Variable | ${${dut_str}_${if_name}_ip4_prefix}
+| | | ... | ${dutx_if_ip4_prefix_length}
+| | END
+| | Run Keyword If | ${i}>${DATAPATH_INTERFACES_MAX}
+| | ... | Fatal Error | Datapath length exceeded
+| | ${duts_count}= | Get Length | ${duts}
+| | Set Suite Variable | ${duts}
+| | Set Suite Variable | ${duts_count}
 | | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Suite setup Action For ${action}
 | | END
@@ -243,6 +302,7 @@
 | | [Documentation]
 | | ... | Additional Setup for suites which uses WRK TG.
 | |
+| | Verify Program Installed | ${tg} | wrk
 | | Iface update numa node | ${tg}
 # Make sure TRex is stopped
 | | ${running}= | Is TRex running | ${tg}
