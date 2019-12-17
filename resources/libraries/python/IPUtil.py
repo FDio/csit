@@ -243,31 +243,40 @@ class IPUtil:
             raise AssertionError(f"IP addresses are not equal: {ip1} != {ip2}")
 
     @staticmethod
-    def setup_network_namespace(
-            node, namespace_name, interface_name, ip_addr, prefix):
+    def setup_network_namespace(node, namespace_name, interface_name,
+                                ip_addr_list, prefix):
         """Setup namespace on given node and attach interface and IP to
         this namespace. Applicable also on TG node.
 
         :param node: VPP node.
         :param namespace_name: Namespace name.
         :param interface_name: Interface name.
-        :param ip_addr: IP address of namespace's interface.
+        :param ip_addr_list: List of IP addresses of namespace's interface.
         :param prefix: IP address prefix length.
         :type node: dict
         :type namespace_name: str
         :type interface_name: str
-        :type ip_addr: str
+        :type ip_addr_list: list
         :type prefix: int
         """
+        cmd = f"ip netns list {namespace_name}"
+        stdout, _ = exec_cmd_no_error(node, cmd, sudo=True)
+        if stdout is not None:
+            cmd = f"ip netns delete {namespace_name}"
+            (ret_code, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
+            if ret_code != 0:
+                raise RuntimeError('Could not delete namespace: {}'.stderr)
+
         cmd = f"ip netns add {namespace_name}"
         exec_cmd_no_error(node, cmd, sudo=True)
 
-        cmd = f"ip link set dev {interface_name} up netns {namespace_name}"
+        cmd = f"ip netns exec {namespace_name} ip link set {interface_name} up"
         exec_cmd_no_error(node, cmd, sudo=True)
 
-        cmd = f"ip netns exec {namespace_name} ip addr add {ip_addr}/{prefix}" \
-            f" dev {interface_name}"
-        exec_cmd_no_error(node, cmd, sudo=True)
+        for ip_addr in ip_addr_list:
+            cmd = f"ip netns exec {namespace_name} ip addr add " \
+                f"{ip_addr}/{prefix} dev {interface_name}"
+            exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def linux_enable_forwarding(node, ip_ver=u"ipv4"):
@@ -404,6 +413,25 @@ class IPUtil:
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
+
+
+    @staticmethod
+    def vpp_interface_set_ip_addresses(node, interface, ip_addr_list,
+                                       prefix_length=None):
+        """Set IP addresses to VPP interface.
+
+        :param node: VPP node.
+        :param interface: Interface name.
+        :param ip_addr_list: IP addresses.
+        :param prefix_length: Prefix length.
+        :type node: dict
+        :type interface: str
+        :type ip_addr_list: list
+        :type prefix_length: int
+        """
+        for ip_addr in ip_addr_list:
+            IPUtil.vpp_interface_set_ip_address(node, interface, ip_addr,
+                                                prefix_length)
 
     @staticmethod
     def vpp_add_ip_neighbor(node, iface_key, ip_addr, mac_address):

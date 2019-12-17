@@ -504,6 +504,12 @@ class VppConfigGenerator:
         path = [u"tcp", u"preallocated-half-open-connections"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_session_event_queues_memfd_segment(self):
+        """Add session event queue memfd segment.
+        """
+        path = ['session', 'evt_qs_memfd_seg']
+        self.add_config_item(self._nodeconfig, '', path)
+
     def add_session_event_queue_length(self, value):
         """Add session event queue length.
 
@@ -511,6 +517,15 @@ class VppConfigGenerator:
         :type value: int
         """
         path = [u"session", u"event-queue-length"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_event_queues_segment_size(self, value):
+        """Add session event queue length.
+
+        :param value: Session event queue segment size.
+        :type value: str
+        """
+        path = ['session', 'evt_qs_seg_size']
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_session_preallocated_sessions(self, value):

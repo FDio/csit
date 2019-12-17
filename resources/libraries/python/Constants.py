@@ -218,6 +218,9 @@ class Constants:
         u"FAIL_ON_CRC_MISMATCH"
     )
 
+    # Default IP4 prefix (if not defined in topology file)
+    IP4_PREFIX = u"24"
+
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
         u"Cisco-VIC-1227": 10000000000,
