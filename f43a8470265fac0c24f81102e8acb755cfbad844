@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "c7f15b29_d60c63fc",
+        "filename": "resources/libraries/python/NsimUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:13:26Z",
+      "side": 1,
+      "message": "agree with vratko that logger is not needed. Maybe get_reply() can have DEBUG macro, not sure.",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 46
+      },
+      "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ce165e4_ac01ca69",
         "filename": "resources/libraries/python/NsimUtil.py",
         "patchSetId": 1
@@ -105,6 +128,30 @@
       "writtenOn": "2019-12-16T18:09:15Z",
       "side": 1,
       "message": "I wonder why are you going this route. Was pylint complaining about too many local variables if you tried to list all these arguments in the python keyword?",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 18
+      },
+      "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "092792ee_6c671c5e",
+        "filename": "resources/libraries/robot/nsim/nsim.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-17T07:13:26Z",
+      "side": 1,
+      "message": "I guess readability is higher with this approach. I like the style as code is readable, but looks weird indeed.",
+      "parentUuid": "217f3565_97f61256",
       "range": {
         "startLine": 20,
         "startChar": 2,
