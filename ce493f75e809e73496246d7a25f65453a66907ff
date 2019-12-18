@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "8db449b1_9417cd73",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:52:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a80666a_62ae6749",
+      "range": {
+        "startLine": 233,
+        "startChar": 35,
+        "endLine": 233,
+        "endChar": 37
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce38b328_64e9fd85",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 6
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "f015e328_e5695b31",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:52:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce38b328_64e9fd85",
+      "range": {
+        "startLine": 259,
+        "startChar": 1,
+        "endLine": 259,
+        "endChar": 60
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4762aec_12e3118c",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 6
@@ -88,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "37002a94_ddcf4716",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:52:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4762aec_12e3118c",
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "339d8344_40408800",
         "filename": "resources/libraries/python/IPUtil.py",
         "patchSetId": 6
@@ -102,6 +168,24 @@
       "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba84c4fd_0d5c4c06",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:52:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "339d8344_40408800",
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -125,6 +209,30 @@
       "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5173e3fc_026ca69f",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:52:20Z",
+      "side": 1,
+      "message": "No for session attributes, but yes for vpp_echo.\n\nI\u0027ve made them all uppercase to be consistent.",
+      "parentUuid": "1f76d599_e0ba6048",
+      "range": {
+        "startLine": 40,
+        "startChar": 34,
+        "endLine": 40,
+        "endChar": 36
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -168,6 +276,30 @@
     },
     {
       "key": {
+        "uuid": "63a3c38c_a5895a21",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:52:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e58693e_155807c7",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 86
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3ff833f_d4e28662",
         "filename": "resources/libraries/robot/shared/suite_setup.robot",
         "patchSetId": 6
@@ -182,6 +314,24 @@
       "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "072476df_44df1179",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:52:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3ff833f_d4e28662",
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -208,6 +358,30 @@
     },
     {
       "key": {
+        "uuid": "eba5c2e4_bca44e11",
+        "filename": "resources/libraries/robot/shared/suite_teardown.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:52:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1460fce6_4b4facae",
+      "range": {
+        "startLine": 64,
+        "startChar": 52,
+        "endLine": 64,
+        "endChar": 53
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fd7d062_571ec0f2",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-wrk8u8c50con-cps.robot",
         "patchSetId": 6
@@ -222,6 +396,24 @@
       "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f66c8242_2ba67741",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-wrk8u8c50con-cps.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:52:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fd7d062_571ec0f2",
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
