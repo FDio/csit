@@ -94,6 +94,10 @@
 | | ... | ${root}/tmp/:/mnt/host/
 | | ... | ${root}/tmp/vpp_sockets/${name}/:/run/vpp/
 | | ... | ${root}/dev/vfio/:/dev/vfio/
+| | ... | ${root}/dev/hugepages:/dev/hugepages
+| | ... | ${root}/etc/group:/etc/group
+| | ... | ${root}/etc/passwd:/etc/passwd
+| | ... | ${root}/etc/shadow:/etc/shadow
 | | ... | ${root}/usr/bin/vpp:/usr/bin/vpp
 | | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
 | | ... | ${root}/usr/lib/${node_arch}-linux-gnu/:/usr/lib/${node_arch}-linux-gnu/
@@ -106,7 +110,7 @@
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | &{cont_args}= | Create Dictionary
 | | ... | name=${name} | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
-| | ... | root=${root}
+| | ... | root=${root} | user=testuser
 | | Run Keyword If | ${pinning}
 | | ... | Set To Dictionary | ${cont_args} | cpuset_cpus=${nf_cpus}
 | | Run Keyword | ${container_group}.Construct container | &{cont_args}

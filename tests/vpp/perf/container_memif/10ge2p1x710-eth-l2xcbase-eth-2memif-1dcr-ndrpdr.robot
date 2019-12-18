@@ -19,9 +19,9 @@
 | ... | DRV_VFIO_PCI
 |
 | Suite Setup | Setup suite single link | performance
-| Suite Teardown | Tear down suite | performance
+#| Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
-| Test Teardown | Tear down test | performance | container
+#| Test Teardown | Tear down test | performance | container
 |
 | Test Template | Local Template
 |
@@ -85,11 +85,11 @@
 | | And Initialize layer interface
 | | And Start containers for test
 | | And Initialize L2 xconnect with memif pairs
-| | Then Find NDR and PDR intervals using optimized search
+#| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr

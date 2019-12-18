@@ -519,11 +519,13 @@ class ContainerEngine:
         """Create/deploy container."""
         raise NotImplementedError
 
-    def execute(self, command):
+    def execute(self, command, user=None):
         """Execute process inside container.
 
         :param command: Command to run inside container.
+        :param user: Run command as user.
         :type command: str
+        :type user: str
         """
         raise NotImplementedError
 
@@ -547,7 +549,8 @@ class ContainerEngine:
         """Start VPP inside a container."""
         self.execute(
             u"setsid /usr/bin/vpp -c /etc/vpp/startup.conf "
-            u">/tmp/vppd.log 2>&1 < /dev/null &")
+            u">/tmp/vppd.log 2>&1 < /dev/null &"
+        )
 
         topo_instance = BuiltIn().get_library_instance(
             u"resources.libraries.python.topology.Topology"
@@ -630,12 +633,10 @@ class ContainerEngine:
         """Create startup configuration of VPP without DPDK on container.
         """
         vpp_config = self.create_base_vpp_startup_config()
-
-        # Apply configuration
-        self.execute(u"mkdir -p /etc/vpp/")
         self.execute(
-            f'echo "{vpp_config.get_config_str()}" | '
-            f'tee /etc/vpp/startup.conf'
+            f'mkdir -p /etc/vpp/ && '
+            f'echo "{vpp_config.get_config_str()}" | tee /etc/vpp/startup.conf',
+            user="root"
         )
 
     def create_vpp_startup_config_vswitch(self, cpuset_cpus, rxq, *devices):
@@ -654,11 +655,10 @@ class ContainerEngine:
         vpp_config.add_dpdk_no_tx_checksum_offload()
         vpp_config.add_dpdk_dev_default_rxq(rxq)
         vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
-
-        # Apply configuration
-        self.execute(u"mkdir -p /etc/vpp/")
         self.execute(
-            f'echo "{vpp_config.get_config_str()}" | tee /etc/vpp/startup.conf'
+            f'mkdir -p /etc/vpp/ && '
+            f'echo "{vpp_config.get_config_str()}" | tee /etc/vpp/startup.conf',
+            user="root"
         )
 
     def create_vpp_startup_config_ipsec(self, cpuset_cpus):
@@ -671,11 +671,10 @@ class ContainerEngine:
         vpp_config.add_plugin(u"enable", u"crypto_ia32_plugin.so")
         vpp_config.add_plugin(u"enable", u"crypto_ipsecmb_plugin.so")
         vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
-
-        # Apply configuration
-        self.execute(u"mkdir -p /etc/vpp/")
         self.execute(
-            f'echo "{vpp_config.get_config_str()}" | tee /etc/vpp/startup.conf'
+            f'mkdir -p /etc/vpp/ && '
+            f'echo "{vpp_config.get_config_str()}" | tee /etc/vpp/startup.conf',
+            user="root"
         )
 
     def create_vpp_exec_config(self, template_file, **kwargs):
@@ -850,14 +849,16 @@ class LXC(ContainerEngine):
                 f"Failed to set cpuset.cpus to container {self.container.name}."
             )
 
-    def execute(self, command):
-        """Start a process inside a running container.
+    def execute(self, command, user=None):
+        """Execute process inside container.
 
         Runs the specified command inside the container specified by name. The
         container has to be running already.
 
         :param command: Command to run inside container.
+        :param user: Run command as user.
         :type command: str
+        :type user: str
         :raises RuntimeError: If running the command failed.
         """
         env = u"--keep-env " + u" ".join(
@@ -1035,12 +1036,13 @@ class Docker(ContainerEngine):
             f"--volume {mnt!s}" for mnt in self.container.mnt) \
             if self.container.mnt else u""
 
-        cmd = f"docker run --privileged --detach --interactive --tty --rm " \
+        cmd = f"docker run --detach --interactive --tty --rm " \
+            f"--user $(id -u {self.container.user}) " \
             f"--cgroup-parent docker {cpuset_cpus} {cpuset_mems} {publish} " \
             f"{env} {volume} --name {self.container.name} " \
             f"{self.container.image} {command}"
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+        ret, _, _ = self.container.ssh.exec_command(cmd)
         if int(ret) != 0:
             raise RuntimeError(
                 f"Failed to create container {self.container.name}"
@@ -1048,20 +1050,25 @@ class Docker(ContainerEngine):
 
         self.info()
 
-    def execute(self, command):
-        """Start a process inside a running container.
+    def execute(self, command, user=None):
+        """Execute process inside container.
 
-        Runs the specified command inside the container specified by name. The
+        Runs the specified process inside the container specified by name. The
         container has to be running already.
 
         :param command: Command to run inside container.
+        :param user: Run command as user.
         :type command: str
-        :raises RuntimeError: If running the command in a container failed.
+        :type user: str
+        :raises RuntimeError: If running the process failed.
         """
-        cmd = f"docker exec --interactive {self.container.name} " \
-            f"/bin/sh -c '{command}'"
+        if not user:
+            user = self.container.user
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=180)
+        cmd = f"docker exec --user $(id -u {user}) " \
+            f"--interactive {self.container.name} /bin/sh -c '{command}'"
+
+        ret, _, _ = self.container.ssh.exec_command(cmd, timeout=180)
         if int(ret) != 0:
             raise RuntimeError(
                 f"Failed to execute command in container {self.container.name}."
@@ -1074,7 +1081,7 @@ class Docker(ContainerEngine):
         """
         cmd = f"docker stop {self.container.name}"
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+        ret, _, _ = self.container.ssh.exec_command(cmd)
         if int(ret) != 0:
             raise RuntimeError(
                 f"Failed to stop container {self.container.name}."
@@ -1087,7 +1094,7 @@ class Docker(ContainerEngine):
         """
         cmd = f"docker rm --force {self.container.name}"
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+        ret, _, _ = self.container.ssh.exec_command(cmd)
         if int(ret) != 0:
             raise RuntimeError(
                 f"Failed to destroy container {self.container.name}."
@@ -1126,7 +1133,7 @@ class Docker(ContainerEngine):
         """
         cmd = f"docker ps --all --quiet --filter name={self.container.name}"
 
-        ret, stdout, _ = self.container.ssh.exec_command_sudo(cmd)
+        ret, stdout, _ = self.container.ssh.exec_command(cmd)
         if int(ret) != 0:
             raise RuntimeError(
                 f"Failed to get info about container {self.container.name}."
@@ -1142,7 +1149,7 @@ class Docker(ContainerEngine):
         """
         cmd = f"docker ps --quiet --filter name={self.container.name}"
 
-        ret, stdout, _ = self.container.ssh.exec_command_sudo(cmd)
+        ret, stdout, _ = self.container.ssh.exec_command(cmd)
         if int(ret) != 0:
             raise RuntimeError(
                 f"Failed to get info about container {self.container.name}."
