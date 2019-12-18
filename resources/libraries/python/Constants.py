@@ -13,11 +13,8 @@
 
 """Constants used in CSIT.
 
-Here, "constant" means a value that keeps its value since initialization.
-However, the value does not need to be hardcoded here,
-some values are affected by environment variables.
-
-TODO: Review env and constant names, make them matching if possible.
+"Constant" means a value that keeps its value since initialization. The value
+does not need to be hard coded here, but can be read from environment variables.
 """
 
 
@@ -31,8 +28,8 @@ def get_str_from_env(env_var_names, default_value):
     empty string is returned.
 
     Several environment variable names are examined, as CSIT currently supports
-    a mix of naming convensions.
-    Here "several" means there are hardcoded prefixes to try,
+    a mix of naming conventions.
+    Here "several" means there are hard coded prefixes to try,
     and env_var_names itself can be single name, or a list or a tuple of names.
 
     :param env_var_names: Base names of environment variable to attempt to read.
@@ -186,6 +183,15 @@ class Constants:
 
     # TRex install directory
     TREX_INSTALL_DIR = u"/opt/trex-core-2.61"
+
+    # TRex limit memory
+    TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY ", 8192)
+
+    # TRex number of cores
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 7)
+
+    # TRex extra commandline arguments
+    TREX_EXTRA_CMDLINE = get_str_from_env(u"TREX_EXTRA_CMDLINE", u"")
 
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
