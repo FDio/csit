@@ -211,17 +211,17 @@
 | | [Documentation]
 | | ... | Display the number of packets lost (bidirectionally)
 | | ... | due to reconfiguration under traffic.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - result - Result of bidirectional measurtement.
 | | ... |   Type: ReceiveRateMeasurement
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Display Reconfig Test Message \| \${result} \|
-| | ...
+| |
 | | [Arguments] | ${result}
-| | ...
+| |
 | | Set Test Message | Packets lost due to reconfig: ${result.loss_count}
 | | ${time_lost} = | Evaluate | ${result.loss_count} / ${result.target_tr}
 | | Set Test Message | ${\n}Implied time lost: ${time_lost} | append=yes
