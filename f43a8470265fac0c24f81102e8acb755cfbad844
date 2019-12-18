@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "11c9dd0a_4ebe2e36",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:05:26Z",
+      "side": 1,
+      "message": "ok, I\u0027ll remove the changes to supported_crcs.yaml from this patch",
+      "parentUuid": "2f01ae5b_96ef47b6",
+      "range": {
+        "startLine": 191,
+        "startChar": 4,
+        "endLine": 191,
+        "endChar": 18
+      },
+      "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c39fbca7_ae8d9dd9",
         "filename": "resources/libraries/python/NsimUtil.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c60bb014_086657c3",
+        "filename": "resources/libraries/python/NsimUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:05:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c39fbca7_ae8d9dd9",
+      "range": {
+        "startLine": 27,
+        "startChar": 33,
+        "endLine": 27,
+        "endChar": 46
+      },
+      "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fec6e004_9c4b201f",
+        "filename": "resources/libraries/python/NsimUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:05:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd0b859b_2390415f",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7f15b29_d60c63fc",
         "filename": "resources/libraries/python/NsimUtil.py",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "f8f172a4_03d023b9",
+        "filename": "resources/libraries/python/NsimUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:05:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7f15b29_d60c63fc",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 46
+      },
+      "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ce165e4_ac01ca69",
         "filename": "resources/libraries/python/NsimUtil.py",
         "patchSetId": 1
@@ -114,6 +210,30 @@
       "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "008f1758_6ff7024c",
+        "filename": "resources/libraries/python/NsimUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T16:05:26Z",
+      "side": 1,
+      "message": "Removed reply as it is not used.",
+      "parentUuid": "1ce165e4_ac01ca69",
+      "range": {
+        "startLine": 82,
+        "startChar": 15,
+        "endLine": 82,
+        "endChar": 20
+      },
+      "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
