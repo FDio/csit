@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0979cecc_68185f5e",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T03:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df9bcf9b_77c36442",
+      "range": {
+        "startLine": 222,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 22
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa55861d_3f83fa1a",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1088cfa0_da328eee",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T03:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa55861d_3f83fa1a",
+      "range": {
+        "startLine": 168,
+        "startChar": 15,
+        "endLine": 168,
+        "endChar": 35
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "73421825_e456f3a2",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T03:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "407292fc_7f57ef79",
+      "range": {
+        "startLine": 169,
+        "startChar": 17,
+        "endLine": 169,
+        "endChar": 45
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce36f8fa_41e97181",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2019-12-17T07:02:49Z",
       "side": 1,
       "message": "I would expect function to return bool True/False?",
+      "range": {
+        "startLine": 170,
+        "startChar": 3,
+        "endLine": 171,
+        "endChar": 38
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd6c9eb2_8de405e3",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T03:25:05Z",
+      "side": 1,
+      "message": "The intention here is to fail early with the RuntimeError raised in exec_cmd_no_error(), instead of adding logic in Robot keywords to handle the error.\n\nIf either vpp or the test program(s) are missing there\u0027s no point in continuing...",
+      "parentUuid": "ce36f8fa_41e97181",
       "range": {
         "startLine": 170,
         "startChar": 3,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "eb135a31_2ca050ba",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T03:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb0f76aa_b685bc49",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 19
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "388bb1b9_fd42bd44",
         "filename": "resources/libraries/python/IPUtil.py",
         "patchSetId": 2
@@ -137,6 +257,30 @@
       "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b086061_7aff30b7",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T03:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "388bb1b9_fd42bd44",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 75
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "78fb5c4f_421c7153",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T03:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5cbfeb2_356919de",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 75
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f00f3e28_255ba7c1",
         "filename": "resources/libraries/python/Namespaces.py",
         "patchSetId": 2
@@ -183,6 +351,30 @@
       "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3465d777_2e12c8cf",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T03:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f00f3e28_255ba7c1",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 40
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
