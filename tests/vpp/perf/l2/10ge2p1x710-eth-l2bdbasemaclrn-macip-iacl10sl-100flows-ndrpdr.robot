@@ -17,6 +17,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | FEATURE | MACIP | ACL_STATELESS
 | ... | IACL | ACL10 | 100_FLOWS | DRV_VFIO_PCI
+| ... | eth-l2bdbasemaclrn-macip-iacl10sl-100flows
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

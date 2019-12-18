@@ -18,6 +18,7 @@
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
 | ... | LBOND_1L | VM_TESTPMD | DRV_VFIO_PCI
+| ... | 1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
