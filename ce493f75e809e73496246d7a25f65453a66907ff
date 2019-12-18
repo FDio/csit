@@ -1,0 +1,227 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df59c5bc_61714c51",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "no trailing spaces",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 1
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a80666a_62ae6749",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "trailing space",
+      "range": {
+        "startLine": 233,
+        "startChar": 35,
+        "endLine": 233,
+        "endChar": 37
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce38b328_64e9fd85",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "optional: if u\"error\" in app_stderr.lower():\n\nor\nif app_stderr in [\"error\", \"ERROR\"]",
+      "range": {
+        "startLine": 259,
+        "startChar": 1,
+        "endLine": 259,
+        "endChar": 60
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4762aec_12e3118c",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "no double new line",
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "339d8344_40408800",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "no double new lines",
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f76d599_e0ba6048",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "Does the capital letters matter? IOW 3g or 4Mb vs 3G or 4MB",
+      "range": {
+        "startLine": 40,
+        "startChar": 34,
+        "endLine": 40,
+        "endChar": 36
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c78c59e1_fbe2c603",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "\\ at the end of line",
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e58693e_155807c7",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "we are enforcing 80chars lines so maybe everywhere:\n\n| | Set To Dictionary\n| | ... | ${vpp_echo_server_attr} | rx_results_diff | ${rx_results_diff}",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 86
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3ff833f_d4e28662",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "similarly here, is the blank space working?",
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1460fce6_4b4facae",
+        "filename": "resources/libraries/robot/shared/suite_teardown.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "please remove trailing space",
+      "range": {
+        "startLine": 64,
+        "startChar": 52,
+        "endLine": 64,
+        "endChar": 53
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fd7d062_571ec0f2",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-wrk8u8c50con-cps.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-12-18T11:28:24Z",
+      "side": 1,
+      "message": "is this blank line working?",
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
