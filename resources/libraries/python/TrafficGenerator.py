@@ -343,10 +343,10 @@ class TrafficGenerator(AbstractMeasurer):
 
             # Start TRex.
             cmd = f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && " \
-                f"nohup ./t-rex-64 " \
-                f"--hdrh{u' --astf' if osi_layer == u'L7' else u''} " \
-                f"--prefix $(hostname) -i -c 7 > /tmp/trex.log 2>&1 &\" > " \
-                f"/dev/null"
+                f"nohup ./t-rex-64 -i -c {Constants.TREX_CORE_COUNT} --hdrh " \
+                f"{u' --astf' if osi_layer == u'L7' else u''} " \
+                f"--prefix $(hostname) {Constants.TREX_EXTRA_CMDLINE} " \
+                f"> /tmp/trex.log 2>&1 &\" > /dev/null"
             try:
                 exec_cmd_no_error(self._node, cmd, sudo=True)
             except RuntimeError:

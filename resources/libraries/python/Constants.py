@@ -187,6 +187,12 @@ class Constants:
     # TRex install directory
     TREX_INSTALL_DIR = u"/opt/trex-core-2.61"
 
+    # TRex number of cores
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 7)
+
+    # TRex extra commandline arguments
+    TREX_EXTRA_CMDLINE = get_str_from_env(u"TREX_EXTRA_CMDLINE", u"")
+
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
 
