@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd2a0de7_0858f673",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-10c1n.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-18T09:28:02Z",
+      "side": 1,
+      "message": "Still needed to fix two issues:\n\n- Seperate line for every argument (better readability)\n- All closing brackets need to be indented correctly\n\nvm1 \u003d STLScVmRaw(\n    [\n\tSTLVmFlowVar(\n\t    name\u003du\"mac_dst\",\n\t    min_value\u003d1,\n\t    max_value\u003dself.nf_chains*self.nf_nodes,\n\t    size\u003d1,\n            step\u003dself.nf_nodes,\n            op\u003du\"inc\"\n\t),\n\tSTLVmWrFlowVar(fv_name\u003du\"mac_dst\", pkt_offset\u003d4),\n\tSTLVmFlowVar(\n\t    name\u003du\"src\",\n\t    min_value\u003dself.p1_src_start_ip,\n\t    max_value\u003dself.p1_src_end_ip,\n\t    size\u003d4,\n            op\u003du\"inc\"\n\t),\n\tSTLVmWrFlowVar(fv_name\u003du\"src\", pkt_offset\u003du\"IP.src\"),\n\tSTLVmFixIpv4(offset\u003du\"IP\")\n    ]\n)",
+      "range": {
+        "startLine": 85,
+        "startChar": 1,
+        "endLine": 90,
+        "endChar": 16
+      },
+      "revId": "303f9ff63dcc15e630df81c41d1496f7f09f6793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
