@@ -18,6 +18,7 @@
 | ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST |1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
 | ... | LBOND_2L | NF_VPPL2XC | DRV_VFIO_PCI
+| ... | 2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
 |
 | Suite Setup | Setup suite double link | performance
 | Suite Teardown | Tear down suite | performance

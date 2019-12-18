@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4 | LOADBALANCER_NAT4 | DRV_VFIO_PCI
+| ... | ethip4-loadbalancer-nat4
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

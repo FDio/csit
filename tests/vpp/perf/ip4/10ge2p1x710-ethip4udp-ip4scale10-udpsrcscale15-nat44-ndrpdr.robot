@@ -17,6 +17,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | SRC_USER_10
 | ... | SCALE | DRV_VFIO_PCI
+| ... | ethip4udp-ip4scale10-udpsrcscale15-nat44
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

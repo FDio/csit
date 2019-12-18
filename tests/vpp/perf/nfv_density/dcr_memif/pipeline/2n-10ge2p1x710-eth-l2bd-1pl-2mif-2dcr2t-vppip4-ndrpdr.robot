@@ -17,6 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER | 1R2C
 | ... | NF_DENSITY | PIPELINE | NF_VPPIP4 | 2DCR2T | DRV_VFIO_PCI
+| ... | eth-l2bd-1pl-2mif-2dcr2t-vppip4
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

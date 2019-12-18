@@ -11,7 +11,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Module defining utilities for test directory regeneration."""
+"""Module defining utilities for test directory regeneration.
+
+TODO: How can we check each suite id is unique,
+when currently the suite generation is run on each directory separately?
+"""
 
 import sys
 
@@ -52,9 +56,9 @@ def replace_defensively(
     :type how_many: int
     :type msg: str
     :type in_filename: str
-    :return: The whole text after replacements are done.
+    :returns: The whole text after replacements are done.
     :rtype: str
-    :raise ValueError: If number of occurrences does not match.
+    :raises ValueError: If number of occurrences does not match.
     """
     found = whole.count(to_replace)
     if found != how_many:
@@ -79,7 +83,26 @@ def get_iface_and_suite_id(filename):
     if len(dash_split[0]) <= 4:
         # It was something like "2n1l", we need one more split.
         dash_split = dash_split[1].split(u"-", 1)
-    return dash_split[0], dash_split[1].split(u".", 1)[0]
+    suite_id = dash_split[1].split(u".", 1)[0]
+    return dash_split[0], suite_id
+
+
+def check_suite_id(suite_id, prolog):
+    """Construct suite tag and verify it occurres once in prolog.
+
+    Call this after all edits are done,
+    to confirm the (edited) suite tag still matches the (edited) suite name.
+
+    :param suite_id: Part of suite name, between NIC code and .robot.
+    :param prolog: The part of .robot file content without test cases.
+    :type suite_id: str
+    :type prolog: str
+    :raises ValueError: If suite_id is irregular or suite tag not found once.
+    """
+    suite_tag, _ = suite_id.rsplit(u"-", 1)
+    found = prolog.count(u"| " + suite_tag)
+    if found != 1:
+        raise ValueError(f"Suite tag found {found} times for {suite_id}")
 
 
 def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
@@ -209,6 +232,7 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     )
             iface, old_suite_id = get_iface_and_suite_id(tmp2_filename)
             if u"DPDK" in in_prolog:
+                check_suite_id(old_suite_id, tmp2_prolog)
                 with open(tmp2_filename, u"wt") as file_out:
                     file_out.write(tmp2_prolog)
                     add_default_testcases(
@@ -241,6 +265,13 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     u"Perf setup argument should appear once.", in_filename
                 )
                 iface, suite_id = get_iface_and_suite_id(out_filename)
+                out_prolog = replace_defensively(
+                    out_prolog, old_suite_id.rsplit(u"-", 1)[0],
+                    suite_id.rsplit(u"-", 1)[0], 1,
+                    f"Perf suite tag {old_suite_id.rsplit(u'-', 1)[0]}"
+                    u" should appear once.", in_filename
+                )
+                check_suite_id(suite_id, out_prolog)
                 # TODO: Reorder loops so suite_id is finalized sooner.
                 testcase = Testcase.default(suite_id)
                 with open(out_filename, u"wt") as file_out:
@@ -313,6 +344,12 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
                 u"Perf setup argument should appear once.", in_filename
             )
             iface, suite_id = get_iface_and_suite_id(out_filename)
+            out_prolog = replace_defensively(
+                out_prolog, old_suite_id.rsplit(u"-", 1)[0],
+                suite_id.rsplit(u"-", 1)[0], 1,
+                u"Perf suite tag should appear once.", in_filename
+            )
+            check_suite_id(suite_id, out_prolog)
             # TODO: Reorder loops so suite_id is finalized sooner.
             testcase = Testcase.default(suite_id)
             with open(out_filename, u"wt") as file_out:
@@ -348,6 +385,7 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
             u"NIC name should appear twice (tag and variable).",
             in_filename
         )
+        check_suite_id(suite_id, out_prolog)
         with open(out_filename, u"wt") as file_out:
             file_out.write(out_prolog)
             add_tcp_testcases(testcase, file_out, kwargs_list)
