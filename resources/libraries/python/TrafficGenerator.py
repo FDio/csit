@@ -286,6 +286,7 @@ class TrafficGenerator(AbstractMeasurer):
                     self._node,
                     f"sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
                     f"- version: 2\n"
+                    f"  limit_memory: {Constants.TREX_LIMIT_MEMORY}\n"
                     f"  interfaces: [\"{if1_pci}\",\"{if2_pci}\"]\n"
                     f"  port_info:\n"
                     f"      - dest_mac: [{dst_mac0}]\n"
@@ -300,6 +301,7 @@ class TrafficGenerator(AbstractMeasurer):
                     self._node,
                     f"sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
                     f"- version: 2\n"
+                    f"  limit_memory: {Constants.TREX_LIMIT_MEMORY}\n"
                     f"  interfaces: [\"{if1_pci}\",\"{if2_pci}\"]\n"
                     f"  port_info:\n"
                     f"      - ip: [{if1_addr}]\n"
@@ -343,10 +345,10 @@ class TrafficGenerator(AbstractMeasurer):
 
             # Start TRex.
             cmd = f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && " \
-                f"nohup ./t-rex-64 " \
-                f"--hdrh{u' --astf' if osi_layer == u'L7' else u''} " \
-                f"--prefix $(hostname) -i -c 7 > /tmp/trex.log 2>&1 &\" > " \
-                f"/dev/null"
+                f"nohup ./t-rex-64 -i -c {Constants.TREX_CORE_COUNT} --hdrh " \
+                f"{u' --astf' if osi_layer == u'L7' else u''} " \
+                f"--prefix $(hostname) {Constants.TREX_EXTRA_CMDLINE} " \
+                f"> /tmp/trex.log 2>&1 &\" > /dev/null"
             try:
                 exec_cmd_no_error(self._node, cmd, sudo=True)
             except RuntimeError:
