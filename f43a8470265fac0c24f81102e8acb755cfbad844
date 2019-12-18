@@ -161,6 +161,30 @@
       "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74ed7dcd_62067c28",
+        "filename": "resources/libraries/robot/nsim/nsim.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-18T05:21:09Z",
+      "side": 1,
+      "message": "The dictionary provides a set of default configuration values which are customized in the test suite Local Template and or arguments to the Local Template customization is required on a per test basis.",
+      "parentUuid": "092792ee_6c671c5e",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 18
+      },
+      "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
