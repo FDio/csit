@@ -922,7 +922,12 @@ class ExecutionChecker(ResultVisitor):
         :type test_kw: Keyword
         :returns: Nothing.
         """
+<<<<<<< HEAD   (ec6ff5 CTPA: Improve handling pps vs Mpps)
         if test_kw.name.count(u"Show Runtime Counters On All Duts"):
+=======
+        if test_kw.name.count(u"Show Runtime On All Duts") or \
+                test_kw.name.count(u"Show Runtime Counters On All Duts"):
+>>>>>>> CHANGE (27b99c Trending: Fix input data processing)
             self._lookup_kw_nr += 1
             self._show_run_lookup_nr = 0
             self._msg_type = u"test-show-runtime"
