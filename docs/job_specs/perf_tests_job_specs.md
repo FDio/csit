@@ -2,40 +2,99 @@
 
 ## Scope
 
-Following FD.io CSIT test job specifications are provided in this note:
+This note includes FD.io CSIT test specifications for the following
+Jenkins test job groups:
 
-- Select list of performance tests for daily trending and extensive per
-  release test coverage (behaviour repeatibility verification, graphs,
-  analytics and comparisons).
-- Full list of performance tests for per release results reporting.
+- **Trending Daily Set** of tests for daily performance trending and
+  verification.
+- **Trending Weekly Set** of tests for weekly performance trending and
+  verification.
+- **Report Extensive Set** of tests for per release extensive performance
+  coverage (64B/IMIX repeatibility verification, throughput / multi-core
+  / latency graphs and comparisons).
+- **Report Full Set** of tests for per release detailed performance
+  results reporting.
 
-Next sections list test selection criteria for each group, with testbed
-environments listed in round brackets (...).
+Next sections list per job group test case selection criteria and the
+motivation behind this selection for each of the physical testbed
+environments hosted in LFN FD.io labs.
 
-## Select List Test Jobs
+## Trending Daily Set
 
-### NICs
+Daily test jobs are executed twice a day (every 12 hours), therefore
+their total execution time must be less than 12 hours. This restricts
+number of tests that can be executed per each job run. We took approach
+of defining a primary and secondary sub-sets of tests, with the former
+receiving a larger test coverage compared to the latter.
 
-- Primary: xxv710 (2n-skx, 3n-skx), xl710 (3n-hsw), x553 (3n-tsh).
-- Secondary: x710 (2n-skx, 3n-skx).
+The sub-sets are defined on a per testbed type basis, due to different
+number of physical instances per type (more instances enable higher
+degree of parallel execution).
 
-### Test Suites
+Note that the primary and secondary sub-sets of a daily set do not cover
+all tests productized in CSIT simply due to insufficient time budget
+available.
 
-- Primary: all forwarding baseline, all forwarding scale, some feature
-  spot checks.
-- Secondary: some forwarding base, forwarding maximum scale.
+
+### Testbed-NIC-Driver Combinations
+
+Primary and secondary sub-sets of Testbed-NIC-Driver combinations are
+listed below.
+
+- 2n-clx
+  - Primary: xxv710-avf (see Note-1), xxv710-dpdk (see Note-2),
+    (TODO) mlx4-rdmacore (see Note-3).
+  - Secondary: x710-avf (see Note-1), x710-dpdk (see Note-2).
+- 2n-skx
+  - Primary: xxv710-avf, xxv710-dpdk.
+  - Secondary: x710-avf, x710-dpdk.
+- 3n-skx
+  - Primary: xxv710-avf, xxv710-dpdk.
+  - Secondary: x710-avf, x710-dpdk.
+- 3n-hsw
+  - Primary: xl710-avf, xl710-dpdk.
+- 3n-tsh
+  - Primary: x553-dpdk.
+- 2n-dnv
+  - Primary: (TODO).
+- 3n-dnv
+  - Primary: (TODO).
+
+Note-1: xxv710-avf, x710-avf use VPP native AVF driver for Fortville
+i40e NICs.
+
+Note-2: xxv710-dpdk, x710-dpdk use VPP DPDK driver for Fortville i40e
+NICs.
+
+Note-3: mlx4-rdmacore use VPP native RDMA-CORE driver for Mellanox
+ConnectX4 NICs.
+
+### Test Cases
+
+Test cases are selected from a set of listed test suite categories,
+frame sizes and core combinations.
+
+#### Test Suites
+
+- Primary: all forwarding baseline, all forwarding scale, part of feature
+  path tests.
+- Secondary: part of forwarding base, forwarding maximum scale.
 
 ### Frame Sizes
 
 - 64B: ip4, ip4_tunnels, l2, vts, container_memif, vm_vhost.
 - 78B: ip6, ip6_tunnels, srv6.
 - imix: crypto, nfv_density.
+- 1518B: crypto.
 
 ### Processor Cores
 
 - Cores: 1c, 2c, 4c.
 
-## Full List Test Jobs
+## (Editor note: Below sections are TODO - pls review only until this
+   line!)
+
+## Full Set of Test Jobs
 ### NICs
 
 - Primary: xxv710 (2n-skx, 3n-skx), xl710 (3n-hsw), x553 (3n-tsh).
@@ -63,7 +122,7 @@ environments listed in round brackets (...).
   - Cores: 1c, 2c, 4c.
 
 ## Test Job Definitions
-### Test Suite Allocation per Job
+### Test Suite Selection per Job
 
 In order to avoid multi-day jobs executing the tests, following is a
 simple approach to split tests across exclusive job executions:
