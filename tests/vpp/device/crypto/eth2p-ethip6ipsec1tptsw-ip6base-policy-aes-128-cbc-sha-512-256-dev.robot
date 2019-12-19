@@ -21,6 +21,7 @@
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
+| ... | ethip6ipsec1tptsw-ip6base-policy-aes-128-cbc-sha-512-256
 |
 | Test Template | Local Template
 |

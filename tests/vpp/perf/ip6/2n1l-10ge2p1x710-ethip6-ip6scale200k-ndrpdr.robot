@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP6FWD | SCALE | FIB_200K | DRV_VFIO_PCI
+| ... | ethip6-ip6scale200k
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

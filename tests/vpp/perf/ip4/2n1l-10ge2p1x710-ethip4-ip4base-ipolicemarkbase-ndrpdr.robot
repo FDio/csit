@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | IP4FWD | FEATURE | POLICE_MARK | DRV_VFIO_PCI
+| ... | ethip4-ip4base-ipolicemarkbase
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

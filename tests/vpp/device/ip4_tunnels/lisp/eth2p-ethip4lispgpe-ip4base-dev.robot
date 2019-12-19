@@ -18,6 +18,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | IP4FWD | LISPGPE_IP4o4 | DRV_VFIO_PCI
+| ... | ethip4lispgpe-ip4base
 |
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test

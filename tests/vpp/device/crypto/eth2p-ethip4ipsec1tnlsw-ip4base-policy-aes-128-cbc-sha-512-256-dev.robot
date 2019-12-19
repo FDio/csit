@@ -17,6 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | IP4FWD | IPSEC | IPSECSW | IPSECTUN | IP4BASE
 | ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
+| ... | ethip4ipsec1tnlsw-ip4base-policy-aes-128-cbc-sha-512-256
 |
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
