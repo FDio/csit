@@ -704,176 +704,98 @@ class DUTSetup:
         return stdout.strip()
 
     @staticmethod
-    def get_huge_page_size(node):
-        """Get default size of huge pages in system.
+    def get_hugepages_info(node, hugesize=None):
+        """Get number of huge pages in system.
 
         :param node: Node in the topology.
+        :param hugesize: Size of hugepages. Default system huge size if None.
         :type node: dict
-        :returns: Default size of free huge pages in system.
-        :rtype: int
-        :raises RuntimeError: If reading failed for three times.
+        :type hugesize: int
+        :returns: Number of huge pages in system.
+        :rtype: dict
+        :raises RuntimeError: If reading failed.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command_sudo(
-                u"grep Hugepagesize /proc/meminfo | awk '{ print $2 }'"
-            )
-            if ret_code == 0:
-                try:
-                    huge_size = int(stdout)
-                except ValueError:
-                    logger.trace(u"Reading huge page size information failed")
-                else:
-                    break
-        else:
-            raise RuntimeError(u"Getting huge page size information failed.")
-        return huge_size
+        if not hugesize:
+            hugesize = "$(grep Hugepagesize /proc/meminfo | awk '{ print $2 }')"
+        command = f"cat /sys/kernel/mm/hugepages/hugepages-{hugesize}kB/*"
+        stdout, _ = exec_cmd_no_error(node, command)
+        try:
+            line = stdout.splitlines()
+            return {
+                "free_hugepages": int(line[0]),
+                "nr_hugepages": int(line[1]),
+                "nr_hugepages_mempolicy": int(line[2]),
+                "nr_overcommit_hugepages": int(line[3]),
+                "resv_hugepages": int(line[4]),
+                "surplus_hugepages": int(line[5])
+            }
+        except ValueError:
+            logger.trace(u"Reading huge pages information failed!")
 
     @staticmethod
-    def get_huge_page_free(node, huge_size):
-        """Get number of free huge pages in system.
-
-        :param node: Node in the topology.
-        :param huge_size: Size of hugepages.
-        :type node: dict
-        :type huge_size: int
-        :returns: Number of free huge pages in system.
-        :rtype: int
-        :raises RuntimeError: If reading failed for three times.
-        """
-        # TODO: add numa aware option
-        ssh = SSH()
-        ssh.connect(node)
-
-        for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command_sudo(
-                f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"
-                f"free_hugepages"
-            )
-            if ret_code == 0:
-                try:
-                    huge_free = int(stdout)
-                except ValueError:
-                    logger.trace(u"Reading free huge pages information failed")
-                else:
-                    break
-        else:
-            raise RuntimeError(u"Getting free huge pages information failed.")
-        return huge_free
-
-    @staticmethod
-    def get_huge_page_total(node, huge_size):
-        """Get total number of huge pages in system.
-
-        :param node: Node in the topology.
-        :param huge_size: Size of hugepages.
-        :type node: dict
-        :type huge_size: int
-        :returns: Total number of huge pages in system.
-        :rtype: int
-        :raises RuntimeError: If reading failed for three times.
-        """
-        # TODO: add numa aware option
-        ssh = SSH()
-        ssh.connect(node)
-
-        for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command_sudo(
-                f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"
-                f"nr_hugepages"
-            )
-            if ret_code == 0:
-                try:
-                    huge_total = int(stdout)
-                except ValueError:
-                    logger.trace(u"Reading total huge pages information failed")
-                else:
-                    break
-        else:
-            raise RuntimeError(u"Getting total huge pages information failed.")
-        return huge_total
-
-    @staticmethod
-    def check_huge_page(node, huge_mnt, mem_size, allocate=False):
+    def check_huge_page(
+            node, huge_mnt, mem_size, hugesize=2048, allocate=False):
         """Check if there is enough HugePages in system. If allocate is set to
         true, try to allocate more HugePages.
 
         :param node: Node in the topology.
         :param huge_mnt: HugePage mount point.
-        :param mem_size: Requested memory in MB.
+        :param mem_size: Reqeusted memory in MB.
+        :param hugesize: HugePage size in KB.
         :param allocate: Whether to allocate more memory if not enough.
         :type node: dict
         :type huge_mnt: str
-        :type mem_size: str
+        :type mem_size: int
+        :type hugesize: int
         :type allocate: bool
         :raises RuntimeError: Mounting hugetlbfs failed or not enough HugePages
             or increasing map count failed.
         """
-        # TODO: split function into smaller parts.
-        ssh = SSH()
-        ssh.connect(node)
+        # Get huge pages information.
+        hugepages = DUTSetup.get_hugepages_info(node, hugesize=hugesize)
 
-        # Get huge pages information
-        huge_size = DUTSetup.get_huge_page_size(node)
-        huge_free = DUTSetup.get_huge_page_free(node, huge_size)
-        huge_total = DUTSetup.get_huge_page_total(node, huge_size)
+        # Check if hugepages requested are available on node.
+        if hugepages[u"nr_overcommit_hugepages"]:
+            # If overcommit is used, we need to know how many additional pages
+            # we can allocate
+            huge_available = hugepages[u"nr_overcommit_hugepages"] - \
+                hugepages[u"surplus_hugepages"]
+        else:
+            # Fallbacking to free_hugepages which were used before to detect.
+            huge_available = hugepages[u"free_hugepages"]
 
-        # Check if memory requested is available on
-        mem_size = int(mem_size)
-        if (mem_size * 1024) > (huge_free * huge_size):
-            # If we want to allocate hugepage dynamically
+        if ((mem_size * 1024) // hugesize) > huge_available:
+            # If we want to allocate hugepage dynamically.
             if allocate:
-                mem_needed = (mem_size * 1024) - (huge_free * huge_size)
-                huge_to_allocate = ((mem_needed // huge_size) * 2) + huge_total
-                max_map_count = huge_to_allocate*4
-                # Increase maximum number of memory map areas a process may have
-                ret_code, _, _ = ssh.exec_command_sudo(
+                huge_needed = ((mem_size * 1024) // hugesize) - huge_available
+                huge_to_allocate = huge_needed + hugepages[u"nr_hugepages"]
+                max_map_count = huge_to_allocate * 4
+                # Check if huge pages mount point exist.
+                try:
+                    exec_cmd_no_error(node, u"fgrep 'hugetlbfs' /proc/mounts")
+                except RuntimeError:
+                    exec_cmd_no_error(node, f"mkdir -p {huge_mnt}", sudo=True)
+                    exec_cmd_no_error(
+                        node,
+                        f"mount -t hugetlbfs -o pagesize={hugesize}k none "
+                        f"{huge_mnt}",
+                        sudo=True)
+                # Increase maximum number of memory map areas for process.
+                exec_cmd_no_error(
+                    node,
                     f"echo \"{max_map_count}\" | "
-                    f"sudo tee /proc/sys/vm/max_map_count"
+                    f"sudo tee /proc/sys/vm/max_map_count",
+                    message=f"Increase map count failed on {node[u'host']}!"
                 )
-                if int(ret_code) != 0:
-                    raise RuntimeError(
-                        f"Increase map count failed on {node[u'host']}"
-                    )
-                # Increase hugepage count
-                ret_code, _, _ = ssh.exec_command_sudo(
+                # Increase hugepage count.
+                exec_cmd_no_error(
+                    node,
                     f"echo \"{huge_to_allocate}\" | "
-                    f"sudo tee /proc/sys/vm/nr_hugepages"
+                    f"sudo tee /proc/sys/vm/nr_hugepages",
+                    message=f"Mount huge pages failed on {node[u'host']}!"
                 )
-                if int(ret_code) != 0:
-                    raise RuntimeError(
-                        f"Mount huge pages failed on {node[u'host']}"
-                    )
-            # If we do not want to allocate dynamically end with error
+            # If we do not want to allocate dynamically end with error.
             else:
                 raise RuntimeError(
-                    f"Not enough free huge pages: {huge_free}, "
-                    f"{huge_free * huge_size} MB"
-                )
-        # Check if huge pages mount point exist
-        has_huge_mnt = False
-        ret_code, stdout, _ = ssh.exec_command(u"cat /proc/mounts")
-        if int(ret_code) == 0:
-            for line in stdout.splitlines():
-                # Try to find something like:
-                # none /mnt/huge hugetlbfs rw,realtime,pagesize=2048k 0 0
-                mount = line.split()
-                if mount[2] == u"hugetlbfs" and mount[1] == huge_mnt:
-                    has_huge_mnt = True
-                    break
-        # If huge page mount point not exist create one
-        if not has_huge_mnt:
-            ret_code, _, _ = ssh.exec_command_sudo(f"mkdir -p {huge_mnt}")
-            if int(ret_code) != 0:
-                raise RuntimeError(
-                    f"Create mount dir failed on {node[u'host']}"
-                )
-            ret_code, _, _ = ssh.exec_command_sudo(
-                f"mount -t hugetlbfs -o pagesize=2048k none {huge_mnt}"
-            )
-            if int(ret_code) != 0:
-                raise RuntimeError(
-                    f"Mount huge pages failed on {node[u'host']}"
+                    f"Not enough availablehuge pages: {huge_available}!"
                 )
