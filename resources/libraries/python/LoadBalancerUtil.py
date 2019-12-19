@@ -117,7 +117,7 @@ class LoadBalancerUtil:
             args = dict(
                 pfx={
                     u"len": 128,
-                    u"address": {u"un": {u"ip": vip_addr}, u"af": 0}
+                    u"address": {u"un": {u"ip4": vip_addr}, u"af": 0}
                 },
                 protocol=protocol,
                 port=port,
