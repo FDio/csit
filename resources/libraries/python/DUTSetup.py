@@ -713,23 +713,12 @@ class DUTSetup:
         :rtype: int
         :raises RuntimeError: If reading failed for three times.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command_sudo(
-                u"grep Hugepagesize /proc/meminfo | awk '{ print $2 }'"
-            )
-            if ret_code == 0:
-                try:
-                    huge_size = int(stdout)
-                except ValueError:
-                    logger.trace(u"Reading huge page size information failed")
-                else:
-                    break
-        else:
-            raise RuntimeError(u"Getting huge page size information failed.")
-        return huge_size
+        command = u"grep Hugepagesize /proc/meminfo | awk '{ print $2 }'"
+        stdout, _ = exec_cmd_no_error(node, command)
+        try:
+            return int(stdout)
+        except ValueError:
+            logger.trace(u"Reading huge page size information failed!")
 
     @staticmethod
     def get_huge_page_free(node, huge_size):
@@ -743,57 +732,53 @@ class DUTSetup:
         :rtype: int
         :raises RuntimeError: If reading failed for three times.
         """
-        # TODO: add numa aware option
-        ssh = SSH()
-        ssh.connect(node)
-
-        for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command_sudo(
-                f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"
-                f"free_hugepages"
-            )
-            if ret_code == 0:
-                try:
-                    huge_free = int(stdout)
-                except ValueError:
-                    logger.trace(u"Reading free huge pages information failed")
-                else:
-                    break
-        else:
-            raise RuntimeError(u"Getting free huge pages information failed.")
-        return huge_free
+        command = f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"\
+            f"free_hugepages"
+        stdout, _ = exec_cmd_no_error(node, command)
+        try:
+            return int(stdout)
+        except ValueError:
+            logger.trace(u"Reading huge pages information failed!")
 
     @staticmethod
-    def get_huge_page_total(node, huge_size):
-        """Get total number of huge pages in system.
+    def get_huge_page_overcommit(node, huge_size):
+        """Get number of overcommit huge pages in system.
 
         :param node: Node in the topology.
         :param huge_size: Size of hugepages.
         :type node: dict
         :type huge_size: int
-        :returns: Total number of huge pages in system.
+        :returns: Number of overcommit huge pages in system.
         :rtype: int
-        :raises RuntimeError: If reading failed for three times.
+        :raises RuntimeError: If reading failed.
         """
-        # TODO: add numa aware option
-        ssh = SSH()
-        ssh.connect(node)
+        command = f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"\
+            f"nr_overcommit_hugepages"
+        stdout, _ = exec_cmd_no_error(node, command)
+        try:
+            return int(stdout)
+        except ValueError:
+            logger.trace(u"Reading huge pages information failed")
 
-        for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command_sudo(
-                f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"
-                f"nr_hugepages"
-            )
-            if ret_code == 0:
-                try:
-                    huge_total = int(stdout)
-                except ValueError:
-                    logger.trace(u"Reading total huge pages information failed")
-                else:
-                    break
-        else:
-            raise RuntimeError(u"Getting total huge pages information failed.")
-        return huge_total
+    @staticmethod
+    def get_huge_page(node, huge_size):
+        """Get number of huge pages in system.
+
+        :param node: Node in the topology.
+        :param huge_size: Size of hugepages.
+        :type node: dict
+        :type huge_size: int
+        :returns: Number of huge pages in system.
+        :rtype: int
+        :raises RuntimeError: If reading failed.
+        """
+        command = f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"\
+            f"nr_hugepages"
+        stdout, _ = exec_cmd_no_error(node, command)
+        try:
+            return int(stdout)
+        except ValueError:
+            logger.trace(u"Reading huge pages information failed")
 
     @staticmethod
     def check_huge_page(node, huge_mnt, mem_size, allocate=False):
@@ -817,16 +802,21 @@ class DUTSetup:
 
         # Get huge pages information
         huge_size = DUTSetup.get_huge_page_size(node)
+        huge = DUTSetup.get_huge_page(node, huge_size)
         huge_free = DUTSetup.get_huge_page_free(node, huge_size)
-        huge_total = DUTSetup.get_huge_page_total(node, huge_size)
+        huge_overcommit = DUTSetup.get_huge_page_overcommit(node, huge_size)
 
-        # Check if memory requested is available on
+        # Check if memory requested is available on node
         mem_size = int(mem_size)
-        if (mem_size * 1024) > (huge_free * huge_size):
+        if huge_overcommit:
+            huge_available = huge_overcommit - huge + huge_free
+        else:
+            huge_available = huge_free
+        if (mem_size * 1024) > (huge_available * huge_size):
             # If we want to allocate hugepage dynamically
             if allocate:
-                mem_needed = (mem_size * 1024) - (huge_free * huge_size)
-                huge_to_allocate = ((mem_needed // huge_size) * 2) + huge_total
+                mem_needed = (mem_size * 1024) - (huge_available * huge_size)
+                huge_to_allocate = ((mem_needed // huge_size) * 2) + huge
                 max_map_count = huge_to_allocate*4
                 # Increase maximum number of memory map areas a process may have
                 ret_code, _, _ = ssh.exec_command_sudo(
@@ -849,8 +839,8 @@ class DUTSetup:
             # If we do not want to allocate dynamically end with error
             else:
                 raise RuntimeError(
-                    f"Not enough free huge pages: {huge_free}, "
-                    f"{huge_free * huge_size} MB"
+                    f"Not enough availablehuge pages: {huge_available}, "
+                    f"{huge_available * huge_size} MB"
                 )
         # Check if huge pages mount point exist
         has_huge_mnt = False
