@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f734711c_593c79ea",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:59:37Z",
+      "side": 1,
+      "message": "prefix length",
+      "range": {
+        "startLine": 221,
+        "startChar": 18,
+        "endLine": 221,
+        "endChar": 24
+      },
+      "revId": "e255c6495387000d5f51d9d8f7b5877f784d074c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb287eba_6808f1cc",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:59:37Z",
+      "side": 1,
+      "message": "Delete.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 29
+      },
+      "revId": "e255c6495387000d5f51d9d8f7b5877f784d074c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "950428df_fa9254f8",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:59:37Z",
+      "side": 1,
+      "message": "Will you be also pinning software threads (test program workers) to hardware threads (logical CPU cores)?",
+      "range": {
+        "startLine": 137,
+        "startChar": 19,
+        "endLine": 137,
+        "endChar": 27
+      },
+      "revId": "e255c6495387000d5f51d9d8f7b5877f784d074c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53ae0c58_0498adfe",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:59:37Z",
+      "side": 1,
+      "message": "Delete.",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 8
+      },
+      "revId": "e255c6495387000d5f51d9d8f7b5877f784d074c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85ae791b_2ef51ee0",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:59:37Z",
+      "side": 1,
+      "message": "Delete.",
+      "range": {
+        "startLine": 265,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 8
+      },
+      "revId": "e255c6495387000d5f51d9d8f7b5877f784d074c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7243fdbe_5a1fb56b",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:59:37Z",
+      "side": 1,
+      "message": "Do you want to add an ELSE branch for cases when the key is not found?",
+      "range": {
+        "startLine": 134,
+        "startChar": 4,
+        "endLine": 134,
+        "endChar": 7
+      },
+      "revId": "e255c6495387000d5f51d9d8f7b5877f784d074c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "530807e9_483e5d50",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:59:37Z",
+      "side": 1,
+      "message": "Put the maximal length into Constants.",
+      "range": {
+        "startLine": 121,
+        "startChar": 32,
+        "endLine": 121,
+        "endChar": 35
+      },
+      "revId": "e255c6495387000d5f51d9d8f7b5877f784d074c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7497819c_1da8527d",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:59:37Z",
+      "side": 1,
+      "message": "Add and ELSE branch failing on maximal length exceeded.",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 7
+      },
+      "revId": "e255c6495387000d5f51d9d8f7b5877f784d074c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
