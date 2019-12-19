@@ -775,22 +775,19 @@ class DUTSetup:
         :rtype: int
         :raises RuntimeError: If reading failed for three times.
         """
-        # TODO: add numa aware option
-        ssh = SSH()
-        ssh.connect(node)
-
         for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command_sudo(
-                f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"
+            command = f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"\
                 f"nr_hugepages"
-            )
-            if ret_code == 0:
-                try:
-                    huge_total = int(stdout)
-                except ValueError:
-                    logger.trace(u"Reading total huge pages information failed")
-                else:
-                    break
+            nr_hugepages, _ = exec_cmd_no_error(node, command)
+            command = f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"\
+                f"nr_overcommit_hugepages"
+            nr_overcommit_hugepages, _ = exec_cmd_no_error(node, command)
+            try:
+                huge_total = int(nr_hugepages) + int(nr_overcommit_hugepages)
+            except ValueError:
+                logger.trace(u"Reading total huge pages information failed")
+            else:
+                break
         else:
             raise RuntimeError(u"Getting total huge pages information failed.")
         return huge_total
