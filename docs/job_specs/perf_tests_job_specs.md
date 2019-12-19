@@ -2,40 +2,203 @@
 
 ## Scope
 
-Following FD.io CSIT test job specifications are provided in this note:
+This note includes FD.io CSIT test specifications for the following
+Jenkins test job groups:
 
-- Select list of performance tests for daily trending and extensive per
-  release test coverage (behaviour repeatibility verification, graphs,
-  analytics and comparisons).
-- Full list of performance tests for per release results reporting.
+- **Trending Daily** group of performance tests for daily MRR trending
+  and contiuous verification.
 
-Next sections list test selection criteria for each group, with testbed
-environments listed in round brackets (...).
+- **Trending Weekly** group of performance tests for weekly MRR, NDR,
+  PDR trending and contiuous verification.
 
-## Select List Test Jobs
+- **Report Iterative** group of performance tests for per release
+  iterative test execution and analysis including results
+  repeatibility (stdev), multi-core linearity, latency percentile
+  graphs.
 
-### NICs
+- **Report Coverage** group of performance tests covering all working
+  test combinations for target platforms.
 
-- Primary: xxv710 (2n-skx, 3n-skx), xl710 (3n-hsw), x553 (3n-tsh).
-- Secondary: x710 (2n-skx, 3n-skx).
+Next sections describe test case selection criteria for each job group.
 
-### Test Suites
+The number of physical testbed instances hosted in FD.io CSIT labs
+varies per testbed type, enabling different degrees of parallel test
+execution.  Therefore test sets are defined on a per testbed type basis.
 
-- Primary: all forwarding baseline, all forwarding scale, some feature
-  spot checks.
-- Secondary: some forwarding base, forwarding maximum scale.
+## Trending Daily
 
-### Frame Sizes
+Daily test jobs are executed twice a day (every 12 hours), therefore
+their total execution time must be less than 12 hours. This restricts
+number of tests that can be executed per each job run. We took approach
+of defining a primary and secondary test sets, with the former
+receiving a larger test coverage compared to the latter.
 
-- 64B: ip4, ip4_tunnels, l2, vts, container_memif, vm_vhost.
-- 78B: ip6, ip6_tunnels, srv6.
-- imix: crypto, nfv_density.
+### NIC and Driver Combinations
 
-### Processor Cores
+Primary and secondary NIC-driver combinations are defined per testbed
+type.
 
-- Cores: 1c, 2c, 4c.
+Testbed type | Primary                              | Secondary
+-------------|--------------------------------------|-------------------
+2n-clx       | xxv710-avf,xxv710-dpdk,mlx5-rdmacore | x710-avf,x710-dpdk
+2n-skx       | xxv710-avf,xxv710-dpdk               | x710-avf,x710-dpdk
+3n-skx       | xxv710-avf,xxv710-dpdk               | x710-avf,x710-dpdk
+3n-hsw       | xl710-dpdk                           | none
+3n-tsh       | x553-dpdk                            | none
+2n-dnv       | x553-dpdk                            | none
+3n-dnv       | x553-dpdk                            | none
 
-## Full List Test Jobs
+<!-- List as alternative to table
+- 2n-clx
+  - Primary: xxv710-avf, xxv710-dpdk, mlx5-rdmacore.
+  - Secondary: x710-avf, x710-dpdk.
+- 2n-skx
+  - Primary: xxv710-avf, xxv710-dpdk.
+  - Secondary: x710-avf, x710-dpdk.
+- 3n-skx
+  - Primary: xxv710-avf, xxv710-dpdk.
+  - Secondary: x710-avf, x710-dpdk.
+- 3n-hsw
+  - Primary: xl710-dpdk.
+  - Secondary: none.
+- 3n-tsh
+  - Primary: x553-dpdk.
+  - Secondary: none.
+- 2n-dnv
+  - Primary: x553-dpdk.
+  - Secondary: none.
+- 3n-dnv
+  - Primary: x553-dpdk.
+  - Secondary: none.
+-->
+
+- avf: tests with VPP native AVF driver for Intel Fortville NICs.
+- dpdk: tests with VPP DPDK driver for Intel Fortville NICs.
+- rdmacore: tests with VPP native RDMA-CORE driver for Mellanox
+  ConnectX5 NICs.
+
+### Test Combinations
+
+Primary and secondary test sets are defined for the following test
+suite, frame size and multi-core combinations:
+
+<!-- TODO Turn sections below into a table. -->
+
+- Test Suites
+  - Primary: all forwarding baseline, all forwarding scale, baseline feature path tests.
+  - Secondary: part of forwarding base, forwarding maximum scale.
+- Frame Sizes
+  - Primary:
+    - 64B: ip4, ip4_tunnels, l2, vts, container_memif, vm_vhost.
+    - 78B: ip6, ip6_tunnels, srv6.
+    - imix: crypto.
+    - 1518B: crypto.
+  - Secondary:
+    - 64B: ip4, l2.
+    - 78B: ip6.
+- Processor Cores
+  - Primary: 1c, 2c, 4c.
+  - Secondary: 1c, 2c, 4c.
+
+#### Primary
+##### container_memif
+
+dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+ethip4-ip4base-eth-2memif-1dcr
+eth-l2bdbasemaclrn-eth-2memif-1dcr
+
+##### crypto
+
+ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
+ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac512sha
+ethip4ipsec1000tnlhw-ip4base-int-aes256gcm
+ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+ethip4ipsec400tnlsw-ip4base-int-aes128cbc-hmac512sha
+ethip4ipsec400tnlsw-ip4base-int-aes256gcm
+
+##### ip4
+
+dot1q-ip4base
+ethip4-ip4base
+ethip4-ip4scale200k
+ethip4-ip4scale20k
+ethip4-ip4scale2m
+ethip4udp-ip4base-iacl50sf-100flows
+ethip4udp-ip4base-iacl50sf-100kflows
+ethip4udp-ip4base-iacl50sl-100flows
+ethip4udp-ip4base-iacl50sl-100kflows
+ethip4udp-ip4base-nat44
+ethip4udp-ip4base-oacl50sf-100flows
+ethip4udp-ip4base-oacl50sf-100kflows
+ethip4udp-ip4base-oacl50sl-100flows
+ethip4udp-ip4base-oacl50sl-100kflows
+ethip4udp-ip4base-udpsrcscale15-nat44
+ethip4udp-ip4scale10-udpsrcscale15-nat44
+ethip4udp-ip4scale1000-udpsrcscale15-nat44
+ethip4-ip4scale200k-rnd
+ethip4-ip4scale20k-rnd
+ethip4-ip4scale2m-rnd
+
+##### ip4_tunnels
+
+dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
+dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
+ethip4lispip4-ip4base
+ethip4lispip6-ip4base
+ethip4vxlan-l2bdbasemaclrn
+ethip4vxlan-l2xcbase
+
+##### ip6
+
+dot1q-ip6base
+ethip6-ip6base
+ethip6-ip6scale200k
+ethip6-ip6scale20k
+ethip6-ip6scale2m
+ethip6-ip6base-iacldstbase
+- rnd?
+
+##### ip6_tunnels
+
+##### l2
+
+dot1q-l2bdbasemaclrn
+eth-l2bdbasemaclrn
+eth-l2patch
+eth-l2xcbase
+dot1q-l2xcbase
+eth-l2bdbasemaclrn-iacl50sf-100flows
+eth-l2bdbasemaclrn-iacl50sf-100kflows
+eth-l2bdbasemaclrn-iacl50sl-100flows
+eth-l2bdbasemaclrn-iacl50sl-100kflows
+eth-l2bdbasemaclrn-macip-iacl50sl-100flows
+eth-l2bdbasemaclrn-macip-iacl50sl-100kflows
+eth-l2bdbasemaclrn-oacl50sf-100flows
+eth-l2bdbasemaclrn-oacl50sf-100kflows
+eth-l2bdbasemaclrn-oacl50sl-100flows
+eth-l2bdbasemaclrn-oacl50sl-100kflows
+eth-l2bdscale100kmaclrn
+eth-l2bdscale10kmaclrn
+eth-l2bdscale1mmaclrn
+dot1q-l2bdbasemaclrn-gbp
+
+##### lb
+
+##### nfv_density
+
+##### srv6
+
+##### tcp
+
+##### vm_vhost
+
+##### vts
+
+<!-- Below content is to be updated
+
+## Full Set of Test Jobs
 ### NICs
 
 - Primary: xxv710 (2n-skx, 3n-skx), xl710 (3n-hsw), x553 (3n-tsh).
@@ -63,7 +226,7 @@ environments listed in round brackets (...).
   - Cores: 1c, 2c, 4c.
 
 ## Test Job Definitions
-### Test Suite Allocation per Job
+### Test Suite Selection per Job
 
 In order to avoid multi-day jobs executing the tests, following is a
 simple approach to split tests across exclusive job executions:
@@ -138,4 +301,4 @@ time required to complete data collection for report.
 - Future
   - Add weekly ndrpdr jobs and report-like comparisons to previous release
 
-## END OF DOCUMENT
+-->
