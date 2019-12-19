@@ -305,6 +305,30 @@
       "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff58a608_56322a6a",
+        "filename": "resources/libraries/robot/nsim/nsim.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T16:28:01Z",
+      "side": 1,
+      "message": "I will probably give a more final decision when I see a full suite (to see argument values in log.html).\n\nI am still not sure whether we want global/suite variables or local variables only.\n\nAfter seeing keywords such as analyze_hoststack_external_app_output, I agree it is good idea to have related values grouped into a single object (to allow shorter argument list in higher level keywords).\n\nI still believe the proper way to do that is by defining a python class, so the fields are properly documented and the aforementioned grouped arguments have a useful type description (instead of just \"dict\").\n\nBut I am not entirely clear how would the initialization call from Robot look like.\n\nOverall, I think this way (documenting the fields in Robot \"Set {app} Attributes\" keywords Documentation) is good enough for now, and we can convert to python classes later (together with Node and other special dicts).",
+      "parentUuid": "74ed7dcd_62067c28",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 18
+      },
+      "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
