@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0cb87a_2767cfa8",
+        "filename": "resources/traffic_scripts/send_tcp_udp.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-12-19T08:04:41Z",
+      "side": 1,
+      "message": "Please, check also src and dst IPs of received packet.",
+      "revId": "8926d65925910951b56207c9b84cb62ac2644f19",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
