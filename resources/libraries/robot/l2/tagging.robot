@@ -19,9 +19,10 @@
 | Documentation | Keywords for VLAN tests
 
 *** Keywords ***
-| Initialize VLAN sub-interfaces in 3-node circular topology
-| | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
-| | ... | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID} | ${TYPE_SUBIF}
+| Initialize VLAN sub-interfaces in circular topology
+| | [Arguments] | ${DUT1} | ${INT1} | ${DUT2}=${None} | ${INT2}=${None}
+| | ... | ${SUB_ID}=10 | ${OUTER_VLAN_ID}=100 | ${INNER_VLAN_ID}=200
+| | ... | ${TYPE_SUBIF}=${None}
 | | [Documentation] | Create two subinterfaces on DUTs.
 | |
 | | ... | *Arguments:*
@@ -41,21 +42,28 @@
 | | ... | - subif_index_2
 | |
 | | Set Interface State | ${DUT1} | ${INT1} | up
-| | Set Interface State | ${DUT2} | ${INT2} | up
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Interface State | ${DUT2} | ${INT2} | up
 | | ${INT1_name}= | Get interface name | ${DUT1} | ${INT1}
 | | ${subif_name_1} | ${subif_index_1}= | Create subinterface | ${DUT1}
 | | ... | ${INT1_name} | ${SUB_ID} | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
 | | ... | ${TYPE_SUBIF}
-| | ${INT2_name}= | Get interface name | ${DUT2} | ${INT2}
-| | ${subif_name_2} | ${subif_index_2}= | Create subinterface | ${DUT2}
+| | ${INT2_name}= | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Get interface name | ${DUT2} | ${INT2}
+| | ${subif_name_2} | ${subif_index_2}=
+| | ... | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Create subinterface | ${DUT2}
 | | ... | ${INT2_name} | ${SUB_ID} | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
 | | ... | ${TYPE_SUBIF}
 | | Set Interface State | ${DUT1} | ${subif_index_1} | up
-| | Set Interface State | ${DUT2} | ${subif_index_2} | up
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Interface State | ${DUT2} | ${subif_index_2} | up
 | | Set Test Variable | ${subif_name_1}
 | | Set Test Variable | ${subif_index_1}
-| | Set Test Variable | ${subif_name_2}
-| | Set Test Variable | ${subif_index_2}
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Test Variable | ${subif_name_2}
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Test Variable | ${subif_index_2}
 
 | Initialize VLAN dot1q sub-interfaces in circular topology
 | | [Arguments] | ${DUT1} | ${INT1} | ${DUT2}=${None} | ${INT2}=${None}

@@ -85,7 +85,7 @@
 | | And Apply Startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | When Initialize VLAN sub-interfaces in 3-node circular topology
+| | When Initialize VLAN sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
 | | And Configure L2 tag rewrite method on interfaces
