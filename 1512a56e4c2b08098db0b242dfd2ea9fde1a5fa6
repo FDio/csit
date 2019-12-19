@@ -1,0 +1,487 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f76460f7_188d8d6a",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "What is the purpose of this module level variable?\nPylint probably has opinions about blank lines and capitalization.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 21
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb2c2019_f2e028fa",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "In CSIT we do not write space here.",
+      "range": {
+        "startLine": 28,
+        "startChar": 28,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a0b4775_9952cb14",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "Why do you need this? The commands are visible in PAPI history.",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 24
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df2fb1fe_0f90f7e7",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "Why bother with try/except when you let the exception bubble up without any side effects?",
+      "range": {
+        "startLine": 109,
+        "startChar": 16,
+        "endLine": 109,
+        "endChar": 21
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14fa35f4_8bc193b5",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "I prefer using ssh.exec_cmd instead of this.",
+      "range": {
+        "startLine": 197,
+        "startChar": 58,
+        "endLine": 197,
+        "endChar": 67
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85544e1c_0190dfab",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "Why?",
+      "range": {
+        "startLine": 199,
+        "startChar": 8,
+        "endLine": 199,
+        "endChar": 16
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ff9a0fa_91c084e1",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "Do we need to log if there is no error?",
+      "range": {
+        "startLine": 230,
+        "startChar": 8,
+        "endLine": 230,
+        "endChar": 20
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2766657_ad01d32d",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "u\" \".join([app] + app_args)",
+      "range": {
+        "startLine": 234,
+        "startChar": 18,
+        "endLine": 236,
+        "endChar": 30
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c339e53_85008237",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "What is wrong with just +\u003d app_stderr?\nAre you just ensuring there is \\n at the end?",
+      "range": {
+        "startLine": 255,
+        "startChar": 12,
+        "endLine": 257,
+        "endChar": 40
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aee95d73_cfeeebfe",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "Does it have to be this loud?",
+      "range": {
+        "startLine": 261,
+        "startChar": 26,
+        "endLine": 261,
+        "endChar": 31
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b21f070c_aeaaf140",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "See above.",
+      "range": {
+        "startLine": 271,
+        "startChar": 37,
+        "endLine": 271,
+        "endChar": 47
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "258b83a9_4c1c1d15",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "Already exctracted by run_cli_cmd(). Also, see above for logging and try/except.",
+      "range": {
+        "startLine": 315,
+        "startChar": 23,
+        "endLine": 315,
+        "endChar": 33
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20d84de2_5303b110",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "deleted from",
+      "range": {
+        "startLine": 361,
+        "startChar": 33,
+        "endLine": 361,
+        "endChar": 39
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1e8d411_bef11832",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "prefix length",
+      "range": {
+        "startLine": 362,
+        "startChar": 26,
+        "endLine": 362,
+        "endChar": 32
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aef9de6_905342b2",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "queried",
+      "range": {
+        "startLine": 386,
+        "startChar": 33,
+        "endLine": 386,
+        "endChar": 36
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f029ccb6_dba59074",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 403,
+        "startChar": 15,
+        "endLine": 403,
+        "endChar": 16
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d87783bc_7a815ba1",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "Drop _no_error instead.",
+      "range": {
+        "startLine": 404,
+        "startChar": 48,
+        "endLine": 404,
+        "endChar": 56
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e98b289_20465170",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "Not sure this is needed in production.",
+      "range": {
+        "startLine": 408,
+        "startChar": 8,
+        "endLine": 408,
+        "endChar": 20
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfc42280_8c2c7a93",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "Available as Constants.SOCKSVR_PATH",
+      "range": {
+        "startLine": 30,
+        "startChar": 23,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41295b4a_cc16c0ce",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "Not sure whether we want \"string\" or \"String\", or even \"str\".",
+      "range": {
+        "startLine": 175,
+        "startChar": 65,
+        "endLine": 175,
+        "endChar": 66
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9962b33a_752d718c",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-19T15:40:41Z",
+      "side": 1,
+      "message": "I think we prefer single space.",
+      "range": {
+        "startLine": 17,
+        "startChar": 9,
+        "endLine": 17,
+        "endChar": 11
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
