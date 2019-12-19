@@ -606,7 +606,7 @@ class QemuUtils:
         message = f"QEMU: Start failed on {self._node[u'host']}!"
         try:
             DUTSetup.check_huge_page(
-                self._node, u"/dev/hugepages", self._opt.get(u"mem"))
+                self._node, u"/dev/hugepages", int(self._opt.get(u"mem")))
 
             exec_cmd_no_error(
                 self._node, cmd_opts, timeout=300, sudo=True, message=message
