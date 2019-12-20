@@ -118,53 +118,10 @@
 | | And Initialize layer interface
 | | And Start containers for test | nf_chains=${1} | nf_nodes=${1}
 | | And Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'static_proxy' behaviour in 3-node circular topology
-| | Then Find NDR and PDR intervals using optimized search
+| | Then Send traffic at specified rate | ${1.0} | 10pps
+| | ... | ${frame_size} | ${traffic_profile} | pkt_trace=${True}
 
 *** Test Cases ***
 | tc01-78B-1c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
 | | [Tags] | 78B | 1C
 | | frame_size=${78} | phy_cores=${1}
-
-| tc02-78B-2c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | 78B | 2C
-| | frame_size=${78} | phy_cores=${2}
-
-| tc03-78B-4c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | 78B | 4C
-| | frame_size=${78} | phy_cores=${4}
-
-| tc04-1518B-1c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | 1518B | 1C
-| | frame_size=${1518} | phy_cores=${1}
-
-| tc05-1518B-2c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | 1518B | 2C
-| | frame_size=${1518} | phy_cores=${2}
-
-| tc06-1518B-4c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | 1518B | 4C
-| | frame_size=${1518} | phy_cores=${4}
-
-| tc07-9000B-1c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | 9000B | 1C
-| | frame_size=${9000} | phy_cores=${1}
-
-| tc08-9000B-2c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | 9000B | 2C
-| | frame_size=${9000} | phy_cores=${2}
-
-| tc09-9000B-4c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | 9000B | 4C
-| | frame_size=${9000} | phy_cores=${4}
-
-| tc10-IMIX-1c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | IMIX | 1C
-| | frame_size=IMIX_v4_1 | phy_cores=${1}
-
-| tc11-IMIX-2c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | IMIX | 2C
-| | frame_size=IMIX_v4_1 | phy_cores=${2}
-
-| tc12-IMIX-4c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-| | [Tags] | IMIX | 4C
-| | frame_size=IMIX_v4_1 | phy_cores=${4}
