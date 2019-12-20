@@ -16,19 +16,19 @@
 | Library  | resources.tools.wrk.wrk
 | Resource | resources/libraries/robot/wrk/wrk_utils.robot
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/tcp/tcp_setup.robot
+| Resource | resources/libraries/robot/hoststack/tcp_setup.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | HTTP | TCP | TCP_RPS | NIC_Intel-X710 | DRV_VFIO_PCI
+| ... | HTTP | TCP | TCP_CPS | NIC_Intel-X710 | DRV_VFIO_PCI
 |
 | Suite Setup | Setup suite single link | wrk
-| Suite Teardown | Tear down suite
+| Suite Teardown | Tear down suite | wrk
 | Test Setup | Setup test
 | Test Teardown | Tear down test
 |
 | Test Template | Local template
 |
-| Documentation | *HTTP requests per seconds.*
+| Documentation | *HTTP connections per seconds.*
 |
 | ... | *[Top] Network Topologies:* TG-DUT-TG 2-node topology
 | ... | with single link between nodes.
@@ -43,8 +43,10 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${traffic_profile}= | wrk-sf-2n-ethip4tcphttp-8u8c50con-rps
-| ${http_static_plugin}= | ${true}
+| ${overhead}= | ${0}
+| ${frame_size}= | IMIX_v4_1
+| ${traffic_profile}= | wrk-sf-2n-ethip4tcphttp-8u8c50con-cps
+| ${http_static_plugin}= | ${false}
 
 *** Keywords ***
 | Local template
@@ -73,18 +75,18 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Set up HTTP server with parameters on the VPP node
-| | ... | ${http_static_plugin} | 500000 | 4 | 4000m
-| | Then Measure requests per second | ${traffic_profile}
+| | ... | ${http_static_plugin} | 31000 | 64 | 4000m
+| | Then Measure connections per second | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-IMIX-1c-eth-ip4tcphttp-wrk8u8c50con-rps
+| tc01-IMIX-1c-eth-ip4tcphttp-wrk8u8c50con-cps
 | | [Tags] | 1C
 | | phy_cores=${1}
 
-| tc02-IMIX-2c-eth-ip4tcphttp-wrk8u8c50con-rps
+| tc02-IMIX-2c-eth-ip4tcphttp-wrk8u8c50con-cps
 | | [Tags] | 2C
 | | phy_cores=${2}
 
-| tc03-IMIX-4c-eth-ip4tcphttp-wrk8u8c50con-rps
+| tc03-IMIX-4c-eth-ip4tcphttp-wrk8u8c50con-cps
 | | [Tags] | 4C
 | | phy_cores=${4}

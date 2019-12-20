@@ -22,6 +22,8 @@ from yaml import safe_load
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 
+from resources.libraries.python.Constants import Constants
+
 __all__ = [
     u"DICT__nodes", u"Topology", u"NodeType", u"SocketType", u"NodeSubTypeTG"
 ]
@@ -703,6 +705,23 @@ class Topology:
             return node[u"interfaces"][iface_key].get(u"ip4_address")
         except KeyError:
             return None
+
+    @staticmethod
+    def get_interface_ip4_prefix_length(node, iface_key):
+        """Get IP4 address prefix length for the interface.
+
+        :param node: Node to get interface mac on.
+        :param iface_key: Interface key from topology file.
+        :type node: dict
+        :type iface_key: str
+        :returns: prefix length from topology file or the default
+                  IP4 prefix length if not found.
+        :rtype: int
+        """
+        try:
+            return node[u"interfaces"][iface_key].get(u"ip4_prefix_length", None)
+        except KeyError:
+            return Constants.DEFAULT_IP4_PREFIX_LENGTH
 
     @staticmethod
     def get_adjacent_node_and_interface(nodes_info, node, iface_key):
