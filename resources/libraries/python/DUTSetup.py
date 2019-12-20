@@ -14,9 +14,10 @@
 """DUT setup library."""
 
 from robot.api import logger
+from time import sleep
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -157,11 +158,61 @@ class DUTSetup:
                 DUTSetup.stop_service(node, service)
 
     @staticmethod
-    def get_vpp_pid(node):
-        """Get PID of running VPP process.
+    def kill_program(node, program, namespace=None):
+        """Kill program on the specified topology node.
+
+        :param node: Topology node.
+        :param program: Program name
+        :param namespace: Namespace program is running in
+        :type node: dict
+        :type program: str
+        :type namespace: str
+        """
+        host = node['host']
+        cmd_timeout = 5
+        if namespace == None or namespace == u"default":
+            shell_cmd=u"sh -c"
+        else:
+            shell_cmd=f"ip netns exec {namespace} sh -c"
+
+        pgrep_cmd = f"{shell_cmd} pgrep {program}"
+        ret_code, _, _ = exec_cmd(node, pgrep_cmd, timeout=cmd_timeout,
+                                  sudo=True)
+        if ret_code == 0:
+            logger.trace(f"{program} is not running on {host}")
+            return
+        ret_code, _, _ = exec_cmd(node, f"{shell_cmd} pkill {program}",
+                                  timeout=cmd_timeout, sudo=True)
+        for attempt in range(5):
+            ret_code, _, _ = exec_cmd(node, pgrep_cmd, timeout=cmd_timeout,
+                                      sudo=True)
+            if ret_code != 0:
+                logger.trace(f"{program} is dead on {host}")
+                return
+            sleep(1)
+        logger.trace(f"SIGKILLing {program} on {host}")
+        ret_code, _, _ = exec_cmd(node, f"{shell_cmd} pkill -9 {program}",
+
+    @staticmethod
+    def verify_program_installed(node, program):
+        """Verify that program is installed on the specified topology node.
+
+        :param node: Topology node.
+        :param program: Program name
+        :type node: dict
+        :type program: str
+        """
+        cmd = f"command -v {program}"
+        exec_cmd_no_error(node, cmd, message=f"{program} is not installed")
+
+    @staticmethod
+    def get_pid(node, process):
+        """Get PID of running process.
 
         :param node: DUT node.
+        :param process: process name.
         :type node: dict
+        :type process: str
         :returns: PID
         :rtype: int
         :raises RuntimeError: If it is not possible to get the PID.
@@ -171,24 +222,24 @@ class DUTSetup:
 
         retval = None
         for i in range(3):
-            logger.trace(f"Try {i}: Get VPP PID")
-            ret_code, stdout, stderr = ssh.exec_command(u"pidof vpp")
+            logger.trace(f"Try {i}: Get {process} PID")
+            ret_code, stdout, stderr = ssh.exec_command(f"pidof {process}")
 
             if int(ret_code):
                 raise RuntimeError(
-                    f"Not possible to get PID of VPP process on node: "
+                    f"Not possible to get PID of {process} process on node: "
                     f"{node[u'host']}\n {stdout + stderr}"
                 )
 
             pid_list = stdout.split()
             if len(pid_list) == 1:
-                retval = int(stdout)
+                return [int(stdout)]
             elif not pid_list:
-                logger.debug(f"No VPP PID found on node {node[u'host']}")
+                logger.debug(f"No {process} PID found on node {node[u'host']}")
                 continue
             else:
                 logger.debug(
-                    f"More then one VPP PID found on node {node[u'host']}"
+                    f"More then one {process} PID found on node {node[u'host']}"
                 )
                 retval = [int(pid) for pid in pid_list]
 
@@ -206,7 +257,7 @@ class DUTSetup:
         pids = dict()
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                pids[node[u"host"]] = DUTSetup.get_vpp_pid(node)
+                pids[node[u"host"]] = DUTSetup.get_pid(node, u"vpp")
         return pids
 
     @staticmethod
