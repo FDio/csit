@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "47be4e6d_03528935",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-20T21:33:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd6c9eb2_8de405e3",
+      "range": {
+        "startLine": 170,
+        "startChar": 3,
+        "endLine": 171,
+        "endChar": 38
+      },
+      "revId": "39431145f5fc1787f850eb442e2314abaf40c6df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb0f76aa_b685bc49",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 2
