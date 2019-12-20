@@ -116,8 +116,9 @@ class LoadBalancerUtil:
             vip_addr = ip_address(vip_addr).packed
             args = dict(
                 pfx={
-                    u"len": 128,
-                    u"address": {u"un": {u"ip": vip_addr}, u"af": 0}
+                    # TODO: Make vip prefix length configurable.
+                    u"len": 24,
+                    u"address": {u"un": {u"ip4": vip_addr}, u"af": 0}
                 },
                 protocol=protocol,
                 port=port,
@@ -173,12 +174,12 @@ class LoadBalancerUtil:
 
             args = dict(
                 pfx={
-                    u"len": 128,
-                    u"address": {u"un": {u"ip": vip_addr}, u"af": 0}
+                    u"len": 24,
+                    u"address": {u"un": {u"ip4": vip_addr}, u"af": 0}
                 },
                 protocol=protocol,
                 port=port,
-                as_address={u"un": {u"ip": as_addr}, u"af": 0},
+                as_address={u"un": {u"ip4": as_addr}, u"af": 0},
                 is_del=is_del,
                 is_flush=is_flush
             )
