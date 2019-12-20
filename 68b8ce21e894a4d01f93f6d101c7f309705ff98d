@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b776baa_36eb81a5",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-20T19:05:52Z",
+      "side": 1,
+      "message": "Do you want to create a function exec_cmd_with_retry_get_int so you do not have to repeat 717-726 blocks?",
+      "range": {
+        "startLine": 717,
+        "startChar": 8,
+        "endLine": 717,
+        "endChar": 11
+      },
+      "revId": "68b8ce21e894a4d01f93f6d101c7f309705ff98d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
