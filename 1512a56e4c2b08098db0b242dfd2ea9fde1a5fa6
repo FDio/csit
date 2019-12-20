@@ -260,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "9ba77b66_baf29925",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-20T15:43:54Z",
+      "side": 1,
+      "message": "Points 4. and 5. from [0] apply here, but 1sec is not that bad for now.\n\n[0] https://gerrit.fd.io/r/c/vpp/+/23899/8/src/plugins/srv6-mobile/extra/runner.py#868",
+      "parentUuid": "211dc9e5_ebdbb8b8",
+      "range": {
+        "startLine": 199,
+        "startChar": 8,
+        "endLine": 199,
+        "endChar": 16
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2ff9a0fa_91c084e1",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 8
@@ -341,6 +365,30 @@
       "side": 1,
       "message": "Yes. Formatting output for legibility in report.html",
       "parentUuid": "0c339e53_85008237",
+      "range": {
+        "startLine": 255,
+        "startChar": 12,
+        "endLine": 257,
+        "endChar": 40
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38d40798_081e1290",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-20T15:43:54Z",
+      "side": 1,
+      "message": "Then:\n  if not app_stderr.endswith(u\"\\n\"):\n    app_stderr +\u003d u\"\\n\"\n  test_results +\u003d app_stderr\nOr just add the endline unconditionally.",
+      "parentUuid": "d156a5f4_731efb6f",
       "range": {
         "startLine": 255,
         "startChar": 12,
