@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -224,6 +224,12 @@ class Constants:
     FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
         u"FAIL_ON_CRC_MISMATCH"
     )
+
+    # Default IP4 prefix length (if not defined in topology file)
+    DEFAULT_IP4_PREFIX_LENGTH = u"24"
+
+    # Maximum number of interfaces in a data path
+    DATAPATH_INTERFACES_MAX = 100
 
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
