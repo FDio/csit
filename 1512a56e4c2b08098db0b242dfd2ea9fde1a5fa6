@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "66a68fb3_0c5a9d9f",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-20T21:13:32Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "8a0b4775_9952cb14",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 24
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df2fb1fe_0f90f7e7",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 8
@@ -284,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "18410081_e83d2286",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-20T21:13:32Z",
+      "side": 1,
+      "message": "Agree with those comments.  \n\nThe alternative was polling the file until a non-zero size showed up but that fails for the case when the test program crashes and no output is generated.\n\nFor now, this is the best of less than stellar solutions, IMHO.  Please let me know if you come across a better one...",
+      "parentUuid": "9ba77b66_baf29925",
+      "range": {
+        "startLine": 199,
+        "startChar": 8,
+        "endLine": 199,
+        "endChar": 16
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ff9a0fa_91c084e1",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 8
@@ -327,6 +375,30 @@
       "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b3619ed_7b679a16",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-20T21:13:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2766657_ad01d32d",
+      "range": {
+        "startLine": 234,
+        "startChar": 18,
+        "endLine": 236,
+        "endChar": 30
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -398,6 +470,30 @@
       "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "336ad5bf_6807b012",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-20T21:13:32Z",
+      "side": 1,
+      "message": "I\u0027ll take back my original statement, I don\u0027t recall why the output formatting was messed up and required the splitlines()...\n\nFixed as originally proposed.",
+      "parentUuid": "38d40798_081e1290",
+      "range": {
+        "startLine": 255,
+        "startChar": 12,
+        "endLine": 257,
+        "endChar": 40
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -492,6 +588,30 @@
       "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f063d1f5_9db20774",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-20T21:13:32Z",
+      "side": 1,
+      "message": "Fixed as proposed above.",
+      "parentUuid": "191e5d01_31412968",
+      "range": {
+        "startLine": 271,
+        "startChar": 37,
+        "endLine": 271,
+        "endChar": 47
+      },
+      "revId": "1512a56e4c2b08098db0b242dfd2ea9fde1a5fa6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
