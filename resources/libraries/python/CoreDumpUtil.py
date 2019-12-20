@@ -113,7 +113,7 @@ class CoreDumpUtil:
         :type node: dict
         """
         if node[u"type"] == NodeType.DUT and self.is_core_limit_enabled():
-            vpp_pid = DUTSetup.get_vpp_pid(node)
+            vpp_pid = DUTSetup.get_pid(node, u"vpp")
             self.enable_coredump_limit(node, vpp_pid)
 
     def enable_coredump_limit_vpp_on_all_duts(self, nodes):
