@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,6 +13,7 @@
 
 """Linux namespace utilities library."""
 
+from robot.api import logger
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 
 
@@ -21,18 +22,48 @@ class Namespaces:
     def __init__(self):
         self._namespaces = []
 
-    def create_namespace(self, node, namespace_name):
+    def create_namespace(self, node, namespace, delete_before_create=True):
         """Create namespace and add the name to the list for later clean-up.
 
         :param node: Where to create namespace.
-        :param namespace_name: Name for namespace.
+        :param namespace: Name for namespace.
+        :param delete_before_create: Delete namespace prior to create
         :type node: dict
-        :type namespace_name: str
+        :type namespace: str
+        :type delete_before_create: bool
         """
-        cmd = f"ip netns add {namespace_name}"
+        if delete_before_create == True:
+            self.delete_namespace(self, node, namespace)
 
+        cmd = f"ip netns add {namespace}"
         exec_cmd_no_error(node, cmd, sudo=True)
-        self._namespaces.append(namespace_name)
+        self._namespaces.append(namespace)
+
+    def delete_namespace(self, node, namespace):
+        """Delete namespace from the node and list.
+
+        :param node: Where to delete namespace.
+        :param namespace: Name for namespace.
+        :param delete_before_create: Delete namespace prior to create
+        :type node: dict
+        :type namespace: str
+        :type delete_before_create: bool
+        """
+        cmd_timeout = 5
+        cmd = f"ip netns delete {namespace}"
+        (ret_code, _, delete_errmsg) = \
+            exec_cmd(node, cmd, timeout=cmd_timeout, sudo=True)
+        if ret_code != 0:
+            cmd = f"ip netns list {namespace}"
+            (stdout, _) = \
+                exec_cmd_no_error(node, cmd, timeout=cmd_timeout, sudo=True)
+            if stdout == namespace:
+                raise RuntimeError(f"Could not delete namespace "
+                    f"({namespace}): {delete_errmsg}")
+        try:
+            self._namespaces.remove(namespace)
+        except ValueError:
+            pass
 
     @staticmethod
     def attach_interface_to_namespace(node, namespace, interface):
@@ -61,6 +92,21 @@ class Namespaces:
             )
 
     @staticmethod
+    def add_default_route_to_namespace(node, namespace, default_route):
+        """Add IPv4 default route to interface in namespace.
+
+        :param node: Node where to execute command.
+        :param namespace: Namespace to execute command on.
+        :param default_route: Default route address.
+        :type node: dict
+        :type namespace: str
+        :type default_route: str
+        """
+        cmd = f"ip netns exec {namespace} ip route add default " \
+              f"via {default_route}"
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
     def create_bridge_for_int_in_namespace(
             node, namespace, bridge_name, *interfaces):
         """Setup bridge domain and add interfaces to it.
@@ -85,16 +131,18 @@ class Namespaces:
         cmd = f"ip netns exec {namespace} ip link set dev {bridge_name} up"
         exec_cmd_no_error(node, cmd, sudo=True)
 
-    def clean_up_namespaces(self, node):
-        """Remove all old namespaces.
+    def clean_up_namespaces(self, node, namespace=None):
+        """Delete all old namespaces.
 
         :param node: Node where to execute command.
+        :param namespace: Namespace to delete, if None delete all namespaces
         :type node: dict
+        :type namespace: str
         :raises RuntimeError: Namespaces could not be cleaned properly.
         """
+        if namespace != None:
+            Namespaces.delete_namespace(self, node, namespace)
+            return
+
         for namespace in self._namespaces:
-            print(f"Cleaning namespace {namespace}")
-            cmd = f"ip netns delete {namespace}"
-            ret_code, _, _ = exec_cmd(node, cmd, timeout=5, sudo=True)
-            if ret_code != 0:
-                raise RuntimeError(u"Could not delete namespace")
+            Namespaces.delete_namespace(self, node, namespace)

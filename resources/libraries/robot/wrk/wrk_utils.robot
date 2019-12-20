@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,14 +12,20 @@
 # limitations under the License.
 
 *** Settings ***
-| Library  | resources.tools.wrk.wrk
-| Library  | resources.libraries.python.IPUtil
-| Library  | resources.libraries.python.DUTSetup
-| Library  | resources.libraries.python.TrafficGenerator
-| Library  | resources.libraries.python.topology.Topology
+| Library | resources.tools.wrk.wrk
+| Library | resources.libraries.python.IPUtil
+| Library | resources.libraries.python.DUTSetup
+| Library | resources.libraries.python.TrafficGenerator
+| Library | resources.libraries.python.topology.Topology
 |
 | Documentation | L2 keywords to set up wrk and to measure performance
 | ... | parameters using wrk.
+
+*** Variables ***
+| ${wrk_ip_prefix}= | 24
+| @{wrk_ip_addrs}= | 192.168.10.1 | 192.168.20.1 | 192.168.30.1
+| ... | 192.168.40.1 | 192.168.50.1 | 192.168.60.1 | 192.168.70.1
+| ... | 192.168.80.1
 
 *** Keywords ***
 | Measure throughput
