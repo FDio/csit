@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | DRV_VFIO_PCI
+| ... | ethipv4-l2bdbasemaclrn
 |
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test

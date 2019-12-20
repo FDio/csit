@@ -20,6 +20,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
 | ... | LISPGPE | IPSEC | IPSECHW | IPSECTRAN | ENCAP | IP4UNRLAY | IP4OVRLAY
 | ... | NIC_Intel-X710 | AES_128_CBC | HMAC_SHA_256 | HMAC | AES | DRV_VFIO_PCI
+| ... | ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

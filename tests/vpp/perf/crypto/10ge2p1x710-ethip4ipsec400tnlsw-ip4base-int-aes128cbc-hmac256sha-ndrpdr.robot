@@ -18,6 +18,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_400
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
 | ... | AES_128_CBC | HMAC_SHA_256 | HMAC | AES | DRV_VFIO_PCI
+| ... | ethip4ipsec400tnlsw-ip4base-int-aes128cbc-hmac256sha
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

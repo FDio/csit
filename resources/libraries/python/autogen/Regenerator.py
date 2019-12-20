@@ -11,7 +11,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Module defining utilities for test directory regeneration."""
+"""Module defining utilities for test directory regeneration.
+
+TODO: How can we check each suite id is unique,
+when currently the suite generation is run on each directory separately?
+"""
 
 import sys
 
@@ -52,9 +56,9 @@ def replace_defensively(
     :type how_many: int
     :type msg: str
     :type in_filename: str
-    :return: The whole text after replacements are done.
+    :returns: The whole text after replacements are done.
     :rtype: str
-    :raise ValueError: If number of occurrences does not match.
+    :raises ValueError: If number of occurrences does not match.
     """
     found = whole.count(to_replace)
     if found != how_many:
@@ -62,24 +66,54 @@ def replace_defensively(
     return whole.replace(to_replace, replace_with)
 
 
-def get_iface_and_suite_id(filename):
-    """Get interface and suite ID.
+def get_iface_and_suite_ids(filename):
+    """Get NIC code, suite ID and suite tag.
 
-    Interface ID is the part of suite name
+    NIC code is the part of suite name
     which should be replaced for other NIC.
     Suite ID is the part os suite name
-    which si appended to test case names.
+    which is appended to test case names.
+    Suite tag is suite ID without both test type and NIC driver parts.
 
     :param filename: Suite file.
     :type filename: str
-    :returns: Interface ID, Suite ID.
-    :rtype: (str, str)
+    :returns: NIC code, suite ID, suite tag.
+    :rtype: 3-tuple of str
     """
     dash_split = filename.split(u"-", 1)
     if len(dash_split[0]) <= 4:
         # It was something like "2n1l", we need one more split.
         dash_split = dash_split[1].split(u"-", 1)
-    return dash_split[0], dash_split[1].split(u".", 1)[0]
+    nic_code = dash_split[0]
+    suite_id = dash_split[1].split(u".", 1)[0]
+    suite_tag = suite_id.rsplit(u"-", 1)[0]
+    for prefix in Constants.FORBIDDEN_SUITE_PREFIX_LIST:
+        if suite_tag.startswith(prefix):
+            suite_tag = suite_tag[len(prefix):]
+    return nic_code, suite_id, suite_tag
+
+
+def check_suite_tag(suite_tag, prolog):
+    """Verify suite tag occurres once in prolog.
+
+    Call this after all edits are done,
+    to confirm the (edited) suite tag still matches the (edited) suite name.
+
+    Currently, the edited suite tag is expect to be identical
+    to the primary suite tag, but having a function is more flexible.
+
+    The occurences are counted including "| " prefix,
+    to lower the chance to match a comment.
+
+    :param suite_tag: Part of suite name, between NIC driver and suite type.
+    :param prolog: The part of .robot file content without test cases.
+    :type suite_tag: str
+    :type prolog: str
+    :raises ValueError: If suite_tag not found exactly once.
+    """
+    found = prolog.count(u"| " + suite_tag)
+    if found != 1:
+        raise ValueError(f"Suite tag found {found} times for {suite_id}")
 
 
 def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
@@ -185,7 +219,7 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
             Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[suite_type],
             1, u"Exact template type doc not found.", in_filename
         )
-        _, suite_id = get_iface_and_suite_id(tmp_filename)
+        _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_name in Constants.NIC_NAME_TO_CODE:
             tmp2_filename = replace_defensively(
@@ -207,8 +241,11 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                         Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
                         u"HW crypto name should appear.", in_filename
                     )
-            iface, old_suite_id = get_iface_and_suite_id(tmp2_filename)
+            iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
+                tmp2_filename
+            )
             if u"DPDK" in in_prolog:
+                check_suite_tag(old_suite_tag, tmp2_prolog)
                 with open(tmp2_filename, u"wt") as file_out:
                     file_out.write(tmp2_prolog)
                     add_default_testcases(
@@ -240,7 +277,17 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
                     u"Perf setup argument should appear once.", in_filename
                 )
-                iface, suite_id = get_iface_and_suite_id(out_filename)
+                iface, suite_id, suite_tag = get_iface_and_suite_ids(
+                    out_filename
+                )
+                # The next replace is probably a noop, but it is safer to maintain
+                # the same structure as for other edits.
+                out_prolog = replace_defensively(
+                    out_prolog, old_suite_tag, suite_tag, 1,
+                    f"Perf suite tag {old_suite_tag} should appear once.",
+                    in_filename
+                )
+                check_suite_tag(suite_tag, out_prolog)
                 # TODO: Reorder loops so suite_id is finalized sooner.
                 testcase = Testcase.default(suite_id)
                 with open(out_filename, u"wt") as file_out:
@@ -264,7 +311,7 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
     :type in_prolog: str
     :type kwargs_list: list of dict
     """
-    _, suite_id = get_iface_and_suite_id(in_filename)
+    _, suite_id, _ = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.default(suite_id)
     for nic_name in Constants.NIC_NAME_TO_CODE:
         tmp_filename = replace_defensively(
@@ -286,7 +333,9 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
                     Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
                     u"HW crypto name should appear.", in_filename
                 )
-        iface, old_suite_id = get_iface_and_suite_id(tmp_filename)
+        iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
+            tmp_filename
+        )
         for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
             out_filename = replace_defensively(
                 tmp_filename, old_suite_id,
@@ -312,7 +361,12 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
                 Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
                 u"Perf setup argument should appear once.", in_filename
             )
-            iface, suite_id = get_iface_and_suite_id(out_filename)
+            iface, suite_id, suite_tag = get_iface_and_suite_ids(out_filename)
+            out_prolog = replace_defensively(
+                out_prolog, old_suite_tag, suite_tag, 1,
+                u"Perf suite tag should appear once.", in_filename
+            )
+            check_suite_tag(suite_tag, out_prolog)
             # TODO: Reorder loops so suite_id is finalized sooner.
             testcase = Testcase.default(suite_id)
             with open(out_filename, u"wt") as file_out:
@@ -335,7 +389,7 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
     :type kwargs_list: list of dict
     """
     # TODO: Generate rps from cps? There are subtle differences.
-    _, suite_id = get_iface_and_suite_id(in_filename)
+    _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.tcp(suite_id)
     for nic_name in Constants.NIC_NAME_TO_CODE:
         out_filename = replace_defensively(
@@ -348,6 +402,7 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
             u"NIC name should appear twice (tag and variable).",
             in_filename
         )
+        check_suite_tag(suite_tag, out_prolog)
         with open(out_filename, u"wt") as file_out:
             file_out.write(out_prolog)
             add_tcp_testcases(testcase, file_out, kwargs_list)
@@ -401,20 +456,17 @@ class Regenerator:
         tcp_kwargs_list = [
             {u"phy_cores": i, u"frame_size": 0} for i in (1, 2, 4)
         ]
-        forbidden = [
-            v for v in Constants.NIC_DRIVER_TO_SUITE_PREFIX.values() if v
-        ]
         for in_filename in glob(pattern):
             if not self.quiet:
                 print(
                     u"Regenerating in_filename:", in_filename, file=sys.stderr
                 )
-            iface, _ = get_iface_and_suite_id(in_filename)
+            iface, _, _ = get_iface_and_suite_ids(in_filename)
             if not iface.endswith(u"10ge2p1x710"):
                 raise RuntimeError(
                     f"Error in {in_filename}: non-primary NIC found."
                 )
-            for prefix in forbidden:
+            for prefix in Constants.FORBIDDEN_SUITE_PREFIX_LIST:
                 if prefix in in_filename:
                     raise RuntimeError(
                         f"Error in {in_filename}: non-primary driver found."

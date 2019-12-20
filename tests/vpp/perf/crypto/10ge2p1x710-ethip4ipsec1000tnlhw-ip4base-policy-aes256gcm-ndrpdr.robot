@@ -18,6 +18,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-X710 | TNL_1000
 | ... | AES_256_GCM | AES | DRV_VFIO_PCI
+| ... | ethip4ipsec1000tnlhw-ip4base-policy-aes256gcm
 |
 | Suite Setup | Setup suite single link | performance | ipsechw
 | Suite Teardown | Tear down suite | performance
