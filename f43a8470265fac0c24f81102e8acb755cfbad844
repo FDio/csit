@@ -329,6 +329,30 @@
       "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41f037f0_a679c2c6",
+        "filename": "resources/libraries/robot/nsim/nsim.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-20T00:49:32Z",
+      "side": 1,
+      "message": "Agreed.  Let\u0027s merge this for now and I\u0027ll be happy to refactor the infrastructure if there is a better way when the test suite patch is reviewed.\n\nThis mechanism greatly reduced the replication of RF test code and made it extremely easy to customize individual test suites in a clean fashion.  Primarily the technique was created from my refactoring RF code and learning the fundamentals of how the RF code works.\n\nI don\u0027t have a strong opinion about whether it would be better to do this in python.  Personally I would find the whole code base easier to learn/maintain if it were all python, but that\u0027s not going to change anytime soon.",
+      "parentUuid": "ff58a608_56322a6a",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 18
+      },
+      "revId": "f43a8470265fac0c24f81102e8acb755cfbad844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
