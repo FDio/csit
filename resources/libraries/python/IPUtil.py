@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,7 +12,6 @@
 # limitations under the License.
 
 """Common IP utilities library."""
-
 import re
 
 from enum import IntEnum
@@ -25,6 +24,7 @@ from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatTerminal
+from resources.libraries.python.Namespaces import Namespaces
 
 
 # from vpp/src/vnet/vnet/mpls/mpls_types.h
@@ -243,31 +243,31 @@ class IPUtil:
             raise AssertionError(f"IP addresses are not equal: {ip1} != {ip2}")
 
     @staticmethod
-    def setup_network_namespace(
-            node, namespace_name, interface_name, ip_addr, prefix):
+    def setup_network_namespace(node, namespace_name, interface_name,
+                                ip_addr_list, prefix_length):
         """Setup namespace on given node and attach interface and IP to
         this namespace. Applicable also on TG node.
 
         :param node: VPP node.
         :param namespace_name: Namespace name.
         :param interface_name: Interface name.
-        :param ip_addr: IP address of namespace's interface.
-        :param prefix: IP address prefix length.
+        :param ip_addr_list: List of IP addresses of namespace's interface.
+        :param prefix_length: IP address prefix length.
         :type node: dict
         :type namespace_name: str
         :type interface_name: str
-        :type ip_addr: str
-        :type prefix: int
+        :type ip_addr_list: list
+        :type prefix_length: int
         """
-        cmd = f"ip netns add {namespace_name}"
+        Namespaces.create_namespace(node, namespace_name)
+
+        cmd = f"ip netns exec {namespace_name} ip link set {interface_name} up"
         exec_cmd_no_error(node, cmd, sudo=True)
 
-        cmd = f"ip link set dev {interface_name} up netns {namespace_name}"
-        exec_cmd_no_error(node, cmd, sudo=True)
-
-        cmd = f"ip netns exec {namespace_name} ip addr add {ip_addr}/{prefix}" \
-            f" dev {interface_name}"
-        exec_cmd_no_error(node, cmd, sudo=True)
+        for ip_addr in ip_addr_list:
+            cmd = f"ip netns exec {namespace_name} ip addr add " \
+                f"{ip_addr}/{prefix_length} dev {interface_name}"
+            exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def linux_enable_forwarding(node, ip_ver=u"ipv4"):
@@ -351,6 +351,64 @@ class IPUtil:
         exec_cmd_no_error(node, cmd, timeout=5, sudo=True)
 
     @staticmethod
+    def delete_linux_interface_ip(
+            node, interface, ip_addr, prefix_length, namespace=None):
+        """Delete IP address from interface in linux.
+
+        :param node: VPP/TG node.
+        :param interface: Interface in namespace.
+        :param ip_addr: IP to be deleted from interface.
+        :param prefix_length: IP prefix length.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type ip_addr: str
+        :type prefix_length: int
+        :type namespace: str
+        :raises RuntimeError: IP could not be deleted.
+        """
+        # TODO: Refactor command execution in namespaces into central
+        # methods (e.g. Namespace.exec_cmd_in_namespace)
+        if namespace is not None:
+            cmd = f"ip netns exec {namespace} ip addr del " \
+                f"{ip_addr}/{prefix_length} dev {interface}"
+        else:
+            cmd = f"ip addr del {ip_addr}/{prefix_length} dev {interface}"
+
+        exec_cmd_no_error(node, cmd, timeout=5, sudo=True)
+
+    @staticmethod
+    def linux_interface_has_ip(
+            node, interface, ip_addr, prefix_length, namespace=None):
+        """Return True if interface in linux has IP address.
+
+        :param node: VPP/TG node.
+        :param interface: Interface in namespace.
+        :param ip_addr: IP to be queried on interface.
+        :param prefix_length: IP prefix length.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type ip_addr: str
+        :type prefix_length: int
+        :type namespace: str
+        :rtype boolean
+        :raises RuntimeError: Request fails.
+        """
+        ip_addr_with_prefix = f"{ip_addr}/{prefix_length}"
+        if namespace is not None:
+            cmd = f"ip netns exec {namespace} ip addr show dev {interface}"
+        else:
+            cmd = f"ip addr show dev {interface}"
+
+        cmd += u" | grep 'inet ' | awk -e '{print $2}'"
+        cmd += f" | grep '{ip_addr_with_prefix}'"
+        _, stdout, _ = exec_cmd(node, cmd, timeout=5, sudo=True)
+
+        has_ip = stdout.rstrip()
+        return bool(has_ip == ip_addr_with_prefix)
+
+    @staticmethod
     def add_linux_route(node, ip_addr, prefix, gateway, namespace=None):
         """Add linux route in namespace.
 
@@ -404,6 +462,24 @@ class IPUtil:
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
+    def vpp_interface_set_ip_addresses(node, interface, ip_addr_list,
+                                       prefix_length=None):
+        """Set IP addresses to VPP interface.
+
+        :param node: VPP node.
+        :param interface: Interface name.
+        :param ip_addr_list: IP addresses.
+        :param prefix_length: Prefix length.
+        :type node: dict
+        :type interface: str
+        :type ip_addr_list: list
+        :type prefix_length: int
+        """
+        for ip_addr in ip_addr_list:
+            IPUtil.vpp_interface_set_ip_address(node, interface, ip_addr,
+                                                prefix_length)
 
     @staticmethod
     def vpp_add_ip_neighbor(node, iface_key, ip_addr, mac_address):
