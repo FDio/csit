@@ -113,8 +113,7 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        cmd = u"command -v vpp"
-        exec_cmd_no_error(node, cmd, message=u"VPP is not installed!")
+        DUTSetup.verify_program_installed(node, u"vpp")
 
     @staticmethod
     def adjust_privileges(node):
@@ -155,7 +154,7 @@ class VPPUtil:
         :type node: dict
         :raises RuntimeError: If VPP service fails to start.
         """
-        VPPUtil.verify_vpp_installed(node)
+        DUTSetup.verify_program_installed(node, 'vpp')
         try:
             # Verify responsiveness of vppctl.
             VPPUtil.verify_vpp_started(node)
