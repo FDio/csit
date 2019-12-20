@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -62,7 +62,7 @@ def get_vpp_pid(node):
         running on the DUT node.
     :rtype: int or list
     """
-    pid = PidLib.DUTSetup.get_vpp_pid(node)
+    pid = PidLib.DUTSetup.get_pid(node, u"vpp")
     return pid
 
 

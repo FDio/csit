@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -113,7 +113,7 @@ class CoreDumpUtil:
         :type node: dict
         """
         if node[u"type"] == NodeType.DUT and self.is_core_limit_enabled():
-            vpp_pid = DUTSetup.get_vpp_pid(node)
+            vpp_pid = DUTSetup.get_pid(node, u"vpp")
             self.enable_coredump_limit(node, vpp_pid)
 
     def enable_coredump_limit_vpp_on_all_duts(self, nodes):
