@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7da6e6ec_3be36c27",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-20T16:02:01Z",
+      "side": 1,
+      "message": "PREFIX_LENGTH",
+      "range": {
+        "startLine": 222,
+        "startChar": 16,
+        "endLine": 222,
+        "endChar": 22
+      },
+      "revId": "4af0a76258f5a2068df2adc000d11daecd6b2dd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "226db381_237c93e7",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-20T16:02:01Z",
+      "side": 1,
+      "message": "See add_dpdk_no_tx_checksum_offload on how to indent docstring with no inputs not outputs.",
+      "range": {
+        "startLine": 509,
+        "startChar": 8,
+        "endLine": 509,
+        "endChar": 9
+      },
+      "revId": "4af0a76258f5a2068df2adc000d11daecd6b2dd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "493a64fd_9fbf3d8d",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-20T16:02:01Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 510,
+        "startChar": 16,
+        "endLine": 510,
+        "endChar": 17
+      },
+      "revId": "4af0a76258f5a2068df2adc000d11daecd6b2dd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83d15baa_8a2a9239",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-20T16:02:01Z",
+      "side": 1,
+      "message": "Add :rtype:.",
+      "range": {
+        "startLine": 717,
+        "startChar": 8,
+        "endLine": 717,
+        "endChar": 9
+      },
+      "revId": "4af0a76258f5a2068df2adc000d11daecd6b2dd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7ae4980_5af554ad",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-20T16:02:01Z",
+      "side": 1,
+      "message": "u\"\n\nAlso, I do not see ip4_prefix in existing .yaml topology fies, nor in schema (resources/topology_schemas/topology.sch.yaml), so I do not know whether you mean a full prefix (including the address part), or just a prefix length.\nBased on line 722, docstring should be updated anyway.",
+      "range": {
+        "startLine": 720,
+        "startChar": 53,
+        "endLine": 720,
+        "endChar": 65
+      },
+      "revId": "4af0a76258f5a2068df2adc000d11daecd6b2dd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93a6f2cf_9dc06bed",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-20T16:02:01Z",
+      "side": 1,
+      "message": "That is quite harsh, as it skips all other tests in the run. I recommend to use Fail instead.",
+      "range": {
+        "startLine": 136,
+        "startChar": 10,
+        "endLine": 136,
+        "endChar": 21
+      },
+      "revId": "4af0a76258f5a2068df2adc000d11daecd6b2dd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb75a8e4_04c5c8de",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-12-20T16:02:01Z",
+      "side": 1,
+      "message": "Does this work, or do you need to write:\n  ${Constants.DATAPATH_INTERFACES_MAX}",
+      "range": {
+        "startLine": 122,
+        "startChar": 32,
+        "endLine": 122,
+        "endChar": 58
+      },
+      "revId": "4af0a76258f5a2068df2adc000d11daecd6b2dd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
