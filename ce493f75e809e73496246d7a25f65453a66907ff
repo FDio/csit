@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "25ff0f6d_52169833",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-20T21:36:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df59c5bc_61714c51",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 1
+      },
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a80666a_62ae6749",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 6
@@ -250,6 +274,24 @@
       "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cb62d41_4ecbdd71",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-12-20T21:36:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c78c59e1_fbe2c603",
+      "revId": "ce493f75e809e73496246d7a25f65453a66907ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
