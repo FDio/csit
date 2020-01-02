@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | DRV_VFIO_PCI | GBP
+| ... | dot1q-l2bdbasemaclrn-gbp
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
