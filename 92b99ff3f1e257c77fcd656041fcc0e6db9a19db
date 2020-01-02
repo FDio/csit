@@ -1,0 +1,579 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5999e793_a241104e",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Sentences should end with full stop.",
+      "range": {
+        "startLine": 165,
+        "startChar": 35,
+        "endLine": 165,
+        "endChar": 36
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c818be4_fb73163d",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "u\"",
+      "range": {
+        "startLine": 171,
+        "startChar": 20,
+        "endLine": 171,
+        "endChar": 21
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5a927b7_db6dbb41",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a66ce24b_26af8b5d",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Move to the end of the previous line.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 1
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a08a102_cdcf01db",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Full stops.",
+      "range": {
+        "startLine": 24,
+        "startChar": 36,
+        "endLine": 24,
+        "endChar": 37
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94835390_ffe8fb1a",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Full stops.",
+      "range": {
+        "startLine": 28,
+        "startChar": 71,
+        "endLine": 28,
+        "endChar": 72
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "889037b6_8858c413",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Closing colon is missing.",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 16
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1265bbb4_5ceebe6a",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "I recommed to add \"nohup\" somewhere, as ssh.py makes no promises on how long the session lasts after the (outer) command returns.",
+      "range": {
+        "startLine": 155,
+        "startChar": 16,
+        "endLine": 155,
+        "endChar": 17
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7c8a577_1e3fb1e0",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "; fi",
+      "range": {
+        "startLine": 183,
+        "startChar": 43,
+        "endLine": 183,
+        "endChar": 44
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e784515e_98213994",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Is 0.1 enough?",
+      "range": {
+        "startLine": 204,
+        "startChar": 14,
+        "endLine": 204,
+        "endChar": 15
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb41428_9d4a9d86",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Update according to line 277.",
+      "range": {
+        "startLine": 222,
+        "startChar": 15,
+        "endLine": 222,
+        "endChar": 18
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37fd3f20_142285e6",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Space after #.",
+      "range": {
+        "startLine": 271,
+        "startChar": 8,
+        "endLine": 271,
+        "endChar": 9
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c06c5a1_60daeda8",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Add a docstring. Or just replace call sites with the \"and\" operator.",
+      "range": {
+        "startLine": 280,
+        "startChar": 8,
+        "endLine": 280,
+        "endChar": 41
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41d52fc8_81fa4f17",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "self.delete_namespace(",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 46
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "710d90d8_7c65f32c",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Single space.",
+      "range": {
+        "startLine": 100,
+        "startChar": 29,
+        "endLine": 100,
+        "endChar": 31
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "843c2911_10cd745b",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Return (in the \"then\" branch) saves horizontal space for the code (formerly) in the \"else\" branch.",
+      "range": {
+        "startLine": 145,
+        "startChar": 8,
+        "endLine": 145,
+        "endChar": 13
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70124561_3e4c1bf4",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "prefix length",
+      "range": {
+        "startLine": 713,
+        "startChar": 33,
+        "endLine": 713,
+        "endChar": 46
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfb381d8_2e6e1336",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Not sure whether we recommend 4 or 0 spaces here, but definitely not this many.",
+      "range": {
+        "startLine": 718,
+        "startChar": 8,
+        "endLine": 718,
+        "endChar": 18
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6525d4bf_49596e0e",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Ah, I did not know the \"attribute\" access to dict values is supported [1]. It looks strange to my pythonic eyes. I expected\n  ${vpp_hoststack_attr}[vpp_api_socket]\ninstead. See [2]. The attribute access can trick people into using vpp_echo_server_attr as a named tuple, but it is still just a dict.\n\n[1] https://robotframework.org/robotframework/3.1.2/RobotFrameworkUserGuide.html#accessing-list-and-dictionary-items\n[2] https://github.com/robotframework/robotframework/issues/2601",
+      "range": {
+        "startLine": 49,
+        "startChar": 23,
+        "endLine": 49,
+        "endChar": 59
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d367a191_7c3e5b4e",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "f",
+      "range": {
+        "startLine": 206,
+        "startChar": 17,
+        "endLine": 206,
+        "endChar": 18
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42a7d714_c18f7bda",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Mention test message and return value.",
+      "range": {
+        "startLine": 271,
+        "startChar": 53,
+        "endLine": 271,
+        "endChar": 54
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12922b37_31bec56d",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Mention the return value is lowercase.",
+      "range": {
+        "startLine": 118,
+        "startChar": 57,
+        "endLine": 118,
+        "endChar": 58
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6525b10_c989cbe3",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Does this work?\n  ${nodes}[${key}]\nI find it easier to parse (less thinking about quoting).",
+      "range": {
+        "startLine": 132,
+        "startChar": 43,
+        "endLine": 132,
+        "endChar": 61
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05b6e3c7_a4237945",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "Run Keyword If",
+      "range": {
+        "startLine": 123,
+        "startChar": 6,
+        "endLine": 123,
+        "endChar": 20
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ac86c2a_ad86010c",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-wrk8u8c50con-cps.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T17:39:38Z",
+      "side": 1,
+      "message": "This is just to signal jumbo frames are not used, right?\nWill we have hoststack test suites with jumbo frames?",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 28
+      },
+      "revId": "92b99ff3f1e257c77fcd656041fcc0e6db9a19db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
