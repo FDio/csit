@@ -303,6 +303,14 @@ class Constants:
         u"rdma-core": u"rdma-",
     }
 
+    # Some identifiers constructed from suite names
+    # have to be independent of NIC driver used.
+    # In order to remove or reject the NIC driver part,
+    # it is useful to have a list of such prefixes precomputed.
+    FORBIDDEN_SUITE_PREFIX_LIST = [
+        prefix for prefix in NIC_DRIVER_TO_SUITE_PREFIX.values() if prefix
+    ]
+
     # Additional step for perf needs to know driver type.
     # Contains part of suite setup line, matching both single and double link.
     NIC_DRIVER_TO_SETUP_ARG = {

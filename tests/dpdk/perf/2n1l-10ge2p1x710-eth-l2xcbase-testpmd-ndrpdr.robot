@@ -18,6 +18,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | HW_ENV | PERFTEST | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | ETH | L2XCFWD | BASE
+| ... | eth-l2xcbase-testpmd
 |
 | Suite Setup | Setup suite single link | performance | dpdk
 | Suite Teardown | Tear down suite | performance | dpdk
