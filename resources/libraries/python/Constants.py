@@ -234,6 +234,7 @@ class Constants:
         u"Intel-XL710": 24500000000,
         u"Intel-XXV710": 24500000000,
         u"Mellanox-CX556A": 100000000000,
+        u"Amazon-Nitro-50G": 10000000000,
         u"virtual": 100000000,
     }
 
@@ -247,6 +248,7 @@ class Constants:
         u"Intel-XL710": 18750000,
         u"Intel-XXV710": 18750000,
         u"Mellanox-CX556A": 60000000, # 148809523,
+        u"Amazon-Nitro-50G": 1500000,
         u"virtual": 14880952,
     }
 
