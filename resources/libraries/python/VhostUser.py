@@ -24,13 +24,18 @@ class VhostUser:
     """Vhost-user interfaces L1 library."""
 
     @staticmethod
-    def vpp_create_vhost_user_interface(node, socket):
+    def vpp_create_vhost_user_interface(
+            node, socket, is_server=False, enable_gso=False):
         """Create Vhost-user interface on VPP node.
 
         :param node: Node to create Vhost-user interface on.
         :param socket: Vhost-user interface socket path.
+        :param is_server: Server side of connection. Default: False
+        :param enable_gso: Generic segmentation offloading. Default: False
         :type node: dict
         :type socket: str
+        :type is_server: bool
+        :type enable_gso: bool
         :returns: SW interface index.
         :rtype: int
         """
@@ -38,7 +43,9 @@ class VhostUser:
         err_msg = f"Failed to create Vhost-user interface " \
             f"on host {node[u'host']}"
         args = dict(
-            sock_filename=str(socket)
+            is_server=bool(is_server),
+            sock_filename=str(socket),
+            enable_gso=bool(enable_gso)
         )
 
         with PapiSocketExecutor(node) as papi_exec:

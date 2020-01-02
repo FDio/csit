@@ -384,7 +384,7 @@ class QemuUtils:
 
     def qemu_add_vhost_user_if(
             self, socket, server=True, jumbo_frames=False, queue_size=None,
-            queues=1):
+            queues=1, csum=False, gso=False):
         """Add Vhost-user interface.
 
         :param socket: Path of the unix socket.
@@ -392,11 +392,15 @@ class QemuUtils:
         :param jumbo_frames: Set True if jumbo frames are used in the test.
         :param queue_size: Vring queue size.
         :param queues: Number of queues.
+        :param csum: Checksum offloading.
+        :param gso: Generic segmentation offloading.
         :type socket: str
         :type server: bool
         :type jumbo_frames: bool
         :type queue_size: int
         :type queues: int
+        :type csum: bool
+        :type gso: bool
         """
         self._vhost_id += 1
         self._params.add_with_value(
@@ -411,12 +415,13 @@ class QemuUtils:
             f"{self._vhost_id:02x}"
         queue_size = f"rx_queue_size={queue_size},tx_queue_size={queue_size}" \
             if queue_size else u""
-        mbuf = u"on,host_mtu=9200"
         self._params.add_with_value(
             u"device", f"virtio-net-pci,netdev=vhost{self._vhost_id},mac={mac},"
             f"addr={self._vhost_id+5}.0,mq=on,vectors={2 * queues + 2},"
-            f"csum=off,gso=off,guest_tso4=off,guest_tso6=off,guest_ecn=off,"
-            f"mrg_rxbuf={mbuf if jumbo_frames else u'off'},{queue_size}"
+            f"csum={u'on' if csum else u'off'},gso={u'on' if gso else u'off'},"
+            f"guest_tso4=off,guest_tso6=off,guest_ecn=off,"
+            f"mrg_rxbuf={u'on,host_mtu=9200' if jumbo_frames else u'off'},"
+            f"{queue_size}"
         )
 
         # Add interface MAC and socket to the node dict.
