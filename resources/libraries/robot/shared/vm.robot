@@ -97,7 +97,8 @@
 | | ... | auto_scale=${auto_scale} | vnf=${vnf}
 | | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
-| | ... | rxq_count_int=${rxq_count_int}
+| | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
+| | ... | enable_gso=${False}
 | | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
