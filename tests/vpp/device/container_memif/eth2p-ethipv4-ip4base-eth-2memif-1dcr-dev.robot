@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP4FWD | BASE | MEMIF | DOCKER | DRV_VFIO_PCI
+| ... | ethipv4-ip4base-eth-2memif-1dcr
 |
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
