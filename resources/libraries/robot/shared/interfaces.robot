@@ -555,24 +555,25 @@
 | | ... | Type: string
 | | ... | - ${vhost_if2} - Name of the second Vhost-User interface (Optional).
 | | ... | Type: string
+| | ... | - ${is_server} - Server side of connection (Optional).
+| | ... | Type: boolean
+| | ... | - ${enable_gso} - Generic segmentation offloading (Optional).
+| | ... | Type: boolean
 | |
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - ${${vhost_if1}} - First Vhost-User interface.
 | | ... | - ${${vhost_if2}} - Second Vhost-User interface.
 | |
-| | ... | *Example:*
-| |
-| | ... | \| Configure vhost interfaces \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \|
-| | ... | \| Configure vhost interfaces \
-| | ... | \| ${nodes['DUT2']} \| /tmp/sock1 \| /tmp/sock2 \| dut2_vhost_if1 \
-| | ... | \| dut2_vhost_if2 \|
-| |
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vhost_if1}=vhost_if1
-| | ... | ${vhost_if2}=vhost_if2
+| | ... | ${vhost_if2}=vhost_if2 | ${is_server}=${False}
+| | ... | ${enable_gso}=${False}
 | |
-| | ${vhost_1}= | Vpp Create Vhost User Interface | ${dut_node} | ${sock1}
-| | ${vhost_2}= | Vpp Create Vhost User Interface | ${dut_node} | ${sock2}
+| | ${vhost_1}= | Vpp Create Vhost User Interface
+| | ... | ${dut_node} | ${sock1} | is_server=${is_server}
+| | ... | enable_gso=${enable_gso}
+| | ${vhost_2}= | Vpp Create Vhost User Interface
+| | ... | ${dut_node} | ${sock2} | is_server=${is_server}
+| | ... | enable_gso=${enable_gso}
 | | ${vhost_1_key}= | Get Interface By SW Index | ${dut_node} | ${vhost_1}
 | | ${vhost_2_key}= | Get Interface By SW Index | ${dut_node} | ${vhost_2}
 | | ${vhost_1_mac}= | Get Interface MAC | ${dut_node} | ${vhost_1_key}
