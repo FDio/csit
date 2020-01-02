@@ -17,6 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM | DRV_VFIO_PCI
 | ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 1R6C | 6VM1T
+| ... | eth-l2bd-1ch-12vh-6vm1t-vppip4
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
