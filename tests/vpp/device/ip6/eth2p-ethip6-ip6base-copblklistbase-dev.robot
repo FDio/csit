@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP6FWD | FEATURE | COPBLKLIST | DRV_VFIO_PCI
+| ... | ethip6-ip6base-copblklistbase
 |
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test

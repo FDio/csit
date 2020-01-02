@@ -17,6 +17,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | SRv6 | SRv6_1SID
 | ... | DRV_VFIO_PCI
+| ... | ethip6ip6-ip6base-srv6enc1sid
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

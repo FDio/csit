@@ -18,6 +18,7 @@
 | ... | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | 1DCR
 | ... | DOCKER | 2R1C | NF_DENSITY | CHAIN | NF_VPPIP4 | 1DCR1T
 | ... | AES_256_GCM | AES | DRV_VFIO_PCI
+| ... | ethip4ipsec5000tnlsw-l2bd-1ch-2mif-1drc1c-vppip4-aes256gcm
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
