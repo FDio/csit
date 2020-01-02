@@ -71,5 +71,5 @@
 
 *** Test Cases ***
 | tc01-64B-ethip4-l2patch-dev
-| | [Tags] | 64B | EXPECTED_FAILING
+| | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}
