@@ -96,11 +96,13 @@ class QemuManager:
                 )
                 self.machines[name].qemu_add_vhost_user_if(
                     sock1, jumbo_frames=kwargs[u"jumbo"], queues=queues,
-                    queue_size=kwargs[u"perf_qemu_qsz"]
+                    queue_size=kwargs[u"perf_qemu_qsz"],
+                    csum=kwargs[u"enable_csum"], gso=kwargs[u"enable_gso"]
                 )
                 self.machines[name].qemu_add_vhost_user_if(
                     sock2, jumbo_frames=kwargs[u"jumbo"], queues=queues,
-                    queue_size=kwargs[u"perf_qemu_qsz"]
+                    queue_size=kwargs[u"perf_qemu_qsz"],
+                    csum=kwargs[u"enable_csum"], gso=kwargs[u"enable_gso"]
                 )
 
     def construct_vms_on_all_nodes(self, **kwargs):
