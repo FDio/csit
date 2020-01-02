@@ -21,6 +21,7 @@ latency.
 import argparse
 import json
 import sys
+import time
 
 sys.path.insert(
     0, "/opt/trex-core-2.61/scripts/automation/trex_control_plane/interactive/"
@@ -187,6 +188,7 @@ def simple_burst(
         lost_b = 0
 
         # Choose rate and start traffic:
+        time_start = time.time()
         client.start(ports=ports, mult=rate, duration=duration)
 
         if async_start:
@@ -199,6 +201,8 @@ def simple_burst(
         else:
             # Block until done:
             client.wait_on_traffic(ports=ports, timeout=duration+30)
+            time_stop = time.time()
+            print(f"Traffic took {time_stop - time_start} seconds.")
 
             if client.get_warnings():
                 for warning in client.get_warnings():
