@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP4FWD | BASE | DOT1Q | IP4BASE | DRV_AVF
+| ... | avf-dot1qip4-l2bdbasemaclrn
 |
 | Suite Setup | Setup suite single link | avf | scapy
 | Suite Teardown | Tear down suite

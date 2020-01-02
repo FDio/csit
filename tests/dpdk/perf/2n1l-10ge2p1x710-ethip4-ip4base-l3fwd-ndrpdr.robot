@@ -18,6 +18,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | IP4FWD | BASE | ETH
+| ... | ethip4-ip4base-l3fwd
 |
 | Suite Setup | Setup suite single link | performance | dpdk
 | Suite Teardown | Tear down suite | performance | dpdk

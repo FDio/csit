@@ -17,6 +17,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | ACL | ACL_STATELESS
 | ... | IACL | ACL1 | 100_FLOWS | DRV_VFIO_PCI
+| ... | ethip4udp-ip4base-iacl1sl-100flows
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
