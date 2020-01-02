@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "911598ef_3ac33df8",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T15:44:59Z",
+      "side": 1,
+      "message": "This is the limit on how many allocations above nr_hugepages (limit for persistent hugepages) system permits. If you are looking for the number of such pages currently allocated, you should read \"surplus_hugepages\" instead (and beware that it can be more than nr_overcommit_hugepages, e.g. when nr_hugepages has been decreased recently).",
+      "range": {
+        "startLine": 756,
+        "startChar": 14,
+        "endLine": 756,
+        "endChar": 37
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0015b4fa_2ad5413e",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T15:44:59Z",
+      "side": 1,
+      "message": "This selects the number of \"persistent\" huge pages. That includes free pages and pages allocated below the persistence limit, but not the surplus (overcommit allocated) pages.\nUpdate docstring and maybe even method name, depending on the intended usage.",
+      "range": {
+        "startLine": 776,
+        "startChar": 14,
+        "endLine": 776,
+        "endChar": 26
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10f4b813_b57bd28a",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-02T15:44:59Z",
+      "side": 1,
+      "message": "Maybe storing to variables named the same way as the pseudo-filesystem files would help.\n  free_hugepages + (nr_overcommit_hugepages - surplus_hugepages)",
+      "range": {
+        "startLine": 812,
+        "startChar": 29,
+        "endLine": 812,
+        "endChar": 63
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
