@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a6858e04_d57a86aa",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T06:36:41Z",
+      "side": 1,
+      "message": "No, that is what documentation tells you, but not what is happening. During testing there was not a surplus. Surplus was zero and it was above \"nr_hugepages\" on vpp device while overcommit was high. Eg. nr_hugepages\u003d1518, surplus\u003d0, nr_overcommit_hugepages\u003d65535, the real hugepages number was 1518 (configured persistent was 1024). The problem of sysfs is that it lacks of more counters and it is very hard to see the real state only from /sys/. /proc/meminfo seems to be more accurate (or combination of both)",
+      "parentUuid": "911598ef_3ac33df8",
+      "range": {
+        "startLine": 756,
+        "startChar": 14,
+        "endLine": 756,
+        "endChar": 37
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0015b4fa_2ad5413e",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ca77ec1a_405f1316",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T06:36:41Z",
+      "side": 1,
+      "message": "Docstring and name is correct per intended usage.",
+      "parentUuid": "0015b4fa_2ad5413e",
+      "range": {
+        "startLine": 776,
+        "startChar": 14,
+        "endLine": 776,
+        "endChar": 26
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "10f4b813_b57bd28a",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2020-01-02T15:44:59Z",
       "side": 1,
       "message": "Maybe storing to variables named the same way as the pseudo-filesystem files would help.\n  free_hugepages + (nr_overcommit_hugepages - surplus_hugepages)",
+      "range": {
+        "startLine": 812,
+        "startChar": 29,
+        "endLine": 812,
+        "endChar": 63
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0eab9a3_a290fe15",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T06:36:41Z",
+      "side": 1,
+      "message": "Both formulas are wrong. I made several observations how system behaves and none of these are correct. I need to rewrite it.",
+      "parentUuid": "10f4b813_b57bd28a",
       "range": {
         "startLine": 812,
         "startChar": 29,
