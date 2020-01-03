@@ -49,6 +49,6 @@ class JsonParser:
         :returns: JSON data parsed as python list.
         :rtype: list
         """
-        input_data = open(json_file, "rt").read()
+        input_data = open(json_file, u"rt").read()
         parsed_data = JsonParser.parse_data(input_data)
         return parsed_data
