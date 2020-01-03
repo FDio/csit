@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fd818253_6e5f2bd2",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-03T19:43:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a45435c2_b8d8660e",
+      "range": {
+        "startLine": 24,
+        "startChar": 25,
+        "endLine": 24,
+        "endChar": 31
+      },
+      "revId": "86db2a5433ffbe8273da89a8931fe34e055d8103",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64e06668_de6631f0",
         "filename": "resources/libraries/python/topology.py",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "86db2a5433ffbe8273da89a8931fe34e055d8103",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9972944_33e842b2",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-03T19:43:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64e06668_de6631f0",
+      "range": {
+        "startLine": 720,
+        "startChar": 8,
+        "endLine": 720,
+        "endChar": 9
+      },
+      "revId": "86db2a5433ffbe8273da89a8931fe34e055d8103",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
