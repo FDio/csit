@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fc7afe87_04dd8bb5",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-03T15:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dbcbeca_64a05575",
+      "range": {
+        "startLine": 128,
+        "startChar": 19,
+        "endLine": 128,
+        "endChar": 27
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39f29890_b487e8e3",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99f7e012_1beb22ec",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-03T15:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39f29890_b487e8e3",
+      "range": {
+        "startLine": 168,
+        "startChar": 11,
+        "endLine": 168,
+        "endChar": 27
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0940e45b_0a481c98",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-03T15:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83d1b64_2cf32be5",
+      "range": {
+        "startLine": 189,
+        "startChar": 11,
+        "endLine": 189,
+        "endChar": 27
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11053d14_f09839c2",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 6
@@ -91,6 +163,30 @@
       "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fa76603_748bac42",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-03T15:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11053d14_f09839c2",
+      "range": {
+        "startLine": 209,
+        "startChar": 11,
+        "endLine": 209,
+        "endChar": 27
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "56f961c1_b1cdb7f8",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-03T15:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7f2bdba_0bcec4b1",
+      "range": {
+        "startLine": 281,
+        "startChar": 11,
+        "endLine": 281,
+        "endChar": 27
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a004663_813c66b8",
         "filename": "resources/libraries/python/Namespaces.py",
         "patchSetId": 6
@@ -160,6 +280,30 @@
       "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cb45c50_c28abf0b",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-03T15:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a004663_813c66b8",
+      "range": {
+        "startLine": 36,
+        "startChar": 34,
+        "endLine": 36,
+        "endChar": 40
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "8e477cb1_a55a30bd",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-03T15:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0a7b28e_c811bcc4",
+      "range": {
+        "startLine": 144,
+        "startChar": 22,
+        "endLine": 144,
+        "endChar": 23
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e9e78b0_7b73cf19",
         "filename": "resources/libraries/python/Namespaces.py",
         "patchSetId": 6
@@ -206,6 +374,30 @@
       "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7fd10da_55ceed78",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-03T15:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e9e78b0_7b73cf19",
+      "range": {
+        "startLine": 148,
+        "startChar": 22,
+        "endLine": 148,
+        "endChar": 23
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
