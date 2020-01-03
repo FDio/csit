@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a45435c2_b8d8660e",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T18:58:56Z",
+      "side": 1,
+      "message": "Remove self argument and mark as staticmethod.\nAlso for delete. Basically, get rid of any \"self\" found in this file.",
+      "range": {
+        "startLine": 24,
+        "startChar": 25,
+        "endLine": 24,
+        "endChar": 31
+      },
+      "revId": "86db2a5433ffbe8273da89a8931fe34e055d8103",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64e06668_de6631f0",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T18:58:56Z",
+      "side": 1,
+      "message": "I like that you removed the try/except, but now it should be documented that this method can raise KeyError if the iface_key is not found.",
+      "range": {
+        "startLine": 720,
+        "startChar": 8,
+        "endLine": 720,
+        "endChar": 9
+      },
+      "revId": "86db2a5433ffbe8273da89a8931fe34e055d8103",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
