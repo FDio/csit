@@ -178,7 +178,7 @@ class WrkTrafficProfile:
         if header is not None:
             if isinstance(header, dict):
                 header = u", ".join(
-                    f"{0}: {1}".format(*item) for item in header.items()
+                    "{0}: {1}".format(*item) for item in header.items()
                 )
                 self.traffic_profile[u"header"] = header
             elif not isinstance(header, str):
