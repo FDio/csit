@@ -185,7 +185,7 @@ class Constants:
     TREX_INSTALL_DIR = u"/opt/trex-core-2.61"
 
     # TRex limit memory
-    TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY ", 8192)
+    TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY ", 1024)
 
     # TRex number of cores
     TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 7)
