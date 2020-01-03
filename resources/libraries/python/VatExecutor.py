@@ -113,7 +113,7 @@ class VatExecutor:
             ssh.scp(vat_name, vat_name)
             remote_file_path = vat_name
             if history:
-                with open(vat_name, "r") as vat_file:
+                with open(vat_name, u"rt") as vat_file:
                     for line in vat_file:
                         PapiHistory.add_to_papi_history(
                             node, line.replace(u"\n", u""), papi=False
@@ -155,7 +155,7 @@ class VatExecutor:
         :type timeout: int
         :type json_out: bool
         """
-        with open(tmp_fn, "w") as tmp_f:
+        with open(tmp_fn, u"wt") as tmp_f:
             tmp_f.writelines(commands)
 
         self.execute_script(
@@ -388,7 +388,7 @@ class VatTerminal:
         """
         file_path = f"{Constants.RESOURCES_TPL_VAT}/{vat_template_file}"
 
-        with open(file_path, "r") as template_file:
+        with open(file_path, u"rt") as template_file:
             cmd_template = template_file.readlines()
         ret = list()
         for line_tmpl in cmd_template:
