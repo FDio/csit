@@ -167,17 +167,6 @@
 | | | Run Keyword | Additional Suite setup Action For ${action}
 | | END
 
-| Additional Suite Setup Action For performance
-| | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement.
-| |
-| | Run Keyword If | ${duts_count} == 1
-| | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
-| | Run Keyword If | ${duts_count} == 2
-| | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
-
 | Additional Suite Setup Action For scapy
 | | [Documentation]
 | | ... | Additional Setup for suites which uses scapy as Traffic generator.
@@ -194,6 +183,25 @@
 | | | Initialize DPDK Environment | ${nodes['${dut}']}
 | | | ... | ${${dut_str}_if1} | ${${dut_str}_if2}
 | | END
+
+| Additional Suite Setup Action For performance
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement.
+| | ...
+| | Run Keyword If | ${duts_count} == 1
+| | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
+| | Run Keyword If | ${duts_count} == 2
+| | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
+
+| Additional Suite Setup Action For performance_rdma
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement with
+| | ... | RDMA-core driver.
+| | ...
+# TODO: Add functionality for tests that need some.
+| | Additional Suite Setup Action For performance
 
 | Additional Suite Setup Action For performance_avf
 | | [Documentation]
