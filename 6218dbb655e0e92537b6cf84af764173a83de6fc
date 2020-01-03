@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf9d7575_d914018f",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T11:57:41Z",
+      "side": 1,
+      "message": "there is no namespace in fact. similarly remove from previous function where you copy/paste from.",
+      "range": {
+        "startLine": 333,
+        "startChar": 36,
+        "endLine": 333,
+        "endChar": 48
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20988928_2ee29843",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T11:57:41Z",
+      "side": 1,
+      "message": "rename then to intf1_name",
+      "range": {
+        "startLine": 258,
+        "startChar": 6,
+        "endLine": 258,
+        "endChar": 15
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d71e5d32_1543d093",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T11:57:41Z",
+      "side": 1,
+      "message": "use f\"\" formating",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 3
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
