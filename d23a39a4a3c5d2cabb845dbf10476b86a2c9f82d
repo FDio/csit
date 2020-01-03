@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d799f563_2fbc9369",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T13:33:29Z",
+      "side": 1,
+      "message": "\u003e Eg. nr_hugepages\u003d1518, surplus\u003d0, nr_overcommit_hugepages\u003d65535, the real hugepages number was 1518 (configured persistent was 1024).\n\nMy understanding is that \"configured persistent\" is nr_hugepages. Or do you mean 1024 was configured at the start, but later something changed the value to 1518?",
+      "parentUuid": "a6858e04_d57a86aa",
+      "range": {
+        "startLine": 756,
+        "startChar": 14,
+        "endLine": 756,
+        "endChar": 37
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0015b4fa_2ad5413e",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 4
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "Both formulas are wrong. I made several observations how system behaves and none of these are correct. I need to rewrite it.",
       "parentUuid": "10f4b813_b57bd28a",
+      "range": {
+        "startLine": 812,
+        "startChar": 29,
+        "endLine": 812,
+        "endChar": 63
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1973d98b_bfc06123",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T13:33:29Z",
+      "side": 1,
+      "message": "Can you put the observed states to some table?\nnr_hugepages, nr_overcommit_hugepages, free_hugepages, surplus_hugepages, resv_hugepages, how big an allocation was attempted, and whether is succeeded.\nIdeally to docstring (if not too big) to explain why the implementation needs to do something not obvious.",
+      "parentUuid": "c0eab9a3_a290fe15",
       "range": {
         "startLine": 812,
         "startChar": 29,
