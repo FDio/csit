@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f9779b7b_076133e6",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T13:41:49Z",
+      "side": 0,
+      "message": "Include a valid example.",
+      "range": {
+        "startLine": 563,
+        "startChar": 10,
+        "endLine": 563,
+        "endChar": 20
+      },
+      "revId": "e0617900878cd1275992f23dc733d6f93044da84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
