@@ -344,11 +344,14 @@ class TrafficGenerator(AbstractMeasurer):
             )
 
             # Start TRex.
-            cmd = f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && " \
-                f"nohup ./t-rex-64 -i -c {Constants.TREX_CORE_COUNT} --hdrh " \
-                f"{u' --astf' if osi_layer == u'L7' else u''} " \
-                f"--prefix $(hostname) {Constants.TREX_EXTRA_CMDLINE} " \
-                f"> /tmp/trex.log 2>&1 &\" > /dev/null"
+            inner_cmd = OptionString()
+            inner_cmd.add(u"cd {Constants.TREX_INSTALL_DIR}/scripts/ &&"
+            inner_cmd.add(u"nohup ./t-rex-64 --hdrh --prefix $(hostname)")
+            inner_cmd.add_if(u"--astf", osi_layer == u"L7")
+            inner_cmd.add(f"-i -c {Constants.TREX_CORE_COUNT}")
+            # OptionString does not create double space if extra is empty.
+            inner_cmd.add(f"{Constants.TREX_EXTRA_CMDLINE}")
+            cmd = f"sh -c \"{inner_cmd} > /tmp/trex.log 2>&1 &\" > /dev/null"
             try:
                 exec_cmd_no_error(self._node, cmd, sudo=True)
             except RuntimeError:
