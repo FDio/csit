@@ -50,9 +50,7 @@
 | Local template
 | | [Arguments] | ${phy_cores} | ${rxq}=${None}
 | |
-| | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
-| | And Pre-initialize layer driver | ${nic_driver}
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
@@ -70,8 +68,6 @@
 | | | Run keyword | ${dut}.Add session local endpoints table memory | 3g
 | | END
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
 | | And Set up HTTP server with parameters on the VPP node
 | | ... | ${http_static_plugin} | 31000 | 64 | 4000m
 | | Then Measure connections per second | ${traffic_profile}

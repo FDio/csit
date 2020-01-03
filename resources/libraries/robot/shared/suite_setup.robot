@@ -255,15 +255,19 @@
 | | PCI Driver Bind | ${tg}
 | | ... | ${tg['interfaces']['${tg_if1}']['pci_address']} | ${driver}
 # Set IP on tg_if1
-| | ${intf_name}= | Get Linux interface name | ${tg}
+| | ${intf1_name}= | Get Linux interface name | ${tg}
 | | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.10.1 | 24
-| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.20.1 | 24
-| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.30.1 | 24
-| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.40.1 | 24
-| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.50.1 | 24
-| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.60.1 | 24
-| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.70.1 | 24
-| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.80.1 | 24
-| | Set Linux interface up | ${tg} | ${intf_name}
+| | ${intf2_name}= | Get Linux interface name | ${tg}
+| | ... | ${tg['interfaces']['${tg_if2}']['pci_address']}
+| | Set Linux interface down | ${tg} | ${intf2_name}
+| | Set Linux interface down | ${tg} | ${intf1_name}
+| | Set Linux interface IP | ${tg} | ${intf1_name} | 192.168.10.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf1_name} | 192.168.20.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf1_name} | 192.168.30.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf1_name} | 192.168.40.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf1_name} | 192.168.50.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf1_name} | 192.168.60.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf1_name} | 192.168.70.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf1_name} | 192.168.80.1 | 24
+| | Set Linux interface up | ${tg} | ${intf1_name}
 | | Check wrk | ${tg}
