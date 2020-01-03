@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "661bf058_0ab92b42",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T14:25:12Z",
+      "side": 1,
+      "message": "From investigation VPP is doing nr_hugepage increase if it hits the limit (no matter of overcommit). That is btw why make test is working on system with 1024HP as it is doing increase up to the point of peak.",
+      "parentUuid": "d799f563_2fbc9369",
+      "range": {
+        "startLine": 756,
+        "startChar": 14,
+        "endLine": 756,
+        "endChar": 37
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0015b4fa_2ad5413e",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 4
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "Can you put the observed states to some table?\nnr_hugepages, nr_overcommit_hugepages, free_hugepages, surplus_hugepages, resv_hugepages, how big an allocation was attempted, and whether is succeeded.\nIdeally to docstring (if not too big) to explain why the implementation needs to do something not obvious.",
       "parentUuid": "c0eab9a3_a290fe15",
+      "range": {
+        "startLine": 812,
+        "startChar": 29,
+        "endLine": 812,
+        "endChar": 63
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b5df51c_8c57cab3",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T14:25:12Z",
+      "side": 1,
+      "message": "Definitely not docstring, but if you are interested:\n\n/sys/kernel/mm/hugepages/hugepages-2048kB/free_hugepages           1818\n/sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages             2567\n/sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages_mempolicy   2567\n/sys/kernel/mm/hugepages/hugepages-2048kB/nr_overcommit_hugepages  4096\n/sys/kernel/mm/hugepages/hugepages-2048kB/resv_hugepages           1818\n/sys/kernel/mm/hugepages/hugepages-2048kB/surplus_hugepages        1992\n\nSo tell me how much free hugepages do i have? is it 1818? But how is this number computed? Is it 4096-2567, but then why it does not match free or surplus.\n\nThe only numbers that matches are 2567 (yes they are used), 4096 this is hard set by me. Nothing else.",
+      "parentUuid": "1973d98b_bfc06123",
       "range": {
         "startLine": 812,
         "startChar": 29,
