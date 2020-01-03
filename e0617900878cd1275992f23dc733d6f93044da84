@@ -22,6 +22,30 @@
       "revId": "e0617900878cd1275992f23dc733d6f93044da84",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78f1a174_40c4fd32",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T13:45:49Z",
+      "side": 0,
+      "message": "Why are we doing this? except that log.html is now huge thanks to this i do not see any value.\n\nPython/bash code does not have it. Are the robot coder so lazy to figure out?",
+      "parentUuid": "f9779b7b_076133e6",
+      "range": {
+        "startLine": 563,
+        "startChar": 10,
+        "endLine": 563,
+        "endChar": 20
+      },
+      "revId": "e0617900878cd1275992f23dc733d6f93044da84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
