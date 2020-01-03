@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "736f0e1c_7ac08b66",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T16:25:21Z",
+      "side": 1,
+      "message": "\u003e make test is working on system with 1024HP as it is doing increase up to the point of peak.\n\nAre VPP developers aware of this behavior? There is a discussion [2] on what make test should and should not do.\n\n[2] https://lists.fd.io/g/vpp-dev/topic/69288694",
+      "parentUuid": "661bf058_0ab92b42",
+      "range": {
+        "startLine": 756,
+        "startChar": 14,
+        "endLine": 756,
+        "endChar": 37
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0015b4fa_2ad5413e",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 4
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Docstring and name is correct per intended usage.",
       "parentUuid": "0015b4fa_2ad5413e",
+      "range": {
+        "startLine": 776,
+        "startChar": 14,
+        "endLine": 776,
+        "endChar": 26
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70288c8f_34920bfc",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T16:25:21Z",
+      "side": 1,
+      "message": "\u003e number of huge pages\n\nI am missing an adjective there. Maximal? Allocated? Free? Allocable?",
+      "parentUuid": "ca77ec1a_405f1316",
       "range": {
         "startLine": 776,
         "startChar": 14,
@@ -227,6 +275,30 @@
       "side": 1,
       "message": "Definitely not docstring, but if you are interested:\n\n/sys/kernel/mm/hugepages/hugepages-2048kB/free_hugepages           1818\n/sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages             2567\n/sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages_mempolicy   2567\n/sys/kernel/mm/hugepages/hugepages-2048kB/nr_overcommit_hugepages  4096\n/sys/kernel/mm/hugepages/hugepages-2048kB/resv_hugepages           1818\n/sys/kernel/mm/hugepages/hugepages-2048kB/surplus_hugepages        1992\n\nSo tell me how much free hugepages do i have? is it 1818? But how is this number computed? Is it 4096-2567, but then why it does not match free or surplus.\n\nThe only numbers that matches are 2567 (yes they are used), 4096 this is hard set by me. Nothing else.",
       "parentUuid": "1973d98b_bfc06123",
+      "range": {
+        "startLine": 812,
+        "startChar": 29,
+        "endLine": 812,
+        "endChar": 63
+      },
+      "revId": "d23a39a4a3c5d2cabb845dbf10476b86a2c9f82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dbd03d2_52d70754",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T16:25:21Z",
+      "side": 1,
+      "message": "\u003e if you are interested\n\nI was not sure about resv_hugepages, but I guess in this context it is safe to assume the application that has reserved them is not the VPP (DPDK) we are going to launch, so those are not available (even when kernel tracks them as free).\n[3] seems to confirm.\n\nAfter that, here is my thought process:\n\u003e\u003e\u003e free_hugepages \u003d 1818\n\u003e\u003e\u003e nr_hugepages \u003d 2567\n\u003e\u003e\u003e nr_overcommit_hugepages \u003d 4096\n\u003e\u003e\u003e resv_hugepages \u003d 1818\n\u003e\u003e\u003e surplus_hugepages \u003d 1992\n\u003e\u003e\u003e free_persistent_hugepages \u003d free_hugepages - resv_hugepages\n\u003e\u003e\u003e free_nonpersistent_hugepages \u003d nr_overcommit_hugepages - surplus_hugepages\n\u003e\u003e\u003e allocable_hugepages \u003d free_persistent_hugepages + free_nonpersistent_hugepages\n\u003e\u003e\u003e print(free_persistent_hugepages, free_nonpersistent_hugepages, allocable_hugepages)\n0 2104 2104\n\n\u003e So tell me how much free hugepages do i have?\n\nMy first bet is: allocable_hugepages (2104 in this case).\n\n[3] https://stackoverflow.com/q/44186721",
+      "parentUuid": "4b5df51c_8c57cab3",
       "range": {
         "startLine": 812,
         "startChar": 29,
