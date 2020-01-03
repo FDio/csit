@@ -317,7 +317,7 @@ class IPUtil:
         """Set the specified interface up.
 
         :param node: VPP/TG node.
-        :param interface: Interface in namespace.
+        :param interface: Interface name.
         :type node: dict
         :type interface: str
         :raises RuntimeError: If the interface could not be set up.
@@ -326,12 +326,26 @@ class IPUtil:
         exec_cmd_no_error(node, cmd, timeout=30, sudo=True)
 
     @staticmethod
+    def set_linux_interface_down(node, interface):
+        """Set the specified interface down.
+
+        :param node: VPP/TG node.
+        :param interface: Interface name.
+        :type node: dict
+        :type interface: str
+        :raises RuntimeError: If the interface could not be set down.
+        """
+        if interface:
+            cmd = f"ip link set {interface} down"
+            exec_cmd_no_error(node, cmd, timeout=30, sudo=True)
+
+    @staticmethod
     def set_linux_interface_ip(
             node, interface, ip_addr, prefix, namespace=None):
         """Set IP address to interface in linux.
 
         :param node: VPP/TG node.
-        :param interface: Interface in namespace.
+        :param interface: Interface name.
         :param ip_addr: IP to be set on interface.
         :param prefix: IP prefix.
         :param namespace: Execute command in namespace. Optional
