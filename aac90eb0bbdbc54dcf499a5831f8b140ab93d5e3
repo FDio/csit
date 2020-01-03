@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98cb45f9_512841fb",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T14:04:07Z",
+      "side": 1,
+      "message": "That is not trex limit but system hugepages limit. I forgot to increase.\nRemove the commentary",
+      "range": {
+        "startLine": 187,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 59
+      },
+      "revId": "aac90eb0bbdbc54dcf499a5831f8b140ab93d5e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88773422_71101a1f",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-03T14:04:07Z",
+      "side": 1,
+      "message": "OptionString is not really designed for combo commands so i suggest little bit more ugly but better approach?:\n\n            cd_cmd.add(f\"cd {Constants.TREX_INSTALL_DIR}/scripts/\")\n            trex_cmd.add(u\"nohup ./t-rex-64\")\n            trex_cmd.add(u\"--hdrh\")\n            trex_cmd.add(u\"--prefix $(hostname)\")\n            trex_cmd.add_if(u\"--astf\", osi_layer \u003d\u003d u\"L7\")\n            trex_cmd.add(u\"-i\")\n            trex_cmd.add(f\"-c {Constants.TREX_CORE_COUNT}\")\n\t    trex_cmd.add(f\"{Constants.TREX_EXTRA_CMDLINE}\")\n\nLooking into OptionString it cannot even handle -- and - from add_with_value in same class (as it is driven via __init__).",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 348,
+        "endChar": 4
+      },
+      "revId": "aac90eb0bbdbc54dcf499a5831f8b140ab93d5e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
