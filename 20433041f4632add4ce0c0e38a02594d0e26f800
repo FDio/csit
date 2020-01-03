@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d5b7732_b8aedf1c",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T16:47:39Z",
+      "side": 1,
+      "message": "Ah, I realized that create_namespace is an instance method (not a static method), so this call is wrong.\n\nHistorically, we have implemented two ways to access global state (in this case the _namespaces field of the Namespace instance created when Robot imports Namespace module) from a static method.\n\n1) You can store the global state in a class field instead. Example: SSH.__existing_connections (in ssh.py).\n2) Retrieve the created instance by calling BuiltIn().get_library_instance (examples in TrafficGenerator.py).\n\nI do not like either way, but the first one seem less wrong to me.",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 264,
+        "endChar": 35
+      },
+      "revId": "20433041f4632add4ce0c0e38a02594d0e26f800",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
