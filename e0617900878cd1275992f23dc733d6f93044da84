@@ -46,6 +46,30 @@
       "revId": "e0617900878cd1275992f23dc733d6f93044da84",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "839be880_e49c1a6f",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T15:42:05Z",
+      "side": 0,
+      "message": "\u003e Why are we doing this?\n\nGood question. I guess this requirement had sense when the level of documentation (type and meaning of arguments and return values) were of lower quality than today.\n\nPersonally, if you contribute a change that removes the \"A keyword usage example SHALL be the part of the Documentation.\" item from docs/test_code_guidelines.rst\nI would give it +1, but I can imagine Jan having a different opinion.\nProbably worth a discussion on csit-dev (so that people who actually read the generated documentation can chime in).\n\nUntil the item is removed, I prefer to follow the guidelines as currently written.",
+      "parentUuid": "78f1a174_40c4fd32",
+      "range": {
+        "startLine": 563,
+        "startChar": 10,
+        "endLine": 563,
+        "endChar": 20
+      },
+      "revId": "e0617900878cd1275992f23dc733d6f93044da84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
