@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8dcc1558_681af815",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T15:23:32Z",
+      "side": 1,
+      "message": "Put an empty line after the first line, so tools (such as Gerrit) can correctly extract the short message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 27
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cf9d7575_d914018f",
         "filename": "resources/libraries/python/IPUtil.py",
         "patchSetId": 1
