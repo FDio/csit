@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7dbcbeca_64a05575",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T12:08:20Z",
+      "side": 1,
+      "message": "Write what the sequence is.",
+      "range": {
+        "startLine": 128,
+        "startChar": 19,
+        "endLine": 128,
+        "endChar": 27
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39f29890_b487e8e3",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T12:08:20Z",
+      "side": 1,
+      "message": "Update this copypasta.",
+      "range": {
+        "startLine": 168,
+        "startChar": 11,
+        "endLine": 168,
+        "endChar": 27
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c83d1b64_2cf32be5",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T12:08:20Z",
+      "side": 1,
+      "message": "Update this copypasta.",
+      "range": {
+        "startLine": 189,
+        "startChar": 11,
+        "endLine": 189,
+        "endChar": 27
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11053d14_f09839c2",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T12:08:20Z",
+      "side": 1,
+      "message": "Update this copypasta.",
+      "range": {
+        "startLine": 209,
+        "startChar": 11,
+        "endLine": 209,
+        "endChar": 27
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9da3b27f_5d67f001",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T12:08:20Z",
+      "side": 1,
+      "message": "Describe (perhaps in a separate paragraph) what does \"no results bool\" mean and what is included in \"program results\".",
+      "range": {
+        "startLine": 221,
+        "startChar": 27,
+        "endLine": 221,
+        "endChar": 67
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7f2bdba_0bcec4b1",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T12:08:20Z",
+      "side": 1,
+      "message": "Update this copypasta.",
+      "range": {
+        "startLine": 281,
+        "startChar": 11,
+        "endLine": 281,
+        "endChar": 27
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a004663_813c66b8",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T12:08:20Z",
+      "side": 1,
+      "message": "The self before dot is enough.",
+      "range": {
+        "startLine": 36,
+        "startChar": 34,
+        "endLine": 36,
+        "endChar": 40
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0a7b28e_c811bcc4",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T12:08:20Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/c/csit/+/24103/4/resources/libraries/python/Namespaces.py#36",
+      "range": {
+        "startLine": 144,
+        "startChar": 22,
+        "endLine": 144,
+        "endChar": 23
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e9e78b0_7b73cf19",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-03T12:08:20Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/c/csit/+/24103/4/resources/libraries/python/Namespaces.py#36",
+      "range": {
+        "startLine": 148,
+        "startChar": 22,
+        "endLine": 148,
+        "endChar": 23
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
