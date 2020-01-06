@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "fbe50611_01205d67",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-01-06T11:49:18Z",
+      "side": 1,
+      "message": "ok.I agree.",
+      "parentUuid": "cf9d7575_d914018f",
+      "range": {
+        "startLine": 333,
+        "startChar": 36,
+        "endLine": 333,
+        "endChar": 48
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "20988928_2ee29843",
         "filename": "resources/libraries/robot/shared/suite_setup.robot",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2020-01-03T11:57:41Z",
       "side": 1,
       "message": "rename then to intf1_name",
+      "range": {
+        "startLine": 258,
+        "startChar": 6,
+        "endLine": 258,
+        "endChar": 15
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be372f8f_fff17524",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-01-06T11:49:18Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "20988928_2ee29843",
       "range": {
         "startLine": 258,
         "startChar": 6,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "ae8d8c34_05bb2810",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-01-06T11:49:18Z",
+      "side": 1,
+      "message": "Format (*item) is already formatted, using f\"\" will cause an error, so it is right, need not to modify. \ne.g. as the following:\nuse \"{0} / {1} / {2} / {3}\\n\".format(*item) and output:\n880.0 / 89.81 / 940.0 / 98.13\n\nuse f\"{0} / {1} / {2} / {3}\\n\".format(*item) and output:\n0 / 1 / 2 / 3",
+      "parentUuid": "d71e5d32_1543d093",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 3
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f9ace22_44c7faad",
         "filename": "resources/tools/wrk/wrk.py",
         "patchSetId": 1
@@ -105,6 +177,30 @@
       "writtenOn": "2020-01-03T15:21:56Z",
       "side": 1,
       "message": "Does the following work? I am not sure how long the item list is.\n  log_msg +\u003d u\" / \".join(item) + u\"\\n\"",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 194,
+        "endChar": 62
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caacd83f_6809a080",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-01-06T11:49:18Z",
+      "side": 1,
+      "message": "No, because the item contents are float data, not strings, and the join method is for strings and will report an error.",
+      "parentUuid": "8f9ace22_44c7faad",
       "range": {
         "startLine": 194,
         "startChar": 12,
