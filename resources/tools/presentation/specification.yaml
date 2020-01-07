@@ -42,10 +42,7 @@
     DIR[DTR,MRR,VPP,3N,DNV]: "{DIR[DTR]}/vpp_mrr_results_3n_dnv"
     DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
     DIR[DTR,PERF,COT,3N,HSW]: "{DIR[DTR]}/cot_performance_results_3n_hsw"
-    DIR[DTR,FUNC,VPP,UBUNTU]: "{DIR[DTR]}/vpp_functional_results_ubuntu"
-    DIR[DTR,FUNC,VPP,CENTOS]: "{DIR[DTR]}/vpp_functional_results_centos"
     DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
-    DIR[DTR,FUNC,DMM]: "{DIR[DTR]}/dmm_functional_results"
     DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
 
     # Detailed test configurations
@@ -62,8 +59,6 @@
     DIR[DTC,MRR,VPP,3N,TSH]: "{DIR[DTC]}/vpp_mrr_configuration_3n_tsh"
     DIR[DTC,MRR,VPP,3N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_3n_dnv"
     DIR[DTC,MRR,VPP,2N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_2n_dnv"
-    DIR[DTC,FUNC,VPP,UBUNTU]: "{DIR[DTC]}/vpp_functional_configuration_ubuntu"
-    DIR[DTC,FUNC,VPP,CENTOS]: "{DIR[DTC]}/vpp_functional_configuration_centos"
     DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTC]}/vpp_device_configuration_ubuntu"
 
     # Detailed tests operational data
@@ -512,14 +507,6 @@
     vpp-mrr-results-2n-dnv:
       csit-vpp-perf-verify-1908-2n-dnv:
         - 11  # MRR sel
-
-    vpp-func-results-ubuntu:
-      csit-vpp-functional-1908-ubuntu1604-virl:
-        - 64
-
-    vpp-func-results-centos:
-      csit-vpp-functional-1908-centos7-virl:
-        - 64
 
     vpp-device-results-ubuntu:
       csit-vpp-device-1908-ubuntu1804-1n-skx:
@@ -1898,10 +1885,6 @@
     csit-dpdk-perf-verify-master-2n-skx:
       - 16
 
-    csit-vpp-functional-1908-ubuntu1604-virl:
-      - 64
-    csit-vpp-functional-1908-centos7-virl:
-      - 64
     csit-vpp-device-1908-ubuntu1804-1n-skx:
       - 65
 
@@ -3585,109 +3568,6 @@
   - "name"
   - "conf-history"
 
-# Detailed Test Results - VPP Functional Results - Ubuntu
-- type: "table"
-  title: "Detailed Test Results - VPP Functional Results - Ubuntu"
-  algorithm: "table_details"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTR,FUNC,VPP,UBUNTU]}/vpp_functional_results_ubuntu"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "Documentation"
-    data: "data doc"
-  - title: "Status"
-    data: "data status"
-  rows: "generated"
-  data: "vpp-func-results-ubuntu"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "doc"
-  - "status"
-
-# Detailed Test Results - VPP Functional Results - CentOS
-- type: "table"
-  title: "Detailed Test Results - VPP Functional Results - CentOS"
-  algorithm: "table_details"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTR,FUNC,VPP,CENTOS]}/vpp_functional_results_centos"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "Documentation"
-    data: "data doc"
-  -
-    title: "Status"
-    data: "data status"
-  rows: "generated"
-  data:
-    "vpp-func-results-centos"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "doc"
-  - "status"
-
-# Test configuration - VPP Functional Test Configs - Ubuntu
-- type: "table"
-  title: "Test configuration - VPP Functional Test Configs - Ubuntu"
-  algorithm: "table_details"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTC,FUNC,VPP,UBUNTU]}/vpp_functional_configuration_ubuntu"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "VPP API Test Commands History - Commands Used Per Test Case"
-    data: "data conf-history"
-  rows: "generated"
-  data: "vpp-func-results-ubuntu"
-  filter: "all"
-  parameters:
-  - "parent"
-  - "name"
-  - "conf-history"
-
-# Test configuration - VPP Functional Test Configs - CentOS
-- type: "table"
-  title: "Test configuration - VPP Functional Test Configs - CentOS"
-  algorithm: "table_details"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTC,FUNC,VPP,CENTOS]}/vpp_functional_configuration_centos"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "VPP API Test Commands History - Commands Used Per Test Case"
-    data: "data conf-history"
-  rows: "generated"
-  data: "vpp-func-results-centos"
-  filter: "all"
-  parameters:
-  - "parent"
-  - "name"
-  - "conf-history"
-
-## Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw
-#- type: "table"
-#  title: "Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw"
-#  algorithm: "table_details"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTR,PERF,COT,3N,HSW]}/cot_performance_results_3n_hsw"
-#  columns:
-#  - title: "Name"
-#    data: "data name"
-#  - title: "Status"
-#    data: "data msg"
-#  rows: "generated"
-#  data: "ligato-perf-results-3n-hsw"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
-
 # Detailed Test Results - VPP Device Results - Ubuntu
 - type: "table"
   title: "Detailed Test Results - VPP Device Results - Ubuntu"
@@ -4635,76 +4515,6 @@
   dir-tables: "{DIR[DTC,MRR,VPP,2N,DNV]}"
   data: "vpp-mrr-results-2n-dnv"
   filter: "'MRR'"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
-  data-start-level: 3
-
-# VPP Functional Results - Ubuntu
-- type: "file"
-  title: "VPP Functional Results - Ubuntu"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTR,FUNC,VPP,UBUNTU]}/vpp_functional_results_ubuntu"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,FUNC,VPP,UBUNTU]}"
-  data: "vpp-func-results-ubuntu"
-  filter: "all"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
-  data-start-level: 3
-
-# VPP Functional Results - CentOS
-- type: "file"
-  title: "VPP Functional Results - CentOS"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTR,FUNC,VPP,CENTOS]}/vpp_functional_results_centos"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,FUNC,VPP,CENTOS]}"
-  data:
-    "vpp-func-results-centos"
-  filter: "all"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
-  data-start-level: 3
-
-# VPP Functional Configuration - Ubuntu
-- type: "file"
-  title: "VPP Functional Configuration - Ubuntu"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTC,FUNC,VPP,UBUNTU]}/vpp_functional_configuration_ubuntu"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTC,FUNC,VPP,UBUNTU]}"
-  data: "vpp-func-results-ubuntu"
-  filter: "all"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
-  data-start-level: 3
-
-# VPP Functional Configuration - CentOS
-- type: "file"
-  title: "VPP Functional Configuration - CentOS"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTC,FUNC,VPP,CENTOS]}/vpp_functional_configuration_centos"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTC,FUNC,VPP,CENTOS]}"
-  data:
-    "vpp-func-results-centos"
-  filter: "all"
   parameters:
   - "name"
   - "doc"
