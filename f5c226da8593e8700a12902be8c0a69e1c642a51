@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9abeaad2_461c29f2",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-07T15:06:04Z",
+      "side": 1,
+      "message": "\u003e namespace in stdout\n\u003e \n\u003e I suspect the stdout ends with \u0027\\n\u0027, but namespace does not.\n\nIt does not:\n\n$ sudo ip netns add foo\n$ echo \"|$(ip netns list foo)|\"\n|foo|\n$",
+      "parentUuid": "0e065ca4_25059f98",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 34
+      },
+      "revId": "f5c226da8593e8700a12902be8c0a69e1c642a51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6c43e5d_8b90aab8",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 12
@@ -45,6 +69,30 @@
       "revId": "f5c226da8593e8700a12902be8c0a69e1c642a51",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cfe9a3e_ab794e81",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-07T15:06:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6c43e5d_8b90aab8",
+      "range": {
+        "startLine": 157,
+        "startChar": 48,
+        "endLine": 157,
+        "endChar": 49
+      },
+      "revId": "f5c226da8593e8700a12902be8c0a69e1c642a51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -91,6 +139,30 @@
       "revId": "f5c226da8593e8700a12902be8c0a69e1c642a51",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd6a933b_187819d5",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-07T15:06:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3e2e81d_acfd8ef0",
+      "range": {
+        "startLine": 720,
+        "startChar": 15,
+        "endLine": 720,
+        "endChar": 16
+      },
+      "revId": "f5c226da8593e8700a12902be8c0a69e1c642a51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
