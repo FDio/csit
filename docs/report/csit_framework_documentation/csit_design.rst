@@ -97,10 +97,6 @@ A brief bottom-up description is provided here:
 #. Tests - Robot:
 
    - Test suites with test cases;
-   - Functional tests using VIRL environment:
-
-     - VPP;
-     - Honeycomb;
 
    - Performance tests using physical testbed environment:
 
