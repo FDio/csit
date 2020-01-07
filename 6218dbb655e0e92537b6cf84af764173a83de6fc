@@ -119,6 +119,29 @@
     },
     {
       "key": {
+        "uuid": "2578cd30_c6e9c347",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-07T14:10:29Z",
+      "side": 1,
+      "message": "Alternatively, you can list well-named variable names here (so previous \"item\" elements are assigned to them):\n  avg, stdev, max, plusminus",
+      "range": {
+        "startLine": 188,
+        "startChar": 12,
+        "endLine": 188,
+        "endChar": 16
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d71e5d32_1543d093",
         "filename": "resources/tools/wrk/wrk.py",
         "patchSetId": 1
@@ -166,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "614a1edd_95f4447b",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-07T14:10:29Z",
+      "side": 1,
+      "message": "I think this would be what Peter wants:\n  log_msg +\u003d f\"{item[0]} / {item[1]} / {item[2]} / {item[3]}\\n\"",
+      "parentUuid": "ae8d8c34_05bb2810",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 3
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f9ace22_44c7faad",
         "filename": "resources/tools/wrk/wrk.py",
         "patchSetId": 1
@@ -201,6 +248,30 @@
       "side": 1,
       "message": "No, because the item contents are float data, not strings, and the join method is for strings and will report an error.",
       "parentUuid": "8f9ace22_44c7faad",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 194,
+        "endChar": 62
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae55f0e6_3c5e75c4",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-07T14:10:29Z",
+      "side": 1,
+      "message": "\u003e float\n\nAh, ok. Does this one work instead?\n  log_msg +\u003d u\" / \".join(map(str, item)) + u\"\\n\"",
+      "parentUuid": "caacd83f_6809a080",
       "range": {
         "startLine": 194,
         "startChar": 12,
