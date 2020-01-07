@@ -123,7 +123,7 @@ function gather_vpp () {
     # Files read:
     # - ${CSIT_DIR}/DPDK_STABLE_VER - DPDK version to use
     #   by csit-vpp not-timed jobs.
-    # - ${CSIT_DIR}/VPP_STABLE_VER_UBUNTU - Ubuntu VPP version to usee.
+    # - ${CSIT_DIR}/${VPP_VER_FILE} - Ubuntu VPP version to use.
     # - ../*vpp*.deb|rpm - Relative to ${DOWNLOAD_DIR}, copied for vpp-csit jobs.
     # Directories updated:
     # - ${DOWNLOAD_DIR}, vpp-*.deb files are copied here for vpp-csit jobs.
