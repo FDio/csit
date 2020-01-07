@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "275ca892_452c3538",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-07T16:10:17Z",
+      "side": 1,
+      "message": "I just realized [0] says the persistent hugepages are distributed accross all NUMA nodes (skipping those without enough continuous free memory).\n\nSo reading from /sys/devices/system/node/node{numa}/hugepages/hugepages-{size}kB/ may be better. Although I am not sure about the info there (whether free_hugepages is equal to free_hugepages from /mm/, or to free_hugepages - resv_hugepages).",
+      "range": {
+        "startLine": 720,
+        "startChar": 24,
+        "endLine": 720,
+        "endChar": 49
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91e6375f_4765b791",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-07T16:10:17Z",
+      "side": 1,
+      "message": "] - hugepages[u\"resv_hugepages\"]\n\nAfter that edit I still think we should add the results of lines 758 and 762, but it is ok to use only a single value if we want to be conservative.",
+      "range": {
+        "startLine": 762,
+        "startChar": 56,
+        "endLine": 762,
+        "endChar": 57
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4d009f0_dfd238a8",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-07T16:10:17Z",
+      "side": 1,
+      "message": "/\n\n// rounds down, e.g. 1000//1024 \u003d\u003d 0\nand Python has no problem comparing a float to an int.",
+      "range": {
+        "startLine": 764,
+        "startChar": 30,
+        "endLine": 764,
+        "endChar": 32
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47f66d0f_0d34c082",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-07T16:10:17Z",
+      "side": 1,
+      "message": "What does this magic do? I would understand * 2 as (I believe) our machines have 2 numas.",
+      "range": {
+        "startLine": 769,
+        "startChar": 48,
+        "endLine": 769,
+        "endChar": 52
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
