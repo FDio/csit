@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ab76625_5353f6d7",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-07T07:21:46Z",
+      "side": 1,
+      "message": "4096 is number of hugepages not GB",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 2
+      },
+      "revId": "a78bf9e5f03f13ff597e913494b1915ab6fbc3b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
