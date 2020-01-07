@@ -18,16 +18,17 @@ import time
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
-from .DropRateSearch import DropRateSearch
 from .Constants import Constants
-from .ssh import exec_cmd_no_error, exec_cmd
-from .topology import NodeType
-from .topology import NodeSubTypeTG
-from .topology import Topology
+from .DropRateSearch import DropRateSearch
 from .MLRsearch.AbstractMeasurer import AbstractMeasurer
 from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
 from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
 from .PLRsearch.PLRsearch import PLRsearch
+from .OptionString import OptionString
+from .ssh import exec_cmd_no_error, exec_cmd
+from .topology import NodeType
+from .topology import NodeSubTypeTG
+from .topology import Topology
 
 __all__ = [u"TGDropRateSearchImpl", u"TrafficGenerator", u"OptimizedSearch"]
 
@@ -344,11 +345,17 @@ class TrafficGenerator(AbstractMeasurer):
             )
 
             # Start TRex.
-            cmd = f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && " \
-                f"nohup ./t-rex-64 -i -c {Constants.TREX_CORE_COUNT} --hdrh " \
-                f"{u' --astf' if osi_layer == u'L7' else u''} " \
-                f"--prefix $(hostname) {Constants.TREX_EXTRA_CMDLINE} " \
-                f"> /tmp/trex.log 2>&1 &\" > /dev/null"
+            cd_cmd = f"cd '{Constants.TREX_INSTALL_DIR}/scripts/'"
+            trex_cmd = OptionString([u"nohup", u"./t-rex-64"])
+            trex_cmd.add(u"-i")
+            trex_cmd.add(f"-c {Constants.TREX_CORE_COUNT}")
+            trex_cmd.add(u"--prefix $(hostname)")
+            trex_cmd.add(u"--hdrh")
+            trex_cmd.add_if(u"--astf", osi_layer == u"L7")
+            # OptionString does not create double space if extra is empty.
+            trex_cmd.add(f"{Constants.TREX_EXTRA_CMDLINE}")
+            inner_command = f"{cd_cmd} && {trex_cmd} > /tmp/trex.log 2>&1 &"
+            cmd = f"sh -c \"{inner_command}\" > /dev/null"
             try:
                 exec_cmd_no_error(self._node, cmd, sudo=True)
             except RuntimeError:
@@ -371,6 +378,7 @@ class TrafficGenerator(AbstractMeasurer):
             return
         # After max retries TRex is still not responding to API critical error
         # occurred.
+        exec_cmd(self._node, u"cat /tmp/trex.log", sudo=True)
         raise RuntimeError(u"Start TRex failed after multiple retries!")
 
     @staticmethod
