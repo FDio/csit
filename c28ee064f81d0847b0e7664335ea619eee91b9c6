@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "dfbc823d_1f8f8e26",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-07T13:59:32Z",
+      "side": 1,
+      "message": "\u003e \"no results\" is self explanatory\n\nIt is not. Instead, \"no stdout\" would be closer to being self-explanatory.\n\n\u003e each test program returns different results\n\nYes, parts of the \"results\" come from the program stdout, so it depends on the chosen program (also on other args and attrs).\nBut the \"results\" can also contain stderr, NSIM formatted attributes, ls of .log files created, and explanation sentences. I imagine, on error the test_results is full of various debug outputs, while no_results\u003d\u003dTrue.\n\nIn other words, \"results\" is an overloaded phrase. Perhaps can be split into \"program results\" (stdout only) and \"test results\" (includes various debug outputs).\nOr perhaps keep \"results\" for program output, but \"analysis\" for the second return value.\n\n\u003e writing code in anticipation of new features that may never be implemented\n\nThe documentation can stay vague both on the meaning of program stdout and on the list of debug outputs added to the test results, but it should explain the intended usage of the return values.\nI imagine the current intended usage is \"if no_results\u003d\u003dTrue, the test has failed\" and \"test_results is to be logged, so humans can investigate when needed\".",
+      "parentUuid": "c1e13913_60f787b0",
+      "range": {
+        "startLine": 221,
+        "startChar": 27,
+        "endLine": 221,
+        "endChar": 67
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7f2bdba_0bcec4b1",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 6
@@ -281,6 +305,29 @@
       "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96b30976_ddc96e33",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-07T13:59:32Z",
+      "side": 1,
+      "message": "None (default), or name of Linux (netns) namespace.\n\nIf meaning of None is not self-explanatory, add a paragraph explaining it.\nApplies to all lines describing namespace param.",
+      "range": {
+        "startLine": 364,
+        "startChar": 26,
+        "endLine": 364,
+        "endChar": 64
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     },
     {
       "key": {
