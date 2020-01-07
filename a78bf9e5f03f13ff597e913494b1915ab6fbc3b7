@@ -22,6 +22,30 @@
       "revId": "a78bf9e5f03f13ff597e913494b1915ab6fbc3b7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc5c03dc_5738d3a5",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-07T09:26:37Z",
+      "side": 1,
+      "message": "The EAL error message [0] is about megabytes. But reworded in the next patch.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-skx/1019/archives/log.html.gz#s1-s1-s1-s1-s1-k1-k20-k1-k1-k1-k1-k1",
+      "parentUuid": "4ab76625_5353f6d7",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 2
+      },
+      "revId": "a78bf9e5f03f13ff597e913494b1915ab6fbc3b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
