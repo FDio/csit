@@ -331,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "60f3a6e2_47a5a4ba",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-07T15:06:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96b30976_ddc96e33",
+      "range": {
+        "startLine": 364,
+        "startChar": 26,
+        "endLine": 364,
+        "endChar": 64
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a004663_813c66b8",
         "filename": "resources/libraries/python/Namespaces.py",
         "patchSetId": 6
