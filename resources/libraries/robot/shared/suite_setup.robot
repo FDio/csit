@@ -117,7 +117,7 @@
 | | | Append Node | ${nodes['${dut}']} | filter_list=${nic_model_list}
 | | END
 | | Append Node | ${nodes['@{duts}[0]']} | filter_list=${nic_model_list}
-| | Compute Path | always_same_link=${FALSE}
+| | Compute Path | always_same_link=${TRUE}
 | | FOR | ${i} | IN RANGE | 1 | ${DATAPATH_INTERFACES_MAX}
 | | | ${dutx_if} | ${dutx}= | Next Interface
 | | | Run Keyword If | '${dutx_if}' == 'None' | EXIT FOR LOOP
