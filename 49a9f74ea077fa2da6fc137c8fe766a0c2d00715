@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e4f3978_53c6cb09",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-08T13:30:22Z",
+      "side": 1,
+      "message": "Do you want to create a python class (or at least a namedtuple) for this? \u0027program.name\u0027 is more readable than \u0027program[u\"name\"]\u0027.",
+      "range": {
+        "startLine": 31,
+        "startChar": 31,
+        "endLine": 31,
+        "endChar": 41
+      },
+      "revId": "49a9f74ea077fa2da6fc137c8fe766a0c2d00715",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51d31d7a_5f9ad12f",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-08T13:30:22Z",
+      "side": 1,
+      "message": "I think it is time to create Namespace.exec_cmd_in_namespace (also _no_error version, both accepting None).\nOn the other hand, some commands need sh -c and proper quoting, which will be tricky to get right.\nSo perhaps just add a TODO to do that later.",
+      "range": {
+        "startLine": 372,
+        "startChar": 8,
+        "endLine": 372,
+        "endChar": 10
+      },
+      "revId": "49a9f74ea077fa2da6fc137c8fe766a0c2d00715",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
