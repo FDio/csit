@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "18503056_7091d6d3",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-08T08:09:29Z",
+      "side": 1,
+      "message": "I would for now stick with global Hugepages counter. As we are using both numas and writing to /mm will increase both of them to that number.",
+      "parentUuid": "275ca892_452c3538",
+      "range": {
+        "startLine": 720,
+        "startChar": 24,
+        "endLine": 720,
+        "endChar": 49
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "91e6375f_4765b791",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2020-01-07T16:10:17Z",
       "side": 1,
       "message": "] - hugepages[u\"resv_hugepages\"]\n\nAfter that edit I still think we should add the results of lines 758 and 762, but it is ok to use only a single value if we want to be conservative.",
+      "range": {
+        "startLine": 762,
+        "startChar": 56,
+        "endLine": 762,
+        "endChar": 57
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c5aa826_fac7ea09",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-08T08:09:29Z",
+      "side": 1,
+      "message": "When there is not overcommit configured there is no results of 756 (they are zeroed)",
+      "parentUuid": "91e6375f_4765b791",
       "range": {
         "startLine": 762,
         "startChar": 56,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "6bafa1f4_c277e616",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-08T08:09:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e4d009f0_dfd238a8",
+      "range": {
+        "startLine": 764,
+        "startChar": 30,
+        "endLine": 764,
+        "endChar": 32
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47f66d0f_0d34c082",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2020-01-07T16:10:17Z",
       "side": 1,
       "message": "What does this magic do? I would understand * 2 as (I believe) our machines have 2 numas.",
+      "range": {
+        "startLine": 769,
+        "startChar": 48,
+        "endLine": 769,
+        "endChar": 52
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed317e82_d6785c92",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-08T08:09:29Z",
+      "side": 1,
+      "message": "Not related to numas. \"must be greater than or equal to (2 * vm.nr_hugepages).\" - doc. So rule of thumbs from previous experiments and 4 is higher than 2*nr_huge",
+      "parentUuid": "47f66d0f_0d34c082",
       "range": {
         "startLine": 769,
         "startChar": 48,
