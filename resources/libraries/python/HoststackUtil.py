@@ -15,6 +15,7 @@
 from time import sleep
 from robot.api import logger
 
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.DUTSetup import DUTSetup
@@ -54,6 +55,49 @@ class HoststackUtil(object):
         if vpp_echo_attributes[u"tx_results_diff"] == True:
             vpp_echo_cmd[u"args"] += u" tx-results-diff"
         return vpp_echo_cmd
+
+    @staticmethod
+    def get_iperf3_command(iperf3_attributes):
+        """Construct the iperf3 command using the specified attributes.
+
+        :param iperf3_attributes: iperf3 test program attributes.
+        :type iperf3_attributes: dict
+        :returns: Command line components of the iperf3 command
+            'env_vars' - environment variables
+            'name' - program name
+            'args' - command arguments.
+        :rtype: dict
+        """
+        # TODO: Use a python class instead of dictionary for the return type
+        iperf3_cmd = {}
+        iperf3_cmd[u"env_vars"] = f"VCL_CONFIG={Constants.REMOTE_FW_DIR}/" \
+            f"{Constants.RESOURCES_TPL_VCL}/" \
+            f"{iperf3_attributes[u'vcl_config']}"
+        if iperf3_attributes[u'ld_preload'] == True:
+            iperf3_cmd[u"env_vars"] += \
+                f" LD_PRELOAD={Constants.VCL_LDPRELOAD_LIBRARY}"
+        if iperf3_attributes[u'transparent_tls'] == True:
+            iperf3_cmd[u"env_vars"] += u" LDP_ENV_TLS_TRANS=1"
+
+        json_results = u" --json" if iperf3_attributes[u'json'] == True else u""
+        ip_address = f" {iperf3_attributes[u'ip_address']}" if u"ip_address" \
+                     in iperf3_attributes else u""
+        iperf3_cmd[u"name"] = u"iperf3"
+        iperf3_cmd[u"args"] = f"--{iperf3_attributes[u'role']}{ip_address} " \
+                              f"--interval 0{json_results} " \
+                              f"--version{iperf3_attributes[u'ip_version']}"
+
+        if iperf3_attributes[u"role"] == u"server":
+            iperf3_cmd[u"args"] += u" --one-off"
+        else:
+            iperf3_cmd[u"args"] += u" --get-server-output"
+            if u"parallel" in iperf3_attributes:
+                iperf3_cmd[u"args"] += \
+                    f" --parallel {iperf3_attributes[u'parallel']}"
+            if u"time" in iperf3_attributes:
+                iperf3_cmd[u"args"] += \
+                    f" --time {iperf3_attributes[u'time']}"
+        return iperf3_cmd
 
     @staticmethod
     def set_hoststack_quic_fifo_size(node, fifo_size):
