@@ -15,6 +15,7 @@
 from time import sleep
 from robot.api import logger
 
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.DUTSetup import DUTSetup
@@ -56,13 +57,56 @@ class HoststackUtil():
         return vpp_echo_cmd
 
     @staticmethod
+    def get_iperf3_command(iperf3_attributes):
+        """Construct the iperf3 command using the specified attributes.
+
+        :param iperf3_attributes: iperf3 test program attributes.
+        :type iperf3_attributes: dict
+        :returns: Command line components of the iperf3 command
+            'env_vars' - environment variables
+            'name' - program name
+            'args' - command arguments.
+        :rtype: dict
+        """
+        # TODO: Use a python class instead of dictionary for the return type
+        iperf3_cmd = {}
+        iperf3_cmd[u"env_vars"] = f"VCL_CONFIG={Constants.REMOTE_FW_DIR}/" \
+            f"{Constants.RESOURCES_TPL_VCL}/" \
+            f"{iperf3_attributes[u'vcl_config']}"
+        if iperf3_attributes[u'ld_preload']:
+            iperf3_cmd[u"env_vars"] += \
+                f" LD_PRELOAD={Constants.VCL_LDPRELOAD_LIBRARY}"
+        if iperf3_attributes[u'transparent_tls']:
+            iperf3_cmd[u"env_vars"] += u" LDP_ENV_TLS_TRANS=1"
+
+        json_results = u" --json" if iperf3_attributes[u'json'] else u""
+        ip_address = f" {iperf3_attributes[u'ip_address']}" if u"ip_address" \
+                     in iperf3_attributes else u""
+        iperf3_cmd[u"name"] = u"iperf3"
+        iperf3_cmd[u"args"] = f"--{iperf3_attributes[u'role']}{ip_address} " \
+                              f"--interval 0{json_results} " \
+                              f"--version{iperf3_attributes[u'ip_version']}"
+
+        if iperf3_attributes[u"role"] == u"server":
+            iperf3_cmd[u"args"] += u" --one-off"
+        else:
+            iperf3_cmd[u"args"] += u" --get-server-output"
+            if u"parallel" in iperf3_attributes:
+                iperf3_cmd[u"args"] += \
+                    f" --parallel {iperf3_attributes[u'parallel']}"
+            if u"bytes" in iperf3_attributes:
+                iperf3_cmd[u"args"] += \
+                    f" --bytes {iperf3_attributes[u'bytes']}"
+        return iperf3_cmd
+
+    @staticmethod
     def set_hoststack_quic_fifo_size(node, fifo_size):
         """Set the QUIC protocol fifo size.
 
         :param node: Node to set the QUIC fifo size on.
         :param fifo_size: fifo size, passed to the quic set fifo-size command.
         :type node: dict
-        :type fifo_size: str
+        :type fifo_size: string
         """
         cmd = f"quic set fifo-size {fifo_size}"
         PapiSocketExecutor.run_cli_cmd(node, cmd)
@@ -75,7 +119,7 @@ class HoststackUtil():
         :param node: Node to enable/disable HostStack.
         :param quic_crypto_engine: type of crypto engine
         :type node: dict
-        :type quic_crypto_engine: str
+        :type quic_crypto_engine: string
         """
         vpp_crypto_engines = {u"openssl", u"ia32", u"ipsecmb"}
         if quic_crypto_engine == u"nocrypto":
@@ -125,7 +169,7 @@ class HoststackUtil():
         :param namespace: Net Namespace to run program in.
         :param program: Test program.
         :type node: dict
-        :type namespace: str
+        :type namespace: string
         :type program: dict
         :returns: Process ID
         :rtype: int
@@ -188,7 +232,7 @@ class HoststackUtil():
         :param node: DUT node.
         :param program_pid: test program pid.
         :type node: dict
-        :type program_pid: str
+        :type program_pid: string
         :raises RuntimeError: If node subtype is not a DUT.
         """
         if node[u"type"] != u"DUT":
@@ -211,7 +255,7 @@ class HoststackUtil():
         :param program: Test program.
         :param program_args: List of test program args.
         :type node: dict
-        :type role: str
+        :type role: string
         :type nsim_attr: dict
         :type program: dict
         :returns: tuple of no results bool and test program results.
