@@ -74,6 +74,27 @@
 | ... | tx_bytes=0
 | ... | rx_results_diff=${False}
 | ... | tx_results_diff=${False}
+| &{iperf3_server_attr}=
+| ... | role=server
+| ... | cfg_vpp_feature=${Empty}
+| ... | namespace=default
+| ... | vcl_config=vcl_iperf3.conf
+| ... | ld_preload=${True}
+| ... | transparent_tls=${False}
+| ... | json=${False}
+| ... | ip_version=${4}
+| &{iperf3_client_attr}=
+| ... | role=client
+| ... | cfg_vpp_feature=${Empty}
+| ... | namespace=default
+| ... | vcl_config=vcl_iperf3.conf
+| ... | ld_preload=${True}
+| ... | transparent_tls=${False}
+| ... | json=${False}
+| ... | ip_version=${4}
+| ... | ip_address=${EMPTY}
+| ... | parallel=${1}
+| ... | time=${30}
 
 *** Keywords ***
 | Set VPP Hoststack Attributes
@@ -246,6 +267,68 @@
 | | Set To Dictionary
 | | ... | ${vpp_echo_client_attr} | tx_results_diff | ${tx_results_diff}
 
+| Set Iperf3 Server Attributes
+| | [Documentation]
+| | ... | Set the HostStack iperf3 test program attributes
+| | ... | in the iperf3_server_attr dictionary.
+| |
+| | ... | *Arguments:*
+| | ... | - ${vcl_config} - VCL configuration file name Type: string
+| | ... | - ${ld_preload} - Use the VCL LD_PRELOAD library Type: bool
+| | ... | - ${transparent_tls} - Use VCL Transparent-TLS mode Type: bool
+| | ... | - ${ip_version} - IP version (4 or 6) Type: int
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set Iperf3 Server Attributes \| vcl_config=${vcl_config} \|
+| | ... | \| ip_version=${ip_version} \|
+| |
+| | [Arguments]
+| | ... | ${vcl_config}=${iperf3_server_attr}[vcl_config]
+| | ... | ${ld_preload}=${iperf3_server_attr}[ld_preload]
+| | ... | ${transparent_tls}=${iperf3_server_attr}[transparent_tls]
+| | ... | ${ip_version}=${iperf3_server_attr}[ip_version]
+| |
+| | Set To Dictionary | ${iperf3_server_attr} | vcl_config | ${vcl_config}
+| | Set To Dictionary | ${iperf3_server_attr} | ld_preload | ${ld_preload}
+| | Set To Dictionary | ${iperf3_server_attr} | transparent_tls
+| | ... | ${transparent_tls}
+| | Set To Dictionary | ${iperf3_server_attr} | ip_version | ${ip_version}
+
+| Set Iperf3 Client Attributes
+| | [Documentation]
+| | ... | Set the HostStack iperf3 test program attributes
+| | ... | in the iperf3_client_attr dictionary.
+| |
+| | ... | *Arguments:*
+| | ... | - ${vcl_config} - VCL configuration file name Type: string
+| | ... | - ${ld_preload} - Use the VCL LD_PRELOAD library Type: bool
+| | ... | - ${transparent_tls} - Use VCL Transparent-TLS mode Type: bool
+| | ... | - ${ip_version} - IP version (4 or 6) Type: int
+| | ... | - ${parallel} - Number of parallel streams Type: int
+| | ... | - ${time} - Duration in seconds of the test Type: int
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set Iperf3 Client Attributes \| vcl_config=${vcl_config} \|
+| | ... | \| ip_version=${ip_version} \| parallel=${parallel} \|
+| |
+| | [Arguments]
+| | ... | ${vcl_config}=${iperf3_client_attr}[vcl_config]
+| | ... | ${ld_preload}=${iperf3_client_attr}[ld_preload]
+| | ... | ${transparent_tls}=${iperf3_client_attr}[transparent_tls]
+| | ... | ${ip_version}=${iperf3_client_attr}[ip_version]
+| | ... | ${parallel}=${iperf3_client_attr}[parallel]
+| | ... | ${time}=${iperf3_client_attr}[time]
+| |
+| | Set To Dictionary | ${iperf3_client_attr} | vcl_config | ${vcl_config}
+| | Set To Dictionary | ${iperf3_client_attr} | ld_preload | ${ld_preload}
+| | Set To Dictionary | ${iperf3_client_attr} | transparent_tls
+| | ... | ${transparent_tls}
+| | Set To Dictionary | ${iperf3_client_attr} | ip_version | ${ip_version}
+| | Set To Dictionary | ${iperf3_client_attr} | parallel | ${parallel}
+| | Set To Dictionary | ${iperf3_client_attr} | time | ${time}
+
 | Run hoststack test program on DUT
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start the specified
@@ -299,8 +382,10 @@
 | | [Documentation]
 | | ... | Configure VPP HostStack attributes on all DUTs.
 | |
+| | Set Max Rate And Jumbo
 | | Add worker threads to all DUTs
 | | ... | ${vpp_hoststack_attr}[phy_cores] | ${vpp_hoststack_attr}[rxq]
+| | Pre-initialize layer driver | ${nic_driver}
 | | Add DPDK PCI devices to all DUTs
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | FOR | ${dut} | IN | @{duts}
@@ -370,3 +455,31 @@
 | | Set test message | ${server_output} | append=True
 | | Run Keyword And Return | No Hoststack Test Program Results
 | | ... | ${server_no_results} | ${client_no_results}
+
+| Get Test Results From Hoststack Iperf3 Test
+| | [Documentation]
+| | ... | Configure IP address on the port, set it up and start the specified
+| | ... | HostStack test programs on the DUTs. Gather test program
+| | ... | output and append test results in message.
+| | ... | Return boolean indicating when no results were available from
+| | ... | both the server and client test programs.
+| |
+| | Set To Dictionary | ${iperf3_client_attr} | ip_address
+| | ... | ${dut2_if1_ip4_addr}
+| | Configure VPP Hoststack Attributes on all DUTs
+| | ${iperf3_server}= | Get Iperf3 Command | ${iperf3_server_attr}
+| | ${server_pid}= | Run hoststack test program on DUT
+| | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
+| | ... | ${iperf3_server_attr}[namespace]
+| | ... | ${iperf3_server_attr}[cfg_vpp_feature] | ${iperf3_server}
+| | ${iperf3_client}= | Get Iperf3 Command | ${iperf3_client_attr}
+| | ${client_pid}= | Run hoststack test program on DUT
+| | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
+| | ... | ${iperf3_client_attr}[namespace]
+| | ... | ${iperf3_client_attr}[cfg_vpp_feature] | ${iperf3_client}
+| | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | ${client_no_results} | ${client_output}=
+| | ... | Analyze hoststack test program output | ${dut1} | Client
+| | ... | ${vpp_nsim_attr} | ${iperf3_client}
+| | Then Set test message | ${client_output}
+| | Return From Keyword | ${client_no_results}
