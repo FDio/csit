@@ -1438,10 +1438,11 @@
             size: 14
           showarrow: False
           text: "<b>Probability [%]</b>"
-          x: 0
+          textangle: 270
+          x: -0.1
           xanchor: "center"
           xref: "paper"
-          y: 1
+          y: 0.5
           yanchor: "bottom"
           yref: "paper"
         - font:
