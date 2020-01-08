@@ -34,7 +34,8 @@ class Testcase:
         """
         self.template = Template(template_string)
 
-    def generate(self, num, frame_size, phy_cores):
+    def generate(self, num, frame_size, phy_cores, clients, streams,
+                 bytes_str):
         """Return string of test case code with placeholders filled.
 
         Fail if there are placeholders left unfilled.
@@ -43,9 +44,16 @@ class Testcase:
         :param num: Test case number. Example value: 4.
         :param frame_size: Imix string or numeric frame size. Example: 74.
         :param phy_cores: Number of physical cores to use. Example: 2.
+        :param clients: Number of clients used by test program. Example: 4.
+        :param streams: Number of streams used by test program. Example: 10.
+        :param bytes_str: Size in bytes of stream sent by test program:
+        :   Example: 1G
         :type num: int
         :type frame_size: str or int
         :type phy_cores: int or str
+        :type clients: int
+        :type streams: int
+        :type bytes_str: str
         :returns: Filled template, usable as test case code.
         :rtype: str
         """
@@ -66,7 +74,12 @@ class Testcase:
             {
                 u"cores_num": f"${{{cores_num:d}}}",
                 u"cores_str": phy_cores,
-                u"tc_num": f"tc{num:02d}"
+                u"tc_num": f"tc{num:02d}",
+                u"clients_num": f"${{{clients:d}}}",
+                u"clients_str": str(clients),
+                u"streams_num": f"${{{streams:d}}}",
+                u"streams_str": str(streams),
+                u"bytes_str": bytes_str,
             }
         )
         return self.template.substitute(subst_dict)
@@ -103,9 +116,16 @@ class Testcase:
         """
         # TODO: Choose a better frame size identifier for streamed protocols
         # (TCP, QUIC, SCTP, ...) where DUT (not TG) decides frame size.
-        template_string = f'''
+        if u"tcphttp" in suite_id:
+            template_string = f'''
 | ${{tc_num}}-IMIX-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{cores_str}}C
 | | phy_cores=${{cores_num}}
+'''
+        else:
+            template_string = f'''
+| ${{tc_num}}-IMIX-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{cores_str}}C | ${{clients_str}}CLIENT | ${{streams_str}}STREAM
+| | phy_cores=${{cores_num}} | clients=${{clients_num}} | streams=${{streams_num}} | bytes=${{bytes_str}} |
 '''
         return cls(template_string)
