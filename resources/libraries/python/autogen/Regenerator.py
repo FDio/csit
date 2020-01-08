@@ -68,7 +68,7 @@ def get_iface_and_suite_id(filename):
     Interface ID is the part of suite name
     which should be replaced for other NIC.
     Suite ID is the part os suite name
-    which si appended to test case names.
+    which is appended to test case names.
 
     :param filename: Suite file.
     :type filename: str
@@ -320,22 +320,56 @@ class Regenerator:
 
         min_frame_size = PROTOCOL_TO_MIN_FRAME_SIZE[protocol]
         default_kwargs_list = [
-            {u"frame_size": min_frame_size, u"phy_cores": 1},
-            {u"frame_size": min_frame_size, u"phy_cores": 2},
-            {u"frame_size": min_frame_size, u"phy_cores": 4},
-            {u"frame_size": 1518, u"phy_cores": 1},
-            {u"frame_size": 1518, u"phy_cores": 2},
-            {u"frame_size": 1518, u"phy_cores": 4},
-            {u"frame_size": 9000, u"phy_cores": 1},
-            {u"frame_size": 9000, u"phy_cores": 2},
-            {u"frame_size": 9000, u"phy_cores": 4},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 1},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 2},
-            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4}
+            {u"frame_size": min_frame_size, u"phy_cores": 1, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": min_frame_size, u"phy_cores": 2, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": min_frame_size, u"phy_cores": 4, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": 1518, u"phy_cores": 1, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": 1518, u"phy_cores": 2, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": 1518, u"phy_cores": 4, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": 9000, u"phy_cores": 1, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": 9000, u"phy_cores": 2, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": 9000, u"phy_cores": 4, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 1, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 2, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"}
         ]
-        tcp_kwargs_list = [
-            {u"phy_cores": i, u"frame_size": 0} for i in (1, 2, 4)
+        hoststack_wrk_kwargs_list = [
+            {u"phy_cores": i, u"frame_size": 0, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"} for i in (1, 2, 4)
         ]
+        hoststack_iperf3_kwargs_list = [
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+             u"streams": 10, u"bytes_str": u"10G"},
+            {u"phy_cores": 2, u"frame_size": 0, u"clients": 1,
+             u"streams": 10, u"bytes_str": u"10G"},
+            {u"phy_cores": 4, u"frame_size": 0, u"clients": 1,
+             u"streams": 10, u"bytes_str": u"10G"},
+        ]
+        hoststack_quic_kwargs_list = [
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"100M"},
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 10,
+             u"streams": 1, u"bytes_str": u"100M"},
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+             u"streams": 10, u"bytes_str": u"100M"},
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 10,
+             u"streams": 10, u"bytes_str": u"100M"},
+        ]
+
         for in_filename in glob(pattern):
             if not self.quiet:
                 print(
@@ -355,7 +389,12 @@ class Regenerator:
             elif in_filename.endswith(u"-reconf.robot"):
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
-                write_tcp_files(in_filename, in_prolog, tcp_kwargs_list)
+                write_tcp_files(in_filename, in_prolog,
+                                hoststack_wrk_kwargs_list)
+            elif in_filename[-10:] in (u"-bps.robot"):
+                write_tcp_files(in_filename, in_prolog,
+                                hoststack_iperf3_kwargs_list if u"iperf3"
+                                in in_filename else hoststack_quic_kwargs_list)
             else:
                 raise RuntimeError(
                     f"Error in {in_filename}: non-primary suite type found."
