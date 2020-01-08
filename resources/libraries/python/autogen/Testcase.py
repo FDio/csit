@@ -34,7 +34,8 @@ class Testcase:
         """
         self.template = Template(template_string)
 
-    def generate(self, num, frame_size, phy_cores):
+    def generate(self, num, frame_size, phy_cores, clients, streams,
+                 bytes_str):
         """Return string of test case code with placeholders filled.
 
         Fail if there are placeholders left unfilled.
@@ -66,7 +67,12 @@ class Testcase:
             {
                 u"cores_num": f"${{{cores_num:d}}}",
                 u"cores_str": phy_cores,
-                u"tc_num": f"tc{num:02d}"
+                u"tc_num": f"tc{num:02d}",
+                u"clients_num": f"${{{clients:d}}}",
+                u"clients_str": f"{clients}",
+                u"streams_num": f"${{{streams:d}}}",
+                u"streams_str": f"{streams:d}",
+                u"bytes_str": f"{bytes_str}",
             }
         )
         return self.template.substitute(subst_dict)
@@ -103,9 +109,16 @@ class Testcase:
         """
         # TODO: Choose a better frame size identifier for streamed protocols
         # (TCP, QUIC, SCTP, ...) where DUT (not TG) decides frame size.
-        template_string = f'''
+        if u"tcphttp" in suite_id:
+            template_string = f'''
 | ${{tc_num}}-IMIX-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{cores_str}}C
 | | phy_cores=${{cores_num}}
+'''
+        else:
+            template_string = f'''
+| ${{tc_num}}-IMIX-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{cores_str}}C | ${{clients_str}}CLIENT | ${{streams_str}}STREAM
+| | phy_cores=${{cores_num}} | clients=${{clients_num}} | streams=${{streams_num}} | bytes=${{bytes_str}} |
 '''
         return cls(template_string)
