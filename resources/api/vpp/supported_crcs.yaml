@@ -269,8 +269,8 @@
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 
-# https://gerrit.fd.io/r/c/vpp/+/22970
-22970/5:
+# https://gerrit.fd.io/r/c/vpp/+/24225
+24225/3:
     acl_add_replace: '0x13bc8539'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
     acl_details: '0xf89d7a88'  # perf teardown
@@ -290,7 +290,7 @@
     bond_enslave_reply: '0xe8d4e804'  # perf
     # 4x^ tc01-64B-1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
     # ^ l2xcfwdANDlbond_1lANDnf_testpmd
-    bridge_domain_add_del: '0x600b7170'  # dev
+    bridge_domain_add_del: '0xc6360720'  # dev
     bridge_domain_add_del_reply: '0xe8d4e804'  # dev
     # bridge_domain_dump / details # honeycomb
     classify_add_del_session: '0xf20879f0'  # dev
@@ -365,9 +365,9 @@
     # ^^ tc01-64B-1c-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-mrr
     # ^ See select_backend.
     # l2_fib_table_dump / details # honeycomb
-    l2_interface_vlan_tag_rewrite: '0x62cc0bbc'  # dev
+    l2_interface_vlan_tag_rewrite: '0xb90be6b4'  # dev
     l2_interface_vlan_tag_rewrite_reply: '0xe8d4e804'  # dev
-    l2_patch_add_del: '0x522f3445'  # perf
+    l2_patch_add_del: '0x62506e63'  # perf
     l2_patch_add_del_reply: '0xe8d4e804'  # perf
     # ^^ tc01-64B-1c-avf-eth-l2patch-mrr # currently failing after calls
     # ^ l2patchANDdrv_avf
@@ -432,7 +432,7 @@
     policer_classify_set_interface: '0xde7ad708'  # dev
     policer_classify_set_interface_reply: '0xe8d4e804'  # dev
     # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
-    rdma_create: '0x541ffa8e'  # perf
+    rdma_create: '0x076fe418'  # perf
     rdma_create_reply: '0x5383d31f'  # perf
     # show_lisp_map_register_state / reply # honeycomb
     # show_lisp_map_request_mode / reply # honeycomb
@@ -476,9 +476,9 @@
     # ^ dot1qANDl2bdmaclrnANDbaseANDmemif
     sw_interface_set_flags: '0x6a2b491a'  # dev
     sw_interface_set_flags_reply: '0xe8d4e804'  # dev
-    sw_interface_set_l2_bridge: '0x2e483cd0'  # dev
+    sw_interface_set_l2_bridge: '0x5579f809'  # dev
     sw_interface_set_l2_bridge_reply: '0xe8d4e804'  # dev
-    sw_interface_set_l2_xconnect: '0x1aaa2dbb'  # dev
+    sw_interface_set_l2_xconnect: '0x95de3988'  # dev
     sw_interface_set_l2_xconnect_reply: '0xe8d4e804'  # dev
     sw_interface_set_rx_placement: '0xdb65f3c9'  # perf
     sw_interface_set_rx_placement_reply: '0xe8d4e804'  # perf
