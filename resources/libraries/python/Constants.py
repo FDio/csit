@@ -145,8 +145,14 @@ class Constants:
     # Container templates location
     RESOURCES_TPL_CONTAINER = u"resources/templates/container"
 
+    # VPP Communications Library templates location
+    RESOURCES_TPL_VCL = u"resources/templates/vcl"
+
     # HTTP Server www root directory
     RESOURCES_TP_WRK_WWW = u"resources/traffic_profiles/wrk/www"
+
+    # VPP Communications Library LD_PRELOAD library
+    VCL_LDPRELOAD_LIBRARY=u"/usr/lib/x86_64-linux-gnu/libvcl_ldpreload.so"
 
     # OpenVPP VAT binary name
     VAT_BIN_NAME = u"vpp_api_test"
