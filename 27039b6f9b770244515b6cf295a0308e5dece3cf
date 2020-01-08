@@ -22,6 +22,30 @@
       "revId": "27039b6f9b770244515b6cf295a0308e5dece3cf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eff2ce2c_ba870ebc",
+        "filename": "resources/libraries/bash/function/mrr-daily-2n-skx.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-08T13:55:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8716b074_61f0025c",
+      "range": {
+        "startLine": 113,
+        "startChar": 24,
+        "endLine": 113,
+        "endChar": 25
+      },
+      "revId": "27039b6f9b770244515b6cf295a0308e5dece3cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
