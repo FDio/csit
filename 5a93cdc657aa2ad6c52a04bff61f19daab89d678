@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96c9a958_5a8a7a32",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-08T16:53:11Z",
+      "side": 1,
+      "message": "If you really want integer division, take care to round up (this rounds down).",
+      "range": {
+        "startLine": 767,
+        "startChar": 30,
+        "endLine": 767,
+        "endChar": 32
+      },
+      "revId": "5a93cdc657aa2ad6c52a04bff61f19daab89d678",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
