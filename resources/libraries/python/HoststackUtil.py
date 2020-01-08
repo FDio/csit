@@ -44,6 +44,8 @@ class HoststackUtil():
             f"socket-name {vpp_echo_attributes[u'vpp_api_socket']} " \
             f"{vpp_echo_attributes[u'json_output']} " \
             f"uri {proto}://{addr}/{port} " \
+            f"nthreads {vpp_echo_attributes[u'nthreads']} " \
+            f"mq-size {vpp_echo_attributes[u'mq_size']} " \
             f"nclients {vpp_echo_attributes[u'nclients']} " \
             f"quic-streams {vpp_echo_attributes[u'quic_streams']} " \
             f"time {vpp_echo_attributes[u'time']} " \
@@ -299,10 +301,20 @@ class HoststackUtil():
             raise RuntimeError(test_results)
         if program_stdout:
             bad_test_results = False
-            if program == u"vpp_echo" and u"JSON stats" not in program_stdout:
-                test_results += u"Invalid test data output!\n"
-                bad_test_results = True
-            test_results += program_stdout
+            if program[u"name"] == u"vpp_echo":
+                if u"JSON stats" in program_stdout:
+                    test_results += program_stdout
+                    # TODO: Decode vpp_echo output when JSON format is correct.
+                    # json_start = program_stdout.find(u"{")
+                    # vpp_echo_results = json.loads(program_stdout[json_start:])
+                    if u'"has_failed": "0"' not in program_stdout:
+                        bad_test_results = True
+                else:
+                    test_results += u"Invalid test data output!\n" + \
+                                    program_stdout
+                    bad_test_results = True
+            else:
+                test_results += program_stdout
             if bad_test_results:
                 raise RuntimeError(test_results)
         else:
