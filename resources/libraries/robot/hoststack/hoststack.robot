@@ -35,8 +35,8 @@
 | ... | api_seg_api_size=1G
 | ... | tcp_cc_algo=cubic
 | ... | sess_evt_q_seg_size=64M
-| ... | sess_evt_q_length=2048
-| ... | sess_prealloc_sess=8
+| ... | sess_evt_q_length=16384
+| ... | sess_prealloc_sess=1024
 | ... | sess_v4_tbl_buckets=20000
 | ... | sess_v4_tbl_mem=64M
 | ... | sess_v4_hopen_buckets=20000
@@ -53,6 +53,8 @@
 | ... | uri_protocol=quic
 | ... | uri_ip4_addr=${EMPTY}
 | ... | uri_port=1234
+| ... | nthreads=1
+| ... | mq_size=${vpp_hoststack_attr}[sess_evt_q_length]
 | ... | nclients=1
 | ... | quic_streams=1
 | ... | time=sconnect:lastbyte
@@ -71,6 +73,8 @@
 | ... | uri_protocol=quic
 | ... | uri_ip4_addr=${EMPTY}
 | ... | uri_port=1234
+| ... | nthreads=1
+| ... | mq_size=${vpp_hoststack_attr}[sess_evt_q_length]
 | ... | nclients=1
 | ... | quic_streams=1
 | ... | time=sconnect:lastbyte
@@ -197,6 +201,8 @@
 | | ... | *Arguments:*
 | | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: string
 | | ... | - ${namespace} - Namespace Type: string
+| | ... | - ${nthreads} - Number of threads Type: string
+| | ... | - ${mq_size} - Number of threads Type: string
 | | ... | - ${nclients} - Number of clients Type: string
 | | ... | - ${quic_streams} - Number of quic streams Type: string
 | | ... | - ${fifo_size} - Session Fifo Size Type: integer
@@ -214,6 +220,8 @@
 | | [Arguments]
 | | ... | ${cfg_vpp_feature}=${vpp_echo_server_attr}[cfg_vpp_feature]
 | | ... | ${namespace}=${vpp_echo_server_attr}[namespace]
+| | ... | ${nthreads}=${vpp_echo_server_attr}[nthreads]
+| | ... | ${mq_size}=${vpp_echo_server_attr}[mq_size]
 | | ... | ${nclients}=${vpp_echo_server_attr}[nclients]
 | | ... | ${quic_streams}=${vpp_echo_server_attr}[quic_streams]
 | | ... | ${time}=${vpp_echo_server_attr}[time]
@@ -226,6 +234,8 @@
 | | Set To Dictionary | ${vpp_echo_server_attr} | cfg_vpp_feature
 | | ... | ${cfg_vpp_feature}
 | | Set To Dictionary | ${vpp_echo_server_attr} | namespace | ${namespace}
+| | Set To Dictionary | ${vpp_echo_server_attr} | nthreads | ${nthreads}
+| | Set To Dictionary | ${vpp_echo_server_attr} | mq_size | ${mq_size}
 | | Set To Dictionary | ${vpp_echo_server_attr} | nclients | ${nclients}
 | | Set To Dictionary | ${vpp_echo_server_attr} | quic_streams | ${quic_streams}
 | | Set To Dictionary | ${vpp_echo_server_attr} | time | ${time}
@@ -245,7 +255,10 @@
 | | ... | *Arguments:*
 | | ... | - ${cfg_vpp_feature} - VPP Feature requiring config Type: string
 | | ... | - ${namespace} - Namespace Type: string
+| | ... | - ${nthreads} - Number of threads Type: string
+| | ... | - ${mq_size} - Number of threads Type: string
 | | ... | - ${nclients} - Number of clients Type: string
+| | ... | - ${quic_streams} - Number of quic streams Type: string
 | | ... | - ${fifo_size} - Session Fifo Size Type: integer
 | | ... | - ${time} - Timing events (start:end) Type: string
 | | ... | - ${rx_bytes} - Number of Bytes to receive Type: string
@@ -261,8 +274,10 @@
 | | [Arguments]
 | | ... | ${cfg_vpp_feature}=${vpp_echo_client_attr}[cfg_vpp_feature]
 | | ... | ${namespace}=${vpp_echo_client_attr}[namespace]
+| | ... | ${nthreads}=${vpp_echo_client_attr}[nthreads]
+| | ... | ${mq_size}=${vpp_echo_client_attr}[mq_size]
 | | ... | ${nclients}=${vpp_echo_client_attr}[nclients]
-| | ... | ${quic_streams}=${vpp_echo_server_attr}[quic_streams]
+| | ... | ${quic_streams}=${vpp_echo_client_attr}[quic_streams]
 | | ... | ${time}=${vpp_echo_client_attr}[time]
 | | ... | ${fifo_size}=${vpp_echo_client_attr}[fifo_size]
 | | ... | ${rx_bytes}=${vpp_echo_client_attr}[rx_bytes]
@@ -273,6 +288,8 @@
 | | Set To Dictionary | ${vpp_echo_client_attr} | cfg_vpp_feature
 | | ... | ${cfg_vpp_feature}
 | | Set To Dictionary | ${vpp_echo_client_attr} | namespace | ${namespace}
+| | Set To Dictionary | ${vpp_echo_client_attr} | nthreads | ${nthreads}
+| | Set To Dictionary | ${vpp_echo_client_attr} | mq_size | ${mq_size}
 | | Set To Dictionary | ${vpp_echo_client_attr} | nclients | ${nclients}
 | | Set To Dictionary | ${vpp_echo_client_attr} | quic_streams | ${quic_streams}
 | | Set To Dictionary | ${vpp_echo_client_attr} | time | ${time}
