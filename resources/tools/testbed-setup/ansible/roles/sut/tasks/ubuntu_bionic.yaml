@@ -5,6 +5,7 @@
   apt:
     name:
       - 'gdb'
+      - 'iperf3'
       - 'libglib2.0-dev'
       - 'libmbedcrypto1'
       - 'libmbedtls10'
