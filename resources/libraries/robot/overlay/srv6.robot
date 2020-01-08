@@ -424,3 +424,77 @@
 | | ... | next_hop=${dut1_nh} | out_if=${dut1_out_if} | in_if=${dut1_in_if}
 | | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
 | | Set interfaces in path up
+
+| Initialize IPv6 forwarding over SRv6 with encapsulation with '${n}' x SID '${prepos}' decapsulation in 2-node circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node circular
+| | ... | topology. Get the interface MAC addresses and setup neighbours on all
+| | ... | VPP interfaces. Setup IPv6 addresses on all interfaces. Set segment
+| | ... | routing for IPv6 for required number of SIDs and configure IPv6 routes
+| | ... | on DUT1 node.
+|
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip6} | ${prefix}
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${dut1_if2} | ${dut1_if2_ip6} | ${prefix}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
+| | FOR | ${number} | IN RANGE | 2 | ${dst_addr_nr}+2
+| | | ${hexa_nr}= | Convert To Hex | ${number}
+| | | VPP Add IP Neighbor | ${dut1}
+| | | ... | ${dut1_if1} | ${tg_if1_ip6_subnet}${hexa_nr} | ${tg_if1_mac}
+| | END
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${dut1_if2} | ${tg_if2_ip6_subnet}2 | ${tg_if2_mac}
+| | ${sid1}= | Set Variable If
+| | ... | "${n}" == "1" | ${dut1_sid2_1}
+| | ... | "${n}" == "2" | ${dut1_sid2_1_1}
+| | ${sid2}= | Set Variable If
+| | ... | "${n}" == "1" | ${dut1_sid1_2}
+| | ... | "${n}" == "2" | ${dut1_sid1_2_1}
+| | Vpp Route Add | ${dut1} | ${sid1} | ${sid_prefix} | gateway=${tg_if2_ip6_subnet}2
+| | ... | interface=${dut1_if2}
+| | Vpp Route Add | ${dut1} | ${sid2} | ${sid_prefix} | gateway=${tg_if1_ip6_subnet}2
+| | ... | interface=${dut1_if1}
+# Configure SRv6 for direction0
+| | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1_1}
+| | @{sid_list_dir0}= | Run Keyword If | "${n}" == "1"
+| | ... | Create List | ${dut1_sid2_1}
+| | ... | ELSE IF | "${n}" == "2"
+| | ... | Create List | ${dut1_sid2_1_1} | ${dut1_sid2_1_2}
+| | Configure SR Policy on DUT | ${dut1} | ${dut1_bsid1} | encap
+| | ... | @{sid_list_dir0}
+| | Configure SR Steer on DUT | ${dut1} | L3 | ${dut1_bsid1}
+| | ... | ip_addr=${tg_if2_ip6_subnet} | prefix=${sid_prefix}
+| | Run Keyword If | "${n}" == "1"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_1} | end.dx6
+| | ... | interface=${dut1_if2} | next_hop=${tg_if2_ip6_subnet}2
+| | Run Keyword If | "${n}" == "2"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_1_1} | end
+| | Run Keyword If | "${n}" == "2" and "${prepos}" != "without"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_1_2} | end.dx6
+| | ... | interface=${dut1_if2} | next_hop=${tg_if2_ip6_subnet}2
+| | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
+| | ... | Vpp Route Add | ${dut1} | ${dut1_sid2_1_2} | ${sid_prefix}
+| | ... | gateway=${tg_if2_ip6_subnet}2 | interface=${dut1_if2}
+# Configure SRv6 for direction1
+| | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid2_2}
+| | @{sid_list_dir1}= | Run Keyword If | "${n}" == "1"
+| | ... | Create List | ${dut1_sid1_2}
+| | ... | ELSE IF | "${n}" == "2"
+| | ... | Create List | ${dut1_sid2_1} | ${dut1_sid2_2}
+| | Configure SR Policy on DUT | ${dut1} | ${dut1_bsid2} | encap
+| | ... | @{sid_list_dir1}
+| | Configure SR Steer on DUT | ${dut1} | L3 | ${dut1_bsid2}
+| | ... | ip_addr=${tg_if1_ip6_subnet} | prefix=${sid_prefix}
+| | Run Keyword If | "${n}" == "1"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid1_2} | end.dx6
+| | ... | interface=${dut1_if1} | next_hop=${tg_if1_ip6_subnet}2
+| | Run Keyword If | "${n}" == "2"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_1} | end
+| | Run Keyword If | "${n}" == "2" and "${prepos}" != "without"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_2} | end.dx6
+| | ... | interface=${dut1_if1} | next_hop=${tg_if1_ip6_subnet}2
+| | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
+| | ... | Vpp Route Add | ${dut1} | ${dut1_sid2_2} | ${sid_prefix}
+| | ... | gateway=${tg_if1_ip6_subnet}2 | interface=${dut1_if1}
+| | Set interfaces in path up
