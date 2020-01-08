@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fe942c05_906d2848",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-08T13:47:26Z",
+      "side": 1,
+      "message": "Alright, but add some debug outputs so we can verify the number of free hugepages decreases on the correct numa.",
+      "parentUuid": "18503056_7091d6d3",
+      "range": {
+        "startLine": 720,
+        "startChar": 24,
+        "endLine": 720,
+        "endChar": 49
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "91e6375f_4765b791",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 6
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "When there is not overcommit configured there is no results of 756 (they are zeroed)",
       "parentUuid": "91e6375f_4765b791",
+      "range": {
+        "startLine": 762,
+        "startChar": 56,
+        "endLine": 762,
+        "endChar": 57
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e33f78dc_f61e609e",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-08T13:47:26Z",
+      "side": 1,
+      "message": "\u003e (they are zeroed)\n\nSo no reason not to include in the computation?\nThe current \"if\" (758) looks like a workaround for some misbehavior, but I do not think the misbehavior is really there.",
+      "parentUuid": "8c5aa826_fac7ea09",
       "range": {
         "startLine": 762,
         "startChar": 56,
@@ -178,6 +226,30 @@
       "side": 1,
       "message": "Not related to numas. \"must be greater than or equal to (2 * vm.nr_hugepages).\" - doc. So rule of thumbs from previous experiments and 4 is higher than 2*nr_huge",
       "parentUuid": "47f66d0f_0d34c082",
+      "range": {
+        "startLine": 769,
+        "startChar": 48,
+        "endLine": 769,
+        "endChar": 52
+      },
+      "revId": "91d83effb0a4aa88138f711229ff09a4378f510f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cf0bd0a_1ee2b81e",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-08T13:47:26Z",
+      "side": 1,
+      "message": "\u003e \"must be greater than or equal to\"\n\nNot found in [0]. Which doc (or phrase) should I look at?\n\n\u003e to (2 * vm.nr_hugepages)\n\nThen why not just:\n  max_map_count \u003d math.ceil(huge_needed + 2 * hugepages[u\"nr_hugepages\"])\n\nOnce again, lines 768-769 look like a workaround, but I do not know around what.",
+      "parentUuid": "ed317e82_d6785c92",
       "range": {
         "startLine": 769,
         "startChar": 48,
