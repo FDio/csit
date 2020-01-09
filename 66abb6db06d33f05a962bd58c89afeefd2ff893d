@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fda4cce0_245ed11d",
+        "filename": "resources/tools/testbed-setup/ansible/roles/sut/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-09T09:09:12Z",
+      "side": 1,
+      "message": "I would recommend to install iperf on all not only SUTs as it acts as client/server. That way we can use it for baselining.",
+      "revId": "66abb6db06d33f05a962bd58c89afeefd2ff893d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
