@@ -13,7 +13,7 @@ TRex is installed and run on the TG compute node. The typical procedure
 is:
 
 - If the TRex is not already installed on TG, it is installed in the
-  suite setup phase - see `TRex intallation`_.
+  suite setup phase - see `TRex installation`_.
 - TRex configuration is set in its configuration file
   ::
 
