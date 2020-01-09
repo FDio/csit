@@ -68,7 +68,7 @@ Additional information about graph data:
     <../../_static/archive/>`_.
 
     CSIT source code for the test cases used for plots can be found in
-    `CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/tcp?h=rls1908>`_.
+    `CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/tcp?h=rls2001>`_.
 
 .. raw:: latex
 
