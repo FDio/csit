@@ -14,7 +14,7 @@ DPDK v19.02
 TG Build Script Used
 ~~~~~~~~~~~~~~~~~~~~
 
-`TRex intallation`_
+`TRex installation`_
 
 TG Startup Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~

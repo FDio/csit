@@ -46,8 +46,8 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
-report_week = u'38'
-project = u'FD.io CSIT-1908.{week}'.format(week=report_week)
+report_week = u'05'
+project = u'FD.io CSIT-2001.{week}'.format(week=report_week)
 copyright = u'2020, FD.io'
 author = u'FD.io CSIT'
 
@@ -69,19 +69,12 @@ rst_epilog = u"""
 .. |vpp-release-1| replace:: VPP-{vpp_prev_release} release
 .. |dpdk-release| replace:: DPDK {dpdkrelease}
 .. |trex-release| replace:: TRex {trex_version}
-.. |virl-image-ubuntu| replace:: {csit_ubuntu_ver}
-.. |virl-image-centos| replace:: {csit_centos_ver}
 
 .. _pdf version of this report: https://docs.fd.io/csit/{release}/report/_static/archive/csit_{release}.{report_week}.pdf
 .. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h={release}
-.. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h={release}
+.. _TRex installation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h={release}
 .. _TRex driver: https://git.fd.io/csit/tree/resources/tools/trex/trex_stateless_profile.py?h={release}
-.. _VIRL topologies directory: https://git.fd.io/csit/tree/resources/tools/virl/topologies/?h={release}
-.. _VIRL ubuntu images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/ubuntu/lists/?h={release}
-.. _VIRL centos images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/centos/lists/?h={release}
-.. _VIRL nested: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/nested/?h={release}
 .. _CSIT DPDK Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.dpdk.perf.html
-.. _CSIT VPP Functional Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.func.html
 .. _CSIT VPP Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.perf.html
 .. _CSIT VPP Device Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.device.html
 .. _VPP test framework documentation: https://docs.fd.io/vpp/{vpprelease}/vpp_make_test/html/
@@ -92,32 +85,29 @@ rst_epilog = u"""
 .. _FD.io test executor dpdk performance job 3n-hsw: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-3n-hsw
 .. _FD.io test executor dpdk performance job 3n-skx: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-3n-skx
 .. _FD.io test executor dpdk performance job 2n-skx: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-2n-skx
+.. _FD.io test executor dpdk performance job 2n-clx: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-2n-clx
 .. _FD.io test executor vpp performance job 3n-hsw: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-hsw
 .. _FD.io test executor vpp performance job 3n-skx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-skx
 .. _FD.io test executor vpp performance job 2n-skx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-2n-skx
 .. _FD.io test executor vpp performance job 3n-tsh: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-tsh
 .. _FD.io test executor vpp performance job 3n-dnv: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-dnv
 .. _FD.io test executor vpp performance job 2n-dnv: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-2n-dnv
-.. _FD.io test executor vpp functional jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-ubuntu1604-virl
-.. _FD.io test executor vpp functional jobs using CentOs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-centos7-virl
+.. _FD.io test executor vpp performance job 2n-clx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-2n-clx
 .. _FD.io test executor vpp device jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-device-{srelease}-ubuntu1804-1n-skx
-.. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1604/
-.. _FD.io DPDK compile job: https://jenkins.fd.io/view/deb-dpdk/job/deb_dpdk-merge-{sdpdkrelease}-ubuntu1604/
+.. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1804/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}&id={vpp_release_commit_id}
-""".format(release=u'rls1908',
+""".format(release=u'rls2001',
            report_week=report_week,
-           prev_release=u'rls1904',
-           srelease=u'1908',
-           csitrelease=u'1908',
-           csit_prev_release=u'1904',
-           vpprelease=u'19.08',
-           vpp_prev_release=u'19.04',
-           dpdkrelease=u'19.05',
-           sdpdkrelease=u'1905',
-           trex_version=u'v2.54',
-           csit_ubuntu_ver=u'csit-ubuntu-16.04.1_2019-03-27_2.4',
-           csit_centos_ver=u'csit-centos-7.6-1810_2019-05-20_2.5',
+           prev_release=u'rls1908',
+           srelease=u'2001',
+           csitrelease=u'2001',
+           csit_prev_release=u'1908',
+           vpprelease=u'20.01',
+           vpp_prev_release=u'19.08',
+           dpdkrelease=u'19.08',
+           sdpdkrelease=u'1908',
+           trex_version=u'v2.73',
            vpp_release_commit_id=u'1c586de48cc76fc6eac50f5d87003e2a80aa43e7')
 
 # The language for content autogenerated by Sphinx. Refer to documentation
@@ -167,17 +157,17 @@ html_theme_options = {
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_theme_path = [u'env/lib/python2.7/site-packages/sphinx_rtd_theme']
+html_theme_path = [u'env/lib/python3.6/site-packages/sphinx_rtd_theme']
 
 # html_static_path = ['_build/_static']
 html_static_path = [u'_tmp/src/_static']
 
-html_context = {
-    u'css_files': [
-        # overrides for wide tables in RTD theme
-        u'_static/theme_overrides.css'
-    ]
-}
+# html_context = {
+#     u'css_files': [
+#         # overrides for wide tables in RTD theme
+#         u'_static/theme_overrides.css'
+#     ]
+# }
 
 # If false, no module index is generated.
 html_domain_indices = True
