@@ -331,7 +331,6 @@
 | | ... | tg_if2_ip4=${tg_if2_ip4} | tg_if2_mac=${tg_if2_mac}
 | | ... | nodes=${nodes}
 | | Start VPP in all '${container_group}' containers
-| | Verify VPP in all '${container_group}' containers
 
 | Start vswitch in container
 | | [Documentation]
