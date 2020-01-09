@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6c34d72e_62690c0a",
+        "filename": "resources/tools/testbed-setup/ansible/roles/sut/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-09T22:47:03Z",
+      "side": 1,
+      "message": "\u003e I would recommend to install iperf on all not only SUTs as it acts as client/server. That way we can use it for baselining.\n\nI debated adding this to the common ubuntu_bionic.yaml but wasn\u0027t sure we wanted to try using tg machines as sut\u0027s.  I have had issues going back \u0026 forth between TCP/WRK tests and TCP/Iperf tests due to insufficient cleanup causing linux driver bind/unbind hanging... \n\nIn any case, I\u0027ll move this to roles/common/tasks/ubuntu_bionic.yaml",
+      "parentUuid": "fda4cce0_245ed11d",
+      "revId": "66abb6db06d33f05a962bd58c89afeefd2ff893d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ea7bced_cec9ba4d",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3p8-ndrpdr.robot",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2020-01-09T13:25:26Z",
       "side": 1,
       "message": "This suite is not -ndrpdr type, that is why the suite generator (autogen) is failing.\nAutogen knows -cps and -rps types, but the ${parallel} argument in test cases is new here, as are the tags depending on its value.",
+      "revId": "66abb6db06d33f05a962bd58c89afeefd2ff893d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "370ea1f5_41c34948",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3p8-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-09T22:47:03Z",
+      "side": 1,
+      "message": "Should I add -tps (throughput per second) type to the tox checker and change the names appropriately?",
+      "parentUuid": "1ea7bced_cec9ba4d",
       "revId": "66abb6db06d33f05a962bd58c89afeefd2ff893d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
