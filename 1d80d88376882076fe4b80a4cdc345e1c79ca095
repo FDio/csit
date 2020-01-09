@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "685b08b3_1fae0ab7",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-09T08:27:24Z",
+      "side": 1,
+      "message": "not used?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 4
+      },
+      "revId": "1d80d88376882076fe4b80a4cdc345e1c79ca095",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
