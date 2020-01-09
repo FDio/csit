@@ -564,12 +564,13 @@ class ContainerEngine:
             self.container.name,
             f"/tmp/vpp_sockets/{self.container.name}/stats.sock"
         )
+        self.verify_vpp()
+        self.adjust_privileges()
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
         self.execute(u"pkill vpp")
         self.start_vpp()
-        self.execute(u"cat /tmp/vppd.log")
 
     # TODO Rewrite to use the VPPUtil.py functionality and remove this.
     def verify_vpp(self, retries=120, retry_wait=1):
@@ -578,19 +579,25 @@ class ContainerEngine:
         :param retries: Check for VPP for this number of times Default: 120
         :param retry_wait: Wait for this number of seconds between retries.
         """
-        cmd = (u"vppctl show pci 2>&1 | "
-               u"fgrep -v 'Connection refused' | "
-               u"fgrep -v 'No such file or directory'")
-
         for _ in range(retries + 1):
             try:
-                self.execute(cmd)
+                self.execute(
+                    u"vppctl show pci 2>&1 | "
+                    u"fgrep -v 'Connection refused' | "
+                    u"fgrep -v 'No such file or directory'"
+                )
                 break
             except RuntimeError:
                 sleep(retry_wait)
         else:
-            msg = f"VPP did not come up in container: {self.container.name}"
-            raise RuntimeError(msg)
+            self.execute(u"cat /tmp/vppd.log")
+            raise RuntimeError(
+                f"VPP did not come up in container: {self.container.name}"
+            )
+
+    def adjust_privileges(self):
+        """Adjust privileges to control VPP without sudo."""
+        self.execute("chmod -R o+rwx /run/vpp")
 
     def create_base_vpp_startup_config(self, cpuset_cpus=None):
         """Create base startup configuration of VPP on container.
