@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "923279f0_5900c649",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-10T15:47:34Z",
+      "side": 1,
+      "message": "Does this work?\n  if not program_stdout:\n\nAnd you can exchange the branches to get rid of \"not\".",
+      "range": {
+        "startLine": 254,
+        "startChar": 8,
+        "endLine": 254,
+        "endChar": 36
+      },
+      "revId": "59c592370b09900118c3daad34d63da29be88837",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
