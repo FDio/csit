@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -94,8 +94,9 @@ def main():
     # TODO: Add latency.
     print(
         f"rate='unknown', totalReceived={total_rcvd}, totalSent={total_sent}, "
-        f"frameLoss={total_lost}, latencyStream0(usec)=-1/-1/-1, "
-        f"latencyStream1(usec)=-1/-1/-1, targetDuration='manual'"
+        f"frameLoss={total_lost}, targetDuration='manual', "
+        f"approximatedDuration='manual', approximatedRate='unknown', "
+        f"latencyStream0(usec)=-1/-1/-1, latencyStream1(usec)=-1/-1/-1"
     )
 
 
