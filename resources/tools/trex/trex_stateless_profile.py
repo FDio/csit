@@ -159,13 +159,18 @@ def simple_burst(
             client.clear_stats()
 
             # Choose rate and start traffic:
-            time_start = time.time()
+            time_conservative_start = time.time()
             client.start(ports=ports, mult=rate, duration=warmup_time)
+            time_balanced_start = time.time()
 
             # Block until done:
             client.wait_on_traffic(ports=ports, timeout=warmup_time+30)
             time_stop = time.time()
-            print(f"Warmup traffic took {time_stop - time_start} seconds.")
+            print(
+                f"Warmup traffic took {time_stop - time_balanced_start}"
+                f" (balanced) {time_stop - time_conservative_start}"
+                f" (conservative) seconds."
+            )
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -191,8 +196,9 @@ def simple_burst(
         lost_b = 0
 
         # Choose rate and start traffic:
-        time_start = time.time()
+        time_conservative_start = time.time()
         client.start(ports=ports, mult=rate, duration=duration)
+        time_balanced_start = time.time()
 
         if async_start:
             # For async stop, we need to export the current snapshot.
@@ -206,6 +212,11 @@ def simple_burst(
             client.wait_on_traffic(ports=ports, timeout=duration+30)
             time_stop = time.time()
             print(f"Main traffic took {time_stop - time_start} seconds.")
+            print(
+                f"Main traffic took {time_stop - time_balanced_start}"
+                f" (balanced) {time_stop - time_conservative_start}"
+                f" (conservative) seconds."
+            )
 
             if client.get_warnings():
                 for warning in client.get_warnings():
