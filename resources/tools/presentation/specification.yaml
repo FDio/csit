@@ -728,6 +728,54 @@
       - "vpp-performance-changes-2n-skx-ref"
       - "vpp-performance-changes-2n-skx-cmp"
 
+    vpp-performance-changes-2n-dnv-ref:
+      csit-vpp-perf-verify-1908-2n-dnv:
+          - 1   # NDRPDR sel
+          - 2   # NDRPDR sel
+          - 3   # NDRPDR sel
+    vpp-performance-changes-2n-dnv-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-dnv:
+      csit-vpp-perf-verify-1908-2n-dnv:
+          - 1   # NDRPDR sel
+          - 2   # NDRPDR sel
+          - 3   # NDRPDR sel
+    vpp-performance-changes-2n-dnv:
+      - "vpp-performance-changes-2n-dnv-ref"
+      - "vpp-performance-changes-2n-dnv-cmp"
+
+    vpp-performance-changes-3n-dnv-ref:
+      csit-vpp-perf-verify-1908-3n-dnv:
+          - 6   # NDRPDR sel
+          - 7   # NDRPDR sel
+          - 8   # NDRPDR sel
+    vpp-performance-changes-3n-dnv-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-dnv:
+      csit-vpp-perf-verify-1908-3n-dnv:
+          - 6   # NDRPDR sel
+          - 7   # NDRPDR sel
+          - 8   # NDRPDR sel
+    vpp-performance-changes-3n-dnv:
+      - "vpp-performance-changes-3n-dnv-ref"
+      - "vpp-performance-changes-3n-dnv-cmp"
+
+    vpp-performance-changes-3n-tsh-ref:
+      csit-vpp-perf-verify-1908-3n-tsh:
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+    vpp-performance-changes-3n-tsh-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-tsh:
+      csit-vpp-perf-verify-1908-3n-tsh:
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+    vpp-performance-changes-3n-tsh:
+      - "vpp-performance-changes-3n-tsh-ref"
+      - "vpp-performance-changes-3n-tsh-cmp"
+
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-verify-1908-2n-skx:
         - 26  # NDRPDR sel
@@ -800,6 +848,42 @@
       - "vpp-performance-changes-2n-skx-mrr-h1"
       - "vpp-performance-changes-2n-skx-mrr-ref"
       - "vpp-performance-changes-2n-skx-mrr-cmp"
+
+    vpp-performance-changes-2n-dnv-mrr-ref:
+      csit-vpp-perf-verify-1908-2n-dnv:
+        - 11  # MRR sel
+    vpp-performance-changes-2n-dnv-mrr-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-dnv:
+      csit-vpp-perf-verify-1908-2n-dnv:
+        - 11  # MRR sel
+    vpp-performance-changes-2n-dnv-mrr:
+      - "vpp-performance-changes-2n-dnv-mrr-ref"
+      - "vpp-performance-changes-2n-dnv-mrr-cmp"
+
+    vpp-performance-changes-3n-dnv-mrr-ref:
+      csit-vpp-perf-verify-1908-3n-dnv:
+        - 17  # MRR sel
+    vpp-performance-changes-3n-dnv-mrr-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-dnv:
+      csit-vpp-perf-verify-1908-3n-dnv:
+        - 17  # MRR sel
+    vpp-performance-changes-3n-dnv-mrr:
+      - "vpp-performance-changes-3n-dnv-mrr-ref"
+      - "vpp-performance-changes-3n-dnv-mrr-cmp"
+
+    vpp-performance-changes-3n-tsh-mrr-ref:
+      csit-vpp-perf-verify-1908-3n-tsh:
+        - 17  # MRR sel
+    vpp-performance-changes-3n-tsh-mrr-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-tsh:
+      csit-vpp-perf-verify-1908-3n-tsh:
+        - 17  # MRR sel
+    vpp-performance-changes-3n-tsh-mrr:
+      - "vpp-performance-changes-3n-tsh-mrr-ref"
+      - "vpp-performance-changes-3n-tsh-mrr-cmp"
 
     dpdk-performance-changes-3n-hsw-h1:
       csit-dpdk-perf-verify-1901-3n-hsw:
@@ -954,6 +1038,24 @@
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
 
+    vpp-compare-testbeds-skx-clx-ref:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 34  # NDRPDR sel
+    vpp-compare-testbeds-skx-clx-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-clx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 34  # NDRPDR sel
+    vpp-compare-testbeds-skx-clx:
+      - "vpp-compare-testbeds-skx-clx-ref"
+      - "vpp-compare-testbeds-skx-clx-cmp"
+
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 39  # MRR sel
@@ -963,6 +1065,20 @@
     vpp-compare-testbeds-mrr:
       - "vpp-compare-testbeds-mrr-ref"
       - "vpp-compare-testbeds-mrr-cmp"
+
+    vpp-compare-testbeds-mrr-skx-clx-ref:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 69  # MRR sel
+    vpp-compare-testbeds-mrr-skx-clx-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-clx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 69  # MRR sel
+    vpp-compare-testbeds-mrr-skx-clx:
+      - "vpp-compare-testbeds-mrr-skx-clx-ref"
+      - "vpp-compare-testbeds-mrr-skx-clx-cmp"
 
     dpdk-compare-testbeds-ref:
       csit-dpdk-perf-verify-1908-3n-hsw:
@@ -991,6 +1107,24 @@
     dpdk-compare-testbeds:
       - "dpdk-compare-testbeds-ref"
       - "dpdk-compare-testbeds-cmp"
+
+    dpdk-compare-testbeds-skx-clx-ref:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-2n-skx:
+      csit-dpdk-perf-verify-1908-2n-skx:
+        - 2   # NDRPDR sel
+        - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
+    dpdk-compare-testbeds-skx-clx-cmp:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-2n-clx:
+      csit-dpdk-perf-verify-1908-2n-skx:
+        - 2   # NDRPDR sel
+        - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
+    dpdk-compare-testbeds-skx-clx:
+      - "dpdk-compare-testbeds-skx-clx-ref"
+      - "dpdk-compare-testbeds-skx-clx-cmp"
 
     # Compare topologies
 
@@ -2574,6 +2708,246 @@
   - "throughput"
   - "tags"
 
+# VPP Performance Changes 2n-dnv 1t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 1t1c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-pdr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-2n-dnv-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-2n-dnv-cmp"
+  data: "vpp-performance-changes-2n-dnv"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 2n-dnv 2t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 2t2c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-pdr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-2n-dnv-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-2n-dnv-cmp"
+  data: "vpp-performance-changes-2n-dnv"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 2n-dnv 1t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 1t1c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-ndr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-2n-dnv-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-2n-dnv-cmp"
+  data: "vpp-performance-changes-2n-dnv"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 2n-dnv 2t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 2t2c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-ndr"
+  reference:
+    title: "rls1908 "
+    data: "vpp-performance-changes-2n-dnv-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-2n-dnv-cmp"
+  data: "vpp-performance-changes-2n-dnv"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 3n-dnv 1t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 1t1c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-pdr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-dnv-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-dnv-cmp"
+  data: "vpp-performance-changes-3n-dnv"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 3n-dnv 2t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 2t2c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-pdr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-dnv-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-dnv-cmp"
+  data: "vpp-performance-changes-3n-dnv"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 3n-dnv 1t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 1t1c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-ndr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-dnv-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-dnv-cmp"
+  data: "vpp-performance-changes-3n-dnv"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 3n-dnv 2t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 2t2c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-ndr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-dnv-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-dnv-cmp"
+  data: "vpp-performance-changes-3n-dnv"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 3n-tsh 1t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 1t1c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-pdr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-tsh-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-tsh-cmp"
+  data: "vpp-performance-changes-3n-tsh"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 3n-tsh 2t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 2t2c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-pdr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-tsh-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-tsh-cmp"
+  data: "vpp-performance-changes-3n-tsh"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 3n-tsh 1t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 1t1c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-ndr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-tsh-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-tsh-cmp"
+  data: "vpp-performance-changes-3n-tsh"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes 3n-tsh 2t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 2t2c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-ndr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-tsh-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-tsh-cmp"
+  data: "vpp-performance-changes-3n-tsh"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr"
@@ -2656,6 +3030,86 @@
   data: "vpp-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c pdr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-2t1c-pdr"
+  reference:
+    title: "2n-skx"
+    data: "vpp-compare-testbeds-skx-clx-ref"
+  compare:
+    title: "2n-clx"
+    data: "vpp-compare-testbeds-skx-clx-cmp"
+  data: "vpp-compare-testbeds-skx-clx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c pdr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-4t2c-pdr"
+  reference:
+    title: "2n-skx"
+    data: "vpp-compare-testbeds-skx-clx-ref"
+  compare:
+    title: "2n-clx"
+    data: "vpp-compare-testbeds-skx-clx-cmp"
+  data: "vpp-compare-testbeds-skx-clx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c ndr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-2t1c-ndr"
+  reference:
+    title: "2n-skx"
+    data: "vpp-compare-testbeds-skx-clx-ref"
+  compare:
+    title: "2n-clx"
+    data: "vpp-compare-testbeds-skx-clx-cmp"
+  data: "vpp-compare-testbeds-skx-clx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c ndr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-4t2c-ndr"
+  reference:
+    title: "2n-skx"
+    data: "vpp-compare-testbeds-skx-clx-ref"
+  compare:
+    title: "2n-clx"
+    data: "vpp-compare-testbeds-skx-clx-cmp"
+  data: "vpp-compare-testbeds-skx-clx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C'"
   parameters:
   - "name"
   - "parent"
@@ -2936,6 +3390,177 @@
   - "parent"
   - "result"
 
+# VPP Performance Changes 2n-dnv 1t1c MRR
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 1t1c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-2n-dnv-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-2n-dnv-mrr-cmp"
+  data: "vpp-performance-changes-2n-dnv-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 2n-dnv 2t2c MRR
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 2t2c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-2n-dnv-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-2n-dnv-mrr-cmp"
+  data: "vpp-performance-changes-2n-dnv-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 2n-dnv 4t4c MRR
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 4t4c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-4t4c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-2n-dnv-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-2n-dnv-mrr-cmp"
+  data: "vpp-performance-changes-2n-dnv-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T4C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 3n-dnv 1t1c MRR
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 1t1c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-dnv-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-dnv-mrr-cmp"
+  data: "vpp-performance-changes-3n-dnv-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 3n-dnv 2t2c MRR
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 2t2c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-dnv-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-dnv-mrr-cmp"
+  data: "vpp-performance-changes-3n-dnv-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 3n-dnv 4t4c MRR
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 4t4c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-4t4c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-dnv-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-dnv-mrr-cmp"
+  data: "vpp-performance-changes-3n-dnv-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T4C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 3n-tsh 1t1c MRR
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 1t1c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-tsh-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-tsh-mrr-cmp"
+  data: "vpp-performance-changes-3n-tsh-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 3n-tsh 2t2c MRR
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 2t2c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-tsh-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-tsh-mrr-cmp"
+  data: "vpp-performance-changes-3n-tsh-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 3n-tsh 4t4c MRR
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 4t4c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-4t4c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-tsh-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-tsh-mrr-cmp"
+  data: "vpp-performance-changes-3n-tsh-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T4C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr"
@@ -2996,6 +3621,66 @@
   data: "vpp-compare-testbeds-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '4C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-2t1c-mrr"
+  reference:
+    title: "2n-skx"
+    data: "vpp-compare-testbeds-mrr-skx-clx-ref"
+  compare:
+    title: "2n-clx"
+    data: "vpp-compare-testbeds-mrr-skx-clx-cmp"
+  data: "vpp-compare-testbeds-mrr-skx-clx"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c mrr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-4t2c-mrr"
+  reference:
+    title: "2n-skx"
+    data: "vpp-compare-testbeds-mrr-skx-clx-ref"
+  compare:
+    title: "2n-clx"
+    data: "vpp-compare-testbeds-mrr-skx-clx-cmp"
+  data: "vpp-compare-testbeds-mrr-skx-clx"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-clx 8t4c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 8t4c mrr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-8t4c-mrr"
+  reference:
+    title: "2n-skx"
+    data: "vpp-compare-testbeds-mrr-skx-clx-ref"
+  compare:
+    title: "2n-clx"
+    data: "vpp-compare-testbeds-mrr-skx-clx-cmp"
+  data: "vpp-compare-testbeds-mrr-skx-clx"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C'"
   parameters:
   - "name"
   - "parent"
@@ -3783,7 +4468,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'1T1C'"
   parameters:
   - "name"
   - "parent"
@@ -3805,7 +4490,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'2T2C'"
   parameters:
   - "name"
   - "parent"
@@ -3827,7 +4512,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'1T1C'"
   parameters:
   - "name"
   - "parent"
@@ -3849,7 +4534,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'2T2C'"
   parameters:
   - "name"
   - "parent"
@@ -3871,7 +4556,7 @@
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'2T1C'"
   parameters:
   - "name"
   - "parent"
@@ -3893,7 +4578,7 @@
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'4T2C'"
   parameters:
   - "name"
   - "parent"
@@ -3915,7 +4600,7 @@
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'2T1C'"
   parameters:
   - "name"
   - "parent"
@@ -3937,7 +4622,95 @@
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'4T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Performance Changes 2n-skx 2t1c pdr
+- type: "table"
+  title: "DPDK Performance Changes 2n-skx 2t1c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-pdr"
+  history:
+    - title: "rls1901"
+      data: "dpdk-performance-changes-2n-skx-h1"
+  reference:
+    title: "rls1904"
+    data: "dpdk-performance-changes-2n-skx-ref"
+  compare:
+    title: "rls1908"
+    data: "dpdk-performance-changes-2n-skx-cmp"
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Performance Changes 2n-skx 4t2c pdr
+- type: "table"
+  title: "DPDK Performance Changes 2n-skx 4t2c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-pdr"
+  history:
+    - title: "rls1901"
+      data: "dpdk-performance-changes-2n-skx-h1"
+  reference:
+    title: "rls1904"
+    data: "dpdk-performance-changes-2n-skx-ref"
+  compare:
+    title: "rls1908"
+    data: "dpdk-performance-changes-2n-skx-cmp"
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Performance Changes 2n-skx 2t1c ndr
+- type: "table"
+  title: "DPDK Performance Changes 2n-skx 2t1c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-ndr"
+  history:
+    - title: "rls1901"
+      data: "dpdk-performance-changes-2n-skx-h1"
+  reference:
+    title: "rls1904"
+    data: "dpdk-performance-changes-2n-skx-ref"
+  compare:
+    title: "rls1908"
+    data: "dpdk-performance-changes-2n-skx-cmp"
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Performance Changes 2n-skx 4t2c ndr
+- type: "table"
+  title: "DPDK Performance Changes 2n-skx 4t2c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-ndr"
+  history:
+    - title: "rls1901"
+      data: "dpdk-performance-changes-2n-skx-h1"
+  reference:
+    title: "rls1904"
+    data: "dpdk-performance-changes-2n-skx-ref"
+  compare:
+    title: "rls1908"
+    data: "dpdk-performance-changes-2n-skx-cmp"
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C'"
   parameters:
   - "name"
   - "parent"
@@ -3956,7 +4729,7 @@
     data: "dpdk-compare-testbeds-cmp"
   data: "dpdk-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'NIC_Intel-X710'"
   parameters:
   - "name"
   - "parent"
@@ -3975,7 +4748,45 @@
     data: "dpdk-compare-testbeds-cmp"
   data: "dpdk-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'NIC_Intel-X710'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr
+- type: "table"
+  title: "DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-clx-ndr"
+  reference:
+    title: "2-Node Skx"
+    data: "dpdk-compare-testbeds-skx-clx-ref"
+  compare:
+    title: "2-Node Clx"
+    data: "dpdk-compare-testbeds-skx-clx-cmp"
+  data: "dpdk-compare-testbeds-skx-clx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Comparison Across Testbeds 2n-skx to 2n-clx pdr
+- type: "table"
+  title: "DPDK Comparison Across Testbeds 2n-skx to 2n-clx pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-clx-pdr"
+  reference:
+    title: "2-Node Skx"
+    data: "dpdk-compare-testbeds-skx-clx-ref"
+  compare:
+    title: "2-Node Clx"
+    data: "dpdk-compare-testbeds-skx-clx-cmp"
+  data: "dpdk-compare-testbeds-skx-clx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -4014,94 +4825,6 @@
   data: "dpdk-compare-topologies"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-
-# DPDK Performance Changes 2n-skx 2t1c pdr
-- type: "table"
-  title: "DPDK Performance Changes 2n-skx 2t1c pdr"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-pdr"
-  history:
-    - title: "rls1901"
-      data: "dpdk-performance-changes-2n-skx-h1"
-  reference:
-    title: "rls1904"
-    data: "dpdk-performance-changes-2n-skx-ref"
-  compare:
-    title: "rls1908"
-    data: "dpdk-performance-changes-2n-skx-cmp"
-  data: "dpdk-performance-changes-2n-skx"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-
-# DPDK Performance Changes 2n-skx 4t2c pdr
-- type: "table"
-  title: "DPDK Performance Changes 2n-skx 4t2c pdr"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-pdr"
-  history:
-    - title: "rls1901"
-      data: "dpdk-performance-changes-2n-skx-h1"
-  reference:
-    title: "rls1904"
-    data: "dpdk-performance-changes-2n-skx-ref"
-  compare:
-    title: "rls1908"
-    data: "dpdk-performance-changes-2n-skx-cmp"
-  data: "dpdk-performance-changes-2n-skx"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-
-# DPDK Performance Changes 2n-skx 2t1c ndr
-- type: "table"
-  title: "DPDK Performance Changes 2n-skx 2t1c ndr"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-ndr"
-  history:
-    - title: "rls1901"
-      data: "dpdk-performance-changes-2n-skx-h1"
-  reference:
-    title: "rls1904"
-    data: "dpdk-performance-changes-2n-skx-ref"
-  compare:
-    title: "rls1908"
-    data: "dpdk-performance-changes-2n-skx-cmp"
-  data: "dpdk-performance-changes-2n-skx"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-
-# DPDK Performance Changes 2n-skx 4t2c ndr
-- type: "table"
-  title: "DPDK Performance Changes 2n-skx 4t2c ndr"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-ndr"
-  history:
-    - title: "rls1901"
-      data: "dpdk-performance-changes-2n-skx-h1"
-  reference:
-    title: "rls1904"
-    data: "dpdk-performance-changes-2n-skx-ref"
-  compare:
-    title: "rls1908"
-    data: "dpdk-performance-changes-2n-skx-cmp"
-  data: "dpdk-performance-changes-2n-skx"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
   parameters:
   - "name"
   - "parent"
