@@ -136,6 +136,13 @@ All Intel Xeon Skylake servers run with Intel Hyper-Threading enabled,
 doubling the number of logical cores exposed to Linux, with 56 logical
 cores and 28 physical cores per processor socket.
 
+2-Node Xeon Cascade Lake (2n-clx)
+---------------------------------
+
+.. todo::
+
+    Add content.
+
 3-Node Xeon Haswell (3n-hsw)
 ----------------------------
 
