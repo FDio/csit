@@ -151,6 +151,8 @@ class TrafficGenerator(AbstractMeasurer):
         self._sent = None
         self._latency = None
         self._received = None
+        self._approximated_rate = None
+        self._real_duration = None
         # Measurement input fields, needed for async stop result.
         self._start_time = None
         self._rate = None
@@ -203,6 +205,15 @@ class TrafficGenerator(AbstractMeasurer):
         :rtype: list
         """
         return self._latency
+
+    def get_approximated_rate(self):
+        """Return approximated rate computed as ratio of transmited packets over
+        duration of trial.
+
+        :returns: Approximated rate.
+        :rtype: str
+        """
+        return self._approximated_rate
 
     # TODO: pylint says disable=too-many-locals.
     # A fix is developed in https://gerrit.fd.io/r/c/csit/+/22221
@@ -447,9 +458,11 @@ class TrafficGenerator(AbstractMeasurer):
         self._received = self._result.split(u", ")[1].split(u"=", 1)[1]
         self._sent = self._result.split(u", ")[2].split(u"=", 1)[1]
         self._loss = self._result.split(u", ")[3].split(u"=", 1)[1]
+        self._real_duration = self._result.split(u", ")[5].split(u"=", 1)[1]
+        self._approximated_rate = self._result.split(u", ")[6].split(u"=", 1)[1]
         self._latency = list()
-        self._latency.append(self._result.split(u", ")[4].split(u"=", 1)[1])
-        self._latency.append(self._result.split(u", ")[5].split(u"=", 1)[1])
+        self._latency.append(self._result.split(u", ")[7].split(u"=", 1)[1])
+        self._latency.append(self._result.split(u", ")[8].split(u"=", 1)[1])
 
     def trex_stl_stop_remote_exec(self, node):
         """Execute script on remote node over ssh to stop running traffic.
@@ -733,6 +746,7 @@ class TrafficGenerator(AbstractMeasurer):
             duration, transmit_rate, transmit_count, loss_count
         )
         measurement.latency = self.get_latency_int()
+        measurement.approximated_rate = self.get_approximated_rate()
         return measurement
 
     def measure(self, duration, transmit_rate):

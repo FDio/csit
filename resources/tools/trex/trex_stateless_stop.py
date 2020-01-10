@@ -94,8 +94,9 @@ def main():
     # TODO: Add latency.
     print(
         f"rate='unknown', totalReceived={total_rcvd}, totalSent={total_sent}, "
-        f"frameLoss={total_lost}, latencyStream0(usec)=-1/-1/-1, "
-        f"latencyStream1(usec)=-1/-1/-1, targetDuration='manual'"
+        f"frameLoss={total_lost}, targetDuration='manual', "
+        f"realDuration='manual', approximatedRate='unknown', "
+        f"latencyStream0(usec)=-1/-1/-1, latencyStream1(usec)=-1/-1/-1"
     )
 
 

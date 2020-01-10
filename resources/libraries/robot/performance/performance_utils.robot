@@ -287,6 +287,10 @@
 | | ... | ${result.pdr_interval.measured_low.latency}
 | | Display single bound | PDR_UPPER
 | | ... | ${result.pdr_interval.measured_high.target_tr} | ${frame_size}
+| | Display single bound | NDR_LOWER_APPROX
+| | ... | ${result.ndr_interval.measured_low.approximated_rate} | ${frame_size}
+| | Display single bound | PDR_LOWER_APPROX
+| | ... | ${result.pdr_interval.measured_low.approximated_rate} | ${frame_size}
 
 | Display result of soak search
 | | [Documentation]
@@ -379,11 +383,16 @@
 | | ... | ${fail_no_traffic}=${True} | ${subsamples}=${PERF_TRIAL_MULTIPLICITY}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | |
-| | ${results} = | Send traffic at specified rate | ${trial_duration}
+| | ${results} | ${approximated_results} = | Send traffic at specified rate
+| | ... | ${trial_duration}
 | | ... | ${max_rate}pps | ${frame_size} | ${traffic_profile} | ${subsamples}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
+| | ... | append=yes
+| | Set Test Message | ${\n}Approximated Maximum Receive Rate trial results
+| | ... | append=yes
+| | Set Test Message | in packets per second: ${approximated_results}
 | | ... | append=yes
 | | Run Keyword If | ${fail_no_traffic} | Fail if no traffic forwarded
 
@@ -427,6 +436,7 @@
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | VPP enable elog traces on all DUTs | ${nodes}
 | | ${results} = | Create List
+| | ${approximated_results} = | Create List
 | | FOR | ${i} | IN RANGE | ${subsamples}
 | | | # The following line is skipping some default arguments,
 | | | # that is why subsequent arguments have to be named.
@@ -435,8 +445,10 @@
 | | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
 | | | ... | rx_port=${rx_port}
 | | | ${rx} = | Get Received
+| | | ${ar} = | Get Approximated Rate
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
+| | | Append To List | ${approximated_results} | ${ar}
 | | END
 | | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
 | | ... | ${nodes}
@@ -444,7 +456,7 @@
 | | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
-| | Return From Keyword | ${results}
+| | Return From Keyword | ${results} | ${approximated_results}
 
 | Measure and show latency at specified rate
 | | [Documentation]
