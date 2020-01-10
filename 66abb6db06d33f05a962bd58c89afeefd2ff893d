@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "3fcf8a44_b5d7f908",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3p8-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-10T15:45:12Z",
+      "side": 1,
+      "message": "\u003e Should I add -tps\n\nThroughput is already in some units (bits, bytes, packets) per second, so -tps does not really make sense.\n-bps makes sense (depending on which units are actually reported).\n\n\u003e to the tox checker\n\nTo autogen. The minimal edit will be at this [1] line, but the issue is (as I mentioned elsewhere) this suite has different testcase arguments. I see two possibilities.\nYou can hardcode parallel\u003d8 (and time\u003d60) in local template (e.g. not testing parallel\u003d1), that way write_tcp_files will do its job correctly.\nOr you can add a new factory method to Testcase.py, add a new kwargs list (to use instead of tcp_kwargs_list) and either add new methods (write_bps_files and add_bps_testcases), or (preferably) make the existing methods (write_tcp_files and add_tcp_testcases) configurable, so they accept both factories.\n\n[1] https://github.com/FDio/csit/blob/d68951ac245150eeefa6e0f4156e4c1b5c9e9325/resources/libraries/python/autogen/Regenerator.py#L357",
+      "parentUuid": "370ea1f5_41c34948",
+      "revId": "66abb6db06d33f05a962bd58c89afeefd2ff893d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e0c4373_57d37920",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3p8-ndrpdr.robot",
         "patchSetId": 2
