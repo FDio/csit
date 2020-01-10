@@ -82,8 +82,11 @@ def main():
     print(u"##### statistics port 1 #####")
     print(json.dumps(xstats1, indent=4, separators=(u",", u": ")))
 
-    tx_0, rx_0 = xstats0[u"tx_good_packets"], xstats0[u"rx_good_packets"]
-    tx_1, rx_1 = xstats1[u"tx_good_packets"], xstats1[u"rx_good_packets"]
+    # We have used *_good_packets, but sometimes there are zeros there.
+    tx_0 = xstats0[u"tx_q0packets"]
+    rx_0 = xstats0[u"rx_q0packets"] + xstats0[u"rx_q0errors"]
+    tx_1 = xstats1[u"tx_q0packets"]
+    rx_1 = xstats1[u"rx_q0packets"] + xstats1[u"rx_q0errors"]
     lost_a, lost_b = tx_0 - rx_1, tx_1 - rx_0
 
     print(f"\npackets lost from 0 --> 1:   {lost_a} pkts")
