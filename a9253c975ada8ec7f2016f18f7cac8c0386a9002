@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "17a11a9f_11cb9c7f",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-10T09:55:32Z",
+      "side": 1,
+      "message": "not matching",
+      "range": {
+        "startLine": 1233,
+        "startChar": 0,
+        "endLine": 1236,
+        "endChar": 25
+      },
+      "revId": "a9253c975ada8ec7f2016f18f7cac8c0386a9002",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
