@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -105,6 +105,8 @@ def simple_burst(
     client = None
     total_rcvd = 0
     total_sent = 0
+    approximated_duration = 0
+    approximated_rate = 0
     lost_a = 0
     lost_b = 0
     lat_a = u"-1/-1/-1/"
@@ -161,14 +163,14 @@ def simple_burst(
             client.clear_stats()
 
             # Choose rate and start traffic:
-            time_start = time.time()
             client.start(ports=ports, mult=rate, duration=warmup_time,
                          force=force)
 
             # Block until done:
+            time_start = time.monotonic()
             client.wait_on_traffic(ports=ports, timeout=warmup_time+30)
-            time_stop = time.time()
-            print(f"Warmup traffic took {time_stop - time_start} seconds.")
+            time_stop = time.monotonic()
+            approximated_duration = time_stop - time_start
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -194,8 +196,7 @@ def simple_burst(
         lost_b = 0
 
         # Choose rate and start traffic:
-        client.start(ports=ports, mult=rate, duration=duration, force=force)
-        time_start = time.time()
+        client.start(ports=ports, mult=rate, duration=duration)
 
         if async_start:
             # For async stop, we need to export the current snapshot.
@@ -206,9 +207,10 @@ def simple_burst(
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
             # Block until done:
+            time_start = time.monotonic()
             client.wait_on_traffic(ports=ports, timeout=duration+30)
-            time_stop = time.time()
-            print(f"Main traffic took {time_stop - time_start} seconds.")
+            time_stop = time.monotonic()
+            approximated_duration = time_stop - time_start
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -225,7 +227,6 @@ def simple_burst(
                 lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
 
             # Stats index is not a port number, but "pgid".
-            # TODO: Find out what "pgid" means.
             if latency:
                 lat_obj = stats[u"latency"][0][u"latency"]
                 lat_a = fmt_latency(
@@ -243,6 +244,10 @@ def simple_burst(
             else:
                 total_sent = stats[port_0][u"opackets"]
                 total_rcvd = stats[port_1][u"ipackets"]
+            try:
+                approximated_rate = total_sent / approximated_duration
+            except ZeroDivisionError:
+                pass
 
             print(f"\npackets lost from {port_0} --> {port_1}: {lost_a} pkts")
             if traffic_directions > 1:
@@ -262,8 +267,10 @@ def simple_burst(
             print(
                 f"rate={rate!r}, totalReceived={total_rcvd}, "
                 f"totalSent={total_sent}, frameLoss={lost_a + lost_b}, "
+                f"targetDuration={duration!r}, "
+                f"approximatedDuration={approximated_duration!r}, "
+                f"approximatedRate={approximated_rate}, "
                 f"latencyStream0(usec)={lat_a}, latencyStream1(usec)={lat_b}, "
-                f"targetDuration={duration!r}"
             )
 
 
