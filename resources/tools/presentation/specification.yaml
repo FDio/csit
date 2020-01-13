@@ -9545,81 +9545,29 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-ndr"
+  title: "Throughput: 2n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-pdr"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-pdr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr"
+    title: "2n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-pdr"
+  title: "Throughput: 2n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-pdr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-pdr"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-pdr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
-  include:
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-pdr"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
-  include:
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-pdr"
+    title: "2n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -10256,32 +10204,6 @@
     title: "3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
     layout: "plot-latency"
 
-#- type: "plot"
-#  title: "Latency: 3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-ndr-lat"
-#  algorithm: "plot_lat_err_bars_name"
-#  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-#  include:
-#    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-#  layout:
-#    title: "3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-ndr"
-#    layout: "plot-latency"
-
-#- type: "plot"
-#  title: "Latency: 3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr-lat"
-#  algorithm: "plot_lat_err_bars_name"
-#  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
-#  include:
-#    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-#  layout:
-#    title: "3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr"
-#    layout: "plot-latency"
-
 - type: "plot"
   title: "Latency: 3n-tsh-x520-64b-1t1c-memif-base-ixgbe-ndr-lat"
   algorithm: "plot_lat_err_bars_name"
@@ -10465,19 +10387,6 @@
   layout:
     title: "3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-ndr"
     layout: "plot-latency"
-
-#- type: "plot"
-#  title: "Latency: 3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr-lat"
-#  algorithm: "plot_lat_err_bars_name"
-#  output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
-#  include:
-#    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-#  layout:
-#    title: "3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr"
-#    layout: "plot-latency"
 
 ################################################################################
 
@@ -11113,32 +11022,6 @@
     title: "3n-skx-xxv710-64b-4t2c-link-bonding-vhost-base-i40e-vpp-ndr"
     layout: "plot-latency"
 
-#- type: "plot"
-#  title: "Latency: 3n-hsw-xl710-114b-2t2c-vts-l2switching-base-i40e-ndr-lat"
-#  algorithm: "plot_lat_err_bars_name"
-#  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-114b-2t2c-vts-l2switching-base-i40e-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-#  include:
-#    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-#  layout:
-#    title: "3n-hsw-xl710-114b-2t2c-vts-l2switching-base-i40e-ndr"
-#    layout: "plot-latency"
-
-#- type: "plot"
-#  title: "Latency: 3n-skx-xxv710-114b-4t2c-vts-l2switching-base-i40e-ndr-lat"
-#  algorithm: "plot_lat_err_bars_name"
-#  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-114b-4t2c-vts-l2switching-base-i40e-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
-#  include:
-#    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-4t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-4t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-4t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-#  layout:
-#    title: "3n-skx-xxv710-114b-4t2c-vts-l2switching-base-i40e-ndr"
-#    layout: "plot-latency"
-
 - type: "plot"
   title: "Latency: 3n-tsh-x520-64b-2t2c-memif-base-ixgbe-ndr-lat"
   algorithm: "plot_lat_err_bars_name"
@@ -11322,19 +11205,6 @@
   layout:
     title: "3n-tsh-x520-64b-2t2c-link-bonding-vhost-base-ixgbe-ndr"
     layout: "plot-latency"
-
-#- type: "plot"
-#  title: "Latency: 3n-tsh-x520-114b-2t2c-vts-l2switching-base-ixgbe-ndr-lat"
-#  algorithm: "plot_lat_err_bars_name"
-#  output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-114b-2t2c-vts-l2switching-base-ixgbe-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
-#  include:
-#    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-#  layout:
-#    title: "3n-tsh-x520-114b-2t2c-vts-l2switching-base-ixgbe-ndr"
-#    layout: "plot-latency"
 
 ################################################################################
 
@@ -11970,32 +11840,6 @@
     title: "3n-skx-xxv710-64b-8t4c-link-bonding-vhost-base-i40e-vpp-ndr"
     layout: "plot-latency"
 
-#- type: "plot"
-#  title: "Latency: 3n-hsw-xl710-114b-4t4c-vts-l2switching-base-i40e-ndr-lat"
-#  algorithm: "plot_lat_err_bars_name"
-#  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-114b-4t4c-vts-l2switching-base-i40e-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-#  include:
-#    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-#  layout:
-#    title: "3n-hsw-xl710-114b-4t4c-vts-l2switching-base-i40e-ndr"
-#    layout: "plot-latency"
-
-#- type: "plot"
-#  title: "Latency: 3n-skx-xxv710-114b-8t4c-vts-l2switching-base-i40e-ndr-lat"
-#  algorithm: "plot_lat_err_bars_name"
-#  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-114b-8t4c-vts-l2switching-base-i40e-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
-#  include:
-#    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-8t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-8t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-8t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-#  layout:
-#    title: "3n-skx-xxv710-114b-8t4c-vts-l2switching-base-i40e-ndr"
-#    layout: "plot-latency"
-
 - type: "plot"
   title: "Latency: 3n-tsh-x520-64b-4t4c-memif-base-ixgbe-ndr-lat"
   algorithm: "plot_lat_err_bars_name"
@@ -12179,19 +12023,6 @@
   layout:
     title: "3n-tsh-x520-64b-4t4c-link-bonding-vhost-base-ixgbe-ndr"
     layout: "plot-latency"
-
-#- type: "plot"
-#  title: "Latency: 3n-tsh-x520-114b-4t4c-vts-l2switching-base-ixgbe-ndr-lat"
-#  algorithm: "plot_lat_err_bars_name"
-#  output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-114b-4t4c-vts-l2switching-base-ixgbe-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
-#  include:
-#    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-#    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-#  layout:
-#    title: "3n-tsh-x520-114b-4t4c-vts-l2switching-base-ixgbe-ndr"
-#    layout: "plot-latency"
 
 ################################################################################
 
@@ -15726,55 +15557,29 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-hsw-xl710-114b-vts-l2switching-base-i40e-ndr-tsa"
+  title: "Speedup: 2n-skx-xxv710-114b-vts-l2switching-base-i40e-ndr-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-114b-vts-l2switching-base-i40e-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-114b-vts-l2switching-base-i40e-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 3n-hsw-xl710-114b-vts-l2switching-base-i40e-pdr-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-114b-vts-l2switching-base-i40e-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-114b-vts-l2switching-base-i40e-pdr"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 3n-skx-xxv710-114b-vts-l2switching-base-i40e-ndr-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-114b-vts-l2switching-base-i40e-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-114b-vts-l2switching-base-i40e-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-114b-vts-l2switching-base-i40e-ndr"
+    title: "2n-skx-xxv710-114b-vts-l2switching-base-i40e-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-xxv710-114b-vts-l2switching-base-i40e-pdr-tsa"
+  title: "Speedup: 2n-skx-xxv710-114b-vts-l2switching-base-i40e-pdr-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-114b-vts-l2switching-base-i40e-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-114b-vts-l2switching-base-i40e-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-114b-vts-l2switching-base-i40e-pdr"
+    title: "2n-skx-xxv710-114b-vts-l2switching-base-i40e-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -16143,32 +15948,6 @@
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
     title: "3n-tsh-x520-64b-link-bonding-vhost-base-ixgbe-pdr"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 3n-tsh-x520-114b-vts-l2switching-base-ixgbe-ndr-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-114b-vts-l2switching-base-ixgbe-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
-  include:
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "3n-tsh-x520-114b-vts-l2switching-base-ixgbe-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 3n-tsh-x520-114b-vts-l2switching-base-ixgbe-pdr-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-114b-vts-l2switching-base-ixgbe-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
-  include:
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vts.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "3n-tsh-x520-114b-vts-l2switching-base-ixgbe-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
