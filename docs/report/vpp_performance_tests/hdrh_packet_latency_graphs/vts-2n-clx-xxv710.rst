@@ -29,13 +29,13 @@
     </script>
 
 ..
-    ## 3n-skx-xxv710
+    ## 2n-clx-xxv710
     ### 64b-?t?c-vts-l2switching-base-i40e
     10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
     10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
     10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
 
-3n-skx-xxv710
+2n-clx-xxv710
 ~~~~~~~~~~~~~
 
 114b-2t1c-vts-l2switching-base-i40e
@@ -44,7 +44,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr-hdrh-lat.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr-hdrh-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -53,8 +53,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr-hdrh-lat}
-            \label{fig:3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr-hdrh-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr-hdrh-lat}
+            \label{fig:2n-clx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr-hdrh-lat}
     \end{figure}
 
 .. raw:: latex
@@ -67,7 +67,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-114b-4t2c-vts-l2switching-base-i40e-ndr-hdrh-lat.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-114b-4t2c-vts-l2switching-base-i40e-ndr-hdrh-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -76,8 +76,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-114b-4t2c-vts-l2switching-base-i40e-ndr-hdrh-lat}
-            \label{fig:3n-skx-xxv710-114b-4t2c-vts-l2switching-base-i40e-ndr-hdrh-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-114b-4t2c-vts-l2switching-base-i40e-ndr-hdrh-lat}
+            \label{fig:2n-clx-xxv710-114b-4t2c-vts-l2switching-base-i40e-ndr-hdrh-lat}
     \end{figure}
 
 .. raw:: latex
@@ -90,7 +90,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-114b-8t4c-vts-l2switching-base-i40e-ndr-hdrh-lat.html"></iframe>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-114b-8t4c-vts-l2switching-base-i40e-ndr-hdrh-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -99,6 +99,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-114b-8t4c-vts-l2switching-base-i40e-ndr-hdrh-lat}
-            \label{fig:3n-skx-xxv710-114b-8t4c-vts-l2switching-base-i40e-ndr-hdrh-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-114b-8t4c-vts-l2switching-base-i40e-ndr-hdrh-lat}
+            \label{fig:2n-clx-xxv710-114b-8t4c-vts-l2switching-base-i40e-ndr-hdrh-lat}
     \end{figure}
