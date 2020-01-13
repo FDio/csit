@@ -808,7 +808,7 @@ class IPsecUtil:
                     f"exec set interface state loop0 up\n"
                     f"exec set interface ip address "
                     f"{if1_n} {if2_ip - 1}/{mask}\n"
-                    f"exec set ip arp {if1_n} {if2_ip}/{mask2} {rmac} static\n"
+                    f"exec set ip neighbor {if1_n} {if2_ip}/{mask2} {rmac} static\n"
                 )
                 tmp_f2.write(
                     f"exec set interface ip address {if2_n} {if2_ip}/{mask}\n"
@@ -1278,7 +1278,7 @@ class IPsecUtil:
 
             # Configure tunnel end point(s) on right side
             dut2_scripts[cnf].write(
-                f"set ip arp memif1/{cnf + 1} "
+                f"set ip neighbor memif1/{cnf + 1} "
                 f"{ip_address(if1_ip_addr) + tnl_incr} "
                 f"02:02:00:00:{17:02X}:{cnf:02X} static\n"
                 f"create ipsec tunnel local-ip {ip_address(if2_ip_addr) + cnf} "
