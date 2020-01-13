@@ -1,0 +1,2626 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05bc9ce6_5fc05f81",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-dot1qip4asym-ip4src254.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 73,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 22
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77386fc8_d96ba784",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-dot1qip6asym-ip6src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 69,
+        "startChar": 17,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ac0a9b5_e80faea6",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-dot1qip6asym-ip6src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 77,
+        "startChar": 17,
+        "endLine": 79,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06f58cbc_c7c8880a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-dot1qip6asym-ip6src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends for every parameter.",
+      "range": {
+        "startLine": 89,
+        "startChar": 20,
+        "endLine": 89,
+        "endChar": 32
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0faf083_69c4d991",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-dot1qip6asym-ip6src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends for every parameter.",
+      "range": {
+        "startLine": 105,
+        "startChar": 20,
+        "endLine": 105,
+        "endChar": 32
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b92a516_bb326ce9",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst10000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7659ceb3_5315f01e",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst10000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98ca5de1_fbc25680",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst100000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23f1e540_fbb6508f",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst100000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efb4ead6_cb3226b4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst1000000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61a66804_0fa192d1",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst1000000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b98d362_f787bcf7",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 59,
+        "startChar": 24,
+        "endLine": 62,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60a6424c_a946a8a0",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 65,
+        "startChar": 23,
+        "endLine": 67,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03ae247e_be6c4a8a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4src254.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 59,
+        "startChar": 24,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8ac123a_c8f9f077",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4src254.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 65,
+        "startChar": 24,
+        "endLine": 68,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7c93b11_1267a49d",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc500kdst500k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 76,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 44
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0be25f5d_d8a6b97c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc500kdst500k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 78,
+        "startChar": 15,
+        "endLine": 81,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fe68392_c4413418",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc500kdst500k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 85,
+        "startChar": 17,
+        "endLine": 86,
+        "endChar": 44
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a970a24b_f64bbb4e",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc500kdst500k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 87,
+        "startChar": 15,
+        "endLine": 89,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdae7e35_70c95dae",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 76,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 45
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fd32868_63d67465",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 78,
+        "startChar": 15,
+        "endLine": 81,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e537773_5eb9f4f8",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 84,
+        "startChar": 18,
+        "endLine": 85,
+        "endChar": 44
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "099b6db3_2e1ef34f",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 155,
+        "startChar": 20,
+        "endLine": 155,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ad7b430_6da76b61",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 156,
+        "startChar": 31,
+        "endLine": 156,
+        "endChar": 65
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ad680b1_b3ec6136",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 157,
+        "startChar": 31,
+        "endLine": 157,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdf8c5bc_26b46e6b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 162,
+        "startChar": 20,
+        "endLine": 162,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4f197f8_ccaa2482",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 163,
+        "startChar": 31,
+        "endLine": 163,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "392f3cf0_aacd608a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 168,
+        "startChar": 20,
+        "endLine": 168,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53d76b3d_3330787c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 169,
+        "startChar": 30,
+        "endLine": 169,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "537e69c7_92bf4703",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 76,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 45
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a03465d_49afb933",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 78,
+        "startChar": 15,
+        "endLine": 81,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff7c6899_d5170f7c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 84,
+        "startChar": 18,
+        "endLine": 85,
+        "endChar": 45
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "040b514f_7595da3c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 86,
+        "startChar": 15,
+        "endLine": 89,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12772150_8f838340",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 103,
+        "startChar": 20,
+        "endLine": 103,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5e1d056_f7c80a12",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 104,
+        "startChar": 31,
+        "endLine": 104,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62ca615d_02c4758f",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 105,
+        "startChar": 31,
+        "endLine": 105,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7afc4173_7a14b1b4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 110,
+        "startChar": 19,
+        "endLine": 110,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3879446_a1ceeca7",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 111,
+        "startChar": 31,
+        "endLine": 111,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8de9957f_634fb589",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 116,
+        "startChar": 20,
+        "endLine": 116,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb94d1cb_51b4370b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 117,
+        "startChar": 31,
+        "endLine": 117,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c376ba82_a46dae3d",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 128,
+        "startChar": 20,
+        "endLine": 128,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddd92d15_6e5f2175",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 133,
+        "startChar": 20,
+        "endLine": 133,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ef8aeca_0f7c6aaa",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 134,
+        "startChar": 31,
+        "endLine": 134,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c10ec86_c5b53bda",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 135,
+        "startChar": 31,
+        "endLine": 135,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "466d44b2_b0ad3c8b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 140,
+        "startChar": 20,
+        "endLine": 140,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eda456b2_99cb63b1",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 141,
+        "startChar": 31,
+        "endLine": 141,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ed4dd24_bfb65ade",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 146,
+        "startChar": 20,
+        "endLine": 146,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ba80fdd_e3c08970",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 147,
+        "startChar": 31,
+        "endLine": 147,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4107a43e_052e0324",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 134,
+        "startChar": 47,
+        "endLine": 134,
+        "endChar": 48
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03aa7fa3_41fd28de",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 168,
+        "startChar": 47,
+        "endLine": 168,
+        "endChar": 48
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c8a2477_90eee6a7",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 172,
+        "startChar": 47,
+        "endLine": 172,
+        "endChar": 48
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b751829_5fd722e4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-lb.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 65,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c85699f_670b2d2d",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-lb.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 75,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fb34857_802aacdd",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-lb.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Remove spaces.",
+      "range": {
+        "startLine": 133,
+        "startChar": 13,
+        "endLine": 133,
+        "endChar": 14
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36ab9d6a_74e2cf2a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst10000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 63,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f38d8b4f_fd76baf1",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst10000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 69,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be3bfc8f_0a42091f",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst100000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 63,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2e7f2f6_85bb0240",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst100000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 69,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e75add86_1d14e96d",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst1000000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 63,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63c4e326_70695c74",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst1000000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 69,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dc9fb8e_f8215a40",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 63,
+        "startChar": 21,
+        "endLine": 68,
+        "endChar": 24
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69616474_b8d21ffa",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 69,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17f5792b_0687c776",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-1c1n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 131,
+        "startChar": 1,
+        "endLine": 131,
+        "endChar": 40
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bf51ce5_c9ac7e36",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-1c2n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 72,
+        "startChar": 13,
+        "endLine": 72,
+        "endChar": 16
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dec3a2a_f8ee8f6a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-1c8n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate line for every parameter.",
+      "range": {
+        "startLine": 97,
+        "startChar": 20,
+        "endLine": 97,
+        "endChar": 52
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef26f29f_847fc0f0",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-2c4n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate line for every parameter.",
+      "range": {
+        "startLine": 97,
+        "startChar": 20,
+        "endLine": 97,
+        "endChar": 52
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eefeef60_dc9ad4c8",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-2c4n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate line for every parameter.",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 126,
+        "endChar": 3
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb41111a_f31e9f9f",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-2c4n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate line for every parameter.",
+      "range": {
+        "startLine": 137,
+        "startChar": 20,
+        "endLine": 137,
+        "endChar": 32
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92700ffe_661af19f",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-4c2n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate line for every parameter.",
+      "range": {
+        "startLine": 97,
+        "startChar": 20,
+        "endLine": 97,
+        "endChar": 3
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ebb9d8c_c20f894c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-4c2n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Seperate line with correct indent for closing bracket.",
+      "range": {
+        "startLine": 112,
+        "startChar": 33,
+        "endLine": 112,
+        "endChar": 4
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84eb9ed3_307fbd41",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-6c1n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Seperate line with correct indend for closing bracket.",
+      "range": {
+        "startLine": 103,
+        "startChar": 32,
+        "endLine": 103,
+        "endChar": 4
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1948981c_cccc8638",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-8c1n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 72,
+        "startChar": 15,
+        "endLine": 72,
+        "endChar": 16
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06322645_2e64019c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-8c2n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 70,
+        "startChar": 14,
+        "endLine": 73,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c66a6065_a3f311f6",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-8c2n.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 77,
+        "startChar": 15,
+        "endLine": 80,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b484286_8f0b4e5c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst1000000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 83,
+        "startChar": 27,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59ee14ab_1f2fbb89",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst20000-1cnf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 104,
+        "startChar": 20,
+        "endLine": 104,
+        "endChar": 6
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "701f495b_ba79b78b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst400-2cnf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 88,
+        "startChar": 20,
+        "endLine": 88,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef8f1595_76b55b7c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst400-2cnf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 89,
+        "startChar": 31,
+        "endLine": 89,
+        "endChar": 68
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eda08e14_cea3538b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst400-2cnf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 100,
+        "startChar": 20,
+        "endLine": 100,
+        "endChar": 38
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bce9ee02_ec5cef6b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst400-2cnf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 101,
+        "startChar": 31,
+        "endLine": 101,
+        "endChar": 64
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "590d6a8b_142948af",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst400-2cnf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 106,
+        "startChar": 20,
+        "endLine": 106,
+        "endChar": 38
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac947bf9_c1ff0e7c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst400-2cnf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 107,
+        "startChar": 31,
+        "endLine": 107,
+        "endChar": 68
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "730be36f_df29220c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst400.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed271741_f0299ae0",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst400.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 70,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d7ae79e_b5236b96",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 58,
+        "startChar": 21,
+        "endLine": 63,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e3cdaca_718d0fe5",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 65,
+        "startChar": 21,
+        "endLine": 70,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76b6e792_988c6408",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4src254.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 58,
+        "startChar": 21,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cdb47de_51317abe",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4src254.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 65,
+        "startChar": 21,
+        "endLine": 70,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9a5e666_374e6243",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-macsrc100kip4src100k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 126,
+        "endChar": 38
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ec290fa_f4238625",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-macsrc100kip4src100k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 127,
+        "startChar": 31,
+        "endLine": 127,
+        "endChar": 64
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a86c8749_afb8471a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-macsrc100kip4src100k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 132,
+        "startChar": 20,
+        "endLine": 132,
+        "endChar": 38
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4dca0ab_2c0c61ae",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-macsrc100kip4src100k.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 133,
+        "startChar": 31,
+        "endLine": 133,
+        "endChar": 68
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a79b0d78_1e71adb4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4udp-100u15p.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indends needed.",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 126,
+        "endChar": 32
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4080cf8_cfe8c196",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4udp-1u15p.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 91,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 1
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2315c28b_148fbdb1",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4udp-4000u15p.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate line with correct indent needed.",
+      "range": {
+        "startLine": 100,
+        "startChar": 30,
+        "endLine": 100,
+        "endChar": 3
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "837e3d44_709de610",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst100000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 63,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27b9f900_a57e733a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst100000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 69,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5b103a0_a071c82a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst1000000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 63,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b559b827_9de91cc3",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst1000000.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 69,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "408cea5b_03fb078b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 63,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bf2d425_f0b569ef",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6src253.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 69,
+        "startChar": 20,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfb907b6_d7554501",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src10udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 54,
+        "startChar": 19,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78bca9e1_e9529126",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 54,
+        "startChar": 19,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5242253_1a6bae3a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 144,
+        "startChar": 29,
+        "endLine": 144,
+        "endChar": 30
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76328010_e327db04",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate line with correct indent needed.",
+      "range": {
+        "startLine": 214,
+        "startChar": 48,
+        "endLine": 214,
+        "endChar": 4
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06d1ffe5_d72769c7",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate line with correct indent needed.",
+      "range": {
+        "startLine": 220,
+        "startChar": 33,
+        "endLine": 220,
+        "endChar": 4
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1160934_3fe2ee92",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate line with correct indent needed.",
+      "range": {
+        "startLine": 226,
+        "startChar": 33,
+        "endLine": 226,
+        "endChar": 4
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdf3098e_c63fb394",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate line with correct indent needed.",
+      "range": {
+        "startLine": 232,
+        "startChar": 34,
+        "endLine": 232,
+        "endChar": 4
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fae103a2_37176143",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 239,
+        "endChar": 7
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2715a7e2_8c996bd5",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 54,
+        "startChar": 19,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b46fc66_6e69e7a3",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src4udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 54,
+        "startChar": 19,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55c43b06_ed9f22ac",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src6udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 54,
+        "startChar": 19,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f34ae59a_fd86952e",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src8udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 54,
+        "startChar": 18,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6d8b313_051bcb3e",
+        "filename": "resources/traffic_profiles/trex/trex-sl-ethip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T15:03:31Z",
+      "side": 1,
+      "message": "Separate lines with correct indents needed.",
+      "range": {
+        "startLine": 52,
+        "startChar": 19,
+        "endLine": 54,
+        "endChar": 5
+      },
+      "revId": "8d02fc8439d1b5d120c4dccf34e37a166240cc3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
