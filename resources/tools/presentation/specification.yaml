@@ -5742,6 +5742,7 @@
     title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
     layout: "plot-throughput"
 
+###############################################################################
 # Plots - NF Density - VSC - MRR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
@@ -5752,17 +5753,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            '64B' and
            '2T1C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -5784,17 +5780,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            '64B' and
            '4T2C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -5816,17 +5807,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            '64B' and
            '8T4C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -5849,17 +5835,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            'IMIX' and
            '2T1C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -5881,17 +5862,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            'IMIX' and
            '4T2C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -5913,17 +5889,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            'IMIX' and
            '8T4C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -5946,17 +5917,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            '64B' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -5978,17 +5944,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            '64B' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6010,17 +5971,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            '64B' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6043,17 +5999,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            'IMIX' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6075,17 +6026,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            'IMIX' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6107,17 +6053,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            'IMIX' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6140,17 +6081,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            '64B' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6172,17 +6108,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            '64B' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6204,17 +6135,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            '64B' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6237,17 +6163,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            'IMIX' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6269,17 +6190,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            'IMIX' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6301,17 +6217,12 @@
   filter: "'NIC_Intel-XXV710' and
            'NF_DENSITY' and
            'VHOST' and
+           not 'VXLAN' and
            'CHAIN' and
            'NF_VPPIP4' and
            'IMIX' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "VNF-1c"
-  compare:
-    include: "1"
-    name: "VNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6322,6 +6233,499 @@
   z-axis: "IMIX Packet Throughput (mean PDR) [Mpps]"
   layout:
     title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-pdr"
+    layout: "plot-service-density"
+
+###############################################################################
+# Plots - NF Density - VSC - MRR 64b
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-vsc-vxlan-mrr"
+  data: "plot-vpp-nfv-2n-skx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           '64B' and
+           '2T1C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-vsc-vxlan-mrr"
+  data: "plot-vpp-nfv-2n-skx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           '64B' and
+           '4T2C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-vsc-vxlan-mrr"
+  data: "plot-vpp-nfv-2n-skx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           '64B' and
+           '8T4C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+    layout: "plot-service-density"
+
+# Plots - NF Density - VSC - MRR IMIX
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-vsc-vxlan-mrr"
+  data: "plot-vpp-nfv-2n-skx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '2T1C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-vsc-vxlan-mrr"
+  data: "plot-vpp-nfv-2n-skx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '4T2C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-vsc-vxlan-mrr"
+  data: "plot-vpp-nfv-2n-skx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '8T4C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+    layout: "plot-service-density"
+
+# Plots - NF Density - VSC - NDR 64b
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-vsc-vxlan-ndr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           '64B' and
+           '2T1C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean NDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-vsc-vxlan-ndr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           '64B' and
+           '4T2C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean NDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-vsc-vxlan-ndr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           '64B' and
+           '8T4C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean NDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+    layout: "plot-service-density"
+
+# Plots - NF Density - VSC - NDR IMIX
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-vsc-vxlan-ndr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '2T1C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean NDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-vsc-vxlan-ndr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '4T2C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean NDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-vsc-vxlan-ndr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '8T4C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean NDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-ndr"
+    layout: "plot-service-density"
+
+# Plots - NF Density - VSC - PDR 64b
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-vsc-vxlan-pdr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           '64B' and
+           '2T1C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean PDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-vsc-vxlan-pdr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           '64B' and
+           '4T2C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean PDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-vsc-vxlan-pdr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           '64B' and
+           '8T4C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean PDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+    layout: "plot-service-density"
+
+# Plots - NF Density - VSC - PDR IMIX
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-vsc-vxlan-pdr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '2T1C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean PDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-vsc-vxlan-pdr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '4T2C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean PDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-vsc-vxlan-pdr"
+  data: "plot-vpp-nfv-2n-skx-ndrpdr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '8T4C' and
+           'NDRPDR'"
+  parameters:
+  - "throughput"
+  - "name"
+  - "tags"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean PDR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
     layout: "plot-service-density"
 
 ###############################################################################
@@ -6340,12 +6744,6 @@
            '64B' and
            '2T1C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -6372,12 +6770,6 @@
            '64B' and
            '4T2C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -6404,12 +6796,6 @@
            '64B' and
            '8T4C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -6437,12 +6823,6 @@
            'IMIX' and
            '2T1C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -6469,12 +6849,6 @@
            'IMIX' and
            '4T2C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -6501,12 +6875,6 @@
            'IMIX' and
            '8T4C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -6534,12 +6902,6 @@
            '64B' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6566,12 +6928,6 @@
            '64B' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6598,12 +6954,6 @@
            '64B' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6631,12 +6981,6 @@
            'IMIX' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6663,12 +7007,6 @@
            'IMIX' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6695,12 +7033,6 @@
            'IMIX' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6728,12 +7060,6 @@
            '64B' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6760,12 +7086,6 @@
            '64B' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6792,12 +7112,6 @@
            '64B' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6825,12 +7139,6 @@
            'IMIX' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6857,12 +7165,6 @@
            'IMIX' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6889,12 +7191,6 @@
            'IMIX' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -6923,12 +7219,6 @@
            '64B' and
            '2T1C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -6955,12 +7245,6 @@
            '64B' and
            '4T2C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -6987,12 +7271,6 @@
            '64B' and
            '8T4C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -7020,12 +7298,6 @@
            'IMIX' and
            '2T1C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -7052,12 +7324,6 @@
            'IMIX' and
            '4T2C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -7084,12 +7350,6 @@
            'IMIX' and
            '8T4C' and
            'MRR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "result"
   - "name"
@@ -7117,12 +7377,6 @@
            '64B' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7149,12 +7403,6 @@
            '64B' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7181,12 +7429,6 @@
            '64B' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7214,12 +7456,6 @@
            'IMIX' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7246,12 +7482,6 @@
            'IMIX' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7278,12 +7508,6 @@
            'IMIX' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7311,12 +7535,6 @@
            '64B' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7343,12 +7561,6 @@
            '64B' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7375,12 +7587,6 @@
            '64B' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7408,12 +7614,6 @@
            'IMIX' and
            '2T1C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7440,12 +7640,6 @@
            'IMIX' and
            '4T2C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
@@ -7472,12 +7666,6 @@
            'IMIX' and
            '8T4C' and
            'NDRPDR'"
-  reference:
-    include: "2"
-    name: "CNF-1c"
-  compare:
-    include: "1"
-    name: "CNF-0.5c"
   parameters:
   - "throughput"
   - "name"
