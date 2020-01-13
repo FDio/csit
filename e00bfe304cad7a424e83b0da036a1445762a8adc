@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c79ea3bd_6d7f6bdc",
+        "filename": "resources/libraries/bash/function/mrr-daily-3n-hsw.txt",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-13T17:46:22Z",
+      "side": 1,
+      "message": "I wonder why this size is selected. I expected 64b (or just imix).",
+      "range": {
+        "startLine": 11,
+        "startChar": 7,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "e00bfe304cad7a424e83b0da036a1445762a8adc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39461159_6a7d11f6",
+        "filename": "resources/libraries/bash/function/mrr-daily-3n-hsw.txt",
+        "patchSetId": 14
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-13T17:46:22Z",
+      "side": 1,
+      "message": "Not enough CPU cores available for placement!\nSee: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-mrr-daily-master/1065/archives/log.html.gz#s1-s1-s1-s6-s1-s1-s1-t1-k2-k13-k8-k3-k1",
+      "range": {
+        "startLine": 192,
+        "startChar": 81,
+        "endLine": 192,
+        "endChar": 86
+      },
+      "revId": "e00bfe304cad7a424e83b0da036a1445762a8adc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8fef9f9_31bc0f4a",
+        "filename": "tests/vpp/perf/vts/2n1l-10ge2p1x710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-13T17:46:22Z",
+      "side": 1,
+      "message": "Gerrit says this file was renamed/moved, but original and new path look equal to me (and to diff I copied into). Weird.",
+      "revId": "e00bfe304cad7a424e83b0da036a1445762a8adc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
