@@ -213,6 +213,10 @@ def simple_burst(
 
             # Read the stats after the test
             stats = client.get_stats()
+            xstats0 = client.get_xstats(0)
+            xstats1 = client.get_xstats(1)
+            print(f"XSTATS 0:\n{xstats0}")
+            print(f"XSTATS 1:\n{xstats1}")
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
