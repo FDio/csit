@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53213ff2_e6d32452",
+        "filename": "resources/libraries/robot/overlay/srv6.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-13T14:50:26Z",
+      "side": 1,
+      "message": "I do not like this part. It makes the line too long, and leaves the arguments undocumented.\nI know, it comes from line 231, so it is probably ok (to be improved later, both at once).\nAlso, I am not sure how easy would be to merge the two keywords into one (autodetecting whether DUT2 is present).\nI will let Jan decide.",
+      "range": {
+        "startLine": 428,
+        "startChar": 63,
+        "endLine": 428,
+        "endChar": 87
+      },
+      "revId": "9072d7210f63b420ad88691d962ec1c63174191a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26f9736d_0dce77b7",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6ip6-ip6base-srv6enc1sid-dev.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-13T14:50:26Z",
+      "side": 1,
+      "message": "Remove the trailing space.",
+      "range": {
+        "startLine": 48,
+        "startChar": 24,
+        "endLine": 48,
+        "endChar": 25
+      },
+      "revId": "9072d7210f63b420ad88691d962ec1c63174191a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
