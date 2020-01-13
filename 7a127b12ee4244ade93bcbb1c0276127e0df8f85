@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "599368fc_ac5d4d6f",
+        "filename": "docs/job_specs/perf_tests_job_specs.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-13T09:36:07Z",
+      "side": 1,
+      "message": "Tests with avf driver are not executed n 3n-hsw systems as it requires enabling of SoftIOMMU that\u0027s quite difficult there.",
+      "range": {
+        "startLine": 55,
+        "startChar": 13,
+        "endLine": 55,
+        "endChar": 22
+      },
+      "revId": "7a127b12ee4244ade93bcbb1c0276127e0df8f85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
