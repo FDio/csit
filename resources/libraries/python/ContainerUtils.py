@@ -368,7 +368,7 @@ class ContainerManager:
                 f"create interface memif id {i} socket-id 2 master\n"
                 f"set interface state memif2/{i} up\n"
                 f"set interface l2 bridge memif2/{i} 2\n"
-                f"set ip arp memif2/{i} {tg_if_ip4} {tg_if_mac} "
+                f"set ip neighbor memif2/{i} {tg_if_ip4} {tg_if_mac} "
                 f"static\n\n"
             )
 
