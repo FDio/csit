@@ -45,6 +45,30 @@
       "revId": "7a127b12ee4244ade93bcbb1c0276127e0df8f85",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2ed5a3d_12400684",
+        "filename": "docs/job_specs/perf_tests_job_specs.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-14T13:17:00Z",
+      "side": 1,
+      "message": "Time savings. We do except this being use-case driven (e.g. VPN) small packets do not makes sense from real use case pov. We are looking into overall throughput that clients are able to pass (demand driven). IMIX is the minimum we should run. \n\nComparing is fine but as we have limited resources and great motivation to cut the tests, this is a candidate no.1.",
+      "parentUuid": "282eb8c7_4c584954",
+      "range": {
+        "startLine": 88,
+        "startChar": 2,
+        "endLine": 88,
+        "endChar": 7
+      },
+      "revId": "7a127b12ee4244ade93bcbb1c0276127e0df8f85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
