@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -153,13 +153,15 @@ class TrafficStreamsBaseClass:
             # Streams for latency measurement:
             # Direction 0 --> 1
             lat_stream1 = STLStream(
-                packet=pkt_lat_a, flow_stats=STLFlowLatencyStats(pg_id=0),
+                packet=pkt_lat_a,
+                flow_stats=STLFlowLatencyStats(pg_id=0),
                 mode=STLTXCont(pps=9000)
             )
             # Direction 1 --> 0
             # second traffic stream with a phase of 10ns (inter-stream gap)
             lat_stream2 = STLStream(
-                packet=pkt_lat_b, isg=10.0,
+                packet=pkt_lat_b,
+                isg=10.0,
                 flow_stats=STLFlowLatencyStats(pg_id=1),
                 mode=STLTXCont(pps=9000)
             )
@@ -185,11 +187,13 @@ class TrafficStreamsBaseClass:
 
                 # Create the streams:
                 stream1.append(STLStream(
-                    packet=pkt_a, isg=stream[u"isg"],
+                    packet=pkt_a,
+                    isg=stream[u"isg"],
                     mode=STLTXCont(pps=stream[u"pps"]))
                 )
                 stream2.append(STLStream(
-                    packet=pkt_b, isg=stream[u"isg"],
+                    packet=pkt_b,
+                    isg=stream[u"isg"],
                     mode=STLTXCont(pps=stream[u"pps"]))
                 )
             streams = list()

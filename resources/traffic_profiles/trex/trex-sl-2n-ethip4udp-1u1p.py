@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -41,11 +41,11 @@ class TrafficStreams(TrafficStreamsBaseClass):
         super(TrafficStreamsBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_ip = '20.0.0.0'
-        self.p1_dst_ip = '12.0.0.2'
+        self.p1_src_ip = u"20.0.0.0"
+        self.p1_dst_ip = u"12.0.0.2"
 
-        self.p2_src_ip = '12.0.0.2'
-        self.p2_dst_ip = '200.0.0.0'
+        self.p2_src_ip = u"12.0.0.2"
+        self.p2_dst_ip = u"200.0.0.0"
 
         # UDP ports used in packet headers.
         self.p1_src_udp_port = 1024
@@ -64,15 +64,31 @@ class TrafficStreams(TrafficStreamsBaseClass):
         """
 
         # Direction 0 --> 1
-        base_pkt_a = (Ether() /
-                      IP(src=self.p1_src_ip, dst=self.p1_dst_ip, proto=17) /
-                      UDP(sport=self.p1_src_udp_port,
-                          dport=self.p1_dst_udp_port))
+        base_pkt_a = (
+            Ether() /
+            IP(
+                src=self.p1_src_ip,
+                dst=self.p1_dst_ip,
+                proto=17
+            ) /
+            UDP(
+                sport=self.p1_src_udp_port,
+                dport=self.p1_dst_udp_port
+            )
+        )
         # Direction 1 --> 0
-        base_pkt_b = (Ether() /
-                      IP(src=self.p2_src_ip, dst=self.p2_dst_ip, proto=17) /
-                      UDP(sport=self.p2_src_udp_port,
-                          dport=self.p2_dst_udp_port))
+        base_pkt_b = (
+            Ether() /
+            IP(
+                src=self.p2_src_ip,
+                dst=self.p2_dst_ip,
+                proto=17
+            ) /
+            UDP(
+                sport=self.p2_src_udp_port,
+                dport=self.p2_dst_udp_port
+            )
+        )
 
         return base_pkt_a, base_pkt_b, None, None
 

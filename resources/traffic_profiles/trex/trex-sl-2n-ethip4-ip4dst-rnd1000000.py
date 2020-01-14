@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -55,34 +55,64 @@ class TrafficStreams(TrafficStreamsBaseClass):
         """
 
         # Direction 0 --> 1
-        base_pkt_a = (Ether() /
-                      IP(src=self.p1_src_start_ip,
-                         dst=self.p1_dst_start_ip,
-                         proto=61))
+        base_pkt_a = (
+                Ether() /
+                IP(
+                    src=self.p1_src_start_ip,
+                    dst=self.p1_dst_start_ip,
+                    proto=61
+                )
+        )
         # Direction 1 --> 0
-        base_pkt_b = (Ether() /
-                      IP(src=self.p2_src_start_ip,
-                         dst=self.p2_dst_start_ip,
-                         proto=61))
+        base_pkt_b = (
+                Ether() /
+                IP(
+                    src=self.p2_src_start_ip,
+                    dst=self.p2_dst_start_ip,
+                    proto=61
+                )
+        )
 
         # Direction 0 --> 1
-        vm1 = STLScVmRaw([STLVmFlowVarRepeatableRandom (\
-                              name=u"dst",
-                              min_value=self.p1_dst_start_ip,
-                              max_value=self.p1_dst_end_ip,
-                              size=4,
-                              limit=1000000, seed=0x0000),
-                          STLVmWrFlowVar(fv_name=u"dst", pkt_offset=u"IP.dst"),
-                          STLVmFixIpv4(offset=u"IP")])
+        vm1 = STLScVmRaw(
+            [
+                STLVmFlowVarRepeatableRandom(
+                    name=u"dst",
+                    min_value=self.p1_dst_start_ip,
+                    max_value=self.p1_dst_end_ip,
+                    size=4,
+                    limit=1000000,
+                    seed=0x0000
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"dst",
+                    pkt_offset=u"IP.dst"
+                ),
+                STLVmFixIpv4(
+                    offset=u"IP"
+                )
+            ]
+        )
         # Direction 1 --> 0
-        vm2 = STLScVmRaw([STLVmFlowVarRepeatableRandom (\
-                              name=u"dst",
-                              min_value=self.p2_dst_start_ip,
-                              max_value=self.p2_dst_end_ip,
-                              size=4,
-                              limit=1000000, seed=0x0000),
-                          STLVmWrFlowVar(fv_name=u"dst", pkt_offset=u"IP.dst"),
-                          STLVmFixIpv4(offset=u"IP")])
+        vm2 = STLScVmRaw(
+            [
+                STLVmFlowVarRepeatableRandom(
+                    name=u"dst",
+                    min_value=self.p2_dst_start_ip,
+                    max_value=self.p2_dst_end_ip,
+                    size=4,
+                    limit=1000000,
+                    seed=0x0000
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"dst",
+                    pkt_offset=u"IP.dst"
+                ),
+                STLVmFixIpv4(
+                    offset=u"IP"
+                )
+            ]
+        )
 
         return base_pkt_a, base_pkt_b, vm1, vm2
 
