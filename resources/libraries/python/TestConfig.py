@@ -346,9 +346,11 @@ class TestConfig:
             for i in range(0, vxlan_count):
                 dst_ip = dst_ip_start + i * ip_step
                 commands.append(
-                    f"ip_neighbor_add_del sw_if_index {idx_vxlan_if} "
-                    f"dst {dst_ip} "
-                    f"mac {Topology.get_interface_mac(op_node, op_node_if)}\n"
+                    f"exec ip neighbor "
+                    f"{Topology.get_interface_name(node, node_vxlan_if)} "
+                    f"{dst_ip} "
+                    f"{Topology.get_interface_mac(op_node, op_node_if)} static "
+                    f"\n"
                 )
                 commands.append(
                     f"ip_route_add_del "
