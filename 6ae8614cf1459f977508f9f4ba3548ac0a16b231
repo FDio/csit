@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85a766c9_4954d0fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-14T15:19:24Z",
+      "side": 1,
+      "message": "VPP API is guarded by CRCs, but CLI is not (and probably never be).\nDo we have a task to replace CLI calls with socket PAPI (and not just cli_inbalnd)?\nIf not, should we have such a task?",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "6ae8614cf1459f977508f9f4ba3548ac0a16b231",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
