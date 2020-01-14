@@ -728,6 +728,29 @@
       - "vpp-performance-changes-2n-skx-ref"
       - "vpp-performance-changes-2n-skx-cmp"
 
+    vpp-performance-changes-nfv-2n-skx-ref:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 22  # NFV
+        - 31  # NFV
+        - 32  # NFV
+#        - 35  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 43  # NDRPDR sel
+#        - 44  # NDRPDR sel
+#        - 45  # NDRPDR sel
+#        - 46  # NDRPDR sel
+    vpp-performance-changes-nfv-2n-skx-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 22  # NFV
+        - 31  # NFV
+        - 32  # NFV
+    vpp-performance-changes-nfv-2n-skx:
+      - "vpp-performance-changes-nfv-2n-skx-ref"
+      - "vpp-performance-changes-nfv-2n-skx-cmp"
+
     vpp-performance-changes-2n-dnv-ref:
       csit-vpp-perf-verify-1908-2n-dnv:
           - 1   # NDRPDR sel
@@ -848,6 +871,18 @@
       - "vpp-performance-changes-2n-skx-mrr-h1"
       - "vpp-performance-changes-2n-skx-mrr-ref"
       - "vpp-performance-changes-2n-skx-mrr-cmp"
+
+    vpp-performance-changes-nfv-2n-skx-mrr-ref:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 71  # NFV MRR
+    vpp-performance-changes-nfv-2n-skx-mrr-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 71  # NFV MRR
+    vpp-performance-changes-nfv-2n-skx-mrr:
+      - "vpp-performance-changes-nfv-2n-skx-mrr-ref"
+      - "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
 
     vpp-performance-changes-2n-dnv-mrr-ref:
       csit-vpp-perf-verify-1908-2n-dnv:
@@ -2708,6 +2743,86 @@
   - "throughput"
   - "tags"
 
+# VPP Performance Changes NFV Service Density 2n-skx 2t1c pdr
+- type: "table"
+  title: "VPP Performance Changes NFV Service Density 2n-skx 2t1c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-2t1c-pdr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-nfv-2n-skx-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-nfv-2n-skx-cmp"
+  data: "vpp-performance-changes-nfv-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes NFV Service Density 2n-skx 4t2c pdr
+- type: "table"
+  title: "VPP Performance Changes NFV Service Density 2n-skx 4t2c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-4t2c-pdr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-nfv-2n-skx-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-nfv-2n-skx-cmp"
+  data: "vpp-performance-changes-nfv-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes NFV Service Density 2n-skx 2t1c ndr
+- type: "table"
+  title: "VPP Performance Changes NFV Service Density 2n-skx 2t1c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-2t1c-ndr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-nfv-2n-skx-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-nfv-2n-skx-cmp"
+  data: "vpp-performance-changes-nfv-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes NFV Service Density 2n-skx 4t2c ndr
+- type: "table"
+  title: "VPP Performance Changes NFV Service Density 2n-skx 4t2c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-4t2c-ndr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-nfv-2n-skx-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-nfv-2n-skx-cmp"
+  data: "vpp-performance-changes-nfv-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
 # VPP Performance Changes 2n-dnv 1t1c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-dnv 1t1c pdr"
@@ -3389,6 +3504,66 @@
   - "name"
   - "parent"
   - "result"
+
+# VPP Performance Changes NFV Service Density 2n-skx 2t1c mrr
+- type: "table"
+  title: "VPP Performance Changes NFV Service Density 2n-skx 2t1c mrr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-2t1c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-nfv-2n-skx-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
+  data: "vpp-performance-changes-nfv-2n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes NFV Service Density 2n-skx 4t2c mrr
+- type: "table"
+  title: "VPP Performance Changes NFV Service Density 2n-skx 4t2c mrr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-4t2c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-nfv-2n-skx-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
+  data: "vpp-performance-changes-nfv-2n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Performance Changes NFV Service Density 2n-skx 8t4c mrr
+- type: "table"
+  title: "VPP Performance Changes NFV Service Density 2n-skx 8t4c mrr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-8t4c-mrr"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-nfv-2n-skx-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
+  data: "vpp-performance-changes-nfv-2n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
 
 # VPP Performance Changes 2n-dnv 1t1c MRR
 - type: "table"
