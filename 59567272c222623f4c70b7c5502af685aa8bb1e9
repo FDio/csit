@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "3690ef4b_d9172e5e",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-15T17:59:56Z",
+      "side": 1,
+      "message": "\u003e Done\n\nIt turns out that I could not get the tc_naming.sh to pass if I included the new param values in the test name.  So I reverted the addition in the latest patch set.",
+      "parentUuid": "096530e3_746d3000",
+      "range": {
+        "startLine": 120,
+        "startChar": 34,
+        "endLine": 120,
+        "endChar": 35
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10ebc247_1d86fa5e",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
         "patchSetId": 6
