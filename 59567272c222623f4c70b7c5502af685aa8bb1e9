@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac234eb4_4cdd20a7",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-15T13:38:06Z",
+      "side": 1,
+      "message": "Add the new params.",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 9
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "025330e5_5bb71a45",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-15T13:38:06Z",
+      "side": 1,
+      "message": "Why not just:\n  clients\n\nDo you expect to be doing conversion from something else? Even then, this would be more readable:\n  str(clients)",
+      "range": {
+        "startLine": 72,
+        "startChar": 32,
+        "endLine": 72,
+        "endChar": 44
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b69c80d2_69cbafdf",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-15T13:38:06Z",
+      "side": 1,
+      "message": "Do you want to include new param values, to avoid multiple test cases with names differing only in tc{num}?",
+      "range": {
+        "startLine": 120,
+        "startChar": 34,
+        "endLine": 120,
+        "endChar": 35
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72b3c868_ff2d7759",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-15T13:38:06Z",
+      "side": 1,
+      "message": "Single space.",
+      "range": {
+        "startLine": 47,
+        "startChar": 45,
+        "endLine": 47,
+        "endChar": 47
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
