@@ -143,6 +143,29 @@
     },
     {
       "key": {
+        "uuid": "10ebc247_1d86fa5e",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-15T17:22:28Z",
+      "side": 1,
+      "message": "I think it is still useful to distinguish suites with old style tags.\n  TCP | BPS | IPERF3 | LDPRELOAD\nor similar. Of course, add or update docs/tag_documentation.rst with new semantics.",
+      "range": {
+        "startLine": 20,
+        "startChar": 46,
+        "endLine": 20,
+        "endChar": 62
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72b3c868_ff2d7759",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
         "patchSetId": 6
