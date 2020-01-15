@@ -1,0 +1,901 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90a2e481_4c9b91d9",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 128,
+        "startChar": 27,
+        "endLine": 128,
+        "endChar": 28
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cb09e25_243ad437",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 139,
+        "startChar": 3,
+        "endLine": 139,
+        "endChar": 28
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99f9f7db_aa3744c4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 134,
+        "startChar": 47,
+        "endLine": 134,
+        "endChar": 48
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e21ab4e_7bd10410",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 168,
+        "startChar": 47,
+        "endLine": 168,
+        "endChar": 48
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86168438_f0a02bf7",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 172,
+        "startChar": 4,
+        "endLine": 172,
+        "endChar": 48
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bf534a6_fa0e43f9",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-lb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 65,
+        "startChar": 21,
+        "endLine": 65,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb756682_010ab69d",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-lb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 75,
+        "startChar": 21,
+        "endLine": 75,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c62e490_6a03a89c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-lb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove spaces.",
+      "range": {
+        "startLine": 133,
+        "startChar": 13,
+        "endLine": 133,
+        "endChar": 14
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fd466e6_182a4c4b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst10000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 67,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08ca40ab_d34e80ff",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst10000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 73,
+        "startChar": 23,
+        "endLine": 73,
+        "endChar": 3
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9316c523_f7e9fae3",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst100000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 67,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "932ac742_1d03333b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst100000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 73,
+        "startChar": 22,
+        "endLine": 73,
+        "endChar": 3
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8d26696_ff56f421",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst1000000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 63,
+        "startChar": 21,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcdbed14_3332a4c5",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6dst1000000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 69,
+        "startChar": 21,
+        "endLine": 69,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "264bab8f_55e33e98",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6src253.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 67,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dcec84e_4fe0b3c2",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip6-ip6src253.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 73,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0785dde_e4a0d744",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-1c1n.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 131,
+        "startChar": 1,
+        "endLine": 131,
+        "endChar": 40
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9079ec61_e5afd8f4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-1c2n.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 72,
+        "startChar": 15,
+        "endLine": 72,
+        "endChar": 16
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18a464c3_8e81fe2a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n3n-ethip4-ip4src254-8c1n.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 72,
+        "startChar": 15,
+        "endLine": 72,
+        "endChar": 16
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "625c7dc0_cde241a4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst10000-1cnf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "I checked it with Peter to be sure but we need original mac address ranges in all -cnf.py t-rex profiles otherwise relates perf tests will be failing.\n\n\nCheck and correct in all *-cnf.py files.",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 33
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4db3bb1_112a9755",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst1000000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 83,
+        "startChar": 27,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69f726d7_d6439561",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4udp-10u15p.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Decrease indent by 1.",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 120,
+        "endChar": 12
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f59f1c3_e34bc5ac",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4udp-2000u15p.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Decrease indent by 1.",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 120,
+        "endChar": 9
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2e5a4ff_64b6b5c6",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst10000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 67,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e013a30_0f4497af",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst10000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 73,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ce2596d_cdb374ec",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst100000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 67,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6c56172_e5da4efd",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst100000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 73,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fee375d0_167231cc",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst1000000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 67,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc563690_e634284f",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip6-ip6dst1000000.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "New line",
+      "range": {
+        "startLine": 73,
+        "startChar": 21,
+        "endLine": 73,
+        "endChar": 1
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87132d7c_41c7516e",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src10udpsrcrnd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 54,
+        "startChar": 17,
+        "endLine": 54,
+        "endChar": 18
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c24d1386_cd222d5b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src10udpsrcrnd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Use correct indent (4 spaces).",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 9
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a33510d6_193f86a0",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src10udpsrcrnd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Use correct indent (4 spaces).",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 2
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b332fbc3_47dd9132",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space",
+      "range": {
+        "startLine": 54,
+        "startChar": 17,
+        "endLine": 54,
+        "endChar": 18
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fee9e140_2083da4d",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove spaces",
+      "range": {
+        "startLine": 65,
+        "startChar": 22,
+        "endLine": 65,
+        "endChar": 23
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75785117_3a0bdb9d",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space",
+      "range": {
+        "startLine": 167,
+        "startChar": 3,
+        "endLine": 167,
+        "endChar": 30
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d563c10_80a63f05",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2udpsrcrnd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 18
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1b44897_ed3005f3",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src4udpsrcrnd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space",
+      "range": {
+        "startLine": 54,
+        "startChar": 17,
+        "endLine": 54,
+        "endChar": 18
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fa5bf6b_424da085",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src8udpsrcrnd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space",
+      "range": {
+        "startLine": 54,
+        "startChar": 17,
+        "endLine": 54,
+        "endChar": 18
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47ae6712_28123d75",
+        "filename": "resources/traffic_profiles/trex/trex-sl-ethip4vxlan-ip4src1udpsrcrnd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T15:41:47Z",
+      "side": 1,
+      "message": "Remove space",
+      "range": {
+        "startLine": 52,
+        "startChar": 17,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "047104ee1ac93330c924afee846e369c29d22e17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
