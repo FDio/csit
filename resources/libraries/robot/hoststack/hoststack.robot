@@ -369,7 +369,10 @@
 | | | ... | ${namespace} | ${core_list} | ${cfg_vpp_feature}
 | | | ... | ${test_program}
 | |
-| | Run Keyword If | ${vpp_nsim_attr}[output_feature_enable]
+| | ${is_dut1}= | Run Keyword And Return Status
+| | ... | Dictionaries should be equal | ${node} | ${dut1}
+| | Run Keyword If
+| | ... | ${is_dut1} and ${vpp_nsim_attr}[output_feature_enable]
 | | ... | Configure VPP NSIM | ${node} | ${vpp_nsim_attr} | ${intf}
 | | Run Keyword If | '${cfg_vpp_feature}' != ''
 | | ... | Additional VPP Config for Feature ${cfg_vpp_feature} | ${node}
@@ -411,6 +414,9 @@
 | | | ... | ${vpp_hoststack_attr}[api_seg_global_size]
 | | | Run keyword | ${dut}.Add api segment api size
 | | | ... | ${vpp_hoststack_attr}[api_seg_api_size]
+| | | Run Keyword If
+| | | ... | '${dut}' == 'DUT1' and ${vpp_nsim_attr}[output_feature_enable]
+| | | ... | ${dut}.Add Nsim poll main thread
 | | | Run keyword | ${dut}.Add api segment gid | testuser
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | ... | ${vpp_hoststack_attr}[tcp_cc_algo]
