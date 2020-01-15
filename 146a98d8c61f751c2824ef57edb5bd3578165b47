@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e30cc63_9c9da7fa",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst10000-1cnf.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T19:02:56Z",
+      "side": 1,
+      "message": "Add definition for p1 two:\nself.p1_dst_start_mac \u003d u\"02:02:00:00:12:00\"\n\n- check in all -cnf.py files!",
+      "revId": "146a98d8c61f751c2824ef57edb5bd3578165b47",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a300a481_6f7dd8e8",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst10000-1cnf.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T19:02:56Z",
+      "side": 1,
+      "message": "Add missing dst parameter:\ndst\u003dself.p1_dst_start_mac\n\n- check in all -cnf.py files!",
+      "range": {
+        "startLine": 62,
+        "startChar": 18,
+        "endLine": 62,
+        "endChar": 19
+      },
+      "revId": "146a98d8c61f751c2824ef57edb5bd3578165b47",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e26d406_ac9ace78",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst10000-1cnf.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-15T19:02:56Z",
+      "side": 1,
+      "message": "There are missing definition for mac_dst:\nSTLVmFlowVar(name\u003du\"mac_dst\",\n                                       min_value\u003d0,\n                                       max_value\u003d0,\n                                       size\u003d1, op\u003du\"inc\"),\n                          STLVmWrFlowVar(fv_name\u003du\"mac_dst\", pkt_offset\u003d5)\n\n- check in all -cnf.py files!",
+      "revId": "146a98d8c61f751c2824ef57edb5bd3578165b47",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
