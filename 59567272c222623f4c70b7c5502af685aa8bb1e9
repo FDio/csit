@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2910d688_60e31479",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-15T16:19:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac234eb4_4cdd20a7",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 9
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "025330e5_5bb71a45",
         "filename": "resources/libraries/python/autogen/Testcase.py",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "72fbe02b_df8f77e3",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-15T16:19:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "025330e5_5bb71a45",
+      "range": {
+        "startLine": 72,
+        "startChar": 32,
+        "endLine": 72,
+        "endChar": 44
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b69c80d2_69cbafdf",
         "filename": "resources/libraries/python/autogen/Testcase.py",
         "patchSetId": 6
@@ -68,6 +116,30 @@
       "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "096530e3_746d3000",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-15T16:19:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b69c80d2_69cbafdf",
+      "range": {
+        "startLine": 120,
+        "startChar": 34,
+        "endLine": 120,
+        "endChar": 35
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
