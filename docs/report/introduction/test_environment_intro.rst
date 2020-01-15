@@ -54,5 +54,4 @@ repeatable zero packet loss throughput measurements across multiple
 system instances. Generally they come useful as a background data for
 comparing data plane performance results across disparate servers.
 
-Following sections include measured calibration data for Intel Xeon
-Haswell and Intel Xeon Skylake testbeds.
+Following sections include measured calibration data for testbeds.
