@@ -359,7 +359,7 @@ correct cpu placement. See documentation for the full reference.
 Kubernetes
 ~~~~~~~~~~
 
-For the future use, Kubernetes is implemented as separate library
+For the future use, Kubernetes [k8sdoc]_ is implemented as separate library
 ``KubernetesUtils.py``, with a class with the same name. This utility provides
 an API for L2 Robot Keywords to control ``kubectl`` installed on each of DUTs.
 One time initialization script, ``resources/libraries/bash/k8s_setup.sh``
@@ -418,3 +418,4 @@ References
 .. [apparmor] `Ubuntu AppArmor <https://wiki.ubuntu.com/AppArmor>`_.
 .. [seccomp] `SECure COMPuting with filters <https://www.kernel.org/doc/Documentation/prctl/seccomp_filter.txt>`_.
 .. [docker] `Docker <https://www.docker.com/what-docker>`_.
+.. [k8sdoc] `Kubernetes documentation <https://kubernetes.io/docs/home/>`_.

@@ -7,26 +7,14 @@ install and
 
 Below a subset of the running configuration:
 
-1. Xeon Haswell - Ubuntu 18.04.1 LTS
+1. Ubuntu 18.04.x LTS
 
 ::
 
     $ lsb_release -a
     No LSB modules are available.
     Distributor ID: Ubuntu
-    Description:    Ubuntu 18.04.1 LTS
-    Release:        18.04
-    Codename:       bionic
-
-
-2. Xeon Skylake - Ubuntu 18.04 LTS
-
-::
-
-    $ lsb_release -a
-    No LSB modules are available.
-    Distributor ID: Ubuntu
-    Description:    Ubuntu 18.04 LTS
+    Description:    Ubuntu 18.04.3 LTS
     Release:        18.04
     Codename:       bionic
 
@@ -76,23 +64,3 @@ Huge pages are namaged via sysctl configuration located in
 `/etc/sysctl.d/90-csit.conf` on each testbed. Default huge page size is 2M.
 The exact amount of huge pages depends on testbed. All the values are defined
 in `Ansible inventory - hosts` files.
-
-
-Applied Boot Cmdline
-~~~~~~~~~~~~~~~~~~~~
-
-1. Xeon Haswell - Ubuntu 18.04.1 LTS
-
-::
-
-    $ cat /proc/cmdline
-    BOOT_IMAGE=/vmlinuz-4.15.0-36-generic root=UUID=5d2ecc97-245b-4e94-b0ae-c3548567de19 ro isolcpus=1-17,19-35 nohz_full=1-17,19-35 rcu_nocbs=1-17,19-35 numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off console=tty0 console=ttyS0,115200n8
-
-2. Xeon Skylake - Ubuntu 18.04 LTS
-
-::
-
-    $ cat /proc/cmdline
-    BOOT_IMAGE=/vmlinuz-4.15.0-23-generic root=UUID=3fa246fd-1b80-4361-bb90-f339a6bbed51 ro isolcpus=1-27,29-55,57-83,85-111 nohz_full=1-27,29-55,57-83,85-111 rcu_nocbs=1-27,29-55,57-83,85-111 numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off console=tty0 console=ttyS0,115200n8
-
-

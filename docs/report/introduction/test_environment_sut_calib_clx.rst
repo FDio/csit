@@ -15,7 +15,7 @@ Linux cmdline
 ::
 
     $ cat /proc/cmdline
-    BOOT_IMAGE=/boot/vmlinuz-4.15.0-60-generic root=UUID=1d03969e-a2a0-41b2-a97e-1cc171b07e88 ro isolcpus=1-23,25-47,49-71,73-95 nohz_full=1-23,25-47,49-71,73-95 rcu_nocbs=1-23,25-47,49-71,73-95 numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off console=tty0 console=ttyS0,115200n8
+    BOOT_IMAGE=/boot/vmlinuz-4.15.0-72-generic root=UUID=1d03969e-a2a0-41b2-a97e-1cc171b07e88 ro isolcpus=1-23,25-47,49-71,73-95 nohz_full=1-23,25-47,49-71,73-95 rcu_nocbs=1-23,25-47,49-71,73-95 numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off console=tty0 console=ttyS0,115200n8
 
 Linux uname
 ~~~~~~~~~~~
@@ -23,7 +23,7 @@ Linux uname
 ::
 
     $ uname -a
-    Linux s32-t27-sut1 4.15.0-60-generic #67-Ubuntu SMP Thu Aug 22 16:55:30 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+    Linux s32-t27-sut1 4.15.0-72-generic #81-Ubuntu SMP Tue Nov 26 12:20:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
 
 
 System-level Core Jitter

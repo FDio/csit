@@ -9,7 +9,7 @@ TG Version
 DPDK Version
 ~~~~~~~~~~~~
 
-DPDK v19.02
+DPDK v19.05
 
 TG Build Script Used
 ~~~~~~~~~~~~~~~~~~~~
@@ -35,7 +35,7 @@ TG Startup Command
 
 ::
 
-    $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 > /tmp/trex.log 2>&1 &'> /dev/null
+    $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --prefix $(hostname) --hdrh > /tmp/trex.log 2>&1 &'> /dev/null
 
 TG API Driver
 ~~~~~~~~~~~~~

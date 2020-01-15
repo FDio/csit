@@ -22,7 +22,7 @@ is:
 - TRex is started in the background mode
   ::
 
-  $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7  > /tmp/trex.log 2>&1 &' > /dev/null
+  $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --prefix $(hostname) --hdrh > /tmp/trex.log 2>&1 &' > /dev/null
 
 - There are traffic streams dynamically prepared for each test, based on traffic
   profiles. The traffic is sent and the statistics obtained using
