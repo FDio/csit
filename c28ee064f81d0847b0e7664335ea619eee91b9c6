@@ -261,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "a4f2d03e_5eb8947f",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-15T14:28:22Z",
+      "side": 1,
+      "message": "I still think the docstring should be improved.",
+      "parentUuid": "dfbc823d_1f8f8e26",
+      "range": {
+        "startLine": 221,
+        "startChar": 27,
+        "endLine": 221,
+        "endChar": 67
+      },
+      "revId": "c28ee064f81d0847b0e7664335ea619eee91b9c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d7f2bdba_0bcec4b1",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 6
