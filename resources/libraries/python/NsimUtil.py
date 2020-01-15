@@ -13,14 +13,11 @@
 
 """VPP Network Simulator Plugin util library."""
 
-from robot.api import logger
-
-from resources.libraries.python.Constants import Constants
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 
 
-class NsimUtil(object):
+class NsimUtil():
     """VPP NSIM Plugin Keywords."""
 
     @staticmethod
@@ -33,14 +30,14 @@ class NsimUtil(object):
         :param interface1: 2nd Interface name for cross-connect feature
         :type node: dict
         :type vpp_nsim_attr: dict
-        :type interface0: string or int
-        :type interface1: string or int
+        :type interface0: str or int
+        :type interface1: str or int
         :raises RuntimeError: if no NSIM features are enabled or
                 vpp papi command fails.
         """
         host = node[u"host"]
-        if vpp_nsim_attr[u"output_feature_enable"] == False \
-                and vpp_nsim_attr[u"cross_connect_feature_enable"] == False:
+        if not vpp_nsim_attr[u"output_feature_enable"] \
+                and not vpp_nsim_attr[u"cross_connect_feature_enable"]:
             raise RuntimeError(f"No NSIM features enabled on host {host}:\n"
                                f"vpp_nsim_attr = {vpp_nsim_attr}")
         cmd = u"nsim_configure"
@@ -56,7 +53,7 @@ class NsimUtil(object):
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        if vpp_nsim_attr[u"output_feature_enable"] == True:
+        if vpp_nsim_attr[u"output_feature_enable"]:
             cmd = u"nsim_output_feature_enable_disable"
             args = dict(
                 enable_disable=vpp_nsim_attr[u"output_feature_enable"],
@@ -67,7 +64,7 @@ class NsimUtil(object):
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        elif vpp_nsim_attr[u"cross_connect_feature_enable"] == True:
+        elif vpp_nsim_attr[u"cross_connect_feature_enable"]:
             cmd = u"nsim_cross_connect_feature_enable_disable"
             args = dict(
                 enable_disable=vpp_nsim_attr[u"cross_connect_feature_enable"],
