@@ -495,6 +495,11 @@ class VppConfigGenerator:
         path = [u"nat"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_nsim_poll_main_thread(self):
+        """Add NSIM poll-main-thread configuration."""
+        path = [u"nsim", u"poll-main-thread"]
+        self.add_config_item(self._nodeconfig, u"", path)
+
     def add_tcp_congestion_control_algorithm(self, value=u"cubic"):
         """Add TCP congestion control algorithm.
 
