@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2de261c_bf4fb6b0",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-15T17:22:28Z",
+      "side": 1,
+      "message": "These two colons are confusing me. Would it be better with dot and space instead?",
+      "range": {
+        "startLine": 49,
+        "startChar": 70,
+        "endLine": 50,
+        "endChar": 9
+      },
+      "revId": "670f62f457fb9c9d24c162446e33252a29899607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
