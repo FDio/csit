@@ -475,6 +475,12 @@ class Regenerator:
             {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
              u"streams": 6, u"bytes_str": u"60G"},
         ]
+        hoststack_nsim_iperf3_kwargs_list = [
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+             u"streams": 6, u"bytes_str": u"2G"},
+        ]
         hoststack_quic_kwargs_list = [
             {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
              u"streams": 1, u"bytes_str": u"100M"},
@@ -513,9 +519,13 @@ class Regenerator:
                 write_tcp_files(in_filename, in_prolog,
                                 hoststack_wrk_kwargs_list)
             elif in_filename[-10:] in (u"-bps.robot"):
-                write_tcp_files(in_filename, in_prolog,
-                                hoststack_iperf3_kwargs_list if u"iperf3"
-                                in in_filename else hoststack_quic_kwargs_list)
+                if u"nsim-ldpreload-iperf3" in in_filename:
+                    hoststack_kwargs_list = hoststack_nsim_iperf3_kwargs_list
+                elif u"ldpreload-iperf3" in in_filename:
+                    hoststack_kwargs_list = hoststack_iperf3_kwargs_list
+                else:
+                    hoststack_kwargs_list = hoststack_quic_kwargs_list
+                write_tcp_files(in_filename, in_prolog, hoststack_kwargs_list)
             else:
                 raise RuntimeError(
                     f"Error in {in_filename}: non-primary suite type found."

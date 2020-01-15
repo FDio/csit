@@ -477,6 +477,11 @@ class VppConfigGenerator:
         path = [u"dpdk", u"no-tx-checksum-offload"]
         self.add_config_item(self._nodeconfig, u"", path)
 
+    def add_nsim_poll_main_thread(self):
+        """Add NSIM poll-main-thread configuration."""
+        path = [u"nsim", u"poll-main-thread"]
+        self.add_config_item(self._nodeconfig, u"", path)
+
     def add_nat(self, value=u"deterministic"):
         """Add NAT configuration.
 
