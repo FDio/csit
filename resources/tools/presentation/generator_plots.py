@@ -59,7 +59,8 @@ def generate_plots(spec, data):
         u"plot_tsa_name": plot_tsa_name,
         u"plot_http_server_perf_box": plot_http_server_perf_box,
         u"plot_nf_heatmap": plot_nf_heatmap,
-        u"plot_lat_hdrh_bar_name": plot_lat_hdrh_bar_name
+        u"plot_lat_hdrh_bar_name": plot_lat_hdrh_bar_name,
+        u"plot_lat_hdrh_percentile": plot_lat_hdrh_percentile
     }
 
     logging.info(u"Generating the plots ...")
@@ -75,6 +76,105 @@ def generate_plots(spec, data):
                 f"{repr(err)}"
             )
     logging.info(u"Done.")
+
+
+def plot_lat_hdrh_percentile(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_lat_hdrh_percentile
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    plot_title = plot.get(u"title", u"")
+    logging.info(
+        f"    Creating the data set for the {plot.get(u'type', u'')} "
+        f"{plot_title}."
+    )
+    data = input_data.filter_tests_by_name(
+        plot, params=[u"latency", u"parent", u"tags", u"type"])
+    if data is None or len(data[0][0]) == 0:
+        logging.error(u"No data.")
+        return
+
+    fig = plgo.Figure()
+
+    # Prepare the data for the plot
+    directions = [u"W-E", u"E-W"]
+    for test in data[0][0]:
+        try:
+            if test[u"type"] in (u"NDRPDR",):
+                if u"-pdr" in plot_title.lower():
+                    ttype = u"PDR"
+                elif u"-ndr" in plot_title.lower():
+                    ttype = u"NDR"
+                else:
+                    logging.warning(f"Invalid test type: {test[u'type']}")
+                    continue
+                name = re.sub(REGEX_NIC, u"", test[u"parent"].
+                              replace(u'-ndrpdr', u'').
+                              replace(u'2n1l-', u'').
+                              replace(u'avf-', u''))
+                for idx, direction in enumerate(
+                        (u"direction1", u"direction2", )):
+                    try:
+                        hdr_lat = test[u"latency"][ttype][direction][u"hdrh"]
+                        # TODO: Workaround, HDRH data must be aligned to 4
+                        #       bytes, remove when not needed.
+                        hdr_lat += u"=" * (len(hdr_lat) % 4)
+                        xaxis = list()
+                        yaxis = list()
+                        hovertext = list()
+                        decoded = hdrh.histogram.HdrHistogram.decode(hdr_lat)
+                        for item in decoded.get_recorded_iterator():
+                            percentile = item.percentile_level_iterated_to
+                            if percentile != 100.0:
+                                xaxis.append(100.0 / (100.0 - percentile))
+                                yaxis.append(item.value_iterated_to)
+                                hovertext.append(
+                                    f"Test: {name}<br>"
+                                    f"Direction: {directions[idx]}<br>"
+                                    f"Percentile: {percentile:.5f}%"
+                                    f"Latency: {item.value_iterated_to}uSec"
+                                )
+                        fig.add_trace(
+                            plgo.Scatter(
+                                x=xaxis,
+                                y=yaxis,
+                                hovertext=hovertext,
+                                hoverinfo=u"text"
+                            )
+                        )
+                    except hdrh.codec.HdrLengthException as err:
+                        logging.warning(
+                            f"No or invalid data for HDRHistogram for the test "
+                            f"{name}\n{err}"
+                        )
+                        continue
+            else:
+                logging.warning(f"Invalid test type: {test[u'type']}")
+                continue
+        except (ValueError, KeyError) as err:
+            logging.warning(repr(err))
+
+    layout = deepcopy(plot[u"layout"])
+
+    layout[u"title"][u"text"] = \
+        f"<b>Latency:</b> {plot.get(u'graph-title', u'')}"
+    fig[u"layout"].update(layout)
+
+    # Create plot
+    file_type = plot.get(u"output-file-type", u".html")
+    logging.info(f"    Writing file {plot[u'output-file']}{file_type}.")
+    try:
+        # Export Plot
+        ploff.plot(fig, show_link=False, auto_open=False,
+                   filename=f"{plot[u'output-file']}{file_type}")
+    except PlotlyError as err:
+        logging.error(f"   Finished with error: {repr(err)}")
 
 
 def plot_lat_hdrh_bar_name(plot, input_data):
