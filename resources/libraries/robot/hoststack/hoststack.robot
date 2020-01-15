@@ -353,7 +353,10 @@
 | | [Arguments] | ${node} | ${intf} | ${ip4_addr} | ${ip4_mask}
 | | | ... | ${namespace} | ${cfg_vpp_feature} | ${test_program}
 | |
-| | Run Keyword If | ${vpp_nsim_attr}[output_feature_enable]
+| | ${is_dut1}= | Run Keyword And Return Status
+| | ... | Dictionaries should be equal | ${node} | ${dut1}
+| | Run Keyword If
+| | ... | ${is_dut1} and ${vpp_nsim_attr}[output_feature_enable]
 | | ... | Configure VPP NSIM | ${node} | ${vpp_nsim_attr} | ${intf}
 | | Run Keyword If | '${cfg_vpp_feature}' != ''
 | | ... | Additional VPP Config for Feature ${cfg_vpp_feature} | ${node}
