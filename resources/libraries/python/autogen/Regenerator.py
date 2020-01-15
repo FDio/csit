@@ -512,10 +512,12 @@ class Regenerator:
             elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
                 write_tcp_files(in_filename, in_prolog,
                                 hoststack_wrk_kwargs_list)
-            elif in_filename[-10:] in u"-bps.robot":
-                write_tcp_files(in_filename, in_prolog,
-                                hoststack_iperf3_kwargs_list if u"iperf3"
-                                in in_filename else hoststack_quic_kwargs_list)
+            elif in_filename[-10:] in (u"-bps.robot"):
+                if u"ldpreload-iperf3" in in_filename:
+                    hoststack_kwargs_list = hoststack_iperf3_kwargs_list
+                else:
+                    hoststack_kwargs_list = hoststack_quic_kwargs_list
+                write_tcp_files(in_filename, in_prolog, hoststack_kwargs_list)
             else:
                 raise RuntimeError(
                     f"Error in {in_filename}: non-primary suite type found."
