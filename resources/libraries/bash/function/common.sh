@@ -781,11 +781,14 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
-                                "mrrAND${default_nic}AND1cAND78bANDip6base"
-                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
-                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
-                                "!dot1q" "!drv_avf")
+#                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
+#                                "mrrAND${default_nic}AND1cAND78bANDip6base"
+#                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
+#                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
+#                                "!dot1q" "!drv_avf")
+                readarray -t test_tag_array <<< $(sed 's/ //g' \
+                    ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.txt |
+                    eval ${sed_nics_sub_cmd} | sed 's/ANDmrrAND/ANDndrpdrAND/g') || die
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
