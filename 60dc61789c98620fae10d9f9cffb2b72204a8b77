@@ -46,6 +46,30 @@
       "revId": "60dc61789c98620fae10d9f9cffb2b72204a8b77",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7773319_2b1d3655",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4udpquic-nsim-vppecho-bps.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T21:22:10Z",
+      "side": 1,
+      "message": "While this is a fine discussion, it is beyond the scope of this gerrit change.",
+      "parentUuid": "60f884a1_68fa9468",
+      "range": {
+        "startLine": 31,
+        "startChar": 36,
+        "endLine": 31,
+        "endChar": 59
+      },
+      "revId": "60dc61789c98620fae10d9f9cffb2b72204a8b77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
