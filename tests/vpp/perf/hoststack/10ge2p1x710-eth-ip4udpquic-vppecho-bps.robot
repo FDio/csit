@@ -17,8 +17,8 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | NIC_Intel-X710 | DRV_VFIO_PCI | UDP | QUIC | VPPECHO
-| ... | HOSTSTACK | eth-ip4udpquic-vppecho
+| ... | NIC_Intel-X710 | DRV_VFIO_PCI | HOSTSTACK | UDP | QUIC
+| ... | VPPECHO | BPS | eth-ip4udpquic-vppecho
 |
 | Suite Setup | Setup suite single link no tg
 | Suite Teardown | Tear down suite
