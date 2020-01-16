@@ -22,6 +22,30 @@
       "revId": "60dc61789c98620fae10d9f9cffb2b72204a8b77",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60f884a1_68fa9468",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4udpquic-nsim-vppecho-bps.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-16T12:14:50Z",
+      "side": 1,
+      "message": "As I understand, both server and client apps are based on VPP. As VPP is the project we expect to have occasional bugs, I agree with DUT-DUT. I prefer TG for stable apps only (TRex, iperf, wrk).\nMaybe if the test used stable a client app (e.g. echo client from VPP 1908_1 release), TG-DUT would be a good fit.",
+      "parentUuid": "eccc9dcc_d4a451de",
+      "range": {
+        "startLine": 31,
+        "startChar": 36,
+        "endLine": 31,
+        "endChar": 59
+      },
+      "revId": "60dc61789c98620fae10d9f9cffb2b72204a8b77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
