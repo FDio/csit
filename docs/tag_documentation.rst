@@ -320,17 +320,34 @@ Test Type Tags
 
     Tests which use TCP.
 
-.. topic:: TCP_CPS
+.. topic:: UDP
 
-    Performance tests which measure connections per second using http requests.
+    Tests which use UDP.
 
-.. topic:: TCP_RPS
+.. topic:: QUIC
 
-    Performance tests which measure requests per second using http requests.
+    Tests which use QUIC.
+
+.. topic:: BPS
+
+    Performance tests which measure throughput in bits per second.
+
+.. topic:: CPS
+
+    Performance tests which measure connections per second.
+
+.. topic:: RPS
+
+    Performance tests which measure requests per second.
 
 .. topic:: HTTP
 
     Tests which use HTTP.
+
+.. topic:: NSIM
+
+    Tests which use the NSIM plugin to cause packet drop and/or delays
+    on output interfaces or packet flows.
 
 .. topic:: NF_DENSITY
 
@@ -519,6 +536,25 @@ Encapsulation Tags
 .. topic:: SRv6_2SID_NODECAP
 
     All SRv6 test cases with two SIDs and without decapsulation.
+
+Host Stack Tags
+--------------
+.. topic:: HOSTSTACK
+
+    Tests which are verifying VPP Host Stack.
+
+.. topic:: LDPRELOAD
+
+    Tests which use the hoststack LD_PRELOAD library to emulate POSIX
+    socket APIs to connect test programs over the VPP Host Stack.
+
+.. topic:: IPERF3
+
+    Tests which use the iperf3 test program.
+
+.. topic:: VPPECHO
+
+    Tests which use the vpp_echo test program.
 
 Interface Tags
 --------------
