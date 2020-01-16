@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "810dc10a_ceb2c9af",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-nsim-ldpreload-iperf3-bps.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-16T08:20:25Z",
+      "side": 1,
+      "message": "2",
+      "range": {
+        "startLine": 19,
+        "startChar": 15,
+        "endLine": 19,
+        "endChar": 16
+      },
+      "revId": "8998cb8a7c7c13ebdefc605d799ff57b68f2ba04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "68553ce9_8a097e10",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-nsim-ldpreload-iperf3-bps.robot",
         "patchSetId": 7
@@ -13,6 +36,30 @@
       "writtenOn": "2020-01-16T06:33:41Z",
       "side": 1,
       "message": "i think not needed.",
+      "range": {
+        "startLine": 62,
+        "startChar": 60,
+        "endLine": 62,
+        "endChar": 61
+      },
+      "revId": "8998cb8a7c7c13ebdefc605d799ff57b68f2ba04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "462b5838_a9ce0223",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-nsim-ldpreload-iperf3-bps.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-16T08:20:25Z",
+      "side": 1,
+      "message": "It should go to line below:\n\n| | phy_cores\u003d${1} | clients\u003d${1} | streams\u003d${1} | bytes\u003d1G\n|\n| tc02-IMIX-1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps",
+      "parentUuid": "68553ce9_8a097e10",
       "range": {
         "startLine": 62,
         "startChar": 60,
