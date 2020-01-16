@@ -269,13 +269,48 @@
 | | ... | SRIOV AVF.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | ${if1_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ${if1_1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1_1}
+| | | ${if1_2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1_2}
+| | | ${if2_1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2_1}
+| | | ${if2_2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2_2}
+| | |
+| | | ${if1_avf_arr}= | Run Keyword Unless | '${if1_1_status}' == 'PASS'
+| | | ... | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if1}
 | | | ... | numvfs=${1} | osi_layer=${osi_layer}
-| | | ${if2_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ${if1_1_avf_arr}= | Run Keyword If | '${if1_1_status}' == 'PASS'
+| | | ... | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if1_1}
 | | | ... | numvfs=${1} | osi_layer=${osi_layer}
+| | | ${if1_2_avf_arr}= | Run Keyword If | '${if1_2_status}' == 'PASS'
+| | | ... | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | | ... | numvfs=${1} | osi_layer=${osi_layer}
+| | |
+| | | ${if2_avf_arr}= | Run Keyword Unless | '${if2_1_status}' == 'PASS'
+| | | ... | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ... | numvfs=${1} | osi_layer=${osi_layer}
+| | | ${if2_1_avf_arr}= | Run Keyword If | '${if2_1_status}' == 'PASS'
+| | | ... | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | | ... | numvfs=${1} | osi_layer=${osi_layer}
+| | | ${if2_2_avf_arr}= | Run Keyword If | '${if2_2_status}' == 'PASS'
+| | | ... | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if2_2}
+| | | ... | numvfs=${1} | osi_layer=${osi_layer}
+| | |
 | | # Currently only one AVF is supported.
-| | | Set Suite Variable | ${${dut}_if1_vf0} | ${if1_avf_arr[0]}
-| | | Set Suite Variable | ${${dut}_if2_vf0} | ${if2_avf_arr[0]}
+| | | Run Keyword Unless | '${if1_1_status}' == 'PASS'
+| | | ... | Set Suite Variable | ${${dut}_if1_vf0} | ${if1_avf_arr[0]}
+| | | Run Keyword Unless | '${if2_1_status}' == 'PASS'
+| | | ... | Set Suite Variable | ${${dut}_if2_vf0} | ${if2_avf_arr[0]}
+| | | Run Keyword If | '${if1_1_status}' == 'PASS'
+| | | ... | Set Suite Variable | ${${dut}_if1_1_vf0} | ${if1_1_avf_arr[0]}
+| | | Run Keyword If | '${if1_2_status}' == 'PASS'
+| | | ... | Set Suite Variable | ${${dut}_if1_2_vf0} | ${if1_2_avf_arr[0]}
+| | | Run Keyword If | '${if2_1_status}' == 'PASS'
+| | | ... | Set Suite Variable | ${${dut}_if2_1_vf0} | ${if2_1_avf_arr[0]}
+| | | Run Keyword If | '${if2_2_status}' == 'PASS'
+| | | ... | Set Suite Variable | ${${dut}_if2_2_vf0} | ${if2_2_avf_arr[0]}
 | | END
 | | Run Keyword If | ${duts_count} == 1
 | | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
