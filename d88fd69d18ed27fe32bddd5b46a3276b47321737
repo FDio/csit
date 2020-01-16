@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "284ef810_c8ef9c12",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T20:29:58Z",
+      "side": 1,
+      "message": "V",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d732912e_e5f919d0",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -25,6 +48,121 @@
     },
     {
       "key": {
+        "uuid": "9d6360be_492dbff8",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T20:29:58Z",
+      "side": 1,
+      "message": "Add the repo in the beginning of the name, otherwise it is ambiguous which repo is associated with the term:\n\n*VPP API Change*",
+      "range": {
+        "startLine": 155,
+        "startChar": 5,
+        "endLine": 155,
+        "endChar": 17
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d050229_24b387bf",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T20:29:58Z",
+      "side": 1,
+      "message": "any Gerrit Change",
+      "range": {
+        "startLine": 155,
+        "startChar": 32,
+        "endLine": 155,
+        "endChar": 45
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb07f2b9_20dedbc9",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T20:29:58Z",
+      "side": 1,
+      "message": "open is too generic a term for me since Gerrit uses that for any change which has not been merged or abandoned.\n\nHow about *Active VPP API Change* ?",
+      "range": {
+        "startLine": 158,
+        "startChar": 6,
+        "endLine": 158,
+        "endChar": 23
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79ebe69d_6d1dd7c1",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T20:29:58Z",
+      "side": 1,
+      "message": "The list of VPP API changes is sent to vpp-api-dev@lists.fd.io and posted to #vpp-api-dev on slack.  How does someone who has not subscribed to either determine the current set of API changes?\n\nAlso, how does one determine:\n\na) which API change is active?\nb) which API change will become active next?",
+      "range": {
+        "startLine": 159,
+        "startChar": 2,
+        "endLine": 159,
+        "endChar": 79
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b4b3d24_0351626c",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T20:29:58Z",
+      "side": 1,
+      "message": "Including CSIT in the name could be confusing.  \n\nHow about simply *VPP Blocked Change* ?",
+      "range": {
+        "startLine": 161,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 25
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a5665386_f7b4d6ef",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -41,6 +179,99 @@
         "startChar": 7,
         "endLine": 166,
         "endChar": 14
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "664515f1_38993b0f",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T20:29:58Z",
+      "side": 1,
+      "message": "\u003e Still not sure opening/closing is better than preparation/support or some other pair.\n\nIs this any better?\n*Active CSIT CRC Change* and *Update CSIT CRC Change*\n\nor maybe s/Update/New/g",
+      "parentUuid": "a5665386_f7b4d6ef",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 14
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f3cdcc8_f6f9865f",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T20:29:58Z",
+      "side": 1,
+      "message": "*Update CSIT CRC Change* ???",
+      "range": {
+        "startLine": 171,
+        "startChar": 6,
+        "endLine": 171,
+        "endChar": 22
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4101c48f_d92c2605",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T20:29:58Z",
+      "side": 1,
+      "message": "This seems more like a process definition than terminology, thus something like \u0027Merge Requirements\u0027 would be a better name.  Or simply move this into the process section.",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 0
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf7a6520_d26cc754",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T20:29:58Z",
+      "side": 1,
+      "message": "Move this to the definition of \u0027closing change\u0027, no need for a separate term.",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 42
       },
       "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
