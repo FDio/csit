@@ -22,6 +22,30 @@
       "revId": "670f62f457fb9c9d24c162446e33252a29899607",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "484233b1_5651e206",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T00:34:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2de261c_bf4fb6b0",
+      "range": {
+        "startLine": 49,
+        "startChar": 70,
+        "endLine": 50,
+        "endChar": 9
+      },
+      "revId": "670f62f457fb9c9d24c162446e33252a29899607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
