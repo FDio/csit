@@ -90,6 +90,10 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     size=1,
                     op=u"inc"
                 ),
+                STLVmWrFlowVar(
+                    fv_name=u"mac_dst",
+                    pkt_offset=5
+                ),
                 STLVmFlowVar(
                     name=u"dst",
                     min_value=self.p1_dst_start_ip,
