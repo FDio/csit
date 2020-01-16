@@ -173,6 +173,9 @@
 | |
 | | [Arguments] | ${subid} | ${tag_rewrite}
 | |
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| |
 | | Set interfaces in path up
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
