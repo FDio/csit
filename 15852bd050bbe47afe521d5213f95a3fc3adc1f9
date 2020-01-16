@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "737d2d0f_73b476f7",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-16T06:25:02Z",
+      "side": 1,
+      "message": "this is part of previous KW. So no need to do twice.",
+      "range": {
+        "startLine": 389,
+        "startChar": 0,
+        "endLine": 389,
+        "endChar": 36
+      },
+      "revId": "15852bd050bbe47afe521d5213f95a3fc3adc1f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b11f7337_21fd1b99",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-16T06:25:02Z",
+      "side": 1,
+      "message": "not needed:  resources/libraries/robot/shared/suite_setup.robot L115 is covering that.",
+      "range": {
+        "startLine": 390,
+        "startChar": 0,
+        "endLine": 390,
+        "endChar": 44
+      },
+      "revId": "15852bd050bbe47afe521d5213f95a3fc3adc1f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f10bf5e_74e54547",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-16T06:25:02Z",
+      "side": 1,
+      "message": "i think end | is not needed.",
+      "range": {
+        "startLine": 59,
+        "startChar": 59,
+        "endLine": 59,
+        "endChar": 61
+      },
+      "revId": "15852bd050bbe47afe521d5213f95a3fc3adc1f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
