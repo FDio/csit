@@ -17,8 +17,8 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI | HOSTSTACK
-| ... | LDPRELOAD | IPERF3 | eth-ip4tcp-ldpreload-iperf3
+| ... | NIC_Intel-X710 | DRV_VFIO_PCI | HOSTSTACK | TCP | LDPRELOAD
+| ... | IPERF3 | BPS | eth-ip4tcp-ldpreload-iperf3
 |
 | Suite Setup | Setup suite single link no tg
 | Suite Teardown | Tear down suite | hoststack
