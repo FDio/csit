@@ -19,8 +19,8 @@
 | Resource | resources/libraries/robot/hoststack/tcp_setup.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | HTTP | TCP | TCP_CPS | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | eth-ip4tcphttp-wrk8u8c50con
+| ... | NIC_Intel-X710 | DRV_VFIO_PCI | HOSTSTACK | TCP | HTTP
+| ... | CPS | eth-ip4tcphttp-wrk8u8c50con
 |
 | Suite Setup | Setup suite single link | wrk
 | Suite Teardown | Tear down suite | wrk
