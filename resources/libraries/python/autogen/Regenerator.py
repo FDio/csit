@@ -485,6 +485,16 @@ class Regenerator:
             {u"phy_cores": 1, u"frame_size": 0, u"clients": 10,
              u"streams": 10, u"bytes_str": u"100M"},
         ]
+        hoststack_quic_nsim_kwargs_list = [
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+             u"streams": 1, u"bytes_str": u"1G"},
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+             u"streams": 10, u"bytes_str": u"100M"},
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 10,
+             u"streams": 1, u"bytes_str": u"100M"},
+            {u"phy_cores": 1, u"frame_size": 0, u"clients": 10,
+             u"streams": 10, u"bytes_str": u"10M"},
+        ]
 
         for in_filename in glob(pattern):
             if not self.quiet:
@@ -512,9 +522,11 @@ class Regenerator:
             elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
                 write_tcp_files(in_filename, in_prolog,
                                 hoststack_wrk_kwargs_list)
-            elif in_filename[-10:] in (u"-bps.robot"):
+            elif in_filename.endswith(u"-bps.robot"):
                 if u"ldpreload-iperf3" in in_filename:
                     hoststack_kwargs_list = hoststack_iperf3_kwargs_list
+                elif u"quic-nsim-vppecho" in in_filename:
+                    hoststack_kwargs_list = hoststack_quic_nsim_kwargs_list
                 else:
                     hoststack_kwargs_list = hoststack_quic_kwargs_list
                 write_tcp_files(in_filename, in_prolog, hoststack_kwargs_list)
