@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eccc9dcc_d4a451de",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4udpquic-nsim-vppecho-bps.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-16T06:35:21Z",
+      "side": 1,
+      "message": "Usage of TG-DUT would make it to run on all currently available nodes.",
+      "range": {
+        "startLine": 31,
+        "startChar": 36,
+        "endLine": 31,
+        "endChar": 59
+      },
+      "revId": "60dc61789c98620fae10d9f9cffb2b72204a8b77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
