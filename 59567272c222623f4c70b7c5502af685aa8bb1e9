@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "35a43ea7_288f529e",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T00:34:59Z",
+      "side": 1,
+      "message": "\u003e I think it is still useful to distinguish suites with old style tags.\n\u003e   TCP | BPS | IPERF3 | LDPRELOAD\n\u003e or similar. Of course, add or update docs/tag_documentation.rst with new semantics.\n\nRemoved IPERF3_LDPRELOAD.  Added suite tag.  Not sure we need all of the old style tags.",
+      "parentUuid": "10ebc247_1d86fa5e",
+      "range": {
+        "startLine": 20,
+        "startChar": 46,
+        "endLine": 20,
+        "endChar": 62
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72b3c868_ff2d7759",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
         "patchSetId": 6
@@ -210,6 +234,30 @@
       "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12ae52b4_907db934",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T00:34:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72b3c868_ff2d7759",
+      "range": {
+        "startLine": 47,
+        "startChar": 45,
+        "endLine": 47,
+        "endChar": 47
+      },
+      "revId": "59567272c222623f4c70b7c5502af685aa8bb1e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
