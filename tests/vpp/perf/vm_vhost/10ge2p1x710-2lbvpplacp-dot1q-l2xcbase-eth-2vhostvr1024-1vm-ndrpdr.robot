@@ -95,7 +95,10 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | And Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
+| | ${dpdk_driver_name}= | Set Variable
+| | ... | ${NIC_NAME_TO_DRIVER}[Intel-XXV710][0]
+| | And Run Keyword If | '${nic_driver}' == '${dpdk_driver_name}'
+| | ... | Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology

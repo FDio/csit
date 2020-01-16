@@ -260,25 +260,88 @@
 | |
 | | [Arguments] | ${dut}
 | |
+| |
+| | ${if1_1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if1_1}
+| | ${if1_2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if1_2}
+| | ${if2_1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if2_1}
+| | ${if2_2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if2_2}
+| |
+| | ${if1_vlan}= | Run Keyword Unless | '${if1_1_status}' == 'PASS'
+| | ... | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
+| | ${if2_vlan}= | Run Keyword Unless | '${if2_1_status}' == 'PASS'
+| | ... | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
+| |
 | | ${dut_str}= | Convert To Lowercase | ${dut}
-| | ${if1_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
-| | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
 | | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
 | | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
-| | ${dut_new_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if1_vf0} | num_rx_queues=${rxq_count_int}
-| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
-| | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_new_if1}
-| | ${dut_new_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if2_vf0} | num_rx_queues=${rxq_count_int}
-| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
-| | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_new_if2}
-| | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
-| | Set Test Variable | ${${dut_str}_if2} | ${dut_new_if2}
-| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_new_if1_mac}
-| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_new_if2_mac}
+| |
+| | ${dut_new_if1}= | Run Keyword Unless | '${if1_1_status}' == 'PASS'
+| | ... | VPP Create AVF Interface | ${nodes['${dut}']} | ${${dut}_if1_vf0}
+| | ... | num_rx_queues=${rxq_count_int} | rxq_size=${nic_rxq_size}
+| | ... | txq_size=${nic_txq_size}
+| | ${dut_new_if1_mac}= | Run Keyword Unless | '${if1_1_status}' == 'PASS'
+| | ... | Get Interface MAC | ${nodes['${dut}']} | ${dut_new_if1}
+| | ${dut_new_if1_1}= | Run Keyword If | '${if1_1_status}' == 'PASS'
+| | ... | VPP Create AVF Interface | ${nodes['${dut}']} | ${${dut}_if1_1_vf0}
+| | ... | num_rx_queues=${rxq_count_int} | rxq_size=${nic_rxq_size}
+| | ... | txq_size=${nic_txq_size}
+| | ${dut_new_if1_1_mac}= | Run Keyword If | '${if1_1_status}' == 'PASS'
+| | ... | Get Interface MAC | ${nodes['${dut}']} | ${dut_new_if1_1}
+| | ${dut_new_if1_2}= | Run Keyword If | '${if1_2_status}' == 'PASS'
+| | ... | VPP Create AVF Interface | ${nodes['${dut}']} | ${${dut}_if1_2_vf0}
+| | ... | num_rx_queues=${rxq_count_int} | rxq_size=${nic_rxq_size}
+| | ... | txq_size=${nic_txq_size}
+| | ${dut_new_if1_2_mac}= | Run Keyword If | '${if1_2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${nodes['${dut}']} | ${dut_new_if1_2}
+
+| | ${dut_new_if2}= | Run Keyword Unless | '${if2_1_status}' == 'PASS'
+| | ... | VPP Create AVF Interface | ${nodes['${dut}']} | ${${dut}_if2_vf0}
+| | ... | num_rx_queues=${rxq_count_int} | rxq_size=${nic_rxq_size}
+| | ... | txq_size=${nic_txq_size}
+| | ${dut_new_if2_mac}= | Run Keyword Unless
+| | ... | '${if1_1_status}' == 'PASS'
+| | ... | Get Interface MAC | ${nodes['${dut}']} | ${dut_new_if2}
+| | ${dut_new_if2_1}= | Run Keyword If | '${if2_1_status}' == 'PASS'
+| | ... | VPP Create AVF Interface | ${nodes['${dut}']} | ${${dut}_if2_1_vf0}
+| | ... | num_rx_queues=${rxq_count_int} | rxq_size=${nic_rxq_size}
+| | ... | txq_size=${nic_txq_size}
+| | ${dut_new_if2_1_mac}= | Run Keyword If | '${if2_1_status}' == 'PASS'
+| | ... | Get Interface MAC | ${nodes['${dut}']} | ${dut_new_if2_1}
+| | ${dut_new_if2_2}= | Run Keyword If | '${if2_2_status}' == 'PASS'
+| | ... | VPP Create AVF Interface | ${nodes['${dut}']} | ${${dut}_if2_2_vf0}
+| | ... | num_rx_queues=${rxq_count_int} | rxq_size=${nic_rxq_size}
+| | ... | txq_size=${nic_txq_size}
+| | ${dut_new_if2_2_mac}= | Run Keyword If | '${if2_2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${nodes['${dut}']} | ${dut_new_if2_2}
+| |
+| | Run Keyword Unless | '${if1_1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
+| | Run Keyword Unless | '${if1_1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_new_if1_mac}
+| | Run Keyword Unless | '${if2_1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if2} | ${dut_new_if2}
+| | Run Keyword Unless | '${if2_1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_new_if2_mac}
+| | Run Keyword If | '${if1_1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if1_1} | ${dut_new_if1_1}
+| | Run Keyword If | '${if1_1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if1_1_mac} | ${dut_new_if1_1_mac}
+| | Run Keyword If | '${if1_2_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if1_2} | ${dut_new_if1_2}
+| | Run Keyword If | '${if1_2_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if1_2_mac} | ${dut_new_if1_2_mac}
+| | Run Keyword If | '${if2_1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if2_1} | ${dut_new_if2_1}
+| | Run Keyword If | '${if2_1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if2_1_mac} | ${dut_new_if2_1_mac}
+| | Run Keyword If | '${if2_2_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if2_2} | ${dut_new_if2_2}
+| | Run Keyword If | '${if2_2_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut_str}_if2_2_mac} | ${dut_new_if2_2_mac}
 
 | Initialize layer rdma-core on node
 | | [Documentation]
