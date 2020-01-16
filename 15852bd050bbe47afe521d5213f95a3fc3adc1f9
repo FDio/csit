@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ea761fcf_29efed69",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T15:38:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "737d2d0f_73b476f7",
+      "range": {
+        "startLine": 389,
+        "startChar": 0,
+        "endLine": 389,
+        "endChar": 36
+      },
+      "revId": "15852bd050bbe47afe521d5213f95a3fc3adc1f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b11f7337_21fd1b99",
         "filename": "resources/libraries/robot/hoststack/hoststack.robot",
         "patchSetId": 15
@@ -45,6 +69,30 @@
       "revId": "15852bd050bbe47afe521d5213f95a3fc3adc1f9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eabdf0f6_2550a802",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T15:38:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b11f7337_21fd1b99",
+      "range": {
+        "startLine": 390,
+        "startChar": 0,
+        "endLine": 390,
+        "endChar": 44
+      },
+      "revId": "15852bd050bbe47afe521d5213f95a3fc3adc1f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
