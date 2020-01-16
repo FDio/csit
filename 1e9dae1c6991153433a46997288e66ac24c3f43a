@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c5fac73d_057ef72d",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T21:19:51Z",
+      "side": 1,
+      "message": "Doesn\u0027t work, changed suite filename to reflect 3.",
+      "parentUuid": "eb41465f_f050a6a8",
+      "range": {
+        "startLine": 19,
+        "startChar": 15,
+        "endLine": 19,
+        "endChar": 16
+      },
+      "revId": "1e9dae1c6991153433a46997288e66ac24c3f43a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c6f3079_d7bd8a1b",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
         "patchSetId": 14
@@ -69,6 +93,30 @@
       "revId": "1e9dae1c6991153433a46997288e66ac24c3f43a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d77b588_aa3565da",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T21:19:51Z",
+      "side": 1,
+      "message": "\u003e Why?\n\u003e Robot is not complaining, neither here, nor in library (resource) robot files, where we have empty lines (not single pipes) between keyword definitions.\n\u003e \n\u003e If we decide we want the pipe here, I can update the suite generator.\n\nI fixed this to remove the | at the end of the line.  At one point it was causing test failures locally, but it works without it now.",
+      "parentUuid": "4ac8fd7c_f5410633",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "1e9dae1c6991153433a46997288e66ac24c3f43a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
