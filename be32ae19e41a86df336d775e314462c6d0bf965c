@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0bc9271c_66919b27",
+        "filename": "docs/report/introduction/test_environment_sut_calib_tsh.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-16T14:06:15Z",
+      "side": 1,
+      "message": "If the kernel is really -54- ...",
+      "range": {
+        "startLine": 25,
+        "startChar": 29,
+        "endLine": 25,
+        "endChar": 33
+      },
+      "revId": "be32ae19e41a86df336d775e314462c6d0bf965c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a7e7ad2_56909dfc",
+        "filename": "docs/report/introduction/test_environment_sut_meltspec_tsh.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-16T14:06:15Z",
+      "side": 1,
+      "message": "... then why does the checker see -23-?",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "be32ae19e41a86df336d775e314462c6d0bf965c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
