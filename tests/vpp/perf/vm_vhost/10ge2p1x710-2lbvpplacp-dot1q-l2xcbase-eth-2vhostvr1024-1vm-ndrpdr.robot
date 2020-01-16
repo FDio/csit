@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -92,7 +92,10 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | And Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
+| | ${dpdk_driver_name}= | Set Variable
+| | ... | ${NIC_NAME_TO_DRIVER}[Intel-XXV710][0]
+| | And Run Keyword If | '${nic_driver}' == '${dpdk_driver_name}'
+| | ... | Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
