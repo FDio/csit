@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f5403f36_fdde3b50",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-nsim-ldpreload-iperf3-bps.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T15:30:30Z",
+      "side": 1,
+      "message": "This test suite requires 2 DUTs, 2n testbeds only have 1 DUT.\n\nAs Peter mentioned, if TG nodes are allowed to run VPP, then this could be run on 2 node testbeds.  But is way beyond the scope of this commit.",
+      "parentUuid": "810dc10a_ceb2c9af",
+      "range": {
+        "startLine": 19,
+        "startChar": 15,
+        "endLine": 19,
+        "endChar": 16
+      },
+      "revId": "8998cb8a7c7c13ebdefc605d799ff57b68f2ba04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "68553ce9_8a097e10",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-nsim-ldpreload-iperf3-bps.robot",
         "patchSetId": 7
@@ -69,6 +93,30 @@
       "revId": "8998cb8a7c7c13ebdefc605d799ff57b68f2ba04",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64baf514_508df45e",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-nsim-ldpreload-iperf3-bps.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T15:30:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "462b5838_a9ce0223",
+      "range": {
+        "startLine": 62,
+        "startChar": 60,
+        "endLine": 62,
+        "endChar": 61
+      },
+      "revId": "8998cb8a7c7c13ebdefc605d799ff57b68f2ba04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
