@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "fd15378c_2246e0a8",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-nsim-ldpreload-iperf3-bps.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-16T19:36:17Z",
+      "side": 1,
+      "message": "\u003e If 2 DUTs are used, this tag is ok, but you need to remove the 2n1l- prefix from the file name.\n\nAck.  Should I fix this one [0] too?\n\ntests/vpp/perf/ip6/2n1l-10ge2p1x710-ethip6-ip6base-copwhtlistbase-ndrpdr.robot:18:| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR",
+      "parentUuid": "2d3ca5c2_fc62e52b",
+      "range": {
+        "startLine": 19,
+        "startChar": 15,
+        "endLine": 19,
+        "endChar": 16
+      },
+      "revId": "8998cb8a7c7c13ebdefc605d799ff57b68f2ba04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "68553ce9_8a097e10",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcp-nsim-ldpreload-iperf3-bps.robot",
         "patchSetId": 7
