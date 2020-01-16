@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -141,7 +141,7 @@ class CpuUtils:
     @staticmethod
     def cpu_slice_of_list_per_node(
             node, cpu_node, skip_cnt=0, cpu_cnt=0, smt_used=False):
-        """Return string of node related list of CPU numbers.
+        """Return node related subset of list of CPU numbers.
 
         :param node: Node dictionary with cpuinfo.
         :param cpu_node: Numa node number.
@@ -283,12 +283,6 @@ class CpuUtils:
         dtc_is_integer = isinstance(nf_dtc, int)
         if not smt_used and not dtc_is_integer:
             raise RuntimeError(u"Cannot allocate if SMT is not enabled!")
-        # TODO: Please reword the following todo if it is still relevant
-        # TODO: Workaround as we are using physical core as main unit, we must
-        # adjust number of physical dataplane cores in case of float for further
-        # array referencing. As rounding method in Py2.7 and Py3.x differs, we
-        # are using static mapping. This can be rewritten using flat arrays and
-        # different logic (from Physical core unit to Logical core unit).
         if not dtc_is_integer:
             nf_dtc = 1
 
@@ -361,3 +355,40 @@ class CpuUtils:
             nf_nodes=nf_nodes, nf_chain=nf_chain, nf_node=nf_node,
             nf_mtcr=nf_mtcr, nf_dtcr=nf_dtcr, nf_dtc=nf_dtc, skip_cnt=skip_cnt
         )
+
+    @staticmethod
+    def get_affinity_trex(
+            node, if1_pci, if2_pci, tg_mtc=1, tg_dtc=1, tg_ltc=1):
+        """Get affinity for T-Rex. Result will be used to pin T-Rex threads.
+
+        :param node: TG node.
+        :param if1_pci: TG first interface.
+        :param if2_pci: TG second interface.
+        :param tg_mtc: TG main thread count.
+        :param tg_dtc: TG dataplane thread count.
+        :param tg_ltc: TG latency thread count.
+        :type node: dict
+        :type if1_pci: str
+        :type if2_pci: str
+        :type tg_mtc: int
+        :type tg_dtc: int
+        :type tg_ltc: int
+        :returns: List of CPUs allocated to T-Rex including numa node.
+        :rtype: int, int, int, list
+        """
+        interface_list = [if1_pci, if2_pci]
+        cpu_node = Topology.get_interfaces_numa_node(node, *interface_list)
+
+        master_thread_id = CpuUtils.cpu_slice_of_list_per_node(
+            node, cpu_node, skip_cnt=0, cpu_cnt=tg_mtc,
+            smt_used=False)
+
+        threads = CpuUtils.cpu_slice_of_list_per_node(
+            node, cpu_node, skip_cnt=tg_mtc, cpu_cnt=tg_dtc,
+            smt_used=False)
+
+        latency_thread_id = CpuUtils.cpu_slice_of_list_per_node(
+            node, cpu_node, skip_cnt=tg_mtc + tg_dtc, cpu_cnt=tg_ltc,
+            smt_used=False)
+
+        return master_thread_id[0], latency_thread_id[0], cpu_node, threads

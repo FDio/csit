@@ -5,6 +5,7 @@
   import_tasks: kill_process.yaml
   vars:
       process: "_t-rex"
+  when: docker_tg is undefined
   tags: kill-process
 
 - name: Kill processes - WRK
@@ -12,3 +13,4 @@
   vars:
       process: "wrk"
   tags: kill-process
+  when: docker_tg is undefined
