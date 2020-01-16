@@ -104,7 +104,7 @@ def plot_lat_hdrh_percentile(plot, input_data):
 
     # Prepare the data for the plot
     directions = [u"W-E", u"E-W"]
-    for test in data[0][0]:
+    for color, test in enumerate(data[0][0]):
         try:
             if test[u"type"] in (u"NDRPDR",):
                 if u"-pdr" in plot_title.lower():
@@ -144,8 +144,13 @@ def plot_lat_hdrh_percentile(plot, input_data):
                             plgo.Scatter(
                                 x=xaxis,
                                 y=yaxis,
-                                name=f"{name} ({directions[idx]})",
+                                name=name,
                                 mode=u"lines",
+                                legendgroup=name,
+                                showlegend=bool(idx),
+                                line=dict(
+                                    color=COLORS[color]
+                                ),
                                 hovertext=hovertext,
                                 hoverinfo=u"text"
                             )
