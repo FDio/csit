@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "467c00b0_c895327b",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-16T18:02:11Z",
+      "side": 1,
+      "message": "Remove the 2n1l- prefix, as this is a 3n suite.",
+      "revId": "b647e6cb159df0c55edacedbe8a39df006307248",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
