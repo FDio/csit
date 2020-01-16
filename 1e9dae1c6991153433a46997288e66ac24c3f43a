@@ -45,6 +45,30 @@
       "revId": "1e9dae1c6991153433a46997288e66ac24c3f43a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ac8fd7c_f5410633",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-16T12:28:00Z",
+      "side": 1,
+      "message": "Why?\nRobot is not complaining, neither here, nor in library (resource) robot files, where we have empty lines (not single pipes) between keyword definitions.\n\nIf we decide we want the pipe here, I can update the suite generator.",
+      "parentUuid": "7c6f3079_d7bd8a1b",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "1e9dae1c6991153433a46997288e66ac24c3f43a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
