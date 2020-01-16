@@ -137,14 +137,14 @@ def plot_lat_hdrh_percentile(plot, input_data):
                                 hovertext.append(
                                     f"Test: {name}<br>"
                                     f"Direction: {directions[idx]}<br>"
-                                    f"Percentile: {percentile:.5f}<br>%"
+                                    f"Percentile: {percentile:.5f}%<br>"
                                     f"Latency: {item.value_iterated_to}uSec"
                                 )
                         fig.add_trace(
                             plgo.Scatter(
                                 x=xaxis,
                                 y=yaxis,
-                                name=name,
+                                name=f"{name} ({directions[idx]})",
                                 mode=u"lines",
                                 hovertext=hovertext,
                                 hoverinfo=u"text"
