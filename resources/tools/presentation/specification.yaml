@@ -1712,8 +1712,8 @@
         showline: True
         showticklabels: True
         tickcolor: "rgb(220, 220, 220)"
-        tickvals: [1e0, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8]
-        ticktext: [0, 90.0, 99.0, 99.9, 99.99, 99.999, 99.9999, 99.99999, 99.999999]
+        tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8]
+        ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999, 99.99999, 99.999999]
         tickfont:
           size: 16
       yaxis:
@@ -1739,7 +1739,7 @@
         xanchor: "left"
         yanchor: "top"
         x: 0
-        y: -0.1
+        y: -0.15
         bgcolor: "rgba(255, 255, 255, 0)"
         bordercolor: "rgba(255, 255, 255, 0)"
       width: 700
