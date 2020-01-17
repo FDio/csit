@@ -259,7 +259,8 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     1, u"Error adding driver prefix.", in_filename
                 )
                 out_prolog = replace_defensively(
-                    tmp2_prolog, u"vfio-pci", driver, 1,
+                    tmp2_prolog, u"vfio-pci", driver,
+                    2 if u"TEST" in tmp2_prolog else 1,
                     u"Driver name should appear once.", in_filename
                 )
                 out_prolog = replace_defensively(
