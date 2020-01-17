@@ -103,7 +103,8 @@ def main():
         # If connection is refused, ret==None.
         if ret != 0:
             print(f"Cancellation unsuccessful:\n{err!r}")
-        return 1
+            return 1
+        return 0
     # Before critical section, output can be outdated already.
     print(u"Diagnostic commands:")
     # -d and * are to suppress "total <size>", see https://askubuntu.com/a/61190
@@ -113,7 +114,7 @@ def main():
     ret, _, _ = exec_cmd(node, f"mkdir '{RESERVATION_DIR}'")
     # Critical section is over.
     if ret is None:
-        print(f"Failed to connect to testbed.")
+        print(u"Failed to connect to testbed.")
         return 1
     if ret != 0:
         _, stdo, _ = exec_cmd(node, f"ls '{RESERVATION_DIR}'/*")
