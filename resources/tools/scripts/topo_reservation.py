@@ -100,9 +100,10 @@ def main():
     # store additional data (time, client_ID, ..) within reservation directory.
     if args.cancel:
         ret, _, err = exec_cmd(node, f"rm -r {RESERVATION_DIR}")
-        if ret:
+        # If connection is refused, ret==None.
+        if ret != 0:
             print(f"Cancellation unsuccessful:\n{err!r}")
-        return ret
+        return 1
     # Before critical section, output can be outdated already.
     print(u"Diagnostic commands:")
     # -d and * are to suppress "total <size>", see https://askubuntu.com/a/61190
@@ -111,7 +112,10 @@ def main():
     # Entering critical section.
     ret, _, _ = exec_cmd(node, f"mkdir '{RESERVATION_DIR}'")
     # Critical section is over.
-    if ret:
+    if ret is None:
+        print(f"Failed to connect to testbed.")
+        return 1
+    if ret != 0:
         _, stdo, _ = exec_cmd(node, f"ls '{RESERVATION_DIR}'/*")
         print(f"Testbed already reserved by:\n{stdo}")
         return 2
@@ -119,7 +123,7 @@ def main():
     print(u"Reservation success, writing additional info to reservation dir.")
     ret, _, err = exec_cmd(
         node, f"touch '{RESERVATION_DIR}/{args.runtag}'")
-    if ret:
+    if ret != 0:
         print(f"Writing test run info failed, but continuing anyway:\n{err!r}")
     return 0
 
