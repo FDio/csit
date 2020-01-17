@@ -18,7 +18,7 @@
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ... | VHOST | VM | VHOST_1024 | VXLAN | DOT1Q | NF_DENSITY | NF_TESTPMD
 | ... | CHAIN | 1R1C | 1_ADDED_CHAIN | 1VM1T | DRV_VFIO_PCI
-| ... | dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd
+| ... | dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd | TEST
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -55,7 +55,7 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${osi_layer}= | L3
+| ${osi_layer}= | L2
 | ${overhead}= | ${54}
 | ${nf_dtcr}= | ${2}
 | ${nf_dtc}= | ${0.5}

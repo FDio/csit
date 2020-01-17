@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,7 +18,7 @@
 | ... | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | 1DCR
 | ... | DOCKER | 2R1C | NF_DENSITY | CHAIN | NF_VPPIP4 | 1DCR1T
 | ... | AES_256_GCM | AES | DRV_VFIO_PCI
-| ... | ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
+| ... | ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm | TEST
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -52,7 +52,7 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${osi_layer}= | L3
+| ${osi_layer}= | L2
 | ${overhead}= | ${54}
 | ${tg_if1_ip4}= | 192.168.10.254
 | ${dut1_if1_ip4}= | 192.168.10.1
