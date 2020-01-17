@@ -1159,7 +1159,7 @@ class InterfaceUtil:
         :type ifc_name: str
         :type sw_if_index: int
         :type ifc_pfx: str
-        :type ifc_pfx: host_if_key
+        :type host_if_key: str
         """
         if_key = Topology.add_new_port(node, ifc_pfx)
 
@@ -1178,6 +1178,9 @@ class InterfaceUtil:
                     node, host_if_key
                 )
             )
+            Topology.update_interface_pci_address(
+                node, if_key, Topology.get_interface_pci_addr(node, host_if_key)
+            )
 
     @staticmethod
     def vpp_create_avf_interface(node, if_key, num_rx_queues=None):
@@ -1190,7 +1193,7 @@ class InterfaceUtil:
         :type node: dict
         :type if_key: str
         :type num_rx_queues: int
-        :returns: Interface key (name) in topology.
+        :returns: AVF interface key (name) in topology.
         :rtype: str
         :raises RuntimeError: If it is not possible to create AVF interface on
             the node.
@@ -1216,9 +1219,8 @@ class InterfaceUtil:
             node, sw_if_index=sw_if_index, ifc_pfx=u"eth_avf",
             host_if_key=if_key
         )
-        if_key = Topology.get_interface_by_sw_index(node, sw_if_index)
 
-        return if_key
+        return Topology.get_interface_by_sw_index(node, sw_if_index)
 
     @staticmethod
     def vpp_create_rdma_interface(
