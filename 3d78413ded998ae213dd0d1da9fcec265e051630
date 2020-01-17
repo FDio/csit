@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4335709c_93479b31",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T13:41:18Z",
+      "side": 1,
+      "message": "Dev tests do not need these comments (as all of them are run automatically, so no need to know how to trigger them manually). Perf tests do need them. I will clean up later.",
+      "range": {
+        "startLine": 197,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 9
+      },
+      "revId": "3d78413ded998ae213dd0d1da9fcec265e051630",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
