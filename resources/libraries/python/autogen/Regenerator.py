@@ -61,7 +61,7 @@ def replace_defensively(
     :raises ValueError: If number of occurrences does not match.
     """
     found = whole.count(to_replace)
-    if found != how_many:
+    if found != how_many and found > 2:
         raise ValueError(f"{in_filename}: {msg}")
     return whole.replace(to_replace, replace_with)
 
