@@ -469,9 +469,9 @@ def table_perf_comparison(table, input_data):
 
     # Prepare data to the table:
     tbl_dict = dict()
-    topo = ""
+    # topo = ""
     for job, builds in table[u"reference"][u"data"].items():
-        topo = u"2n-skx" if u"2n-skx" in job else u""
+        # topo = u"2n-skx" if u"2n-skx" in job else u""
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = _tpc_modify_test_name(tst_name)
@@ -493,6 +493,38 @@ def table_perf_comparison(table, input_data):
                 _tpc_insert_data(target=tbl_dict[tst_name_mod][u"ref-data"],
                                  src=tst_data,
                                  include_tests=table[u"include-tests"])
+
+    replacement = table[u"reference"].get(u"data-replacement", None)
+    if replacement:
+        create_new_list = True
+        rpl_data = input_data.filter_data(
+            table, data=replacement, continue_on_error=True)
+        for job, builds in replacement.items():
+            for build in builds:
+                for tst_name, tst_data in rpl_data[job][str(build)].items():
+                    tst_name_mod = _tpc_modify_test_name(tst_name)
+                    if u"across topologies" in table[u"title"].lower():
+                        tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
+                    if tbl_dict.get(tst_name_mod, None) is None:
+                        name = \
+                            f"{u'-'.join(tst_data[u'name'].split(u'-')[:-1])}"
+                        if u"across testbeds" in table[u"title"].lower() or \
+                                u"across topologies" in table[u"title"].lower():
+                            name = _tpc_modify_displayed_test_name(name)
+                        tbl_dict[tst_name_mod] = {
+                            u"name": name,
+                            u"ref-data": list(),
+                            u"cmp-data": list()
+                        }
+                    if create_new_list:
+                        create_new_list = False
+                        tbl_dict[tst_name_mod][u"ref-data"] = list()
+
+                    _tpc_insert_data(
+                        target=tbl_dict[tst_name_mod][u"ref-data"],
+                        src=tst_data,
+                        include_tests=table[u"include-tests"]
+                    )
 
     for job, builds in table[u"compare"][u"data"].items():
         for build in builds:
@@ -609,10 +641,10 @@ def table_perf_comparison(table, input_data):
         if item[-2] == u"Not tested":
             pass
         elif item[-4] == u"Not tested":
-            item.append(u"New in CSIT-1908")
-        elif topo == u"2n-skx" and u"dot1q" in tbl_dict[tst_name][u"name"]:
-            item.append(u"See footnote [1]")
-            footnote = True
+            item.append(u"New in CSIT-2001")
+        # elif topo == u"2n-skx" and u"dot1q" in tbl_dict[tst_name][u"name"]:
+        #     item.append(u"See footnote [1]")
+        #     footnote = True
         elif item[-4] != 0:
             item.append(int(relative_change(float(item[-4]), float(item[-2]))))
         if (len(item) == len(header)) and (item[-3] != u"Not tested"):
@@ -700,9 +732,9 @@ def table_perf_comparison_nic(table, input_data):
 
     # Prepare data to the table:
     tbl_dict = dict()
-    topo = u""
+    # topo = u""
     for job, builds in table[u"reference"][u"data"].items():
-        topo = u"2n-skx" if u"2n-skx" in job else u""
+        # topo = u"2n-skx" if u"2n-skx" in job else u""
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].items():
                 if table[u"reference"][u"nic"] not in tst_data[u"tags"]:
@@ -725,6 +757,40 @@ def table_perf_comparison_nic(table, input_data):
                     src=tst_data,
                     include_tests=table[u"include-tests"]
                 )
+
+    replacement = table[u"reference"].get(u"data-replacement", None)
+    if replacement:
+        create_new_list = True
+        rpl_data = input_data.filter_data(
+            table, data=replacement, continue_on_error=True)
+        for job, builds in replacement.items():
+            for build in builds:
+                for tst_name, tst_data in rpl_data[job][str(build)].items():
+                    if table[u"reference"][u"nic"] not in tst_data[u"tags"]:
+                        continue
+                    tst_name_mod = _tpc_modify_test_name(tst_name)
+                    if u"across topologies" in table[u"title"].lower():
+                        tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
+                    if tbl_dict.get(tst_name_mod, None) is None:
+                        name = \
+                            f"{u'-'.join(tst_data[u'name'].split(u'-')[:-1])}"
+                        if u"across testbeds" in table[u"title"].lower() or \
+                                u"across topologies" in table[u"title"].lower():
+                            name = _tpc_modify_displayed_test_name(name)
+                        tbl_dict[tst_name_mod] = {
+                            u"name": name,
+                            u"ref-data": list(),
+                            u"cmp-data": list()
+                        }
+                    if create_new_list:
+                        create_new_list = False
+                        tbl_dict[tst_name_mod][u"ref-data"] = list()
+
+                    _tpc_insert_data(
+                        target=tbl_dict[tst_name_mod][u"ref-data"],
+                        src=tst_data,
+                        include_tests=table[u"include-tests"]
+                    )
 
     for job, builds in table[u"compare"][u"data"].items():
         for build in builds:
@@ -844,10 +910,10 @@ def table_perf_comparison_nic(table, input_data):
         if item[-2] == u"Not tested":
             pass
         elif item[-4] == u"Not tested":
-            item.append(u"New in CSIT-1908")
-        elif topo == u"2n-skx" and u"dot1q" in tbl_dict[tst_name][u"name"]:
-            item.append(u"See footnote [1]")
-            footnote = True
+            item.append(u"New in CSIT-2001")
+        # elif topo == u"2n-skx" and u"dot1q" in tbl_dict[tst_name][u"name"]:
+        #     item.append(u"See footnote [1]")
+        #     footnote = True
         elif item[-4] != 0:
             item.append(int(relative_change(float(item[-4]), float(item[-2]))))
         if (len(item) == len(header)) and (item[-3] != u"Not tested"):
