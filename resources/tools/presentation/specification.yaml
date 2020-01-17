@@ -133,30 +133,9 @@
   data-sets:
 
     ###########################################################################
-    # Plots:
+    # Replacements:
 
-    # 3n-hsw
-
-    plot-vpp-throughput-lat-tsa-3n-hsw:
-      csit-vpp-perf-verify-1908-3n-hsw:
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-#        - 15  # NDRPDR sel
-#        - 16  # NDRPDR sel
-#        - 17  # NDRPDR sel
-#        - 18  # NDRPDR sel
-#        - 19  # NDRPDR sel
-#        - 20  # NDRPDR sel
-#        - 21  # NDRPDR sel
-
-    plot-vpp-hdrh-lat-3n-hsw:
-      # TODO: Replace the data
-      #       This data is only an example
-      csit-vpp-perf-verify-master-3n-hsw:
-        - 595
-
-    plot-vpp-throughput-lat-tsa-3n-hsw-vhost:
+    replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 48  # NDRPDR sel vhost
         - 49  # NDRPDR sel vhost
@@ -169,60 +148,7 @@
 #        - 58  # NDRPDR sel vhost
 #        - 59  # NDRPDR sel vhost
 
-    plot-vpp-http-server-performance:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 29  # TCP
-        - 30  # TCP
-        - 58  # TCP
-#        - 59  # TCP
-#        - 60  # TCP
-#        - 61  # TCP
-#        - 62  # TCP
-#        - 63  # TCP
-#        - 64  # TCP
-#        - 65  # TCP
-
-    plot-dpdk-throughput-latency-3n-hsw:
-      csit-dpdk-perf-verify-1908-3n-hsw:
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-#        - 5   # NDRPDR sel
-#        - 6   # NDRPDR sel
-#        - 7   # NDRPDR sel
-#        - 8   # NDRPDR sel
-#        - 9   # NDRPDR sel
-#        - 10  # NDRPDR sel
-#        - 11  # NDRPDR sel
-
-    plot-dpdk-hdrh-lat-3n-hsw:
-      # TODO: Replace the data
-      #       This data is only an example
-      csit-dpdk-perf-verify-master-3n-hsw:
-        - 13
-
-    # 3n-skx
-
-    plot-vpp-throughput-lat-tsa-3n-skx:
-      csit-vpp-perf-verify-1908-3n-skx:
-        - 14  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 19  # NDRPDR sel
-#        - 20  # NDRPDR sel
-#        - 22  # NDRPDR sel
-#        - 23  # NDRPDR sel
-#        - 24  # NDRPDR sel
-#        - 25  # NDRPDR sel
-#        - 26  # NDRPDR sel
-#        - 29  # NDRPDR sel
-
-    plot-vpp-hdrh-lat-3n-skx:
-      # TODO: Replace the data
-      #       This data is only an example
-      csit-vpp-perf-verify-master-3n-skx:
-        - 299
-
-    plot-vpp-throughput-lat-tsa-3n-skx-vhost:
+    replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost:
       csit-vpp-perf-verify-1908-3n-skx:
         - 52  # NDRPDR sel vhost
         - 53  # NDRPDR sel vhost
@@ -235,47 +161,7 @@
 #        - 66  # NDRPDR sel vhost
 #        - 67  # NDRPDR sel vhost
 
-    plot-dpdk-throughput-latency-3n-skx:
-      csit-dpdk-perf-verify-1908-3n-skx:
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-#        - 6   # NDRPDR sel
-#        - 7   # NDRPDR sel
-#        - 8   # NDRPDR sel
-#        - 9   # NDRPDR sel
-#        - 10  # NDRPDR sel
-#        - 11  # NDRPDR sel
-#        - 12  # NDRPDR sel
-
-    plot-dpdk-hdrh-lat-3n-skx:
-      # TODO: Replace the data
-      #       This data is only an example
-      csit-dpdk-perf-verify-master-3n-skx:
-        - 23
-
-    # 2n-skx
-
-    plot-vpp-throughput-lat-tsa-2n-skx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 26  # NDRPDR sel
-        - 27  # NDRPDR sel
-        - 34  # NDRPDR sel
-#        - 35  # NDRPDR sel
-#        - 36  # NDRPDR sel
-#        - 42  # NDRPDR sel
-#        - 43  # NDRPDR sel
-#        - 44  # NDRPDR sel
-#        - 45  # NDRPDR sel
-#        - 46  # NDRPDR sel
-
-    plot-vpp-hdrh-lat-2n-skx:
-      # TODO: Replace the data
-      #       This data is only an example
-      csit-vpp-perf-verify-master-2n-skx:
-        - 930
-
-    plot-vpp-throughput-lat-tsa-2n-skx-vhost:
+    replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost:
       csit-vpp-perf-verify-1908-2n-skx:
         - 88  # NDRPDR sel vhost
         - 89  # NDRPDR sel vhost
@@ -288,57 +174,139 @@
 #        - 97  # NDRPDR sel vhost
 #        - 98  # NDRPDR sel vhost
 
+    ###########################################################################
+    # Plots:
+
+    # 3n-hsw
+
+    plot-vpp-throughput-lat-tsa-3n-hsw:
+      # TODO: Replace:
+      # csit-vpp-perf-verify-2001-3n-hsw:
+      csit-vpp-perf-verify-1908-3n-hsw:
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+
+    plot-vpp-hdrh-lat-3n-hsw:
+      # TODO: Replace the data
+      # This data is only an example
+      # csit-vpp-perf-verify-2001-3n-hsw:
+      csit-vpp-perf-verify-master-3n-hsw:
+        - 595
+
+    plot-dpdk-throughput-latency-3n-hsw:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2001-3n-hsw:
+      csit-dpdk-perf-verify-1908-3n-hsw:
+        - 2   # NDRPDR sel
+        - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
+
+    plot-dpdk-hdrh-lat-3n-hsw:
+      # TODO: Replace the data
+      # This data is only an example
+      # csit-dpdk-perf-verify-2001-3n-hsw:
+      csit-dpdk-perf-verify-master-3n-hsw:
+        - 13
+
+    # 3n-skx
+
+    plot-vpp-throughput-lat-tsa-3n-skx:
+      # TODO: Replace the data
+      # csit-vpp-perf-verify-2001-3n-skx:
+      csit-vpp-perf-verify-1908-3n-skx:
+        - 14  # NDRPDR sel
+        - 16  # NDRPDR sel
+        - 19  # NDRPDR sel
+
+    plot-vpp-hdrh-lat-3n-skx:
+      # TODO: Replace the data
+      # This data is only an example
+      # csit-vpp-perf-verify-2001-3n-skx:
+      csit-vpp-perf-verify-master-3n-skx:
+        - 299
+
+    plot-dpdk-throughput-latency-3n-skx:
+      # TODO: Replace the data
+      # csit-dpdk-perf-verify-2001-3n-skx:
+      csit-dpdk-perf-verify-1908-3n-skx:
+        - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel
+
+    plot-dpdk-hdrh-lat-3n-skx:
+      # TODO: Replace the data
+      # This data is only an example
+      # csit-dpdk-perf-verify-2001-3n-skx:
+      csit-dpdk-perf-verify-master-3n-skx:
+        - 23
+
+    # 2n-skx
+
+    plot-vpp-throughput-lat-tsa-2n-skx:
+      # TODO: Replace the data
+      # csit-vpp-perf-verify-2001-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 34  # NDRPDR sel
+
+    plot-vpp-hdrh-lat-2n-skx:
+      # TODO: Replace the data
+      # This data is only an example
+      # csit-vpp-perf-verify-2001-2n-skx:
+      csit-vpp-perf-verify-master-2n-skx:
+        - 930
+
+    plot-vpp-http-server-performance:
+      # TODO: Replace:
+      # csit-vpp-perf-verify-2001-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 29  # TCP
+        - 30  # TCP
+        - 58  # TCP
+
     plot-vpp-soak-2n-skx:
+      # TODO: Replace the data
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 83  # SOAK
         - 86  # SOAK
 
     plot-vpp-nfv-2n-skx-ndrpdr:
+      # TODO: Replace the data
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 22  # NFV
         - 31  # NFV
         - 32  # NFV
-#        - 37  # NFV
-#        - 38  # NFV
-#        - 39  # NFV
-#        - 53  # NFV
-#        - 67  # NFV
-#        - 68  # NFV
-#        - 70  # NFV
 
     plot-vpp-nfv-2n-skx-mrr:
+      # TODO: Replace the data
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 71  # NFV MRR
 
     plot-vpp-nfv-reconf-2n-skx:
+      # TODO: Replace the data
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 113 # NFV reconf sel
         - 114 # NFV reconf sel
         - 115 # NFV reconf sel
-#        - 116 # NFV reconf sel
-#        - 118 # NFV reconf sel
-#        - 119 # NFV reconf sel
-#        - 120 # NFV reconf sel
-#        - 121 # NFV reconf sel
-#        - 122 # NFV reconf sel
-#        - 123 # NFV reconf sel
 
     plot-dpdk-throughput-latency-2n-skx:
+      # TODO: Replace the data
+      # csit-dpdk-perf-verify-2001-2n-skx:
       csit-dpdk-perf-verify-1908-2n-skx:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
-#        - 5   # NDRPDR sel
-#        - 7   # NDRPDR sel
-#        - 8   # NDRPDR sel
-#        - 9   # NDRPDR sel
-#        - 10  # NDRPDR sel
-#        - 11  # NDRPDR sel
-#        - 12  # NDRPDR sel
 
     plot-dpdk-hdrh-lat-2n-skx:
       # TODO: Replace the data
-      #       This data is only an example
+      # This data is only an example
+      # csit-dpdk-perf-verify-2001-2n-skx:
       csit-dpdk-perf-verify-master-2n-skx:
         - 16
 
@@ -375,52 +343,38 @@
     # 3n-tsh
 
     plot-vpp-throughput-lat-tsa-3n-tsh:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-tsh:
       csit-vpp-perf-verify-1908-3n-tsh:
         - 7   # NDRPDR sel
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
-#        - 10  # NDRPDR sel
-#        - 11  # NDRPDR sel
-#        - 12  # NDRPDR sel
-#        - 13  # NDRPDR sel
-#        - 14  # NDRPDR sel
-#        - 15  # NDRPDR sel
-#        - 16  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-tsh:
-      # TODO: Replace the data
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-tsh:
       csit-vpp-perf-verify-master-3n-tsh:
         - 25
 
     # 3n-dnv
 
     plot-vpp-throughput-lat-tsa-3n-dnv:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-dnv:
       csit-vpp-perf-verify-1908-3n-dnv:
         - 6   # NDRPDR sel
         - 7   # NDRPDR sel
         - 8   # NDRPDR sel
-#        - 9   # NDRPDR sel
-#        - 10  # NDRPDR sel
-#        - 12  # NDRPDR sel
-#        - 13  # NDRPDR sel
-#        - 14  # NDRPDR sel
-#        - 15  # NDRPDR sel
-#        - 16  # NDRPDR sel
 
     # 2n-dnv
 
     plot-vpp-throughput-lat-tsa-2n-dnv:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-dnv:
       csit-vpp-perf-verify-1908-2n-dnv:
         - 1   # NDRPDR sel
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
-#        - 4   # NDRPDR sel
-#        - 5   # NDRPDR sel
-#        - 6   # NDRPDR sel
-#        - 7   # NDRPDR sel
-#        - 8   # NDRPDR sel
-#        - 9   # NDRPDR sel
-#        - 10  # NDRPDR sel
 
     ###########################################################################
     # Simple tables (only one data set):
@@ -428,85 +382,58 @@
     # NIC Comparisons
 
     vpp-nic-comparison-3n-skx:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-skx:
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
         - 19  # NDRPDR sel
-#        - 20  # NDRPDR sel
-#        - 22  # NDRPDR sel
-#        - 23  # NDRPDR sel
-#        - 24  # NDRPDR sel
-#        - 25  # NDRPDR sel
-#        - 26  # NDRPDR sel
-#        - 29  # NDRPDR sel
 
     vpp-nic-comparison-2n-skx:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 26  # NDRPDR sel
         - 27  # NDRPDR sel
         - 34  # NDRPDR sel
-#        - 35  # NDRPDR sel
-#        - 36  # NDRPDR sel
-#        - 42  # NDRPDR sel
-#        - 43  # NDRPDR sel
-#        - 44  # NDRPDR sel
-#        - 45  # NDRPDR sel
-#        - 46  # NDRPDR sel
 
     vpp-nic-comparison-3n-skx-mrr:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-skx:
       csit-vpp-perf-verify-1908-3n-skx:
         - 36  # MRR sel
 
     vpp-nic-comparison-2n-skx-mrr:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 69  # MRR sel
 
     # Results
 
     vpp-perf-results-3n-hsw:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-hsw:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 24  # NDRPDR full
         - 25  # NDRPDR full
         - 26  # NDRPDR full
-#        - 27  # NDRPDR full
-#        - 28  # NDRPDR full
-#        - 29  # NDRPDR full
-#        - 32  # NDRPDR full
-#        - 33  # NDRPDR full
-#        - 36  # NDRPDR full
-#        - 38  # NDRPDR full
-#        - 50  # NDRPDR full vhost
 
     vpp-perf-results-3n-skx:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-skx:
       csit-vpp-perf-verify-1908-3n-skx:
         - 27  # NDRPDR full
         - 28  # NDRPDR full
         - 30  # NDRPDR full
-#        - 31  # NDRPDR full
-#        - 32  # NDRPDR full
-#        - 33  # NDRPDR full
-#        - 34  # NDRPDR full
-#        - 35  # NDRPDR full
-#        - 37  # NDRPDR full
-#        - 39  # NDRPDR full
-#        - 40  # NDRPDR full
-#        - 41  # NDRPDR full
-#        - 54  # NDRPDR full
 
     vpp-perf-results-2n-skx:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 48  # NDRPDR full
         - 49  # NDRPDR full
         - 50  # NDRPDR full
-#        - 51  # NDRPDR full
-#        - 54  # NDRPDR full
-#        - 55  # NDRPDR full
-#        - 90  # NDRPDR full vhost
-#        - 110 # NFV full
-#        - 111 # NFV full
-#        - 126 # NFV full
-#        - 127 # NFV full
-#        - 112 # NFV reconf full
 
     vpp-perf-results-2n-clx:
       # TODO: Replace
@@ -517,26 +444,38 @@
         - 50  # NDRPDR full
 
     vpp-perf-results-3n-tsh:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-tsh:
       csit-vpp-perf-verify-1908-3n-tsh:
         - 13  # NDRPDR sel
 
     vpp-perf-results-3n-dnv:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-dnv:
       csit-vpp-perf-verify-1908-3n-dnv:
         - 16  # NDRPDR sel
 
     vpp-perf-results-2n-dnv:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-dnv:
       csit-vpp-perf-verify-1908-2n-dnv:
         - 9   # NDRPDR sel
 
     vpp-mrr-results-3n-hsw:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-hsw:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 39  # MRR sel
 
     vpp-mrr-results-3n-skx:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-skx:
       csit-vpp-perf-verify-1908-3n-skx:
         - 36  # MRR sel
 
     vpp-mrr-results-2n-skx:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 69  # MRR sel
 
@@ -547,30 +486,44 @@
         - 69  # MRR sel
 
     vpp-mrr-results-3n-tsh:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-tsh:
       csit-vpp-perf-verify-1908-3n-tsh:
         - 17  # MRR sel
 
     vpp-mrr-results-3n-dnv:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-dnv:
       csit-vpp-perf-verify-1908-3n-dnv:
         - 17  # MRR sel
 
     vpp-mrr-results-2n-dnv:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-dnv:
       csit-vpp-perf-verify-1908-2n-dnv:
         - 11  # MRR sel
 
     vpp-device-results-ubuntu:
+      # TODO: Replace
+      # csit-vpp-device-2001-ubuntu1804-1n-skx:
       csit-vpp-device-1908-ubuntu1804-1n-skx:
         - 65
 
     dpdk-perf-results-3n-hsw:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-3n-hsw:
       csit-dpdk-perf-verify-1908-3n-hsw:
         - 10  # NDRPDR sel
 
     dpdk-perf-results-3n-skx:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-3n-skx:
       csit-dpdk-perf-verify-1908-3n-skx:
         - 12  # NDRPDR sel
 
     dpdk-perf-results-2n-skx:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-2n-skx:
       csit-dpdk-perf-verify-1908-2n-skx:
         - 12  # NDRPDR sel
 
@@ -586,28 +539,6 @@
     # Performance changes
 
     vpp-performance-changes-3n-hsw-h1:
-      csit-vpp-perf-verify-1901-3n-hsw:
-        - 10  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 31  # NDRPDR sel
-#        - 36  # NDRPDR sel
-#        - 40  # NDRPDR sel
-#        - 42  # NDRPDR sel
-#        - 44  # NDRPDR sel
-#        - 46  # NDRPDR sel
-#        - 47  # NDRPDR sel
-#        - 48  # NDRPDR sel
-#        - 61  # NDRPDR LB
-#        - 62  # NDRPDR LB
-#        - 63  # NDRPDR LB
-#        - 64  # NDRPDR LB
-#        - 65  # NDRPDR LB
-#        - 66  # NDRPDR LB
-#        - 67  # NDRPDR LB
-#        - 69  # NDRPDR LB
-#        - 70  # NDRPDR LB
-#        - 71  # NDRPDR LB
-    vpp-performance-changes-3n-hsw-ref:
       csit-vpp-perf-verify-1904-3n-hsw:
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
@@ -619,7 +550,7 @@
 #        - 26  # NDRPDR sel
 #        - 29  # NDRPDR sel
 #        - 30  # NDRPDR sel
-    vpp-performance-changes-3n-hsw-cmp:
+    vpp-performance-changes-3n-hsw-ref:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
@@ -631,34 +562,19 @@
 #        - 19  # NDRPDR sel
 #        - 20  # NDRPDR sel
 #        - 21  # NDRPDR sel
+    vpp-performance-changes-3n-hsw-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-hsw:
+      csit-vpp-perf-verify-1908-3n-hsw:
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
     vpp-performance-changes-3n-hsw:
       - "vpp-performance-changes-3n-hsw-h1"
       - "vpp-performance-changes-3n-hsw-ref"
       - "vpp-performance-changes-3n-hsw-cmp"
 
     vpp-performance-changes-3n-skx-h1:
-      csit-vpp-perf-verify-1901-3n-skx:
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-#        - 28  # NDRPDR sel
-#        - 31  # NDRPDR sel
-#        - 33  # NDRPDR sel
-#        - 36  # NDRPDR sel
-#        - 38  # NDRPDR sel
-#        - 47  # NDRPDR sel
-#        - 48  # NDRPDR sel
-#        - 54  # NDRPDR LB
-#        - 57  # NDRPDR LB
-#        - 58  # NDRPDR LB
-#        - 59  # NDRPDR LB
-#        - 60  # NDRPDR LB
-#        - 63  # NDRPDR LB
-#        - 64  # NDRPDR LB
-#        - 65  # NDRPDR LB
-#        - 66  # NDRPDR LB
-#        - 67  # NDRPDR LB
-    vpp-performance-changes-3n-skx-ref:
       csit-vpp-perf-verify-1904-3n-skx:
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
@@ -670,7 +586,7 @@
 #        - 21  # NDRPDR sel
 #        - 23  # NDRPDR sel
 #        - 25  # NDRPDR sel
-    vpp-performance-changes-3n-skx-cmp:
+    vpp-performance-changes-3n-skx-ref:
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
@@ -682,24 +598,19 @@
 #        - 25  # NDRPDR sel
 #        - 26  # NDRPDR sel
 #        - 29  # NDRPDR sel
+    vpp-performance-changes-3n-skx-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-skx:
+      csit-vpp-perf-verify-1908-3n-skx:
+        - 14  # NDRPDR sel
+        - 16  # NDRPDR sel
+        - 19  # NDRPDR sel
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
       - "vpp-performance-changes-3n-skx-cmp"
 
     vpp-performance-changes-2n-skx-h1:
-      csit-vpp-perf-verify-1901-2n-skx:
-        - 5   # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-#        - 21  # NDRPDR sel
-#        - 23  # NDRPDR sel
-#        - 31  # NDRPDR sel
-#        - 34  # NDRPDR sel
-#        - 40  # NDRPDR sel
-#        - 42  # NDRPDR sel
-#        - 43  # NDRPDR sel
-    vpp-performance-changes-2n-skx-ref:
       csit-vpp-perf-verify-1904-2n-skx:
         - 12  # NDRPDR sel
         - 14  # NDRPDR sel
@@ -711,7 +622,7 @@
 #        - 30  # NDRPDR sel
 #        - 31  # NDRPDR sel
 #        - 32  # NDRPDR sel
-    vpp-performance-changes-2n-skx-cmp:
+    vpp-performance-changes-2n-skx-ref:
       csit-vpp-perf-verify-1908-2n-skx:
         - 26  # NDRPDR sel
         - 27  # NDRPDR sel
@@ -723,6 +634,13 @@
 #        - 44  # NDRPDR sel
 #        - 45  # NDRPDR sel
 #        - 46  # NDRPDR sel
+    vpp-performance-changes-2n-skx-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 34  # NDRPDR sel
     vpp-performance-changes-2n-skx:
       - "vpp-performance-changes-2n-skx-h1"
       - "vpp-performance-changes-2n-skx-ref"
@@ -800,43 +718,37 @@
       - "vpp-performance-changes-3n-tsh-cmp"
 
     vpp-soak-vs-ndr-2n-skx-ref:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 26  # NDRPDR sel
         - 27  # NDRPDR sel
         - 34  # NDRPDR sel
-#        - 35  # NDRPDR sel
-#        - 36  # NDRPDR sel
-#        - 42  # NDRPDR sel
-#        - 43  # NDRPDR sel
-#        - 44  # NDRPDR sel
-#        - 45  # NDRPDR sel
-#        - 46  # NDRPDR sel
     vpp-soak-vs-ndr-2n-skx-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 83  # SOAK
         - 86  # SOAK
     vpp-soak-vs-ndr-2n-skx:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 26  # NDRPDR sel
         - 27  # NDRPDR sel
         - 34  # NDRPDR sel
-#        - 35  # NDRPDR sel
-#        - 36  # NDRPDR sel
-#        - 42  # NDRPDR sel
-#        - 43  # NDRPDR sel
-#        - 44  # NDRPDR sel
-#        - 45  # NDRPDR sel
-#        - 46  # NDRPDR sel
         - 83  # SOAK
         - 86  # SOAK
 
     vpp-performance-changes-3n-hsw-mrr-h1:
-      csit-vpp-perf-verify-1901-3n-hsw:
-        - 35  # MRR sel
-    vpp-performance-changes-3n-hsw-mrr-ref:
       csit-vpp-perf-verify-1904-3n-hsw:
         - 9   # MRR sel
+    vpp-performance-changes-3n-hsw-mrr-ref:
+      csit-vpp-perf-verify-1908-3n-hsw:
+        - 39  # MRR sel
     vpp-performance-changes-3n-hsw-mrr-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-hsw:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 39  # MRR sel
     vpp-performance-changes-3n-hsw-mrr:
@@ -845,12 +757,14 @@
       - "vpp-performance-changes-3n-hsw-mrr-cmp"
 
     vpp-performance-changes-3n-skx-mrr-h1:
-      csit-vpp-perf-verify-1901-3n-skx:
-        - 32  # MRR sel
-    vpp-performance-changes-3n-skx-mrr-ref:
       csit-vpp-perf-verify-1904-3n-skx:
         - 7   # MRR sel
+    vpp-performance-changes-3n-skx-mrr-ref:
+      csit-vpp-perf-verify-1908-3n-skx:
+        - 36  # MRR sel
     vpp-performance-changes-3n-skx-mrr-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-skx:
       csit-vpp-perf-verify-1908-3n-skx:
         - 36  # MRR sel
     vpp-performance-changes-3n-skx-mrr:
@@ -859,12 +773,14 @@
       - "vpp-performance-changes-3n-skx-mrr-cmp"
 
     vpp-performance-changes-2n-skx-mrr-h1:
-      csit-vpp-perf-verify-1901-2n-skx:
-        - 22  # MRR sel
-    vpp-performance-changes-2n-skx-mrr-ref:
       csit-vpp-perf-verify-1904-2n-skx:
         - 11  # MRR sel
+    vpp-performance-changes-2n-skx-mrr-ref:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 69  # MRR sel
     vpp-performance-changes-2n-skx-mrr-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 69  # MRR sel
     vpp-performance-changes-2n-skx-mrr:
@@ -921,18 +837,6 @@
       - "vpp-performance-changes-3n-tsh-mrr-cmp"
 
     dpdk-performance-changes-3n-hsw-h1:
-      csit-dpdk-perf-verify-1901-3n-hsw:
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 16  # NDRPDR sel
-#        - 17  # NDRPDR sel
-#        - 18  # NDRPDR sel
-#        - 19  # NDRPDR sel
-#        - 20  # NDRPDR sel
-#        - 21  # NDRPDR sel
-#        - 22  # NDRPDR sel
-#        - 23  # NDRPDR sel
-    dpdk-performance-changes-3n-hsw-ref:
       csit-dpdk-perf-verify-1904-3n-hsw:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -944,7 +848,7 @@
 #        - 18  # NDRPDR sel
 #        - 19  # NDRPDR sel
 #        - 20  # NDRPDR sel
-    dpdk-performance-changes-3n-hsw-cmp:
+    dpdk-performance-changes-3n-hsw-ref:
       csit-dpdk-perf-verify-1908-3n-hsw:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -956,24 +860,19 @@
 #        - 9   # NDRPDR sel
 #        - 10  # NDRPDR sel
 #        - 11  # NDRPDR sel
+    dpdk-performance-changes-3n-hsw-cmp:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-3n-hsw:
+      csit-dpdk-perf-verify-1908-3n-hsw:
+        - 2   # NDRPDR sel
+        - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
     dpdk-performance-changes-3n-hsw:
       - "dpdk-performance-changes-3n-hsw-h1"
       - "dpdk-performance-changes-3n-hsw-ref"
       - "dpdk-performance-changes-3n-hsw-cmp"
 
     dpdk-performance-changes-3n-skx-h1:
-      csit-dpdk-perf-verify-1901-3n-skx:
-        - 3   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-#        - 7   # NDRPDR sel
-#        - 8   # NDRPDR sel
-#        - 9   # NDRPDR sel
-#        - 10  # NDRPDR sel
-#        - 11  # NDRPDR sel
-#        - 12  # NDRPDR sel
-#        - 13  # NDRPDR sel
-    dpdk-performance-changes-3n-skx-ref:
       csit-dpdk-perf-verify-1904-3n-skx:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -985,7 +884,7 @@
 #        - 12  # NDRPDR sel
 #        - 13  # NDRPDR sel
 #        - 14  # NDRPDR sel
-    dpdk-performance-changes-3n-skx-cmp:
+    dpdk-performance-changes-3n-skx-ref:
       csit-dpdk-perf-verify-1908-3n-skx:
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
@@ -997,24 +896,19 @@
 #        - 10  # NDRPDR sel
 #        - 11  # NDRPDR sel
 #        - 12  # NDRPDR sel
+    dpdk-performance-changes-3n-skx-cmp:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-3n-skx:
+      csit-dpdk-perf-verify-1908-3n-skx:
+        - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel
     dpdk-performance-changes-3n-skx:
       - "dpdk-performance-changes-3n-skx-h1"
       - "dpdk-performance-changes-3n-skx-ref"
       - "dpdk-performance-changes-3n-skx-cmp"
 
     dpdk-performance-changes-2n-skx-h1:
-      csit-dpdk-perf-verify-1901-2n-skx:
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-#        - 15  # NDRPDR sel
-#        - 16  # NDRPDR sel
-#        - 17  # NDRPDR sel
-#        - 18  # NDRPDR sel
-#        - 19  # NDRPDR sel
-#        - 20  # NDRPDR sel
-#        - 21  # NDRPDR sel
-    dpdk-performance-changes-2n-skx-ref:
       csit-dpdk-perf-verify-1904-2n-skx:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -1026,7 +920,7 @@
 #        - 10  # NDRPDR sel
 #        - 11  # NDRPDR sel
 #        - 12  # NDRPDR sel
-    dpdk-performance-changes-2n-skx-cmp:
+    dpdk-performance-changes-2n-skx-ref:
       csit-dpdk-perf-verify-1908-2n-skx:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -1038,6 +932,13 @@
 #        - 10  # NDRPDR sel
 #        - 11  # NDRPDR sel
 #        - 12  # NDRPDR sel
+    dpdk-performance-changes-2n-skx-cmp:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-2n-skx:
+      csit-dpdk-perf-verify-1908-2n-skx:
+        - 2   # NDRPDR sel
+        - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
     dpdk-performance-changes-2n-skx:
       - "dpdk-performance-changes-2n-skx-h1"
       - "dpdk-performance-changes-2n-skx-ref"
@@ -1046,29 +947,19 @@
     # Compare testbeds
 
     vpp-compare-testbeds-ref:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-hsw:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
-#        - 15  # NDRPDR sel
-#        - 16  # NDRPDR sel
-#        - 17  # NDRPDR sel
-#        - 18  # NDRPDR sel
-#        - 19  # NDRPDR sel
-#        - 20  # NDRPDR sel
-#        - 21  # NDRPDR sel
     vpp-compare-testbeds-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-skx:
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
         - 19  # NDRPDR sel
-#        - 20  # NDRPDR sel
-#        - 22  # NDRPDR sel
-#        - 23  # NDRPDR sel
-#        - 24  # NDRPDR sel
-#        - 25  # NDRPDR sel
-#        - 26  # NDRPDR sel
-#        - 29  # NDRPDR sel
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
@@ -1092,9 +983,13 @@
       - "vpp-compare-testbeds-skx-clx-cmp"
 
     vpp-compare-testbeds-mrr-ref:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-hsw:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 39  # MRR sel
     vpp-compare-testbeds-mrr-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-skx:
       csit-vpp-perf-verify-1908-3n-skx:
         - 36  # MRR sel
     vpp-compare-testbeds-mrr:
@@ -1116,29 +1011,19 @@
       - "vpp-compare-testbeds-mrr-skx-clx-cmp"
 
     dpdk-compare-testbeds-ref:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-3n-hsw:
       csit-dpdk-perf-verify-1908-3n-hsw:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
-#        - 5   # NDRPDR sel
-#        - 6   # NDRPDR sel
-#        - 7   # NDRPDR sel
-#        - 8   # NDRPDR sel
-#        - 9   # NDRPDR sel
-#        - 10  # NDRPDR sel
-#        - 11  # NDRPDR sel
     dpdk-compare-testbeds-cmp:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-3n-skx:
       csit-dpdk-perf-verify-1908-3n-skx:
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel
-#        - 6   # NDRPDR sel
-#        - 7   # NDRPDR sel
-#        - 8   # NDRPDR sel
-#        - 9   # NDRPDR sel
-#        - 10  # NDRPDR sel
-#        - 11  # NDRPDR sel
-#        - 12  # NDRPDR sel
     dpdk-compare-testbeds:
       - "dpdk-compare-testbeds-ref"
       - "dpdk-compare-testbeds-cmp"
@@ -1164,37 +1049,31 @@
     # Compare topologies
 
     vpp-compare-topologies-ref:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-skx:
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
         - 19  # NDRPDR sel
-#        - 20  # NDRPDR sel
-#        - 22  # NDRPDR sel
-#        - 23  # NDRPDR sel
-#        - 24  # NDRPDR sel
-#        - 25  # NDRPDR sel
-#        - 26  # NDRPDR sel
-#        - 29  # NDRPDR sel
     vpp-compare-topologies-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 26  # NDRPDR sel
         - 27  # NDRPDR sel
         - 34  # NDRPDR sel
-#        - 35  # NDRPDR sel
-#        - 36  # NDRPDR sel
-#        - 42  # NDRPDR sel
-#        - 43  # NDRPDR sel
-#        - 44  # NDRPDR sel
-#        - 45  # NDRPDR sel
-#        - 46  # NDRPDR sel
     vpp-compare-topologies:
       - "vpp-compare-topologies-ref"
       - "vpp-compare-topologies-cmp"
 
     vpp-compare-topologies-mrr-ref:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-3n-skx:
       csit-vpp-perf-verify-1908-3n-skx:
         - 36  # MRR sel
     vpp-compare-topologies-mrr-cmp:
+      # TODO: Replace
+      # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 69  # MRR sel
     vpp-compare-topologies-mrr:
@@ -1202,6 +1081,8 @@
       - "vpp-compare-topologies-mrr-cmp"
 
     dpdk-compare-topologies-ref:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-3n-skx:
       csit-dpdk-perf-verify-1908-3n-skx:
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
@@ -1214,6 +1095,8 @@
 #        - 11  # NDRPDR sel
 #        - 12  # NDRPDR sel
     dpdk-compare-topologies-cmp:
+      # TODO: Replace
+      # csit-dpdk-perf-verify-2001-2n-skx:
       csit-dpdk-perf-verify-1908-2n-skx:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -1768,28 +1651,6 @@
 
   builds:
 
-    csit-vpp-perf-verify-1901-3n-hsw:
-      - 35  # MRR sel
-      - 10  # NDRPDR sel
-      - 19  # NDRPDR sel
-      - 31  # NDRPDR sel
-#      - 36  # NDRPDR sel
-#      - 40  # NDRPDR sel
-#      - 42  # NDRPDR sel
-#      - 44  # NDRPDR sel
-#      - 46  # NDRPDR sel
-#      - 47  # NDRPDR sel
-#      - 48  # NDRPDR sel
-#      - 61  # NDRPDR LB
-#      - 62  # NDRPDR LB
-#      - 63  # NDRPDR LB
-#      - 64  # NDRPDR LB
-#      - 65  # NDRPDR LB
-#      - 66  # NDRPDR LB
-#      - 67  # NDRPDR LB
-#      - 69  # NDRPDR LB
-#      - 70  # NDRPDR LB
-#      - 71  # NDRPDR LB
     csit-vpp-perf-verify-1904-3n-hsw:
       - 9   # MRR sel
       - 11  # NDRPDR sel
@@ -1835,33 +1696,13 @@
 #      - 38  # NDRPDR full
 #      - 50  # NDRPDR full vhost
       - 39  # MRR sel
+#    csit-vpp-perf-verify-2001-3n-hsw:
+
     # TODO: Remove
-    #       This data is only an example for HDRHistogram
+    # This data is only an example for HDRHistogram
     csit-vpp-perf-verify-master-3n-hsw:
       - 595
 
-    csit-vpp-perf-verify-1901-3n-skx:
-      - 32  # MRR sel
-      - 18  # NDRPDR sel
-      - 19  # NDRPDR sel
-      - 20  # NDRPDR sel
-#      - 28  # NDRPDR sel
-#      - 31  # NDRPDR sel
-#      - 33  # NDRPDR sel
-#      - 36  # NDRPDR sel
-#      - 38  # NDRPDR sel
-#      - 47  # NDRPDR sel
-#      - 48  # NDRPDR sel
-#      - 54  # NDRPDR LB
-#      - 57  # NDRPDR LB
-#      - 58  # NDRPDR LB
-#      - 59  # NDRPDR LB
-#      - 60  # NDRPDR LB
-#      - 63  # NDRPDR LB
-#      - 64  # NDRPDR LB
-#      - 65  # NDRPDR LB
-#      - 66  # NDRPDR LB
-#      - 67  # NDRPDR LB
     csit-vpp-perf-verify-1904-3n-skx:
       - 7   # MRR sel
       - 8   # NDRPDR sel
@@ -1909,23 +1750,13 @@
 #      - 41  # NDRPDR full
 #      - 54  # NDRPDR full
       - 36  # MRR sel
+    csit-vpp-perf-verify-2001-3n-skx:
+
     # TODO: Remove
-    #       This data is only an example for HDRHistogram
+    # This data is only an example for HDRHistogram
     csit-vpp-perf-verify-master-3n-skx:
       - 299
 
-    csit-vpp-perf-verify-1901-2n-skx:
-      - 22  # MRR sel
-      - 5   # NDRPDR sel
-      - 12  # NDRPDR sel
-      - 13  # NDRPDR sel
-#      - 21  # NDRPDR sel
-#      - 23  # NDRPDR sel
-#      - 31  # NDRPDR sel
-#      - 34  # NDRPDR sel
-#      - 40  # NDRPDR sel
-#      - 42  # NDRPDR sel
-#      - 43  # NDRPDR sel
     csit-vpp-perf-verify-1904-2n-skx:
       - 11  # MRR sel
       - 12  # NDRPDR sel
@@ -2005,8 +1836,10 @@
 #      - 123 # NFV reconf sel
       - 83  # SOAK
       - 86  # SOAK
+#    csit-vpp-perf-verify-2001-2n-skx:
+
     # TODO: Remove
-    #       This data is only an example for HDRHistogram
+    # This data is only an example for HDRHistogram
     csit-vpp-perf-verify-master-2n-skx:
       - 930
 
@@ -2024,8 +1857,10 @@
 #      - 15  # NDRPDR sel
 #      - 16  # NDRPDR sel
       - 17  # MRR sel
+#    csit-vpp-perf-verify-2001-3n-tsh:
+
     # TODO: Remove
-    #       This data is only an example for HDRHistogram
+    # This data is only an example for HDRHistogram
     csit-vpp-perf-verify-master-3n-tsh:
       - 25
 
@@ -2041,6 +1876,7 @@
 #      - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 17  # MRR sel
+#    csit-vpp-perf-verify-1908-3n-dnv:
 
     csit-vpp-perf-verify-1908-2n-dnv:
       - 1   # NDRPDR sel
@@ -2054,18 +1890,8 @@
       - 9   # NDRPDR sel
 #      - 10  # NDRPDR sel
       - 11  # MRR sel
+#    csit-vpp-perf-verify-1908-2n-dnv:
 
-    csit-dpdk-perf-verify-1901-3n-hsw:
-      - 13  # NDRPDR sel
-      - 14  # NDRPDR sel
-      - 16  # NDRPDR sel
-#      - 17  # NDRPDR sel
-#      - 18  # NDRPDR sel
-#      - 19  # NDRPDR sel
-#      - 20  # NDRPDR sel
-#      - 21  # NDRPDR sel
-#      - 22  # NDRPDR sel
-#      - 23  # NDRPDR sel
     csit-dpdk-perf-verify-1904-3n-hsw:
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
@@ -2088,22 +1914,13 @@
 #      - 9   # NDRPDR sel
       - 10  # NDRPDR sel
 #      - 11  # NDRPDR sel
+#    csit-dpdk-perf-verify-2001-3n-hsw:
+
     # TODO: Replace
-    #       This data is only an example for HDRHistogram
+    # This data is only an example for HDRHistogram
     csit-dpdk-perf-verify-master-3n-hsw:
       - 13
 
-    csit-dpdk-perf-verify-1901-3n-skx:
-      - 3   # NDRPDR sel
-      - 5   # NDRPDR sel
-      - 6   # NDRPDR sel
-#      - 7   # NDRPDR sel
-#      - 8   # NDRPDR sel
-#      - 9   # NDRPDR sel
-#      - 10  # NDRPDR sel
-#      - 11  # NDRPDR sel
-#      - 12  # NDRPDR sel
-#      - 13  # NDRPDR sel
     csit-dpdk-perf-verify-1904-3n-skx:
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
@@ -2126,22 +1943,13 @@
 #      - 10  # NDRPDR sel
 #      - 11  # NDRPDR sel
       - 12  # NDRPDR sel
+#    csit-dpdk-perf-verify-2001-3n-skx:
+
     # TODO: Replace
-    #       This data is only an example for HDRHistogram
+    # This data is only an example for HDRHistogram
     csit-dpdk-perf-verify-master-3n-skx:
       - 23
 
-    csit-dpdk-perf-verify-1901-2n-skx:
-      - 12  # NDRPDR sel
-      - 13  # NDRPDR sel
-      - 14  # NDRPDR sel
-#      - 15  # NDRPDR sel
-#      - 16  # NDRPDR sel
-#      - 17  # NDRPDR sel
-#      - 18  # NDRPDR sel
-#      - 19  # NDRPDR sel
-#      - 20  # NDRPDR sel
-#      - 21  # NDRPDR sel
     csit-dpdk-perf-verify-1904-2n-skx:
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
@@ -2164,13 +1972,17 @@
 #      - 10  # NDRPDR sel
 #      - 11  # NDRPDR sel
       - 12  # NDRPDR sel
+#    csit-dpdk-perf-verify-1908-2n-skx:
+
     # TODO: Replace
-    #       This data is only an example for HDRHistogram
+    # This data is only an example for HDRHistogram
     csit-dpdk-perf-verify-master-2n-skx:
       - 16
 
     # csit-dpdk-perf-verify-2001-2n-clx:
 
+    # TODO: Replace
+    # csit-vpp-device-2001-ubuntu1804-1n-skx:
     csit-vpp-device-1908-ubuntu1804-1n-skx:
       - 65
 
@@ -2497,18 +2309,18 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1904"
-    data: "vpp-performance-changes-3n-hsw-ref"
-  compare:
     title: "rls1908"
+    data: "vpp-performance-changes-3n-hsw-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  compare:
+    title: "rls2001"
     data: "vpp-performance-changes-3n-hsw-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'1T1C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2520,18 +2332,18 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1904"
-    data: "vpp-performance-changes-3n-hsw-ref"
-  compare:
     title: "rls1908"
+    data: "vpp-performance-changes-3n-hsw-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  compare:
+    title: "rls2001"
     data: "vpp-performance-changes-3n-hsw-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T2C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2543,18 +2355,18 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1904"
-    data: "vpp-performance-changes-3n-hsw-ref"
-  compare:
     title: "rls1908"
+    data: "vpp-performance-changes-3n-hsw-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  compare:
+    title: "rls2001"
     data: "vpp-performance-changes-3n-hsw-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'1T1C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2566,18 +2378,18 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1904"
-    data: "vpp-performance-changes-3n-hsw-ref"
-  compare:
     title: "rls1908"
+    data: "vpp-performance-changes-3n-hsw-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  compare:
+    title: "rls2001"
     data: "vpp-performance-changes-3n-hsw-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T2C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2589,21 +2401,21 @@
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-pdr"
   history:
-    - title: "rls1901 x710"
+    - title: "rls1904 x710"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 x710"
+    title: "rls1908 x710"
     data: "vpp-performance-changes-3n-skx-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 xxv710"
+    title: "rls2001 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T1C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2616,21 +2428,21 @@
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-pdr"
   history:
-    - title: "rls1901 x710"
+    - title: "rls1904 x710"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 x710"
+    title: "rls1908 x710"
     data: "vpp-performance-changes-3n-skx-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 xxv710"
+    title: "rls2001 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'4T2C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2643,21 +2455,21 @@
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-ndr"
   history:
-    - title: "rls1901 x710"
+    - title: "rls1904 x710"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 x710"
+    title: "rls1908 x710"
     data: "vpp-performance-changes-3n-skx-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 xxv710"
+    title: "rls2001 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T1C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2670,21 +2482,21 @@
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-ndr"
   history:
-    - title: "rls1901 x710"
+    - title: "rls1904 x710"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 x710"
+    title: "rls1908 x710"
     data: "vpp-performance-changes-3n-skx-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 xxv710"
+    title: "rls2001 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'4T2C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2697,21 +2509,21 @@
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr"
   history:
-    - title: "rls1901 x710"
+    - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 x710"
+    title: "rls1908 x710"
     data: "vpp-performance-changes-2n-skx-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 xxv710"
+    title: "rls2001 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T1C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2724,21 +2536,21 @@
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-pdr"
   history:
-    - title: "rls1901 x710"
+    - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 x710"
+    title: "rls1908 x710"
     data: "vpp-performance-changes-2n-skx-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 xxv710"
+    title: "rls2001 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'4T2C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2751,21 +2563,21 @@
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-ndr"
   history:
-    - title: "rls1901 x710"
+    - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 x710"
+    title: "rls1908 x710"
     data: "vpp-performance-changes-2n-skx-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 xxv710"
+    title: "rls2001 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T1C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -2778,21 +2590,21 @@
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-ndr"
   history:
-    - title: "rls1901 x710"
+    - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 x710"
+    title: "rls1908 x710"
     data: "vpp-performance-changes-2n-skx-ref"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 xxv710"
+    title: "rls2001 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
-    data-replacement: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'4T2C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -3369,13 +3181,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-mrr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-3n-hsw-mrr-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "vpp-performance-changes-3n-hsw-mrr-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -3391,13 +3203,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-mrr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-3n-hsw-mrr-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "vpp-performance-changes-3n-hsw-mrr-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -3413,13 +3225,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-4t4c-mrr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-3n-hsw-mrr-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "vpp-performance-changes-3n-hsw-mrr-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -3435,13 +3247,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-mrr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-3n-skx-mrr-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "vpp-performance-changes-3n-skx-mrr-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -3457,13 +3269,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-mrr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-3n-skx-mrr-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "vpp-performance-changes-3n-skx-mrr-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -3479,13 +3291,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-mrr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-3n-skx-mrr-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "vpp-performance-changes-3n-skx-mrr-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -3501,13 +3313,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-mrr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-2n-skx-mrr-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "vpp-performance-changes-2n-skx-mrr-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -3523,13 +3335,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-mrr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-2n-skx-mrr-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "vpp-performance-changes-2n-skx-mrr-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -3545,13 +3357,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-8t4c-mrr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "vpp-performance-changes-2n-skx-mrr-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "vpp-performance-changes-2n-skx-mrr-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4686,13 +4498,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-1t1c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -4708,13 +4520,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-2t2c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -4730,13 +4542,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-1t1c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4752,13 +4564,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-2t2c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4774,13 +4586,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-2t1c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-3n-skx-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-3n-skx-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -4796,13 +4608,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-4t2c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-3n-skx-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-3n-skx-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -4818,13 +4630,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-2t1c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-3n-skx-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-3n-skx-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4840,13 +4652,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-4t2c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-3n-skx-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-3n-skx-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4862,13 +4674,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-2n-skx-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-2n-skx-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -4884,13 +4696,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-2n-skx-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-2n-skx-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -4906,13 +4718,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-2n-skx-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-2n-skx-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4928,13 +4740,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1904"
       data: "dpdk-performance-changes-2n-skx-h1"
   reference:
-    title: "rls1904"
+    title: "rls1908"
     data: "dpdk-performance-changes-2n-skx-ref"
   compare:
-    title: "rls1908"
+    title: "rls2001"
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -9610,7 +9422,7 @@
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9624,7 +9436,7 @@
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9638,7 +9450,7 @@
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -9652,7 +9464,7 @@
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-pdr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -9666,7 +9478,7 @@
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9680,7 +9492,7 @@
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-pdr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9694,7 +9506,7 @@
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr10241Vm-Vppl2Xc-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -9708,7 +9520,7 @@
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr10241Vm-Vppl2Xc-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -9722,7 +9534,7 @@
   title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9736,7 +9548,7 @@
   title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9750,7 +9562,7 @@
   title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -9764,7 +9576,7 @@
   title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -9778,7 +9590,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9793,7 +9605,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9808,7 +9620,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -9823,7 +9635,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -9838,7 +9650,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9854,7 +9666,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9870,7 +9682,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -9886,7 +9698,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -10478,7 +10290,7 @@
   title: "Latency: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10492,7 +10304,7 @@
   title: "Latency: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -10506,7 +10318,7 @@
   title: "Latency: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10520,7 +10332,7 @@
   title: "Latency: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr10241Vm-Vppl2Xc-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -10534,7 +10346,7 @@
   title: "Latency: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10548,7 +10360,7 @@
   title: "Latency: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -10562,7 +10374,7 @@
   title: "Latency: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10577,7 +10389,7 @@
   title: "Latency: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -10592,7 +10404,7 @@
   title: "Latency: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10608,7 +10420,7 @@
   title: "Latency: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -11296,7 +11108,7 @@
   title: "Latency: 2n-skx-xxv710-64b-4t2c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-4t2c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -11310,7 +11122,7 @@
   title: "Latency: 2n-skx-xxv710-64b-4t2c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-4t2c-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -11324,7 +11136,7 @@
   title: "Latency: 3n-hsw-xl710-64b-2t2c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-2t2c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t2c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -11338,7 +11150,7 @@
   title: "Latency: 3n-hsw-xl710-64b-2t2c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-2t2c-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr10241Vm-Vppl2Xc-Ndrpdr.64B-2t2c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -11352,7 +11164,7 @@
   title: "Latency: 3n-skx-x710-64b-4t2c-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-4t2c-link-bonding-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -11366,7 +11178,7 @@
   title: "Latency: 3n-skx-x710-64b-4t2c-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-4t2c-link-bonding-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -11380,7 +11192,7 @@
   title: "Latency: 3n-skx-xxv710-64b-4t2c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-4t2c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -11395,7 +11207,7 @@
   title: "Latency: 3n-skx-xxv710-64b-4t2c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-4t2c-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -11410,7 +11222,7 @@
   title: "Latency: 3n-skx-xxv710-64b-4t2c-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-4t2c-link-bonding-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -11426,7 +11238,7 @@
   title: "Latency: 3n-skx-xxv710-64b-4t2c-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-4t2c-link-bonding-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -12114,7 +11926,7 @@
   title: "Latency: 2n-skx-xxv710-64b-8t4c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-8t4c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -12128,7 +11940,7 @@
   title: "Latency: 2n-skx-xxv710-64b-8t4c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-8t4c-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -12142,7 +11954,7 @@
   title: "Latency: 3n-hsw-xl710-64b-4t4c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-4t4c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -12156,7 +11968,7 @@
   title: "Latency: 3n-hsw-xl710-64b-4t4c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-4t4c-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr10241Vm-Vppl2Xc-Ndrpdr.64B-4t4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -12170,7 +11982,7 @@
   title: "Latency: 3n-skx-x710-64b-8t4c-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-8t4c-link-bonding-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -12184,7 +11996,7 @@
   title: "Latency: 3n-skx-x710-64b-8t4c-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-8t4c-link-bonding-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -12198,7 +12010,7 @@
   title: "Latency: 3n-skx-xxv710-64b-8t4c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-8t4c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -12213,7 +12025,7 @@
   title: "Latency: 3n-skx-xxv710-64b-8t4c-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-8t4c-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -12228,7 +12040,7 @@
   title: "Latency: 3n-skx-xxv710-64b-8t4c-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-8t4c-link-bonding-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -12244,7 +12056,7 @@
   title: "Latency: 3n-skx-xxv710-64b-8t4c-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_lat_err_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-8t4c-link-bonding-vhost-base-i40e-vpp-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -15684,7 +15496,7 @@
   title: "Speedup: 2n-skx-xxv710-64b-vhost-base-i40e-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-vhost-base-i40e-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -15698,7 +15510,7 @@
   title: "Speedup: 2n-skx-xxv710-64b-vhost-base-i40e-pdr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-vhost-base-i40e-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -15712,7 +15524,7 @@
   title: "Speedup: 2n-skx-xxv710-64b-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-vhost-base-i40e-vpp-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -15726,7 +15538,7 @@
   title: "Speedup: 2n-skx-xxv710-64b-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-vhost-base-i40e-vpp-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -15740,7 +15552,7 @@
   title: "Speedup: 3n-hsw-xl710-64b-vhost-base-i40e-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-vhost-base-i40e-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -15754,7 +15566,7 @@
   title: "Speedup: 3n-hsw-xl710-64b-vhost-base-i40e-pdr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-vhost-base-i40e-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -15768,7 +15580,7 @@
   title: "Speedup: 3n-hsw-xl710-64b-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-vhost-base-i40e-vpp-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr10241Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -15782,7 +15594,7 @@
   title: "Speedup: 3n-hsw-xl710-64b-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-vhost-base-i40e-vpp-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr10241Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -15796,7 +15608,7 @@
   title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-i40e-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -15810,7 +15622,7 @@
   title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-i40e-pdr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-i40e-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -15824,7 +15636,7 @@
   title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-i40e-vpp-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -15838,7 +15650,7 @@
   title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-i40e-vpp-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -15852,7 +15664,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-vhost-base-i40e-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-vhost-base-i40e-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -15867,7 +15679,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-vhost-base-i40e-pdr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-vhost-base-i40e-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -15882,7 +15694,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-vhost-base-i40e-vpp-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -15897,7 +15709,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-vhost-base-i40e-vpp-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -15912,7 +15724,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -15928,7 +15740,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-pdr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -15944,7 +15756,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-vpp-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -15960,7 +15772,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-vpp-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
