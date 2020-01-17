@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c0f9a7b0_a978c8ec",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "284ef810_c8ef9c12",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d732912e_e5f919d0",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbec58d0_22013fce",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "The new UI tracks flag Resolved, but apparently I cannot mark this as resolved (without adding a reply with some text), even when it was me who opened the comment thread and left it unresolved.",
+      "parentUuid": "d732912e_e5f919d0",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 6
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,54 @@
     },
     {
       "key": {
+        "uuid": "cfe409ab_77a41f6b",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d050229_24b387bf",
+      "range": {
+        "startLine": 155,
+        "startChar": 32,
+        "endLine": 155,
+        "endChar": 45
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f28073dc_f5bec8e7",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "VPP is mentioned in the filename, in line 16, and in many other places.\nFrom the context it should be clear it is not a Change for CSIT. Maybe I can emphasize no CSIT change is named \"API change\" (as there are two CSIT changes and we want to avoid confusion).\nIf we ever make CSIT tightly coupled with another fd.io project (e.g. VSAP or even TRex), \"API change\" will still make sense (just \"VPP\" in this line will get replaced by \"upstream\" or similar).\n\nIn other words, I do not want to make this name longer.\n\nAdded the short version of above into the text.",
+      "parentUuid": "9d6360be_492dbff8",
+      "range": {
+        "startLine": 155,
+        "startChar": 5,
+        "endLine": 155,
+        "endChar": 17
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb07f2b9_20dedbc9",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -105,6 +201,30 @@
       "writtenOn": "2020-01-16T20:29:58Z",
       "side": 1,
       "message": "open is too generic a term for me since Gerrit uses that for any change which has not been merged or abandoned.\n\nHow about *Active VPP API Change* ?",
+      "range": {
+        "startLine": 158,
+        "startChar": 6,
+        "endLine": 158,
+        "endChar": 23
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a544aa81_f2d14e03",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "Used \"active API change\".\nI am still not sure about capitalization. \"Change\" or \"change\", \"Active\" or \"active\". Even \"API\" or \"api\".",
+      "parentUuid": "fb07f2b9_20dedbc9",
       "range": {
         "startLine": 158,
         "startChar": 6,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "0122c23d_ea734538",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "\u003e which API change is active?\n\nThe one with active CRC collection present in the newest CSIT oper branch HEAD. It is implied by other text. Should I write it explicitly somewhere?",
+      "parentUuid": "79ebe69d_6d1dd7c1",
+      "range": {
+        "startLine": 159,
+        "startChar": 2,
+        "endLine": 159,
+        "endChar": 79
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9b4b3d24_0351626c",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -151,6 +295,30 @@
       "writtenOn": "2020-01-16T20:29:58Z",
       "side": 1,
       "message": "Including CSIT in the name could be confusing.  \n\nHow about simply *VPP Blocked Change* ?",
+      "range": {
+        "startLine": 161,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 25
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f73879ec_c6558c56",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "Added subsections on \"blocked change\" and \"VPP-blocked change\" to show the difference.",
+      "parentUuid": "9b4b3d24_0351626c",
       "range": {
         "startLine": 161,
         "startChar": 4,
@@ -210,6 +378,30 @@
     },
     {
       "key": {
+        "uuid": "3d3aaf8a_c2d0d946",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "Decided to use \"activating change\" and \"deactivating change\", to keep the language connection to \"active API change\".",
+      "parentUuid": "664515f1_38993b0f",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 14
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f3cdcc8_f6f9865f",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -221,6 +413,30 @@
       "writtenOn": "2020-01-16T20:29:58Z",
       "side": 1,
       "message": "*Update CSIT CRC Change* ???",
+      "range": {
+        "startLine": 171,
+        "startChar": 6,
+        "endLine": 171,
+        "endChar": 22
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a45f0320_e8e3060c",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "See the previous comment.",
+      "parentUuid": "4f3cdcc8_f6f9865f",
       "range": {
         "startLine": 171,
         "startChar": 6,
@@ -256,6 +472,30 @@
     },
     {
       "key": {
+        "uuid": "cf623d35_a89321c6",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "Moved the requirement details to the next section.",
+      "parentUuid": "4101c48f_d92c2605",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 0
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cf7a6520_d26cc754",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -267,6 +507,30 @@
       "writtenOn": "2020-01-16T20:29:58Z",
       "side": 1,
       "message": "Move this to the definition of \u0027closing change\u0027, no need for a separate term.",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 42
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4fe8505_7b222b4c",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T18:59:49Z",
+      "side": 1,
+      "message": "Given up trying to name this change. Added a paragraph about this possibility.",
+      "parentUuid": "cf7a6520_d26cc754",
       "range": {
         "startLine": 182,
         "startChar": 0,
