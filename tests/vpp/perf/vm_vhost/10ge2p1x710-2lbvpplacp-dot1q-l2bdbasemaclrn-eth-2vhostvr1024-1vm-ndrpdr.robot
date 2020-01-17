@@ -18,7 +18,7 @@
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
 | ... | LBOND_2L | VM_TESTPMD | DRV_VFIO_PCI
-| ... | 2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+| ... | 2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm | TEST
 |
 | Suite Setup | Setup suite double link | performance
 | Suite Teardown | Tear down suite | performance
@@ -94,7 +94,8 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | And Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
+| | And Run Keyword If | '${nic_driver}' == 'vfio-pci'
+| | ... | Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize L2 bridge domains with Vhost-User and VLAN with VPP link bonding in a 3-node circular topology
