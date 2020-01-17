@@ -187,6 +187,30 @@
       "revId": "3de33f3befe27318852d06d4f5aaa2778d8ab4f7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d881aac1_a9f4e332",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-17T02:57:07Z",
+      "side": 1,
+      "message": "There is an undocumented dependency in this keyword on the previous one, so I backed out the move to the suite\u0027s Local Template keyword.\n\nCan you provide an example of a suite which utilizes the technique that you described.  Given that the only input to this keyword is a global variable, I don\u0027t understand how moving it makes any difference.",
+      "parentUuid": "2a443f7a_7fdde138",
+      "range": {
+        "startLine": 388,
+        "startChar": 19,
+        "endLine": 388,
+        "endChar": 24
+      },
+      "revId": "3de33f3befe27318852d06d4f5aaa2778d8ab4f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
