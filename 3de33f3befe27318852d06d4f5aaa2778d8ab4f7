@@ -211,6 +211,30 @@
       "revId": "3de33f3befe27318852d06d4f5aaa2778d8ab4f7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "55f99173_5deec80e",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-17T13:11:50Z",
+      "side": 1,
+      "message": "\u003e input to this keyword\n\nWe should probably document (somewhere) which global variables are \"common\" and which are uncommon. The uncommon variables should be documented. For example Set Max Rate And Jumbo needs nic_name, overhead and frame_size. Line 388 explicitly needs nic_driver, line 389 needs duts.\nI can accept that all of those are common variables. But vpp_hoststack_attr is uncommon, so Documentation should say the caller should set that variable (best using proper keyword).\n\n\u003e suite which utilizes the technique\n\nAlright, after some searching I have found out that no suite in repo uses pure layers. Probably just because when relation between two suites is regular enough, we keep only one in repo and teach autogen how to create the other one (as done recently for nic_driver).\nThe best relation I have found hides the difference in two keywords with similar names (and arguments coming from suite variables):\n\n$ cd tests/vpp/perf/container_memif\n$ diff -pudr 2n1l-10ge2p1x710-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr.robot 2n1l-10ge2p1x710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr.robot\n\n...\n-| | And Initialize L2 Bridge Domain with memif pairs\n+| | And Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology\n+| | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}\n...",
+      "parentUuid": "d881aac1_a9f4e332",
+      "range": {
+        "startLine": 388,
+        "startChar": 19,
+        "endLine": 388,
+        "endChar": 24
+      },
+      "revId": "3de33f3befe27318852d06d4f5aaa2778d8ab4f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
