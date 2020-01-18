@@ -358,3 +358,12 @@ class VPPUtil:
         logger.trace(f"show threads:\n{threads_data}")
 
         return threads_data
+
+    @staticmethod
+    def show_vlib_graph(node, graph_node):
+        """Show next and previous graph nodes of the given graph node.
+
+        :param node: Topology node.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd(node, f"show vlib graph {graph_node}")

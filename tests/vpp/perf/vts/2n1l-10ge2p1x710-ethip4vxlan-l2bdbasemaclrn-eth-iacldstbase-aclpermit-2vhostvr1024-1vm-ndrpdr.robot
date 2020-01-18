@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | VM | VHOST_1024 | VTS | ACL_PERMIT | DRV_VFIO_PCI
+| ... | VHOST | VM | VHOST_1024 | VTS | ACL_PERMIT | DRV_VFIO_PCI | TEST
 | ... | ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 |
 | Suite Setup | Setup suite single link | performance
@@ -101,6 +101,7 @@
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
+| | Show Vlib Graph | ${dut1} | ip4-vxlan-bypass
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
