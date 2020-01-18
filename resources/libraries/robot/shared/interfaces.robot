@@ -514,10 +514,10 @@
 | | | ... | ${nodes['${dut}']} | 172.27.${subnet}.0 | 24
 | | | ... | gateway=172.26.${subnet}.2
 | | | ... | interface=${${dut_str}_${prev_layer}_${id}_2}
-| | | Set VXLAN Bypass
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1}
-| | | Set VXLAN Bypass
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2}
+#| | | Set VXLAN Bypass
+#| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1}
+#| | | Set VXLAN Bypass
+#| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2}
 | | | Set Test Variable
 | | | ... | ${${dut_str}_ip4vxlan_${id}_1} | ${ip4vxlan_1}
 | | | Set Test Variable
