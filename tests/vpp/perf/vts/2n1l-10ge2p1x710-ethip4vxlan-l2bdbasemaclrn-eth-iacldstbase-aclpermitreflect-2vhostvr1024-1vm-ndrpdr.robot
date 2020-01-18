@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -93,7 +93,7 @@
 | | ... | count=${nf_chains}
 | | And Initialize L2 bridge domains for multiple chains with Vhost-User
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
-| | @{permit_list} = | Create List | 10.0.0.1/32 | 10.0.0.2/32
+| | @{permit_list} = | Create List | 172.17.0.2/32 | 172.27.0.2/32
 | | Run Keyword If | '${acl_type}' != '${EMPTY}'
 | | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
 | | ... | ${acl_type} | @{permit_list}
