@@ -157,4 +157,4 @@ nodes:
         ip4_address: "172.16.70.1"
         driver: mlx5_core
         link: link8
-        model: Mellanox-CX556
+        model: Mellanox-CX556A
