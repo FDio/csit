@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "cf45dd41_2d97dc1e",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-20T14:24:10Z",
+      "side": 1,
+      "message": "Oh, if it\u0027s using communication DUT-DUT, so 3 node topo required then 3 is OK, of course.",
+      "parentUuid": "eb41465f_f050a6a8",
+      "range": {
+        "startLine": 19,
+        "startChar": 15,
+        "endLine": 19,
+        "endChar": 16
+      },
+      "revId": "1e9dae1c6991153433a46997288e66ac24c3f43a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7c6f3079_d7bd8a1b",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
         "patchSetId": 14
