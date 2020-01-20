@@ -348,8 +348,8 @@
 # 2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2patch
 # 4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2patch
 ## ./lb
-## ./nfv_density/dcr_memif/chain
-### intel-xxv710
+# ## ./nfv_density/dcr_memif/chain
+# ### intel-xxv710
 #### avf
 ##### eth-l2bd-1ch-2mif-1dcr1t-vppip4
 1c AND imix AND mrr AND xxv710 AND drv_avf AND eth-l2bd-1ch-2mif-1dcr1t-vppip4
