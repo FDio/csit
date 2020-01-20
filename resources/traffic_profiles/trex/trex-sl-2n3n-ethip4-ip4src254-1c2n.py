@@ -21,7 +21,7 @@ Stream profile:
    - Source IP address range:      10.10.10.1 - 10.10.10.254
    - Destination IP address range: 20.20.20.1
  - Direction 1 --> 0:
-    - Destination MAC address: 52:54:00:00:nf_id:02
+   - Destination MAC address: 52:54:00:00:nf_id:02
    - Source IP address range:      20.20.20.1 - 20.20.20.254
    - Destination IP address range: 10.10.10.1
 """
