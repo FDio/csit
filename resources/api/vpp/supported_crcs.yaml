@@ -246,6 +246,8 @@
     sw_interface_set_l2_bridge_reply: '0xe8d4e804'  # dev
     sw_interface_set_l2_xconnect: '0x95de3988'  # dev
     sw_interface_set_l2_xconnect_reply: '0xe8d4e804'  # dev
+    sw_interface_set_mac_address: '0x6aca746a'  # perf
+    sw_interface_set_mac_address_reply: '0xe8d4e804'  # perf
     sw_interface_set_rx_placement: '0xdb65f3c9'  # perf
     sw_interface_set_rx_placement_reply: '0xe8d4e804'  # perf
     # ^^ see tc01-64B-1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr above
