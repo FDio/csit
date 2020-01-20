@@ -788,7 +788,7 @@ function select_tags () {
 #                                "!dot1q" "!drv_avf")
                 readarray -t test_tag_array <<< $(sed 's/ //g' \
                     ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.txt |
-                    eval ${sed_nics_sub_cmd} | sed 's/ANDmrrAND/ANDndrpdrAND/g') || die
+                    eval ${sed_nics_sub_cmd}) || die
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
