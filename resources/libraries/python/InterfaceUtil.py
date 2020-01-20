@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -101,13 +101,6 @@ class LinkBondMode(IntEnum):
     BOND_API_MODE_XOR = 3
     BOND_API_MODE_BROADCAST = 4
     BOND_API_MODE_LACP = 5
-
-
-class RdmaMode(IntEnum):
-    """RDMA interface mode."""
-    RDMA_API_MODE_AUTO = 0
-    RDMA_API_MODE_IBV = 1
-    RDMA_API_MODE_DV = 2
 
 
 class InterfaceUtil:
@@ -1221,19 +1214,16 @@ class InterfaceUtil:
         return if_key
 
     @staticmethod
-    def vpp_create_rdma_interface(
-            node, if_key, num_rx_queues=None, mode=u"auto"):
+    def vpp_create_rdma_interface(node, if_key, num_rx_queues=None):
         """Create RDMA interface on VPP node.
 
         :param node: DUT node from topology.
         :param if_key: Physical interface key from topology file of interface
             to be bound to rdma-core driver.
         :param num_rx_queues: Number of RX queues.
-        :param mode: RDMA interface mode - auto/ibv/dv.
         :type node: dict
         :type if_key: str
         :type num_rx_queues: int
-        :type mode: str
         :returns: Interface key (name) in topology file.
         :rtype: str
         :raises RuntimeError: If it is not possible to create RDMA interface on
@@ -1245,9 +1235,8 @@ class InterfaceUtil:
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
             host_if=InterfaceUtil.pci_to_eth(node, pci_addr),
             rxq_num=int(num_rx_queues) if num_rx_queues else 0,
-            rxq_size=1024,
-            txq_size=1024,
-            mode=getattr(RdmaMode,f"RDMA_API_MODE_{mode.upper()}").value,
+            rxq_size=0,
+            txq_size=0
         )
         err_msg = f"Failed to create RDMA interface on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
