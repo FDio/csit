@@ -492,6 +492,27 @@ class InterfaceUtil:
         return if_data.get(u"l2_address")
 
     @staticmethod
+    def vpp_set_interface_mac(node, interface, mac):
+        """Set MAC address for the given interface.
+
+        :param node: VPP node to set interface MAC.
+        :param interface: Numeric index or name string of a specific interface.
+        :param mac: Required MAC address.
+        :type node: dict
+        :type interface: int or str
+        :type mac: str
+        """
+        cmd = u"sw_interface_set_mac_address"
+        args = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, interface),
+            mac_address=L2Util.mac_to_bin(mac)
+        )
+        err_msg = f"Failed to set MAC address of interface {interface}" \
+            f"on host {node[u'host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
     def tg_set_interface_driver(node, pci_addr, driver):
         """Set interface driver on the TG node.
 
@@ -1183,6 +1204,9 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
+        InterfaceUtil.vpp_set_interface_mac(
+            node, sw_if_index, Topology.get_interface_mac(node, if_key)
+        )
         InterfaceUtil.add_eth_interface(
             node, sw_if_index=sw_if_index, ifc_pfx=u"eth_rdma",
             host_if_key=if_key
