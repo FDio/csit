@@ -116,8 +116,7 @@ def plot_lat_hdrh_percentile(plot, input_data):
                     continue
                 name = re.sub(REGEX_NIC, u"", test[u"parent"].
                               replace(u'-ndrpdr', u'').
-                              replace(u'2n1l-', u'').
-                              replace(u'avf-', u''))
+                              replace(u'2n1l-', u''))
                 for idx, direction in enumerate(
                         (u"direction1", u"direction2", )):
                     try:
@@ -222,8 +221,7 @@ def plot_lat_hdrh_bar_name(plot, input_data):
                     continue
                 name = re.sub(REGEX_NIC, u"", test[u"parent"].
                               replace(u'-ndrpdr', u'').
-                              replace(u'2n1l-', u'').
-                              replace(u'avf-', u''))
+                              replace(u'2n1l-', u''))
                 histograms = list()
                 for idx_col, direction in enumerate(
                         (u"direction1", u"direction2", )):
@@ -416,7 +414,7 @@ def plot_nf_reconf_box_name(plot, input_data):
     for i, col in enumerate(df_y.columns):
         tst_name = re.sub(REGEX_NIC, u"",
                           col.lower().replace(u'-ndrpdr', u'').
-                          replace(u'2n1l-', u'').replace(u'avf-', u''))
+                          replace(u'2n1l-', u''))
 
         traces.append(plgo.Box(
             x=[str(i + 1) + u'.'] * len(df_y[col]),
@@ -519,7 +517,7 @@ def plot_perf_box_name(plot, input_data):
     for i, col in enumerate(df_y.columns):
         tst_name = re.sub(REGEX_NIC, u"",
                           col.lower().replace(u'-ndrpdr', u'').
-                          replace(u'2n1l-', u'').replace(u'avf-', u''))
+                          replace(u'2n1l-', u''))
         traces.append(
             plgo.Box(
                 x=[str(i + 1) + u'.'] * len(df_y[col]),
@@ -639,7 +637,7 @@ def plot_lat_err_bars_name(plot, input_data):
     nr_of_samples = list()
     for key, val in y_tmp_vals.items():
         name = re.sub(REGEX_NIC, u"", key.replace(u'-ndrpdr', u'').
-                      replace(u'2n1l-', u'').replace(u'avf-', u''))
+                      replace(u'2n1l-', u''))
         x_vals.append(name)  # dir 1
         y_vals.append(mean(val[1]) if val[1] else None)
         y_mins.append(mean(val[0]) if val[0] else None)
@@ -818,8 +816,7 @@ def plot_tsa_name(plot, input_data):
                 name = re.sub(
                     REGEX_NIC,
                     u"",
-                    test_name.replace(u'-ndrpdr', u'').replace(u'2n1l-', u'').
-                        replace(u'avf-', u'')
+                    test_name.replace(u'-ndrpdr', u'').replace(u'2n1l-', u'')
                 )
                 vals[name] = OrderedDict()
                 y_val_1 = test_vals[u"1"][0] / 1000000.0
