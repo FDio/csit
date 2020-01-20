@@ -217,6 +217,10 @@ class Constants:
     # Duration of one trial in MRR test.
     PERF_TRIAL_DURATION = get_float_from_env(u"PERF_TRIAL_DURATION", 1.0)
 
+    # Duration of one latency-specific trial in NDRPDR test.
+    PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
+        u"PERF_TRIAL_LATENCY_DURATION", 5.0)
+
     # UUID string of DUT1 /tmp volume created outside of the
     # DUT1 docker in case of vpp-device test. ${EMPTY} value means that
     #  /tmp directory is inside the DUT1 docker.
