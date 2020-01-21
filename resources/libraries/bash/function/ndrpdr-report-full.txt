@@ -1,0 +1,23 @@
+## ./container_memif
+## ./crypto
+## ./ip4
+## ./ip4_tunnels
+## ./ip6
+## ./ip6_tunnels
+## ./l2
+## ./lb
+## ./nfv_density/dcr_memif/chain
+## ./nfv_density/dcr_memif/chain_ipsec
+## ./nfv_density/dcr_memif/pipeline
+## ./nfv_density/vm_vhost/chain
+## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
+## ./srv6
+## ./hoststack
+## ./vm_vhost
+ndrpdr AND eth-l2xcbase-eth-2vhostvr1024-1vm
+ndrpdr AND eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+ndrpdr AND eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+ndrpdr AND eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+ndrpdr AND ethip4-ip4base-eth-2vhostvr1024-1vm
+ndrpdr AND ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
+## ./vts
