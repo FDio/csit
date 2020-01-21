@@ -212,6 +212,18 @@ class ExecutionChecker(ResultVisitor):
     REGEX_NDRPDR_LAT = re.compile(r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
                                   r'LATENCY.*\[\'(.*)\', \'(.*)\'\]')
 
+    REGEX_NDRPDR_LAT_LONG = re.compile(
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]'
+    )
+
     REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
                                  r'[\D\d]*')
 
@@ -611,10 +623,43 @@ class ExecutionChecker(ResultVisitor):
             u"PDR": {
                 u"direction1": copy.copy(latency_default),
                 u"direction2": copy.copy(latency_default)
-            }
+            },
+            u"LAT0": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"NDR10": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"NDR50": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"NDR90": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"PDR10": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"PDR50": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"PDR90": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
         }
-        status = u"FAIL"
+
         groups = re.search(self.REGEX_NDRPDR_LAT, msg)
+        if groups is None:
+            groups = re.search(self.REGEX_NDRPDR_LAT_LONG, msg)
+
+        if groups is None:
+            return latency, u"FAIL"
 
         def process_latency(in_str):
             """Return object with parsed latency values.
@@ -642,21 +687,36 @@ class ExecutionChecker(ResultVisitor):
 
             return rval
 
-        if groups is not None:
-            try:
-                latency[u"NDR"][u"direction1"] = \
-                    process_latency(groups.group(1))
-                latency[u"NDR"][u"direction2"] = \
-                    process_latency(groups.group(2))
-                latency[u"PDR"][u"direction1"] = \
-                    process_latency(groups.group(3))
-                latency[u"PDR"][u"direction2"] = \
-                    process_latency(groups.group(4))
-                status = u"PASS"
-            except (IndexError, ValueError):
-                pass
+        try:
+            latency[u"NDR"][u"direction1"] = process_latency(groups.group(1))
+            latency[u"NDR"][u"direction2"] = process_latency(groups.group(2))
+            latency[u"PDR"][u"direction1"] = process_latency(groups.group(3))
+            latency[u"PDR"][u"direction2"] = process_latency(groups.group(4))
+            if groups.lastindex == 4:
+                return latency, u"PASS"
+        except (IndexError, ValueError):
+            pass
 
-        return latency, status
+        try:
+            latency[u"LAT0"][u"direction1"] = process_latency(groups.group(5))
+            latency[u"LAT0"][u"direction2"] = process_latency(groups.group(6))
+            latency[u"NDR10"][u"direction1"] = process_latency(groups.group(7))
+            latency[u"NDR10"][u"direction2"] = process_latency(groups.group(8))
+            latency[u"NDR50"][u"direction1"] = process_latency(groups.group(9))
+            latency[u"NDR50"][u"direction2"] = process_latency(groups.group(10))
+            latency[u"NDR90"][u"direction1"] = process_latency(groups.group(11))
+            latency[u"NDR90"][u"direction2"] = process_latency(groups.group(12))
+            latency[u"PDR10"][u"direction1"] = process_latency(groups.group(13))
+            latency[u"PDR10"][u"direction2"] = process_latency(groups.group(14))
+            latency[u"PDR50"][u"direction1"] = process_latency(groups.group(15))
+            latency[u"PDR50"][u"direction2"] = process_latency(groups.group(16))
+            latency[u"PDR90"][u"direction1"] = process_latency(groups.group(17))
+            latency[u"PDR90"][u"direction2"] = process_latency(groups.group(18))
+            return latency, u"PASS"
+        except (IndexError, ValueError):
+            pass
+
+        return latency, u"FAIL"
 
     def visit_suite(self, suite):
         """Implements traversing through the suite and its direct children.
