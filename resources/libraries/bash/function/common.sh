@@ -116,6 +116,8 @@ function activate_virtualenv () {
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
     rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
+    # Remove when fixed: https://github.com/pypa/pip/issues/7217
+    pip3 install pip==19.1.3
     pip3 install --upgrade virtualenv || {
         die "Virtualenv package install failed."
     }
