@@ -175,24 +175,24 @@ class DUTSetup:
         else:
             shell_cmd = f"ip netns exec {namespace} sh -c"
 
-        pgrep_cmd = f"{shell_cmd} \'pgrep {program}\'"
-        ret_code, _, _ = exec_cmd(node, pgrep_cmd, timeout=cmd_timeout,
-                                  sudo=True)
-        if ret_code == 0:
+        pgrep_cmd = f"{shell_cmd} \'pgrep -c {program}\'"
+        _, stdout, _ = exec_cmd(node, pgrep_cmd, timeout=cmd_timeout,
+                                sudo=True)
+        if int(stdout) == 0:
             logger.trace(f"{program} is not running on {host}")
             return
-        ret_code, _, _ = exec_cmd(node, f"{shell_cmd} \'pkill {program}\'",
-                                  timeout=cmd_timeout, sudo=True)
+        exec_cmd(node, f"{shell_cmd} \'pkill {program}\'",
+                 timeout=cmd_timeout, sudo=True)
         for attempt in range(5):
-            ret_code, _, _ = exec_cmd(node, pgrep_cmd, timeout=cmd_timeout,
+            _, stdout, _ = exec_cmd(node, pgrep_cmd, timeout=cmd_timeout,
                                       sudo=True)
-            if ret_code != 0:
+            if int(stdout) == 0:
                 logger.trace(f"Attempt {attempt}: {program} is dead on {host}")
                 return
             sleep(1)
         logger.trace(f"SIGKILLing {program} on {host}")
-        ret_code, _, _ = exec_cmd(node, f"{shell_cmd} \'pkill -9 {program}\'",
-                                  timeout=cmd_timeout, sudo=True)
+        exec_cmd(node, f"{shell_cmd} \'pkill -9 {program}\'",
+                 timeout=cmd_timeout, sudo=True)
 
     @staticmethod
     def verify_program_installed(node, program):
