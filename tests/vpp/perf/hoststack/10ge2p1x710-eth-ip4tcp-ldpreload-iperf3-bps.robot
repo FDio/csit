@@ -17,11 +17,11 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | eth-ip4tcp-ldpreload-iperf3
+| ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI | HOSTSTACK
+| ... | LDPRELOAD | IPERF3 | eth-ip4tcp-ldpreload-iperf3
 |
 | Suite Setup | Setup suite single link no tg
-| Suite Teardown | Tear down suite
+| Suite Teardown | Tear down suite | hoststack
 | Test Setup | Setup test
 | Test Teardown | Tear down test
 |
@@ -40,32 +40,25 @@
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
-| ${frame_size}= | IMIX_v4_1
+| ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
 
 *** Keywords ***
 | Local template
-| | [Arguments] | ${phy_cores} | ${clients} | ${streams} | ${bytes}
+| | [Arguments] | ${phy_cores} | ${clients} | ${streams}
 | |
+| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
-| | Set Iperf3 Client Attributes | parallel=${streams} | bytes=${bytes}
+| | Set Iperf3 Client Attributes | parallel=${streams}
 | | ${no_results}= | Get Test Results From Hoststack Iperf3 Test
 | | Run Keyword If | ${no_results}==True | FAIL
 | | ... | No Test Results From Iperf3 client
 
 *** Test Cases ***
-| tc01-IMIX-1c-eth-ip4tcp-ldpreload-iperf3-bps
+| tc01-9000B-1c-eth-ip4tcp-ldpreload-iperf3-bps
 | | [Tags] | 1C | 1CLIENT | 1STREAM
-| | phy_cores=${1} | clients=${1} | streams=${1} | bytes=1G
+| | phy_cores=${1} | clients=${1} | streams=${1}
 
-| tc02-IMIX-1c-eth-ip4tcp-ldpreload-iperf3-bps
+| tc02-9000B-1c-eth-ip4tcp-ldpreload-iperf3-bps
 | | [Tags] | 1C | 1CLIENT | 10STREAM
-| | phy_cores=${1} | clients=${1} | streams=${10} | bytes=10G
-
-| tc03-IMIX-2c-eth-ip4tcp-ldpreload-iperf3-bps
-| | [Tags] | 2C | 1CLIENT | 10STREAM
-| | phy_cores=${2} | clients=${1} | streams=${10} | bytes=10G
-
-| tc04-IMIX-4c-eth-ip4tcp-ldpreload-iperf3-bps
-| | [Tags] | 4C | 1CLIENT | 10STREAM
-| | phy_cores=${4} | clients=${1} | streams=${10} | bytes=10G
+| | phy_cores=${1} | clients=${1} | streams=${10}

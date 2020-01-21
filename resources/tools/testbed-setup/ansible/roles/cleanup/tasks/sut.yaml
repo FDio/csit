@@ -19,6 +19,18 @@
     process: "testpmd"
   tags: kill-process
 
+- name: Kill processes - iperf3
+  import_tasks: kill_process.yaml
+  vars:
+    process: "iperf3"
+  tags: kill-process
+
+- name: Kill processes - vpp_echo
+  import_tasks: kill_process.yaml
+  vars:
+    process: "vpp_echo"
+  tags: kill-process
+
 - name: Remove file or dir - Core zip file
   file:
     state: absent

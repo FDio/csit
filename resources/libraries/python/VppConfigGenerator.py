@@ -495,6 +495,15 @@ class VppConfigGenerator:
         path = [u"nat"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_tcp_congestion_control_algorithm(self, value=u"cubic"):
+        """Add TCP congestion control algorithm.
+
+        :param value: The congestion control algorithm to use. Example: cubic
+        :type value: str
+        """
+        path = [u"tcp", u"cc-algo"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_tcp_preallocated_connections(self, value):
         """Add TCP pre-allocated connections.
 
