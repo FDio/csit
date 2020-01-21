@@ -135,12 +135,12 @@ fi
 
 for attempt in {1..60}; do
     echo "Checking if testpmd is alive, attempt nr ${attempt}"
-    fgrep "Port 1: link state change event" "${TESTPMDLOG}"
+    fgrep "Press enter to exit" "${TESTPMDLOG}"
     if [ "${?}" -eq "0" ]; then
-        cat "${TESTPMDLOG}"
         exit 0
     fi
     sleep 1
 done
+cat "${TESTPMDLOG}"
 
 exit 1
