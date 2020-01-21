@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "374d05f5_37e373e4",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-21T13:25:52Z",
+      "side": 0,
+      "message": "--no-pip",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 5
+      },
+      "revId": "8840972e7bbc45735f6e82e41ad369728c1b370e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
