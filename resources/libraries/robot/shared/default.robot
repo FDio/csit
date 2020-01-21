@@ -218,8 +218,7 @@
 | | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | Run keyword if | ${cpu_count_int} > 0
-| | | ... | ${dut}.Add CPU Main Core | ${cpu_main}
+| | | Run Keyword | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run keyword if | ${cpu_count_int} > 0
 | | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
 | | | Run keyword if | ${smt_used}

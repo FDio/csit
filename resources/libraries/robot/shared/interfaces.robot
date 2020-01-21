@@ -15,6 +15,9 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.VhostUser
 
+*** Variables ***
+| ${dpdk_no_tx_checksum_offload}= | ${True}
+
 *** Keywords ***
 | Set interfaces in path up
 | | [Documentation]
@@ -181,7 +184,8 @@
 | |
 | | Add DPDK pci devices to all DUTs
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword | ${dut}.Add DPDK No Tx Checksum Offload
+| | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
+| | | ... | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run Keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
 | | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}

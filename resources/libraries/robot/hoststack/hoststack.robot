@@ -26,22 +26,26 @@
 | ${quic_crypto_engine}= | nocrypto
 | ${quic_fifo_size}= | 4M
 | &{vpp_hoststack_attr}=
-| ... | rxq=${None}
+| ... | rxq=${1}
+| ... | rxd=${256}
+| ... | txd=${256}
 | ... | phy_cores=${1}
 | ... | vpp_api_socket=${SOCKSVR_PATH}
 | ... | api_seg_global_size=2G
 | ... | api_seg_api_size=1G
-| ... | sess_evt_q_seg_size=4G
-| ... | sess_evt_q_length=4000000
-| ... | sess_prealloc_sess=4000000
-| ... | sess_v4_tbl_buckets=2000000
-| ... | sess_v4_tbl_mem=2G
-| ... | sess_v4_hopen_buckets=5000000
-| ... | sess_v4_hopen_mem=3G
-| ... | sess_lendpt_buckets=5000000
-| ... | sess_lendpt_mem=3G
+| ... | tcp_cc_algo=cubic
+| ... | sess_evt_q_seg_size=64M
+| ... | sess_evt_q_length=2048
+| ... | sess_prealloc_sess=8
+| ... | sess_v4_tbl_buckets=20000
+| ... | sess_v4_tbl_mem=64M
+| ... | sess_v4_hopen_buckets=20000
+| ... | sess_v4_hopen_mem=64M
+| ... | sess_lendpt_buckets=250000
+| ... | sess_lendpt_mem=512M
 | &{vpp_echo_server_attr}=
 | ... | role=server
+| ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${None}
 | ... | namespace=default
 | ... | vpp_api_socket=${vpp_hoststack_attr}[vpp_api_socket]
@@ -59,6 +63,7 @@
 | ... | tx_results_diff=${False}
 | &{vpp_echo_client_attr}=
 | ... | role=client
+| ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${None}
 | ... | namespace=default
 | ... | vpp_api_socket=${vpp_hoststack_attr}[vpp_api_socket]
@@ -76,6 +81,7 @@
 | ... | tx_results_diff=${False}
 | &{iperf3_server_attr}=
 | ... | role=server
+| ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
@@ -85,6 +91,7 @@
 | ... | ip_version=${4}
 | &{iperf3_client_attr}=
 | ... | role=client
+| ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
@@ -102,11 +109,14 @@
 | | ... | Set the VPP HostStack attributes in the vpp_hoststack_attr dictionary.
 | |
 | | ... | *Arguments:*
-| | ... | - ${rxq} - Type: int
+| | ... | - ${rxq} - Number of Rx Queues Type: int
+| | ... | - ${rxd} - Number of Rx Descriptors Type: int
+| | ... | - ${txd} - Number of Tx Descriptors Type: int
 | | ... | - ${phy_cores} - Number of cores for workers Type: int
 | | ... | - ${vpp_api_socket} - Path to VPP api socket file Type: string
 | | ... | - ${api_seg_global_size} - Global API segment size Type: string
 | | ... | - ${api_seg_api_size} - API segment API fifo size Type: string
+| | ... | - ${tcp_cc_algo} - TCP congestion control algorithm Type: string
 | | ... | - ${sess_evt_q_seg_size} - Session event queue segment size
 | | ... | Type: string
 | | ... | - ${sess_evt_q_length} - Session event queue length Type: string
@@ -131,10 +141,13 @@
 | |
 | | [Arguments]
 | | ... | ${rxq}=${vpp_hoststack_attr}[rxq]
+| | ... | ${rxd}=${vpp_hoststack_attr}[rxd]
+| | ... | ${txd}=${vpp_hoststack_attr}[txd]
 | | ... | ${phy_cores}=${vpp_hoststack_attr}[phy_cores]
 | | ... | ${vpp_api_socket}=${vpp_hoststack_attr}[vpp_api_socket]
 | | ... | ${api_seg_global_size}=${vpp_hoststack_attr}[api_seg_global_size]
 | | ... | ${api_seg_api_size}=${vpp_hoststack_attr}[api_seg_api_size]
+| | ... | ${tcp_cc_algo}=${vpp_hoststack_attr}[tcp_cc_algo]
 | | ... | ${sess_evt_q_seg_size}=${vpp_hoststack_attr}[sess_evt_q_seg_size]
 | | ... | ${sess_evt_q_length}=${vpp_hoststack_attr}[sess_evt_q_length]
 | | ... | ${sess_prealloc_sess}=${vpp_hoststack_attr}[sess_prealloc_sess]
@@ -146,6 +159,8 @@
 | | ... | ${sess_lendpt_mem}=${vpp_hoststack_attr}[sess_lendpt_mem]
 | |
 | | Set To Dictionary | ${vpp_hoststack_attr} | rxq | ${rxq}
+| | Set To Dictionary | ${vpp_hoststack_attr} | rxd | ${rxd}
+| | Set To Dictionary | ${vpp_hoststack_attr} | txd | ${txd}
 | | Set To Dictionary | ${vpp_hoststack_attr} | phy_cores | ${phy_cores}
 | | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | vpp_api_socket | ${vpp_api_socket}
@@ -153,6 +168,8 @@
 | | ... | api_seg_global_size | ${api_seg_global_size}
 | | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | api_seg_api_size | ${api_seg_api_size}
+| | Set To Dictionary | ${vpp_hoststack_attr}
+| | ... | tcp_cc_algo | ${tcp_cc_algo}
 | | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | sess_evt_q_seg_size | ${sess_evt_q_seg_size}
 | | Set To Dictionary | ${vpp_hoststack_attr}
@@ -342,6 +359,7 @@
 | | ... | - ${namespace} - Network namespace to run test program in Type: string
 | | ... | - ${cfg_vpp_feature} - VPP hoststack feature requiring
 | | ... | additional VPP configuration Type: string
+| | ... | - ${core_list} - Cpu core affinity list Type: string
 | | ... | - ${test_program} - Host Stack test program Type: dict
 | |
 | | ... | *Example:*
@@ -351,7 +369,8 @@
 | | ... | \| quic \| ${vpp_echo_server} \|
 | |
 | | [Arguments] | ${node} | ${intf} | ${ip4_addr} | ${ip4_mask}
-| | | ... | ${namespace} | ${cfg_vpp_feature} | ${test_program}
+| | | ... | ${namespace} | ${core_list} | ${cfg_vpp_feature}
+| | | ... | ${test_program}
 | |
 | | Run Keyword If | ${vpp_nsim_attr}[output_feature_enable]
 | | ... | Configure VPP NSIM | ${node} | ${vpp_nsim_attr} | ${intf}
@@ -363,7 +382,7 @@
 | | ... | ${ip4_mask}
 | | Vpp Node Interfaces Ready Wait | ${node}
 | | ${hoststack_test_program_pid}= | Start Hoststack Test Program
-| | ... | ${node} | ${namespace} | ${test_program}
+| | ... | ${node} | ${namespace} | ${core_list} | ${test_program}
 | | Return From Keyword | ${hoststack_test_program_pid}
 
 | Additional VPP Config For Feature quic
@@ -385,6 +404,7 @@
 | | Set Max Rate And Jumbo
 | | Add worker threads to all DUTs
 | | ... | ${vpp_hoststack_attr}[phy_cores] | ${vpp_hoststack_attr}[rxq]
+| | ... | ${vpp_hoststack_attr}[rxd] | ${vpp_hoststack_attr}[txd]
 | | Pre-initialize layer driver | ${nic_driver}
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
@@ -395,6 +415,8 @@
 | | | Run keyword | ${dut}.Add api segment api size
 | | | ... | ${vpp_hoststack_attr}[api_seg_api_size]
 | | | Run keyword | ${dut}.Add api segment gid | testuser
+| | | Run keyword | ${dut}.Add tcp congestion control algorithm
+| | | ... | ${vpp_hoststack_attr}[tcp_cc_algo]
 | | | Run keyword | ${dut}.Add session enable
 | | | Run keyword | ${dut}.Add session event queues memfd segment
 | | | Run keyword | ${dut}.Add session event queues segment size
@@ -432,14 +454,22 @@
 | | ... | ${dut2_if1_ip4_addr}
 | | Configure VPP Hoststack Attributes on all DUTs
 | | ${vpp_echo_server}= | Get VPP Echo Command | ${vpp_echo_server_attr}
+| | ${skip_cnt}= | Evaluate
+| | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
+| | ${numa}= | Get interfaces numa node | ${dut2} | ${dut2_if1}
+| | ${core_list}= | Cpu list per node str | ${dut2} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vpp_echo_server_attr}[cpu_cnt]
 | | ${server_pid}= | Run hoststack test program on DUT
 | | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
-| | ... | ${vpp_echo_server_attr}[namespace]
+| | ... | ${vpp_echo_server_attr}[namespace] | ${core_list}
 | | ... | ${vpp_echo_server_attr}[cfg_vpp_feature] | ${vpp_echo_server}
 | | ${vpp_echo_client}= | Get VPP Echo Command | ${vpp_echo_client_attr}
+| | ${numa}= | Get interfaces numa node | ${dut1} | ${dut1_if1}
+| | ${core_list}= | Cpu list per node str | ${dut1} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vpp_echo_client_attr}[cpu_cnt]
 | | ${client_pid}= | Run hoststack test program on DUT
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
-| | ... | ${vpp_echo_client_attr}[namespace]
+| | ... | ${vpp_echo_client_attr}[namespace] | ${core_list}
 | | ... | ${vpp_echo_client_attr}[cfg_vpp_feature] | ${vpp_echo_client}
 | | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
 | | ${client_no_results} | ${client_output}=
@@ -466,14 +496,22 @@
 | | ... | ${dut2_if1_ip4_addr}
 | | Configure VPP Hoststack Attributes on all DUTs
 | | ${iperf3_server}= | Get Iperf3 Command | ${iperf3_server_attr}
+| | ${skip_cnt}= | Evaluate
+| | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
+| | ${numa}= | Get interfaces numa node | ${dut2} | ${dut2_if1}
+| | ${core_list}= | Cpu list per node str | ${dut2} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${iperf3_server_attr}[cpu_cnt]
 | | ${server_pid}= | Run hoststack test program on DUT
 | | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4_addr} | ${dut2_if1_ip4_prefix}
-| | ... | ${iperf3_server_attr}[namespace]
+| | ... | ${iperf3_server_attr}[namespace] | ${core_list}
 | | ... | ${iperf3_server_attr}[cfg_vpp_feature] | ${iperf3_server}
 | | ${iperf3_client}= | Get Iperf3 Command | ${iperf3_client_attr}
+| | ${numa}= | Get interfaces numa node | ${dut1} | ${dut1_if1}
+| | ${core_list}= | Cpu list per node str | ${dut1} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${iperf3_client_attr}[cpu_cnt]
 | | ${client_pid}= | Run hoststack test program on DUT
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4_addr} | ${dut1_if1_ip4_prefix}
-| | ... | ${iperf3_client_attr}[namespace]
+| | ... | ${iperf3_client_attr}[namespace] | ${core_list}
 | | ... | ${iperf3_client_attr}[cfg_vpp_feature] | ${iperf3_client}
 | | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
 | | ${client_no_results} | ${client_output}=
