@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_20000
-| ... | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | 4DCR
+| ... | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | 8DCR
 | ... | DOCKER | 2R1C | NF_DENSITY | CHAIN | NF_VPPIP4 | 1DCR1T
 | ... | AES_256_GCM | AES | DRV_VFIO_PCI
-| ... | ethip4ipsec20000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm
+| ... | ethip4ipsec20000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm
 |
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -28,7 +28,7 @@
 | Test Template | Local Template
 |
 | Documentation | **RFC2544: Pkt throughput L2BD test cases with memif 1 chain
-| ... | 4 docker container*
+| ... | 8 docker container*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
@@ -63,10 +63,12 @@
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
-| ${n_instances}= | ${4}
 | ${n_tunnels}= | ${20000}
+# NF config
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
+| ${nf_chains}= | ${8}
+| ${nf_nodes}= | ${1}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}-${n_instances}cnf
 # Container
@@ -114,38 +116,38 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsec20000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm-ndrpdr
+| tc01-64B-1c-ethip4ipsec20000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsec20000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm-ndrpdr
+| tc02-64B-2c-ethip4ipsec20000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsec20000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm-ndrpdr
+| tc03-64B-4c-ethip4ipsec20000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsec20000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm-ndrpdr
+| tc04-1518B-1c-ethip4ipsec20000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsec20000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm-ndrpdr
+| tc05-1518B-2c-ethip4ipsec20000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsec20000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm-ndrpdr
+| tc06-1518B-4c-ethip4ipsec20000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsec20000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm-ndrpdr
+| tc10-IMIX-1c-ethip4ipsec20000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsec20000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm-ndrpdr
+| tc11-IMIX-2c-ethip4ipsec20000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsec20000tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm-ndrpdr
+| tc12-IMIX-4c-ethip4ipsec20000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
