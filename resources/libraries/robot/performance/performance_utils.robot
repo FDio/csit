@@ -53,18 +53,20 @@
 | | ... | - doublings - How many doublings to do when expanding [1]. Type: int
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
 | | ... | Type: int
+| | ... | - latency_duration - Duration for latency-specific trials. Type: float
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Find NDR and PDR intervals using optimized search \| \${0.005} \
 | | ... | \| \${0.005} \| \${30.0} \| \${1.0} \| \${2} \| \${600.0} \| \${2} \
-| | ... | \| \${2} \|
+| | ... | \| \${2} \| ${5.0} \|
 | |
 | | [Arguments] | ${packet_loss_ratio}=${0.005}
 | | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
 | | ... | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${720.0}
 | | ... | ${doublings}=${2} | ${traffic_directions}=${2}
+| | ... | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
 | |
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${traffic_profile} | ${10000} | ${max_rate}
@@ -76,15 +78,42 @@
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result.ndr_interval}
-| | ${rate_sum}= | Set Variable | ${result.ndr_interval.measured_low.target_tr}
-| | ${rate_per_stream}= | Evaluate | ${rate_sum} / float(${traffic_directions})
+| | # Rate needs to be high enough for latency streams.
+| | ${rate}= | Set Variable | ${9500}
+| | Measure and show latency at specified rate | Latency at 0%:
+| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${traffic_profile} | ${traffic_directions}
+| | ${ndr_sum}= | Set Variable | ${result.ndr_interval.measured_low.target_tr}
+| | ${ndr_per_stream}= | Evaluate | ${ndr_sum} / float(${traffic_directions})
+| | ${rate}= | Evaluate | 0.1 * ${ndr_per_stream}
+| | Measure and show latency at specified rate | Latency at 10% NDR:
+| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${traffic_profile} | ${traffic_directions}
+| | ${rate}= | Evaluate | 0.5 * ${ndr_per_stream}
+| | Measure and show latency at specified rate | Latency at 50% NDR:
+| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${traffic_profile} | ${traffic_directions}
+| | ${rate}= | Evaluate | 0.9 * ${ndr_per_stream}
+| | Measure and show latency at specified rate | Latency at 90% NDR:
+| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${traffic_profile} | ${traffic_directions}
+| | ${pdr_sum}= | Set Variable | ${result.pdr_interval.measured_low.target_tr}
+| | ${pdr_per_stream}= | Evaluate | ${pdr_sum} / float(${traffic_directions})
+| | ${rate}= | Evaluate | 0.1 * ${pdr_per_stream}
+| | Measure and show latency at specified rate | Latency at 10% PDR:
+| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${traffic_profile} | ${traffic_directions}
+| | ${rate}= | Evaluate | 0.5 * ${pdr_per_stream}
+| | Measure and show latency at specified rate | Latency at 50% PDR:
+| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${traffic_profile} | ${traffic_directions}
+| | ${rate}= | Evaluate | 0.9 * ${pdr_per_stream}
+| | Measure and show latency at specified rate | Latency at 90% PDR:
+| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${traffic_profile} | ${traffic_directions}
+| | # Finally, a trial with runtime and other stats.
 | | Send traffic at specified rate
-| | ... | ${2.0} | ${rate_per_stream}pps | ${framesize} | ${traffic_profile}
-| | ... | traffic_directions=${traffic_directions}
-| | ${rate_sum}= | Set Variable | ${result.pdr_interval.measured_low.target_tr}
-| | ${rate_per_stream}= | Evaluate | ${rate_sum} / float(${traffic_directions})
-| | Send traffic at specified rate
-| | ... | ${2.0} | ${rate_per_stream}pps | ${framesize} | ${traffic_profile}
+| | ... | ${1.0} | ${ndr_per_stream}pps | ${framesize} | ${traffic_profile}
 | | ... | traffic_directions=${traffic_directions}
 
 | Find Throughput Using MLRsearch
@@ -361,7 +390,9 @@
 
 | Send traffic at specified rate
 | | [Documentation]
-| | ... | Send traffic at specified rate.
+| | ... | Perform a warmup, show runtime counters during it.
+| | ... | Then send traffic at specified rate, possibly multiple trials.
+| | ... | Show various DUT stats, optionally also packet trace.
 | | ... | Return list of measured receive rates.
 | | ... | The rate argument should be TRex friendly, so it should include "pps".
 | |
@@ -381,7 +412,7 @@
 | | ... | *Example:*
 | |
 | | ... | \| Send traffic at specified rate \| \${1.0} \| 4.0mpps \| \${64} \
-| | ... | \| 3-node-IPv4 \| \${10} \| \${2} \| \${0} | \${1} \| \${False}
+| | ... | \| 3-node-IPv4 \| \${10} \| \${2} \| \${0} \| \${1} \| \${False} \|
 | |
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${subsamples}=${1} | ${traffic_directions}=${2}
@@ -415,6 +446,42 @@
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
 | | Return From Keyword | ${results}
+
+| Measure and show latency at specified rate
+| | [Documentation]
+| | ... | Send traffic at specified rate, single trial.
+| | ... | Extract latency information and append it to text message.
+| | ... | The rate argument should be TRex friendly, so it should include "pps".
+| |
+| | ... | *Arguments:*
+| | ... | - message_prefix - Preface to test message addition. Type: string
+| | ... | - trial_duration - Duration of single trial [s]. Type: float
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - frame_size - L2 Frame Size [B]. Type: integer/string
+| | ... | - traffic_profile - Name of module defining traffic for measurements.
+| | ... | Type: string
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: int
+| | ... | - tx_port - TX port of TG, default 0. Type: integer
+| | ... | - rx_port - RX port of TG, default 1. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Measure and show latency at specified rate \| Latency at 90% NDR \
+| | ... | \| \${1.0} \| 4.0mpps \| \${64} \| 3-node-IPv4 \| \${2} \|
+| |
+| | [Arguments] | ${message_prefix} | ${trial_duration} | ${rate}
+| | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}=${2}
+| | ... | ${tx_port}=${0} | ${rx_port}=${1}
+| |
+| | # The following line is skipping some default arguments,
+| | # that is why subsequent arguments have to be named.
+| | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
+| | ... | ${traffic_profile} | warmup_time=${0}
+| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | ... | rx_port=${rx_port}
+| | ${latency} = | Get Latency Int
+| | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
 
 | Clear and show runtime counters with running traffic
 | | [Documentation]
