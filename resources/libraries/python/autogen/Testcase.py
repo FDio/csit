@@ -124,7 +124,7 @@ class Testcase:
 '''
         else:
             template_string = f'''
-| ${{tc_num}}-IMIX-${{cores_str}}c-{suite_id}
+| ${{tc_num}}-9000B-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{cores_str}}C | ${{clients_str}}CLIENT | ${{streams_str}}STREAM
 | | phy_cores=${{cores_num}} | clients=${{clients_num}}'''
             template_string += f" | streams=${{streams_num}}" \

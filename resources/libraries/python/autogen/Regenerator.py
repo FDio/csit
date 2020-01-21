@@ -471,13 +471,9 @@ class Regenerator:
         ]
         hoststack_iperf3_kwargs_list = [
             {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
-             u"streams": 1, u"bytes_str": u"1G"},
+             u"streams": 1, u"bytes_str": u"20G"},
             {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
-             u"streams": 10, u"bytes_str": u"10G"},
-            {u"phy_cores": 2, u"frame_size": 0, u"clients": 1,
-             u"streams": 10, u"bytes_str": u"10G"},
-            {u"phy_cores": 4, u"frame_size": 0, u"clients": 1,
-             u"streams": 10, u"bytes_str": u"10G"},
+             u"streams": 6, u"bytes_str": u"60G"},
         ]
         hoststack_quic_kwargs_list = [
             {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
