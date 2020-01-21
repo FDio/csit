@@ -411,7 +411,8 @@ function generate_tests () {
     cp -r "${CSIT_DIR}/tests" "${GENERATED_DIR}/tests" || die
     cmd_line=("find" "${GENERATED_DIR}/tests" "-type" "f")
     cmd_line+=("-executable" "-name" "*.py")
-    file_list=$("${cmd_line[@]}") || die
+    # We sort the directories, so log output can be compared between runs.
+    file_list=$("${cmd_line[@]}" | sort) || die
 
     for gen in ${file_list}; do
         directory="$(dirname "${gen}")" || die
