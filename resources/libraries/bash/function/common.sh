@@ -119,6 +119,8 @@ function activate_virtualenv () {
     pip3 install --upgrade virtualenv || {
         die "Virtualenv package install failed."
     }
+    # Remove when fixed: https://github.com/servo/servo/issues/25567
+    pip3 install pip==19.2.3
     virtualenv --python=$(which python3) "${env_dir}" || {
         die "Virtualenv creation for $(which python3) failed."
     }
