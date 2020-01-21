@@ -98,6 +98,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
         vm1 = STLScVmRaw(
             [
                 STLVmTupleGen(
+                    ip_min=self.p1_src_start_ip,
                     ip_max=self.p1_src_end_ip,
                     port_min=self.p1_src_start_udp_port,
                     port_max=self.p1_src_end_udp_port,
