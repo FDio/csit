@@ -162,7 +162,7 @@ class HoststackUtil():
         return stdout_log, stderr_log
 
     @staticmethod
-    def start_hoststack_test_program(node, namespace, program):
+    def start_hoststack_test_program(node, namespace, core_list, program):
         """Start the specified HostStack test program.
 
         :param node: DUT node.
@@ -175,7 +175,6 @@ class HoststackUtil():
         :rtype: int
         :raises RuntimeError: If node subtype is not a DUT or startup failed.
         """
-        # TODO: Pin test program to core(s) on same numa node as VPP.
         if node[u"type"] != u"DUT":
             raise RuntimeError(u"Node type is not a DUT!")
 
@@ -189,8 +188,8 @@ class HoststackUtil():
 
         env_vars = f"{program[u'env_vars']} " if u"env_vars" in program else u""
         args = program[u"args"]
-        cmd = f"nohup {shell_cmd} \'{env_vars}{program_name} {args} " \
-            f">/tmp/{program_name}_stdout.log " \
+        cmd = f"nohup {shell_cmd} \'{env_vars}taskset --cpu-list {core_list} " \
+            f"{program_name} {args} >/tmp/{program_name}_stdout.log " \
             f"2>/tmp/{program_name}_stderr.log &\'"
         try:
             exec_cmd_no_error(node, cmd, sudo=True)
