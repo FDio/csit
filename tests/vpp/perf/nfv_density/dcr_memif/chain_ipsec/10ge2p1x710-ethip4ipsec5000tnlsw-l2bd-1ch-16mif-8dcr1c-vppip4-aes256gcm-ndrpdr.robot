@@ -16,7 +16,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_5000
 | ... | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | 8DCR
-| ... | DOCKER | 2R1C | NF_DENSITY | CHAIN | NF_VPPIP4 | 1DCR1T
+| ... | DOCKER | 8R1C | NF_DENSITY | CHAIN | NF_VPPIP4 | 1DCR1T
 | ... | AES_256_GCM | AES | DRV_VFIO_PCI
 | ... | ethip4ipsec5000tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm
 |
