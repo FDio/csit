@@ -119,12 +119,14 @@ function activate_virtualenv () {
     pip3 install --upgrade virtualenv || {
         die "Virtualenv package install failed."
     }
-    virtualenv --python=$(which python3) "${env_dir}" || {
+    virtualenv --no-download --python=$(which python3) "${env_dir}" || {
         die "Virtualenv creation for $(which python3) failed."
     }
     set +u
     source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
     set -u
+    # Remove when fixed: https://github.com/pypa/pip/issues/7217
+    pip3 install pip==19.2.3
     pip3 install --upgrade -r "${req_path}" || {
         die "Requirements installation failed."
     }
