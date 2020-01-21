@@ -1,30 +1,11 @@
 ## ./container_memif
-## ./crypto
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-int-aes128gcm
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-int-aes256gcm
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-policy-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-policy-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-policy-aes128gcm
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-policy-aes256gcm
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
-ndrpdr AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-ndrpdr AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 ## ./ip4
+ndrpdr AND dot1q-ip4base
+ndrpdr AND ethip4-ip4base
+ndrpdr AND ethip4-ip4scale20k
+ndrpdr AND ethip4-ip4scale20k-rnd
+ndrpdr AND ethip4-ip4scale200k
+ndrpdr AND ethip4-ip4scale200k-rnd
 ## ./ip4_tunnels
 ## ./ip6
 ## ./ip6_tunnels
