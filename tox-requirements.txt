@@ -22,3 +22,6 @@ py==1.7.0
 six==1.12.0
 toml==0.10.0
 virtualenv==16.4.0
+
+# Workaround for https://github.com/pypa/pip/issues/7217
+tox-pip-version==0.0.6

@@ -29,4 +29,8 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 common_dirs || die
 cd "${CSIT_DIR}" || die
 activate_virtualenv "${CSIT_DIR}" "${CSIT_DIR}/tox-requirements.txt" || die
+
+# Remove this line when fixed: https://github.com/pypa/pip/issues/7217
+export TOX_PIP_VERSION=19.2.3 || die
+
 tox  # Return code is turned into Jenkins job vote.
