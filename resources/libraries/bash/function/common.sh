@@ -116,18 +116,26 @@ function activate_virtualenv () {
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
     rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
+    pip3 freeze
     pip3 install --upgrade virtualenv || {
         die "Virtualenv package install failed."
     }
+    pip3 freeze
     virtualenv --python=$(which python3) "${env_dir}" || {
         die "Virtualenv creation for $(which python3) failed."
     }
+    pip3 freeze
+    # Remove when fixed: https://github.com/servo/servo/issues/25567
+    pip3 install pip==19.2.3
+    pip3 freeze
     set +u
     source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
     set -u
+    pip3 freeze
     pip3 install --upgrade -r "${req_path}" || {
         die "Requirements installation failed."
     }
+    pip3 freeze
     # Most CSIT Python scripts assume PYTHONPATH is set and exported.
     export PYTHONPATH="${CSIT_DIR}" || die "Export failed."
 }
