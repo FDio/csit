@@ -323,8 +323,8 @@
 | | ... | Set variable | ${1}
 | | ... | ELSE | Set variable | ${rxq_count_int}
 | | VSWITCH.Configure VPP in all containers | chain_vswitch
-| | ... | rxq=${rxq_count_int} | n_instances=${n_instances} | node=${dut}
-| | ... | dut1_if1=${dut1_if1} | dut1_if2=${dut1_if2}
+| | ... | rxq=${rxq_count_int} | n_instances=${nf_chains * nf_nodes}
+| | ... | node=${dut} | dut1_if1=${dut1_if1} | dut1_if2=${dut1_if2}
 | | ... | dut2_if1=${dut2_if1} | dut2_if2=${dut2_if2}
 | | ... | dut2_if2_ip4=${dut2_if2_ip4}
 | | ... | tg_if1_ip4=${tg_if1_ip4} | tg_if1_mac=${tg_if1_mac}
