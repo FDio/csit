@@ -280,8 +280,8 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                 iface, suite_id, suite_tag = get_iface_and_suite_ids(
                     out_filename
                 )
-                # The next replace is probably a noop, but it is safer to maintain
-                # the same structure as for other edits.
+                # The next replace is probably a noop, but it is safer to
+                # maintain the same structure as for other edits.
                 out_prolog = replace_defensively(
                     out_prolog, old_suite_tag, suite_tag, 1,
                     f"Perf suite tag {old_suite_tag} should appear once.",
@@ -466,27 +466,23 @@ class Regenerator:
              u"streams": 1, u"bytes_str": u"1G"}
         ]
         hoststack_wrk_kwargs_list = [
-            {u"phy_cores": i, u"frame_size": 0, u"clients": 1,
+            {u"frame_size": 0, u"phy_cores": i, u"clients": 1,
              u"streams": 1, u"bytes_str": u"1G"} for i in (1, 2, 4)
         ]
         hoststack_iperf3_kwargs_list = [
-            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+            {u"frame_size": 0, u"phy_cores": 1, u"clients": 1,
              u"streams": 1, u"bytes_str": u"1G"},
-            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
-             u"streams": 10, u"bytes_str": u"10G"},
-            {u"phy_cores": 2, u"frame_size": 0, u"clients": 1,
-             u"streams": 10, u"bytes_str": u"10G"},
-            {u"phy_cores": 4, u"frame_size": 0, u"clients": 1,
-             u"streams": 10, u"bytes_str": u"10G"},
+            {u"frame_size": 0, u"phy_cores": 1, u"clients": 1,
+             u"streams": 10, u"bytes_str": u"1G"},
         ]
         hoststack_quic_kwargs_list = [
-            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+            {u"frame_size": 0, u"phy_cores": 1, u"clients": 1,
              u"streams": 1, u"bytes_str": u"100M"},
-            {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
+            {u"frame_size": 0, u"phy_cores": 1, u"clients": 1,
              u"streams": 10, u"bytes_str": u"100M"},
-            {u"phy_cores": 1, u"frame_size": 0, u"clients": 10,
+            {u"frame_size": 0, u"phy_cores": 1, u"clients": 10,
              u"streams": 1, u"bytes_str": u"100M"},
-            {u"phy_cores": 1, u"frame_size": 0, u"clients": 10,
+            {u"frame_size": 0, u"phy_cores": 1, u"clients": 10,
              u"streams": 10, u"bytes_str": u"100M"},
         ]
 
@@ -516,7 +512,7 @@ class Regenerator:
             elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
                 write_tcp_files(in_filename, in_prolog,
                                 hoststack_wrk_kwargs_list)
-            elif in_filename[-10:] in (u"-bps.robot"):
+            elif in_filename[-10:] in u"-bps.robot":
                 write_tcp_files(in_filename, in_prolog,
                                 hoststack_iperf3_kwargs_list if u"iperf3"
                                 in in_filename else hoststack_quic_kwargs_list)

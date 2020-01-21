@@ -16,6 +16,7 @@
 *** Settings ***
 | Library | resources.libraries.python.DPDK.DPDKTools
 | Library | resources.libraries.python.TrafficGenerator
+| Library | resources.libraries.python.DUTSetup
 |
 | Documentation | Suite teardown keywords.
 
@@ -65,3 +66,12 @@
 | | ... | ${tg} | ${tg['interfaces']['${tg_if1}']['pci_address']}
 | | Run Keyword And Ignore Error | PCI Driver Unbind
 | | ... | ${tg} | ${tg['interfaces']['${tg_if2}']['pci_address']}
+
+| Additional Suite Tear Down Action For hoststack
+| | [Documentation]
+| | ... | Additional teardown for suites which uses hoststack test programs.
+| | ... | Ensure all hoststack test programs are no longer running on all DUTS.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Kill Program | ${dut} | iperf3
+| | | Kill Program | ${dut} | vpp_echo
