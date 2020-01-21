@@ -40,13 +40,14 @@
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
-| ${frame_size}= | IMIX_v4_1
+| ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
 
 *** Keywords ***
 | Local template
 | | [Arguments] | ${phy_cores} | ${clients} | ${streams} | ${bytes}
 | |
+| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | Set Iperf3 Client Attributes | parallel=${streams} | bytes=${bytes}
 | | ${no_results}= | Get Test Results From Hoststack Iperf3 Test
