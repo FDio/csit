@@ -94,9 +94,10 @@ class HoststackUtil():
             if u"parallel" in iperf3_attributes:
                 iperf3_cmd[u"args"] += \
                     f" --parallel {iperf3_attributes[u'parallel']}"
-            if u"bytes" in iperf3_attributes:
-                iperf3_cmd[u"args"] += \
-                    f" --bytes {iperf3_attributes[u'bytes']}"
+# Run timed test instead of # bytes (default = 10 seconds)
+#            if u"bytes" in iperf3_attributes:
+#                iperf3_cmd[u"args"] += \
+#                    f" --bytes {iperf3_attributes[u'bytes']}"
         return iperf3_cmd
 
     @staticmethod
@@ -162,20 +163,22 @@ class HoststackUtil():
         return stdout_log, stderr_log
 
     @staticmethod
-    def start_hoststack_test_program(node, namespace, program):
+    def start_hoststack_test_program(node, namespace, core_list, program):
         """Start the specified HostStack test program.
 
         :param node: DUT node.
         :param namespace: Net Namespace to run program in.
+        :param core_list: List of cpu's to pass to taskset to pin the test
+            program to a different set of cores on the same numa node as VPP.
         :param program: Test program.
         :type node: dict
         :type namespace: str
+        :type core_list: str
         :type program: dict
         :returns: Process ID
         :rtype: int
         :raises RuntimeError: If node subtype is not a DUT or startup failed.
         """
-        # TODO: Pin test program to core(s) on same numa node as VPP.
         if node[u"type"] != u"DUT":
             raise RuntimeError(u"Node type is not a DUT!")
 
@@ -189,8 +192,8 @@ class HoststackUtil():
 
         env_vars = f"{program[u'env_vars']} " if u"env_vars" in program else u""
         args = program[u"args"]
-        cmd = f"nohup {shell_cmd} \'{env_vars}{program_name} {args} " \
-            f">/tmp/{program_name}_stdout.log " \
+        cmd = f"nohup {shell_cmd} \'{env_vars}taskset --cpu-list {core_list} " \
+            f"{program_name} {args} >/tmp/{program_name}_stdout.log " \
             f"2>/tmp/{program_name}_stderr.log &\'"
         try:
             exec_cmd_no_error(node, cmd, sudo=True)
