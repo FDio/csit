@@ -86,7 +86,7 @@ class DPDKTools:
                 f"/cleanup_dpdk.sh {if1_driver} {pci_address1} {if2_driver} " \
                 f"{pci_address2}"
 
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
+            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=1200)
             if ret_code != 0:
                 raise RuntimeError(
                     f"Failed to cleanup the dpdk at node {dut_node[u'host']}"
