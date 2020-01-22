@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7827cab6_3355518a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4-vxlan1ip4src254ip4dst254-bvi.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-22T11:37:05Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "e908dc23d4ade7c12453e4ea06e4874ccfbab099",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bf2248f_3b712fc7",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-avf-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-22T11:37:05Z",
+      "side": 1,
+      "message": "Use DRV_VFIO_PCI as suite generator will create AVF suite from that.",
+      "range": {
+        "startLine": 18,
+        "startChar": 53,
+        "endLine": 18,
+        "endChar": 60
+      },
+      "revId": "e908dc23d4ade7c12453e4ea06e4874ccfbab099",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8583d21b_13d465b0",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-avf-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-22T11:37:05Z",
+      "side": 1,
+      "message": "Also add a suite tag.",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 7
+      },
+      "revId": "e908dc23d4ade7c12453e4ea06e4874ccfbab099",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
