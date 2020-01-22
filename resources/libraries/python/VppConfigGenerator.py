@@ -241,6 +241,15 @@ class VppConfigGenerator:
         path = [u"buffers", u"buffers-per-numa"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_buffers_default_data_size(self, value):
+        """Increase buffers data-size allocated.
+
+        :param value: Buffers data-size allocated.
+        :type value: int
+        """
+        path = [u"buffers", u"default data-size"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_dpdk_dev(self, *devices):
         """Add DPDK PCI device configuration.
 
