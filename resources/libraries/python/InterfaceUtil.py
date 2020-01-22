@@ -1635,10 +1635,9 @@ class InterfaceUtil:
             InterfaceUtil.set_linux_interface_trust_on(
                 node, pf_dev, vf_id=vf_id
             )
-            if osi_layer == u"L2":
-                InterfaceUtil.set_linux_interface_spoof_off(
-                    node, pf_dev, vf_id=vf_id
-                )
+            InterfaceUtil.set_linux_interface_spoof_off(
+                node, pf_dev, vf_id=vf_id
+            )
             InterfaceUtil.set_linux_interface_mac(
                 node, pf_dev, vf_mac_addr, vf_id=vf_id
             )
