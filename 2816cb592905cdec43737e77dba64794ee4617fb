@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1e339ba4_bd624ca8",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-22T14:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7097957e_1f664a03",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 82
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5f387b9_46fda39d",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "945f8801_ed0a71f5",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-22T14:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5f387b9_46fda39d",
+      "range": {
+        "startLine": 165,
+        "startChar": 54,
+        "endLine": 165,
+        "endChar": 63
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "06dfd6ec_7a9e69ce",
         "filename": "resources/libraries/robot/shared/default.robot",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2020-01-22T08:08:46Z",
       "side": 1,
       "message": "not sure if this is worth doing. if main core count is 0 i would leave it as optional. Adding 0 cores to config does not make sense.",
+      "range": {
+        "startLine": 221,
+        "startChar": 1,
+        "endLine": 221,
+        "endChar": 58
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "750c6685_cd570831",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-22T14:47:18Z",
+      "side": 1,
+      "message": "\u003e not sure if this is worth doing. if main core count is 0 i would leave it as optional. Adding 0 cores to config does not make sense.\n\nInitially I did this to fix the NSIM plugin crash in VPP which it did. However, Florin uses a single worker for TCP perf testing so this is not really necessary here.\n\nThe value is that the main_cpu is pinned to the same NUMA node as the interface for the no vpp workers case.\n\nOverall I found the use of phy_cores to mean the \"number of vpp workers\" is a bit confusing.",
+      "parentUuid": "06dfd6ec_7a9e69ce",
       "range": {
         "startLine": 221,
         "startChar": 1,
@@ -91,6 +163,30 @@
       "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a044152d_1d6992ee",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-22T14:47:18Z",
+      "side": 1,
+      "message": "\u003e do not leave it hidden there alone. \n\nI don\u0027t understand the comment.  This is providing a default value so that all of the other suites are not affected.\n\nThis is the same technique used in the hoststack_*_attr dictionaries:\n- Provide a Suite Variable containing default value(s) associated with the feature\n- Provide a setter keyword to override the default values\n- Set suite/test specific values in the suite file, documenting\nthe test specific values\n\n\u003eMake the logic reverse:\n\u003e Run Keyword Unless | ${dpdk_no_tx_checksum_offload} | ...\n\nThe keyword sets \u0027no-tx-checksum-offload\u0027 in the startup.conf file, so unless I change VPP to reverse it the logic is correct.",
+      "parentUuid": "9d355a1c_9e1f17fe",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 43
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
