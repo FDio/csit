@@ -73,7 +73,7 @@ class L3fwdTest:
                 f"\"{port_config.rstrip(u',')}\" " \
                 f"{adj_mac0} {adj_mac1} {u'yes' if jumbo_frames else u'no'}"
 
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
+            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=1800)
             if ret_code != 0:
                 raise Exception(
                     f"Failed to execute l3fwd test at node {dut_node[u'host']}"
