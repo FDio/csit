@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -39,7 +39,7 @@ source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
-build_vpp_ubuntu_amd64 "CURRENT" || die
+build_vpp_ubuntu "CURRENT" || die
 set_aside_commit_build_artifacts || die
 initialize_csit_dirs || die
 get_test_code "${1-}" || die
