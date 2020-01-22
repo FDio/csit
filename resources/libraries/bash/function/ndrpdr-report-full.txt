@@ -1,11 +1,11 @@
 ## ./container_memif
 ## ./ip4
-ndrpdr AND dot1q-ip4base
-ndrpdr AND ethip4-ip4base
-ndrpdr AND ethip4-ip4scale20k
-ndrpdr AND ethip4-ip4scale20k-rnd
-ndrpdr AND ethip4-ip4scale200k
-ndrpdr AND ethip4-ip4scale200k-rnd
+ndrpdr AND ethip4udp-ip4base-iacl1sf-10kflows
+ndrpdr AND ethip4udp-ip4base-iacl1sf-100flows
+ndrpdr AND ethip4udp-ip4base-iacl1sf-100kflows
+ndrpdr AND ethip4udp-ip4base-iacl1sl-10kflows
+ndrpdr AND ethip4udp-ip4base-iacl1sl-100flows
+ndrpdr AND ethip4udp-ip4base-iacl1sl-100kflows
 ## ./ip4_tunnels
 ## ./ip6
 ## ./ip6_tunnels
