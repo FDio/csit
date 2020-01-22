@@ -75,9 +75,12 @@
 | |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
+| | ${cb}= | Get Average Frame Size | ${frame_size}
+| | ${eb}= | Get Average Frame Size | ${frame_size}
+| |
 | | Set Test Variable | \${frame_size}
-| | Set Test Variable | \${cb} | ${frame_size}
-| | Set Test Variable | \${eb} | ${frame_size}
+| | Set Test Variable | \${cb}
+| | Set Test Variable | \${eb}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
