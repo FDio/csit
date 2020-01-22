@@ -46,6 +46,30 @@
       "revId": "c4c2107fb6e91072efdf0636d6777d2b0bd866e2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f8d1128_eebd5702",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-22T14:25:54Z",
+      "side": 1,
+      "message": "\u003e Are old style tags still used\n\nThey are still helpful for selecting multiple tests. For example I would currently like to have a HOSTSTACK tag, so I can trigger one test from each hoststack suite by:\n ...ANDhoststackAND1streamAND1client\n\nWithout that I need to checkout the patch under test locally to see which hoststack suites are present there, so I can copy their suite tags.",
+      "parentUuid": "8216f115_8eef4193",
+      "range": {
+        "startLine": 19,
+        "startChar": 52,
+        "endLine": 19,
+        "endChar": 58
+      },
+      "revId": "c4c2107fb6e91072efdf0636d6777d2b0bd866e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
