@@ -108,7 +108,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     pkt_offset=u"IP.src"
                 ),
                 STLVmFixIpv4(offset=u"IP"),
-                STLVmWrFlowVuar(
+                STLVmWrFlowVar(
                     fv_name=u"tuple.port",
                     pkt_offset=u"UDP.sport"
                 )
