@@ -1,11 +1,11 @@
-Calibration Data - Cascadelake
+Calibration Data - Cascade Lake
 ------------------------------
 
 Following sections include sample calibration data measured on
 s32-t27-sut1 server running in one of the Intel Xeon Skylake testbeds as
-specified in `FD.io CSIT testbeds - Xeon Cascadelake`_.
+specified in `FD.io CSIT testbeds - Xeon Cascade Lake`_.
 
-Calibration data obtained from all other servers in Cascadelake testbeds
+Calibration data obtained from all other servers in Cascade Lake testbeds
 shows the same or similar values.
 
 

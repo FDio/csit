@@ -27,7 +27,7 @@ Current FD.io production testbeds are built with SUT servers based on
 the following processor architectures:
 
 - Intel Xeon: Skylake Platinum 8180, Haswell-SP E5-2699v3,
-  Cascadelake Platinum 8280, Cascadelake 6252N.
+  Cascade Lake Platinum 8280, Cascade Lake 6252N.
 - Intel Atom: Denverton C3858.
 - ARM: TaiShan 2280, hip07-d05.
 
@@ -41,13 +41,13 @@ https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md.
 
 Following is the description of existing production testbeds.
 
-2-Node Xeon Cascadelake (2n-clx)
+2-Node Xeon Cascade Lake (2n-clx)
 --------------------------------
 
 Three 2n-clx testbeds are in operation in FD.io labs. Each 2n-clx testbed
 is built with two SuperMicro SYS-7049GP-TRT servers, SUTs are equipped with two
 Intel Xeon Gold 6252N processors (35.75 MB Cache, 2.30 GHz, 24 cores).
-TGs are equiped with Intel Xeon Cascadelake Platinum 8280 processors (38.5 MB
+TGs are equiped with Intel Xeon Cascade Lake Platinum 8280 processors (38.5 MB
 Cache, 2.70 GHz, 28 cores). 2n-clx physical topology is shown below.
 
 .. only:: latex
@@ -86,7 +86,7 @@ NIC models:
 #. NIC-5: empty, future expansion.
 #. NIC-6: x710-DA4 4p10GE Intel. (For self-tests.)
 
-All Intel Xeon Cascadelake servers run with Intel Hyper-Threading enabled,
+All Intel Xeon Cascade Lake servers run with Intel Hyper-Threading enabled,
 doubling the number of logical cores exposed to Linux.
 
 2-Node Xeon Skylake (2n-skx)
