@@ -114,6 +114,30 @@
       "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c8b97f3_5aad5f58",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-22T13:30:05Z",
+      "side": 1,
+      "message": "\u003e I wanted you to add dpdk_no_tx_checksum_offload to the list of variables this keyword needs, but I see we are not listing other required variables either. :/\n\nYep... I\u0027ll be happy to address infrastructure cleanup in follow-up commits.  Please unicast me a list of cleanup / refactoring issues directly.",
+      "parentUuid": "6f00d846_c59a7b35",
+      "range": {
+        "startLine": 183,
+        "startChar": 28,
+        "endLine": 183,
+        "endChar": 29
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
