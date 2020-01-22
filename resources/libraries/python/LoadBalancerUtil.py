@@ -60,8 +60,8 @@ class LoadBalancerUtil:
             cmd = u"lb_conf"
             err_msg = f"Failed to set lb conf on host {node[u'host']}"
             args = dict(
-                ip4_src_address=str(ip4_src_addr),
-                ip6_src_address=str(ip6_src_addr),
+                ip4_src_address=ip4_src_addr.packed,
+                ip6_src_address=ip6_src_addr.packed,
                 sticky_buckets_per_core=sticky_buckets_per_core,
                 flow_timeout=flow_timeout
             )
@@ -116,7 +116,8 @@ class LoadBalancerUtil:
             vip_addr = ip_address(vip_addr).packed
             args = dict(
                 pfx={
-                    u"len": 128,
+                    # TODO: Make vip prefix length configurable.
+                    u"len": 24,
                     u"address": {u"un": {u"ip4": vip_addr}, u"af": 0}
                 },
                 protocol=protocol,
@@ -173,7 +174,7 @@ class LoadBalancerUtil:
 
             args = dict(
                 pfx={
-                    u"len": 128,
+                    u"len": 24,
                     u"address": {u"un": {u"ip4": vip_addr}, u"af": 0}
                 },
                 protocol=protocol,
