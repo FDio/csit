@@ -753,7 +753,8 @@ class IPsecUtil:
     @staticmethod
     def vpp_ipsec_create_tunnel_interfaces(
             nodes, if1_ip_addr, if2_ip_addr, if1_key, if2_key, n_tunnels,
-            crypto_alg, integ_alg, raddr_ip1, raddr_ip2, raddr_range):
+            crypto_alg, integ_alg, raddr_ip1, raddr_ip2, raddr_range,
+            existing_tunnels=0):
         """Create multiple IPsec tunnel interfaces between two VPP nodes.
 
         :param nodes: VPP nodes to create tunnel interfaces.
@@ -761,7 +762,7 @@ class IPsecUtil:
         :param if2_ip_addr: VPP node 2 interface IPv4/IPv6 address.
         :param if1_key: VPP node 1 interface key from topology file.
         :param if2_key: VPP node 2 interface key from topology file.
-        :param n_tunnels: Number of tunnel interfaces to create.
+        :param n_tunnels: Number of tunnel interfaces to be there at the end.
         :param crypto_alg: The encryption algorithm name.
         :param integ_alg: The integrity algorithm name.
         :param raddr_ip1: Policy selector remote IPv4/IPv6 start address for the
@@ -771,6 +772,8 @@ class IPsecUtil:
         :param raddr_range: Mask specifying range of Policy selector Remote
             IPv4/IPv6 addresses. Valid values are from 1 to 32 in case of IPv4
             and to 128 in case of IPv6.
+        :param existing_tunnels: Number of tunnel interfaces before creation.
+            Useful mainly for reconf tests. Default 0.
         :type nodes: dict
         :type if1_ip_addr: str
         :type if2_ip_addr: str
@@ -782,8 +785,11 @@ class IPsecUtil:
         :type raddr_ip1: string
         :type raddr_ip2: string
         :type raddr_range: int
+        :type existing_tunnels: int
         """
         n_tunnels = int(n_tunnels)
+        existing_tunnels = int(existing_tunnels)
+        tunnels_left = n_tunnels - existing_tunnels
         spi_1 = 100000
         spi_2 = 200000
         if1_ip = ip_address(if1_ip_addr)
@@ -793,7 +799,7 @@ class IPsecUtil:
         addr_incr = 1 << (128 - raddr_range) if if1_ip.version == 6 \
             else 1 << (32 - raddr_range)
 
-        if n_tunnels > 10:
+        if tunnels_left > 10:
             tmp_fn1 = u"/tmp/ipsec_create_tunnel_dut1.config"
             tmp_fn2 = u"/tmp/ipsec_create_tunnel_dut2.config"
             if1_n = Topology.get_interface_name(nodes[u"DUT1"], if1_key)
@@ -803,17 +809,20 @@ class IPsecUtil:
             vat = VatExecutor()
             with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
                 rmac = Topology.get_interface_mac(nodes[u"DUT2"], if2_key)
-                tmp_f1.write(
-                    f"exec create loopback interface\n"
-                    f"exec set interface state loop0 up\n"
-                    f"exec set interface ip address "
-                    f"{if1_n} {if2_ip - 1}/{mask}\n"
-                    f"exec set ip neighbor {if1_n} {if2_ip}/{mask2} {rmac} static\n"
-                )
-                tmp_f2.write(
-                    f"exec set interface ip address {if2_n} {if2_ip}/{mask}\n"
-                )
-                for i in range(n_tunnels):
+                if not existing_tunnels:
+                    tmp_f1.write(
+                        f"exec create loopback interface\n"
+                        f"exec set interface state loop0 up\n"
+                        f"exec set interface ip address "
+                        f"{if1_n} {if2_ip - 1}/{mask}\n"
+                        f"exec set ip neighbor {if1_n} {if2_ip}/{mask2} {rmac}"
+                        f" static\n"
+                    )
+                    tmp_f2.write(
+                        f"exec set interface ip address {if2_n}"
+                        f" {if2_ip}/{mask}\n"
+                    )
+                for i in range(existing_tunnels, n_tunnels):
                     ckey = gen_key(
                         IPsecUtil.get_crypto_alg_key_len(crypto_alg)
                     ).hex()
@@ -861,10 +870,12 @@ class IPsecUtil:
             os.remove(tmp_fn2)
 
             with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
-                tmp_f2.write(
-                    f"exec ip route add {if1_ip}/8 via {if2_ip - 1} {if2_n}\n"
-                )
-                for i in range(n_tunnels):
+                if not existing_tunnels:
+                    tmp_f2.write(
+                        f"exec ip route add {if1_ip}/8 via {if2_ip - 1}"
+                        f" {if2_n}\n"
+                    )
+                for i in range(existing_tunnels, n_tunnels):
                     tmp_f1.write(
                         f"exec set interface unnumbered ipip{i} use {if1_n}\n"
                         f"exec set interface state ipip{i} up\n"
@@ -892,54 +903,55 @@ class IPsecUtil:
             return
 
         with PapiSocketExecutor(nodes[u"DUT1"]) as papi_exec:
-            # Create loopback interface on DUT1, set it to up state
-            cmd1 = u"create_loopback"
-            args1 = dict(
-                mac_address=0
-            )
-            err_msg = f"Failed to create loopback interface " \
-                f"on host {nodes[u'DUT1'][u'host']}"
-            loop_sw_if_idx = papi_exec.add(cmd1, **args1).\
-                get_sw_if_index(err_msg)
-            cmd1 = u"sw_interface_set_flags"
-            args1 = dict(
-                sw_if_index=loop_sw_if_idx,
-                flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
-            )
-            err_msg = f"Failed to set loopback interface state up " \
-                f"on host {nodes[u'DUT1'][u'host']}"
-            papi_exec.add(cmd1, **args1).get_reply(err_msg)
-            # Set IP address on VPP node 1 interface
-            cmd1 = u"sw_interface_add_del_address"
-            args1 = dict(
-                sw_if_index=InterfaceUtil.get_interface_index(
-                    nodes[u"DUT1"], if1_key
-                ),
-                is_add=True,
-                del_all=False,
-                prefix=IPUtil.create_prefix_object(
-                    if2_ip - 1, 96 if if2_ip.version == 6 else 24
+            if not existing_tunnels:
+                # Create loopback interface on DUT1, set it to up state
+                cmd1 = u"create_loopback"
+                args1 = dict(
+                    mac_address=0
                 )
-            )
-            err_msg = f"Failed to set IP address on interface {if1_key} " \
-                f"on host {nodes[u'DUT1'][u'host']}"
-            papi_exec.add(cmd1, **args1).get_reply(err_msg)
-            cmd4 = u"ip_neighbor_add_del"
-            args4 = dict(
-                is_add=1,
-                neighbor=dict(
-                    sw_if_index=Topology.get_interface_sw_index(
+                err_msg = f"Failed to create loopback interface " \
+                    f"on host {nodes[u'DUT1'][u'host']}"
+                loop_sw_if_idx = papi_exec.add(cmd1, **args1).\
+                    get_sw_if_index(err_msg)
+                cmd1 = u"sw_interface_set_flags"
+                args1 = dict(
+                    sw_if_index=loop_sw_if_idx,
+                    flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
+                )
+                err_msg = f"Failed to set loopback interface state up " \
+                    f"on host {nodes[u'DUT1'][u'host']}"
+                papi_exec.add(cmd1, **args1).get_reply(err_msg)
+                # Set IP address on VPP node 1 interface
+                cmd1 = u"sw_interface_add_del_address"
+                args1 = dict(
+                    sw_if_index=InterfaceUtil.get_interface_index(
                         nodes[u"DUT1"], if1_key
                     ),
-                    flags=1,
-                    mac_address=str(
-                        Topology.get_interface_mac(nodes[u"DUT2"], if2_key)
-                    ),
-                    ip_address=str(ip_address(if2_ip_addr))
+                    is_add=True,
+                    del_all=False,
+                    prefix=IPUtil.create_prefix_object(
+                        if2_ip - 1, 96 if if2_ip.version == 6 else 24
+                    )
                 )
-            )
-            err_msg = f"Failed to add IP neighbor on interface {if1_key}"
-            papi_exec.add(cmd4, **args4).get_reply(err_msg)
+                err_msg = f"Failed to set IP address on interface {if1_key} " \
+                    f"on host {nodes[u'DUT1'][u'host']}"
+                papi_exec.add(cmd1, **args1).get_reply(err_msg)
+                cmd4 = u"ip_neighbor_add_del"
+                args4 = dict(
+                    is_add=1,
+                    neighbor=dict(
+                        sw_if_index=Topology.get_interface_sw_index(
+                            nodes[u"DUT1"], if1_key
+                        ),
+                        flags=1,
+                        mac_address=str(
+                            Topology.get_interface_mac(nodes[u"DUT2"], if2_key)
+                        ),
+                        ip_address=str(ip_address(if2_ip_addr))
+                    )
+                )
+                err_msg = f"Failed to add IP neighbor on interface {if1_key}"
+                papi_exec.add(cmd4, **args4).get_reply(err_msg)
             # Configure IPsec tunnel interfaces
             args1 = dict(
                 sw_if_index=loop_sw_if_idx,
@@ -971,7 +983,7 @@ class IPsecUtil:
             ipsec_tunnels = list()
             ckeys = list()
             ikeys = list()
-            for i in range(n_tunnels):
+            for i in range(existing_tunnels, n_tunnels):
                 ckeys.append(
                     gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
                 )
@@ -1041,21 +1053,22 @@ class IPsecUtil:
             papi_exec.get_replies(err_msg)
 
         with PapiSocketExecutor(nodes[u"DUT2"]) as papi_exec:
-            # Set IP address on VPP node 2 interface
-            cmd1 = u"sw_interface_add_del_address"
-            args1 = dict(
-                sw_if_index=InterfaceUtil.get_interface_index(
-                    nodes[u"DUT2"], if2_key
-                ),
-                is_add=True,
-                del_all=False,
-                prefix=IPUtil.create_prefix_object(
-                    if2_ip, 96 if if2_ip.version == 6 else 24
+            if not existing_tunnels:
+                # Set IP address on VPP node 2 interface
+                cmd1 = u"sw_interface_add_del_address"
+                args1 = dict(
+                    sw_if_index=InterfaceUtil.get_interface_index(
+                        nodes[u"DUT2"], if2_key
+                    ),
+                    is_add=True,
+                    del_all=False,
+                    prefix=IPUtil.create_prefix_object(
+                        if2_ip, 96 if if2_ip.version == 6 else 24
+                    )
                 )
-            )
-            err_msg = f"Failed to set IP address on interface {if2_key} " \
-                f"on host {nodes[u'DUT2'][u'host']}"
-            papi_exec.add(cmd1, **args1).get_reply(err_msg)
+                err_msg = f"Failed to set IP address on interface {if2_key} " \
+                    f"on host {nodes[u'DUT2'][u'host']}"
+                papi_exec.add(cmd1, **args1).get_reply(err_msg)
             # Configure IPsec tunnel interfaces
             cmd2 = u"ipsec_tunnel_if_add_del"
             args2 = dict(
@@ -1079,7 +1092,7 @@ class IPsecUtil:
             err_msg = f"Failed to add IPsec tunnel interfaces " \
                 f"on host {nodes[u'DUT2'][u'host']}"
             ipsec_tunnels = list()
-            for i in range(n_tunnels):
+            for i in range(existing_tunnels, n_tunnels):
                 args2[u"local_spi"] = spi_2 + i
                 args2[u"remote_spi"] = spi_1 + i
                 args2[u"local_ip"] = IPUtil.create_ip_address_object(if2_ip)
@@ -1100,20 +1113,21 @@ class IPsecUtil:
             for reply in replies:
                 if u"sw_if_index" in reply:
                     ipsec_tunnels.append(reply[u"sw_if_index"])
-            # Configure IP routes
-            cmd1 = u"ip_route_add_del"
-            route = IPUtil.compose_vpp_route_structure(
-                nodes[u"DUT2"], if1_ip.compressed,
-                prefix_len=32 if if1_ip.version == 6 else 8,
-                interface=if2_key,
-                gateway=(if2_ip - 1).compressed
-            )
-            args1 = dict(
-                is_add=1,
-                is_multipath=0,
-                route=route
-            )
-            papi_exec.add(cmd1, **args1)
+            if not existing_tunnels:
+                # Configure IP routes
+                cmd1 = u"ip_route_add_del"
+                route = IPUtil.compose_vpp_route_structure(
+                    nodes[u"DUT2"], if1_ip.compressed,
+                    prefix_len=32 if if1_ip.version == 6 else 8,
+                    interface=if2_key,
+                    gateway=(if2_ip - 1).compressed
+                )
+                args1 = dict(
+                    is_add=1,
+                    is_multipath=0,
+                    route=route
+                )
+                papi_exec.add(cmd1, **args1)
             cmd1 = u"sw_interface_set_unnumbered"
             args1 = dict(
                 is_add=True,
