@@ -238,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "9858e812_dab5afd2",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-22T16:38:58Z",
+      "side": 1,
+      "message": "This [0] comment confirms it works, at least I was not able to cause a situation where it does not do the correct thing.\n\n[0] https://gerrit.fd.io/r/c/csit/+/24455/6#message-00a19fc4_915ac232",
+      "parentUuid": "4225f714_68cc162b",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 43
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6f00d846_c59a7b35",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 6
