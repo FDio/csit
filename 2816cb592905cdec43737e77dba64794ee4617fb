@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "362c94c3_8a654202",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-22T15:56:36Z",
+      "side": 1,
+      "message": "We are allocating phy cores. As of now we are lucky that we are using same amount of workers as vCPUs. So little bit wrong name, agree, but was fitting purpose for now. It is all over the place so lets rename yet. It is lowest prio.\n\nThinking twice, one would say \"Always put main core here even if cpu_count is 0\" So i will leave this for now like lets see.",
+      "parentUuid": "750c6685_cd570831",
+      "range": {
+        "startLine": 221,
+        "startChar": 1,
+        "endLine": 221,
+        "endChar": 58
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d355a1c_9e1f17fe",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 6
@@ -178,6 +202,30 @@
       "side": 1,
       "message": "\u003e do not leave it hidden there alone. \n\nI don\u0027t understand the comment.  This is providing a default value so that all of the other suites are not affected.\n\nThis is the same technique used in the hoststack_*_attr dictionaries:\n- Provide a Suite Variable containing default value(s) associated with the feature\n- Provide a setter keyword to override the default values\n- Set suite/test specific values in the suite file, documenting\nthe test specific values\n\n\u003eMake the logic reverse:\n\u003e Run Keyword Unless | ${dpdk_no_tx_checksum_offload} | ...\n\nThe keyword sets \u0027no-tx-checksum-offload\u0027 in the startup.conf file, so unless I change VPP to reverse it the logic is correct.",
       "parentUuid": "9d355a1c_9e1f17fe",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 43
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4225f714_68cc162b",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-22T15:56:36Z",
+      "side": 1,
+      "message": "Ack. Lets see how it will work",
+      "parentUuid": "a044152d_1d6992ee",
       "range": {
         "startLine": 18,
         "startChar": 0,
