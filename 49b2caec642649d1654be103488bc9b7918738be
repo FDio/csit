@@ -46,6 +46,30 @@
       "revId": "49b2caec642649d1654be103488bc9b7918738be",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e36df543_2443715c",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcp-nsim-ldpreload-iperf3-bps.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-22T13:26:19Z",
+      "side": 1,
+      "message": "\u003e I mean, if it is an optimization, and it affects performance, the suites should contain both jumbo and non-jumbo test cases. For people to see the difference in report.\n\nYes, it is an optimization that affects performance.  I\u0027ll add non-jumbo test cases in a separate commit.\n\nNote:  Multiple cores does not help performance currently which is why I removed the 2C \u0026 4C test cases, but I left the cores in the local template for future expansion if/when it does.",
+      "parentUuid": "e7f33041_c984484e",
+      "range": {
+        "startLine": 43,
+        "startChar": 19,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "49b2caec642649d1654be103488bc9b7918738be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
