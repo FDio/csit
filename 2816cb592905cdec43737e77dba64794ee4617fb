@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7097957e_1f664a03",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-22T08:08:46Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 82
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5f387b9_46fda39d",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-22T08:08:46Z",
+      "side": 1,
+      "message": "put into doc string",
+      "range": {
+        "startLine": 165,
+        "startChar": 54,
+        "endLine": 165,
+        "endChar": 63
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06dfd6ec_7a9e69ce",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-22T08:08:46Z",
+      "side": 1,
+      "message": "not sure if this is worth doing. if main core count is 0 i would leave it as optional. Adding 0 cores to config does not make sense.",
+      "range": {
+        "startLine": 221,
+        "startChar": 1,
+        "endLine": 221,
+        "endChar": 58
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d355a1c_9e1f17fe",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-22T08:08:46Z",
+      "side": 1,
+      "message": "do not leave it hidden there alone. Make the logic reverse:\nRun Keyword Unless | ${dpdk_no_tx_checksum_offload} | ...",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 43
+      },
+      "revId": "2816cb592905cdec43737e77dba64794ee4617fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
