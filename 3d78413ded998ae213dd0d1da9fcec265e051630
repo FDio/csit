@@ -22,6 +22,30 @@
       "revId": "3d78413ded998ae213dd0d1da9fcec265e051630",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f336678_0003736d",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-22T06:36:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4335709c_93479b31",
+      "range": {
+        "startLine": 197,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 9
+      },
+      "revId": "3d78413ded998ae213dd0d1da9fcec265e051630",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
