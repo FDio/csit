@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0573e60f_5251ceaa",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcp-nsim-ldpreload-iperf3-bps.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-22T11:54:17Z",
+      "side": 1,
+      "message": "This will activate jumbo frame support for iperf tests. Is that intended?",
+      "range": {
+        "startLine": 43,
+        "startChar": 19,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "49b2caec642649d1654be103488bc9b7918738be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
