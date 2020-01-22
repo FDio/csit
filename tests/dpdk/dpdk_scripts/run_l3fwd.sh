@@ -45,7 +45,7 @@ if [ ! -z "${l3fwd_pid}" ]; then
     success=false
     sudo kill -15 "${l3fwd_pid}"
     echo "RC = ${?}"
-    for attempt in {1..30}; do
+    for attempt in {1..60}; do
         echo "Checking if l3fwd is still alive, attempt nr ${attempt}"
         l3fwd_pid=`get_l3fwd_pid`
         if [ -z "${l3fwd_pid}" ]; then
@@ -72,7 +72,7 @@ if [ ${?} -eq "0" ]; then
     success=false
     sudo pkill testpmd
     echo "RC = ${?}"
-    for attempt in {1..30}; do
+    for attempt in {1..60}; do
         echo "Checking if testpmd is still alive, attempt nr ${attempt}"
         sudo pgrep testpmd
         if [ ${?} -eq "1" ]; then
@@ -113,7 +113,7 @@ else
     --eth-dest=0,${adj_mac0} --eth-dest=1,${adj_mac1} --parse-ptype"
 fi
 
-for attempt in {1..30}; do
+for attempt in {1..60}; do
     echo "Checking if l3fwd is alive, attempt nr ${attempt}"
     fgrep "L3FWD: entering main loop on lcore" "${L3FWDLOG}"
     if [ "${?}" -eq "0" ]; then

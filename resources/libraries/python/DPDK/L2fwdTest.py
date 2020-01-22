@@ -52,7 +52,7 @@ class L2fwdTest:
                 f"/run_l2fwd.sh {cpu_cores} {nb_cores} {queue_nums} {jumbo} " \
                 f"{arch}"
 
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
+            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=1800)
             if ret_code != 0:
                 raise RuntimeError(
                     f"Failed to execute l2fwd test at node {dut_node['host']}"
