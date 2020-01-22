@@ -20,7 +20,7 @@ if [ $? -eq "0" ]; then
     success=false
     sudo pkill testpmd
     echo "RC = $?"
-    for attempt in {1..5}; do
+    for attempt in {1..30}; do
         echo "Checking if testpmd is still alive, attempt nr ${attempt}"
         sudo pgrep testpmd
         if [ $? -eq "1" ]; then
@@ -47,7 +47,7 @@ if [ $? -eq "0" ]; then
     success=false
     sudo pkill l3fwd
     echo "RC = $?"
-    for attempt in {1..5}; do
+    for attempt in {1..30}; do
         echo "Checking if l3fwd is still alive, attempt nr ${attempt}"
         sudo pgrep l3fwd
         if [ $? -eq "1" ]; then
