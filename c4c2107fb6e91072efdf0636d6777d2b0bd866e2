@@ -22,6 +22,30 @@
       "revId": "c4c2107fb6e91072efdf0636d6777d2b0bd866e2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8216f115_8eef4193",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-22T13:26:19Z",
+      "side": 1,
+      "message": "\u003e Not even TCP tag? Than is the new low (with respect to lack of old-style tags). :)\n\nQUIC runs over UDP ;)\n\nAre old style tags still used now that there is a Suite Tag?",
+      "parentUuid": "ae2e2514_712cf4b0",
+      "range": {
+        "startLine": 19,
+        "startChar": 52,
+        "endLine": 19,
+        "endChar": 58
+      },
+      "revId": "c4c2107fb6e91072efdf0636d6777d2b0bd866e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
