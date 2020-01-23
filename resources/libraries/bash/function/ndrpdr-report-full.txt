@@ -3,10 +3,9 @@
 ## ./ip4
 ## ./ip4_tunnels
 ## ./ip6
-ndrpdr AND ethip6-ip6base
-ndrpdr AND ${default_nic} AND dot1q-ip6base
-ndrpdr AND ${default_nic} AND ethip6-ip6base-copwhtlistbase
-ndrpdr AND ${default_nic} AND ethip6-ip6base-iacldstbase
+ndrpdr AND ${default_nic} AND ethip6-ip6scale20k
+ndrpdr AND ${default_nic} AND ethip6-ip6scale200k
+ndrpdr AND ethip6-ip6scale2m
 ## ./ip6_tunnels
 ## ./l2
 ## ./lb
