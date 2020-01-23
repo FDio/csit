@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "762ffa22_c9c4bbb1",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-23T13:49:56Z",
+      "side": 1,
+      "message": "This patch computes (approximated) _transmit_ rate instead. Useful for ndrpdr, confusing for mrr.",
+      "range": {
+        "startLine": 394,
+        "startChar": 49,
+        "endLine": 394,
+        "endChar": 56
+      },
+      "revId": "cd88db45bac8c41054074d6134521ded2a042efa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
