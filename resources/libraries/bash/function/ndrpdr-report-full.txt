@@ -11,7 +11,7 @@ ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-iacl50sf-100kflows
 ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-iacl50sl-10kflows
 ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-iacl50sl-100flows
 ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-iacl50sl-100kflows
-## ./lbgit s
+## ./lb
 ## ./nfv_density/dcr_memif/chain
 ## ./nfv_density/dcr_memif/chain_ipsec
 ## ./nfv_density/dcr_memif/pipeline
