@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08d03d0e_a9b9b73b",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x710-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-23T15:28:16Z",
+      "side": 1,
+      "message": "Really ugly, I hope we can improve within rls2001.",
+      "range": {
+        "startLine": 96,
+        "startChar": 31,
+        "endLine": 96,
+        "endChar": 48
+      },
+      "revId": "75f6754791ebaae2ead3b53796e3a676201911dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
