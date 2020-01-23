@@ -111,9 +111,13 @@
 | | Measure and show latency at specified rate | Latency at 90% PDR:
 | | ... | ${latency_duration} | ${rate}pps | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
-| | # Finally, a trial with runtime and other stats.
+| | # Finally, trials with runtime and other stats.
+| | # TODO: Add reasons for rates and durations.
 | | Send traffic at specified rate
-| | ... | ${1.0} | ${ndr_per_stream}pps | ${framesize} | ${traffic_profile}
+| | ... | ${2.0} | ${ndr_per_stream}pps | ${framesize} | ${traffic_profile}
+| | ... | traffic_directions=${traffic_directions}
+| | Send traffic at specified rate
+| | ... | ${2.0} | ${pdr_per_stream}pps | ${framesize} | ${traffic_profile}
 | | ... | traffic_directions=${traffic_directions}
 
 | Find Throughput Using MLRsearch
