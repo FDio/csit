@@ -1,35 +1,17 @@
 ## ./container_memif
 ## ./crypto
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 ## ./ip4
 ## ./ip4_tunnels
 ## ./ip6
 ## ./ip6_tunnels
 ## ./l2
-## ./lb
+ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-iacl50sf-10kflows
+ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-iacl50sf-100flows
+ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-iacl50sf-100kflows
+ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-iacl50sl-10kflows
+ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-iacl50sl-100flows
+ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-iacl50sl-100kflows
+## ./lbgit s
 ## ./nfv_density/dcr_memif/chain
 ## ./nfv_density/dcr_memif/chain_ipsec
 ## ./nfv_density/dcr_memif/pipeline
