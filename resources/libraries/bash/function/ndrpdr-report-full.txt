@@ -1,32 +1,12 @@
 ## ./container_memif
 ## ./crypto
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 ## ./ip4
 ## ./ip4_tunnels
 ## ./ip6
+ndrpdr AND ethip6-ip6base
+ndrpdr AND ${default_nic} AND dot1q-ip6base
+ndrpdr AND ${default_nic} AND ethip6-ip6base-copwhtlistbase
+ndrpdr AND ${default_nic} AND ethip6-ip6base-iacldstbase
 ## ./ip6_tunnels
 ## ./l2
 ## ./lb
