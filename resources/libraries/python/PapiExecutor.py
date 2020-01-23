@@ -350,6 +350,7 @@ class PapiSocketExecutor:
         :rtype: PapiSocketExecutor
         :raises RuntimeError: If unverified or conflicting CRC is encountered.
         """
+        logger.debug(f"PAPI adding: cmd={scit_papi_command}, kwargs={kwargs!r}")
         self.crc_checker.report_initial_conflicts()
         if history:
             PapiHistory.add_to_papi_history(
@@ -517,6 +518,7 @@ class PapiSocketExecutor:
         :rtype: list of dict
         :raises RuntimeError: If the replies are not all correct.
         """
+        logger.debug(u"PAPI: executing.")
         vpp_instance = self.vpp_instance
         local_list = self._api_command_list
         # Clear first as execution may fail.
