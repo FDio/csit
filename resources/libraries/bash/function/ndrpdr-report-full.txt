@@ -5,12 +5,9 @@
 ## ./ip6
 ## ./ip6_tunnels
 ## ./l2
-ndrpdr AND eth-l2patch
-ndrpdr AND eth-l2xcbase
-ndrpdr AND eth-l2bdbasemaclrn
-ndrpdr AND ${default_nic} AND dot1q-l2xcbase
-ndrpdr AND ${default_nic} AND dot1q-l2bdbasemaclrn
-ndrpdr AND ${default_nic} AND dot1q-l2bdbasemaclrn-gbp
+ndrpdr AND ${default_nic} AND eth-l2bdscale10kmaclrn
+ndrpdr AND ${default_nic} AND eth-l2bdscale100kmaclrn
+ndrpdr AND eth-l2bdscale1mmaclrn
 ## ./lb
 ## ./nfv_density/dcr_memif/chain
 ## ./nfv_density/dcr_memif/chain_ipsec
