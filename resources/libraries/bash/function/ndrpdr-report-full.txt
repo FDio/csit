@@ -1,12 +1,12 @@
 ## ./container_memif
 ## ./crypto
 ## ./ip4
-ndrpdr AND ${default_nic} AND ethip4udp-ip4base-oacl50sf-10kflows
-ndrpdr AND ${default_nic} AND ethip4udp-ip4base-oacl50sf-100flows
-ndrpdr AND ${default_nic} AND ethip4udp-ip4base-oacl50sf-100kflows
-ndrpdr AND ${default_nic} AND ethip4udp-ip4base-oacl50sl-10kflows
-ndrpdr AND ${default_nic} AND ethip4udp-ip4base-oacl50sl-100flows
-ndrpdr AND ${default_nic} AND ethip4udp-ip4base-oacl50sl-100kflows
+ndrpdr AND ${default_nic} AND ethip4udp-ip4base-udpsrcscale15-nat44
+ndrpdr AND ${default_nic} AND ethip4udp-ip4scale10-udpsrcscale15-nat44
+ndrpdr AND ${default_nic} AND ethip4udp-ip4scale100-udpsrcscale15-nat44
+ndrpdr AND ${default_nic} AND ethip4udp-ip4scale1000-udpsrcscale15-nat44
+ndrpdr AND ${default_nic} AND ethip4udp-ip4scale2000-udpsrcscale15-nat44
+ndrpdr AND ${default_nic} AND ethip4udp-ip4scale4000-udpsrcscale15-nat44
 ## ./ip4_tunnels
 ## ./ip6
 ## ./ip6_tunnels
