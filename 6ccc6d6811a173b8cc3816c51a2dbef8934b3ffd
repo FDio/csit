@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddcf114a_cc37b17b",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-23T12:46:55Z",
+      "side": 1,
+      "message": "Does this also work for non-IPsec tests? Is removing of no-multi-seg still required?",
+      "range": {
+        "startLine": 231,
+        "startChar": 51,
+        "endLine": 231,
+        "endChar": 55
+      },
+      "revId": "6ccc6d6811a173b8cc3816c51a2dbef8934b3ffd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
