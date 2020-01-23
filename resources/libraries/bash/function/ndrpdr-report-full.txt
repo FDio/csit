@@ -6,12 +6,12 @@
 ## ./ip6
 ## ./ip6_tunnels
 ## ./l2
-ndrpdr AND eth-l2bdbasemaclrn-oacl1sf-10kflows
-ndrpdr AND eth-l2bdbasemaclrn-oacl1sf-100flows
-ndrpdr AND eth-l2bdbasemaclrn-oacl1sf-100kflows
-ndrpdr AND eth-l2bdbasemaclrn-oacl1sl-10kflows
-ndrpdr AND eth-l2bdbasemaclrn-oacl1sl-100flows
-ndrpdr AND eth-l2bdbasemaclrn-oacl1sl-100kflows
+ndrpdr AND eth-l2bdbasemaclrn-oacl10sf-10kflows
+ndrpdr AND eth-l2bdbasemaclrn-oacl10sf-100flows
+ndrpdr AND eth-l2bdbasemaclrn-oacl10sf-100kflows
+ndrpdr AND eth-l2bdbasemaclrn-oacl10sl-10kflows
+ndrpdr AND eth-l2bdbasemaclrn-oacl10sl-100flows
+ndrpdr AND eth-l2bdbasemaclrn-oacl10sl-100kflows
 ## ./lb
 ## ./nfv_density/dcr_memif/chain
 ## ./nfv_density/dcr_memif/chain_ipsec
