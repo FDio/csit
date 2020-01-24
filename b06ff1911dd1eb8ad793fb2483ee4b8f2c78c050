@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6f9b359_1c851c91",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-24T18:19:56Z",
+      "side": 1,
+      "message": "Without this part. See [0] for the current logic.\n\n[0] https://github.com/FDio/csit/blob/6518c73a0e5cdaf12ae01d247a65aec287d01625/resources/libraries/python/autogen/Regenerator.py#L83-L92",
+      "range": {
+        "startLine": 19,
+        "startChar": 27,
+        "endLine": 19,
+        "endChar": 34
+      },
+      "revId": "b06ff1911dd1eb8ad793fb2483ee4b8f2c78c050",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
