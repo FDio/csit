@@ -70,6 +70,30 @@
       "revId": "8c32805aa85d075c20c1d2494645319df8e537f9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13bef626_792187c3",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-01-24T15:51:24Z",
+      "side": 1,
+      "message": "BTW, in the long run, the hoststack will support multiple workers.  Given that QUIC is experimental simplifying the configuration to get stable results makes sense.\n\nI\u0027m continuing to work with the QUIC team to validate the VPP configuration(s) in the CSIT perf tests are consistent with what is being used in development testing.  Hopefully this is a temporary workaround.",
+      "parentUuid": "6c2dbb0b_00a727da",
+      "range": {
+        "startLine": 485,
+        "startChar": 27,
+        "endLine": 485,
+        "endChar": 28
+      },
+      "revId": "8c32805aa85d075c20c1d2494645319df8e537f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
