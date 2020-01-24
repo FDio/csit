@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff9bc20d_8245328d",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4-vxlan1ip4src254ip4dst254-bvi.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-24T12:49:30Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "7387643e8dba37aa5feab5c813204d5c27bc7bb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff10044a_feb05758",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-vfio-pci-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-24T12:49:30Z",
+      "side": 1,
+      "message": "Remove the vfio-pci part from the file name. Historically, other drivers came later, so suite generator assumes this driver has no prefix in the file name.",
+      "revId": "7387643e8dba37aa5feab5c813204d5c27bc7bb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8249b9dc_48debafa",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-vfio-pci-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-24T12:49:30Z",
+      "side": 1,
+      "message": "This tag uses underscores.",
+      "range": {
+        "startLine": 18,
+        "startChar": 56,
+        "endLine": 18,
+        "endChar": 57
+      },
+      "revId": "7387643e8dba37aa5feab5c813204d5c27bc7bb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d87157e3_ef4771b6",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-vfio-pci-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-24T12:49:30Z",
+      "side": 1,
+      "message": "Only this part, and in lower case.",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 31
+      },
+      "revId": "7387643e8dba37aa5feab5c813204d5c27bc7bb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73bea040_c20ed3bd",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-vfio-pci-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-24T12:49:30Z",
+      "side": 1,
+      "message": "performance",
+      "range": {
+        "startLine": 21,
+        "startChar": 42,
+        "endLine": 21,
+        "endChar": 57
+      },
+      "revId": "7387643e8dba37aa5feab5c813204d5c27bc7bb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6511e5d3_f182d366",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-vfio-pci-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-24T12:49:30Z",
+      "side": 1,
+      "message": "dpdk",
+      "range": {
+        "startLine": 61,
+        "startChar": 26,
+        "endLine": 61,
+        "endChar": 29
+      },
+      "revId": "7387643e8dba37aa5feab5c813204d5c27bc7bb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a568935d_bfe4ab90",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-vfio-pci-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-24T12:49:30Z",
+      "side": 1,
+      "message": "vfio-pci",
+      "range": {
+        "startLine": 64,
+        "startChar": 19,
+        "endLine": 64,
+        "endChar": 22
+      },
+      "revId": "7387643e8dba37aa5feab5c813204d5c27bc7bb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
