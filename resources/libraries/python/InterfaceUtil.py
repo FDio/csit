@@ -1425,6 +1425,8 @@ class InterfaceUtil:
     def get_sw_if_index(node, interface_name):
         """Get sw_if_index for the given interface from actual interface dump.
 
+        FIXME: Delete and redirect callers to vpp_get_interface_sw_index.
+
         :param node: VPP node to get interface data from.
         :param interface_name: Name of the specific interface.
         :type node: dict
