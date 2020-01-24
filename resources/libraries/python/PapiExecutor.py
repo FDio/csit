@@ -225,6 +225,7 @@ class PapiSocketExecutor:
         # Parsing takes longer than connecting, prepare instance before tunnel.
         vpp_instance = self.vpp_instance
         node = self._node
+        logger.debug(f"PAPI connecting to {node[u'host']}")
         self._temp_dir = tempfile.mkdtemp(dir=u"/tmp")
         self._local_vpp_socket = self._temp_dir + u"/vpp-api.sock"
         self._ssh_control_socket = self._temp_dir + u"/ssh.sock"
@@ -322,6 +323,7 @@ class PapiSocketExecutor:
             u"ssh", u"-S", self._ssh_control_socket, u"-O", u"exit", u"0.0.0.0"
         ], check=False)
         shutil.rmtree(self._temp_dir)
+        logger.debug(f"PAPI disconnected from {self._node[u'host']}")
 
     def add(self, csit_papi_command, history=True, **kwargs):
         """Add next command to internal command list; return self.
@@ -350,6 +352,7 @@ class PapiSocketExecutor:
         :rtype: PapiSocketExecutor
         :raises RuntimeError: If unverified or conflicting CRC is encountered.
         """
+        logger.debug(f"PAPI adding: cmd={csit_papi_command}, kwargs={kwargs!r}")
         self.crc_checker.report_initial_conflicts()
         if history:
             PapiHistory.add_to_papi_history(
@@ -517,6 +520,7 @@ class PapiSocketExecutor:
         :rtype: list of dict
         :raises RuntimeError: If the replies are not all correct.
         """
+        logger.debug(u"PAPI: executing.")
         vpp_instance = self.vpp_instance
         local_list = self._api_command_list
         # Clear first as execution may fail.
