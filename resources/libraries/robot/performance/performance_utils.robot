@@ -164,6 +164,8 @@
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
+| | Check NDRPDR interval validity | ${result.pdr_interval}
+| | ... | ${packet_loss_ratio}
 | | Return From Keyword | ${result.pdr_interval.measured_low.transmit_rate}
 
 | Find critical load using PLRsearch
