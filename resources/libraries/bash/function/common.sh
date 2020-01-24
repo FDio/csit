@@ -561,7 +561,7 @@ function reserve_and_cleanup_testbed () {
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # Functions called:
     # - die - Print to stderr and exit.
-    # - ansible_hosts - Perform an action using ansible, see ansible.sh
+    # - ansible_playbook - Perform an action using ansible, see ansible.sh
     # Traps registered:
     # - EXIT - Calls cancel_all for ${WORKING_TOPOLOGY}.
 
@@ -588,9 +588,9 @@ function reserve_and_cleanup_testbed () {
                     }
                     die "Trap attempt failed, unreserve succeeded. Aborting."
                 }
-                # Cleanup check.
+                # Cleanup + calibration checks.
                 set +e
-                ansible_hosts "cleanup"
+                ansible_playbook "cleanup, calibration"
                 result="$?"
                 set -e
                 if [[ "${result}" == "0" ]]; then
@@ -1033,7 +1033,7 @@ function untrap_and_unreserve_testbed () {
     # - EXIT - Failure to untrap is reported, but ignored otherwise.
     # Functions called:
     # - die - Print to stderr and exit.
-    # - ansible_hosts - Perform an action using ansible, see ansible.sh
+    # - ansible_playbook - Perform an action using ansible, see ansible.sh
 
     set -xo pipefail
     set +eu  # We do not want to exit early in a "teardown" function.
@@ -1043,7 +1043,7 @@ function untrap_and_unreserve_testbed () {
         set -eu
         warn "Testbed looks unreserved already. Trap removal failed before?"
     else
-        ansible_hosts "cleanup" || true
+        ansible_playbook "cleanup" || true
         python3 "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
             die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
         }
