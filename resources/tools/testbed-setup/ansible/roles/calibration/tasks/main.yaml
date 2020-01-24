@@ -9,6 +9,6 @@
 - debug: var=spectre_meltdown_output.stdout_lines
   tags: run-spectre-meltdown-checker
 
-- name: x86 specific
-  import_tasks: x86_64.yaml
-  when: ansible_machine == 'x86_64'
+- name: Machine specifics
+  include_tasks: '{{ ansible_machine }}.yaml'
+  tags: run-jitter-tool

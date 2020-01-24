@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,7 +16,35 @@
 set -exuo pipefail
 
 
-function ansible_hosts () {
+function ansible_adhoc () {
+
+    # Run ansible ad-hoc command module on hosts in working topology file.
+    #
+    # Variable read:
+    # - ${WORKING_TOPOLOGY} - Reserved working topology.
+    # - ${TOOLS_DIR} - CSIT tools directory, where testbed-setup is located.
+
+    set -exuo pipefail
+
+    if ! installed sshpass; then
+        die "Please install sshpass!"
+    fi
+
+    hosts=($(fgrep host "${WORKING_TOPOLOGY}" | cut -d ":" -f 2)) || {
+        die "Failed to read hosts from working topology!"
+    }
+    pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
+    ANSIBLE_STDOUT_CALLBACK=yaml ansible \
+        --vault-password-file=vault_pass \
+        --extra-vars '@vault.yml' \
+        --inventory inventories/lf_inventory/hosts site.yaml \
+        --limit "$(echo ${hosts[@]//\"})" \
+        --module-name shell \
+        --args \"$(echo $@)\" || die "Failed to run ansible on host!"
+    popd || die "Popd failed!"
+}
+
+function ansible_playbook () {
 
     # Run ansible playbook on hosts in working topology file. Ansible scope is
     # determined by tags passed as parameters to this function.
@@ -31,11 +59,6 @@ function ansible_hosts () {
         die "Please install sshpass!"
     fi
 
-    if ! installed ansible-playbook; then
-        # TODO: Consider moving to requirements.txt?
-        pip install ansible==2.7.8 || die "Install ansible via PIP failed!"
-    fi
-
     hosts=($(fgrep host "${WORKING_TOPOLOGY}" | cut -d ":" -f 2)) || {
         die "Failed to read hosts from working topology!"
     }
@@ -48,6 +71,7 @@ function ansible_hosts () {
         --tags "$(echo $@)" || die "Failed to run ansible on host!"
     popd || die "Popd failed!"
 }
+
 
 function installed () {
 
