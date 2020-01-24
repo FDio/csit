@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0cc1cecf_b75787ec",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-24T09:39:05Z",
+      "side": 1,
+      "message": "- 1.0\n\n- Plus \"Measure and show latency at specified rate | Latency at 10% PDR:\" should not be running for e.g IMIX (waste of time)\n\n- Per my conversation with Tibor we should do Python code (not Robot KW) so we can create JSON with outputs. Look at the test message mess. Parsing JSON out of single KW is much cleaner than this regexp parsing.",
+      "range": {
+        "startLine": 120,
+        "startChar": 11,
+        "endLine": 120,
+        "endChar": 17
+      },
+      "revId": "310db64d1a4fc1a699899ec5d83d668b9910a5b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
