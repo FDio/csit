@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80b0bb37_cd6d5914",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-24T17:36:08Z",
+      "side": 1,
+      "message": "dot1q-l2bdvxlan-gbp\n\nSuite tags are different. Lowercase and have to match part of suite name (so dashes instead underscores used by most other tags). And previously I have not realized eth- should not be there if there is dot1q- (or dot1ad-).",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 38
+      },
+      "revId": "43695ad83e234937c16ef2fd21c856dff56c678a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
