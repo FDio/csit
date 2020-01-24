@@ -22,6 +22,30 @@
       "revId": "310db64d1a4fc1a699899ec5d83d668b9910a5b8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8959b779_62d500ac",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-24T14:21:17Z",
+      "side": 1,
+      "message": "\u003e 1.0\n\nIn 24427 I changed from 2.0 to 1.0, but Maciek told me to restore the previous parameters. I agree that 1.0 should be enough, we just need a consensus on what value to use in rls2001.\n\n\u003e 10% PDR:\" should not be running for e.g IMIX\n\nYeah, IMIX tests do not measure latency at all. And we already plan to skip some measurements (so that we only have 6 lines in one figure). My approach is to wait for Tibor and Maciek to approve what will be shown, and only then remove what is not needed (so Tibor has more data while he is experimenting).\nAnyway, this change is just about the stats trials. Latency and other tweaking will be in a separate change.\n\n\u003e so we can create JSON with outputs.\n\nWhen I asked Tibor (just before creating 24427), he said that approach will take some time, and for now test message is good enough.\n\n\u003e Parsing JSON out of single KW is much cleaner than this regexp parsing.\n\nI agree, but PAL is not ready for that, yet. I assume we will start converting away from test messages after rls2001.",
+      "parentUuid": "0cc1cecf_b75787ec",
+      "range": {
+        "startLine": 120,
+        "startChar": 11,
+        "endLine": 120,
+        "endChar": 17
+      },
+      "revId": "310db64d1a4fc1a699899ec5d83d668b9910a5b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
