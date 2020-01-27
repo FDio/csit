@@ -654,9 +654,9 @@ class ExecutionChecker(ResultVisitor):
             },
         }
 
-        groups = re.search(self.REGEX_NDRPDR_LAT, msg)
+        groups = re.search(self.REGEX_NDRPDR_LAT_LONG, msg)
         if groups is None:
-            groups = re.search(self.REGEX_NDRPDR_LAT_LONG, msg)
+            groups = re.search(self.REGEX_NDRPDR_LAT, msg)
 
         if groups is None:
             return latency, u"FAIL"
@@ -687,12 +687,14 @@ class ExecutionChecker(ResultVisitor):
 
             return rval
 
+        logging.info(f"Last index: {groups.lastindex}")
         try:
             latency[u"NDR"][u"direction1"] = process_latency(groups.group(1))
             latency[u"NDR"][u"direction2"] = process_latency(groups.group(2))
             latency[u"PDR"][u"direction1"] = process_latency(groups.group(3))
             latency[u"PDR"][u"direction2"] = process_latency(groups.group(4))
             if groups.lastindex == 4:
+                logging.info("groups.lastindex == 4")
                 return latency, u"PASS"
         except (IndexError, ValueError):
             pass
