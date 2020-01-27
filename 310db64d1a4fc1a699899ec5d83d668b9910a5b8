@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "81bf907f_8d58105b",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-27T10:42:42Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "310db64d1a4fc1a699899ec5d83d668b9910a5b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0cc1cecf_b75787ec",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 2
@@ -61,6 +84,30 @@
       "side": 1,
       "message": "\u003e for now test message is good enough\n\nYes, for now. For rls2001 I would keep this ugly test message, but then I\u0027d like to implement a KW to provide all test results in a single JSON structure, plus necessary changes in PAL.",
       "parentUuid": "8959b779_62d500ac",
+      "range": {
+        "startLine": 120,
+        "startChar": 11,
+        "endLine": 120,
+        "endChar": 17
+      },
+      "revId": "310db64d1a4fc1a699899ec5d83d668b9910a5b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dab0e25_7a654b76",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-01-27T10:42:42Z",
+      "side": 1,
+      "message": "\u003e In 24427 I changed from 2.0 to 1.0, but Maciek told me to restore the previous parameters. I agree that 1.0 should be enough, we just need a consensus on what value to use in rls2001.\n\nput there 1.0. For show run analysis it has no impact.",
+      "parentUuid": "3ac02aa0_64bcabbb",
       "range": {
         "startLine": 120,
         "startChar": 11,
