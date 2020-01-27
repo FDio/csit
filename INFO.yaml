@@ -1,14 +1,14 @@
 ---
 project: 'csit'
 project_creation_date: '2016-01-05'
-project_category: ''
+project_category: 'Integration & Testing'
 lifecycle_state: 'Incubation'
 project_lead: &csit_ptl
     name: 'Maciek Konstantynowicz'
     email: 'mkonstan@cisco.com'
     id: 'mackonstan'
     company: 'cisco'
-    timezone: ''
+    timezone: 'Unknown/Unknown'
 primary_contact: *csit_ptl
 issue_tracking:
     type: 'jira'
@@ -19,14 +19,14 @@ mailing_list:
     url: 'https://lists.fd.io/g/csit-dev'
     tag: 'n/a'
 realtime_discussion:
-    type: 'irc'
-    server: 'freenode'
-    channel: 'fdio-csit'
+    type: 'Slack'
+    server: 'fdio-project.slack.com'
+    channel: '#csit-dev'
 meetings:
     - type: 'zoom'
       agenda: 'https://wiki.fd.io/view/CSIT/Meeting'
       url: 'https://wiki.fd.io/view/CSIT/Meeting'
-      server: 'n/a'
+      server: ''
       channel: 'fdio-csit'
       repeats: 'weekly'
       time: '14:00 UTC'
@@ -38,7 +38,7 @@ committers:
       company: 'cisco'
       email: 'ckoester@cisco.com'
       id: 'ckoester'
-      timezone: ''
+      timezone: 'Unknown/Unknown'
     - name: 'Dave Wallace'
       company: ''
       email: 'dwallacelf@gmail.com'
@@ -48,7 +48,7 @@ committers:
       company: 'intel'
       email: 'fangyinx.hu@intel.com'
       id: 'hufangyin2016'
-      timezone: ''
+      timezone: 'Unknown/Unknown'
     - name: 'Jan Gelety'
       company: 'cisco'
       email: 'jgelety@cisco.com'
@@ -80,12 +80,8 @@ committers:
       id: 'vrpolak'
       timezone: 'Europe/Bratislava'
 tsc:
-    # yamllint disable rule:line-length
-    approval: ''
+    approval: 'https://wiki.fd.io/view/TSC/Meeting_Minutes'
     changes:
-        - type: 'removal'
-          name: ''
-          link: ''
-        - type: 'promotion'
+        - type: ''
           name: ''
           link: ''
