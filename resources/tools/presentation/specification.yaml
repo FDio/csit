@@ -837,6 +837,13 @@
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
+        - 5   # NDRPDR sel
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
     dpdk-performance-changes-3n-hsw:
       - "dpdk-performance-changes-3n-hsw-h1"
       - "dpdk-performance-changes-3n-hsw-ref"
@@ -873,6 +880,13 @@
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
     dpdk-performance-changes-3n-skx:
       - "dpdk-performance-changes-3n-skx-h1"
       - "dpdk-performance-changes-3n-skx-ref"
@@ -909,6 +923,13 @@
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
+        - 5   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
     dpdk-performance-changes-2n-skx:
       - "dpdk-performance-changes-2n-skx-h1"
       - "dpdk-performance-changes-2n-skx-ref"
