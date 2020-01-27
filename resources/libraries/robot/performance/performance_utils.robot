@@ -34,7 +34,9 @@
 | | ... | Fail if a resulting lower bound has too high loss fraction.
 | | ... | Input rates are understood as uni-directional,
 | | ... | reported result contains aggregate rates.
-| | ... | Currently, the min_rate value is hardcoded to match test teardowns.
+| | ... | Currently, the min_rate value is hardcoded to 90kpps,
+| | ... | allowing measurement at 10% of the discovered rate
+| | ... | without breaking latency streams.
 | |
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
@@ -69,7 +71,7 @@
 | | ... | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
 | |
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${10000} | ${max_rate}
+| | ... | ${traffic_profile} | ${90000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
