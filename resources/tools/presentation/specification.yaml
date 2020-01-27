@@ -614,13 +614,6 @@
         - 22  # NFV
         - 31  # NFV
         - 32  # NFV
-        - 35  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 43  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 45  # NDRPDR sel
-        - 46  # NDRPDR sel
     vpp-performance-changes-nfv-2n-skx-cmp:
       # TODO: Replace
       # csit-vpp-perf-verify-2001-2n-skx:
