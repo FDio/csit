@@ -1605,6 +1605,63 @@
       paper_bgcolor: "white"
       plot_bgcolor: "white"
 
+    plot-hdrh-latency-by-percentile:
+      title:
+        text: "<b>Latency by Percentile Distribution</b>"
+        xanchor: "center"
+        x: 0.5
+        font:
+          size: 18
+      showlegend: True
+      legend:
+        traceorder: "normal"
+        orientation: "h"
+        font:
+          size: 16
+        xanchor: "left"
+        yanchor: "top"
+        x: 0
+        y: -0.2
+        bgcolor: "rgba(255, 255, 255, 0)"
+        bordercolor: "rgba(255, 255, 255, 0)"
+      xaxis:
+        type: "log"
+        title: "<b>Percentile [%]</b>"
+        titlefont:
+          size: 14
+        autorange: False
+        fixedrange: False
+        range: [1e-6, 3]
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(220, 220, 220)"
+        tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8]
+        tickangle: 315
+        ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999, 99.99999, 99.999999]
+        tickfont:
+          size: 14
+      yaxis:
+        title: "<b>Packet Latency [uSec]</b>"
+        titlefont:
+          size: 14
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(220, 220, 220)"
+        tickfont:
+          size: 14
+      width: 700
+      height: 700
+      paper_bgcolor: "white"
+      plot_bgcolor: "white"
+
 - type: "static"
   src-path: "{DIR[RST]}"
   dst-path: "{DIR[WORKING,SRC]}"
@@ -22611,3 +22668,37 @@
     - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-8t4c-ethip4-ip4base-l3fwd-ndrpdr"
   layout:
     layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency by percentile: 2n-skx-xxv710"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Avf-Eth-L2Xcbase-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Avf-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale1mmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-by-percentile"
