@@ -654,9 +654,9 @@ class ExecutionChecker(ResultVisitor):
             },
         }
 
-        groups = re.search(self.REGEX_NDRPDR_LAT, msg)
+        groups = re.search(self.REGEX_NDRPDR_LAT_LONG, msg)
         if groups is None:
-            groups = re.search(self.REGEX_NDRPDR_LAT_LONG, msg)
+            groups = re.search(self.REGEX_NDRPDR_LAT, msg)
 
         if groups is None:
             return latency, u"FAIL"
