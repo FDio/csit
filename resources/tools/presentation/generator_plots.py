@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -60,7 +60,8 @@ def generate_plots(spec, data):
         u"plot_http_server_perf_box": plot_http_server_perf_box,
         u"plot_nf_heatmap": plot_nf_heatmap,
         u"plot_lat_hdrh_bar_name": plot_lat_hdrh_bar_name,
-        u"plot_lat_hdrh_percentile": plot_lat_hdrh_percentile
+        u"plot_lat_hdrh_percentile": plot_lat_hdrh_percentile,
+        u"plot_hdrh_lat_by_percentile": plot_hdrh_lat_by_percentile
     }
 
     logging.info(u"Generating the plots ...")
@@ -181,6 +182,155 @@ def plot_lat_hdrh_percentile(plot, input_data):
                    filename=f"{plot[u'output-file']}{file_type}")
     except PlotlyError as err:
         logging.error(f"   Finished with error: {repr(err)}")
+
+
+def plot_hdrh_lat_by_percentile(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_hdrh_lat_by_percentile
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    logging.info(
+        f"    Creating the data set for the {plot.get(u'type', u'')} "
+        f"{plot.get(u'title', u'')}."
+    )
+    data = input_data.filter_tests_by_name(
+        plot, params=[u"latency", u"parent", u"tags", u"type"])
+    if data is None or len(data[0][0]) == 0:
+        logging.error(u"No data.")
+        return
+
+    desc = {
+        u"LAT0": u"No load",
+        u"PDR10": u"Low load: 10% PDR background traffic",
+        u"PDR50": u"Medium load: 50% PDR background traffic",
+        u"PDR90": u"High load: 90% PDR background traffic",
+        u"PDR": u"Full load: 100% PDR background traffic",
+        u"NDR10": u"Low load: 10% NDR background traffic",
+        u"NDR50": u"Medium load: 50% NDR background traffic",
+        u"NDR90": u"High load: 90% NDR background traffic",
+        u"NDR": u"Full load: 100% NDR background traffic"
+    }
+
+    graphs = [
+        u"LAT0",
+        u"PDR10",
+        u"PDR50",
+        u"PDR90",
+        u"PDR",
+        u"NDR"
+    ]
+
+    for test in data[0][0]:
+        try:
+            if test[u"type"] not in (u"NDRPDR",):
+                logging.warning(f"Invalid test type: {test[u'type']}")
+                continue
+            name = re.sub(REGEX_NIC, u"", test[u"parent"].
+                          replace(u'-ndrpdr', u'').replace(u'2n1l-', u''))
+
+            logging.info(f"Generating the graph: {name}")
+
+            fig = make_subplots(
+                rows=1,
+                cols=2,
+                column_widths=[0.5, 0.5],
+                shared_xaxes=True,
+                subplot_titles=(
+                    u"<b>Direction: W-E</b>",
+                    u"<b>Direction: E-W</b>"
+                ),
+                specs=[[{"type": "scatter"}, {"type": "scatter"}], ]
+            )
+            layout = deepcopy(plot[u"layout"])
+
+            for color, plot in enumerate(graphs):
+                for idx, direction in enumerate((u"direction1", u"direction2")):
+                    xaxis = list()
+                    yaxis = list()
+                    hovertext = list()
+                    hdr_lat = test[u"latency"][plot][direction][u"hdrh"]
+                    # TODO: Workaround, HDRH data must be aligned to 4
+                    #       bytes, remove when not needed.
+                    hdr_lat += u"=" * (len(hdr_lat) % 4)
+                    decoded = hdrh.histogram.HdrHistogram.decode(hdr_lat)
+                    for item in decoded.get_recorded_iterator():
+                        percentile = item.percentile_level_iterated_to
+                        xaxis.append((100.0 / (100.0 - percentile))
+                                     if percentile != 100.0 else 1e6)
+                        yaxis.append(item.value_iterated_to)
+                        hovertext.append(
+                            f"<b>{desc[plot]}</b><br>"
+                            f"Percentile: {percentile:.5f}%<br>"
+                            f"Latency: {item.value_iterated_to}uSec"
+                        )
+                    fig.add_trace(
+                        plgo.Scatter(
+                            x=xaxis,
+                            y=yaxis,
+                            name=desc[plot],
+                            mode=u"lines",
+                            legendgroup=desc[plot],
+                            showlegend=bool(idx),
+                            line=dict(
+                                color=COLORS[color]
+                            ),
+                            hovertext=hovertext,
+                            hoverinfo=u"text"
+                        ),
+                        row=1,
+                        col=idx + 1,
+                    )
+                    fig.update_xaxes(
+                        row=1,
+                        col=idx + 1,
+                        **layout[u"xaxis"]
+                    )
+                    fig.update_yaxes(
+                        row=1,
+                        col=idx + 1,
+                        **layout[u"yaxis"]
+                    )
+            try:
+                del layout[u"xaxis"]
+            except KeyError:
+                pass
+            try:
+                del layout[u"yaxis"]
+            except KeyError:
+                pass
+
+            layout[u"title"][u"text"] = f"<b>Latency:</b> {name}"
+            fig.update_layout(layout)
+
+            # Create plot
+            file_name = (f"{plot[u'output-file']}-"
+                         f"{name}"
+                         f"{plot.get(u'output-file-type', u'.html')}")
+            logging.info(f"    Writing file {file_name}")
+
+            try:
+                # Export Plot
+                ploff.plot(fig, show_link=False, auto_open=False,
+                           filename=file_name)
+            except PlotlyError as err:
+                logging.error(f"   Finished with error: {repr(err)}")
+
+        except hdrh.codec.HdrLengthException as err:
+            logging.warning(repr(err))
+            continue
+
+        except (ValueError, KeyError) as err:
+            logging.warning(repr(err))
+            continue
+
+        finally:
+            del layout
 
 
 def plot_lat_hdrh_bar_name(plot, input_data):
