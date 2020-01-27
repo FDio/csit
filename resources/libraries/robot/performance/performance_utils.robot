@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -111,9 +111,13 @@
 | | Measure and show latency at specified rate | Latency at 90% PDR:
 | | ... | ${latency_duration} | ${rate}pps | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
-| | # Finally, a trial with runtime and other stats.
+| | # Finally, trials with runtime and other stats.
+| | # We expect NDR and PDR to have different-looking stats.
 | | Send traffic at specified rate
 | | ... | ${1.0} | ${ndr_per_stream}pps | ${framesize} | ${traffic_profile}
+| | ... | traffic_directions=${traffic_directions}
+| | Send traffic at specified rate
+| | ... | ${1.0} | ${pdr_per_stream}pps | ${framesize} | ${traffic_profile}
 | | ... | traffic_directions=${traffic_directions}
 
 | Find Throughput Using MLRsearch
