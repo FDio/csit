@@ -46,6 +46,30 @@
       "revId": "310db64d1a4fc1a699899ec5d83d668b9910a5b8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ac02aa0_64bcabbb",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-01-27T09:13:43Z",
+      "side": 1,
+      "message": "\u003e for now test message is good enough\n\nYes, for now. For rls2001 I would keep this ugly test message, but then I\u0027d like to implement a KW to provide all test results in a single JSON structure, plus necessary changes in PAL.",
+      "parentUuid": "8959b779_62d500ac",
+      "range": {
+        "startLine": 120,
+        "startChar": 11,
+        "endLine": 120,
+        "endChar": 17
+      },
+      "revId": "310db64d1a4fc1a699899ec5d83d668b9910a5b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
