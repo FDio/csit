@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ff4d273_ed9d0009",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-27T11:16:43Z",
+      "side": 1,
+      "message": "dot1q-l2bdvxlan\nOr some other expression (for example we already have tests with dot1qip4vxlan-l2bd), but in that case the filename should match it.",
+      "range": {
+        "startLine": 99,
+        "startChar": 14,
+        "endLine": 99,
+        "endChar": 34
+      },
+      "revId": "4d836f6440fe887b4e41b780138fd9c132743386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
