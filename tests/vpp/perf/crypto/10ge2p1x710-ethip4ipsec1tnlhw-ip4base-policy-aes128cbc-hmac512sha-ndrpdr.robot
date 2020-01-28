@@ -74,8 +74,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES_CBC_128 / HMAC_512_SHA in each
-| | ... | direction.\
+| | ... | [Cfg] DUTs runs IPsec tunneling AES_CBC_128 / HMAC_512_SHA config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | |
