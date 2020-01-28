@@ -165,10 +165,10 @@
 | | ${action}= | Policy Action Bypass
 | | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_hi} | ${action}
 | | ... | inbound=${TRUE} | proto=${ESP_PROTO} | is_ipv6=${is_ipv6}
-| | ... | laddr_range=${tg_tun_ip} | raddr_range=${dut_tun_ip}
+| | ... | laddr_range=${r_tunnel} | raddr_range=${l_tunnel}
 | | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_hi} | ${action}
 | | ... | inbound=${FALSE} | proto=${ESP_PROTO} | is_ipv6=${is_ipv6}
-| | ... | laddr_range=${dut_tun_ip} | raddr_range=${tg_tun_ip}
+| | ... | laddr_range=${l_tunnel} | raddr_range=${r_tunnel}
 | | ${action}= | Policy Action Protect
 | | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_lo} | ${action}
 | | ... | sa_id=${r_sa_id} | laddr_range=${l_ip}
