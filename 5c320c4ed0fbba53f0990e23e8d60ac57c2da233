@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03cf545b_31cbd26f",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4-vxlan1ip4src254ip4dst254-bvi.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-28T12:54:55Z",
+      "side": 1,
+      "message": "Now I see we use this in many existing traffic profiles. I prefer STLVmFlowVarRepeatableRandom (for line 101).\nBut we can unify later, this is good enough for now.",
+      "range": {
+        "startLine": 106,
+        "startChar": 23,
+        "endLine": 106,
+        "endChar": 32
+      },
+      "revId": "5c320c4ed0fbba53f0990e23e8d60ac57c2da233",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67023df9_fc26c06c",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-28T12:54:55Z",
+      "side": 1,
+      "message": "Remove.",
+      "range": {
+        "startLine": 26,
+        "startChar": 32,
+        "endLine": 26,
+        "endChar": 123
+      },
+      "revId": "5c320c4ed0fbba53f0990e23e8d60ac57c2da233",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
