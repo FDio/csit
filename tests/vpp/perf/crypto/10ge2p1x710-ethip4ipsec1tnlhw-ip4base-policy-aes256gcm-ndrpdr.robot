@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -75,7 +75,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES_256_GCM in each direction.\
+| | ... | [Cfg] DUTs runs IPsec tunneling AES_256_GCM config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | |
