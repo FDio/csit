@@ -81,11 +81,13 @@
 | | Configure manual keyed connection for IPSec
 | | ... | ${dut1} | ${dut1_if2} | ${encr_alg} | ${encr_key}
 | | ... | ${auth_alg} | ${auth_key} | ${dut1_spi} | ${dut2_spi}
-| | ... | ${dut1_to_dut2_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${laddr_ip4} | ${raddr_ip4}
+| | ... | ${addr_range}
 | | Configure manual keyed connection for IPSec
 | | ... | ${dut2} | ${dut2_if1} | ${encr_alg} | ${encr_key}
 | | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi}
-| | ... | ${dut2_to_dut1_ip4} | ${dut1_to_dut2_ip4}
+| | ... | ${dut2_if1_ip4} | ${dut1_if2_ip4} | ${laddr_ip4} | ${raddr_ip4}
+| | ... | ${addr_range}
 
 | Initialize LISP IPv6 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv6 topology on all DUT nodes \
