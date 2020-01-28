@@ -91,7 +91,7 @@
 | |
 | | # These are enums (not strings) so they cannot be in Variables table.
 | | ${encr_alg}= | Crypto Alg AES CBC 128
-| | ${auth_alg}= | Set Variable | ${NONE}
+| | ${auth_alg}= | Integ Alg SHA 512 256
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
