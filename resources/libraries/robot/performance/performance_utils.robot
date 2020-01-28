@@ -34,6 +34,9 @@
 | | ... | Fail if a resulting lower bound has too high loss fraction.
 | | ... | Input rates are understood as uni-directional,
 | | ... | reported result contains aggregate rates.
+| | ... | Additional latency measurements are performed for smaller loads,
+| | ... | their results are also displayed.
+| | ... | Finally, two measurements for runtime stats are done (not displayed).
 | | ... | Currently, the min_rate value is hardcoded to 90kpps,
 | | ... | allowing measurement at 10% of the discovered rate
 | | ... | without breaking latency streams.
@@ -80,46 +83,34 @@
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result.ndr_interval}
-| | # Rate needs to be high enough for latency streams.
-| | ${rate}= | Set Variable | ${9500}
-| | Measure and show latency at specified rate | Latency at 0%:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
-| | ... | ${traffic_profile} | ${traffic_directions}
-| | ${ndr_sum}= | Set Variable | ${result.ndr_interval.measured_low.target_tr}
-| | ${ndr_per_stream}= | Evaluate | ${ndr_sum} / float(${traffic_directions})
-| | ${rate}= | Evaluate | 0.1 * ${ndr_per_stream}
-| | Measure and show latency at specified rate | Latency at 10% NDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
-| | ... | ${traffic_profile} | ${traffic_directions}
-| | ${rate}= | Evaluate | 0.5 * ${ndr_per_stream}
-| | Measure and show latency at specified rate | Latency at 50% NDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
-| | ... | ${traffic_profile} | ${traffic_directions}
-| | ${rate}= | Evaluate | 0.9 * ${ndr_per_stream}
-| | Measure and show latency at specified rate | Latency at 90% NDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
-| | ... | ${traffic_profile} | ${traffic_directions}
 | | ${pdr_sum}= | Set Variable | ${result.pdr_interval.measured_low.target_tr}
 | | ${pdr_per_stream}= | Evaluate | ${pdr_sum} / float(${traffic_directions})
-| | ${rate}= | Evaluate | 0.1 * ${pdr_per_stream}
-| | Measure and show latency at specified rate | Latency at 10% PDR:
+| | ${ndr_sum}= | Set Variable | ${result.ndr_interval.measured_low.target_tr}
+| | ${ndr_per_stream}= | Evaluate | ${ndr_sum} / float(${traffic_directions})
+| | ${rate}= | Evaluate | 0.9 * ${pdr_per_stream}
+| | Measure and show latency at specified rate | Latency at 90% PDR:
 | | ... | ${latency_duration} | ${rate}pps | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
 | | ${rate}= | Evaluate | 0.5 * ${pdr_per_stream}
 | | Measure and show latency at specified rate | Latency at 50% PDR:
 | | ... | ${latency_duration} | ${rate}pps | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
-| | ${rate}= | Evaluate | 0.9 * ${pdr_per_stream}
-| | Measure and show latency at specified rate | Latency at 90% PDR:
+| | ${rate}= | Evaluate | 0.1 * ${pdr_per_stream}
+| | Measure and show latency at specified rate | Latency at 10% PDR:
+| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${traffic_profile} | ${traffic_directions}
+| | # Rate needs to be high enough for latency streams.
+| | ${rate}= | Set Variable | ${9500}
+| | Measure and show latency at specified rate | Latency at 0% PDR:
 | | ... | ${latency_duration} | ${rate}pps | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
 | | # Finally, trials with runtime and other stats.
 | | # We expect NDR and PDR to have different-looking stats.
 | | Send traffic at specified rate
-| | ... | ${1.0} | ${ndr_per_stream}pps | ${framesize} | ${traffic_profile}
+| | ... | ${1.0} | ${pdr_per_stream}pps | ${framesize} | ${traffic_profile}
 | | ... | traffic_directions=${traffic_directions}
 | | Send traffic at specified rate
-| | ... | ${1.0} | ${pdr_per_stream}pps | ${framesize} | ${traffic_profile}
+| | ... | ${1.0} | ${ndr_per_stream}pps | ${framesize} | ${traffic_profile}
 | | ... | traffic_directions=${traffic_directions}
 
 | Find Throughput Using MLRsearch
