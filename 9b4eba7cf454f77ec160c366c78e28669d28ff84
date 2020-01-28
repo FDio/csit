@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a838389_ef03ec38",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec20000tnlsw-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-28T11:37:51Z",
+      "side": 1,
+      "message": "By the way, this is not used as a value (that would need Set Variable), but as a keyword (constructor) returning a Python object. But I have not find a simple enough way to enhance the comment in line 92.\nAlso, for GSM tests auth_alg is None (as value, not as keyword).",
+      "range": {
+        "startLine": 94,
+        "startChar": 19,
+        "endLine": 94,
+        "endChar": 40
+      },
+      "revId": "9b4eba7cf454f77ec160c366c78e28669d28ff84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
