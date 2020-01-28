@@ -199,8 +199,10 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     fv_name=u"in_ip",
                     pkt_offset=86
                 ),
-                STLVmFixIpv4(
-                    offset = u"IP"
+                STLVmFixChecksumHw(
+                    l3_offset="IP:{}".format(0),
+                    l4_offset="UDP:{}".format(0),
+                    l4_type=CTRexVmInsFixHwCs.L4_TYPE_UDP
                 )
             ]
         )
@@ -264,8 +266,10 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     fv_name=u"in_ip",
                     pkt_offset=86
                 ),
-                STLVmFixIpv4(
-                    offset = u"IP"
+                STLVmFixChecksumHw(
+                    l3_offset="IP:{}".format(0),
+                    l4_offset="UDP:{}".format(0),
+                    l4_type=CTRexVmInsFixHwCs.L4_TYPE_UDP
                 )
             ]
         )
