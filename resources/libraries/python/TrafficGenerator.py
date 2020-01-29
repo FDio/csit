@@ -370,6 +370,7 @@ class TrafficGenerator(AbstractMeasurer):
             trex_cmd.add(u"-i")
             trex_cmd.add(u"--prefix $(hostname)")
             trex_cmd.add(u"--hdrh")
+            trex_cmd.add(u"--queue-drop")
             trex_cmd.add(u"--no-scapy-server")
             trex_cmd.add_if(u"--astf", osi_layer == u"L7")
             # OptionString does not create double space if extra is empty.
