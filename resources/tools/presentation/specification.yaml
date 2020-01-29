@@ -8128,7 +8128,7 @@
 
 ###############################################################################
 # Plots - 2n-clx NF Density - VSC - MRR IMIX
--
+
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
   algorithm: "plot_nf_heatmap"
