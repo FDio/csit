@@ -15,6 +15,7 @@ configurations:
 - CNF Service Chains Routing
 - CNF Service Pipelines Routing
 - VNF Service Chains Tunnels
+- CNF Service Chains IPSEC
 
 Each configuration is tested in a number of service density combinations
 [Number of Service Instances] x [Number of NFs per Service Instance].
@@ -27,3 +28,4 @@ resources.
     cnf_service_chains
     cnf_service_pipelines
     vnf_service_chains_vxlan
+    cnf_service_chains_ipsec
