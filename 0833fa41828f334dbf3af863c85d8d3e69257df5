@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfb5b871_b6ea560a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-29T16:33:23Z",
+      "side": 1,
+      "message": "Real life example: This [0] comment has lead [1] to tag string containing a newline:\n\n++ TEST_TAG_STRING\u003d\u0027ndrpdrAND64bANDL2BDVXLAN\nndrpdrAND64bANDL2BDVXLAN\u0027\n\n[0] https://gerrit.fd.io/r/c/csit/+/24499#message-8fb9243e_3d54a7fd\n[1] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/348/console.log.gz",
+      "range": {
+        "startLine": 9,
+        "startChar": 35,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "0833fa41828f334dbf3af863c85d8d3e69257df5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
