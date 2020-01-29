@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3dae847_24212abb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-29T14:35:29Z",
+      "side": 1,
+      "message": "See [1], compare the values displayed with the target_tr values visible few lines below.\n\n[1] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-dnv/30/archives/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k9-k2-k5-k2",
+      "range": {
+        "startLine": 12,
+        "startChar": 10,
+        "endLine": 12,
+        "endChar": 50
+      },
+      "revId": "5353c695ed6e56224548e21652a8d42c77ec9651",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
