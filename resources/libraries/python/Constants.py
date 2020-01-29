@@ -260,7 +260,7 @@ class Constants:
         u"Cisco-VIC-1385": 18750000,
         u"Intel-X520-DA2": 14880952,
         u"Intel-X553": 14880952,
-        u"Intel-X710": 14880952,
+        u"Intel-X710": 35000000,  # 14880952,
         u"Intel-XL710": 18750000,
         u"Intel-XXV710": 18750000,
         u"Mellanox-CX556A": 60000000, # 148809523,
