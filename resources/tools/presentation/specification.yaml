@@ -269,11 +269,8 @@
 
     plot-vpp-nfv-2n-skx-ndrpdr:
       # TODO: Replace the data
-      # csit-vpp-perf-verify-2001-2n-skx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 22  # NFV
-        - 31  # NFV
-        - 32  # NFV
+      csit-vpp-perf-verify-2001-2n-skx:
+        - 3  # NDRPDR sel RC2
 
     plot-vpp-nfv-2n-skx-mrr:
       # TODO: Replace the data
@@ -609,11 +606,8 @@
         - 32  # NFV
     vpp-performance-changes-nfv-2n-skx-cmp:
       # TODO: Replace
-      # csit-vpp-perf-verify-2001-2n-skx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 22  # NFV
-        - 31  # NFV
-        - 32  # NFV
+      csit-vpp-perf-verify-2001-2n-skx:
+        - 3  # NDRPDR sel RC2
     vpp-performance-changes-nfv-2n-skx:
       - "vpp-performance-changes-nfv-2n-skx-ref"
       - "vpp-performance-changes-nfv-2n-skx-cmp"
@@ -1784,9 +1778,6 @@
       - 29  # TCP
       - 30  # TCP
       - 58  # TCP
-      - 22  # NFV
-      - 31  # NFV
-      - 32  # NFV
       - 71  # NFV MRR
       - 113 # NFV reconf sel
       - 114 # NFV reconf sel
@@ -1967,7 +1958,7 @@
     data: "vpp-soak-vs-ndr-2n-skx-cmp"
   data: "vpp-soak-vs-ndr-2n-skx"
   include-tests: "NDR"
-  filter: "('NDRPDR' or 'SOAK')"
+  filter: "('NDRPDR' or 'SOAK') and not 'NF_DENSITY'"
   parameters:
     - "throughput"
     - "name"
@@ -1988,7 +1979,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2008,7 +1999,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2028,7 +2019,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2048,7 +2039,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2068,7 +2059,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'MRR'"
+  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2088,7 +2079,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'MRR'"
+  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2108,7 +2099,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'8T4C' and 'MRR'"
+  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2128,7 +2119,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2148,7 +2139,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2168,7 +2159,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2188,7 +2179,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2208,7 +2199,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'MRR'"
+  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2228,7 +2219,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'MRR'"
+  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2248,7 +2239,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'8T4C' and 'MRR'"
+  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2275,7 +2266,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'NDRPDR'"
+  filter: "'1T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2298,7 +2289,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'NDRPDR'"
+  filter: "'2T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2321,7 +2312,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'NDRPDR'"
+  filter: "'1T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2344,7 +2335,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'NDRPDR'"
+  filter: "'2T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2370,7 +2361,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2397,7 +2388,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2424,7 +2415,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2451,7 +2442,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2478,7 +2469,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2505,7 +2496,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2532,7 +2523,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2559,7 +2550,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2579,7 +2570,7 @@
     data: "vpp-performance-changes-nfv-2n-skx-cmp"
   data: "vpp-performance-changes-nfv-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2599,7 +2590,7 @@
     data: "vpp-performance-changes-nfv-2n-skx-cmp"
   data: "vpp-performance-changes-nfv-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2619,7 +2610,7 @@
     data: "vpp-performance-changes-nfv-2n-skx-cmp"
   data: "vpp-performance-changes-nfv-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -2639,7 +2630,7 @@
     data: "vpp-performance-changes-nfv-2n-skx-cmp"
   data: "vpp-performance-changes-nfv-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3146,7 +3137,7 @@
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'MRR'"
+  filter: "'1T1C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3168,7 +3159,7 @@
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'MRR'"
+  filter: "'2T2C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3190,7 +3181,7 @@
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T4C' and 'MRR'"
+  filter: "'4T4C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3212,7 +3203,7 @@
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'MRR'"
+  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3234,7 +3225,7 @@
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'MRR'"
+  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3256,7 +3247,7 @@
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'8T4C' and 'MRR'"
+  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3278,7 +3269,7 @@
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'MRR'"
+  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3300,7 +3291,7 @@
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'MRR'"
+  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3322,7 +3313,7 @@
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'8T4C' and 'MRR'"
+  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3341,7 +3332,7 @@
     data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-nfv-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'MRR'"
+  filter: "'2T1C' and 'MRR' and 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3360,7 +3351,7 @@
     data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-nfv-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'MRR'"
+  filter: "'4T2C' and 'MRR' and 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3379,7 +3370,7 @@
     data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-nfv-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'8T4C' and 'MRR'"
+  filter: "'8T4C' and 'MRR' and 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -6243,8 +6234,7 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
-           '64B' and
+           '118' and
            '2T1C' and
            'MRR'"
   parameters:
@@ -6270,8 +6260,7 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
-           '64B' and
+           '118' and
            '4T2C' and
            'MRR'"
   parameters:
@@ -6297,8 +6286,7 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
-           '64B' and
+           '118' and
            '8T4C' and
            'MRR'"
   parameters:
@@ -6325,7 +6313,6 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
            'IMIX' and
            '2T1C' and
            'MRR'"
@@ -6352,7 +6339,6 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
            'IMIX' and
            '4T2C' and
            'MRR'"
@@ -6379,7 +6365,6 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
            'IMIX' and
            '8T4C' and
            'MRR'"
@@ -6407,8 +6392,7 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
-           '64B' and
+           '118' and
            '2T1C' and
            'NDRPDR'"
   parameters:
@@ -6434,8 +6418,7 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
-           '64B' and
+           '118' and
            '4T2C' and
            'NDRPDR'"
   parameters:
@@ -6461,8 +6444,7 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
-           '64B' and
+           '118' and
            '8T4C' and
            'NDRPDR'"
   parameters:
@@ -6488,8 +6470,7 @@
            'NF_DENSITY' and
            'VHOST' and
            'VXLAN' and
-           'CHAIN' and
-           'NF_VPPIP4' and
+           'CHAIN' a
            'IMIX' and
            '2T1C' and
            'NDRPDR'"
@@ -6516,7 +6497,6 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
            'IMIX' and
            '4T2C' and
            'NDRPDR'"
@@ -6543,7 +6523,6 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
            'IMIX' and
            '8T4C' and
            'NDRPDR'"
@@ -6571,8 +6550,7 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
-           '64B' and
+           '118' and
            '2T1C' and
            'NDRPDR'"
   parameters:
@@ -6598,8 +6576,7 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
-           '64B' and
+           '118' and
            '4T2C' and
            'NDRPDR'"
   parameters:
@@ -6625,8 +6602,7 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
-           '64B' and
+           '118' and
            '8T4C' and
            'NDRPDR'"
   parameters:
@@ -6653,7 +6629,6 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
            'IMIX' and
            '2T1C' and
            'NDRPDR'"
@@ -6680,7 +6655,6 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
            'IMIX' and
            '4T2C' and
            'NDRPDR'"
@@ -6707,7 +6681,6 @@
            'VHOST' and
            'VXLAN' and
            'CHAIN' and
-           'NF_VPPIP4' and
            'IMIX' and
            '8T4C' and
            'NDRPDR'"
