@@ -523,6 +523,9 @@ function get_test_tag_string () {
         cmd=("grep" "-oP" '\S*'"${trigger}"'\S*\s\K.+$') || die "Unset trigger?"
         # On parsing error, TEST_TAG_STRING probably stays empty.
         TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}") || true
+        if [[ "${TEST_TAG_STRING}" == *$'\n'* ]]; then
+            die "REFUSING COMMENT WITH MULTIPLE TRIGGERS"
+        fi
     fi
 }
 
