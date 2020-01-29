@@ -170,7 +170,7 @@
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
-| | Return From Keyword | ${result.pdr_interval.measured_low.transmit_rate}
+| | Return From Keyword | ${result.pdr_interval.measured_low.target_tr}
 
 | Find critical load using PLRsearch
 | | [Documentation]
@@ -287,15 +287,15 @@
 | |
 | | ${frame_size} = | Get Average Frame Size | ${frame_size}
 | | Display single bound | NDR_LOWER
-| | ... | ${result.ndr_interval.measured_low.transmit_rate} | ${frame_size}
+| | ... | ${result.ndr_interval.measured_low.target_tr} | ${frame_size}
 | | ... | ${result.ndr_interval.measured_low.latency}
 | | Display single bound | NDR_UPPER
-| | ... | ${result.ndr_interval.measured_high.transmit_rate} | ${frame_size}
+| | ... | ${result.ndr_interval.measured_high.target_tr} | ${frame_size}
 | | Display single bound | PDR_LOWER
-| | ... | ${result.pdr_interval.measured_low.transmit_rate} | ${frame_size}
+| | ... | ${result.pdr_interval.measured_low.target_tr} | ${frame_size}
 | | ... | ${result.pdr_interval.measured_low.latency}
 | | Display single bound | PDR_UPPER
-| | ... | ${result.pdr_interval.measured_high.transmit_rate} | ${frame_size}
+| | ... | ${result.pdr_interval.measured_high.target_tr} | ${frame_size}
 
 | Display result of soak search
 | | [Documentation]
