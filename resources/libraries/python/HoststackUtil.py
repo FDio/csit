@@ -121,7 +121,7 @@ class HoststackUtil():
         :type node: dict
         :type quic_crypto_engine: str
         """
-        vpp_crypto_engines = {u"openssl", u"ia32", u"ipsecmb"}
+        vpp_crypto_engines = {u"openssl", u"native", u"ipsecmb"}
         if quic_crypto_engine == u"nocrypto":
             logger.trace(u"No QUIC crypto engine.")
             return

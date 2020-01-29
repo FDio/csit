@@ -675,7 +675,7 @@ class ContainerEngine:
         :type cpuset_cpus: list
         """
         vpp_config = self.create_base_vpp_startup_config(cpuset_cpus)
-        vpp_config.add_plugin(u"enable", u"crypto_ia32_plugin.so")
+        vpp_config.add_plugin(u"enable", u"crypto_native_plugin.so")
         vpp_config.add_plugin(u"enable", u"crypto_ipsecmb_plugin.so")
         vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
 
