@@ -209,9 +209,20 @@ class ExecutionChecker(ResultVisitor):
                                    r'PDR_LOWER:\s(\d+.\d+).*\n.*\n'
                                    r'PDR_UPPER:\s(\d+.\d+)')
 
-    REGEX_NDRPDR_LAT = re.compile(r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
-                                  r'LATENCY.*\[\'(.*)\', \'(.*)\'\]')
-
+    # TODO: Remove when not needed
+    REGEX_NDRPDR_LAT_BASE = re.compile(
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]'
+    )
+    REGEX_NDRPDR_LAT = re.compile(
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]'
+    )
+    # TODO: Remove when not needed
     REGEX_NDRPDR_LAT_LONG = re.compile(
         r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
         r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n'
@@ -628,18 +639,6 @@ class ExecutionChecker(ResultVisitor):
                 u"direction1": copy.copy(latency_default),
                 u"direction2": copy.copy(latency_default)
             },
-            u"NDR10": {
-                u"direction1": copy.copy(latency_default),
-                u"direction2": copy.copy(latency_default)
-            },
-            u"NDR50": {
-                u"direction1": copy.copy(latency_default),
-                u"direction2": copy.copy(latency_default)
-            },
-            u"NDR90": {
-                u"direction1": copy.copy(latency_default),
-                u"direction2": copy.copy(latency_default)
-            },
             u"PDR10": {
                 u"direction1": copy.copy(latency_default),
                 u"direction2": copy.copy(latency_default)
@@ -654,10 +653,12 @@ class ExecutionChecker(ResultVisitor):
             },
         }
 
+        # TODO: Rewrite when long and base are not needed
         groups = re.search(self.REGEX_NDRPDR_LAT_LONG, msg)
         if groups is None:
             groups = re.search(self.REGEX_NDRPDR_LAT, msg)
-
+        if groups is None:
+            groups = re.search(self.REGEX_NDRPDR_LAT_BASE, msg)
         if groups is None:
             return latency, u"FAIL"
 
@@ -697,6 +698,33 @@ class ExecutionChecker(ResultVisitor):
         except (IndexError, ValueError):
             pass
 
+        try:
+            latency[u"PDR90"][u"direction1"] = process_latency(groups.group(5))
+            latency[u"PDR90"][u"direction2"] = process_latency(groups.group(6))
+            latency[u"PDR50"][u"direction1"] = process_latency(groups.group(7))
+            latency[u"PDR50"][u"direction2"] = process_latency(groups.group(8))
+            latency[u"PDR10"][u"direction1"] = process_latency(groups.group(9))
+            latency[u"PDR10"][u"direction2"] = process_latency(groups.group(10))
+            latency[u"LAT0"][u"direction1"] = process_latency(groups.group(11))
+            latency[u"LAT0"][u"direction2"] = process_latency(groups.group(12))
+            if groups.lastindex == 12:
+                return latency, u"PASS"
+        except (IndexError, ValueError):
+            pass
+
+        # TODO: Remove when not needed
+        latency[u"NDR10"] = {
+            u"direction1": copy.copy(latency_default),
+            u"direction2": copy.copy(latency_default)
+        }
+        latency[u"NDR50"] = {
+            u"direction1": copy.copy(latency_default),
+            u"direction2": copy.copy(latency_default)
+        }
+        latency[u"NDR90"] = {
+            u"direction1": copy.copy(latency_default),
+            u"direction2": copy.copy(latency_default)
+        }
         try:
             latency[u"LAT0"][u"direction1"] = process_latency(groups.group(5))
             latency[u"LAT0"][u"direction2"] = process_latency(groups.group(6))
