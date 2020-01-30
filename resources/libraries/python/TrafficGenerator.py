@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,6 +19,7 @@ from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from .Constants import Constants
+from .CpuUtils import CpuUtils
 from .DropRateSearch import DropRateSearch
 from .MLRsearch.AbstractMeasurer import AbstractMeasurer
 from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
@@ -278,6 +279,11 @@ class TrafficGenerator(AbstractMeasurer):
                 if1_adj_addr, if2_adj_addr = if2_adj_addr, if1_adj_addr
                 self._ifaces_reordered = True
 
+            master_thread_id, latency_thread_id, socket, threads = \
+                CpuUtils.get_affinity_trex(
+                    self._node, if1_pci, if2_pci,
+                    tg_dtc=Constants.TREX_CORE_COUNT)
+
             if osi_layer in (u"L2", u"L3"):
                 dst_mac0 = f"0x{if1_adj_addr.replace(u':', u',0x')}"
                 src_mac0 = f"0x{if1_addr.replace(u':', u',0x')}"
@@ -287,6 +293,7 @@ class TrafficGenerator(AbstractMeasurer):
                     self._node,
                     f"sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
                     f"- version: 2\n"
+                    f"  c: {len(threads)}\n"
                     f"  limit_memory: {Constants.TREX_LIMIT_MEMORY}\n"
                     f"  interfaces: [\"{if1_pci}\",\"{if2_pci}\"]\n"
                     f"  port_info:\n"
@@ -294,14 +301,21 @@ class TrafficGenerator(AbstractMeasurer):
                     f"        src_mac: [{src_mac0}]\n"
                     f"      - dest_mac: [{dst_mac1}]\n"
                     f"        src_mac: [{src_mac1}]\n"
+                    f"  platform :\n"
+                    f"      master_thread_id: {master_thread_id}\n"
+                    f"      latency_thread_id: {latency_thread_id}\n"
+                    f"      dual_if:\n"
+                    f"          - socket: {socket}\n"
+                    f"            threads: {threads}\n"
                     f"EOF'",
-                    sudo=True, message=u"TRex config generation error"
+                    sudo=True, message=u"TRex config generation!"
                 )
             elif osi_layer == u"L7":
                 exec_cmd_no_error(
                     self._node,
                     f"sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
                     f"- version: 2\n"
+                    f"  c: {len(threads)}\n"
                     f"  limit_memory: {Constants.TREX_LIMIT_MEMORY}\n"
                     f"  interfaces: [\"{if1_pci}\",\"{if2_pci}\"]\n"
                     f"  port_info:\n"
@@ -309,11 +323,17 @@ class TrafficGenerator(AbstractMeasurer):
                     f"        default_gw: [{if1_adj_addr}]\n"
                     f"      - ip: [{if2_addr}]\n"
                     f"        default_gw: [{if2_adj_addr}]\n"
+                    f"  platform :\n"
+                    f"      master_thread_id: {master_thread_id}\n"
+                    f"      latency_thread_id: {latency_thread_id}\n"
+                    f"      dual_if:\n"
+                    f"          - socket: {socket}\n"
+                    f"            threads: {threads}\n"
                     f"EOF'",
-                    sudo=True, message=u"TRex config generation error"
+                    sudo=True, message=u"TRex config generation!"
                 )
             else:
-                raise ValueError(u"Unknown Test Type")
+                raise ValueError(u"Unknown Test Type!")
 
             self._startup_trex(osi_layer)
 
@@ -348,7 +368,6 @@ class TrafficGenerator(AbstractMeasurer):
             cd_cmd = f"cd '{Constants.TREX_INSTALL_DIR}/scripts/'"
             trex_cmd = OptionString([u"nohup", u"./t-rex-64"])
             trex_cmd.add(u"-i")
-            trex_cmd.add(f"-c {Constants.TREX_CORE_COUNT}")
             trex_cmd.add(u"--prefix $(hostname)")
             trex_cmd.add(u"--hdrh")
             trex_cmd.add(u"--no-scapy-server")
@@ -392,8 +411,6 @@ class TrafficGenerator(AbstractMeasurer):
         :rtype: bool
         :raises RuntimeError: If node type is not a TG.
         """
-        # No need to check subtype, we know it is TREX.
-
         ret, _, _ = exec_cmd(node, u"pidof t-rex", sudo=True)
         return bool(int(ret) == 0)
 
