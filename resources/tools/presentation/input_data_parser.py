@@ -465,6 +465,87 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
+        if not msg.message.count(u"stats runtime"):
+            return
+
+        if u"show-run" not in self._data[u"tests"][self._test_id].keys():
+            self._data[u"tests"][self._test_id][u"show-run"] = dict()
+
+        groups = re.search(self.REGEX_TC_PAPI_CLI, msg.message)
+        if not groups:
+            return
+        try:
+            host = groups.group(1)
+        except (AttributeError, IndexError):
+            host = u""
+        try:
+            sock = groups.group(2)
+        except (AttributeError, IndexError):
+            sock = u""
+
+        runtime = loads(
+            str(msg.message).
+            replace(u' ', u'').
+            replace(u'\n', u'').
+            replace(u"'", u'"').
+            replace(u'b"', u'"').
+            replace(u'u"', u'"').
+            split(u":", 1)[1]
+        )
+
+        try:
+            threads_nr = len(runtime[0][u"clocks"])
+        except (IndexError, KeyError):
+            return
+
+        dut = f"DUT{len(self._data[u'tests'][self._test_id][u'show-run'])}"
+
+        oper = {
+            u"host": host,
+            u"socket": sock,
+            u"threads": {idx: list() for idx in range(threads_nr)}
+        }
+
+        for item in runtime:
+            for idx in range(threads_nr):
+                if item[u"vectors"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"vectors"][idx]
+                elif item[u"calls"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"calls"][idx]
+                elif item[u"suspends"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"suspends"][idx]
+                else:
+                    clocks = 0
+
+                if item[u"calls"][idx] > 0:
+                    vectors_call = item[u"vectors"][idx] / item[u"calls"][idx]
+                else:
+                    vectors_call = format(0, u".2f")
+
+                if int(item[u"calls"][idx]) + int(item[u"vectors"][idx]) + \
+                        int(item[u"suspends"][idx]):
+                    oper[u"threads"][idx].append([
+                        item[u"name"],
+                        item[u"calls"][idx],
+                        item[u"vectors"][idx],
+                        item[u"suspends"][idx],
+                        clocks,
+                        vectors_call
+                    ])
+
+        self._data[u'tests'][self._test_id][u'show-run'][dut] = copy.copy(oper)
+
+        logging.info(self._data[u'tests'][self._test_id][u'show-run'])
+
+    def _get_show_run_old(self, msg):
+        """Called when extraction of VPP operational data (output of CLI command
+        Show Runtime) is required.
+
+        :param msg: Message to process.
+        :type msg: Message
+        :returns: Nothing.
+        """
+
         if u"show-run" not in self._data[u"tests"][self._test_id].keys():
             self._data[u"tests"][self._test_id][u"show-run"] = str()
 
