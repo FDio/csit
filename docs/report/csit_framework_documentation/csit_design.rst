@@ -54,8 +54,8 @@ A brief bottom-up description is provided here:
    - Used commonly across multiple L2 KWs;
    - Performance and functional tests:
 
-     - L1 KWs (KeyWords) are implemented as RF libraries and Python
-       libraries;
+     - L1 KWs (KeyWords) are implemented as RF (RobotFramework) libraries
+       and Python libraries;
 
    - Performance TG L1 KWs:
 
@@ -106,10 +106,12 @@ A brief bottom-up description is provided here:
 
    - Tools:
 
+     - Testbed environment setup ansible playbooks;
+     - Suite generator;
+     - Traffic scripts;
+     - Operational debugging scripts;
      - Documentation generator;
      - Report generator;
-     - Testbed environment setup ansible playbooks;
-     - Operational debugging scripts;
 
 Test Lifecycle Abstraction
 --------------------------
@@ -161,23 +163,25 @@ RF Keywords Naming Guidelines
 
 Readability counts: "..code is read much more often than it is written."
 Hence following a good and consistent grammar practice is important when
-writing :abbr:`RF (Robot Framework)` KeyWords and Tests. All CSIT test cases
+writing :abbr:`RF (Robot Framework)` KeyWords and Tests. All CSIT test suites
 are coded using Gherkin style and include only L2 KWs references. L2 KWs are
 coded using simple style and include L2 KWs, L1 KWs, and L1 python references.
 To improve readability, the proposal is to use the same grammar for both
 :abbr:`RF (Robot Framework)` KW styles, and to formalize the grammar of English
 sentences used for naming the :abbr:`RF (Robot Framework)` KWs. :abbr:`RF (Robot
-Framework)` KWs names are short sentences expressing functional description of
+Framework)` KW names are short sentences expressing functional description of
 the command. They must follow English sentence grammar in one of the following
 forms:
 
 #. **Imperative** - verb-object(s): *"Do something"*, verb in base form.
-#. **Declarative** - subject–verb–object(s): *"Subject does something"*, verb in
+#. **Declarative** - subject-verb-object(s): *"Subject does something"*, verb in
    a third-person singular present tense form.
-#. **Affirmative** - modal_verb-verb-object(s): *"Subject should be something"*,
+#. **Affirmative** - subject-modal_verb-verb-object(s):
+   *"Subject should be something"*,
    *"Object should exist"*, verb in base form.
-#. **Negative** - modal_verb-Not-verb-object(s): *"Subject should not be
-   something"*, *"Object should not exist"*, verb in base form.
+#. **Negative** - subject-modal_verb-Not-verb-object(s):
+   *"Subject should not be something"*,
+   *"Object should not exist"*, verb in base form.
 
 Passive form MUST NOT be used. However a usage of past participle as an
 adjective is okay. See usage examples provided in the Coding guidelines
