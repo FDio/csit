@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7502c026_688162a2",
+        "filename": "docs/report/csit_framework_documentation/csit_test_naming.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-30T18:27:30Z",
+      "side": 1,
+      "message": "Currently blocked on how to explain this part. Also NIC drivers, suite generator should be explained, and hoststack suites are different.",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 11
+      },
+      "revId": "7cd59666f3c154c8c39b0dcd246cd94fad83b934",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
