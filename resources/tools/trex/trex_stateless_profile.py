@@ -121,7 +121,7 @@ def simple_burst(
 
     try:
         # Create the client:
-        client = STLClient()
+        client = STLClient(server='0.0.0.0', async_port=4100, sync_port=4101)
         # Connect to server:
         client.connect()
         # Prepare our ports (the machine has 0 <--> 1 with static route):

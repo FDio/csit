@@ -36,7 +36,7 @@ from trex.stl.api import *
 
 def main():
     """Check server info and quit."""
-    client = STLClient()
+    client = STLClient(server='0.0.0.0', async_port=4100, sync_port=4101)
     try:
         # connect to server
         client.connect()

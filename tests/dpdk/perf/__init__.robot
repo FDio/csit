@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,11 +20,11 @@
 | Library | resources.libraries.python.DPDK.DPDKTools
 |
 | Suite Setup | Run Keywords | Setup performance global Variables
-| ...         | AND          | Setup Framework | ${nodes}
-| ...         | AND          | Install DPDK test on all DUTs | ${nodes}
-| ...         | AND          | Get CPU Info from All Nodes | ${nodes}
-| ...         | AND          | Update All Numa Nodes
-| ...                        | ${nodes} | skip_tg=${True}
+| ... | AND | Setup Framework | ${nodes}
+| ... | AND | Install DPDK test on all DUTs | ${nodes}
+| ... | AND | Get CPU Info from All Nodes | ${nodes}
+| ... | AND | Update All Interface Data on All Nodes | ${nodes}
+| ... | skip_tg=${True} | skip_vpp=${True}
 |
 | Suite Teardown | Cleanup Framework | ${nodes}
 

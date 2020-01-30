@@ -52,7 +52,7 @@ def main():
     )
     args = parser.parse_args()
 
-    client = STLClient()
+    client = STLClient(server='0.0.0.0', async_port=4100, sync_port=4101)
     try:
         # connect to server
         client.connect()
