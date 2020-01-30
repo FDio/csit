@@ -113,8 +113,6 @@ class RdmaMode(IntEnum):
 class InterfaceUtil:
     """General utilities for managing interfaces"""
 
-    __UDEV_IF_RULES_FILE = u"/etc/udev/rules.d/10-network.rules"
-
     @staticmethod
     def pci_to_int(pci_str):
         """Convert PCI address from string format (0000:18:0a.0) to
@@ -542,45 +540,6 @@ class InterfaceUtil:
         return DUTSetup.get_pci_dev_driver(node, pci_addr)
 
     @staticmethod
-    def tg_set_interfaces_udev_rules(node):
-        """Set udev rules for interfaces.
-
-        Create udev rules file in /etc/udev/rules.d where are rules for each
-        interface used by TG node, based on MAC interface has specific name.
-        So after unbind and bind again to kernel driver interface has same
-        name as before. This must be called after TG has set name for each
-        port in topology dictionary.
-        udev rule example
-        SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="52:54:00:e1:8a:0f",
-        NAME="eth1"
-
-        :param node: Node to set udev rules on (must be TG node).
-        :type node: dict
-        :raises RuntimeError: If setting of udev rules fails.
-        """
-        ssh = SSH()
-        ssh.connect(node)
-
-        cmd = f"rm -f {InterfaceUtil.__UDEV_IF_RULES_FILE}"
-        ret_code, _, _ = ssh.exec_command_sudo(cmd)
-        if int(ret_code) != 0:
-            raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
-
-        for interface in node[u"interfaces"].values():
-            rule = u'SUBSYSTEM==\\"net\\", ACTION==\\"add\\", ATTR{address}' + \
-                   u'==\\"' + interface[u"mac_address"] + u'\\", NAME=\\"' + \
-                   interface[u"name"] + u'\\"'
-            cmd = f"sh -c \"echo '{rule}'\" >> " \
-                f"{InterfaceUtil.__UDEV_IF_RULES_FILE}'"
-
-            ret_code, _, _ = ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
-
-        cmd = u"/etc/init.d/udev restart"
-        ssh.exec_command_sudo(cmd)
-
-    @staticmethod
     def tg_set_interfaces_default_driver(node):
         """Set interfaces default driver specified in topology yaml file.
 
@@ -667,7 +626,7 @@ class InterfaceUtil:
                 InterfaceUtil.update_nic_interface_names(node)
 
     @staticmethod
-    def update_tg_interface_data_on_node(node, skip_tg_udev=False):
+    def update_tg_interface_data_on_node(node):
         """Update interface name for TG/linux node in DICT__nodes.
 
         .. note::
@@ -679,9 +638,7 @@ class InterfaceUtil:
             "00:00:00:00:00:00": "lo"
 
         :param node: Node selected from DICT__nodes.
-        :param skip_tg_udev: Skip udev rename on TG node.
         :type node: dict
-        :type skip_tg_udev: bool
         :raises RuntimeError: If getting of interface name and MAC fails.
         """
         # First setup interface driver specified in yaml file
@@ -705,10 +662,6 @@ class InterfaceUtil:
             if name is None:
                 continue
             interface[u"name"] = name
-
-        # Set udev rules for interfaces
-        if not skip_tg_udev:
-            InterfaceUtil.tg_set_interfaces_udev_rules(node)
 
     @staticmethod
     def iface_update_numa_node(node):
@@ -752,21 +705,16 @@ class InterfaceUtil:
                 raise RuntimeError(f"Update numa node failed for: {if_pci}")
 
     @staticmethod
-    def update_all_numa_nodes(nodes, skip_tg=False):
+    def update_all_numa_nodes(nodes):
         """For all nodes and all their interfaces from topology file update numa
         node information based on information from the node.
 
         :param nodes: Nodes in the topology.
-        :param skip_tg: Skip TG node
         :type nodes: dict
-        :type skip_tg: bool
         :returns: Nothing.
         """
         for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                InterfaceUtil.iface_update_numa_node(node)
-            elif node[u"type"] == NodeType.TG and not skip_tg:
-                InterfaceUtil.iface_update_numa_node(node)
+            InterfaceUtil.iface_update_numa_node(node)
 
     @staticmethod
     def update_all_interface_data_on_all_nodes(
@@ -789,14 +737,10 @@ class InterfaceUtil:
             if node_data[u"type"] == NodeType.DUT:
                 InterfaceUtil.update_vpp_interface_data_on_node(node_data)
             elif node_data[u"type"] == NodeType.TG and not skip_tg:
-                InterfaceUtil.update_tg_interface_data_on_node(
-                    node_data, skip_tg_udev)
+                InterfaceUtil.update_tg_interface_data_on_node(node_data)
 
             if numa_node:
-                if node_data[u"type"] == NodeType.DUT:
-                    InterfaceUtil.iface_update_numa_node(node_data)
-                elif node_data[u"type"] == NodeType.TG and not skip_tg:
-                    InterfaceUtil.iface_update_numa_node(node_data)
+                update_all_numa_nodes(nodes)
 
     @staticmethod
     def create_vlan_subinterface(node, interface, vlan):
