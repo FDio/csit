@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -28,7 +28,7 @@
 | ... | AND | Show Vpp Version on All Duts | ${nodes}
 | ... | AND | Get CPU Info from All Nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
-| ... | skip_tg=${True} | numa_node=${True}
+| ... | skip_tg=${True}
 |
 | Suite Teardown | Cleanup Framework | ${nodes}
 
