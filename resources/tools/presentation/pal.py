@@ -103,6 +103,7 @@ def main():
 
         data = InputData(spec)
         data.download_and_parse_data(repeat=1)
+        data.print_oper_data()
 
         generate_tables(spec, data)
         generate_plots(spec, data)
