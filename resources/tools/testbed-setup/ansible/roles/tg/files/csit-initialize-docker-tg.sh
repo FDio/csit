@@ -21,6 +21,7 @@ case "${1:-start}" in
     "start" )
         # Run TG
         for cnt in $(seq 1 ${2:-1}); do
+            docker network create --driver bridge csit-nw-tg${cnt}
             # If the IMAGE is not already loaded then docker run will pull the
             # IMAGE, and all image dependencies, before it starts the container.
             dcr_image="snergster/csit-sut:latest"
@@ -47,10 +48,11 @@ case "${1:-start}" in
             dcr_stc_params+="--volume /dev/hugepages:/dev/hugepages "
 
             params=(${dcr_stc_params} --name csit-tg-"${cnt}" "${dcr_image}")
-            docker run "${params[@]}"
+            docker run --network=csit-nw-tg${cnt} "${params[@]}"
         done
         ;;
     "stop" )
-        docker rm --force $(docker ps --all --quiet --filter name=csit-tg)
+        docker rm --force $(docker ps --all --quiet --filter name=csit)
+        docker network rm $(docker network ls --filter name=csit --quiet)
         ;;
 esac
