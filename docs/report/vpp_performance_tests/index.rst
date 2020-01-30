@@ -13,6 +13,7 @@ VPP Performance
     soak_tests/index
     reconf_tests/index
     nf_service_density/index
+    hoststack_testing/index
     http_server_performance/index
     comparisons/index
     throughput_trending
