@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9b654b5_0bc70ab3",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-30T09:43:19Z",
+      "side": 1,
+      "message": "This makes Robot think \"Circular Topology\" is a separate keyword, to be run after the keyword in line 95.\nYou want a single keyword, to the name has to be in single line (even if it gets longer than 80 chars).\nOf course, any rename that keeps the keyword readable while making the line shorter is welcome.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 3
+      },
+      "revId": "02e54e1e5f27e2dca6db4d9401533698394442ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
