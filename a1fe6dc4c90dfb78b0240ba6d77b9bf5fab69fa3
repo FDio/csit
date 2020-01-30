@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc3f9ff9_c6f72839",
+        "filename": "tests/vpp/perf/l2/2n1l-10ge2p1x710-dot1q-l2bdvxlan-gbp-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-30T16:13:28Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 45
+      },
+      "revId": "a1fe6dc4c90dfb78b0240ba6d77b9bf5fab69fa3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
