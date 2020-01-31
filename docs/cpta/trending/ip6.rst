@@ -13,3 +13,4 @@ IPv6 Routing
     ip6-3n-dnv-x553
     ip6-2n-clx-xxv710
     ip6-2n-clx-x710
+    ip6-2n-clx-cx556a

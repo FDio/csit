@@ -13,3 +13,4 @@ L2 Ethernet Switching
     l2-3n-dnv-x553
     l2-2n-clx-xxv710
     l2-2n-clx-x710
+    l2-2n-clx-cx556a
