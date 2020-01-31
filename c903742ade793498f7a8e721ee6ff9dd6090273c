@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6562b18_f2933a48",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6ip6-ip6base-srv6enc1sid-dev.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:27:59Z",
+      "side": 1,
+      "message": "It must be 0 in case of vpp-device test.",
+      "range": {
+        "startLine": 107,
+        "startChar": 35,
+        "endLine": 107,
+        "endChar": 36
+      },
+      "revId": "c903742ade793498f7a8e721ee6ff9dd6090273c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
