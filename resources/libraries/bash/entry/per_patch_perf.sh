@@ -43,6 +43,8 @@ source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
+get_test_code "${1-}" || die
+get_test_tag_string || die
 set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
@@ -51,8 +53,6 @@ set_aside_parent_build_artifacts || die
 ## Replace previous 4 lines with this to speed up testing.
 #download_builds "REPLACE_WITH_URL" || die
 initialize_csit_dirs || die
-get_test_code "${1-}" || die
-get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
 select_arch_os || die
