@@ -18,11 +18,11 @@ set -exuo pipefail
 # This file does not have executable flag nor shebang,
 # to dissuade non-tox callers.
 
-# This script runs a grep-based command and fails if it detects any lines
-# edited or added since HEAD~ and longer than 80 characters.
-# The grep output stored to new_lines.log (overwriting).
-
-# See lines.log to locate where the lines are.
+# This script runs a few grep-based command and fails
+# if it detects any file edited or added since HEAD~
+# containing a copyright notice in first 3 lines,
+# but not the current year (in the same line).
+# The offending lines are stored to copyright_year.log (overwriting).
 
 # "set -eu" handles failures from the following two lines.
 BASH_CHECKS_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
@@ -32,20 +32,26 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 
-# Greps do "fail" on zero line output, we need to ignore that in the final grep.
-piped_command="set -exuo pipefail && git diff -U0 HEAD~ | grep '^\+' | "
-piped_command+="cut -c2- | grep -v '^\+\+ ' | { grep '.\{81\}' || true; } | "
-piped_command+="tee 'new_lines.log' | wc -l"
-lines="$(bash -c "${piped_command}")" || die
+year=$(date +'%Y')
+# Greps do "fail" on 0 line output, we need to ignore that as 0 lines is good.
+piped_command="set +e -xuo pipefail && git diff --name-only HEAD~ | xargs head"
+piped_command+=" -n 3 | fgrep -i 'Copyright' | fgrep -v '${year}'"
+# So far the output can contain lines with file names (not content lines).
+piped_command+=" | fgrep -v '==>' > 'copyright_year.log'"
+# TODO: How can we also report the affected file name?
+# fgrep -rin and then select only the edited file paths? And lines 1-3?
+wrong_strings="$(bash -c "${piped_command}")" || die
+lines="$(< "copyright_year.log" wc -l)"
 if [ "${lines}" != "0" ]; then
     # TODO: Decide which text goes to stdout and which to stderr.
-    warn "Long lines detected: ${lines}"
+    warn "Copyright lines with wrong year detected: ${lines}"
     # TODO: Disable when output size does more harm than good.
-    cat "new_lines.log" >&2
+    pwd
+    cat "copyright_year.log" >&2
     warn
-    warn "New line length checker: FAIL"
+    warn "Copyright year checker: FAIL"
     exit 1
 fi
 
 warn
-warn "New line length checker: PASS"
+warn "Copyright year checker: PASS"
