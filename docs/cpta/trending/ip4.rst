@@ -13,3 +13,4 @@ IPv4 Routing
     ip4-3n-dnv-x553
     ip4-2n-clx-xxv710
     ip4-2n-clx-x710
+    ip4-2n-clx-cx556a

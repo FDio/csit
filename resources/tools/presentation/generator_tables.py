@@ -1388,6 +1388,8 @@ def _generate_url(testbed, test_name):
         driver = u"l3fwd"
     elif u"avf" in test_name:
         driver = u"avf"
+    elif u"rdma" in test_name:
+        driver = u"rdma"
     elif u"dnv" in testbed or u"tsh" in testbed:
         driver = u"ixgbe"
     else:
