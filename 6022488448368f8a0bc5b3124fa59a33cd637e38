@@ -22,6 +22,30 @@
       "revId": "6022488448368f8a0bc5b3124fa59a33cd637e38",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29f80e04_ed1a3e93",
+        "filename": "docs/job_specs/perf_tests_job_specs.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-31T18:13:08Z",
+      "side": 1,
+      "message": "DPDK is only mentioned in line 109, and that does not tell you that we are running weekly VPP jobs also for dnv and tsh, but not DPDK weekly jobs for those platforms.\nNow I see weekly MRR jobs are running on even fewer node-archs, but that probably does not need a separate TODO line just yet.",
+      "parentUuid": "389fda24_7a455636",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 1
+      },
+      "revId": "6022488448368f8a0bc5b3124fa59a33cd637e38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
