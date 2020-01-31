@@ -495,6 +495,8 @@ function get_test_tag_string () {
     # - GERRIT_EVENT_TYPE - Event type set by gerrit, can be unset.
     # - GERRIT_EVENT_COMMENT_TEXT - Comment text, read for "comment-added" type.
     # - TEST_CODE - The test selection string from environment or argument.
+    # - NODENESS - Node multiplicity of desired testbed.
+    # - FLAVOR - Node flavor string, usually describing the processor.
     # Variables set:
     # - TEST_TAG_STRING - The string following trigger word in gerrit comment.
     #   May be empty, or even not set on event types not adding comment.
@@ -503,26 +505,40 @@ function get_test_tag_string () {
 
     set -exuo pipefail
 
+    TEST_TAG_STRING=""
     if [[ "${GERRIT_EVENT_TYPE-}" == "comment-added" ]]; then
         case "${TEST_CODE}" in
-            *"device"*)
-                trigger="devicetest"
-                ;;
             *"perf"*)
-                trigger="perftest"
+                trigger_base_word="perftest"
+                ;;
+            *"device"*)
+                trigger_base_word="devicetest"
                 ;;
             *)
                 die "Unknown specification: ${TEST_CODE}"
         esac
-        # Ignore lines not containing the trigger word.
-        comment=$(fgrep "${trigger}" <<< "${GERRIT_EVENT_COMMENT_TEXT}") || true
+        # Shorthand.
+        text="${GERRIT_EVENT_COMMENT_TEXT}"
+        # Ignore lines not begining with the correct trigger word.
+        vpp_trigger="${trigger_base_word}-${NODENESS}-${FLAVOR}"
+        csit_trigger="csit-${NODENESS}-${FLAVOR}-${trigger_base_word}"
+        e_pattern="(^${vpp_trigger}|^${csit_trigger})"
+        e_cmd=("egrep" "${e_pattern}") || die "Typo in variable name?"
+        valid_lines=$("${e_cmd[@]}" <<< "${text}") || {
+            die "Looks like quoted triggers only. DO NOT QUOTE TRIGGERS PLEASE!"
+        }
+        count=$(wc -l <<< "${valid_lines}")
+        if [[ "${count}" != "1" ]]; then
+            die "REFUSING COMMENT WITH MULTIPLE TRIGGERS FOR THE SAME JOB!"
+        fi
         # The vpp-csit triggers trail stuff we are not interested in.
         # Removing them and trigger word: https://unix.stackexchange.com/a/13472
         # (except relying on \s whitespace, \S non-whitespace and . both).
-        # The last string is concatenated, only the middle part is expanded.
-        cmd=("grep" "-oP" '\S*'"${trigger}"'\S*\s\K.+$') || die "Unset trigger?"
-        # On parsing error, TEST_TAG_STRING probably stays empty.
-        TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}") || true
+        po_pattern="${e_pattern}"'\K.+$' || die "Typo in variable name?"
+        po_cmd=("grep" "-Po" "${po_pattern}") || die "Typo in variable name?"
+        # Trigger without any tag expression is allowed, we have defaults.
+        TEST_TAG_STRING=$("${po_cmd[@]}" <<< "${valid_lines}") || true
+        # The tag string may start with space, later code ignores it safely.
     fi
 }
 
