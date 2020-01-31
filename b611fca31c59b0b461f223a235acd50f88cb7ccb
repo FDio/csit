@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca5dcacb_0281faa8",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1279,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-31T19:19:07Z",
+      "side": 1,
+      "message": "Hmm. Peter, how come we did not need to do this for AVF interfaces?\nAlternatively, can we handle RDMA interfaces the same way we handle AVF interfaces?\n\nI am probably confused with respect to layering. In AVF case, we have the underlying \"physical\" interface, as an entity distinct from the newly created \"virtual\" interface, so it makes sense for them to have different MAC addresses.\nHow does it work for RDMA?",
+      "range": {
+        "startLine": 1279,
+        "startChar": 22,
+        "endLine": 1279,
+        "endChar": 43
+      },
+      "revId": "b611fca31c59b0b461f223a235acd50f88cb7ccb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
