@@ -1,0 +1,372 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e406d9df_81972498",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-dyn-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 107,
+        "startChar": 1,
+        "endLine": 107,
+        "endChar": 75
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "512edb31_7b39d78b",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-dyn-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 110,
+        "startChar": 31,
+        "endLine": 110,
+        "endChar": 32
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b555f929_5815fc48",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-dyn-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "dyn",
+      "range": {
+        "startLine": 119,
+        "startChar": 45,
+        "endLine": 119,
+        "endChar": 49
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c29842d_9a76b916",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-masq-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 40,
+        "startChar": 64,
+        "endLine": 40,
+        "endChar": 65
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f933e9d_b4e3c486",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-masq-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "srv6am_plugin.so",
+      "range": {
+        "startLine": 46,
+        "startChar": 61,
+        "endLine": 46,
+        "endChar": 1
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f9bbb7d_1d6940bb",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-masq-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 78,
+        "startChar": 49,
+        "endLine": 78,
+        "endChar": 50
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e5c064d_6afd0960",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-masq-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 85,
+        "startChar": 73,
+        "endLine": 85,
+        "endChar": 74
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55d516ec_181b8795",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-masq-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 110,
+        "startChar": 1,
+        "endLine": 110,
+        "endChar": 32
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25afe86c_851706f5",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-masq-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "masq",
+      "range": {
+        "startLine": 119,
+        "startChar": 45,
+        "endLine": 119,
+        "endChar": 49
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "705c9705_c28a5c1d",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-masq-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "0",
+      "range": {
+        "startLine": 121,
+        "startChar": 35,
+        "endLine": 121,
+        "endChar": 36
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b86b174_4cc9595c",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-stat-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 40,
+        "startChar": 1,
+        "endLine": 40,
+        "endChar": 65
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df2f9319_19d07820",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-stat-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "srv6as_plugin.so",
+      "range": {
+        "startLine": 46,
+        "startChar": 61,
+        "endLine": 46,
+        "endChar": 1
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68b9349f_c41b3872",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-stat-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 78,
+        "startChar": 49,
+        "endLine": 78,
+        "endChar": 50
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "735d03cf_5c3c1683",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-stat-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 85,
+        "startChar": 1,
+        "endLine": 85,
+        "endChar": 74
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a58b1058_ca3ad614",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-stat-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 110,
+        "startChar": 31,
+        "endLine": 110,
+        "endChar": 32
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdab02cb_46f3e505",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6srhip6-ip6base-srv6proxy-stat-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-01-31T09:57:54Z",
+      "side": 1,
+      "message": "0",
+      "range": {
+        "startLine": 121,
+        "startChar": 35,
+        "endLine": 121,
+        "endChar": 36
+      },
+      "revId": "4551c813593ec7a3bfd6095da9acf50518053349",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
