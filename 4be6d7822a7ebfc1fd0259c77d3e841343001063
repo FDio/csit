@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf465402_7c1b244e",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4udpquic-nsim-vppecho-bps.robot",
+        "patchSetId": 19
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-01-31T18:55:09Z",
+      "side": 1,
+      "message": "It will be nice to add BPS tag (also to other -bps suites), as all other test types already have their own tag.",
+      "range": {
+        "startLine": 20,
+        "startChar": 46,
+        "endLine": 20,
+        "endChar": 50
+      },
+      "revId": "4be6d7822a7ebfc1fd0259c77d3e841343001063",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
