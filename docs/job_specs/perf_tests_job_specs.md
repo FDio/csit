@@ -136,6 +136,9 @@ time required to complete data collection for report.
   - 4x 2n-skx
 
 - Future
-  - Add weekly ndrpdr jobs and report-like comparisons to previous release
+  - Add weekly ndrpdr jobs and report-like comparisons to previous release.
+  - Add weekly DPDK jobs (which node-archs to run on). Useful for trending.
+  - Add some reconf and soak tests to weekly jobs,
+    - so trending will alert us when we break them between releases.
 
 ## END OF DOCUMENT
