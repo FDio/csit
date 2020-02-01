@@ -22,6 +22,30 @@
       "revId": "b611fca31c59b0b461f223a235acd50f88cb7ccb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3635a514_4d0f262a",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1279,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-01T11:13:00Z",
+      "side": 1,
+      "message": "\u003e How come we did not need to do this for AVF interfaces?\n\nRDMA and AVF are DRIVERS so lets call it like that. What you want to refer to is combination of driver-phy-vf-vpp_if which is unique for every kind of setup.\n\n\u003e Alternatively, can we handle RDMA interfaces the same way we handle AVF interfaces?\n\nYes and no. It is shame of VPP that it did not approach all of them same way.\n\n\u003e I am probably confused with respect to layering. In AVF case, we have the underlying \"physical\" interface, as an entity distinct from the newly created \"virtual\" interface, so it makes sense for them to have different MAC addresses.\n\nNot entirely. \"Driver-AVF\" is working only with \"Virtual function\" of \"Physical interface\". Where \"Physical interface\" is parent entity. Same capability has \"Driver-RDMA\", but \"Driver-RDMA is for both \"Physical interface\" \"Virtual funtion\".\n\nSo layering logic:\n\nlayer_pre_init:\n    if i40e-card:\n        if vfio_pci:\n            pass # currently we are lucky, vpp.service is doing it, our KW is empty\n        elif avf:\n            avf_create_vf_from_parent_and_set_mac\n    elif rdma-core-card:\n        if rdma:\n            pass #or eventually we can do infiniband\u003c-\u003eeth switch there /to be coded/\n        elif rdma-vf:\n            rdma_create_vf_from_parent_and_set_mac\nlayer_apply_startup:\n    put_pci_int_startup.conf\n    run_vpp\nlayer_post_init:\n    if i40e-card:\n        if vfio_pci:\n            pass # nothing to do\n        elif avf:\n            avf_create_vpp_interface\n    elif rdma-core-card:\n        if rdma:\n            rdma_create_vpp_interface\n            # bug detected in VPP that VPP Interface has different MAC from some reason.\n        elif rdma-vf:\n            not there yet, tbd in future releases, most probably\nlayer_bonding\n    put vpp_interfaces to bond #here finally CSIT has abstract construct of dut1if1\nlayer_dot1\n    create subinterface\n...\n\n\n\n\nSource of your confusion?\n1) Native(vpp) vs external drivers. Currently mess in VPP not standardized at all. Do not try to find logic there\n2) Pre-init. Why is it there? Well in CSIT we need to control full stack to be able to switch between tests.\n\nCurrently there is no other way of abstraction after all my experience with VPP. there is always pre-init, restart, post init. Although some may be empty now - they might be used in future.\n\n\nBut layering is more than that as we can continue in building on top of layer, the layer next. so e.g. dot1q is just another interface on top of previous and then another is vxlan or ipsec and then another layer can be bonding.\n\nL1 - Phy nic\nL2 - VF # optional\nL3 - VPP interface # dpdk, avf, rdma, vhost, tapv2, virtio, memif...\nL4 - Bonding/LB...\nL5 - dot1/dot1ad/dot....\nL. - vxlan/ipsec/....\n\nSimple? not even close there is now new concept Azure hyper-v which for every PhyIF has control plane Interface (CPIF) which is in system separated. So pre-init ${azure} \n\nTo be continued...",
+      "parentUuid": "ca5dcacb_0281faa8",
+      "range": {
+        "startLine": 1279,
+        "startChar": 22,
+        "endLine": 1279,
+        "endChar": 43
+      },
+      "revId": "b611fca31c59b0b461f223a235acd50f88cb7ccb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
