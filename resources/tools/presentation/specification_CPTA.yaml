@@ -333,6 +333,7 @@
       csit-vpp-perf-mrr-daily-master-2n-clx:
         start: 89
         end: "lastCompletedBuild"
+        skip:
           - 97
           - 121
           - 153
