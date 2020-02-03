@@ -9,5 +9,6 @@ DPDK
     dpdk-3n-skx-x710
     dpdk-2n-clx-xxv710
     dpdk-2n-clx-x710
+    dpdk-2n-clx-cx556a
     dpdk-3n-hsw-xl710
     dpdk-3n-hsw-x710

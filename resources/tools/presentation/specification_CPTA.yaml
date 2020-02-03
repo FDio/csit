@@ -5349,6 +5349,36 @@
         - "result"
       layout: "plot-cpta"
 
+    - title: "2n-clx-cx556a-64b-2t1c-dpdk"
+      output-file-name: "2n-clx-cx556a-64b-2t1c-dpdk"
+      data: "plot-performance-trending-dpdk-2n-clx"
+      include:
+        - "tests.dpdk.perf.2n1l-100ge2p1cx556-eth-l2xcbase-testpmd-mrr.64b-2t1c-eth-l2xcbase-testpmd-mrr"
+        - "tests.dpdk.perf.2n1l-100ge2p1cx556-ethip4-ip4base-l3fwd-mrr.64b-2t1c-ethip4-ip4base-l3fwd-mrr"
+      parameters:
+        - "result"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-cx556a-64b-4t2c-dpdk"
+      output-file-name: "2n-clx-cx556a-64b-4t2c-dpdk"
+      data: "plot-performance-trending-dpdk-2n-clx"
+      include:
+        - "tests.dpdk.perf.2n1l-100ge2p1cx556-eth-l2xcbase-testpmd-mrr.64b-4t2c-eth-l2xcbase-testpmd-mrr"
+        - "tests.dpdk.perf.2n1l-100ge2p1cx556-ethip4-ip4base-l3fwd-mrr.64b-4t2c-ethip4-ip4base-l3fwd-mrr"
+      parameters:
+        - "result"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-cx556a-64b-8t4c-dpdk"
+      output-file-name: "2n-clx-cx556a-64b-8t4c-dpdk"
+      data: "plot-performance-trending-dpdk-2n-clx"
+      include:
+        - "tests.dpdk.perf.2n1l-100ge2p1cx556-eth-l2xcbase-testpmd-mrr.64b-8t4c-eth-l2xcbase-testpmd-mrr"
+        - "tests.dpdk.perf.2n1l-100ge2p1cx556-ethip4-ip4base-l3fwd-mrr.64b-8t4c-ethip4-ip4base-l3fwd-mrr"
+      parameters:
+        - "result"
+      layout: "plot-cpta"
+
     - title: "2n-clx-xxv710-64b-2t1c-dpdk"
       output-file-name: "2n-clx-xxv710-64b-2t1c-dpdk"
       data: "plot-performance-trending-dpdk-2n-clx"
