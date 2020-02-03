@@ -251,7 +251,7 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     add_default_testcases(
                         testcase, iface, old_suite_id, file_out, kwargs_list
                     )
-                return
+                continue
             for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
                 out_filename = replace_defensively(
                     tmp2_filename, old_suite_id,
