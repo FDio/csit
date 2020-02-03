@@ -31,9 +31,6 @@
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
-This section includes summary graphs of Phy-to-Phy performance with packet
-routed forwarding measured at 100% of discovered NDR throughput rate.
-
 CSIT source code for the test cases used for plots can be found in
 `CSIT git repository <https://git.fd.io/csit/tree/tests/dpdk/perf?h=rls2001>`_.
 
