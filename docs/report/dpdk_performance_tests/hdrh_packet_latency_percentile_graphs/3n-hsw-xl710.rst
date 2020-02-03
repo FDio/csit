@@ -28,8 +28,8 @@
 
     </script>
 
-2n-clx-x710
-~~~~~~~~~~~
+3n-hsw-xl710
+~~~~~~~~~~~~
 
 CSIT source code for the test cases used for plots can be found in
 `CSIT git repository <https://git.fd.io/csit/tree/tests/dpdk/perf?h=rls2001>`_.
@@ -38,13 +38,13 @@ CSIT source code for the test cases used for plots can be found in
 
     \clearpage
 
-64b-2t1c-base
+64b-1t1c-base
 -------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/2n-clx-x710-64b-2t1c-base-ndr-hdrh-lat.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-hsw-xl710-64b-1t1c-base-ndr-hdrh-lat-percentile.html"></iframe>
     <p><br></p>
     </center>
 
@@ -53,21 +53,21 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-2t1c-base-ndr-hdrh-lat}
-            \label{fig:2n-clx-x710-64b-2t1c-base-ndr-hdrh-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-base-ndr-hdrh-lat-percentile}
+            \label{fig:3n-hsw-xl710-64b-1t1c-base-ndr-hdrh-lat-percentile}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-4t2c-base
+64b-2t2c-base
 -------------
 
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/2n-clx-x710-64b-4t2c-base-ndr-hdrh-lat.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-hsw-xl710-64b-2t2c-base-ndr-hdrh-lat-percentile.html"></iframe>
     <p><br></p>
     </center>
 
@@ -76,21 +76,21 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-4t2c-base-ndr-hdrh-lat}
-            \label{fig:2n-clx-x710-64b-4t2c-base-ndr-hdrh-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-2t2c-base-ndr-hdrh-lat-percentile}
+            \label{fig:3n-hsw-xl710-64b-2t2c-base-ndr-hdrh-lat-percentile}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-8t4c-base
+64b-4t4c-base
 -------------
 
 .. raw:: html
 
     <center>
-    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/2n-clx-x710-64b-8t4c-base-ndr-hdrh-lat.html"></iframe>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-hsw-xl710-64b-4t4c-base-ndr-hdrh-lat-percentile.html"></iframe>
     <p><br></p>
     </center>
 
@@ -99,6 +99,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-8t4c-base-ndr-hdrh-lat}
-            \label{fig:2n-clx-x710-64b-8t4c-base-ndr-hdrh-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-4t4c-base-ndr-hdrh-lat-percentile}
+            \label{fig:3n-hsw-xl710-64b-4t4c-base-ndr-hdrh-lat-percentile}
     \end{figure}
