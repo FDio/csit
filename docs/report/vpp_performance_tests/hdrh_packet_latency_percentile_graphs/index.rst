@@ -8,7 +8,7 @@
 Latency by Percentile Distribution
 ==================================
 
-Latency results are generated from a single execution of NDR discovery
+Latency results are generated from a single execution of NDRPDR discovery
 test across physical testbeds hosted LF FD.io labs: 3n-hsw, 2n-skx, 3n-
 skx, 3n-tsh, 2n-clx.
 
