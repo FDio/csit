@@ -180,15 +180,21 @@
     # 3n-hsw
 
     plot-vpp-throughput-lat-tsa-3n-hsw:
-      # TODO: Replace:
       csit-vpp-perf-verify-2001-3n-hsw:
-        - 3   # NDRPDR sel RC2
-        - 4   # NDRPDR sel RC2
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-hsw:
-      # TODO: Replace the data
       csit-vpp-perf-verify-2001-3n-hsw:
-        - 4  # NDRPDR sel RC2
+        - 15  # NDRPDR sel
 
     plot-vpp-nfv-3n-hsw-ndrpdr:
       # TODO: Replace:
@@ -222,15 +228,14 @@
     # 3n-skx
 
     plot-vpp-throughput-lat-tsa-3n-skx:
-      # TODO: Replace the data
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 2  # NDRPDR sel RC2
-        - 3  # NDRPDR sel RC2
+        - 5   # NDRPDR sel
+        - 6   # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-skx:
-      # TODO: Replace the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 3  # NDRPDR sel RC2
+        - 5  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-ndrpdr:
       # TODO: Replace the data
@@ -264,14 +269,15 @@
     # 2n-skx
 
     plot-vpp-throughput-lat-tsa-2n-skx:
-      # TODO: Replace the data
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
-        - 3  # NDRPDR sel RC2
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 11  # NDRPDR sel
 
     plot-vpp-hdrh-lat-2n-skx:
-      # TODO: Replace the data
       csit-vpp-perf-verify-2001-2n-skx:
-        - 3  # NDRPDR sel RC2
+        - 11  # NDRPDR sel
 
     plot-vpp-http-server-performance:
       # TODO: Replace:
@@ -289,9 +295,12 @@
         - 86  # SOAK
 
     plot-vpp-nfv-2n-skx-ndrpdr:
-      # TODO: Replace the data
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
-        - 3  # NDRPDR sel RC2
+        - 8   # NFV
+        - 9   # NFV
+        - 12  # NFV
+        - 13  # NFV
 
     plot-vpp-nfv-2n-skx-mrr:
       # TODO: Replace the data
@@ -327,15 +336,15 @@
     # 2n-clx
 
     plot-vpp-throughput-lat-tsa-2n-clx:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-clx:
-        - 3   # NDRPDR sel RC2
-        - 4   # NDRPDR sel RC2
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
 
     plot-vpp-hdrh-lat-2n-clx:
-      # TODO: Replace
       csit-vpp-perf-verify-2001-2n-clx:
-        - 4  # NDRPDR sel RC2
+        - 6  # NDRPDR sel
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       # TODO: Replace the data
@@ -369,14 +378,13 @@
     # 3n-tsh
 
     plot-vpp-throughput-lat-tsa-3n-tsh:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-tsh:
-        - 1   # NDRPDR sel RC2
+        - 3   # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-tsh:
-      # TODO: Replace
       csit-vpp-perf-verify-2001-3n-tsh:
-        - 1   # NDRPDR sel RC2
+        - 3   # NDRPDR sel
 
     # 3n-dnv
 
@@ -400,15 +408,17 @@
     # NIC Comparisons
 
     vpp-nic-comparison-3n-skx:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 2  # NDRPDR sel RC2
-        - 3  # NDRPDR sel RC2
+        - 5   # NDRPDR sel
+        - 6   # NDRPDR sel
 
     vpp-nic-comparison-2n-skx:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
-        - 3  # NDRPDR sel RC2
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 11  # NDRPDR sel
 
     vpp-nic-comparison-3n-skx-mrr:
       # TODO: Replace
@@ -427,27 +437,27 @@
     vpp-perf-results-3n-hsw:
       # TODO: Replace
       csit-vpp-perf-verify-2001-3n-hsw:
-        - 4  # NDRPDR sel RC2
+        - 15  # NDRPDR sel
 
     vpp-perf-results-3n-skx:
       # TODO: Replace
       csit-vpp-perf-verify-2001-3n-skx:
-        - 3  # NDRPDR sel RC2
+        - 6  # NDRPDR sel
 
     vpp-perf-results-2n-skx:
       # TODO: Replace
       csit-vpp-perf-verify-2001-2n-skx:
-        - 3  # NDRPDR sel RC2
+        -  # NDRPDR sel
 
     vpp-perf-results-2n-clx:
       # TODO: Replace
       csit-vpp-perf-verify-2001-2n-clx:
-        - 4  # NDRPDR sel RC2
+        - 6  # NDRPDR sel
 
     vpp-perf-results-3n-tsh:
       # TODO: Replace
       csit-vpp-perf-verify-2001-3n-tsh:
-        - 1   # NDRPDR sel RC2
+        - 3   # NDRPDR sel
 
     vpp-perf-results-3n-dnv:
       # TODO: Replace
@@ -502,10 +512,8 @@
         - 11  # MRR sel
 
     vpp-device-results-ubuntu:
-      # TODO: Replace
-      # csit-vpp-device-2001-ubuntu1804-1n-skx:
-      csit-vpp-device-1908-ubuntu1804-1n-skx:
-        - 65
+      csit-vpp-device-2001-ubuntu1804-1n-skx:
+        - 57
 
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-verify-2001-3n-hsw:
@@ -553,10 +561,17 @@
         - 20  # NDRPDR sel
         - 21  # NDRPDR sel
     vpp-performance-changes-3n-hsw-cmp:
-      # TODO: Replace
       csit-vpp-perf-verify-2001-3n-hsw:
-        - 3   # NDRPDR sel RC2
-        - 4   # NDRPDR sel RC2
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
     vpp-performance-changes-3n-hsw:
       - "vpp-performance-changes-3n-hsw-h1"
       - "vpp-performance-changes-3n-hsw-ref"
@@ -587,10 +602,10 @@
         - 26  # NDRPDR sel
         - 29  # NDRPDR sel
     vpp-performance-changes-3n-skx-cmp:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 2  # NDRPDR sel RC2
-        - 3  # NDRPDR sel RC2
+        - 5   # NDRPDR sel
+        - 6   # NDRPDR sel
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -621,9 +636,11 @@
         - 45  # NDRPDR sel
         - 46  # NDRPDR sel
     vpp-performance-changes-2n-skx-cmp:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
-        - 3  # NDRPDR sel RC2
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 11  # NDRPDR sel
     vpp-performance-changes-2n-skx:
       - "vpp-performance-changes-2n-skx-h1"
       - "vpp-performance-changes-2n-skx-ref"
@@ -635,9 +652,12 @@
         - 31  # NFV
         - 32  # NFV
     vpp-performance-changes-nfv-2n-skx-cmp:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
-        - 3  # NDRPDR sel RC2
+        - 8   # NFV
+        - 9   # NFV
+        - 12  # NFV
+        - 13  # NFV
     vpp-performance-changes-nfv-2n-skx:
       - "vpp-performance-changes-nfv-2n-skx-ref"
       - "vpp-performance-changes-nfv-2n-skx-cmp"
@@ -697,9 +717,9 @@
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
     vpp-performance-changes-3n-tsh-cmp:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-tsh:
-        - 1   # NDRPDR sel RC2
+        - 3   # NDRPDR sel
     vpp-performance-changes-3n-tsh:
       - "vpp-performance-changes-3n-tsh-ref"
       - "vpp-performance-changes-3n-tsh-cmp"
@@ -949,28 +969,38 @@
     # Compare testbeds
 
     vpp-compare-testbeds-ref:
-      # TODO: Replace
       csit-vpp-perf-verify-2001-3n-hsw:
-        - 3   # NDRPDR sel RC2
-        - 4   # NDRPDR sel RC2
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
     vpp-compare-testbeds-cmp:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 2  # NDRPDR sel RC2
-        - 3  # NDRPDR sel RC2
+        - 5   # NDRPDR sel
+        - 6   # NDRPDR sel
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
 
     vpp-compare-testbeds-skx-clx-ref:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
-        - 3  # NDRPDR sel RC2
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 11  # NDRPDR sel
     vpp-compare-testbeds-skx-clx-cmp:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-clx:
-        - 3   # NDRPDR sel RC2
-        - 4   # NDRPDR sel RC2
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
     vpp-compare-testbeds-skx-clx:
       - "vpp-compare-testbeds-skx-clx-ref"
       - "vpp-compare-testbeds-skx-clx-cmp"
@@ -1062,14 +1092,16 @@
     # Compare topologies
 
     vpp-compare-topologies-ref:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 2  # NDRPDR sel RC2
-        - 3  # NDRPDR sel RC2
+        - 5   # NDRPDR sel
+        - 6   # NDRPDR sel
     vpp-compare-topologies-cmp:
-      # TODO: Replace
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
-        - 3  # NDRPDR sel RC2
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 11  # NDRPDR sel
     vpp-compare-topologies:
       - "vpp-compare-topologies-ref"
       - "vpp-compare-topologies-cmp"
@@ -1747,8 +1779,16 @@
       - 59  # NDRPDR sel vhost
       - 39  # MRR sel
     csit-vpp-perf-verify-2001-3n-hsw:
-      - 3   # NDRPDR sel RC2
-      - 4   # NDRPDR sel RC2
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 15  # NDRPDR sel
 
     csit-vpp-perf-verify-1904-3n-skx:
       - 7   # MRR sel
@@ -1785,8 +1825,8 @@
       - 67  # NDRPDR sel vhost
       - 36  # MRR sel
     csit-vpp-perf-verify-2001-3n-skx:
-      - 2  # NDRPDR sel RC2
-      - 3  # NDRPDR sel RC2
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
 
     csit-vpp-perf-verify-1904-2n-skx:
       - 11  # MRR sel
@@ -1835,11 +1875,18 @@
       - 83  # SOAK
       - 86  # SOAK
     csit-vpp-perf-verify-2001-2n-skx:
-      - 3  # NDRPDR sel RC2
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 8   # NFV
+      - 9   # NFV
+      - 12  # NFV
+      - 13  # NFV
 
     csit-vpp-perf-verify-2001-2n-clx:
-      - 3   # NDRPDR sel RC2
-      - 4   # NDRPDR sel RC2
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
@@ -1854,7 +1901,7 @@
       - 16  # NDRPDR sel
       - 17  # MRR sel
     csit-vpp-perf-verify-2001-3n-tsh:
-      - 1   # NDRPDR sel RC2
+      - 3   # NDRPDR sel
 
     csit-vpp-perf-verify-1908-3n-dnv:
       - 6   # NDRPDR sel
@@ -2002,10 +2049,8 @@
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
 
-    # TODO: Replace
-    # csit-vpp-device-2001-ubuntu1804-1n-skx:
-    csit-vpp-device-1908-ubuntu1804-1n-skx:
-      - 65
+    csit-vpp-device-2001-ubuntu1804-1n-skx:
+      - 57
 
 - type: "output"
   output: "report"
@@ -18859,6 +18904,34 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 2n-clx-x710-64b-2t1c-ip4routing-base-scale-avf-i40e-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-x710-64b-2t1c-ip4routing-base-scale-avf-i40e-ndr"
@@ -18979,6 +19052,94 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-ip4base-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ip4base-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ip4base-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 2n-clx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
@@ -19032,6 +19193,36 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
   layout:
     title: "2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -19153,6 +19344,66 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-2t1c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-2t1c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 2n-clx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
@@ -19206,6 +19457,62 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-2t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-vhost-base-i40e-vpp-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -19401,6 +19708,137 @@
     title: "2n-clx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
     layout: "plot-latency"
 
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-2t1c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr"
+    layout: "plot-latency"
+
 ################################################################################
 
 # Packet Latency 2C
@@ -19592,6 +20030,137 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-4t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-4t2c-vhost-base-i40e-vpp-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2-eth-2memif-1dcr-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2-eth-2memif-1dcr-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-4t2c-rdma-l2-eth-2memif-1dcr-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-ip4base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-ip4base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-4t2c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-4t2c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-4t2c-rdma-ip4base-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-ethip4-ip4scale-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-ethip4-ip4scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-4t2c-rdma-ethip4-ip4scale-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-ethip4-features-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-ethip4-features-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-4t2c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-4t2c-rdma-ethip4-features-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-78b-4t2c-rdma-ip6routing-base-scale-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-4t2c-rdma-ip6routing-base-scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-4t2c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-4t2c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-4t2c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-4t2c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-4t2c-rdma-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-4t2c-rdma-ip6routing-base-scale-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2switching-base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2switching-base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-4t2c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-4t2c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-4t2c-rdma-l2switching-base-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2switching-scale-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2switching-scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-4t2c-rdma-l2switching-scale-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-base-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-vppl2xc-base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-vppl2xc-base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-vppl2xc-base-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -19787,6 +20356,137 @@
     title: "2n-clx-xxv710-64b-8t4c-vhost-base-i40e-vpp-ndr"
     layout: "plot-latency"
 
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2-eth-2memif-1dcr-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2-eth-2memif-1dcr-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-8t4c-rdma-l2-eth-2memif-1dcr-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-ip4base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-ip4base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-8t4c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-8t4c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-8t4c-rdma-ip4base-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-ethip4-ip4scale-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-ethip4-ip4scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-8t4c-rdma-ethip4-ip4scale-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-ethip4-features-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-ethip4-features-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-8t4c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-8t4c-rdma-ethip4-features-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-78b-8t4c-rdma-ip6routing-base-scale-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-8t4c-rdma-ip6routing-base-scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-8t4c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-8t4c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-8t4c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-8t4c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-8t4c-rdma-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-8t4c-rdma-ip6routing-base-scale-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2switching-base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2switching-base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-8t4c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-8t4c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-8t4c-rdma-l2switching-base-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2switching-scale-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2switching-scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-8t4c-rdma-l2switching-scale-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-base-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-vppl2xc-base-ndr-lat"
+  algorithm: "plot_lat_err_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-vppl2xc-base-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-vppl2xc-base-ndr"
+    layout: "plot-latency"
+
 ################################################################################
 
 # HDRHistogram Packet Latency 1C
@@ -19802,6 +20502,20 @@
     - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
   layout:
     layout: "plot-hdrh-latency"
 
@@ -19866,6 +20580,50 @@
     layout: "plot-hdrh-latency"
 
 - type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
   title: "Latency: 2n-clx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr-hdrh-lat"
   graph-title: "2n-clx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
   algorithm: "plot_lat_hdrh_bar_name"
@@ -19890,6 +20648,21 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-ethip6-ip6scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-ethip6-ip6scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale2m-ndrpdr"
   layout:
     layout: "plot-hdrh-latency"
 
@@ -19953,6 +20726,36 @@
     layout: "plot-hdrh-latency"
 
 - type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-2t1c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
   title: "Latency: 2n-clx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   graph-title: "2n-clx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_hdrh_bar_name"
@@ -19980,6 +20783,34 @@
   layout:
     layout: "plot-hdrh-latency"
 
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
 ################################################################################
 
 # HDRHistogram Packet Latency 2C
@@ -19995,6 +20826,20 @@
     - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-l2-eth-2memif-1dcr-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
   layout:
     layout: "plot-hdrh-latency"
 
@@ -20059,6 +20904,50 @@
     layout: "plot-hdrh-latency"
 
 - type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-ip4base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-ip4base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-ip4base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-4t2c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-4t2c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-ethip4-ip4scale-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-ethip4-ip4scale-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-ethip4-ip4scale-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-ethip4-features-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-ethip4-features-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-ethip4-features-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-4t2c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
   title: "Latency: 2n-clx-x710-78b-4t2c-ip6routing-base-scale-i40e-ndr-hdrh-lat"
   graph-title: "2n-clx-x710-78b-4t2c-ip6routing-base-scale-i40e-ndr"
   algorithm: "plot_lat_hdrh_bar_name"
@@ -20083,6 +20972,21 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-Ndrpdr.78B-4t2c-ethip6-ip6scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-Ndrpdr.78B-4t2c-ethip6-ip6scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Ndrpdr.78B-4t2c-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-78b-4t2c-rdma-ip6routing-base-scale-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-78b-4t2c-rdma-ip6routing-base-scale-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-4t2c-rdma-ip6routing-base-scale-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-4t2c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-4t2c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-4t2c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-4t2c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-4t2c-rdma-ethip6-ip6scale2m-ndrpdr"
   layout:
     layout: "plot-hdrh-latency"
 
@@ -20146,6 +21050,36 @@
     layout: "plot-hdrh-latency"
 
 - type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2switching-base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-l2switching-base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2switching-base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-4t2c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-4t2c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2switching-scale-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-l2switching-scale-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2switching-scale-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
   title: "Latency: 2n-clx-xxv710-64b-4t2c-vhost-base-i40e-ndr"
   graph-title: "2n-clx-xxv710-64b-4t2c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_hdrh_bar_name"
@@ -20173,6 +21107,34 @@
   layout:
     layout: "plot-hdrh-latency"
 
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-vppl2xc-base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
 ################################################################################
 
 # HDRHistogram Packet Latency 4C
@@ -20188,6 +21150,20 @@
     - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-l2-eth-2memif-1dcr-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
   layout:
     layout: "plot-hdrh-latency"
 
@@ -20252,6 +21228,50 @@
     layout: "plot-hdrh-latency"
 
 - type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-ip4base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-ip4base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-ip4base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-8t4c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-8t4c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-ethip4-ip4scale-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-ethip4-ip4scale-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-ethip4-ip4scale-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-ethip4-features-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-ethip4-features-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-ethip4-features-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-8t4c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
   title: "Latency: 2n-clx-x710-78b-8t4c-ip6routing-base-scale-i40e-ndr-hdrh-lat"
   graph-title: "2n-clx-x710-78b-8t4c-ip6routing-base-scale-i40e-ndr"
   algorithm: "plot_lat_hdrh_bar_name"
@@ -20276,6 +21296,21 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-Ndrpdr.78B-8t4c-ethip6-ip6scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-Ndrpdr.78B-8t4c-ethip6-ip6scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Ndrpdr.78B-8t4c-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-78b-8t4c-rdma-ip6routing-base-scale-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-78b-8t4c-rdma-ip6routing-base-scale-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-8t4c-rdma-ip6routing-base-scale-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-8t4c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-8t4c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-8t4c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-8t4c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-8t4c-rdma-ethip6-ip6scale2m-ndrpdr"
   layout:
     layout: "plot-hdrh-latency"
 
@@ -20339,6 +21374,36 @@
     layout: "plot-hdrh-latency"
 
 - type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2switching-base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-l2switching-base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2switching-base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-8t4c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-8t4c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2switching-scale-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-l2switching-scale-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2switching-scale-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
   title: "Latency: 2n-clx-xxv710-64b-8t4c-vhost-base-i40e-ndr"
   graph-title: "2n-clx-xxv710-64b-8t4c-vhost-base-i40e-ndr"
   algorithm: "plot_lat_hdrh_bar_name"
@@ -20363,6 +21428,34 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-8t4c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-vppl2xc-base-ndr"
+  algorithm: "plot_lat_hdrh_bar_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
     layout: "plot-hdrh-latency"
 
@@ -20397,6 +21490,34 @@
   layout:
     title: "2n-clx-xxv710-64b-memif-base-i40e-pdr"
     layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-pdr"
+    layout: "plot-throughput"
 
 - type: "plot"
   title: "Speedup: 2n-clx-x710-64b-ip4routing-base-scale-avf-i40e-ndr-tsa"
@@ -20519,6 +21640,94 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-ip4base-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ip4base-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ip4base-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Speedup: 2n-clx-x710-78b-ip6routing-base-scale-i40e-ndr-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-x710-78b-ip6routing-base-scale-i40e-ndr-tsa"
@@ -20573,6 +21782,36 @@
   layout:
     title: "2n-clx-xxv710-78b-ip6routing-base-scale-i40e-pdr"
     layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-pdr"
+    layout: "plot-throughput"
 
 - type: "plot"
   title: "Speedup: 2n-clx-x710-64b-l2switching-base-scale-avf-i40e-ndr-tsa"
@@ -20693,6 +21932,66 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-2t1c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-2t1c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Speedup: 2n-clx-xxv710-64b-vhost-base-i40e-ndr"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-64b-vhost-base-i40e-ndr-tsa"
@@ -20747,6 +22046,62 @@
   layout:
     title: "2n-clx-xxv710-64b-vhost-base-i40e-vpp-pdr"
     layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-pdr"
+    layout: "plot-throughput"
 
 ################################################################################
 
@@ -22083,6 +23438,137 @@
   layout:
     layout: "plot-hdrh-latency-percentile"
 
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-2t1c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-2t1c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2switching-scale-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
 ################################################################################
 
 # HDRHistogram Packet Latency Percentile 2C
@@ -23028,6 +24514,137 @@
   layout:
     layout: "plot-hdrh-latency-percentile"
 
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-l2-eth-2memif-1dcr-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-4t2c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-ip4base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-ip4base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-ip4base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-4t2c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-4t2c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-ethip4-ip4scale-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-ethip4-ip4scale-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-ethip4-ip4scale-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-4t2c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-ethip4-features-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-ethip4-features-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-ethip4-features-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-4t2c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-4t2c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-78b-4t2c-rdma-ip6routing-base-scale-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-78b-4t2c-rdma-ip6routing-base-scale-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-4t2c-rdma-ip6routing-base-scale-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-4t2c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-4t2c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-4t2c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-4t2c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-4t2c-rdma-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2switching-base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-l2switching-base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2switching-base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-4t2c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-4t2c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2switching-scale-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-l2switching-scale-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2switching-scale-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-4t2c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-vppl2xc-base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-4t2c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-4t2c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
 ################################################################################
 
 # HDRHistogram Packet Latency Percentile 4C
@@ -23970,6 +25587,137 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-8t4c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-l2-eth-2memif-1dcr-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2-eth-2memif-1dcr-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-8t4c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-ip4base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-ip4base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-ip4base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip4Base-Ndrpdr.64B-8t4c-rdma-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-8t4c-rdma-ethip4-ip4base-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-ethip4-ip4scale-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-ethip4-ip4scale-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-ethip4-ip4scale-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale200K-Rnd-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-8t4c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-ethip4-features-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-ethip4-features-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-ethip4-features-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.-64B-8t4c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-8t4c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-78b-8t4c-rdma-ip6routing-base-scale-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-78b-8t4c-rdma-ip6routing-base-scale-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-8t4c-rdma-ip6routing-base-scale-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-Ip6Base-Ndrpdr.78B-8t4c-rdma-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-8t4c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-Ndrpdr.78B-8t4c-rdma-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-Ndrpdr.78B-8t4c-rdma-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-8t4c-rdma-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2switching-base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-l2switching-base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2switching-base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-8t4c-rdma-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-8t4c-rdma-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2switching-scale-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-l2switching-scale-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2switching-scale-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-8t4c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    layout: "plot-hdrh-latency-percentile"
+
+- type: "plot"
+  title: "Latency: 2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat-percentile"
+  graph-title: "2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-vppl2xc-base-ndr"
+  algorithm: "plot_lat_hdrh_percentile"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-8t4c-rdma-l2-vhost-vppl2xc-base-ndr-hdrh-lat-percentile"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
     layout: "plot-hdrh-latency-percentile"
 
