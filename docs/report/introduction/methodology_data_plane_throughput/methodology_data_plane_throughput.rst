@@ -111,7 +111,7 @@ PLRsearch are run to discover a sustained throughput for PLR=10^-7
 frame sizes (64b/78B) are presented in packet throughput graphs (Box
 Plots) for a small subset of baseline tests.
 
-Each soak test lasts 2hrs and is executed at least twice. Results are
+Each soak test lasts 30 minutes and is executed at least twice. Results are
 compared against NDR and PDR rates discovered with MLRsearch.
 
 Details

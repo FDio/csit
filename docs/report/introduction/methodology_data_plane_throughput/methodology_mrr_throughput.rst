@@ -14,7 +14,7 @@ MRR tests are currently used for following test jobs:
 - Report performance comparison: 64B, IMIX for vhost, memif.
 - Daily performance trending: 64B, IMIX for vhost, memif.
 - Per-patch performance verification: 64B.
-- PLRsearch soaking tests: 64B.
+- Initial iterations of MLRsearch and PLRsearch: 64B.
 
 Maximum offered load for specific L2 Ethernet frame size is set to
 either the maximum bi-directional link rate or tested NIC model
@@ -42,11 +42,13 @@ Burst parameter settings vary between different tests using MRR:
   - Report performance comparison: 1 sec.
   - Daily performance trending: 1 sec.
   - Per-patch performance verification: 10 sec.
-  - PLRsearch soaking tests: 5.2 sec.
+  - Initial iteration for MLRsearch: 1 sec.
+  - Initial iteration for PLRsearch: 5.2 sec.
 
 - Number of MRR trials per burst:
 
   - Report performance comparison: 10.
   - Daily performance trending: 10.
   - Per-patch performance verification: 5.
-  - PLRsearch soaking tests: 1.
+  - Initial iteration for MLRsearch: 1.
+  - Initial iteration for PLRsearch: 1.
