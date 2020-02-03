@@ -1341,6 +1341,8 @@ def _generate_url(testbed, test_name):
         nic = u"vic1385"
     elif u"x553" in test_name:
         nic = u"x553"
+    elif u"cx556" in test_name or u"cx556a" in test_name:
+        nic = u"cx556a"
     else:
         nic = u""
 
@@ -1373,11 +1375,15 @@ def _generate_url(testbed, test_name):
         cores = u"4t4c"
     elif u"2t1c" in test_name or \
          (u"-1c-" in test_name and
-          testbed in (u"2n-skx", u"3n-skx")):
+          testbed in (u"2n-skx", u"3n-skx", u"2n-clx")):
         cores = u"2t1c"
-    elif u"4t2c" in test_name:
+    elif u"4t2c" in test_name or \
+         (u"-2c-" in test_name and
+          testbed in (u"2n-skx", u"3n-skx", u"2n-clx")):
         cores = u"4t2c"
-    elif u"8t4c" in test_name:
+    elif u"8t4c" in test_name or \
+         (u"-4c-" in test_name and
+          testbed in (u"2n-skx", u"3n-skx", u"2n-clx")):
         cores = u"8t4c"
     else:
         cores = u""
