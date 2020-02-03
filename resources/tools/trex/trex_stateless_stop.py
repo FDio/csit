@@ -82,8 +82,32 @@ def main():
     print(u"##### statistics port 1 #####")
     print(json.dumps(xstats1, indent=4, separators=(u",", u": ")))
 
-    tx_0, rx_0 = xstats0[u"tx_good_packets"], xstats0[u"rx_good_packets"]
-    tx_1, rx_1 = xstats1[u"tx_good_packets"], xstats1[u"rx_good_packets"]
+    tx_0, tx_1 = xstats0[u"tx_good_packets"], xstats1[u"tx_good_packets"]
+    rx_0, rx_1 = xstats0[u"rx_good_packets"], xstats1[u"rx_good_packets"]
+    # We have used only *_good_packets before, but that is not enough.
+    # For data, see:
+    # https://gerrit.fd.io/r/c/csit/+/24287#message-eb71be79_7731c52f
+    index = 0
+    try:
+        while 1:
+            tx_0 += xstats0[f"tx_q{index}packets"]
+            tx_1 += xstats1[f"tx_q{index}packets"]
+            index +=1
+    except KeyError:
+        # No more Tx queues in xstats.
+        pass
+    # Rx has different number of queues.
+    index = 0
+    try:
+        while 1:
+            rx_0 += xstats0[f"rx_q{index}packets"]
+            rx_0 += xstats0[f"rx_q{index}errors"]
+            rx_1 += xstats1[f"rx_q{index}packets"]
+            rx_1 += xstats1[f"rx_q{index}errors"]
+            index +=1
+    except KeyError:
+        # No more Rx queues in xstats.
+        pass
     lost_a, lost_b = tx_0 - rx_1, tx_1 - rx_0
 
     print(f"\npackets lost from 0 --> 1:   {lost_a} pkts")
