@@ -217,6 +217,48 @@ def simple_burst(
             # Read the stats after the test
             stats = client.get_stats()
 
+            # Intermezzo: xstats.
+            # Seemes to affect stats, that is why we have read that before.
+            xstats0 = client.get_xstats(0)
+            xstats1 = client.get_xstats(1)
+            print(f"XSTATS 0:\n{xstats0}")
+            print(f"XSTATS 1:\n{xstats1}")
+            tx_0, tx_1 = xstats0[u"tx_good_packets"], xstats1[u"tx_good_packets"]
+            rx_0, rx_1 = xstats0[u"rx_good_packets"], xstats1[u"rx_good_packets"]
+            index = 0
+            try:
+                while 1:
+                    tx_0 += xstats0[f"tx_q{index}packets"]
+                    tx_1 += xstats1[f"tx_q{index}packets"]
+                    print(f"Tx after index:{index} 0:{tx_0} 1:{tx_1}")
+                    index +=1
+            except KeyError:
+                # No more Tx queues in xstats.
+                pass
+            # Rx has different number of queues.
+            index = 0
+            try:
+                while 1:
+                    rx_0 += xstats0[f"rx_q{index}packets"]
+                    rx_0 += xstats0[f"rx_q{index}errors"]
+                    rx_1 += xstats1[f"rx_q{index}packets"]
+                    rx_1 += xstats1[f"rx_q{index}errors"]
+                    print(f"Rx after index:{index} 0:{rx_0} 1:{rx_1}")
+                    index +=1
+            except KeyError:
+                # No more Rx queues in xstats.
+                pass
+            lost_a, lost_b = tx_0 - rx_1, tx_1 - rx_0
+            print(f"\npackets lost from {port_0} --> {port_1}: {lost_a} pkts")
+            if traffic_directions > 1:
+                print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
+            print(
+                f"rate={rate!r}, totalReceived={rx_0 + rx_1}, "
+                f"totalSent={tx_0 + tx_1}, frameLoss={lost_a + lost_b}, "
+                f"targetDuration={duration!r}"
+            )
+
+
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
 
