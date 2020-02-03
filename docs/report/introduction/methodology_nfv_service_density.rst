@@ -16,8 +16,8 @@ service chain forwarding context(s). In order to provide a most complete
 picture, each network topology and service configuration is tested in
 different service density setups by varying two parameters:
 
-- Number of service instances (e.g. 1,2,4..10).
-- Number of NFs per service instance (e.g. 1,2,4..10).
+- Number of service instances (e.g. 1, 2, 4, 6, 8, 10).
+- Number of NFs per service instance (e.g. 1, 2, 4, 6, 8, 10).
 
 Implementation of NFV service density tests in |csit-release| is using two NF
 applications:
