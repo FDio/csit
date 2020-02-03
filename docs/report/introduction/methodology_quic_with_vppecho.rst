@@ -32,6 +32,7 @@ where,
     measurements for all streams and the sum of all streams.
 
  Test cases include
+
  1. 1 QUIC Connection with 1 Stream
  2. 1 QUIC connection with 10 Streams
  3. 10 QUIC connetions with 1 Stream
@@ -39,5 +40,5 @@ where,
 
  with stream sizes to provide reasonable test durations. The VPP Host
  Stack QUIC transport is configured to utilize the picotls encryption
- library.  In the future, tests utilizing addtional encryption
+ library. In the future, tests utilizing addtional encryption
  algorithms will be added.

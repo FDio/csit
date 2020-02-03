@@ -1,7 +1,7 @@
 Packet Latency
 --------------
 
-TRex Traffic Generator (TG) is used for measuring latency across  2-Node
+TRex Traffic Generator (TG) is used for measuring latency across 2-Node
 and 3-Node SUT server topologies. TRex integrates `A High Dynamic Range
 Histogram (HDRH) <http://hdrhistogram.org/>`_ code providing per packet
 latency distribution for latency streams sent in parallel to the main
