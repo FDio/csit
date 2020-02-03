@@ -447,7 +447,7 @@
     vpp-perf-results-2n-skx:
       # TODO: Replace
       csit-vpp-perf-verify-2001-2n-skx:
-        -  # NDRPDR sel
+        - 13  # NDRPDR sel
 
     vpp-perf-results-2n-clx:
       # TODO: Replace
