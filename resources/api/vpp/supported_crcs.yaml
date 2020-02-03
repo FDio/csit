@@ -123,7 +123,7 @@
     ipsec_spd_entry_add_del_reply: '0x9ffac24b'  # dev
     ipsec_tunnel_if_add_del: '0xd5a98274'  # perf
     ipsec_tunnel_if_add_del_reply: '0xfda5941f'  # perf
-    # ^^ tc01-64B-1c-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-mrr
+    # ^^ tc01-64B-1c-ethip4ipsec1tnlsw-ip4base-int-aes256gcm-mrr
     # ^ See select_backend.
     # l2_fib_table_dump / details # honeycomb
     l2_interface_vlan_tag_rewrite: '0xb90be6b4'  # dev
@@ -284,7 +284,7 @@
 # TODO: Create an on-demand perf verify job with a tag expression
 # covering API calls used only in perf tests,
 # and maintain the expression as device test gets more coverage.
-# Currently 2 triggers are needed: 2n (with RDMA) vs 3n (with hwcrypto):
+# Currently 2 triggers are needed: 2n (with RDMA) vs 3n (for encaps):
 # csit-3n-hsw-perftest
 # mrrAND1cAND64bANDnic_intel-x710ANDdrv_vfio_pciANDip4fwdANDiaclANDacl10AND100_flows
 # mrrAND1cAND64bANDnic_intel-x710ANDdrv_vfio_pciANDnat44NOTscaleNOTsrc_user_1
@@ -292,7 +292,7 @@
 # mrrAND1cAND64bANDnic_intel-x710ANDdrv_vfio_pciANDl2xcfwdANDlbond_1lANDnf_testpmd
 # mrrAND1cAND64bANDnic_intel-x710ANDdrv_vfio_pciANDmacipANDacl1AND100_flows
 # mrrAND1cAND78bANDnic_intel-x710ANDdrv_vfio_pciANDsrv6_1sid
-# mrrAND1cAND64bANDnic_intel-xl710ANDdrv_vfio_pciANDipsechwANDtnl_1ANDaes_256_gcm
+# mrrAND1cAND64bANDnic_intel-x710ANDdrv_vfio_pciANDipsecswANDtnl_1ANDaes_256_gcm
 # mrrAND1cAND64bANDnic_intel-x710ANDdrv_vfio_pciANDdot1adANDl2xcfwd
 # mrrAND1cAND64bANDnic_intel-x710ANDdrv_vfio_pciANDipsecANDlispgpe
 # nic_intel-x710ANDnsimAND1stream
