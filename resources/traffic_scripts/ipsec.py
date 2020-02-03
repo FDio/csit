@@ -51,18 +51,20 @@ def check_ipsec(pkt_recv, ip_layer, dst_tun, src_ip, dst_ip, sa_in):
             f"Not an {ip_layer.name} packet received: {pkt_recv!r}"
         )
 
-    if pkt_recv[ip_layer].dst != dst_tun:
+    """if pkt_recv[ip_layer].dst != dst_tun:
         raise RuntimeError(
             f"Received packet has invalid destination address: "
             f"{pkt_recv[ip_layer].dst} should be: {dst_tun}"
         )
-
+    """
+    
     if not pkt_recv.haslayer(ESP):
         raise RuntimeError(f"Not an ESP packet received: {pkt_recv!r}")
-
-    ip_pkt = pkt_recv[ip_layer]
-    d_pkt = sa_in.decrypt(ip_pkt)
-
+    
+    #ip_pkt = pkt_recv[ip_layer]
+    #d_pkt = sa_in.decrypt(ip_pkt,False)
+    #d_pkt.show2()
+    
     if d_pkt[ip_layer].dst != dst_ip:
         raise RuntimeError(
             f"Decrypted packet has invalid destination address: "
@@ -80,7 +82,6 @@ def check_ipsec(pkt_recv, ip_layer, dst_tun, src_ip, dst_ip, sa_in):
             f"Decrypted packet has invalid IP protocol: "
             f"{d_pkt[ip_layer].proto} should be: 61"
         )
-
 
 def check_ip(pkt_recv, ip_layer, src_ip, dst_ip):
     """Check received IP/IPv6 packet.
@@ -163,13 +164,13 @@ def main():
         src_tun = src_ip
 
     sa_in = SecurityAssociation(
-        ESP, spi=r_spi, crypt_algo=crypto_alg,
+        ESP, spi=l_spi, crypt_algo=crypto_alg,
         crypt_key=crypto_key.encode(encoding=u"utf-8"), auth_algo=integ_alg,
-        auth_key=integ_key.encode(encoding=u"utf-8"), tunnel_header=tunnel_in
+        auth_key=integ_key.encode(encoding=u"utf-8"), tunnel_header=None #tunnel_in
     )
 
     sa_out = SecurityAssociation(
-        ESP, spi=l_spi, crypt_algo=crypto_alg,
+        ESP, spi=r_spi, crypt_algo=crypto_alg,
         crypt_key=crypto_key.encode(encoding=u"utf-8"), auth_algo=integ_alg,
         auth_key=integ_key.encode(encoding=u"utf-8"), tunnel_header=tunnel_out
     )
@@ -178,10 +179,17 @@ def main():
         else ip_layer(src=src_ip, dst=dst_ip)
     ip_pkt = ip_layer(ip_pkt)
 
-    e_pkt = sa_out.encrypt(ip_pkt)
-    tx_pkt_send = (Ether(src=tx_src_mac, dst=tx_dst_mac) /
-                   e_pkt)
-
+    #e_pkt = sa_out.encrypt(ip_pkt)
+    #e_pkt.show2()
+    #tx_pkt_send = (Ether(src=tx_src_mac, dst=tx_dst_mac) /
+    #               e_pkt)
+    #tx_pkt_send.show2()
+    tx_pkt_send = (Ether(src=tx_src_mac, dst=tx_dst_mac)/ip_pkt) 
+    logging.debug(f"debug: =====> Trying to send PACKET ...<=-*****")
+    logging.info(f"info: =====> Trying to send PACKET ...<=-*****")
+    tx_pkt_send.show2()
+    logging.debug(tx_pkt_send)
+    logging.info(tx_pkt_send)
     sent_packets = list()
     tx_pkt_send /= Raw()
     sent_packets.append(tx_pkt_send)
@@ -200,8 +208,11 @@ def main():
             # otherwise process the current packet
             break
 
-    check_ip(rx_pkt_recv, ip_layer, src_ip, dst_ip)
+    #check_ip(rx_pkt_recv, ip_layer, src_ip, dst_ip)
+    check_ipsec(rx_pkt_recv, ip_layer, src_tun, dst_ip, src_ip, sa_in)
+    #check_ipsec(rx_pkt_recv, ip_layer, src_tun, dst_ip, src_ip, sa_out)
 
+    """
     rx_ip_pkt = ip_layer(src=dst_ip, dst=src_ip, proto=61) if ip_layer == IP \
         else ip_layer(src=dst_ip, dst=src_ip)
     rx_pkt_send = (Ether(src=rx_dst_mac, dst=rx_src_mac) /
@@ -224,7 +235,8 @@ def main():
             break
 
     check_ipsec(tx_pkt_recv, ip_layer, src_tun, dst_ip, src_ip, sa_in)
-
+    
+    """
     sys.exit(0)
 
 
