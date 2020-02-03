@@ -72,6 +72,8 @@ def main():
         # Now we can call the official method to get differences.
         xstats0 = client.get_xstats(0)
         xstats1 = client.get_xstats(1)
+        stats = client.get_stats()
+        print(f"stats:\n{stats}")
 
     # If STLError happens, let the script fail with stack trace.
     finally:
