@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a27fb5e_700e18ab",
+        "filename": "tests/vpp/device/crypto/eth2p-ethip4ipsec1tnlhw-ip4base-int-aes128gcm-dev.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-03T12:39:38Z",
+      "side": 1,
+      "message": "Device tests do not have access to the hardware accelerator needed.\nBut the hardware crypto suite is only needed for coverage of ipsec_select_backend message. Other messages are covered also by IPSECSW suites.\nSo, create a ipsecsw -dev suite instead.",
+      "range": {
+        "startLine": 19,
+        "startChar": 25,
+        "endLine": 19,
+        "endChar": 32
+      },
+      "revId": "6fb8ddc0daa4772e3495614fd686fcd9ff1e1162",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
