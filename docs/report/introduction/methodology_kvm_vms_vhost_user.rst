@@ -3,7 +3,7 @@ KVM VMs vhost-user
 
 QEMU is used for KVM VM vhost-user testing enviroment. By default,
 standard QEMU version is used, preinstalled from OS repositories
-(qemu-2.11.1 for Ubuntu 18.04, qemu-2.5.0 for Ubuntu 16.04). The path
+(qemu-2.11.1 for Ubuntu 18.04). The path
 to the QEMU binary can be adjusted in `Constants.py`.
 
 FD.io CSIT performance lab is testing VPP vhost-user with KVM VMs using

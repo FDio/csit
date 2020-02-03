@@ -4,13 +4,12 @@ TRex Traffic Generator
 Usage
 ~~~~~
 
-`TRex traffic generator <https://wiki.fd.io/view/TRex>`_ is used for all
+`TRex traffic generator <https://trex-tgn.cisco.com>`_ is used for all
 CSIT performance tests. TRex stateless mode is used to measure NDR and
 PDR throughputs using MLRsearch and to measure maximum transer rate
 in MRR tests.
 
-TRex is installed and run on the TG compute node. The typical procedure
-is:
+TRex is installed and run on the TG compute node. The typical procedure is:
 
 - If the TRex is not already installed on TG, it is installed in the
   suite setup phase - see `TRex installation`_.
@@ -22,7 +21,7 @@ is:
 - TRex is started in the background mode
   ::
 
-  $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --prefix $(hostname) --hdrh > /tmp/trex.log 2>&1 &' > /dev/null
+  $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i --prefix $(hostname) --hdrh --no-scapy-server > /tmp/trex.log 2>&1 &' > /dev/null
 
 - There are traffic streams dynamically prepared for each test, based on traffic
   profiles. The traffic is sent and the statistics obtained using
@@ -49,4 +48,4 @@ Measuring Latency
 If measurement of latency is requested, two more packet streams are
 created (one for each direction) with TRex flow_stats parameter set to
 STLFlowLatencyStats. In that case, returned statistics will also include
-min/avg/max latency values.
+min/avg/max latency values and encoded HDRHstogram data.

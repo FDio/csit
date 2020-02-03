@@ -1,7 +1,7 @@
 Multi-Core Speedup
 ------------------
 
-All performance tests are executed with single processor core and with
+All performance tests are executed with single physical core and with
 multiple cores scenarios.
 
 Intel Hyper-Threading (HT)
@@ -16,7 +16,7 @@ making it impractical for continuous changes of HT mode of operation.
 |csit-release| performance tests are executed with server SUTs' Intel
 XEON processors configured with Intel Hyper-Threading Disabled for all
 Xeon Haswell testbeds (3n-hsw) and with Intel Hyper-Threading Enabled
-for all Xeon Skylake testbeds.
+for all Xeon Skylake and Xeon Cascadelake testbeds.
 
 More information about physical testbeds is provided in
 :ref:`tested_physical_topologies`.
@@ -34,8 +34,8 @@ thread and physical core configurations:
   #. 2t2c - 2 VPP worker threads on 2 physical cores.
   #. 4t4c - 4 VPP worker threads on 4 physical cores.
 
-#. Intel Xeon Skylake testbeds (2n-skx, 3n-skx) with Intel HT enabled
-   (2 logical CPU cores per each physical core):
+#. Intel Xeon Skylake and Cascadelake testbeds (2n-skx, 3n-skx, 2n-clx)
+   with Intel HT enabled (2 logical CPU cores per each physical core):
 
   #. 2t1c - 2 VPP worker threads on 1 physical core.
   #. 4t2c - 4 VPP worker threads on 2 physical cores.
