@@ -299,13 +299,13 @@ class ExecutionChecker(ResultVisitor):
         # 0 - no message
         # 1 - PAPI History of DUT1
         # 2 - PAPI History of DUT2
-        self._lookup_kw_nr = 0
+        # self._lookup_kw_nr = 0
         self._conf_history_lookup_nr = 0
 
         # Number of Show Running messages found
         # 0 - no message
         # 1 - Show run message found
-        self._show_run_lookup_nr = 0
+        # self._show_run_lookup_nr = 0
 
         # Test ID of currently processed test- the lowercase full path to the
         # test
@@ -457,6 +457,80 @@ class ExecutionChecker(ResultVisitor):
             )
 
     def _get_show_run(self, msg):
+        """Called when extraction of VPP operational data (output of CLI command
+        Show Runtime) is required.
+
+        :param msg: Message to process.
+        :type msg: Message
+        :returns: Nothing.
+        """
+
+        if not msg.message.count(u"stats runtime"):
+            return
+
+        if u"show-run" not in self._data[u"tests"][self._test_id].keys():
+            self._data[u"tests"][self._test_id][u"show-run"] = dict()
+
+        groups = re.search(self.REGEX_TC_PAPI_CLI, msg.message)
+        if not groups:
+            return
+        try:
+            host = groups.group(1)
+        except (AttributeError, IndexError):
+            host = u""
+        try:
+            sock = groups.group(2)
+        except (AttributeError, IndexError):
+            sock = u""
+
+        runtime = loads(str(msg.message).replace(u' ', u'').replace(u'\n', u'').
+                        replace(u"'", u'"').replace(u'b"', u'"').
+                        replace(u'u"', u'"').split(u":", 1)[1])
+
+        try:
+            threads_nr = len(runtime[0][u"clocks"])
+        except (IndexError, KeyError):
+            return
+
+        dut = u"DUT{nr}".format(
+            nr=len(self._data[u'tests'][self._test_id][u'show-run'].keys()) + 1)
+
+        oper = {
+            u"host": host,
+            u"socket": sock,
+            u"threads": OrderedDict({idx: list() for idx in range(threads_nr)})
+        }
+
+        for item in runtime:
+            for idx in range(threads_nr):
+                if item[u"vectors"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"vectors"][idx]
+                elif item[u"calls"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"calls"][idx]
+                elif item[u"suspends"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"suspends"][idx]
+                else:
+                    clocks = 0.0
+
+                if item[u"calls"][idx] > 0:
+                    vectors_call = item[u"vectors"][idx] / item[u"calls"][idx]
+                else:
+                    vectors_call = 0.0
+
+                if int(item[u"calls"][idx]) + int(item[u"vectors"][idx]) + \
+                        int(item[u"suspends"][idx]):
+                    oper[u"threads"][idx].append([
+                        item[u"name"],
+                        item[u"calls"][idx],
+                        item[u"vectors"][idx],
+                        item[u"suspends"][idx],
+                        clocks,
+                        vectors_call
+                    ])
+
+        self._data[u'tests'][self._test_id][u'show-run'][dut] = copy.copy(oper)
+
+    def _get_show_run_old(self, msg):
         """Called when extraction of VPP operational data (output of CLI command
         Show Runtime) is required.
 
@@ -973,10 +1047,10 @@ class ExecutionChecker(ResultVisitor):
             if keyword.type == u"setup":
                 self.visit_setup_kw(keyword)
             elif keyword.type == u"teardown":
-                self._lookup_kw_nr = 0
+                # self._lookup_kw_nr = 0
                 self.visit_teardown_kw(keyword)
             else:
-                self._lookup_kw_nr = 0
+                # self._lookup_kw_nr = 0
                 self.visit_test_kw(keyword)
         except AttributeError:
             pass
@@ -1012,8 +1086,8 @@ class ExecutionChecker(ResultVisitor):
         """
         if test_kw.name.count(u"Show Runtime On All Duts") or \
                 test_kw.name.count(u"Show Runtime Counters On All Duts"):
-            self._lookup_kw_nr += 1
-            self._show_run_lookup_nr = 0
+            # self._lookup_kw_nr += 1
+            # self._show_run_lookup_nr = 0
             self._msg_type = u"test-show-runtime"
         elif test_kw.name.count(u"Install Dpdk Test") and not self._version:
             self._msg_type = u"dpdk-version"
@@ -1659,3 +1733,46 @@ class InputData:
                     merged_data[item_id] = item_data
 
         return merged_data
+
+    def print_all_oper_data(self):
+        """
+
+        :return:
+        """
+
+        tbl_hdr = [
+            u"Name",
+            u"Nr of Vectors",
+            u"Nr of Packets",
+            u"Suspends",
+            u"Cycles per Packet",
+            u"Average Vector Size"
+        ]
+
+        for job in self._input_data.values:
+            for build in job.values:
+                for test_id, test_data in build[u"tests"].items():
+                    print(f"{test_id}")
+                    if test_data.get(u"show-run", None) is None:
+                        continue
+                    for dut_name, data in test_data[u"show-run"].items():
+                        if data.get(u"threads", None) is None:
+                            continue
+                        print(f"Host IP: {data.get(u'host', '')}, "
+                              f"Socket: {data.get(u'socket', '')}")
+                        for thread_nr, thread in data[u"threads"].items():
+                            th_name = u"main" if thread_nr == 0 \
+                                else f"worker_{thread_nr}"
+                            print(f"{dut_name}, {th_name}")
+                            txt_table = prettytable.PrettyTable(tbl_hdr)
+                            for row in thread:
+                                txt_table.add_row(row)
+                            txt_table.float_format=u".2"
+                            txt_table.align[u"Name"] = u"l"
+                            txt_table.align[u"Nr of Vectors"] = u"r"
+                            txt_table.align[u"Nr of Packets"] = u"r"
+                            txt_table.align[u"Suspends"] = u"r"
+                            txt_table.align[u"Cycles per Packet"] = u"r"
+                            txt_table.align[u"Average Vector Size"] = u"r"
+                            print(txt_table.get_string())
+                            print()
