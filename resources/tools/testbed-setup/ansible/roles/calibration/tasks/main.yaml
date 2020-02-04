@@ -1,14 +1,25 @@
 ---
 # file: roles/calibration/tasks/main.yaml
 
-- name: Run Spectre Meltdown checker
-  raw: 'wget -qO - https://meltdown.ovh | sudo bash -s - --no-color || true'
+- name: Calibration - Install Distribution - Release - Machine Prerequisites
+  include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
+  tags:
+    - run-spectre-meltdown-checker
+    - install-csit-dependencies
+
+- name: Calibration - Run Spectre Meltdown Checker
+  raw: "wget -qO - https://meltdown.ovh | sudo bash -s - --no-color || true"
   register: spectre_meltdown_output
-  tags: run-spectre-meltdown-checker
+  tags:
+    - run-spectre-meltdown-checker
 
 - debug: var=spectre_meltdown_output.stdout_lines
-  tags: run-spectre-meltdown-checker
+  tags:
+    - run-spectre-meltdown-checker
 
-- name: x86 specific
-  import_tasks: x86_64.yaml
-  when: ansible_machine == 'x86_64'
+- name: Calibration - {{ ansible_machine }} Specific
+  include_tasks: "{{ ansible_machine }}.yaml"
+  when: ansible_machine == "x86_64"
+  tags:
+    - run-spectre-meltdown-checker
+    - run-jitter-tool

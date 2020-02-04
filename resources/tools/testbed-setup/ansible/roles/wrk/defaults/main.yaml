@@ -1,0 +1,5 @@
+---
+# file: roles/wrk/defaults/main.yaml
+
+wrk_target_dir: '/opt'
+wrk_version: '4.0.2'

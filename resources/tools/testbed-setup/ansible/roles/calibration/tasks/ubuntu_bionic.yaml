@@ -1,0 +1,12 @@
+---
+# file: roles/calibration/tasks/ubuntu_bionic.yaml
+
+- name: Calibration - Install CSIT dependencies
+  apt:
+    name:
+      - "build-essential"
+    state: "present"
+    cache_valid_time: 3600
+    install_recommends: False
+  tags:
+    - install-csit-dependencies
