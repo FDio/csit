@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a46342e_e30c7fe7",
+        "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-04T17:22:10Z",
+      "side": 1,
+      "message": "All these dependency lists will be hard to maintain if dispersed in many files in slightly differing copies. Can we create one \"kitchen sink\" list and \"import\" it everywhere needed?\n\nThe \"kitchen sink\" list can be divided into sections with comments on who needs what, see csit root requirements.txt file.",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 5
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24d6a4b2_301aa478",
+        "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-04T17:22:10Z",
+      "side": 1,
+      "message": "See the previous comment about dependency lists.",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 5
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53565c8f_0da2e1f7",
+        "filename": "resources/tools/testbed-setup/ansible/roles/common/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-04T17:22:10Z",
+      "side": 1,
+      "message": "A list to merge into \"kitchen sink\".",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 5
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79da50da_2e7285c1",
+        "filename": "resources/tools/testbed-setup/ansible/roles/iperf/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-04T17:22:10Z",
+      "side": 1,
+      "message": "A list to merge into \"kitchen sink\".",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 5
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a88423a0_2e53cd9c",
+        "filename": "resources/tools/testbed-setup/ansible/roles/trex/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-04T17:22:10Z",
+      "side": 1,
+      "message": "I wonder why is this not part of TRex already. Licensing issues? If yes, I am not sure we are allowed to apply the patch.\nIf no (Contributors not eager to add command line options needed? TRex committers to busy to merge otherwise good contribution?), can we help?",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 37
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93f9f929_338d3383",
+        "filename": "resources/tools/testbed-setup/ansible/roles/trex/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-04T17:22:10Z",
+      "side": 1,
+      "message": "A list to merge into \"kitchen sink\".",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 5
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81c89cf8_d00a2c0a",
+        "filename": "resources/tools/testbed-setup/ansible/roles/wrk/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-04T17:22:10Z",
+      "side": 1,
+      "message": "A list to merge into \"kitchen sink\".",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 5
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
