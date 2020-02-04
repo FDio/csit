@@ -459,12 +459,10 @@ class PLRsearch:
             log_avg_loss_per_trial = (
                 log_avg_loss_per_second + math.log(result.duration)
             )
-            # Poisson probability computation works nice for logarithms.
-            log_trial_likelihood = (
-                result.loss_count * log_avg_loss_per_trial
-                - math.exp(log_avg_loss_per_trial)
-            )
-            log_trial_likelihood -= math.lgamma(1 + result.loss_count)
+            # Geometric probability computation for logarithms.
+            log_trial_likelihood = log_plus(0.0, -log_avg_loss_per_trial)
+            log_trial_likelihood *= -result.loss_count
+            log_trial_likelihood -= log_plus(0.0, +log_avg_loss_per_trial)
             log_likelihood += log_trial_likelihood
             trace(u"avg_loss_per_trial", math.exp(log_avg_loss_per_trial))
             trace(u"log_trial_likelihood", log_trial_likelihood)
@@ -633,7 +631,13 @@ class PLRsearch:
                 and number of samples used for this iteration.
             :rtype: _PartialResult
             """
-            pipe.send(None)
+            try:
+                pipe.send(None)
+            except IOError as err:
+                logging.debug(
+                    f"Send failed, assuming worker failed"
+                    f" but sent an error.\n{err!r}"
+                )
             if not pipe.poll(10.0):
                 raise RuntimeError(f"Worker {name} did not finish!")
             result_or_traceback = pipe.recv()
