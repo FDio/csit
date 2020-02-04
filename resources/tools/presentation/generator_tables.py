@@ -57,7 +57,8 @@ def generate_tables(spec, data):
         u"table_perf_trending_dash_html": table_perf_trending_dash_html,
         u"table_last_failed_tests": table_last_failed_tests,
         u"table_failed_tests": table_failed_tests,
-        u"table_failed_tests_html": table_failed_tests_html
+        u"table_failed_tests_html": table_failed_tests_html,
+        u"table_oper_data_html": table_oper_data_html
     }
 
     logging.info(u"Generating the tables ...")
@@ -70,6 +71,191 @@ def generate_tables(spec, data):
                 f"{repr(err)}"
             )
     logging.info(u"Done.")
+
+
+def table_oper_data_html(table, input_data):
+    """Generate the table(s) with algorithm: html_table_oper_data
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
+    # Transform the data
+    logging.info(
+        f"    Creating the data set for the {table.get(u'type', u'')} "
+        f"{table.get(u'title', u'')}."
+    )
+    data = input_data.filter_data(
+        table,
+        params=[u"name", u"parent", u"show-run", u"type"],
+        continue_on_error=True
+    )
+    if data.empty:
+        return
+    data = input_data.merge_data(data)
+    data.sort_index(inplace=True)
+
+    suites = input_data.filter_data(
+        table,
+        continue_on_error=True,
+        data_set=u"suites"
+    )
+    if suites.empty:
+        return
+    suites = input_data.merge_data(suites)
+
+    def _generate_html_table(tst_data):
+        """Generate an HTML table with operational data for the given test.
+
+        :param tst_data: Test data to be used to generate the table.
+        :type tst_data: pandas.Series
+        :returns: HTML table with operational data.
+        :rtype: str
+        """
+
+        colors = {
+            u"header": u"#7eade7",
+            u"empty": u"#ffffff",
+            u"body": (u"#e9f1fb", u"#d4e4f7")
+        }
+
+        tbl = ET.Element(u"table", attrib=dict(width=u"100%", border=u"0"))
+
+        trow = ET.SubElement(tbl, u"tr", attrib=dict(bgcolor=colors[u"header"]))
+        thead = ET.SubElement(
+            trow, u"th", attrib=dict(align=u"left", colspan=u"6")
+        )
+        thead.text = tst_data[u"name"]
+
+        trow = ET.SubElement(tbl, u"tr", attrib=dict(bgcolor=colors[u"empty"]))
+        thead = ET.SubElement(
+            trow, u"th", attrib=dict(align=u"left", colspan=u"6")
+        )
+        thead.text = u"\t"
+
+        if tst_data.get(u"show-run", u"No Data") == u"No Data":
+            trow = ET.SubElement(
+                tbl, u"tr", attrib=dict(bgcolor=colors[u"header"])
+            )
+            tcol = ET.SubElement(
+                trow, u"td", attrib=dict(align=u"left", colspan=u"6")
+            )
+            tcol.text = u"No Data"
+            return str(ET.tostring(tbl, encoding=u"unicode"))
+
+        tbl_hdr = (
+            u"Name",
+            u"Nr of Vectors",
+            u"Nr of Packets",
+            u"Suspends",
+            u"Cycles per Packet",
+            u"Average Vector Size"
+        )
+
+        for dut_name, dut_data in tst_data[u"show-run"].items():
+            trow = ET.SubElement(
+                tbl, u"tr", attrib=dict(bgcolor=colors[u"header"])
+            )
+            tcol = ET.SubElement(
+                trow, u"td", attrib=dict(align=u"left", colspan=u"6")
+            )
+            if dut_data.get(u"threads", None) is None:
+                tcol.text = u"No Data"
+                continue
+            bold = ET.SubElement(tcol, u"b")
+            bold.text = dut_name
+
+            trow = ET.SubElement(
+                tbl, u"tr", attrib=dict(bgcolor=colors[u"body"][0])
+            )
+            tcol = ET.SubElement(
+                trow, u"td", attrib=dict(align=u"left", colspan=u"6")
+            )
+            bold = ET.SubElement(tcol, u"b")
+            bold.text = (
+                f"Host IP: {dut_data.get(u'host', '')}, "
+                f"Socket: {dut_data.get(u'socket', '')}"
+            )
+            trow = ET.SubElement(
+                tbl, u"tr", attrib=dict(bgcolor=colors[u"empty"])
+            )
+            thead = ET.SubElement(
+                trow, u"th", attrib=dict(align=u"left", colspan=u"6")
+            )
+            thead.text = u"\t"
+
+            for thread_nr, thread in dut_data[u"threads"].items():
+                trow = ET.SubElement(
+                    tbl, u"tr", attrib=dict(bgcolor=colors[u"header"])
+                )
+                tcol = ET.SubElement(
+                    trow, u"td", attrib=dict(align=u"left", colspan=u"6")
+                )
+                bold = ET.SubElement(tcol, u"b")
+                bold.text = u"main" if thread_nr == 0 else f"worker_{thread_nr}"
+                trow = ET.SubElement(
+                    tbl, u"tr", attrib=dict(bgcolor=colors[u"header"])
+                )
+                for idx, col in enumerate(tbl_hdr):
+                    tcol = ET.SubElement(
+                        trow, u"td",
+                        attrib=dict(align=u"right" if idx else u"left")
+                    )
+                    bold = ET.SubElement(tcol, u"b")
+                    bold.text = col
+                for row_nr, row in enumerate(thread):
+                    trow = ET.SubElement(
+                        tbl, u"tr",
+                        attrib=dict(bgcolor=colors[u"body"][row_nr % 2])
+                    )
+                    for idx, col in enumerate(row):
+                        tcol = ET.SubElement(
+                            trow, u"td",
+                            attrib=dict(align=u"right" if idx else u"left")
+                        )
+                        if isinstance(col, float):
+                            tcol.text = f"{col:.2f}"
+                        else:
+                            tcol.text = str(col)
+                trow = ET.SubElement(
+                    tbl, u"tr", attrib=dict(bgcolor=colors[u"empty"])
+                )
+                thead = ET.SubElement(
+                    trow, u"th", attrib=dict(align=u"left", colspan=u"6")
+                )
+                thead.text = u"\t"
+
+        trow = ET.SubElement(tbl, u"tr", attrib=dict(bgcolor=colors[u"empty"]))
+        thead = ET.SubElement(
+            trow, u"th", attrib=dict(align=u"left", colspan=u"6")
+        )
+        thead.text = u"\t"
+
+        return str(ET.tostring(tbl, encoding=u"unicode"))
+
+    for suite in suites.values:
+        html_table = str()
+        for test_name, test_data in data.items():
+            if test_data[u"parent"] not in suite[u"name"]:
+                continue
+            html_table += _generate_html_table(test_data)
+        if not html_table:
+            continue
+        try:
+            file_name = f"{table[u'output-file']}_{suite[u'name']}.rst"
+            with open(f"{file_name}", u'w') as html_file:
+                logging.info(f"    Writing file: {file_name}")
+                html_file.write(u".. raw:: html\n\n\t")
+                html_file.write(html_table)
+                html_file.write(u"\n\t<p><br><br></p>\n")
+        except KeyError:
+            logging.warning(u"The output file is not defined.")
+            return
+    logging.info(u"  Done.")
 
 
 def table_details(table, input_data):
