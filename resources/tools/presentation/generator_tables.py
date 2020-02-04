@@ -57,7 +57,8 @@ def generate_tables(spec, data):
         u"table_perf_trending_dash_html": table_perf_trending_dash_html,
         u"table_last_failed_tests": table_last_failed_tests,
         u"table_failed_tests": table_failed_tests,
-        u"table_failed_tests_html": table_failed_tests_html
+        u"table_failed_tests_html": table_failed_tests_html,
+        u"table_oper_data_html": table_oper_data_html
     }
 
     logging.info(u"Generating the tables ...")
@@ -70,6 +71,91 @@ def generate_tables(spec, data):
                 f"{repr(err)}"
             )
     logging.info(u"Done.")
+
+
+def table_oper_data_html(table, input_data):
+    """Generate the table(s) with algorithm: html_table_oper_data
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
+    # Transform the data
+    logging.info(
+        f"    Creating the data set for the {table.get(u'type', u'')} "
+        f"{table.get(u'title', u'')}."
+    )
+    data = input_data.filter_data(
+        table,
+        params=[u"name", u"parent", u"show-run", u"type"],
+        continue_on_error=True
+    )
+    if data.empty:
+        return
+    data = input_data.merge_data(data)
+    data.sort_index(inplace=True)
+
+    suites = input_data.filter_data(
+        table,
+        continue_on_error=True,
+        data_set=u"suites"
+    )
+    if suites.empty:
+        return
+    suites = input_data.merge_data(suites)
+
+    # logging.info(data)
+    # logging.info(suites)
+
+    def _generate_html_table(tst_data):
+        """Generate an HTML table with operational data for the given test.
+
+        :param tst_data: Test data to be used to generate the table.
+        :type tst_data: pandas.Series
+        :returns: HTML table with operational data.
+        :rtype: str
+        """
+
+        logging.info(tst_data)
+
+        colors = {
+            u"header": u"#7eade7",
+            u"empty": u"#ffffff",
+            u"body": (u"#e9f1fb", u"#d4e4f7")
+        }
+
+        tbl = ET.Element(u"table", attrib=dict(width=u"100%", border=u"1"))
+
+        trow = ET.SubElement(tbl, u"tr", attrib=dict(bgcolor=colors[u"header"]))
+        thead = ET.SubElement(trow, u"th",
+                              attrib=dict(align=u"left", colspan=u"6"))
+        thead.text = tst_data[u"name"]
+
+        trow = ET.SubElement(tbl, u"tr", attrib=dict(bgcolor=colors[u"empty"]))
+        thead = ET.SubElement(trow, u"th",
+                              attrib=dict(align=u"left", colspan=u"6"))
+        thead.text = u""
+
+
+
+        return str(ET.tostring(tbl, encoding=u"unicode"))
+
+
+    for suite in suites.values:
+        for test_name, test_data in data.items():
+            if test_data[u"parent"] not in suite[u"name"]:
+                continue
+            html_tbl = _generate_html_table(test_data)
+
+            logging.info(html_tbl)
+
+
+
+
 
 
 def table_details(table, input_data):
