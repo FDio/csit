@@ -141,6 +141,30 @@
     },
     {
       "key": {
+        "uuid": "bc2690b3_5ba807e9",
+        "filename": "resources/tools/testbed-setup/ansible/roles/trex/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-04T18:59:39Z",
+      "side": 1,
+      "message": "I am pretty sure they know about the problem:\n\nhttps://github.com/cisco-system-traffic-generator/trex-core/wiki/Build-For-Azure-Ubuntu-(mlx5)\n\nFor now we will apply patch only for Azure.",
+      "parentUuid": "a88423a0_2e53cd9c",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 37
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "93f9f929_338d3383",
         "filename": "resources/tools/testbed-setup/ansible/roles/trex/tasks/ubuntu_bionic.yaml",
         "patchSetId": 5
