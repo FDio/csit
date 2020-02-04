@@ -41,7 +41,8 @@ def generate_files(spec, data):
     """
 
     generator = {
-        u"file_test_results": file_test_results
+        u"file_test_results": file_test_results,
+        u"file_test_results_html": file_test_results_html
     }
 
     logging.info(u"Generating the files ...")
@@ -142,5 +143,85 @@ def file_test_results(file_spec, input_data):
                             RST_INCLUDE_TABLE.format(
                                 file_latex=tbl_file,
                                 file_html=tbl_file.split(u"/")[-1]))
+
+    logging.info(u"  Done.")
+
+
+def file_test_results_html(file_spec, input_data):
+    """Generate the file(s) with algorithms
+    - file_test_results_html
+    specified in the specification file.
+
+    :param file_spec: File to generate.
+    :param input_data: Data to process.
+    :type file_spec: pandas.Series
+    :type input_data: InputData
+    """
+
+    file_name = f"{file_spec[u'output-file']}.rst"
+    rst_header = file_spec[u"file-header"]
+
+    logging.info(f"  Generating the file {file_name} ...")
+
+    table_lst = get_files(file_spec[u"dir-tables"], u".rst", full_path=True)
+    if not table_lst:
+        logging.error(
+            f"  No tables to include in {file_spec[u'dir-tables']}. Skipping."
+        )
+        return
+
+    logging.info(f"    Writing file {file_name}")
+
+    logging.info(
+        f"    Creating the tests data set for the "
+        f"{file_spec.get(u'type', u'')} {file_spec.get(u'title', u'')}."
+    )
+
+    tests = input_data.filter_data(
+        file_spec,
+        params=[u"name", u"parent", u"doc", u"type", u"level"],
+        continue_on_error=True
+    )
+    if tests.empty:
+        return
+    tests = input_data.merge_data(tests)
+    tests.sort_index(inplace=True)
+
+    suites = input_data.filter_data(
+        file_spec,
+        continue_on_error=True,
+        data_set=u"suites"
+    )
+    if suites.empty:
+        return
+    suites = input_data.merge_data(suites)
+
+    with open(file_name, u"wt") as file_handler:
+        file_handler.write(rst_header)
+        for suite_longname, suite in suites.items():
+            if len(suite_longname.split(u".")) <= \
+                    file_spec[u"data-start-level"]:
+                continue
+
+            title_line = \
+                get_rst_title_char(
+                    suite[u"level"] - file_spec[u"data-start-level"] - 1
+                ) * len(suite[u"name"])
+            if not (u"-ndrpdr" in suite[u"name"] or
+                    u"-mrr" in suite[u"name"] or
+                    u"-func" in suite[u"name"] or
+                    u"-device" in suite[u"name"]):
+                file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
+
+            if _tests_in_suite(suite[u"name"], tests):
+                file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
+                file_handler.write(
+                    f"\n{suite[u'doc']}\n".replace(u'|br|', u'\n\n -')
+                )
+                for tbl_file in table_lst:
+                    if suite[u"name"] in tbl_file:
+                        file_handler.write(
+                            f".. include:: {tbl_file.split(u'/')[-1]}"
+                        )
 
     logging.info(u"  Done.")
