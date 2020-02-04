@@ -1,0 +1,16 @@
+---
+# file: tg_azure.yaml
+
+- hosts: tg
+  remote_user: testuser
+  become: yes
+  become_user: root
+  roles:
+    - role: azure
+      tags: azure
+    - role: trex
+      tags: trex
+    - role: cleanup
+      tags: cleanup
+    - role: calibration
+      tags: calibration

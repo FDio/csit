@@ -1,0 +1,5 @@
+---
+# file: roles/trex/defaults/main.yaml
+
+trex_target_dir: "/opt"
+trex_version: "2.73"
