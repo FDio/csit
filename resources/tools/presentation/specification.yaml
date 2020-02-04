@@ -4202,135 +4202,58 @@
 # Test Operational Data - VPP Performance Operational Data 3n-hsw
 - type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 3n-hsw"
-  algorithm: "table_merged_details"
-  output-file-ext: ".csv"
+  algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,HSW]}/vpp_test_operational_3n_hsw"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
-    data: "data show-run"
-  rows: "generated"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW') or ('NIC_Cisco-VIC-1385' and '9000B'))"
-  parameters:
-  - "parent"
-  - "name"
-  - "show-run"
+  filter: "'NDRPDR'"
 
 # Test Operational Data - VPP Performance Operational Data 3n-skx
 - type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 3n-skx"
-  algorithm: "table_merged_details"
-  output-file-ext: ".csv"
+  algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,SKX]}/vpp_test_operational_3n_skx"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
-    data: "data show-run"
-  rows: "generated"
   data: "vpp-perf-results-3n-skx"
   filter: "not 'CFS_OPT'"
-  parameters:
-  - "parent"
-  - "name"
-  - "show-run"
 
 # Test Operational Data - VPP Performance Operational Data 2n-skx
 - type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 2n-skx"
-  algorithm: "table_merged_details"
-  output-file-ext: ".csv"
+  algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,2N,SKX]}/vpp_test_operational_2n_skx"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
-    data: "data show-run"
-  rows: "generated"
   data: "vpp-perf-results-2n-skx"
   filter: "not 'CFS_OPT'"
-  parameters:
-  - "parent"
-  - "name"
-  - "show-run"
 
 # Test Operational Data - VPP Performance Operational Data 2n-clx
 - type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 2n-clx"
-  algorithm: "table_merged_details"
-  output-file-ext: ".csv"
+  algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,2N,CLX]}/vpp_test_operational_2n_clx"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
-    data: "data show-run"
-  rows: "generated"
   data: "vpp-perf-results-2n-clx"
   filter: "not 'CFS_OPT'"
-  parameters:
-  - "parent"
-  - "name"
-  - "show-run"
 
 # Test Operational Data - VPP Performance Operational Data 3n-tsh
 - type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 3n-tsh"
-  algorithm: "table_merged_details"
-  output-file-ext: ".csv"
+  algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,TSH]}/vpp_test_operational_3n_tsh"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
-    data: "data show-run"
-  rows: "generated"
   data: "vpp-perf-results-3n-tsh"
   filter: "not 'CFS_OPT'"
-  parameters:
-  - "parent"
-  - "name"
-  - "show-run"
 
 # Test Operational Data - VPP Performance Operational Data 3n-dnv
 - type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 3n-dnv"
-  algorithm: "table_details"
-  output-file-ext: ".csv"
+  algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,DNV]}/vpp_test_operational_3n_dnv"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
-    data: "data show-run"
-  rows: "generated"
   data: "vpp-perf-results-3n-dnv"
   filter: "'NDRPDR'"
-  parameters:
-  - "parent"
-  - "name"
-  - "show-run"
 
 # Test Operational Data - VPP Performance Operational Data 2n-dnv
 - type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 2n-dnv"
-  algorithm: "table_details"
-  output-file-ext: ".csv"
+  algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,2N,DNV]}/vpp_test_operational_2n_dnv"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
-    data: "data show-run"
-  rows: "generated"
   data: "vpp-perf-results-2n-dnv"
   filter: "'NDRPDR'"
-  parameters:
-  - "parent"
-  - "name"
-  - "show-run"
 
 # Detailed Test Results - VPP MRR Results 3n-hsw
 - type: "table"
@@ -5340,120 +5263,78 @@
 # VPP Performance Operational Data 3n-hsw
 - type: "file"
   title: "VPP Performance Operational Data 3n-hsw"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
+  algorithm: "file_test_results_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,HSW]}/vpp_performance_operational_data_3n_hsw"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,3N,HSW]}"
   data: "vpp-perf-results-3n-hsw"
   filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW') or ('NIC_Cisco-VIC-1385' and '9000B'))"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
   data-start-level: 3
 
 # VPP Performance Operational Data 3n-skx
 - type: "file"
   title: "VPP Performance Operational Data 3n-skx"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
+  algorithm: "file_test_results_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,SKX]}/vpp_performance_operational_data_3n_skx"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,3N,SKX]}"
   data: "vpp-perf-results-3n-skx"
   filter: "not 'CFS_OPT'"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
   data-start-level: 3
 
 # VPP Performance Operational Data 2n-skx
 - type: "file"
   title: "VPP Performance Operational Data 2n-skx"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
+  algorithm: "file_test_results_html"
   output-file: "{DIR[DTO,PERF,VPP,2N,SKX]}/vpp_performance_operational_data_2n_skx"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,2N,SKX]}"
   data: "vpp-perf-results-2n-skx"
   filter: "not 'CFS_OPT'"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
   data-start-level: 3
 
 # VPP Performance Operational Data 2n-clx
 - type: "file"
   title: "VPP Performance Operational Data 2n-clx"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
+  algorithm: "file_test_results_html"
   output-file: "{DIR[DTO,PERF,VPP,2N,CLX]}/vpp_performance_operational_data_2n_clx"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,2N,CLX]}"
   data: "vpp-perf-results-2n-clx"
   filter: "not 'CFS_OPT'"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
   data-start-level: 3
 
 # VPP Performance Operational Data 3n-tsh
 - type: "file"
   title: "VPP Performance Operational Data 3n-tsh"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
+  algorithm: "file_test_results_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,TSH]}/vpp_performance_operational_data_3n_tsh"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,3N,TSH]}"
   data: "vpp-perf-results-3n-tsh"
   filter: "not 'CFS_OPT'"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
   data-start-level: 3
 
 # VPP Performance Operational Data 3n-dnv
 - type: "file"
   title: "VPP Performance Operational Data 3n-dnv"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
+  algorithm: "file_test_results_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,DNV]}/vpp_performance_operational_data_3n_dnv"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,3N,DNV]}"
   data: "vpp-perf-results-3n-dnv"
   filter: "'NDRPDR'"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
   data-start-level: 3
 
 # VPP Performance Operational Data 2n-dnv
 - type: "file"
   title: "VPP Performance Operational Data 2n-dnv"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
+  algorithm: "file_test_results_html"
   output-file: "{DIR[DTO,PERF,VPP,2N,DNV]}/vpp_performance_operational_data_2n_dnv"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,2N,DNV]}"
   data: "vpp-perf-results-2n-dnv"
   filter: "'NDRPDR'"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
   data-start-level: 3
 
 # VPP MRR Results 3n-hsw
