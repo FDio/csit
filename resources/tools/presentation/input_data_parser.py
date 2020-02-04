@@ -201,14 +201,24 @@ class ExecutionChecker(ResultVisitor):
     .. note:: ID is the lowercase full path to the test.
     """
 
-    REGEX_PLR_RATE = re.compile(r'PLRsearch lower bound::?\s(\d+.\d+).*\n'
-                                r'PLRsearch upper bound::?\s(\d+.\d+)')
-
-    REGEX_NDRPDR_RATE = re.compile(r'NDR_LOWER:\s(\d+.\d+).*\n.*\n'
-                                   r'NDR_UPPER:\s(\d+.\d+).*\n'
-                                   r'PDR_LOWER:\s(\d+.\d+).*\n.*\n'
-                                   r'PDR_UPPER:\s(\d+.\d+)')
-
+    REGEX_PLR_RATE = re.compile(
+        r'PLRsearch lower bound::?\s(\d+.\d+).*\n'
+        r'PLRsearch upper bound::?\s(\d+.\d+)'
+    )
+    REGEX_NDRPDR_RATE = re.compile(
+        r'NDR_LOWER:\s(\d+.\d+).*\n.*\n'
+        r'NDR_UPPER:\s(\d+.\d+).*\n'
+        r'PDR_LOWER:\s(\d+.\d+).*\n.*\n'
+        r'PDR_UPPER:\s(\d+.\d+)'
+    )
+    REGEX_PERF_MSG_INFO = re.compile(
+        r'NDR_LOWER:\s(\d+.\d+)\s([a-zA-Z]*).*\s(\d+.\d+)\s([a-zA-Z]*).*\n'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\].*\n'
+        r'NDR_UPPER:\s(\d+.\d+)\s([a-zA-Z]*).*\s(\d+.\d+)\s([a-zA-Z]*).*\n'
+        r'PDR_LOWER:\s(\d+.\d+)\s([a-zA-Z]*).*\s(\d+.\d+)\s([a-zA-Z]*).*\n'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\].*\n'
+        r'PDR_UPPER:\s(\d+.\d+)\s([a-zA-Z]*).*\s(\d+.\d+)\s([a-zA-Z]*)'
+    )
     # TODO: Remove when not needed
     REGEX_NDRPDR_LAT_BASE = re.compile(
         r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
@@ -234,26 +244,30 @@ class ExecutionChecker(ResultVisitor):
         r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
         r'Latency.*\[\'(.*)\', \'(.*)\'\]'
     )
-
-    REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
-                                 r'[\D\d]*')
-
-    REGEX_VERSION_VPP = re.compile(r"(return STDOUT Version:\s*|"
-                                   r"VPP Version:\s*|VPP version:\s*)(.*)")
-
-    REGEX_VERSION_DPDK = re.compile(r"(DPDK version:\s*|DPDK Version:\s*)(.*)")
-
-    REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s(\d*).*$')
-
-    REGEX_MRR = re.compile(r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
-                           r'tx\s(\d*),\srx\s(\d*)')
-
-    REGEX_BMRR = re.compile(r'Maximum Receive Rate trial results'
-                            r' in packets per second: \[(.*)\]')
-
-    REGEX_RECONF_LOSS = re.compile(r'Packets lost due to reconfig: (\d*)')
-    REGEX_RECONF_TIME = re.compile(r'Implied time lost: (\d*.[\de-]*)')
-
+    REGEX_VERSION_VPP = re.compile(
+        r"(return STDOUT Version:\s*|"
+        r"VPP Version:\s*|VPP version:\s*)(.*)"
+    )
+    REGEX_VERSION_DPDK = re.compile(
+        r"(DPDK version:\s*|DPDK Version:\s*)(.*)"
+    )
+    REGEX_TCP = re.compile(
+        r'Total\s(rps|cps|throughput):\s(\d*).*$'
+    )
+    REGEX_MRR = re.compile(
+        r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
+        r'tx\s(\d*),\srx\s(\d*)'
+    )
+    REGEX_BMRR = re.compile(
+        r'Maximum Receive Rate trial results'
+        r' in packets per second: \[(.*)\]'
+    )
+    REGEX_RECONF_LOSS = re.compile(
+        r'Packets lost due to reconfig: (\d*)'
+    )
+    REGEX_RECONF_TIME = re.compile(
+        r'Implied time lost: (\d*.[\de-]*)'
+    )
     REGEX_TC_TAG = re.compile(r'\d+[tT]\d+[cC]')
 
     REGEX_TC_NAME_OLD = re.compile(r'-\d+[tT]\d+[cC]-')
@@ -299,13 +313,13 @@ class ExecutionChecker(ResultVisitor):
         # 0 - no message
         # 1 - PAPI History of DUT1
         # 2 - PAPI History of DUT2
-        self._lookup_kw_nr = 0
+        # self._lookup_kw_nr = 0
         self._conf_history_lookup_nr = 0
 
         # Number of Show Running messages found
         # 0 - no message
         # 1 - Show run message found
-        self._show_run_lookup_nr = 0
+        # self._show_run_lookup_nr = 0
 
         # Test ID of currently processed test- the lowercase full path to the
         # test
@@ -343,6 +357,89 @@ class ExecutionChecker(ResultVisitor):
         :rtype: dict
         """
         return self._data
+
+    def _get_data_from_perf_test_msg(self, msg):
+        """Get
+            - NDR_LOWER
+            - LATENCY
+            - NDR_UPPER
+            - PDR_LOWER
+            - LATENCY
+            - PDR_UPPER
+        from message of NDRPDR performance tests.
+
+        :param msg: Message to be processed.
+        :type msg: str
+        :returns: Processed message or original message if a problem occurs.
+        :rtype: str
+        """
+
+        groups = re.search(self.REGEX_PERF_MSG_INFO, msg)
+        if not groups or groups.lastindex != 20:
+            return msg
+
+        try:
+            data = {
+                u"ndr_low": float(groups.group(1)),
+                u"ndr_low_unit": groups.group(2),
+                u"ndr_low_b": float(groups.group(3)),
+                u"ndr_low_b_unit": groups.group(4),
+                u"ndr_lat_1": groups.group(5),
+                u"ndr_lat_2": groups.group(6),
+                u"ndr_up": float(groups.group(7)),
+                u"ndr_up_unit": groups.group(8),
+                u"ndr_up_b": float(groups.group(9)),
+                u"ndr_up_b_unit": groups.group(10),
+                u"pdr_low": float(groups.group(11)),
+                u"pdr_low_unit": groups.group(12),
+                u"pdr_low_b": float(groups.group(13)),
+                u"pdr_low_b_unit": groups.group(14),
+                u"pdr_lat_1": groups.group(15),
+                u"pdr_lat_2": groups.group(16),
+                u"pdr_up": float(groups.group(17)),
+                u"pdr_up_unit": groups.group(18),
+                u"pdr_up_b": float(groups.group(19)),
+                u"pdr_up_b_unit": groups.group(20)
+            }
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return msg
+
+        def _process_lat(in_str):
+            """Extract min, avg, max values from latency string.
+
+            :param in_str: Latency string produced by robot framework.
+            :type in_str: str
+            :returns: Processed latency string or original string if a problem
+                occurs.
+            :rtype: str
+            """
+            in_list = in_str.split('/', 3)
+            if len(in_list) < 3:
+                return in_str
+
+            return f"min={in_list[0]}, avg={in_list[1]}, max={in_list[2]}"
+
+        try:
+            return (
+                f"NDR Lower: {(data[u'ndr_low'] / 1e6):.2f}"
+                f"M{data[u'ndr_low_unit']}, "
+                f"{data[u'ndr_low_b']:.2f}{data[u'ndr_low_b_unit']}\n"
+                # f"NDR Upper: {(data[u'ndr_up'] / 1e6):.2f}"
+                # f"M{data[u'ndr_up_unit']}, "
+                # f"{data[u'ndr_up_b']:.2f}{data[u'ndr_up_b_unit']}\n"
+                f"NDR Latency W-E: {_process_lat(data[u'ndr_lat_1'])}\n"
+                f"NDR Latency E-W: {_process_lat(data[u'ndr_lat_2'])}\n"
+                f"PDR Lower: {(data[u'pdr_low'] / 1e6):.2f}"
+                f"M{data[u'pdr_low_unit']}, "
+                f"{data[u'pdr_low_b']:.2f}{data[u'pdr_low_b_unit']}\n"
+                # f"PDR Upper: {(data[u'pdr_up'] / 1e6):.2f}"
+                # f"M{data[u'pdr_up_unit']}, "
+                # f"{data[u'pdr_up_b']:.2f}{data[u'pdr_up_b_unit']}\n"
+                f"PDR Latency W-E: {_process_lat(data[u'pdr_lat_1'])}\n"
+                f"PDR Latency E-W: {_process_lat(data[u'pdr_lat_2'])}"
+            )
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return msg
 
     def _get_testbed(self, msg):
         """Called when extraction of testbed IP is required.
@@ -457,6 +554,80 @@ class ExecutionChecker(ResultVisitor):
             )
 
     def _get_show_run(self, msg):
+        """Called when extraction of VPP operational data (output of CLI command
+        Show Runtime) is required.
+
+        :param msg: Message to process.
+        :type msg: Message
+        :returns: Nothing.
+        """
+
+        if not msg.message.count(u"stats runtime"):
+            return
+
+        if u"show-run" not in self._data[u"tests"][self._test_id].keys():
+            self._data[u"tests"][self._test_id][u"show-run"] = dict()
+
+        groups = re.search(self.REGEX_TC_PAPI_CLI, msg.message)
+        if not groups:
+            return
+        try:
+            host = groups.group(1)
+        except (AttributeError, IndexError):
+            host = u""
+        try:
+            sock = groups.group(2)
+        except (AttributeError, IndexError):
+            sock = u""
+
+        runtime = loads(str(msg.message).replace(u' ', u'').replace(u'\n', u'').
+                        replace(u"'", u'"').replace(u'b"', u'"').
+                        replace(u'u"', u'"').split(u":", 1)[1])
+
+        try:
+            threads_nr = len(runtime[0][u"clocks"])
+        except (IndexError, KeyError):
+            return
+
+        dut = u"DUT{nr}".format(
+            nr=len(self._data[u'tests'][self._test_id][u'show-run'].keys()) + 1)
+
+        oper = {
+            u"host": host,
+            u"socket": sock,
+            u"threads": OrderedDict({idx: list() for idx in range(threads_nr)})
+        }
+
+        for item in runtime:
+            for idx in range(threads_nr):
+                if item[u"vectors"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"vectors"][idx]
+                elif item[u"calls"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"calls"][idx]
+                elif item[u"suspends"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"suspends"][idx]
+                else:
+                    clocks = 0.0
+
+                if item[u"calls"][idx] > 0:
+                    vectors_call = item[u"vectors"][idx] / item[u"calls"][idx]
+                else:
+                    vectors_call = 0.0
+
+                if int(item[u"calls"][idx]) + int(item[u"vectors"][idx]) + \
+                        int(item[u"suspends"][idx]):
+                    oper[u"threads"][idx].append([
+                        item[u"name"],
+                        item[u"calls"][idx],
+                        item[u"vectors"][idx],
+                        item[u"suspends"][idx],
+                        clocks,
+                        vectors_call
+                    ])
+
+        self._data[u'tests'][self._test_id][u'show-run'][dut] = copy.copy(oper)
+
+    def _get_show_run_old(self, msg):
         """Called when extraction of VPP operational data (output of CLI command
         Show Runtime) is required.
 
@@ -851,7 +1022,7 @@ class ExecutionChecker(ResultVisitor):
             replace(u'\r', u'').\
             replace(u'[', u' |br| [').\
             replace(u' |br| [', u'[', 1)
-        test_result[u"msg"] = test.message.\
+        test_result[u"msg"] = self._get_data_from_perf_test_msg(test.message).\
             replace(u'\n', u' |br| ').\
             replace(u'\r', u'').\
             replace(u'"', u"'")
@@ -973,10 +1144,10 @@ class ExecutionChecker(ResultVisitor):
             if keyword.type == u"setup":
                 self.visit_setup_kw(keyword)
             elif keyword.type == u"teardown":
-                self._lookup_kw_nr = 0
+                # self._lookup_kw_nr = 0
                 self.visit_teardown_kw(keyword)
             else:
-                self._lookup_kw_nr = 0
+                # self._lookup_kw_nr = 0
                 self.visit_test_kw(keyword)
         except AttributeError:
             pass
@@ -1012,8 +1183,8 @@ class ExecutionChecker(ResultVisitor):
         """
         if test_kw.name.count(u"Show Runtime On All Duts") or \
                 test_kw.name.count(u"Show Runtime Counters On All Duts"):
-            self._lookup_kw_nr += 1
-            self._show_run_lookup_nr = 0
+            # self._lookup_kw_nr += 1
+            # self._show_run_lookup_nr = 0
             self._msg_type = u"test-show-runtime"
         elif test_kw.name.count(u"Install Dpdk Test") and not self._version:
             self._msg_type = u"dpdk-version"
@@ -1477,7 +1648,9 @@ class InputData:
         """
 
         try:
-            if element[u"filter"] in (u"all", u"template"):
+            if data_set == "suites":
+                cond = u"True"
+            elif element[u"filter"] in (u"all", u"template"):
                 cond = u"True"
             else:
                 cond = InputData._condition(element[u"filter"])
@@ -1659,3 +1832,46 @@ class InputData:
                     merged_data[item_id] = item_data
 
         return merged_data
+
+    def print_all_oper_data(self):
+        """Print all operational data to console.
+        """
+
+        tbl_hdr = (
+            u"Name",
+            u"Nr of Vectors",
+            u"Nr of Packets",
+            u"Suspends",
+            u"Cycles per Packet",
+            u"Average Vector Size"
+        )
+
+        for job in self._input_data.values:
+            for build in job.values:
+                for test_id, test_data in build[u"tests"].items():
+                    print(f"{test_id}")
+                    if test_data.get(u"show-run", None) is None:
+                        continue
+                    for dut_name, data in test_data[u"show-run"].items():
+                        if data.get(u"threads", None) is None:
+                            continue
+                        print(f"Host IP: {data.get(u'host', '')}, "
+                              f"Socket: {data.get(u'socket', '')}")
+                        for thread_nr, thread in data[u"threads"].items():
+                            txt_table = prettytable.PrettyTable(tbl_hdr)
+                            avg = 0.0
+                            for row in thread:
+                                txt_table.add_row(row)
+                                avg += row[-1]
+                            if len(thread):
+                                avg = f", Average Vector Size per Node: " \
+                                      f"{(avg / len(thread)):.2f}"
+                            else:
+                                avg = u""
+                            th_name = u"main" if thread_nr == 0 \
+                                else f"worker_{thread_nr}"
+                            print(f"{dut_name}, {th_name}{avg}")
+                            txt_table.float_format=u".2"
+                            txt_table.align = u"r"
+                            txt_table.align[u"Name"] = u"l"
+                            print(f"{txt_table.get_string()}\n")
