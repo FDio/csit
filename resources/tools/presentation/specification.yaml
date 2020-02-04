@@ -22207,56 +22207,6 @@
     title: "2n-clx-x710-64b-4t2c-base-pdr"
     layout: "plot-throughput"
 
-# 2n-clx-cx556a
-
-- type: "plot"
-  title: "DPDK Throughput: 2n-clx-cx556a-64b-2t1c-base-ndr"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-2t1c-base-ndr"
-  data: "plot-dpdk-throughput-latency-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    title: "2n-clx-cx556a-64b-2t1c-base-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "DPDK Throughput: 2n-clx-cx556a-64b-4t2c-base-ndr"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-4t2c-base-ndr"
-  data: "plot-dpdk-throughput-latency-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    title: "2n-clx-cx556a-64b-4t2c-base-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "DPDK Throughput: 2n-clx-cx556a-64b-2t1c-base-pdr"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-2t1c-base-pdr"
-  data: "plot-dpdk-throughput-latency-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    title: "2n-clx-cx556a-64b-2t1c-base-pdr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "DPDK Throughput: 2n-clx-cx556a-64b-4t2c-base-pdr"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-4t2c-base-pdr"
-  data: "plot-dpdk-throughput-latency-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    title: "2n-clx-cx556a-64b-4t2c-base-pdr"
-    layout: "plot-throughput"
-
 ################################################################################
 
 # Packet Latency - DPDK
@@ -22337,44 +22287,6 @@
     title: "2n-clx-x710-64b-8t4c-base-ndr"
     layout: "plot-latency"
 
-# 2n-clx-cx556a
-
-- type: "plot"
-  title: "Latency: 2n-clx-cx556a-64b-2t1c-base-ndr-lat"
-  algorithm: "plot_lat_err_bars_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-2t1c-base-ndr-lat"
-  data: "plot-dpdk-throughput-latency-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    title: "2n-clx-cx556a-64b-2t1c-base-ndr"
-    layout: "plot-latency"
-
-- type: "plot"
-  title: "Latency: 2n-clx-cx556a-64b-4t2c-base-ndr-lat"
-  algorithm: "plot_lat_err_bars_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-4t2c-base-ndr-lat"
-  data: "plot-dpdk-throughput-latency-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    title: "2n-clx-cx556a-64b-4t2c-base-ndr"
-    layout: "plot-latency"
-
-- type: "plot"
-  title: "Latency: 2n-clx-cx556a-64b-8t4c-base-ndr-lat"
-  algorithm: "plot_lat_err_bars_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-8t4c-base-ndr-lat"
-  data: "plot-dpdk-throughput-latency-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-8t4c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-8t4c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    title: "2n-clx-cx556a-64b-8t4c-base-ndr"
-    layout: "plot-latency"
-
 ################################################################################
 
 # HDRHistogram Packet Latency - DPDK
@@ -22452,44 +22364,6 @@
   include:
     - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-8t4c-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-8t4c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    layout: "plot-hdrh-latency"
-
-# 2n-clx-cx556a
-
-- type: "plot"
-  title: "Latency: 2n-clx-cx556a-64b-2t1c-base-ndr-hdrh-lat"
-  graph-title: "2n-clx-cx556a-64b-2t1c-base-ndr"
-  algorithm: "plot_lat_hdrh_bar_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-2t1c-base-ndr-hdrh-lat"
-  data: "plot-dpdk-hdrh-lat-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    layout: "plot-hdrh-latency"
-
-- type: "plot"
-  title: "Latency: 2n-clx-cx556a-64b-4t2c-base-ndr-hdrh-lat"
-  graph-title: "2n-clx-cx556a-64b-4t2c-base-ndr"
-  algorithm: "plot_lat_hdrh_bar_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-4t2c-base-ndr-hdrh-lat"
-  data: "plot-dpdk-hdrh-lat-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    layout: "plot-hdrh-latency"
-
-- type: "plot"
-  title: "Latency: 2n-clx-cx556a-64b-8t4c-base-ndr-hdrh-lat"
-  graph-title: "2n-clx-cx556a-64b-8t4c-base-ndr"
-  algorithm: "plot_lat_hdrh_bar_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-8t4c-base-ndr-hdrh-lat"
-  data: "plot-dpdk-hdrh-lat-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-8t4c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-8t4c-ethip4-ip4base-l3fwd-ndrpdr"
   layout:
     layout: "plot-hdrh-latency"
 
@@ -26026,44 +25900,6 @@
   include:
     - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-8t4c-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-8t4c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    layout: "plot-hdrh-latency-percentile"
-
-# 2n-clx-cx556a
-
-- type: "plot"
-  title: "Latency: 2n-clx-cx556a-64b-2t1c-base-ndr-hdrh-lat-percentile"
-  graph-title: "2n-clx-cx556a-64b-2t1c-base-ndr"
-  algorithm: "plot_lat_hdrh_percentile"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-2t1c-base-ndr-hdrh-lat-percentile"
-  data: "plot-dpdk-hdrh-lat-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    layout: "plot-hdrh-latency-percentile"
-
-- type: "plot"
-  title: "Latency: 2n-clx-cx556a-64b-4t2c-base-ndr-hdrh-lat-percentile"
-  graph-title: "2n-clx-cx556a-64b-4t2c-base-ndr"
-  algorithm: "plot_lat_hdrh_percentile"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-4t2c-base-ndr-hdrh-lat-percentile"
-  data: "plot-dpdk-hdrh-lat-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    layout: "plot-hdrh-latency-percentile"
-
-- type: "plot"
-  title: "Latency: 2n-clx-cx556a-64b-8t4c-base-ndr-hdrh-lat-percentile"
-  graph-title: "2n-clx-cx556a-64b-8t4c-base-ndr"
-  algorithm: "plot_lat_hdrh_percentile"
-  output-file: "{DIR[STATIC,DPDK]}/2n-clx-cx556a-64b-8t4c-base-ndr-hdrh-lat-percentile"
-  data: "plot-dpdk-hdrh-lat-2n-clx"
-  include:
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-eth-l2xcbase-testpmd-ndrpdr.64b-8t4c-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2n1l-100ge2p1cx556a-ethip4-ip4base-l3fwd-ndrpdr.64b-8t4c-ethip4-ip4base-l3fwd-ndrpdr"
   layout:
     layout: "plot-hdrh-latency-percentile"
 
