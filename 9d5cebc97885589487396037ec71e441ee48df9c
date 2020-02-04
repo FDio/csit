@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0113a766_c2ac406e",
+        "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-04T18:57:18Z",
+      "side": 1,
+      "message": "No/yes, from the best practice it shows that ansible must be more modular forward to reuse roles in different environments. Thus I cannot put all into one file as those modules must be independent on each other. (To easy copy out).\n\nExample: I want to only install T-Rex but not WRK in Azure. Or I want to install something else in Vagrant local than on bare-metal and then on AWS.\n\nI also want to have quick way to copy T-Rex out to be independed role and resuse elsewhere. I will create default/main.yaml for each role with its (PIP|APT|YUM) lists but that is all for now.\n\nThis is because T-Rex has its own requirements. Imagine it similarily to Pyhon imports. You also do not have one large import file storing imports for every file.",
+      "parentUuid": "3a46342e_e30c7fe7",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 5
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24d6a4b2_301aa478",
         "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/ubuntu_bionic.yaml",
         "patchSetId": 5
