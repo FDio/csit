@@ -55,6 +55,5 @@ Additional information about graph data:
     3n-skx-x710
     2n-clx-xxv710
     2n-clx-x710
-    2n-clx-cx556a
     3n-hsw-xl710
     3n-hsw-x710
