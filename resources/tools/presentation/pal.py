@@ -61,6 +61,10 @@ def parse_args():
     parser.add_argument(u"-f", u"--force",
                         action=u"store_true",
                         help=u"Force removing the old build(s) if present.")
+    parser.add_argument(u"-o", u"--print-all-oper-data",
+                        action=u"store_true",
+                        help=u"Print all operational data to console. Be "
+                             u"careful, the output can be really long.")
 
     return parser.parse_args()
 
@@ -103,6 +107,8 @@ def main():
 
         data = InputData(spec)
         data.download_and_parse_data(repeat=1)
+        if args.print_all_oper_data:
+            data.print_all_oper_data()
 
         generate_tables(spec, data)
         generate_plots(spec, data)
