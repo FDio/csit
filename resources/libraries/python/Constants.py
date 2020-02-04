@@ -194,7 +194,7 @@ class Constants:
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 4096)
 
     # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 7)
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 14)
 
     # TRex extra commandline arguments
     TREX_EXTRA_CMDLINE = get_str_from_env(u"TREX_EXTRA_CMDLINE", u"")
