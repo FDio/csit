@@ -1,0 +1,20 @@
+---
+# file: roles/trex/tasks/ubuntu_bionic.yaml
+
+- name: T-Rex Install - Install CSIT dependencies
+  apt:
+    name:
+      - "build-essential"
+      - "libmnl-dev"
+      - "libnuma-dev"
+      - "libpcap-dev"
+      - "librdmacm-dev"
+      - "librdmacm1"
+      - "libssl-dev"
+      - "python3-pip"
+      - "zlib1g-dev"
+    state: "present"
+    cache_valid_time: 3600
+    install_recommends: False
+  tags:
+    - install-csit-dependencies

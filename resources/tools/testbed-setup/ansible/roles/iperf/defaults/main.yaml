@@ -1,0 +1,5 @@
+---
+# file: roles/iperf/defaults/main.yaml
+
+iperf_target_dir: "/opt"
+iperf_version: "3.7"
