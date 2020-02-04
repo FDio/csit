@@ -34,7 +34,6 @@
       - 'socat'
       - 'virtualenv'
       - 'unzip'
-      - 'zlib1g-dev'
     state: 'present'
     cache_valid_time: 3600
     install_recommends: False
