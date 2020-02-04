@@ -1,0 +1,25 @@
+---
+# file: roles/dpdk/defaults/main.yaml
+
+packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+
+packages_base:
+  - []
+
+packages_by_distro:
+  ubuntu:
+    - "build-essential"
+    - "libnuma-dev"
+
+packages_by_arch:
+  aarch64:
+    - []
+  x86_64:
+    - []
+
+dpdk_target_dir: "/opt"
+dpdk_version: "dpdk-19.02"
+dpdk_url: "https://fast.dpdk.org/rel"
+dpdk_build_targets:
+  aarch64: "arm64-armv8a"
+  x86_64: "x86_64-native"

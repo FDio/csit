@@ -1,5 +1,8 @@
+---
+# file: roles/kubernetes/defaults/main.yaml
+
 # Version options.
-kubernetes_version: '1.11.0-00'
+kubernetes_version: "1.11.0-00"
 kubernetes_apt_package_state: present
 
 # Service options.
@@ -8,5 +11,5 @@ kubernetes_service_enabled: true
 kubernetes_restart_handler_state: restarted
 
 # APT options.
-kubernetes_apt_repository: 'deb http://apt.kubernetes.io/ kubernetes-xenial main'
+kubernetes_apt_repository: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 kubernetes_apt_repository_state: present

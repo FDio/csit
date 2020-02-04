@@ -8,12 +8,20 @@
   roles:
     - role: common
       tags: common
+    - role: vexx_hosts
+      tags: vexx_hosts
     - role: sut
       tags: sut
+    - role: dpdk
+      tags: dpdk
     - role: docker
       tags: docker
     - role: kubernetes
       tags: kubernetes
+    - role: mellanox
+      tags: mellanox
+    - role: kernel_vm
+      tags: kernel_vm
     - role: performance_tuning
       tags: performance_tuning
     - role: cleanup

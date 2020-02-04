@@ -4,13 +4,10 @@
 - name: Reboot server
   reboot:
     reboot_timeout: 3600
-  tags: reboot-server
+  tags:
+    - reboot-server
 
-- name: Wait for server to restart
-  wait_for:
-    host: '{{ inventory_hostname }}'
-    search_regex: OpenSSH
-    port: 22
-    delay: 60
-    timeout: 3600
-  tags: reboot-server
+- name: Update GRUB
+  command: update-grub
+  tags:
+    - update-grub

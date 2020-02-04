@@ -1,0 +1,28 @@
+---
+# file: roles/trex/defaults/main.yaml
+
+packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+
+packages_base:
+  - []
+
+packages_by_distro:
+  ubuntu:
+    - "build-essential"
+    - "libmnl-dev"
+    - "libnuma-dev"
+    - "libpcap-dev"
+    - "librdmacm-dev"
+    - "librdmacm1"
+    - "libssl-dev"
+    - "python3-pip"
+    - "zlib1g-dev"
+
+packages_by_arch:
+  aarch64:
+    - []
+  x86_64:
+    - []
+
+trex_target_dir: "/opt"
+trex_version: "2.73"

@@ -1,21 +1,25 @@
 ---
 # file: roles/calibration/tasks/x86_64.yaml
 
-- name: Clone Jitter tool
+- name: Calibration - Clone PMA Tool
   git:
-    repo: 'https://gerrit.fd.io/r/pma_tools'
-    dest: '{{ jitter.directory }}'
-  tags: run-jitter-tool
+    repo: "https://gerrit.fd.io/r/pma_tools"
+    dest: "{{ pma_directory }}"
+  tags:
+    - run-jitter-tool
 
-- name: Compile Jitter tool
-  raw: 'cd {{ jitter.directory }}/jitter && make'
-  tags: run-jitter-tool
+- name: Calibration - Compile PMA Tool
+  raw: "cd {{ pma_directory }}/jitter && make"
+  tags:
+    - run-jitter-tool
 
-- name: Run Jitter tool
-  raw: '{{ jitter.directory }}/jitter/jitter -c {{ jitter.core }} -i {{ jitter.iterations }} -f'
+- name: Calibration - Run Jitter Tool
+  raw: "{{ pma_directory }}/jitter/jitter -c {{ jitter_core }} -i {{ jitter_iterations }} -f"
   become: yes
   register: jitter_output
-  tags: run-jitter-tool
+  tags:
+    - run-jitter-tool
 
 - debug: var=jitter_output.stdout_lines
-  tags: run-jitter-tool
+  tags:
+    - run-jitter-tool
