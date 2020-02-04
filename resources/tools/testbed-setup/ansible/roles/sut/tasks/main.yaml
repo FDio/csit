@@ -1,18 +1,19 @@
 ---
 # file: roles/sut/tasks/main.yaml
 
-- name: Install distribution - release - machine prerequisites
-  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-  tags: [ install-csit-dependencies, install-kernel-image ]
+- name: SUT - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
 
-- name: Copy 80-vpp.conf
+- name: SUT - Copy 80-vpp.conf
   file:
-    src: '/dev/null'
-    dest: '/etc/sysctl.d/80-vpp.conf'
-    state: 'link'
+    src: "/dev/null"
+    dest: "/etc/sysctl.d/80-vpp.conf"
+    state: "link"
   become: yes
-  tags: copy-80-vpp
-
-- name: Install DPDK
-  include_tasks: 'dpdk.yaml'
-  tags: install-dpdk
+  tags:
+    - copy-80-vpp

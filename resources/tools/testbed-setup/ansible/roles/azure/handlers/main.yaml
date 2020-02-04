@@ -1,0 +1,8 @@
+---
+# file: roles/azure/handlers/main.yaml
+
+- name: Reboot server
+  reboot:
+    reboot_timeout: 3600
+  tags:
+    - reboot-server

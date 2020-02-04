@@ -1,0 +1,34 @@
+---
+# file: roles/dpdk/tasks/main.yaml
+
+- name: DPDK - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
+
+- name: DPDK - Download Release Archive
+  get_url:
+    url: "{{ dpdk_url }}/{{ dpdk_version }}.tar.xz"
+    dest: "{{ dpdk_target_dir }}/{{ dpdk_version }}.tar.xz"
+    mode: 0644
+  register: "linux__dpdk_downloaded"
+  tags:
+    - install-dpdk
+
+- name: Extract DPDK release archive
+  become: yes
+  shell: "cd {{ dpdk_target_dir }}; tar xf {{ dpdk_target_dir }}/{{ dpdk_version }}.tar.xz"
+  when: "linux__dpdk_downloaded"
+  register: "linux__dpdk_extracted"
+  tags:
+    - install-dpdk
+
+- name: Compile DPDK release
+  become: yes
+  command: "make install T={{ dpdk_build_targets[ansible_machine] }}-linuxapp-gcc DESTDIR={{ dpdk_target_dir }}/{{ dpdk_version }} chdir={{ dpdk_target_dir }}/{{ dpdk_version }}"
+  when: "linux__dpdk_extracted"
+  tags:
+    - install-dpdk

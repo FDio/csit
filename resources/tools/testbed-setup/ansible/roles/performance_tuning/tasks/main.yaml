@@ -1,57 +1,69 @@
 ---
 # file: roles/performance_tuning/tasks/main.yaml
 
-- name: Install distribution - release - machine prerequisites
-  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-  tags: install-csit-dependencies
+- name: Performance Tuning - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
 
-- name: Machine specifics
-  include_tasks: '{{ ansible_machine }}.yaml'
-  tags: set-grub
+- name: Performance Tuning - Configure {{ ansible_machine }} kernel parameters
+  lineinfile:
+    path: "/etc/default/grub"
+    state: "present"
+    regexp: "^GRUB_CMDLINE_LINUX="
+    line: {{ grub_cmdline_linux[ansible_machine] }}
+  notify:
+    - "Update GRUB"
+    - "Reboot server"
+  tags:
+    - set-grub
 
-- name: Turbo boost
+- name: Performance Tuning - Turbo boost
   import_tasks: turbo_boost.yaml
   when: >
     cpu_microarchitecture == "skylake" or
     cpu_microarchitecture == "cascadelake"
-  tags: turbo-boost
+  tags:
+    - turbo-boost
 
-- name: Copy CSIT sysctl file
+- name: Performance Tuning - Copy CSIT sysctl file
   template:
-    src: 'files/90-csit'
-    dest: '/etc/sysctl.d/90-csit.conf'
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
-  tags: copy-90-csit
+    src: "files/90-csit"
+    dest: "/etc/sysctl.d/90-csit.conf"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  tags:
+    - copy-90-csit
 
-- name: Copy IRQ load balancing file
+- name: Performance Tuning - Copy cpufrequtils file
   copy:
-    src: 'files/irqbalance'
-    dest: '/etc/default/irqbalance'
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
-  tags: copy-irq
+    src: "files/cpufrequtils"
+    dest: "/etc/default/cpufrequtils"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  tags:
+    - copy-cpufrequtils
 
-- name: Copy cpufrequtils file
-  copy:
-    src: 'files/cpufrequtils'
-    dest: '/etc/default/cpufrequtils'
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
-  tags: copy-cpufrequtils
-
-- name: Set ondemand service to disable
+- name: Performance Tuning - Set ondemand service to disable
   service:
-    name: 'ondemand'
-    enabled: 'no'
-  tags: set-ondemand
+    name: "ondemand"
+    enabled: "no"
+  tags:
+    - set-ondemand
 
-- name: Load vfio-pci by default
+- name: Performance Tuning - Load kernel modules by default
   lineinfile:
-    path: '/etc/modules'
-    state: 'present'
-    line: 'vfio-pci'
-  tags: load-vfio-pci
+    path: "/etc/modules"
+    state: "present"
+    line: "{{ item }}"
+  with_items:
+    - "vfio-pci"
+  tags:
+    - load-kernel-modules
+
+- meta: flush_handlers

@@ -1,0 +1,20 @@
+---
+# file: roles/wrk/defaults/main.yaml
+
+packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+
+packages_base:
+  - []
+
+packages_by_distro:
+  ubuntu:
+    - "build-essential"
+
+packages_by_arch:
+  aarch64:
+    - []
+  x86_64:
+    - []
+
+wrk_target_dir: "/opt"
+wrk_version: "4.0.2"

@@ -8,10 +8,20 @@
   roles:
     - role: common
       tags: common
+    - role: vexx_hosts
+      tags: vexx_hosts
     - role: tg
       tags: tg
+    - role: iperf
+      tags: iperf
+    - role: trex
+      tags: trex
+    - role: wrk
+      tags: wrk
     - role: docker
       tags: docker
+    - role: mellanox
+      tags: mellanox
     - role: performance_tuning
       tags: performance_tuning
     - role: cleanup

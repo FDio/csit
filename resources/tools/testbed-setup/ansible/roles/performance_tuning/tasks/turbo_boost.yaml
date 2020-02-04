@@ -2,32 +2,35 @@
 # file: roles/performance_tuning/tasks/turbo_boost.yaml
 
 - name: Turbo boost - Install msr-tools
-  apt:
+  package:
     name:
-      - 'msr-tools'
-    state: 'present'
-    cache_valid_time: 3600
-    install_recommends: False
-  tags: turbo-boost
+      - "msr-tools"
+    state: latest
+    update_cache: true
+  tags:
+    - turbo-boost
 
 - name: Turbo boost - Load msr by default
   lineinfile:
-    path: '/etc/modules'
-    state: 'present'
-    line: 'msr'
-  tags: turbo-boost
+    path: "/etc/modules"
+    state: "present"
+    line: "msr"
+  tags:
+    - turbo-boost
 
 - name: Turbo boost - Custom startup service hook
   copy:
-    src: 'files/disable-turbo-boost.service'
-    dest: '/etc/systemd/system/disable-turbo-boost.service'
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
-  tags: turbo-boost
+    src: "files/disable-turbo-boost.service"
+    dest: "/etc/systemd/system/disable-turbo-boost.service"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  tags:
+    - turbo-boost
 
 - name: Turbo boost - Custom startup service hook enable
   service:
-    name: 'disable-turbo-boost'
+    name: "disable-turbo-boost"
     enabled: yes
-  tags: turbo-boost
+  tags:
+    - turbo-boost
