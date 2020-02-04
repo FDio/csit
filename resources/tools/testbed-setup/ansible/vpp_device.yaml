@@ -8,6 +8,8 @@
   roles:
     - role: common
       tags: common
+    - role: vexx_hosts
+      tags: vexx_hosts
     - role: docker
       tags: docker
     - role: vpp_device

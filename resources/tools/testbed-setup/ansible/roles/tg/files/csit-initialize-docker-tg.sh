@@ -21,7 +21,7 @@ case "${1:-start}" in
     "start" )
         # Run TG
         for cnt in $(seq 1 ${2:-1}); do
-            docker network create --driver bridge csit-nw-tg${cnt}
+            docker network create --driver bridge csit-nw-tg${cnt} || true
             # If the IMAGE is not already loaded then docker run will pull the
             # IMAGE, and all image dependencies, before it starts the container.
             dcr_image="snergster/csit-sut:latest"

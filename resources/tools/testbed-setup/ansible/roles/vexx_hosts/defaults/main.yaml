@@ -1,0 +1,19 @@
+---
+# file: roles/vexx_hosts/defaults/main.yaml
+
+# provision via cobbler
+provision_enabled: False
+# name_servers is used in /etc/netplan/01-netcfg.yaml
+name_servers: "1.1.1.1, 8.8.8.8"
+
+# Proxy settings: Uncomment and fill the proper values. These variables will be
+# set globally by writing into /etc/environment file on target machine.
+#proxy_env:
+#  http_proxy: http://proxy.com:80
+#  HTTP_PROXY: http://proxy.com:80
+#  https_proxy: http://proxy.com:80
+#  HTTPS_PROXY: http://proxy.com:80
+#  ftp_proxy: http://proxy.com:80
+#  FTP_PROXY: http://proxy.com:80
+#  no_proxy: localhost,127.0.0.1,{{ ansible_default_ipv4.address }}
+#  NO_PROXY: localhost,127.0.0.1,{{ ansible_default_ipv4.address }}

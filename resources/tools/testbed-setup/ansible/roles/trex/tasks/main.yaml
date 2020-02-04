@@ -1,0 +1,60 @@
+---
+# file: roles/trex/tasks/main.yaml
+
+- name: T-Rex Install - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
+
+- name: T-Rex Install - Get Release Archive
+  get_url:
+    url: "https://github.com/cisco-system-traffic-generator/trex-core/archive/v{{ trex_version }}.tar.gz"
+    dest: "{{ trex_target_dir }}/trex-core-{{ trex_version }}.tar.gz"
+    mode: 0644
+  register: trex_downloaded
+  tags:
+    - install-trex
+
+- name: T-Rex Install - Ensure Directory Exists
+  file:
+    path: "{{ trex_target_dir }}/trex-core-{{ trex_version }}"
+    state: "directory"
+  register: trex_dir_created
+  tags:
+    - install-trex
+
+- name: T-Rex Install - Extract Release Archive
+  unarchive:
+    remote_src: true
+    src: "{{ trex_target_dir }}/trex-core-{{ trex_version }}.tar.gz"
+    dest: "{{ trex_target_dir }}/"
+    creates: "{{ trex_target_dir }}/trex-core-{{ trex_version }}/linux_dpdk/"
+  when: trex_dir_created
+  register: trex_extracted
+  tags:
+    - install-trex
+
+- name: T-Rex Install - Azure patch I
+  patch:
+    src: "files/t-rex.patch"
+    basedir: "{{ trex_target_dir }}/trex-core-{{ trex_version }}"
+    strip: 1
+  when:
+    - azure is defined
+  tags:
+    - install-trex
+
+- name: T-Rex Install - Compile Release I
+  raw: "cd {{ trex_target_dir }}/trex-core-{{ trex_version }}/linux_dpdk/; ./b configure; ./b build"
+  when: trex_extracted
+  tags:
+    - install-trex
+
+- name: T-Rex Install - Compile Release II
+  raw: "cd {{ trex_target_dir }}/trex-core-{{ trex_version }}/scripts/ko/src; make; make install"
+  when: trex_extracted
+  tags:
+    - install-trex

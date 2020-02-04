@@ -1,0 +1,53 @@
+---
+# file: roles/wrk/tasks/main.yaml
+
+- name: WRK Install - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
+
+- name: WRK Install - Get Release Archive
+  get_url:
+    url: "https://github.com/wg/wrk/archive/{{ wrk_version }}.tar.gz"
+    dest: "{{ wrk_target_dir }}/{{ wrk_version }}.tar.gz"
+    mode: 0644
+  register: wrk_downloaded
+  tags:
+    - install-wrk
+
+- name: WRK Install - Ensure Directory Exists
+  file:
+    path: "{{ wrk_target_dir }}/wrk-{{ wrk_version }}"
+    state: "directory"
+  register: wrk_dir_created
+  tags:
+    - install-wrk
+
+- name: WRK Install - Extract Release Archive
+  unarchive:
+    remote_src: true
+    src: "{{ wrk_target_dir }}/{{ wrk_version }}.tar.gz"
+    dest: "{{ wrk_target_dir }}/"
+    creates: "{{ wrk_target_dir }}/wrk-{{ wrk_version }}/src"
+  when: wrk_dir_created
+  register: wrk_extracted
+  tags:
+    - install-wrk
+
+- name: WRK Install - Compile Release
+  command: "make"
+  args:
+    chdir: "{{ wrk_target_dir }}/wrk-{{ wrk_version }}"
+  when: wrk_extracted
+  register: wrk_compiled
+  tags:
+    - install-wrk
+
+- name: WRK Install - Move Binary
+  command: "mv {{ wrk_target_dir }}/wrk-{{ wrk_version }}/wrk /usr/local/bin/"
+  when: wrk_compiled
+  tags:
+    - install-wrk

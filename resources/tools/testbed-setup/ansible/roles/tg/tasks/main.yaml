@@ -1,38 +1,28 @@
 ---
 # file: roles/tg/tasks/main.yaml
 
-- name: Install distribution - release - machine prerequisites
-  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-  tags: install-csit-dependencies
-
-- name: Install WRK
-  include_tasks: 'wrk.yaml'
-  tags: install-wrk
-
-- name: Install TRex
-  include_tasks: 'trex.yaml'
-  tags: install-trex
-
-- name: Copy csit-initialize-docker-tg.sh
+- name: TG - Copy csit-initialize-docker-tg.sh
   copy:
-   src: 'files/csit-initialize-docker-tg.sh'
-   dest: '/usr/local/bin/csit-initialize-docker-tg.sh'
-   owner: 'root'
-   group: 'root'
-   mode: '744'
+   src: "files/csit-initialize-docker-tg.sh"
+   dest: "/usr/local/bin/csit-initialize-docker-tg.sh"
+   owner: "root"
+   group: "root"
+   mode: "744"
   when: docker_tg is defined
-  tags: docker-tg
+  tags:
+    - docker-tg
 
-- name: Start csit-initialize-docker-tg.service
+- name: TG - Start csit-initialize-docker-tg.service
   copy:
-   src: 'files/csit-initialize-docker-tg.service'
-   dest: '/etc/systemd/system/'
-   owner: 'root'
-   group: 'root'
-   mode: '644'
+   src: "files/csit-initialize-docker-tg.service"
+   dest: "/etc/systemd/system/"
+   owner: "root"
+   group: "root"
+   mode: "644"
   notify:
-    - 'Start csit-initialize-docker-tg.service'
+    - "Start csit-initialize-docker-tg.service"
   when: docker_tg is defined
-  tags: docker-tg
+  tags:
+    - docker-tg
 
 - meta: flush_handlers

@@ -1,3 +1,6 @@
+---
+# file: roles/docker/defaults/main.yaml
+
 # Version options.
 docker_edition: 'ce'
 docker_version: '19.03.3'
