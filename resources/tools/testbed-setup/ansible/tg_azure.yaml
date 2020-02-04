@@ -1,23 +1,23 @@
 ---
-# file: tg.yaml
+# file: tg_azure.yaml
 
 - hosts: tg
   remote_user: testuser
   become: yes
   become_user: root
   roles:
-    - role: common
-      tags: common
+    - role: azure
+      tags: azure
     - role: tg
       tags: tg
     - role: trex
       tags: trex
     - role: wrk
       tags: wrk
+    - role: iperf
+      tags: iperf
     - role: docker
       tags: docker
-    - role: performance_tuning
-      tags: performance_tuning
     - role: cleanup
       tags: cleanup
     - role: calibration

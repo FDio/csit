@@ -22,11 +22,6 @@ name_servers: "1.1.1.1, 8.8.8.8"
 #  no_proxy: localhost,127.0.0.1,{{ ansible_default_ipv4.address }}
 #  NO_PROXY: localhost,127.0.0.1,{{ ansible_default_ipv4.address }}
 
-# TRex settings.
-trex:
-  target_dir: '/opt'
-  version: '2.73'
-
 # DPDK settings.
 dpdk:
   target_dir: '/opt'
@@ -35,17 +30,6 @@ dpdk:
   build_targets:
     aarch64: "arm64-armv8a"
     x86_64: "x86_64-native"
-
-# WRK settings.
-wrk:
-  target_dir: '/opt'
-  version: '4.0.2'
-
-# Calibration settings.
-jitter:
-  directory: '/tmp/pma_tools'
-  core: 7
-  iterations: 30
 
 # Mellanox OFED settings.
 mellanox:

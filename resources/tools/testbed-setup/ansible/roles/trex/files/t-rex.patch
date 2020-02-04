@@ -1,0 +1,536 @@
+diff --git a/linux_dpdk/ws_main.py b/linux_dpdk/ws_main.py
+index e8d0cd51..a0c01adb 100755
+--- a/linux_dpdk/ws_main.py
++++ b/linux_dpdk/ws_main.py
+@@ -209,7 +209,7 @@ def check_ofed(ctx):
+
+     ofed_ver= 42
+     ofed_ver_show= '4.2'
+-
++    return True
+     if not os.path.isfile(ofed_info):
+         ctx.end_msg('not found', 'YELLOW')
+         return False
+@@ -1552,8 +1552,6 @@ class build_option:
+             flags += ['-DNDEBUG'];
+         else:
+             flags += ['-UNDEBUG'];
+-        if bld.env.OFED_OK:
+-            flags += ['-DHAVE_IBV_MLX4_WQE_LSO_SEG=1']
+         return (flags)
+
+     def get_bnxt_flags(self):
+diff --git a/src/dpdk/drivers/net/mlx4/mlx4_autoconf.h b/src/dpdk/drivers/net/mlx4/mlx4_autoconf.h
+index b3d68683..35474409 100644
+--- a/src/dpdk/drivers/net/mlx4/mlx4_autoconf.h
++++ b/src/dpdk/drivers/net/mlx4/mlx4_autoconf.h
+@@ -1,3 +1,6 @@
+-#ifndef HAVE_IBV_MLX4_WQE_LSO_SEG
+-#define HAVE_IBV_MLX4_WQE_LSO_SEG
+-#endif
++/* HAVE_IBV_MLX4_BUF_ALLOCATORS is not defined. */
++
++/* HAVE_IBV_MLX4_UAR_MMAP_OFFSET is not defined. */
++
++/* HAVE_IBV_MLX4_WQE_LSO_SEG is not defined. */
++
+diff --git a/src/dpdk/drivers/net/mlx5/mlx5_autoconf.h b/src/dpdk/drivers/net/mlx5/mlx5_autoconf.h
+index 8770fdde..75db5ae8 100644
+--- a/src/dpdk/drivers/net/mlx5/mlx5_autoconf.h
++++ b/src/dpdk/drivers/net/mlx5/mlx5_autoconf.h
+@@ -1,54 +1,362 @@
+-#ifndef HAVE_IBV_DEVICE_COUNTERS_SET_SUPPORT
+-#define HAVE_IBV_DEVICE_COUNTERS_SET_SUPPORT
+-#endif
++/* HAVE_IBV_DEVICE_STRIDING_RQ_SUPPORT is not defined. */
+
+-#ifndef HAVE_IBV_FLOW_DV_SUPPORT
+-#define HAVE_IBV_FLOW_DV_SUPPORT
+-#endif
++#ifndef HAVE_IBV_DEVICE_TUNNEL_SUPPORT
++#define HAVE_IBV_DEVICE_TUNNEL_SUPPORT 1
++#endif /* HAVE_IBV_DEVICE_TUNNEL_SUPPORT */
+
+-#ifndef HAVE_IBV_DEVICE_COUNTERS_SET_V45
+-#define HAVE_IBV_DEVICE_COUNTERS_SET_V45
+-#endif
++/* HAVE_IBV_DEVICE_MPLS_SUPPORT is not defined. */
+
+-#ifndef HAVE_IBV_FLOW_DEVX_COUNTERS
+-#define HAVE_IBV_FLOW_DEVX_COUNTERS
+-#endif
++#ifndef HAVE_IBV_WQ_FLAGS_PCI_WRITE_END_PADDING
++#define HAVE_IBV_WQ_FLAGS_PCI_WRITE_END_PADDING 1
++#endif /* HAVE_IBV_WQ_FLAGS_PCI_WRITE_END_PADDING */
+
+-#ifndef HAVE_IBV_MLX4_WQE_LSO_SEG
+-#define HAVE_IBV_MLX4_WQE_LSO_SEG
+-#endif
++/* HAVE_IBV_WQ_FLAG_RX_END_PADDING is not defined. */
+
++#ifndef HAVE_IBV_MLX5_MOD_SWP
++#define HAVE_IBV_MLX5_MOD_SWP 1
++#endif /* HAVE_IBV_MLX5_MOD_SWP */
+
+-#ifdef SUPPORTED_40000baseKR4_Full
++#ifndef HAVE_IBV_MLX5_MOD_MPW
++#define HAVE_IBV_MLX5_MOD_MPW 1
++#endif /* HAVE_IBV_MLX5_MOD_MPW */
++
++#ifndef HAVE_IBV_MLX5_MOD_CQE_128B_COMP
++#define HAVE_IBV_MLX5_MOD_CQE_128B_COMP 1
++#endif /* HAVE_IBV_MLX5_MOD_CQE_128B_COMP */
++
++#ifndef HAVE_IBV_MLX5_MOD_CQE_128B_PAD
++#define HAVE_IBV_MLX5_MOD_CQE_128B_PAD 1
++#endif /* HAVE_IBV_MLX5_MOD_CQE_128B_PAD */
++
++/* HAVE_IBV_FLOW_DV_SUPPORT is not defined. */
++
++/* HAVE_MLX5DV_DR is not defined. */
++
++/* HAVE_MLX5DV_DR_ESWITCH is not defined. */
++
++/* HAVE_IBV_DEVX_OBJ is not defined. */
++
++/* HAVE_IBV_FLOW_DEVX_COUNTERS is not defined. */
++
++#ifndef HAVE_ETHTOOL_LINK_MODE_25G
++#define HAVE_ETHTOOL_LINK_MODE_25G 1
++#endif /* HAVE_ETHTOOL_LINK_MODE_25G */
++
++#ifndef HAVE_ETHTOOL_LINK_MODE_50G
++#define HAVE_ETHTOOL_LINK_MODE_50G 1
++#endif /* HAVE_ETHTOOL_LINK_MODE_50G */
++
++#ifndef HAVE_ETHTOOL_LINK_MODE_100G
++#define HAVE_ETHTOOL_LINK_MODE_100G 1
++#endif /* HAVE_ETHTOOL_LINK_MODE_100G */
++
++/* HAVE_IBV_DEVICE_COUNTERS_SET_V42 is not defined. */
++
++/* HAVE_IBV_DEVICE_COUNTERS_SET_V45 is not defined. */
++
++#ifndef HAVE_RDMA_NL_NLDEV
++#define HAVE_RDMA_NL_NLDEV 1
++#endif /* HAVE_RDMA_NL_NLDEV */
++
++#ifndef HAVE_RDMA_NLDEV_CMD_GET
++#define HAVE_RDMA_NLDEV_CMD_GET 1
++#endif /* HAVE_RDMA_NLDEV_CMD_GET */
++
++#ifndef HAVE_RDMA_NLDEV_CMD_PORT_GET
++#define HAVE_RDMA_NLDEV_CMD_PORT_GET 1
++#endif /* HAVE_RDMA_NLDEV_CMD_PORT_GET */
++
++#ifndef HAVE_RDMA_NLDEV_ATTR_DEV_INDEX
++#define HAVE_RDMA_NLDEV_ATTR_DEV_INDEX 1
++#endif /* HAVE_RDMA_NLDEV_ATTR_DEV_INDEX */
++
++#ifndef HAVE_RDMA_NLDEV_ATTR_DEV_NAME
++#define HAVE_RDMA_NLDEV_ATTR_DEV_NAME 1
++#endif /* HAVE_RDMA_NLDEV_ATTR_DEV_NAME */
++
++#ifndef HAVE_RDMA_NLDEV_ATTR_PORT_INDEX
++#define HAVE_RDMA_NLDEV_ATTR_PORT_INDEX 1
++#endif /* HAVE_RDMA_NLDEV_ATTR_PORT_INDEX */
++
++/* HAVE_RDMA_NLDEV_ATTR_NDEV_INDEX is not defined. */
++
++#ifndef HAVE_IFLA_NUM_VF
++#define HAVE_IFLA_NUM_VF 1
++#endif /* HAVE_IFLA_NUM_VF */
++
++#ifndef HAVE_IFLA_EXT_MASK
++#define HAVE_IFLA_EXT_MASK 1
++#endif /* HAVE_IFLA_EXT_MASK */
++
++#ifndef HAVE_IFLA_PHYS_SWITCH_ID
++#define HAVE_IFLA_PHYS_SWITCH_ID 1
++#endif /* HAVE_IFLA_PHYS_SWITCH_ID */
++
++#ifndef HAVE_IFLA_PHYS_PORT_NAME
++#define HAVE_IFLA_PHYS_PORT_NAME 1
++#endif /* HAVE_IFLA_PHYS_PORT_NAME */
++
++#ifndef HAVE_IFLA_VXLAN_COLLECT_METADATA
++#define HAVE_IFLA_VXLAN_COLLECT_METADATA 1
++#endif /* HAVE_IFLA_VXLAN_COLLECT_METADATA */
++
++#ifndef HAVE_TCA_CHAIN
++#define HAVE_TCA_CHAIN 1
++#endif /* HAVE_TCA_CHAIN */
++
++#ifndef HAVE_TCA_FLOWER_ACT
++#define HAVE_TCA_FLOWER_ACT 1
++#endif /* HAVE_TCA_FLOWER_ACT */
++
++#ifndef HAVE_TCA_FLOWER_FLAGS
++#define HAVE_TCA_FLOWER_FLAGS 1
++#endif /* HAVE_TCA_FLOWER_FLAGS */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ETH_TYPE
++#define HAVE_TCA_FLOWER_KEY_ETH_TYPE 1
++#endif /* HAVE_TCA_FLOWER_KEY_ETH_TYPE */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ETH_DST
++#define HAVE_TCA_FLOWER_KEY_ETH_DST 1
++#endif /* HAVE_TCA_FLOWER_KEY_ETH_DST */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ETH_DST_MASK
++#define HAVE_TCA_FLOWER_KEY_ETH_DST_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_ETH_DST_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ETH_SRC
++#define HAVE_TCA_FLOWER_KEY_ETH_SRC 1
++#endif /* HAVE_TCA_FLOWER_KEY_ETH_SRC */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ETH_SRC_MASK
++#define HAVE_TCA_FLOWER_KEY_ETH_SRC_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_ETH_SRC_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IP_PROTO
++#define HAVE_TCA_FLOWER_KEY_IP_PROTO 1
++#endif /* HAVE_TCA_FLOWER_KEY_IP_PROTO */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IPV4_SRC
++#define HAVE_TCA_FLOWER_KEY_IPV4_SRC 1
++#endif /* HAVE_TCA_FLOWER_KEY_IPV4_SRC */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IPV4_SRC_MASK
++#define HAVE_TCA_FLOWER_KEY_IPV4_SRC_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_IPV4_SRC_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IPV4_DST
++#define HAVE_TCA_FLOWER_KEY_IPV4_DST 1
++#endif /* HAVE_TCA_FLOWER_KEY_IPV4_DST */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IPV4_DST_MASK
++#define HAVE_TCA_FLOWER_KEY_IPV4_DST_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_IPV4_DST_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IPV6_SRC
++#define HAVE_TCA_FLOWER_KEY_IPV6_SRC 1
++#endif /* HAVE_TCA_FLOWER_KEY_IPV6_SRC */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IPV6_SRC_MASK
++#define HAVE_TCA_FLOWER_KEY_IPV6_SRC_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_IPV6_SRC_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IPV6_DST
++#define HAVE_TCA_FLOWER_KEY_IPV6_DST 1
++#endif /* HAVE_TCA_FLOWER_KEY_IPV6_DST */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IPV6_DST_MASK
++#define HAVE_TCA_FLOWER_KEY_IPV6_DST_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_IPV6_DST_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_TCP_SRC
++#define HAVE_TCA_FLOWER_KEY_TCP_SRC 1
++#endif /* HAVE_TCA_FLOWER_KEY_TCP_SRC */
++
++#ifndef HAVE_TCA_FLOWER_KEY_TCP_SRC_MASK
++#define HAVE_TCA_FLOWER_KEY_TCP_SRC_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_TCP_SRC_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_TCP_DST
++#define HAVE_TCA_FLOWER_KEY_TCP_DST 1
++#endif /* HAVE_TCA_FLOWER_KEY_TCP_DST */
++
++#ifndef HAVE_TCA_FLOWER_KEY_TCP_DST_MASK
++#define HAVE_TCA_FLOWER_KEY_TCP_DST_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_TCP_DST_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_UDP_SRC
++#define HAVE_TCA_FLOWER_KEY_UDP_SRC 1
++#endif /* HAVE_TCA_FLOWER_KEY_UDP_SRC */
++
++#ifndef HAVE_TCA_FLOWER_KEY_UDP_SRC_MASK
++#define HAVE_TCA_FLOWER_KEY_UDP_SRC_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_UDP_SRC_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_UDP_DST
++#define HAVE_TCA_FLOWER_KEY_UDP_DST 1
++#endif /* HAVE_TCA_FLOWER_KEY_UDP_DST */
++
++#ifndef HAVE_TCA_FLOWER_KEY_UDP_DST_MASK
++#define HAVE_TCA_FLOWER_KEY_UDP_DST_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_UDP_DST_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_VLAN_ID
++#define HAVE_TCA_FLOWER_KEY_VLAN_ID 1
++#endif /* HAVE_TCA_FLOWER_KEY_VLAN_ID */
++
++#ifndef HAVE_TCA_FLOWER_KEY_VLAN_PRIO
++#define HAVE_TCA_FLOWER_KEY_VLAN_PRIO 1
++#endif /* HAVE_TCA_FLOWER_KEY_VLAN_PRIO */
++
++#ifndef HAVE_TCA_FLOWER_KEY_VLAN_ETH_TYPE
++#define HAVE_TCA_FLOWER_KEY_VLAN_ETH_TYPE 1
++#endif /* HAVE_TCA_FLOWER_KEY_VLAN_ETH_TYPE */
++
++#ifndef HAVE_TCA_FLOWER_KEY_TCP_FLAGS
++#define HAVE_TCA_FLOWER_KEY_TCP_FLAGS 1
++#endif /* HAVE_TCA_FLOWER_KEY_TCP_FLAGS */
++
++#ifndef HAVE_TCA_FLOWER_KEY_TCP_FLAGS_MASK
++#define HAVE_TCA_FLOWER_KEY_TCP_FLAGS_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_TCP_FLAGS_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IP_TOS
++#define HAVE_TCA_FLOWER_KEY_IP_TOS 1
++#endif /* HAVE_TCA_FLOWER_KEY_IP_TOS */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IP_TOS_MASK
++#define HAVE_TCA_FLOWER_KEY_IP_TOS_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_IP_TOS_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IP_TTL
++#define HAVE_TCA_FLOWER_KEY_IP_TTL 1
++#endif /* HAVE_TCA_FLOWER_KEY_IP_TTL */
++
++#ifndef HAVE_TCA_FLOWER_KEY_IP_TTL_MASK
++#define HAVE_TCA_FLOWER_KEY_IP_TTL_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_IP_TTL_MASK */
++
++#ifndef HAVE_TC_ACT_GOTO_CHAIN
++#define HAVE_TC_ACT_GOTO_CHAIN 1
++#endif /* HAVE_TC_ACT_GOTO_CHAIN */
++
++#ifndef HAVE_TC_ACT_VLAN
++#define HAVE_TC_ACT_VLAN 1
++#endif /* HAVE_TC_ACT_VLAN */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_KEY_ID
++#define HAVE_TCA_FLOWER_KEY_ENC_KEY_ID 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_KEY_ID */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_IPV4_SRC
++#define HAVE_TCA_FLOWER_KEY_ENC_IPV4_SRC 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_IPV4_SRC */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_IPV4_SRC_MASK
++#define HAVE_TCA_FLOWER_KEY_ENC_IPV4_SRC_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_IPV4_SRC_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_IPV4_DST
++#define HAVE_TCA_FLOWER_KEY_ENC_IPV4_DST 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_IPV4_DST */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_IPV4_DST_MASK
++#define HAVE_TCA_FLOWER_KEY_ENC_IPV4_DST_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_IPV4_DST_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_IPV6_SRC
++#define HAVE_TCA_FLOWER_KEY_ENC_IPV6_SRC 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_IPV6_SRC */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_IPV6_SRC_MASK
++#define HAVE_TCA_FLOWER_KEY_ENC_IPV6_SRC_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_IPV6_SRC_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_IPV6_DST
++#define HAVE_TCA_FLOWER_KEY_ENC_IPV6_DST 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_IPV6_DST */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_IPV6_DST_MASK
++#define HAVE_TCA_FLOWER_KEY_ENC_IPV6_DST_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_IPV6_DST_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_UDP_SRC_PORT
++#define HAVE_TCA_FLOWER_KEY_ENC_UDP_SRC_PORT 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_UDP_SRC_PORT */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_UDP_SRC_PORT_MASK
++#define HAVE_TCA_FLOWER_KEY_ENC_UDP_SRC_PORT_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_UDP_SRC_PORT_MASK */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_UDP_DST_PORT
++#define HAVE_TCA_FLOWER_KEY_ENC_UDP_DST_PORT 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_UDP_DST_PORT */
++
++#ifndef HAVE_TCA_FLOWER_KEY_ENC_UDP_DST_PORT_MASK
++#define HAVE_TCA_FLOWER_KEY_ENC_UDP_DST_PORT_MASK 1
++#endif /* HAVE_TCA_FLOWER_KEY_ENC_UDP_DST_PORT_MASK */
++
++/* HAVE_TCA_FLOWER_KEY_ENC_IP_TOS is not defined. */
++
++/* HAVE_TCA_FLOWER_KEY_ENC_IP_TOS_MASK is not defined. */
++
++/* HAVE_TCA_FLOWER_KEY_ENC_IP_TTL is not defined. */
++
++/* HAVE_TCA_FLOWER_KEY_ENC_IP_TTL_MASK is not defined. */
++
++#ifndef HAVE_TC_ACT_TUNNEL_KEY
++#define HAVE_TC_ACT_TUNNEL_KEY 1
++#endif /* HAVE_TC_ACT_TUNNEL_KEY */
++
++#ifndef HAVE_TCA_TUNNEL_KEY_ENC_DST_PORT
++#define HAVE_TCA_TUNNEL_KEY_ENC_DST_PORT 1
++#endif /* HAVE_TCA_TUNNEL_KEY_ENC_DST_PORT */
++
++/* HAVE_TCA_TUNNEL_KEY_ENC_TOS is not defined. */
++
++/* HAVE_TCA_TUNNEL_KEY_ENC_TTL is not defined. */
++
++#ifndef HAVE_TCA_TUNNEL_KEY_NO_CSUM
++#define HAVE_TCA_TUNNEL_KEY_NO_CSUM 1
++#endif /* HAVE_TCA_TUNNEL_KEY_NO_CSUM */
++
++#ifndef HAVE_TC_ACT_PEDIT
++#define HAVE_TC_ACT_PEDIT 1
++#endif /* HAVE_TC_ACT_PEDIT */
++
++#ifndef HAVE_SUPPORTED_40000baseKR4_Full
+ #define HAVE_SUPPORTED_40000baseKR4_Full 1
+-#endif
++#endif /* HAVE_SUPPORTED_40000baseKR4_Full */
+
+-#ifdef SUPPORTED_40000baseCR4_Full
++#ifndef HAVE_SUPPORTED_40000baseCR4_Full
+ #define HAVE_SUPPORTED_40000baseCR4_Full 1
+-#endif
++#endif /* HAVE_SUPPORTED_40000baseCR4_Full */
+
+-#ifdef SUPPORTED_40000baseSR4_Full
++#ifndef HAVE_SUPPORTED_40000baseSR4_Full
+ #define HAVE_SUPPORTED_40000baseSR4_Full 1
+-#endif
++#endif /* HAVE_SUPPORTED_40000baseSR4_Full */
+
+-#ifdef SUPPORTED_40000baseLR4_Full
++#ifndef HAVE_SUPPORTED_40000baseLR4_Full
+ #define HAVE_SUPPORTED_40000baseLR4_Full 1
+-#endif
++#endif /* HAVE_SUPPORTED_40000baseLR4_Full */
+
+-#ifdef SUPPORTED_56000baseKR4_Full
++#ifndef HAVE_SUPPORTED_56000baseKR4_Full
+ #define HAVE_SUPPORTED_56000baseKR4_Full 1
+-#endif
++#endif /* HAVE_SUPPORTED_56000baseKR4_Full */
+
+-#ifdef SUPPORTED_56000baseCR4_Full
++#ifndef HAVE_SUPPORTED_56000baseCR4_Full
+ #define HAVE_SUPPORTED_56000baseCR4_Full 1
+-#endif
++#endif /* HAVE_SUPPORTED_56000baseCR4_Full */
+
+-#ifdef SUPPORTED_56000baseSR4_Full
++#ifndef HAVE_SUPPORTED_56000baseSR4_Full
+ #define HAVE_SUPPORTED_56000baseSR4_Full 1
+-#endif
++#endif /* HAVE_SUPPORTED_56000baseSR4_Full */
+
+-#ifdef SUPPORTED_56000baseLR4_Full
++#ifndef HAVE_SUPPORTED_56000baseLR4_Full
+ #define HAVE_SUPPORTED_56000baseLR4_Full 1
+-#endif
++#endif /* HAVE_SUPPORTED_56000baseLR4_Full */
+
++#ifndef HAVE_STATIC_ASSERT
++#define HAVE_STATIC_ASSERT 1
++#endif /* HAVE_STATIC_ASSERT */
+
+diff --git a/src/dpdk/drivers/net/tap/rte_eth_tap.c b/src/dpdk/drivers/net/tap/rte_eth_tap.c
+index bc889c19..47a2b68f 100644
+--- a/src/dpdk/drivers/net/tap/rte_eth_tap.c
++++ b/src/dpdk/drivers/net/tap/rte_eth_tap.c
+@@ -34,8 +34,8 @@
+ #include <unistd.h>
+ #include <arpa/inet.h>
+ #include <net/if.h>
+-#include <linux_tap/if_tun.h>
+-#include <linux_tap/if_ether.h>
++#include <linux/if_tun.h>
++#include <linux/if_ether.h>
+ #include <fcntl.h>
+ #include <ctype.h>
+
+diff --git a/src/dpdk/drivers/net/tap/rte_eth_tap.h b/src/dpdk/drivers/net/tap/rte_eth_tap.h
+index 66cd3441..dc3579ac 100644
+--- a/src/dpdk/drivers/net/tap/rte_eth_tap.h
++++ b/src/dpdk/drivers/net/tap/rte_eth_tap.h
+@@ -11,7 +11,7 @@
+ #include <inttypes.h>
+ #include <net/if.h>
+
+-#include <linux_tap/if_tun.h>
++#include <linux/if_tun.h>
+
+ #include <rte_ethdev_driver.h>
+ #include <rte_ether.h>
+diff --git a/src/dpdk/drivers/net/tap/tap_autoconf.h b/src/dpdk/drivers/net/tap/tap_autoconf.h
+index dddd4ae6..d5880608 100644
+--- a/src/dpdk/drivers/net/tap/tap_autoconf.h
++++ b/src/dpdk/drivers/net/tap/tap_autoconf.h
+@@ -1,14 +1,24 @@
+ #ifndef HAVE_TC_FLOWER
+ #define HAVE_TC_FLOWER 1
+-#endif
++#endif /* HAVE_TC_FLOWER */
+
++#ifndef HAVE_TC_VLAN_ID
++#define HAVE_TC_VLAN_ID 1
++#endif /* HAVE_TC_VLAN_ID */
+
+ #ifndef HAVE_TC_BPF
+ #define HAVE_TC_BPF 1
+-#endif
++#endif /* HAVE_TC_BPF */
+
+-#ifndef HAVE_TC_VLAN_ID
+-#define HAVE_TC_VLAN_ID 1
+-#endif
++#ifndef HAVE_TC_BPF_FD
++#define HAVE_TC_BPF_FD 1
++#endif /* HAVE_TC_BPF_FD */
++
++#ifndef HAVE_TC_ACT_BPF
++#define HAVE_TC_ACT_BPF 1
++#endif /* HAVE_TC_ACT_BPF */
+
++#ifndef HAVE_TC_ACT_BPF_FD
++#define HAVE_TC_ACT_BPF_FD 1
++#endif /* HAVE_TC_ACT_BPF_FD */
+
+diff --git a/src/dpdk/drivers/net/tap/tap_netlink.h b/src/dpdk/drivers/net/tap/tap_netlink.h
+index 900ce375..faa73ba1 100644
+--- a/src/dpdk/drivers/net/tap/tap_netlink.h
++++ b/src/dpdk/drivers/net/tap/tap_netlink.h
+@@ -8,8 +8,8 @@
+
+ #include <ctype.h>
+ #include <inttypes.h>
+-#include <linux_tap/rtnetlink.h>
+-#include <linux_tap/netlink.h>
++#include <linux/rtnetlink.h>
++#include <linux/netlink.h>
+ #include <stdio.h>
+
+ #include <rte_log.h>
+diff --git a/src/dpdk/drivers/net/tap/tap_tcmsgs.h b/src/dpdk/drivers/net/tap/tap_tcmsgs.h
+index 782de540..8cedea84 100644
+--- a/src/dpdk/drivers/net/tap/tap_tcmsgs.h
++++ b/src/dpdk/drivers/net/tap/tap_tcmsgs.h
+@@ -7,13 +7,13 @@
+ #define _TAP_TCMSGS_H_
+
+ #include <tap_autoconf.h>
+-#include <linux_tap/if_ether.h>
+-#include <linux_tap/rtnetlink.h>
+-#include <linux_tap/pkt_sched.h>
+-#include <linux_tap/pkt_cls.h>
+-#include <linux_tap/tc_act/tc_mirred.h>
+-#include <linux_tap/tc_act/tc_gact.h>
+-#include <linux_tap/tc_act/tc_skbedit.h>
++#include <linux/if_ether.h>
++#include <linux/rtnetlink.h>
++#include <linux/pkt_sched.h>
++#include <linux/pkt_cls.h>
++#include <linux/tc_act/tc_mirred.h>
++#include <linux/tc_act/tc_gact.h>
++#include <linux/tc_act/tc_skbedit.h>
+ #ifdef HAVE_TC_ACT_BPF
+ #include <linux/tc_act/tc_bpf.h>
+ #endif

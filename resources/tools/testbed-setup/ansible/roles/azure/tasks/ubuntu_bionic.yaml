@@ -1,13 +1,7 @@
 ---
-# file: roles/common/tasks/ubuntu_bionic.yaml
+# file: roles/azure/tasks/ubuntu_bionic.yaml
 
-- name: Copy apt sources file
-  template:
-    src: 'files/apt-sources_{{ ansible_distribution_release }}_{{ ansible_machine }}.list'
-    dest: '/etc/apt/sources.list'
-  tags: copy-apt-sources
-
-- name: Install CSIT dependencies
+- name: Azure - Install CSIT Dependencies
   apt:
     name:
       - 'autoconf'
@@ -37,9 +31,10 @@
     state: 'present'
     cache_valid_time: 3600
     install_recommends: False
-  tags: install-csit-dependencies
+  tags:
+    - install-csit-dependencies
 
-- name: Install CSIT dependencies - aarch64 SciPy
+- name: Azure - Install CSIT Dependencies - aarch64 SciPy
   apt:
     name:
       - 'gfortran'
@@ -50,4 +45,5 @@
     install_recommends: False
   when: >
     ansible_machine == 'aarch64'
-  tags: install-csit-dependencies
+  tags:
+    - install-csit-dependencies

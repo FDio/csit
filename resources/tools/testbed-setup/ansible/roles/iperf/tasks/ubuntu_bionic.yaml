@@ -1,0 +1,13 @@
+---
+# file: roles/iperf/tasks/ubuntu_bionic.yaml
+
+- name: iPerf Install - Install CSIT dependencies
+  apt:
+    name:
+      - "build-essential"
+      - "lib32z1"
+    state: "present"
+    cache_valid_time: 3600
+    install_recommends: False
+  tags:
+    - install-csit-dependencies
