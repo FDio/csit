@@ -1,0 +1,42 @@
+---
+# file: roles/common/defaults/main.yaml
+
+packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+
+packages_base:
+  - "autoconf"
+  - "cgroup-tools"
+  - "dkms"
+  - "iperf3"
+  - "linux-tools-common"
+  - "qemu-system"
+  - "socat"
+  - "unzip"
+  - "virtualenv"
+
+packages_by_distro:
+  ubuntu:
+    - "build-essential"
+    - "libpcap-dev"
+    - "python-all"
+    - "python-apt"
+    - "python-cffi"
+    - "python-cffi-backend"
+    - "python-dev"
+    - "python-pip"
+    - "python-setuptools"
+    - "python3-all"
+    - "python3-apt"
+    - "python3-cffi"
+    - "python3-cffi-backend"
+    - "python3-dev"
+    - "python3-pip"
+    - "python3-setuptools"
+
+packages_by_arch:
+  aarch64:
+    - "gfortran"
+    - "libblas-dev"
+    - "liblapack-dev"
+  x86_64:
+    - []

@@ -25,7 +25,8 @@
     validate_certs: no
   when: provision_enabled
   delegate_to: localhost
-  tags: cobbler-include
+  tags:
+    - cobbler-include
 
 - name: Commit Cobbler changes
   cobbler_sync:
@@ -42,7 +43,8 @@
   notify:
     - 'Boot from network'
     - 'Reboot server'
-  tags: cobbler-include
+  tags:
+    - cobbler-include
 
 - meta: flush_handlers
 
@@ -53,7 +55,8 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
-  tags: copy-interface-file
+  tags:
+    - copy-interface-file
 
 - name: Add permanent proxy settings
   lineinfile:
@@ -62,10 +65,16 @@
     line: '{{ item.key }}={{ item.value }}'
   with_dict: '{{ proxy_env }}'
   when: proxy_env is defined
+  tags:
+    - set-proxy
 
-- name: Install distribution - release - machine prerequisites
-  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-  tags: [ install-csit-dependencies, copy-apt-sources ]
+- name: Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
 
 - name: Install CSIT PIP requirements
   pip:
@@ -121,13 +130,15 @@
       - 'sphinxcontrib-qthelp==1.0.2'
       - 'sphinxcontrib-serializinghtml==1.1.3'
       - 'urllib3==1.25.6'
-  tags: install-pip
+  tags:
+    - install-pip
 
 - name: Install CSIT PIP requirements - SciPy workaround
   pip:
     name:
       - 'scipy==1.1.0'
-  tags: install-pip
+  tags:
+    - install-pip
 
 - name: Set sudoers admin
   lineinfile:
@@ -136,7 +147,8 @@
     regexp: '^%admin ALL='
     line: '%admin ALL=(ALL) ALL'
     validate: '/usr/sbin/visudo -cf %s'
-  tags: set-sudoers
+  tags:
+    - set-sudoers
 
 - name: Set sudoers sudo
   lineinfile:
@@ -145,22 +157,7 @@
     regexp: '^%sudo'
     line: '%sudo ALL=(ALL:ALL) NOPASSWD: ALL'
     validate: '/usr/sbin/visudo -cf %s'
-  tags: set-sudoers
-
-- name: Copy grub file
-  template:
-   src: 'files/grub_{{ ansible_machine }}'
-   dest: '/etc/default/grub'
-   owner: 'root'
-   group: 'root'
-   mode: '644'
-  notify:
-    - 'Update GRUB'
-    - 'Reboot server'
-  tags: copy-grub
-
-- name: Mellanox Install - Driver
-  import_tasks: mellanox.yaml
-  tags: mellanox-install
+  tags:
+    - set-sudoers
 
 - meta: flush_handlers

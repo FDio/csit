@@ -10,10 +10,14 @@
       tags: common
     - role: sut
       tags: sut
+    - role: dpdk
+      tags: dpdk
     - role: docker
       tags: docker
     - role: kubernetes
       tags: kubernetes
+    - role: mellanox
+      tags: mellanox
     - role: performance_tuning
       tags: performance_tuning
     - role: cleanup

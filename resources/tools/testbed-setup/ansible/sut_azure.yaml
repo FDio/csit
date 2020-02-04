@@ -1,0 +1,16 @@
+---
+# file: sut_azure.yaml
+
+- hosts: sut
+  remote_user: testuser
+  become: yes
+  become_user: root
+  roles:
+    - role: azure
+      tags: azure
+    - role: dpdk
+      tags: dpdk
+    - role: cleanup
+      tags: cleanup
+    - role: calibration
+      tags: calibration
