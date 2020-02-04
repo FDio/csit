@@ -605,7 +605,7 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
 
     @staticmethod
     def _ndrpdr_duration(
-            state, ndr_lo, pdr_lo, ndr_hi, pdr_hi, ndr_rel_width,
+            state, ndr_lo, ndr_hi, pdr_lo, pdr_hi, ndr_rel_width,
             pdr_rel_width):
         """Perform duration-based trials within a ndrpdr phase
 
