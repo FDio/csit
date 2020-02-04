@@ -10,6 +10,10 @@
       tags: common
     - role: tg
       tags: tg
+    - role: trex
+      tags: trex
+    - role: wrk
+      tags: wrk
     - role: docker
       tags: docker
     - role: performance_tuning
