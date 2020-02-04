@@ -1,0 +1,21 @@
+---
+# file: roles/calibration/defaults/main.yaml
+
+packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+
+packages_base:
+  - []
+
+packages_by_distro:
+  ubuntu:
+    - "build-essential"
+
+packages_by_arch:
+  aarch64:
+    - []
+  x86_64:
+    - []
+
+pma_directory: "/tmp/pma_tools"
+jitter_core: 7
+jitter_iterations: 30

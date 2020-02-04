@@ -1,0 +1,15 @@
+---
+# file: roles/azure/tasks/main.yaml
+
+- name: Azure - Load Kernel Modules By Default
+  lineinfile:
+    path: "/etc/modules"
+    state: "present"
+    line: "{{ item }}"
+  with_items:
+    - "vfio-pci"
+    - "ib_uverbs"
+    - "mlx4_ib"
+    - "mlx5_ib"
+  tags:
+    - load-kernel-modules
