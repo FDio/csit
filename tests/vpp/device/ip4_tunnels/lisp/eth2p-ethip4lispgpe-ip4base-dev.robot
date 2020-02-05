@@ -74,7 +74,7 @@
 | | And Configure LISP in 2-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid}
-| | ... | ${dut1_to_tg_ip4_static_adjacency} | ${is_gpe}
+| | ... | ${dut1_to_tg_ip4_static_adjacency} | ${is_gpe} | ${1} | ${1}
 | | Then Send packet and verify LISP GPE encap
 | | ... | ${tg} | ${tg_if1_ip4} | ${dst_ip4}
 | | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
