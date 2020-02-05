@@ -151,3 +151,30 @@
 | | ... | ${dut1} | ${dut1_if2} | ${dst_ip4} | ${tg_if2_mac}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | ${tg_if2_ip6} | ${tg_if2_mac}
+
+| Initialize LISP GPE IPv4 over IPsec in 2-node circular topology
+| | [Documentation] | Setup LISP GPE IPv4 forwarding over IPsec.
+| |
+| | ... | *Arguments:*
+| | ... | - encr_alg - Encryption algorithm. Type: string
+| | ... | - auth_alg - Authentication algorithm. Type: string
+| |
+| | ... | *Return:*
+| | ... | - No value returned
+| |
+| | ... | *Example:*
+| | ... | \| Initialize LISP GPE IPv4 over IPsec in 2-node circular topology\
+| | ... | \| ${encr_alg} \| ${auth_alg}
+| |
+| | [Arguments] | ${encr_alg} | ${auth_alg}
+| |
+| | Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | Configure topology for IPv4 LISP testing
+| | Configure LISP in 2-node circular topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} 
+| | ... | ${dut1_ip4_static_adjacency} | ${is_gpe} | ${1} | ${1}
+| | Configure manual keyed connection for IPSec
+| | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut_spi} | ${tg_spi}
+| | ... | ${tg_dst_ip} | ${tg_src_ip}
