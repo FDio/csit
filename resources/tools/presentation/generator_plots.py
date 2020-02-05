@@ -1624,15 +1624,12 @@ def plot_nf_heatmap(plot, input_data):
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
-        logging.info(
-            f"    Writing file {plot[u'output-file']}"
-            f"{plot[u'output-file-type']}."
-        )
+        logging.info(f"    Writing file {plot[u'output-file']}.html")
         ploff.plot(
             plpl,
             show_link=False,
             auto_open=False,
-            filename=f"{plot[u'output-file']}{plot[u'output-file-type']}"
+            filename=f"{plot[u'output-file']}.html"
         )
     except PlotlyError as err:
         logging.error(
