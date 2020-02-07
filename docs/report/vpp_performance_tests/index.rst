@@ -10,6 +10,7 @@ VPP Performance
     packet_latency_graphs/index
     hdrh_packet_latency_graphs/index
     hdrh_packet_latency_percentile_graphs/index
+    hdrh_packet_latency_by_percentile_graphs/index
     soak_tests/index
     reconf_tests/index
     nf_service_density/index
