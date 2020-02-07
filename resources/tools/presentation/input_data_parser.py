@@ -398,39 +398,43 @@ class ExecutionChecker(ResultVisitor):
         except (AttributeError, IndexError, ValueError, KeyError):
             return msg
 
-        def _process_lat(in_str):
+        def _process_lat(in_str_1, in_str_2):
             """Extract min, avg, max values from latency string.
 
-            :param in_str: Latency string produced by robot framework.
-            :type in_str: str
+            :param in_str_1: Latency string for one direction produced by robot
+                framework.
+            :param in_str_2: Latency string for second direction produced by
+                robot framework.
+            :type in_str_1: str
+            :type in_str_2: str
             :returns: Processed latency string or original string if a problem
                 occurs.
             :rtype: str
             """
-            in_list = in_str.split('/', 3)
-            if len(in_list) < 3:
-                return in_str
+            in_list_1 = in_str_1.split('/', 3)
+            if len(in_list_1) < 3:
+                return u"Min/Avg/Max, -1/-1/-1, -1/-1/-1 uSec."
 
-            return f"min={in_list[0]}, avg={in_list[1]}, max={in_list[2]}"
+            in_list_2 = in_str_2.split('/', 3)
+            if len(in_list_2) < 3:
+                return u"Min/Avg/Max, -1/-1/-1, -1/-1/-1 uSec."
+
+            return f"Min/Avg/Max, " \
+                   f"{in_list_1[0]}/{in_list_1[1]}/{in_list_1[2]}, " \
+                   f"{in_list_2[0]}/{in_list_2[1]}/{in_list_2[2]} uSec."
 
         try:
             return (
-                f"NDR Lower: {(data[u'ndr_low'] / 1e6):.2f}"
+                f"NDR Throughput: {(data[u'ndr_low'] / 1e6):.2f} "
                 f"M{data[u'ndr_low_unit']}, "
-                f"{data[u'ndr_low_b']:.2f}{data[u'ndr_low_b_unit']}\n"
-                # f"NDR Upper: {(data[u'ndr_up'] / 1e6):.2f}"
-                # f"M{data[u'ndr_up_unit']}, "
-                # f"{data[u'ndr_up_b']:.2f}{data[u'ndr_up_b_unit']}\n"
-                f"NDR Latency W-E: {_process_lat(data[u'ndr_lat_1'])}\n"
-                f"NDR Latency E-W: {_process_lat(data[u'ndr_lat_2'])}\n"
-                f"PDR Lower: {(data[u'pdr_low'] / 1e6):.2f}"
+                f"{data[u'ndr_low_b']:.2f} {data[u'ndr_low_b_unit']}.\n"
+                f"One-Way Latency at NDR: "
+                f"{_process_lat(data[u'ndr_lat_1'], data[u'ndr_lat_2'])}\n"
+                f"PDR Throughput: {(data[u'pdr_low'] / 1e6):.2f} "
                 f"M{data[u'pdr_low_unit']}, "
-                f"{data[u'pdr_low_b']:.2f}{data[u'pdr_low_b_unit']}\n"
-                # f"PDR Upper: {(data[u'pdr_up'] / 1e6):.2f}"
-                # f"M{data[u'pdr_up_unit']}, "
-                # f"{data[u'pdr_up_b']:.2f}{data[u'pdr_up_b_unit']}\n"
-                f"PDR Latency W-E: {_process_lat(data[u'pdr_lat_1'])}\n"
-                f"PDR Latency E-W: {_process_lat(data[u'pdr_lat_2'])}"
+                f"{data[u'pdr_low_b']:.2f} {data[u'pdr_low_b_unit']}.\n"
+                f"One-Way Latency at PDR: "
+                f"{_process_lat(data[u'pdr_lat_1'], data[u'pdr_lat_2'])}"
             )
         except (AttributeError, IndexError, ValueError, KeyError):
             return msg
