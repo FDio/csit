@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "7c5e390c_fadb9c67",
+        "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-07T20:37:29Z",
+      "side": 1,
+      "message": "\u003e You mean like resources/libraries/robot/shared/default.robot?\n\nYes (still robot cleanup is needed) but at least nobody is porting them out. While in ansible, having modules is a must to be able to reuse.\n \n\u003e I do not have preference between \"centralized\" (one big list) and \"decentralized\" (many small lists).\n\u003e \n\u003e But I am against copying, if we can call a function instead.\n\nRight now the only duplicates co-exist between PIP lists (main, ansible, docker_image). I still need to solve Chicken-egg problem of who is first Ansible-calls-CSIT, or CSIT-calls-ansible. In ansible PIP lists is pre-fetch to eliminate redownload, while in bash they are used on run basis. I will be thinking of how to merge. \n\n\u003e I guess in this case my question is whether ansible can install to pip in a virtualenv? If yes, we can call ansible task like this instead of [1] (path is configurable just because some jobs have CSIT cloned directly to the workspace, some have VPP cloned there with CSIT as a subdirectory).\n\nIt is possible to do by ansible (like it is done in vagrant). It just take few iteration to get there. I think with current design of Ansible we are ready to get there.  Regarding CSIT nesting that should not be hard to solve.",
+      "parentUuid": "77b59e53_6d887f90",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 5
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24d6a4b2_301aa478",
         "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/ubuntu_bionic.yaml",
         "patchSetId": 5
