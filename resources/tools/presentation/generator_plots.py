@@ -199,8 +199,14 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
         f"    Creating the data set for the {plot.get(u'type', u'')} "
         f"{plot.get(u'title', u'')}."
     )
-    data = input_data.filter_tests_by_name(
-        plot, params=[u"latency", u"throughput", u"parent", u"tags", u"type"])
+    if plot.get(u"include", None):
+        data = input_data.filter_tests_by_name(
+            plot,
+            params=[u"latency", u"throughput", u"parent", u"tags", u"type"]
+        )
+    else:
+        data = input_data
+
     if data is None or len(data[0][0]) == 0:
         logging.error(u"No data.")
         return
@@ -209,9 +215,7 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
         u"LAT0",
         u"PDR10",
         u"PDR50",
-        u"PDR90",
-        u"NDR",
-        u"PDR"
+        u"PDR90"
     ]
 
     for test in data[0][0]:
@@ -224,49 +228,43 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
 
             logging.info(f"    Generating the graph: {name}")
 
-            pdr = test[u"throughput"][u"PDR"][u"LOWER"]
-            ndr = test[u"throughput"][u"NDR"][u"LOWER"]
-
             desc = {
-                u"LAT0": u"No load",
-                u"PDR10": f"10% PDR background traffic ({(pdr*1e-7):.2f}Mpps)",
-                u"PDR50": f"50% PDR background traffic ({(pdr*5e-7):.2f}Mpps)",
-                u"PDR90": f"90% PDR background traffic ({(pdr*9e-7):.2f}Mpps)",
-                u"PDR": f"100% PDR background traffic ({(pdr*1e-6):.2f}Mpps)",
-                u"NDR10": f"10% NDR background traffic ({(ndr*1e-7):.2f}Mpps)",
-                u"NDR50": f"50% NDR background traffic ({(ndr*5e-7):.2f}Mpps)",
-                u"NDR90": f"90% NDR background traffic ({(ndr*9e-7):.2f}Mpps)",
-                u"NDR": f"100% NDR background traffic ({(ndr*1e-6):.2f}Mpps)"
+                u"LAT0": u"No-load.",
+                u"PDR10": u"Low-load, 10% PDR.",
+                u"PDR50": u"Mid-load, 50% PDR.",
+                u"PDR90": u"High-load, 90% PDR.",
+                u"PDR": u"Full-load, 100% PDR.",
+                u"NDR10": u"Low-load, 10% NDR.",
+                u"NDR50": u"Mid-load, 50% NDR.",
+                u"NDR90": u"High-load, 90% NDR.",
+                u"NDR": u"Full-load, 100% NDR."
             }
 
-            fig = make_subplots(
-                rows=1,
-                cols=2,
-                column_widths=[0.5, 0.5],
-                shared_xaxes=True,
-                subplot_titles=(
-                    u"<b>Direction: W-E</b>",
-                    u"<b>Direction: E-W</b>"
-                ),
-                specs=[[{"type": "scatter"}, {"type": "scatter"}], ]
-            )
+            fig = plgo.Figure()
             layout = deepcopy(plot[u"layout"])
 
             for color, graph in enumerate(graphs):
                 for idx, direction in enumerate((u"direction1", u"direction2")):
-                    xaxis = list()
-                    yaxis = list()
-                    hovertext = list()
+                    xaxis = [0.0, ]
+                    yaxis = [0.0, ]
+                    hovertext = [
+                        f"<b>{desc[graph]}</b><br>"
+                        f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
+                        f"Percentile: 0.0%<br>"
+                        f"Latency: 0.0uSec"
+                    ]
                     decoded = hdrh.histogram.HdrHistogram.decode(
                         test[u"latency"][graph][direction][u"hdrh"]
                     )
                     for item in decoded.get_recorded_iterator():
                         percentile = item.percentile_level_iterated_to
-                        xaxis.append((100.0 / (100.0 - percentile))
-                                     if percentile != 100.0 else 1e6)
+                        if percentile > 99.9:
+                            continue
+                        xaxis.append(percentile)
                         yaxis.append(item.value_iterated_to)
                         hovertext.append(
                             f"<b>{desc[graph]}</b><br>"
+                            f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
                             f"Percentile: {percentile:.5f}%<br>"
                             f"Latency: {item.value_iterated_to}uSec"
                         )
@@ -279,32 +277,13 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                             legendgroup=desc[graph],
                             showlegend=bool(idx),
                             line=dict(
-                                color=COLORS[color]
+                                color=COLORS[color],
+                                dash=u"solid" if idx % 2 else u"dash"
                             ),
                             hovertext=hovertext,
                             hoverinfo=u"text"
-                        ),
-                        row=1,
-                        col=idx + 1,
+                        )
                     )
-                    fig.update_xaxes(
-                        row=1,
-                        col=idx + 1,
-                        **layout[u"xaxis"]
-                    )
-                    fig.update_yaxes(
-                        row=1,
-                        col=idx + 1,
-                        **layout[u"yaxis"]
-                    )
-            try:
-                del layout[u"xaxis"]
-            except KeyError:
-                pass
-            try:
-                del layout[u"yaxis"]
-            except KeyError:
-                pass
 
             layout[u"title"][u"text"] = f"<b>Latency:</b> {name}"
             fig.update_layout(layout)
