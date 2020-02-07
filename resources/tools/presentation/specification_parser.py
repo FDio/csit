@@ -756,6 +756,13 @@ class Specification:
             except KeyError:
                 pass
 
+            try:
+                element[u"output-file-links"] = self._replace_tags(
+                    element[u"output-file-links"],
+                    self._specification[u"environment"][u"paths"])
+            except KeyError:
+                pass
+
             # Add data sets to the elements:
             if isinstance(element.get(u"data", None), str):
                 data_set = element[u"data"]
