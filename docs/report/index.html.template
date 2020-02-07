@@ -22,6 +22,7 @@ CSIT-2001
     vpp_performance_tests/packet_latency_graphs/index
     vpp_performance_tests/hdrh_packet_latency_graphs/index
     vpp_performance_tests/hdrh_packet_latency_percentile_graphs/index
+    vpp_performance_tests/hdrh_packet_latency_by_percentile_graphs/index
     vpp_performance_tests/soak_tests/index
     vpp_performance_tests/reconf_tests/index
     vpp_performance_tests/nf_service_density/index
