@@ -40,7 +40,7 @@ COLORS = [u"SkyBlue", u"Olive", u"Purple", u"Coral", u"Indigo", u"Pink",
           u"LightGreen", u"LightSeaGreen", u"LightSkyBlue", u"Maroon",
           u"MediumSeaGreen", u"SeaGreen", u"LightSlateGrey"]
 
-REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*)-')
+REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)-')
 
 
 def generate_plots(spec, data):
@@ -204,6 +204,8 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
             plot,
             params=[u"latency", u"throughput", u"parent", u"tags", u"type"]
         )[0][0]
+    elif plot.get(u"filter", None):
+        data = input_data.filter_data(plot, continue_on_error=True)
     else:
         job = list(plot[u"data"].keys())[0]
         build = str(plot[u"data"][job][0])
@@ -212,6 +214,18 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
     if data is None or len(data) == 0:
         logging.error(u"No data.")
         return
+
+    desc = {
+        u"LAT0": u"No-load.",
+        u"PDR10": u"Low-load, 10% PDR.",
+        u"PDR50": u"Mid-load, 50% PDR.",
+        u"PDR90": u"High-load, 90% PDR.",
+        u"PDR": u"Full-load, 100% PDR.",
+        u"NDR10": u"Low-load, 10% NDR.",
+        u"NDR50": u"Mid-load, 50% NDR.",
+        u"NDR90": u"High-load, 90% NDR.",
+        u"NDR": u"Full-load, 100% NDR."
+    }
 
     graphs = [
         u"LAT0",
@@ -237,18 +251,6 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
             name_link = f"{nic}-{test[u'name']}".replace(u'-ndrpdr', u'')
 
             logging.info(f"    Generating the graph: {name_link}")
-
-            desc = {
-                u"LAT0": u"No-load.",
-                u"PDR10": u"Low-load, 10% PDR.",
-                u"PDR50": u"Mid-load, 50% PDR.",
-                u"PDR90": u"High-load, 90% PDR.",
-                u"PDR": u"Full-load, 100% PDR.",
-                u"NDR10": u"Low-load, 10% NDR.",
-                u"NDR50": u"Mid-load, 50% NDR.",
-                u"NDR90": u"High-load, 90% NDR.",
-                u"NDR": u"Full-load, 100% NDR."
-            }
 
             fig = plgo.Figure()
             layout = deepcopy(plot[u"layout"])
