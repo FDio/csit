@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b106655a_c0affb51",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-10T12:50:57Z",
+      "side": 1,
+      "message": "remove this",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 47
+      },
+      "revId": "4f4e7161f13303dde8f624a2d348c934b0ca2007",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
