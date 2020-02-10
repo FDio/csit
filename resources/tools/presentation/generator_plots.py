@@ -232,9 +232,9 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                           replace(u'-ndrpdr', u'').replace(u'2n1l-', u''))
             try:
                 nic = re.search(REGEX_NIC, test[u"parent"]).group(1)
-            except IndexError:
+            except (IndexError, AttributeError, KeyError, ValueError):
                 nic = u""
-            name_link = f"{nic}-{test[u'name']}"
+            name_link = f"{nic}-{test[u'name']}".replace(u'-ndrpdr', u'')
 
             logging.info(f"    Generating the graph: {name_link}")
 
