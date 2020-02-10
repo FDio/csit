@@ -564,6 +564,75 @@
 ###########################################################################
     # Tables (more than one data set)
 
+    # The GOOD and the BAD
+
+    vpp-performance-3n-skx-bad:
+      csit-vpp-perf-verify-1908-3n-skx:
+        - 5   # NDRPDR sel BAD
+        - 6   # NDRPDR sel BAD
+        - 8   # NDRPDR sel BAD
+        - 9   # NDRPDR sel BAD
+    vpp-performance-3n-skx-good:
+      csit-vpp-perf-verify-2001-3n-skx:
+        - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
+    vpp-performance-3n-skx:
+      csit-vpp-perf-verify-1908-3n-skx:
+        - 5   # NDRPDR sel BAD
+        - 6   # NDRPDR sel BAD
+        - 8   # NDRPDR sel BAD
+        - 9   # NDRPDR sel BAD
+        - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
+
+    vpp-performance-2n-skx-bad:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 6   # NDRPDR sel BAD
+        - 7   # NDRPDR sel BAD
+        - 10  # NDRPDR sel BAD
+        - 11  # NDRPDR sel BAD
+        - 14  # NDRPDR sel BAD
+    vpp-performance-2n-skx-good:
+      csit-vpp-perf-verify-2001-2n-skx:
+        - 21  # NDRPDR sel
+        - 22  # NDRPDR sel
+        - 23  # NDRPDR sel
+        - 26  # NDRPDR sel
+    vpp-performance-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 6   # NDRPDR sel BAD
+        - 7   # NDRPDR sel BAD
+        - 10  # NDRPDR sel BAD
+        - 11  # NDRPDR sel BAD
+        - 14  # NDRPDR sel BAD
+        - 21  # NDRPDR sel
+        - 22  # NDRPDR sel
+        - 23  # NDRPDR sel
+        - 26  # NDRPDR sel
+
+    vpp-performance-2n-clx-bad:
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 6   # NDRPDR sel BAD
+        - 7   # NDRPDR sel BAD
+        - 8   # NDRPDR sel BAD
+        - 10  # NDRPDR sel BAD
+        - 11  # NDRPDR sel BAD
+    vpp-performance-2n-clx-good:
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 22  # NDRPDR sel
+        - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
+    vpp-performance-2n-clx:
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 6   # NDRPDR sel BAD
+        - 7   # NDRPDR sel BAD
+        - 8   # NDRPDR sel BAD
+        - 10  # NDRPDR sel BAD
+        - 11  # NDRPDR sel BAD
+        - 22  # NDRPDR sel
+        - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
+
     # Performance changes
 
     vpp-performance-changes-3n-hsw-h1:
@@ -1893,6 +1962,10 @@
       - 67  # NDRPDR sel vhost
       - 36  # MRR sel
     csit-vpp-perf-verify-2001-3n-skx:
+      - 5   # NDRPDR sel BAD
+      - 6   # NDRPDR sel BAD
+      - 8   # NDRPDR sel BAD
+      - 9   # NDRPDR sel BAD
       - 14  # NDRPDR sel
       - 15  # NDRPDR sel
 
@@ -1943,6 +2016,11 @@
       - 83  # SOAK
       - 86  # SOAK
     csit-vpp-perf-verify-2001-2n-skx:
+      - 6   # NDRPDR sel BAD
+      - 7   # NDRPDR sel BAD
+      - 10  # NDRPDR sel BAD
+      - 11  # NDRPDR sel BAD
+      - 14  # NDRPDR sel BAD
       - 21  # NDRPDR sel
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
@@ -1951,6 +2029,11 @@
       - 31  # NFV
 
     csit-vpp-perf-verify-2001-2n-clx:
+      - 6   # NDRPDR sel BAD
+      - 7   # NDRPDR sel BAD
+      - 8   # NDRPDR sel BAD
+      - 10  # NDRPDR sel BAD
+      - 11  # NDRPDR sel BAD
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
       - 24  # NDRPDR sel
@@ -2473,6 +2556,237 @@
   - "name"
   - "parent"
   - "result"
+  - "tags"
+
+################################################################################
+# The Bad and the good
+
+- type: "table"
+  title: "VPP Performance Comparison 3n-skx 2t1c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-3n-skx-2t1c-pdr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-3n-skx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-3n-skx-good"
+  data: "vpp-performance-3n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 3n-skx 4t2c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-3n-skx-4t2c-pdr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-3n-skx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-3n-skx-good"
+  data: "vpp-performance-3n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 3n-skx 2t1c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-3n-skx-2t1c-ndr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-3n-skx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-3n-skx-good"
+  data: "vpp-performance-3n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 3n-skx 4t2c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-3n-skx-4t2c-ndr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-3n-skx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-3n-skx-good"
+  data: "vpp-performance-3n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 2n-skx 2t1c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-2n-skx-2t1c-pdr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-2n-skx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-2n-skx-good"
+  data: "vpp-performance-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 2n-skx 4t2c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-2n-skx-4t2c-pdr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-2n-skx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-2n-skx-good"
+  data: "vpp-performance-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 2n-skx 2t1c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-2n-skx-2t1c-ndr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-2n-skx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-2n-skx-good"
+  data: "vpp-performance-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 2n-skx 4t2c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-2n-skx-4t2c-ndr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-2n-skx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-2n-skx-good"
+  data: "vpp-performance-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 2n-clx 2t1c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-2n-clx-2t1c-pdr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-2n-clx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-2n-clx-good"
+  data: "vpp-performance-2n-clx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 2n-clx 4t2c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-2n-clx-4t2c-pdr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-2n-clx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-2n-clx-good"
+  data: "vpp-performance-2n-clx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 2n-clx 2t1c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-2n-clx-2t1c-ndr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-2n-clx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-2n-clx-good"
+  data: "vpp-performance-2n-clx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+- type: "table"
+  title: "VPP Performance Comparison 2n-clx 4t2c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-bad-good-2n-clx-4t2c-ndr"
+  reference:
+    title: "The Bad"
+    data: "vpp-performance-2n-clx-bad"
+  compare:
+    title: "The Good"
+    data: "vpp-performance-2n-clx-good"
+  data: "vpp-performance-2n-clx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
   - "tags"
 
 ################################################################################
