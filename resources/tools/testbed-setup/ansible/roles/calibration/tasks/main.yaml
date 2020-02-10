@@ -10,17 +10,20 @@
     - install-dependencies
 
 - name: Calibration - Run Spectre Meltdown Checker
-  raw: "wget -qO - https://meltdown.ovh | sudo bash -s - --no-color || true"
-  register: spectre_meltdown_output
+  raw: "wget -qO - https://meltdown.ovh | sudo bash -s - --no-color"
+  async: 60
+  poll: 5
+  ignore_errors: yes
+  register: __spectre_meltdown_output
   tags:
-    - run-spectre-meltdown-checker
+    - check-spectre-meltdown
 
-- debug: var=spectre_meltdown_output.stdout_lines
+- debug: var=__spectre_meltdown_output.stdout_lines
   tags:
-    - run-spectre-meltdown-checker
+    - check-spectre-meltdown
 
 - name: Calibration - {{ ansible_machine }} Specific
   include_tasks: "{{ ansible_machine }}.yaml"
-  when: ansible_machine == "x86_64"
   tags:
-    - run-jitter-tool
+    - check-machine-specific
+    - check-jitter-tool
