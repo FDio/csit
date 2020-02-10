@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4392413c_416ab8a2",
+        "filename": "tests/dpdk/dpdk_scripts/run_l2fwd.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-10T12:37:21Z",
+      "side": 1,
+      "message": "60",
+      "range": {
+        "startLine": 136,
+        "startChar": 19,
+        "endLine": 136,
+        "endChar": 21
+      },
+      "revId": "3f9c77e427f19306f2abc05426ebbdf84d9e27bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
