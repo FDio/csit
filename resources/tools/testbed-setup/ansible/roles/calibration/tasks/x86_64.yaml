@@ -6,20 +6,30 @@
     repo: "https://gerrit.fd.io/r/pma_tools"
     dest: "{{ pma_directory }}"
   tags:
-    - run-jitter-tool
+    - check-jitter-tool
 
 - name: Calibration - Compile PMA Tool
   raw: "cd {{ pma_directory }}/jitter && make"
   tags:
-    - run-jitter-tool
+    - check-jitter-tool
 
 - name: Calibration - Run Jitter Tool
-  raw: "{{ pma_directory }}/jitter/jitter -c {{ jitter_core }} -i {{ jitter_iterations }} -f"
+  shell: "{{ pma_directory }}/jitter/jitter -c {{ jitter_core }} -i {{ jitter_iterations }} -f"
   become: yes
-  register: jitter_output
+  async: 60
+  poll: 0
+  ignore_errors: yes
+  register: jitter_async
   tags:
-    - run-jitter-tool
+    - check-jitter-tool
 
-- debug: var=jitter_output.stdout_lines
+- name: Check sync status
+  async_status:
+    jid: "{{ jitter_async.ansible_job_id }}"
+  register: "jitter_poll_results"
+  until: jitter_poll_results.finished
+  retries: 30
+
+- debug: var=jitter_poll_results.stdout_lines
   tags:
-    - run-jitter-tool
+    - check-jitter-tool

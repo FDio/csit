@@ -9,19 +9,19 @@
   tags:
     - install-dependencies
 
-- name: Performance Tuning - Configure {{ ansible_machine }} kernel parameters
+- name: Performance Tuning - Configure {{ ansible_machine }} Kernel Parameters
   lineinfile:
     path: "/etc/default/grub"
     state: "present"
     regexp: "^GRUB_CMDLINE_LINUX="
-    line: {{ grub_cmdline_linux[ansible_machine] }}
+    line: "{{ grub_cmdline_linux[ansible_machine] }}"
   notify:
     - "Update GRUB"
     - "Reboot server"
   tags:
     - set-grub
 
-- name: Performance Tuning - Turbo boost
+- name: Performance Tuning - Turbo Boost
   import_tasks: turbo_boost.yaml
   when: >
     cpu_microarchitecture == "skylake" or
@@ -29,17 +29,116 @@
   tags:
     - turbo-boost
 
-- name: Performance Tuning - Copy CSIT sysctl file
-  template:
-    src: "files/90-csit"
-    dest: "/etc/sysctl.d/90-csit.conf"
-    owner: "root"
-    group: "root"
-    mode: "0644"
+- name: Performance Tuning - Adjust nr_hugepages
+  # change the minimum size of the hugepage pool.
+  # 2G VPP, 4GB per VNF/CNF, 2G reserve
+  sysctl:
+    name: "vm.nr_hugepages"
+    value: "{{ sysctl.vm.nr_hugepages  }}"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
   tags:
-    - copy-90-csit
+    - set-sysctl
 
-- name: Performance Tuning - Copy cpufrequtils file
+- name: Performance Tuning - Adjust max_map_count
+  # this file contains the maximum number of memory map areas a process
+  # may have. memory map areas are used as a side-effect of calling
+  # malloc, directly by mmap and mprotect, and also when loading shared
+  # libraries.
+  #
+  # while most applications need less than a thousand maps, certain
+  # programs, particularly malloc debuggers, may consume lots of them,
+  # e.g., up to one or two maps per allocation.
+  # must be greater than or equal to (2 * vm.nr_hugepages).
+  sysctl:
+    name: "vm.max_map_count"
+    value: "{{ sysctl.vm.nr_hugepages * 4  }}"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Performance Tuning - Adjust hugetlb_shm_group
+  # hugetlb_shm_group contains group id that is allowed to create sysv
+  # shared memory segment using hugetlb page.
+  sysctl:
+    name: "vm.hugetlb_shm_group"
+    value: "1000"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Performance Tuning - Adjust swappiness
+  # this control is used to define how aggressive the kernel will swap
+  # memory pages.  higher values will increase agressiveness, lower values
+  # decrease the amount of swap.  a value of 0 instructs the kernel not to
+  # initiate swap until the amount of free and file-backed pages is less
+  # than the high water mark in a zone.
+  sysctl:
+    name: "vm.swappiness"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Performance Tuning - Adjust shmmax
+  # shared memory max must be greator or equal to the total size of hugepages.
+  # for 2mb pages, totalhugepagesize = vm.nr_hugepages * 2 * 1024 * 1024
+  # if the existing kernel.shmmax setting (cat /sys/proc/kernel/shmmax)
+  # is greater than the calculated totalhugepagesize then set this parameter
+  # to current shmmax value.
+  sysctl:
+    name: "kernel.shmmax"
+    value: "{{ sysctl.vm.nr_hugepages * 2 * 1024 * 1024 }}"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Performance Tuning - Adjust watchdog_cpumask
+  # this value can be used to control on which cpus the watchdog may run.
+  # the default cpumask is all possible cores, but if no_hz_full is
+  # enabled in the kernel config, and cores are specified with the
+  # nohz_full= boot argument, those cores are excluded by default.
+  # offline cores can be included in this mask, and if the core is later
+  # brought online, the watchdog will be started based on the mask value.
+  #
+  # typically this value would only be touched in the nohz_full case
+  # to re-enable cores that by default were not running the watchdog,
+  # if a kernel lockup was suspected on those cores.
+  sysctl:
+    name: "kernel.watchdog_cpumask"
+    value: "{{ sysctl.kernel.watchdog_cpumask }}"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Performance Tuning - Adjust randomize_va_space
+  # this option can be used to select the type of process address
+  # space randomization that is used in the system, for architectures
+  # that support this feature.
+  # 0 - turn the process address space randomization off.  this is the
+  #     default for architectures that do not support this feature anyways,
+  #     and kernels that are booted with the "norandmaps" parameter.
+  sysctl:
+    name: "kernel.randomize_va_space"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Performance Tuning - Copy Cpufrequtils File
   copy:
     src: "files/cpufrequtils"
     dest: "/etc/default/cpufrequtils"
@@ -49,14 +148,14 @@
   tags:
     - copy-cpufrequtils
 
-- name: Performance Tuning - Set ondemand service to disable
+- name: Performance Tuning - Set Ondemand Service To Disable
   service:
     name: "ondemand"
     enabled: "no"
   tags:
     - set-ondemand
 
-- name: Performance Tuning - Load kernel modules by default
+- name: Performance Tuning - Load Kernel Modules By Default
   lineinfile:
     path: "/etc/modules"
     state: "present"

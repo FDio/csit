@@ -46,8 +46,8 @@
   tags:
     - install-wrk
 
-- name: WRK Install - Move Binary
-  command: "mv {{ wrk_target_dir }}/wrk-{{ wrk_version }}/wrk /usr/local/bin/"
+- name: WRK Install - Copy Binary
+  command: "cp {{ wrk_target_dir }}/wrk-{{ wrk_version }}/wrk /usr/local/bin/"
   when: wrk_compiled
   tags:
     - install-wrk

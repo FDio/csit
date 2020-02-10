@@ -1,7 +1,7 @@
 ---
 # file: roles/performance_tuning/tasks/turbo_boost.yaml
 
-- name: Turbo boost - Install msr-tools
+- name: Turbo Boost - Install msr-tools
   package:
     name:
       - "msr-tools"
@@ -10,7 +10,7 @@
   tags:
     - turbo-boost
 
-- name: Turbo boost - Load msr by default
+- name: Turbo Boost - Load msr By Default
   lineinfile:
     path: "/etc/modules"
     state: "present"
@@ -18,7 +18,7 @@
   tags:
     - turbo-boost
 
-- name: Turbo boost - Custom startup service hook
+- name: Turbo Boost - Custom Startup Service Hook
   copy:
     src: "files/disable-turbo-boost.service"
     dest: "/etc/systemd/system/disable-turbo-boost.service"
@@ -28,7 +28,7 @@
   tags:
     - turbo-boost
 
-- name: Turbo boost - Custom startup service hook enable
+- name: Turbo Boost - Custom Startup Service Hook Enable
   service:
     name: "disable-turbo-boost"
     enabled: yes

@@ -44,6 +44,8 @@ case "${1:-start}" in
             dcr_stc_params+="--volume /dev:/dev "
             # Mount /opt/boot/ where VM kernel and initrd are located.
             dcr_stc_params+="--volume /opt:/opt "
+            # Mount /usr/local/bin/wrk where WRK is located.
+            dcr_stc_params+="--volume /usr/local/bin/wrk:/usr/local/bin/wrk "
             # Mount host hugepages for VMs.
             dcr_stc_params+="--volume /dev/hugepages:/dev/hugepages "
 
