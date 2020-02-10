@@ -9,18 +9,35 @@
   tags:
     - install-dependencies
 
-- name: Calibration - Run Spectre Meltdown Checker
-  raw: "wget -qO - https://meltdown.ovh | sudo bash -s - --no-color || true"
-  register: spectre_meltdown_output
+- name: Calibration - Get Spectre Meltdown Checker
+  get_url:
+    url: "https://meltdown.ovh"
+    dest: "/opt/spectre-meltdown-checker.sh"
+    mode: "744"
   tags:
-    - run-spectre-meltdown-checker
+    - check-spectre-meltdown
 
-- debug: var=spectre_meltdown_output.stdout_lines
+- name: Calibration - Run Spectre Meltdown Checker
+  shell: "/opt/spectre-meltdown-checker.sh --no-color || true"
+  async: 60
+  poll: 0
+  register: spectre_meltdown_async
   tags:
-    - run-spectre-meltdown-checker
+    - check-spectre-meltdown
 
 - name: Calibration - {{ ansible_machine }} Specific
   include_tasks: "{{ ansible_machine }}.yaml"
-  when: ansible_machine == "x86_64"
   tags:
-    - run-jitter-tool
+    - check-machine-specific
+    - check-jitter-tool
+
+- name: Check sync status
+  async_status:
+    jid: "{{ spectre_meltdown_async.ansible_job_id }}"
+  register: "spectre_meltdown_poll_results"
+  until: spectre_meltdown_poll_results.finished
+  retries: 30
+
+- debug: var=spectre_meltdown_poll_results.stdout_lines
+  tags:
+    - check-spectre-meltdown
