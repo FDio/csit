@@ -548,7 +548,6 @@
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-verify-2001-3n-hsw:
         - 13  # NDRPDR sel
-        - 25  # NDRPDR sel
 
     dpdk-perf-results-3n-skx:
       csit-dpdk-perf-verify-2001-3n-skx:
@@ -557,7 +556,6 @@
     dpdk-perf-results-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
         - 1   # NDRPDR sel
-        - 19  # NDRPDR sel
 
     dpdk-perf-results-2n-clx:
       csit-dpdk-perf-verify-2001-2n-clx:
