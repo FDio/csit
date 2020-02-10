@@ -1755,13 +1755,13 @@
         bgcolor: "rgba(255, 255, 255, 0)"
         bordercolor: "rgba(255, 255, 255, 0)"
       xaxis:
-        type: "log"
+        type: "linear"
         title: "<b>Percentile [%]</b>"
         titlefont:
           size: 14
         autorange: False
         fixedrange: False
-        range: [1e-6, 3]
+        range: [0, 100]
         gridcolor: "rgb(230, 230, 230)"
         linecolor: "rgb(220, 220, 220)"
         linewidth: 1
@@ -1769,13 +1769,12 @@
         showline: True
         showticklabels: True
         tickcolor: "rgb(220, 220, 220)"
-        tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8]
-        tickangle: 315
-        ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999, 99.99999, 99.999999]
+        tickvals: [0, 25, 50, 75, 100]
+        ticktext: [0, 25, 50, 75, 100]
         tickfont:
           size: 14
       yaxis:
-        title: "<b>Packet Latency [uSec]</b>"
+        title: "<b>One-Way Latency per Direction [uSec]</b>"
         titlefont:
           size: 14
         gridcolor: "rgb(230, 230, 230)"
@@ -6580,7 +6579,7 @@
            'NF_DENSITY' and
            'VHOST' and
            'VXLAN' and
-           'CHAIN' a
+           'CHAIN' and
            'IMIX' and
            '2T1C' and
            'NDRPDR'"
@@ -26895,6 +26894,7 @@
   output-file-links: "{DIR[LAT,VPP]}/2n_skx.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-2n-skx"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
 
@@ -26905,6 +26905,7 @@
   output-file-links: "{DIR[LAT,VPP]}/3n_skx.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-3n-skx"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
 
@@ -26915,6 +26916,7 @@
   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-2n-clx"
+  filter: "'2T1C' and 'NIC_Mellanox-CX556A'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
 
@@ -26925,6 +26927,7 @@
   output-file-links: "{DIR[LAT,VPP]}/3n_hsw.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-3n-hsw"
+  filter: "'1T1C' and 'NIC_Intel-XL710'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
 
@@ -26935,5 +26938,6 @@
   output-file-links: "{DIR[LAT,VPP]}/3n_tsh.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-3n-tsh"
+  filter: "'1T1C' and 'NIC_Intel-X520-DA2'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
