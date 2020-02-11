@@ -34,7 +34,7 @@ from pal_utils import mean, stdev, relative_change, classify_anomalies, \
     convert_csv_to_pretty_txt, relative_change_stdev
 
 
-REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)-')
+REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)')
 
 
 def generate_tables(spec, data):
