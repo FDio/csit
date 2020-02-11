@@ -15,5 +15,3 @@ Comparisons
     2n-skx_vs_2n-clx_testbeds
     3n-skx_vs_2n-skx_testbeds
     nic_comparison
-    soak_vs_ndr
-    bad_good
