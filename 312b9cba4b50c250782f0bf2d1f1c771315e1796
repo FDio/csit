@@ -22,6 +22,30 @@
       "revId": "312b9cba4b50c250782f0bf2d1f1c771315e1796",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2b99167_18a7c2dd",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-02-11T14:42:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08984660_46d4c9e8",
+      "range": {
+        "startLine": 267,
+        "startChar": 32,
+        "endLine": 267,
+        "endChar": 33
+      },
+      "revId": "312b9cba4b50c250782f0bf2d1f1c771315e1796",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
