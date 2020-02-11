@@ -30,6 +30,8 @@ from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
 
+import hdrh.histogram
+import hdrh.codec
 import prettytable
 import pandas as pd
 
@@ -409,32 +411,67 @@ class ExecutionChecker(ResultVisitor):
             :type in_str_2: str
             :returns: Processed latency string or original string if a problem
                 occurs.
-            :rtype: str
+            :rtype: tuple(str, str)
             """
             in_list_1 = in_str_1.split('/', 3)
             if len(in_list_1) < 3:
-                return u"Min/Avg/Max, -1/-1/-1, -1/-1/-1 uSec."
+                return u"Not Measured.", u"Not Measured."
 
             in_list_2 = in_str_2.split('/', 3)
             if len(in_list_2) < 3:
-                return u"Min/Avg/Max, -1/-1/-1, -1/-1/-1 uSec."
+                return u"Not Measured.", u"Not Measured."
 
-            return f"Min/Avg/Max, " \
-                   f"{in_list_1[0]}/{in_list_1[1]}/{in_list_1[2]}, " \
-                   f"{in_list_2[0]}/{in_list_2[1]}/{in_list_2[2]} uSec."
+            hdr_lat_1 = u""
+            if len(in_list_1) == 4:
+                in_list_1[3] += u"=" * (len(in_list_1[3]) % 4)
+                try:
+                    hdr_lat_1 = hdrh.histogram.HdrHistogram.decode(in_list_1[3])
+                except hdrh.codec.HdrLengthException:
+                    pass
+            hdr_lat_2 = u""
+            if len(in_list_2) == 4:
+                in_list_2[3] += u"=" * (len(in_list_2[3]) % 4)
+                try:
+                    hdr_lat_2 = hdrh.histogram.HdrHistogram.decode(in_list_2[3])
+                except hdrh.codec.HdrLengthException:
+                    pass
+
+            hdr_lat = u"Not Measured."
+            if hdr_lat_1 and hdr_lat_2:
+                hdr_lat = (
+                    f"50%/90%/99%/99.9%, "
+                    f"{hdr_lat_1.get_value_at_percentile(50.0)}/"
+                    f"{hdr_lat_1.get_value_at_percentile(90.0)}/"
+                    f"{hdr_lat_1.get_value_at_percentile(99.0)}/"
+                    f"{hdr_lat_1.get_value_at_percentile(99.9)}, "
+                    f"{hdr_lat_2.get_value_at_percentile(50.0)}/"
+                    f"{hdr_lat_2.get_value_at_percentile(90.0)}/"
+                    f"{hdr_lat_2.get_value_at_percentile(99.0)}/"
+                    f"{hdr_lat_2.get_value_at_percentile(99.9)} "
+                    f"uSec."
+                )
+
+            return (
+                f"Min/Avg/Max, "
+                f"{in_list_1[0]}/{in_list_1[1]}/{in_list_1[2]}, "
+                f"{in_list_2[0]}/{in_list_2[1]}/{in_list_2[2]} uSec.",
+                hdr_lat
+            )
 
         try:
+            pdr_lat = _process_lat(data[u'pdr_lat_1'], data[u'pdr_lat_2'])
+            ndr_lat = _process_lat(data[u'ndr_lat_1'], data[u'ndr_lat_2'])
             return (
                 f"NDR Throughput: {(data[u'ndr_low'] / 1e6):.2f} "
                 f"M{data[u'ndr_low_unit']}, "
                 f"{data[u'ndr_low_b']:.2f} {data[u'ndr_low_b_unit']}.\n"
-                f"One-Way Latency at NDR: "
-                f"{_process_lat(data[u'ndr_lat_1'], data[u'ndr_lat_2'])}\n"
+                f"One-Way Latency at NDR: {ndr_lat[0]}\n"
+                f"One-Way Latency at NDR by percentiles: {ndr_lat[1]}\n"
                 f"PDR Throughput: {(data[u'pdr_low'] / 1e6):.2f} "
                 f"M{data[u'pdr_low_unit']}, "
                 f"{data[u'pdr_low_b']:.2f} {data[u'pdr_low_b_unit']}.\n"
-                f"One-Way Latency at PDR: "
-                f"{_process_lat(data[u'pdr_lat_1'], data[u'pdr_lat_2'])}"
+                f"One-Way Latency at PDR: {pdr_lat[0]}\n"
+                f"One-Way Latency at PDR by percentiles: {pdr_lat[1]}"
             )
         except (AttributeError, IndexError, ValueError, KeyError):
             return msg
