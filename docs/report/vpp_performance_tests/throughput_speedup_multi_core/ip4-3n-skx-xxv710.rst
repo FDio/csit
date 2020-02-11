@@ -36,14 +36,14 @@
     10ge2p1xxv710-avf-ethip4-ip4scale200k-ndrpdr
     10ge2p1xxv710-avf-ethip4-ip4scale2m-ndrpdr
 
-    ### 64b-ip4routing-base-scale-i40e
+    ### 64b-ip4routing-base-scale-dpdk
     10ge2p1xxv710-dot1q-ip4base-ndrpdr
     10ge2p1xxv710-ethip4-ip4base-ndrpdr
     10ge2p1xxv710-ethip4-ip4scale20k-ndrpdr
     10ge2p1xxv710-ethip4-ip4scale200k-ndrpdr
     10ge2p1xxv710-ethip4-ip4scale2m-ndrpdr
 
-    ### 64b-features-ip4routing-base-i40e
+    ### 64b-features-ip4routing-base-dpdk
     10ge2p1xxv710-ethip4-ip4base-ndrpdr
     10ge2p1xxv710-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr
     10ge2p1xxv710-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr
@@ -97,13 +97,13 @@
 
     \clearpage
 
-64b-ip4routing-base-scale-i40e
+64b-ip4routing-base-scale-dpdk
 ------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-ip4routing-base-scale-i40e-ndr-tsa.html"></iframe>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -112,8 +112,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-scale-i40e-ndr-tsa}
-            \label{fig:3n-skx-xxv710-64b-ip4routing-base-scale-i40e-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-ndr-tsa}
+            \label{fig:3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -123,7 +123,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-ip4routing-base-scale-i40e-pdr-tsa.html"></iframe>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -132,21 +132,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-scale-i40e-pdr-tsa}
-            \label{fig:3n-skx-xxv710-64b-ip4routing-base-scale-i40e-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-pdr-tsa}
+            \label{fig:3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-features-ip4routing-base-i40e
+64b-features-ip4routing-base-dpdk
 ---------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-i40e-ndr-tsa.html"></iframe>
+    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-dpdk-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -155,8 +155,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-i40e-ndr-tsa}
-            \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-i40e-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-dpdk-ndr-tsa}
+            \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-dpdk-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -166,7 +166,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-i40e-pdr-tsa.html"></iframe>
+    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-dpdk-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -175,6 +175,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-i40e-pdr-tsa}
-            \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-i40e-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-dpdk-pdr-tsa}
+            \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-dpdk-pdr-tsa}
     \end{figure}
