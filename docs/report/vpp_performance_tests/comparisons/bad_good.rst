@@ -69,7 +69,7 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 2t1c PDR comparison <../../_static/vpp/performance-bad-good-3n-skx-2t1c-pdr.csv>`_
   - `CSV 4t2c PDR comparison <../../_static/vpp/performance-bad-good-3n-skx-4t2c-pdr.csv>`_
 
-2n-skx
+2n-clx
 ~~~~~~
 
 NDR Comparison
