@@ -57,6 +57,7 @@ s_testc_rules=(
     )
 r_testc_rules=(
     '^tc[[:digit:]]{2}-'
+    '([[:digit:]]+cl[[:digit:]]+s-){0,1}'
     '([[:digit:]]{2,4}B|IMIX)-'
     '([[:digit:]]+c-){0,1}'
     '(avf-|1lbvpplacp-|2lbvpplacp-){0,1}'
