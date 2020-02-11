@@ -26,8 +26,5 @@ skx, 3n-tsh, 2n-clx.
 .. toctree::
     :maxdepth: 3
 
-    2n_skx
-    3n_skx
-    2n_clx
     3n_hsw
     3n_tsh
