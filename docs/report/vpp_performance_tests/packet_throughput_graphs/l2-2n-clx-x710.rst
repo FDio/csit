@@ -30,7 +30,7 @@
 
 ..
     ## 2n-clx-x710
-    ### 64b-?t?c-l2switching-base-scale-avf-i40e
+    ### 64b-?t?c-l2switching-base-scale-[avf,dpdk]
     2n1l-10ge2p1x710-avf-eth-l2xcbase-ndrpdr
     2n1l-10ge2p1x710-avf-dot1q-l2bdbasemaclrn-ndrpdr
     2n1l-10ge2p1x710-avf-eth-l2bdbasemaclrn-ndrpdr
@@ -48,13 +48,13 @@
 2n-clx-x710
 ~~~~~~~~~~~
 
-64b-2t1c-l2switching-base-scale-avf-i40e
+64b-2t1c-l2switching-base-scale-[avf,dpdk]
 ----------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-x710-64b-2t1c-l2switching-base-scale-[avf,dpdk]-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -63,8 +63,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-ndr}
-            \label{fig:2n-clx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-2t1c-l2switching-base-scale-[avf,dpdk]-ndr}
+            \label{fig:2n-clx-x710-64b-2t1c-l2switching-base-scale-[avf,dpdk]-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -74,7 +74,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-x710-64b-2t1c-l2switching-base-scale-[avf,dpdk]-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -83,6 +83,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-pdr}
-            \label{fig:2n-clx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-2t1c-l2switching-base-scale-[avf,dpdk]-pdr}
+            \label{fig:2n-clx-x710-64b-2t1c-l2switching-base-scale-[avf,dpdk]-pdr}
     \end{figure}

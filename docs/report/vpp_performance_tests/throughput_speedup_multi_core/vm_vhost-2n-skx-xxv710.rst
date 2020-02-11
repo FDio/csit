@@ -30,7 +30,7 @@
 
 ..
     ## 2n-skx-xxv710
-    ### 64b-?t?c-vhost-base-i40e
+    ### 64b-?t?c-vhost-base-dpdk
     2n1l-10ge2p1xxv710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
     2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
     2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
@@ -49,13 +49,13 @@
 2n-skx-xxv710
 ~~~~~~~~~~~~~
 
-64b-vhost-base-i40e-testpmd
+64b-vhost-base-dpdk-testpmd
 ---------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-vhost-base-i40e-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-vhost-base-dpdk-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -64,8 +64,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-vhost-base-i40e-ndr-tsa}
-            \label{fig:2n-skx-xxv710-64b-vhost-base-i40e-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-vhost-base-dpdk-ndr-tsa}
+            \label{fig:2n-skx-xxv710-64b-vhost-base-dpdk-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -75,7 +75,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-vhost-base-i40e-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-vhost-base-dpdk-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -84,21 +84,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-vhost-base-i40e-pdr-tsa}
-            \label{fig:2n-skx-xxv710-64b-vhost-base-i40e-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-vhost-base-dpdk-pdr-tsa}
+            \label{fig:2n-skx-xxv710-64b-vhost-base-dpdk-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-vhost-base-i40e-vpp
+64b-vhost-base-dpdk-vpp
 -----------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-vhost-base-i40e-vpp-ndr-tsa.html"></iframe>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-vhost-base-dpdk-vpp-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -107,8 +107,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-vhost-base-i40e-vpp-ndr-tsa}
-            \label{fig:2n-skx-xxv710-64b-vhost-base-i40e-vpp-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-vhost-base-dpdk-vpp-ndr-tsa}
+            \label{fig:2n-skx-xxv710-64b-vhost-base-dpdk-vpp-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -118,7 +118,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-vhost-base-i40e-vpp-pdr-tsa.html"></iframe>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-vhost-base-dpdk-vpp-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -127,6 +127,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-vhost-base-i40e-vpp-pdr-tsa}
-            \label{fig:2n-skx-xxv710-64b-vhost-base-i40e-vpp-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-vhost-base-dpdk-vpp-pdr-tsa}
+            \label{fig:2n-skx-xxv710-64b-vhost-base-dpdk-vpp-pdr-tsa}
     \end{figure}

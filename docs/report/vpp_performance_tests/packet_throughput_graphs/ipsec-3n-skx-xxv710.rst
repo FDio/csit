@@ -30,7 +30,7 @@
 
 ..
     ## 3n-skx-xxv710
-    ### imix-?t?c-ipsec-ip4routing-base-scale-i40e
+    ### imix-?t?c-ipsec-ip4routing-base-scale-dpdk
     10ge2p1xxv710-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr
     10ge2p1xxv710-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
     10ge2p1xxv710-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr
@@ -48,13 +48,13 @@
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
-imix-2t1c-ipsec-ip4routing-base-scale-i40e
+imix-2t1c-ipsec-ip4routing-base-scale-dpdk
 ------------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-i40e-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-dpdk-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -63,8 +63,8 @@ imix-2t1c-ipsec-ip4routing-base-scale-i40e
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-i40e-ndr}
-            \label{fig:3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-dpdk-ndr}
+            \label{fig:3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-dpdk-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -74,7 +74,7 @@ imix-2t1c-ipsec-ip4routing-base-scale-i40e
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-i40e-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-dpdk-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -83,6 +83,6 @@ imix-2t1c-ipsec-ip4routing-base-scale-i40e
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-i40e-pdr}
-            \label{fig:3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-dpdk-pdr}
+            \label{fig:3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-dpdk-pdr}
     \end{figure}
