@@ -17,26 +17,26 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | NIC_Intel-X710 | DRV_VFIO_PCI | UDP | QUIC | VPPECHO
-| ... | HOSTSTACK | eth-ip4udpquic-vppecho
+| ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI | HOSTSTACK
+| ... | LDPRELOAD | IPERF3 | eth-ip4tcpbase-ldpreload-iperf3
 |
 | Suite Setup | Setup suite single link no tg
-| Suite Teardown | Tear down suite
+| Suite Teardown | Tear down suite | hoststack
 | Test Setup | Setup test
 | Test Teardown | Tear down test
 |
 | Test Template | Local template
 |
-| Documentation | *QUIC Unidirectional Echo Client -> Echo Server throughput.
+| Documentation | *Iperf3 client -> Iperf3 server throughput.
 |
 | ... | *[Top] Network Topologies:* DUT-DUT 2-node topology
 | ... | with single link between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP-QUIC
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-TCP
 | ... | *[Cfg] DUT configuration:*
 | ... | *[Ref] Applicable standard specifications:*
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | quic_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
@@ -45,30 +45,16 @@
 
 *** Keywords ***
 | Local template
-| | [Arguments] | ${phy_cores} | ${clients} |  ${streams} | ${bytes}
+| | [Arguments] | ${phy_cores} | ${clients} | ${streams}
 | |
+| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
-| | Set VPP Echo Server Attributes | cfg_vpp_feature=quic | nclients=${clients}
-| | ... | quic_streams=${streams} | rx_bytes=${bytes}
-| | Set VPP Echo Client Attributes | cfg_vpp_feature=quic | nclients=${clients}
-| | ... | quic_streams=${streams} | tx_bytes=${bytes}
-| | ${no_results}= | Get Test Results From Hoststack VPP Echo Test
+| | Set Iperf3 Client Attributes | parallel=${streams}
+| | ${no_results}= | Get Test Results From Hoststack Iperf3 Test
 | | Run Keyword If | ${no_results}==True | FAIL
-| | ... | No Test Results From External Hoststack Apps
+| | ... | No Test Results From Iperf3 client
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4udpquic-vppecho-bps
+| tc01-9000B-1c-eth-ip4tcpbase-ldpreload-iperf3-bps
 | | [Tags] | 1C | 1CLIENT | 1STREAM
-| | phy_cores=${1} | clients=${1} | streams=${1} | bytes=10G
-
-| tc02-9000B-1c-eth-ip4udpquic-vppecho-bps
-| | [Tags] | 1C | 1CLIENT | 10STREAM
-| | phy_cores=${1} | clients=${1} | streams=${10} | bytes=1G
-
-| tc03-9000B-1c-eth-ip4udpquic-vppecho-bps
-| | [Tags] | 1C | 10CLIENT | 1STREAM
-| | phy_cores=${1} | clients=${10} | streams=${1} | bytes=1G
-
-| tc04-9000B-1c-eth-ip4udpquic-vppecho-bps
-| | [Tags] | 1C | 10CLIENT | 10STREAM
-| | phy_cores=${1} | clients=${10} | streams=${10} | bytes=100M
+| | phy_cores=${1} | clients=${1} | streams=${1}

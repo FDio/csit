@@ -18,10 +18,10 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI | HOSTSTACK
-| ... | LDPRELOAD | IPERF3 | eth-ip4tcp-ldpreload-iperf3
+| ... | NSIM | LDPRELOAD | IPERF3 | eth-ip4tcpbase-nsim-ldpreload-iperf3
 |
 | Suite Setup | Setup suite single link no tg
-| Suite Teardown | Tear down suite | hoststack
+| Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test
 |
@@ -36,29 +36,27 @@
 | ... | *[Ref] Applicable standard specifications:*
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | nsim_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
+| ${pkts_per_drop}= | ${100}
 
 *** Keywords ***
 | Local template
-| | [Arguments] | ${phy_cores} | ${clients} | ${streams}
+| | [Arguments] | ${phy_cores} | ${clients} |  ${streams}
 | |
-| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | Set Iperf3 Client Attributes | parallel=${streams}
+| | Set VPP NSIM Attributes | output_feature_enable=${True} |
+| | ... | packets_per_drop=${pkts_per_drop}
 | | ${no_results}= | Get Test Results From Hoststack Iperf3 Test
 | | Run Keyword If | ${no_results}==True | FAIL
 | | ... | No Test Results From Iperf3 client
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4tcp-ldpreload-iperf3-bps
+| tc01-9000B-1c-eth-ip4tcpbase-nsim-ldpreload-iperf3-bps
 | | [Tags] | 1C | 1CLIENT | 1STREAM
 | | phy_cores=${1} | clients=${1} | streams=${1}
-
-| tc02-9000B-1c-eth-ip4tcp-ldpreload-iperf3-bps
-| | [Tags] | 1C | 1CLIENT | 10STREAM
-| | phy_cores=${1} | clients=${1} | streams=${10}

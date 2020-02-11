@@ -465,23 +465,31 @@ class Regenerator:
             {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4, u"clients": 1,
              u"streams": 1, u"bytes_str": u"1G"}
         ]
-        hoststack_wrk_kwargs_list = [
+        hs_wrk_kwargs_list = [
             {u"frame_size": 0, u"phy_cores": i, u"clients": 1,
              u"streams": 1, u"bytes_str": u"1G"} for i in (1, 2, 4)
         ]
-        hoststack_iperf3_kwargs_list = [
+        hs_1cl1s_iperf3_kwargs_list = [
             {u"frame_size": 0, u"phy_cores": 1, u"clients": 1,
              u"streams": 1, u"bytes_str": u"1G"},
+        ]
+        hs_1cl10s_iperf3_kwargs_list = [
             {u"frame_size": 0, u"phy_cores": 1, u"clients": 1,
              u"streams": 10, u"bytes_str": u"1G"},
         ]
-        hoststack_quic_kwargs_list = [
+        hs_1cl1s_vppecho_kwargs_list = [
             {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
              u"streams": 1, u"bytes_str": u"10G"},
+        ]
+        hs_1cl10s_vppecho_kwargs_list = [
             {u"phy_cores": 1, u"frame_size": 0, u"clients": 1,
              u"streams": 10, u"bytes_str": u"1G"},
+        ]
+        hs_10cl1s_vppecho_kwargs_list = [
             {u"phy_cores": 1, u"frame_size": 0, u"clients": 10,
              u"streams": 1, u"bytes_str": u"1G"},
+        ]
+        hs_10cl10s_vppecho_kwargs_list = [
             {u"phy_cores": 1, u"frame_size": 0, u"clients": 10,
              u"streams": 10, u"bytes_str": u"100M"},
         ]
@@ -510,14 +518,37 @@ class Regenerator:
             elif in_filename.endswith(u"-reconf.robot"):
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
+                write_tcp_files(in_filename, in_prolog, hs_wrk_kwargs_list)
+            elif in_filename[-10:] in (u"-bps.robot") and \
+                    "ldpreload-iperf3" in in_filename and \
+                    u"tcpbase" in in_filename:
                 write_tcp_files(in_filename, in_prolog,
-                                hoststack_wrk_kwargs_list)
-            elif in_filename[-10:] in (u"-bps.robot"):
-                if u"ldpreload-iperf3" in in_filename:
-                    hoststack_kwargs_list = hoststack_iperf3_kwargs_list
-                else:
-                    hoststack_kwargs_list = hoststack_quic_kwargs_list
-                write_tcp_files(in_filename, in_prolog, hoststack_kwargs_list)
+                                hs_1cl1s_iperf3_kwargs_list)
+            elif in_filename[-10:] in (u"-bps.robot") and \
+                    "ldpreload-iperf3" in in_filename and \
+                    u"1cl10s" in in_filename:
+                write_tcp_files(in_filename, in_prolog,
+                                hs_1cl10s_iperf3_kwargs_list)
+            elif in_filename[-10:] in (u"-bps.robot") and \
+                    "vppecho" in in_filename and \
+                    u"quicbase" in in_filename:
+                write_tcp_files(in_filename, in_prolog,
+                                hs_1cl1s_vppecho_kwargs_list)
+            elif in_filename[-10:] in (u"-bps.robot") and \
+                    "vppecho" in in_filename and \
+                    u"quicscale1cl10s" in in_filename:
+                write_tcp_files(in_filename, in_prolog,
+                                hs_1cl10s_vppecho_kwargs_list)
+            elif in_filename[-10:] in (u"-bps.robot") and \
+                    "vppecho" in in_filename and \
+                    u"quicscale10cl1s" in in_filename:
+                write_tcp_files(in_filename, in_prolog,
+                                hs_10cl1s_vppecho_kwargs_list)
+            elif in_filename[-10:] in (u"-bps.robot") and \
+                    "vppecho" in in_filename and \
+                    u"quicscale10cl10s" in in_filename:
+                write_tcp_files(in_filename, in_prolog,
+                                hs_10cl10s_vppecho_kwargs_list)
             else:
                 raise RuntimeError(
                     f"Error in {in_filename}: non-primary suite type found."
