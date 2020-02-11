@@ -91,7 +91,7 @@
 | ... | vcl_config=vcl_iperf3.conf
 | ... | ld_preload=${True}
 | ... | transparent_tls=${False}
-| ... | json=${False}
+| ... | json=${True}
 | ... | ip_version=${4}
 | &{iperf3_client_attr}=
 | ... | role=client
@@ -101,7 +101,7 @@
 | ... | vcl_config=vcl_iperf3.conf
 | ... | ld_preload=${True}
 | ... | transparent_tls=${False}
-| ... | json=${False}
+| ... | json=${True}
 | ... | ip_version=${4}
 | ... | ip_address=${EMPTY}
 | ... | parallel=${1}
