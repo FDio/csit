@@ -202,14 +202,14 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
     if plot.get(u"include", None):
         data = input_data.filter_tests_by_name(
             plot,
-            params=[u"latency", u"throughput", u"parent", u"tags", u"type"]
+            params=[u"name", u"latency", u"parent", u"tags", u"type"]
         )[0][0]
     elif plot.get(u"filter", None):
         data = input_data.filter_data(
             plot,
-            params=[u"latency", u"throughput", u"parent", u"tags", u"type"],
+            params=[u"name", u"latency", u"parent", u"tags", u"type"],
             continue_on_error=True
-        )
+        )[0][0]
     else:
         job = list(plot[u"data"].keys())[0]
         build = str(plot[u"data"][job][0])
@@ -331,9 +331,9 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
             logging.warning(repr(err))
             continue
 
-        except (ValueError, KeyError) as err:
-            logging.warning(repr(err))
-            continue
+        # except (ValueError, KeyError) as err:
+        #     logging.warning(repr(err))
+        #     continue
 
 
 def plot_lat_hdrh_bar_name(plot, input_data):
