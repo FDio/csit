@@ -122,17 +122,13 @@ class Testcase:
 | | [Tags] | ${{cores_str}}C
 | | phy_cores=${{cores_num}}
 '''
-        elif u"iperf3" in suite_id:
-            template_string = f'''
-| ${{tc_num}}-9000B-${{cores_str}}c-{suite_id}
-| | [Tags] | ${{cores_str}}C | ${{clients_str}}CLIENT | ${{streams_str}}STREAM
-| | phy_cores=${{cores_num}} | clients=${{clients_num}}'''
-            template_string += f" | streams=${{streams_num}}\n"
         else:
-            template_string = f'''
-| ${{tc_num}}-9000B-${{cores_str}}c-{suite_id}
-| | [Tags] | ${{cores_str}}C | ${{clients_str}}CLIENT | ${{streams_str}}STREAM
-| | phy_cores=${{cores_num}} | clients=${{clients_num}}'''
-            template_string += f" | streams=${{streams_num}}" \
-                               f" | bytes=${{bytes_str}}\n"
+            template_string = \
+                f"\n| ${{tc_num}}-9000B-${{cores_str}}c-{suite_id[:-4]}-" \
+                f"${{clients_str}}cl${{streams_str}}s-{suite_id[-3:]}\n" \
+                f"| | [Tags] | ${{cores_str}}C | ${{clients_str}}CLIENT " \
+                f"| ${{streams_str}}STREAM\n| | phy_cores=${{cores_num}} | " \
+                f"clients=${{clients_num}} | streams=${{streams_num}}"
+            template_string += \
+                f" | bytes=${{bytes_str}}\n" if u"quic" in suite_id else u"\n"
         return cls(template_string)
