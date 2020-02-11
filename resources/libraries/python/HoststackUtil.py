@@ -12,6 +12,7 @@
 # limitations under the License.
 
 """Host Stack util library."""
+import json
 from time import sleep
 from robot.api import logger
 
@@ -249,8 +250,8 @@ class HoststackUtil():
         sleep(1)
 
     @staticmethod
-    def analyze_hoststack_test_program_output(node, role, nsim_attr,
-                                              program):
+    def analyze_hoststack_test_program_output(
+            node, role, nsim_attr, program):
         """Gather HostStack test program output and check for errors.
 
         :param node: DUT node.
@@ -262,7 +263,10 @@ class HoststackUtil():
         :type role: str
         :type nsim_attr: dict
         :type program: dict
-        :returns: tuple of no results bool and test program results.
+        :returns: tuple of no results bool and str of JSON formatted hoststack
+            test program output. The no results bool is used instead of failing
+            immediately to allow the analysis of both the client and server
+            instances of the test program for debugging a test failure.
         :rtype: bool, str
         :raises RuntimeError: If node subtype is not a DUT.
         """
@@ -296,6 +300,11 @@ class HoststackUtil():
                 f"bits/sec, pkt-drop-rate {nsim_attr[u'packets_per_drop']} " \
                 f"pkts/drop\n"
 
+        # TODO: Incorporate show error stats into results analysis
+        test_results += \
+            f"\n{role} VPP 'show errors' on host {node[u'host']}:\n" \
+            f"{PapiSocketExecutor.run_cli_cmd(node, u'show error')}\n"
+
         if u"error" in program_stderr.lower():
             test_results += f"ERROR DETECTED:\n{program_stderr}"
             raise RuntimeError(test_results)
@@ -303,34 +312,38 @@ class HoststackUtil():
             bad_test_results = False
             if program[u"name"] == u"vpp_echo":
                 if u"JSON stats" in program_stdout:
-                    test_results += program_stdout
-                    # TODO: Decode vpp_echo output when JSON format is correct.
-                    # json_start = program_stdout.find(u"{")
-                    # vpp_echo_results = json.loads(program_stdout[json_start:])
-                    if u'"has_failed": "0"' not in program_stdout:
+                    if u'"has_failed": "0"' in program_stdout:
+                        json_start = program_stdout.find(u"{")
+                        #TODO: Fix parsing once vpp_echo produces valid
+                        # JSON output. Truncate for now.
+                        json_end = program_stdout.find(u',\n  "closing"')
+                        json_results = \
+                            f"{program_stdout[json_start:json_end]}\n}}"
+                        program_json = json.loads(json_results)
+                    else:
                         bad_test_results = True
                 else:
-                    test_results += u"Invalid test data output!\n" + \
-                                    program_stdout
                     bad_test_results = True
-            else:
+            elif program[u"name"] == u"iperf3":
                 test_results += program_stdout
+                iperf3_json = json.loads(program_stdout)
+                program_json = iperf3_json[u"intervals"][0][u"sum"]
+            else:
+                test_results += u"Unknown HostStack Test Program!\n" + \
+                                program_stdout
             if bad_test_results:
+                test_results += u"Invalid test data output!\n" + program_stdout
                 raise RuntimeError(test_results)
+            test_results += program_stdout
         else:
             no_results = True
             test_results += f"\nNo {program} test data retrieved!\n"
-            cmd = u"ls -l /tmp/*.log"
-            ls_stdout, _ = exec_cmd_no_error(node, cmd, sudo=True)
+            ls_stdout, _ = exec_cmd_no_error(node, u"ls -l /tmp/*.log",
+                                             sudo=True)
             test_results += f"{ls_stdout}\n"
 
-        # TODO: Incorporate show error stats into results analysis
-        host = node[u"host"]
-        test_results += \
-            f"\n{role} VPP 'show errors' on host {host}:\n" \
-            f"{PapiSocketExecutor.run_cli_cmd(node, u'show error')}\n"
-
-        return no_results, test_results
+        return no_results, json.dumps(program_json) if program_json else \
+            test_results
 
     @staticmethod
     def no_hoststack_test_program_results(server_no_results, client_no_results):
