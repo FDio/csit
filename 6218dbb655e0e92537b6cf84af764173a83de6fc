@@ -213,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "a4bd5ee2_97deef2a",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-02-11T21:48:06Z",
+      "side": 1,
+      "message": "\u003e I think this would be what Peter wants:\n\u003e   log_msg +\u003d f\"{item[0]} / {item[1]} / {item[2]} / {item[3]}\\n\"\n\nFixed by  https://gerrit.fd.io/r/c/csit/+/24919/4/resources/tools/wrk/wrk.py#189",
+      "parentUuid": "614a1edd_95f4447b",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 3
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f9ace22_44c7faad",
         "filename": "resources/tools/wrk/wrk.py",
         "patchSetId": 1
@@ -281,6 +305,30 @@
       "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f68b684f_3676ef0b",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-02-11T21:48:06Z",
+      "side": 1,
+      "message": "\u003e \u003e float\n\u003e \n\u003e Ah, ok. Does this one work instead?\n\u003e   log_msg +\u003d u\" / \".join(map(str, item)) + u\"\\n\"\n\nYes, this works.  Fixed by https://gerrit.fd.io/r/c/csit/+/24919/4/resources/tools/wrk/wrk.py#194",
+      "parentUuid": "ae55f0e6_3c5e75c4",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 194,
+        "endChar": 62
+      },
+      "revId": "6218dbb655e0e92537b6cf84af764173a83de6fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
