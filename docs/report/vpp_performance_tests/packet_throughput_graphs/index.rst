@@ -95,7 +95,7 @@ Graphs are split into sections as follows:
    - **nic_driver**:
 
      - avf: VPP native avf driver for Intel Fortville NICs
-     - i40e: dpdk poll mode driver for Intel Fortville NICs
+     - dpdk: dpdk poll mode driver for Intel Fortville NICs
      - ixgbe: dpdk poll mode driver for Intel Niantic NICs
 
 For each test case, Box-and-Whisker plots show the quartiles (Min, 1st
