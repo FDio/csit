@@ -57,18 +57,18 @@
 | | ... | No Test Results From External Hoststack Apps
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4udpquic-vppecho-bps
+| tc01-1cl1s-9000B-1c-eth-ip4udpquic-vppecho-bps
 | | [Tags] | 1C | 1CLIENT | 1STREAM
 | | phy_cores=${1} | clients=${1} | streams=${1} | bytes=10G
 
-| tc02-9000B-1c-eth-ip4udpquic-vppecho-bps
+| tc02-1cl10s-9000B-1c-eth-ip4udpquic-vppecho-bps
 | | [Tags] | 1C | 1CLIENT | 10STREAM
 | | phy_cores=${1} | clients=${1} | streams=${10} | bytes=1G
 
-| tc03-9000B-1c-eth-ip4udpquic-vppecho-bps
+| tc03-10cl1s-9000B-1c-eth-ip4udpquic-vppecho-bps
 | | [Tags] | 1C | 10CLIENT | 1STREAM
 | | phy_cores=${1} | clients=${10} | streams=${1} | bytes=1G
 
-| tc04-9000B-1c-eth-ip4udpquic-vppecho-bps
+| tc04-10cl10s-9000B-1c-eth-ip4udpquic-vppecho-bps
 | | [Tags] | 1C | 10CLIENT | 10STREAM
 | | phy_cores=${1} | clients=${10} | streams=${10} | bytes=100M
