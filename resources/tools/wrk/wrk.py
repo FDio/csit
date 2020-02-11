@@ -186,12 +186,12 @@ def run_wrk(tg_node, profile_name, tg_numa, test_type, warm_up=False):
     if test_type == u"cps":
         log_msg += u"Connections/sec: Avg / Stdev / Max  / +/- Stdev\n"
         for item in stats[u"rps-stats-lst"]:
-            log_msg += f"{0} / {1} / {2} / {3}\n".format(*item)
+            log_msg += u" / ".join(map(str, item)) + u"\n"
         log_msg += f"Total cps: {stats[u'rps-sum']}cps\n"
     elif test_type == u"rps":
         log_msg += u"Requests/sec: Avg / Stdev / Max  / +/- Stdev\n"
         for item in stats[u"rps-stats-lst"]:
-            log_msg += f"{0} / {1} / {2} / {3}\n".format(*item)
+            log_msg += u" / ".join(map(str, item)) + u"\n"
         log_msg += f"Total rps: {stats[u'rps-sum']}rps\n"
     elif test_type == u"bw":
         log_msg += f"Transfer/sec: {stats[u'bw-sum']}Bps"

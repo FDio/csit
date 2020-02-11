@@ -57,10 +57,10 @@
 | | ... | No Test Results From Iperf3 client
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps
+| tc01-9000B-1c-eth-ip4tcp-nsim-ldpreload-iperf3-1cl1s-bps
 | | [Tags] | 1C | 1CLIENT | 1STREAM
 | | phy_cores=${1} | clients=${1} | streams=${1}
 
-| tc02-9000B-1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps
+| tc02-9000B-1c-eth-ip4tcp-nsim-ldpreload-iperf3-1cl10s-bps
 | | [Tags] | 1C | 1CLIENT | 10STREAM
 | | phy_cores=${1} | clients=${1} | streams=${10}
