@@ -18,7 +18,8 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI | HOSTSTACK
-| ... | NSIM | LDPRELOAD | IPERF3 | eth-ip4tcp-nsim-ldpreload-iperf3
+| ... | NSIM | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 9000B
+| ... | eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3
 |
 | Suite Setup | Setup suite single link no tg
 | Suite Teardown | Tear down suite
@@ -43,24 +44,21 @@
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
 | ${pkts_per_drop}= | ${100}
+| ${streams}= | ${10}
 
 *** Keywords ***
 | Local template
-| | [Arguments] | ${phy_cores} | ${clients} |  ${streams}
+| | [Arguments] | ${phy_cores}
 | |
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | Set Iperf3 Client Attributes | parallel=${streams}
 | | Set VPP NSIM Attributes | output_feature_enable=${True} |
 | | ... | packets_per_drop=${pkts_per_drop}
-| | ${no_results}= | Get Test Results From Hoststack Iperf3 Test
-| | Run Keyword If | ${no_results}==True | FAIL
-| | ... | No Test Results From Iperf3 client
+| | ${defer_fail}= | Get Test Results From Hoststack Iperf3 Test
+| | Run Keyword If | ${defer_fail}==True | FAIL
+| | ... | Defered Failure From Hoststack Iperf3 Test Program
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps
-| | [Tags] | 1C | 1CLIENT | 1STREAM
-| | phy_cores=${1} | clients=${1} | streams=${1}
-
-| tc02-9000B-1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps
-| | [Tags] | 1C | 1CLIENT | 10STREAM
-| | phy_cores=${1} | clients=${1} | streams=${10}
+| tc01-9000B-1c-eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3-bps
+| | [Tags] | 1C
+| | phy_cores=${1}

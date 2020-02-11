@@ -91,7 +91,7 @@
 | ... | vcl_config=vcl_iperf3.conf
 | ... | ld_preload=${True}
 | ... | transparent_tls=${False}
-| ... | json=${False}
+| ... | json=${True}
 | ... | ip_version=${4}
 | &{iperf3_client_attr}=
 | ... | role=client
@@ -101,7 +101,7 @@
 | ... | vcl_config=vcl_iperf3.conf
 | ... | ld_preload=${True}
 | ... | transparent_tls=${False}
-| ... | json=${False}
+| ... | json=${True}
 | ... | ip_version=${4}
 | ... | ip_address=${EMPTY}
 | ... | parallel=${1}
@@ -464,9 +464,9 @@
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start the specified
 | | ... | HostStack test programs on the DUTs. Gather test program
-| | ... | output and append test results in message.
-| | ... | Return boolean indicating when no results were available from
-| | ... | both the server and client test programs.
+| | ... | output and append JSON formatted test data in message.
+| | ... | Return boolean indicating there was a defered failure of either the
+| | ... | server and/or client test programs.
 | |
 | | Set To Dictionary | ${vpp_echo_server_attr} | uri_ip4_addr
 | | ... | ${dut2_if1_ip4_addr}
@@ -492,25 +492,25 @@
 | | ... | ${vpp_echo_client_attr}[namespace] | ${core_list}
 | | ... | ${vpp_echo_client_attr}[cfg_vpp_feature] | ${vpp_echo_client}
 | | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
-| | ${client_no_results} | ${client_output}=
+| | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
 | | ... | ${vpp_nsim_attr} | ${vpp_echo_client}
 | | Then Set test message | ${client_output}
 | | And Hoststack Test Program Finished | ${dut2} | ${server_pid}
-| | ${server_no_results} | ${server_output}=
+| | ${server_defer_fail} | ${server_output}=
 | | ... | Analyze hoststack test program output | ${dut2} | Server
 | | ... | ${vpp_nsim_attr} | ${vpp_echo_server}
 | | Set test message | ${server_output} | append=True
-| | Run Keyword And Return | No Hoststack Test Program Results
-| | ... | ${server_no_results} | ${client_no_results}
+| | Run Keyword And Return | Hoststack Test Program Defer Fail
+| | ... | ${server_defer_fail} | ${client_defer_fail}
 
 | Get Test Results From Hoststack Iperf3 Test
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start the specified
 | | ... | HostStack test programs on the DUTs. Gather test program
-| | ... | output and append test results in message.
-| | ... | Return boolean indicating when no results were available from
-| | ... | both the server and client test programs.
+| | ... | output and append JSON formatted test data in message.
+| | ... | Return boolean indicating there was a defered failure of either the
+| | ... | server and/or client test programs.
 | |
 | | Set To Dictionary | ${iperf3_client_attr} | ip_address
 | | ... | ${dut2_if1_ip4_addr}
@@ -534,8 +534,8 @@
 | | ... | ${iperf3_client_attr}[namespace] | ${core_list}
 | | ... | ${iperf3_client_attr}[cfg_vpp_feature] | ${iperf3_client}
 | | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
-| | ${client_no_results} | ${client_output}=
+| | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
 | | ... | ${vpp_nsim_attr} | ${iperf3_client}
 | | Then Set test message | ${client_output}
-| | Return From Keyword | ${client_no_results}
+| | Return From Keyword | ${client_defer_fail}
