@@ -30,7 +30,7 @@
 
 ..
     ## 2n-skx-x710
-    ### 78b-?t?c-ip6routing-base-scale-i40e
+    ### 78b-?t?c-ip6routing-base-scale-dpdk
     2n1l-10ge2p1x710-ethip6-ip6base-ndrpdr
     2n1l-10ge2p1x710-ethip6-ip6scale2m-ndrpdr
 
@@ -41,13 +41,13 @@
 2n-skx-x710
 ~~~~~~~~~~~
 
-78b-2t1c-ip6routing-base-scale-i40e
+78b-2t1c-ip6routing-base-scale-dpdk
 -----------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -56,8 +56,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr}
-            \label{fig:2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-ndr}
+            \label{fig:2n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -67,7 +67,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -76,6 +76,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-pdr}
-            \label{fig:2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-pdr}
+            \label{fig:2n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-pdr}
     \end{figure}

@@ -30,7 +30,7 @@
 
 ..
     ## 3n-skx-xxv710
-    ### 64b-memif-base-i40e
+    ### 64b-memif-base-dpdk
     10ge2p1xxv710-eth-l2xcbase-eth-2memif-1lxc-ndrpdr
     10ge2p1xxv710-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
     10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
@@ -40,13 +40,13 @@
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
-64b-memif-base-i40e
+64b-memif-base-dpdk
 -------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-memif-base-i40e-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-memif-base-dpdk-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -55,8 +55,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-memif-base-i40e-ndr-tsa}
-            \label{fig:3n-skx-xxv710-64b-memif-base-i40e-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-memif-base-dpdk-ndr-tsa}
+            \label{fig:3n-skx-xxv710-64b-memif-base-dpdk-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -66,7 +66,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-memif-base-i40e-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-memif-base-dpdk-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -75,6 +75,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-memif-base-i40e-pdr-tsa}
-            \label{fig:3n-skx-xxv710-64b-memif-base-i40e-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-memif-base-dpdk-pdr-tsa}
+            \label{fig:3n-skx-xxv710-64b-memif-base-dpdk-pdr-tsa}
     \end{figure}

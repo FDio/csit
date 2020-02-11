@@ -31,7 +31,7 @@
 2n-clx-cx556a
 ~~~~~~~~~~~~~
 
-64b-2t1c-memif-base-i40e
+64b-2t1c-memif-base-dpdk
 ------------------------
 
 .. raw:: html
