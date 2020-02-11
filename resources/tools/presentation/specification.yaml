@@ -187,8 +187,11 @@
         - 21  # NDRPDR sel
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
         - 25  # NDRPDR sel
+        - 29  # NDRPDR sel
         - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
@@ -199,8 +202,11 @@
         - 21  # NDRPDR sel
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
         - 25  # NDRPDR sel
+        - 29  # NDRPDR sel
         - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
 
     plot-vpp-nfv-3n-hsw-mrr:
       csit-vpp-perf-verify-2001-3n-hsw:
@@ -223,6 +229,8 @@
         - 17  # NDRPDR sel
         - 18  # NDRPDR sel
         - 19  # NDRPDR sel
+        - 20  # NDRPDR sel
+        - 22  # NDRPDR sel
 
     plot-dpdk-hdrh-lat-3n-hsw:
       csit-dpdk-perf-verify-2001-3n-hsw:
@@ -235,6 +243,7 @@
       csit-vpp-perf-verify-2001-3n-skx:
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
+        - 16  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -245,6 +254,7 @@
       csit-vpp-perf-verify-2001-3n-skx:
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
+        - 16  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-mrr:
       # TODO: Replace
@@ -279,6 +289,8 @@
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
         - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 29  # NDRPDR sel
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -302,7 +314,7 @@
     plot-vpp-nfv-2n-skx-ndrpdr:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
-        - 27  # NFV
+        - 30  # NFV
         - 31  # NFV
 
     plot-vpp-nfv-2n-skx-mrr:
@@ -355,6 +367,7 @@
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
         - 24  # NDRPDR sel
+        - 25  # NDRPDR sel
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -398,6 +411,7 @@
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
         - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
@@ -443,6 +457,7 @@
       csit-vpp-perf-verify-2001-3n-skx:
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
+        - 16  # NDRPDR sel
 
     vpp-nic-comparison-2n-skx:
       # TODO: Add the data
@@ -470,6 +485,7 @@
       csit-vpp-perf-verify-2001-3n-hsw:
         - 18  # NDRPDR full
         - 20  # NDRPDR full
+        - 26  # NDRPDR full
         - 28  # NDRPDR full
 
     vpp-perf-results-3n-skx:
@@ -478,9 +494,9 @@
         - 14  # NDRPDR sel
 
     vpp-perf-results-2n-skx:
-      # TODO: Replace
       csit-vpp-perf-verify-2001-2n-skx:
-        - 21  # NDRPDR sel
+        - 32  # NDRPDR full
+        - 33  # NDRPDR full
 
     vpp-perf-results-2n-clx:
       # TODO: Replace
@@ -664,8 +680,11 @@
         - 21  # NDRPDR sel
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
         - 25  # NDRPDR sel
+        - 29  # NDRPDR sel
         - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
     vpp-performance-changes-3n-hsw:
       - "vpp-performance-changes-3n-hsw-h1"
       - "vpp-performance-changes-3n-hsw-ref"
@@ -700,6 +719,7 @@
       csit-vpp-perf-verify-2001-3n-skx:
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
+        - 16  # NDRPDR sel
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -736,6 +756,8 @@
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
         - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 29  # NDRPDR sel
     vpp-performance-changes-2n-skx:
       - "vpp-performance-changes-2n-skx-h1"
       - "vpp-performance-changes-2n-skx-ref"
@@ -749,7 +771,7 @@
     vpp-performance-changes-nfv-2n-skx-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
-        - 27  # NFV
+        - 30  # NFV
         - 31  # NFV
     vpp-performance-changes-nfv-2n-skx:
       - "vpp-performance-changes-nfv-2n-skx-ref"
@@ -829,6 +851,7 @@
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
         - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
     vpp-performance-changes-3n-tsh:
       - "vpp-performance-changes-3n-tsh-ref"
       - "vpp-performance-changes-3n-tsh-cmp"
@@ -987,6 +1010,8 @@
         - 17  # NDRPDR sel
         - 18  # NDRPDR sel
         - 19  # NDRPDR sel
+        - 20  # NDRPDR sel
+        - 22  # NDRPDR sel
     dpdk-performance-changes-3n-hsw:
       - "dpdk-performance-changes-3n-hsw-h1"
       - "dpdk-performance-changes-3n-hsw-ref"
@@ -1091,13 +1116,17 @@
         - 21  # NDRPDR sel
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
         - 25  # NDRPDR sel
+        - 29  # NDRPDR sel
         - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
     vpp-compare-testbeds-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
+        - 16  # NDRPDR sel
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
@@ -1109,12 +1138,15 @@
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
         - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 29  # NDRPDR sel
     vpp-compare-testbeds-skx-clx-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-clx:
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
         - 24  # NDRPDR sel
+        - 25  # NDRPDR sel
     vpp-compare-testbeds-skx-clx:
       - "vpp-compare-testbeds-skx-clx-ref"
       - "vpp-compare-testbeds-skx-clx-cmp"
@@ -1162,6 +1194,8 @@
         - 17  # NDRPDR sel
         - 18  # NDRPDR sel
         - 19  # NDRPDR sel
+        - 20  # NDRPDR sel
+        - 22  # NDRPDR sel
     dpdk-compare-testbeds-cmp:
       csit-dpdk-perf-verify-2001-3n-skx:
         - 1   # NDRPDR sel
@@ -1223,6 +1257,7 @@
       csit-vpp-perf-verify-2001-3n-skx:
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
+        - 16  # NDRPDR sel
     vpp-compare-topologies-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
@@ -1230,6 +1265,8 @@
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
         - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 29  # NDRPDR sel
     vpp-compare-topologies:
       - "vpp-compare-topologies-ref"
       - "vpp-compare-topologies-cmp"
@@ -1919,11 +1956,15 @@
       - 21  # NDRPDR sel
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
+      - 24  # NDRPDR sel
       - 25  # NDRPDR sel
+      - 29  # NDRPDR sel
       - 30  # NDRPDR sel
+      - 31  # NDRPDR sel
       - 17  # MRR sel
       - 18  # NDRPDR full
       - 20  # NDRPDR full
+      - 26  # NDRPDR full
       - 28  # NDRPDR full
 
     csit-vpp-perf-verify-1904-3n-skx:
@@ -1967,6 +2008,7 @@
       - 9   # NDRPDR sel BAD
       - 14  # NDRPDR sel
       - 15  # NDRPDR sel
+      - 16  # NDRPDR sel
 
     csit-vpp-perf-verify-1904-2n-skx:
       - 11  # MRR sel
@@ -2024,7 +2066,11 @@
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
       - 26  # NDRPDR sel
-      - 27  # NFV
+      - 27  # NDRPDR sel
+      - 29  # NDRPDR sel
+      - 32  # NDRPDR full
+      - 33  # NDRPDR full
+      - 30  # NFV
       - 31  # NFV
 
     csit-vpp-perf-verify-2001-2n-clx:
@@ -2036,6 +2082,7 @@
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
       - 24  # NDRPDR sel
+      - 25  # NDRPDR sel
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
@@ -2053,6 +2100,7 @@
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
       - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
 
     csit-vpp-perf-verify-1908-3n-dnv:
       - 6   # NDRPDR sel
@@ -2149,6 +2197,8 @@
       - 17  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
+      - 22  # NDRPDR sel
 
     csit-dpdk-perf-verify-1904-3n-skx:
       - 2   # NDRPDR sel
