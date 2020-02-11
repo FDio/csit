@@ -5072,24 +5072,24 @@
 #  - "parent"
 #  - "msg"
 
-# Detailed Test Results - DPDK Performance Results 2n-clx
-- type: "table"
-  title: "Detailed Test Results - DPDK Performance Results 2n-clx"
-  algorithm: "table_details"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTR,PERF,DPDK,2N,CLX]}/dpdk_performance_results_2n_clx"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "Status"
-    data: "data msg"
-  rows: "generated"
-  data: "dpdk-perf-results-2n-clx"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "msg"
+## Detailed Test Results - DPDK Performance Results 2n-clx
+#- type: "table"
+#  title: "Detailed Test Results - DPDK Performance Results 2n-clx"
+#  algorithm: "table_details"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[DTR,PERF,DPDK,2N,CLX]}/dpdk_performance_results_2n_clx"
+#  columns:
+#  - title: "Name"
+#    data: "data name"
+#  - title: "Status"
+#    data: "data msg"
+#  rows: "generated"
+#  data: "dpdk-perf-results-2n-clx"
+#  filter: "all"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "msg"
 
 ################################################################################
 ###                                F I L E S                                 ###
@@ -5754,48 +5754,48 @@
 ###                                P L O T S                                 ###
 ################################################################################
 
-# Plots VPP HTTP Server Performance
-- type: "plot"
-  title: "VPP HTTP Server Performance"
-  algorithm: "plot_http_server_perf_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
-  data:
-    "plot-vpp-http-server-performance"
-  # Keep this formatting, the filter is enclosed with " (quotation mark) and
-  # each tag is enclosed with ' (apostrophe).
-  filter: "'HTTP' and 'TCP_CPS'"
-  parameters:
-  - "result"
-  - "name"
-  traces:
-    hoverinfo: "y+name"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "VPP HTTP Server Performance"
-    layout:
-      "plot-cps"
-
-- type: "plot"
-  title: "VPP HTTP Server Performance"
-  algorithm: "plot_http_server_perf_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
-  data:
-    "plot-vpp-http-server-performance"
-  filter: "'HTTP' and 'TCP_RPS'"
-  parameters:
-  - "result"
-  - "name"
-  traces:
-    hoverinfo: "y+name"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "VPP HTTP Server Performance"
-    layout:
-      "plot-rps"
+## Plots VPP HTTP Server Performance
+#- type: "plot"
+#  title: "VPP HTTP Server Performance"
+#  algorithm: "plot_http_server_perf_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
+#  data:
+#    "plot-vpp-http-server-performance"
+#  # Keep this formatting, the filter is enclosed with " (quotation mark) and
+#  # each tag is enclosed with ' (apostrophe).
+#  filter: "'HTTP' and 'TCP_CPS'"
+#  parameters:
+#  - "result"
+#  - "name"
+#  traces:
+#    hoverinfo: "y+name"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "VPP HTTP Server Performance"
+#    layout:
+#      "plot-cps"
+#
+#- type: "plot"
+#  title: "VPP HTTP Server Performance"
+#  algorithm: "plot_http_server_perf_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
+#  data:
+#    "plot-vpp-http-server-performance"
+#  filter: "'HTTP' and 'TCP_RPS'"
+#  parameters:
+#  - "result"
+#  - "name"
+#  traces:
+#    hoverinfo: "y+name"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "VPP HTTP Server Performance"
+#    layout:
+#      "plot-rps"
 
 ################################################################################
 
