@@ -18,7 +18,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI | UDP | QUIC | VPPECHO
-| ... | HOSTSTACK | eth-ip4udpquic-vppecho
+| ... | 1CLIENT | 1STREAM | HOSTSTACK | 9000B | eth-ip4udpquicbase-vppecho
 |
 | Suite Setup | Setup suite single link no tg
 | Suite Teardown | Tear down suite
@@ -42,33 +42,20 @@
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
+| ${bytes}= | 10G
 
 *** Keywords ***
 | Local template
-| | [Arguments] | ${phy_cores} | ${clients} |  ${streams} | ${bytes}
+| | [Arguments] | ${phy_cores}
 | |
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
-| | Set VPP Echo Server Attributes | cfg_vpp_feature=quic | nclients=${clients}
-| | ... | quic_streams=${streams} | rx_bytes=${bytes}
-| | Set VPP Echo Client Attributes | cfg_vpp_feature=quic | nclients=${clients}
-| | ... | quic_streams=${streams} | tx_bytes=${bytes}
-| | ${no_results}= | Get Test Results From Hoststack VPP Echo Test
-| | Run Keyword If | ${no_results}==True | FAIL
-| | ... | No Test Results From External Hoststack Apps
+| | Set VPP Echo Server Attributes | cfg_vpp_feature=quic | rx_bytes=${bytes}
+| | Set VPP Echo Client Attributes | cfg_vpp_feature=quic | tx_bytes=${bytes}
+| | ${defer_fail}= | Get Test Results From Hoststack VPP Echo Test
+| | Run Keyword If | ${defer_fail}==True | FAIL
+| | ... | Defered Failure From Hoststack VPP Echo Test Program
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4udpquic-vppecho-bps
-| | [Tags] | 1C | 1CLIENT | 1STREAM
-| | phy_cores=${1} | clients=${1} | streams=${1} | bytes=10G
-
-| tc02-9000B-1c-eth-ip4udpquic-vppecho-bps
-| | [Tags] | 1C | 1CLIENT | 10STREAM
-| | phy_cores=${1} | clients=${1} | streams=${10} | bytes=1G
-
-| tc03-9000B-1c-eth-ip4udpquic-vppecho-bps
-| | [Tags] | 1C | 10CLIENT | 1STREAM
-| | phy_cores=${1} | clients=${10} | streams=${1} | bytes=1G
-
-| tc04-9000B-1c-eth-ip4udpquic-vppecho-bps
-| | [Tags] | 1C | 10CLIENT | 10STREAM
-| | phy_cores=${1} | clients=${10} | streams=${10} | bytes=100M
+| tc01-9000B-1c-eth-ip4udpquicbase-vppecho-bps
+| | [Tags] | 1C
+| | phy_cores=${1}
