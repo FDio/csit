@@ -221,7 +221,7 @@ def file_test_results_html(file_spec, input_data):
                 for tbl_file in table_lst:
                     if suite[u"name"] in tbl_file:
                         file_handler.write(
-                            f".. include:: {tbl_file.split(u'/')[-1]}"
+                            f"\n.. include:: {tbl_file.split(u'/')[-1]}\n"
                         )
 
     logging.info(u"  Done.")
