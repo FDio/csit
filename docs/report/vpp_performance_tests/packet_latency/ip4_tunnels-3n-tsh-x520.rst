@@ -52,8 +52,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4vxlan-l2xcbase.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4vxlan-l2xcbase.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4vxlan-l2xcbase}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4vxlan-l2xcbase}
     \end{figure}
 
 .. raw:: latex
@@ -72,8 +72,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4vxlan-l2bdbasemaclrn.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4vxlan-l2bdbasemaclrn.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4vxlan-l2bdbasemaclrn}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4vxlan-l2bdbasemaclrn}
     \end{figure}
 
 .. raw:: latex
@@ -92,8 +92,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q–ethip4vxlan-l2bdscale1l2bd1vlan1vxlan.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q–ethip4vxlan-l2bdscale1l2bd1vlan1vxlan.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q–ethip4vxlan-l2bdscale1l2bd1vlan1vxlan}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q–ethip4vxlan-l2bdscale1l2bd1vlan1vxlan}
     \end{figure}
 
 .. raw:: latex
@@ -112,6 +112,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q–ethip4vxlan-l2bdscale100l2bd100vlan100vxlan.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q–ethip4vxlan-l2bdscale100l2bd100vlan100vxlan.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q–ethip4vxlan-l2bdscale100l2bd100vlan100vxlan}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q–ethip4vxlan-l2bdscale100l2bd100vlan100vxlan}
     \end{figure}

@@ -7,9 +7,8 @@
 HDRHistogram Packet Latency
 ===========================
 
-Latency results are generated from a single execution of NDRPDR discovery
-test across physical testbeds hosted LF FD.io labs: 3n-hsw, 2n-skx, 3n-
-skx, 3n-tsh, 2n-clx.
+.. todo::
+    Introduction
 
 .. note::
 
