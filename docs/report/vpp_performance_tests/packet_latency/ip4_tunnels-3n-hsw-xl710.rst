@@ -50,8 +50,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4vxlan-l2xcbase.html}
-            \label{fig:hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4vxlan-l2xcbase.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4vxlan-l2xcbase}
+            \label{fig:hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4vxlan-l2xcbase}
     \end{figure}
 
 .. raw:: latex
@@ -70,6 +70,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4vxlan-l2bdbasemaclrn.html}
-            \label{fig:hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4vxlan-l2bdbasemaclrn.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4vxlan-l2bdbasemaclrn}
+            \label{fig:hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4vxlan-l2bdbasemaclrn}
     \end{figure}

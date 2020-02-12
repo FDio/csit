@@ -59,8 +59,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-ip4base.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-ip4base.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-ip4base}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-ip4base}
     \end{figure}
 
 .. raw:: latex
@@ -79,8 +79,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale20k.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale20k.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale20k}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale20k}
     \end{figure}
 
 .. raw:: latex
@@ -99,8 +99,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale200k.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale200k.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale200k}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale200k}
     \end{figure}
 
 .. raw:: latex
@@ -119,8 +119,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale2m.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale2m.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale2m}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4-ip4scale2m}
     \end{figure}
 
 .. raw:: latex
@@ -142,8 +142,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-iacl50sf-10kflows.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-iacl50sf-10kflows.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-iacl50sf-10kflows}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-iacl50sf-10kflows}
     \end{figure}
 
 .. raw:: latex
@@ -162,8 +162,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-iacl50sl-10kflows.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-iacl50sl-10kflows.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-iacl50sl-10kflows}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-iacl50sl-10kflows}
     \end{figure}
 
 .. raw:: latex
@@ -182,8 +182,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sf-10kflows.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sf-10kflows.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sf-10kflows}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sf-10kflows}
     \end{figure}
 
 .. raw:: latex
@@ -202,8 +202,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sl-10kflows.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sl-10kflows.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sl-10kflows}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sl-10kflows}
     \end{figure}
 
 .. raw:: latex
@@ -222,8 +222,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-nat44.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-nat44.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-nat44}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-nat44}
     \end{figure}
 
 .. raw:: latex
@@ -242,6 +242,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44}
     \end{figure}
