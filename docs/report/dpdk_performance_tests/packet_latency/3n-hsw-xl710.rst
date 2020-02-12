@@ -47,7 +47,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/"></iframe>
+    <iframe id="hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-eth-l2xcbase-testpmd.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-eth-l2xcbase-testpmd.html"></iframe>
     <p><br></p>
     </center>
 
@@ -56,10 +56,26 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{}
-            \label{fig:}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-eth-l2xcbase-testpmd}
+            \label{fig:hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-eth-l2xcbase-testpmd}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4-ip4base-l3fwd.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4-ip4base-l3fwd.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4-ip4base-l3fwd}
+            \label{fig:hdrh-lat-percentile-3n-hsw-40ge2p1xl710-64b-1t1c-ethip4-ip4base-l3fwd}
+    \end{figure}

@@ -19,7 +19,7 @@ CSIT source code for the test cases used for plots can be found in
 
     srv6-3n-hsw-xl710
     srv6-3n-tsh-x520
-    srv6-3n-dnv-x553
 
 ..
+    srv6-3n-dnv-x553
     srv6-3n-skx-xxv710
