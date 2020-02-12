@@ -138,22 +138,23 @@
             \label{fig:hdrh-lat-percentile-3n-hsw-40ge2p1xl710-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-masq}
     \end{figure}
 
-.. raw:: latex
+..
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-.. raw:: html
+    .. raw:: html
 
-    <center>
-    <iframe id="hdrh-lat-percentile-3n-hsw-40ge2p1xl710-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-hsw-40ge2p1xl710-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="hdrh-lat-percentile-3n-hsw-40ge2p1xl710-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-hsw-40ge2p1xl710-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-hsw-40ge2p1xl710-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat}
-            \label{fig:hdrh-lat-percentile-3n-hsw-40ge2p1xl710-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-hsw-40ge2p1xl710-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat}
+                \label{fig:hdrh-lat-percentile-3n-hsw-40ge2p1xl710-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat}
+        \end{figure}
