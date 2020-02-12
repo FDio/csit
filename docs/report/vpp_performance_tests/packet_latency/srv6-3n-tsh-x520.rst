@@ -54,8 +54,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid}
     \end{figure}
 
 .. raw:: latex
@@ -74,8 +74,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6enc2sids.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6enc2sids.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6enc2sids}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6enc2sids}
     \end{figure}
 
 .. raw:: latex
@@ -94,8 +94,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps}
     \end{figure}
 
 .. raw:: latex
@@ -114,8 +114,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-dyn.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-dyn.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-dyn}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-dyn}
     \end{figure}
 
 .. raw:: latex
@@ -134,8 +134,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-masq.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-masq.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-masq}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-masq}
     \end{figure}
 
 .. raw:: latex
@@ -154,6 +154,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat.html}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat.html}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat}
+            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat}
     \end{figure}
