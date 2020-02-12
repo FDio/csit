@@ -214,12 +214,11 @@ class ExecutionChecker(ResultVisitor):
         r'PDR_UPPER:\s(\d+.\d+)'
     )
     REGEX_PERF_MSG_INFO = re.compile(
-        r'NDR_LOWER:\s(\d+.\d+)\s([a-zA-Z]*).*\s(\d+.\d+)\s([a-zA-Z]*).*\n'
-        r'LATENCY.*\[\'(.*)\', \'(.*)\'\].*\n'
-        r'NDR_UPPER:\s(\d+.\d+)\s([a-zA-Z]*).*\s(\d+.\d+)\s([a-zA-Z]*).*\n'
-        r'PDR_LOWER:\s(\d+.\d+)\s([a-zA-Z]*).*\s(\d+.\d+)\s([a-zA-Z]*).*\n'
-        r'LATENCY.*\[\'(.*)\', \'(.*)\'\].*\n'
-        r'PDR_UPPER:\s(\d+.\d+)\s([a-zA-Z]*).*\s(\d+.\d+)\s([a-zA-Z]*)'
+        r'NDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*\n'
+        r'PDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*\n'
+        r'Latency at 90% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
+        r'Latency at 50% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
+        r'Latency at 10% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
     )
     # TODO: Remove when not needed
     REGEX_NDRPDR_LAT_BASE = re.compile(
@@ -373,31 +372,21 @@ class ExecutionChecker(ResultVisitor):
         """
 
         groups = re.search(self.REGEX_PERF_MSG_INFO, msg)
-        if not groups or groups.lastindex != 20:
+        if not groups or groups.lastindex != 10:
             return msg
 
         try:
             data = {
                 u"ndr_low": float(groups.group(1)),
-                u"ndr_low_unit": groups.group(2),
-                u"ndr_low_b": float(groups.group(3)),
-                u"ndr_low_b_unit": groups.group(4),
-                u"ndr_lat_1": groups.group(5),
-                u"ndr_lat_2": groups.group(6),
-                u"ndr_up": float(groups.group(7)),
-                u"ndr_up_unit": groups.group(8),
-                u"ndr_up_b": float(groups.group(9)),
-                u"ndr_up_b_unit": groups.group(10),
-                u"pdr_low": float(groups.group(11)),
-                u"pdr_low_unit": groups.group(12),
-                u"pdr_low_b": float(groups.group(13)),
-                u"pdr_low_b_unit": groups.group(14),
-                u"pdr_lat_1": groups.group(15),
-                u"pdr_lat_2": groups.group(16),
-                u"pdr_up": float(groups.group(17)),
-                u"pdr_up_unit": groups.group(18),
-                u"pdr_up_b": float(groups.group(19)),
-                u"pdr_up_b_unit": groups.group(20)
+                u"ndr_low_b": float(groups.group(2)),
+                u"pdr_low": float(groups.group(3)),
+                u"pdr_low_b": float(groups.group(4)),
+                u"pdr_lat_90_1": groups.group(5),
+                u"pdr_lat_90_2": groups.group(6),
+                u"pdr_lat_50_1": groups.group(7),
+                u"pdr_lat_50_2": groups.group(8),
+                u"pdr_lat_10_1": groups.group(9),
+                u"pdr_lat_10_2": groups.group(10),
             }
         except (AttributeError, IndexError, ValueError, KeyError):
             return msg
@@ -411,69 +400,59 @@ class ExecutionChecker(ResultVisitor):
                 robot framework.
             :type in_str_1: str
             :type in_str_2: str
-            :returns: Processed latency string or original string if a problem
+            :returns: Processed latency string or empty string if a problem
                 occurs.
             :rtype: tuple(str, str)
             """
             in_list_1 = in_str_1.split('/', 3)
-            if len(in_list_1) < 3:
-                return u"Not Measured.", u"Not Measured."
-
             in_list_2 = in_str_2.split('/', 3)
-            if len(in_list_2) < 3:
-                return u"Not Measured.", u"Not Measured."
 
-            hdr_lat_1 = u""
-            if len(in_list_1) == 4:
-                in_list_1[3] += u"=" * (len(in_list_1[3]) % 4)
-                try:
-                    hdr_lat_1 = hdrh.histogram.HdrHistogram.decode(in_list_1[3])
-                except hdrh.codec.HdrLengthException:
-                    pass
-            hdr_lat_2 = u""
-            if len(in_list_2) == 4:
-                in_list_2[3] += u"=" * (len(in_list_2[3]) % 4)
-                try:
-                    hdr_lat_2 = hdrh.histogram.HdrHistogram.decode(in_list_2[3])
-                except hdrh.codec.HdrLengthException:
-                    pass
+            if len(in_list_1) != 4 and len(in_list_2) != 4:
+                return u""
 
-            hdr_lat = u"Not Measured."
+            in_list_1[3] += u"=" * (len(in_list_1[3]) % 4)
+            try:
+                hdr_lat_1 = hdrh.histogram.HdrHistogram.decode(in_list_1[3])
+            except hdrh.codec.HdrLengthException:
+                return u""
+
+            in_list_2[3] += u"=" * (len(in_list_2[3]) % 4)
+            try:
+                hdr_lat_2 = hdrh.histogram.HdrHistogram.decode(in_list_2[3])
+            except hdrh.codec.HdrLengthException:
+                return u""
+
             if hdr_lat_1 and hdr_lat_2:
-                hdr_lat = (
-                    f"50%/90%/99%/99.9%, "
-                    f"{hdr_lat_1.get_value_at_percentile(50.0)}/"
-                    f"{hdr_lat_1.get_value_at_percentile(90.0)}/"
-                    f"{hdr_lat_1.get_value_at_percentile(99.0)}/"
-                    f"{hdr_lat_1.get_value_at_percentile(99.9)}, "
-                    f"{hdr_lat_2.get_value_at_percentile(50.0)}/"
-                    f"{hdr_lat_2.get_value_at_percentile(90.0)}/"
-                    f"{hdr_lat_2.get_value_at_percentile(99.0)}/"
-                    f"{hdr_lat_2.get_value_at_percentile(99.9)} "
-                    f"uSec."
+                return (
+                    f"{hdr_lat_1.get_value_at_percentile(50.0)} "
+                    f"{hdr_lat_1.get_value_at_percentile(90.0)} "
+                    f"{hdr_lat_1.get_value_at_percentile(99.0)} , "
+                    f"{hdr_lat_2.get_value_at_percentile(50.0)} "
+                    f"{hdr_lat_2.get_value_at_percentile(90.0)} "
+                    f"{hdr_lat_2.get_value_at_percentile(99.0)}"
                 )
 
-            return (
-                f"Min/Avg/Max, "
-                f"{in_list_1[0]}/{in_list_1[1]}/{in_list_1[2]}, "
-                f"{in_list_2[0]}/{in_list_2[1]}/{in_list_2[2]} uSec.",
-                hdr_lat
-            )
+            return u""
 
         try:
-            pdr_lat = _process_lat(data[u'pdr_lat_1'], data[u'pdr_lat_2'])
-            ndr_lat = _process_lat(data[u'ndr_lat_1'], data[u'ndr_lat_2'])
+            pdr_lat_10 = _process_lat(data[u'pdr_lat_10_1'],
+                                      data[u'pdr_lat_10_2'])
+            pdr_lat_50 = _process_lat(data[u'pdr_lat_50_1'],
+                                      data[u'pdr_lat_50_2'])
+            pdr_lat_90 = _process_lat(data[u'pdr_lat_90_1'],
+                                      data[u'pdr_lat_90_2'])
+            pdr_lat_10 = f"3. {pdr_lat_10}" if pdr_lat_10 else u""
+            pdr_lat_50 = f"4. {pdr_lat_50}" if pdr_lat_50 else u""
+            pdr_lat_90 = f"5. {pdr_lat_90}" if pdr_lat_90 else u""
+
             return (
-                f"NDR Throughput: {(data[u'ndr_low'] / 1e6):.2f} "
-                f"M{data[u'ndr_low_unit']}, "
-                f"{data[u'ndr_low_b']:.2f} {data[u'ndr_low_b_unit']}.\n"
-                f"One-Way Latency at NDR: {ndr_lat[0]}\n"
-                f"One-Way Latency at NDR by percentiles: {ndr_lat[1]}\n"
-                f"PDR Throughput: {(data[u'pdr_low'] / 1e6):.2f} "
-                f"M{data[u'pdr_low_unit']}, "
-                f"{data[u'pdr_low_b']:.2f} {data[u'pdr_low_b_unit']}.\n"
-                f"One-Way Latency at PDR: {pdr_lat[0]}\n"
-                f"One-Way Latency at PDR by percentiles: {pdr_lat[1]}"
+                u" |prein| "
+                f"1. {(data[u'ndr_low'] / 1e6):.2f} {data[u'ndr_low_b']:.2f}\n"
+                f"2. {(data[u'pdr_low'] / 1e6):.2f} {data[u'pdr_low_b']:.2f}\n"
+                f"{pdr_lat_10}\n"
+                f"{pdr_lat_50}\n"
+                f"{pdr_lat_90}"
+                u" |preout| "
             )
         except (AttributeError, IndexError, ValueError, KeyError):
             return msg
