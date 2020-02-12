@@ -317,6 +317,8 @@ class ExecutionChecker(ResultVisitor):
         # 2 - PAPI History of DUT2
         self._conf_history_lookup_nr = 0
 
+        self._sh_run_counter = 0
+
         # Test ID of currently processed test- the lowercase full path to the
         # test
         self._test_id = None
@@ -598,6 +600,12 @@ class ExecutionChecker(ResultVisitor):
         """
 
         if not msg.message.count(u"stats runtime"):
+            return
+
+        self._sh_run_counter += 1
+
+        # Temporary solution
+        if self._sh_run_counter > 1:
             return
 
         if u"show-run" not in self._data[u"tests"][self._test_id].keys():
@@ -922,6 +930,8 @@ class ExecutionChecker(ResultVisitor):
         :type test: Test
         :returns: Nothing.
         """
+
+        self._sh_run_counter = 0
 
         longname_orig = test.longname.lower()
 
