@@ -602,8 +602,6 @@ class ExecutionChecker(ResultVisitor):
         if not msg.message.count(u"stats runtime"):
             return
 
-        self._sh_run_counter += 1
-
         # Temporary solution
         if self._sh_run_counter > 1:
             return
@@ -1127,6 +1125,7 @@ class ExecutionChecker(ResultVisitor):
         if test_kw.name.count(u"Show Runtime On All Duts") or \
                 test_kw.name.count(u"Show Runtime Counters On All Duts"):
             self._msg_type = u"test-show-runtime"
+            self._sh_run_counter += 1
         elif test_kw.name.count(u"Install Dpdk Test") and not self._version:
             self._msg_type = u"dpdk-version"
         else:
