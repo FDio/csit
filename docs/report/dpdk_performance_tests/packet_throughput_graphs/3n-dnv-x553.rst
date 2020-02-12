@@ -28,7 +28,7 @@
 
     </script>
 
-3n1t1c-base-pdr-dnv-x553
+3n-dnv-x553
 ~~~~~~~~~~~
 
 Following sections include summary graphs of Phy-to-Phy performance with
@@ -48,7 +48,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n1t1c-base-pdr-dnv-x553-64b-1t1c-base-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-dnv-x553-64b-1t1c-base-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -57,8 +57,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n1t1c-base-pdr-dnv-x553-64b-1t1c-base-ndr}
-            \label{fig:3n1t1c-base-pdr-dnv-x553-64b-1t1c-base-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-1t1c-base-ndr}
+            \label{fig:3n-dnv-x553-64b-1t1c-base-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -68,7 +68,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n1t1c-base-pdr-dnv-x553-64b-1t1c-base-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-dnv-x553-64b-1t1c-base-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -77,8 +77,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n1t1c-base-pdr-dnv-x553-64b-1t1c-base-pdr}
-            \label{fig:3n1t1c-base-pdr-dnv-x553-64b-1t1c-base-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-1t1c-base-pdr}
+            \label{fig:3n-dnv-x553-64b-1t1c-base-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -91,7 +91,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n1t1c-base-pdr-dnv-x553-64b-2t2c-base-ndr.html"></iframe>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-dnv-x553-64b-2t2c-base-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -100,8 +100,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n1t1c-base-pdr-dnv-x553-64b-2t2c-base-ndr}
-            \label{fig:3n1t1c-base-pdr-dnv-x553-64b-2t2c-base-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-2t2c-base-ndr}
+            \label{fig:3n-dnv-x553-64b-2t2c-base-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -111,7 +111,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n1t1c-base-pdr-dnv-x553-64b-2t2c-base-pdr.html"></iframe>
+    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-dnv-x553-64b-2t2c-base-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -120,6 +120,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n1t1c-base-pdr-dnv-x553-64b-2t2c-base-pdr}
-            \label{fig:3n1t1c-base-pdr-dnv-x553-64b-2t2c-base-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-2t2c-base-pdr}
+            \label{fig:3n-dnv-x553-64b-2t2c-base-pdr}
     \end{figure}
