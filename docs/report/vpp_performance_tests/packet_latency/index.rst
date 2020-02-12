@@ -4,8 +4,8 @@
 
 .. _VPP_HDRH_Packet_Latency:
 
-HDRHistogram Packet Latency
-===========================
+Packet Latency
+==============
 
 .. todo::
     Introduction
