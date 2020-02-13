@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56fa1078_f9010526",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-02-13T12:48:51Z",
+      "side": 1,
+      "message": "Comments should be done this way:\n..\n    hidden text\nempty line\nvisible text\n\nsee e.g.:\nhttps://docs.fd.io/csit/master/report/_sources/vpp_performance_tests/packet_latency/srv6-3n-hsw-xl710.rst.txt",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 52
+      },
+      "revId": "38e6a34c121dc42e4c8c26fb792a496f1809f44e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
