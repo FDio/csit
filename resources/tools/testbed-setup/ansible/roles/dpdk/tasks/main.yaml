@@ -11,16 +11,19 @@
 
 - name: DPDK - Download Release Archive
   get_url:
-    url: "{{ dpdk_url }}/{{ dpdk_version }}.tar.xz"
-    dest: "{{ dpdk_target_dir }}/{{ dpdk_version }}.tar.xz"
+    url: "{{ dpdk_url }}/dpdk-{{ dpdk_version }}.tar.xz"
+    dest: "{{ dpdk_target_dir }}/dpdk-{{ dpdk_version }}.tar.xz"
     mode: 0644
   register: "linux__dpdk_downloaded"
   tags:
     - install-dpdk
 
 - name: Extract DPDK release archive
-  become: yes
-  shell: "cd {{ dpdk_target_dir }}; tar xf {{ dpdk_target_dir }}/{{ dpdk_version }}.tar.xz"
+  unarchive:
+    remote_src: true
+    src: "{{ dpdk_target_dir }}/dpdk-{{ dpdk_version }}.tar.xz"
+    dest: "{{ dpdk_target_dir }}/"
+    creates: "{{ dpdk_target_dir }}/dpdk-stable-{{ dpdk_version }}"
   when: "linux__dpdk_downloaded"
   register: "linux__dpdk_extracted"
   tags:
@@ -28,7 +31,7 @@
 
 - name: Compile DPDK release
   become: yes
-  command: "make install T={{ dpdk_build_targets[ansible_machine] }}-linuxapp-gcc DESTDIR={{ dpdk_target_dir }}/{{ dpdk_version }} chdir={{ dpdk_target_dir }}/{{ dpdk_version }}"
+  command: "make install T={{ dpdk_build_targets[ansible_machine] }}-linux-gcc DESTDIR={{ dpdk_target_dir }}/dpdk-stable-{{ dpdk_version }} chdir={{ dpdk_target_dir }}/dpdk-stable-{{ dpdk_version }}"
   when: "linux__dpdk_extracted"
   tags:
     - install-dpdk
