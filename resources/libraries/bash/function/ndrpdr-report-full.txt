@@ -2,10 +2,8 @@
 ## ./crypto
 ## ./ip4
 ## ./ip4_tunnels
-ndrpdr AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
-ndrpdr AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
-ndrpdr AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
-ndrpdr AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
+ndrpdr AND ethip4lispip4-ip4base
+ndrpdr AND ethip4lispip6-ip4base
 ## ./ip6
 ## ./ip6_tunnels
 ## ./l2
