@@ -1,7 +1,7 @@
 ---
-# file: sut_azure.yaml
+# file: tg_aws.yaml
 
-- hosts: sut
+- hosts: tg
   become: yes
   become_user: root
   roles:
@@ -9,14 +9,18 @@
       tags: user_add
     - role: common
       tags: common
-    - role: azure
-      tags: azure
+    - role: aws
+      tags: aws
+    - role: tg
+      tags: tg
     - role: iperf
       tags: iperf
+    - role: trex
+      tags: trex
+    - role: wrk
+      tags: wrk
     - role: docker
       tags: docker
-    - role: dpdk
-      tags: dpdk
     - role: cleanup
       tags: cleanup
     - role: calibration
