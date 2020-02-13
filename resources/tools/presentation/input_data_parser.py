@@ -423,14 +423,19 @@ class ExecutionChecker(ResultVisitor):
                 return u""
 
             if hdr_lat_1 and hdr_lat_2:
-                return (
-                    f"{hdr_lat_1.get_value_at_percentile(50.0)} "
-                    f"{hdr_lat_1.get_value_at_percentile(90.0)} "
-                    f"{hdr_lat_1.get_value_at_percentile(99.0)} , "
-                    f"{hdr_lat_2.get_value_at_percentile(50.0)} "
-                    f"{hdr_lat_2.get_value_at_percentile(90.0)} "
-                    f"{hdr_lat_2.get_value_at_percentile(99.0)}"
-                )
+                hdr_lat_1_50 = hdr_lat_1.get_value_at_percentile(50.0)
+                hdr_lat_1_90 = hdr_lat_1.get_value_at_percentile(90.0)
+                hdr_lat_1_99 = hdr_lat_1.get_value_at_percentile(99.0)
+                hdr_lat_2_50 = hdr_lat_2.get_value_at_percentile(50.0)
+                hdr_lat_2_90 = hdr_lat_2.get_value_at_percentile(90.0)
+                hdr_lat_2_99 = hdr_lat_2.get_value_at_percentile(99.0)
+
+                if (hdr_lat_1_50 + hdr_lat_1_90 + hdr_lat_1_99 +
+                        hdr_lat_2_50 + hdr_lat_2_90 + hdr_lat_2_99):
+                    return (
+                        f"{hdr_lat_1_50} {hdr_lat_1_90} {hdr_lat_1_99} , "
+                        f"{hdr_lat_2_50} {hdr_lat_2_90} {hdr_lat_2_99}"
+                    )
 
             return u""
 
@@ -1030,6 +1035,8 @@ class ExecutionChecker(ResultVisitor):
                     }
                 except (AttributeError, IndexError, ValueError, TypeError):
                     test_result[u"status"] = u"FAIL"
+            elif u"DEVICETEST" in tags:
+                test_result[u"type"] = u"DEVICETEST"
             else:
                 test_result[u"status"] = u"FAIL"
                 self._data[u"tests"][self._test_id] = test_result
