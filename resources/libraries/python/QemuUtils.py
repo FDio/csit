@@ -60,8 +60,22 @@ class QemuUtils:
         self._vhost_id = 0
         self._node = node
         self._arch = Topology.get_node_arch(self._node)
-        dpdk_target = u"arm64-armv8a" if self._arch == u"aarch64" \
-            else u"x86_64-native"
+        self._opt = dict()
+
+        # Architecture specific options
+        if self._arch == u"aarch64":
+            dpdk_target = u"arm64-armv8a"
+            self._opt[u"machine_args"] = \
+                u"virt,accel=kvm,usb=off,mem-merge=off,gic-version=3"
+            self._opt[u"console"] = u"ttyAMA0"
+            self._opt[u"unsafe_iommu"] = u"echo Y > /sys/module/vfio/para" \
+                                         u"meters/enable_unsafe_noiommu_mode"
+        else:
+            dpdk_target = u"x86_64-native"
+            self._opt[u"machine_args"] = u"pc,accel=kvm,usb=off,mem-merge=off"
+            self._opt[u"console"] = u"ttyS0"
+            self._opt[u"unsafe_iommu"] = u""
+
         self._testpmd_path = f"{Constants.QEMU_VM_DPDK}/" \
             f"{dpdk_target}-linuxapp-gcc/app"
         self._vm_info = {
@@ -78,7 +92,6 @@ class QemuUtils:
             self._vm_info[u"host_username"] = node[u"username"]
             self._vm_info[u"host_password"] = node[u"password"]
         # Input Options.
-        self._opt = dict()
         self._opt[u"qemu_id"] = qemu_id
         self._opt[u"mem"] = int(mem)
         self._opt[u"smp"] = int(smp)
@@ -134,11 +147,7 @@ class QemuUtils:
         self._params.add_with_value(u"pidfile", self._temp.get(u"pidfile"))
         self._params.add_with_value(u"cpu", u"host")
 
-        if self._arch == u"aarch64":
-            machine_args = u"virt,accel=kvm,usb=off,mem-merge=off,gic-version=3"
-        else:
-            machine_args = u"pc,accel=kvm,usb=off,mem-merge=off"
-        self._params.add_with_value(u"machine", machine_args)
+        self._params.add_with_value(u"machine", self._opt.get(u"machine_args"))
         self._params.add_with_value(
             u"smp", f"{self._opt.get(u'smp')},sockets=1,"
             f"cores={self._opt.get(u'smp')},threads=1"
@@ -180,7 +189,6 @@ class QemuUtils:
 
     def add_kernelvm_params(self):
         """Set KernelVM QEMU parameters."""
-        console = u"ttyAMA0" if self._arch == u"aarch64" else u"ttyS0"
         self._params.add_with_value(
             u"serial", f"file:{self._temp.get(u'log')}"
         )
@@ -194,7 +202,8 @@ class QemuUtils:
         self._params.add_with_value(u"initrd", f"{self._opt.get(u'initrd')}")
         self._params.add_with_value(
             u"append", f"'ro rootfstype=9p rootflags=trans=virtio "
-            f"root=virtioroot console={console} tsc=reliable hugepages=256 "
+            f"root=virtioroot console={self._opt.get(u'console')} "
+            f"tsc=reliable hugepages=256 "
             f"init={self._temp.get(u'ini')} fastboot'"
         )
 
@@ -318,7 +327,8 @@ class QemuUtils:
             self.create_kernelvm_config_testpmd_mac(**kwargs)
         else:
             raise RuntimeError(u"QEMU: Unsupported VNF!")
-        self.create_kernelvm_init(vnf_bin=self._opt[u"vnf_bin"])
+        self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"),
+                                  unsafe_iommu=self._opt.get(u"unsafe_iommu"))
 
     def get_qemu_pids(self):
         """Get QEMU CPU pids.
