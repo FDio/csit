@@ -1,29 +1,11 @@
 ## ./container_memif
+ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-eth-2memif-1dcr
+ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+ndrpdr AND ${default_nic} AND eth-l2xcbase-eth-2memif-1dcr
+ndrpdr AND ${default_nic} AND eth-l2xcbase-eth-2memif-1lxc
+ndrpdr AND ${default_nic} AND ethip4-ip4base-eth-2memif-1dcr
+ndrpdr AND ${default_nic} AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
 ## ./crypto
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-int-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlhw-ip4base-policy-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ${default_nic} AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 ## ./ip4
 ## ./ip4_tunnels
 ## ./ip6
