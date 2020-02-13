@@ -48,6 +48,7 @@ Additional information about graph data:
     `FD.io test executor dpdk performance job 3n-skx`_,
     `FD.io test executor dpdk performance job 2n-clx`_,
     `FD.io test executor dpdk performance job 3n-hsw`_,
+    `FD.io test executor dpdk performance job 3n-tsh`_,
     `FD.io test executor dpdk performance job 2n-dnv`_ and
     `FD.io test executor dpdk performance job 3n-dnv`_ with RF
     result files csit-dpdk-perf-|srelease|-\*.zip
@@ -63,6 +64,7 @@ Additional information about graph data:
     3n-hsw-x710
     2n-dnv-x553
     3n-dnv-x553
+    3n-tsh-x520
 
 ..
     2n-skx-xxv710

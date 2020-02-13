@@ -427,6 +427,14 @@
       csit-vpp-perf-verify-2001-3n-tsh:
         - 4   # NDRPDR sel
 
+    plot-dpdk-throughput-latency-3n-tsh:
+      csit-dpdk-perf-verify-2001-3n-tsh:
+        - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel
+        - 9   # NDRPDR sel
+        - 10  # NDRPDR sel
+
     # 3n-dnv
 
     plot-vpp-throughput-lat-tsa-3n-dnv:
@@ -628,6 +636,10 @@
     dpdk-perf-results-3n-dnv:
       csit-dpdk-perf-verify-2001-3n-dnv:
         - 12  # NDRPDR sel
+
+    dpdk-perf-results-3n-tsh:
+      csit-dpdk-perf-verify-2001-3n-tsh:
+        - 3   # NDRPDR sel
 
 ###########################################################################
     # Tables (more than one data set)
@@ -2304,6 +2316,13 @@
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
       - 22  # NDRPDR sel
+
+    csit-dpdk-perf-verify-2001-3n-tsh:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
 
     csit-vpp-device-2001-ubuntu1804-1n-skx:
       - 57
@@ -15045,6 +15064,56 @@
     title: "3n-dnv-x553-64b-2t2c-base-pdr"
     layout: "plot-throughput"
 
+# 3n-tsh-x520
+
+- type: "plot"
+  title: "DPDK Throughput: 3n-tsh-x520-64b-1t1c-base-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/3n-tsh-x520-64b-1t1c-base-ndr"
+  data: "plot-dpdk-throughput-latency-3n-tsh"
+  include:
+    - "tests.dpdk.perf.10ge2p1x520-eth-l2xcbase-testpmd-ndrpdr.64b-1t1c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdr.64b-1t1c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "3n-tsh-x520-64b-1t1c-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "DPDK Throughput: 3n-tsh-x520-64b-2t2c-base-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/3n-tsh-x520-64b-2t2c-base-ndr"
+  data: "plot-dpdk-throughput-latency-3n-tsh"
+  include:
+    - "tests.dpdk.perf.10ge2p1x520-eth-l2xcbase-testpmd-ndrpdr.64b-2t2c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdr.64b-2t2c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "3n-tsh-x520-64b-2t2c-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "DPDK Throughput: 3n-tsh-x520-64b-1t1c-base-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/3n-tsh-x520-64b-1t1c-base-pdr"
+  data: "plot-dpdk-throughput-latency-3n-tsh"
+  include:
+    - "tests.dpdk.perf.10ge2p1x520-eth-l2xcbase-testpmd-ndrpdr.64b-1t1c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdr.64b-1t1c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "3n-tsh-x520-64b-1t1c-base-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "DPDK Throughput: 3n-tsh-x520-64b-2t2c-base-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/3n-tsh-x520-64b-2t2c-base-pdr"
+  data: "plot-dpdk-throughput-latency-3n-tsh"
+  include:
+    - "tests.dpdk.perf.10ge2p1x520-eth-l2xcbase-testpmd-ndrpdr.64b-2t2c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdr.64b-2t2c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "3n-tsh-x520-64b-2t2c-base-pdr"
+    layout: "plot-throughput"
+
 ################################################################################
 ###   2n-clx                                                                 ###
 ################################################################################
@@ -16504,5 +16573,16 @@
   target-links: "../../_static/dpdk"
   data: "plot-dpdk-hdrh-lat-3n-hsw"
   filter: "'1T1C' and 'NIC_Intel-XL710'"
+  layout:
+    layout: "plot-hdrh-latency-by-percentile"
+
+- type: "plot"
+  title: "Latency by percentile: DPDK 3n-tsh"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-3n-tsh"
+  output-file-links: "{DIR[LAT,DPDK]}/3n_tsh.rst"
+  target-links: "../../_static/dpdk"
+  data: "plot-dpdk-hdrh-lat-3n-tsh"
+  filter: "'1T1C' and 'NIC_Intel-X520-DA2'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
