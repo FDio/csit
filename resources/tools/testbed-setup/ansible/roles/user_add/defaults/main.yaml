@@ -1,0 +1,5 @@
+---
+# file: roles/user_add/defaults/main.yaml
+
+user_pass: "$6$zpBUdQ4q$P2zKclumvCndWujgP/qQ8eMk3YZk7ESAom04Fqp26hJH2jWkMXEX..jqxzMdDLJKiDaDHIaSkQMVjHzd3cRLs1"
+
