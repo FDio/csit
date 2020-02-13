@@ -129,7 +129,8 @@ def file_test_results(file_spec, input_data):
             if not (u"-ndrpdr" in suite[u"name"] or
                     u"-mrr" in suite[u"name"] or
                     u"-func" in suite[u"name"] or
-                    u"-device" in suite[u"name"]):
+                    u"-device" in suite[u"name"] or
+                    u"-dev" in suite[u"name"]):
                 file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
 
             if _tests_in_suite(suite[u"name"], tests):
