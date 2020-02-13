@@ -12,9 +12,9 @@
 ## ./nfv_density/vm_vhost/chain
 ## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
 ## ./srv6
-ndrpdr AND ethip6ip6-ip6base-srv6enc1sid
-ndrpdr AND ethip6srhip6-ip6base-srv6enc2sids
-ndrpdr AND ethip6srhip6-ip6base-srv6enc2sids-nodecaps
+ndrpdr AND ethip6srhip6-ip6base-srv6proxy-dyn
+ndrpdr AND ethip6srhip6-ip6base-srv6proxy-masq
+ndrpdr AND ethip6srhip6-ip6base-srv6proxy-stat
 ## ./hoststack
 ## ./vm_vhost
 ## ./vts
