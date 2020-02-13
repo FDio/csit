@@ -1,0 +1,40 @@
+---
+# file: roles/user_add/tasks/main.yaml
+
+- name: Add testuser account
+  become: true
+  become_method: "sudo"
+  become_user: "root"
+  user:
+    name: testuser
+    state: present
+    shell: /bin/bash
+    password: "{{ user_pass }}"
+
+- name: Allow password login
+  become: true
+  become_method: "sudo"
+  become_user: "root"
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication no"
+    line: "PasswordAuthentication yes"
+
+- name: Restart sshd
+  become: true
+  become_method: "sudo"
+  become_user: "root"
+  service:
+    name: sshd
+    state: restarted
+
+- name: Add visudo entry
+  become: true
+  become_method: "sudo"
+  become_user: "root"
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    line: 'testuser ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+

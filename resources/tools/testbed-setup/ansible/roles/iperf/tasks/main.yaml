@@ -29,7 +29,7 @@
     remote_src: true
     src: "{{ iperf_target_dir }}/iperf-{{ iperf_version }}.tar.gz"
     dest: "{{ iperf_target_dir }}/"
-    creates: "{{ iperf_target_dir }}/iperf-{{ iperf_version }}/"
+    creates: "{{ iperf_target_dir }}/iperf-{{ iperf_version }}/src"
   tags:
     - install-iperf
 

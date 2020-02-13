@@ -1,0 +1,8 @@
+---
+# file: roles/topology/tasks/main.yaml
+
+- name: Create aws topology file
+  template:
+    src: 'templates/topology_{{ cloud_topology }}.j2' 
+    dest: '../../../../topologies/available/{{ cloud_topology }}_3n_sxc_testbed.yaml'
+

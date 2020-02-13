@@ -1,0 +1,8 @@
+---
+# file: site_azure.yaml
+
+- import_playbook: tg_aws.yaml
+  tags: tg
+
+- import_playbook: sut_aws.yaml
+  tags: sut
