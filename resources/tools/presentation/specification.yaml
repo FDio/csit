@@ -550,11 +550,19 @@
         - 19  # NDRPDR full
         - 20  # NDRPDR full
         - 21  # NDRPDR full
+        - 22  # NDRPDR full
+        - 23  # NDRPDR full
+        - 24  # NDRPDR full
+        - 25  # NDRPDR full
 
     vpp-perf-results-2n-dnv:
       csit-vpp-perf-verify-2001-2n-dnv:
         - 21  # NDRPDR full
         - 22  # NDRPDR full
+        - 25  # NDRPDR full
+        - 26  # NDRPDR full
+        - 27  # NDRPDR full
+        - 28  # NDRPDR full
 
     vpp-mrr-results-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
@@ -2103,6 +2111,10 @@
       - 19  # NDRPDR full
       - 20  # NDRPDR full
       - 21  # NDRPDR full
+      - 22  # NDRPDR full
+      - 23  # NDRPDR full
+      - 24  # NDRPDR full
+      - 25  # NDRPDR full
 
     csit-vpp-perf-verify-1908-2n-dnv:
       - 1   # NDRPDR sel
@@ -2130,6 +2142,10 @@
       - 12  # MRR sel
       - 21  # NDRPDR full
       - 22  # NDRPDR full
+      - 25  # NDRPDR full
+      - 26  # NDRPDR full
+      - 27  # NDRPDR full
+      - 28  # NDRPDR full
 
     csit-dpdk-perf-verify-1904-3n-hsw:
       - 2   # NDRPDR sel
@@ -4188,7 +4204,7 @@
 # Detailed Test Results - VPP Performance Results 3n-dnv
 - type: "table"
   title: "Detailed Test Results - VPP Performance Results 3n-dnv"
-  algorithm: "table_details"
+  algorithm: "table_merged_details"
   output-file-ext: ".csv"
   output-file: "{DIR[DTR,PERF,VPP,3N,DNV]}/vpp_performance_results_3n_dnv"
   columns:
@@ -4207,7 +4223,7 @@
 # Detailed Test Results - VPP Performance Results 2n-dnv
 - type: "table"
   title: "Detailed Test Results - VPP Performance Results 2n-dnv"
-  algorithm: "table_details"
+  algorithm: "table_merged_details"
   output-file-ext: ".csv"
   output-file: "{DIR[DTR,PERF,VPP,2N,DNV]}/vpp_performance_results_2n_dnv"
   columns:
@@ -4321,7 +4337,7 @@
 # Test configuration - VPP Performance Test Configs 3n-dnv
 - type: "table"
   title: "Test configuration - VPP Performance Test Configs 3n-dnv"
-  algorithm: "table_details"
+  algorithm: "table_merged_details"
   output-file-ext: ".csv"
   output-file: "{DIR[DTC,PERF,VPP,3N,DNV]}/vpp_test_configuration_3n_dnv"
   columns:
@@ -4340,7 +4356,7 @@
 # Test configuration - VPP Performance Test Configs 2n-dnv
 - type: "table"
   title: "Test configuration - VPP Performance Test Configs 2n-dnv"
-  algorithm: "table_details"
+  algorithm: "table_merged_details"
   output-file-ext: ".csv"
   output-file: "{DIR[DTC,PERF,VPP,2N,DNV]}/vpp_test_configuration_2n_dnv"
   columns:
