@@ -396,7 +396,7 @@ def table_merged_details(table, input_data):
                     if column[u"data"].split(u" ")[1] in (u"name", ):
                         col_data = f" |prein| {col_data} |preout| "
                     if column[u"data"].split(u" ")[1] in \
-                        (u"conf-history", u"show-run"):
+                        (u"conf-history", u"show-run", u"msg"):
                         col_data = col_data.replace(u" |br| ", u"", 1)
                         col_data = f" |prein| {col_data[:-5]} |preout| "
                     row_lst.append(f'"{col_data}"')
