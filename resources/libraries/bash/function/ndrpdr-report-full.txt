@@ -1,35 +1,14 @@
 ## ./container_memif
 ## ./crypto
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-int-aes128gcm
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-int-aes256gcm
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-policy-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-policy-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-policy-aes128gcm
-ndrpdr AND ethip4ipsec1tnlhw-ip4base-policy-aes256gcm
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
-ndrpdr AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
-ndrpdr AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-ndrpdr AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
-ndrpdr AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-ndrpdr AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
-ndrpdr AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 ## ./ip4
 ## ./ip4_tunnels
 ## ./ip6
 ## ./ip6_tunnels
 ## ./l2
 ## ./lb
+ndrpdr AND ethip4-loadbalancer-l3dsr
+ndrpdr AND ethip4-loadbalancer-maglev
+ndrpdr AND ethip4-loadbalancer-nat4
 ## ./nfv_density/dcr_memif/chain
 ## ./nfv_density/dcr_memif/chain_ipsec
 ## ./nfv_density/dcr_memif/pipeline
