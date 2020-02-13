@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b97dd779_22489c61",
+        "filename": "resources/tools/testbed-setup/ansible/roles/user_add/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T15:49:23Z",
+      "side": 1,
+      "message": "is this needed? ansible should be running as become no? at least I never specified in in any role",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "f5d5cffdc395afd08202afc0117e6cc75a92ba2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59f1480c_62346143",
+        "filename": "resources/tools/testbed-setup/ansible/tg_aws.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T15:49:23Z",
+      "side": 1,
+      "message": "similarly remove from azure?",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 24
+      },
+      "revId": "f5d5cffdc395afd08202afc0117e6cc75a92ba2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
