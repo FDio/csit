@@ -220,6 +220,8 @@ class ExecutionChecker(ResultVisitor):
         r'Latency at 50% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
         r'Latency at 10% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
     )
+    REGEX_MRR_MSG_INFO = re.compile(r'.*\[(.*)\]')
+
     # TODO: Remove when not needed
     REGEX_NDRPDR_LAT_BASE = re.compile(
         r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
@@ -355,15 +357,34 @@ class ExecutionChecker(ResultVisitor):
         """
         return self._data
 
+    def _get_data_from_mrr_test_msg(self, msg):
+        """Get info from message of MRR performance tests.
+
+        :param msg: Message to be processed.
+        :type msg: str
+        :returns: Processed message or original message if a problem occurs.
+        :rtype: str
+        """
+
+        groups = re.search(self.REGEX_MRR_MSG_INFO, msg)
+        if not groups or groups.lastindex != 1:
+            return msg
+
+        try:
+            data = groups.group(1).split(u", ")
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return msg
+
+        out_str = u"["
+        try:
+            for item in data:
+                out_str += f"{float(item):.2f}, "
+            return out_str[:-2] + u"]"
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return msg
+
     def _get_data_from_perf_test_msg(self, msg):
-        """Get
-            - NDR_LOWER
-            - LATENCY
-            - NDR_UPPER
-            - PDR_LOWER
-            - LATENCY
-            - PDR_UPPER
-        from message of NDRPDR performance tests.
+        """Get info from message of NDRPDR performance tests.
 
         :param msg: Message to be processed.
         :type msg: str
@@ -947,7 +968,7 @@ class ExecutionChecker(ResultVisitor):
             replace(u'\r', u'').\
             replace(u'[', u' |br| [').\
             replace(u' |br| [', u'[', 1)
-        test_result[u"msg"] = self._get_data_from_perf_test_msg(test.message).\
+        test_result[u"msg"] = test.message.\
             replace(u'\n', u' |br| ').\
             replace(u'\r', u'').\
             replace(u'"', u"'")
@@ -989,6 +1010,11 @@ class ExecutionChecker(ResultVisitor):
 
         if test.status == u"PASS":
             if u"NDRPDR" in tags:
+                test_result[u"msg"] = self._get_data_from_perf_test_msg(
+                    test.message). \
+                    replace(u'\n', u' |br| '). \
+                    replace(u'\r', u''). \
+                    replace(u'"', u"'")
                 test_result[u"type"] = u"NDRPDR"
                 test_result[u"throughput"], test_result[u"status"] = \
                     self._get_ndrpdr_throughput(test.message)
@@ -1003,6 +1029,11 @@ class ExecutionChecker(ResultVisitor):
                 groups = re.search(self.REGEX_TCP, test.message)
                 test_result[u"result"] = int(groups.group(2))
             elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
+                test_result[u"msg"] = self._get_data_from_mrr_test_msg(
+                    test.message). \
+                    replace(u'\n', u' |br| '). \
+                    replace(u'\r', u''). \
+                    replace(u'"', u"'")
                 if u"MRR" in tags:
                     test_result[u"type"] = u"MRR"
                 else:

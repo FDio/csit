@@ -16,6 +16,10 @@ Changes in |csit-release|
      will be added in subsequent maintenance report version(s) once
      the issue is resolved. See :ref:`dpdk_known_issues`.
 
+#. DPDK RELEASE VERSION CHANGE
+
+   - |csit-release| tested |dpdk-release|, as used by |vpp-release|.
+
 ..
     // Alternative Note for 1st Bullet when bad microcode Skx, Clx results are published
     - **Intel Xeon 2n-skx, 3n-skx and 2n-clx testbeds**: Testpmd and
@@ -27,10 +31,6 @@ Changes in |csit-release|
       applications (L3fwd) are affected. Skx and Clx test data will be
       corrected in subsequent maintenance report version(s) once the
       issue is resolved. See :ref:`vpp_known_issues`.
-
-#. DPDK RELEASE VERSION CHANGE
-
-   - |csit-release| tested |dpdk-release|, as used by |vpp-release|.
 
 .. _dpdk_known_issues:
 
