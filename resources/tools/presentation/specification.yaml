@@ -32,6 +32,7 @@
     DIR[DTR,PERF,DPDK,2N,CLX]: "{DIR[DTR]}/dpdk_performance_results_2n_clx"
     DIR[DTR,PERF,DPDK,2N,DNV]: "{DIR[DTR]}/dpdk_performance_results_2n_dnv"
     DIR[DTR,PERF,DPDK,3N,DNV]: "{DIR[DTR]}/dpdk_performance_results_3n_dnv"
+    DIR[DTR,PERF,DPDK,3N,TSH]: "{DIR[DTR]}/dpdk_performance_results_3n_tsh"
     DIR[DTR,PERF,VPP,3N,HSW]: "{DIR[DTR]}/vpp_performance_results_3n_hsw"
     DIR[DTR,PERF,VPP,3N,SKX]: "{DIR[DTR]}/vpp_performance_results_3n_skx"
     DIR[DTR,PERF,VPP,2N,SKX]: "{DIR[DTR]}/vpp_performance_results_2n_skx"
@@ -4456,7 +4457,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: "Status"
+  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
     data: "data msg"
   rows: "generated"
   data: "vpp-mrr-results-3n-hsw"
@@ -4475,7 +4476,7 @@
 #  columns:
 #  - title: " |prein| Test Name |preout| "
 #    data: "data name"
-#  - title: "Status"
+#  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
 #    data: "data msg"
 #  rows: "generated"
 #  data: "vpp-mrr-results-3n-skx"
@@ -4494,7 +4495,7 @@
 #  columns:
 #  - title: " |prein| Test Name |preout| "
 #    data: "data name"
-#  - title: "Status"
+#  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
 #    data: "data msg"
 #  rows: "generated"
 #  data: "vpp-mrr-results-2n-skx"
@@ -4513,7 +4514,7 @@
 #  columns:
 #  - title: " |prein| Test Name |preout| "
 #    data: "data name"
-#  - title: "Status"
+#  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
 #    data: "data msg"
 #  rows: "generated"
 #  data: "vpp-mrr-results-2n-clx"
@@ -4532,7 +4533,7 @@
 #  columns:
 #  - title: " |prein| Test Name |preout| "
 #    data: "data name"
-#  - title: "Status"
+#  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
 #    data: "data msg"
 #  rows: "generated"
 #  data: "vpp-mrr-results-3n-tsh"
@@ -4551,7 +4552,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: "Status"
+  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
     data: "data msg"
   rows: "generated"
   data: "vpp-mrr-results-3n-dnv"
@@ -4570,7 +4571,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: "Status"
+  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
     data: "data msg"
   rows: "generated"
   data: "vpp-mrr-results-2n-dnv"
@@ -5240,6 +5241,25 @@
     data: "data msg"
   rows: "generated"
   data: "dpdk-perf-results-3n-dnv"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - DPDK Performance Results 3n-tsh
+- type: "table"
+  title: "Detailed Test Results - DPDK Performance Results 3n-tsh"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,DPDK,3N,TSH]}/dpdk_performance_results_3n_tsh"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+    data: "data msg"
+  rows: "generated"
+  data: "dpdk-perf-results-3n-tsh"
   filter: "all"
   parameters:
   - "name"
@@ -5931,6 +5951,23 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,PERF,DPDK,3N,DNV]}"
   data: "dpdk-perf-results-3n-dnv"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
+
+# DPDK Performance Results 3n-tsh
+- type: "file"
+  title: "DPDK Performance Results 3n-tsh"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,DPDK,3N,TSH]}/dpdk_performance_results_3n_tsh"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,DPDK,3N,TSH]}"
+  data: "dpdk-perf-results-3n-tsh"
   filter: "all"
   parameters:
   - "name"
