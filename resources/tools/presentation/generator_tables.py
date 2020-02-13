@@ -317,6 +317,8 @@ def table_details(table, input_data):
                 try:
                     col_data = str(data[job][build][test][column[
                         u"data"].split(" ")[1]]).replace(u'"', u'""')
+                    if column[u"data"].split(u" ")[1] in (u"name", ):
+                        col_data = f" |prein| {col_data} |preout| "
                     if column[u"data"].split(u" ")[1] in \
                         (u"conf-history", u"show-run"):
                         col_data = col_data.replace(u" |br| ", u"", 1)
@@ -391,6 +393,8 @@ def table_merged_details(table, input_data):
                     col_data = col_data.replace(
                         u"No Data", u"Not Captured     "
                     )
+                    if column[u"data"].split(u" ")[1] in (u"name", ):
+                        col_data = f" |prein| {col_data} |preout| "
                     if column[u"data"].split(u" ")[1] in \
                         (u"conf-history", u"show-run"):
                         col_data = col_data.replace(u" |br| ", u"", 1)
