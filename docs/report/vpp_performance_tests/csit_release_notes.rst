@@ -43,18 +43,6 @@ Changes in |csit-release|
    - **Load Balancer tests**: Added VPP performance tests for Maglev,
      L3DSR (Direct Server Return), Layer 4 Load Balancing NAT Mode.
 
-..
-    // Alternative Note for 1st Bullet when bad microcode Skx, Clx results are published
-    - **Intel Xeon 2n-skx, 3n-skx and 2n-clx testbeds**: VPP performance
-      test data is included in this report version, but it shows lower
-      performance and behaviour inconsistency of these systems
-      following the upgrade of processor microcode packages (skx ucode
-      0x2000064, clx ucode 0x500002c) as part of updating Ubuntu 18.04
-      LTS kernel version. Tested VPP and DPDK applications (L3fwd) are
-      affected. Skx and Clx test data will be corrected in subsequent
-      maintenance report version(s) once the issue is resolved. See
-      :ref:`vpp_known_issues`.
-
 #. TEST FRAMEWORK
 
    - **CSIT Python3 support**: Full migration of CSIT from Python2.7 to
@@ -87,6 +75,18 @@ Changes in |csit-release|
      replaced with packet latency percentile distributon at different
      background packet loads based on TRex latency hdrhistogram
      measurements.
+
+..
+    // Alternative Note for 1st Bullet when bad microcode Skx, Clx results are published
+    - **Intel Xeon 2n-skx, 3n-skx and 2n-clx testbeds**: VPP performance
+      test data is included in this report version, but it shows lower
+      performance and behaviour inconsistency of these systems
+      following the upgrade of processor microcode packages (skx ucode
+      0x2000064, clx ucode 0x500002c) as part of updating Ubuntu 18.04
+      LTS kernel version. Tested VPP and DPDK applications (L3fwd) are
+      affected. Skx and Clx test data will be corrected in subsequent
+      maintenance report version(s) once the issue is resolved. See
+      :ref:`vpp_known_issues`.
 
 .. raw:: latex
 
