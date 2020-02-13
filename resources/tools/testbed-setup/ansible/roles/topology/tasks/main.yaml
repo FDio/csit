@@ -1,0 +1,9 @@
+---
+# file: roles/topology/tasks/main.yaml
+
+- name: Create topology file
+  template:
+    src: 'templates/topology_{{ cloud_topology }}.j2'
+    dest: '../../../../topologies/available/{{ cloud_topology }}_3n_skx_testbed.yaml'
+  tags:
+    - create-topology-file

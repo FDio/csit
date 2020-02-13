@@ -485,17 +485,8 @@ resource "null_resource" "deploy_tg" {
       }
       hosts = ["tg"]
       extra_vars = {
-        ansible_python_interpreter = "python3"
+        ansible_python_interpreter = "/usr/bin/python3"
         azure = true
-        remote_net = var.vpc_cidr_d
-        tg_if1_mac = azurerm_network_interface.tg_if1.mac_address
-        tg_if2_mac = azurerm_network_interface.tg_if2.mac_address
-        dut1_if1_mac = azurerm_network_interface.dut1_if1.mac_address
-        dut1_if2_mac = azurerm_network_interface.dut1_if2.mac_address
-        dut2_if1_mac = azurerm_network_interface.dut2_if1.mac_address
-        dut2_if2_mac = azurerm_network_interface.dut2_if2.mac_address
-        dut1_if1_ip = azurerm_network_interface.dut1_if1.private_ip_address
-        dut2_if2_ip = azurerm_network_interface.dut2_if2.private_ip_address
       }
     }
   }
@@ -517,16 +508,8 @@ resource "null_resource" "deploy_dut1" {
       }
       hosts = ["sut"]
       extra_vars = {
-        ansible_python_interpreter = "python3"
+        ansible_python_interpreter = "/usr/bin/python3"
         azure = true
-        dut1_if1_ip = azurerm_network_interface.dut1_if1.private_ip_address
-        dut1_if1_mac = azurerm_network_interface.dut1_if1.mac_address
-        dut1_if2_ip = azurerm_network_interface.dut1_if2.private_ip_address
-        dut1_if2_mac = azurerm_network_interface.dut1_if2.mac_address
-        dut2_if2_ip = azurerm_network_interface.dut2_if1.private_ip_address
-        dut2_if1_gateway = azurerm_network_interface.dut2_if1.private_ip_address
-        traffic_if1 = var.trex_dummy_cidr_port_0
-        traffic_if2 = var.trex_dummy_cidr_port_1
       }
     }
   }
@@ -548,16 +531,42 @@ resource "null_resource" "deploy_dut2" {
       }
       hosts = ["sut"]
       extra_vars = {
-        ansible_python_interpreter = "python3"
+        ansible_python_interpreter = "/usr/bin/python3"
         azure = true
-        dut2_if1_ip = azurerm_network_interface.dut2_if1.private_ip_address
-        dut2_if1_mac = azurerm_network_interface.dut2_if1.mac_address
-        dut2_if2_ip = azurerm_network_interface.dut2_if2.private_ip_address
-        dut2_if2_mac = azurerm_network_interface.dut2_if2.mac_address
-        dut1_if2_ip = azurerm_network_interface.dut1_if2.private_ip_address
         dut1_if2_gateway = azurerm_network_interface.dut1_if2.private_ip_address
-        traffic_if1 = var.trex_dummy_cidr_port_0
-        traffic_if2 = var.trex_dummy_cidr_port_1
+      }
+    }
+  }
+}
+
+eesource "null_resource" "deploy_topology" {
+  depends_on = [ azurerm_virtual_machine.tg,
+                 azurerm_network_interface.tg_if1,
+                 azurerm_network_interface.tg_if2,
+                 azurerm_virtual_machine.dut1,
+                 azurerm_network_interface.dut1_if1,
+                 azurerm_network_interface.dut1_if2
+                 azurerm_virtual_machine.dut2,
+                 azurerm_network_interface.dut2_if1,
+                 azurerm_network_interface.dut2_if2 ]
+  provisioner "ansible" {
+    plays {
+      playbook {
+        file_path = "../../testbed-setup/ansible/cloud_topology.yaml"
+      }
+      hosts = ["local"]
+      extra_vars = {
+        ansible_python_interpreter = "/usr/bin/python3"
+        cloud_topology = "azure"
+        tg_if1_mac = azurerm_network_interface.tg_if1.mac_address
+        tg_if2_mac = azurerm_network_interface.tg_if2.mac_address
+        dut1_if1_mac = azurerm_network_interface.dut1_if1.mac_address
+        dut1_if2_mac = azurerm_network_interface.dut1_if2.mac_address
+        dut2_if1_mac = azurerm_network_interface.dut2_if1.mac_address
+        dut2_if2_mac = azurerm_network_interface.dut2_if2.mac_address
+        tg_public_ip = data.azurerm_public_ip.tg_public_ip.ip_address
+        dut1_public_ip = data.azurerm_public_ip.dut1_public_ip.ip_address
+        dut2_public_ip = data.azurerm_public_ip.dut2_public_ip.ip_address
       }
     }
   }

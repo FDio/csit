@@ -1,0 +1,22 @@
+---
+# file: sut_aws.yaml
+
+- hosts: sut
+  #remote_user: testuser
+  become: yes
+  become_user: root
+  roles:
+    - role: user_add
+      tags: user_add
+    - role: common
+      tags: common
+    - role: iperf
+      tags: iperf
+    - role: docker
+      tags: docker
+    - role: dpdk
+      tags: dpdk
+    - role: cleanup
+      tags: cleanup
+    - role: calibration
+      tags: calibration
