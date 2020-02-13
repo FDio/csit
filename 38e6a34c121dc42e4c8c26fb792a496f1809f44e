@@ -22,6 +22,30 @@
       "revId": "38e6a34c121dc42e4c8c26fb792a496f1809f44e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3446257f_d76df569",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-02-13T13:13:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56fa1078_f9010526",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 52
+      },
+      "revId": "38e6a34c121dc42e4c8c26fb792a496f1809f44e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
