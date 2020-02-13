@@ -18,7 +18,7 @@ packages_by_arch:
     - []
 
 dpdk_target_dir: "/opt"
-dpdk_version: "dpdk-19.02"
+dpdk_version: "19.08.2"
 dpdk_url: "https://fast.dpdk.org/rel"
 dpdk_build_targets:
   aarch64: "arm64-armv8a"

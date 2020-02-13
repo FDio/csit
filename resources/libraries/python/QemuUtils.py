@@ -63,7 +63,7 @@ class QemuUtils:
         dpdk_target = u"arm64-armv8a" if self._arch == u"aarch64" \
             else u"x86_64-native"
         self._testpmd_path = f"{Constants.QEMU_VM_DPDK}/" \
-            f"{dpdk_target}-linuxapp-gcc/app"
+            f"{dpdk_target}-linux-gcc/app"
         self._vm_info = {
             u"host": node[u"host"],
             u"type": NodeType.VM,

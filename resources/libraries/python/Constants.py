@@ -179,7 +179,7 @@ class Constants:
     QEMU_VM_IMAGE = u"/var/lib/vm/vhost-nested.img"
 
     # QEMU VM DPDK path
-    QEMU_VM_DPDK = u"/opt/dpdk-19.02"
+    QEMU_VM_DPDK = u"/opt/dpdk-stable-19.08.2"
 
     # Docker container SUT image
     DOCKER_SUT_IMAGE_UBUNTU = u"snergster/csit-sut:latest"
