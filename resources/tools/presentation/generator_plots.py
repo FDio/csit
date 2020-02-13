@@ -1330,7 +1330,7 @@ def plot_nf_heatmap(plot, input_data):
     regex_cn = re.compile(r'^(\d*)R(\d*)C$')
     regex_test_name = re.compile(r'^.*-(\d+ch|\d+pl)-'
                                  r'(\d+mif|\d+vh)-'
-                                 r'(\d+vm\d+t|\d+dcr\d+t).*$')
+                                 r'(\d+vm\d+t|\d+dcr\d+t|\d+dcr\d+c).*$')
     vals = dict()
 
     # Transform the data

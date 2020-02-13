@@ -557,8 +557,6 @@
 
     vpp-perf-results-3n-dnv:
       csit-vpp-perf-verify-2001-3n-dnv:
-        - 13  # NDRPDR full
-        - 15  # NDRPDR full
         - 19  # NDRPDR full
         - 20  # NDRPDR full
         - 21  # NDRPDR full
@@ -2122,8 +2120,6 @@
       - 17  # NDRPDR sel
       - 18  # NDRPDR sel
       - 11  # MRR sel
-      - 13  # NDRPDR full
-      - 15  # NDRPDR full
       - 19  # NDRPDR full
       - 20  # NDRPDR full
       - 21  # NDRPDR full
@@ -5822,7 +5818,7 @@
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 2
+  data-start-level: 3
 
 # VPP Device Configuration - Ubuntu
 - type: "file"
@@ -5839,7 +5835,7 @@
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 2
+  data-start-level: 3
 
 # DPDK Performance Results 3n-hsw
 - type: "file"
