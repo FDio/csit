@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1412bb9e_71aa69d6",
+        "filename": "resources/tools/terraform/aws/main.tf",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T13:04:55Z",
+      "side": 1,
+      "message": "# Variables\n\n(does not need to be LOUD)",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 79
+      },
+      "revId": "262df8820c4c6d490c4726161d51fbb34f09395b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b1b2be3_e4631ccc",
+        "filename": "resources/tools/terraform/aws/main.tf",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T13:04:55Z",
+      "side": 1,
+      "message": "should be in azure file as well",
+      "range": {
+        "startLine": 360,
+        "startChar": 8,
+        "endLine": 360,
+        "endChar": 30
+      },
+      "revId": "262df8820c4c6d490c4726161d51fbb34f09395b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac9faf72_8a424f29",
+        "filename": "resources/tools/testbed-setup/ansible/roles/topology/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T13:04:55Z",
+      "side": 1,
+      "message": "what is sxc?",
+      "range": {
+        "startLine": 7,
+        "startChar": 68,
+        "endLine": 7,
+        "endChar": 71
+      },
+      "revId": "262df8820c4c6d490c4726161d51fbb34f09395b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3123a0f4_2d073358",
+        "filename": "resources/tools/testbed-setup/ansible/roles/topology/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T13:04:55Z",
+      "side": 1,
+      "message": "missing tags.",
+      "revId": "262df8820c4c6d490c4726161d51fbb34f09395b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3a95754_22fe4a73",
+        "filename": "resources/tools/testbed-setup/ansible/roles/user_add/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T13:04:55Z",
+      "side": 1,
+      "message": "put some useful tags to all roles (similarly to others):\n\ntags:\n  - add-user",
+      "revId": "262df8820c4c6d490c4726161d51fbb34f09395b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b1316c2_707225eb",
+        "filename": "resources/tools/testbed-setup/ansible/roles/user_add/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T13:04:55Z",
+      "side": 1,
+      "message": "I would put this as a handler task and register in previous task",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "262df8820c4c6d490c4726161d51fbb34f09395b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95577a53_6843c769",
+        "filename": "resources/tools/testbed-setup/ansible/site_aws.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T13:04:55Z",
+      "side": 1,
+      "message": "site_aws.",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 18
+      },
+      "revId": "262df8820c4c6d490c4726161d51fbb34f09395b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a841041_2f7d08b4",
+        "filename": "resources/tools/testbed-setup/ansible/templates/topology_aws.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T13:04:55Z",
+      "side": 1,
+      "message": "currently on Constants.py there is \"Amazon-Nitro-50G\"",
+      "range": {
+        "startLine": 30,
+        "startChar": 15,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "262df8820c4c6d490c4726161d51fbb34f09395b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a2aa860_1ffc6024",
+        "filename": "resources/tools/testbed-setup/ansible/tg_aws.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T13:04:55Z",
+      "side": 1,
+      "message": "tg_aws.yaml",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "262df8820c4c6d490c4726161d51fbb34f09395b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d32537c_19286b95",
+        "filename": "resources/tools/testbed-setup/ansible/tg_aws.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-13T13:04:55Z",
+      "side": 1,
+      "message": "remove trailing spaces.",
+      "range": {
+        "startLine": 10,
+        "startChar": 12,
+        "endLine": 10,
+        "endChar": 26
+      },
+      "revId": "262df8820c4c6d490c4726161d51fbb34f09395b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
