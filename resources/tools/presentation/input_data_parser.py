@@ -378,7 +378,7 @@ class ExecutionChecker(ResultVisitor):
         out_str = u"["
         try:
             for item in data:
-                out_str += f"{float(item):.2f}, "
+                out_str += f"{(float(item) / 1e6):.2f}, "
             return out_str[:-2] + u"]"
         except (AttributeError, IndexError, ValueError, KeyError):
             return msg
