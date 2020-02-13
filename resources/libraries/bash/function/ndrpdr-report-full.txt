@@ -2,10 +2,10 @@
 ## ./crypto
 ## ./ip4
 ## ./ip4_tunnels
-ndrpdr AND ethip4lispip4-ip4base
-ndrpdr AND ethip4lispip6-ip4base
 ## ./ip6
 ## ./ip6_tunnels
+ndrpdr AND ethip6lispip4-ip6base
+ndrpdr AND ethip6lispip6-ip6base
 ## ./l2
 ## ./lb
 ## ./nfv_density/dcr_memif/chain
