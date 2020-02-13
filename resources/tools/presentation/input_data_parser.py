@@ -451,13 +451,11 @@ class ExecutionChecker(ResultVisitor):
             pdr_lat_90 = f"\n5. {pdr_lat_90}" if pdr_lat_90 else u""
 
             return (
-                u" |prein| "
                 f"1. {(data[u'ndr_low'] / 1e6):.2f} {data[u'ndr_low_b']:.2f}"
                 f"\n2. {(data[u'pdr_low'] / 1e6):.2f} {data[u'pdr_low_b']:.2f}"
                 f"{pdr_lat_10}"
                 f"{pdr_lat_50}"
                 f"{pdr_lat_90}"
-                u" |preout| "
             )
         except (AttributeError, IndexError, ValueError, KeyError):
             return msg
