@@ -1,0 +1,24 @@
+---
+# file: roles/aws/tasks/main.yaml
+
+- name: AWS - Load Kernel Modules By Default
+  lineinfile:
+    path: "/etc/modules"
+    state: "present"
+    line: "{{ item }}"
+  with_items:
+    - "vfio-pci"
+  tags:
+    - load-kernel-modules
+
+- name: Performance Tuning - Adjust nr_hugepages
+  # change the minimum size of the hugepage pool.
+  # 2G VPP, 4GB per VNF/CNF, 2G reserve
+  sysctl:
+    name: "vm.nr_hugepages"
+    value: "8192"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl

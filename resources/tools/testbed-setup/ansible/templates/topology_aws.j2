@@ -17,17 +17,17 @@ nodes:
     password: Csit1234
     interfaces:
       port1:
-        # tg_instance/p1 - 40GE port1 on Mellanox NIC.
+        # tg_instance/p1 - 50GE port1 on ENA NIC.
         mac_address: {{ tg_if1_mac }}
-        pci_address: "0002:00:02.0"
+        pci_address: "0000:00:06.0"
         link: link1
-        model: azure-mlx-40g
+        model: Amazon-Nitro-50G
       port2:
-        # tg_instance/p2 - 40GE port2 on Mellanox NIC.
+        # tg_instance/p2 - 50GE port2 on ENA NIC.
         mac_address: {{ tg_if2_mac }}
-        pci_address: "0003:00:02.0"
+        pci_address: "0000:00:07.0"
         link: link2
-        model: azure-mlx-40g
+        model: Amazon-Nitro-50G
   DUT1:
     type: DUT
     host: "{{ dut1_public_ip }}"
@@ -43,17 +43,17 @@ nodes:
       netconf_port: 2831
     interfaces:
       port1:
-        # dut1_instance/p1 - 40GE port1 on Mellanox NIC.
+        # dut1_instance/p1 - 50GE port1 on ENA NIC.
         mac_address: {{ dut1_if1_mac }}
-        pci_address: "0002:00:02.0"
+        pci_address: "0000:00:06.0"
         link: link1
-        model: azure-mlx-40g
+        model: Amazon-Nitro-50G
       port2:
-        # dut2_instance/p1 - 40GE port2 on Mellanox NIC.
+        # dut1_instance/p2 - 50GE port2 on ENA NIC.
         mac_address: {{ dut1_if2_mac }}
-        pci_address: "0002:00:03.0"
+        pci_address: "0000:00:07.0"
         link: link21
-        model: azure-mlx-40g
+        model: Amazon-Nitro-50G
   DUT2:
     type: DUT
     host: "{{ dut2_public_ip }}"
@@ -69,14 +69,15 @@ nodes:
       netconf_port: 2831
     interfaces:
       port1:
-        # dut1_instance/p1 - 40GE port1 on Mellanox NIC.
+        # dut2_instance/p1 - 50GE port1 on ENA NIC.
         mac_address: {{ dut2_if1_mac }}
-        pci_address: "0002:00:02.0"
+        pci_address: "0000:00:06.0"
         link: link21
-        model: azure-mlx-40g
+        model: Amazon-Nitro-50G
       port2:
-        # dut2_instance/p1 - 40GE port2 on Mellanox NIC.
+        # dut2_instance/p2 - 50GE port1 on ENA NIC.
         mac_address: {{ dut2_if2_mac }}
-        pci_address: "0003:00:02.0"
+        pci_address: "0000:00:07.0"
         link: link2
-        model: azure-mlx-40g
+        model: Amazon-Nitro-50G
+
