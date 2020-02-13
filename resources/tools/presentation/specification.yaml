@@ -435,6 +435,10 @@
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
 
+    plot-dpdk-hdrh-lat-3n-tsh:
+      csit-dpdk-perf-verify-2001-3n-tsh:
+        - 3   # NDRPDR sel
+
     # 3n-dnv
 
     plot-vpp-throughput-lat-tsa-3n-dnv:
