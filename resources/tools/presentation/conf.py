@@ -67,7 +67,8 @@ rst_epilog = u"""
 .. |csit-release-1| replace:: CSIT-{csit_prev_release}
 .. |vpp-release| replace:: VPP-{vpprelease} release
 .. |vpp-release-1| replace:: VPP-{vpp_prev_release} release
-.. |dpdk-release| replace:: DPDK {dpdkrelease}
+.. |dpdk-release| replace:: DPDK-{dpdkrelease}
+.. |dpdk-release-1| replace:: DPDK-{dpdk_prev_release}
 .. |trex-release| replace:: TRex {trex_version}
 
 .. _pdf version of this report: https://docs.fd.io/csit/{release}/report/_static/archive/csit_{release}.{report_week}.pdf
@@ -106,6 +107,7 @@ rst_epilog = u"""
            vpprelease=u'20.01',
            vpp_prev_release=u'19.08',
            dpdkrelease=u'19.08',
+           dpdk_prev_release=u'19.05',
            sdpdkrelease=u'1908',
            trex_version=u'v2.73',
            vpp_release_commit_id=u'fce396738f865293f0a023bc7f172086f81da456')
