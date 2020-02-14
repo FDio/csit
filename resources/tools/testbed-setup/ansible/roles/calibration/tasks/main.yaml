@@ -21,6 +21,7 @@
   shell: "/opt/spectre-meltdown-checker.sh --no-color || true"
   async: 60
   poll: 0
+  ignore_errors: yes
   register: spectre_meltdown_async
   tags:
     - check-spectre-meltdown
@@ -30,6 +31,17 @@
   tags:
     - check-machine-specific
     - check-jitter-tool
+
+- name: Calibration - Get BIOS info
+  shell: "dmidecode -t bios"
+  ignore_errors: yes
+  register: dmidecode_bios
+  tags:
+    - check-bios
+
+- debug: var=dmidecode_bios.stdout_lines
+  tags:
+    - check-bios
 
 - name: Check sync status
   async_status:
