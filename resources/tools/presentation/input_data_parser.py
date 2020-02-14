@@ -454,7 +454,7 @@ class ExecutionChecker(ResultVisitor):
                 if (hdr_lat_1_50 + hdr_lat_1_90 + hdr_lat_1_99 +
                         hdr_lat_2_50 + hdr_lat_2_90 + hdr_lat_2_99):
                     return (
-                        f"{hdr_lat_1_50} {hdr_lat_1_90} {hdr_lat_1_99}    "
+                        f"{hdr_lat_1_50} {hdr_lat_1_90} {hdr_lat_1_99}      "
                         f"{hdr_lat_2_50} {hdr_lat_2_90} {hdr_lat_2_99}"
                     )
 
@@ -467,15 +467,15 @@ class ExecutionChecker(ResultVisitor):
                                       data[u'pdr_lat_50_2'])
             pdr_lat_90 = _process_lat(data[u'pdr_lat_90_1'],
                                       data[u'pdr_lat_90_2'])
-            pdr_lat_10 = f"\n3. {pdr_lat_10} (10% PDR)" if pdr_lat_10 else u""
-            pdr_lat_50 = f"\n4. {pdr_lat_50} (50% PDR)" if pdr_lat_50 else u""
-            pdr_lat_90 = f"\n5. {pdr_lat_90} (90% PDR)" if pdr_lat_90 else u""
+            pdr_lat_10 = f"\n3. {pdr_lat_10}" if pdr_lat_10 else u""
+            pdr_lat_50 = f"\n4. {pdr_lat_50}" if pdr_lat_50 else u""
+            pdr_lat_90 = f"\n5. {pdr_lat_90}" if pdr_lat_90 else u""
 
             return (
-                f"1. {(data[u'ndr_low'] / 1e6):.2f} {data[u'ndr_low_b']:.2f} "
-                f"(NDR)"
-                f"\n2. {(data[u'pdr_low'] / 1e6):.2f} {data[u'pdr_low_b']:.2f} "
-                f"(PDR)"
+                f"1. {(data[u'ndr_low'] / 1e6):.2f}      "
+                f"{data[u'ndr_low_b']:.2f}"
+                f"\n2. {(data[u'pdr_low'] / 1e6):.2f}      "
+                f"{data[u'pdr_low_b']:.2f}"
                 f"{pdr_lat_10}"
                 f"{pdr_lat_50}"
                 f"{pdr_lat_90}"
