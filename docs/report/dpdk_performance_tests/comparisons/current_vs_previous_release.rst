@@ -5,7 +5,7 @@ Current vs. Previous Release
 ----------------------------
 
 Relative comparison of DPDK Testpmd and L3fwd packet throughput (NDR,
-PDR and MRR) between |dpdk-release| and DPDK-18.02 (measured for
+PDR and MRR) between |dpdk-release| and |dpdk-release-1| (measured for
 |csit-release| and |csit-release-1| respectively) is calculated from
 results of tests running on 3-Node Intel Xeon Haswell testbeds (3n-hsw)
 in 1-core and 2-core configurations.
