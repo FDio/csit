@@ -31,6 +31,16 @@
     - check-machine-specific
     - check-jitter-tool
 
+- name: Calibration - Get BIOS info
+  shell: "dmidecode -t bios"
+  register: dmidecode_bios
+  tags:
+    - check-bios
+
+- debug: var=dmidecode_bios.stdout_lines
+  tags:
+    - check-bios
+
 - name: Check sync status
   async_status:
     jid: "{{ spectre_meltdown_async.ansible_job_id }}"
