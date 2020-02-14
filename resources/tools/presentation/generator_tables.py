@@ -317,9 +317,16 @@ def table_details(table, input_data):
                 try:
                     col_data = str(data[job][build][test][column[
                         u"data"].split(" ")[1]]).replace(u'"', u'""')
-                    if column[u"data"].split(u" ")[1] in (u"name", u"msg"):
+                    if column[u"data"].split(u" ")[1] in (u"name", ):
+                        if len(col_data) > 30:
+                            col_data_lst = col_data.split(u"-")
+                            half = int(len(col_data_lst) / 2)
+                            col_data = f"{u'-'.join(col_data_lst[:half])}\n" \
+                                       f"{u'-'.join(col_data_lst[half:])}"
                         col_data = f" |prein| {col_data} |preout| "
-                    if column[u"data"].split(u" ")[1] in \
+                    elif column[u"data"].split(u" ")[1] in (u"msg", ):
+                        col_data = f" |prein| {col_data} |preout| "
+                    elif column[u"data"].split(u" ")[1] in \
                         (u"conf-history", u"show-run"):
                         col_data = col_data.replace(u" |br| ", u"", 1)
                         col_data = f" |prein| {col_data[:-5]} |preout| "
