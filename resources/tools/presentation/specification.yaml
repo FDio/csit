@@ -2345,9 +2345,8 @@
   format:
     html:
     - full
-# TODO: Enable for release runs:
-#    pdf:
-#    - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
