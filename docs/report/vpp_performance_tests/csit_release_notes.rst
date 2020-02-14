@@ -68,6 +68,17 @@ Changes in |csit-release|
      removal of redundant RF keywords and aligning of suite/test
      setup/teardowns.
 
+#. TEST ENVIRONMENT
+
+   - **TRex Fortville NIC Performance**: Received FVL fix from Intel
+     resolving TRex low throughput issue. TRex per FVL NIC throughput
+     increased from ~27 Mpps to the nominal ~37 Mpps. For detail see
+     `CSIT-1503 <https://jira.fd.io/browse/CSIT-1503>`_ and `TRex-519
+     <https://trex-tgn.cisco.com/youtrack/issue/trex-519>`_].
+
+   - **New Intel Xeon Cascadelake Testbeds**: Added performance tests
+     for 2-Node-Cascadelake (2n-clx) testbeds with x710, xxv710 and
+     mcx556a-edat NIC cards.
 
 #. PRESENTATION AND ANALYTICS LAYER
 
