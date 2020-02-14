@@ -20,6 +20,18 @@ Changes in |csit-release|
 
    - |csit-release| tested |dpdk-release|, as used by |vpp-release|.
 
+#. TEST ENVIRONMENT
+
+   - **TRex Fortville NIC Performance**: Received FVL fix from Intel
+     resolving TRex low throughput issue. TRex per FVL NIC throughput
+     increased from ~27 Mpps to the nominal ~37 Mpps. For detail see
+     `CSIT-1503 <https://jira.fd.io/browse/CSIT-1503>`_ and `TRex-519
+     <https://trex-tgn.cisco.com/youtrack/issue/trex-519>`_].
+
+   - **New Intel Xeon Cascadelake Testbeds**: Added performance tests
+     for 2-Node-Cascadelake (2n-clx) testbeds with x710, xxv710 and
+     mcx556a-edat NIC cards.
+
 ..
     // Alternative Note for 1st Bullet when bad microcode Skx, Clx results are published
     - **Intel Xeon 2n-skx, 3n-skx and 2n-clx testbeds**: Testpmd and
