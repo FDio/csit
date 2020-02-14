@@ -27,8 +27,8 @@ robotframework==3.1.2
 scapy==2.4.3
 scp==0.13.2
 
-# Bootstraping dependencies
-ansible==2.7.8
+# Bootstrapping dependencies
+ansible==2.9.9
 
 # PLRsearch dependencies
 dill==0.2.8.2
