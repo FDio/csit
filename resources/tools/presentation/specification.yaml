@@ -617,8 +617,8 @@
 
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-verify-2001-3n-hsw:
-        - 13  # NDRPDR sel
-        - 24  # NDRPDR sel
+        - 25  # NDRPDR full
+        - 26  # NDRPDR full
 
     dpdk-perf-results-3n-skx:
       csit-dpdk-perf-verify-2001-3n-skx:
@@ -2203,6 +2203,8 @@
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
       - 24  # NDRPDR sel
+      - 25  # NDRPDR full
+      - 26  # NDRPDR full
 
 #    csit-dpdk-perf-verify-1904-3n-skx:
 #      - 2   # NDRPDR sel
@@ -4135,7 +4137,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
     data: "data msg"
   rows: "generated"
   data: "vpp-perf-results-3n-hsw"
@@ -4154,7 +4156,7 @@
 #  columns:
 #  - title: " |prein| Test Name |preout| "
 #    data: "data name"
-#  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+#  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
 #    data: "data msg"
 #  rows: "generated"
 #  data: "vpp-perf-results-3n-skx"
@@ -4173,7 +4175,7 @@
 #  columns:
 #  - title: " |prein| Test Name |preout| "
 #    data: "data name"
-#  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+#  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
 #    data: "data msg"
 #  rows: "generated"
 #  data: "vpp-perf-results-2n-skx"
@@ -4192,7 +4194,7 @@
 #  columns:
 #  - title: " |prein| Test Name |preout| "
 #    data: "data name"
-#  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+#  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
 #    data: "data msg"
 #  rows: "generated"
 #  data: "vpp-perf-results-2n-clx"
@@ -4211,7 +4213,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
     data: "data msg"
   rows: "generated"
   data: "vpp-perf-results-3n-tsh"
@@ -4230,7 +4232,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
     data: "data msg"
   rows: "generated"
   data: "vpp-perf-results-3n-dnv"
@@ -4249,7 +4251,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
     data: "data msg"
   rows: "generated"
   data: "vpp-perf-results-2n-dnv"
@@ -5142,7 +5144,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
     data: "data msg"
   rows: "generated"
   data: "dpdk-perf-results-3n-hsw"
@@ -5161,7 +5163,7 @@
 #  columns:
 #  - title: " |prein| Test Name |preout| "
 #    data: "data name"
-#  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+#  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
 #    data: "data msg"
 #  rows: "generated"
 #  data: "dpdk-perf-results-3n-skx"
@@ -5180,7 +5182,7 @@
 #  columns:
 #  - title: " |prein| Test Name |preout| "
 #    data: "data name"
-#  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+#  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
 #    data: "data msg"
 #  rows: "generated"
 #  data: "dpdk-perf-results-2n-skx"
@@ -5199,7 +5201,7 @@
 #  columns:
 #  - title: " |prein| Test Name |preout| "
 #    data: "data name"
-#  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+#  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
 #    data: "data msg"
 #  rows: "generated"
 #  data: "dpdk-perf-results-2n-clx"
@@ -5218,7 +5220,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
     data: "data msg"
   rows: "generated"
   data: "dpdk-perf-results-2n-dnv"
@@ -5237,7 +5239,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
     data: "data msg"
   rows: "generated"
   data: "dpdk-perf-results-3n-dnv"
@@ -5256,7 +5258,7 @@
   columns:
   - title: " |prein| Test Name |preout| "
     data: "data name"
-  - title: " |prein| 1. Mpps Gbps (NDR Throughput) |br| 2. Mpps Gbps (PDR Throughput) |br| 3. P50 P90 P99 , P50 P90 P99 (10% PDR Uni-Dir Latency in uSec) |br| 4. P50 P90 P99 , P50 P90 P99 (50% PDR Uni-Dir Latency in uSec) |br| 5. P50 P90 P99 , P50 P90 P99 (90% PDR Uni-Dir Latency in uSec) |preout| "
+  - title: " |prein| Throughput: |br| 1. Mpps Gbps (NDR) |br| 2. Mpps Gbps (PDR) |br| |br| Two sets of Uni-Dir Latency Percentiles in uSec at %PDR load: |br| 3. P50 P90 P99    P50 P90 P99 (10% PDR) |br| 4. P50 P90 P99    P50 P90 P99 (50% PDR) |br| 5. P50 P90 P99    P50 P90 P99 (90% PDR) |preout| "
     data: "data msg"
   rows: "generated"
   data: "dpdk-perf-results-3n-tsh"
