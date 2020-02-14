@@ -321,7 +321,8 @@ def table_details(table, input_data):
                         if len(col_data) > 30:
                             col_data_lst = col_data.split(u"-")
                             half = int(len(col_data_lst) / 2)
-                            col_data = f"{u'-'.join(col_data_lst[:half])}\n" \
+                            col_data = f"{u'-'.join(col_data_lst[:half])}" \
+                                       f"- |br| " \
                                        f"{u'-'.join(col_data_lst[half:])}"
                         col_data = f" |prein| {col_data} |preout| "
                     elif column[u"data"].split(u" ")[1] in (u"msg", ):
@@ -400,9 +401,17 @@ def table_merged_details(table, input_data):
                     col_data = col_data.replace(
                         u"No Data", u"Not Captured     "
                     )
-                    if column[u"data"].split(u" ")[1] in (u"name", u"msg"):
+                    if column[u"data"].split(u" ")[1] in (u"name", ):
+                        if len(col_data) > 30:
+                            col_data_lst = col_data.split(u"-")
+                            half = int(len(col_data_lst) / 2)
+                            col_data = f"{u'-'.join(col_data_lst[:half])}" \
+                                       f"- |br| " \
+                                       f"{u'-'.join(col_data_lst[half:])}"
                         col_data = f" |prein| {col_data} |preout| "
-                    if column[u"data"].split(u" ")[1] in \
+                    elif column[u"data"].split(u" ")[1] in (u"msg", ):
+                        col_data = f" |prein| {col_data} |preout| "
+                    elif column[u"data"].split(u" ")[1] in \
                         (u"conf-history", u"show-run"):
                         col_data = col_data.replace(u" |br| ", u"", 1)
                         col_data = f" |prein| {col_data[:-5]} |preout| "
