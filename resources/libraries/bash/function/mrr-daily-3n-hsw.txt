@@ -149,32 +149,6 @@
 ## ./lb
 ## ./nfv_density/dcr_memif/chain
 ## ./nfv_density/dcr_memif/chain_ipsec
-### intel-xl710
-#### dpdk-vfio-pci
-##### ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-1c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-2c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-4c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-##### ethip4ipsec4tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-1c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-2c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-4c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-##### ethip4ipsec1000tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-1c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-2c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-4c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-##### ethip4ipsec1000tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-1c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-2c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-4c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-##### ethip4ipsec10000tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-1c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-2c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-4c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-l2bd-1ch-2mif-1dcr1c-vppip4-aes256gcm
-##### ethip4ipsec10000tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-1c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-2c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
-4c AND imix AND mrr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
 ## ./nfv_density/dcr_memif/pipeline
 ## ./nfv_density/vm_vhost/chain
 ## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
