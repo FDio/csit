@@ -14,8 +14,7 @@
 ## ./srv6
 ## ./hoststack
 ## ./vm_vhost
-ndrpdr AND 2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-ndrpdr AND 2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
-ndrpdr AND 2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-ndrpdr AND 2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
 ## ./vts
+ndrpdr AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
+ndrpdr AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
+ndrpdr AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
