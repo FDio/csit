@@ -14,10 +14,10 @@
 ## ./srv6
 ## ./hoststack
 ## ./vm_vhost
-ndrpdr AND ${default_nic} AND eth-l2xcbase-eth-2vhostvr1024-1vm
-ndrpdr AND ${default_nic} AND eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
-ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-ndrpdr AND ${default_nic} AND eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
-ndrpdr AND ${default_nic} AND ethip4-ip4base-eth-2vhostvr1024-1vm
-ndrpdr AND ${default_nic} AND ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
+ndrpdr AND ${default_nic} AND dot1q-l2xcbase-eth-2vhostvr1024-1vm
+ndrpdr AND ${default_nic} AND dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+ndrpdr AND ${default_nic} AND dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+ndrpdr AND ${default_nic} AND dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+ndrpdr AND ${default_nic} AND ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+ndrpdr AND ${default_nic} AND ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
 ## ./vts
