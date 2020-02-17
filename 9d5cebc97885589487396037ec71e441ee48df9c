@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "69fa4ee6_55a0b66f",
+        "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-17T18:01:33Z",
+      "side": 1,
+      "message": "\u003e CSIT-calls-ansible\n\u003e in bash they are used on run basis\n\nWe definitely have this part, e.g. bash entry scripts calling ansible for testbed cleanup.\n\n\u003e Ansible-calls-CSIT\n\u003e In ansible PIP lists is pre-fetch to eliminate redownload\n\nThis sounds to me as a different ansible usage. Pre-fetching is fine for creation of images for Jenkins executors. But even in that case we want per-run tasks to apply the code from the currently checked-out CSIT (Jenkins image can be older than CSIT master).\n\nI think the hard part is selecting defining which tasks should be executed only once (per-executor or per-testbed), and which tasks should be executed per-run. Too much tasks per-run is too slow, too little tasks per-run is too sensitive to the initial setup (mainly for downstream labs who are not monitoring latest CSIT lab tweaks).\n\n\u003e we are ready to get there\n\n+1.",
+      "parentUuid": "7c5e390c_fadb9c67",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 5
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24d6a4b2_301aa478",
         "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/ubuntu_bionic.yaml",
         "patchSetId": 5
