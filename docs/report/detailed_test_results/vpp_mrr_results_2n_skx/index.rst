@@ -9,4 +9,3 @@
 
 .. toctree::
 
-    vpp_mrr_results_2n_skx
