@@ -74,104 +74,110 @@ def _tests_in_suite(suite_name, tests):
     return False
 
 
-def file_test_results(file_spec, input_data):
+# def file_test_results(file_spec, input_data):
+#     """Generate the file(s) with algorithms
+#     - file_test_results
+#     specified in the specification file.
+#
+#     :param file_spec: File to generate.
+#     :param input_data: Data to process.
+#     :type file_spec: pandas.Series
+#     :type input_data: InputData
+#     """
+#
+#     file_name = f"{file_spec[u'output-file']}{file_spec[u'output-file-ext']}"
+#     rst_header = file_spec[u"file-header"]
+#
+#     logging.info(f"  Generating the file {file_name} ...")
+#
+#     table_lst = get_files(file_spec[u"dir-tables"], u".csv", full_path=True)
+#     if not table_lst:
+#         logging.error(
+#             f"  No tables to include in {file_spec[u'dir-tables']}. Skipping."
+#         )
+#         return
+#
+#     logging.info(f"    Writing file {file_name}")
+#
+#     logging.info(
+#         f"    Creating the tests data set for the "
+#         f"{file_spec.get(u'type', u'')} {file_spec.get(u'title', u'')}."
+#     )
+#     tests = input_data.filter_data(file_spec)
+#     tests = input_data.merge_data(tests)
+#
+#     logging.info(
+#         f"    Creating the suites data set for the "
+#         f"{file_spec.get(u'type', u'')} {file_spec.get(u'title', u'')}."
+#     )
+#     file_spec[u"filter"] = u"all"
+#     suites = input_data.filter_data(file_spec, data_set=u"suites")
+#     suites = input_data.merge_data(suites)
+#     suites.sort_index(inplace=True)
+#
+#     with open(file_name, u"wt") as file_handler:
+#         file_handler.write(rst_header)
+#         for suite_longname, suite in suites.items():
+#             if len(suite_longname.split(u".")) <= \
+#                     file_spec[u"data-start-level"]:
+#                 continue
+#
+#             title_line = \
+#                 get_rst_title_char(
+#                     suite[u"level"] - file_spec[u"data-start-level"] - 1
+#                 ) * len(suite[u"name"])
+#             if not (u"-ndrpdr" in suite[u"name"] or
+#                     u"-mrr" in suite[u"name"] or
+#                     u"-func" in suite[u"name"] or
+#                     u"-device" in suite[u"name"] or
+#                     u"-dev" in suite[u"name"]):
+#                 file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
+#
+#             if _tests_in_suite(suite[u"name"], tests):
+#                 file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
+#                 file_handler.write(
+#                     f"\n{suite[u'doc']}\n".replace(u'|br|', u'\n\n -')
+#                 )
+#                 for tbl_file in table_lst:
+#                     if suite[u"name"] in tbl_file:
+#                         file_handler.write(
+#                             RST_INCLUDE_TABLE.format(
+#                                 file_latex=tbl_file,
+#                                 file_html=tbl_file.split(u"/")[-1]))
+#
+#     logging.info(u"  Done.")
+
+
+def file_test_results(file_spec, input_data, frmt=u"rst"):
     """Generate the file(s) with algorithms
     - file_test_results
     specified in the specification file.
 
     :param file_spec: File to generate.
     :param input_data: Data to process.
+    :param frmt: Format can be: rst or html
     :type file_spec: pandas.Series
     :type input_data: InputData
+    :type frmt: str
     """
 
-    file_name = f"{file_spec[u'output-file']}{file_spec[u'output-file-ext']}"
-    rst_header = file_spec[u"file-header"]
+    base_file_name = f"{file_spec[u'output-file']}"
+    rst_header = file_spec.get(u"file-header", u"")
+    start_lvl = file_spec.get(u"data-start-level", 4)
 
-    logging.info(f"  Generating the file {file_name} ...")
+    logging.info(f"  Generating the file {base_file_name} ...")
 
-    table_lst = get_files(file_spec[u"dir-tables"], u".csv", full_path=True)
+    if frmt == u"html":
+        table_lst = get_files(file_spec[u"dir-tables"], u".rst", full_path=True)
+    elif frmt == u"rst":
+        table_lst = get_files(file_spec[u"dir-tables"], u".csv", full_path=True)
+    else:
+        return
     if not table_lst:
         logging.error(
             f"  No tables to include in {file_spec[u'dir-tables']}. Skipping."
         )
         return
-
-    logging.info(f"    Writing file {file_name}")
-
-    logging.info(
-        f"    Creating the tests data set for the "
-        f"{file_spec.get(u'type', u'')} {file_spec.get(u'title', u'')}."
-    )
-    tests = input_data.filter_data(file_spec)
-    tests = input_data.merge_data(tests)
-
-    logging.info(
-        f"    Creating the suites data set for the "
-        f"{file_spec.get(u'type', u'')} {file_spec.get(u'title', u'')}."
-    )
-    file_spec[u"filter"] = u"all"
-    suites = input_data.filter_data(file_spec, data_set=u"suites")
-    suites = input_data.merge_data(suites)
-    suites.sort_index(inplace=True)
-
-    with open(file_name, u"wt") as file_handler:
-        file_handler.write(rst_header)
-        for suite_longname, suite in suites.items():
-            if len(suite_longname.split(u".")) <= \
-                    file_spec[u"data-start-level"]:
-                continue
-
-            title_line = \
-                get_rst_title_char(
-                    suite[u"level"] - file_spec[u"data-start-level"] - 1
-                ) * len(suite[u"name"])
-            if not (u"-ndrpdr" in suite[u"name"] or
-                    u"-mrr" in suite[u"name"] or
-                    u"-func" in suite[u"name"] or
-                    u"-device" in suite[u"name"] or
-                    u"-dev" in suite[u"name"]):
-                file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
-
-            if _tests_in_suite(suite[u"name"], tests):
-                file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
-                file_handler.write(
-                    f"\n{suite[u'doc']}\n".replace(u'|br|', u'\n\n -')
-                )
-                for tbl_file in table_lst:
-                    if suite[u"name"] in tbl_file:
-                        file_handler.write(
-                            RST_INCLUDE_TABLE.format(
-                                file_latex=tbl_file,
-                                file_html=tbl_file.split(u"/")[-1]))
-
-    logging.info(u"  Done.")
-
-
-def file_test_results_html(file_spec, input_data):
-    """Generate the file(s) with algorithms
-    - file_test_results_html
-    specified in the specification file.
-
-    :param file_spec: File to generate.
-    :param input_data: Data to process.
-    :type file_spec: pandas.Series
-    :type input_data: InputData
-    """
-
-    file_name = f"{file_spec[u'output-file']}.rst"
-    rst_header = file_spec[u"file-header"]
-
-    logging.info(f"  Generating the file {file_name} ...")
-
-    table_lst = get_files(file_spec[u"dir-tables"], u".rst", full_path=True)
-    if not table_lst:
-        logging.error(
-            f"  No tables to include in {file_spec[u'dir-tables']}. Skipping."
-        )
-        return
-
-    logging.info(f"    Writing file {file_name}")
 
     logging.info(
         f"    Creating the tests data set for the "
@@ -197,21 +203,30 @@ def file_test_results_html(file_spec, input_data):
         return
     suites = input_data.merge_data(suites)
 
-    with open(file_name, u"wt") as file_handler:
-        file_handler.write(rst_header)
-        for suite_longname, suite in suites.items():
-            if len(suite_longname.split(u".")) <= \
-                    file_spec[u"data-start-level"]:
-                continue
+    file_name = u""
+    for suite_longname, suite in suites.items():
 
-            title_line = \
-                get_rst_title_char(
-                    suite[u"level"] - file_spec[u"data-start-level"] - 1
-                ) * len(suite[u"name"])
+        suite_lvl = len(suite_longname.split(u"."))
+        if suite_lvl < start_lvl:
+            # Not interested in this suite
+            continue
+
+        if suite_lvl == start_lvl:
+            # Our top-level suite
+            chapter = suite_longname.split(u'.')[-1]
+            file_name = f"{base_file_name}/{chapter}.rst"
+            logging.info(f"    Writing file {file_name}")
+            with open(f"{base_file_name}/index.rst", u"a") as file_handler:
+                file_handler.write(f"    {chapter}\n")
+            with open(file_name, u"a") as file_handler:
+                file_handler.write(rst_header)
+
+        title_line = get_rst_title_char(suite[u"level"] - start_lvl + 2) * \
+            len(suite[u"name"])
+        with open(file_name, u"a") as file_handler:
             if not (u"-ndrpdr" in suite[u"name"] or
                     u"-mrr" in suite[u"name"] or
-                    u"-func" in suite[u"name"] or
-                    u"-device" in suite[u"name"]):
+                    u"-dev" in suite[u"name"]):
                 file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
 
             if _tests_in_suite(suite[u"name"], tests):
@@ -221,8 +236,28 @@ def file_test_results_html(file_spec, input_data):
                 )
                 for tbl_file in table_lst:
                     if suite[u"name"] in tbl_file:
-                        file_handler.write(
-                            f"\n.. include:: {tbl_file.split(u'/')[-1]}\n"
-                        )
+                        if frmt == u"html":
+                            file_handler.write(
+                                f"\n.. include:: {tbl_file.split(u'/')[-1]}\n"
+                            )
+                        elif frmt == u"rst":
+                            file_handler.write(
+                                RST_INCLUDE_TABLE.format(
+                                    file_latex=tbl_file,
+                                    file_html=tbl_file.split(u"/")[-1])
+                            )
 
     logging.info(u"  Done.")
+
+
+def file_test_results_html(file_spec, input_data):
+    """Generate the file(s) with algorithms
+    - file_test_results_html
+    specified in the specification file.
+
+    :param file_spec: File to generate.
+    :param input_data: Data to process.
+    :type file_spec: pandas.Series
+    :type input_data: InputData
+    """
+    file_test_results(file_spec, input_data, frmt=u"rst")
