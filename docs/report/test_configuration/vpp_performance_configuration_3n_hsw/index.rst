@@ -9,4 +9,3 @@
 
 .. toctree::
 
-    vpp_performance_configuration_3n_hsw
