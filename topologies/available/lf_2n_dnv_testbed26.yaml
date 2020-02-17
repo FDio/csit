@@ -23,7 +23,7 @@ nodes:
         link: link1
         model: Intel-X553
       port2:
-        mac_address: "b4:96:91:46:b3:9c"
+        mac_address: "b4:96:91:46:b6:48"
         pci_address: "0000:5e:00.0"
         driver: ixgbe
         link: link2
