@@ -423,6 +423,7 @@
         - 4   # NDRPDR sel
         - 7   # NDRPDR sel
         - 8   # NDRPDR sel
+        - 10  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
@@ -540,6 +541,13 @@
         - 35  # NDRPDR full
         - 42  # NDRPDR full
         - 46  # NDRPDR full
+        - 47  # NDRPDR full
+        - 48  # NDRPDR full
+        - 49  # NDRPDR full
+        - 50  # NDRPDR full
+        - 51  # NDRPDR full
+        - 54  # NDRPDR full
+        - 58  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       # TODO: Replace
@@ -604,10 +612,8 @@
         - 69  # MRR sel
 
     vpp-mrr-results-3n-tsh:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-3n-tsh:
-      csit-vpp-perf-verify-1908-3n-tsh:
-        - 17  # MRR sel
+      csit-vpp-perf-verify-2001-3n-tsh:
+        - 9   # MRR sel
 
     vpp-mrr-results-3n-dnv:
       csit-vpp-perf-verify-2001-3n-dnv:
@@ -858,6 +864,7 @@
         - 4   # NDRPDR sel
         - 7   # NDRPDR sel
         - 8   # NDRPDR sel
+        - 10  # NDRPDR sel
     vpp-performance-changes-3n-tsh:
       - "vpp-performance-changes-3n-tsh-ref"
       - "vpp-performance-changes-3n-tsh-cmp"
@@ -967,10 +974,8 @@
       csit-vpp-perf-verify-1908-3n-tsh:
         - 17  # MRR sel
     vpp-performance-changes-3n-tsh-mrr-cmp:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-3n-tsh:
-      csit-vpp-perf-verify-1908-3n-tsh:
-        - 17  # MRR sel
+      csit-vpp-perf-verify-2001-3n-tsh:
+        - 9   # MRR sel
     vpp-performance-changes-3n-tsh-mrr:
       - "vpp-performance-changes-3n-tsh-mrr-ref"
       - "vpp-performance-changes-3n-tsh-mrr-cmp"
@@ -1984,6 +1989,13 @@
       - 35  # NDRPDR full
       - 42  # NDRPDR full
       - 46  # NDRPDR full
+      - 47  # NDRPDR full
+      - 48  # NDRPDR full
+      - 49  # NDRPDR full
+      - 50  # NDRPDR full
+      - 51  # NDRPDR full
+      - 54  # NDRPDR full
+      - 58  # NDRPDR full
 
 #    csit-vpp-perf-verify-1904-3n-skx:
 #      - 7   # MRR sel
@@ -2105,6 +2117,8 @@
       - 4   # NDRPDR sel
       - 7   # NDRPDR sel
       - 8   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 9   # MRR sel
 
     csit-vpp-perf-verify-1908-3n-dnv:
       - 6   # NDRPDR sel
@@ -4537,24 +4551,24 @@
 #  - "parent"
 #  - "msg"
 
-## Detailed Test Results - VPP MRR Results 3n-tsh
-#- type: "table"
-#  title: "Detailed Test Results - VPP MRR Results 3n-tsh"
-#  algorithm: "table_details"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTR,MRR,VPP,3N,TSH]}/vpp_mrr_results_3n_tsh"
-#  columns:
-#  - title: " |prein| Test Name |preout| "
-#    data: "data name"
-#  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-#    data: "data msg"
-#  rows: "generated"
-#  data: "vpp-mrr-results-3n-tsh"
-#  filter: "'MRR'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
+# Detailed Test Results - VPP MRR Results 3n-tsh
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 3n-tsh"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,MRR,VPP,3N,TSH]}/vpp_mrr_results_3n_tsh"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+    data: "data msg"
+  rows: "generated"
+  data: "vpp-mrr-results-3n-tsh"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
 
 # Detailed Test Results - VPP MRR Results 3n-dnv
 - type: "table"
@@ -4670,24 +4684,24 @@
 #  - "name"
 #  - "conf-history"
 
-## Test configuration - VPP MRR Test Configs 3n-tsh
-#- type: "table"
-#  title: "Test configuration - VPP MRR Test Configs 3n-tsh"
-#  algorithm: "table_details"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTC,MRR,VPP,3N,TSH]}/vpp_mrr_configuration_3n_tsh"
-#  columns:
-#  - title: "Name"
-#    data: "data name"
-#  - title: "VPP API Test Commands History - Commands Used Per Test Case"
-#    data: "data conf-history"
-#  rows: "generated"
-#  data: "vpp-mrr-results-3n-tsh"
-#  filter: "'MRR'"
-#  parameters:
-#  - "parent"
-#  - "name"
-#  - "conf-history"
+# Test configuration - VPP MRR Test Configs 3n-tsh
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 3n-tsh"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,MRR,VPP,3N,TSH]}/vpp_mrr_configuration_3n_tsh"
+  columns:
+  - title: "Name"
+    data: "data name"
+  - title: "VPP API Test Commands History - Commands Used Per Test Case"
+    data: "data conf-history"
+  rows: "generated"
+  data: "vpp-mrr-results-3n-tsh"
+  filter: "'MRR'"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
 
 # Test configuration - VPP MRR Test Configs 3n-dnv
 - type: "table"
@@ -5666,22 +5680,22 @@
 #  - "parent"
 #  data-start-level: 3
 
-## VPP MRR Results 3n-tsh
-#- type: "file"
-#  title: "VPP MRR Results 3n-tsh"
-#  algorithm: "file_test_results"
-#  output-file-ext: ".rst"
-#  output-file: "{DIR[DTR,MRR,VPP,3N,TSH]}/vpp_mrr_results_3n_tsh"
-#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-#  dir-tables: "{DIR[DTR,MRR,VPP,3N,TSH]}"
-#  data: "vpp-mrr-results-3n-tsh"
-#  filter: "'MRR'"
-#  parameters:
-#  - "name"
-#  - "doc"
-#  - "level"
-#  - "parent"
-#  data-start-level: 3
+# VPP MRR Results 3n-tsh
+- type: "file"
+  title: "VPP MRR Results 3n-tsh"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,MRR,VPP,3N,TSH]}/vpp_mrr_results_3n_tsh"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,MRR,VPP,3N,TSH]}"
+  data: "vpp-mrr-results-3n-tsh"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
 
 # VPP MRR Results 3n-dnv
 - type: "file"
@@ -5785,22 +5799,22 @@
 #  - "parent"
 #  data-start-level: 3
 
-## VPP MRR Configuration 3n-tsh
-#- type: "file"
-#  title: "VPP MRR Configuration 3n-tsh"
-#  algorithm: "file_test_results"
-#  output-file-ext: ".rst"
-#  output-file: "{DIR[DTC,MRR,VPP,3N,TSH]}/vpp_mrr_configuration_3n_tsh"
-#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-#  dir-tables: "{DIR[DTC,MRR,VPP,3N,TSH]}"
-#  data: "vpp-mrr-results-3n-tsh"
-#  filter: "'MRR'"
-#  parameters:
-#  - "name"
-#  - "doc"
-#  - "level"
-#  - "parent"
-#  data-start-level: 3
+# VPP MRR Configuration 3n-tsh
+- type: "file"
+  title: "VPP MRR Configuration 3n-tsh"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTC,MRR,VPP,3N,TSH]}/vpp_mrr_configuration_3n_tsh"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTC,MRR,VPP,3N,TSH]}"
+  data: "vpp-mrr-results-3n-tsh"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
 
 # VPP MRR Configuration 3n-dnv
 - type: "file"
