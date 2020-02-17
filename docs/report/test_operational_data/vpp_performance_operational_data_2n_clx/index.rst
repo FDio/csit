@@ -9,4 +9,3 @@
 
 .. toctree::
 
-    vpp_performance_operational_data_2n_clx
