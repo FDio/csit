@@ -519,17 +519,19 @@ class TrafficGenerator(AbstractMeasurer):
             warmup_time = float(warmup_time)
         command = f"sh -c \"" \
             f"{Constants.REMOTE_FW_DIR}/resources/tools/trex/" \
-            f"trex_stateless_profile.py" \
-            f" --profile {Constants.REMOTE_FW_DIR}/resources/" \
-            f"traffic_profiles/trex/{traffic_profile}.py" \
-            f" --duration {duration!r} --frame_size {frame_size} " \
+            f"trex_stateless_profile.py " \
+            f"--profile {Constants.REMOTE_FW_DIR}/resources/" \
+            f"traffic_profiles/trex/{traffic_profile}.py " \
+            f"--duration {duration!r} --frame_size {frame_size} " \
             f"--rate {rate!r} --warmup_time {warmup_time!r} " \
-            f"--port_0 {p_0} --port_1 {p_1}" \
-            f" --traffic_directions {traffic_directions}"
+            f"--port_0 {p_0} --port_1 {p_1} " \
+            f"--traffic_directions {traffic_directions}" 
         if async_call:
             command += u" --async_start"
         if latency:
             command += u" --latency"
+        if Constants.TREX_SEND_FORCE:
+            command += u" --force"
         command += u"\""
 
         stdout, _ = exec_cmd_no_error(

@@ -61,7 +61,7 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
 
 def simple_burst(
         profile_file, duration, framesize, rate, warmup_time, port_0, port_1,
-        latency, async_start=False, traffic_directions=2):
+        latency, async_start=False, traffic_directions=2, force=False):
     """Send traffic and measure packet loss and latency.
 
     Procedure:
@@ -89,6 +89,7 @@ def simple_burst(
     :param latency: With latency stats.
     :param async_start: Start the traffic and exit.
     :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
+    :param force: Force start regardless of ports state.
     :type profile_file: str
     :type framesize: int or str
     :type duration: float
@@ -99,6 +100,7 @@ def simple_burst(
     :type latency: bool
     :type async_start: bool
     :type traffic_directions: int
+    :type force: bool
     """
     client = None
     total_rcvd = 0
@@ -160,7 +162,8 @@ def simple_burst(
 
             # Choose rate and start traffic:
             time_start = time.time()
-            client.start(ports=ports, mult=rate, duration=warmup_time)
+            client.start(ports=ports, mult=rate, duration=warmup_time,
+                         force=force)
 
             # Block until done:
             client.wait_on_traffic(ports=ports, timeout=warmup_time+30)
@@ -192,7 +195,7 @@ def simple_burst(
 
         # Choose rate and start traffic:
         time_start = time.time()
-        client.start(ports=ports, mult=rate, duration=duration)
+        client.start(ports=ports, mult=rate, duration=duration, force=force)
 
         if async_start:
             # For async stop, we need to export the current snapshot.
@@ -311,6 +314,10 @@ def main():
         u"--traffic_directions", type=int, default=2,
         help=u"Send bi- (2) or uni- (1) directional traffic."
     )
+    parser.add_argument(
+        u"--force", action=u"store_true", default=False,
+        help=u"Force start regardless of ports state."
+    )
 
     args = parser.parse_args()
 
@@ -318,12 +325,12 @@ def main():
         framesize = int(args.frame_size)
     except ValueError:
         framesize = args.frame_size
-
+    print(args)
     simple_burst(
         profile_file=args.profile, duration=args.duration, framesize=framesize,
         rate=args.rate, warmup_time=args.warmup_time, port_0=args.port_0,
         port_1=args.port_1, latency=args.latency, async_start=args.async_start,
-        traffic_directions=args.traffic_directions
+        traffic_directions=args.traffic_directions, force=args.force
     )
 
 
