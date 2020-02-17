@@ -37,7 +37,6 @@ all:
         10.32.8.11: #s29-t26-sut1 - denverton
         10.32.8.12: #s30-t35-sut1 - denverton
         10.32.8.13: #s31-t35-sut2 - denverton
-        10.32.8.17: #s32-t14-sut1 - cascadelake
         10.32.8.18: #s33-t27-sut1 - cascadelake
         10.32.8.20: #s35-t28-sut1 - cascadelake
         10.32.8.22: #s37-t29-sut1 - cascadelake

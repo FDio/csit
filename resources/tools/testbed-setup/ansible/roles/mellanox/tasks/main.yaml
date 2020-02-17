@@ -11,8 +11,8 @@
 
 - name: Mellanox Install - Get OFED
   get_url:
-    url: "http://content.mellanox.com/ofed/MLNX_OFED-{{ mellanox.version }}/MLNX_OFED_LINUX-{{ mellanox.version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
-    dest: "/opt/MLNX_OFED_LINUX-{{ mellanox.version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
+    url: "http://content.mellanox.com/ofed/MLNX_OFED-{{ mellanox_version }}/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
+    dest: "/opt/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
     mode: 0644
   when: mellanox_pcis.stdout_lines | length > 0
   tags:
@@ -21,9 +21,9 @@
 - name: Mellanox Install - Extract OFED
   unarchive:
     remote_src: true
-    src: "/opt/MLNX_OFED_LINUX-{{ mellanox.version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
+    src: "/opt/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
     dest: "/opt/"
-    creates: "/opt/MLNX_OFED_LINUX-{{ mellanox.version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}"
+    creates: "/opt/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}"
   register: mellanox_firmware_extracted
   when: mellanox_pcis.stdout_lines | length > 0
   tags:
@@ -32,7 +32,7 @@
 - name: Mellanox Install - Install OFED
   command: "./mlnxofedinstall --with-mft --dpdk --force --upstream-libs"
   args:
-    chdir: "/opt/MLNX_OFED_LINUX-{{ mellanox.version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}"
+    chdir: "/opt/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}"
   when: mellanox_pcis.stdout_lines | length > 0 and mellanox_firmware_extracted
   tags:
     - install-mellanox
