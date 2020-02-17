@@ -9,4 +9,3 @@
 
 .. toctree::
 
-    vpp_performance_configuration_2n_dnv
