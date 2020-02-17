@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3f2145b_f40dbcb1",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-17T13:06:09Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "range": {
+        "startLine": 528,
+        "startChar": 56,
+        "endLine": 528,
+        "endChar": 57
+      },
+      "revId": "6b67b37ff2a1922e59d80ecaf519daf6f7dfc1a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "061f6f3f_2f5ef252",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-17T13:06:09Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 15
+      },
+      "revId": "6b67b37ff2a1922e59d80ecaf519daf6f7dfc1a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
