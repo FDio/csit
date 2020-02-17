@@ -17,13 +17,13 @@ nodes:
     password: Csit1234
     interfaces:
       port1:
-        mac_address: "b4:96:91:46:b2:28"
+        mac_address: "b4:96:91:46:ae:3c"
         pci_address: "0000:af:00.0"
         driver: ixgbe
         link: link1
         model: Intel-X553
       port2:
-        mac_address: "b4:96:91:46:ae:3c"
+        mac_address: "b4:96:91:46:b2:e4"
         pci_address: "0000:d8:00.0"
         driver: ixgbe
         link: link2
