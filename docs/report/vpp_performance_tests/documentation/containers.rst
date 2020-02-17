@@ -60,7 +60,7 @@ list of applicable security control mechanisms:
   escaping a container or cause harm to the host, [apparmor]_.
 - SELinux - Security Enhanced Linux is a Linux kernel security module
   that provides similar function to AppArmor, supporting access control
-  security policies including United States Department of Defense–style
+  security policies including United States Department of Defense-style
   mandatory access controls. Mandatory access controls allow an
   administrator of a system to define how applications and users can
   access different resources such as files, devices, networks and inter-
