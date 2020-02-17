@@ -9,4 +9,3 @@
 
 .. toctree::
 
-    vpp_mrr_results_3n_hsw
