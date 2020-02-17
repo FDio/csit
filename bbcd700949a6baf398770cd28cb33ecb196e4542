@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f71fbc2_5a6dcec8",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-02-17T09:36:37Z",
+      "side": 1,
+      "message": "Move it to new line.",
+      "range": {
+        "startLine": 253,
+        "startChar": 46,
+        "endLine": 253,
+        "endChar": 60
+      },
+      "revId": "bbcd700949a6baf398770cd28cb33ecb196e4542",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
