@@ -196,6 +196,9 @@ class Constants:
     # TRex number of cores
     TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 7)
 
+    # Trex force start regardles ports state
+    TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")
+
     # TRex extra commandline arguments
     TREX_EXTRA_CMDLINE = get_str_from_env(u"TREX_EXTRA_CMDLINE", u"")
 
