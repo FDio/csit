@@ -16,7 +16,6 @@
       gateway: "{{ ansible_default_ipv4.gateway }}"
       profile: "{{ cobbler_profile }}"
       name_servers: "{{ name_servers }}"
-      name_servers_search: "{{ name_servers_search }}"
       kickstart: "/var/lib/cobbler/kickstarts/{{ cobbler_profile }}.seed"
       kernel_options: '"interface={{ ansible_default_ipv4.interface }}"'
       netboot_enabled: yes
@@ -45,17 +44,5 @@
     - "Reboot server"
   tags:
     - cobbler-include
-
-- meta: flush_handlers
-
-- name: Copy netplan network config file
-  template:
-    src: "files/netplan_config"
-    dest: "/etc/netplan/01-netcfg.yaml"
-    owner: "root"
-    group: "root"
-    mode: "0644"
-  tags:
-    - copy-interface-file
 
 - meta: flush_handlers

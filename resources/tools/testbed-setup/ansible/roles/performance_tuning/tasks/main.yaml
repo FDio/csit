@@ -14,7 +14,7 @@
     path: "/etc/default/grub"
     state: "present"
     regexp: "^GRUB_CMDLINE_LINUX="
-    line: "{{ grub_cmdline_linux[ansible_machine] }}"
+    line: "{{ grub_cmdline_linux[ansible_machine] | join() }}"
   notify:
     - "Update GRUB"
     - "Reboot server"
