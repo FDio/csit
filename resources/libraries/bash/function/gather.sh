@@ -141,9 +141,10 @@ function gather_vpp () {
         "csit-"*)
             # Use downloaded packages with specific version.
             if [[ "${TEST_CODE}" == *"daily"* ]] || \
-               ([[ "${TEST_CODE}" == *"weekly"* ]] && \
-                [[ "${TEST_CODE}" != *"device"* ]]) || \
-               [[ "${TEST_CODE}" == *"semiweekly"* ]];
+               { [[ "${TEST_CODE}" == *"weekly"* ]] && \
+                 [[ "${TEST_CODE}" != *"device"* ]]; } || \
+               [[ "${TEST_CODE}" == *"semiweekly"* ]] \
+               [[ "${TEST_CODE}" == *"hourly"* ]];
             then
                 warn "Downloading latest VPP packages from Packagecloud."
             else
