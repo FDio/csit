@@ -159,10 +159,11 @@ def file_test_results_html(file_spec, input_data):
     :type input_data: InputData
     """
 
-    file_name = f"{file_spec[u'output-file']}.rst"
-    rst_header = file_spec[u"file-header"]
+    base_file_name = f"{file_spec[u'output-file']}"
+    rst_header = file_spec.get(u"file-header", u"")
+    start_lvl = file_spec.get(u"data-start-level", 4)
 
-    logging.info(f"  Generating the file {file_name} ...")
+    logging.info(f"  Generating the file {base_file_name} ...")
 
     table_lst = get_files(file_spec[u"dir-tables"], u".rst", full_path=True)
     if not table_lst:
@@ -170,8 +171,6 @@ def file_test_results_html(file_spec, input_data):
             f"  No tables to include in {file_spec[u'dir-tables']}. Skipping."
         )
         return
-
-    logging.info(f"    Writing file {file_name}")
 
     logging.info(
         f"    Creating the tests data set for the "
@@ -197,21 +196,30 @@ def file_test_results_html(file_spec, input_data):
         return
     suites = input_data.merge_data(suites)
 
-    with open(file_name, u"wt") as file_handler:
-        file_handler.write(rst_header)
-        for suite_longname, suite in suites.items():
-            if len(suite_longname.split(u".")) <= \
-                    file_spec[u"data-start-level"]:
-                continue
+    file_name = u""
+    for suite_longname, suite in suites.items():
 
-            title_line = \
-                get_rst_title_char(
-                    suite[u"level"] - file_spec[u"data-start-level"] - 1
-                ) * len(suite[u"name"])
+        suite_lvl = len(suite_longname.split(u"."))
+        if suite_lvl < start_lvl:
+            # Not interested in this suite
+            continue
+
+        if suite_lvl == start_lvl:
+            # Our top-level suite
+            chapter = suite_longname.split(u'.')[-1]
+            file_name = f"{base_file_name}-{chapter}.rst"
+            logging.info(f"    Writing file {file_name}")
+            with open(f"{base_file_name}.rst", u"a") as file_handler:
+                file_handler.write(f"{chapter}\n")
+            with open(file_name, u"a") as file_handler:
+                file_handler.write(rst_header)
+
+        title_line = get_rst_title_char(suite[u"level"] - start_lvl - 2) * \
+            len(suite[u"name"])
+        with open(file_name, u"a") as file_handler:
             if not (u"-ndrpdr" in suite[u"name"] or
                     u"-mrr" in suite[u"name"] or
-                    u"-func" in suite[u"name"] or
-                    u"-device" in suite[u"name"]):
+                    u"-dev" in suite[u"name"]):
                 file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
 
             if _tests_in_suite(suite[u"name"], tests):
