@@ -68,14 +68,14 @@ A brief bottom-up description is provided here:
 
      - TG-specific stream profiles provide full control of:
 
-       - Packet definition – layers, MACs, IPs, ports, combinations thereof
+       - Packet definition - layers, MACs, IPs, ports, combinations thereof
          e.g. IPs and UDP ports;
        - Stream definitions - different streams can run together, delayed,
          one after each other;
        - Stream profiles are independent of CSIT framework and can be used
          in any T-rex setup, can be sent anywhere to repeat tests with
          exactly the same setup;
-       - Easily extensible – one can create a new stream profile that meets
+       - Easily extensible - one can create a new stream profile that meets
          tests requirements;
        - Same stream profile can be used for different tests with the same
          traffic needs;
@@ -172,7 +172,7 @@ the command. They must follow English sentence grammar in one of the following
 forms:
 
 #. **Imperative** - verb-object(s): *"Do something"*, verb in base form.
-#. **Declarative** - subject–verb–object(s): *"Subject does something"*, verb in
+#. **Declarative** - subject-verb-object(s): *"Subject does something"*, verb in
    a third-person singular present tense form.
 #. **Affirmative** - modal_verb-verb-object(s): *"Subject should be something"*,
    *"Object should exist"*, verb in base form.
