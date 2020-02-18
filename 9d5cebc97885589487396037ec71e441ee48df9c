@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "1a29e59f_3aee95b3",
+        "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-18T06:45:45Z",
+      "side": 1,
+      "message": "The whole problem is i guess elsewhere.\n\nvirtualenv was meant to isolate environment (having exact version etc.). In our infra this roles is supplied by docker images. (just laziness of some, prevents us to use versioning on them). So we do not even need the virtualenv (which adds complexity) we only need versioning of docker images which is currently hard to achieve. For physical infra we do not need it either.\n\nbut to do that:\n\n- name: Create virtualenv\n  pip:\n    name: \n      - package1\n      - package2\n    virtualenv: ./env\n    virtualenv_site_packages: yes\n    delegate_to: 127.0.0.1\n\nor \n\n- name: Create virtualenv\n  pip:\n    requirements: {{ csit_dir }}/requirements.txt\n    virtualenv: ./env\n    virtualenv_site_packages: yes\n    delegate_to: 127.0.0.1\n\n- name \n  template: src\u003dvenv_exec.j2 dest\u003d{{ venv }}/exec mode\u003d755\n\nExec wrapper:\n\n#!/bin/bash\nsource {{ venv }}/bin/activate\n$@\n\n\nrunning pybot:\n./exec pybot BLAH.....\n\nSo easy....\n\nor \n\n- name: Run CSIT\n  command: \"{{ venv }}/exec pybot BLAH...\"",
+      "parentUuid": "69fa4ee6_55a0b66f",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 5
+      },
+      "revId": "9d5cebc97885589487396037ec71e441ee48df9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24d6a4b2_301aa478",
         "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/ubuntu_bionic.yaml",
         "patchSetId": 5
