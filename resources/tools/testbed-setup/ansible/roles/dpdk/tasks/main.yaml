@@ -33,5 +33,23 @@
   become: yes
   command: "make install T={{ dpdk_build_targets[ansible_machine] }}-linux-gcc DESTDIR={{ dpdk_target_dir }}/dpdk-stable-{{ dpdk_version }} chdir={{ dpdk_target_dir }}/dpdk-stable-{{ dpdk_version }}"
   when: "linux__dpdk_extracted"
+  register: "linux__dpdk_compiled"
   tags:
     - install-dpdk
+
+- name: Archive old igb_uio module
+  copy:
+    src: "/lib/modules/`uname -r`/igb_uio.ko"
+    dest: "/lib/modules/`uname -r`/igb_uio.ko-archived"
+    remote_src: "yes"
+  ignore_errors: "yes"
+  when: "linux__dpdk_compiled"
+  tags:
+    - load-igb_uio-module-wc_activate
+
+- name: Link igb_uio module
+  shell: "ln -fs {{ dpdk_target_dir }}/dpdk-stable-{{ dpdk_version }}/{{ dpdk_build_targets[ansible_machine] }}-linux-gcc/kmod/igb_uio.ko /lib/modules/`uname -r`/igb_uio.ko && depmod -a"
+  ignore_errors: "yes"
+  when: "linux__dpdk_compiled"
+  tags:
+    - link-igb_uio-module
