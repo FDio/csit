@@ -13,6 +13,7 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |    - VPP performance tests 3n-hsw                          |
 |                |    - VPP performance tests 3n-tsh                          |
 |                |    - VPP MRR tests 3n-tsh                                  |
+|                |    - DPDK performance tests 3n-tsh                         |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .07            | Initial version                                            |

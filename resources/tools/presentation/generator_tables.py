@@ -47,7 +47,6 @@ def generate_tables(spec, data):
     """
 
     generator = {
-        u"table_details": table_details,
         u"table_merged_details": table_merged_details,
         u"table_perf_comparison": table_perf_comparison,
         u"table_perf_comparison_nic": table_perf_comparison_nic,
