@@ -1,6 +1,56 @@
 ---
 # file: roles/aws/tasks/main.yaml
 
+- name: Enable src apt repositories
+  replace:
+    path: "/etc/apt/sources.list"
+    regexp: "^# deb-src "
+    replace: "deb-src "
+  notify:
+    - "Update APT cache"
+  tags:
+    - enable-src-repo
+
+- name: GET AWS vfio patcher script
+  get_url:
+    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/vfio-wc-patch.sh"
+    dest: "/opt/vfio-wc-patch.sh"
+    mode: "744"
+  tags:
+    - vfio-aws-patch
+
+- name: Unload modules before patch
+  modprobe:
+    name: "{{ item }}"
+    state: "absent"
+  with_items:
+    - "vfio-pci"
+    - "igb_uio"
+  ignore_errors: "yes"
+  tags:
+    - unload-modules
+
+- name: Patch vfio-pci
+  shell: "/bin/bash /opt/vfio-wc-patch.sh"
+  ignore_errors: yes
+  tags:
+    - patch-vfio-pci
+
+- name: Load modules after patch
+  modprobe:
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+    - "vfio-pci"
+    - "uio"
+  tags:
+    - load-modules
+
+- name: Load igb_uio with wc_activate
+  shell: "insmod {{ dpdk_target_dir }}/dpdk-stable-{{ dpdk_version }}/{{ dpdk_build_targets[ansible_machine] }}-linux-gcc/kmod/igb_uio.ko"
+  tags:
+    - load-igb_uio-module-wc_activate
+
 - name: AWS - Load Kernel Modules By Default
   lineinfile:
     path: "/etc/modules"
@@ -8,12 +58,11 @@
     line: "{{ item }}"
   with_items:
     - "vfio-pci"
+    - "igb_uio"
   tags:
     - load-kernel-modules
 
 - name: Performance Tuning - Adjust nr_hugepages
-  # change the minimum size of the hugepage pool.
-  # 2G VPP, 4GB per VNF/CNF, 2G reserve
   sysctl:
     name: "vm.nr_hugepages"
     value: "8192"

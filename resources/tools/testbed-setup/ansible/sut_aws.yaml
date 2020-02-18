@@ -11,14 +11,14 @@
       tags: common
     - role: sut
       tags: sut
+    - role: dpdk
+      tags: dpdk
     - role: aws
       tags: aws
     - role: iperf
       tags: iperf
     - role: docker
       tags: docker
-    - role: dpdk
-      tags: dpdk
     - role: cleanup
       tags: cleanup
     - role: calibration
