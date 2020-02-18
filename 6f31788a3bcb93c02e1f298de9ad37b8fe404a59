@@ -114,6 +114,29 @@
       "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43dde2b3_fb9ea8d8",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-02-18T12:18:56Z",
+      "side": 1,
+      "message": "Usually, scaling is in the suite name, not the test name. The tests in a suite usually differ in nr of threads/cores and frame sizes.",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 53
+      },
+      "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
