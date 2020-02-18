@@ -88,7 +88,12 @@ def file_test_results(file_spec, input_data, frmt=u"rst"):
     """
 
     base_file_name = f"{file_spec[u'output-file']}"
-    rst_header = file_spec.get(u"file-header", u"")
+    rst_header = (
+        u"\n"
+        u".. |br| raw:: html\n\n    <br />\n\n\n"
+        u".. |prein| raw:: html\n\n    <pre>\n\n\n"
+        u".. |preout| raw:: html\n\n    </pre>\n\n"
+    )
     start_lvl = file_spec.get(u"data-start-level", 4)
 
     logging.info(f"  Generating the file {base_file_name} ...")
