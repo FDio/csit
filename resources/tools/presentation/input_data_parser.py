@@ -421,65 +421,69 @@ class ExecutionChecker(ResultVisitor):
                 robot framework.
             :type in_str_1: str
             :type in_str_2: str
-            :returns: Processed latency string or empty string if a problem
-                occurs.
-            :rtype: tuple(str, str)
+            :returns: Processed latency string or None if a problem occurs.
+            :rtype: tuple
             """
             in_list_1 = in_str_1.split('/', 3)
             in_list_2 = in_str_2.split('/', 3)
 
             if len(in_list_1) != 4 and len(in_list_2) != 4:
-                return u""
+                return None
 
             in_list_1[3] += u"=" * (len(in_list_1[3]) % 4)
             try:
                 hdr_lat_1 = hdrh.histogram.HdrHistogram.decode(in_list_1[3])
             except hdrh.codec.HdrLengthException:
-                return u""
+                return None
 
             in_list_2[3] += u"=" * (len(in_list_2[3]) % 4)
             try:
                 hdr_lat_2 = hdrh.histogram.HdrHistogram.decode(in_list_2[3])
             except hdrh.codec.HdrLengthException:
-                return u""
+                return None
 
             if hdr_lat_1 and hdr_lat_2:
-                hdr_lat_1_50 = hdr_lat_1.get_value_at_percentile(50.0)
-                hdr_lat_1_90 = hdr_lat_1.get_value_at_percentile(90.0)
-                hdr_lat_1_99 = hdr_lat_1.get_value_at_percentile(99.0)
-                hdr_lat_2_50 = hdr_lat_2.get_value_at_percentile(50.0)
-                hdr_lat_2_90 = hdr_lat_2.get_value_at_percentile(90.0)
-                hdr_lat_2_99 = hdr_lat_2.get_value_at_percentile(99.0)
+                hdr_lat = (
+                    hdr_lat_1.get_value_at_percentile(50.0),
+                    hdr_lat_1.get_value_at_percentile(90.0),
+                    hdr_lat_1.get_value_at_percentile(99.0),
+                    hdr_lat_2.get_value_at_percentile(50.0),
+                    hdr_lat_2.get_value_at_percentile(90.0),
+                    hdr_lat_2.get_value_at_percentile(99.0)
+                )
 
-                if (hdr_lat_1_50 + hdr_lat_1_90 + hdr_lat_1_99 +
-                        hdr_lat_2_50 + hdr_lat_2_90 + hdr_lat_2_99):
-                    return (
-                        f"{hdr_lat_1_50} {hdr_lat_1_90} {hdr_lat_1_99}      "
-                        f"{hdr_lat_2_50} {hdr_lat_2_90} {hdr_lat_2_99}"
-                    )
+                if all(hdr_lat):
+                    return hdr_lat
 
-            return u""
+            return None
 
         try:
-            pdr_lat_10 = _process_lat(data[u'pdr_lat_10_1'],
-                                      data[u'pdr_lat_10_2'])
-            pdr_lat_50 = _process_lat(data[u'pdr_lat_50_1'],
-                                      data[u'pdr_lat_50_2'])
-            pdr_lat_90 = _process_lat(data[u'pdr_lat_90_1'],
-                                      data[u'pdr_lat_90_2'])
-            pdr_lat_10 = f"\n3. {pdr_lat_10}" if pdr_lat_10 else u""
-            pdr_lat_50 = f"\n4. {pdr_lat_50}" if pdr_lat_50 else u""
-            pdr_lat_90 = f"\n5. {pdr_lat_90}" if pdr_lat_90 else u""
-
-            return (
+            out_msg = (
                 f"1. {(data[u'ndr_low'] / 1e6):.2f}      "
                 f"{data[u'ndr_low_b']:.2f}"
                 f"\n2. {(data[u'pdr_low'] / 1e6):.2f}      "
                 f"{data[u'pdr_low_b']:.2f}"
-                f"{pdr_lat_10}"
-                f"{pdr_lat_50}"
-                f"{pdr_lat_90}"
             )
+            latency =
+                _process_lat(data[u'pdr_lat_10_1'], data[u'pdr_lat_10_2']),
+                _process_lat(data[u'pdr_lat_50_1'], data[u'pdr_lat_50_2']),
+                _process_lat(data[u'pdr_lat_90_1'], data[u'pdr_lat_90_2'])
+            )
+            if all(latency):
+                max_len = len(str(max((max(item) for item in latency))))
+
+                for idx, lat in enumerate(latency):
+                    if not idx:
+                        out_msg += u"\n"
+                    out_msg += f"\n{idx + 3}. "
+                    for count, itm in enumerate(lat):
+                        if count == 3:
+                            out_msg += u" " * 6
+                        out_msg += u" " * (max_len - len(str(itm)) + 1)
+                        out_msg += str(itm)
+
+            return out_msg
+
         except (AttributeError, IndexError, ValueError, KeyError):
             return msg
 
