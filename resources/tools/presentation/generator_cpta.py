@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -359,10 +359,15 @@ def _generate_all_charts(spec, input_data):
 
         if graph.get(u"include", None):
             data = input_data.filter_tests_by_name(
-                graph, continue_on_error=True
+                graph,
+                params=[u"type", u"result", u"tags"],
+                continue_on_error=True
             )
         else:
-            data = input_data.filter_data(graph, continue_on_error=True)
+            data = input_data.filter_data(
+                graph,
+                params=[u"type", u"result", u"tags"],
+                continue_on_error=True)
 
         if data is None or data.empty:
             logging.error(u"No data.")
