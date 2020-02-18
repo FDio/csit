@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6a585b8_83b612b1",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-18T10:00:56Z",
+      "side": 1,
+      "message": "That is clear from line 270.\nInstead, explain that sometimes the \"str\" is not JSON formatted (the \"if\" in line 245).",
+      "range": {
+        "startLine": 266,
+        "startChar": 38,
+        "endLine": 266,
+        "endChar": 50
+      },
+      "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77363c03_3d901e30",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-18T10:00:56Z",
+      "side": 1,
+      "message": "Move this sentence to a standalone paragraph (around line 256).",
+      "range": {
+        "startLine": 267,
+        "startChar": 33,
+        "endLine": 267,
+        "endChar": 36
+      },
+      "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a42b160_5f584d7e",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-18T10:00:56Z",
+      "side": 1,
+      "message": "I still do not understand why are you calling this no_results (while returning test_results) and not no_stdout (as line 311 defines).",
+      "range": {
+        "startLine": 339,
+        "startChar": 12,
+        "endLine": 339,
+        "endChar": 22
+      },
+      "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74bbab45_08ee746d",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-18T10:00:56Z",
+      "side": 1,
+      "message": "Maybe you want to return (also) no_json, now when it makes a difference?",
+      "range": {
+        "startLine": 345,
+        "startChar": 52,
+        "endLine": 345,
+        "endChar": 54
+      },
+      "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa640ed6_7fc0131e",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-18T10:00:56Z",
+      "side": 1,
+      "message": "The name parts distinguishing different test cases within the same test suite tend to be at the start, so I would move this just after -1c-, or maybe even before -9000B-.",
+      "range": {
+        "startLine": 58,
+        "startChar": 44,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
