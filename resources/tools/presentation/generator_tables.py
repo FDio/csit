@@ -1526,7 +1526,7 @@ def _generate_url(testbed, test_name):
     elif u"dnv" in testbed or u"tsh" in testbed:
         driver = u"ixgbe"
     else:
-        driver = u"i40e"
+        driver = u"dpdk"
 
     if u"acl" in test_name or \
             u"macip" in test_name or \
