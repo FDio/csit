@@ -1,0 +1,10 @@
+---
+# file: roles/aws/tasks/ubuntu_bionic.yaml
+
+- name: AWS - Enable deb-src APT Repositories
+  replace:
+    path: "/etc/apt/sources.list"
+    regexp: "^# deb-src "
+    replace: "deb-src "
+  tags:
+    - enable-src-repo

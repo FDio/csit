@@ -9,6 +9,8 @@
       tags: user_add
     - role: common
       tags: common
+    - role: dpdk
+      tags: dpdk
     - role: aws
       tags: aws
     - role: tg
