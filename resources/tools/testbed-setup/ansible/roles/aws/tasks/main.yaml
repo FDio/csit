@@ -1,6 +1,25 @@
 ---
 # file: roles/aws/tasks/main.yaml
 
+- name: Update package cache
+  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
+  tags: update-package-cache
+
+- name: GET AWS vfio patcher script
+  get_url:
+    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/vfio-wc-patch.sh"
+    dest: "/opt/vfio-wc-patch.sh"
+    mode: "744"
+  register: "vfio_patch_downloaded"
+  tags:
+    - vfio-aws-patch
+
+- name: Patch vfio-pci
+  shell: "/bin/bash /opt/vfio-wc-patch.sh"
+  when: "vfio_patch_downloaded"
+  tags:
+    - patch-vfio-pci
+
 - name: AWS - Load Kernel Modules By Default
   lineinfile:
     path: "/etc/modules"
@@ -8,12 +27,33 @@
     line: "{{ item }}"
   with_items:
     - "vfio-pci"
+    - "igb_uio"
+  register: "modules_added"
   tags:
     - load-kernel-modules
 
+- name: AWS - Add Kernel Modules Options
+  lineinfile:
+    path: "/etc/modprobe.d/igb_uio.conf"
+    state: "present"
+    line: "{{ item }}"
+    create: "yes"
+  with_items:
+    - "options igb_uio wc_activate=1"
+  when: "modules_added"
+  register: "modules_option_added"
+  tags:
+    - load-kernel-modules
+
+- name: Reload systemd-modules
+  systemd:
+    name: "systemd-modules-load"
+    state: "restarted"
+  when: "modules_option_added"
+  tags:
+    - reload-systemd-modules
+
 - name: Performance Tuning - Adjust nr_hugepages
-  # change the minimum size of the hugepage pool.
-  # 2G VPP, 4GB per VNF/CNF, 2G reserve
   sysctl:
     name: "vm.nr_hugepages"
     value: "8192"
