@@ -142,10 +142,8 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
             if u"vic1385" in iface:
                 # Not supported in HW.
                 emit = False
-            if u"ipsec" in suite_id:
-                # IPsec code does not support chained buffers.
-                # Tracked by Jira ticket VPP-1207.
-                emit = False
+            # CSIT-1593 predicts failures for AVF+ip4 (or crypto).
+            # Not skipping here, as we do not have a proper VPP bug open yet.
         if u"-16vm2t-" in suite_id or u"-16dcr2t-" in suite_id:
             if kwargs[u"phy_cores"] > 3:
                 # CSIT lab only has 28 (physical) core processors,
