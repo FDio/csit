@@ -338,10 +338,7 @@ def table_details(table, input_data):
 
         # Write the data to file
         if table_lst:
-            file_name = (
-                f"{table[u'output-file']}_{suite_name}"
-                f"{table[u'output-file-ext']}"
-            )
+            file_name = f"{table[u'output-file']}_{suite_name}.csv"
             logging.info(f"      Writing file: {file_name}")
             with open(file_name, u"wt") as file_handler:
                 file_handler.write(u",".join(header) + u"\n")
@@ -367,7 +364,11 @@ def table_merged_details(table, input_data):
         f"    Creating the data set for the {table.get(u'type', u'')} "
         f"{table.get(u'title', u'')}."
     )
-    data = input_data.filter_data(table, continue_on_error=True)
+    data = input_data.filter_data(
+        table,
+        params=[u"type", u"name", u"parent", u"msg"],
+        continue_on_error=True
+    )
     data = input_data.merge_data(data)
     data.sort_index(inplace=True)
 
@@ -422,10 +423,7 @@ def table_merged_details(table, input_data):
 
         # Write the data to file
         if table_lst:
-            file_name = (
-                f"{table[u'output-file']}_{suite_name}"
-                f"{table[u'output-file-ext']}"
-            )
+            file_name = f"{table[u'output-file']}_{suite_name}.csv"
             logging.info(f"      Writing file: {file_name}")
             with open(file_name, u"wt") as file_handler:
                 file_handler.write(u",".join(header) + u"\n")
