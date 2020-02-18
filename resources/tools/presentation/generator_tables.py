@@ -267,90 +267,6 @@ def table_oper_data_html(table, input_data):
     logging.info(u"  Done.")
 
 
-def table_details(table, input_data):
-    """Generate the table(s) with algorithm: table_detailed_test_results
-    specified in the specification file.
-
-    :param table: Table to generate.
-    :param input_data: Data to process.
-    :type table: pandas.Series
-    :type input_data: InputData
-    """
-
-    logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
-
-    # Transform the data
-    logging.info(
-        f"    Creating the data set for the {table.get(u'type', u'')} "
-        f"{table.get(u'title', u'')}."
-    )
-    data = input_data.filter_data(table)
-
-    # Prepare the header of the tables
-    header = list()
-    for column in table[u"columns"]:
-        header.append(
-            u'"{0}"'.format(str(column[u"title"]).replace(u'"', u'""'))
-        )
-
-    # Generate the data for the table according to the model in the table
-    # specification
-    job = list(table[u"data"].keys())[0]
-    build = str(table[u"data"][job][0])
-    try:
-        suites = input_data.suites(job, build)
-    except KeyError:
-        logging.error(
-            u"    No data available. The table will not be generated."
-        )
-        return
-
-    for suite in suites.values:
-        # Generate data
-        suite_name = suite[u"name"]
-        table_lst = list()
-        for test in data[job][build].keys():
-            if data[job][build][test][u"parent"] not in suite_name:
-                continue
-            row_lst = list()
-            for column in table[u"columns"]:
-                try:
-                    col_data = str(data[job][build][test][column[
-                        u"data"].split(" ")[1]]).replace(u'"', u'""')
-                    if column[u"data"].split(u" ")[1] in (u"name", ):
-                        if len(col_data) > 30:
-                            col_data_lst = col_data.split(u"-")
-                            half = int(len(col_data_lst) / 2)
-                            col_data = f"{u'-'.join(col_data_lst[:half])}" \
-                                       f"- |br| " \
-                                       f"{u'-'.join(col_data_lst[half:])}"
-                        col_data = f" |prein| {col_data} |preout| "
-                    elif column[u"data"].split(u" ")[1] in (u"msg", ):
-                        col_data = f" |prein| {col_data} |preout| "
-                    elif column[u"data"].split(u" ")[1] in \
-                        (u"conf-history", u"show-run"):
-                        col_data = col_data.replace(u" |br| ", u"", 1)
-                        col_data = f" |prein| {col_data[:-5]} |preout| "
-                    row_lst.append(f'"{col_data}"')
-                except KeyError:
-                    row_lst.append(u"No data")
-            table_lst.append(row_lst)
-
-        # Write the data to file
-        if table_lst:
-            file_name = (
-                f"{table[u'output-file']}_{suite_name}"
-                f"{table[u'output-file-ext']}"
-            )
-            logging.info(f"      Writing file: {file_name}")
-            with open(file_name, u"wt") as file_handler:
-                file_handler.write(u",".join(header) + u"\n")
-                for item in table_lst:
-                    file_handler.write(u",".join(item) + u"\n")
-
-    logging.info(u"  Done.")
-
-
 def table_merged_details(table, input_data):
     """Generate the table(s) with algorithm: table_merged_details
     specified in the specification file.
@@ -422,10 +338,7 @@ def table_merged_details(table, input_data):
 
         # Write the data to file
         if table_lst:
-            file_name = (
-                f"{table[u'output-file']}_{suite_name}"
-                f"{table[u'output-file-ext']}"
-            )
+            file_name = f"{table[u'output-file']}_{suite_name}.csv"
             logging.info(f"      Writing file: {file_name}")
             with open(file_name, u"wt") as file_handler:
                 file_handler.write(u",".join(header) + u"\n")
