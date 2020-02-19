@@ -15,6 +15,9 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |    - VPP MRR tests 3n-tsh                                  |
 |                |    - DPDK performance tests 3n-tsh                         |
 |                |                                                            |
+|                | 3. Chapters "Detailed Results", "Test Configuration" and   |
+|                |    "Test Operational Data" split into sub-chapters.        |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .07            | Initial version                                            |
 |                |                                                            |
