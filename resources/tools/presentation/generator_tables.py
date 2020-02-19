@@ -96,7 +96,14 @@ def table_oper_data_html(table, input_data):
     if data.empty:
         return
     data = input_data.merge_data(data)
-    data.sort_index(inplace=True)
+
+    sort_tests = table.get(u"sort", None)
+    if sort_tests and sort_tests in (u"ascending", u"descending"):
+        args = dict(
+            inplace=True,
+            ascending=True if sort_tests == u"ascending" else False
+        )
+        data.sort_index(**args)
 
     suites = input_data.filter_data(
         table,
@@ -284,12 +291,15 @@ def table_merged_details(table, input_data):
     )
     data = input_data.filter_data(table, continue_on_error=True)
     data = input_data.merge_data(data)
-    data.sort_index(inplace=True)
 
-    logging.info(
-        f"    Creating the data set for the {table.get(u'type', u'')} "
-        f"{table.get(u'title', u'')}."
-    )
+    sort_tests = table.get(u"sort", None)
+    if sort_tests and sort_tests in (u"ascending", u"descending"):
+        args = dict(
+            inplace=True,
+            ascending=True if sort_tests == u"ascending" else False
+        )
+        data.sort_index(**args)
+
     suites = input_data.filter_data(
         table, continue_on_error=True, data_set=u"suites")
     suites = input_data.merge_data(suites)
