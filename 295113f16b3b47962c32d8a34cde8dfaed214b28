@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ce36d09_6a080106",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-19T07:56:45Z",
+      "side": 1,
+      "message": "Where is the definition? The file is missing.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 28
+      },
+      "revId": "295113f16b3b47962c32d8a34cde8dfaed214b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56abac11_05adccea",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-19T07:56:45Z",
+      "side": 1,
+      "message": "AWS - Get vfio-pci Patcher Script",
+      "range": {
+        "startLine": 8,
+        "startChar": 8,
+        "endLine": 8,
+        "endChar": 35
+      },
+      "revId": "295113f16b3b47962c32d8a34cde8dfaed214b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52b34944_b1c3657d",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-19T07:56:45Z",
+      "side": 1,
+      "message": "AWS - Patch vfio-pci\n\niow: follow naming logic in whole file",
+      "range": {
+        "startLine": 17,
+        "startChar": 8,
+        "endLine": 17,
+        "endChar": 22
+      },
+      "revId": "295113f16b3b47962c32d8a34cde8dfaed214b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5594495_96001c44",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-19T07:56:45Z",
+      "side": 1,
+      "message": "vfio-aws-patch",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 20
+      },
+      "revId": "295113f16b3b47962c32d8a34cde8dfaed214b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75c6dec8_6f5887cf",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-19T07:56:45Z",
+      "side": 1,
+      "message": "\"modules_added\"",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 30
+      },
+      "revId": "295113f16b3b47962c32d8a34cde8dfaed214b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dea0715_e2f6ba6a",
+        "filename": "resources/tools/testbed-setup/ansible/roles/dpdk/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-19T07:56:45Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 37
+      },
+      "revId": "295113f16b3b47962c32d8a34cde8dfaed214b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
