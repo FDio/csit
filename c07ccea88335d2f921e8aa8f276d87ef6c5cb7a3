@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b875a97_cab7a613",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-19T13:25:22Z",
+      "side": 1,
+      "message": "AWS - Edit repositories",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 24
+      },
+      "revId": "c07ccea88335d2f921e8aa8f276d87ef6c5cb7a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33691749_ddf35e20",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-19T13:25:22Z",
+      "side": 1,
+      "message": "edit-repo",
+      "range": {
+        "startLine": 6,
+        "startChar": 8,
+        "endLine": 6,
+        "endChar": 23
+      },
+      "revId": "c07ccea88335d2f921e8aa8f276d87ef6c5cb7a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17e60133_1effb701",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-19T13:25:22Z",
+      "side": 1,
+      "message": "deb-src APT Repositories",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "c07ccea88335d2f921e8aa8f276d87ef6c5cb7a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
