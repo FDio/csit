@@ -440,6 +440,7 @@
         - 12  # NDRPDR sel
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
+        - 18  # NDRPDR sel
 
     plot-dpdk-hdrh-lat-3n-tsh:
       csit-dpdk-perf-verify-2001-3n-tsh:
@@ -548,13 +549,17 @@
         - 49  # NDRPDR full
         - 50  # NDRPDR full
         - 51  # NDRPDR full
+        - 52  # NDRPDR full
         - 53  # NDRPDR full
         - 54  # NDRPDR full
         - 55  # NDRPDR full
         - 56  # NDRPDR full
+        - 57  # NDRPDR full
         - 58  # NDRPDR full
+        - 59  # NDRPDR full
         - 61  # NDRPDR full
         - 62  # NDRPDR full
+        - 65  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       # TODO: Replace
@@ -2001,13 +2006,17 @@
       - 49  # NDRPDR full
       - 50  # NDRPDR full
       - 51  # NDRPDR full
+      - 52  # NDRPDR full
       - 53  # NDRPDR full
       - 54  # NDRPDR full
       - 55  # NDRPDR full
       - 56  # NDRPDR full
+      - 57  # NDRPDR full
       - 58  # NDRPDR full
+      - 59  # NDRPDR full
       - 61  # NDRPDR full
       - 62  # NDRPDR full
+      - 65  # NDRPDR full
 
 #    csit-vpp-perf-verify-1904-3n-skx:
 #      - 7   # MRR sel
@@ -2366,6 +2375,7 @@
       - 12  # NDRPDR sel
       - 14  # NDRPDR sel
       - 15  # NDRPDR sel
+      - 18  # NDRPDR sel
 
     csit-vpp-device-2001-ubuntu1804-1n-skx:
       - 57
@@ -2375,8 +2385,8 @@
   format:
     html:
     - full
-#    pdf:
-#    - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
