@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "17ef9b4c_01218d57",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-19T08:04:43Z",
+      "side": 1,
+      "message": "According to link below script is doing ap-get update anyway. So not needed.",
+      "parentUuid": "9ce36d09_6a080106",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 28
+      },
+      "revId": "295113f16b3b47962c32d8a34cde8dfaed214b28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56abac11_05adccea",
         "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
         "patchSetId": 2
