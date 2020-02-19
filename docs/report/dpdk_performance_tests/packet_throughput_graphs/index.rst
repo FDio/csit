@@ -65,11 +65,11 @@ Additional information about graph data:
     2n-dnv-x553
     3n-dnv-x553
     3n-tsh-x520
+    2n-clx-xxv710
+    2n-clx-x710
 
 ..
     2n-skx-xxv710
     2n-skx-x710
     3n-skx-xxv710
     3n-skx-x710
-    2n-clx-xxv710
-    2n-clx-x710
