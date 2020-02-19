@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90c0b6e4_89ed6dda",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-19T16:05:08Z",
+      "side": 1,
+      "message": "Add a dash, as in line 62.",
+      "range": {
+        "startLine": 60,
+        "startChar": 33,
+        "endLine": 60,
+        "endChar": 34
+      },
+      "revId": "8040275164cd3893d2933ec8f7d668c5fd9b49a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1e6bebf_0c8bae2b",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-19T16:05:08Z",
+      "side": 1,
+      "message": "Document, or better yet return (defer_fail\u003dTrue, test_results).",
+      "range": {
+        "startLine": 314,
+        "startChar": 12,
+        "endLine": 314,
+        "endChar": 30
+      },
+      "revId": "8040275164cd3893d2933ec8f7d668c5fd9b49a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3550a660_5de73b0a",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-19T16:05:08Z",
+      "side": 1,
+      "message": "Nested ifs take horizontal space. Consider refactoring into a series of ifs with early returns.\nIn this case, negative test (if not program_stdout) takes less space.\nThat way you may no longer need bad_test_results (or even defer_fail) as a variable.",
+      "range": {
+        "startLine": 315,
+        "startChar": 8,
+        "endLine": 315,
+        "endChar": 10
+      },
+      "revId": "8040275164cd3893d2933ec8f7d668c5fd9b49a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33309104_0b48da01",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-19T16:05:08Z",
+      "side": 1,
+      "message": "Document, or better yet return (defer_fail\u003dTrue, test_results).",
+      "range": {
+        "startLine": 340,
+        "startChar": 16,
+        "endLine": 340,
+        "endChar": 34
+      },
+      "revId": "8040275164cd3893d2933ec8f7d668c5fd9b49a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
