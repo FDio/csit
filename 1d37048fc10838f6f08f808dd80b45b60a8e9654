@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e7f58c0_fb0c9f70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-19T15:42:42Z",
+      "side": 1,
+      "message": "Also https://gerrit.fd.io/r/c/vpp/+/25241",
+      "range": {
+        "startLine": 9,
+        "startChar": 65,
+        "endLine": 9,
+        "endChar": 70
+      },
+      "revId": "1d37048fc10838f6f08f808dd80b45b60a8e9654",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
