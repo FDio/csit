@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6775cb46_d1d81423",
+        "filename": "resources/tools/terraform/aws/main.tf",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-19T12:24:20Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/c/csit/+/25271",
+      "range": {
+        "startLine": 103,
+        "startChar": 22,
+        "endLine": 103,
+        "endChar": 24
+      },
+      "revId": "6bc0123c235171918a6193b1551ed4d4d82c2fec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
