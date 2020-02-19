@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b25ba15_b8252c54",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 19
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-19T16:46:35Z",
+      "side": 1,
+      "message": "Listing both specific arguments and \"No Arguments\" is confusing. It is probably better to leave just the examples, as other keywords in this file do.",
+      "range": {
+        "startLine": 160,
+        "startChar": 12,
+        "endLine": 160,
+        "endChar": 20
+      },
+      "revId": "1c7c9d6b5d3660795c4fb504ecdf505910fd7e5d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de390c4b_32f36fe8",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 19
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-19T16:46:35Z",
+      "side": 1,
+      "message": "The ending \\| is needed for display purposes.",
+      "range": {
+        "startLine": 167,
+        "startChar": 76,
+        "endLine": 167,
+        "endChar": 77
+      },
+      "revId": "1c7c9d6b5d3660795c4fb504ecdf505910fd7e5d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6900e11_81825917",
+        "filename": "tests/vpp/device/crypto/eth2p-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-dev.robot",
+        "patchSetId": 19
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-19T16:46:35Z",
+      "side": 1,
+      "message": "No trailing spaces please.",
+      "range": {
+        "startLine": 21,
+        "startChar": 78,
+        "endLine": 21,
+        "endChar": 79
+      },
+      "revId": "1c7c9d6b5d3660795c4fb504ecdf505910fd7e5d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
