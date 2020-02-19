@@ -8,6 +8,9 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +================+============================================================+
 | .09            | 1. Added data:                                             |
 |                |                                                            |
+|                |    - VPP performance tests 2n-clx                          |
+|                |    - DPDK performance tests 2n-clx                         |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .08            | 1. Added PDF version                                       |
 |                |                                                            |

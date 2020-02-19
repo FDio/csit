@@ -24,10 +24,10 @@ resources.
 
 .. toctree::
 
-    cnf_service_chains_ipsec
-
-..
     vnf_service_chains
     cnf_service_chains
     cnf_service_pipelines
+
+..
     vnf_service_chains_vxlan
+    cnf_service_chains_ipsec
