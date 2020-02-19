@@ -4411,7 +4411,7 @@
   algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,HSW]}/vpp_test_operational_3n_hsw"
   data: "vpp-perf-results-3n-hsw"
-  filter: "'NDRPDR'"
+  filter: "all"
 
 ## Test Operational Data - VPP Performance Operational Data 3n-skx
 #- type: "table"
@@ -4419,7 +4419,7 @@
 #  algorithm: "table_oper_data_html"
 #  output-file: "{DIR[DTO,PERF,VPP,3N,SKX]}/vpp_test_operational_3n_skx"
 #  data: "vpp-perf-results-3n-skx"
-#  filter: "not 'CFS_OPT'"
+#  filter: "all"
 #
 ## Test Operational Data - VPP Performance Operational Data 2n-skx
 #- type: "table"
@@ -4427,7 +4427,7 @@
 #  algorithm: "table_oper_data_html"
 #  output-file: "{DIR[DTO,PERF,VPP,2N,SKX]}/vpp_test_operational_2n_skx"
 #  data: "vpp-perf-results-2n-skx"
-#  filter: "not 'CFS_OPT'"
+#  filter: "all"
 
 ## Test Operational Data - VPP Performance Operational Data 2n-clx
 #- type: "table"
@@ -4435,7 +4435,7 @@
 #  algorithm: "table_oper_data_html"
 #  output-file: "{DIR[DTO,PERF,VPP,2N,CLX]}/vpp_test_operational_2n_clx"
 #  data: "vpp-perf-results-2n-clx"
-#  filter: "not 'CFS_OPT'"
+#  filter: "all"
 
 # Test Operational Data - VPP Performance Operational Data 3n-tsh
 - type: "table"
@@ -4443,7 +4443,7 @@
   algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,TSH]}/vpp_test_operational_3n_tsh"
   data: "vpp-perf-results-3n-tsh"
-  filter: "not 'CFS_OPT'"
+  filter: "all"
 
 # Test Operational Data - VPP Performance Operational Data 3n-dnv
 - type: "table"
@@ -4451,7 +4451,7 @@
   algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,3N,DNV]}/vpp_test_operational_3n_dnv"
   data: "vpp-perf-results-3n-dnv"
-  filter: "'NDRPDR'"
+  filter: "all"
 
 # Test Operational Data - VPP Performance Operational Data 2n-dnv
 - type: "table"
@@ -4459,7 +4459,7 @@
   algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,2N,DNV]}/vpp_test_operational_2n_dnv"
   data: "vpp-perf-results-2n-dnv"
-  filter: "'NDRPDR'"
+  filter: "all"
 
 # Detailed Test Results - VPP MRR Results 3n-hsw
 - type: "table"
@@ -5051,7 +5051,7 @@
 #    data: "dpdk-compare-testbeds-skx-clx-cmp"
 #  data: "dpdk-compare-testbeds-skx-clx"
 #  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'NDRPDR'"
+#  filter: "all"
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5070,7 +5070,7 @@
 #    data: "dpdk-compare-testbeds-skx-clx-cmp"
 #  data: "dpdk-compare-testbeds-skx-clx"
 #  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'NDRPDR'"
+#  filter: "all"
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5089,7 +5089,7 @@
 #    data: "dpdk-compare-topologies-cmp"
 #  data: "dpdk-compare-topologies"
 #  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+#  filter: "all"
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5108,7 +5108,7 @@
 #    data: "dpdk-compare-topologies-cmp"
 #  data: "dpdk-compare-topologies"
 #  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+#  filter: "all"
 #  parameters:
 #  - "name"
 #  - "parent"
