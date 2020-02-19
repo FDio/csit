@@ -100,7 +100,7 @@ resource "aws_vpc" "CSIT" {
 
 resource "aws_security_group" "CSIT" {
   name        = "CSIT"
-  description = "Allow  inbound traffic"
+  description = "Allow inbound traffic"
   vpc_id = aws_vpc.CSIT.id
 
   ingress {
