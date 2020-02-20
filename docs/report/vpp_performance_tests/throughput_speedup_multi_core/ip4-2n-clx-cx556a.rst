@@ -31,8 +31,8 @@
 2n-clx-cx556a
 ~~~~~~~~~~~~~
 
-64b-2t1c-ip4routing-base
-------------------------
+64b-2t1c-ip4routing-base-rdma-core
+----------------------------------
 
 .. raw:: html
 

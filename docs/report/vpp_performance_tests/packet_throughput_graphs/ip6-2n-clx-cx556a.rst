@@ -31,8 +31,8 @@
 2n-clx-cx556a
 ~~~~~~~~~~~~~
 
-78b-2t1c-ip6routing-base-scale
-------------------------------
+78b-2t1c-ip6routing-base-scale-rdma-core
+----------------------------------------
 
 .. raw:: html
 

@@ -13,7 +13,6 @@ CSIT source code for the test cases used for plots can be found in
 
     container_memif-3n-tsh-x520
     container_memif-2n-clx-xxv710
-    container_memif-2n-clx-cx556a
 
 ..
     container_memif-2n-skx-xxv710
