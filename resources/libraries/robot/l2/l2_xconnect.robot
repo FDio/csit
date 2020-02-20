@@ -126,14 +126,14 @@
 | | | ${sock2}= | Set Variable | /var/run/vpp/sock-${number}-2
 | | | ${prev_index}= | Evaluate | ${number}-1
 | | | Configure vhost interfaces | ${nodes['${dut}']}
-| | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
-| | | ... | ${dut}-vhost-${number}-if2
-| | | ${dut_xconnect_if1}= | Set Variable If | ${number}==1 | ${${dut}_if1}
-| | | ... | ${${dut}-vhost-${prev_index}-if2}
-| | | Configure L2XC | ${nodes['${dut}']} | ${dut_xconnect_if1}
-| | | ... | ${${dut}-vhost-${number}-if1}
+| | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if2
+| | | ... | ${dut}-vhost-${number}-if1
+| | | ${dut_xconnect_if}= | Set Variable If | ${number}==1 | ${${dut}_if1}
+| | | ... | ${${dut}-vhost-${prev_index}-if1}
+| | | Configure L2XC | ${nodes['${dut}']} | ${dut_xconnect_if}
+| | | ... | ${${dut}-vhost-${number}-if2}
 | | | Run Keyword If | ${number}==${nf_nodes} | Configure L2XC
-| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${number}-if2} | ${${dut}_if2}
+| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${number}-if1} | ${${dut}_if2}
 | | END
 
 | Initialize L2 xconnect with Vhost-User
