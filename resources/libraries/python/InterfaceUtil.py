@@ -1636,6 +1636,7 @@ class InterfaceUtil:
                 if ifc[u"vpp_sw_index"] is not None:
                     papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
             details = papi_exec.get_details(err_msg)
+            logger.debug(f"Rx placement before round robin: {details}")
         return sorted(details, key=lambda k: k[u"sw_if_index"])
 
     @staticmethod
