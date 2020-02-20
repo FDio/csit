@@ -132,9 +132,9 @@ class NodePath:
                     )
 
             if not l_set:
-                link = links[0]
+                link = links[-1]
             else:
-                link = l_set[0]
+                link = l_set[-1]
 
             self._links.append(link)
             interface1 = topo.get_interface_by_link_name(node1, link)
