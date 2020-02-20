@@ -46,6 +46,30 @@
       "revId": "17e3f07318b54f55f7b48c4893b396dd8997b757",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "980add2d_436ca17f",
+        "filename": "resources/libraries/bash/entry/check/copyright_year.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-02-20T17:00:42Z",
+      "side": 1,
+      "message": "\u003e Done in patchset 12. Maybe I can add \"set +x\" for the cycle body, to avoid inflating tox console output on large changes.\n\nI agree this would be desirable.  Otherwise looks good to me.",
+      "parentUuid": "54c5e459_4c4e269b",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "17e3f07318b54f55f7b48c4893b396dd8997b757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
