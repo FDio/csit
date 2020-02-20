@@ -33,24 +33,6 @@ variable "trex_dummy_cidr_port_1" {
   type = string
   default = "20.0.0.0/24"
 }
-
-# IPs
-variable "a_gateway" {
-  type = string
-  default = "192.168.0.1"
-}
-variable "b_gateway" {
-  type = string
-  default = "192.168.10.1"
-}
-variable "c_gateway" {
-  type = string
-  default = "200.0.0.1"
-}
-variable "d_gateway" {
-  type = string
-  default = "192.168.20.1"
-}
 variable "tg_if1_ip" {
   type = string
   default = "192.168.10.254"
@@ -100,7 +82,7 @@ resource "aws_vpc" "CSIT" {
 
 resource "aws_security_group" "CSIT" {
   name        = "CSIT"
-  description = "Allow  inbound traffic"
+  description = "Allow inbound traffic"
   vpc_id = aws_vpc.CSIT.id
 
   ingress {
@@ -118,27 +100,27 @@ resource "aws_security_group" "CSIT" {
   }
 
   egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   depends_on = [aws_vpc.CSIT]
 }
 
 resource "aws_vpc_ipv4_cidr_block_association" "b" {
-  vpc_id     = aws_vpc.CSIT.id
+  vpc_id = aws_vpc.CSIT.id
   cidr_block = var.vpc_cidr_b
   depends_on = [aws_vpc.CSIT]
 }
 resource "aws_vpc_ipv4_cidr_block_association" "c" {
-  vpc_id     = aws_vpc.CSIT.id
+  vpc_id = aws_vpc.CSIT.id
   cidr_block = var.vpc_cidr_c
   depends_on = [aws_vpc.CSIT]
 }
 resource "aws_vpc_ipv4_cidr_block_association" "d" {
-  vpc_id     = aws_vpc.CSIT.id
+  vpc_id = aws_vpc.CSIT.id
   cidr_block = var.vpc_cidr_d
   depends_on = [aws_vpc.CSIT]
 }
@@ -185,12 +167,12 @@ data "aws_ami" "ubuntu" {
   most_recent = true
 
   filter {
-    name   = "name"
+    name = "name"
     values = ["*hvm-ssd/ubuntu-bionic-18.04-amd64*"]
   }
 
   filter {
-    name   = "virtualization-type"
+    name = "virtualization-type"
     values = ["hvm"]
   }
 
@@ -198,12 +180,12 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_placement_group" "CSIT" {
-  name     = "CSIT"
+  name = "CSIT"
   strategy = "cluster"
 }
 
 resource "aws_instance" "tg" {
-  ami           = data.aws_ami.ubuntu.id
+  ami = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 #  cpu_threads_per_core = 1
 #  cpu_core_count = 18
@@ -218,7 +200,7 @@ resource "aws_instance" "tg" {
 }
 
 resource "aws_instance" "dut1" {
-  ami           = data.aws_ami.ubuntu.id
+  ami = data.aws_ami.ubuntu.id
 #  cpu_threads_per_core = 1
 #  cpu_core_count = 18
   instance_type = var.instance_type
@@ -233,7 +215,7 @@ resource "aws_instance" "dut1" {
 }
 
 resource "aws_instance" "dut2" {
-  ami           = data.aws_ami.ubuntu.id
+  ami = data.aws_ami.ubuntu.id
 #  cpu_threads_per_core = 1
 #  cpu_core_count = 18
   instance_type = var.instance_type
