@@ -16283,7 +16283,7 @@
   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-2n-clx"
-  filter: "'2T1C' and 'NIC_Mellanox-CX556A'"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
 
@@ -16306,6 +16306,17 @@
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-3n-tsh"
   filter: "'1T1C' and 'NIC_Intel-X520-DA2'"
+  layout:
+    layout: "plot-hdrh-latency-by-percentile"
+
+- type: "plot"
+  title: "Latency by percentile: DPDK 2n-clx"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-2n-clx"
+  output-file-links: "{DIR[LAT,DPDK]}/2n_clx.rst"
+  target-links: "../../_static/dpdk"
+  data: "plot-dpdk-hdrh-lat-2n-clx"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
 

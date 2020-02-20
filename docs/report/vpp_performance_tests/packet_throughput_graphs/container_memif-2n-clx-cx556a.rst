@@ -31,8 +31,8 @@
 2n-clx-cx556a
 ~~~~~~~~~~~~~
 
-64b-2t1c-memif-base-dpdk
-------------------------
+64b-2t1c-memif-base-rdma-core
+-----------------------------
 
 .. raw:: html
 

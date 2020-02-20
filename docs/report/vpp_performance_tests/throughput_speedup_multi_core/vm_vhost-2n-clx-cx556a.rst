@@ -31,8 +31,8 @@
 2n-clx-cx556a
 ~~~~~~~~~~~~~
 
-64b-2t1c-vhost-base-testpmd
----------------------------
+64b-2t1c-vhost-base-rdma-core-testpmd
+-------------------------------------
 
 .. raw:: html
 
@@ -74,8 +74,8 @@
 
     \clearpage
 
-64b-2t1c-vhost-base-vpp
------------------------
+64b-2t1c-vhost-base-rdma-core-vpp
+---------------------------------
 
 .. raw:: html
 
