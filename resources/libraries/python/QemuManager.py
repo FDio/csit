@@ -89,8 +89,8 @@ class QemuManager:
                     vnf=kwargs[u"vnf"], img=img
                 )
                 self.machines[name].configure_kernelvm_vnf(
-                    mac1=f"52:54:00:00:{qemu_id:02x}:01",
-                    mac2=f"52:54:00:00:{qemu_id:02x}:02",
+                    mac1=f"52:54:00:00:{qemu_id:02x}:02",
+                    mac2=f"52:54:00:00:{qemu_id:02x}:01",
                     vif1_mac=vif1_mac, vif2_mac=vif2_mac, queues=queues,
                     jumbo_frames=kwargs[u"jumbo"]
                 )
