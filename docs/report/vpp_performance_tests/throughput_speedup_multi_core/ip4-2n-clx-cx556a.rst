@@ -31,13 +31,13 @@
 2n-clx-cx556a
 ~~~~~~~~~~~~~
 
-64b-2t1c-ip4routing-base-rdma-core
-----------------------------------
+64b-ip4routing-base-rdma-core
+-----------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-rdma-ip4base-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-tsa}
-            \label{fig:2n-clx-cx556a-64b-2t1c-rdma-ip4base-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-rdma-ip4base-ndr-tsa}
+            \label{fig:2n-clx-cx556a-64b-rdma-ip4base-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-2t1c-rdma-ip4base-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-rdma-ip4base-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,21 +66,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-2t1c-rdma-ip4base-pdr-tsa}
-            \label{fig:2n-clx-cx556a-64b-2t1c-rdma-ip4base-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-rdma-ip4base-pdr-tsa}
+            \label{fig:2n-clx-cx556a-64b-rdma-ip4base-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-2t1c-ip4routing-scale
+64b-ip4routing-scale
 -------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-tsa.html"></iframe>
+    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-rdma-ethip4-ip4scale-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -89,8 +89,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-tsa}
-            \label{fig:2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-rdma-ethip4-ip4scale-ndr-tsa}
+            \label{fig:2n-clx-cx556a-64b-rdma-ethip4-ip4scale-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -100,7 +100,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-pdr-tsa.html"></iframe>
+    <iframe id="05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-rdma-ethip4-ip4scale-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -109,21 +109,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-pdr-tsa}
-            \label{fig:2n-clx-cx556a-64b-2t1c-rdma-ethip4-ip4scale-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-rdma-ethip4-ip4scale-pdr-tsa}
+            \label{fig:2n-clx-cx556a-64b-rdma-ethip4-ip4scale-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-2t1c-ip4routing-features
+64b-ip4routing-features
 ----------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-tsa.html"></iframe>
+    <iframe id="07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-rdma-ethip4-features-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -132,8 +132,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-tsa}
-            \label{fig:2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-rdma-ethip4-features-ndr-tsa}
+            \label{fig:2n-clx-cx556a-64b-rdma-ethip4-features-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -143,7 +143,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr-tsa.html"></iframe>
+    <iframe id="08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-rdma-ethip4-features-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -152,6 +152,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr-tsa}
-            \label{fig:2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-rdma-ethip4-features-pdr-tsa}
+            \label{fig:2n-clx-cx556a-64b-rdma-ethip4-features-pdr-tsa}
     \end{figure}
