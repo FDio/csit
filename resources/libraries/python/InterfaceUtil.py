@@ -1685,9 +1685,12 @@ class InterfaceUtil:
             for interface in node[u"interfaces"].values():
                 if placement[u"sw_if_index"] == interface[u"vpp_sw_index"] \
                     and prefix in interface[u"name"]:
+                    worker_new = worker_id % worker_cnt
+                    if worker_id in (2, 3):
+                        worker_new = (5 - worker_id) % worker_cnt
                     InterfaceUtil.vpp_sw_interface_set_rx_placement(
                         node, placement[u"sw_if_index"], placement[u"queue_id"],
-                        worker_id % worker_cnt
+                        worker_new
                     )
                     worker_id += 1
         # Trigger debug log.
