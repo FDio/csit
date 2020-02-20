@@ -399,6 +399,7 @@
 
     plot-dpdk-throughput-latency-2n-clx:
       csit-dpdk-perf-verify-2001-2n-clx:
+        - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
         - 17  # NDRPDR sel
@@ -424,6 +425,7 @@
         - 7   # NDRPDR sel
         - 8   # NDRPDR sel
         - 10  # NDRPDR sel
+        - 12  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
@@ -559,6 +561,7 @@
         - 59  # NDRPDR full
         - 61  # NDRPDR full
         - 62  # NDRPDR full
+        - 64  # NDRPDR full
         - 65  # NDRPDR full
 
     vpp-perf-results-3n-skx:
@@ -572,9 +575,10 @@
         - 33  # NDRPDR full
 
     vpp-perf-results-2n-clx:
-      # TODO: Replace
+      # TODO: Add data
       csit-vpp-perf-verify-2001-2n-clx:
-        - 28  # NDRPDR sel
+        - 36  # NDRPDR full
+        - 38  # NDRPDR full
 
     vpp-perf-results-3n-tsh:
       # TODO: Replace
@@ -877,6 +881,7 @@
         - 7   # NDRPDR sel
         - 8   # NDRPDR sel
         - 10  # NDRPDR sel
+        - 12  # NDRPDR sel
     vpp-performance-changes-3n-tsh:
       - "vpp-performance-changes-3n-tsh-ref"
       - "vpp-performance-changes-3n-tsh-cmp"
@@ -1267,6 +1272,7 @@
         - 25  # NDRPDR sel
     dpdk-compare-testbeds-skx-clx-cmp:
       csit-dpdk-perf-verify-2001-2n-clx:
+        - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
         - 17  # NDRPDR sel
@@ -2016,6 +2022,7 @@
       - 59  # NDRPDR full
       - 61  # NDRPDR full
       - 62  # NDRPDR full
+      - 64  # NDRPDR full
       - 65  # NDRPDR full
 
 #    csit-vpp-perf-verify-1904-3n-skx:
@@ -2119,6 +2126,8 @@
       - 28  # NDRPDR sel
       - 29  # NDRPDR sel
       - 32  # NDRPDR sel
+      - 36  # NDRPDR full
+      - 38  # NDRPDR full
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
@@ -2138,6 +2147,7 @@
       - 7   # NDRPDR sel
       - 8   # NDRPDR sel
       - 10  # NDRPDR sel
+      - 12  # NDRPDR sel
       - 9   # MRR sel
 
     csit-vpp-perf-verify-1908-3n-dnv:
@@ -2329,6 +2339,7 @@
 #      - 25  # NDRPDR sel
 
     csit-dpdk-perf-verify-2001-2n-clx:
+      - 14  # NDRPDR sel
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 17  # NDRPDR sel
