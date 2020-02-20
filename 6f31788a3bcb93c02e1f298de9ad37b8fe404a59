@@ -305,6 +305,30 @@
       "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a4addd5_ed471066",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-20T11:40:37Z",
+      "side": 1,
+      "message": "Hmm, scaling in suite name is a good idea, especially for test naming. I guess it depends on whether we expect 2c and 4c testcases to be added later, or whether we expect tests with different Maximum Segment Size (as an analogue to frame_size) to be added. If yes, client and stream scaling should be done on suite level.",
+      "parentUuid": "aad61ef2_514408d6",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 53
+      },
+      "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
