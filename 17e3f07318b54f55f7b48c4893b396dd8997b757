@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28e1d0b7_b8c2d865",
+        "filename": "resources/libraries/bash/entry/check/copyright_year.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-02-20T14:54:40Z",
+      "side": 1,
+      "message": "IMHO, this should not be a todo as having to go look through all of the commits in the log to figure out which one(s) are bad is a pain.\n\nInstead of trying to run this in a single piped line, I would recommend using a for loop on the output of the \u0027git diff\u0027, then detecting the failure, and outputting both filename and copyright line to the log.\n\nfor file in $(git diff --name-only HEAD~) ; do\n    bad_copyright \u003d piped_command using \"head -n 3 $file\u0027|...\"\n    if [ -n \"$bad_copyright\" ] ; then\n        echo -e \"Invalid copyright found in $file:\\n$bad_copyright\\n\\n\"\n    fi\ndone\n\nWhile arguably less efficient than the code in this patch, it produces the desired results.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "17e3f07318b54f55f7b48c4893b396dd8997b757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
