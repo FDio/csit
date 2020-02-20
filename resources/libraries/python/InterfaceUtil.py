@@ -1636,6 +1636,7 @@ class InterfaceUtil:
                 if ifc[u"vpp_sw_index"] is not None:
                     papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
             details = papi_exec.get_details(err_msg)
+            logger.debug(f"Current rx placement: {details}")
         return sorted(details, key=lambda k: k[u"sw_if_index"])
 
     @staticmethod
@@ -1684,11 +1685,20 @@ class InterfaceUtil:
             for interface in node[u"interfaces"].values():
                 if placement[u"sw_if_index"] == interface[u"vpp_sw_index"] \
                     and prefix in interface[u"name"]:
+                    logger.trace(f"worker_id {worker_id}")
+                    worker_new = worker_id % worker_cnt
+                    logger.trace(f"worker_new {worker_new}")
+                    if worker_id in (0, 1):
+                        logger.trace(f"overriden worker_id {1 - worker_id}")
+                        worker_new = (1 - worker_id) % worker_cnt
+                        logger.trace(f"overriden worker_new {worker_new}")
                     InterfaceUtil.vpp_sw_interface_set_rx_placement(
                         node, placement[u"sw_if_index"], placement[u"queue_id"],
-                        worker_id % worker_cnt
+                        worker_new
                     )
                     worker_id += 1
+        # Trigger debug log.
+        InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
 
     @staticmethod
     def vpp_round_robin_rx_placement_on_all_duts(nodes, prefix):
