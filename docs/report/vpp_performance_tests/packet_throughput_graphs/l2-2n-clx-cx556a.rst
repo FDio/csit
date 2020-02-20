@@ -31,8 +31,8 @@
 2n-clx-cx556a
 ~~~~~~~~~~~~~
 
-64b-2t1c-l2switching-base
--------------------------
+64b-2t1c-l2switching-base-rdma-core
+-----------------------------------
 
 .. raw:: html
 
@@ -74,8 +74,8 @@
 
     \clearpage
 
-64b-2t1c-l2switching-scale
---------------------------
+64b-2t1c-l2switching-scale-rdma-core
+------------------------------------
 
 .. raw:: html
 
