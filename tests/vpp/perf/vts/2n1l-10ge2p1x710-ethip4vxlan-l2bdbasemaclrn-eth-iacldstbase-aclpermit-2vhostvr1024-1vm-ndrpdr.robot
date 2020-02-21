@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 |
-| Suite Setup | Setup suite single link | performance
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | vhost
@@ -59,6 +59,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${50}
 | ${nf_dtcr}= | ${1}
@@ -99,7 +101,7 @@
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | @{permit_list} = | Create List | 172.17.0.2/32 | 172.27.0.2/32
 | | Run Keyword If | '${acl_type}' != '${EMPTY}'
-| | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
+| | ... | Configure ACLs on a single interface | ${dut1} | ${DUT1_${int}2}[0] | input
 | | ... | ${acl_type} | @{permit_list}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}

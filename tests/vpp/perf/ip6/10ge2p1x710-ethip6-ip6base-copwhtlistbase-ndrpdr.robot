@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6-ip6base-copwhtlistbase
 |
-| Suite Setup | Setup suite single link | performance
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance | performance
 | Test Teardown | Tear down test | performance
@@ -56,6 +56,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -89,10 +91,10 @@
 | | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
 | | And Add Fib Table | ${dut2} | 1 | ipv6=${TRUE}
 | | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
-| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
-| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
-| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
-| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | And COP Add whitelist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${DUT2_${int}2}[0] | ip6 | 1
+| | And COP interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
+| | And COP interface enable or disable | ${dut2} | ${DUT2_${int}2}[0] | enable
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
