@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -189,7 +189,6 @@
 | |
 | | [Arguments] | ${nodes}
 | |
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | FOR | ${dut} | IN | @{duts}
 | | | Show SR Policies | ${nodes['${dut}']}
 | | END
@@ -206,7 +205,6 @@
 | |
 | | [Arguments] | ${nodes}
 | |
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | FOR | ${dut} | IN | @{duts}
 | | | Show SR Steering Policies | ${nodes['${dut}']}
 | | END
@@ -223,7 +221,6 @@
 | |
 | | [Arguments] | ${nodes}
 | |
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | FOR | ${dut} | IN | @{duts}
 | | | Show SR LocalSIDs | ${nodes['${dut}']}
 | | END
@@ -237,25 +234,29 @@
 | | ... | on both DUT nodes.
 | |
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip6} | ${prefix}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut1_if1_ip6} | ${prefix}
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if2} | ${dut1_if2_ip6} | ${prefix}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut1_if2_ip6} | ${prefix}
 | | VPP Interface Set IP Address
-| | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip6} | ${prefix}
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut2_if1_ip6} | ${prefix}
 | | VPP Interface Set IP Address
-| | ... | ${dut2} | ${dut2_if2} | ${dut2_if2_ip6} | ${prefix}
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_if2_ip6} | ${prefix}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
 | | FOR | ${number} | IN RANGE | 2 | ${dst_addr_nr}+2
 | | | ${hexa_nr}= | Convert To Hex | ${number}
 | | | VPP Add IP Neighbor | ${dut1}
-| | | ... | ${dut1_if1} | ${tg_if1_ip6_subnet}${hexa_nr} | ${tg_if1_mac}
+| | | ... | ${DUT1_${int}1}[0] | ${tg_if1_ip6_subnet}${hexa_nr}
+| | | ... | ${TG_pf1_mac}[0]
 | | | VPP Add IP Neighbor | ${dut2}
-| | | ... | ${dut2_if2} | ${tg_if2_ip6_subnet}${hexa_nr} | ${tg_if2_mac}
+| | | ... | ${DUT2_${int}2}[0] | ${tg_if2_ip6_subnet}${hexa_nr}
+| | | ... | ${TG_pf2_mac}[0]
 | | END
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if2} | ${dut2_if1_ip6} | ${dut2_if1_mac}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6}
+| | ... | ${DUT2_${int}1_mac}[0]
 | | VPP Add IP Neighbor
-| | ... | ${dut2} | ${dut2_if1} | ${dut1_if2_ip6} | ${dut1_if2_mac}
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut1_if2_ip6}
+| | ... | ${DUT1_${int}2_mac}[0]
 | | ${sid1}= | Set Variable If
 | | ... | "${n}" == "1" | ${dut2_sid1}
 | | ... | "${n}" == "2" | ${dut2_sid1_1}
@@ -263,9 +264,9 @@
 | | ... | "${n}" == "1" | ${dut1_sid2}
 | | ... | "${n}" == "2" | ${dut1_sid2_1}
 | | Vpp Route Add | ${dut1} | ${sid1} | ${sid_prefix} | gateway=${dut2_if1_ip6}
-| | ... | interface=${dut1_if2}
+| | ... | interface=${DUT1_${int}2}[0]
 | | Vpp Route Add | ${dut2} | ${sid2} | ${sid_prefix} | gateway=${dut1_if2_ip6}
-| | ... | interface=${dut2_if1}
+| | ... | interface=${DUT2_${int}1}[0]
 # Configure SRv6 for direction0
 | | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
 | | @{sid_list_dir0}= | Run Keyword If | "${n}" == "1"
@@ -278,15 +279,15 @@
 | | ... | ip_addr=${tg_if2_ip6_subnet} | prefix=${sid_prefix}
 | | Run Keyword If | "${n}" == "1"
 | | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.dx6
-| | ... | interface=${dut2_if2} | next_hop=${tg_if2_ip6_subnet}2
+| | ... | interface=${DUT2_${int}2}[0] | next_hop=${tg_if2_ip6_subnet}2
 | | Run Keyword If | "${n}" == "2"
 | | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1_1} | end
 | | Run Keyword If | "${n}" == "2" and "${prepos}" != "without"
 | | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1_2} | end.dx6
-| | ... | interface=${dut2_if2} | next_hop=${tg_if2_ip6_subnet}2
+| | ... | interface=${DUT2_${int}2}[0] | next_hop=${tg_if2_ip6_subnet}2
 | | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
 | | ... | Vpp Route Add | ${dut2} | ${dut2_sid1_2} | ${sid_prefix}
-| | ... | gateway=${tg_if2_ip6_subnet}2 | interface=${dut2_if2}
+| | ... | gateway=${tg_if2_ip6_subnet}2 | interface=${DUT2_${int}2}[0]
 # Configure SRv6 for direction1
 | | Set SR Encaps Source Address on DUT | ${dut2} | ${dut2_sid2}
 | | @{sid_list_dir1}= | Run Keyword If | "${n}" == "1"
@@ -299,15 +300,15 @@
 | | ... | ip_addr=${tg_if1_ip6_subnet} | prefix=${sid_prefix}
 | | Run Keyword If | "${n}" == "1"
 | | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.dx6
-| | ... | interface=${dut1_if1} | next_hop=${tg_if1_ip6_subnet}2
+| | ... | interface=${DUT1_${int}1}[0] | next_hop=${tg_if1_ip6_subnet}2
 | | Run Keyword If | "${n}" == "2"
 | | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_1} | end
 | | Run Keyword If | "${n}" == "2" and "${prepos}" != "without"
 | | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_2} | end.dx6
-| | ... | interface=${dut1_if1} | next_hop=${tg_if1_ip6_subnet}2
+| | ... | interface=${DUT1_${int}1}[0] | next_hop=${tg_if1_ip6_subnet}2
 | | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
 | | ... | Vpp Route Add | ${dut1} | ${dut1_sid2_2} | ${sid_prefix}
-| | ... | gateway=${tg_if1_ip6_subnet}2 | interface=${dut1_if1}
+| | ... | gateway=${tg_if1_ip6_subnet}2 | interface=${DUT1_${int}1}[0]
 | | Set interfaces in path up
 
 | Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via '${behavior}' behaviour in 3-node circular topology
@@ -339,30 +340,34 @@
 | | | Show Memif | ${nodes['${dut}']}
 | | END
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip6} | ${prefix}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut1_if1_ip6} | ${prefix}
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if2} | ${dut1_if2_ip6} | ${prefix}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut1_if2_ip6} | ${prefix}
 | | VPP Interface Set IP Address | ${dut1} | ${dut1-memif-1-if1}
 | | ... | ${dut1-memif-1-if1_ip6} | ${mem_prefix}
 | | VPP Interface Set IP Address | ${dut1} | ${dut1-memif-1-if2}
 | | ... | ${dut1-memif-1-if2_ip6} | ${mem_prefix}
 | | VPP Interface Set IP Address
-| | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip6} | ${prefix}
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut2_if1_ip6} | ${prefix}
 | | VPP Interface Set IP Address
-| | ... | ${dut2} | ${dut2_if2} | ${dut2_if2_ip6} | ${prefix}
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_if2_ip6} | ${prefix}
 | | VPP Interface Set IP Address | ${dut2} | ${dut2-memif-1-if1}
 | | ... | ${dut2-memif-1-if1_ip6} | ${mem_prefix}
 | | VPP Interface Set IP Address | ${dut2} | ${dut2-memif-1-if2}
 | | ... | ${dut2-memif-1-if2_ip6} | ${mem_prefix}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if2} | ${dut2_if1_ip6} | ${dut2_if1_mac}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6}
+| | ... | ${DUT2_${int}1_mac}[0]
 | | VPP Add IP Neighbor
-| | ... | ${dut2} | ${dut2_if1} | ${dut1_if2_ip6} | ${dut1_if2_mac}
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut1_if2_ip6}
+| | ... | ${DUT1_${int}2_mac}[0]
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if1} | ${tg_if1_ip6_subnet}2 | ${tg_if1_mac}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_if1_ip6_subnet}2
+| | ... | ${TG_pf1_mac}[0]
 | | VPP Add IP Neighbor
-| | ... | ${dut2} | ${dut2_if2} | ${tg_if2_ip6_subnet}2 | ${tg_if2_mac}
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${tg_if2_ip6_subnet}2
+| | ... | ${TG_pf2_mac}[0]
 | | ${dut1-memif-1-if2_mac}= | Get Interface MAC | ${dut1} | memif2
 | | ${dut2-memif-1-if2_mac}= | Get Interface MAC | ${dut2} | memif2
 | | VPP Add IP Neighbor | ${dut1}

@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethicmpv4-ip4base-eth-1tap-namespace
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test | namespace
 | Test Teardown | Tear down test | packet_trace | namespace
 |
@@ -47,6 +47,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${tap1_VPP_ip}= | 16.0.10.1
 | ${tap1_NM_ip}= | 16.0.10.2
@@ -84,7 +86,7 @@
 | | And VPP Interface Set IP Address
 | | ... | ${dut1} | ${int1} | ${tap1_VPP_ip} | ${prefix}
 | | And VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | ${dut_ip_address} | ${prefix}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut_ip_address} | ${prefix}
 | | And Set Interface State | ${dut1} | ${int1} | up
 | | And Create Namespace | ${dut1} | nmspace1
 | | And Attach Interface To Namespace | ${dut1} | nmspace1 | tap0
@@ -93,13 +95,13 @@
 | | And Set Linux Interface IP
 | | ... | ${dut1} | tap0 | ${tap1_NM_ip} | ${prefix} | nmspace1
 | | And VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if1} | ${tg_ip_address} | ${tg_if1_mac}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_ip_address} | ${TG_pf1_mac}[0]
 | | And VPP Add IP Neighbor
 | | ... | ${dut1} | ${int1} | ${tap1_NM_ip} | ${tap1_NM_mac}
 | | And Add Linux Route
 | | ... | ${dut1} | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip} | nmspace1
 | | Then Send ICMP echo request and verify answer
-| | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac} | ${tg_if1_mac}
+| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_vf1_mac}[0] | ${TG_pf1_mac}[0]
 | | ... | ${tap1_NM_ip} | ${tg_ip_address}
 
 *** Test Cases ***

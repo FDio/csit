@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4-ip4base-copblklistbase
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 |
@@ -45,6 +45,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 
 *** Keywords ***
@@ -71,12 +73,12 @@
 | | And Initialize IPv4 forwarding in circular topology
 | | And Add Fib Table | ${dut1} | 1
 | | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
-| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
-| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP Add whitelist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip4 | 1
+| | And COP interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
 | | Then Packet transmission from port to port should fail
 | | ... | ${tg} | 100.0.0.2 | 200.0.0.2
-| | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
-| | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+| | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
+| | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
 *** Test Cases ***
 | tc01-64B-ethip4-ip4base-copblklistbase-dev
