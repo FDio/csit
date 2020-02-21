@@ -126,6 +126,7 @@
       x710: 35800000
       xxv710: 35800000
       xl710: 35800000
+      cx556a: 148809523
 
     link:
       10ge: 14880952.38
@@ -561,8 +562,10 @@
         - 59  # NDRPDR full
         - 61  # NDRPDR full
         - 62  # NDRPDR full
+        - 63  # NDRPDR full
         - 64  # NDRPDR full
         - 65  # NDRPDR full
+        - 67  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       # TODO: Replace
@@ -577,6 +580,8 @@
     vpp-perf-results-2n-clx:
       # TODO: Add data
       csit-vpp-perf-verify-2001-2n-clx:
+        - 34  # NDRPDR full
+        - 35  # NDRPDR full
         - 36  # NDRPDR full
         - 38  # NDRPDR full
 
@@ -2022,8 +2027,10 @@
       - 59  # NDRPDR full
       - 61  # NDRPDR full
       - 62  # NDRPDR full
+      - 63  # NDRPDR full
       - 64  # NDRPDR full
       - 65  # NDRPDR full
+      - 67  # NDRPDR full
 
 #    csit-vpp-perf-verify-1904-3n-skx:
 #      - 7   # MRR sel
@@ -2126,6 +2133,8 @@
       - 28  # NDRPDR sel
       - 29  # NDRPDR sel
       - 32  # NDRPDR sel
+      - 34  # NDRPDR full
+      - 35  # NDRPDR full
       - 36  # NDRPDR full
       - 38  # NDRPDR full
 
