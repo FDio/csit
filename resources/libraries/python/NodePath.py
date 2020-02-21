@@ -13,7 +13,7 @@
 
 """Path utilities library for nodes in the topology."""
 
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.topology import Topology, NodeType
 
 
 class NodePath:
@@ -71,16 +71,18 @@ class NodePath:
         self._nodes_filter.append(filter_list)
         self._nodes.append(node)
 
-    def append_nodes(self, *nodes):
+    def append_nodes(self, *nodes, filter_list=None):
         """Append nodes to the path.
 
         :param nodes: Nodes to append to the path.
+        :param filter_list: Filter criteria list.
         :type nodes: dict
+        :type filter_list: list of strings
 
         .. note:: Node order does matter.
         """
         for node in nodes:
-            self.append_node(node)
+            self.append_node(node, filter_list=filter_list)
 
     def clear_path(self):
         """Clear path."""
@@ -204,3 +206,78 @@ class NodePath:
         if not self._path:
             raise RuntimeError(u"No path for topology")
         return self._path[-2]
+
+    def compute_circular_topology(self, nodes, filter_list=None, nic_pfs=1):
+        """Return computed circular path.
+
+        :param nodes: Nodes to append to the path.
+        :param filter_list: Filter criteria list.
+        :param nic_pfs: Number of PF of NIC.
+        :type nodes: dict
+        :type filter_list: list of strings
+        :type path_count: int
+        :returns: Topology information dictionary.
+        :rtype: dict
+        """
+        t_dict = dict()
+        duts = [key for key in nodes if u"DUT" in key]
+        t_dict[u"duts"] = duts
+        t_dict[u"duts_count"] = len(duts)
+        t_dict[u"int"] = u"pf"
+
+        for idx in range(0, nic_pfs // 2):
+            self.append_node(nodes[u"TG"])
+            for dut in duts:
+                self.append_node(nodes[dut], filter_list=filter_list)
+        self.append_node(nodes[u"TG"])
+        self.compute_path(always_same_link=False)
+
+        n_idx = 0
+        t_idx = 1
+        d_idx = 0
+        while True:
+            interface, node = self.next_interface()
+            if not interface:
+                break
+            if node[u"type"] == u"TG":
+                n_pfx = f"TG"
+                p_pfx = f"pf{t_idx}"
+                i_pfx = f"if{t_idx}"
+                n_idx = 0
+                t_idx = t_idx + 1
+            else:
+                n_pfx = f"DUT{n_idx // 2 + 1}"
+                p_pfx = f"pf{d_idx % 2 + t_idx - 1}"
+                i_pfx = f"if{d_idx % 2 + t_idx - 1}"
+                n_idx = n_idx + 1
+                d_idx = d_idx + 1
+
+            t_dict[f"{n_pfx}"] = node
+            t_dict[f"{n_pfx}_{p_pfx}"] = [interface]
+            t_dict[f"{n_pfx}_{p_pfx}_mac"] = \
+                [Topology.get_interface_mac(node, interface)]
+            t_dict[f"{n_pfx}_{p_pfx}_vlan"] = \
+                [Topology.get_interface_vlan(node, interface)]
+            t_dict[f"{n_pfx}_{p_pfx}_pci"] = \
+                [Topology.get_interface_pci_addr(node, interface)]
+            t_dict[f"{n_pfx}_{p_pfx}_ip4_addr"] = \
+                [Topology.get_interface_ip4(node, interface)]
+            t_dict[f"{n_pfx}_{p_pfx}_ip4_prefix"] = \
+                [Topology.get_interface_ip4_prefix_length(node, interface)]
+            if f"{n_pfx}_pf_pci" not in t_dict:
+                t_dict[f"{n_pfx}_pf_pci"] = []
+            t_dict[f"{n_pfx}_pf_pci"].append(
+                Topology.get_interface_pci_addr(node, interface))
+            # Backward compatibility below
+            t_dict[f"{n_pfx.lower()}_{i_pfx}"] = interface
+            t_dict[f"{n_pfx.lower()}_{i_pfx}_mac"] = \
+                Topology.get_interface_mac(node, interface)
+            t_dict[f"{n_pfx.lower()}_{i_pfx}_pci"] = \
+                Topology.get_interface_pci_addr(node, interface)
+            t_dict[f"{n_pfx.lower()}_{i_pfx}_ip4_addr"] = \
+                Topology.get_interface_ip4(node, interface)
+            t_dict[f"{n_pfx.lower()}_{i_pfx}_ip4_prefix"] = \
+                Topology.get_interface_ip4_prefix_length(node, interface)
+
+        self.clear_path()
+        return t_dict

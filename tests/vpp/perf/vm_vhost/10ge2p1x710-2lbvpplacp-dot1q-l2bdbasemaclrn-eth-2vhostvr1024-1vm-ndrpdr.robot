@@ -21,7 +21,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | 2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm
 |
-| Suite Setup | Setup suite double link | performance
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | vhost
@@ -61,6 +61,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 4
+| ${nic_vfs}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${4}
 | ${subid}= | 10
@@ -93,11 +95,11 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
+| | Set Test Variable | ${vlan_strip_off} | ${TRUE}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | And Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize L2 bridge domains with Vhost-User and VLAN with VPP link bonding in a 3-node circular topology

@@ -330,12 +330,11 @@ class Constants:
         prefix for prefix in NIC_DRIVER_TO_SUITE_PREFIX.values() if prefix
     ]
 
-    # Additional step for perf needs to know driver type.
-    # Contains part of suite setup line, matching both single and double link.
-    NIC_DRIVER_TO_SETUP_ARG = {
-        u"vfio-pci": u"le link | performance",
-        u"avf": u"le link | performance_avf",
-        u"rdma-core": u"le link | performance_rdma",
+    # Number of virtual functions of physical nic.
+    NIC_DRIVER_TO_VFS = {
+        u"vfio-pci": u"nic_vfs}= | 0",
+        u"avf": u"nic_vfs}= | 1",
+        u"rdma-core": u"nic_vfs}= | 0",
     }
 
     # TODO CSIT-1481: Crypto HW should be read from topology file instead.

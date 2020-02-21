@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | avf-dot1qip4-l2bdbasemaclrn
 |
-| Suite Setup | Setup suite single link | avf | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
@@ -46,6 +46,8 @@
 | ${nic_driver}= | avf
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 1
 | ${overhead}= | ${4}
 
 *** Keywords ***
@@ -73,7 +75,7 @@
 | | And Initialize layer dot1q
 | | And Initialize L2 bridge domain
 | | Then Send IPv4 bidirectionally and verify received packets
-| | ... | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 
 *** Test Cases ***
 | tc01-68B-avf-dot1qip4-l2bdbasemaclrn-dev
