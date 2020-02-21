@@ -377,6 +377,29 @@
       "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "33444362_690420d2",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-02-21T13:04:08Z",
+      "side": 1,
+      "message": "test failed with core dump: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-hsw/793/archives/log.html.gz#s1-s1-s1-s1-s3-t1-k3-k3-k1",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 3
+      },
+      "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
