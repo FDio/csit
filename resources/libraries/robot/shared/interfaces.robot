@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,11 +25,11 @@
 | | ... | maximal MTU.*
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Set interfaces in path up on DUT | ${dut}
+| | | Set physical interfaces in path up on DUT | ${dut}
 | | END
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 
-| Set interfaces in path up on DUT
+| Set physical interfaces in path up on DUT
 | | [Documentation]
 | | ... | *Set UP state on VPP interfaces in path on specified DUT node and
 | | ... | set maximal MTU.*
@@ -40,74 +40,51 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Set interfaces in path up on DUT \| DUT1 \|
+| | ... | \| Set physical interfaces in path up on DUT \| DUT1 \|
 | |
 | | [Arguments] | ${dut}
-# TODO: Rework KW to set all interfaces in path UP and set MTU (including
-# software interfaces. Run KW at the start phase of VPP setup to split
-# from other "functional" configuration. This will allow modularity of this
-# library
-| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${${dut}_if1}
-| | Run Keyword If | '${if1_status}' == 'PASS'
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
-| | ... | ELSE
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
-| | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${${dut}_if2}
-| | Run Keyword If | '${if2_status}' == 'PASS'
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
-| | ... | ELSE
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
-| | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${${dut}_if1}
-| | Run Keyword If | '${if1_status}' == 'PASS'
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
-| | ... | ELSE
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
-| | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
-| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${${dut}_if2}
-| | Run Keyword If | '${if2_status}' == 'PASS'
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
-| | ... | ELSE
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
-| | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
+| |
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Set all interfaces in path up on DUT | ${dut} | ${pf}
+| | END
+
+| Set all interfaces in path up on DUT
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
+| | ... | set maximal MTU.*
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node on which to set the interfaces up.
+| | ... | Type: string
+| | ... | - pf - NIC physical function (physical port).
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set all interfaces in path up on DUT \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
+| |
+| | FOR | ${if} | IN | @{${dut}_${prev_layer}${pf}}
+| | | Set Interface State | ${nodes['${dut}']} | ${if} | up
+| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
+| | END
 
 | Set single interfaces in path up
 | | [Documentation]
-| | ... | *Set UP state on single VPP interfaces in path on all DUT nodes and set
-| | ... | maximal MTU.*
+| | ... | *Set UP state on single VPP interfaces in path on all DUT nodes and
+| | ... | set maximal MTU.*
 | |
-# TODO: Rework KW to set all interfaces in path UP and set MTU (including
-# software interfaces. Run KW at the start phase of VPP setup to split
-# from other "functional" configuration. This will allow modularity of this
-# library
+| | ... | *Arguments:*
+| | ... | - pf - NIC physical function (physical port).
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set single interfaces in path \| 1 \|
+| |
+| | [Arguments] | ${pf}=${1}
+| |
 | | FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
-| | | ... | ELSE
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | END
-| | FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | ELSE
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | | Set virtual interfaces in path up on DUT | ${dut} | ${pf}
 | | END
 | | All VPP Interfaces Ready Wait | ${nodes}
 
@@ -139,8 +116,10 @@
 | |
 | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | FOR | ${id} | IN RANGE | 1 | ${count} + 1
-| | | Set Test Variable | ${${dut_str}_if_${id}_1} | ${${dut_str}_if1}
-| | | Set Test Variable | ${${dut_str}_if_${id}_2} | ${${dut_str}_if2}
+| | | Set Test Variable
+| | | ... | ${${dut_str}_${prev_layer}1_${id}} | ${${dut_str}_${prev_layer}1}
+| | | Set Test Variable
+| | | ... | ${${dut_str}_${prev_layer}2_${id}} | ${${dut_str}_${prev_layer}2}
 | | END
 
 | Initialize layer interface
@@ -159,7 +138,6 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Initialize layer interface on node | ${dut} | count=${count}
 | | END
-| | Set Test Variable | ${prev_layer} | if
 
 | Pre-initialize layer driver
 | | [Documentation]
@@ -182,8 +160,8 @@
 | | ... | Pre-initialize vfio-pci driver by adding related sections to startup
 | | ... | config on all DUTs.
 | |
-| | Add DPDK pci devices to all DUTs
 | | FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
 | | | ... | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run Keyword | ${dut}.Add DPDK Log Level | debug
@@ -229,7 +207,6 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword | Initialize layer ${driver} on node | ${dut}
 | | END
-| | Set Test Variable | ${prev_layer} | vf
 | | Set interfaces in path up
 
 | Initialize layer vfio-pci on node
@@ -260,27 +237,39 @@
 | |
 | | [Arguments] | ${dut}
 | |
-| | ${dut_str}= | Convert To Lowercase | ${dut}
-| | ${if1_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
-| | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
-| | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
-| | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
-| | ${dut_new_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if1_vf0} | ${rxq_count_int}
-| | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_new_if1}
-| | ${dut_new_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if2_vf0} | ${rxq_count_int}
-| | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_new_if2}
-| | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
-| | Set Test Variable | ${${dut_str}_if2} | ${dut_new_if2}
-| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_new_if1_mac}
-| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_new_if2_mac}
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Initialize layer avf on node on PF | ${dut} | ${pf}
+| | END
+
+| Initialize layer avf on node on PF
+| | [Documentation]
+| | ... | Initialize AVF interfaces on DUT on NIC PF.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer avf (Intel) on node on PF \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
+| |
+| | FOR | ${vf} | IN RANGE | 0 | ${nic_vfs}
+| | | ${_vlan}= | Get Interface Vlan
+| | | ... | ${nodes['${dut}']} | ${${dut}_${prev_layer}${pf}}[${vf}]
+| | | ${_avf}= | VPP Create AVF Interface
+| | | ... | ${nodes['${dut}']} | ${${dut}_${prev_layer}${pf}}[${vf}]
+| | | ... | ${rxq_count_int}
+| | | ${_mac}= | Get Interface MAC
+| | | ... | ${nodes['${dut}']} | ${_avf}
+| | | Set List Value | ${${dut}_${prev_layer}${pf}} | ${vf} | ${_avf}
+| | | Insert Into List | ${${dut}_${prev_layer}${pf}_mac} | ${vf} | ${_mac}
+| | | Insert Into List | ${${dut}_${prev_layer}${pf}_vlan} | ${vf} | ${_vlan}
+| | END
 
 | Initialize layer rdma-core on node
 | | [Documentation]
-| | ... | Initialize rdma-core (MLX) interfaces on DUT.
+| | ... | Initialize rdma-core interfaces on DUT.
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
@@ -291,23 +280,35 @@
 | |
 | | [Arguments] | ${dut}
 | |
-| | ${dut_str}= | Convert To Lowercase | ${dut}
-| | ${if1_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
-| | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
-| | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
-| | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
-| | ${dut_new_if1}= | VPP Create Rdma Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if1} | ${rxq_count_int}
-| | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_new_if1}
-| | ${dut_new_if2}= | VPP Create Rdma Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if2} | ${rxq_count_int}
-| | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_new_if2}
-| | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
-| | Set Test Variable | ${${dut_str}_if2} | ${dut_new_if2}
-| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_new_if1_mac}
-| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_new_if2_mac}
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Initialize layer rdma-core on node on PF | ${dut} | ${pf}
+| | END
+
+| Initialize layer rdma-core on node on PF
+| | [Documentation]
+| | ... | Initialize rdma-core (Mellanox VPP) interfaces on DUT on NIC PF.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer rdma-core on node on PF \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
+| |
+| | FOR | ${vf} | IN RANGE | 0 | ${nic_vfs}
+| | | ${_vlan}= | Get Interface Vlan
+| | | ... | ${nodes['${dut}']} | ${${dut}_${prev_layer}${pf}}[${vf}]
+| | | ${_avf}= | VPP Create Rdma Interface
+| | | ... | ${nodes['${dut}']} | ${${dut}_${prev_layer}${pf}}[${vf}]
+| | | ... | ${rxq_count_int}
+| | | ${_mac}= | Get Interface MAC
+| | | ... | ${nodes['${dut}']} | ${_avf}
+| | | Set List Value | ${${dut}_${prev_layer}${pf}} | ${vf} | ${_avf}
+| | | Insert Into List | ${${dut}_${prev_layer}${pf}_mac} | ${vf} | ${_mac}
+| | | Insert Into List | ${${dut}_${prev_layer}${pf}_vlan} | ${vf} | ${_vlan}
+| | END
 
 | Initialize layer bonding on node
 | | [Documentation]
