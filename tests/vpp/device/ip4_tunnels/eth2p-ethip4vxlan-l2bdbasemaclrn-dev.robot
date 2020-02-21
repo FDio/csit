@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4vxlan-l2bdbasemaclrn
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 |
@@ -47,6 +47,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${50}
 
 *** Keywords ***

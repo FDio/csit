@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethicmpv4-ip4base-eth-1tap-namespace
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test | namespace
 | Test Teardown | Tear down test | packet_trace | namespace
 |
@@ -47,6 +47,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${tap1_VPP_ip}= | 16.0.10.1
 | ${tap1_NM_ip}= | 16.0.10.2
