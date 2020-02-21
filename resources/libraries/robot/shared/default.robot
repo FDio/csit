@@ -58,7 +58,6 @@
 | Resource | resources/libraries/robot/overlay/lisp.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/overlay/lisp_api.robot
-| Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
@@ -68,7 +67,6 @@
 | Resource | resources/libraries/robot/shared/suite_setup.robot
 | Resource | resources/libraries/robot/shared/test_teardown.robot
 | Resource | resources/libraries/robot/shared/test_setup.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/shared/vm.robot
 
@@ -188,18 +186,8 @@
 | | ${rxd_count_int}= | Set variable | ${rxd}
 | | ${txd_count_int}= | Set variable | ${txd}
 | | FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Create List | ${${dut}_if1}
-| | | ... | ELSE | Create List | ${${dut}_if1_1} | ${${dut}_if1_2}
-| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if2}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Append To List | ${if_list} | ${${dut}_if2}
-| | | ... | ELSE
-| | | ... | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
-| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
+| | | ${numa}= | Get interfaces numa node
+| | | ... | ${nodes['${dut}']} | @{${dut}_pf_pci}
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
 | | | ${skip_cnt}= | Set variable | ${CPU_CNT_SYSTEM}
 | | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
@@ -239,80 +227,23 @@
 | | Set Test Variable | ${rxd_count_int}
 | | Set Test Variable | ${txd_count_int}
 
-| Add DPDK pci devices to all DUTs
-| | [Documentation]
-| | ... | Add PCI devices to VPP configuration file.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | ${if1_pci}= | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ${if1_1_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_1}
-| | | ${if1_2_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_2}
-| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if2}
-| | | ${if2_pci}= | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
-| | | ${if2_1_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_1}
-| | | ${if2_2_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_2}
-| | | @{pci_devs}= | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Create List | ${if1_pci}
-| | | ... | ELSE
-| | | ... | Create List | ${if1_1_pci} | ${if1_2_pci}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Append To List | ${pci_devs} | ${if2_pci}
-| | | ... | ELSE
-| | | ... | Append To List | ${pci_devs} | ${if2_1_pci} | ${if2_2_pci}
-| | | Run keyword | ${dut}.Add DPDK Dev | @{pci_devs}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if1_1_pci} | ${if1_1_pci}
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if1_2_pci} | ${if1_2_pci}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if2_pci} | ${if2_pci}
-| | | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if2_1_pci} | ${if2_1_pci}
-| | | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if2_2_pci} | ${if2_2_pci}
-| | END
-
-| Add DPDK no PCI to all DUTs
-| | [Documentation] | Add DPDK no-pci to VPP startup configuration to all DUTs.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK no PCI
-| | END
-
-| Add VLAN strip offload switch off between DUTs in 3-node single link topology
+| Add DPDK VLAN strip offload switch off between DUTs
 | | [Documentation]
 | | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
 | | ... | configuration file.
 | |
-| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_pci}
-| | ... | vlan-strip-offload | off
-| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_pci}
-| | ... | vlan-strip-offload | off
-
-| Add VLAN strip offload switch off between DUTs in 3-node double link topology
-| | [Documentation]
-| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
-| | ... | configuration file
-| |
-| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_1_pci}
-| | ... | vlan-strip-offload | off
-| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_2_pci}
-| | ... | vlan-strip-offload | off
-| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_1_pci}
-| | ... | vlan-strip-offload | off
-| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_2_pci}
-| | ... | vlan-strip-offload | off
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | ${_even}= | Evaluate | ${pf} % 2
+| | | Run Keyword Unless | ${even}
+| | | ... | DUT1.Add DPDK Dev Parameter | ${DUT1_${int}${pf}_pci}[0]
+| | | ... | vlan-strip-offload | off
+| | END
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | ${_even}= | Evaluate | ${pf} % 2
+| | | Run Keyword If | ${even}
+| | | ... | DUT2.Add DPDK Dev Parameter | ${DUT2_${int}${pf}_pci}[0]
+| | | ... | vlan-strip-offload | off
+| | END
 
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
@@ -374,7 +305,6 @@
 | |
 | | ${setup_vpp_pids}= | Get VPP PIDs | ${nodes}
 | | ${keys}= | Get Dictionary Keys | ${setup_vpp_pids}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | FOR | ${key} | IN | @{keys}
 | | | ${pid}= | Get From Dictionary | ${setup_vpp_pids} | ${key}
 | | | Run Keyword If | $pid is None | FAIL | No VPP PID found on node ${key}
