@@ -29,6 +29,7 @@ from os import remove
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
+from json.decoder import JSONDecodeError
 
 import hdrh.histogram
 import hdrh.codec
@@ -867,6 +868,40 @@ class ExecutionChecker(ResultVisitor):
 
         return latency, u"FAIL"
 
+    @staticmethod
+    def _get_hoststack_data(self, msg, tags):
+        """Get data from the hoststack test message.
+
+        :param msg: The test message to be parsed.
+        :param tags: Test tags.
+        :type msg: str
+        :type tags: list
+        :returns: Parsed data as a JSON dict and the status (PASS/FAIL).
+        :rtype: tuple(dict, str)
+        """
+        result = dict()
+        status = u"FAIL"
+
+        msg = msg.replace(u"'", u'"').replace(u" ", u"")
+        if u"LDPRELOAD" in tags:
+            try:
+                result = loads(msg)
+                status = u"PASS"
+            except JSONDecodeError:
+                pass
+        elif u"VPPECHO" in tags:
+            try:
+                msg_lst = msg.replace(u"}{", u"} {").split(u" ")
+                result = dict(
+                    client=loads(msg_lst[0]),
+                    server=loads(msg_lst[1])
+                )
+                status = u"PASS"
+            except (JSONDecodeError, IndexError):
+                pass
+
+        return result, status
+
     def visit_suite(self, suite):
         """Implements traversing through the suite and its direct children.
 
@@ -1072,6 +1107,9 @@ class ExecutionChecker(ResultVisitor):
                     test_result[u"status"] = u"FAIL"
             elif u"DEVICETEST" in tags:
                 test_result[u"type"] = u"DEVICETEST"
+            elif u"HOSTSTACK" in tags:
+                test_result[u"result"], test_result[u"status"] = \
+                    self._get_hoststack_data(test.message, tags)
             else:
                 test_result[u"status"] = u"FAIL"
                 self._data[u"tests"][self._test_id] = test_result
@@ -1147,7 +1185,8 @@ class ExecutionChecker(ResultVisitor):
                 test_kw.name.count(u"Show Runtime Counters On All Duts"):
             self._msg_type = u"test-show-runtime"
             self._sh_run_counter += 1
-        elif test_kw.name.count(u"Install Dpdk Test") and not self._version:
+        elif test_kw.name.count(u"Install Dpdk Test On All Duts") and \
+                not self._version:
             self._msg_type = u"dpdk-version"
         else:
             return
