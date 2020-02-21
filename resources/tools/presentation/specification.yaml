@@ -15559,7 +15559,7 @@
     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-l2-eth-2memif-1dcr-ndr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-l2-eth-2memif-1dcr-pdr-tsa"
@@ -15573,7 +15573,7 @@
     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-rdma-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-l2-eth-2memif-1dcr-pdr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-x710-64b-ip4routing-base-scale-[avf,dpdk]-ndr-tsa"
@@ -15705,7 +15705,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-rdma-ethip4-ip4base-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-ip4base-ndr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-ip4base-pdr-tsa"
@@ -15717,7 +15717,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-rdma-ethip4-ip4base-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-ip4base-pdr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-ethip4-ip4scale-ndr-tsa"
@@ -15733,7 +15733,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-.t.c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-ethip4-ip4scale-ndr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-ethip4-ip4scale-pdr-tsa"
@@ -15749,7 +15749,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Scale2M-Rnd-Ndrpdr.64B-.t.c-rdma-ethip4-ip4scale2m-rnd-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-ethip4-ip4scale-pdr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-ethip4-features-ndr-tsa"
@@ -15765,7 +15765,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-ethip4-features-ndr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-ethip4-features-pdr-tsa"
@@ -15781,7 +15781,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-ethip4-features-pdr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-x710-78b-ip6routing-base-scale-dpdk-ndr-tsa"
@@ -16001,7 +16001,7 @@
     - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-rdma-eth-l2bdbasemaclrn-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-l2switching-base-ndr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-l2switching-base-pdr-tsa"
@@ -16017,7 +16017,7 @@
     - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-rdma-eth-l2bdbasemaclrn-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-l2switching-base-pdr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-l2switching-scale-ndr-tsa"
@@ -16031,7 +16031,7 @@
     - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-l2switching-scale-ndr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-l2switching-scale-pdr-tsa"
@@ -16045,7 +16045,7 @@
     - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-rdma-eth-l2bdscale1mmaclrn-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-l2switching-scale-pdr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-xxv710-64b-vhost-base-dpdk-ndr"
@@ -16115,7 +16115,7 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-l2-vhost-base-pdr-tsa"
@@ -16129,7 +16129,7 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-l2-vhost-base-pdr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-rdma-l2-vhost-vppl2xc-base-ndr-tsa"
@@ -16143,7 +16143,7 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-2t1c-l2-vhost-vppl2xc-base-ndr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-64b-2t1c-l2-vhost-vppl2xc-base-pdr-tsa"
@@ -16157,7 +16157,7 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-2t1c-l2-vhost-vppl2xc-base-pdr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
 
