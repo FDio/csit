@@ -19,17 +19,37 @@
 | ${dpdk_no_tx_checksum_offload}= | ${True}
 
 *** Keywords ***
+| Set single interfaces in path up
+| | [Documentation]
+| | ... | *Set UP state on single physical VPP interfaces in path on all DUT
+| | ... | nodes and set maximal MTU.*
+| |
+| | ... | *Arguments:*
+| | ... | - pf - NIC physical function (physical port).
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set single interfaces in path \| 1 \|
+| |
+| | [Arguments] | ${pf}=${1}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Set interfaces in path up on node on PF | ${dut} | ${pf}
+| | END
+| | All VPP Interfaces Ready Wait | ${nodes} | retries=${60}
+
 | Set interfaces in path up
 | | [Documentation]
 | | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
 | | ... | maximal MTU.*
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Set interfaces in path up on DUT | ${dut}
+| | | Set interfaces in path up on node | ${dut}
 | | END
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
+| | All VPP Interfaces Ready Wait | ${nodes} | retries=${60}
 
-| Set interfaces in path up on DUT
+| Set interfaces in path up on node
 | | [Documentation]
 | | ... | *Set UP state on VPP interfaces in path on specified DUT node and
 | | ... | set maximal MTU.*
@@ -40,126 +60,38 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Set interfaces in path up on DUT \| DUT1 \|
+| | ... | \| Set interfaces in path up on node \| DUT1 \|
 | |
 | | [Arguments] | ${dut}
-# TODO: Rework KW to set all interfaces in path UP and set MTU (including
-# software interfaces. Run KW at the start phase of VPP setup to split
-# from other "functional" configuration. This will allow modularity of this
-# library
-| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${${dut}_if1}
-| | Run Keyword If | '${if1_status}' == 'PASS'
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
-| | ... | ELSE
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
-| | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${${dut}_if2}
-| | Run Keyword If | '${if2_status}' == 'PASS'
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
-| | ... | ELSE
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
-| | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${${dut}_if1}
-| | Run Keyword If | '${if1_status}' == 'PASS'
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
-| | ... | ELSE
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
-| | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
-| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${${dut}_if2}
-| | Run Keyword If | '${if2_status}' == 'PASS'
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
-| | ... | ELSE
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
-| | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
-
-| Set single interfaces in path up
-| | [Documentation]
-| | ... | *Set UP state on single VPP interfaces in path on all DUT nodes and set
-| | ... | maximal MTU.*
 | |
-# TODO: Rework KW to set all interfaces in path UP and set MTU (including
-# software interfaces. Run KW at the start phase of VPP setup to split
-# from other "functional" configuration. This will allow modularity of this
-# library
-| | FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
-| | | ... | ELSE
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Set interfaces in path up on node on PF | ${dut} | ${pf}
 | | END
-| | FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | ELSE
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
-| | END
-| | All VPP Interfaces Ready Wait | ${nodes}
 
-| Get Vhost dump
-| | [Documentation] | Get vhost-user dump.
+| Set interfaces in path up on node on PF
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
+| | ... | set maximal MTU.*
 | |
 | | ... | *Arguments:*
-| | ... | - node - DUT node data. Type: dictionary
-| |
-| | [Arguments] | ${dut_node}
-| |
-| | [Return] | ${vhost_dump}
-| |
-| | ${vhost_dump}= | Vhost User Dump | ${dut_node}
-
-| Initialize layer interface on node
-| | [Documentation]
-| | ... | Baseline interfaces variables to be created.
-| |
-| | ... | *Arguments:*
-| | ... | - dut - DUT node. Type: string
-| | ... | - count - Number of baseline interface variables. Type: integer
+| | ... | - dut - DUT node on which to set the interfaces up.
+| | ... | Type: string
+| | ... | - pf - NIC physical function (physical port).
+| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Initialize layer interface on node \| DUT1 \| 1 \|
+| | ... | \| Set interfaces in path up on node on PF \| DUT1 \| 1 \|
 | |
-| | [Arguments] | ${dut} | ${count}=${1}
+| | [Arguments] | ${dut} | ${pf}
 | |
-| | ${dut_str}= | Convert To Lowercase | ${dut}
-| | FOR | ${id} | IN RANGE | 1 | ${count} + 1
-| | | Set Test Variable | ${${dut_str}_if_${id}_1} | ${${dut_str}_if1}
-| | | Set Test Variable | ${${dut_str}_if_${id}_2} | ${${dut_str}_if2}
+| | ${_chains} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | @{${dut}_${ilayer}${pf}_1}
+| | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
+| | FOR | ${if} | IN | @{${dut}_${ilayer}${pf}${_id}}
+| | | Set Interface State | ${nodes['${dut}']} | ${if} | up
+| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
 | | END
-
-| Initialize layer interface
-| | [Documentation]
-| | ... | Physical interfaces variables to be created on all DUTs.
-| |
-| | ... | *Arguments:*
-| | ... | - count - Number of untagged interfaces variables. Type: integer
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Initialize layer interface \| 1 \|
-| |
-| | [Arguments] | ${count}=${1}
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Initialize layer interface on node | ${dut} | count=${count}
-| | END
-| | Set Test Variable | ${prev_layer} | if
 
 | Pre-initialize layer driver
 | | [Documentation]
@@ -182,8 +114,8 @@
 | | ... | Pre-initialize vfio-pci driver by adding related sections to startup
 | | ... | config on all DUTs.
 | |
-| | Add DPDK pci devices to all DUTs
 | | FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
 | | | ... | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run Keyword | ${dut}.Add DPDK Log Level | debug
@@ -229,7 +161,6 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword | Initialize layer ${driver} on node | ${dut}
 | | END
-| | Set Test Variable | ${prev_layer} | vf
 | | Set interfaces in path up
 
 | Initialize layer vfio-pci on node
@@ -260,29 +191,40 @@
 | |
 | | [Arguments] | ${dut}
 | |
-| | ${dut_str}= | Convert To Lowercase | ${dut}
-| | ${if1_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
-| | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
-| | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
-| | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
-| | ${dut_new_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if1_vf0} | num_rx_queues=${rxq_count_int}
-| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
-| | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_new_if1}
-| | ${dut_new_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if2_vf0} | num_rx_queues=${rxq_count_int}
-| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
-| | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_new_if2}
-| | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
-| | Set Test Variable | ${${dut_str}_if2} | ${dut_new_if2}
-| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_new_if1_mac}
-| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_new_if2_mac}
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Initialize layer avf on node on PF | ${dut} | ${pf}
+| | END
+
+| Initialize layer avf on node on PF
+| | [Documentation]
+| | ... | Initialize AVF interfaces on DUT on NIC PF.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer avf (Intel) on node on PF \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
+| |
+| | FOR | ${vf} | IN RANGE | 0 | ${nic_vfs}
+| | | ${_vlan}= | Get Interface Vlan
+| | | ... | ${nodes['${dut}']} | ${${dut}_${ilayer}${pf}}[0]
+| | | ${_avf}= | VPP Create AVF Interface
+| | | ... | ${nodes['${dut}']} | ${${dut}_${ilayer}${pf}}[0]
+| | | ... | num_rx_queues=${rxq_count_int}
+| | | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
+| | | ${_mac}= | Get Interface MAC
+| | | ... | ${nodes['${dut}']} | ${_avf}
+| | | Set List Value | ${${dut}_${ilayer}${pf}} | ${vf} | ${_avf}
+| | | Insert Into List | ${${dut}_${ilayer}${pf}_mac} | ${vf} | ${_mac}
+| | | Insert Into List | ${${dut}_${ilayer}${pf}_vlan} | ${vf} | ${_vlan}
+| | END
 
 | Initialize layer rdma-core on node
 | | [Documentation]
-| | ... | Initialize rdma-core (MLX) interfaces on DUT.
+| | ... | Initialize rdma-core interfaces on DUT.
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
@@ -293,55 +235,94 @@
 | |
 | | [Arguments] | ${dut}
 | |
-| | ${dut_str}= | Convert To Lowercase | ${dut}
-| | ${if1_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
-| | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
-| | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
-| | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
-| | ${dut_new_if1}= | VPP Create Rdma Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if1} | num_rx_queues=${rxq_count_int}
-| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
-| | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_new_if1}
-| | ${dut_new_if2}= | VPP Create Rdma Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if2} | num_rx_queues=${rxq_count_int}
-| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
-| | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_new_if2}
-| | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
-| | Set Test Variable | ${${dut_str}_if2} | ${dut_new_if2}
-| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_new_if1_mac}
-| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_new_if2_mac}
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Initialize layer rdma-core on node on PF | ${dut} | ${pf}
+| | END
 
-| Initialize layer bonding on node
+| Initialize layer rdma-core on node on PF
 | | [Documentation]
-| | ... | Bonded interface and variables to be created on across east and
-| | ... | west DUT's node interfaces.
+| | ... | Initialize rdma-core (Mellanox VPP) interfaces on DUT on NIC PF.
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
-| | ... | - bond_mode - Link bonding mode. Type: string
-| | ... | - lb_mode - Load balance mode. Type: string
-| | ... | - count - Number of bond interface variables. Type: integer
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Initialize layer bonding on node \| DUT1 \| xor \| l34 \| 1 \|
+| | ... | \| Initialize layer rdma-core on node on PF \| DUT1 \| 1 \|
 | |
-| | [Arguments] | ${dut} | ${bond_mode}=xor | ${lb_mode}=l34 | ${count}=${1}
+| | [Arguments] | ${dut} | ${pf}
 | |
-| | ${dut_str}= | Convert To Lowercase | ${dut}
-| | ${if_index}= | VPP Create Bond Interface
-| | ... | ${nodes['${dut}']} | ${bond_mode} | load_balance=${lb_mode}
-| | ... | mac=00:00:00:01:01:01
-| | Set Interface State | ${nodes['${dut}']} | ${if_index} | up
-| | VPP Enslave Physical Interface
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_1_1} | ${if_index}
-| | VPP Enslave Physical Interface
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_1_2} | ${if_index}
+| | FOR | ${vf} | IN RANGE | 0 | ${nic_vfs}
+| | | ${_vlan}= | Get Interface Vlan
+| | | ... | ${nodes['${dut}']} | ${${dut}_${ilayer}${pf}}[0]
+| | | ${_avf}= | VPP Create Rdma Interface
+| | | ... | ${nodes['${dut}']} | ${${dut}_${ilayer}${pf}}[0]
+| | | ... | num_rx_queues=${rxq_count_int}
+| | | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
+| | | ${_mac}= | Get Interface MAC
+| | | ... | ${nodes['${dut}']} | ${_avf}
+| | | Set List Value
+| | | ... | ${${dut}_${ilayer}${pf}} | ${vf} | ${_avf}
+| | | Insert Into List
+| | | ... | ${${dut}_${ilayer}${pf}_mac} | ${vf} | ${_mac}
+| | | Insert Into List
+| | | ... | ${${dut}_${ilayer}${pf}_vlan} | ${vf} | ${_vlan}
+| | END
+
+| Initialize layer interface
+| | [Documentation]
+| | ... | Physical interfaces variables to be created on all DUTs.
+| |
+| | ... | *Arguments:*
+| | ... | - count - Number of untagged interfaces variables. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer interface \| 1 \|
+| |
+| | [Arguments] | ${count}=${1}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Initialize layer interface on node | ${dut} | count=${count}
+| | END
+
+| Initialize layer interface on node
+| | [Documentation]
+| | ... | Physical interfaces variables to be created on all DUTs.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - count - Number of baseline interface variables. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer interface on node \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${count}=${1}
+| |
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Initialize layer interface on node on PF | ${dut} | ${pf} | count=${count}
+| | END
+
+| Initialize layer interface on node on PF
+| | [Documentation]
+| | ... | Baseline interfaces variables to be created.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - pf - NIC physical function (physical port). Type: integer
+| | ... | - count - Number of baseline interface variables. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer interface on node on PF \| DUT1 \| 1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${pf} | ${count}=${1}
+| |
 | | FOR | ${id} | IN RANGE | 1 | ${count} + 1
-| | | Set Test Variable | ${${dut_str}_bond_${id}_1} | ${if_index}
-| | | Set Test Variable | ${${dut_str}_bond_${id}_2} | ${if_index}
+| | | Set Test Variable
+| | | ... | ${${dut}_${ilayer}${pf}_${id}}
+| | | ... | ${${dut}_${ilayer}${pf}}
 | | END
 
 | Initialize layer bonding
@@ -364,180 +345,165 @@
 | | | ... | ${dut} | bond_mode=${bond_mode} | lb_mode=${lb_mode}
 | | | ... | count=${count}
 | | END
-| | Set Test Variable | ${prev_layer} | bond
+| | Set Test Variable | ${ilayer} | bond
 
-| Initialize layer dot1q on node for chain
+| Initialize layer bonding on node
+| | [Documentation]
+| | ... | Bonded interface and variables to be created on across east and
+| | ... | west DUT's node interfaces.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - bond_mode - Link bonding mode. Type: string
+| | ... | - lb_mode - Load balance mode. Type: string
+| | ... | - count - Number of bond interface variables. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer bonding on node \| DUT1 \| xor \| l34 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${bond_mode}=xor | ${lb_mode}=l34 | ${count}=${1}
+| |
+| | ${if_index}= | VPP Create Bond Interface
+| | ... | ${nodes['${dut}']} | ${bond_mode} | load_balance=${lb_mode}
+| | ... | mac=00:00:00:01:01:01
+| | Set Interface State | ${nodes['${dut}']} | ${if_index} | up
+| | VPP Enslave Physical Interface
+| | ... | ${nodes['${dut}']} | ${${dut}_${ilayer}1_1} | ${if_index}
+| | VPP Enslave Physical Interface
+| | ... | ${nodes['${dut}']} | ${${dut}_${ilayer}2_1} | ${if_index}
+| | FOR | ${id} | IN RANGE | 1 | ${count} + 1
+| | | Set Test Variable | ${${dut}_bond1_${id}} | ${if_index}
+| | | Set Test Variable | ${${dut}_bond2_${id}} | ${if_index}
+| | END
+
+| Initialize layer dot1q
+| | [Documentation]
+| | ... | Dot1q interfaces and variables to be created on all DUTs.
+| |
+| | ... | *Arguments:*
+| | ... | - count - Number of chains.
+| | ... | Type: integer
+| | ... | - vlan_per_chain - Whether to create vlan subinterface for each chain.
+| | ... | Type: boolean
+| | ... | - start - Id of first chain, allows adding chains during test.
+| | ... | Type: integer
+| |
+| | ... | \| Initialize layer dot1q \| 1 \| True \| 1 \|
+| |
+| | [Arguments] | ${count}=${1} | ${vlan_per_chain}=${True} | ${start}=${1}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Initialize layer dot1q on node
+| | | ... | ${dut} | count=${count} | vlan_per_chain=${vlan_per_chain}
+| | | ... | start=${start}
+| | END
+| | Set Test Variable | ${ilayer} | dot1q
+
+| Initialize layer dot1q on node
+| | [Documentation]
+| | ... | Dot1q interfaces and variables to be created on all DUT's node.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node.
+| | ... | Type: string
+| | ... | - count - Number of chains.
+| | ... | Type: integer
+| | ... | - vlan_per_chain - Whether to create vlan subinterface for each chain.
+| | ... | Type: boolean
+| | ... | - start - Id of first chain, allows adding chains during test.
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer dot1q on node \| DUT1 \| 1 \| True \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${count}=${1} | ${vlan_per_chain}=${True}
+| | ... | ${start}=${1}
+| |
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Initialize layer dot1q on node on PF | ${dut} | pf=${pf} | count=${count}
+| | | ... | vlan_per_chain=${vlan_per_chain} | start=${start}
+| | END
+
+| Initialize layer dot1q on node on PF
+| | [Documentation]
+| | ... | Dot1q interfaces and variables to be created on all DUT's node
+| | ... | interfaces.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node.
+| | ... | Type: string
+| | ... | - pf - NIC physical function (physical port).
+| | ... | Type: integer
+| | ... | - count - Number of chains.
+| | ... | Type: integer
+| | ... | - vlan_per_chain - Whether to create vlan subinterface for each chain.
+| | ... | Type: boolean
+| | ... | - start - Id of first chain, allows adding chains during test.
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer dot1q on node on PF \| DUT1 \| 3 \| True \| 2 \|
+| |
+| | [Arguments] | ${dut} | ${pf}=${1} | ${count}=${1}
+| | ... | ${vlan_per_chain}=${True} | ${start}=${1}
+| |
+| | FOR | ${id} | IN RANGE | ${start} | ${count} + 1
+| | | ${_dot1q} | Initialize layer dot1q on node on PF for chain
+| | | ... | dut=${dut} | pf=${pf} | id=${id} | vlan_per_chain=${vlan_per_chain}
+| | | # First id results in non-None indices, after that _1_ are defined.
+| | | ${_dot1q}= | Set Variable If | '${_dot1q}' == '${NONE}'
+| | | ... | ${${dut}_dot1q${pf}_1} | ${_dot1q}
+| | | ${_dot1q}= | Create List | ${_dot1q}
+| | | Set Test Variable | ${${dut}_dot1q${pf}_${id}} | ${_dot1q}
+| | END
+
+| Initialize layer dot1q on node on PF for chain
 | | [Documentation]
 | | ... | Optionally create tag popping subinterface per chain.
 | | ... | Return interface indices for dot1q layer interfaces,
 | | ... | or Nones if subinterfaces are not created.
 | |
 | | ... | *Arguments:*
-| | ... | - dut - DUT node. Type: string
-| | ... | - id - Positive index of the chain. Type: integer
+| | ... | - dut - DUT node.
+| | ... | Type: string
+| | ... | - pf - NIC physical function (physical port).
+| | ... | Type: integer
+| | ... | - id - Positive index of the chain.
+| | ... | Type: integer
 | | ... | - vlan_per_chain - Whether to create vlan subinterface for each chain.
 | | ... | Type: boolean
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Initialize layer dot1q on node for chain \| DUT1 \| 1 \| True \|
+| | ... | \| Initialize layer dot1q on node on PF for chain \| DUT1 \
+| | ... | \| 1 \| 1 \| True \|
 | |
-| | [Arguments] | ${dut} | ${id} | ${vlan_per_chain}=${True}
+| | [Arguments] | ${dut} | ${pf} | ${id} | ${vlan_per_chain}=${True}
 | |
-| | ${dut_str}= | Convert To Lowercase | ${dut}
 | | Return From Keyword If | ${id} != ${1} and not ${vlan_per_chain}
 | | ... | ${NONE} | ${NONE}
-| | # TODO: Is it worth creating Get Variable Value If Not None keyword?
-| | ${default}= | Evaluate | ${100} + ${id} - ${1}
-| | ${if1_vlan}= | Get Variable Value | \${${dut_str}_vlan1}
-| | ${if1_vlan}= | Set Variable If | '${if1_vlan}' != '${NONE}'
-| | ... | ${if1_vlan} | ${default}
-| | ${default}= | Evaluate | ${200} + ${id} - ${1}
-| | ${if2_vlan}= | Get Variable Value | \${${dut_str}_vlan2}
-| | ${if2_vlan}= | Set Variable If | '${if2_vlan}' != '${NONE}'
-| | ... | ${if2_vlan} | ${default}
-| | ${if1_name} | ${if1_index}= | Create Vlan Subinterface
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1}
-| | ... | ${if1_vlan}
-| | ${if2_name} | ${if2_index}= | Create Vlan Subinterface
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2}
-| | ... | ${if2_vlan}
-| | Set Interface State | ${nodes['${dut}']} | ${if1_index} | up
-| | Set Interface State | ${nodes['${dut}']} | ${if2_index} | up
+| | ${_default}= | Evaluate | ${pf} * ${100} + ${id} - ${1}
+| | ${_vlan}= | Get Variable Value | \${${dut}_${ilayer}${pf}_vlan}
+| | ${_vlan}= | Set Variable If | '${_vlan}' != '${NONE}'
+| | ... | ${_vlan} | ${_default}
+| | ${_name} | ${_index}= | Create Vlan Subinterface
+| | ... | ${nodes['${dut}']} | ${${dut}_${ilayer}${pf}_${id}}[0]
+| | ... | ${_vlan}[0]
+| | Set Interface State | ${nodes['${dut}']} | ${_index} | up
 | | Configure L2 tag rewrite method on interfaces
-| | ... | ${nodes['${dut}']} | ${if1_index} | TAG_REWRITE_METHOD=pop-1
-| | Configure L2 tag rewrite method on interfaces
-| | ... | ${nodes['${dut}']} | ${if2_index} | TAG_REWRITE_METHOD=pop-1
-| | Return From Keyword | ${if1_index} | ${if2_index}
-
-| Initialize layer dot1q on node
-| | [Documentation]
-| | ... | Dot1q interfaces and variables to be created on all DUT's node
-| | ... | interfaces.
-| |
-| | ... | TODO: Unify names for number of chains/pipelines/instances/interfaces.
-| | ... | Chose names and descriptions that makes sense for both
-| | ... | nf_density and older tests.
-| | ... | Note that with vlan_per_chain=False it is not a number of interfaces.
-| | ... | At least not number of real interfaces, just number of aliases.
-| | ... | This TODO applies also to all keywords with nf_chains argument.
-| |
-| | ... | *Arguments:*
-| | ... | - dut - DUT node. Type: string
-| | ... | - count - Number of chains. Type: integer
-| | ... | - vlan_per_chain - Whether to create vlan subinterface for each chain.
-| | ... | Type: boolean
-| | ... | - start - Id of first chain, allows adding chains during test.
-| | ... | Type: integer
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Initialize layer dot1q on node \| DUT1 \| 3 \| True \| 2 \|
-| |
-| | [Arguments] | ${dut} | ${count}=${1} | ${vlan_per_chain}=${True}
-| | ... | ${start}=${1}
-| |
-| | ${dut_str}= | Convert To Lowercase | ${dut}
-| | FOR | ${id} | IN RANGE | ${start} | ${count} + 1
-| | | ${if1_index} | ${if2_index}= | Initialize layer dot1q on node for chain
-| | | ... | dut=${dut} | id=${id} | vlan_per_chain=${vlan_per_chain}
-| | | # First id results in non-None indices, after that _1_ are defined.
-| | | ${if1_index}= | Set Variable If | '${if1_index}' == '${NONE}'
-| | | ... | ${${dut_str}_dot1q_1_1} | ${if1_index}
-| | | ${if2_index}= | Set Variable If | '${if2_index}' == '${NONE}'
-| | | ... | ${${dut_str}_dot1q_1_2} | ${if2_index}
-| | | Set Test Variable | ${${dut_str}_dot1q_${id}_1} | ${if1_index}
-| | | Set Test Variable | ${${dut_str}_dot1q_${id}_2} | ${if2_index}
-| | END
-
-| Initialize layer dot1q
-| | [Documentation]
-| | ... | Dot1q interfaces and variables to be created on all DUT's interfaces.
-| |
-| | ... | *Arguments:*
-| | ... | - count - Number of chains. Type: integer
-| | ... | - vlan_per_chain - Whether to create vlan subinterface for each chain.
-| | ... | Type: boolean
-| | ... | - start - Id of first chain, allows adding chains during test.
-| | ... | Type: integer
-| |
-| | ... | \| Initialize layer dot1q \| 3 \| True \| 2 \|
-| |
-| | [Arguments] | ${count}=${1} | ${vlan_per_chain}=${True} | ${start}=${1}
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Initialize layer dot1q on node | ${dut} | count=${count}
-| | | ... | vlan_per_chain=${vlan_per_chain} | start=${start}
-| | END
-| | Set Test Variable | ${prev_layer} | dot1q
-
-| Initialize layer ip4vxlan on node
-| | [Documentation]
-| | ... | Setup VXLANoIPv4 between TG and DUTs and DUT to DUT by connecting
-| | ... | physical and vxlan interfaces on each DUT. All interfaces are brought
-| | ... | up. IPv4 addresses with prefix /24 are configured on interfaces
-| | ... | towards TG. VXLAN sub-interfaces has same IPv4 address as interfaces.
-| |
-| | ... | *Arguments:*
-| | ... | - dut - DUT node. Type: string
-| | ... | - count - Number of vxlan interfaces. Type: integer
-| | ... | - start - Id of first chain, allows adding chains during test.
-| | ... | Type: integer
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Initialize layer ip4vxlan on node \| DUT1 \| 3 \| 2 \|
-| |
-| | [Arguments] | ${dut} | ${count}=${1} | ${start}=${1}
-| |
-| | ${dut_str}= | Convert To Lowercase | ${dut}
-| | Run Keyword If | "${start}" == "1" | VPP Interface Set IP Address
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_1_1}
-| | ... | 172.16.0.1 | 24
-| | Run Keyword If | "${start}" == "1" | VPP Interface Set IP Address
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_1_2}
-| | ... | 172.26.0.1 | 24
-| | FOR | ${id} | IN RANGE | ${start} | ${count} + 1
-| | | ${subnet}= | Evaluate | ${id} - 1
-| | | ${vni}= | Evaluate | ${id} - 1
-| | | ${ip4vxlan_1}= | Create VXLAN interface
-| | | ... | ${nodes['${dut}']} | ${vni} | 172.16.0.1 | 172.17.${subnet}.2
-| | | ${ip4vxlan_2}= | Create VXLAN interface
-| | | ... | ${nodes['${dut}']} | ${vni} | 172.26.0.1 | 172.27.${subnet}.2
-| | | ${prev_mac}= | Set Variable If | '${dut}' == 'DUT1'
-| | | ... | ${tg_if1_mac} | ${dut1_if2_mac}
-| | | ${next_mac}= | Set Variable If | '${dut}' == 'DUT1' and ${duts_count} == 2
-| | | ... | ${dut2_if1_mac} | ${tg_if2_mac}
-| | | VPP Add IP Neighbor
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1}
-| | | ... | 172.16.${subnet}.2 | ${prev_mac}
-| | | VPP Add IP Neighbor
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2}
-| | | ... | 172.26.${subnet}.2 | ${next_mac}
-| | | VPP Route Add
-| | | ... | ${nodes['${dut}']} | 172.17.${subnet}.0 | 24
-| | | ... | gateway=172.16.${subnet}.2
-| | | ... | interface=${${dut_str}_${prev_layer}_${id}_1}
-| | | VPP Route Add
-| | | ... | ${nodes['${dut}']} | 172.27.${subnet}.0 | 24
-| | | ... | gateway=172.26.${subnet}.2
-| | | ... | interface=${${dut_str}_${prev_layer}_${id}_2}
-| | | Set VXLAN Bypass
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1}
-| | | Set VXLAN Bypass
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2}
-| | | Set Test Variable
-| | | ... | ${${dut_str}_ip4vxlan_${id}_1} | ${ip4vxlan_1}
-| | | Set Test Variable
-| | | ... | ${${dut_str}_ip4vxlan_${id}_2} | ${ip4vxlan_2}
-| | END
+| | ... | ${nodes['${dut}']} | ${_index} | TAG_REWRITE_METHOD=pop-1
+| | Return From Keyword | ${_index}
 
 | Initialize layer ip4vxlan
 | | [Documentation]
 | | ... | VXLAN interfaces and variables to be created on all DUT's interfaces.
 | |
 | | ... | *Arguments:*
-| | ... | - count - Number of vxlan interfaces. Type: integer
+| | ... | - count - Number of vxlan interfaces.
+| | ... | Type: integer
 | | ... | - start - Id of first chain, allows adding chains during test.
 | | ... | Type: integer
 | |
@@ -547,18 +513,100 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Initialize layer ip4vxlan on node | ${dut} | count=${count}
-| | ... | start=${start}
+| | | ... | start=${start}
 | | END
-| | Set Test Variable | ${prev_layer} | ip4vxlan
+| | Set Test Variable | ${ilayer} | ip4vxlan
+
+| Initialize layer ip4vxlan on node
+| | [Documentation]
+| | ... | Setup VXLANoIPv4 between TG and DUTs and DUT to DUT by connecting
+| | ... | physical and vxlan interfaces on each DUT. All interfaces are brought
+| | ... | up. IPv4 addresses with prefix /24 are configured on interfaces
+| | ... | towards TG. VXLAN sub-interfaces has same IPv4 address as interfaces.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node.
+| | ... | Type: string
+| | ... | - count - Number of vxlan interfaces.
+| | ... | Type: integer
+| | ... | - start - Id of first chain, allows adding chains during test.
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer ip4vxlan on node \| DUT1 \| 3 \| 2 \|
+| |
+| | [Arguments] | ${dut} | ${count}=${1} | ${start}=${1}
+| |
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Initialize layer ip4vxlan on node on PF | ${dut} | pf=${pf}
+| | | ... | count=${count} | start=${start}
+| | END
+
+| Initialize layer ip4vxlan on node on PF
+| | [Documentation]
+| | ... | Setup VXLANoIPv4 between TG and DUTs and DUT to DUT by connecting
+| | ... | physical and vxlan interfaces on each DUT. All interfaces are brought
+| | ... | up. IPv4 addresses with prefix /24 are configured on interfaces
+| | ... | towards TG. VXLAN sub-interfaces has same IPv4 address as interfaces.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node.
+| | ... | Type: string
+| | ... | - pf - NIC physical function (physical port).
+| | ... | Type: integer
+| | ... | - count - Number of vxlan interfaces.
+| | ... | Type: integer
+| | ... | - start - Id of first chain, allows adding chains during test.
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer ip4vxlan on node on PF \| DUT1 \| 3 \| 2 \|
+| |
+| | [Arguments] | ${dut} | ${pf}=${1} | ${count}=${1} | ${start}=${1}
+| |
+| | Run Keyword If | "${start}" == "1" | VPP Interface Set IP Address
+| | ... | ${nodes['${dut}']} | ${${dut}_${ilayer}${pf}_1}[0]
+| | ... | 172.${pf}6.0.1 | 24
+| | FOR | ${id} | IN RANGE | ${start} | ${count} + 1
+| | | ${_subnet}= | Evaluate | ${id} - 1
+| | | ${_vni}= | Evaluate | ${id} - 1
+| | | ${_ip4vxlan}= | Create VXLAN interface
+| | | ... | ${nodes['${dut}']} | ${_vni}
+| | | ... | 172.${pf}6.0.1 | 172.${pf}7.${_subnet}.2
+| | | ${_prev_mac}= | Set Variable If | '${dut}' == 'DUT1'
+| | | ... | ${tg_if1_mac} | ${dut1_if2_mac}
+| | | ${_next_mac}= | Set Variable If | '${dut}' == 'DUT1' and ${duts_count} == 2
+| | | ... | ${dut2_if1_mac} | ${tg_if2_mac}
+| | | ${_even}= | Evaluate | ${pf} % 2
+| | | ${_mac}= | Set Variable If | ${_even}
+| | | ... | ${_prev_mac} | ${_next_mac}
+| | | VPP Add IP Neighbor
+| | | ... | ${nodes['${dut}']} | ${${dut}_${ilayer}${pf}_${id}}[0]
+| | | ... | 172.${pf}6.${_subnet}.2 | ${_mac}
+| | | VPP Route Add
+| | | ... | ${nodes['${dut}']} | 172.${pf}7.${_subnet}.0 | 24
+| | | ... | gateway=172.${pf}6.${_subnet}.2
+| | | ... | interface=${${dut}_${ilayer}${pf}_${id}}[0]
+| | | Set VXLAN Bypass
+| | | ... | ${nodes['${dut}']} | ${${dut}_${ilayer}${pf}_${id}}[0]
+| | | ${_ip4vxlan}= | Create List | ${_ip4vxlan}
+| | | Set Test Variable
+| | | ... | ${${dut}_ip4vxlan${pf}_${id}} | ${_ip4vxlan}
+| | END
 
 | Configure vhost interfaces
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on defined VPP node.
 | |
 | | ... | *Arguments:*
-| | ... | - ${dut_node} - DUT node. Type: dictionary
-| | ... | - ${sock1} - Socket path for first Vhost-User interface. Type: string
-| | ... | - ${sock2} - Socket path for second Vhost-User interface. Type: string
+| | ... | - ${dut_node} - DUT node.
+| | ... | Type: dictionary
+| | ... | - ${sock1} - Socket path for first Vhost-User interface.
+| | ... | Type: string
+| | ... | - ${sock2} - Socket path for second Vhost-User interface.
+| | ... | Type: string
 | | ... | - ${vhost_if1} - Name of the first Vhost-User interface (Optional).
 | | ... | Type: string
 | | ... | - ${vhost_if2} - Name of the second Vhost-User interface (Optional).
@@ -576,9 +624,6 @@
 | |
 | | ... | \| Configure vhost interfaces \
 | | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \|
-| | ... | \| Configure vhost interfaces \
-| | ... | \| ${nodes['DUT2']} \| /tmp/sock1 \| /tmp/sock2 \| dut2_vhost_if1 \
-| | ... | \| dut2_vhost_if2 \|
 | |
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vhost_if1}=vhost_if1
 | | ... | ${vhost_if2}=vhost_if2 | ${is_server}=${False}
@@ -600,3 +645,15 @@
 | | Set Test Variable | ${${vhost_if2}} | ${vhost_2}
 | | Set Test Variable | ${${vhost_if1}_mac} | ${vhost_1_mac}
 | | Set Test Variable | ${${vhost_if2}_mac} | ${vhost_2_mac}
+
+| Get Vhost dump
+| | [Documentation] | Get vhost-user dump.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node data.
+| | ... | Type: dictionary
+| |
+| | [Arguments] | ${dut}
+| |
+| | ${vhost_dump}= | Vhost User Dump | ${dut}
+| | Return From Keyword | ${vhost_dump}
