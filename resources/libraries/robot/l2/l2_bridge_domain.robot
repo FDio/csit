@@ -26,33 +26,13 @@
 | | | VPP Get Bridge Domain Data | ${nodes['${dut}']}
 | | END
 
-| Create bridge domain
-| | [Documentation]
-| | ... | Create bridge domain on given VPP node with defined learning status.
-| |
-| | ... | *Arguments:*
-| | ... | - ${dut_node} - DUT node. Type: dictionary
-| | ... | - ${bd_id} - Bridge domain ID. Type: integer
-| | ... | - ${learn} - Enable/disable MAC learn. Type: boolean, \
-| | ... | default value: ${TRUE}
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Create bridge domain \| ${nodes['DUT1']} \| 2 \|
-| | ... | \| Create bridge domain \| ${nodes['DUT1']} \| 5 \
-| | ... | \| learn=${FALSE} \|
-| |
-| | [Arguments] | ${dut_node} | ${bd_id} | ${learn}=${TRUE}
-| |
-| | Create L2 BD | ${dut_node} | ${bd_id} | learn=${learn}
-
 | Add interface to bridge domain
 | | [Documentation]
 | | ... | Set given interface admin state to up and add this
 | | ... | interface to required L2 bridge domain on defined VPP node.
 | |
 | | ... | *Arguments:*
-| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${dut} - DUT node. Type: dictionary
 | | ... | - ${dut_if} - DUT node interface name. Type: string
 | | ... | - ${bd_id} - Bridge domain ID. Type: integer
 | | ... | - ${shg} - Split-horizon group ID. Type: integer, default value: 0
@@ -62,10 +42,10 @@
 | | ... | \| Add interface to bridge domain \| ${nodes['DUT2']} \
 | | ... | \| GigabitEthernet0/8/0 \| 3 \|
 | |
-| | [Arguments] | ${dut_node} | ${dut_if} | ${bd_id} | ${shg}=0
+| | [Arguments] | ${dut} | ${dut_if} | ${bd_id} | ${shg}=0
 | |
-| | Set Interface State | ${dut_node} | ${dut_if} | up
-| | Add Interface To L2 BD | ${dut_node} | ${dut_if} | ${bd_id} | ${shg}
+| | Set Interface State | ${dut} | ${dut_if} | up
+| | Add Interface To L2 BD | ${dut} | ${dut_if} | ${bd_id} | ${shg}
 
 | Initialize L2 bridge domain on node
 | | [Documentation]
@@ -84,11 +64,10 @@
 | | [Arguments] | ${dut} | ${count}=${1}
 | |
 | | FOR | ${id} | IN RANGE | 1 | ${count} + 1
-| | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | Add Interface To L2 BD
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1} | ${id}
+| | | ... | ${nodes['${dut}']} | ${${dut}_${int}1_${id}}[0] | ${id}
 | | | Add Interface To L2 BD
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2} | ${id}
+| | | ... | ${nodes['${dut}']} | ${${dut}_${int}2_${id}}[0] | ${id}
 | | END
 
 | Initialize L2 bridge domain
@@ -136,12 +115,11 @@
 | |
 | | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
 | | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
-| | ${dut_str}= | Convert To Lowercase | ${dut}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | ... | ${nodes['${dut}']} | ${${dut}_${int}1_${nf_chain}}[0]
 | | ... | ${bd_id1}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | ... | ${nodes['${dut}']} | ${${dut}_${int}2_${nf_chain}}[0]
 | | ... | ${bd_id2}
 | | FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes} + 1
 | | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
@@ -215,20 +193,28 @@
 | | ... | interfaces.
 | |
 | | Set interfaces in path up
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 172.16.0.1
-| | ... | 24
-| | VPP Interface Set IP Address | ${dut2} | ${dut2_if1} | 172.16.0.2
-| | ... | 24
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
-| | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
-| | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
-| | ... | 172.16.0.1 | 172.16.0.2
-| | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
-| | ... | 172.16.0.2 | 172.16.0.1
-| | VPP Add L2 Bridge Domain | ${dut1} | ${1} | ${dut1_if1} | ${dut1s_vxlan}
-| | Set Interface State | ${dut1} | ${dut1s_vxlan} | up
-| | VPP Add L2 Bridge Domain | ${dut2} | ${1} | ${dut2_if2} | ${dut2s_vxlan}
-| | Set Interface State | ${dut2} | ${dut2s_vxlan} | up
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 172.16.0.1 | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 172.16.0.2 | 24
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 172.16.0.2
+| | ... | ${DUT2_${int}1_mac}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 172.16.0.1
+| | ... | ${DUT1_${int}2_mac}[0]
+| | ${dut1s_vxlan}= | Create VXLAN interface
+| | ... | ${dut1} | 24 | 172.16.0.1 | 172.16.0.2
+| | ${dut2s_vxlan}= | Create VXLAN interface
+| | ... | ${dut2} | 24 | 172.16.0.2 | 172.16.0.1
+| | VPP Add L2 Bridge Domain
+| | ... | ${dut1} | ${1} | ${DUT1_${int}1}[0] | ${dut1s_vxlan}
+| | Set Interface State
+| | ... | ${dut1} | ${dut1s_vxlan} | up
+| | VPP Add L2 Bridge Domain
+| | ... | ${dut2} | ${1} | ${DUT2_${int}2}[0] | ${dut2s_vxlan}
+| | Set Interface State
+| | ... | ${dut2} | ${dut2s_vxlan} | up
 
 | Initialize L2 bridge domain with VLAN and VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
@@ -257,17 +243,29 @@
 | | ${dut1_ip_start}= | Set Variable | 172.16.0.1
 | | ${dut2_ip_start}= | Set Variable | 172.16.0.2
 | |
-| | Vpp create multiple VXLAN IPv4 tunnels | node=${dut1}
-| | ... | node_vxlan_if=${dut1_if2} | node_vlan_if=${dut1_if1}
-| | ... | op_node=${dut2} | op_node_if=${dut2_if1} | n_tunnels=${vxlan_count}
-| | ... | vni_start=${vni_start} | src_ip_start=${dut1_ip_start}
-| | ... | dst_ip_start=${dut2_ip_start} | ip_step=${ip_step}
+| | Vpp create multiple VXLAN IPv4 tunnels
+| | ... | node=${dut1}
+| | ... | node_vxlan_if=${DUT1_${int}2}[0]
+| | ... | node_vlan_if=${DUT1_${int}1}[0]
+| | ... | op_node=${dut2}
+| | ... | op_node_if=${DUT2_${int}1}[0]
+| | ... | n_tunnels=${vxlan_count}
+| | ... | vni_start=${vni_start}
+| | ... | src_ip_start=${dut1_ip_start}
+| | ... | dst_ip_start=${dut2_ip_start}
+| | ... | ip_step=${ip_step}
 | | ... | bd_id_start=${bd_id_start}
-| | Vpp create multiple VXLAN IPv4 tunnels | node=${dut2}
-| | ... | node_vxlan_if=${dut2_if1} | node_vlan_if=${dut2_if2}
-| | ... | op_node=${dut1} | op_node_if=${dut1_if2} | n_tunnels=${vxlan_count}
-| | ... | vni_start=${vni_start} | src_ip_start=${dut2_ip_start}
-| | ... | dst_ip_start=${dut1_ip_start} | ip_step=${ip_step}
+| | Vpp create multiple VXLAN IPv4 tunnels
+| | ... | node=${dut2}
+| | ... | node_vxlan_if=${DUT2_${int}1}[0]
+| | ... | node_vlan_if=${DUT2_${int}2}[0]
+| | ... | op_node=${dut1}
+| | ... | op_node_if=${DUT1_${int}2}[0]
+| | ... | n_tunnels=${vxlan_count}
+| | ... | vni_start=${vni_start}
+| | ... | src_ip_start=${dut2_ip_start}
+| | ... | dst_ip_start=${dut1_ip_start}
+| | ... | ip_step=${ip_step}
 | | ... | bd_id_start=${bd_id_start}
 
 | Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
@@ -291,27 +289,35 @@
 | |
 | | [Arguments] | ${bd_id1} | ${bd_id2}
 | |
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 172.16.0.1
-| | ... | 24
-| | VPP Interface Set IP Address | ${dut2} | ${dut2_if1} | 172.16.0.2
-| | ... | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 172.16.0.1 | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 172.16.0.2 | 24
 | | Set interfaces in path up
-| | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
-| | ... | 172.16.0.1 | 172.16.0.2
-| | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
-| | ... | 172.16.0.2 | 172.16.0.1
+| | ${dut1s_vxlan}= | Create VXLAN interface
+| | ... | ${dut1} | 24 | 172.16.0.1 | 172.16.0.2
+| | ${dut2s_vxlan}= | Create VXLAN interface
+| | ... | ${dut2} | 24 | 172.16.0.2 | 172.16.0.1
 | | Configure vhost interfaces | ${dut1}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${dut1s_vxlan} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${vhost_if1} | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${vhost_if2} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${dut1s_vxlan} | ${bd_id2}
 | | Configure vhost interfaces | ${dut2}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${dut2s_vxlan} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut2} | ${dut2s_vxlan} | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut2} | ${vhost_if1} | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut2} | ${vhost_if2} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${bd_id2}
 
 | Initialize L2 bridge domains with VLAN dot1q sub-interfaces in circular topology
 | | [Documentation]
@@ -347,23 +353,26 @@
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0]
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | SUB_ID=${subid}
 | | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | SUB_ID=${subid}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
-| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1}
+| | ... | ${dut2} | ${subif_index_2} | TAG_REWRITE_METHOD=${tag_rewrite}
 | | ... | ELSE | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
-| |
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${subif_index_1} | ${bd_id1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add interface to bridge domain | ${dut2} | ${subif_index_2}
-| | ... | ${bd_id2}
+| | ... | Add interface to bridge domain
+| | ... | ${dut2} | ${subif_index_2} | ${bd_id2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2}
-| | ... | ${bd_id2}
+| | ... | Add interface to bridge domain
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${bd_id2}
 
 | Initialize L2 bridge domains with Vhost-User and VLAN in circular topology
 | | [Documentation]
@@ -393,21 +402,26 @@
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0]
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | SUB_ID=${subid}
 | | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | SUB_ID=${subid}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
-| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1}
+| | ... | ${dut2} | ${subif_index_2} | TAG_REWRITE_METHOD=${tag_rewrite}
 | | ... | ELSE | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
-| |
 | | Configure vhost interfaces | ${dut1}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${vhost_if1} | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${vhost_if2} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure vhost interfaces | ${dut2}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
@@ -419,7 +433,8 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | ... | Add interface to bridge domain | ${dut2} | ${DUT2_${int}2}[0]
+| | ... | ${bd_id2}
 
 | Initialize L2 bridge domains with Vhost-User and VLAN with VPP link bonding in a 3-node circular topology
 | | [Documentation]
@@ -450,55 +465,53 @@
 | | ... | ${bond_mode} | ${lb_mode}
 | |
 | | Set interfaces in path up
-| | ${dut1_eth_bond_if1}= | VPP Create Bond Interface | ${dut1} | ${bond_mode}
-| | ... | ${lb_mode}
+| | ${dut1_eth_bond_if1}= | VPP Create Bond Interface
+| | ... | ${dut1} | ${bond_mode} | ${lb_mode}
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
-| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${dut1_if2}
-| | Run Keyword If | '${if2_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2}
-| | ... | ${dut1_eth_bond_if1}
-| | ... | ELSE
-| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2_1}
-| | ... | ${dut1_eth_bond_if1}
-| | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2_2}
-| | ... | ${dut1_eth_bond_if1}
-| | ${dut2_eth_bond_if1}= | VPP Create Bond Interface | ${dut2} | ${bond_mode}
-| | ... | ${lb_mode}
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | ${_even}= | Evaluate | ${pf} % 2
+| | | Run Keyword If | ${even}
+| | | ... | VPP Enslave Physical Interface
+| | | ... | ${dut1} | ${DUT1_${int}${pf}}[0]
+| | END
+| | ${dut2_eth_bond_if1}= | VPP Create Bond Interface
+| | ... | ${dut2} | ${bond_mode} | ${lb_mode}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
-| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${dut2_if1}
-| | Run Keyword If | '${if1_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1}
-| | ... | ${dut2_eth_bond_if1}
-| | ... | ELSE
-| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_1}
-| | ... | ${dut2_eth_bond_if1}
-| | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_2}
-| | ... | ${dut2_eth_bond_if1}
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | ${_even}= | Evaluate | ${pf} % 2
+| | | Run Keyword Unless | ${even}
+| | | ... | VPP Enslave Physical Interface
+| | | ... | ${dut2} | ${DUT2_${int}${pf}}[0]
+| | END
 | | VPP Show Bond Data On All Nodes | ${nodes} | verbose=${TRUE}
 | | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
-| | ... | ${subid}
+| | ... | ${dut1} | ${dut1_eth_bond_if1}
+| | ... | ${dut2} | ${dut2_eth_bond_if1} | ${subid}
 | | Configure L2 tag rewrite method on interfaces
-| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
-| | ... | ${tag_rewrite}
+| | ... | ${dut1} | ${subif_index_1}
+| | ... | ${dut2} | ${subif_index_2} | ${tag_rewrite}
 | | Configure vhost interfaces | ${dut1}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${vhost_if1} | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${vhost_if2} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Configure vhost interfaces | ${dut2}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut2} | ${subif_index_2} | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut2} | ${vhost_if1} | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut2} | ${vhost_if2} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${bd_id2}
 
 | Initialize L2 Bridge Domain with memif pairs on DUT node
 | | [Documentation]
@@ -530,12 +543,11 @@
 | | ... | ELSE | Set Variable | ${1}
 | | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
 | | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
-| | ${dut_str}= | Convert To Lowercase | ${dut}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | ... | ${nodes['${dut}']} | ${${dut}_${int}1_${nf_chain}}[0]
 | | ... | ${bd_id1}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | ... | ${nodes['${dut}']} | ${${dut}_${int}2_${nf_chain}}[0]
 | | ... | ${bd_id2}
 | | FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
@@ -629,12 +641,11 @@
 | | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
 | | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
 | | FOR | ${dut} | IN | @{duts}
-| | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | Add interface to bridge domain
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | | ... | ${nodes['${dut}']} | ${${dut}_${int}1_${nf_chain}}[0]
 | | | ... | ${bd_id1}
 | | | Add interface to bridge domain
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | | ... | ${nodes['${dut}']} | ${${dut}_${int}2_${nf_chain}}[0]
 | | | ... | ${bd_id2}
 | | | ${nf_id_frst}= | Evaluate | (${nf_chain}-${1}) * ${nf_nodes} + ${1}
 | | | ${nf_id_last}= | Evaluate | (${nf_chain}-${1}) * ${nf_nodes} + ${nf_nodes}
@@ -712,12 +723,14 @@
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0]
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | SUB_ID=${subid}
 | | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | SUB_ID=${subid}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
-| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1}
+| | ... | ${dut2} | ${subif_index_2} | TAG_REWRITE_METHOD=${tag_rewrite}
 | | ... | ELSE | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
 | |
@@ -729,10 +742,14 @@
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock2}
 | | ... | ${number} | ${memif_if1_name} | ${memif_if2_name} | ${rxq_count_int}
 | | ... | ${rxq_count_int}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${${memif_if1_name}} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${${memif_if2_name}} | ${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${${memif_if1_name}} | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${${memif_if2_name}} | ${bd_id2}
+| | Add interface to bridge domain
+| | ... | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | ${sock1}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | memif-DUT2_CNF
 | | ${sock2}= | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -746,16 +763,17 @@
 | | ... | ${number} | ${memif_if1_name} | ${memif_if2_name} | ${rxq_count_int}
 | | ... | ${rxq_count_int}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add interface to bridge domain | ${dut2} | ${subif_index_2}
-| | ... | ${bd_id1}
+| | ... | Add interface to bridge domain
+| | ... | ${dut2} | ${subif_index_2} | ${bd_id1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add interface to bridge domain | ${dut2} | ${${memif_if1_name}}
-| | ... | ${bd_id1}
+| | ... | Add interface to bridge domain
+| | ... | ${dut2} | ${${memif_if1_name}} | ${bd_id1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add interface to bridge domain | ${dut2} | ${${memif_if2_name}}
-| | ... | ${bd_id2}
+| | ... | Add interface to bridge domain
+| | ... | ${dut2} | ${${memif_if2_name}} | ${bd_id2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | ... | Add interface to bridge domain
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${bd_id2}
 | |
 | | Show Memif on all DUTs | ${nodes}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
@@ -787,8 +805,8 @@
 | | | Set up single memif interface on DUT node | ${nodes['${dut}']} | ${sock}
 | | | ... | mid=${number} | sid=${sid} | memif_if=${dut}-memif-${number}-if1
 | | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
-| | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | ${number}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}_${int}1}[]0 | ${number}
 | | | Add interface to bridge domain | ${nodes['${dut}']}
 | | | ... | ${${dut}-memif-${number}-if1} | ${number}
 | | END
@@ -803,9 +821,12 @@
 | | ... | DUT1 interfaces.
 | |
 | | Set interfaces in path up
-| | VPP Add L2 Bridge Domain | ${dut1} | ${1} | ${dut1_if1} | ${dut1_if2}
-| | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | Configure MACIP ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | VPP Add L2 Bridge Domain
+| | ... | ${dut1} | ${1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
+| | Configure L2XC
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${DUT2_${int}2}[0]
+| | Configure MACIP ACLs
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
 
 | Initialize L2 bridge domain with IPv4 ACLs on DUT1 in 3-node circular topology
 | | [Documentation]
@@ -815,6 +836,9 @@
 | | ... | interfaces.
 | |
 | | Set interfaces in path up
-| | VPP Add L2 Bridge Domain | ${dut1} | ${1} | ${dut1_if1} | ${dut1_if2}
-| | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | VPP Add L2 Bridge Domain
+| | ... | ${dut1} | ${1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
+| | Configure L2XC
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${DUT2_${int}2}[0]
+| | Configure IPv4 ACLs
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]

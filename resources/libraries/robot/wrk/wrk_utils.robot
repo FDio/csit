@@ -42,7 +42,7 @@
 | |
 | | [Arguments] | ${profile}
 | |
-| | ${tg_numa}= | Get interfaces numa node | ${tg} | ${tg_if1} | ${tg_if2}
+| | ${tg_numa}= | Get interfaces numa node | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 | | ${output}= | Run wrk | ${tg} | ${profile} | ${tg_numa} | bw
 | | Set test message | ${output}
 
@@ -60,7 +60,7 @@
 | |
 | | [Arguments] | ${profile}
 | |
-| | ${tg_numa}= | Get interfaces numa node | ${tg} | ${tg_if1} | ${tg_if2}
+| | ${tg_numa}= | Get interfaces numa node | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 | | ${output}= | Run wrk | ${tg} | ${profile} | ${tg_numa} | rps
 | | Set test message | ${output}
 
@@ -78,6 +78,6 @@
 | |
 | | [Arguments] | ${profile}
 | |
-| | ${tg_numa}= | Get interfaces numa node | ${tg} | ${tg_if1} | ${tg_if2}
+| | ${tg_numa}= | Get interfaces numa node | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 | | ${output}= | Run wrk | ${tg} | ${profile} | ${tg_numa} | cps
 | | Set test message | ${output}
