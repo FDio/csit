@@ -353,6 +353,30 @@
       "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9027b14e_fc94a867",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-02-21T07:18:10Z",
+      "side": 1,
+      "message": "See: https://docs.fd.io/csit/master/report/csit_framework_documentation/csit_test_naming.html and https://wiki.fd.io/view/CSIT/csit-test-naming#CSIT_Tests_-_Naming for naming conventions.",
+      "parentUuid": "a48923f0_2c8c6f0e",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 53
+      },
+      "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
