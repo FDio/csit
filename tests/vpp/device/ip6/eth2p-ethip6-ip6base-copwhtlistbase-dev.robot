@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6-ip6base-copwhtlistbase
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 |
@@ -45,6 +45,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 
 *** Keywords ***
@@ -71,12 +73,12 @@
 | | And Initialize IPv6 forwarding in circular topology
 | | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
 | | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
-| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
-| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP Add whitelist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
+| | And COP interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
 | | Then Send packet and verify headers
 | | ... | ${tg} | 2001:1::2 | 2001:2::2
-| | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
-| | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+| | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
+| | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
 *** Test Cases ***
 | tc01-78B-ethip6-ip6base-copwhtlistbase-dev
