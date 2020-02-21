@@ -18,7 +18,7 @@
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI
 | ... | ethip4-ip4base
 |
-| Suite Setup | Setup suite single link | performance
+| Suite Setup | Setup suite topology info | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
@@ -50,6 +50,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_pfs}= | ${1}
+| ${nic_vfs}= | ${0}
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -76,14 +78,14 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
-| | And Initialize IPv4 forwarding in circular topology
-| | Then Find NDR and PDR intervals using optimized search
+#| | When Initialize layer driver | ${nic_driver}
+#| | And Initialize layer interface
+#| | And Initialize IPv4 forwarding in circular topology
+#| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | tc01-64B-1c-ethip4-ip4base-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | tc02-64B-2c-ethip4-ip4base-ndrpdr

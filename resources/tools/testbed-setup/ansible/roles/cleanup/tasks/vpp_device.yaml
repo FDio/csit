@@ -7,7 +7,7 @@
    dest: '/usr/local/bin'
    owner: 'root'
    group: 'root'
-   mode: '644'
+   mode: '744'
   tags: reset-sriov
 
 - name: Reset vpp_device

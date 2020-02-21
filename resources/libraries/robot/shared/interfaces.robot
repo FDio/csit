@@ -260,19 +260,19 @@
 | |
 | | [Arguments] | ${dut}
 | |
-| | ${dut_str}= | Convert To Lowercase | ${dut}
 | | ${if1_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
 | | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
 | | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
 | | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
 | | ${dut_new_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if1_vf0} | ${rxq_count_int}
+| | ... | ${${dut}_if1_vif[0]} | ${rxq_count_int}
 | | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if1}
 | | ${dut_new_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if2_vf0} | ${rxq_count_int}
+| | ... | ${${dut}_if2_vif[0]} | ${rxq_count_int}
 | | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if2}
+# Backward compatibility with old KWs.
 | | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
 | | Set Test Variable | ${${dut_str}_if2} | ${dut_new_if2}
 | | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_new_if1_mac}
