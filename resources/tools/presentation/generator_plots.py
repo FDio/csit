@@ -646,6 +646,16 @@ def plot_perf_box_name(plot, input_data):
                     elif test[u"type"] in (u"SOAK", ):
                         y_vals[test[u"parent"]].\
                             append(test[u"throughput"][u"LOWER"])
+                    elif test[u"type"] in (u"HOSTSTACK", ):
+                        if u"LDPRELOAD" in test[u"tags"]:
+                            y_vals[test[u"parent"]].append(
+                                test[u"result"][u"bits_per_second"] / 1e3
+                            )
+                        elif u"VPPECHO" in test[u"tags"]:
+                            y_vals[test[u"parent"]].append(
+                                (test[u"result"][u"client"][u"tx_data"] * 8 /
+                                 1e3) / test[u"result"][u"client"][u"time"]
+                            )
                     else:
                         continue
                 except (KeyError, TypeError):
