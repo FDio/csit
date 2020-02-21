@@ -21,7 +21,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec40tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha
 |
-| Suite Setup | Setup suite single link | performance
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance
@@ -58,6 +58,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${62}
 | ${tg_if1_ip4}= | 192.168.10.2
@@ -104,15 +106,15 @@
 | | And Initialize layer interface
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
-| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${auth_alg}
+| | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2}[0]
+| | ... | ${DUT2_${int}1}[0] | ${n_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | ${bidirectional_throughput}= | Find Throughput Using MLRsearch
 | | ${unidirectional_throughput}= | Evaluate | ${bidirectional_throughput} / 2.0
 | | Start Traffic on Background | ${unidirectional_throughput}pps
 | | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
-| | ... | ${dut2_if1} | ${n_total_tunnels} | ${encr_alg} | ${auth_alg}
+| | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2}[0]
+| | ... | ${DUT2_${int}1}[0] | ${n_total_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range} | ${n_tunnels}
 | | ${result}= | Stop Running Traffic
 | | Display Reconfig Test Message | ${result}
