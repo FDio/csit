@@ -126,7 +126,7 @@
       x710: 35800000
       xxv710: 35800000
       xl710: 35800000
-      cx556a: 148809523
+      cx556a: 60000000
 
     link:
       10ge: 14880952.38
@@ -400,7 +400,6 @@
 
     plot-dpdk-throughput-latency-2n-clx:
       csit-dpdk-perf-verify-2001-2n-clx:
-        - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
         - 17  # NDRPDR sel
@@ -410,6 +409,7 @@
         - 21  # NDRPDR sel
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
 
 
     plot-dpdk-hdrh-lat-2n-clx:
@@ -1277,7 +1277,6 @@
         - 25  # NDRPDR sel
     dpdk-compare-testbeds-skx-clx-cmp:
       csit-dpdk-perf-verify-2001-2n-clx:
-        - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
         - 17  # NDRPDR sel
@@ -1287,6 +1286,7 @@
         - 21  # NDRPDR sel
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
 
     dpdk-compare-testbeds-skx-clx:
       - "dpdk-compare-testbeds-skx-clx-ref"
@@ -2348,7 +2348,6 @@
 #      - 25  # NDRPDR sel
 
     csit-dpdk-perf-verify-2001-2n-clx:
-      - 14  # NDRPDR sel
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 17  # NDRPDR sel
@@ -2358,6 +2357,7 @@
       - 21  # NDRPDR sel
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
+      - 24  # NDRPDR sel
 
     csit-dpdk-perf-verify-2001-2n-dnv:
       - 9   # NDRPDR sel
