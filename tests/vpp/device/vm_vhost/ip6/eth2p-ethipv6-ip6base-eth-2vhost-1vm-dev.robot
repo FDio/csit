@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethipv6-ip6base-eth-2vhost-1vm
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | vhost
 |
@@ -46,6 +46,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
@@ -84,8 +86,8 @@
 | | ... | pinning=${False}
 | | Then Send packet and verify headers
 | | ... | ${tg} | ${tg_if1_ip} | ${tg_if2_ip}
-| | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
-| | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+| | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
+| | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
 
 *** Test Cases ***

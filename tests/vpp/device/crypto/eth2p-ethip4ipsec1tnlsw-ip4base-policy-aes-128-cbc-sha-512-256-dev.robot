@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec1tnlsw-ip4base-policy-aes-128-cbc-sha-512-256
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 |
@@ -45,6 +45,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${54}
 | ${tg_spi}= | ${1000}
 | ${dut_spi}= | ${1001}
@@ -85,11 +87,12 @@
 | | And Configure topology for IPv4 IPsec testing
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Configure manual keyed connection for IPSec
-| | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${tg_dst_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
 | | Then Send IPsec Packet and verify ESP encapsulation in received packet
-| | ... | ${tg} | ${tg_if1} | ${tg_if2} | ${dut1_if1_mac} | ${dut1_if2_mac}
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${DUT1_vf1_mac}[0] | ${DUT1_vf2_mac}[0]
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${tg_dst_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
