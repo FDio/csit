@@ -21,7 +21,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec10000tnlsw-l2bd-1ch-4mif-2dcr1c-vppip4-aes256gcm
 |
-| Suite Setup | Setup suite single link | performance
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | container
@@ -55,6 +55,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${54}
 | ${tg_if1_ip4}= | 192.168.10.254
@@ -107,7 +109,7 @@
 | | And Initialize IPSec in 3-node circular topology
 | | And Stop VPP service on all DUTs | ${nodes}
 | | And VPP IPsec Create Tunnel Interfaces in Containers
-| | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2}[0]
 | | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range} | ${n_instances}
 | | And Start containers for test

@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethipv4-l2xcbase-eth-2vhost-1vm
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | vhost
 |
@@ -47,6 +47,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
@@ -83,7 +85,7 @@
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | vnf=vpp_chain_l2xc
 | | ... | pinning=${False}
 | | Then Send IPv4 bidirectionally and verify received packets | ${tg}
-| | ... | ${tg_if1} | ${tg_if2}
+| | ... | ${TG_pf1}[0] | ${TG_pf2}[0]
 
 *** Test Cases ***
 | tc01-64B-ethipv4-l2xcbase-eth-2vhost-1vm-dev
