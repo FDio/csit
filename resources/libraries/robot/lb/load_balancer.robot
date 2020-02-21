@@ -37,22 +37,29 @@
 | |
 | | ${fib_table}= | Set Variable | ${0}
 | | Add Fib Table | ${dut1} | ${fib_table}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${fib_table}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | ${fib_table}
 | |
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
-| | ... | 192.168.50.72 | 24
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2}
-| | ... | 192.168.60.73 | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | 192.168.50.72 | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | 192.168.60.73 | 24
 | |
-| | Add Ip Neighbors | ${dut1} | ${dut1_if2} | 192.168.60 | ${tg_if2_mac}
+| | Add Ip Neighbors
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | 192.168.60 | ${TG_${ilayer}2_mac}[0]
 | |
-| | Vpp Route Add | ${dut1} | 192.168.60.0 | 24 | interface=${dut1_if2}
+| | Vpp Route Add
+| | ... | ${dut1} | 192.168.60.0 | 24 | interface=${DUT1_${ilayer}2}[0]
 | |
-| | Vpp Lb Conf | ${dut1} | ip4_src_addr=192.168.60.73 | buckets_per_core=${128}
-| | Vpp Lb Add Del Vip | ${dut1} | vip_addr=90.1.2.1 | encap=${0}
+| | Vpp Lb Conf
+| | ... | ${dut1} | ip4_src_addr=192.168.60.73 | buckets_per_core=${128}
+| | Vpp Lb Add Del Vip
+| | ... | ${dut1} | vip_addr=90.1.2.1 | encap=${0}
 | | ... | new_len=${1024}
-| | Add Lb As Addresses | ${dut1} | 90.1.2.1 | 192.168.60
+| | Add Lb As Addresses
+| | ... | ${dut1} | 90.1.2.1 | 192.168.60
 
 | Initialize loadbalancer l3dsr
 | | [Documentation]
@@ -65,22 +72,29 @@
 | |
 | | ${fib_table}= | Set Variable | ${0}
 | | Add Fib Table | ${dut1} | ${fib_table}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${fib_table}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | ${fib_table}
 | |
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
-| | ... | 192.168.50.72 | 24
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2}
-| | ... | 192.168.60.73 | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | 192.168.50.72 | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | 192.168.60.73 | 24
 | |
-| | Add Ip Neighbors | ${dut1} | ${dut1_if2} | 192.168.60 | ${tg_if2_mac}
+| | Add Ip Neighbors
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | 192.168.60 | ${TG_${ilayer}2_mac}[0]
 | |
-| | Vpp Route Add | ${dut1} | 192.168.60.0 | 24 | interface=${dut1_if2}
+| | Vpp Route Add
+| | ... | ${dut1} | 192.168.60.0 | 24 | interface=${DUT1_${ilayer}2}[0]
 | |
-| | Vpp Lb Conf | ${dut1} | ip4_src_addr=192.168.60.73 | buckets_per_core=${128}
-| | Vpp Lb Add Del Vip | ${dut1} | vip_addr=90.1.2.1 | encap=${2} | dscp=${7}
+| | Vpp Lb Conf
+| | ... | ${dut1} | ip4_src_addr=192.168.60.73 | buckets_per_core=${128}
+| | Vpp Lb Add Del Vip
+| | ... | ${dut1} | vip_addr=90.1.2.1 | encap=${2} | dscp=${7}
 | | ... | new_len=${1024}
-| | Add Lb As Addresses | ${dut1} | 90.1.2.1 | 192.168.60
+| | Add Lb As Addresses
+| | ... | ${dut1} | 90.1.2.1 | 192.168.60
 
 | Initialize loadbalancer nat4
 | | [Documentation]
@@ -93,26 +107,35 @@
 | |
 | | ${fib_table}= | Set Variable | ${0}
 | | Add Fib Table | ${dut1} | ${fib_table}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${fib_table}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | ${fib_table}
 | |
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
-| | ... | 192.168.50.72 | 24
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2}
-| | ... | 192.168.60.73 | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | 192.168.50.72 | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | 192.168.60.73 | 24
 | |
-| | Add Ip Neighbors | ${dut1} | ${dut1_if1} | 192.168.50 | ${tg_if1_mac}
-| | Add Ip Neighbors | ${dut1} | ${dut1_if2} | 192.168.60 | ${tg_if2_mac}
+| | Add Ip Neighbors
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | 192.168.50 | ${TG_${ilayer}1_mac}[0]
+| | Add Ip Neighbors
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | 192.168.60 | ${TG_${ilayer}2_mac}[0]
 | |
-| | Vpp Route Add | ${dut1} | 192.168.50.0 | 24 | interface=${dut1_if1}
-| | Vpp Route Add | ${dut1} | 192.168.60.0 | 24 | interface=${dut1_if2}
+| | Vpp Route Add
+| | ... | ${dut1} | 192.168.50.0 | 24 | interface=${DUT1_${ilayer}1}[0]
+| | Vpp Route Add
+| | ... | ${dut1} | 192.168.60.0 | 24 | interface=${DUT1_${ilayer}2}[0]
 | |
-| | Vpp Lb Conf | ${dut1} | ip4_src_addr=192.168.60.73 | buckets_per_core=${128}
-| | Vpp Lb Add Del Vip | ${dut1} | vip_addr=90.1.2.1 | encap=${3}
+| | Vpp Lb Conf
+| | ... | ${dut1} | ip4_src_addr=192.168.60.73 | buckets_per_core=${128}
+| | Vpp Lb Add Del Vip
+| | ... | ${dut1} | vip_addr=90.1.2.1 | encap=${3}
 | | ... | protocol=${17} | port=${20000} | target_port=${3307} | new_len=${1024}
 | | Add Lb As Addresses
 | | ... | ${dut1} | 90.1.2.1 | 192.168.60 | protocol=${17} | port=${20000}
-| | Vpp Lb Add Del Intf Nat4 | ${dut1} | interface=${dut1_if2}
+| | Vpp Lb Add Del Intf Nat4
+| | ... | ${dut1} | interface=${DUT1_${ilayer}2}[0]
 
 | Add Ip Neighbors
 | | [Documentation] | Add IP neighbors to physical interface on DUT.

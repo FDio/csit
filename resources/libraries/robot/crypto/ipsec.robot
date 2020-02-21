@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -46,16 +46,6 @@
 | | Set Test Variable | ${encr_key}
 | | Set Test Variable | ${auth_key}
 
-| Configure path for IPSec test
-| | [Documentation] | Setup path for IPsec testing TG<-->DUT1.
-| |
-| | ... | *Example:*
-| | ... | \| Configure path for IPSec test \|
-| |
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Vpp Node Interfaces Ready Wait | ${dut1}
-
 | Configure topology for IPv4 IPsec testing
 | | [Documentation] | Setup topology for IPv4 IPsec testing.
 | |
@@ -68,18 +58,20 @@
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv4 IPsec testing \|
 | |
-| | Configure path for IPSec test
+| | Set interfaces in path up
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | ${dut_if1_ip4} | ${ip4_plen}
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${dut_if1_ip4} | ${ip4_plen}
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if2} | ${dut_if2_ip4} | ${ip4_plen}
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | ${dut_if2_ip4} | ${ip4_plen}
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${tg_if1_ip4}
+| | ... | ${TG_${ilayer}1_mac}[0]
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | ${tg_if2_ip4}
+| | ... | ${TG_${ilayer}2_mac}[0]
 | | Vpp Route Add
 | | ... | ${dut1} | ${tg_host_ip4} | ${ip4_plen} | gateway=${tg_if1_ip4}
-| | ... | interface=${dut1_if1}
+| | ... | interface=${DUT1_${ilayer}1}[0]
 | | Set Test Variable | ${dut_tun_ip} | ${dut_if1_ip4}
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if1_ip4}
 | | Set Test Variable | ${tg_src_ip} | ${tg_host_ip4}
@@ -97,19 +89,21 @@
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv6 IPsec testing \|
 | |
-| | Configure path for IPSec test
+| | Set interfaces in path up
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | ${dut_if1_ip6} | ${ip6_plen}
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${dut_if1_ip6} | ${ip6_plen}
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if2} | ${dut_if2_ip6} | ${ip6_plen}
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | ${dut_if2_ip6} | ${ip6_plen}
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if1} | ${tg_if1_ip6} | ${tg_if1_mac}
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${tg_if1_ip6}
+| | ... | ${TG_${ilayer}1_mac}[0]
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if2} | ${tg_if2_ip6} | ${tg_if2_mac}
+| | ... | ${dut1} | ${DUT1_${ilayer}2}[0] | ${tg_if2_ip6}
+| | ... | ${TG_${ilayer}2_mac}[0]
 | | Vpp All RA Suppress Link Layer | ${nodes}
 | | Vpp Route Add
 | | ... | ${dut1} | ${tg_host_ip6} | ${ip6_plen_rt} | gateway=${tg_if1_ip6}
-| | ... | interface=${dut1_if1}
+| | ... | interface=${DUT1_${ilayer}1}[0]
 | | Set Test Variable | ${dut_tun_ip} | ${dut_if1_ip6}
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if1_ip6}
 | | Set Test Variable | ${tg_src_ip} | ${tg_host_ip6}
@@ -187,16 +181,20 @@
 | | ... | address.
 | |
 | | Set interfaces in path up
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
-| | ... | ${dut1_if1_ip4} | 24
-| | VPP Interface Set IP Address | ${dut2} | ${dut2_if2}
-| | ... | ${dut2_if2_ip4} | 24
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
-| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${dut1_if1_ip4} | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut2} | ${DUT2_${ilayer}2}[0] | ${dut2_if2_ip4} | 24
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${tg_if1_ip4}
+| | ... | ${TG_${ilayer}1_mac}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut2} | ${DUT2_${ilayer}2}[0] | ${tg_if2_ip4}
+| | ... | ${TG_${ilayer}2_mac}[0]
 | | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
-| | ... | interface=${dut1_if1}
+| | ... | interface=${DUT1_${ilayer}1}[0]
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | gateway=${tg_if2_ip4}
-| | ... | interface=${dut2_if2}
+| | ... | interface=${DUT2_${ilayer}2}[0]
 
 | Initialize IPSec in 3-node circular container topology
 | | [Documentation]
@@ -208,8 +206,11 @@
 | | ... | address.
 | |
 | | Set interfaces in path up on DUT | DUT1
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
-| | ... | ${dut1_if1_ip4} | 24
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
-| | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
-| | ... | interface=${dut1_if1}
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${dut1_if1_ip4} | 24
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0] | ${tg_if1_ip4}
+| | ... | ${TG_${ilayer}1}[0]
+| | Vpp Route Add
+| | ... | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
+| | ... | interface=${DUT1_${ilayer}1}[0]

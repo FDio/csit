@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -33,7 +33,8 @@
 | | Vpp Configures Classify Session L3 | ${dut1} | permit | ${table_idx}
 | | ... | ${skip_n} | ${match_n} | ip4 | dst | 20.20.20.2
 | | ... | hit_next_index=${policer_index} | opaque_index=${pre_color}
-| | Policer Classify Set Interface | ${dut1} | ${dut1_if1}
+| | Policer Classify Set Interface
+| | ... | ${dut1} | ${DUT1_${ilayer}1}[0]
 | | ... | ip4_table_index=${table_idx}
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
@@ -42,8 +43,8 @@
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2_if2}
-| | ... | ELSE | Set Variable | ${dut1_if2}
+| | ... | Set Variable | ${DUT2_${ilayer}2}[0]
+| | ... | ELSE | Set Variable | ${DUT1_${ilayer}2}[0]
 | |
 | | ${policer_index}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Policer Set Configuration | ${dut} | policer2 | ${cir}
@@ -75,7 +76,7 @@
 | | Vpp Configures Classify Session L3 | ${dut1} | permit | ${table_idx}
 | | ... | ${skip_n} | ${match_n} | ip6 | dst | 2001:2::2
 | | ... | hit_next_index=${policer_index} | opaque_index=${pre_color}
-| | Policer Classify Set Interface | ${dut1} | ${dut1_if1}
+| | Policer Classify Set Interface | ${dut1} | ${DUT1_${ilayer}1}[0]
 | | ... | ip6_table_index=${table_idx}
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
@@ -84,8 +85,8 @@
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2_if2}
-| | ... | ELSE | Set Variable | ${dut1_if2}
+| | ... | Set Variable | ${DUT2_${ilayer}2}[0]
+| | ... | ELSE | Set Variable | ${DUT1_${ilayer}2}[0]
 | |
 | | ${policer_index}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Policer Set Configuration | ${dut} | policer2 | ${cir}
@@ -115,7 +116,6 @@
 | |
 | | [Arguments] | ${nodes}
 | |
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | FOR | ${dut} | IN | @{duts}
 | | | Show Classify Tables Verbose | ${nodes['${dut}']}
 | | END
