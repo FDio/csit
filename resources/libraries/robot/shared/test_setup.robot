@@ -29,6 +29,7 @@
 | | [Arguments] | @{actions}
 | |
 | | Reset PAPI History On All DUTs | ${nodes}
+| | Set Test Variable | ${int} | pf
 | | Create base startup configuration of VPP on all DUTs
 | | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Setup Action For ${action}

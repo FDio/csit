@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4vxlan-l2bdbasemaclrn
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 |
@@ -47,6 +47,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${50}
 
 *** Keywords ***
@@ -73,7 +75,8 @@
 | | And Initialize layer ip4vxlan
 | | And Initialize L2 bridge domain
 | | Then Send VXLAN encapsulated packet and verify received packet
-| | ... | ${tg} | ${tg_if1} | ${tg_if2} | ${tg_if1_mac} | ${dut1_if1_mac}
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
 | | ... | 172.17.0.2 | 172.16.0.1 | ${0} | 172.26.0.1 | 172.27.0.2 | ${0}
 
 *** Test Cases ***
