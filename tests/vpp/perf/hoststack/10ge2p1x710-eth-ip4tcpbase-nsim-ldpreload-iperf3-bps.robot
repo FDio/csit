@@ -22,7 +22,7 @@
 | ... | NSIM | LDPRELOAD | IPERF3 | 1CLIENT | 1STREAM | 1460B
 | ... | eth-ip4tcpbase-nsim-ldpreload-iperf3
 |
-| Suite Setup | Setup suite single link no tg
+| Suite Setup | Setup suite topology interfaces no tg
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test
@@ -43,6 +43,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
