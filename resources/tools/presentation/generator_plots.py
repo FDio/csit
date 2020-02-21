@@ -1025,6 +1025,8 @@ def plot_tsa_name(plot, input_data):
             limit = plot[u"limits"][u"nic"][u"xl710"]
         elif u"x553" in test_name:
             limit = plot[u"limits"][u"nic"][u"x553"]
+        elif u"cx556a" in test_name:
+            limit = plot[u"limits"][u"nic"][u"cx556a"]
         else:
             limit = 0
         if limit > nic_limit:
@@ -1054,7 +1056,7 @@ def plot_tsa_name(plot, input_data):
     except ValueError as err:
         logging.error(err)
         return
-    nic_limit /= 1000000.0
+    nic_limit /= 1e6
     traces.append(plgo.Scatter(
         x=x_vals,
         y=[nic_limit, ] * len(x_vals),
@@ -1084,7 +1086,7 @@ def plot_tsa_name(plot, input_data):
     ))
     y_max.append(nic_limit)
 
-    lnk_limit /= 1000000.0
+    lnk_limit /= 1e6
     if lnk_limit < threshold:
         traces.append(plgo.Scatter(
             x=x_vals,
@@ -1115,7 +1117,7 @@ def plot_tsa_name(plot, input_data):
         ))
         y_max.append(lnk_limit)
 
-    pci_limit /= 1000000.0
+    pci_limit /= 1e6
     if (pci_limit < threshold and
             (pci_limit < lnk_limit * 0.95 or lnk_limit > lnk_limit * 1.05)):
         traces.append(plgo.Scatter(
