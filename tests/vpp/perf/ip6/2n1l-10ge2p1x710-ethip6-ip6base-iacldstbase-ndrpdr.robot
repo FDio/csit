@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6-ip6base-iacldstbase
 |
-| Suite Setup | Setup suite single link | performance
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance | performance
 | Test Teardown | Tear down test | performance | classify
@@ -54,6 +54,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -89,12 +91,12 @@
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
 | | ... | 2001:2::0
 | | And Vpp Enable Input Acl Interface
-| | ... | ${dut1} | ${dut1_if1} | ip6 | ${table_idx}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ip6 | ${table_idx}
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
 | | ... | 2001:1::0
 | | And Vpp Enable Input Acl Interface
-| | ... | ${dut1} | ${dut1_if2} | ip6 | ${table_idx}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ip6 | ${table_idx}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
