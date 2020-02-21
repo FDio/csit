@@ -608,45 +608,6 @@ class InterfaceUtil:
                 if_data[u"vpp_sw_index"] = None
 
     @staticmethod
-    def update_nic_interface_names(node):
-        """Update interface names based on nic type and PCI address.
-
-        This method updates interface names in the same format as VPP does.
-
-        :param node: Node dictionary.
-        :type node: dict
-        """
-        for ifc in node[u"interfaces"].values():
-            if_pci = ifc[u"pci_address"].replace(u".", u":").split(u":")
-            loc = f"{int(if_pci[1], 16):x}/{int(if_pci[2], 16):x}/" \
-                f"{int(if_pci[3], 16):x}"
-            if ifc[u"model"] == u"Intel-XL710":
-                ifc[u"name"] = f"FortyGigabitEthernet{loc}"
-            elif ifc[u"model"] == u"Intel-X710":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
-            elif ifc[u"model"] == u"Intel-X520-DA2":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
-            elif ifc[u"model"] == u"Cisco-VIC-1385":
-                ifc[u"name"] = f"FortyGigabitEthernet{loc}"
-            elif ifc[u"model"] == u"Cisco-VIC-1227":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
-            else:
-                ifc[u"name"] = f"UnknownEthernet{loc}"
-
-    @staticmethod
-    def update_nic_interface_names_on_all_duts(nodes):
-        """Update interface names based on nic type and PCI address on all DUTs.
-
-        This method updates interface names in the same format as VPP does.
-
-        :param nodes: Topology nodes.
-        :type nodes: dict
-        """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                InterfaceUtil.update_nic_interface_names(node)
-
-    @staticmethod
     def update_tg_interface_data_on_node(node):
         """Update interface name for TG/linux node in DICT__nodes.
 
