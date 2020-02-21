@@ -23,6 +23,9 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |                                                            |
 |                |    - 2n-clx                                                |
 |                |                                                            |
+|                | 3. Added Hoststack tests                                   |
+|                |                                                            |
+|                | 4. Edited Test Methodology --> Hoststack Testing           |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .09            | 1. Added data:                                             |
