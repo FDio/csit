@@ -15852,7 +15852,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-rdma-ethip6-ip6scale2m-ndrpdr"
   layout:
     title: "2n-clx-cx556a-78b-rdma-ip6routing-base-scale-ndr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-cx556a-78b-rdma-ip6routing-base-scale-pdr-tsa"
@@ -15867,7 +15867,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-rdma-ethip6-ip6scale2m-ndrpdr"
   layout:
     title: "2n-clx-cx556a-78b-rdma-ip6routing-base-scale-pdr"
-    layout: "plot-throughput"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-clx-x710-64b-l2switching-base-scale-[avf,dpdk]-ndr-tsa"
