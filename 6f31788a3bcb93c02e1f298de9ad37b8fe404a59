@@ -380,6 +380,30 @@
     },
     {
       "key": {
+        "uuid": "085d122e_df853488",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcp-ldpreload-iperf3-bps.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-02-21T14:03:54Z",
+      "side": 1,
+      "message": "\u003e See: https://docs.fd.io/csit/master/report/csit_framework_documentation/csit_test_naming.html and https://wiki.fd.io/view/CSIT/csit-test-naming#CSIT_Tests_-_Naming for naming conventions.\n\nPAL relies on these naming conventions. If PAL takes results from e.g. https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-hsw/793/, the two tests in Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcp-Nsim-Ldpreload-Iperf3-Bps will be processed as one test with two results.\n\nI recommend these names:\n\nSuite: 40ge2p1xl710-eth-ip4tcpbase-nsim-ldpreload-iperf3-bps\nTest(s): tc01-9000B-1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps\n\nSuite: 40ge2p1xl710-eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3-bps\nTest(s): tc01-9000B-1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps",
+      "parentUuid": "9027b14e_fc94a867",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 53
+      },
+      "revId": "6f31788a3bcb93c02e1f298de9ad37b8fe404a59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "33444362_690420d2",
         "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4udpquic-vppecho-bps.robot",
         "patchSetId": 8
