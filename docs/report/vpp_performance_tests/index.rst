@@ -10,11 +10,11 @@ VPP Performance
     packet_latency/index
     reconf_tests/index
     nf_service_density/index
+    hoststack_testing/index
     comparisons/index
     throughput_trending
     test_environment
     documentation/index
 
 ..
-    hoststack_testing/index
     soak_tests/index
