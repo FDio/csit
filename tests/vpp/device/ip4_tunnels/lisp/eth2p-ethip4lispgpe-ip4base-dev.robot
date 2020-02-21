@@ -21,7 +21,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4lispgpe-ip4base
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 |
@@ -50,6 +50,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${54}
 | ${is_gpe}= | ${1}
 
@@ -75,13 +77,13 @@
 | | And Initialize layer interface
 | | And Configure topology for IPv4 LISP testing
 | | And Configure LISP in 2-node circular topology
-| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid}
 | | ... | ${dut1_to_tg_ip4_static_adjacency} | ${is_gpe}
 | | Then Send packet and verify LISP GPE encap
 | | ... | ${tg} | ${tg_if1_ip4} | ${dst_ip4}
-| | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
-| | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+| | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
+| | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 | | ... | ${src_rloc4} | ${dst_rloc4}
 
 *** Test Cases ***
