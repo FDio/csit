@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -259,40 +259,41 @@
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2_if2}
-| | ... | ELSE | Set Variable | ${dut1_if2}
+| | ... | Set Variable | ${DUT2_${int}2}[0]
+| | ... | ELSE | Set Variable | ${DUT1_${int}2}[0]
 | |
 | | Set interfaces in path up
 | |
 | | FOR | ${number} | IN RANGE | 2 | ${ip_nr}+2
 | | | VPP Add IP Neighbor
-| | | ... | ${dut1} | ${dut1_if1} | 10.10.10.${number} | ${tg_if1_mac}
+| | | ... | ${dut1} | ${DUT1_${int}1}[0] | 10.10.10.${number} | ${TG_pf1_mac}[0]
 | | | VPP Add IP Neighbor
-| | | ... | ${dut} | ${dut_if2} | 20.20.20.${number} | ${tg_if2_mac}
+| | | ... | ${dut} | ${dut_if2} | 20.20.20.${number} | ${TG_pf2_mac}[0]
 | | END
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 1.1.1.2 | ${DUT2_${int}1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 1.1.1.1 | ${DUT1_${int}2_mac}[0]
 | |
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | 10.10.10.1 | 24
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 10.10.10.1 | 24
 | | VPP Interface Set IP Address
 | | ... | ${dut} | ${dut_if2} | 20.20.20.1 | 24
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if2} | 1.1.1.1 | 30
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 1.1.1.1 | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address
-| | ... | ${dut2} | ${dut2_if1} | 1.1.1.2 | 30
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 1.1.1.2 | 30
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=1.1.1.2
-| | ... | interface=${dut1_if2}
+| | ... | interface=${DUT1_${int}2}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
-| | ... | interface=${dut2_if1}
+| | ... | interface=${DUT2_${int}1}[0]
 | |
-| | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Configure IPv4 ACLs
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]

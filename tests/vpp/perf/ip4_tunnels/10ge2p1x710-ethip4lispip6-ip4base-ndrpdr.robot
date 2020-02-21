@@ -22,7 +22,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4lispip6-ip4base
 |
-| Suite Setup | Setup suite single link | performance
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance | performance
 | Test Teardown | Tear down test | performance
@@ -57,6 +57,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${48}
 # Traffic profile:
@@ -90,8 +92,8 @@
 | | ... | ${dut1_to_dut2_ip4o6} | ${dut1_to_tg_ip4o6} | ${dut2_to_dut1_ip4o6}
 | | ... | ${dut2_to_tg_ip4o6} | ${tg_prefix4o6} | ${dut_prefix4o6}
 | | And Configure LISP topology in 3-node circular topology
-| | ... | ${dut1} | ${dut1_if2} | ${NONE}
-| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${NONE}
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4o6_eid} | ${dut2_ip4o6_eid}
 | | ... | ${dut1_ip4o6_static_adjacency} | ${dut2_ip4o6_static_adjacency}
 | | Then Find NDR and PDR intervals using optimized search

@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethipv4-l2bdbasemaclrn-eth-2tap
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test | namespace
 | Test Teardown | Tear down test | packet_trace | namespace | linux_bridge
 |
@@ -47,6 +47,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${bid_TAP}= | tapBr
 
@@ -75,15 +77,15 @@
 | | ${int2}= | And Add Tap Interface | ${dut1} | tap1
 | | And Set Interface State | ${dut1} | ${int1} | up
 | | And Set Interface State | ${dut1} | ${int2} | up
-| | And Create bridge domain | ${dut1} | 19 | learn=${TRUE}
-| | And Create bridge domain | ${dut1} | 20 | learn=${TRUE}
+| | And Create L2 BD | ${dut1} | 19 | learn=${TRUE}
+| | And Create L2 BD | ${dut1} | 20 | learn=${TRUE}
 | | And Linux Add Bridge | ${dut1} | ${bid_TAP} | tap0 | tap1
 | | And Add interface to bridge domain | ${dut1} | ${int1} | 20 | 0
-| | And Add interface to bridge domain | ${dut1} | ${dut1_if1} | 20 | 0
+| | And Add interface to bridge domain | ${dut1} | ${DUT1_${int}1}[0] | 20 | 0
 | | And Add interface to bridge domain | ${dut1} | ${int2} | 19 | 0
-| | And Add interface to bridge domain | ${dut1} | ${dut1_if2} | 19 | 0
+| | And Add interface to bridge domain | ${dut1} | ${DUT1_${int}2}[0] | 19 | 0
 | | Then Send IP packet and verify received packet
-| | ... | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 
 *** Test Cases ***
 | tc01-64B-ethipv4-l2bdbasemaclrn-eth-2tap-dev

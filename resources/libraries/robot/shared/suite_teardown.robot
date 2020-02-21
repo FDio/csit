@@ -47,7 +47,7 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Cleanup DPDK Environment
-| | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
+| | | ... | ${nodes['${dut}']} | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
 | | END
 
 | Additional Suite Tear Down Action For wrk
