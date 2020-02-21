@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | avf-dot1qip4-l2bdbasemaclrn
 |
-| Suite Setup | Setup suite single link | avf | scapy
+| Suite Setup | Setup suite topology interfaces | avf | scapy
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
@@ -46,6 +46,8 @@
 | ${nic_driver}= | avf
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${4}
 
 *** Keywords ***
