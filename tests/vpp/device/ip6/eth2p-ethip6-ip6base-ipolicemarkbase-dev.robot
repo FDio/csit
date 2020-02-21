@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6-ip6base-ipolicemarkbase
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | classify
 |
@@ -44,6 +44,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${cir}= | ${100}
 | ${eir}= | ${150}
@@ -75,7 +77,8 @@
 | | And Initialize IPv6 forwarding in circular topology
 | | And Initialize IPv6 policer 2r3c-'ca' in circular topology
 | | Then Send packet and verify marking
-| | ... | ${tg} | ${tg_if1} | ${tg_if2} | ${tg_if1_mac} | ${dut1_if1_mac}
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${TG_${int}1_mac}[0] | ${DUT1_${int}1_mac}[0]
 | | ... | 2001:1::2 | 2001:2::2
 
 *** Test Cases ***
