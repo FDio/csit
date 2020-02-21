@@ -11,6 +11,10 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |    - VPP performance tests 2n-clx                          |
 |                |    - DPDK performance tests 2n-clx                         |
 |                |                                                            |
+|                | 4. Added Hoststack tests                                   |
+|                |                                                            |
+|                | 5. Edited Test Methodology --> Hoststack Testing           |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .08            | 1. Added PDF version                                       |
 |                |                                                            |

@@ -622,13 +622,14 @@ def plot_perf_box_name(plot, input_data):
         f"{plot.get(u'title', u'')}."
     )
     data = input_data.filter_tests_by_name(
-        plot, params=[u"throughput", u"parent", u"tags", u"type"])
+        plot, params=[u"throughput", u"result", u"parent", u"tags", u"type"])
     if data is None:
         logging.error(u"No data.")
         return
 
     # Prepare the data for the plot
     y_vals = OrderedDict()
+    test_type = u""
     for job in data:
         for build in job:
             for test in build:
@@ -639,13 +640,29 @@ def plot_perf_box_name(plot, input_data):
                             u"-pdr" in plot.get(u"title", u"").lower()):
                         y_vals[test[u"parent"]].\
                             append(test[u"throughput"][u"PDR"][u"LOWER"])
+                        test_type = u"NDRPDR"
                     elif (test[u"type"] in (u"NDRPDR", ) and
                           u"-ndr" in plot.get(u"title", u"").lower()):
                         y_vals[test[u"parent"]]. \
                             append(test[u"throughput"][u"NDR"][u"LOWER"])
+                        test_type = u"NDRPDR"
                     elif test[u"type"] in (u"SOAK", ):
                         y_vals[test[u"parent"]].\
                             append(test[u"throughput"][u"LOWER"])
+                        test_type = u"SOAK"
+                    elif test[u"type"] in (u"HOSTSTACK", ):
+                        if u"LDPRELOAD" in test[u"tags"]:
+                            y_vals[test[u"parent"]].append(
+                                float(test[u"result"][u"bits_per_second"]) / 1e3
+                            )
+                        elif u"VPPECHO" in test[u"tags"]:
+                            y_vals[test[u"parent"]].append(
+                                (float(test[u"result"][u"client"][u"tx_data"])
+                                 * 8 / 1e3) /
+                                (float(test[u"result"][u"client"][u"time"] +
+                                       test[u"result"][u"server"][u"time"]) / 2)
+                            )
+                        test_type = u"HOSTSTACK"
                     else:
                         continue
                 except (KeyError, TypeError):
@@ -696,7 +713,10 @@ def plot_perf_box_name(plot, input_data):
         # Create plot
         layout = deepcopy(plot[u"layout"])
         if layout.get(u"title", None):
-            layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
+            if test_type in (u"HOSTSTACK", ):
+                layout[u"title"] = f"<b>Bandwidth:</b> {layout[u'title']}"
+            else:
+                layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
         if y_max:
             layout[u"yaxis"][u"range"] = [0, max(y_max)]
         plpl = plgo.Figure(data=traces, layout=layout)
