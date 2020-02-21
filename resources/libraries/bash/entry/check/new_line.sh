@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,7 +13,7 @@
 
 set -exuo pipefail
 
-# This file should be executed from tox, as the assumend working directory
+# This file should be executed from tox, as the assumed working directory
 # is different from where this file is located.
 # This file does not have executable flag nor shebang,
 # to dissuade non-tox callers.
