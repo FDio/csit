@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | dot1q-l2xcbase
 |
-| Suite Setup | Setup suite single link | performance
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance
@@ -55,12 +55,12 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${4}
-| ${subid}= | 10
-| ${tag_rewrite}= | pop-1
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-dot1qip4asym-ip4src254
+| ${traffic_profile}= | trex-sl-dot1qip4-vlan1ip4src254ip4dst254
 
 *** Keywords ***
 | Local Template
@@ -85,12 +85,8 @@
 | | And Apply Startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
-| | And Configure L2 tag rewrite method on interfaces
-| | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
-| | And Configure L2XC
-| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | And Initialize layer dot1q
+| | And Initialize L2 cross connect
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

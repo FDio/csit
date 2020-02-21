@@ -23,7 +23,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | IMIX
 | ... | eth-ip4tcphttp-wrk8u8c50con
 |
-| Suite Setup | Setup suite single link | wrk
+| Suite Setup | Setup suite topology interfaces | wrk
 | Suite Teardown | Tear down suite | wrk
 | Test Setup | Setup test
 | Test Teardown | Tear down test
@@ -47,6 +47,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${frame_size}= | IMIX_v4_1
 | ${traffic_profile}= | wrk-sf-2n-ethip4tcphttp-8u8c50con-rps

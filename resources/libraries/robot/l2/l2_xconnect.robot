@@ -17,11 +17,23 @@
 
 *** Keywords ***
 | Configure L2XC
-| | [Documentation] | Setup Bidirectional Cross Connect on DUTs
-| | [Arguments] | ${node} | ${if1} | ${if2} |
-| | Set Interface State | ${node} | ${if1} | up
-| | Set Interface State | ${node} | ${if2} | up
-| | Vpp Setup Bidirectional Cross Connect | ${node} | ${if1} | ${if2}
+| | [Documentation]
+| | ... | Setup Bidirectional Cross Connect on DUTs
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - if1 - First interface. Type: string
+| | ... | - if2 - Second interface. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize L2 cross connect on node \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${if1} | ${if2}
+| |
+| | Set Interface State | ${dut} | ${if1} | up
+| | Set Interface State | ${dut} | ${if2} | up
+| | Vpp Setup Bidirectional Cross Connect | ${dut} | ${if1} | ${if2}
 
 | Initialize L2 cross connect on node
 | | [Documentation]
@@ -41,8 +53,8 @@
 | | FOR | ${id} | IN RANGE | 1 | ${count} + 1
 | | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | VPP Setup Bidirectional Cross Connect | ${nodes['${dut}']}
-| | | ... | ${${dut_str}_${prev_layer}_${id}_1}
-| | | ... | ${${dut_str}_${prev_layer}_${id}_2}
+| | | ... | ${${dut_str}_${prev_layer}1_${id}}[0]
+| | | ... | ${${dut_str}_${prev_layer}2_${id}}[0]
 | | END
 
 | Initialize L2 cross connect
@@ -62,23 +74,6 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 cross connect on node | ${dut} | count=${count}
 | | END
-
-| Initialize L2 xconnect in 2-node circular topology
-| | [Documentation]
-| | ... | Setup L2 xconnect topology by cross connecting two interfaces on
-| | ... | each DUT. Interfaces are brought up.
-| |
-| | Set interfaces in path up
-| | VPP Setup Bidirectional Cross Connect | ${dut1} | ${dut1_if1} | ${dut1_if2}
-
-| Initialize L2 xconnect in 3-node circular topology
-| | [Documentation]
-| | ... | Setup L2 xconnect topology by cross connecting two interfaces on
-| | ... | each DUT. Interfaces are brought up.
-| | ... |
-| | Set interfaces in path up
-| | VPP Setup Bidirectional Cross Connect | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | VPP Setup Bidirectional Cross Connect | ${dut2} | ${dut2_if1} | ${dut2_if2}
 
 | Initialize L2 xconnect with VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
@@ -329,39 +324,5 @@
 | | | Initialize L2 xconnect with memif pairs on DUT node | ${dut} | ${count}
 | | END
 | | Set interfaces in path up
-| | Show Memif on all DUTs | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
-
-| Initialize L2 xconnect for single memif
-| | [Documentation]
-| | ... | Create single Memif interface on all defined VPP nodes. Cross
-| | ... | connect Memif interface with one physical interface.
-| |
-| | ... | *Arguments:*
-| | ... | - number - Memif ID. Type: integer
-| |
-| | ... | *Note:*
-| | ... | Socket paths for Memif are defined in following format:
-| | ... | - /tmp/memif-DUT1_CNF\${number}-\${sid}
-| |
-| | ... | KW uses test variable ${rxq_count_int} set by KW Add worker threads
-| | ... | and rxqueues to all DUTs
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Initialize L2 xconnect for single memif \| 1 \|
-| |
-| | [Arguments] | ${number}=${1}
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | ${sock}= | Set Variable | memif-${dut}_CNF
-| | | ${sid}= | Evaluate | (${number} * ${2}) - ${1}
-| | | Set up single memif interface on DUT node | ${nodes['${dut}']} | ${sock}
-| | | ... | mid=${number} | sid=${sid} | memif_if=${dut}-memif-${number}-if1
-| | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
-| | | Configure L2XC | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | ${${dut}-memif-${number}-if1}
-| | END
-| | Set single interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
