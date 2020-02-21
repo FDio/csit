@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,8 +21,8 @@
 | | ... | Setup L2 patch topology by cross connecting two interfaces on
 | | ... | each DUT. Interfaces are brought up.
 | |
-| | Set interfaces in path up
 | | FOR | ${dut} | IN | @{duts}
 | | | VPP Setup Bidirectional L2 patch
-| | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
+| | | ... | ${nodes['${dut}']} | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
 | | END
+| | Set interfaces in path up

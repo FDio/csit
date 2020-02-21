@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | dot1q-l2xcbase
 |
-| Suite Setup | Setup suite single link | performance
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance
@@ -55,6 +55,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${4}
 | ${subid}= | 10
@@ -86,14 +88,14 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2} | ${DUT2_${int}1}[0] | ${subid}
 | | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | And Configure L2XC
-| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${subif_index_1}
 | | And Configure L2XC
-| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${subif_index_2}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
