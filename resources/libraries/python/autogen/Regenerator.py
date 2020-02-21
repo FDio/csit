@@ -273,9 +273,9 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     u"Driver plugin should appear once.", in_filename
                 )
                 out_prolog = replace_defensively(
-                    out_prolog, Constants.NIC_DRIVER_TO_SETUP_ARG[u"vfio-pci"],
-                    Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
-                    u"Perf setup argument should appear once.", in_filename
+                    out_prolog, Constants.NIC_DRIVER_TO_VFS[u"vfio-pci"],
+                    Constants.NIC_DRIVER_TO_VFS[driver], 1,
+                    u"NIC VFs argument should appear once.", in_filename
                 )
                 iface, suite_id, suite_tag = get_iface_and_suite_ids(
                     out_filename
@@ -357,9 +357,9 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
                 u"Driver plugin should appear once.", in_filename
             )
             out_prolog = replace_defensively(
-                out_prolog, Constants.NIC_DRIVER_TO_SETUP_ARG[u"vfio-pci"],
-                Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
-                u"Perf setup argument should appear once.", in_filename
+                out_prolog, Constants.NIC_DRIVER_TO_VFS[u"vfio-pci"],
+                Constants.NIC_DRIVER_TO_VFS[driver], 1,
+                u"NIC VFs argument should appear once.", in_filename
             )
             iface, suite_id, suite_tag = get_iface_and_suite_ids(out_filename)
             out_prolog = replace_defensively(

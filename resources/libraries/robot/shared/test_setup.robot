@@ -28,6 +28,7 @@
 | |
 | | [Arguments] | @{actions}
 | |
+| | Set Suite Variable | ${int} | pf
 | | Reset PAPI History On All DUTs | ${nodes}
 | | Create base startup configuration of VPP on all DUTs
 | | FOR | ${action} | IN | @{actions}

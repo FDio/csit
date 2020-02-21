@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6-ip6base-copwhtlistbase
 |
-| Suite Setup | Setup suite single link | performance
+| Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance | performance
 | Test Teardown | Tear down test | performance
@@ -56,6 +56,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -87,8 +89,8 @@
 | | And Initialize IPv6 forwarding in circular topology
 | | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
 | | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
-| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
-| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP Add whitelist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
+| | And COP interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

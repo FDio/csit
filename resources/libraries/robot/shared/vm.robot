@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -50,7 +50,7 @@
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
 | | ... | auto_scale=${auto_scale} | vnf=${vnf}
-| | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
+| | ... | tg_if1_mac=${TG_pf1_mac} | tg_if2_mac=${TG_pf2_mac}
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
 | | ... | enable_gso=${False}
@@ -96,7 +96,7 @@
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
 | | ... | auto_scale=${auto_scale} | vnf=${vnf}
-| | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
+| | ... | tg_if1_mac=${TG_pf1_mac} | tg_if2_mac=${TG_pf2_mac}
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
 | | ... | enable_gso=${False}
