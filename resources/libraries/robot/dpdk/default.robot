@@ -40,7 +40,7 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | FOR | ${dut} | IN | @{duts}
 | | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
-| | | ... | ${${dut}_if1} | ${${dut}_if2}
+| | | ... | ${${dut}_pf1}[0] | ${${dut}_pf2}[0]
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
 | | | ${cpus}= | Cpu Range Per Node Str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${1} | cpu_cnt=${dp_cores} | smt_used=${smt_used}
@@ -82,7 +82,7 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | FOR | ${dut} | IN | @{duts}
 | | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
-| | | ... | ${${dut}_if1} | ${${dut}_if2}
+| | | ... | ${${dut}_pf1}[0] | ${${dut}_pf2}[0]
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
 | | | ${cpus}= | Cpu List Per Node Str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${1} | cpu_cnt=${cpu_count_int} | smt_used=${smt_used}
@@ -95,9 +95,10 @@
 | | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | Start the l3fwd test | ${nodes} | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | ${${dut}_if2} | ${thr_count_int} | ${cpus} | ${rxq_count_int}
-| | | ... | ${jumbo_frames}
+| | | Start the l3fwd test
+| | | ... | ${nodes} | ${nodes['${dut}']}
+| | | ... | ${${dut}_if1}[0] | ${${dut}_if2}[0]
+| | | ... | ${thr_count_int} | ${cpus} | ${rxq_count_int} | ${jumbo_frames}
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
