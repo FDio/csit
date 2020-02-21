@@ -86,9 +86,9 @@
 | | FOR | ${id} | IN RANGE | 1 | ${count} + 1
 | | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | Add Interface To L2 BD
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1} | ${id}
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}1_${id}}[0] | ${id}
 | | | Add Interface To L2 BD
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2} | ${id}
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}2_${id}}[0] | ${id}
 | | END
 
 | Initialize L2 bridge domain
@@ -138,10 +138,10 @@
 | | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
 | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}1_${nf_chain}}[0]
 | | ... | ${bd_id1}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}2_${nf_chain}}[0]
 | | ... | ${bd_id2}
 | | FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes} + 1
 | | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
@@ -454,32 +454,22 @@
 | | ... | ${lb_mode}
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
-| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${dut1_if2}
-| | Run Keyword If | '${if2_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2}
-| | ... | ${dut1_eth_bond_if1}
-| | ... | ELSE
-| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2_1}
-| | ... | ${dut1_eth_bond_if1}
-| | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2_2}
-| | ... | ${dut1_eth_bond_if1}
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | ${_even}= | Evaluate | ${pf} % 2
+| | | Run Keyword If | ${even}
+| | | ... | VPP Enslave Physical Interface
+| | | ... | ${dut1} | ${dut1_${prev_layer}${pf}}[0]
+| | END
 | | ${dut2_eth_bond_if1}= | VPP Create Bond Interface | ${dut2} | ${bond_mode}
 | | ... | ${lb_mode}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
-| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${dut2_if1}
-| | Run Keyword If | '${if1_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1}
-| | ... | ${dut2_eth_bond_if1}
-| | ... | ELSE
-| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_1}
-| | ... | ${dut2_eth_bond_if1}
-| | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_2}
-| | ... | ${dut2_eth_bond_if1}
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | ${_even}= | Evaluate | ${pf} % 2
+| | | Run Keyword Unless | ${even}
+| | | ... | VPP Enslave Physical Interface
+| | | ... | ${dut2} | ${dut2_${prev_layer}${pf}}[0]
+| | END
 | | VPP Show Bond Data On All Nodes | ${nodes} | verbose=${TRUE}
 | | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
@@ -532,10 +522,10 @@
 | | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
 | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}1_${nf_chain}}[0]
 | | ... | ${bd_id1}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}2_${nf_chain}}[0]
 | | ... | ${bd_id2}
 | | FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
@@ -631,10 +621,10 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | Add interface to bridge domain
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}1_${nf_chain}}[0]
 | | | ... | ${bd_id1}
 | | | Add interface to bridge domain
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}2_${nf_chain}}[0]
 | | | ... | ${bd_id2}
 | | | ${nf_id_frst}= | Evaluate | (${nf_chain}-${1}) * ${nf_nodes} + ${1}
 | | | ${nf_id_last}= | Evaluate | (${nf_chain}-${1}) * ${nf_nodes} + ${nf_nodes}

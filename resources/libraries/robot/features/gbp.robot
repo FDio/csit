@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -57,11 +57,11 @@
 | | | GBP Ext Itf Add Del
 | | | ... | ${nodes['${dut}']} | ${dut_lo} | bd_id=${id} | rd_id=${id}
 | | | GBP Endpoint Add
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1} | 1.1.1.100
-| | | ... | ${tg_if1_mac} | ${100}
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}1_${id}}[0]
+| | | ... | 1.1.1.100 | ${tg_if1_mac} | ${100}
 | | | GBP Endpoint Add
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2} | 1.1.1.200
-| | | ... | ${tg_if2_mac} | ${100}
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}2_${id}}[0]
+| | | ... | 1.1.1.200 | ${tg_if2_mac} | ${100}
 | | | VPP Route Add
 | | | ... | ${nodes['${dut}']} | 10.10.10.0 | 24 | gateway=1.1.1.100
 | | | ... | interface=${dut_lo} | vrf=${1}
