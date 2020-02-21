@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | avf-dot1q-l2bdbasemaclrn-gbp
 |
-| Suite Setup | Setup suite single link | avf | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
@@ -54,6 +54,8 @@
 | ${nic_driver}= | avf
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 1
 | ${overhead}= | ${4}
 
 *** Keywords ***
@@ -83,8 +85,8 @@
 | | And Initialize GBP routing domains
 | | Then Send packet and verify headers
 | | ... | ${tg} | 10.10.10.2 | 20.20.20.2
-| | ... | ${tg_if1} | ${tg_if1_mac} | ba:dc:00:ff:ee:01
-| | ... | ${tg_if2} | ba:dc:00:ff:ee:01 | ${tg_if2_mac}
+| | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ba:dc:00:ff:ee:01
+| | ... | ${TG_pf2}[0] | ba:dc:00:ff:ee:01 | ${TG_pf2_mac}[0]
 | | ... | traffic_script=send_ip_check_headers
 
 *** Test Cases ***

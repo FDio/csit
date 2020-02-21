@@ -42,6 +42,7 @@
 | | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | END
+| | Set Suite Variable | ${int} | pf
 | | Clean Sockets On All Nodes | ${nodes}
 
 | Additional Test Tear Down Action For performance
