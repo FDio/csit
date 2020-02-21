@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethipv6-ip6base-eth-2memif-1dcr
 |
-| Suite Setup | Setup suite single link | scapy
+| Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | container
 |
@@ -48,6 +48,8 @@
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 # Container
 | ${container_engine}= | Docker
@@ -85,15 +87,15 @@
 | | And Assign Interface To Fib Table
 | | ... | ${dut1} | ${memif_if2} | 20 | ipv6=${True}
 | | And Assign Interface To Fib Table
-| | ... | ${dut1} | ${dut1_if2} | 20 | ipv6=${True}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 20 | ipv6=${True}
 | | And VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | 2001:1::1 | 64
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:1::1 | 64
 | | And VPP Interface Set IP Address
 | | ... | ${dut1} | ${memif_if1} | 2001:2::1 | 64
 | | And VPP Interface Set IP Address
 | | ... | ${dut1} | ${memif_if2} | 2001:2::2 | 64
 | | And VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if2} | 2001:3::1 | 64
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:3::1 | 64
 | | ${memif_if2_key}= | Get interface by sw index | ${nodes['DUT1']}
 | | ... | ${memif_if2}
 | | ${memif_if2_mac}= | Get interface MAC | ${nodes['DUT1']} | ${memif_if2_key}
@@ -105,11 +107,11 @@
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${memif_if1} | 2001:2::2 | ${memif_if2_mac}
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if2} | 2001:3::2 | ${tg_if2_mac}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:3::2 | ${TG_pf2_mac}[0]
 | | Then Send packet and verify headers
 | | ... | ${tg} | 2001:1::1 | 2001:3::2
-| | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
-| | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+| | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
+| | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
 *** Test Cases ***
 | tc01-78B-ethipv6-ip6base-eth-2memif-1dcr-dev
