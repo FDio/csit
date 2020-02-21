@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -45,53 +45,55 @@
 | |
 | | Set interfaces in path up
 | |
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg_if1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 10.10.10.2 | ${TG_pf1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 1.1.1.2 | ${DUT2_${int}1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | ... | ${dut2} | ${DUT2_${int}1_mac}[0] | 1.1.1.1 | ${DUT1_${int}2_mac}[0]
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2_if2}
-| | ... | ELSE | Set Variable | ${dut1_if2}
-| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 20.20.20.2 | ${tg_if2_mac}
+| | ... | Set Variable | ${DUT2_${int}2}[0]
+| | ... | ELSE | Set Variable | ${DUT1_${int}2}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut} | ${dut_if2} | 20.20.20.2 | ${TG_pf2_mac}[0]
 | |
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
+| | VPP Interface Set IP Address | ${dut1} | ${DUT1_${int}1}[0]
 | | ... | 10.10.10.1 | 24
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Interface Set IP Address | ${dut1} | ${dut1_if2}
+| | ... | VPP Interface Set IP Address | ${dut1} | ${DUT1_${int}2}[0]
 | | ... | 1.1.1.1 | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Interface Set IP Address | ${dut2} | ${dut2_if1}
+| | ... | VPP Interface Set IP Address | ${dut2} | ${DUT2_${int}1}[0]
 | | ... | 1.1.1.2 | 30
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2}
 | | ... | 20.20.20.1 | 24
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=1.1.1.2
-| | ... | interface=${dut1_if2}
+| | ... | interface=${DUT1_${int}2}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
-| | ... | interface=${dut2_if1}
+| | ... | interface=${DUT2_${int}1}[0]
 | |
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 32
-| | ... | gateway=10.10.10.2 | interface=${dut1_if1}
+| | ... | gateway=10.10.10.2 | interface=${DUT1_${int}1}[0]
 | | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut} | ${remote_host2_ip} | 32
 | | ... | gateway=20.20.20.2 | interface=${dut_if2}
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 32
-| | ... | gateway=1.1.1.2 | interface=${dut1_if2}
+| | ... | gateway=1.1.1.2 | interface=${DUT1_${int}2}[0]
 | | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip} | 32
-| | ... | gateway=1.1.1.1 | interface=${dut2_if1}
+| | ... | gateway=1.1.1.1 | interface=${DUT2_${int}1}[0]
 
 | Initialize IPv4 forwarding with scaling in circular topology
 | | [Documentation]
@@ -116,36 +118,39 @@
 | |
 | | Set interfaces in path up
 | |
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg_if1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 1.1.1.1 | ${TG_pf1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2.2.2.2 | ${DUT2_${int}1}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut2} | ${dut2_if1} | 2.2.2.1 | ${dut1_if2_mac}
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 2.2.2.1 | ${DUT1_${int}2_mac}[0]
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2_if2}
-| | ... | ELSE | Set Variable | ${dut1_if2}
-| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 3.3.3.1 | ${tg_if2_mac}
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
+| | ... | Set Variable | ${DUT2_${int}2}[0]
+| | ... | ELSE | Set Variable | ${DUT1_${int}2}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut} | ${dut_if2} | 3.3.3.1 | ${TG_pf2_mac}[0]
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 1.1.1.2 | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 2.2.2.1
+| | ... | VPP Interface Set IP Address | ${dut1} | ${DUT1_${int}2}[0] | 2.2.2.1
 | | ... | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Interface Set IP Address | ${dut2} | ${dut2_if1} | 2.2.2.2
+| | ... | VPP Interface Set IP Address | ${dut2} | ${DUT2_${int}1}[0] | 2.2.2.2
 | | ... | 30
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 3.3.3.2 | 30
 | | Vpp Route Add | ${dut1} | 10.0.0.0 | 32 | gateway=1.1.1.1
-| | ... | interface=${dut1_if1} | count=${count}
+| | ... | interface=${DUT1_${int}1}[0] | count=${count}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 32 | gateway=2.2.2.2
-| | ... | interface=${dut1_if2} | count=${count}
+| | ... | interface=${DUT1_${int}2}[0] | count=${count}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | 32 | gateway=2.2.2.1
-| | ... | interface=${dut2_if1} | count=${count}
+| | ... | interface=${DUT2_${int}1}[0] | count=${count}
 | | Vpp Route Add | ${dut} | 20.0.0.0 | 32 | gateway=3.3.3.1
 | | ... | interface=${dut_if2} | count=${count}
 
@@ -206,21 +211,22 @@
 | | ... | ${ip_base_if1}.${ip_base_if1}.${ip_base_if1}
 | | Vpp Route Add | ${nodes['${dut}']} | ${tg_if1_net} | 24
 | | ... | vrf=${fib_table_1} | gateway=${ip_net_if1}.1
-| | ... | interface=${${dut}_if1} | multipath=${TRUE}
-| | Assign Interface To Fib Table | ${nodes['${dut}']} | ${${dut}_if1}
+| | ... | interface=${${dut}_${int}1}[0] | multipath=${TRUE}
+| | Assign Interface To Fib Table | ${nodes['${dut}']} | ${${dut}_${int}1}[0]
 | | ... | ${fib_table_1}
-| | VPP Interface Set IP Address | ${nodes['${dut}']} | ${${dut}_if1}
+| | VPP Interface Set IP Address | ${nodes['${dut}']} | ${${dut}_${int}1}[0]
 | | ... | ${ip_net_if1}.2 | 30
 | | ${prev_node}= | Run Keyword If | ${dut_index} == ${0}
 | | ... | Set Variable | TG
 | | ... | ELSE | Get From List | ${duts} | ${dut_index-${1}}
 | | ${prev_if}= | Run Keyword If | ${dut_index} == ${0}
-| | ... | Set Variable | if1
-| | ... | ELSE | Set Variable | if2
+| | ... | Set Variable | pf1
+| | ... | ELSE | Set Variable | ${int}2
 | | ${prev_if_mac}= | Get Interface MAC | ${nodes['${prev_node}']}
-| | ... | ${${prev_node}_${prev_if}}
+| | ... | ${${prev_node}_${prev_if}}[0]
 | | VPP Add IP Neighbor
-| | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${ip_net_if1}.1 | ${prev_if_mac}
+| | ... | ${nodes['${dut}']} | ${${dut}_${int}1}[0] | ${ip_net_if1}.1
+| | ... | ${prev_if_mac}
 | |
 | | ${fib_table_2}= | Evaluate | ${fib_table_1} + ${count}
 | | Add Fib Table | ${nodes['${dut}']} | ${fib_table_2}
@@ -229,21 +235,22 @@
 | | ... | ${ip_base_if2}.${ip_base_if2}.${ip_base_if2}
 | | Vpp Route Add | ${nodes['${dut}']} | ${tg_if2_net} | 24
 | | ... | vrf=${fib_table_2} | gateway=${ip_net_if2}.2
-| | ... | interface=${${dut}_if2} | multipath=${TRUE}
-| | Assign Interface To Fib Table | ${nodes['${dut}']} | ${${dut}_if2}
+| | ... | interface=${${dut}_${int}2}[0] | multipath=${TRUE}
+| | Assign Interface To Fib Table | ${nodes['${dut}']} | ${${dut}_${int}2}[0]
 | | ... | ${fib_table_2}
-| | VPP Interface Set IP Address | ${nodes['${dut}']} | ${${dut}_if2}
+| | VPP Interface Set IP Address | ${nodes['${dut}']} | ${${dut}_${int}2}[0]
 | | ... | ${ip_net_if2}.1 | 30
 | | ${next_node}= | Run Keyword If | ${dut_index} == ${last_dut_index}
 | | ... | Set Variable | TG
 | | ... | ELSE | Get From List | ${duts} | ${dut_index+${1}}
 | | ${next_if}= | Run Keyword If | ${dut_index} == ${last_dut_index}
-| | ... | Set Variable | if2
-| | ... | ELSE | Set Variable | if1
+| | ... | Set Variable | pf2
+| | ... | ELSE | Set Variable | ${int}1
 | | ${next_if_mac}= | Get Interface MAC | ${nodes['${next_node}']}
-| | ... | ${${next_node}_${next_if}}
+| | ... | ${${next_node}_${next_if}}[0]
 | | VPP Add IP Neighbor
-| | ... | ${nodes['${dut}']} | ${${dut}_if2} | ${ip_net_if2}.2 | ${next_if_mac}
+| | ... | ${nodes['${dut}']} | ${${dut}_${int}2}[0] | ${ip_net_if2}.2
+| | ... | ${next_if_mac}
 | |
 | | ${fib_table_1}= | Evaluate | ${fib_table_1} - ${1}
 | | ${ip_base_start}= | Set Variable | ${31}
@@ -327,18 +334,22 @@
 | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${nf_nodes}
 | | Add Fib Table | ${dut1} | ${fib_table_1}
 | | Add Fib Table | ${dut1} | ${fib_table_2}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${fib_table_1}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${fib_table_2}
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | 100.0.0.1 | 30
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 100.0.0.1 | 30
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if2} | 200.0.0.1 | 30
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 100.0.0.2 | ${tg_if1_mac}
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 200.0.0.2 | ${tg_if2_mac}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 200.0.0.1 | 30
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 100.0.0.2 | ${TG_pf1_mac}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 200.0.0.2 | ${TG_pf2_mac}[0]
 | | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=100.0.0.2
-| | ... | interface=${dut1_if1} | vrf=${fib_table_1}
+| | ... | interface=${DUT1_${int}1}[0] | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=200.0.0.2
-| | ... | interface=${dut1_if2} | vrf=${fib_table_2}
+| | ... | interface=${DUT1_${int}2}[0] | vrf=${fib_table_2}
 | | FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
@@ -410,28 +421,34 @@
 | | Add Fib Table | ${dut1} | ${fib_table_2}
 | | Add Fib Table | ${dut2} | ${fib_table_1}
 | | Add Fib Table | ${dut2} | ${fib_table_2}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
-| | Assign Interface To Fib Table | ${dut2} | ${dut2_if1} | ${fib_table_1}
-| | Assign Interface To Fib Table | ${dut2} | ${dut2_if2} | ${fib_table_2}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${fib_table_1}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${fib_table_2}
+| | Assign Interface To Fib Table
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${fib_table_1}
+| | Assign Interface To Fib Table
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${fib_table_2}
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | 100.0.0.1 | 30
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 100.0.0.1 | 30
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if2} | 150.0.0.1 | 30
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 150.0.0.1 | 30
 | | VPP Interface Set IP Address
-| | ... | ${dut2} | ${dut2_if1} | 150.0.0.2 | 30
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 150.0.0.2 | 30
 | | VPP Interface Set IP Address
-| | ... | ${dut2} | ${dut2_if2} | 200.0.0.1 | 30
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 100.0.0.2 | ${tg_if1_mac}
-| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 200.0.0.2 | ${tg_if2_mac}
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | 200.0.0.1 | 30
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 100.0.0.2 | ${TG_pf1_mac}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | 200.0.0.2 | ${TG_pf2_mac}[0]
 | | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=100.0.0.2
-| | ... | interface=${dut1_if1} | vrf=${fib_table_1}
+| | ... | interface=${DUT1_${int}1}[0] | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=150.0.0.2
-| | ... | interface=${dut1_if2} | vrf=${fib_table_2}
+| | ... | interface=${DUT1_${int}2}[0] | vrf=${fib_table_2}
 | | Vpp Route Add | ${dut2} | 10.0.0.0 | 8 | gateway=150.0.0.1
-| | ... | interface=${dut2_if1} | vrf=${fib_table_1}
+| | ... | interface=${DUT2_${int}1}[0] | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut2} | 20.0.0.0 | 8 | gateway=200.0.0.2
-| | ... | interface=${dut2_if2} | vrf=${fib_table_2}
+| | ... | interface=${DUT2_${int}2}[0] | vrf=${fib_table_2}
 | | FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
@@ -543,39 +560,45 @@
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0]
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | SUB_ID=${subid}
 | | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | SUB_ID=${subid}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
-| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1}
+| | ... | ${dut2} | ${subif_index_2} | TAG_REWRITE_METHID=${tag_rewrite}
 | | ... | ELSE | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
 | |
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg_if1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 1.1.1.1 | ${TG_pf1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut1} | ${subif_index_1} | 2.2.2.2 | ${dut2_if1_mac}
+| | ... | ${dut1} | ${subif_index_1} | 2.2.2.2 | ${DUT2_${int}1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut2} | ${subif_index_2} | 2.2.2.1 | ${dut1_if2_mac}
+| | ... | ${dut2} | ${subif_index_2} | 2.2.2.1 | ${DUT1_${int}2_mac}[0]
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${subif_index_1}
-| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 3.3.3.1 | ${tg_if2_mac}
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
+| | VPP Add IP Neighbor
+| | ... | ${dut} | ${dut_if2} | 3.3.3.1 | ${TG_pf2_mac}[0]
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 1.1.1.2 | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address | ${dut1} | ${subif_index_1}
 | | ... | 2.2.2.1 | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address | ${dut2} | ${subif_index_2}
 | | ... | 2.2.2.2 | 30
-| | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 3.3.3.2 | 30
+| | VPP Interface Set IP Address
+| | ...  | ${dut} | ${dut_if2} | 3.3.3.2 | 30
 | | Vpp Route Add | ${dut1} | ${tg_if1_net} | 30 | gateway=1.1.1.1
-| | ... | interface=${dut1_if1}
+| | ... | interface=${DUT1_${int}1}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | ${tg_if2_net} | 30 | gateway=2.2.2.2
 | | ... | interface=${subif_index_1}

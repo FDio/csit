@@ -17,11 +17,23 @@
 
 *** Keywords ***
 | Configure L2XC
-| | [Documentation] | Setup Bidirectional Cross Connect on DUTs
-| | [Arguments] | ${node} | ${if1} | ${if2} |
-| | Set Interface State | ${node} | ${if1} | up
-| | Set Interface State | ${node} | ${if2} | up
-| | Vpp Setup Bidirectional Cross Connect | ${node} | ${if1} | ${if2}
+| | [Documentation]
+| | ... | Setup Bidirectional Cross Connect on DUTs
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - if1 - First interface. Type: string
+| | ... | - if2 - Second interface. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize L2 cross connect on node \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${if1} | ${if2}
+| |
+| | Set Interface State | ${dut} | ${if1} | up
+| | Set Interface State | ${dut} | ${if2} | up
+| | Vpp Setup Bidirectional Cross Connect | ${dut} | ${if1} | ${if2}
 
 | Initialize L2 cross connect on node
 | | [Documentation]
@@ -39,10 +51,8 @@
 | | [Arguments] | ${dut} | ${count}=${1}
 | |
 | | FOR | ${id} | IN RANGE | 1 | ${count} + 1
-| | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | VPP Setup Bidirectional Cross Connect | ${nodes['${dut}']}
-| | | ... | ${${dut_str}_${prev_layer}_${id}_1}
-| | | ... | ${${dut_str}_${prev_layer}_${id}_2}
+| | | ... | ${${dut}_${int}1_${id}}[0] | ${${dut}_${int}2_${id}}[0]
 | | END
 
 | Initialize L2 cross connect
@@ -63,23 +73,6 @@
 | | | Initialize L2 cross connect on node | ${dut} | count=${count}
 | | END
 
-| Initialize L2 xconnect in 2-node circular topology
-| | [Documentation]
-| | ... | Setup L2 xconnect topology by cross connecting two interfaces on
-| | ... | each DUT. Interfaces are brought up.
-| |
-| | Set interfaces in path up
-| | VPP Setup Bidirectional Cross Connect | ${dut1} | ${dut1_if1} | ${dut1_if2}
-
-| Initialize L2 xconnect in 3-node circular topology
-| | [Documentation]
-| | ... | Setup L2 xconnect topology by cross connecting two interfaces on
-| | ... | each DUT. Interfaces are brought up.
-| | ... |
-| | Set interfaces in path up
-| | VPP Setup Bidirectional Cross Connect | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | VPP Setup Bidirectional Cross Connect | ${dut2} | ${dut2_if1} | ${dut2_if2}
-
 | Initialize L2 xconnect with VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
 | | ... | Setup L2 xconnect topology with VXLANoIPv4 by cross connecting
@@ -89,16 +82,22 @@
 | | ... | interfaces.
 | |
 | | Set interfaces in path up
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 172.16.0.1 | 24
-| | VPP Interface Set IP Address | ${dut2} | ${dut2_if1} | 172.16.0.2 | 24
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
-| | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
-| | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
-| | ... | 172.16.0.1 | 172.16.0.2
-| | Configure L2XC | ${dut1} | ${dut1_if1} | ${dut1s_vxlan}
-| | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
-| | ... | 172.16.0.2 | 172.16.0.1
-| | Configure L2XC | ${dut2} | ${dut2_if2} | ${dut2s_vxlan}
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 172.16.0.1 | 24
+| | VPP Interface Set IP Address
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 172.16.0.2 | 24
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 172.16.0.2 | ${DUT2_${int}1_mac}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 172.16.0.1 | ${DUT1_${int}2_mac}[0]
+| | ${dut1s_vxlan}= | Create VXLAN interface
+| | ... | ${dut1} | 24 | 172.16.0.1 | 172.16.0.2
+| | Configure L2XC
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut1s_vxlan}
+| | ${dut2s_vxlan}= | Create VXLAN interface
+| | ... | ${dut2} | 24 | 172.16.0.2 | 172.16.0.1
+| | Configure L2XC
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2s_vxlan}
 
 | Initialize L2 xconnect with Vhost-User on node
 | | [Documentation]
@@ -128,12 +127,14 @@
 | | | Configure vhost interfaces | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
 | | | ... | ${dut}-vhost-${number}-if2
-| | | ${dut_xconnect_if1}= | Set Variable If | ${number}==1 | ${${dut}_if1}
+| | | ${dut_xconnect_if1}= | Set Variable If | ${number}==1
+| | | ... | ${${dut}_${int}1}[0]
 | | | ... | ${${dut}-vhost-${prev_index}-if2}
 | | | Configure L2XC | ${nodes['${dut}']} | ${dut_xconnect_if1}
 | | | ... | ${${dut}-vhost-${number}-if1}
 | | | Run Keyword If | ${number}==${nf_nodes} | Configure L2XC
-| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${number}-if2} | ${${dut}_if2}
+| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${number}-if2}
+| | | ... | ${${dut}_${int}2}[0]
 | | END
 
 | Initialize L2 xconnect with Vhost-User
@@ -180,27 +181,29 @@
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0]
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | SUB_ID=${subid}
 | | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | SUB_ID=${subid}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
-| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1}
+| | ... | ${dut2} | ${subif_index_2} | TAG_REWRITE_METHOD=${tag_rewrite}
 | | ... | ELSE | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
-| |
 | | Configure vhost interfaces
 | | ... | ${dut1} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
-| | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
-| | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
-| |
+| | Configure L2XC
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${vhost_if1}
+| | Configure L2XC
+| | ... | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure vhost interfaces
 | | ... | ${dut2} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
+| | ... | Configure L2XC | ${dut2} | ${DUT2_${int}2}[0] | ${vhost_if2}
 
 | Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | [Documentation]
@@ -225,51 +228,45 @@
 | | [Arguments] | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
 | |
 | | Set interfaces in path up
-| | ${dut1_eth_bond_if1}= | VPP Create Bond Interface | ${dut1} | ${bond_mode}
-| | ... | ${lb_mode}
+| | ${dut1_eth_bond_if1}= | VPP Create Bond Interface
+| | ... | ${dut1} | ${bond_mode} | ${lb_mode}
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
-| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${dut1_if2}
-| | Run Keyword If | '${if2_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2}
-| | ... | ${dut1_eth_bond_if1}
-| | ... | ELSE
-| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2_1}
-| | ... | ${dut1_eth_bond_if1}
-| | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2_2}
-| | ... | ${dut1_eth_bond_if1}
-| | ${dut2_eth_bond_if1}= | VPP Create Bond Interface | ${dut2} | ${bond_mode}
-| | ... | ${lb_mode}
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | ${_even}= | Evaluate | ${pf} % 2
+| | | Run Keyword If | ${even}
+| | | ... | VPP Enslave Physical Interface
+| | | ... | ${dut1} | ${DUT1_${int}${pf}}[0]
+| | END
+| | ${dut2_eth_bond_if1}= | VPP Create Bond Interface
+| | ... | ${dut2} | ${bond_mode} | ${lb_mode}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
-| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${dut2_if1}
-| | Run Keyword If | '${if1_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1}
-| | ... | ${dut2_eth_bond_if1}
-| | ... | ELSE
-| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_1}
-| | ... | ${dut2_eth_bond_if1}
-| | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_2}
-| | ... | ${dut2_eth_bond_if1}
+| | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | ${_even}= | Evaluate | ${pf} % 2
+| | | Run Keyword Unless | ${even}
+| | | ... | VPP Enslave Physical Interface
+| | | ... | ${dut2} | ${DUT2_${int}${pf}}[0]
+| | END
 | | VPP Show Bond Data On All Nodes | ${nodes} | verbose=${TRUE}
 | | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
-| | ... | ${subid}
+| | ... | ${dut1} | ${dut1_eth_bond_if1}
+| | ... | ${dut2} | ${dut2_eth_bond_if1} | ${subid}
 | | Configure L2 tag rewrite method on interfaces
-| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
-| | ... | ${tag_rewrite}
+| | ... | ${dut1} | ${subif_index_1}
+| | ... | ${dut2} | ${subif_index_2} | ${tag_rewrite}
 | | Configure vhost interfaces
 | | ... | ${dut1} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
-| | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
-| | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
+| | Configure L2XC
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${vhost_if1}
+| | Configure L2XC
+| | ... | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | | Configure vhost interfaces
 | | ... | ${dut2} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
-| | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
-| | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
+| | Configure L2XC
+| | ... | ${dut2} | ${subif_index_2} | ${vhost_if1}
+| | Configure L2XC
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${vhost_if2}
 
 | Initialize L2 xconnect with memif pairs on DUT node
 | | [Documentation]
@@ -302,12 +299,13 @@
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
 | | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
-| | | ${xconnect_if1}= | Set Variable If | ${number}==1 | ${${dut}_if1}
-| | | ... | ${${dut}-memif-${prev_index}-if2}
+| | | ${xconnect_if1}= | Set Variable If | ${number}==1
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}-memif-${prev_index}-if2}
 | | | Configure L2XC | ${nodes['${dut}']} | ${xconnect_if1}
 | | | ... | ${${dut}-memif-${number}-if1}
 | | | Run Keyword If | ${number}==${count} | Configure L2XC
-| | | ... | ${nodes['${dut}']} | ${${dut}-memif-${number}-if2} | ${${dut}_if2}
+| | | ... | ${nodes['${dut}']} | ${${dut}-memif-${number}-if2}
+| | | ... | ${${dut}_${int}2}[0]
 | | END
 
 | Initialize L2 xconnect with memif pairs
@@ -329,39 +327,5 @@
 | | | Initialize L2 xconnect with memif pairs on DUT node | ${dut} | ${count}
 | | END
 | | Set interfaces in path up
-| | Show Memif on all DUTs | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
-
-| Initialize L2 xconnect for single memif
-| | [Documentation]
-| | ... | Create single Memif interface on all defined VPP nodes. Cross
-| | ... | connect Memif interface with one physical interface.
-| |
-| | ... | *Arguments:*
-| | ... | - number - Memif ID. Type: integer
-| |
-| | ... | *Note:*
-| | ... | Socket paths for Memif are defined in following format:
-| | ... | - /tmp/memif-DUT1_CNF\${number}-\${sid}
-| |
-| | ... | KW uses test variable ${rxq_count_int} set by KW Add worker threads
-| | ... | and rxqueues to all DUTs
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Initialize L2 xconnect for single memif \| 1 \|
-| |
-| | [Arguments] | ${number}=${1}
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | ${sock}= | Set Variable | memif-${dut}_CNF
-| | | ${sid}= | Evaluate | (${number} * ${2}) - ${1}
-| | | Set up single memif interface on DUT node | ${nodes['${dut}']} | ${sock}
-| | | ... | mid=${number} | sid=${sid} | memif_if=${dut}-memif-${number}-if1
-| | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
-| | | Configure L2XC | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | ${${dut}-memif-${number}-if1}
-| | END
-| | Set single interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
