@@ -80,7 +80,7 @@
 | | And Apply Startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize L2 xconnect in 3-node circular topology
+| | And Initialize L2 cross connect
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

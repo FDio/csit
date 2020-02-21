@@ -86,9 +86,9 @@
 | | FOR | ${id} | IN RANGE | 1 | ${count} + 1
 | | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | Add Interface To L2 BD
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1} | ${id}
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}1_${id}}[0] | ${id}
 | | | Add Interface To L2 BD
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2} | ${id}
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}2_${id}}[0] | ${id}
 | | END
 
 | Initialize L2 bridge domain
@@ -138,10 +138,10 @@
 | | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
 | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}1_${nf_chain}}[0]
 | | ... | ${bd_id1}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}2_${nf_chain}}[0]
 | | ... | ${bd_id2}
 | | FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes} + 1
 | | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
@@ -532,10 +532,10 @@
 | | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
 | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}1_${nf_chain}}[0]
 | | ... | ${bd_id1}
 | | Add interface to bridge domain
-| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}2_${nf_chain}}[0]
 | | ... | ${bd_id2}
 | | FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
@@ -631,10 +631,10 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | Add interface to bridge domain
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}1_${nf_chain}}[0]
 | | | ... | ${bd_id1}
 | | | Add interface to bridge domain
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}2_${nf_chain}}[0]
 | | | ... | ${bd_id2}
 | | | ${nf_id_frst}= | Evaluate | (${nf_chain}-${1}) * ${nf_nodes} + ${1}
 | | | ${nf_id_last}= | Evaluate | (${nf_chain}-${1}) * ${nf_nodes} + ${nf_nodes}
