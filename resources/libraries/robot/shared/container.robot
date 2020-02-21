@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -210,23 +210,23 @@
 | | ${dut2_if2} = | Get Variable Value | \${dut2_if2} | ${None}
 | | Run Keyword If | '${container_chain_topology}' == 'chain_ip4'
 | | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
-| | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
+| | ... | tg_if1_mac=${TG_pf1_mac} | tg_if2_mac=${TG_pf2_mac}
 | | ... | nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'chain_ipsec'
 | | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
-| | ... | tg_if1_ip4=${tg_if1_ip4} | tg_if1_mac=${tg_if1_mac}
-| | ... | tg_if2_ip4=${tg_if2_ip4} | tg_if2_mac=${tg_if2_mac}
+| | ... | tg_if1_ip4=${tg_if1_ip4} | tg_if1_mac=${TG_pf1_mac}
+| | ... | tg_if2_ip4=${tg_if2_ip4} | tg_if2_mac=${tg_pf2_mac}
 | | ... | dut1_if1_ip4=${dut1_if1_ip4} | dut1_if2_ip4=${dut1_if2_ip4}
 | | ... | dut2_if1_ip4=${dut2_if1_ip4} | dut2_if2_ip4=${dut2_if2_ip4}
 | | ... | raddr_ip4=${raddr_ip4} | laddr_ip4=${laddr_ip4}
 | | ... | nodes=${nodes} | nf_nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'pipeline_ip4'
 | | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
-| | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
+| | ... | tg_if1_mac=${TG_pf1_mac} | tg_if2_mac=${TG_pf2_mac}
 | | ... | nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'cross_horiz'
 | | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
-| | ... | dut1_if=${dut1_if2} | dut2_if=${dut2_if2}
+| | ... | dut1_if=${DUT1_${int}2}[0] | dut2_if=${DUT2_${int}2}[0]
 | | ... | ELSE
 | | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
 
@@ -324,11 +324,11 @@
 | | ... | ELSE | Set variable | ${rxq_count_int}
 | | VSWITCH.Configure VPP in all containers | chain_vswitch
 | | ... | rxq=${rxq_count_int} | n_instances=${n_instances} | node=${dut}
-| | ... | dut1_if1=${dut1_if1} | dut1_if2=${dut1_if2}
-| | ... | dut2_if1=${dut2_if1} | dut2_if2=${dut2_if2}
+| | ... | dut1_if1=${DUT1_${int}1}[0] | dut1_if2=${DUT1_${int}2}[0]
+| | ... | dut2_if1=${DUT2_${int}1}[0] | dut2_if2=${DUT2_${int}2}[0]
 | | ... | dut2_if2_ip4=${dut2_if2_ip4}
-| | ... | tg_if1_ip4=${tg_if1_ip4} | tg_if1_mac=${tg_if1_mac}
-| | ... | tg_if2_ip4=${tg_if2_ip4} | tg_if2_mac=${tg_if2_mac}
+| | ... | tg_if1_ip4=${TG_pf1_ip4} | tg_if1_mac=${TG_pf1_mac}
+| | ... | tg_if2_ip4=${TG_pf2_ip4} | tg_if2_mac=${TG_pf2_mac}
 | | ... | nodes=${nodes}
 | | Start VPP in all '${container_group}' containers
 
