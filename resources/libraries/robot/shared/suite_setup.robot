@@ -26,27 +26,40 @@
 | Documentation | Suite setup keywords.
 
 *** Keywords ***
-| Setup suite single link
+| Setup suite topology interfaces
 | | [Documentation]
-| | ... | Common suite setup for single link tests.
+| | ... | Common suite setup for one to multiple link tests.
 | | ... |
-| | ... | Compute path for testing on two given nodes in circular topology
+| | ... | Compute path for testing on given topology nodes in circular topology
 | | ... | based on interface model provided as an argument and set
 | | ... | corresponding suite variables.
 | |
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - duts - List of DUT nodes
+| | ... | _NOTE:_ This KW sets various suite variables based on filtered
+| | ... | topology. All variables are set with also backward compatibility
+| | ... | format dut{m}_if{n} (where the value type is string).
+| | ... | List type allows to access physical interfaces in same way as
+| | ... | virtual interface (e.g. SRIOV). This keeps abstracted compatibility
+| | ... | between existing L1 and L2 KWs library and underlaying physical
+| | ... | topology.
+| |
+| | ... | - duts - List of DUT nodes (name as seen in topology file).
 | | ... | - duts_count - Number of DUT nodes.
-| | ... | - tg - TG node
-| | ... | - tg_if1 - 1st TG interface towards DUT.
-| | ... | - tg_if1_mac - 1st TG interface MAC address.
-| | ... | - tg_if2 - 2nd TG interface towards DUT.
-| | ... | - tg_if2_mac - 2nd TG interface MAC address.
-| | ... | - dut{n} - DUTx node
-| | ... | - dut{n}_if1 - 1st DUT interface.
-| | ... | - dut{n}_if1_mac - 1st DUT interface MAC address.
-| | ... | - dut{n}_if2 - 2nd DUT interface.
-| | ... | - dut{n}_if2_mac - 2nd DUT interface MAC address.
+| | ... | - int - Interfacy type (layer).
+| | ... | Type: string
+| | ... | - dut{n} - DUTx node.
+| | ... | Type: dictionary
+| | ... | - dut{m}_pf{n} - Nth interface of Mth DUT.
+| | ... | Type: list
+| | ... | - dut{m}_pf{n}_mac - Nth interface of Mth DUT - MAC address.
+| | ... | Type: list
+| | ... | - dut{m}_pf{n}_vlan - Nth interface of Mth DUT - VLAN id.
+| | ... | Type: list
+| | ... | - dut{m}_pf{n}_pci - Nth interface of Mth DUT - PCI address.
+| | ... | Type: list
+| | ... | - dut{m}_pf{n}_ip4_addr - Nth interface of Mth DUT - IPv4 address.
+| | ... | Type: list
+| | ... | - dut{m}_pf{n}_ip4_prefix - Nth interface of Mth DUT - IPv4 prefix.
+| | ... | Type: list
 | |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional setup action. Type: list
@@ -54,37 +67,13 @@
 | | [Arguments] | @{actions}
 | |
 | | ${nic_model_list}= | Create list | ${nic_name}
-| | Append Node | ${nodes['TG']}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | FOR | ${dut} | IN | @{duts}
-| | | Append Node | ${nodes['${dut}']} | filter_list=${nic_model_list}
+| | &{info}= | Compute Circular Topology
+| | ... | ${nodes} | filter_list=${nic_model_list} | nic_pfs=${nic_pfs}
+| | ${variables}= | Get Dictionary Keys | ${info}
+| | FOR | ${variable} | IN | @{variables}
+| | | ${value}= | Get From Dictionary | ${info} | ${variable}
+| | | Set Suite Variable | ${${variable}} | ${value}
 | | END
-| | Append Node | ${nodes['TG']}
-| | Compute Path | always_same_link=${FALSE}
-| | ${tg_if1} | ${tg}= | Next Interface
-| | FOR | ${dut} | IN | @{duts}
-| | | ${dutx_if1} | ${dutx}= | Next Interface
-| | | ${dutx_if2} | ${dutx}= | Next Interface
-| | | ${dutx_if1_mac}= | Get Interface MAC | ${dutx} | ${dutx_if1}
-| | | ${dutx_if2_mac}= | Get Interface MAC | ${dutx} | ${dutx_if2}
-| | | ${dut_str}= | Convert To Lowercase | ${dut}
-| | | Set Suite Variable | ${${dut_str}} | ${dutx}
-| | | Set Suite Variable | ${${dut_str}_if1} | ${dutx_if1}
-| | | Set Suite Variable | ${${dut_str}_if2} | ${dutx_if2}
-| | | Set Suite Variable | ${${dut_str}_if1_mac} | ${dutx_if1_mac}
-| | | Set Suite Variable | ${${dut_str}_if2_mac} | ${dutx_if2_mac}
-| | END
-| | ${tg_if2} | ${tg}= | Next Interface
-| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${duts_count}= | Get Length | ${duts}
-| | Set Suite Variable | ${duts}
-| | Set Suite Variable | ${duts_count}
-| | Set Suite Variable | ${tg}
-| | Set Suite Variable | ${tg_if1}
-| | Set Suite Variable | ${tg_if1_mac}
-| | Set Suite Variable | ${tg_if2}
-| | Set Suite Variable | ${tg_if2_mac}
 | | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Suite setup Action For ${action}
 | | END
@@ -147,152 +136,76 @@
 | | | Run Keyword | Additional Suite setup Action For ${action}
 | | END
 
-| Setup suite double link
-| | [Documentation]
-| | ... | Common suite setup for double link tests.
-| | ... |
-| | ... | Compute path for testing on three given nodes in circular topology
-| | ... | with double link between DUTs based on interface model provided as an
-| | ... | argument and set corresponding suite variables.
-| |
-| | ... | *Arguments:*
-| | ... | - ${actions} - Additional setup action. Type: list
-| |
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - duts - List of DUT nodes
-| | ... | - duts_count - Number of DUT nodes.
-| | ... | - tg - TG node
-| | ... | - tg_if1 - 1st TG interface towards DUT.
-| | ... | - tg_if1 - 1st TG interface MAC address.
-| | ... | - tg_if2 - 2nd TG interface towards DUT.
-| | ... | - tg_if2 - 2nd TG interface MAC address.
-| | ... | - dut1 - DUT1 node
-| | ... | - dut1_if1 - DUT1 interface towards TG.
-| | ... | - dut1_if2_1 - DUT1 interface 1 towards DUT2.
-| | ... | - dut1_if2_2 - DUT1 interface 2 towards DUT2.
-| | ... | - dut2 - DUT2 node
-| | ... | - dut2_if1_1 - DUT2 interface 1 towards DUT1.
-| | ... | - dut2_if1_2 - DUT2 interface 2 towards DUT1.
-| | ... | - dut2_if2 - DUT2 interface towards TG.
-| |
-| | [Arguments] | @{actions}
-| |
-| | ${nic_model_list}= | Create list | ${nic_name}
-| | # Compute path TG - DUT1 with single link in between
-| | Append Node | ${nodes['TG']}
-| | Append Node | ${nodes['DUT1']} | filter_list=${nic_model_list}
-| | Append Node | ${nodes['TG']}
-| | Compute Path
-| | ${tg_if1} | ${tg}= | Next Interface
-| | ${dut1_if1} | ${dut1}= | Next Interface
-| | # Compute path TG - DUT2 with single link in between
-| | Clear Path
-| | Append Node | ${nodes['TG']}
-| | Append Node | ${nodes['DUT2']} | filter_list=${nic_model_list}
-| | Append Node | ${nodes['TG']}
-| | Compute Path
-| | ${tg_if2} | ${tg}= | Next Interface
-| | ${dut2_if2} | ${dut2}= | Next Interface
-| | # Compute path DUT1 - DUT2 with double link in between
-| | Clear Path
-| | Append Node | ${nodes['DUT1']} | filter_list=${nic_model_list}
-| | Append Node | ${nodes['DUT2']} | filter_list=${nic_model_list}
-| | Append Node | ${nodes['DUT1']} | filter_list=${nic_model_list}
-| | Compute Path | always_same_link=${FALSE}
-| | ${dut1_if2_1} | ${dut1}= | First Interface
-| | ${dut1_if2_2} | ${dut1}= | Last Interface
-| | ${dut2_if1_1} | ${dut2}= | First Ingress Interface
-| | ${dut2_if1_2} | ${dut2}= | Last Egress Interface
-| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${duts_count}= | Set Variable | 2
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | # Set suite variables
-| | Set Suite Variable | ${duts}
-| | Set Suite Variable | ${duts_count}
-| | Set Suite Variable | ${tg}
-| | Set Suite Variable | ${tg_if1}
-| | Set Suite Variable | ${tg_if1_mac}
-| | Set Suite Variable | ${tg_if2}
-| | Set Suite Variable | ${tg_if2_mac}
-| | Set Suite Variable | ${dut1}
-| | Set Suite Variable | ${dut1_if1}
-| | Set Suite Variable | ${dut1_if2_1}
-| | Set Suite Variable | ${dut1_if2_2}
-| | Set Suite Variable | ${dut2}
-| | Set Suite Variable | ${dut2_if1_1}
-| | Set Suite Variable | ${dut2_if1_2}
-| | Set Suite Variable | ${dut2_if2}
-| | FOR | ${action} | IN | @{actions}
-| | | Run Keyword | Additional Suite setup Action For ${action}
-| | END
-
 | Additional Suite Setup Action For scapy
 | | [Documentation]
 | | ... | Additional Setup for suites which uses scapy as Traffic generator.
 | |
-| | Set Interface State | ${tg} | ${tg_if1} | up
-| | Set Interface State | ${tg} | ${tg_if2} | up
+| | FOR | ${dut} | IN | @{duts}
+| | | Set Suite Variable | ${${dut}_vf1} | ${${dut}_${int}1}
+| | | Set Suite Variable | ${${dut}_vf2} | ${${dut}_${int}2}
+| | END
+| | Set Interface State | ${tg} | ${TG_pf1}[0] | up
+| | Set Interface State | ${tg} | ${TG_pf2}[0] | up
 
 | Additional Suite Setup Action For dpdk
 | | [Documentation]
 | | ... | Additional Setup for suites which uses dpdk.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | Initialize DPDK Environment | ${nodes['${dut}']}
-| | | ... | ${${dut_str}_if1} | ${${dut_str}_if2}
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
+| | END
+
+| Additional Suite Setup Action For performance vf
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement for
+| | ... | single DUT (inner loop).
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Additional Suite Setup Action For performance_dut \| DUT1 \|
+| |
+| | [Arguments] | ${dut}
+| |
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | ${_vf}=
+| | | ... | Run Keyword | Init ${nic_driver} interface
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | numvfs=${nic_vfs}
+| | | ... | osi_layer=${osi_layer}
+| | | ${_vlan}=
+| | | ... | Create List | ${EMPTY}
+| | | ${_mac}=
+| | | ... | Create List | ${EMPTY}
+| | | Set Suite Variable
+| | | ... | ${${dut}_vf${pf}} | ${_vf}
+| | | Set Suite Variable
+| | | ... | ${${dut}_vf${pf}_ip4_addr} | ${${dut}_pf${pf}_ip4_addr}
+| | | Set Suite Variable
+| | | ... | ${${dut}_vf${pf}_ip4_prefix} | ${${dut}_pf${pf}_ip4_prefix}
+| | | Set Suite Variable
+| | | ... | ${${dut}_vf${pf}_mac} | ${_mac}
+| | | Set Suite Variable
+| | | ... | ${${dut}_vf${pf}_vlan} | ${_vlan}
+| | | Set Suite Variable
+| | | ... | ${int} | vf
 | | END
 
 | Additional Suite Setup Action For performance
 | | [Documentation]
 | | ... | Additional Setup for suites which uses performance measurement.
-| | ...
-| | Run Keyword If | ${duts_count} == 1
-| | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
-| | Run Keyword If | ${duts_count} == 2
-| | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
-
-| Additional Suite Setup Action For performance_rdma
-| | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement with
-| | ... | RDMA-core driver.
-| | ...
-# TODO: Add functionality for tests that need some.
-| | Additional Suite Setup Action For performance
-
-| Additional Suite Setup Action For performance_avf
-| | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement over
-| | ... | SRIOV AVF.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | ${if1_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | numvfs=${1} | osi_layer=${osi_layer}
-| | | ${if2_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if2}
-| | | ... | numvfs=${1} | osi_layer=${osi_layer}
-| | # Currently only one AVF is supported.
-| | | Set Suite Variable | ${${dut}_if1_vf0} | ${if1_avf_arr[0]}
-| | | Set Suite Variable | ${${dut}_if2_vf0} | ${if2_avf_arr[0]}
+| | | Run Keyword If | ${nic_vfs} > 0
+| | | ... | Additional Suite Setup Action For performance vf | ${dut}
 | | END
-| | Run Keyword If | ${duts_count} == 1
-| | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1_vf0} | ${dut1} | ${dut1_if2_vf0} | ${osi_layer}
-| | Run Keyword If | ${duts_count} == 2
-| | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1_vf0} | ${dut2} | ${dut2_if2_vf0} | ${osi_layer}
-
-| Additional Suite Setup Action For avf
-| | [Documentation]
-| | ... | Additional Setup for suites which uses SRIOV AVF.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | # Currently only one AVF is supported.
-| | | Set Suite Variable | ${${dut}_if1_vf0} | ${${dut}_if1}
-| | | Set Suite Variable | ${${dut}_if2_vf0} | ${${dut}_if2}
-| | END
+| | Initialize traffic generator
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${dut1} | ${DUT1_${int}1}[0]
+| | ... | ${dut${duts_count}} | ${DUT${duts_count}_${int}2}[0]
+| | ... | ${osi_layer}
 
 | Additional Suite Setup Action For ipsechw
 | | [Documentation]
