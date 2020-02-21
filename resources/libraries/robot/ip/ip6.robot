@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -47,51 +47,57 @@
 | |
 | | Set interfaces in path up
 | |
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg_if1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:1::2 | ${TG_pf1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if2} | 2001:3::1 | ${dut2_if1_mac}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:3::1 | ${DUT2_${int}1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut2} | ${dut2_if1} | 2001:3::2 | ${dut1_if2_mac}
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 2001:3::2 | ${DUT1_${int}2_mac}[0]
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2_if2}
-| | ... | ELSE | Set Variable | ${dut1_if2}
-| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 2001:2::2 | ${tg_if2_mac}
+| | ... | Set Variable | ${DUT2_${int}2}[0]
+| | ... | ELSE | Set Variable | ${DUT1_${int}2}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut} | ${dut_if2} | 2001:2::2 | ${TG_pf2_mac}[0]
 | |
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2001:1::1 | 64
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:1::1 | 64
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 2001:3::1 | 64
+| | ... | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:3::1 | 64
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Interface Set IP Address | ${dut2} | ${dut2_if1} | 2001:3::2 | 64
-| | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 2001:2::1 | 64
+| | ... | VPP Interface Set IP Address
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 2001:3::2 | 64
+| | VPP Interface Set IP Address
+| | ... | ${dut} | ${dut_if2} | 2001:2::1 | 64
 | |
 | | Vpp All Ra Suppress Link Layer | ${nodes}
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:3::2
-| | ... | interface=${dut1_if2}
+| | ... | interface=${DUT1_${int}2}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 2001:1::0 | 64 | gateway=2001:3::1
-| | ... | interface=${dut2_if1}
+| | ... | interface=${DUT2_${int}1}[0]
 | |
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 128
-| | ... | gateway=2001:1::2 | interface=${dut1_if1}
+| | ... | gateway=2001:1::2 | interface=${DUT1_${int}1}[0]
 | | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut} | ${remote_host2_ip} | 128
 | | ... | gateway=2001:2::2 | interface=${dut_if2}
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 128
-| | ... | gateway=2001:3::2 | interface=${dut1_if2}
+| | ... | gateway=2001:3::2 | interface=${DUT1_${int}2}[0]
 | | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip} | 128
-| | ... | gateway=2001:3::1 | interface=${dut2_if1}
+| | ... | gateway=2001:3::1 | interface=${DUT2_${int}1}[0]
 
 | Initialize IPv6 forwarding with scaling in circular topology
 | | [Documentation]
@@ -118,37 +124,41 @@
 | |
 | | ${prefix}= | Set Variable | 64
 | | ${host_prefix}= | Set Variable | 128
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2001:3::1 | ${prefix}
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:3::1 | ${prefix}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if2} | 2001:4::1 | ${prefix}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:4::1 | ${prefix}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address
-| | ... | ${dut2} | ${dut2_if1} | 2001:4::2 | ${prefix}
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 2001:4::2 | ${prefix}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2_if2}
-| | ... | ELSE | Set Variable | ${dut1_if2}
-| | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 2001:5::1 | ${prefix}
+| | ... | Set Variable | ${DUT2_${int}2}[0]
+| | ... | ELSE | Set Variable | ${DUT1_${int}2}[0]
+| | VPP Interface Set IP Address
+| | ... | ${dut} | ${dut_if2} | 2001:5::1 | ${prefix}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:3::2 | ${tg_if1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:3::2 | ${TG_pf1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add Ip Neighbor
-| | ... | ${dut1} | ${dut1_if2} | 2001:4::2 | ${dut2_if1_mac}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:4::2 | ${DUT2_${int}1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add Ip Neighbor
-| | ... | ${dut2} | ${dut2_if1} | 2001:4::1 | ${dut1_if2_mac}
-| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 2001:5::2 | ${tg_if2_mac}
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 2001:4::1 | ${DUT1_${int}2_mac}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut} | ${dut_if2} | 2001:5::2 | ${TG_pf2_mac}[0]
 | | Vpp Route Add | ${dut1} | 2001:1::0 | ${host_prefix} | gateway=2001:3::2
-| | ... | interface=${dut1_if1} | count=${count}
+| | ... | interface=${DUT1_${int}1}[0] | count=${count}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 2001:2::0 | ${host_prefix}
-| | ... | gateway=2001:4::2 | interface=${dut1_if2} | count=${count}
+| | ... | gateway=2001:4::2 | interface=${DUT1_${int}2}[0] | count=${count}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 2001:1::0 | ${host_prefix}
-| | ... | gateway=2001:4::1 | interface=${dut2_if1} | count=${count}
+| | ... | gateway=2001:4::1 | interface=${DUT2_${int}1}[0] | count=${count}
 | | Vpp Route Add | ${dut} | 2001:2::0 | ${host_prefix} | gateway=2001:5::2
 | | ... | interface=${dut_if2} | count=${count}
 
@@ -185,16 +195,22 @@
 | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${nf_nodes}
 | | Add Fib Table | ${dut1} | ${fib_table_1} | ipv6=${True}
 | | Add Fib Table | ${dut1} | ${fib_table_2} | ipv6=${True}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${fib_table_1}
 | | ... | ipv6=${True}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
+| | Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${fib_table_2}
 | | ... | ipv6=${True}
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2001:100::1
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:100::1
 | | ... | ${prefix}
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 2001:200::1
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:200::1
 | | ... | ${prefix}
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:100::2 | ${tg_if1_mac}
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 2001:200::2 | ${tg_if2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:100::2 | ${TG_pf1_mac}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:200::2 | ${TG_pf2_mac}[0]
 | | Vpp Route Add | ${dut1} | 2001:1::0 | 64 | gateway=2001:100::2
 | | ... | interface=${dut1_if1} | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:200::2
@@ -263,32 +279,37 @@
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0]
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | SUB_ID=${subid}
 | | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | SUB_ID=${subid}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
-| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1}
+| | ... | ${dut2} | ${subif_index_2} | TAG_REWRITE_METHOD=${tag_rewrite}
 | | ... | ELSE | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
 | |
 | | ${prefix}= | Set Variable | 64
 | | ${host_prefix}= | Set Variable | 64
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2002:1::1 | ${tg_if1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 2002:1::1 | ${TG_pf1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add Ip Neighbor
-| | ... | ${dut1} | ${subif_index_1} | 2002:2::2 | ${dut2_if1_mac}
+| | ... | ${dut1} | ${subif_index_1} | 2002:2::2 | ${DUT2_${int}1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add Ip Neighbor
-| | ... | ${dut2} | ${subif_index_2} | 2002:2::1 | ${dut1_if2_mac}
+| | ... | ${dut2} | ${subif_index_2} | 2002:2::1 | ${DUT1_${int}2_mac}[0]
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2_if2}
+| | ... | Set Variable | ${DUT2_${int}2}[0]
 | | ... | ELSE | Set Variable | ${subif_index_1}
-| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 2002:3::1 | ${tg_if2_mac}
-| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2002:1::2 | ${prefix}
+| | VPP Add IP Neighbor
+| | ... | ${dut} | ${dut_if2} | 2002:3::1 | ${TG_pf2_mac}[0]
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2002:1::2 | ${prefix}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address | ${dut1} | ${subif_index_1} | 2002:2::1
 | | ... | ${prefix}
@@ -298,7 +319,7 @@
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 2002:3::2 | ${prefix}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
 | | Vpp Route Add | ${dut1} | ${tg_if1_net} | ${host_prefix}
-| | ... | gateway=2002:1::1 | interface=${dut1_if1}
+| | ... | gateway=2002:1::1 | interface=${DUT1_${int}1}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | ${tg_if2_net} | ${host_prefix}
 | | ... | gateway=2002:2::2 | interface=${subif_index_1}
