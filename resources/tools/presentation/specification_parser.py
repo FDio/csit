@@ -135,6 +135,15 @@ class Specification:
         """
         return self._specification[u"input"]
 
+    @input.setter
+    def input(self, new_value):
+        """Setter - specification - inputs.
+
+        :param new_value: New value to be set.
+        :type new_value: dict
+        """
+        self._specification[u"input"] = new_value
+
     @property
     def builds(self):
         """Getter - builds defined in specification.
@@ -143,6 +152,15 @@ class Specification:
         :rtype: dict
         """
         return self.input[u"builds"]
+
+    @input.setter
+    def builds(self, new_value):
+        """Setter - builds defined in specification.
+
+        :param new_value: New value to be set.
+        :type new_value: dict
+        """
+        self.input[u"builds"] = new_value
 
     @property
     def output(self):
