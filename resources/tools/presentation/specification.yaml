@@ -379,6 +379,8 @@
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
         - 32  # NDRPDR sel
+        - 40  # NDRPDR sel
+        - 44  # NDRPDR sel
 
 
     plot-vpp-hdrh-lat-2n-clx:
@@ -391,12 +393,13 @@
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
         - 32  # NDRPDR sel
+        - 40  # NDRPDR sel
+        - 44  # NDRPDR sel
 
 
     plot-vpp-nfv-2n-clx-mrr:
-      # TODO: Replace the data
       csit-vpp-perf-verify-2001-2n-clx:
-        - 28  # NDRPDR sel
+        - 39  # MRR
 
     plot-dpdk-throughput-latency-2n-clx:
       csit-dpdk-perf-verify-2001-2n-clx:
@@ -427,10 +430,11 @@
         - 8   # NDRPDR sel
         - 10  # NDRPDR sel
         - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
-        - 4   # NDRPDR sel
+        - 10  # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-tsh:
       csit-dpdk-perf-verify-2001-3n-tsh:
@@ -566,6 +570,9 @@
         - 64  # NDRPDR full
         - 65  # NDRPDR full
         - 67  # NDRPDR full
+        - 70  # NDRPDR full
+        - 72  # NDRPDR full
+        - 73  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       # TODO: Replace
@@ -584,11 +591,12 @@
         - 35  # NDRPDR full
         - 36  # NDRPDR full
         - 38  # NDRPDR full
+        - 41  # NDRPDR full
+        - 42  # NDRPDR full
 
     vpp-perf-results-3n-tsh:
-      # TODO: Replace
       csit-vpp-perf-verify-2001-3n-tsh:
-        - 3   # NDRPDR sel
+        - 10  # NDRPDR sel
 
     vpp-perf-results-3n-dnv:
       csit-vpp-perf-verify-2001-3n-dnv:
@@ -600,6 +608,9 @@
         - 24  # NDRPDR full
         - 25  # NDRPDR full
         - 26  # NDRPDR full
+        - 37  # NDRPDR full
+        - 38  # NDRPDR full
+        - 39  # NDRPDR full
 
     vpp-perf-results-2n-dnv:
       csit-vpp-perf-verify-2001-2n-dnv:
@@ -627,10 +638,8 @@
         - 69  # MRR sel
 
     vpp-mrr-results-2n-clx:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-2n-clx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 69  # MRR sel
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 39  # MRR
 
     vpp-mrr-results-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
@@ -887,6 +896,7 @@
         - 8   # NDRPDR sel
         - 10  # NDRPDR sel
         - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
     vpp-performance-changes-3n-tsh:
       - "vpp-performance-changes-3n-tsh-ref"
       - "vpp-performance-changes-3n-tsh-cmp"
@@ -1184,6 +1194,8 @@
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
         - 32  # NDRPDR sel
+        - 40  # NDRPDR sel
+        - 44  # NDRPDR sel
 
     vpp-compare-testbeds-skx-clx:
       - "vpp-compare-testbeds-skx-clx-ref"
@@ -1207,10 +1219,8 @@
       csit-vpp-perf-verify-1908-2n-skx:
         - 69  # MRR sel
     vpp-compare-testbeds-mrr-skx-clx-cmp:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-2n-clx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 69  # MRR sel
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 39  # MRR
     vpp-compare-testbeds-mrr-skx-clx:
       - "vpp-compare-testbeds-mrr-skx-clx-ref"
       - "vpp-compare-testbeds-mrr-skx-clx-cmp"
@@ -2031,6 +2041,9 @@
       - 64  # NDRPDR full
       - 65  # NDRPDR full
       - 67  # NDRPDR full
+      - 70  # NDRPDR full
+      - 72  # NDRPDR full
+      - 73  # NDRPDR full
 
 #    csit-vpp-perf-verify-1904-3n-skx:
 #      - 7   # MRR sel
@@ -2133,10 +2146,15 @@
       - 28  # NDRPDR sel
       - 29  # NDRPDR sel
       - 32  # NDRPDR sel
+      - 40  # NDRPDR sel
+      - 44  # NDRPDR sel
+      - 39  # MRR
       - 34  # NDRPDR full
       - 35  # NDRPDR full
       - 36  # NDRPDR full
       - 38  # NDRPDR full
+      - 41  # NDRPDR full
+      - 42  # NDRPDR full
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
@@ -2157,6 +2175,7 @@
       - 8   # NDRPDR sel
       - 10  # NDRPDR sel
       - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
       - 9   # MRR sel
 
     csit-vpp-perf-verify-1908-3n-dnv:
@@ -2191,6 +2210,9 @@
       - 24  # NDRPDR full
       - 25  # NDRPDR full
       - 26  # NDRPDR full
+      - 37  # NDRPDR full
+      - 38  # NDRPDR full
+      - 39  # NDRPDR full
 
     csit-vpp-perf-verify-1908-2n-dnv:
       - 1   # NDRPDR sel
@@ -4540,22 +4562,22 @@
 #  - "parent"
 #  - "msg"
 
-## Detailed Test Results - VPP MRR Results 2n-clx
-#- type: "table"
-#  title: "Detailed Test Results - VPP MRR Results 2n-clx"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTR,MRR,VPP,2N,CLX]}/vpp_mrr_results_2n_clx"
-#  columns:
-#  - title: " |prein| Test Name |preout| "
-#    data: "data name"
-#  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-#    data: "data msg"
-#  data: "vpp-mrr-results-2n-clx"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
+# Detailed Test Results - VPP MRR Results 2n-clx
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 2n-clx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,MRR,VPP,2N,CLX]}/vpp_mrr_results_2n_clx"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+    data: "data msg"
+  data: "vpp-mrr-results-2n-clx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
 
 # Detailed Test Results - VPP MRR Results 3n-tsh
 - type: "table"
@@ -4659,22 +4681,22 @@
 #  - "name"
 #  - "conf-history"
 
-## Test configuration - VPP MRR Test Configs 2n-clx
-#- type: "table"
-#  title: "Test configuration - VPP MRR Test Configs 2n-clx"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTC,MRR,VPP,2N,CLX]}/vpp_mrr_test_configuration_2n_clx"
-#  columns:
-#  - title: " |prein| Test Name |preout| "
-#    data: "data name"
-#  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-#    data: "data conf-history"
-#  data: "vpp-mrr-results-2n-clx"
-#  filter: "all"
-#  parameters:
-#  - "parent"
-#  - "name"
-#  - "conf-history"
+# Test configuration - VPP MRR Test Configs 2n-clx
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 2n-clx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,MRR,VPP,2N,CLX]}/vpp_mrr_test_configuration_2n_clx"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+    data: "data conf-history"
+  data: "vpp-mrr-results-2n-clx"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
 
 # Test configuration - VPP MRR Test Configs 3n-tsh
 - type: "table"
@@ -5505,15 +5527,15 @@
 #  filter: "all"
 #  data-start-level: 4
 
-## VPP MRR Results 2n-clx
-#- type: "file"
-#  title: "VPP MRR Results 2n-clx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTR,MRR,VPP,2N,CLX]}"
-#  dir-tables: "{DIR[DTR,MRR,VPP,2N,CLX]}"
-#  data: "vpp-mrr-results-2n-clx"
-#  filter: "all"
-#  data-start-level: 4
+# VPP MRR Results 2n-clx
+- type: "file"
+  title: "VPP MRR Results 2n-clx"
+  algorithm: "file_test_results"
+  output-file: "{DIR[DTR,MRR,VPP,2N,CLX]}"
+  dir-tables: "{DIR[DTR,MRR,VPP,2N,CLX]}"
+  data: "vpp-mrr-results-2n-clx"
+  filter: "all"
+  data-start-level: 4
 
 # VPP MRR Results 3n-tsh
 - type: "file"
@@ -5575,15 +5597,15 @@
 #  filter: "all"
 #  data-start-level: 4
 
-## VPP MRR Configuration 2n-clx
-#- type: "file"
-#  title: "VPP MRR Configuration 2n-clx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTC,MRR,VPP,2N,CLX]}"
-#  dir-tables: "{DIR[DTC,MRR,VPP,2N,CLX]}"
-#  data: "vpp-mrr-results-2n-clx"
-#  filter: "all"
-#  data-start-level: 4
+# VPP MRR Configuration 2n-clx
+- type: "file"
+  title: "VPP MRR Configuration 2n-clx"
+  algorithm: "file_test_results"
+  output-file: "{DIR[DTC,MRR,VPP,2N,CLX]}"
+  dir-tables: "{DIR[DTC,MRR,VPP,2N,CLX]}"
+  data: "vpp-mrr-results-2n-clx"
+  filter: "all"
+  data-start-level: 4
 
 # VPP MRR Configuration 3n-tsh
 - type: "file"
@@ -9248,86 +9270,86 @@
 ###############################################################################
 # Plots - 2n-clx NF Density - VSC - MRR IMIX
 
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-2t1c-base-vsc-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'VHOST' and
-#           not 'VXLAN' and
-#           'CHAIN' and
-#           'NF_VPPIP4' and
-#           'IMIX' and
-#           '2T1C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = VNFs per Service Chain"
-#  y-axis: "Y = Number of Service Chains"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-#    layout: "plot-service-density"
-#
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-4t2c-base-vsc-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'VHOST' and
-#           not 'VXLAN' and
-#           'CHAIN' and
-#           'NF_VPPIP4' and
-#           'IMIX' and
-#           '4T2C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = VNFs per Service Chain"
-#  y-axis: "Y = Number of Service Chains"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-#    layout: "plot-service-density"
-#
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-8t4c-base-vsc-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'VHOST' and
-#           not 'VXLAN' and
-#           'CHAIN' and
-#           'NF_VPPIP4' and
-#           'IMIX' and
-#           '8T4C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = VNFs per Service Chain"
-#  y-axis: "Y = Number of Service Chains"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-#    layout: "plot-service-density"
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-2t1c-base-vsc-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           not 'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '2T1C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-4t2c-base-vsc-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           not 'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '4T2C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-8t4c-base-vsc-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           not 'VXLAN' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '8T4C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
+    layout: "plot-service-density"
 
 # Plots - NF Density - VSC - NDR IMIX
 - type: "plot"
@@ -9493,84 +9515,84 @@
     title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-pdr"
     layout: "plot-service-density"
 
-## Plots - NF Density - VSC - MRR IMIX
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-2t1c-base-vsc-vxlan-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'VHOST' and
-#           'VXLAN' and
-#           'CHAIN' and
-#           'IMIX' and
-#           '2T1C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = VNFs per Service Chain"
-#  y-axis: "Y = Number of Service Chains"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
-#    layout: "plot-service-density"
-#
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-4t2c-base-vsc-vxlan-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'VHOST' and
-#           'VXLAN' and
-#           'CHAIN' and
-#           'IMIX' and
-#           '4T2C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = VNFs per Service Chain"
-#  y-axis: "Y = Number of Service Chains"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
-#    layout: "plot-service-density"
-#
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-8t4c-base-vsc-vxlan-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'VHOST' and
-#           'VXLAN' and
-#           'CHAIN' and
-#           'IMIX' and
-#           '8T4C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = VNFs per Service Chain"
-#  y-axis: "Y = Number of Service Chains"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
-#    layout: "plot-service-density"
+# Plots - NF Density - VSC - MRR IMIX
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-2t1c-base-vsc-vxlan-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'IMIX' and
+           '2T1C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-4t2c-base-vsc-vxlan-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'IMIX' and
+           '4T2C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-8t4c-base-vsc-vxlan-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'VHOST' and
+           'VXLAN' and
+           'CHAIN' and
+           'IMIX' and
+           '8T4C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-mrr"
+    layout: "plot-service-density"
 
 # Plots - NF Density - VSC - NDR IMIX
 - type: "plot"
@@ -9730,84 +9752,84 @@
     title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vxlan-vppip4-pdr"
     layout: "plot-service-density"
 
-## Plots - NF Density - CSC - MRR IMIX
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-2t1c-base-csc-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'DOCKER' and
-#           'CHAIN' and
-#           'NF_VPPIP4' and
-#           'IMIX' and
-#           '2T1C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = CNFs per Service Chain"
-#  y-axis: "Y = Number of Service Chains"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-#    layout: "plot-service-density"
-#
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-4t2c-base-csc-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'DOCKER' and
-#           'CHAIN' and
-#           'NF_VPPIP4' and
-#           'IMIX' and
-#           '4T2C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = CNFs per Service Chain"
-#  y-axis: "Y = Number of Service Chains"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-#    layout: "plot-service-density"
-#
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-8t4c-base-csc-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'DOCKER' and
-#           'CHAIN' and
-#           'NF_VPPIP4' and
-#           'IMIX' and
-#           '8T4C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = CNFs per Service Chain"
-#  y-axis: "Y = Number of Service Chains"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-#    layout: "plot-service-density"
+# Plots - NF Density - CSC - MRR IMIX
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-2t1c-base-csc-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'DOCKER' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '2T1C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = CNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-4t2c-base-csc-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'DOCKER' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '4T2C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = CNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-8t4c-base-csc-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'DOCKER' and
+           'CHAIN' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '8T4C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = CNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
+    layout: "plot-service-density"
 
 # Plots - NF Density - CSC - NDR IMIX
 - type: "plot"
@@ -9967,84 +9989,84 @@
     title: "<b>Throughput:</b> eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-pdr"
     layout: "plot-service-density"
 
-## Plots - NF Density - CSP - MRR IMIX
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-2t1c-base-csp-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'DOCKER' and
-#           'PIPELINE' and
-#           'NF_VPPIP4' and
-#           'IMIX' and
-#           '2T1C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = CNFs per Service Pipeline"
-#  y-axis: "Y = Number of Service Pipelines"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-#    layout: "plot-service-density"
-#
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-4t2c-base-csp-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'DOCKER' and
-#           'PIPELINE' and
-#           'NF_VPPIP4' and
-#           'IMIX' and
-#           '4T2C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = CNFs per Service Pipeline"
-#  y-axis: "Y = Number of Service Pipelines"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-#    layout: "plot-service-density"
-#
-#- type: "plot"
-#  title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-#  algorithm: "plot_nf_heatmap"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-8t4c-base-csp-mrr"
-#  data: "plot-vpp-nfv-2n-clx-mrr"
-#  filter: "'NIC_Intel-XXV710' and
-#           'NF_DENSITY' and
-#           'DOCKER' and
-#           'PIPELINE' and
-#           'NF_VPPIP4' and
-#           'IMIX' and
-#           '8T4C' and
-#           'MRR'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  - "tags"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  x-axis: "X = CNFs per Service Pipeline"
-#  y-axis: "Y = Number of Service Pipelines"
-#  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
-#  layout:
-#    title: "<b>Throughput:</b> eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-#    layout: "plot-service-density"
+# Plots - NF Density - CSP - MRR IMIX
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-2t1c-base-csp-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'DOCKER' and
+           'PIPELINE' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '2T1C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = CNFs per Service Pipeline"
+  y-axis: "Y = Number of Service Pipelines"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-4t2c-base-csp-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'DOCKER' and
+           'PIPELINE' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '4T2C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = CNFs per Service Pipeline"
+  y-axis: "Y = Number of Service Pipelines"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
+    layout: "plot-service-density"
+
+- type: "plot"
+  title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
+  algorithm: "plot_nf_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-clx-xxv710-imix-8t4c-base-csp-mrr"
+  data: "plot-vpp-nfv-2n-clx-mrr"
+  filter: "'NIC_Intel-XXV710' and
+           'NF_DENSITY' and
+           'DOCKER' and
+           'PIPELINE' and
+           'NF_VPPIP4' and
+           'IMIX' and
+           '8T4C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = CNFs per Service Pipeline"
+  y-axis: "Y = Number of Service Pipelines"
+  z-axis: "IMIX Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
+    layout: "plot-service-density"
 
 # Plots - NF Density - CSP - NDR IMIX
 - type: "plot"
