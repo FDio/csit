@@ -13,5 +13,6 @@ echo vfio-pci > /sys/bus/pci/devices/0000:00:07.0/driver_override
 echo 0000:00:06.0 > /sys/bus/pci/drivers/vfio-pci/bind
 echo 0000:00:07.0 > /sys/bus/pci/drivers/vfio-pci/bind
 mkdir -p /var/run/vpp
+mkdir -p /tmp/vpp_sockets
 ${vnf_bin}
 poweroff -f
