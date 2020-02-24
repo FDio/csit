@@ -39,7 +39,7 @@
 | | [Documentation]
 | | ... | Additional teardown for suites which uses performance measurement.
 | |
-| | Teardown traffic generator | ${tg}
+| | Run Keyword And Ignore Error | Teardown traffic generator | ${tg}
 
 | Additional Suite Tear Down Action For dpdk
 | | [Documentation]

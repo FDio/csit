@@ -427,8 +427,11 @@ class TrafficGenerator(AbstractMeasurer):
         subtype = check_subtype(node)
         if subtype == NodeSubTypeTG.TREX:
             exec_cmd_no_error(
-                node, u"sh -c \"sudo pkill t-rex && sleep 3\"",
-                sudo=False, message=u"pkill t-rex failed"
+                node,
+                u"sh -c "
+                u"\"if pgrep t-rex; then sudo pkill t-rex && sleep 3; fi\"",
+                sudo=False,
+                message=u"pkill t-rex failed"
             )
 
     def _parse_traffic_results(self, stdout):
