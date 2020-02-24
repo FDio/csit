@@ -209,9 +209,6 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
                             )
                         )
                         break
-
-    print(chapters)
-
     titles = {
         # VPP Perf, MRR
         u"container_memif": u"LXC/DRC Container Memif",
