@@ -135,6 +135,15 @@ class Specification:
         """
         return self._specification[u"input"]
 
+    @input.setter
+    def input(self, new_value):
+        """Setter - specification - inputs.
+
+        :param new_value: New value to be set.
+        :type new_value: dict
+        """
+        self._specification[u"input"] = new_value
+
     @property
     def builds(self):
         """Getter - builds defined in specification.
@@ -143,6 +152,27 @@ class Specification:
         :rtype: dict
         """
         return self.input[u"builds"]
+
+    @builds.setter
+    def builds(self, new_value):
+        """Setter - builds defined in specification.
+
+        :param new_value: New value to be set.
+        :type new_value: dict
+        """
+        self.input[u"builds"] = new_value
+
+    def add_build(self, job, build):
+        """Add a build to the specification.
+
+        :param job: The job which run the build.
+        :param build: The build to be added.
+        :type job: str
+        :type build: dict
+        """
+        if self._specification[u"input"][u"builds"].get(job, None) is None:
+            self._specification[u"input"][u"builds"][job] = list()
+        self._specification[u"input"][u"builds"][job].append(build)
 
     @property
     def output(self):
