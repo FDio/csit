@@ -13,5 +13,10 @@ echo vfio-pci > /sys/bus/pci/devices/0000:00:07.0/driver_override
 echo 0000:00:06.0 > /sys/bus/pci/drivers/vfio-pci/bind
 echo 0000:00:07.0 > /sys/bus/pci/drivers/vfio-pci/bind
 mkdir -p /var/run/vpp
+mkdir -p /tmp/vpp_sockets
+mount -t 9p -o "rw,noexec,nosuid,trans=virtio,version=9p2000.L" virtiosocks /tmp/vpp_sockets
+ls -l "/tmp/vpp_sockets"
+cat "/etc/mtab"
+cat "/proc/mounts"
 ${vnf_bin}
 poweroff -f
