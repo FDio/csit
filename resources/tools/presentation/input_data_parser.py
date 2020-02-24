@@ -26,6 +26,7 @@ import logging
 
 from collections import OrderedDict
 from os import remove
+from os.path import isfile
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
@@ -40,6 +41,7 @@ from robot import errors
 
 from resources.libraries.python import jumpavg
 from input_data_files import download_and_unzip_data_file
+from pal_errors import PresentationError
 
 
 # Separator used in file names
@@ -1531,6 +1533,39 @@ class InputData:
                 logging.info(f"Memory allocation: {mem_alloc:.0f}MB")
 
         logging.info(u"Done.")
+
+    def process_local_file(self, local_file):
+        """Process local XML file given as a command-line parameter.
+
+        :param local_file: The file to process.
+        :type local_file: str
+        """
+        if not isfile(local_file):
+            raise PresentationError(f"The file {local_file} does not exist.")
+
+        # Replace (if exists) the list of jobs and builds
+        self._cfg.builds = dict(
+            local=[
+                {u"build": 1, u"status": None, u"file-name": local_file}
+            ]
+        )
+
+        # Download and parse the file
+
+        # Set properties
+
+
+    def process_local_directory(self, local_dir):
+        """Process local directory with XML file(s). The directory is processed
+        as a 'job' and the XML files in in as builds.
+        If the given directory contains only sub-directories, these
+        sub-directories processed as jobs and corresponding XML files as builds
+        of their job.
+
+        :param local_dir: Local directory to process.
+        :type local_dir: str
+        """
+        raise NotImplementedError
 
     @staticmethod
     def _end_of_tag(tag_filter, start=0, closer=u"'"):
