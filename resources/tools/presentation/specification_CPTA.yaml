@@ -667,7 +667,7 @@
 -
   type: "output"
   output:
-    "CPTA"  # Continuous Performance Trending and Analysis
+    "trending"
   format:
     html:
     - full
