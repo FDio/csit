@@ -474,75 +474,74 @@ Additional information about graph data:
 
         \clearpage
 
-..
-    2n-clx-xxv710-mrr
-    ~~~~~~~~~~~~~~~~~
+2n-clx-xxv710-mrr
+~~~~~~~~~~~~~~~~~
 
-    imix-2t1c-eth-l2bd
-    ------------------
+imix-2t1c-eth-l2bd
+------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="ifrmclx04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-clx-xxv710-imix-2t1c-base-vsc-mrr.html"></iframe>
-        </center>
+    <center>
+    <iframe id="ifrmclx04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-clx-xxv710-imix-2t1c-base-vsc-mrr.html"></iframe>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-clx-xxv710-imix-2t1c-base-vsc-mrr}
-                \label{fig:l2bd-2n-clx-xxv710-imix-2t1c-base-vsc-mrr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-clx-xxv710-imix-2t1c-base-vsc-mrr}
+            \label{fig:l2bd-2n-clx-xxv710-imix-2t1c-base-vsc-mrr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    imix-4t2c-eth-l2bd
-    ------------------
+imix-4t2c-eth-l2bd
+------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="ifrmclx05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-clx-xxv710-imix-4t2c-base-vsc-mrr.html"></iframe>
-        </center>
+    <center>
+    <iframe id="ifrmclx05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-clx-xxv710-imix-4t2c-base-vsc-mrr.html"></iframe>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-clx-xxv710-imix-4t2c-base-vsc-mrr}
-                \label{fig:l2bd-2n-clx-xxv710-imix-4t2c-base-vsc-mrr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-clx-xxv710-imix-4t2c-base-vsc-mrr}
+            \label{fig:l2bd-2n-clx-xxv710-imix-4t2c-base-vsc-mrr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    imix-8t4c-eth-l2bd
-    ------------------
+imix-8t4c-eth-l2bd
+------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="ifrmclx06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-clx-xxv710-imix-8t4c-base-vsc-mrr.html"></iframe>
-        </center>
+    <center>
+    <iframe id="ifrmclx06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-clx-xxv710-imix-8t4c-base-vsc-mrr.html"></iframe>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-clx-xxv710-imix-8t4c-base-vsc-mrr}
-                \label{fig:l2bd-2n-clx-xxv710-imix-8t4c-base-vsc-mrr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-clx-xxv710-imix-8t4c-base-vsc-mrr}
+            \label{fig:l2bd-2n-clx-xxv710-imix-8t4c-base-vsc-mrr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 2n-clx-xxv710-ndr
 ~~~~~~~~~~~~~~~~~
