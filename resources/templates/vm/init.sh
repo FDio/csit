@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir /dev/pts
 mkdir /dev/hugepages
-mount -t devpts -o "rw,noexec,nosuid,gid=5,mode=0620" devpts /dev/pts || true
+mount -t devpts -o "rw,noexec,nosuid,gid=5,mode=0620" devpts /dev/pts
 mount -t tmpfs -o "rw,noexec,nosuid,size=10%,mode=0755" tmpfs /run
 mount -t tmpfs -o "rw,noexec,nosuid,size=10%,mode=0755" tmpfs /tmp
 mount -t hugetlbfs -o "rw,relatime,pagesize=2M" hugetlbfs /dev/hugepages
@@ -12,6 +12,12 @@ echo vfio-pci > /sys/bus/pci/devices/0000:00:06.0/driver_override
 echo vfio-pci > /sys/bus/pci/devices/0000:00:07.0/driver_override
 echo 0000:00:06.0 > /sys/bus/pci/drivers/vfio-pci/bind
 echo 0000:00:07.0 > /sys/bus/pci/drivers/vfio-pci/bind
-mkdir -p /var/run/vpp
+mkdir -p "/var/run/vpp"
+mkdir -p "/tmp/vpp_sockets/${nf_name}"
+mount -t 9p -o "rw,noexec,nosuid,trans=virtio,version=9p2000.L,nodevmap" virtiosocks /tmp/vpp_sockets
+touch "/tmp/vpp_sockets/stamp"
+ls -l "/tmp/vpp_sockets"
+ls -l "/tmp/vpp_sockets/${nf_name}"
+cat "/proc/mounts"
 ${vnf_bin}
 poweroff -f

@@ -1096,6 +1096,10 @@ class Topology:
         :type socket_id: str
         :type socket_path: str
         """
+        logger.trace(f"node {node!r}")
+        logger.trace(f"socket_type {socket_type!r}")
+        logger.trace(f"socket_id {socket_id!r}")
+        logger.trace(f"socket_path {socket_path!r}")
         path = [u"sockets", socket_type, socket_id]
         Topology.add_node_item(node, socket_path, path)
 
