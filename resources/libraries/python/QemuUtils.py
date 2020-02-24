@@ -189,14 +189,24 @@ class QemuUtils:
 
     def add_kernelvm_params(self):
         """Set KernelVM QEMU parameters."""
-        self._params.add_with_value(
-            u"serial", f"file:{self._temp.get(u'log')}"
-        )
+        # Root filesystem, mounted readonly.
         self._params.add_with_value(
             u"fsdev", u"local,id=root9p,path=/,security_model=none"
         )
         self._params.add_with_value(
             u"device", u"virtio-9p-pci,fsdev=root9p,mount_tag=virtioroot"
+        )
+        # Tmp sockets directory, mounted writeable.
+        self._params.add_with_value(
+            u"fsdev", u"local,id=sock9p,path=/tmp/vpp_sockets"
+            u",security_model=none"
+        )
+        self._params.add_with_value(
+            u"device", u"virtio-9p-pci,fsdev=sock9p,mount_tag=virtiosocks"
+        )
+        # The rest.
+        self._params.add_with_value(
+            u"serial", f"file:{self._temp.get(u'log')}"
         )
         self._params.add_with_value(u"kernel", f"{self._opt.get(u'img')}")
         self._params.add_with_value(u"initrd", f"{self._opt.get(u'initrd')}")
@@ -227,7 +237,11 @@ class QemuUtils:
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_exec(running)
-        vpp_config.add_socksvr()
+        api_sock = kwargs.get(f"api_sock", None)
+        if api_sock:
+            vpp_config.add_socksvr(api_sock)
+        else:
+            vpp_config.add_socksvr()
         vpp_config.add_cpu_main_core(u"0")
         if self._opt.get(u"smp") > 1:
             vpp_config.add_cpu_corelist_workers(f"1-{self._opt.get(u'smp')-1}")
@@ -582,6 +596,7 @@ class QemuUtils:
             raise RuntimeError(
                 f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
             )
+        logger.trace(f"stdout:\n{stdout}")
 
     def _update_vm_interfaces(self):
         """Update interface names in VM node dict."""
