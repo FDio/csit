@@ -25,7 +25,8 @@ import resource
 import logging
 
 from collections import OrderedDict
-from os import remove
+from os import remove, walk
+from os.path import isfile, isdir
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
@@ -41,6 +42,7 @@ from robot import errors
 
 from resources.libraries.python import jumpavg
 from input_data_files import download_and_unzip_data_file
+from pal_errors import PresentationError
 
 
 # Separator used in file names
@@ -1575,6 +1577,109 @@ class InputData:
                 logging.info(f"Memory allocation: {mem_alloc:.0f}MB")
 
         logging.info(u"Done.")
+
+    def process_local_file(self, local_file, job=u"local", build_nr=1,
+                           replace=True):
+        """Process local XML file given as a command-line parameter.
+
+        :param local_file: The file to process.
+        :param job: Job name.
+        :param build_nr: Build number.
+        :param replace: If True, the information about jobs and builds is
+            replaced by the new one, otherwise the new jobs and builds are
+            added.
+        :type local_file: str
+        :type job: str
+        :type build_nr: int
+        :type replace: bool
+        :raises: PresentationError in an error occurs.
+        """
+        if not isfile(local_file):
+            raise PresentationError(f"The file {local_file} does not exist.")
+
+        build = {
+            u"build": build_nr,
+            u"status": u"failed",
+            u"file-name": local_file
+        }
+        if replace:
+            self._cfg.builds = dict()
+        self._cfg.add_build(job, build)
+
+        # Download and parse the file
+        data = self._parse_tests(job, build, list())
+        if data is None:
+            raise PresentationError(
+                f"Error occurred while parsing the file {local_file}"
+            )
+
+        build_data = pd.Series({
+            u"metadata": pd.Series(
+                list(data[u"metadata"].values()),
+                index=list(data[u"metadata"].keys())
+            ),
+            u"suites": pd.Series(
+                list(data[u"suites"].values()),
+                index=list(data[u"suites"].keys())
+            ),
+            u"tests": pd.Series(
+                list(data[u"tests"].values()),
+                index=list(data[u"tests"].keys())
+            )
+        })
+
+        if self._input_data.get(job, None) is None:
+            self._input_data[job] = pd.Series()
+        self._input_data[job][str(build_nr)] = build_data
+
+        self._cfg.set_input_state(job, build_nr, u"processed")
+
+    def process_local_directory(self, local_dir, replace=True):
+        """Process local directory with XML file(s). The directory is processed
+        as a 'job' and the XML files in in as builds.
+        If the given directory contains only sub-directories, these
+        sub-directories processed as jobs and corresponding XML files as builds
+        of their job.
+
+        :param local_dir: Local directory to process.
+        :param replace: If True, the information about jobs and builds is
+            replaced by the new one, otherwise the new jobs and builds are
+            added.
+        :type local_dir: str
+        :type replace: bool
+        """
+        if not isdir(local_dir):
+            raise PresentationError(
+                f"The directory {local_dir} does not exist."
+            )
+
+        # Check if the given directory includes only files, or only directories
+        root, dirnames, filenames = next(walk(local_dir))
+        print(root)
+        print(dirnames)
+        print(filenames)
+
+        if filenames and not dirnames:
+            print("Only files")
+        elif dirnames and not filenames:
+            print("Only directories")
+        else:
+            raise PresentationError(
+                f"The directory {local_dir} can include only files or only "
+                f"directories, not both.\n The directory {local_dir} includes"
+                f"file(s):\n{filenames}\nand directories:\n{dirnames}"
+            )
+
+
+        # local_builds: key: dir (job) name, value: list of filenames (builds)
+        local_builds = dict()
+
+        if replace:
+            self._cfg.builds = dict()
+
+        for job, files in local_builds.items():
+            for build_nr, local_file in enumerate(files):
+                self.process_local_file(local_file, job, build_nr)
 
     @staticmethod
     def _end_of_tag(tag_filter, start=0, closer=u"'"):
