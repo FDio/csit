@@ -32,7 +32,7 @@ from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
-    SSH, SSHTimeout, exec_cmd_no_error, scp_node)
+    SSH, SSHTimeout, exec_cmd, exec_cmd_no_error, scp_node)
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
@@ -272,6 +272,10 @@ class PapiSocketExecutor:
         if password:
             # Prepend sshpass command to set password.
             ssh_cmd[:0] = [u"sshpass", u"-p", password]
+        ret, _, _ = exec_cmd(node, f"ls -l {self._remote_vpp_socket}", sudo=True)
+        if ret != 0:
+            exec_cmd(node, f"ls -l /tmp/vpp_sockets", sudo=True)
+            exec_cmd(node, f"ls -l "/tmp/vpp_sockets/DUT1_CNF1"", sudo=True)
         time_stop = time.time() + 10.0
         # subprocess.Popen seems to be the best way to run commands
         # on background. Other ways (shell=True with "&" and ssh with -f)
