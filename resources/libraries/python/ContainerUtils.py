@@ -26,6 +26,7 @@ from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
+from resources.libraries.python.VPPUtil import VPPUtil
 
 
 __all__ = [
@@ -565,7 +566,8 @@ class ContainerEngine:
             f"/tmp/vpp_sockets/{self.container.name}/stats.sock"
         )
         self.verify_vpp()
-        self.adjust_privileges()
+        # TODO: Avoid multiple calls when single late call suffices.
+        VPPUtil.adjust_privileges(self.container.node, also_nf_sockets=True)
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
@@ -594,10 +596,6 @@ class ContainerEngine:
             raise RuntimeError(
                 f"VPP did not come up in container: {self.container.name}"
             )
-
-    def adjust_privileges(self):
-        """Adjust privileges to control VPP without sudo."""
-        self.execute("chmod -R o+rwx /run/vpp")
 
     def create_base_vpp_startup_config(self, cpuset_cpus=None):
         """Create base startup configuration of VPP on container.
