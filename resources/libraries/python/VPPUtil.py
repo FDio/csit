@@ -116,13 +116,17 @@ class VPPUtil:
         DUTSetup.verify_program_installed(node, u"vpp")
 
     @staticmethod
-    def adjust_privileges(node):
+    def adjust_privileges(node, also_vf_sockets=False):
         """Adjust privileges to control VPP without sudo.
 
         :param node: Topology node.
+        :param also_vf_sockets: Whether CNF or VNF sockets should be affected.
         :type node: dict
+        :type also_vf_sockets: bool
         """
         cmd = u"chmod -R o+rwx /run/vpp"
+        if also_vf_sockets:
+            cmd += u" /tmp/vpp_sockets"
         exec_cmd_no_error(
             node, cmd, sudo=True, message=u"Failed to adjust privileges!",
             retries=120)

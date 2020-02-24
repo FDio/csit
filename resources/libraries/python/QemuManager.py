@@ -15,10 +15,12 @@
 
 from collections import OrderedDict
 
+from robot.libraries.BuiltIn import BuiltIn
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.QemuUtils import QemuUtils
-from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.topology import NodeType, SocketType, Topology
 
 __all__ = [u"QemuManager"]
 
@@ -55,8 +57,10 @@ class QemuManager:
             else kwargs[u"nf_dtc"]
         nf_dtcr = kwargs[u"nf_dtcr"] \
             if isinstance(kwargs[u"nf_dtcr"], int) else 2
-
         img = Constants.QEMU_VM_KERNEL
+        topo_instance = BuiltIn().get_library_instance(
+            u"resources.libraries.python.topology.Topology"
+        )
 
         for nf_chain in range(1, nf_chains + 1):
             for nf_node in range(1, nf_nodes + 1):
@@ -76,23 +80,27 @@ class QemuManager:
                 ) if kwargs[u"vnf"] == u"testpmd_mac" \
                     else kwargs[u"tg_if2_mac"] if nf_node == nf_nodes \
                     else f"52:54:00:00:{(qemu_id + 1):02x}:01"
-
                 self.machines_affinity[name] = CpuUtils.get_affinity_nf(
                     nodes=self.nodes, node=node, nf_chains=nf_chains,
                     nf_nodes=nf_nodes, nf_chain=nf_chain, nf_node=nf_node,
                     vs_dtc=vs_dtc, nf_dtc=nf_dtc, nf_dtcr=nf_dtcr
                 )
-
                 self.machines[name] = QemuUtils(
                     node=self.nodes[node], qemu_id=qemu_id,
                     smp=len(self.machines_affinity[name]), mem=4096,
                     vnf=kwargs[u"vnf"], img=img
                 )
+                vf_name = f"{node}_VNF{qemu_id}"
+                api_sock = f"/tmp/vpp_sockets/{vf_name}/api.sock"
+                # Not stats.sock as shm access into VM is hard.
+                topo_instance.add_new_socket(
+                    self.nodes[node], SocketType.PAPI, vf_name, api_sock
+                )
                 self.machines[name].configure_kernelvm_vnf(
                     mac1=f"52:54:00:00:{qemu_id:02x}:01",
                     mac2=f"52:54:00:00:{qemu_id:02x}:02",
                     vif1_mac=vif1_mac, vif2_mac=vif2_mac, queues=queues,
-                    jumbo_frames=kwargs[u"jumbo"]
+                    jumbo_frames=kwargs[u"jumbo"], api_sock=api_sock
                 )
                 self.machines[name].qemu_add_vhost_user_if(
                     sock1, jumbo_frames=kwargs[u"jumbo"], queues=queues,
