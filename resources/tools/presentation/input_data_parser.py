@@ -1531,6 +1531,26 @@ class InputData:
 
         logging.info(u"Done.")
 
+    def process_local_file(self, local_file):
+        """Process local XML file given as a command-line parameter.
+
+        :param local_file: The file to process.
+        :type local_file: str
+        """
+        raise NotImplementedError
+
+    def process_local_directory(self, local_dir):
+        """Process local directory with XML file(s). The directory is processed
+        as a 'job' and the XML files in in as builds.
+        If the given directory contains only sub-directories, these
+        sub-directories processed as jobs and corresponding XML files as builds
+        of their job.
+
+        :param local_dir: Local directory to process.
+        :type local_dir: str
+        """
+        raise NotImplementedError
+
     @staticmethod
     def _end_of_tag(tag_filter, start=0, closer=u"'"):
         """Return the index of character in the string which is the end of tag.
