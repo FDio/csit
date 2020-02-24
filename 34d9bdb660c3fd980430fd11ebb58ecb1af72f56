@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78d971d5_eb93a0f6",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-02-24T06:39:33Z",
+      "side": 1,
+      "message": "Re: 1CLIENT | 1STREAM - move to \"Force Tags\" section\nAdd tag: 9000B\nCheck everywhere.",
+      "range": {
+        "startLine": 59,
+        "startChar": 18,
+        "endLine": 59,
+        "endChar": 35
+      },
+      "revId": "34d9bdb660c3fd980430fd11ebb58ecb1af72f56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
