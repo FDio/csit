@@ -1681,7 +1681,15 @@ class InterfaceUtil:
         worker_cnt = len(VPPUtil.vpp_show_threads(node)) - 1
         if not worker_cnt:
             return
-        for placement in InterfaceUtil.vpp_sw_interface_rx_placement_dump(node):
+        placements = InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
+        if len(placements) == 4:
+            InterfaceUtil.vpp_sw_interface_set_rx_placement(node, 1, 0, 0)
+            InterfaceUtil.vpp_sw_interface_set_rx_placement(node, 2, 0, 0)
+            InterfaceUtil.vpp_sw_interface_set_rx_placement(node, 3, 0, 1)
+            InterfaceUtil.vpp_sw_interface_set_rx_placement(node, 4, 0, 1)
+            InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
+            return
+        for placement in placements:
             for interface in node[u"interfaces"].values():
                 if placement[u"sw_if_index"] == interface[u"vpp_sw_index"] \
                     and prefix in interface[u"name"]:
