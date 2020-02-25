@@ -335,71 +335,81 @@ class TrafficGenerator(AbstractMeasurer):
             else:
                 raise ValueError(u"Unknown Test Type!")
 
-            self._startup_trex(osi_layer)
+            TrafficGenerator.startup_trex(
+                self._node, osi_layer, subtype=subtype
+            )
 
-    def _startup_trex(self, osi_layer):
+    @staticmethod
+    def startup_trex(tg_node, osi_layer, subtype=None):
         """Startup sequence for the TRex traffic generator.
 
+        :param tg_node: Traffic generator node.
         :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
+        :param subtype: Traffic generator sub-type.
+        :type tg_node: dict
         :type osi_layer: str
+        :type subtype: NodeSubTypeTG
         :raises RuntimeError: If node subtype is not a TREX or startup failed.
         """
-        # No need to check subtype, we know it is TREX.
-        for _ in range(0, 3):
-            # Kill TRex only if it is already running.
-            cmd = u"sh -c \"pgrep t-rex && pkill t-rex && sleep 3 || true\""
-            exec_cmd_no_error(
-                self._node, cmd, sudo=True, message=u"Kill TRex failed!"
-            )
-
-            # Configure TRex.
-            ports = ''
-            for port in self._node[u"interfaces"].values():
-                ports += f" {port.get(u'pci_address')}"
-
-            cmd = f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && " \
-                f"./dpdk_nic_bind.py -u {ports} || true\""
-            exec_cmd_no_error(
-                self._node, cmd, sudo=True,
-                message=u"Unbind PCI ports from driver failed!"
-            )
-
-            # Start TRex.
-            cd_cmd = f"cd '{Constants.TREX_INSTALL_DIR}/scripts/'"
-            trex_cmd = OptionString([u"nohup", u"./t-rex-64"])
-            trex_cmd.add(u"-i")
-            trex_cmd.add(u"--prefix $(hostname)")
-            trex_cmd.add(u"--hdrh")
-            trex_cmd.add(u"--no-scapy-server")
-            trex_cmd.add_if(u"--astf", osi_layer == u"L7")
-            # OptionString does not create double space if extra is empty.
-            trex_cmd.add(f"{Constants.TREX_EXTRA_CMDLINE}")
-            inner_command = f"{cd_cmd} && {trex_cmd} > /tmp/trex.log 2>&1 &"
-            cmd = f"sh -c \"{inner_command}\" > /dev/null"
-            try:
-                exec_cmd_no_error(self._node, cmd, sudo=True)
-            except RuntimeError:
-                cmd = u"sh -c \"cat /tmp/trex.log\""
+        if not subtype:
+            subtype = check_subtype(tg_node)
+        if subtype == NodeSubTypeTG.TREX:
+            for _ in range(0, 3):
+                # Kill TRex only if it is already running.
+                cmd = u"sh -c \"pgrep t-rex && pkill t-rex && sleep 3 || true\""
                 exec_cmd_no_error(
-                    self._node, cmd, sudo=True, message=u"Get TRex logs failed!"
+                    tg_node, cmd, sudo=True, message=u"Kill TRex failed!"
                 )
-                raise RuntimeError(u"Start TRex failed!")
 
-            # Test if TRex starts successfuly.
-            cmd = f"sh -c \"{Constants.REMOTE_FW_DIR}/resources/tools/trex/" \
-                f"trex_server_info.py\""
-            try:
+                # Configure TRex.
+                ports = ''
+                for port in tg_node[u"interfaces"].values():
+                    ports += f" {port.get(u'pci_address')}"
+
+                cmd = f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && " \
+                    f"./dpdk_nic_bind.py -u {ports} || true\""
                 exec_cmd_no_error(
-                    self._node, cmd, sudo=True, message=u"Test TRex failed!",
-                    retries=20
+                    tg_node, cmd, sudo=True,
+                    message=u"Unbind PCI ports from driver failed!"
                 )
-            except RuntimeError:
-                continue
-            return
-        # After max retries TRex is still not responding to API critical error
-        # occurred.
-        exec_cmd(self._node, u"cat /tmp/trex.log", sudo=True)
-        raise RuntimeError(u"Start TRex failed after multiple retries!")
+
+                # Start TRex.
+                cd_cmd = f"cd '{Constants.TREX_INSTALL_DIR}/scripts/'"
+                trex_cmd = OptionString([u"nohup", u"./t-rex-64"])
+                trex_cmd.add(u"-i")
+                trex_cmd.add(u"--prefix $(hostname)")
+                trex_cmd.add(u"--hdrh")
+                trex_cmd.add(u"--no-scapy-server")
+                trex_cmd.add_if(u"--astf", osi_layer == u"L7")
+                # OptionString does not create double space if extra is empty.
+                trex_cmd.add(f"{Constants.TREX_EXTRA_CMDLINE}")
+                inner_command = f"{cd_cmd} && {trex_cmd} > /tmp/trex.log 2>&1 &"
+                cmd = f"sh -c \"{inner_command}\" > /dev/null"
+                try:
+                    exec_cmd_no_error(tg_node, cmd, sudo=True)
+                except RuntimeError:
+                    cmd = u"sh -c \"cat /tmp/trex.log\""
+                    exec_cmd_no_error(
+                        tg_node, cmd, sudo=True,
+                        message=u"Get TRex logs failed!"
+                    )
+                    raise RuntimeError(u"Start TRex failed!")
+
+                # Test if TRex starts successfully.
+                cmd = f"sh -c \"{Constants.REMOTE_FW_DIR}/resources/tools/" \
+                    f"trex/trex_server_info.py\""
+                try:
+                    exec_cmd_no_error(
+                        tg_node, cmd, sudo=True,
+                        message=u"Test TRex failed!", retries=20
+                    )
+                except RuntimeError:
+                    continue
+                return
+            # After max retries TRex is still not responding to API critical
+            # error occurred.
+            exec_cmd(tg_node, u"cat /tmp/trex.log", sudo=True)
+            raise RuntimeError(u"Start TRex failed after multiple retries!")
 
     @staticmethod
     def is_trex_running(node):
@@ -411,7 +421,7 @@ class TrafficGenerator(AbstractMeasurer):
         :rtype: bool
         :raises RuntimeError: If node type is not a TG.
         """
-        ret, _, _ = exec_cmd(node, u"pidof t-rex", sudo=True)
+        ret, _, _ = exec_cmd(node, u"pgrep t-rex", sudo=True)
         return bool(int(ret) == 0)
 
     @staticmethod
