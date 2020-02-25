@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f7b47ba_c8334016",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-25T06:42:56Z",
+      "side": 1,
+      "message": "put it back into previous state. We want to run this inside container.",
+      "range": {
+        "startLine": 569,
+        "startChar": 8,
+        "endLine": 570,
+        "endChar": 76
+      },
+      "revId": "0cf6199e8aa68587ace6113417f4c89f7f120557",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb88362e_c9b65b03",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-25T06:42:56Z",
+      "side": 1,
+      "message": "not needed you already have the name...",
+      "range": {
+        "startLine": 230,
+        "startChar": 19,
+        "endLine": 230,
+        "endChar": 48
+      },
+      "revId": "0cf6199e8aa68587ace6113417f4c89f7f120557",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6ac64d9_43e35d43",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-25T06:42:56Z",
+      "side": 1,
+      "message": "Not here. Remove.",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 39
+      },
+      "revId": "0cf6199e8aa68587ace6113417f4c89f7f120557",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
