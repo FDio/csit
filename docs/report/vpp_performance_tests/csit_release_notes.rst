@@ -37,7 +37,7 @@ Changes in |csit-release|
      generator. HDRH latency data presented in latency packet
      percentile graphs and in detailed results tables.
 
-   - **Mellanox MCX556A-EDAT tests**: Added tests with Mellanox
+   - **Mellanox CX556A-EDAT tests**: Added tests with Mellanox
      ConnectX5-2p100GE NICs in 2n-clx testbeds using VPP native rdma
      driver.
 
@@ -78,7 +78,7 @@ Changes in |csit-release|
 
    - **New Intel Xeon Cascadelake Testbeds**: Added performance tests
      for 2-Node-Cascadelake (2n-clx) testbeds with x710, xxv710 and
-     mcx556a-edat NIC cards.
+     cx556a-edat NIC cards.
 
 #. PRESENTATION AND ANALYTICS LAYER
 

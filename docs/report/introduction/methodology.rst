@@ -13,9 +13,7 @@ Test Methodology
     methodology_data_plane_throughput/index
     methodology_packet_latency
     methodology_multi_core_speedup
-    methodology_http_tcp_with_wrk
-    methodology_tcp_with_iperf3
-    methodology_quic_with_vppecho
+    methodology_hoststack_testing/index
     methodology_reconf
     methodology_vpp_startup_settings
     methodology_kvm_vms_vhost_user
