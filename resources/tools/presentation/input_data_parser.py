@@ -368,12 +368,12 @@ class ExecutionChecker(ResultVisitor):
 
         groups = re.search(self.REGEX_MRR_MSG_INFO, msg)
         if not groups or groups.lastindex != 1:
-            return msg
+            return u"Test Failed."
 
         try:
             data = groups.group(1).split(u", ")
         except (AttributeError, IndexError, ValueError, KeyError):
-            return msg
+            return u"Test Failed."
 
         out_str = u"["
         try:
@@ -381,7 +381,7 @@ class ExecutionChecker(ResultVisitor):
                 out_str += f"{(float(item) / 1e6):.2f}, "
             return out_str[:-2] + u"]"
         except (AttributeError, IndexError, ValueError, KeyError):
-            return msg
+            return u"Test Failed."
 
     def _get_data_from_perf_test_msg(self, msg):
         """Get info from message of NDRPDR performance tests.
@@ -394,7 +394,7 @@ class ExecutionChecker(ResultVisitor):
 
         groups = re.search(self.REGEX_PERF_MSG_INFO, msg)
         if not groups or groups.lastindex != 10:
-            return msg
+            return u"Test Failed."
 
         try:
             data = {
@@ -410,7 +410,7 @@ class ExecutionChecker(ResultVisitor):
                 u"pdr_lat_10_2": groups.group(10),
             }
         except (AttributeError, IndexError, ValueError, KeyError):
-            return msg
+            return u"Test Failed."
 
         def _process_lat(in_str_1, in_str_2):
             """Extract min, avg, max values from latency string.
@@ -485,7 +485,7 @@ class ExecutionChecker(ResultVisitor):
             return out_msg
 
         except (AttributeError, IndexError, ValueError, KeyError):
-            return msg
+            return u"Test Failed."
 
     def _get_testbed(self, msg):
         """Called when extraction of testbed IP is required.

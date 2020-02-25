@@ -71,7 +71,7 @@ SUT servers are populated with the following NIC models:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
-#. NIC-3: mcx556a-edat ConnectX5 2p100GE Mellanox. (Only testbed t27, t28)
+#. NIC-3: cx556a-edat ConnectX5 2p100GE Mellanox. (Only testbed t27, t28)
 #. NIC-4: empty, future expansion.
 #. NIC-5: empty, future expansion.
 #. NIC-6: empty, future expansion.
