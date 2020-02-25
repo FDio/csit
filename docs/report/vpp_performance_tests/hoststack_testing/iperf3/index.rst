@@ -1,2 +1,2 @@
-Hoststack Throughput Testing over TCP/IP with iperf3
-----------------------------------------------------
+Throughput over TCP/IP with iperf3
+----------------------------------

@@ -1,5 +1,5 @@
-Hoststack Throughput Testing over TCP/IP with iperf3
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Throughput over TCP/IP with iperf3
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `iperf3 goodput measurement tool <https://github.com/esnet/iperf>`_
 is used for measuring the maximum attainable goodput of the VPP Host

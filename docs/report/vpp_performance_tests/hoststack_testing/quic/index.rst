@@ -1,2 +1,2 @@
-Hoststack Throughput Testing over QUIC(picotls)/UDP/IP with vpp_echo
---------------------------------------------------------------------
+Throughput over QUIC/UDP/IP with vpp_echo
+-----------------------------------------
