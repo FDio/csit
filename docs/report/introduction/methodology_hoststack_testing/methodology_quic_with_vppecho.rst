@@ -1,5 +1,5 @@
 Hoststack Throughput Testing over QUIC/UDP/IP with vpp_echo
------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `vpp_echo performance testing tool <https://wiki.fd.io/view/VPP/HostStack#External_Echo_Server.2FClient_.28vpp_echo.29>`_
 is a bespoke performance test application which utilizes the 'native
@@ -17,9 +17,11 @@ streams per connection.
 
 The test configuration is as follows:
 
-        DUT1               Network                DUT2
-[ vpp_echo-client -> VPP1 ]=======[ VPP2 -> vpp_echo-server]
-                      N-streams/connection
+::
+
+            DUT1               Network                DUT2
+    [ vpp_echo-client -> VPP1 ]=======[ VPP2 -> vpp_echo-server]
+                          N-streams/connection
 
 where,
 
