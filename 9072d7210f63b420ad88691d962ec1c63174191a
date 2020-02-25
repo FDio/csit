@@ -45,6 +45,30 @@
       "revId": "9072d7210f63b420ad88691d962ec1c63174191a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5975eb5_e2d3fb26",
+        "filename": "tests/vpp/device/srv6/eth2p-ethip6ip6-ip6base-srv6enc1sid-dev.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1822
+      },
+      "writtenOn": "2020-02-25T04:32:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "26f9736d_0dce77b7",
+      "range": {
+        "startLine": 48,
+        "startChar": 24,
+        "endLine": 48,
+        "endChar": 25
+      },
+      "revId": "9072d7210f63b420ad88691d962ec1c63174191a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
