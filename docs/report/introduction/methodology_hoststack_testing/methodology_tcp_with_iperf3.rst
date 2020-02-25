@@ -1,5 +1,5 @@
 Hoststack Throughput Testing over TCP/IP with iperf3
-----------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `iperf3 goodput measurement tool <https://github.com/esnet/iperf>`_
 is used for measuring the maximum attainable goodput of the VPP Host
@@ -19,8 +19,10 @@ LD_PRELOAD which inherently has more overhead and other limitations.
 
 The test configuration is as follows:
 
-       DUT1              Network               DUT2
-[ iperf3-client -> VPP1 ]=======[ VPP2 -> iperf3-server]
+::
+
+           DUT1              Network               DUT2
+    [ iperf3-client -> VPP1 ]=======[ VPP2 -> iperf3-server]
 
 where,
 
