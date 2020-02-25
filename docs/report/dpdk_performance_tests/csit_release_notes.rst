@@ -30,7 +30,7 @@ Changes in |csit-release|
 
    - **New Intel Xeon Cascadelake Testbeds**: Added performance tests
      for 2-Node-Cascadelake (2n-clx) testbeds with x710, xxv710 and
-     mcx556a-edat NIC cards.
+     cx556a-edat NIC cards.
 
 ..
     // Alternative Note for 1st Bullet when bad microcode Skx, Clx results are published

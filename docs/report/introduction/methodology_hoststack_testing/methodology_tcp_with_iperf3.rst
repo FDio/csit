@@ -1,12 +1,11 @@
-<<<<<<< HEAD   (1b94b6 Report: 2n-clx NFV tests)
 Hoststack Throughput Testing over TCP/IP with iperf3
-----------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-`iperf3 bandwidth measurement tool <https://github.com/esnet/iperf>`_
-is used for measuring the maximum attainable bandwidth of the VPP Host
+`iperf3 goodput measurement tool <https://github.com/esnet/iperf>`_
+is used for measuring the maximum attainable goodput of the VPP Host
 Stack connection across two instances of VPP running on separate DUT
 nodes. iperf3 is a popular open source tool for active measurements
-of the maximum achievable bandwidth on IP networks.
+of the maximum achievable goodput on IP networks.
 
 Because iperf3 utilizes the POSIX socket interface APIs, the current
 test configuration utilizes the LD_PRELOAD mechanism in the linux
@@ -15,13 +14,15 @@ Communications Library (VCL) LD_PRELOAD library (libvcl_ldpreload.so).
 
 In the future, a forked version of iperf3 which has been modified to
 directly use the VCL application APIs may be added to determine the
-difference in performance of 'VCL Native' applications .vs. utilizing
+difference in performance of 'VCL Native' applications versus utilizing
 LD_PRELOAD which inherently has more overhead and other limitations.
 
 The test configuration is as follows:
 
-       DUT1              Network               DUT2
-[ iperf3-client -> VPP1 ]=======[ VPP2 -> iperf3-server]
+::
+
+           DUT1              Network               DUT2
+    [ iperf3-client -> VPP1 ]=======[ VPP2 -> iperf3-server]
 
 where,
 
@@ -40,5 +41,3 @@ where,
  Note: iperf3 is single threaded, so it is expected that the 10 stream
  test does not show any performance improvement due to
  multi-thread/multi-core execution.
-=======
->>>>>>> CHANGE (84ab8b Report: Hoststack methodology)

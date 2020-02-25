@@ -1,6 +1,5 @@
-<<<<<<< HEAD   (1b94b6 Report: 2n-clx NFV tests)
 Hoststack Throughput Testing over QUIC/UDP/IP with vpp_echo
------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `vpp_echo performance testing tool <https://wiki.fd.io/view/VPP/HostStack#External_Echo_Server.2FClient_.28vpp_echo.29>`_
 is a bespoke performance test application which utilizes the 'native
@@ -18,9 +17,11 @@ streams per connection.
 
 The test configuration is as follows:
 
-        DUT1               Network                DUT2
-[ vpp_echo-client -> VPP1 ]=======[ VPP2 -> vpp_echo-server]
-                      N-streams/connection
+::
+
+            DUT1               Network                DUT2
+    [ vpp_echo-client -> VPP1 ]=======[ VPP2 -> vpp_echo-server]
+                          N-streams/connection
 
 where,
 
@@ -33,6 +34,7 @@ where,
     measurements for all streams and the sum of all streams.
 
  Test cases include
+
  1. 1 QUIC Connection with 1 Stream
  2. 1 QUIC connection with 10 Streams
  3. 10 QUIC connetions with 1 Stream
@@ -40,7 +42,5 @@ where,
 
  with stream sizes to provide reasonable test durations. The VPP Host
  Stack QUIC transport is configured to utilize the picotls encryption
- library.  In the future, tests utilizing addtional encryption
+ library. In the future, tests utilizing addtional encryption
  algorithms will be added.
-=======
->>>>>>> CHANGE (84ab8b Report: Hoststack methodology)
