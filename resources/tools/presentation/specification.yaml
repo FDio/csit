@@ -413,6 +413,16 @@
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
         - 24  # NDRPDR sel
+        - 25  # NDRPDR sel
+        - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 28  # NDRPDR sel
+        - 29  # NDRPDR sel
+        - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
+        - 32  # NDRPDR sel
+        - 33  # NDRPDR sel
+        - 34  # NDRPDR sel
 
 
     plot-dpdk-hdrh-lat-2n-clx:
@@ -673,6 +683,7 @@
     dpdk-perf-results-2n-clx:
       csit-dpdk-perf-verify-2001-2n-clx:
         - 15  # NDRPDR sel
+        - 34  # NDRPDR sel
 
     dpdk-perf-results-2n-dnv:
       csit-dpdk-perf-verify-2001-2n-dnv:
@@ -1297,6 +1308,16 @@
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
         - 24  # NDRPDR sel
+        - 25  # NDRPDR sel
+        - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 28  # NDRPDR sel
+        - 29  # NDRPDR sel
+        - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
+        - 32  # NDRPDR sel
+        - 33  # NDRPDR sel
+        - 34  # NDRPDR sel
 
     dpdk-compare-testbeds-skx-clx:
       - "dpdk-compare-testbeds-skx-clx-ref"
@@ -2380,6 +2401,16 @@
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
       - 24  # NDRPDR sel
+      - 25  # NDRPDR sel
+      - 26  # NDRPDR sel
+      - 27  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 29  # NDRPDR sel
+      - 30  # NDRPDR sel
+      - 31  # NDRPDR sel
+      - 32  # NDRPDR sel
+      - 33  # NDRPDR sel
+      - 34  # NDRPDR sel
 
     csit-dpdk-perf-verify-2001-2n-dnv:
       - 9   # NDRPDR sel
