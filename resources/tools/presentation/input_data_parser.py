@@ -974,12 +974,23 @@ class ExecutionChecker(ResultVisitor):
             replace(u'\r', u'').\
             replace(u'[', u' |br| [').\
             replace(u' |br| [', u'[', 1)
-        test_result[u"msg"] = test.message.\
-            replace(u'\n', u' |br| ').\
-            replace(u'\r', u'').\
-            replace(u'"', u"'")
         test_result[u"type"] = u"FUNC"
         test_result[u"status"] = test.status
+
+        if test.status == u"PASS":
+            if u"NDRPDR" in tags:
+                test_result[u"msg"] = self._get_data_from_perf_test_msg(
+                    test.message).replace(u'\n', u' |br| ').\
+                    replace(u'\r', u'').replace(u'"', u"'")
+            elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
+                test_result[u"msg"] = self._get_data_from_mrr_test_msg(
+                    test.message).replace(u'\n', u' |br| ').\
+                    replace(u'\r', u'').replace(u'"', u"'")
+            else:
+                test_result[u"msg"] = test.message.replace(u'\n', u' |br| ').\
+                    replace(u'\r', u'').replace(u'"', u"'")
+        else:
+            test_result[u"msg"] = u"Test Failed."
 
         if u"PERFTEST" in tags:
             # Replace info about cores (e.g. -1c-) with the info about threads
@@ -996,14 +1007,14 @@ class ExecutionChecker(ResultVisitor):
                         tag_tc = tag
 
                 if tag_count == 1:
-                    self._test_id = re.sub(self.REGEX_TC_NAME_NEW,
-                                           f"-{tag_tc.lower()}-",
-                                           self._test_id,
-                                           count=1)
-                    test_result[u"name"] = re.sub(self.REGEX_TC_NAME_NEW,
-                                                  f"-{tag_tc.lower()}-",
-                                                  test_result["name"],
-                                                  count=1)
+                    self._test_id = re.sub(
+                        self.REGEX_TC_NAME_NEW, f"-{tag_tc.lower()}-",
+                        self._test_id, count=1
+                    )
+                    test_result[u"name"] = re.sub(
+                        self.REGEX_TC_NAME_NEW, f"-{tag_tc.lower()}-",
+                        test_result["name"], count=1
+                    )
                 else:
                     test_result[u"status"] = u"FAIL"
                     self._data[u"tests"][self._test_id] = test_result
@@ -1016,11 +1027,6 @@ class ExecutionChecker(ResultVisitor):
 
         if test.status == u"PASS":
             if u"NDRPDR" in tags:
-                test_result[u"msg"] = self._get_data_from_perf_test_msg(
-                    test.message). \
-                    replace(u'\n', u' |br| '). \
-                    replace(u'\r', u''). \
-                    replace(u'"', u"'")
                 test_result[u"type"] = u"NDRPDR"
                 test_result[u"throughput"], test_result[u"status"] = \
                     self._get_ndrpdr_throughput(test.message)
@@ -1035,11 +1041,6 @@ class ExecutionChecker(ResultVisitor):
                 groups = re.search(self.REGEX_TCP, test.message)
                 test_result[u"result"] = int(groups.group(2))
             elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
-                test_result[u"msg"] = self._get_data_from_mrr_test_msg(
-                    test.message). \
-                    replace(u'\n', u' |br| '). \
-                    replace(u'\r', u''). \
-                    replace(u'"', u"'")
                 if u"MRR" in tags:
                     test_result[u"type"] = u"MRR"
                 else:
