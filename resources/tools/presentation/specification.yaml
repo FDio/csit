@@ -588,6 +588,7 @@
         - 73  # NDRPDR full
         - 77  # NDRPDR full
         - 78  # NDRPDR full
+        - 79  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       # TODO: Replace
@@ -2110,6 +2111,7 @@
       - 73  # NDRPDR full
       - 77  # NDRPDR full
       - 78  # NDRPDR full
+      - 79  # NDRPDR full
 
 #    csit-vpp-perf-verify-1904-3n-skx:
 #      - 7   # MRR sel
@@ -2504,8 +2506,8 @@
   format:
     html:
     - full
-#    pdf:
-#    - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -5035,7 +5037,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C'"
+  filter: "'1T1C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -5057,7 +5059,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C'"
+  filter: "'2T2C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -5079,7 +5081,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C'"
+  filter: "'1T1C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -5101,7 +5103,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C'"
+  filter: "'2T2C' and 'NDRPDR'"
   parameters:
   - "name"
   - "parent"
@@ -5123,7 +5125,7 @@
 #    data: "dpdk-performance-changes-3n-skx-cmp"
 #  data: "dpdk-performance-changes-3n-skx"
 #  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C'"
+#  filter: "'2T1C' and 'NDRPDR'"
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5145,7 +5147,7 @@
 #    data: "dpdk-performance-changes-3n-skx-cmp"
 #  data: "dpdk-performance-changes-3n-skx"
 #  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C'"
+#  filter: "'4T2C' and 'NDRPDR'"
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5167,7 +5169,7 @@
 #    data: "dpdk-performance-changes-3n-skx-cmp"
 #  data: "dpdk-performance-changes-3n-skx"
 #  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C'"
+#  filter: "'2T1C' and 'NDRPDR'"
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5189,7 +5191,7 @@
 #    data: "dpdk-performance-changes-3n-skx-cmp"
 #  data: "dpdk-performance-changes-3n-skx"
 #  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C'"
+#  filter: "'4T2C' and 'NDRPDR'"
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5211,7 +5213,7 @@
 #    data: "dpdk-performance-changes-2n-skx-cmp"
 #  data: "dpdk-performance-changes-2n-skx"
 #  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C'"
+#  filter: "'2T1C' and 'NDRPDR'"
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5233,7 +5235,7 @@
 #    data: "dpdk-performance-changes-2n-skx-cmp"
 #  data: "dpdk-performance-changes-2n-skx"
 #  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C'"
+#  filter: "'4T2C' and 'NDRPDR'"
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5255,7 +5257,7 @@
 #    data: "dpdk-performance-changes-2n-skx-cmp"
 #  data: "dpdk-performance-changes-2n-skx"
 #  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C'"
+#  filter: "'2T1C' and 'NDRPDR'"
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5277,7 +5279,7 @@
 #    data: "dpdk-performance-changes-2n-skx-cmp"
 #  data: "dpdk-performance-changes-2n-skx"
 #  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C'"
+#  filter: "'4T2C' and 'NDRPDR'"
 #  parameters:
 #  - "name"
 #  - "parent"
