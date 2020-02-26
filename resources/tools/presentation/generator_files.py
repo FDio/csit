@@ -133,9 +133,11 @@ def file_test_results(file_spec, input_data, frmt=u"rst"):
     if suites.empty:
         return
     suites = input_data.merge_data(suites)
+    suites.sort_index(inplace=True)
 
     file_name = u""
     for suite_longname, suite in suites.items():
+        print(suite_longname)
 
         suite_lvl = len(suite_longname.split(u"."))
         if suite_lvl < start_lvl:
