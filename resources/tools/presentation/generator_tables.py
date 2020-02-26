@@ -612,7 +612,9 @@ def table_perf_comparison(table, input_data):
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = _tpc_modify_test_name(tst_name)
-                if u"across topologies" in table[u"title"].lower():
+                if (u"across topologies" in table[u"title"].lower() or
+                    (u" 3n-" in table[u"title"].lower() and
+                     u" 2n-" in table[u"title"].lower())):
                     tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                 if tbl_dict.get(tst_name_mod, None) is None:
                     groups = re.search(REGEX_NIC, tst_data[u"parent"])
@@ -640,7 +642,9 @@ def table_perf_comparison(table, input_data):
             for build in builds:
                 for tst_name, tst_data in rpl_data[job][str(build)].items():
                     tst_name_mod = _tpc_modify_test_name(tst_name)
-                    if u"across topologies" in table[u"title"].lower():
+                    if (u"across topologies" in table[u"title"].lower() or
+                        (u" 3n-" in table[u"title"].lower() and
+                         u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         name = \
@@ -667,7 +671,9 @@ def table_perf_comparison(table, input_data):
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = _tpc_modify_test_name(tst_name)
-                if u"across topologies" in table[u"title"].lower():
+                if (u"across topologies" in table[u"title"].lower() or
+                    (u" 3n-" in table[u"title"].lower() and
+                     u" 2n-" in table[u"title"].lower())):
                     tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                 if tbl_dict.get(tst_name_mod, None) is None:
                     groups = re.search(REGEX_NIC, tst_data[u"parent"])
@@ -697,7 +703,9 @@ def table_perf_comparison(table, input_data):
             for build in builds:
                 for tst_name, tst_data in rpl_data[job][str(build)].items():
                     tst_name_mod = _tpc_modify_test_name(tst_name)
-                    if u"across topologies" in table[u"title"].lower():
+                    if (u"across topologies" in table[u"title"].lower() or
+                        (u" 3n-" in table[u"title"].lower() and
+                         u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         name = \
@@ -725,7 +733,9 @@ def table_perf_comparison(table, input_data):
             for build in builds:
                 for tst_name, tst_data in data[job][str(build)].items():
                     tst_name_mod = _tpc_modify_test_name(tst_name)
-                    if u"across topologies" in table[u"title"].lower():
+                    if (u"across topologies" in table[u"title"].lower() or
+                        (u" 3n-" in table[u"title"].lower() and
+                         u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         continue
@@ -877,7 +887,9 @@ def table_perf_comparison_nic(table, input_data):
                 if table[u"reference"][u"nic"] not in tst_data[u"tags"]:
                     continue
                 tst_name_mod = _tpc_modify_test_name(tst_name)
-                if u"across topologies" in table[u"title"].lower():
+                if (u"across topologies" in table[u"title"].lower() or
+                    (u" 3n-" in table[u"title"].lower() and
+                     u" 2n-" in table[u"title"].lower())):
                     tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                 if tbl_dict.get(tst_name_mod, None) is None:
                     name = f"{u'-'.join(tst_data[u'name'].split(u'-')[:-1])}"
@@ -906,7 +918,9 @@ def table_perf_comparison_nic(table, input_data):
                     if table[u"reference"][u"nic"] not in tst_data[u"tags"]:
                         continue
                     tst_name_mod = _tpc_modify_test_name(tst_name)
-                    if u"across topologies" in table[u"title"].lower():
+                    if (u"across topologies" in table[u"title"].lower() or
+                        (u" 3n-" in table[u"title"].lower() and
+                         u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         name = \
@@ -935,7 +949,9 @@ def table_perf_comparison_nic(table, input_data):
                 if table[u"compare"][u"nic"] not in tst_data[u"tags"]:
                     continue
                 tst_name_mod = _tpc_modify_test_name(tst_name)
-                if u"across topologies" in table[u"title"].lower():
+                if (u"across topologies" in table[u"title"].lower() or
+                    (u" 3n-" in table[u"title"].lower() and
+                     u" 2n-" in table[u"title"].lower())):
                     tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                 if tbl_dict.get(tst_name_mod, None) is None:
                     name = f"{u'-'.join(tst_data[u'name'].split(u'-')[:-1])}"
@@ -964,7 +980,9 @@ def table_perf_comparison_nic(table, input_data):
                     if table[u"compare"][u"nic"] not in tst_data[u"tags"]:
                         continue
                     tst_name_mod = _tpc_modify_test_name(tst_name)
-                    if u"across topologies" in table[u"title"].lower():
+                    if (u"across topologies" in table[u"title"].lower() or
+                        (u" 3n-" in table[u"title"].lower() and
+                         u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         name = \
@@ -994,7 +1012,9 @@ def table_perf_comparison_nic(table, input_data):
                     if item[u"nic"] not in tst_data[u"tags"]:
                         continue
                     tst_name_mod = _tpc_modify_test_name(tst_name)
-                    if u"across topologies" in table[u"title"].lower():
+                    if (u"across topologies" in table[u"title"].lower() or
+                        (u" 3n-" in table[u"title"].lower() and
+                         u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         continue
