@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "958baf33_2d402d27",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-26T13:37:59Z",
+      "side": 1,
+      "message": "E: Command line option \u0027d\u0027 [from -dev] is not understood in combination with the other options.\n\nhttps://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-1908-ubuntu1804-1n-skx/338/console.log.gz",
+      "range": {
+        "startLine": 9,
+        "startChar": 59,
+        "endLine": 9,
+        "endChar": 69
+      },
+      "revId": "e3c011470094692777f0432fbc61d839ccfb4a57",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
