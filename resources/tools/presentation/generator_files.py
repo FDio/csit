@@ -136,6 +136,7 @@ def file_test_results(file_spec, input_data, frmt=u"rst"):
 
     file_name = u""
     for suite_longname, suite in suites.items():
+        print(suite_longname)
 
         suite_lvl = len(suite_longname.split(u"."))
         if suite_lvl < start_lvl:
