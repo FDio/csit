@@ -133,6 +133,7 @@ def file_test_results(file_spec, input_data, frmt=u"rst"):
     if suites.empty:
         return
     suites = input_data.merge_data(suites)
+    suites.sort_index(inplace=True)
 
     file_name = u""
     for suite_longname, suite in suites.items():

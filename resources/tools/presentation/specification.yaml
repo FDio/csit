@@ -380,8 +380,9 @@
         - 29  # NDRPDR sel
         - 32  # NDRPDR sel
         - 40  # NDRPDR sel
+        - 43  # NDRPDR sel
         - 44  # NDRPDR sel
-
+        - 45  # NDRPDR sel
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -394,8 +395,9 @@
         - 29  # NDRPDR sel
         - 32  # NDRPDR sel
         - 40  # NDRPDR sel
+        - 43  # NDRPDR sel
         - 44  # NDRPDR sel
-
+        - 45  # NDRPDR sel
 
     plot-vpp-nfv-2n-clx-mrr:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -1210,11 +1212,38 @@
         - 29  # NDRPDR sel
         - 32  # NDRPDR sel
         - 40  # NDRPDR sel
+        - 43  # NDRPDR sel
         - 44  # NDRPDR sel
-
+        - 45  # NDRPDR sel
     vpp-compare-testbeds-skx-clx:
       - "vpp-compare-testbeds-skx-clx-ref"
       - "vpp-compare-testbeds-skx-clx-cmp"
+
+    vpp-compare-testbeds-hsw-clx-ref:
+      csit-vpp-perf-verify-2001-3n-hsw:
+        - 21  # NDRPDR sel
+        - 22  # NDRPDR sel
+        - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
+        - 25  # NDRPDR sel
+        - 29  # NDRPDR sel
+        - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
+        - 32  # NDRPDR sel
+        - 34  # NDRPDR sel
+    vpp-compare-testbeds-hsw-clx-cmp:
+      # TODO: Add the data
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 28  # NDRPDR sel
+        - 29  # NDRPDR sel
+        - 32  # NDRPDR sel
+        - 40  # NDRPDR sel
+        - 43  # NDRPDR sel
+        - 44  # NDRPDR sel
+        - 45  # NDRPDR sel
+    vpp-compare-testbeds-hsw-clx:
+      - "vpp-compare-testbeds-hsw-clx-ref"
+      - "vpp-compare-testbeds-hsw-clx-cmp"
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-verify-2001-3n-hsw:
@@ -1239,6 +1268,16 @@
     vpp-compare-testbeds-mrr-skx-clx:
       - "vpp-compare-testbeds-mrr-skx-clx-ref"
       - "vpp-compare-testbeds-mrr-skx-clx-cmp"
+
+    vpp-compare-testbeds-mrr-hsw-clx-ref:
+      csit-vpp-perf-verify-2001-3n-hsw:
+        - 17  # MRR sel
+    vpp-compare-testbeds-mrr-hsw-clx-cmp:
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 39  # MRR
+    vpp-compare-testbeds-mrr-hsw-clx:
+      - "vpp-compare-testbeds-mrr-hsw-clx-ref"
+      - "vpp-compare-testbeds-mrr-hsw-clx-cmp"
 
     dpdk-compare-testbeds-ref:
       csit-dpdk-perf-verify-2001-3n-hsw:
@@ -2174,7 +2213,9 @@
       - 29  # NDRPDR sel
       - 32  # NDRPDR sel
       - 40  # NDRPDR sel
+      - 43  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 45  # NDRPDR sel
       - 39  # MRR
       - 34  # NDRPDR full
       - 35  # NDRPDR full
@@ -2463,8 +2504,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -3489,7 +3530,7 @@
 #  - "parent"
 #  - "throughput"
 #  - "tags"
-#
+
 ## VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c pdr
 #- type: "table"
 #  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c pdr"
@@ -3569,7 +3610,95 @@
 #  - "parent"
 #  - "throughput"
 #  - "tags"
-#
+
+# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c ndr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c ndr"
+  algorithm: "table_perf_comparison_nic"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-1c-ndr"
+  reference:
+    title: "3n-hsw xl710"
+    data: "vpp-compare-testbeds-hsw-clx-ref"
+    nic: "NIC_Intel-XL710"
+  compare:
+    title: "2n-clx xxv710"
+    data: "vpp-compare-testbeds-hsw-clx-cmp"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-compare-testbeds-hsw-clx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c ndr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c ndr"
+  algorithm: "table_perf_comparison_nic"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-2c-ndr"
+  reference:
+    title: "3n-hsw xl710"
+    data: "vpp-compare-testbeds-hsw-clx-ref"
+    nic: "NIC_Intel-XL710"
+  compare:
+    title: "2n-clx xxv710"
+    data: "vpp-compare-testbeds-hsw-clx-cmp"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-compare-testbeds-hsw-clx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c pdr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c pdr"
+  algorithm: "table_perf_comparison_nic"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-1c-pdr"
+  reference:
+    title: "3n-hsw xl710"
+    data: "vpp-compare-testbeds-hsw-clx-ref"
+    nic: "NIC_Intel-XL710"
+  compare:
+    title: "2n-clx xxv710"
+    data: "vpp-compare-testbeds-hsw-clx-cmp"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-compare-testbeds-hsw-clx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c pdr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c pdr"
+  algorithm: "table_perf_comparison_nic"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-2c-pdr"
+  reference:
+    title: "3n-hsw xl710"
+    data: "vpp-compare-testbeds-hsw-clx-ref"
+    nic: "NIC_Intel-XL710"
+  compare:
+    title: "2n-clx xxv710"
+    data: "vpp-compare-testbeds-hsw-clx-cmp"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-compare-testbeds-hsw-clx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
 ## VPP Comparison Across Topologies 3n-skx to 2n-skx 1c ndr
 #- type: "table"
 #  title: "VPP Comparison Across Topologies 3n-skx to 2n-skx 1c ndr"
@@ -4137,7 +4266,7 @@
 #  - "parent"
 #  - "result"
 #  - "tags"
-#
+
 ## VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr
 #- type: "table"
 #  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr"
@@ -4254,6 +4383,72 @@
 #  - "name"
 #  - "parent"
 #  - "result"
+
+# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c mrr"
+  algorithm: "table_perf_comparison_nic"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-1c-mrr"
+  reference:
+    title: "3n-hsw xl710"
+    data: "vpp-compare-testbeds-mrr-hsw-clx-ref"
+    nic: "NIC_Intel-XL710"
+  compare:
+    title: "2n-clx xxv710"
+    data: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-compare-testbeds-mrr-hsw-clx"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c mrr"
+  algorithm: "table_perf_comparison_nic"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-2c-mrr"
+  reference:
+    title: "3n-hsw xl710"
+    data: "vpp-compare-testbeds-mrr-hsw-clx-ref"
+    nic: "NIC_Intel-XL710"
+  compare:
+    title: "2n-clx xxv710"
+    data: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-compare-testbeds-mrr-hsw-clx"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 4c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 4c mrr"
+  algorithm: "table_perf_comparison_nic"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-4c-mrr"
+  reference:
+    title: "3n-hsw xl710"
+    data: "vpp-compare-testbeds-mrr-hsw-clx-ref"
+    nic: "NIC_Intel-XL710"
+  compare:
+    title: "2n-clx xxv710"
+    data: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-compare-testbeds-mrr-hsw-clx"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '4C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
 
 # Detailed Test Results - VPP Performance Results 3n-hsw
 - type: "table"
