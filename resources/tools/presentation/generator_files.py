@@ -134,6 +134,8 @@ def file_test_results(file_spec, input_data, frmt=u"rst"):
         return
     suites = input_data.merge_data(suites)
 
+    print(suites)
+
     file_name = u""
     for suite_longname, suite in suites.items():
 
