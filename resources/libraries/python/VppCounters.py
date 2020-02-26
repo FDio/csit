@@ -58,6 +58,7 @@ class VppCounters:
         :type log_zeros: bool
         """
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show runtime")
+        exec_cmd(node, u"cat /tmp/serial_1.log")
         args = dict(path=u"^/sys/node")
         sockets = Topology.get_node_sockets(node, socket_type=SocketType.STATS)
         if sockets:
