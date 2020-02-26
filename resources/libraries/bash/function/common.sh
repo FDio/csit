@@ -784,9 +784,17 @@ function select_tags () {
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"report-iterative"* )
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/report_iterative/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd}) || die
+            if [[ "${TEST_TAG_STRING-}" == "reconf" ]]; then
+                # Run reconf tests.
+                readarray -t test_tag_array <<< $(sed 's/ //g' \
+                    ${tfd}/reconf-${NODENESS}-${FLAVOR}.md |
+                    eval ${sed_nics_sub_cmd}) || die
+            else
+                # Run ndrpdr tests defined for report-iterative job.
+                readarray -t test_tag_array <<< $(sed 's/ //g' \
+                    ${tfd}/report_iterative/${DUT}-${NODENESS}-${FLAVOR}.md |
+                    eval ${sed_nics_sub_cmd}) || die
+            fi
             ;;
         *"report-coverage"* )
             test_sets=(${TEST_TAG_STRING//:/ })
