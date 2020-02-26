@@ -19,6 +19,7 @@ from robot.api import logger
 
 from resources.libraries.python.PapiExecutor import PapiExecutor, \
     PapiSocketExecutor
+from resources.libraries.python.ssh import exec_cmd
 from resources.libraries.python.topology import Topology, SocketType, NodeType
 
 
@@ -58,6 +59,7 @@ class VppCounters:
         :type log_zeros: bool
         """
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show runtime")
+        exec_cmd(node, u"tail -n 300 /tmp/serial_1.log", sudo=True)
         args = dict(path=u"^/sys/node")
         sockets = Topology.get_node_sockets(node, socket_type=SocketType.STATS)
         if sockets:
