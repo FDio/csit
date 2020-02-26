@@ -787,7 +787,7 @@ function select_tags () {
 #                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
 #                                "!dot1q" "!drv_avf")
                 readarray -t test_tag_array <<< $(sed 's/ //g' \
-                    ${tfd}/reconf-${NODENESS}-${FLAVOR}.txt |
+                    ${tfd}/soak-${NODENESS}-${FLAVOR}.txt |
                     eval ${sed_nics_sub_cmd}) || die
             else
                 # If trigger contains tags, split them into array.
