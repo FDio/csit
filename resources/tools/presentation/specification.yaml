@@ -1053,16 +1053,16 @@
         - 11  # NDRPDR sel
     dpdk-performance-changes-3n-hsw-cmp:
       csit-dpdk-perf-verify-2001-3n-hsw:
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
+#        - 4   # NDRPDR sel
+#        - 5   # NDRPDR sel
+#        - 6   # NDRPDR sel
+#        - 7   # NDRPDR sel
+#        - 8   # NDRPDR sel
+#        - 9   # NDRPDR sel
+#        - 10  # NDRPDR sel
+#        - 11  # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 13  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
         - 17  # NDRPDR sel
@@ -16173,17 +16173,17 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr-tsa"
+  title: "Speedup: 2n-clx-cx556a-64b-rdma-l2-vhost-base-ndr-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-rdma-l2-vhost-base-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "2n-clx-cx556a-64b-2t1c-rdma-l2-vhost-base-ndr"
+    title: "2n-clx-cx556a-64b-rdma-l2-vhost-base-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -16215,9 +16215,9 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 2n-clx-cx556a-64b-2t1c-l2-vhost-vppl2xc-base-pdr-tsa"
+  title: "Speedup: 2n-clx-cx556a-64b-l2-vhost-vppl2xc-base-pdr-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-l2-vhost-vppl2xc-base-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-l2-vhost-vppl2xc-base-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-rdma-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -16225,7 +16225,7 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "2n-clx-cx556a-64b-2t1c-l2-vhost-vppl2xc-base-pdr"
+    title: "2n-clx-cx556a-64b-l2-vhost-vppl2xc-base-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
