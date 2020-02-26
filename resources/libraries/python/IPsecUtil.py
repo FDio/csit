@@ -83,8 +83,8 @@ class IntegAlg(Enum):
 
 class IPsecProto(IntEnum):
     """IPsec protocol."""
-    ESP = 1
-    SEC_AH = 0
+    ESP = 50
+    SEC_AH = 51
 
 
 class IPsecSadFlags(IntEnum):
