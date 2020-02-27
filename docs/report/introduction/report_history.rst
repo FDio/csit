@@ -9,10 +9,29 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 | .09            | 1. Added data:                                             |
 |                |                                                            |
 |                |    - VPP performance tests 3n-hsw                          |
+|                |                                                            |
+|                |      - test sets IP4, L2, VHost                            |
+|                |                                                            |
 |                |    - VPP performance tests 2n-clx                          |
+|                |                                                            |
+|                |      - test sets IP4, IP6, L2                              |
+|                |      - all sets selected for analysis and graphs           |
+|                |                                                            |
 |                |    - VPP performance tests 3n-dnv                          |
+|                |                                                            |
+|                |      - test sets IPSec, IP4 Tunnels                        |
+|                |                                                            |
 |                |    - VPP performance tests 3n-tsh                          |
+|                |                                                            |
+|                |      - all sets selected for analysis and graphs           |
+|                |                                                            |
+|                |    - VPP MRR tests 2n-clx                                  |
+|                |                                                            |
+|                |      - all sets selected for analysis and graphs           |
+|                |                                                            |
 |                |    - DPDK performance tests 2n-clx                         |
+|                |                                                            |
+|                |      - all sets selected for analysis and graphs           |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .08            | 1. Added PDF version                                       |
