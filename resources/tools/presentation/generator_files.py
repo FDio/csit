@@ -178,6 +178,7 @@ def file_test_results(file_spec, input_data, frmt=u"rst"):
                                     file_latex=tbl_file,
                                     file_html=tbl_file.split(u"/")[-1])
                             )
+                    break
 
     logging.info(u"  Done.")
 
