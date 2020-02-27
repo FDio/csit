@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -104,6 +104,7 @@ function download_ubuntu_artifacts () {
     set +x
     for package in ${packages}; do
         # Filter packages with given version
+<<<<<<< HEAD   (8272f6 Report: Detailed test results)
         # Workaround for corrupted fdio_release.list
         if [[ "${package}" != "-dev" ]]; then
             pkg_info=$(apt-cache show ${package}) || {
@@ -112,6 +113,13 @@ function download_ubuntu_artifacts () {
             ver=$(echo ${pkg_info} | grep -o "Version: ${VPP_VERSION-}[^ ]*" | \
                   head -1) || true
         fi
+=======
+        pkg_info=$(apt-cache show -- ${package}) || {
+            die "apt-cache show on ${package} failed."
+        }
+        ver=$(echo ${pkg_info} | grep -o "Version: ${VPP_VERSION-}[^ ]*" | \
+              head -1) || true
+>>>>>>> CHANGE (8c85cc bash: tolerate -dev as a package name)
         if [ -n "${ver-}" ]; then
             echo "Found '${VPP_VERSION-}' among '${package}' versions."
             ver=$(echo "$ver" | cut -d " " -f 2)
