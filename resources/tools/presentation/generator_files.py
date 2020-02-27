@@ -123,7 +123,6 @@ def file_test_results(file_spec, input_data, frmt=u"rst"):
     if tests.empty:
         return
     tests = input_data.merge_data(tests)
-    tests.sort_index(inplace=True)
 
     suites = input_data.filter_data(
         file_spec,
@@ -162,12 +161,14 @@ def file_test_results(file_spec, input_data, frmt=u"rst"):
                 file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
 
             if _tests_in_suite(suite[u"name"], tests):
-                file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
-                file_handler.write(
-                    f"\n{suite[u'doc']}\n".replace(u'|br|', u'\n\n -')
-                )
                 for tbl_file in table_lst:
                     if suite[u"name"] in tbl_file:
+                        file_handler.write(
+                            f"\n{suite[u'name']}\n{title_line}\n"
+                        )
+                        file_handler.write(
+                            f"\n{suite[u'doc']}\n".replace(u'|br|', u'\n\n -')
+                        )
                         if frmt == u"html":
                             file_handler.write(
                                 f"\n.. include:: {tbl_file.split(u'/')[-1]}\n"
@@ -178,6 +179,7 @@ def file_test_results(file_spec, input_data, frmt=u"rst"):
                                     file_latex=tbl_file,
                                     file_html=tbl_file.split(u"/")[-1])
                             )
+                        break
 
     logging.info(u"  Done.")
 

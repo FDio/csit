@@ -151,6 +151,17 @@ def table_oper_data_html(table, input_data):
                 trow, u"td", attrib=dict(align=u"left", colspan=u"6")
             )
             tcol.text = u"No Data"
+
+            trow = ET.SubElement(
+                tbl, u"tr", attrib=dict(bgcolor=colors[u"empty"])
+            )
+            thead = ET.SubElement(
+                trow, u"th", attrib=dict(align=u"left", colspan=u"6")
+            )
+            font = ET.SubElement(
+                thead, u"font", attrib=dict(size=u"12px", color=u"#ffffff")
+            )
+            font.text = u"."
             return str(ET.tostring(tbl, encoding=u"unicode"))
 
         tbl_hdr = (
@@ -172,15 +183,15 @@ def table_oper_data_html(table, input_data):
             if dut_data.get(u"threads", None) is None:
                 tcol.text = u"No Data"
                 continue
-            bold = ET.SubElement(tcol, u"b")
-            bold.text = dut_name
-
-            trow = ET.SubElement(
-                tbl, u"tr", attrib=dict(bgcolor=colors[u"body"][0])
-            )
-            tcol = ET.SubElement(
-                trow, u"td", attrib=dict(align=u"left", colspan=u"6")
-            )
+            # bold = ET.SubElement(tcol, u"b")
+            # bold.text = dut_name
+            #
+            # trow = ET.SubElement(
+            #     tbl, u"tr", attrib=dict(bgcolor=colors[u"body"][0])
+            # )
+            # tcol = ET.SubElement(
+            #     trow, u"td", attrib=dict(align=u"left", colspan=u"6")
+            # )
             bold = ET.SubElement(tcol, u"b")
             bold.text = (
                 f"Host IP: {dut_data.get(u'host', '')}, "
@@ -323,6 +334,9 @@ def table_merged_details(table, input_data):
                 try:
                     col_data = str(data[test][column[
                         u"data"].split(u" ")[1]]).replace(u'"', u'""')
+                    # Do not include tests with "Test Failed" in test message
+                    if u"Test Failed" in col_data:
+                        continue
                     col_data = col_data.replace(
                         u"No Data", u"Not Captured     "
                     )
@@ -343,7 +357,8 @@ def table_merged_details(table, input_data):
                     row_lst.append(f'"{col_data}"')
                 except KeyError:
                     row_lst.append(u'"Not captured"')
-            table_lst.append(row_lst)
+            if len(row_lst) == len(table[u"columns"]):
+                table_lst.append(row_lst)
 
         # Write the data to file
         if table_lst:
