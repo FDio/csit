@@ -6,15 +6,25 @@ Changes in |csit-release|
 
 #. DPDK PERFORMANCE TESTS
 
-   - **Intel Xeon 2n-skx, 3n-skx and 2n-clx testbeds**: Testpmd and
-     L3fwd performance test data is not included in this report
-     version. This is due to the lower performance and behaviour
-     inconsistency of these systems following the upgrade of processor
-     microcode packages (skx ucode 0x2000064, clx ucode 0x500002c) as
-     part of updating Ubuntu 18.04 LTS kernel version. Tested VPP and
-     DPDK applications (L3fwd) are affected. Skx and Clx test data
-     will be added in subsequent maintenance report version(s) once
-     the issue is resolved. See :ref:`dpdk_known_issues`.
+   - **Intel Xeon 2n-skx, 3n-skx testbeds**: Testpmd and L3fwd
+     performance test data is not included in this report version.
+     This is due to the lower performance and behaviour inconsistency
+     of these systems following the upgrade of processor microcode
+     packages (skx ucode 0x2000064) as part of updating Ubuntu 18.04
+     LTS kernel version. Tested VPP and DPDK applications (L3fwd) are
+     affected. Skx test data will be added in subsequent maintenance
+     report version(s) once the issue is resolved. See
+     :ref:`dpdk_known_issues`.
+
+   - **Intel Xeon 2n-clx testbeds**: DPDK performance test data is now
+     included in this report, following the resolution of lower
+     performance and behaviour inconsistency of these systems after
+     the Linux kernel driven upgrade of processor microcode packages
+     to 0x500002c. The resolution is to use latest SuperMicro BIOS 3.2
+     (for X11DPG-QT motherboards used) that upgrades processor
+     microcode to 0x500002c, AND NOT kernel provided ucode package as
+     it does put THE system into sub-optimal state.
+
 
 #. DPDK RELEASE VERSION CHANGE
 
@@ -54,7 +64,7 @@ List of known issues in |csit-release| for DPDK performance tests:
 +----+------------------------------------------+----------------------------------------------------------------------------------------------------------+
 | #  | JiraID                                   | Issue Description                                                                                        |
 +====+==========================================+==========================================================================================================+
-| 8  | `CSIT-1675                               | Intel Xeon 2n-skx, 3n-skx and 2n-clx testbeds behaviour and performance became inconsistent following    |
+| 1  | `CSIT-1675                               | Intel Xeon 2n-skx, 3n-skx and 2n-clx testbeds behaviour and performance became inconsistent following    |
 |    | <https://jira.fd.io/browse/CSIT-1675>`_  | the upgrade to the latest Ubuntu 18.04 LTS kernel version (4.15.0-72-generic) and associated microcode   |
 |    |                                          | packages (skx ucode 0x2000064, clx ucode 0x500002c). VPP as well as DPDK L3fwd tests are affected.       |
 +----+------------------------------------------+----------------------------------------------------------------------------------------------------------+

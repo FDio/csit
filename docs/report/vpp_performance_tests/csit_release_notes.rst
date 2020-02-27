@@ -6,15 +6,24 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **Intel Xeon 2n-skx, 3n-skx and 2n-clx testbeds**: VPP performance
-     test data is not included in this report version. This is due to
-     the lower performance and behaviour inconsistency of these
-     systems following the upgrade of processor microcode packages
-     (skx ucode 0x2000064, clx ucode 0x500002c), done as part of
-     updating Ubuntu 18.04 LTS kernel version. Tested VPP and DPDK
-     applications (L3fwd) are affected. Skx and Clx test data will be
-     added in subsequent maintenance report version(s) once the issue
-     is resolved. See :ref:`vpp_known_issues`.
+   - **Intel Xeon 2n-skx, 3n-skx testbeds**: VPP performance test data
+     is not included in this report version. This is due to the lower
+     performance and behaviour inconsistency of these systems
+     following the upgrade of processor microcode packages (skx ucode
+     0x2000064), done as part of updating Ubuntu 18.04 LTS kernel
+     version. Tested VPP and DPDK applications (L3fwd) are affected.
+     Skx test data will be added in subsequent maintenance report
+     version(s) once the issue is resolved. See
+     :ref:`vpp_known_issues`.
+
+   - **Intel Xeon 2n-clx testbeds**: VPP performance test data is now
+     included in this report The resolution is to use latest
+     SuperMicro BIOS 3.2 (for X11DPG-QT motherboards used) that
+     upgrades processor microcode to 0x500002c, AND NOT kernel
+     provided ucode package as it does put system into sub-optimal
+     state. Subset of 2n-clx VPP tests are failing due to clx system
+     behaviour change:  i) all ip4 tests with xxv710 and avf driver
+     and ii) some cx556a rdma tests. See :ref:`vpp_known_issues`.
 
    - **Service density 2n-skx tests**: Added new NF density tests with
      IPsec encryption between DUTs.
@@ -144,4 +153,10 @@ List of known issues in |csit-release| for VPP performance tests:
 | 8  | `CSIT-1675                              | Intel Xeon 2n-skx, 3n-skx and 2n-clx testbeds behaviour and performance became inconsistent following     |
 |    | <https://jira.fd.io/browse/CSIT-1675>`_ | the upgrade to the latest Ubuntu 18.04 LTS kernel version (4.15.0-72-generic) and associated microcode    |
 |    |                                         | packages (skx ucode 0x2000064, clx ucode 0x500002c). VPP as well as DPDK L3fwd tests are affected.        |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 9  | `CSIT-1679                              | All 2n-clx VPP ip4 tests with xxv710 and avf driver are failing.                                          |
+|    | <https://jira.fd.io/browse/CSIT-1679>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 10 | `CSIT-1680                              | Some 2n-clx cx556a rdma tests are failing.                                                                |
+|    | <https://jira.fd.io/browse/CSIT-1680>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
