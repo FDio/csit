@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeb55a41_9f5f78fb",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-27T15:27:30Z",
+      "side": 1,
+      "message": "This is the normalized THE mentioned in the commit message.",
+      "range": {
+        "startLine": 26,
+        "startChar": 17,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "558cf5b26453cabeef8d00a34300cc730182d941",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95f5b4f6_1673e802",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-02-27T15:27:30Z",
+      "side": 1,
+      "message": "I need to reword this, as here [0] I can see 7 successful runs.\n\n[0] https://docs.fd.io/csit/master/report/vpp_performance_tests/packet_throughput_graphs/ip4-2n-clx-xxv710.html",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "558cf5b26453cabeef8d00a34300cc730182d941",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
