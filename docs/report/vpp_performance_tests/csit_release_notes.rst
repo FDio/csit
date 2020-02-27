@@ -23,9 +23,17 @@ Changes in |csit-release|
      to 0x500002c. The resolution is to use latest SuperMicro BIOS 3.2
      (for X11DPG-QT motherboards used) that upgrades processor
      microcode to 0x500002c, AND NOT kernel provided ucode package as
-     it does put system into sub-optimal state. Subset of 2n-clx VPP
-     tests are failing due to clx system behaviour change:  i) all ip4
-     tests with xxv710 and avf driver and ii) some cx556a rdma tests.
+     it does put the system into sub-optimal state.
+
+     Subset of 2n-clx VPP tests are failing:
+
+        i) all ip4 tests within one run, with xxv710 and avf driver
+        ii) some cx556a rdma tests.
+
+     The reasons of the failures are being investigated. Results will be
+     added in subsequent maintenance report version(s) once the issues
+     are resolved.
+
      See :ref:`vpp_known_issues`.
 
    - **Service density 2n-skx tests**: Added new NF density tests with
@@ -102,18 +110,6 @@ Changes in |csit-release|
      replaced with packet latency percentile distributon at different
      background packet loads based on TRex latency hdrhistogram
      measurements.
-
-..
-    // Alternative Note for 1st Bullet when bad microcode Skx, Clx results are published
-    - **Intel Xeon 2n-skx, 3n-skx and 2n-clx testbeds**: VPP performance
-      test data is included in this report version, but it shows lower
-      performance and behaviour inconsistency of these systems
-      following the upgrade of processor microcode packages (skx ucode
-      0x2000064, clx ucode 0x500002c) as part of updating Ubuntu 18.04
-      LTS kernel version. Tested VPP and DPDK applications (L3fwd) are
-      affected. Skx and Clx test data will be corrected in subsequent
-      maintenance report version(s) once the issue is resolved. See
-      :ref:`vpp_known_issues`.
 
 .. raw:: latex
 
