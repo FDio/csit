@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -104,7 +104,7 @@ function download_ubuntu_artifacts () {
     set +x
     for package in ${packages}; do
         # Filter packages with given version
-        pkg_info=$(apt-cache show ${package}) || {
+        pkg_info=$(apt-cache show -- ${package}) || {
             die "apt-cache show on ${package} failed."
         }
         ver=$(echo ${pkg_info} | grep -o "Version: ${VPP_VERSION-}[^ ]*" | \
