@@ -1,7 +1,7 @@
 ---
 # file: roles/wrk/tasks/main.yaml
 
-- name: WRK Install - Install Distribution - Release - Machine Prerequisites
+- name: WRK - Install Distribution - Release - Machine Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
@@ -9,45 +9,42 @@
   tags:
     - install-dependencies
 
-- name: WRK Install - Get Release Archive
+- name: WRK - Get Release Archive
   get_url:
-    url: "https://github.com/wg/wrk/archive/{{ wrk_version }}.tar.gz"
-    dest: "{{ wrk_target_dir }}/{{ wrk_version }}.tar.gz"
+    url: "https://github.com/wg/wrk/archive/{{ item }}.tar.gz"
+    dest: "{{ wrk_target_dir }}/wrk-{{ item }}.tar.gz"
     mode: 0644
+  loop: "{{ wrk_version }}"
   register: wrk_downloaded
   tags:
     - install-wrk
 
-- name: WRK Install - Ensure Directory Exists
-  file:
-    path: "{{ wrk_target_dir }}/wrk-{{ wrk_version }}"
-    state: "directory"
-  register: wrk_dir_created
-  tags:
-    - install-wrk
-
-- name: WRK Install - Extract Release Archive
+- name: WRK - Extract Release Archive
   unarchive:
     remote_src: true
-    src: "{{ wrk_target_dir }}/{{ wrk_version }}.tar.gz"
+    src: "{{ wrk_target_dir }}/wrk-{{ item }}.tar.gz"
     dest: "{{ wrk_target_dir }}/"
-    creates: "{{ wrk_target_dir }}/wrk-{{ wrk_version }}/src"
-  when: wrk_dir_created
+    creates: "{{ wrk_target_dir }}/wrk-{{ item }}/src"
+  loop: "{{ wrk_version }}"
   register: wrk_extracted
   tags:
     - install-wrk
 
-- name: WRK Install - Compile Release
+- name: WRK - Compile Release I
   command: "make"
   args:
-    chdir: "{{ wrk_target_dir }}/wrk-{{ wrk_version }}"
+    chdir: "{{ wrk_target_dir }}/wrk-{{ item }}"
+  async: 1800
+  poll: 15
+  loop: "{{ wrk_version }}"
   when: wrk_extracted
   register: wrk_compiled
   tags:
     - install-wrk
 
-- name: WRK Install - Copy Binary
-  command: "cp {{ wrk_target_dir }}/wrk-{{ wrk_version }}/wrk /usr/local/bin/"
+- name: WRK - Copy Binary
+  command: "cp {{ wrk_target_dir }}/wrk-{{ item }}/wrk /usr/local/bin/"
+  loop: "{{ wrk_version }}"
   when: wrk_compiled
   tags:
     - install-wrk

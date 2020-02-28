@@ -25,4 +25,6 @@ packages_by_arch:
     - []
 
 trex_target_dir: "/opt"
-trex_version: "2.73"
+trex_version:
+  - "2.53"
+  - "2.73"
