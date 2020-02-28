@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP4FWD | BASE | IP4BASE | 1TAP | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethicmpv4-ip4base-eth-1tap
 |
 | Suite Setup | Setup suite single link | scapy
@@ -43,6 +44,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${overhead}= | ${0}
 | ${tap1_VPP_ip}= | 16.0.10.1
 | ${tap1_NM_ip}= | 16.0.10.2

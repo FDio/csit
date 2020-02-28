@@ -18,6 +18,7 @@
 | ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
 | ... | LBOND_2L | NF_TESTPMD | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | 2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
 |
 | Suite Setup | Setup suite double link | performance
@@ -58,6 +59,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${4}
 | ${subid}= | 10

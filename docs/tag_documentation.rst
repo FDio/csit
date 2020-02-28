@@ -615,6 +615,16 @@ Interface Tags
     All test cases which uses rdma-core device driver. It supports Mellanox
     NIC adapters.
 
+.. topic:: RXQ_SIZE_{n}
+
+   All test cases which RXQ size (RX descriptors) are set to {n}. Default is 0,
+   which means VPP (API) default.
+
+.. topic:: TXQ_SIZE_{n}
+
+   All test cases which TXQ size (TX descriptors) are set to {n}. Default is 0,
+   which means VPP (API) default.
+
 Feature Tags
 ------------
 

@@ -15,7 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | DRV_VFIO_PCI | GBP
+| ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | GBP
 | ... | dot1q-l2bdbasemaclrn-gbp
 |
 | Suite Setup | Setup suite single link | performance
@@ -60,6 +61,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${4}
 # Traffic profile:

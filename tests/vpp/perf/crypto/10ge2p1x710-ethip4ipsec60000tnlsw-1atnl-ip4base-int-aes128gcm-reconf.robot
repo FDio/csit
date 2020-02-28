@@ -18,6 +18,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | RECONF | TNL_60000
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
 | ... | AES_128_GCM | AES | 1_ADDED_TUNNEL | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128gcm
 |
 | Suite Setup | Setup suite single link | performance
@@ -55,6 +56,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${54}
 | ${tg_if1_ip4}= | 192.168.10.2

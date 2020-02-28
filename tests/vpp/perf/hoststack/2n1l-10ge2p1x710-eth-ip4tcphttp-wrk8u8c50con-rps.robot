@@ -19,7 +19,8 @@
 | Resource | resources/libraries/robot/hoststack/tcp_setup.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | HTTP | TCP | TCP_RPS | NIC_Intel-X710 | DRV_VFIO_PCI | IMIX
+| ... | HTTP | TCP | TCP_RPS | NIC_Intel-X710 | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | IMIX
 | ... | eth-ip4tcphttp-wrk8u8c50con
 |
 | Suite Setup | Setup suite single link | wrk
@@ -44,6 +45,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${overhead}= | ${0}
 | ${frame_size}= | IMIX_v4_1
 | ${traffic_profile}= | wrk-sf-2n-ethip4tcphttp-8u8c50con-rps

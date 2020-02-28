@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,6 +18,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | IP4FWD | LISP_IP4o4 | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4lisp-ip4base
 |
 | Suite Setup | Setup suite single link | scapy
@@ -47,6 +48,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${overhead}= | ${54}
 
 *** Keywords ***
