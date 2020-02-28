@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP6FWD | BASE | MEMIF | DOCKER | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethipv6-ip6base-eth-2memif-1dcr
 |
 | Suite Setup | Setup suite single link | scapy
@@ -45,6 +46,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${overhead}= | ${0}
 # Container
 | ${container_engine}= | Docker

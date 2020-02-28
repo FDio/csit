@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP4FWD | BASE | DOT1Q | IP4BASE | DRV_AVF
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | avf-dot1qip4-l2bdbasemaclrn
 |
 | Suite Setup | Setup suite single link | avf | scapy
@@ -43,6 +44,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | avf
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${overhead}= | ${4}
 
 *** Keywords ***
