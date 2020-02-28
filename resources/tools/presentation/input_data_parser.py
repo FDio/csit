@@ -459,9 +459,9 @@ class ExecutionChecker(ResultVisitor):
 
         try:
             out_msg = (
-                f"1. {(data[u'ndr_low'] / 1e6):.2f}      "
+                f"1. {(data[u'ndr_low'] / 1e6):5.2f}      "
                 f"{data[u'ndr_low_b']:.2f}"
-                f"\n2. {(data[u'pdr_low'] / 1e6):.2f}      "
+                f"\n2. {(data[u'pdr_low'] / 1e6):5.2f}      "
                 f"{data[u'pdr_low_b']:.2f}"
             )
             latency = (
@@ -471,16 +471,30 @@ class ExecutionChecker(ResultVisitor):
             )
             if all(latency):
                 max_len = len(str(max((max(item) for item in latency))))
+                max_len = 4 if max_len < 4 else max_len
 
                 for idx, lat in enumerate(latency):
                     if not idx:
                         out_msg += u"\n"
-                    out_msg += f"\n{idx + 3}. "
-                    for count, itm in enumerate(lat):
-                        if count == 3:
-                            out_msg += u" " * 6
-                        out_msg += u" " * (max_len - len(str(itm)) + 1)
-                        out_msg += str(itm)
+                    out_msg += (
+                        f"\n{idx + 3}. "
+                        f"{lat[0]:{max_len}d} "
+                        f"{lat[1]:{max_len}d} "
+                        f"{lat[2]:{max_len}d}      "
+                        f"{lat[3]:{max_len}d} "
+                        f"{lat[4]:{max_len}d} "
+                        f"{lat[5]:{max_len}d} "
+                    )
+
+                # for idx, lat in enumerate(latency):
+                #     if not idx:
+                #         out_msg += u"\n"
+                #     out_msg += f"\n{idx + 3}."
+                #     for count, itm in enumerate(lat):
+                #         if count == 3:
+                #             out_msg += u" " * 6
+                #         out_msg += u" " * (max_len - len(str(itm)) + 1)
+                #         out_msg += str(itm)
 
             return out_msg
 
