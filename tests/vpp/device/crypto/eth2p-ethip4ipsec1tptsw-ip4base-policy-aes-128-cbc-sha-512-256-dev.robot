@@ -17,6 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | IP4FWD | IPSEC | IPSECSW | IPSECTPT | IP4BASE
 | ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec1tptsw-ip4base-policy-aes-128-cbc-sha-512-256
 |
 | Suite Setup | Setup suite single link | scapy
@@ -42,6 +43,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${overhead}= | ${54}
 | ${tg_spi}= | ${1000}
 | ${dut_spi}= | ${1001}

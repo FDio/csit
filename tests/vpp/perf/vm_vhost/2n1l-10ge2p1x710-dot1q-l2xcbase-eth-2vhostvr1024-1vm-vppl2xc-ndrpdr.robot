@@ -17,6 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST | 1VM | VHOST_1024
 | ... | NF_VPPL2XC | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
 |
 | Suite Setup | Setup suite single link | performance
@@ -54,6 +55,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${4}
 | ${subid}= | 10
