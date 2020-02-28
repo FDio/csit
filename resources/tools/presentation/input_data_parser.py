@@ -460,9 +460,9 @@ class ExecutionChecker(ResultVisitor):
         try:
             out_msg = (
                 f"1. {(data[u'ndr_low'] / 1e6):5.2f}      "
-                f"{data[u'ndr_low_b']:.2f}"
+                f"{data[u'ndr_low_b']:5.2f}"
                 f"\n2. {(data[u'pdr_low'] / 1e6):5.2f}      "
-                f"{data[u'pdr_low_b']:.2f}"
+                f"{data[u'pdr_low_b']:5.2f}"
             )
             latency = (
                 _process_lat(data[u'pdr_lat_10_1'], data[u'pdr_lat_10_2']),
