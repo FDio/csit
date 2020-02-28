@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -188,7 +188,7 @@ class Specification:
         generated.
 
         :returns: List of specifications of Continuous Performance Trending and
-        Analysis to be generated.
+            Analysis to be generated.
         :rtype: list
         """
         return self._specification[u"cpta"]
@@ -196,10 +196,13 @@ class Specification:
     def set_input_state(self, job, build_nr, state):
         """Set the state of input
 
-        :param job:
-        :param build_nr:
-        :param state:
-        :return:
+        :param job: Job name.
+        :param build_nr: Build number.
+        :param state: The new input state.
+        :type job: str
+        :type build_nr: int
+        :type state: str
+        :raises: PresentationError if wrong job and/or build is provided.
         """
 
         try:
@@ -221,10 +224,13 @@ class Specification:
     def set_input_file_name(self, job, build_nr, file_name):
         """Set the state of input
 
-        :param job:
-        :param build_nr:
-        :param file_name:
-        :return:
+        :param job: Job name.
+        :param build_nr: Build number.
+        :param file_name: The new file name.
+        :type job: str
+        :type build_nr: int
+        :type file_name: str
+        :raises: PresentationError if wrong job and/or build is provided.
         """
 
         try:
@@ -254,7 +260,7 @@ class Specification:
          - lastCompletedBuild
         :type job" str
         :raises PresentationError: If it is not possible to get the build
-        number.
+            number.
         :returns: The build number.
         :rtype: int
         """
@@ -287,7 +293,7 @@ class Specification:
         specification YAML file.
 
         :param item_type: Item type: Top level items in specification YAML file,
-        e.g.: environment, input, output.
+            e.g.: environment, input, output.
         :type item_type: str
         :returns: Index of the given item type.
         :rtype: int
@@ -321,14 +327,14 @@ class Specification:
 
         :param data: The data where the tags will be replaced by their values.
         :param src_data: Data where the tags are defined. It is dictionary where
-        the key is the tag and the value is the tag value. If not given, 'data'
-        is used instead.
-        :type data: str or dict
+            the key is the tag and the value is the tag value. If not given,
+            'data' is used instead.
+        :type data: str, list or dict
         :type src_data: dict
         :returns: Data with the tags replaced.
-        :rtype: str or dict
+        :rtype: str, list or dict
         :raises: PresentationError if it is not possible to replace the tag or
-        the data is not the supported data type (str, dict).
+            the data is not the supported data type (str, list or dict).
         """
 
         if src_data is None:
@@ -338,8 +344,15 @@ class Specification:
             tag = self._find_tag(data)
             if tag is not None:
                 data = data.replace(tag, src_data[tag[1:-1]])
+            return data
 
-        elif isinstance(data, dict):
+        if isinstance(data, list):
+            new_list = list()
+            for item in data:
+                new_list.append(self._replace_tags(item, src_data))
+            return new_list
+
+        if isinstance(data, dict):
             counter = 0
             for key, value in data.items():
                 tag = self._find_tag(value)
@@ -353,10 +366,9 @@ class Specification:
                         )
             if counter:
                 self._replace_tags(data, src_data)
-        else:
-            raise PresentationError(u"Replace tags: Not supported data type.")
+            return data
 
-        return data
+        raise PresentationError(u"Replace tags: Not supported data type.")
 
     def _parse_env(self):
         """Parse environment specification in the specification YAML file.
@@ -774,6 +786,19 @@ class Specification:
                         f"Data set {data_set} is not defined in the "
                         f"configuration section."
                     )
+            elif isinstance(element.get(u"data", None), list):
+                new_list = list()
+                for item in element[u"data"]:
+                    try:
+                        new_list.append(
+                            self.configuration[u"data-sets"][item]
+                        )
+                    except KeyError:
+                        raise PresentationError(
+                            f"Data set {item} is not defined in the "
+                            f"configuration section."
+                        )
+                element[u"data"] = new_list
 
             # Parse elements:
             if element[u"type"] == u"table":
@@ -809,14 +834,14 @@ class Specification:
         """Parse specification in the specification YAML file.
 
         :raises: PresentationError if an error occurred while parsing the
-        specification file.
+            specification file.
         """
         try:
             self._cfg_yaml = load(self._cfg_file, Loader=FullLoader)
         except YAMLError as err:
             raise PresentationError(msg=u"An error occurred while parsing the "
                                         u"specification file.",
-                                    details=str(err))
+                                    details=repr(err))
 
         self._parse_env()
         self._parse_configuration()
