@@ -98,10 +98,10 @@ def table_oper_data_html(table, input_data):
     data = input_data.merge_data(data)
 
     sort_tests = table.get(u"sort", None)
-    if sort_tests and sort_tests in (u"ascending", u"descending"):
+    if sort_tests:
         args = dict(
             inplace=True,
-            ascending=True if sort_tests == u"ascending" else False
+            ascending=(sort_tests == u"ascending")
         )
         data.sort_index(**args)
 
@@ -173,7 +173,7 @@ def table_oper_data_html(table, input_data):
             u"Average Vector Size"
         )
 
-        for dut_name, dut_data in tst_data[u"show-run"].items():
+        for dut_data in tst_data[u"show-run"].values:
             trow = ET.SubElement(
                 tbl, u"tr", attrib=dict(bgcolor=colors[u"header"])
             )
@@ -183,15 +183,7 @@ def table_oper_data_html(table, input_data):
             if dut_data.get(u"threads", None) is None:
                 tcol.text = u"No Data"
                 continue
-            # bold = ET.SubElement(tcol, u"b")
-            # bold.text = dut_name
-            #
-            # trow = ET.SubElement(
-            #     tbl, u"tr", attrib=dict(bgcolor=colors[u"body"][0])
-            # )
-            # tcol = ET.SubElement(
-            #     trow, u"td", attrib=dict(align=u"left", colspan=u"6")
-            # )
+
             bold = ET.SubElement(tcol, u"b")
             bold.text = (
                 f"Host IP: {dut_data.get(u'host', '')}, "
@@ -304,10 +296,10 @@ def table_merged_details(table, input_data):
     data = input_data.merge_data(data)
 
     sort_tests = table.get(u"sort", None)
-    if sort_tests and sort_tests in (u"ascending", u"descending"):
+    if sort_tests:
         args = dict(
             inplace=True,
-            ascending=True if sort_tests == u"ascending" else False
+            ascending=(sort_tests == u"ascending")
         )
         data.sort_index(**args)
 
@@ -658,8 +650,8 @@ def table_perf_comparison(table, input_data):
                 for tst_name, tst_data in rpl_data[job][str(build)].items():
                     tst_name_mod = _tpc_modify_test_name(tst_name)
                     if (u"across topologies" in table[u"title"].lower() or
-                        (u" 3n-" in table[u"title"].lower() and
-                         u" 2n-" in table[u"title"].lower())):
+                            (u" 3n-" in table[u"title"].lower() and
+                             u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         name = \
@@ -687,8 +679,8 @@ def table_perf_comparison(table, input_data):
             for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = _tpc_modify_test_name(tst_name)
                 if (u"across topologies" in table[u"title"].lower() or
-                    (u" 3n-" in table[u"title"].lower() and
-                     u" 2n-" in table[u"title"].lower())):
+                        (u" 3n-" in table[u"title"].lower() and
+                         u" 2n-" in table[u"title"].lower())):
                     tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                 if tbl_dict.get(tst_name_mod, None) is None:
                     groups = re.search(REGEX_NIC, tst_data[u"parent"])
@@ -719,8 +711,8 @@ def table_perf_comparison(table, input_data):
                 for tst_name, tst_data in rpl_data[job][str(build)].items():
                     tst_name_mod = _tpc_modify_test_name(tst_name)
                     if (u"across topologies" in table[u"title"].lower() or
-                        (u" 3n-" in table[u"title"].lower() and
-                         u" 2n-" in table[u"title"].lower())):
+                            (u" 3n-" in table[u"title"].lower() and
+                             u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         name = \
@@ -749,8 +741,8 @@ def table_perf_comparison(table, input_data):
                 for tst_name, tst_data in data[job][str(build)].items():
                     tst_name_mod = _tpc_modify_test_name(tst_name)
                     if (u"across topologies" in table[u"title"].lower() or
-                        (u" 3n-" in table[u"title"].lower() and
-                         u" 2n-" in table[u"title"].lower())):
+                            (u" 3n-" in table[u"title"].lower() and
+                             u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         continue
@@ -903,8 +895,8 @@ def table_perf_comparison_nic(table, input_data):
                     continue
                 tst_name_mod = _tpc_modify_test_name(tst_name)
                 if (u"across topologies" in table[u"title"].lower() or
-                    (u" 3n-" in table[u"title"].lower() and
-                     u" 2n-" in table[u"title"].lower())):
+                        (u" 3n-" in table[u"title"].lower() and
+                         u" 2n-" in table[u"title"].lower())):
                     tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                 if tbl_dict.get(tst_name_mod, None) is None:
                     name = f"{u'-'.join(tst_data[u'name'].split(u'-')[:-1])}"
@@ -934,8 +926,8 @@ def table_perf_comparison_nic(table, input_data):
                         continue
                     tst_name_mod = _tpc_modify_test_name(tst_name)
                     if (u"across topologies" in table[u"title"].lower() or
-                        (u" 3n-" in table[u"title"].lower() and
-                         u" 2n-" in table[u"title"].lower())):
+                            (u" 3n-" in table[u"title"].lower() and
+                             u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         name = \
@@ -965,8 +957,8 @@ def table_perf_comparison_nic(table, input_data):
                     continue
                 tst_name_mod = _tpc_modify_test_name(tst_name)
                 if (u"across topologies" in table[u"title"].lower() or
-                    (u" 3n-" in table[u"title"].lower() and
-                     u" 2n-" in table[u"title"].lower())):
+                        (u" 3n-" in table[u"title"].lower() and
+                         u" 2n-" in table[u"title"].lower())):
                     tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                 if tbl_dict.get(tst_name_mod, None) is None:
                     name = f"{u'-'.join(tst_data[u'name'].split(u'-')[:-1])}"
@@ -996,8 +988,8 @@ def table_perf_comparison_nic(table, input_data):
                         continue
                     tst_name_mod = _tpc_modify_test_name(tst_name)
                     if (u"across topologies" in table[u"title"].lower() or
-                        (u" 3n-" in table[u"title"].lower() and
-                         u" 2n-" in table[u"title"].lower())):
+                            (u" 3n-" in table[u"title"].lower() and
+                             u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         name = \
@@ -1028,8 +1020,8 @@ def table_perf_comparison_nic(table, input_data):
                         continue
                     tst_name_mod = _tpc_modify_test_name(tst_name)
                     if (u"across topologies" in table[u"title"].lower() or
-                        (u" 3n-" in table[u"title"].lower() and
-                         u" 2n-" in table[u"title"].lower())):
+                            (u" 3n-" in table[u"title"].lower() and
+                             u" 2n-" in table[u"title"].lower())):
                         tst_name_mod = tst_name_mod.replace(u"2n1l-", u"")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         continue
