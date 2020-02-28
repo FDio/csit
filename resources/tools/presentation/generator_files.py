@@ -14,6 +14,7 @@
 """Algorithms to generate files.
 """
 
+from collections import OrderedDict
 
 import logging
 
@@ -75,6 +76,156 @@ def _tests_in_suite(suite_name, tests):
 
 
 def file_test_results(file_spec, input_data, frmt=u"rst"):
+    """Generate the file(s) with algorithms
+    - file_test_results
+    specified in the specification file.
+
+    :param file_spec: File to generate.
+    :param input_data: Data to process.
+    :param frmt: Format can be: rst or html
+    :type file_spec: pandas.Series
+    :type input_data: InputData
+    :type frmt: str
+    """
+
+    fileset_file_name = f"{file_spec[u'output-file']}"
+    rst_header = (
+        u"\n"
+        u".. |br| raw:: html\n\n    <br />\n\n\n"
+        u".. |prein| raw:: html\n\n    <pre>\n\n\n"
+        u".. |preout| raw:: html\n\n    </pre>\n\n"
+    )
+    start_lvl = file_spec.get(u"data-start-level", 4)
+
+    logging.info(f"  Generating the file set {fileset_file_name} ...")
+
+    data_sets = file_spec.get(u"data", None)
+    if not data_sets:
+        logging.error(
+            f"  No data sets specified for {file_spec[u'output-file']}, exit."
+        )
+        return
+
+    table_sets = file_spec.get(u"dir-tables", None)
+    if not table_sets:
+        logging.error(
+            f"  No table sets specified for {file_spec[u'output-file']}, exit."
+        )
+        return
+
+    if len(data_sets) != len(table_sets):
+        logging.error(
+            f"  The number of data sets and the number of table sets for "
+            f"{file_spec[u'output-file']} are not equal, exit."
+        )
+        return
+
+    chapters = OrderedDict()
+    for data_set, table_set in zip(data_sets, table_sets):
+        print(data_set)
+        print(table_set)
+
+        logging.info(f"    Processing the table set {table_set}...")
+
+        if frmt == u"html":
+            table_lst = get_files(table_set, u".rst", full_path=True)
+        elif frmt == u"rst":
+            table_lst = get_files(table_set, u".csv", full_path=True)
+        else:
+            return
+        if not table_lst:
+            logging.error(
+                f"    No tables to include in {table_set}. Skipping."
+            )
+            return
+
+        logging.info(u"    Creating the test data set...")
+        tests = input_data.filter_data(
+            element=file_spec,
+            params=[u"name", u"parent", u"doc", u"type", u"level"],
+            data=data_set,
+            data_set=u"tests",
+            continue_on_error=True
+        )
+        if tests.empty:
+            return
+        tests = input_data.merge_data(tests)
+
+        logging.info(u"    Creating the suite data set...")
+        suites = input_data.filter_data(
+            element=file_spec,
+            data=data_set,
+            continue_on_error=True,
+            data_set=u"suites"
+        )
+        if suites.empty:
+            return
+        suites = input_data.merge_data(suites)
+        suites.sort_index(inplace=True)
+
+        logging.info(u"    Generating files...")
+
+        file_name = u""
+        sub_chapter = u"-".join(table_set.split(u"_")[-2:])
+        for suite_longname, suite in suites.items():
+
+            suite_lvl = len(suite_longname.split(u"."))
+            if suite_lvl < start_lvl:
+                # Not interested in this suite
+                continue
+
+            if suite_lvl == start_lvl:
+                # Our top-level suite
+                chapter = suite_longname.split(u'.')[-1]
+                file_name = f"{table_set}/{chapter}.rst"
+                logging.info(f"    Writing file {file_name}")
+                with open(file_name, u"a") as file_handler:
+                    file_handler.write(rst_header)
+                if chapters.get(chapter, None) is None:
+                    chapters[chapter] = list()
+                chapters[chapter].append((sub_chapter, file_name))
+
+            title_line = get_rst_title_char(suite[u"level"] - start_lvl + 2) * \
+                len(suite[u"name"])
+            with open(file_name, u"a") as file_handler:
+                if not (u"-ndrpdr" in suite[u"name"] or
+                        u"-mrr" in suite[u"name"] or
+                        u"-dev" in suite[u"name"]):
+                    file_handler.write(f"\n{suite[u'name']}\n{title_line}\n")
+
+                if _tests_in_suite(suite[u"name"], tests):
+                    for tbl_file in table_lst:
+                        if suite[u"name"] in tbl_file:
+                            file_handler.write(
+                                f"\n{suite[u'name']}\n{title_line}\n"
+                            )
+                            file_handler.write(
+                                f"\n{suite[u'doc']}\n".
+                                replace(u'|br|', u'\n\n -')
+                            )
+                            if frmt == u"html":
+                                file_handler.write(
+                                    f"\n.. include:: {tbl_file.split(u'/')[-1]}"
+                                    f"\n"
+                                )
+                            elif frmt == u"rst":
+                                file_handler.write(
+                                    RST_INCLUDE_TABLE.format(
+                                        file_latex=tbl_file,
+                                        file_html=tbl_file.split(u"/")[-1])
+                                )
+                            break
+    print(chapters)
+
+
+
+
+
+
+
+
+
+def file_test_results_old(file_spec, input_data, frmt=u"rst"):
     """Generate the file(s) with algorithms
     - file_test_results
     specified in the specification file.
