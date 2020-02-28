@@ -17,6 +17,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | SCALE | L2BD_10 | DOT1Q | VLAN_10
 | ... | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY | VXLAN_10 | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 |
 | Suite Setup | Setup suite single link | performance
@@ -53,6 +54,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${50}
 # Traffic profile:

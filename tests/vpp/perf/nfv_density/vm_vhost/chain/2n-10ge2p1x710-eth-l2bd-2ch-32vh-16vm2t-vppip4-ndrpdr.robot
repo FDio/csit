@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 2R8C | 16VM2T
 | ... | eth-l2bd-2ch-32vh-16vm2t-vppip4
 |
@@ -54,6 +55,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${1}

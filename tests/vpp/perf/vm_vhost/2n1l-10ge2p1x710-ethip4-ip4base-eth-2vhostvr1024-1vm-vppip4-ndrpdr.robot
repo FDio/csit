@@ -17,6 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | VHOST | 1VM | VHOST_1024
 | ... | NF_VPPIP4 | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
 |
 | Suite Setup | Setup suite single link | performance
@@ -53,6 +54,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${1}

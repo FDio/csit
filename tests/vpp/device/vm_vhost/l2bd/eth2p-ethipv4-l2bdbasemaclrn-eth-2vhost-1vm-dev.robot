@@ -17,6 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | VHOST | 1VM
 | ... | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethipv4-l2bdbasemaclrn-eth-2vhost-1vm
 |
 | Suite Setup | Setup suite single link | scapy
@@ -46,6 +47,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${overhead}= | ${0}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
