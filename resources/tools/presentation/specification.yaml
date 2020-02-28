@@ -444,6 +444,7 @@
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
@@ -586,12 +587,14 @@
         - 70  # NDRPDR full
         - 72  # NDRPDR full
         - 73  # NDRPDR full
+        - 76  # NDRPDR full
         - 77  # NDRPDR full
         - 78  # NDRPDR full
         - 79  # NDRPDR full
         - 81  # NDRPDR full
         - 82  # NDRPDR full
         - 84  # NDRPDR full
+        - 85  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       # TODO: Replace
@@ -918,6 +921,7 @@
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
     vpp-performance-changes-3n-tsh:
       - "vpp-performance-changes-3n-tsh-ref"
       - "vpp-performance-changes-3n-tsh-cmp"
@@ -2112,12 +2116,14 @@
       - 70  # NDRPDR full
       - 72  # NDRPDR full
       - 73  # NDRPDR full
+      - 76  # NDRPDR full
       - 77  # NDRPDR full
       - 78  # NDRPDR full
       - 79  # NDRPDR full
       - 81  # NDRPDR full
       - 82  # NDRPDR full
       - 84  # NDRPDR full
+      - 85  # NDRPDR full
 
 #    csit-vpp-perf-verify-1904-3n-skx:
 #      - 7   # MRR sel
@@ -2253,6 +2259,7 @@
       - 12  # NDRPDR sel
       - 13  # NDRPDR sel
       - 14  # NDRPDR sel
+      - 15  # NDRPDR sel
       - 9   # MRR sel
 
     csit-vpp-perf-verify-1908-3n-dnv:
