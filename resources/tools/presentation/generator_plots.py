@@ -314,8 +314,8 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                            filename=file_name)
                 # Add link to the file:
                 if file_links and target_links:
-                    with open(file_links, u"a") as fw:
-                        fw.write(
+                    with open(file_links, u"a") as file_handler:
+                        file_handler.write(
                             f"- `{name_link} "
                             f"<{target_links}/{file_name.split(u'/')[-1]}>`_\n"
                         )

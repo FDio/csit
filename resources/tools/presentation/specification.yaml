@@ -33,6 +33,7 @@
     DIR[DTR,PERF,DPDK,2N,DNV]: "{DIR[DTR]}/dpdk_performance_results_2n_dnv"
     DIR[DTR,PERF,DPDK,3N,DNV]: "{DIR[DTR]}/dpdk_performance_results_3n_dnv"
     DIR[DTR,PERF,DPDK,3N,TSH]: "{DIR[DTR]}/dpdk_performance_results_3n_tsh"
+    DIR[DTR,PERF,VPP,ALL]: "{DIR[DTR]}/vpp_performance_results"
     DIR[DTR,PERF,VPP,3N,HSW]: "{DIR[DTR]}/vpp_performance_results_3n_hsw"
     DIR[DTR,PERF,VPP,3N,SKX]: "{DIR[DTR]}/vpp_performance_results_3n_skx"
     DIR[DTR,PERF,VPP,2N,SKX]: "{DIR[DTR]}/vpp_performance_results_2n_skx"
@@ -40,6 +41,7 @@
     DIR[DTR,PERF,VPP,3N,TSH]: "{DIR[DTR]}/vpp_performance_results_3n_tsh"
     DIR[DTR,PERF,VPP,3N,DNV]: "{DIR[DTR]}/vpp_performance_results_3n_dnv"
     DIR[DTR,PERF,VPP,2N,DNV]: "{DIR[DTR]}/vpp_performance_results_2n_dnv"
+    DIR[DTR,MRR,VPP,ALL]: "{DIR[DTR]}/vpp_mrr_results"
     DIR[DTR,MRR,VPP,3N,HSW]: "{DIR[DTR]}/vpp_mrr_results_3n_hsw"
     DIR[DTR,MRR,VPP,3N,SKX]: "{DIR[DTR]}/vpp_mrr_results_3n_skx"
     DIR[DTR,MRR,VPP,2N,SKX]: "{DIR[DTR]}/vpp_mrr_results_2n_skx"
@@ -49,10 +51,10 @@
     DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
     DIR[DTR,PERF,COT,3N,HSW]: "{DIR[DTR]}/cot_performance_results_3n_hsw"
     DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
-    DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
 
     # Detailed test configurations
     DIR[DTC]: "{DIR[WORKING,SRC]}/test_configuration"
+    DIR[DTC,PERF,VPP,ALL]: "{DIR[DTC]}/vpp_performance_configuration"
     DIR[DTC,PERF,VPP,3N,HSW]: "{DIR[DTC]}/vpp_performance_configuration_3n_hsw"
     DIR[DTC,PERF,VPP,3N,SKX]: "{DIR[DTC]}/vpp_performance_configuration_3n_skx"
     DIR[DTC,PERF,VPP,2N,SKX]: "{DIR[DTC]}/vpp_performance_configuration_2n_skx"
@@ -60,6 +62,7 @@
     DIR[DTC,PERF,VPP,3N,TSH]: "{DIR[DTC]}/vpp_performance_configuration_3n_tsh"
     DIR[DTC,PERF,VPP,3N,DNV]: "{DIR[DTC]}/vpp_performance_configuration_3n_dnv"
     DIR[DTC,PERF,VPP,2N,DNV]: "{DIR[DTC]}/vpp_performance_configuration_2n_dnv"
+    DIR[DTC,MRR,VPP,ALL]: "{DIR[DTC]}/vpp_mrr_configuration_3n_hsw"
     DIR[DTC,MRR,VPP,3N,HSW]: "{DIR[DTC]}/vpp_mrr_configuration_3n_hsw"
     DIR[DTC,MRR,VPP,3N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_3n_skx"
     DIR[DTC,MRR,VPP,2N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_2n_skx"
@@ -71,6 +74,7 @@
 
     # Detailed tests operational data
     DIR[DTO]: "{DIR[WORKING,SRC]}/test_operational_data"
+    DIR[DTO,PERF,VPP,ALL]: "{DIR[DTO]}/vpp_performance_operational_data"
     DIR[DTO,PERF,VPP,3N,HSW]: "{DIR[DTO]}/vpp_performance_operational_data_3n_hsw"
     DIR[DTO,PERF,VPP,3N,SKX]: "{DIR[DTO]}/vpp_performance_operational_data_3n_skx"
     DIR[DTO,PERF,VPP,2N,SKX]: "{DIR[DTO]}/vpp_performance_operational_data_2n_skx"
@@ -5535,355 +5539,235 @@
 ###                                F I L E S                                 ###
 ################################################################################
 
-# VPP Performance Results 3n-hsw
+# VPP Performance Results
 - type: "file"
-  title: "VPP Performance Results 3n-hsw"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,PERF,VPP,3N,HSW]}"
-  dir-tables: "{DIR[DTR,PERF,VPP,3N,HSW]}"
-  data: "vpp-perf-results-3n-hsw"
+  title: "VPP Performance Results"
+  algorithm: "file_details_split"
+  output-file: "{DIR[DTR,PERF,VPP,ALL]}"
+  dir-tables:
+#    - "{DIR[DTR,PERF,VPP,2N,SKX]}"
+#    - "{DIR[DTR,PERF,VPP,3N,SKX]}"
+    - "{DIR[DTR,PERF,VPP,2N,CLX]}"
+    - "{DIR[DTR,PERF,VPP,3N,HSW]}"
+    - "{DIR[DTR,PERF,VPP,3N,TSH]}"
+    - "{DIR[DTR,PERF,VPP,2N,DNV]}"
+    - "{DIR[DTR,PERF,VPP,3N,DNV]}"
+  data:
+#    - "vpp-perf-results-2n-skx"
+#    - "vpp-perf-results-3n-skx"
+    - "vpp-perf-results-2n-clx"
+    - "vpp-perf-results-3n-hsw"
+    - "vpp-perf-results-3n-tsh"
+    - "vpp-perf-results-2n-dnv"
+    - "vpp-perf-results-3n-dnv"
   filter: "all"
   data-start-level: 4
+  order-chapters:
+    - "l2"
+    - "ip4"
+    - "ip6"
+    - "srv6"
+    - "ip4_tunnels"
+    - "ip6_tunnels"
+    - "vm_vhost"
+    - "container_memif"
+    - "crypto"
+    - "vts"
+    - "lb"
+    - "nfv_density"
+    - "hoststack"
+  order-sub-chapters:
+    - "2n-skx"
+    - "3n-skx"
+    - "2n-clx"
+    - "3n-hsw"
+    - "3n-tsh"
+    - "2n-dnv"
+    - "3n-dnv"
 
-## VPP Performance Results 3n-skx
-#- type: "file"
-#  title: "VPP Performance Results 3n-skx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTR,PERF,VPP,3N,SKX]}"
-#  dir-tables: "{DIR[DTR,PERF,VPP,3N,SKX]}"
-#  data: "vpp-perf-results-3n-skx"
-#  filter: "all"
-#  data-start-level: 4
-#
-## VPP Performance Results 2n-skx
-#- type: "file"
-#  title: "VPP Performance Results 2n-skx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTR,PERF,VPP,2N,SKX]}"
-#  dir-tables: "{DIR[DTR,PERF,VPP,2N,SKX]}"
-#  data: "vpp-perf-results-2n-skx"
-#  filter: "all"
-#  data-start-level: 4
-
-# VPP Performance Results 2n-clx
+# VPP Performance Configuration
 - type: "file"
-  title: "VPP Performance Results 2n-clx"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,PERF,VPP,2N,CLX]}"
-  dir-tables: "{DIR[DTR,PERF,VPP,2N,CLX]}"
-  data: "vpp-perf-results-2n-clx"
+  title: "VPP Performance Configuration"
+  algorithm: "file_details_split"
+  output-file: "{DIR[DTC,PERF,VPP,ALL]}"
+  dir-tables:
+#    - "{DIR[DTC,PERF,VPP,2N,SKX]}"
+#    - "{DIR[DTC,PERF,VPP,3N,SKX]}"
+    - "{DIR[DTC,PERF,VPP,2N,CLX]}"
+    - "{DIR[DTC,PERF,VPP,3N,HSW]}"
+    - "{DIR[DTC,PERF,VPP,3N,TSH]}"
+    - "{DIR[DTC,PERF,VPP,2N,DNV]}"
+    - "{DIR[DTC,PERF,VPP,3N,DNV]}"
+  data:
+#    - "vpp-perf-results-2n-skx"
+#    - "vpp-perf-results-3n-skx"
+    - "vpp-perf-results-2n-clx"
+    - "vpp-perf-results-3n-hsw"
+    - "vpp-perf-results-3n-tsh"
+    - "vpp-perf-results-2n-dnv"
+    - "vpp-perf-results-3n-dnv"
   filter: "all"
   data-start-level: 4
+  order-chapters:
+    - "l2"
+    - "ip4"
+    - "ip6"
+    - "srv6"
+    - "ip4_tunnels"
+    - "ip6_tunnels"
+    - "vm_vhost"
+    - "container_memif"
+    - "crypto"
+    - "vts"
+    - "lb"
+    - "nfv_density"
+    - "hoststack"
+  order-sub-chapters:
+    - "2n-skx"
+    - "3n-skx"
+    - "2n-clx"
+    - "3n-hsw"
+    - "3n-tsh"
+    - "2n-dnv"
+    - "3n-dnv"
 
-# VPP Performance Results 3n-tsh
+# VPP Performance Operational
 - type: "file"
-  title: "VPP Performance Results 3n-tsh"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,PERF,VPP,3N,TSH]}"
-  dir-tables: "{DIR[DTR,PERF,VPP,3N,TSH]}"
-  data: "vpp-perf-results-3n-tsh"
+  title: "VPP Performance Operational"
+  algorithm: "file_details_split_html"
+  output-file: "{DIR[DTO,PERF,VPP,ALL]}"
+  dir-tables:
+#    - "{DIR[DTO,PERF,VPP,2N,SKX]}"
+#    - "{DIR[DTO,PERF,VPP,3N,SKX]}"
+    - "{DIR[DTO,PERF,VPP,2N,CLX]}"
+    - "{DIR[DTO,PERF,VPP,3N,HSW]}"
+    - "{DIR[DTO,PERF,VPP,3N,TSH]}"
+    - "{DIR[DTO,PERF,VPP,2N,DNV]}"
+    - "{DIR[DTO,PERF,VPP,3N,DNV]}"
+  data:
+#    - "vpp-perf-results-2n-skx"
+#    - "vpp-perf-results-3n-skx"
+    - "vpp-perf-results-2n-clx"
+    - "vpp-perf-results-3n-hsw"
+    - "vpp-perf-results-3n-tsh"
+    - "vpp-perf-results-2n-dnv"
+    - "vpp-perf-results-3n-dnv"
   filter: "all"
   data-start-level: 4
+  order-chapters:
+    - "l2"
+    - "ip4"
+    - "ip6"
+    - "srv6"
+    - "ip4_tunnels"
+    - "ip6_tunnels"
+    - "vm_vhost"
+    - "container_memif"
+    - "crypto"
+    - "vts"
+    - "lb"
+    - "nfv_density"
+    - "hoststack"
+  order-sub-chapters:
+    - "2n-skx"
+    - "3n-skx"
+    - "2n-clx"
+    - "3n-hsw"
+    - "3n-tsh"
+    - "2n-dnv"
+    - "3n-dnv"
 
-# VPP Performance Results 3n-dnv
+# VPP MRR Results
 - type: "file"
-  title: "VPP Performance Results 3n-dnv"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,PERF,VPP,3N,DNV]}"
-  dir-tables: "{DIR[DTR,PERF,VPP,3N,DNV]}"
-  data: "vpp-perf-results-3n-dnv"
+  title: "VPP MRR Results"
+  algorithm: "file_details_split"
+  output-file: "{DIR[DTR,MRR,VPP,ALL]}"
+  dir-tables:
+#    - "{DIR[DTR,MRR,VPP,2N,SKX]}"
+#    - "{DIR[DTR,MRR,VPP,3N,SKX]}"
+    - "{DIR[DTR,MRR,VPP,2N,CLX]}"
+    - "{DIR[DTR,MRR,VPP,3N,HSW]}"
+    - "{DIR[DTR,MRR,VPP,3N,TSH]}"
+    - "{DIR[DTR,MRR,VPP,2N,DNV]}"
+    - "{DIR[DTR,MRR,VPP,3N,DNV]}"
+  data:
+#    - "vpp-mrr-results-2n-skx"
+#    - "vpp-mrr-results-3n-skx"
+    - "vpp-mrr-results-2n-clx"
+    - "vpp-mrr-results-3n-hsw"
+    - "vpp-mrr-results-3n-tsh"
+    - "vpp-mrr-results-2n-dnv"
+    - "vpp-mrr-results-3n-dnv"
   filter: "all"
   data-start-level: 4
+  order-chapters:
+    - "l2"
+    - "ip4"
+    - "ip6"
+    - "srv6"
+    - "ip4_tunnels"
+    - "ip6_tunnels"
+    - "vm_vhost"
+    - "container_memif"
+    - "crypto"
+    - "vts"
+    - "lb"
+    - "nfv_density"
+    - "hoststack"
+  order-sub-chapters:
+    - "2n-skx"
+    - "3n-skx"
+    - "2n-clx"
+    - "3n-hsw"
+    - "3n-tsh"
+    - "2n-dnv"
+    - "3n-dnv"
 
-# VPP Performance Results 2n-dnv
+# VPP MRR Configuration
 - type: "file"
-  title: "VPP Performance Results 2n-dnv"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,PERF,VPP,2N,DNV]}"
-  dir-tables: "{DIR[DTR,PERF,VPP,2N,DNV]}"
-  data: "vpp-perf-results-2n-dnv"
+  title: "VPP MRR Configuration"
+  algorithm: "file_details_split"
+  output-file: "{DIR[DTC,MRR,VPP,ALL]}"
+  dir-tables:
+#    - "{DIR[DTC,MRR,VPP,2N,SKX]}"
+#    - "{DIR[DTC,MRR,VPP,3N,SKX]}"
+    - "{DIR[DTC,MRR,VPP,2N,CLX]}"
+    - "{DIR[DTC,MRR,VPP,3N,HSW]}"
+    - "{DIR[DTC,MRR,VPP,3N,TSH]}"
+    - "{DIR[DTC,MRR,VPP,2N,DNV]}"
+    - "{DIR[DTC,MRR,VPP,3N,DNV]}"
+  data:
+#    - "vpp-mrr-results-2n-skx"
+#    - "vpp-mrr-results-3n-skx"
+    - "vpp-mrr-results-2n-clx"
+    - "vpp-mrr-results-3n-hsw"
+    - "vpp-mrr-results-3n-tsh"
+    - "vpp-mrr-results-2n-dnv"
+    - "vpp-mrr-results-3n-dnv"
   filter: "all"
   data-start-level: 4
-
-# VPP Performance Configuration 3n-hsw
-- type: "file"
-  title: "VPP Performance Configuration 3n-hsw"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,PERF,VPP,3N,HSW]}"
-  dir-tables: "{DIR[DTC,PERF,VPP,3N,HSW]}"
-  data: "vpp-perf-results-3n-hsw"
-  filter: "all"
-  data-start-level: 4
-
-## VPP Performance Configuration 3n-skx
-#- type: "file"
-#  title: "VPP Performance Configuration 3n-skx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTC,PERF,VPP,3N,SKX]}"
-#  dir-tables: "{DIR[DTC,PERF,VPP,3N,SKX]}"
-#  data: "vpp-perf-results-3n-skx"
-#  filter: "all"
-#  data-start-level: 4
-#
-## VPP Performance Configuration 2n-skx
-#- type: "file"
-#  title: "VPP Performance Configuration 2n-skx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTC,PERF,VPP,2N,SKX]}"
-#  dir-tables: "{DIR[DTC,PERF,VPP,2N,SKX]}"
-#  data: "vpp-perf-results-2n-skx"
-#  filter: "all"
-#  data-start-level: 4
-
-# VPP Performance Configuration 2n-clx
-- type: "file"
-  title: "VPP Performance Configuration 2n-clx"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,PERF,VPP,2N,CLX]}"
-  dir-tables: "{DIR[DTC,PERF,VPP,2N,CLX]}"
-  data: "vpp-perf-results-2n-clx"
-  filter: "all"
-  data-start-level: 4
-
-# VPP Performance Configuration 3n-tsh
-- type: "file"
-  title: "VPP Performance Configuration 3n-tsh"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,PERF,VPP,3N,TSH]}"
-  dir-tables: "{DIR[DTC,PERF,VPP,3N,TSH]}"
-  data: "vpp-perf-results-3n-tsh"
-  filter: "all"
-  data-start-level: 4
-
-# VPP Performance Configuration 3n-dnv
-- type: "file"
-  title: "VPP Performance Configuration 3n-dnv"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,PERF,VPP,3N,DNV]}"
-  dir-tables: "{DIR[DTC,PERF,VPP,3N,DNV]}"
-  data: "vpp-perf-results-3n-dnv"
-  filter: "all"
-  data-start-level: 4
-
-# VPP Performance Configuration 2n-dnv
-- type: "file"
-  title: "VPP Performance Configuration 2n-dnv"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,PERF,VPP,2N,DNV]}"
-  dir-tables: "{DIR[DTC,PERF,VPP,2N,DNV]}"
-  data: "vpp-perf-results-2n-dnv"
-  filter: "all"
-  data-start-level: 4
-
-# VPP Performance Operational Data 3n-hsw
-- type: "file"
-  title: "VPP Performance Operational Data 3n-hsw"
-  algorithm: "file_test_results_html"
-  output-file: "{DIR[DTO,PERF,VPP,3N,HSW]}"
-  dir-tables: "{DIR[DTO,PERF,VPP,3N,HSW]}"
-  data: "vpp-perf-results-3n-hsw"
-  filter: "all"
-  data-start-level: 4
-
-## VPP Performance Operational Data 3n-skx
-#- type: "file"
-#  title: "VPP Performance Operational Data 3n-skx"
-#  algorithm: "file_test_results_html"
-#  output-file: "{DIR[DTO,PERF,VPP,3N,SKX]}"
-#  dir-tables: "{DIR[DTO,PERF,VPP,3N,SKX]}"
-#  data: "vpp-perf-results-3n-skx"
-#  filter: "all"
-#  data-start-level: 4
-#
-## VPP Performance Operational Data 2n-skx
-#- type: "file"
-#  title: "VPP Performance Operational Data 2n-skx"
-#  algorithm: "file_test_results_html"
-#  output-file: "{DIR[DTO,PERF,VPP,2N,SKX]}"
-#  dir-tables: "{DIR[DTO,PERF,VPP,2N,SKX]}"
-#  data: "vpp-perf-results-2n-skx"
-#  filter: "all"
-#  data-start-level: 4
-
-# VPP Performance Operational Data 2n-clx
-- type: "file"
-  title: "VPP Performance Operational Data 2n-clx"
-  algorithm: "file_test_results_html"
-  output-file: "{DIR[DTO,PERF,VPP,2N,CLX]}"
-  dir-tables: "{DIR[DTO,PERF,VPP,2N,CLX]}"
-  data: "vpp-perf-results-2n-clx"
-  filter: "all"
-  data-start-level: 4
-
-# VPP Performance Operational Data 3n-tsh
-- type: "file"
-  title: "VPP Performance Operational Data 3n-tsh"
-  algorithm: "file_test_results_html"
-  output-file: "{DIR[DTO,PERF,VPP,3N,TSH]}"
-  dir-tables: "{DIR[DTO,PERF,VPP,3N,TSH]}"
-  data: "vpp-perf-results-3n-tsh"
-  filter: "all"
-  data-start-level: 4
-
-# VPP Performance Operational Data 3n-dnv
-- type: "file"
-  title: "VPP Performance Operational Data 3n-dnv"
-  algorithm: "file_test_results_html"
-  output-file: "{DIR[DTO,PERF,VPP,3N,DNV]}"
-  dir-tables: "{DIR[DTO,PERF,VPP,3N,DNV]}"
-  data: "vpp-perf-results-3n-dnv"
-  filter: "all"
-  data-start-level: 4
-
-# VPP Performance Operational Data 2n-dnv
-- type: "file"
-  title: "VPP Performance Operational Data 2n-dnv"
-  algorithm: "file_test_results_html"
-  output-file: "{DIR[DTO,PERF,VPP,2N,DNV]}"
-  dir-tables: "{DIR[DTO,PERF,VPP,2N,DNV]}"
-  data: "vpp-perf-results-2n-dnv"
-  filter: "all"
-  data-start-level: 4
-
-# VPP MRR Results 3n-hsw
-- type: "file"
-  title: "VPP MRR Results 3n-hsw"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,MRR,VPP,3N,HSW]}"
-  dir-tables: "{DIR[DTR,MRR,VPP,3N,HSW]}"
-  data: "vpp-mrr-results-3n-hsw"
-  filter: "all"
-  data-start-level: 4
-
-## VPP MRR Results 3n-skx
-#- type: "file"
-#  title: "VPP MRR Results 3n-skx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTR,MRR,VPP,3N,SKX]}"
-#  dir-tables: "{DIR[DTR,MRR,VPP,3N,SKX]}"
-#  data: "vpp-mrr-results-3n-skx"
-#  filter: "all"
-#  data-start-level: 4
-#
-## VPP MRR Results 2n-skx
-#- type: "file"
-#  title: "VPP MRR Results 2n-skx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTR,MRR,VPP,2N,SKX]}"
-#  dir-tables: "{DIR[DTR,MRR,VPP,2N,SKX]}"
-#  data: "vpp-mrr-results-2n-skx"
-#  filter: "all"
-#  data-start-level: 4
-
-# VPP MRR Results 2n-clx
-- type: "file"
-  title: "VPP MRR Results 2n-clx"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,MRR,VPP,2N,CLX]}"
-  dir-tables: "{DIR[DTR,MRR,VPP,2N,CLX]}"
-  data: "vpp-mrr-results-2n-clx"
-  filter: "all"
-  data-start-level: 4
-
-# VPP MRR Results 3n-tsh
-- type: "file"
-  title: "VPP MRR Results 3n-tsh"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,MRR,VPP,3N,TSH]}"
-  dir-tables: "{DIR[DTR,MRR,VPP,3N,TSH]}"
-  data: "vpp-mrr-results-3n-tsh"
-  filter: "all"
-  data-start-level: 4
-
-# VPP MRR Results 3n-dnv
-- type: "file"
-  title: "VPP MRR Results 3n-dnv"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,MRR,VPP,3N,DNV]}"
-  dir-tables: "{DIR[DTR,MRR,VPP,3N,DNV]}"
-  data: "vpp-mrr-results-3n-dnv"
-  filter: "all"
-  data-start-level: 4
-
-# VPP MRR Results 2n-dnv
-- type: "file"
-  title: "VPP MRR Results 2n-dnv"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,MRR,VPP,2N,DNV]}"
-  dir-tables: "{DIR[DTR,MRR,VPP,2N,DNV]}"
-  data: "vpp-mrr-results-2n-dnv"
-  filter: "all"
-  data-start-level: 4
-
-# VPP MRR Configuration 3n-hsw
-- type: "file"
-  title: "VPP MRR Configuration 3n-hsw"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,MRR,VPP,3N,HSW]}"
-  dir-tables: "{DIR[DTC,MRR,VPP,3N,HSW]}"
-  data: "vpp-mrr-results-3n-hsw"
-  filter: "all"
-  data-start-level: 4
-
-## VPP MRR Configuration 3n-skx
-#- type: "file"
-#  title: "VPP MRR Configuration 3n-skx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTC,MRR,VPP,3N,SKX]}"
-#  dir-tables: "{DIR[DTC,MRR,VPP,3N,SKX]}"
-#  data: "vpp-mrr-results-3n-skx"
-#  filter: "all"
-#  data-start-level: 4
-#
-## VPP MRR Configuration 2n-skx
-#- type: "file"
-#  title: "VPP MRR Configuration 2n-skx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTC,MRR,VPP,2N,SKX]}"
-#  dir-tables: "{DIR[DTC,MRR,VPP,2N,SKX]}"
-#  data: "vpp-mrr-results-2n-skx"
-#  filter: "all"
-#  data-start-level: 4
-
-# VPP MRR Configuration 2n-clx
-- type: "file"
-  title: "VPP MRR Configuration 2n-clx"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,MRR,VPP,2N,CLX]}"
-  dir-tables: "{DIR[DTC,MRR,VPP,2N,CLX]}"
-  data: "vpp-mrr-results-2n-clx"
-  filter: "all"
-  data-start-level: 4
-
-# VPP MRR Configuration 3n-tsh
-- type: "file"
-  title: "VPP MRR Configuration 3n-tsh"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,MRR,VPP,3N,TSH]}"
-  dir-tables: "{DIR[DTC,MRR,VPP,3N,TSH]}"
-  data: "vpp-mrr-results-3n-tsh"
-  filter: "all"
-  data-start-level: 4
-
-# VPP MRR Configuration 3n-dnv
-- type: "file"
-  title: "VPP MRR Configuration 3n-dnv"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,MRR,VPP,3N,DNV]}"
-  dir-tables: "{DIR[DTC,MRR,VPP,3N,DNV]}"
-  data: "vpp-mrr-results-3n-dnv"
-  filter: "all"
-  data-start-level: 4
-
-# VPP MRR Configuration 2n-dnv
-- type: "file"
-  title: "VPP MRR Configuration 2n-dnv"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,MRR,VPP,2N,DNV]}"
-  dir-tables: "{DIR[DTC,MRR,VPP,2N,DNV]}"
-  data: "vpp-mrr-results-2n-dnv"
-  filter: "all"
-  data-start-level: 4
+  order-chapters:
+    - "l2"
+    - "ip4"
+    - "ip6"
+    - "srv6"
+    - "ip4_tunnels"
+    - "ip6_tunnels"
+    - "vm_vhost"
+    - "container_memif"
+    - "crypto"
+    - "vts"
+    - "lb"
+    - "nfv_density"
+    - "hoststack"
+  order-sub-chapters:
+    - "2n-skx"
+    - "3n-skx"
+    - "2n-clx"
+    - "3n-hsw"
+    - "3n-tsh"
+    - "2n-dnv"
+    - "3n-dnv"
 
 # VPP Device Results - Ubuntu
 - type: "file"
