@@ -1132,16 +1132,21 @@ class InterfaceUtil:
             )
 
     @staticmethod
-    def vpp_create_avf_interface(node, if_key, num_rx_queues=None):
+    def vpp_create_avf_interface(
+            node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0):
         """Create AVF interface on VPP node.
 
         :param node: DUT node from topology.
         :param if_key: Interface key from topology file of interface
             to be bound to i40evf driver.
         :param num_rx_queues: Number of RX queues.
+        :param rxq_size: Size of RXQ (0 = Default API; 512 = Default VPP).
+        :param txq_size: Size of TXQ (0 = Default API; 512 = Default VPP).
         :type node: dict
         :type if_key: str
         :type num_rx_queues: int
+        :type rxq_size: int
+        :type txq_size: int
         :returns: AVF interface key (name) in topology.
         :rtype: str
         :raises RuntimeError: If it is not possible to create AVF interface on
@@ -1157,8 +1162,8 @@ class InterfaceUtil:
             pci_addr=InterfaceUtil.pci_to_int(vf_pci_addr),
             enable_elog=0,
             rxq_num=int(num_rx_queues) if num_rx_queues else 0,
-            rxq_size=0,
-            txq_size=0
+            rxq_size=rxq_size,
+            txq_size=txq_size
         )
         err_msg = f"Failed to create AVF interface on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
@@ -1173,17 +1178,22 @@ class InterfaceUtil:
 
     @staticmethod
     def vpp_create_rdma_interface(
-            node, if_key, num_rx_queues=None, mode=u"auto"):
+            node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0,
+            mode=u"auto"):
         """Create RDMA interface on VPP node.
 
         :param node: DUT node from topology.
         :param if_key: Physical interface key from topology file of interface
             to be bound to rdma-core driver.
         :param num_rx_queues: Number of RX queues.
+        :param rxq_size: Size of RXQ (0 = Default API; 512 = Default VPP).
+        :param txq_size: Size of TXQ (0 = Default API; 512 = Default VPP).
         :param mode: RDMA interface mode - auto/ibv/dv.
         :type node: dict
         :type if_key: str
         :type num_rx_queues: int
+        :type rxq_size: int
+        :type txq_size: int
         :type mode: str
         :returns: Interface key (name) in topology file.
         :rtype: str
@@ -1196,8 +1206,8 @@ class InterfaceUtil:
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
             host_if=InterfaceUtil.pci_to_eth(node, pci_addr),
             rxq_num=int(num_rx_queues) if num_rx_queues else 0,
-            rxq_size=1024,
-            txq_size=1024,
+            rxq_size=rxq_size,
+            txq_size=txq_size,
             mode=getattr(RdmaMode,f"RDMA_API_MODE_{mode.upper()}").value,
         )
         err_msg = f"Failed to create RDMA interface on host {node[u'host']}"

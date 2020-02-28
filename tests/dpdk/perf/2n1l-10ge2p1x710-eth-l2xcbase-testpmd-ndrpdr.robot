@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -46,6 +46,8 @@
 *** Variables ***
 | ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
+| ${nic_rxq_size}= | 2048
+| ${nic_txq_size}= | 2048
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
