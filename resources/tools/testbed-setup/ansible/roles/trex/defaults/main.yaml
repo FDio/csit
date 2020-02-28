@@ -25,4 +25,7 @@ packages_by_arch:
     - []
 
 trex_target_dir: "/opt"
-trex_version: "2.73"
+trex_versions:
+  - "2.54" # CSIT rls1908
+  - "2.73" # CSIT rls2001
+  - "2.73" # CSIT master
