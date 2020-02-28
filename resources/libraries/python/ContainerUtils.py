@@ -140,9 +140,6 @@ class ContainerManager(object):
         """Start VPP in all containers."""
         for container in self.containers:
             self.engine.container = self.containers[container]
-            # We need to install supervisor client/server system to control VPP
-            # as a service
-            self.engine.install_supervisor()
             self.engine.start_vpp()
 
     def restart_vpp_in_all_containers(self):
@@ -160,7 +157,7 @@ class ContainerManager(object):
             interface in container (only single container can be configured).
         :param kwargs: Named parameters.
         :type chain_topology: str
-        :param kwargs: dict
+        :type kwargs: dict
         """
         # Count number of DUTs based on node's host information
         dut_cnt = len(Counter([self.containers[container].node['host']
@@ -208,7 +205,7 @@ class ContainerManager(object):
         """Configure VPP in chain topology with l2xc.
 
         :param kwargs: Named parameters.
-        :param kwargs: dict
+        :type kwargs: dict
         """
         self.engine.create_vpp_startup_config()
         self.engine.create_vpp_exec_config(
@@ -224,7 +221,7 @@ class ContainerManager(object):
         """Configure VPP in cross horizontal topology (single memif).
 
         :param kwargs: Named parameters.
-        :param kwargs: dict
+        :type kwargs: dict
         """
         if 'DUT1' in self.engine.container.name:
             if_pci = Topology.get_interface_pci_addr(
@@ -247,9 +244,9 @@ class ContainerManager(object):
         """Configure VPP in chain topology with l2xc (functional).
 
         :param kwargs: Named parameters.
-        :param kwargs: dict
+        :type kwargs: dict
         """
-        self.engine.create_vpp_startup_config_func_dev()
+        self.engine.create_vpp_startup_config()
         self.engine.create_vpp_exec_config(
             'memif_create_chain_functional.exec',
             mid1=kwargs['mid1'], mid2=kwargs['mid2'],
@@ -264,7 +261,7 @@ class ContainerManager(object):
         """Configure VPP in chain topology with ip4.
 
         :param kwargs: Named parameters.
-        :param kwargs: dict
+        :type kwargs: dict
         """
         self.engine.create_vpp_startup_config()
 
@@ -290,7 +287,7 @@ class ContainerManager(object):
         """Configure VPP in pipeline topology with ip4.
 
         :param kwargs: Named parameters.
-        :param kwargs: dict
+        :type kwargs: dict
         """
         self.engine.create_vpp_startup_config()
         node = (kwargs['mid1'] - 1) % kwargs['nodes'] + 1
@@ -392,70 +389,48 @@ class ContainerEngine(object):
         """System info."""
         raise NotImplementedError
 
-    def install_supervisor(self):
-        """Install supervisord inside a container."""
-        if isinstance(self, LXC):
-            self.execute('sleep 3; apt-get update')
-            self.execute('apt-get install -y supervisor')
-        self.execute('echo "{config}" > {config_file} && '
-                     'supervisord -c {config_file}'.
-                     format(
-                         config='[unix_http_server]\n'
-                         'file  = /tmp/supervisor.sock\n\n'
-                         '[rpcinterface:supervisor]\n'
-                         'supervisor.rpcinterface_factory = '
-                         'supervisor.rpcinterface:make_main_rpcinterface\n\n'
-                         '[supervisorctl]\n'
-                         'serverurl = unix:///tmp/supervisor.sock\n\n'
-                         '[supervisord]\n'
-                         'pidfile = /tmp/supervisord.pid\n'
-                         'identifier = supervisor\n'
-                         'directory = /tmp\n'
-                         'logfile=/tmp/supervisord.log\n'
-                         'loglevel=debug\n'
-                         'nodaemon=false\n\n',
-                         config_file=SUPERVISOR_CONF))
-
     def start_vpp(self):
         """Start VPP inside a container."""
-        self.execute('echo "{config}" >> {config_file}'.
-                     format(
-                         config='[program:vpp]\n'
-                         'command=/usr/bin/vpp -c /etc/vpp/startup.conf\n'
-                         'autostart=false\n'
-                         'autorestart=false\n'
-                         'redirect_stderr=true\n'
-                         'priority=1',
-                         config_file=SUPERVISOR_CONF))
-        self.execute('supervisorctl reload')
-        self.execute('supervisorctl start vpp')
+        self.execute(
+            u"setsid /usr/bin/vpp -c /etc/vpp/startup.conf "
+            u">/tmp/vppd.log 2>&1 < /dev/null &")
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
-        self.execute('supervisorctl restart vpp')
-        self.execute('cat /tmp/supervisord.log')
+        self.execute(u"pkill vpp")
+        self.start_vpp()
+        self.execute(u"cat /tmp/vppd.log")
 
-    def create_base_vpp_startup_config(self):
+    def create_base_vpp_startup_config(self, cpuset_cpus=None):
         """Create base startup configuration of VPP on container.
 
+        :param cpuset_cpus: List of CPU cores to allocate.
+
+        :type cpuset_cpus: list.
         :returns: Base VPP startup configuration.
         :rtype: VppConfigGenerator
         """
-        cpuset_cpus = self.container.cpuset_cpus
-
+        if cpuset_cpus is None:
+            cpuset_cpus = self.container.cpuset_cpus
         # Create config instance
         vpp_config = VppConfigGenerator()
         vpp_config.set_node(self.container.node)
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
-        vpp_config.add_unix_exec('/tmp/running.exec')
-        vpp_config.add_socksvr()
-        # We will pop the first core from the list to be a main core
-        vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
-        # If more cores in the list, the rest will be used as workers.
+        vpp_config.add_unix_exec(u"/tmp/running.exec")
+        vpp_config.add_statseg_per_node_counters(value=u"on")
         if cpuset_cpus:
-            corelist_workers = ','.join(str(cpu) for cpu in cpuset_cpus)
+            # We will pop the first core from the list to be a main core
+            vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
+            # If more cores in the list, the rest will be used as workers.
+            corelist_workers = u",".join(str(cpu) for cpu in cpuset_cpus)
             vpp_config.add_cpu_corelist_workers(corelist_workers)
+        vpp_config.add_buffers_per_numa(215040)
+        vpp_config.add_plugin(u"disable", u"default")
+        vpp_config.add_plugin(u"enable", u"memif_plugin.so")
+        vpp_config.add_heapsize(u"4G")
+        vpp_config.add_ip_heap_size(u"4G")
+        vpp_config.add_statseg_size(u"4G")
 
         return vpp_config
 
@@ -463,44 +438,6 @@ class ContainerEngine(object):
         """Create startup configuration of VPP without DPDK on container.
         """
         vpp_config = self.create_base_vpp_startup_config()
-        vpp_config.add_plugin('disable', 'dpdk_plugin.so')
-
-        # Apply configuration
-        self.execute('mkdir -p /etc/vpp/')
-        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
-                     .format(config=vpp_config.get_config_str()))
-
-    def create_vpp_startup_config_dpdk_dev(self, *devices):
-        """Create startup configuration of VPP with DPDK on container.
-
-        :param devices: List of PCI devices to add.
-        :type devices: list
-        """
-        vpp_config = self.create_base_vpp_startup_config()
-        vpp_config.add_dpdk_dev(*devices)
-        vpp_config.add_dpdk_no_tx_checksum_offload()
-        vpp_config.add_dpdk_log_level('debug')
-        vpp_config.add_plugin('disable', 'default')
-        vpp_config.add_plugin('enable', 'dpdk_plugin.so')
-        vpp_config.add_plugin('enable', 'memif_plugin.so')
-
-        # Apply configuration
-        self.execute('mkdir -p /etc/vpp/')
-        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
-                     .format(config=vpp_config.get_config_str()))
-
-    def create_vpp_startup_config_func_dev(self):
-        """Create startup configuration of VPP on container for functional
-        vpp_device tests.
-        """
-        # Create config instance
-        vpp_config = VppConfigGenerator()
-        vpp_config.set_node(self.container.node)
-        vpp_config.add_unix_cli_listen()
-        vpp_config.add_unix_nodaemon()
-        vpp_config.add_unix_exec('/tmp/running.exec')
-        vpp_config.add_socksvr()
-        vpp_config.add_plugin('disable', 'dpdk_plugin.so')
 
         # Apply configuration
         self.execute('mkdir -p /etc/vpp/')
@@ -516,7 +453,6 @@ class ContainerEngine(object):
         :type kwargs: dict
         """
         running = '/tmp/running.exec'
-
         template = '{res}/{tpl}'.format(
             res=Constants.RESOURCES_TPL_CONTAINER, tpl=template_file)
 
@@ -609,6 +545,10 @@ class LXC(ContainerEngine):
 
         self._configure_cgroup('lxc')
 
+    def build(self):
+        """Build container (compile)."""
+        raise NotImplementedError
+
     def create(self):
         """Create/deploy an application inside a container on system.
 
@@ -671,8 +611,8 @@ class LXC(ContainerEngine):
             ' '.join('--set-var %s' % env for env in self.container.env))\
             if self.container.env else ''
 
-        cmd = "lxc-attach {env} --name {c.name} -- /bin/sh -c '{command}; "\
-            "exit $?'".format(env=env, c=self.container, command=command)
+        cmd = "lxc-attach {env} --name {c.name} -- /bin/sh -c '{command}'"\
+            .format(env=env, c=self.container, command=command)
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=180)
         if int(ret) != 0:
@@ -859,8 +799,8 @@ class Docker(ContainerEngine):
         :type command: str
         :raises RuntimeError: If running the command in a container failed.
         """
-        cmd = "docker exec --interactive {c.name} /bin/sh -c '{command}; "\
-            "exit $?'".format(c=self.container, command=command)
+        cmd = "docker exec --interactive {c.name} /bin/sh -c '{command}'"\
+            .format(c=self.container, command=command)
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=180)
         if int(ret) != 0:
