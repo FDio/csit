@@ -15,8 +15,15 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | IP4BASE
 | ...
+=======
+| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | ethip4-ip4base
+|
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
@@ -46,6 +53,14 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+| ${crypto_type}= | ${None}
+| ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}

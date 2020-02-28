@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -136,6 +136,79 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize layer interface on node | ${dut} | count=${count}
 | | Set Test Variable | ${prev_layer} | if
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+
+| Pre-initialize layer driver
+| | [Documentation]
+| | ... | Pre-initialize driver based interfaces on each DUT.
+| |
+| | ... | *Arguments:*
+| | ... | - driver - NIC driver used in test [vfio-pci|avf|rdma-core].
+| | ... | Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Pre-initialize layer driver \| vfio-pci \|
+| |
+| | [Arguments] | ${driver}
+| |
+| | Run Keyword | Pre-initialize layer ${driver} on all DUTs
+
+| Pre-initialize layer vfio-pci on all DUTs
+| | [Documentation]
+| | ... | Pre-initialize vfio-pci driver by adding related sections to startup
+| | ... | config on all DUTs.
+| |
+| | Add DPDK pci devices to all DUTs
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
+| | | ... | ${dut}.Add DPDK No Tx Checksum Offload
+| | | Run Keyword | ${dut}.Add DPDK Log Level | debug
+| | | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
+| | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
+| | | Run Keyword If | not ${jumbo}
+| | | ... | ${dut}.Add DPDK No Multi Seg
+| | | Run Keyword If | ${nic_rxq_size} > 0
+| | | ... | ${dut}.Add DPDK Dev Default RXD | ${nic_rxq_size}
+| | | Run Keyword If | ${nic_txq_size} > 0
+| | | ... | ${dut}.Add DPDK Dev Default TXD | ${nic_txq_size}
+| | | Run Keyword If | '${crypto_type}' != '${None}'
+| | | ... | ${dut}.Add DPDK Cryptodev | ${thr_count_int}
+| | END
+
+| Pre-initialize layer avf on all DUTs
+| | [Documentation]
+| | ... | Pre-initialize avf driver. Currently no operation.
+| |
+| | No operation
+
+| Pre-initialize layer rdma-core on all DUTs
+| | [Documentation]
+| | ... | Pre-initialize rdma-core driver. Currently no operation.
+| |
+| | No operation
+
+| Initialize layer driver
+| | [Documentation]
+| | ... | Initialize driver based interfaces on each DUT. Interfaces are
+| | ... | brought up.
+| |
+| | ... | *Arguments:*
+| | ... | - driver - NIC driver used in test [vfio-pci|avf|rdma-core].
+| | ... | Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer driver \| vfio-pci \|
+| |
+| | [Arguments] | ${driver}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword | Initialize layer ${driver} on node | ${dut}
+| | END
+| | Set Test Variable | ${prev_layer} | vf
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | | Set interfaces in path up
 
 | Initialize layer avf on node
@@ -156,6 +229,7 @@
 | | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
 | | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
 | | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
 | | ... | ${${dut}_if1_vf0}
 | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
@@ -172,15 +246,64 @@
 | | Set Test Variable | ${${dut_str}_if2} | ${dut_eth_vf_if2}
 | | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_eth_vf_if1_mac}
 | | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_eth_vf_if2_mac}
+=======
+| | ${dut_new_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
+| | ... | ${${dut}_if1_vf0} | num_rx_queues=${rxq_count_int}
+| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
+| | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_new_if1}
+| | ${dut_new_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
+| | ... | ${${dut}_if2_vf0} | num_rx_queues=${rxq_count_int}
+| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
+| | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_new_if2}
+| | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
+| | Set Test Variable | ${${dut_str}_if2} | ${dut_new_if2}
+| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_new_if1_mac}
+| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_new_if2_mac}
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 
 | Initialize AVF interfaces
 | | [Documentation]
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | | ... | Initialize AVF interfaces on each DUT. Interfaces are brought up.
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize layer avf on node | ${dut}
 | | Set Test Variable | ${prev_layer} | vf
 | | Set interfaces in path up
+=======
+| | ... | Initialize rdma-core (MLX) interfaces on DUT.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer rdma-core on node \| DUT1 \|
+| |
+| | [Arguments] | ${dut}
+| |
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | ${if1_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
+| | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
+| | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
+| | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
+| | ${dut_new_if1}= | VPP Create Rdma Interface | ${nodes['${dut}']}
+| | ... | ${${dut}_if1} | num_rx_queues=${rxq_count_int}
+| | ... | rxq_size=${nic_rxq_size} | txq_size=${rdma_txq_size}
+| | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_new_if1}
+| | ${dut_new_if2}= | VPP Create Rdma Interface | ${nodes['${dut}']}
+| | ... | ${${dut}_if2} | num_rx_queues=${rxq_count_int}
+| | ... | rxq_size=${nic_rxq_size} | txq_size=${rdma_txq_size}
+| | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_new_if2}
+| | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
+| | Set Test Variable | ${${dut_str}_if2} | ${dut_new_if2}
+| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_new_if1_mac}
+| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_new_if2_mac}
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 
 | Initialize layer bonding on node
 | | [Documentation]

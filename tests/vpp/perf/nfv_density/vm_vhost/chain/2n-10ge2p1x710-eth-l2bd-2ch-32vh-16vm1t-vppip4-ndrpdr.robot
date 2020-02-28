@@ -15,7 +15,12 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM
+=======
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 2R8C | 16VM1T
 | ...
 | Suite Setup | Setup suite single link | performance
@@ -52,6 +57,13 @@
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+| ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
+| ${osi_layer}= | L2
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${2}
 | ${nf_dtc}= | ${0.5}

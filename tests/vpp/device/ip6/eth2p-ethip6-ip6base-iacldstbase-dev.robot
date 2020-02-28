@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,8 +15,15 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | ... | NIC_Virtual | ETH | IP6FWD | FEATURE | IACLDST
 | ...
+=======
+| ... | NIC_Virtual | ETH | IP6FWD | FEATURE | IACLDST | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | ethip6-ip6base-iacldstbase
+|
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
@@ -39,6 +46,12 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+| ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | ${overhead}= | ${0}
 
 *** Keywords ***

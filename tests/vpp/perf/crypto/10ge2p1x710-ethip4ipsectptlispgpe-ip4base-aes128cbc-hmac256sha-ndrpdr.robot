@@ -19,8 +19,15 @@
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
 | ... | LISPGPE | IPSEC | IPSECHW | IPSECTRAN | ENCAP | IP4UNRLAY | IP4OVRLAY
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | ... | NIC_Intel-X710 | AES_128_CBC | HMAC_SHA_256 | HMAC | AES
 | ...
+=======
+| ... | NIC_Intel-X710 | AES_128_CBC | HMAC_SHA_256 | HMAC | AES | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha
+|
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
@@ -60,6 +67,13 @@
 | ${osi_layer}= | L3
 | ${crypto_type}= | HW_DH895xcc
 | ${nic_name}= | Intel-X710
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+| ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
+| ${osi_layer}= | L3
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | ${overhead}= | ${58}
 | ${dut2_spi}= | ${1000}
 | ${dut1_spi}= | ${1001}

@@ -17,8 +17,15 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | RECONF
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ... | VHOST | VM | VHOST_1024 | VXLAN | DOT1Q | NF_DENSITY | NF_TESTPMD
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | ... | CHAIN | 6R1C | 1_ADDED_CHAIN | 6VM2T
 | ...
+=======
+| ... | CHAIN | 6R1C | 1_ADDED_CHAIN | 6VM2T | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm2t-testpmd
+|
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
@@ -51,6 +58,14 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+| ${crypto_type}= | ${None}
+| ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${54}

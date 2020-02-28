@@ -17,8 +17,15 @@
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | ... | LBOND_2L | NF_TESTPMD
 | ...
+=======
+| ... | LBOND_2L | NF_TESTPMD | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | 2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
+|
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | Suite Setup | Setup suite double link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
@@ -54,6 +61,14 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | lacp_plugin.so
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+| ${crypto_type}= | ${None}
+| ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${4}

@@ -1085,20 +1085,34 @@ class InterfaceUtil(object):
         Topology.update_interface_mac_address(node, if_key, ifc_mac)
 
     @staticmethod
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
     def vpp_create_avf_interface(node, vf_pci_addr, num_rx_queues=None):
+=======
+    def vpp_create_avf_interface(
+            node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0):
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
         """Create AVF interface on VPP node.
 
         :param node: DUT node from topology.
         :param vf_pci_addr: Virtual Function PCI address.
         :param num_rx_queues: Number of RX queues.
+        :param rxq_size: Size of RXQ (0 = Default API; 512 = Default VPP).
+        :param txq_size: Size of TXQ (0 = Default API; 512 = Default VPP).
         :type node: dict
         :type vf_pci_addr: str
         :type num_rx_queues: int
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
         :returns: Interface key (name) in topology.
+=======
+        :type rxq_size: int
+        :type txq_size: int
+        :returns: AVF interface key (name) in topology.
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
         :rtype: str
         :raises RuntimeError: If it is not possible to create AVF interface on
             the node.
         """
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
         cmd = 'avf_create'
         args = dict(pci_addr=InterfaceUtil.pci_to_int(vf_pci_addr),
                     enable_elog=0,
@@ -1107,6 +1121,22 @@ class InterfaceUtil(object):
                     txq_size=0)
         err_msg = 'Failed to create AVF interface on host {host}'.format(
             host=node['host'])
+=======
+        PapiSocketExecutor.run_cli_cmd(
+            node, u"set logging class avf level debug"
+        )
+
+        cmd = u"avf_create"
+        vf_pci_addr = Topology.get_interface_pci_addr(node, if_key)
+        args = dict(
+            pci_addr=InterfaceUtil.pci_to_int(vf_pci_addr),
+            enable_elog=0,
+            rxq_num=int(num_rx_queues) if num_rx_queues else 0,
+            rxq_size=rxq_size,
+            txq_size=txq_size
+        )
+        err_msg = f"Failed to create AVF interface on host {node[u'host']}"
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
@@ -1114,7 +1144,59 @@ class InterfaceUtil(object):
                                         ifc_pfx='eth_avf')
         if_key = Topology.get_interface_by_sw_index(node, sw_if_index)
 
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
         return if_key
+=======
+        return Topology.get_interface_by_sw_index(node, sw_if_index)
+
+    @staticmethod
+    def vpp_create_rdma_interface(
+            node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0,
+            mode=u"auto"):
+        """Create RDMA interface on VPP node.
+
+        :param node: DUT node from topology.
+        :param if_key: Physical interface key from topology file of interface
+            to be bound to rdma-core driver.
+        :param num_rx_queues: Number of RX queues.
+        :param rxq_size: Size of RXQ (0 = Default API; 512 = Default VPP).
+        :param txq_size: Size of TXQ (0 = Default API; 512 = Default VPP).
+        :param mode: RDMA interface mode - auto/ibv/dv.
+        :type node: dict
+        :type if_key: str
+        :type num_rx_queues: int
+        :type rxq_size: int
+        :type txq_size: int
+        :type mode: str
+        :returns: Interface key (name) in topology file.
+        :rtype: str
+        :raises RuntimeError: If it is not possible to create RDMA interface on
+            the node.
+        """
+        cmd = u"rdma_create"
+        pci_addr = Topology.get_interface_pci_addr(node, if_key)
+        args = dict(
+            name=InterfaceUtil.pci_to_eth(node, pci_addr),
+            host_if=InterfaceUtil.pci_to_eth(node, pci_addr),
+            rxq_num=int(num_rx_queues) if num_rx_queues else 0,
+            rxq_size=rxq_size,
+            txq_size=txq_size,
+            mode=getattr(RdmaMode,f"RDMA_API_MODE_{mode.upper()}").value,
+        )
+        err_msg = f"Failed to create RDMA interface on host {node[u'host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+
+        InterfaceUtil.vpp_set_interface_mac(
+            node, sw_if_index, Topology.get_interface_mac(node, if_key)
+        )
+        InterfaceUtil.add_eth_interface(
+            node, sw_if_index=sw_if_index, ifc_pfx=u"eth_rdma",
+            host_if_key=if_key
+        )
+
+        return Topology.get_interface_by_sw_index(node, sw_if_index)
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 
     @staticmethod
     def vpp_enslave_physical_interface(node, interface, bond_if):

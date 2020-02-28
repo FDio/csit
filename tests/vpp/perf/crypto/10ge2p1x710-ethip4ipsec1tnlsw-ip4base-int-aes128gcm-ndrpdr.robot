@@ -17,8 +17,15 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | BASE
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | ... | AES_128_GCM | AES
 | ...
+=======
+| ... | AES_128_GCM | AES | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | ethip4ipsec1tnlsw-ip4base-int-aes128gcm
+|
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
@@ -53,6 +60,14 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+| ${crypto_type}= | ${None}
+| ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${54}

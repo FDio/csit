@@ -16,8 +16,15 @@
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER | 8R1C
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | ... | NF_DENSITY | PIPELINE | NF_VPPIP4 | 8DCR2T
 | ...
+=======
+| ... | NF_DENSITY | PIPELINE | NF_VPPIP4 | 8DCR2T | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | eth-l2bd-8pl-16mif-8dcr2t-vppip4
+|
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
@@ -52,6 +59,13 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+| ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
+| ${osi_layer}= | L2
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}

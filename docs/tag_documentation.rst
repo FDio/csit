@@ -581,6 +581,29 @@ Interface Tags
     devices. In essence, today this driver can be used only with Intel
     XL710 / X710 / XXV710 adapters.
 
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+.. topic:: DRV_VFIO_PCI
+
+    All test cases which uses vfio-pci device driver. It supports variety of NIC
+    adapters.
+
+.. topic:: DRV_RDMA_CORE
+
+    All test cases which uses rdma-core device driver. It supports Mellanox
+    NIC adapters.
+
+.. topic:: RXQ_SIZE_{n}
+
+   All test cases which RXQ size (RX descriptors) are set to {n}. Default is 0,
+   which means VPP (API) default.
+
+.. topic:: TXQ_SIZE_{n}
+
+   All test cases which TXQ size (TX descriptors) are set to {n}. Default is 0,
+   which means VPP (API) default.
+
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 Feature Tags
 ------------
 

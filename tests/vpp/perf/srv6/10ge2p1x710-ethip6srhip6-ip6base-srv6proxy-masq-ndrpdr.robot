@@ -16,8 +16,15 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | SRv6 | IP6FWD | FEATURE | SRv6_PROXY
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 | ... | SRv6_PROXY_MASQ | MEMIF | LXC
 | ...
+=======
+| ... | SRv6_PROXY_MASQ | MEMIF | DOCKER | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | ethip6srhip6-ip6base-srv6proxy-masq
+|
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
@@ -51,6 +58,14 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so | srv6am_plugin.so
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
+=======
+| ${crypto_type}= | ${None}
+| ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 # outer IPv6 header + SRH with 3 SIDs: 40+(8+3*16)B

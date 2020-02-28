@@ -15,8 +15,22 @@ queue_nums=$3
 jumbo_frames=$4
 arch=${5:-"x86_64"}
 
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 # dpdk prefers "arm64" to "aarch64" and does not allow arm64 native target
 if [ $arch == "aarch64" ]; then
+=======
+# Setting command line arguments.
+cpu_corelist="${1}"
+nb_cores="${2}"
+queue_nums="${3}"
+jumbo_frames="${4}"
+rxd="${5:-128}"
+txd="${6:-512}"
+arch="$(uname -m)"
+
+# DPDK prefers "arm64" to "aarch64" and does not allow arm64 native target.
+if [ "${arch}" == "aarch64" ]; then
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
     arch="arm64"
     machine="armv8a"
 else
@@ -99,8 +113,8 @@ if [ "$jumbo_frames" = "yes" ]; then
         --rxq=${queue_nums} \
         --txq=$((${nb_cores} + 1)) \
         --burst=64 \
-        --rxd=1024 \
-        --txd=1024 \
+        --rxd=${rxd} \
+        --txd=${txd} \
         --disable-link-check \
         --auto-start"
 else
@@ -114,13 +128,25 @@ else
         --rxq=${queue_nums} \
         --txq=$((${nb_cores} + 1)) \
         --burst=64 \
-        --rxd=1024 \
-        --txd=1024 \
+        --rxd=${rxd} \
+        --txd=${txd} \
         --disable-link-check \
         --auto-start"
 fi
 
+<<<<<<< HEAD   (d7aec8 Backport CRC checking from master)
 sleep 10
 less -r ${TESTPMDLOG}
+=======
+for attempt in {1..60}; do
+    echo "Checking if testpmd is alive, attempt nr ${attempt}"
+    fgrep "Press enter to exit" "${TESTPMDLOG}"
+    if [ "${?}" -eq "0" ]; then
+        exit 0
+    fi
+    sleep 1
+done
+cat "${TESTPMDLOG}"
+>>>>>>> CHANGE (6daa2d Make RXQs/TXQs configurable)
 
 cd ${PWDDIR}
