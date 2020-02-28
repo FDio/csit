@@ -18,6 +18,7 @@
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ... | VHOST | VM | VHOST_1024 | VXLAN | DOT1Q | NF_DENSITY | NF_TESTPMD
 | ... | CHAIN | 2R1C | 2VM2T | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd
 |
 | Suite Setup | Setup suite single link | performance
@@ -57,6 +58,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${54}
 | ${nf_dtcr}= | ${1}
