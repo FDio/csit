@@ -22,6 +22,30 @@
       "revId": "dee46d5cedf38248eaf6a54dd273e93a592007b0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cda3527_802b86af",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-02-28T16:56:02Z",
+      "side": 1,
+      "message": "No, we comment only direct code not code in called function",
+      "parentUuid": "ac9c2c5c_a73d6a06",
+      "range": {
+        "startLine": 112,
+        "startChar": 32,
+        "endLine": 112,
+        "endChar": 33
+      },
+      "revId": "dee46d5cedf38248eaf6a54dd273e93a592007b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
