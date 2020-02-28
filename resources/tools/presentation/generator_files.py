@@ -14,6 +14,7 @@
 """Algorithms to generate files.
 """
 
+from collections import OrderedDict
 
 import logging
 
@@ -75,6 +76,60 @@ def _tests_in_suite(suite_name, tests):
 
 
 def file_test_results(file_spec, input_data, frmt=u"rst"):
+    """Generate the file(s) with algorithms
+    - file_test_results
+    specified in the specification file.
+
+    :param file_spec: File to generate.
+    :param input_data: Data to process.
+    :param frmt: Format can be: rst or html
+    :type file_spec: pandas.Series
+    :type input_data: InputData
+    :type frmt: str
+    """
+
+    base_file_name = f"{file_spec[u'output-file']}"
+    rst_header = (
+        u"\n"
+        u".. |br| raw:: html\n\n    <br />\n\n\n"
+        u".. |prein| raw:: html\n\n    <pre>\n\n\n"
+        u".. |preout| raw:: html\n\n    </pre>\n\n"
+    )
+    start_lvl = file_spec.get(u"data-start-level", 4)
+
+    logging.info(f"  Generating the file set {base_file_name} ...")
+
+    data_sets = file_spec.get(u"data", None)
+    if not data_sets:
+        logging.error(
+            f"  No data sets specified for {file_spec[u'output-file']}, exit."
+        )
+        return
+
+    table_sets = file_spec.get(u"dir-tables", None)
+    if not table_sets:
+        logging.error(
+            f"  No table sets specified for {file_spec[u'output-file']}, exit."
+        )
+        return
+
+    if len(data_sets) != len(table_sets):
+        logging.error(
+            f"  The number of data sets and the number of table sets for "
+            f"{file_spec[u'output-file']} are not equal, exit."
+        )
+        return
+
+    chapters = OrderedDict()
+    for data_set, table_set in zip(data_sets, table_sets):
+        print(data_set)
+        print(table_set)
+
+
+
+
+
+def file_test_results_old(file_spec, input_data, frmt=u"rst"):
     """Generate the file(s) with algorithms
     - file_test_results
     specified in the specification file.
