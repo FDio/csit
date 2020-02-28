@@ -19,6 +19,8 @@ import yaml
 
 from robot.api import logger
 
+from resources.libraries.python.Constants import Constants
+
 
 def _str(text):
     """Convert from possible unicode without interpreting as number.
@@ -42,7 +44,8 @@ class VppApiCrcChecker(object):
     so make sure the calling libraries have appropriate robot library scope.
     For usual testing, it means "GLOBAL" scope."""
 
-    def __init__(self, directory):
+    def __init__(
+            self, directory, fail_on_mismatch=Constants.FAIL_ON_CRC_MISMATCH):
         """Initialize empty state, then register known collections.
 
         This also scans directory for .api.json files
@@ -52,22 +55,27 @@ class VppApiCrcChecker(object):
         :type directory: str
         """
 
+        self.fail_on_mismatch = fail_on_mismatch
+        """If True, mismatch leads to test failure, by raising exception.
+        If False, the mismatch is logged, but the test is allowed to continue.
+        """
+
         self._expected = dict()
         """Mapping from collection name to mapping from API name to CRC string.
 
-        Colection name should be something useful for logging.
+        Collection name should be something useful for logging.
 
-        Order of addition reflects the order colections should be queried.
+        Order of addition reflects the order collections should be queried.
         If an incompatible CRC is found, affected collections are removed.
         A CRC that would remove all does not, added to _reported instead,
-        while causing a failure in single test."""
+        while causing a failure in single test (if fail_on_mismatch)."""
 
         self._missing = dict()
         """Mapping from collection name to mapping from API name to CRC string.
 
         Starts the same as _expected, but each time an encountered api,crc pair
-        fits the expectation, the pair is removed from this mapping.
-        Ideally, the active mappings will become empty.
+        fits the expectation, the pair is removed from all collections
+        within this mapping. Ideally, the active mappings will become empty.
         If not, it is an error, VPP removed or renamed a message CSIT needs."""
 
         self._found = dict()
@@ -89,6 +97,17 @@ class VppApiCrcChecker(object):
         self._register_all()
         self._check_dir(directory)
 
+    def log_and_raise(self, exc_msg):
+        """Log to console, on fail_on_mismatch also raise runtime exception.
+
+        :param exc_msg: The message to include in log or exception.
+        :type exc_msg: str
+        :raises RuntimeError: With the message, if fail_on_mismatch.
+        """
+        logger.console("RuntimeError:\n{m}".format(m=exc_msg))
+        if self.fail_on_mismatch:
+            raise RuntimeError(exc_msg)
+
     def _register_collection(self, collection_name, name_to_crc_mapping):
         """Add a named (copy of) collection of CRCs.
 
@@ -96,11 +115,13 @@ class VppApiCrcChecker(object):
         :param name_to_crc_mapping: Mapping from API names to CRCs.
         :type collection_name: str or unicode
         :type name_to_crc_mapping: dict from str/unicode to str/unicode
+        :raises RuntimeError: If the name of a collection is registered already.
         """
         collection_name = _str(collection_name)
         if collection_name in self._expected:
             raise RuntimeError("Collection {cl!r} already registered.".format(
-                cl=collection_name))
+                cl=collection_name)
+            )
         mapping = {_str(k): _str(v) for k, v in name_to_crc_mapping.items()}
         self._expected[collection_name] = mapping
         self._missing[collection_name] = mapping.copy()
@@ -131,7 +152,8 @@ class VppApiCrcChecker(object):
                 continue
             return _str(item)
         raise RuntimeError("No name found for message: {obj!r}".format(
-            obj=msg_obj))
+            obj=msg_obj)
+        )
 
     @staticmethod
     def _get_crc(msg_obj):
@@ -150,10 +172,13 @@ class VppApiCrcChecker(object):
             if crc:
                 return _str(crc)
         raise RuntimeError("No CRC found for message: {obj!r}".format(
-            obj=msg_obj))
+            obj=msg_obj)
+        )
 
     def _process_crc(self, api_name, crc):
         """Compare API to verified collections, update class state.
+
+        Here, API stands for (message name, CRC) pair.
 
         Conflict is NOT when a collection does not recognize the API.
         Such APIs are merely added to _found for later reporting.
@@ -182,6 +207,9 @@ class VppApiCrcChecker(object):
         :type api_name: str
         :type crc: str
         """
+        logger.console("Processing api {api} crc {crc}".format(
+            api=api_name, crc=crc)
+        )
         # Regardless of the result, remember as found.
         self._found[api_name] = crc
         old_expected = self._expected
@@ -193,13 +221,16 @@ class VppApiCrcChecker(object):
                 self._missing[collection_name].pop(api_name, None)
                 continue
             # Remove the offending collection.
+            logger.console("Removing collection {col}".format(
+                col=collection_name)
+            )
             new_expected.pop(collection_name, None)
         if new_expected:
             # Some collections recognized the CRC.
             self._expected = new_expected
             self._missing = {name: self._missing[name] for name in new_expected}
             return
-        # No new_expected means some colections knew the api_name,
+        # No new_expected means some collections knew the api_name,
         # but CRC does not match any. This has to be reported.
         self._reported[api_name] = crc
 
@@ -207,7 +238,7 @@ class VppApiCrcChecker(object):
         """Parse every .api.json found under directory, remember conflicts.
 
         As several collections are supported, each conflict invalidates
-        one of them, failure happens only when no collections would be left.
+        some of them, failure happens only when no collections would be left.
         In that case, set of collections just before the failure is preserved,
         the _reported mapping is filled with conflicting APIs.
         The _found mapping is filled with discovered api names and crcs.
@@ -229,7 +260,8 @@ class VppApiCrcChecker(object):
                     msg_crc = self._get_crc(msg_obj)
                     self._process_crc(msg_name, msg_crc)
         logger.debug("Surviving collections: {col!r}".format(
-            col=self._expected.keys()))
+            col=self._expected.keys())
+        )
 
     def report_initial_conflicts(self, report_missing=False):
         """Report issues discovered by _check_dir, if not done that already.
@@ -241,37 +273,56 @@ class VppApiCrcChecker(object):
         Missing reporting is disabled by default, because some messages
         come from plugins that might not be enabled at runtime.
 
+        After the report, clear _reported, so that test cases report them again,
+        thus tracking which message is actually used (by which test).
+
         :param report_missing: Whether to raise on missing messages.
         :type report_missing: bool
-        :raises RuntimeError: If CRC mismatch or missing messages are detected.
+        :raises RuntimeError: If CRC mismatch or missing messages are detected,
+            and fail_on_mismatch is True.
         """
         if self._initial_conflicts_reported:
             return
         self._initial_conflicts_reported = True
         if self._reported:
-            raise RuntimeError("Dir check found incompatible API CRCs: {rep!r}"\
-                .format(rep=self._reported))
+
+            reported_indented = json.dumps(
+                self._reported, indent=1, sort_keys=True,
+                separators=[",", ":"]
+            )
+            self._reported = dict()
+            self.log_and_raise(
+                "Incompatible API CRCs found in .api.json files:\n"
+                "{r_i}".format(r_i=reported_indented)
+            )
         if not report_missing:
             return
         missing = {name: mapp for name, mapp in self._missing.items() if mapp}
         if missing:
-            raise RuntimeError("Dir check found missing API CRCs: {mis!r}"\
-                .format(mis=missing))
+            missing_indented = json.dumps(
+                missing, indent=1, sort_keys=True, separators=[",", ":"])
+            self.log_and_raise(
+                "API CRCs missing from .api.json:\n"
+                "{m_i}".format(m_i=missing_indented)
+            )
 
     def check_api_name(self, api_name):
-        """Fail if the api_name has no known CRC associated.
+        """Fail if the api_name has no, or different from known CRC associated.
 
         Do not fail if this particular failure has been already reported.
 
-        Intended use: Call everytime an API call is queued or response received.
+        Intended use: Call during test (not in initialization),
+        every time an API call is queued or response received.
 
-        :param api_name: VPP API messagee name to check.
+
+        :param api_name: VPP API message name to check.
         :type api_name: str or unicode
         :raises RuntimeError: If no verified CRC for the api_name is found.
         """
         api_name = _str(api_name)
         if api_name in self._reported:
             return
+        logger.console("Checking {api}".format(api=api_name))
         old_expected = self._expected
         new_expected = old_expected.copy()
         for collection_name, name_to_crc_mapping in old_expected.items():
@@ -282,9 +333,24 @@ class VppApiCrcChecker(object):
         if new_expected:
             # Some collections recognized the message name.
             self._expected = new_expected
-            return
         crc = self._found.get(api_name, None)
+        matching = False
+        if crc is not None:
+            # Regardless of how many collections are remaining,
+            # verify the known CRC is on one of them.
+            for col, name_to_crc_mapping in self._expected.items():
+                if api_name not in name_to_crc_mapping:
+                    continue
+                if name_to_crc_mapping[api_name] == crc:
+                    matching = True
+                    logger.console("Found crc {crc} in collection {col}".format(
+                        crc=crc, col=col)
+                    )
+                    break
+        if matching:
+            return
         self._reported[api_name] = crc
-        # Disabled temporarily during CRC mismatch.
-        #raise RuntimeError("No active collection has API {api!r}"
-        #                   " CRC found {crc!r}".format(api=api_name, crc=crc))
+        self.log_and_raise(
+            "No active collection contains API {a_n!r} with CRC {crc!r}".format(
+                a_n=api_name, crc=crc)
+        )
