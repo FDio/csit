@@ -26,6 +26,8 @@ cpu_corelist="${1}"
 nb_cores="${2}"
 queue_nums="${3}"
 jumbo_frames="${4}"
+rxd="${5:-1024}"
+txd="${6:-1024}"
 arch="$(uname -m)"
 
 # DPDK prefers "arm64" to "aarch64" and does not allow arm64 native target.
@@ -112,8 +114,8 @@ if [ "${jumbo_frames}" = "yes" ]; then
         --rxq=${queue_nums} \
         --txq=$((${nb_cores} + 1)) \
         --burst=64 \
-        --rxd=1024 \
-        --txd=1024 \
+        --rxd=${rxd} \
+        --txd=${txd} \
         --disable-link-check \
         --auto-start"
 else
@@ -127,8 +129,8 @@ else
         --rxq=${queue_nums} \
         --txq=$((${nb_cores} + 1)) \
         --burst=64 \
-        --rxd=1024 \
-        --txd=1024 \
+        --rxd=${rxd} \
+        --txd=${txd} \
         --disable-link-check \
         --auto-start"
 fi
