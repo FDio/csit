@@ -1,7 +1,7 @@
 ---
 # file: roles/iperf/tasks/main.yaml
 
-- name: iPerf Install - Install Distribution - Release - Machine Prerequisites
+- name: iPerf - Install Distribution - Release - Machine Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
@@ -9,32 +9,45 @@
   tags:
     - install-dependencies
 
-- name: iPerf Install - Get Release Archive
+- name: iPerf - Get Release Archive
   get_url:
-    url: "https://downloads.es.net/pub/iperf/iperf-{{ iperf_version }}.tar.gz"
-    dest: "{{ iperf_target_dir }}/iperf-{{ iperf_version }}.tar.gz"
+    url: "https://downloads.es.net/pub/iperf/iperf-{{ item }}.tar.gz"
+    dest: "{{ iperf_target_dir }}/iperf-{{ item }}.tar.gz"
     mode: 0644
+  loop: "{{ iperf_version }}"
   tags:
     - install-iperf
 
-- name: iPerf Install - Ensure Directory Exists
-  file:
-    path: "{{ iperf_target_dir }}/iperf-{{ iperf_version }}"
-    state: "directory"
-  tags:
-    - install-iperf
-
-- name: iPerf Install - Extract Release Archive
+- name: iPerf - Extract Release Archive
   unarchive:
     remote_src: true
-    src: "{{ iperf_target_dir }}/iperf-{{ iperf_version }}.tar.gz"
+    src: "{{ iperf_target_dir }}/iperf-{{ item }}.tar.gz"
     dest: "{{ iperf_target_dir }}/"
-    creates: "{{ iperf_target_dir }}/iperf-{{ iperf_version }}/src"
+    creates: "{{ iperf_target_dir }}/iperf-{{ item }}/src"
+  loop: "{{ iperf_version }}"
   tags:
     - install-iperf
 
-- name: iPerf Install - Compile Release I
-  shell: |
-    cd "{{ iperf_target_dir }}/iperf-{{ iperf_version }}/" && ./configure && make && make install
+- name: iPerf - Compile Release I
+  command: "./configure"
+  args:
+      chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
+  loop: "{{ iperf_version }}"
+  tags:
+    - install-iperf
+
+- name: iPerf - Compile Release II
+  command: "make"
+  args:
+      chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
+  loop: "{{ iperf_version }}"
+  tags:
+    - install-iperf
+
+- name: iPerf - Compile Release III
+  command: "make install"
+  args:
+      chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
+  loop: "{{ iperf_version }}"
   tags:
     - install-iperf
