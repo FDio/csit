@@ -17,7 +17,8 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI | HOSTSTACK
+| ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | HOSTSTACK
 | ... | NSIM | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 9000B
 | ... | eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3
 |
@@ -40,6 +41,8 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | nsim_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
