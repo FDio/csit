@@ -9,8 +9,8 @@
       tags: user_add
     - role: common
       tags: common
-    - role: sut
-      tags: sut
+    - role: vpp
+      tags: vpp
     - role: azure
       tags: azure
     - role: iperf
