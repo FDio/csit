@@ -14,6 +14,7 @@
 """Algorithms to generate files.
 """
 
+from collections import OrderedDict
 
 import logging
 
@@ -75,6 +76,98 @@ def _tests_in_suite(suite_name, tests):
 
 
 def file_test_results(file_spec, input_data, frmt=u"rst"):
+    """Generate the file(s) with algorithms
+    - file_test_results
+    specified in the specification file.
+
+    :param file_spec: File to generate.
+    :param input_data: Data to process.
+    :param frmt: Format can be: rst or html
+    :type file_spec: pandas.Series
+    :type input_data: InputData
+    :type frmt: str
+    """
+
+    base_file_name = f"{file_spec[u'output-file']}"
+    rst_header = (
+        u"\n"
+        u".. |br| raw:: html\n\n    <br />\n\n\n"
+        u".. |prein| raw:: html\n\n    <pre>\n\n\n"
+        u".. |preout| raw:: html\n\n    </pre>\n\n"
+    )
+    start_lvl = file_spec.get(u"data-start-level", 4)
+
+    logging.info(f"  Generating the file set {base_file_name} ...")
+
+    data_sets = file_spec.get(u"data", None)
+    if not data_sets:
+        logging.error(
+            f"  No data sets specified for {file_spec[u'output-file']}, exit."
+        )
+        return
+
+    table_sets = file_spec.get(u"dir-tables", None)
+    if not table_sets:
+        logging.error(
+            f"  No table sets specified for {file_spec[u'output-file']}, exit."
+        )
+        return
+
+    if len(data_sets) != len(table_sets):
+        logging.error(
+            f"  The number of data sets and the number of table sets for "
+            f"{file_spec[u'output-file']} are not equal, exit."
+        )
+        return
+
+    chapters = OrderedDict()
+    for data_set, table_set in zip(data_sets, table_sets):
+        print(data_set)
+        print(table_set)
+
+        logging.info(f"    Processing the table set {table_set}...")
+
+        if frmt == u"html":
+            table_lst = get_files(table_set, u".rst", full_path=True)
+        elif frmt == u"rst":
+            table_lst = get_files(table_set, u".csv", full_path=True)
+        else:
+            return
+        if not table_lst:
+            logging.error(
+                f"    No tables to include in {table_set}. Skipping."
+            )
+            return
+
+        logging.info(u"    Creating the test data set...")
+        tests = input_data.filter_data(
+            element=file_spec,
+            params=[u"name", u"parent", u"doc", u"type", u"level"],
+            data=data_set,
+            data_set=u"tests",
+            continue_on_error=True
+        )
+        if tests.empty:
+            return
+        tests = input_data.merge_data(tests)
+
+        logging.info(u"    Creating the suite data set...")
+        suites = input_data.filter_data(
+            element=file_spec,
+            data=data_set,
+            continue_on_error=True,
+            data_set=u"suites"
+        )
+        if suites.empty:
+            return
+        suites = input_data.merge_data(suites)
+        suites.sort_index(inplace=True)
+
+
+
+
+
+def file_test_results_old(file_spec, input_data, frmt=u"rst"):
     """Generate the file(s) with algorithms
     - file_test_results
     specified in the specification file.
