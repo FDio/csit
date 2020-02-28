@@ -17,6 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER | 1R4C
 | ... | NF_DENSITY | CHAIN | NF_VPPIP4 | 4DCR1T | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | eth-l2bd-1ch-8mif-4dcr1t-vppip4
 |
 | Suite Setup | Setup suite single link | performance
@@ -54,6 +55,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${nic_rxq_size}= | 0
+| ${nic_txq_size}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${2}
