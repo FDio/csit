@@ -556,7 +556,7 @@ class QemuUtils:
                 f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
             )
 
-    def _wait_until_kernelvm_boot(self, retries=60):
+    def _wait_until_kernelvm_boot(self, retries=120):
         """Wait until QEMU KernelVM is booted.
 
         :param retries: Number of retries.
