@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,7 +25,8 @@ class L2fwdTest:
 
     @staticmethod
     def start_the_l2fwd_test(
-            dut_node, cpu_cores, nb_cores, queue_nums, jumbo_frames):
+            dut_node, cpu_cores, nb_cores, queue_nums, jumbo_frames,
+            rxq_size=1024, txq_size=1024):
         """
         Execute the l2fwd on the dut_node.
 
@@ -35,11 +36,15 @@ class L2fwdTest:
         :param queue_nums: The queues number for the NIC.
         :param jumbo_frames: Indication if the jumbo frames are used (True) or
                              not (False).
+        :param rxq_size: RXQ size. Default=1024.
+        :param txq_size: TXQ size. Default=1024.
         :type dut_node: dict
         :type cpu_cores: str
         :type nb_cores: str
         :type queue_nums: str
         :type jumbo_frames: bool
+        :type rxq_size: int
+        :type txq_size: int
         :raises RuntimeError: If the script "run_l2fwd.sh" fails.
         """
         if dut_node[u"type"] == NodeType.DUT:
@@ -50,7 +55,7 @@ class L2fwdTest:
             jumbo = u"yes" if jumbo_frames else u"no"
             cmd = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
                 f"/run_l2fwd.sh {cpu_cores} {nb_cores} {queue_nums} {jumbo} " \
-                f"{arch}"
+                f"{arch} {rxq_size} {txq_size}"
 
             ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=1800)
             if ret_code != 0:

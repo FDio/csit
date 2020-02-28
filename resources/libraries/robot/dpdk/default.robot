@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -55,6 +55,7 @@
 | | | ... | ELSE | Set variable | ${rxq_count_int}
 | | | Start the l2fwd test | ${nodes['${dut}']} | ${cpus} | ${thr_count_int}
 | | | ... | ${rxq_count_int} | ${jumbo_frames}
+| | | ... | ${nic_rxq_size} | ${nic_txq_size}
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
