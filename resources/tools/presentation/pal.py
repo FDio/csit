@@ -88,6 +88,8 @@ def main():
     try:
         spec = Specification(args.specification)
         spec.read_specification()
+        print(spec.specification)
+        return 1
     except PresentationError:
         logging.critical(u"Finished with error.")
         return 1

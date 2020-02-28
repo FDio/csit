@@ -323,10 +323,10 @@ class Specification:
         :param src_data: Data where the tags are defined. It is dictionary where
         the key is the tag and the value is the tag value. If not given, 'data'
         is used instead.
-        :type data: str or dict
+        :type data: str, list or dict
         :type src_data: dict
         :returns: Data with the tags replaced.
-        :rtype: str or dict
+        :rtype: str, list or dict
         :raises: PresentationError if it is not possible to replace the tag or
         the data is not the supported data type (str, dict).
         """
@@ -338,6 +338,13 @@ class Specification:
             tag = self._find_tag(data)
             if tag is not None:
                 data = data.replace(tag, src_data[tag[1:-1]])
+            return data
+
+        elif isinstance(data, list):
+            new_list = list()
+            for item in data:
+                new_list.append(self._replace_tags(item, src_data))
+            return new_list
 
         elif isinstance(data, dict):
             counter = 0
@@ -353,10 +360,9 @@ class Specification:
                         )
             if counter:
                 self._replace_tags(data, src_data)
+            return data
         else:
             raise PresentationError(u"Replace tags: Not supported data type.")
-
-        return data
 
     def _parse_env(self):
         """Parse environment specification in the specification YAML file.
@@ -774,6 +780,18 @@ class Specification:
                         f"Data set {data_set} is not defined in the "
                         f"configuration section."
                     )
+            elif isinstance(element.get(u"data", None), list):
+                new_list = list()
+                for item in element[u"data"]:
+                    try:
+                        new_list.append(
+                            self.configuration[u"data-sets"][item]
+                        )
+                    except KeyError:
+                        raise PresentationError(
+                            f"Data set {item} is not defined in the "
+                            f"configuration section."
+                        )
 
             # Parse elements:
             if element[u"type"] == u"table":
