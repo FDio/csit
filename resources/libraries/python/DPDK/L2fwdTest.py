@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,40 +20,44 @@ from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType, Topology
 
 
+from resources.libraries.python.Constants import Constants
+from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.topology import NodeType, Topology
+
+
 class L2fwdTest:
     """Setup the DPDK for l2fwd performance test."""
 
     @staticmethod
     def start_the_l2fwd_test(
-            dut_node, cpu_cores, nb_cores, queue_nums, jumbo_frames):
+            node, cpu_cores, nb_cores, queue_nums, jumbo_frames,
+            rxq_size=1024, txq_size=1024):
         """
-        Execute the l2fwd on the dut_node.
+        Execute the l2fwd on the DUT node.
 
-        :param dut_node: Will execute the l2fwd on this node.
+        :param node: Will execute the l2fwd on this node.
         :param cpu_cores: The DPDK run cores.
         :param nb_cores: The cores number for the forwarding.
         :param queue_nums: The queues number for the NIC.
         :param jumbo_frames: Indication if the jumbo frames are used (True) or
-                             not (False).
-        :type dut_node: dict
+            not (False).
+        :param rxq_size: RXQ size. Default=1024.
+        :param txq_size: TXQ size. Default=1024.
+        :type node: dict
         :type cpu_cores: str
         :type nb_cores: str
         :type queue_nums: str
         :type jumbo_frames: bool
+        :type rxq_size: int
+        :type txq_size: int
         :raises RuntimeError: If the script "run_l2fwd.sh" fails.
         """
-        if dut_node[u"type"] == NodeType.DUT:
-            ssh = SSH()
-            ssh.connect(dut_node)
-
-            arch = Topology.get_node_arch(dut_node)
+        if node[u"type"] == NodeType.DUT:
             jumbo = u"yes" if jumbo_frames else u"no"
-            cmd = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
+            command = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
                 f"/run_l2fwd.sh {cpu_cores} {nb_cores} {queue_nums} {jumbo} " \
-                f"{arch}"
+                f"{rxq_size} {txq_size}"
+            
+            message = f"Failed to execute l2fwd test at node {node['host']}"
 
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=1800)
-            if ret_code != 0:
-                raise RuntimeError(
-                    f"Failed to execute l2fwd test at node {dut_node['host']}"
-                )
+            exec_cmd_no_error(node, command, timeout=1800, message=message)
