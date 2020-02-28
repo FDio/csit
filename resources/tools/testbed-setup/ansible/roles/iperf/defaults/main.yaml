@@ -18,4 +18,5 @@ packages_by_arch:
     - []
 
 iperf_target_dir: "/opt"
-iperf_version: "3.7"
+iperf_version:
+  - "3.7"

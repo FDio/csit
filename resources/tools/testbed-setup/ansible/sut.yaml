@@ -10,8 +10,8 @@
       tags: common
     - role: vexx_hosts
       tags: vexx_hosts
-    - role: sut
-      tags: sut
+    - role: vpp
+      tags: vpp
     - role: dpdk
       tags: dpdk
     - role: docker
