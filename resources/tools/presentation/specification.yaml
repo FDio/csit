@@ -589,7 +589,9 @@
         - 77  # NDRPDR full
         - 78  # NDRPDR full
         - 79  # NDRPDR full
+        - 81  # NDRPDR full
         - 82  # NDRPDR full
+        - 84  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       # TODO: Replace
@@ -2113,7 +2115,9 @@
       - 77  # NDRPDR full
       - 78  # NDRPDR full
       - 79  # NDRPDR full
+      - 81  # NDRPDR full
       - 82  # NDRPDR full
+      - 84  # NDRPDR full
 
 #    csit-vpp-perf-verify-1904-3n-skx:
 #      - 7   # MRR sel
@@ -2508,8 +2512,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
