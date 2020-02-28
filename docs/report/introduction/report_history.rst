@@ -8,7 +8,9 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +================+============================================================+
 | .10            | 1. Added data:                                             |
 |                |                                                            |
+|                |    - VPP performance tests 3n-hsw                          |
 |                |                                                            |
+|                |      - test sets IP4, IPSec                                |
 |                |                                                            |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
