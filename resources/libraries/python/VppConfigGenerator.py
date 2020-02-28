@@ -342,7 +342,7 @@ class VppConfigGenerator:
         path = [u"dpdk", u"dev default", u"num-tx-queues"]
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_dpdk_dev_default_rxd(self, value):
+    def add_dpdk_dev_default_rxd(self, value=1024):
         """Add DPDK dev default rxd configuration.
 
         :param value: Default number of rxds.
@@ -351,7 +351,7 @@ class VppConfigGenerator:
         path = [u"dpdk", u"dev default", u"num-rx-desc"]
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_dpdk_dev_default_txd(self, value):
+    def add_dpdk_dev_default_txd(self, value=1024):
         """Add DPDK dev default txd configuration.
 
         :param value: Default number of txds.

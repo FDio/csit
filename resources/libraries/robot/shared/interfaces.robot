@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,7 +16,13 @@
 | Library | resources.libraries.python.VhostUser
 
 *** Variables ***
+| ${avf_rxq_size}= | ${0}
+| ${avf_txq_size}= | ${0}
 | ${dpdk_no_tx_checksum_offload}= | ${True}
+| ${dpdk_dev_default_rxd}= | ${1024}
+| ${dpdk_dev_default_txd}= | ${1024}
+| ${rdma_rxq_size}= | ${0}
+| ${rdma_txq_size}= | ${0}
 
 *** Keywords ***
 | Set interfaces in path up
@@ -191,10 +197,10 @@
 | | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
 | | | Run Keyword If | not ${jumbo}
 | | | ... | ${dut}.Add DPDK No Multi Seg
-| | | Run Keyword If | ${rxd_count_int}
-| | | ... | ${dut}.Add DPDK Dev Default RXD | ${rxd_count_int}
-| | | Run Keyword If | ${txd_count_int}
-| | | ... | ${dut}.Add DPDK Dev Default TXD | ${txd_count_int}
+| | | Run Keyword If | ${dpdk_dev_default_rxd}
+| | | ... | ${dut}.Add DPDK Dev Default RXD | ${dpdk_dev_default_rxd}
+| | | Run Keyword If | ${dpdk_dev_default_txd}
+| | | ... | ${dut}.Add DPDK Dev Default TXD | ${dpdk_dev_default_txd}
 | | | Run Keyword If | '${crypto_type}' != '${None}'
 | | | ... | ${dut}.Add DPDK Cryptodev | ${thr_count_int}
 | | END
@@ -266,11 +272,13 @@
 | | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
 | | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
 | | ${dut_new_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if1_vf0} | ${rxq_count_int}
+| | ... | ${${dut}_if1_vf0} | num_rx_queues=${rxq_count_int}
+| | ... | rxq_size=${avf_rxq_size} | txq_size=${avf_txq_size}
 | | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if1}
 | | ${dut_new_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if2_vf0} | ${rxq_count_int}
+| | ... | ${${dut}_if2_vf0} | num_rx_queues=${rxq_count_int}
+| | ... | rxq_size=${avf_rxq_size} | txq_size=${avf_txq_size}
 | | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if2}
 | | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
@@ -297,11 +305,13 @@
 | | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
 | | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
 | | ${dut_new_if1}= | VPP Create Rdma Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if1} | ${rxq_count_int}
+| | ... | ${${dut}_if1} | num_rx_queues=${rxq_count_int}
+| | ... | rxq_size=${rdma_rxq_size} | txq_size=${rdma_txq_size}
 | | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if1}
 | | ${dut_new_if2}= | VPP Create Rdma Interface | ${nodes['${dut}']}
-| | ... | ${${dut}_if2} | ${rxq_count_int}
+| | ... | ${${dut}_if2} | num_rx_queues=${rxq_count_int}
+| | ... | rxq_size=${rdma_rxq_size} | txq_size=${rdma_txq_size}
 | | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if2}
 | | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
