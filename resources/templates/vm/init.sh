@@ -13,5 +13,8 @@ echo vfio-pci > /sys/bus/pci/devices/0000:00:07.0/driver_override
 echo 0000:00:06.0 > /sys/bus/pci/drivers/vfio-pci/bind
 echo 0000:00:07.0 > /sys/bus/pci/drivers/vfio-pci/bind
 mkdir -p /var/run/vpp
+date; echo "starting background"
+( sleep 10; for i in $(seq 30); do date; vppctl show run; vppctl show errors; sleep 1; done ) &
+date; echo "background active"
 ${vnf_bin}
 poweroff -f
