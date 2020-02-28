@@ -74,6 +74,21 @@ def _tests_in_suite(suite_name, tests):
     return False
 
 
+def file_test_results_new(file_spec, input_data, frmt=u"rst"):
+    """Generate the file(s) with algorithms
+    - file_test_results
+    specified in the specification file.
+
+    :param file_spec: File to generate.
+    :param input_data: Data to process.
+    :param frmt: Format can be: rst or html
+    :type file_spec: pandas.Series
+    :type input_data: InputData
+    :type frmt: str
+    """
+    pass
+
+
 def file_test_results(file_spec, input_data, frmt=u"rst"):
     """Generate the file(s) with algorithms
     - file_test_results
