@@ -1,14 +1,18 @@
 VPP Throughput
 ==============
 
+.. note::
+
+    Data sources for reported test results:
+    i) `FD.io test executor vpp performance job 2n-skx`_,
+    `FD.io test executor vpp performance job 3n-skx`_,
+    `FD.io test executor vpp performance job 2n-clx`_,
+    `FD.io test executor vpp performance job 3n-hsw`_,
+    `FD.io test executor vpp performance job 3n-tsh`_,
+    `FD.io test executor vpp performance job 2n-dnv`_,
+    `FD.io test executor vpp performance job 3n-dnv`_,
+    ii) archived FD.io jobs test results
+    `output files <../../_static/archive/>`_.
+
 .. toctree::
 
-    ../vpp_performance_configuration_3n_hsw/index
-    ../vpp_performance_configuration_3n_tsh/index
-    ../vpp_performance_configuration_2n_dnv/index
-    ../vpp_performance_configuration_3n_dnv/index
-    ../vpp_performance_configuration_2n_clx/index
-
-..
-    ../vpp_performance_configuration_2n_skx/index
-    ../vpp_performance_configuration_3n_skx/index
