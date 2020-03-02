@@ -16,6 +16,8 @@ is only a symlink to the original place of tightly coupled CSIT code.
 Change log
 ----------
 
+0.3.0: Migrated to Python 3.6, small code quality improvements.
+
 0.2.0: Optional parameter "doublings" has been added.
 
 0.1.1: First officially released version.
@@ -28,10 +30,11 @@ TODO.
 Operation logic
 ---------------
 
-TODO.
+See `IETF draft`_.
 
 .. _CSIT: https://wiki.fd.io/view/CSIT
 .. _fd.io: https://fd.io/
 .. _LFN: https://www.linuxfoundation.org/projects/networking/
 .. _PyPI: https://pypi.org/
 .. _directory: https://gerrit.fd.io/r/gitweb?p=csit.git;a=tree;f=PyPI/MLRsearch;hb=refs/heads/master
+.. _IETF draft: https://tools.ietf.org/html/draft-vpolak-mkonstan-bmwg-mlrsearch
