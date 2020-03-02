@@ -298,7 +298,7 @@ md_clear flush_l1d
   |  Processor Frequency                       2.500GHz  |  2.500GHz   |                             |
   |  Processor Max Ratio                            19H  |  19H        |                             |
   |  Processor Min Ratio                            0AH  |  0AH        |                             |
-  |  Microcode Revision                        02000030                |                             |
+  |  Microcode Revision                        02000054  |  02000054   |                             |
   |  L1 Cache RAM                                  64KB  |      64KB   |                             |
   |  L2 Cache RAM                                1024KB  |    1024KB   |                             |
   |  L3 Cache RAM                               39424KB  |   39424KB   |                             |
@@ -308,7 +308,8 @@ md_clear flush_l1d
   |  Intel(R) Xeon(R) Platinum 8180 CPU @ 2.50GHz                      |                             |
   |                                                                    |                             |
   |  Hyper-Threading [ALL]                     [Enable]                |                             |
-  |  Core Disable Bitmap(Hex)                  0                       |                             |
+  |  Core Enabled                              0                       |                             |
+  |  Monitor/Mwait                             [Auto]                  |                             |
   |  Execute Disable Bit                       [Enable]                |                             |
   |  Intel Virtualization Technology           [Enable]                |                             |
   |  PPIN Control                              [Unlock/Enable]         |                             |
@@ -436,13 +437,16 @@ md_clear flush_l1d
   |  Integrated Memory Controller (iMC)                                |DDR4 frequency and voltage   |
   |  --------------------------------------------------                |programming. Disable -       |
   |                                                                    |Disables this feature.       |
-  |  Enforce POR                               [Disable]               |                             |
-  |  Memory Frequency                          [2666]                  |                             |
-  |  Data Scrambling for NVMDIMM               [Auto]                  |                             |
+  |  Enforce POR                               [POR]                   |                             |
+  |  PPR Type                                  [Hard PPR]              |                             |
+  |  Enhanced PPR                              [Disable]               |                             |
+  |   Operation Mode                           [Test and Repair]       |                             |
+  |  Memory Frequency                          [2933]                  |                             |
   |  Data Scrambling for DDR4                  [Auto]                  |                             |
   |  tCCD_L Relaxation                         [Auto]                  |                             |
-  |  Memory tRWSR Relaxation                   [Enable]                |                             |
-  |  2X REFRESH                                [Auto]                  |                             |
+  |  tRWSR Relaxation                          [Disable]               |                             |
+  |  tRFC Optimization for 16Gb Based DIMM     [Force 550ns]           |                             |
+  |  2x Refresh                                [Auto]                  |                             |
   |  Page Policy                               [Auto]                  |                             |
   |  IMC Interleaving                          [2-way Interleave]      |                             |
   |> Memory Topology                                                   |                             |
@@ -493,13 +497,13 @@ md_clear flush_l1d
 
 ```
   |                                                                    |Enables Legacy USB support.  |
-  |  USB Module Version                        17                      |AUTO option disables legacy  |
+  |  USB Module Version                        21                      |AUTO option disables legacy  |
   |                                                                    |support if no USB devices    |
   |  USB Devices:                                                      |are connected. DISABLE       |
   |        1 Keyboard, 1 Mouse, 1 Hub                                  |option will keep USB         |
   |                                                                    |devices available only for   |
   |  Legacy USB Support                        [Enabled]               |EFI applications.            |
-  |  XHCI Hand-off                             [Disabled]              |                             |
+  |  XHCI Hand-off                             [Enabled]               |                             |
   |  Port 60/64 Emulation                      [Enabled]               |                             |
   |  PCIe PLL SSC                              [Disable]               |                             |
   |  Real USB Wake Up                          [Enabled]               |                             |
@@ -512,12 +516,13 @@ md_clear flush_l1d
 ### PCIe/PCI/PnP Configuration
 
 ```
-  |  PCI Bus Driver Version                    A5.01.12                |Enables or Disables 64bit    |
+  |  PCI Bus Driver Version                    A5.01.18                |Enables or Disables 64bit    |
   |                                                                    |capable Devices to be        |
   |  PCI Devices Common Settings:                                      |Decoded in Above 4G Address  |
   |  Above 4G Decoding                         [Enabled]               |Space (Only if System        |
   |  SR-IOV Support                            [Enabled]               |Supports 64 bit PCI          |
-  |  MMIO High Base                            [56T]                   |Decoding).                   |
+  |  ARI Support                               [Enabled]               |Decoding).                   |
+  |  MMIO High Base                            [56T]                   |                             |
   |  MMIO High Granularity Size                [256G]                  |                             |
   |  Maximum Read Request                      [Auto]                  |                             |
   |  MMCFG Base                                [2G]                    |                             |
@@ -545,28 +550,27 @@ md_clear flush_l1d
   |  NUMA                                      [Enabled]               |(NUMA).                      |
   |  WHEA Support                              [Enabled]               |                             |
   |  High Precision Event Timer                [Enabled]               |                             |
-  |  ACPI Sleep State                          [S3 (Suspend to RAM)]   |                             |
 ```
 
 ## Xeon Skx Server Firmware Inventory
 
 ```
 Host.           IPMI IP.      BIOS. CPLD.     Aptio SU.   CPU Microcode.  PCI Bus.   ME Operation FW.    X710 Firmware.            XXV710 Firmware.          i40e.
-s1-t11-sut1.    10.30.50.47.  2.1.  03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s2-t12-sut1.    10.30.50.48.  2.1.  03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s3-t21-sut1.    10.30.50.41.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s4-t21-tg1.     10.30.50.42.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s5-t22-sut1.    10.30.50.49.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s6-t22-tg1.     10.30.50.50.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s7-t23-sut1.    10.30.50.51.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s8-t23-tg1.     10.30.50.52.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s9-t24-sut1.    10.30.50.53.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s10-t24-tg1.    10.30.50.54.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s11-t31-sut1.   10.30.50.43.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s12-t31-sut2.   10.30.50.44.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s13-t31-tg1.    10.30.50.45.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s14-t32-sut1.   10.30.50.55.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s15-t32-sut2.   10.30.50.56.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s16-t32-tg1.    10.30.50.57.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s19-t33t34-tg1. 10.30.50.46.  2.0b. 03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s1-t11-sut1.    10.30.50.47.  2.1.  03.B1.03. 2.19.1268.  02000065.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s2-t12-sut1.    10.30.50.48.  2.1.  03.B1.03. 2.19.1268.  02000065.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s3-t21-sut1.    10.30.50.41.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s4-t21-tg1.     10.30.50.42.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s5-t22-sut1.    10.30.50.49.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s6-t22-tg1.     10.30.50.50.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s7-t23-sut1.    10.30.50.51.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s8-t23-tg1.     10.30.50.52.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s9-t24-sut1.    10.30.50.53.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s10-t24-tg1.    10.30.50.54.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s11-t31-sut1.   10.30.50.43.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s12-t31-sut2.   10.30.50.44.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s13-t31-tg1.    10.30.50.45.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s14-t32-sut1.   10.30.50.55.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s15-t32-sut2.   10.30.50.56.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s16-t32-tg1.    10.30.50.57.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+s19-t33t34-tg1. 10.30.50.46.  3.2.  03.B1.03. 2.19.1268.  02000065.       A5.01.18.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
 ```
