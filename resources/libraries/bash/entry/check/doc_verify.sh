@@ -11,18 +11,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -exuo pipefail
+set -xeuo pipefail
 
-# This file should be executed from tox, as the assumed working directory
+# This file should be executed from tox, as the assumend working directory
 # is different from where this file is located.
 # This file does not have executable flag nor shebang,
 # to dissuade non-tox callers.
-
-# This script runs a grep-based command and fails if it detects any lines
-# edited or added since HEAD~ and longer than 80 characters.
-# The grep output stored to new_lines.log (overwriting).
-
-# See lines.log to locate where the lines are.
 
 # "set -eu" handles failures from the following two lines.
 BASH_CHECKS_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
@@ -32,20 +26,32 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 
-# Greps do "fail" on zero line output, we need to ignore that in the final grep.
-piped_command="set -exuo pipefail && git diff -U0 HEAD~ | grep '^\+' | "
-piped_command+="cut -c2- | grep -v '^\+\+ ' | { grep '.\{81\}' || true; } | "
-piped_command+="tee 'new_lines.log' | wc -l"
-lines="$(bash -c "${piped_command}")" || die
-if [ "${lines}" != "0" ]; then
-    # TODO: Decide which text goes to stdout and which to stderr.
-    warn "Long lines detected: ${lines}"
-    # TODO: Disable when output size does more harm than good.
-    cat "new_lines.log" >&2
+common_dirs || die
+log_file="$(pwd)/doc_verify.log" || die
+
+# Pre-cleanup.
+rm -f "${log_file}" || die
+rm -f "${DOC_GEN_DIR}/csit.docs.tar.gz" || die
+rm -rf "${DOC_GEN_DIR}/_build" || die
+
+# Documentation generation.
+# Here we do store only stderr to file while stdout (inlcuding Xtrace) is
+# printed to console. This way we can track increased errors in future.
+# We do not need to do trap as the env will be closed after tox finished the
+# task.
+exec 3>&1 || die
+export BASH_XTRACEFD="3" || die
+
+pushd "${DOC_GEN_DIR}" || die
+source ./run_doc.sh ${GERRIT_BRANCH:-local} 2> ${log_file} || true
+popd || die
+
+if [[ ! -f "${log_file}" ]] || [[ -s "${log_file}" ]]; then
+    # Output file not exists or is non empty.
     warn
-    warn "New line length checker: FAIL"
+    warn "Doc verify checker: FAIL"
     exit 1
 fi
 
 warn
-warn "New line length checker: PASS"
+warn "Doc verify checker: PASS"

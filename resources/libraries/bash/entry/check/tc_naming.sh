@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -66,7 +64,7 @@ r_testc_rules=(
     #'(ipsec[[:digit:]]+tnlhw|ipsec[[:digit:]]+tnlsw|'
     #'srhip6|tcp|udp|lispip6|lispip4|vxlan){0,1}'
     #'(http){0,1}-'
-    '(.*)-(dev|ndrpdr|cps|rps|reconf)$'
+    '(.*)-(dev|ndrpdr|bps|cps|rps|reconf)$'
     )
 s_suite_rules=(
     'number of SUT nodes'
@@ -85,7 +83,7 @@ r_suite_rules=(
     #'(ipsec[[:digit:]]+tnlhw|ipsec[[:digit:]]+tnlsw|'
     #'srhip6|tcp|udp|lispip6|lispip4|vxlan){0,1}'
     #'(http){0,1}-'
-    '(.*)-(dev|ndrpdr|cps|rps|reconf)$'
+    '(.*)-(dev|ndrpdr|bps|cps|rps|reconf)$'
     )
 
 rm -f "tc_naming.log" || die
