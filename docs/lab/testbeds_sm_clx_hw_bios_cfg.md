@@ -833,7 +833,7 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
 	Configured Voltage: 1.2 V
 ```
 
-## Xeon Clx Server BIOS Configuration
+## Xeon CLX Server BIOS Configuration - TG
 
 ### Boot Feature
 
@@ -857,31 +857,31 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
 ### CPU Configuration
 
 ```
-  |  Processor Configuration                                           |Enables Hyper Threading      |
-  |  --------------------------------------------------                |(Software Method to          |
-  |  Processor BSP Revision                    50657 - CLX B1          |Enable/Disable Logical       |
-  |  Processor Socket                          CPU1      |  CPU2       |Processor threads.           |
-  |  Processor ID                              00050657* |  00050657   |                             |
-  |  Processor Frequency                       2.300GHz  |  2.300GHz   |                             |
-  |  Processor Max Ratio                            17H  |  17H        |                             |
-  |  Processor Min Ratio                            0AH  |  0AH        |                             |
-  |  Microcode Revision                        05000021  |  05000021   |                             |
-  |  L1 Cache RAM                                  64KB  |      64KB   |                             |
-  |  L2 Cache RAM                                1024KB  |    1024KB   |                             |
-  |  L3 Cache RAM                               36608KB  |   36608KB   |                             |
-  |  Processor 0 Version                                               |                             |
-  |  Intel(R) Xeon(R) Platinum 6252 CPU @ 2.30GHz                      |                             |
-  |  Processor 1 Version                                               |                             |
-  |  Intel(R) Xeon(R) Platinum 6252 CPU @ 2.30GHz                      |                             |
-  |                                                                    |                             |
-  |  Hyper-Threading [ALL]                     [Enable]                |                             |
-  |  Core Enabled                              0                       |                             |
-  |  Monitor/MWAIT                             [Auto]                  |                             |
-  |  Execute Disable Bit                       [Enable]                |                             |
-  |  Intel Virtualization Technology           [Enable]                |                             |
-  |  PPIN Control                              [Unlock/Enable]         |                             |
-  |  Hardware Prefetcher                       [Enable]                |                             |
-  |  Adjacent Cache Prefetch                   [Enable]                |                             |
+  |  Processor Configuration                                          ^|Enables Hyper Threading      |
+  |  --------------------------------------------------               *|(Software Method to          |
+  |  Processor BSP Revision                    50657 - CLX B1         *|Enable/Disable Logical       |
+  |  Processor Socket                          CPU1      |  CPU2      *|Processor threads.           |
+  |  Processor ID                              00050657* |  00050657  *|                             |
+  |  Processor Frequency                       2.700GHz  |  2.700GHz  *|                             |
+  |  Processor Max Ratio                            1BH  |  1BH       *|                             |
+  |  Processor Min Ratio                            0AH  |  0AH       *|                             |
+  |  Microcode Revision                        0500002C  |  0500002C  *|                             |
+  |  L1 Cache RAM                                  64KB  |      64KB  *|                             |
+  |  L2 Cache RAM                                1024KB  |    1024KB  *|                             |
+  |  L3 Cache RAM                               39424KB  |   39424KB  *|                             |
+  |  Processor 0 Version                                              *|                             |
+  |  Intel(R) Xeon(R) Platinum 8280 CPU @ 2.70GHz                     *|                             |
+  |  Processor 1 Version                                              *|                             |
+  |  Intel(R) Xeon(R) Platinum 8280 CPU @ 2.70GHz                     *|                             |
+  |                                                                   *|-----------------------------|
+  |  Hyper-Threading [ALL]                     [Enable]               *|><: Select Screen            |
+  |  Cores Enabled                             0                      *|^v: Select Item              |
+  |  Monitor/Mwait                             [Auto]                 *|Enter: Select                |
+  |  Execute Disable Bit                       [Enable]               +|+/-: Change Opt.             |
+  |  Intel Virtualization Technology           [Enable]               +|F1: General Help             |
+  |  PPIN Control                              [Unlock/Enable]        +|F2: Previous Values          |
+  |  Hardware Prefetcher                       [Enable]               +|F3: Optimized Defaults       |
+  |  Adjacent Cache Prefetch                   [Enable]               v|F4: Save & Exit              |
   |  DCU Streamer Prefetcher                   [Enable]                |                             |
   |  DCU IP Prefetcher                         [Enable]                |                             |
   |  LLC Prefetch                              [Disable]               |                             |
@@ -908,52 +908,63 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
 ##### CPU P State Control
 
 ```
-  |  CPU P State Control                                               |Enable/Disable EIST          |
-  |                                                                    |(P-States)                   |
-  |  SpeedStep (Pstates)                       [Disable]               |                             |
-  |  Activate PBF                              [Disable]               |                             |
-  |  Configure PBF                                                     |                             |
-  |  EIST PSD Function                                                 |                             |
+  |  CPU P State Control                                               |EIST allows the processor    |
+  |                                                                    |to dynamically adjust        |
+  |  SpeedStep (P-States)                      [Disable]               |frequency and voltage based  |
+  |  EIST PSD Function                         [HW_ALL]                |on power versus performance  |
+  |                                                                    |needs.                       |
+  |                                                                    |                             |
 ```
 
 ##### Hardware PM State Control
 
 ```
-  |  Hardware PM State Control                                         |Disable: Hardware chooses a  |
-  |                                                                    |P-state based on OS Request  |
-  |  Hardware P-States                         [Disable]               |(Legacy P-States)            |
-  |                                                                    |Native Mode:Hardware         |
-  |                                                                    |chooses a P-state based on   |
-  |                                                                    |OS guidance                  |
-  |                                                                    |Out of Band Mode:Hardware    |
-  |                                                                    |autonomously chooses a       |
-  |                                                                    |P-state (no OS guidance)     |
+  |  Hardware PM State Control                                         |If set to Disable, hardware ^|
+  |                                                                    |will choose a P-state       *|
+  |  Hardware P-States                         [Disable]               |setting for the system      *|
+  |                                                                    |based on an OS request.     *|
+  |                                                                    |If set to Native Mode,      *|
+  |                                                                    |hardware will choose a      *|
+  |                                                                    |P-state setting based on OS *|
+  |                                                                    |guidance.                   *|
+  |                                                                    |If set to Native Mode with  *|
+  |                                                                    |No Legacy Support, hardware *|
+  |                                                                    |will choose a P-state       *|
+  |                                                                    |setting independently       *|
+  |                                                                    |without OS guidance.        +|
+  |                                                                    |If set to Out of Band Mode, +|
+  |                                                                    |hardware autonomously       v|
 ```
 
 ##### CPU C State Control
 
 ```
-  |  CPU C State Control                                               |Autonomous Core C-State      |
-  |                                                                    |Control                      |
-  |  Autonomous Core C-State                   [Disable]               |                             |
-  |  CPU C6 report                             [Disable]               |                             |
-  |  Enhanced Halt State (C1E)                 [Disable]               |                             |
+  |  CPU C State Control                                               |Select Enable to support     |
+  |                                                                    |Autonomous Core C-State      |
+  |  Autonomous Core C-State                   [Disable]               |control which will allow     |
+  |  CPU C6 report                             [Disable]               |the processor core to        |
+  |  Enhanced Halt State (C1E)                 [Disable]               |control its C-State setting  |
+  |                                                                    |automatically and            |
+  |                                                                    |independently.               |
 ```
 
 ##### Package C State Control
 
 ```
-  |  Package C State Control                                           |Package C State limit        |
-  |                                                                    |                             |
-  |  Package C State                           [C0/C1 state]           |                             |
+  |  Package C State Control                                           |Limit the lowest package     |
+  |                                                                    |level C-State to             |
+  |  Package C State                           [C0/C1 state]           |processors. Lower package    |
+  |                                                                    |C-State lower processor      |
+  |                                                                    |power consumption upon idle. |
 ```
 
 ##### CPU T State Control
 
 ```
-  |  CPU T State Control                                               |Enable/Disable Software      |
-  |                                                                    |Controlled T-States          |
-  |  Software Controlled T-States              [Disable]               |                             |
+  |  CPU T State Control                                               |Enable/Disable CPU           |
+  |                                                                    |throttling by OS.            |
+  |  Software Controlled T-States              [Disable]               |Throttling reduces power     |
+  |                                                                    |consumption                  |
 ```
 
 #### Chipset Configuration
@@ -976,47 +987,51 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
 ##### UPI Configuration
 
 ```
-  |  UPI Configuration                                                 |Choose Topology Precedence   |
-  |  --------------------------------------------------                |to degrade features if       |
-  |  Number of CPU                             2                       |system options are in        |
-  |  Number of Active UPI Link                 3                       |conflict or choose Feature   |
-  |  Current UPI Link Speed                    Fast                    |Precedence to degrade        |
-  |  Current UPI Link Frequency                10.4 GT/s               |topology if system options   |
-  |  UPI Global MMIO Low Base / Limit          90000000 / FBFFFFFF     |are in conflict.             |
-  |  UPI Global MMIO High Base / Limit         0000000000000000 / ...  |                             |
-  |  UPI Pci-e Configuration Base / Size       80000000 / 10000000     |                             |
-  |  Degrade Precedence                        [Topology Precedence]   |                             |
+  |  UPI Configuration                                                 |Use this feature to select   |
+  |  --------------------------------------------------                |the degrading precedence     |
+  |  Number of CPU                             2                       |option for Ultra Path        |
+  |  Number of Active UPI Link                 3                       |Interconnect connections.    |
+  |  Current UPI Link Speed                    Fast                    |Select Topology Precedent    |
+  |  Current UPI Link Frequency                10.4 GT/s               |to degrade UPI features if   |
+  |  UPI Global MMIO Low Base / Limit          90000000 / FBFFFFFF     |system options are in        |
+  |  UPI Global MMIO High Base / Limit         0000000000000000 /      |conflict. Select Feature     |
+  |                                            00000000FFFFFFFF        |Precedent to degrade UPI     |
+  |  UPI Pci-e Configuration Base / Size       80000000 / 10000000     |topology if system options   |
+  |  Degrade Precedence                        [Topology Precedence]   |are in conflict.             |
   |  Link L0p Enable                           [Disable]               |                             |
   |  Link L1 Enable                            [Disable]               |                             |
   |  IO Directory Cache (IODC)                 [Auto]                  |                             |
   |  SNC                                       [Disable]               |                             |
   |  XPT Prefetch                              [Disable]               |                             |
-  |  KTI Prefetch                              [Enable]                |                             |
-  |  Local/Remote Threshold                    [Auto]                  |                             |
-  |  Stale AtoS                                [Auto]                  |                             |
-  |  LLC dead line alloc                       [Enable]                |                             |
-  |  Isoc Mode                                 [Auto]                  |                             |
+  |  KTI Prefetch                              [Enable]                |-----------------------------|
+  |  Local/Remote Threshold                    [Auto]                  |><: Select Screen            |
+  |  Stale AtoS                                [Auto]                  |^v: Select Item              |
+  |  LLC Dead Line Alloc                       [Enable]                |Enter: Select                |
+  |  Isoc Mode                                 [Auto]                  |+/-: Change Opt.             |
 ```
 
 ##### Memory Configuration
 
 ```
-  |                                                                    |POR - Enforces Plan Of       |
-  |  --------------------------------------------------                |Record restrictions for      |
-  |  Integrated Memory Controller (iMC)                                |DDR4 frequency and voltage   |
-  |  --------------------------------------------------                |programming. Disable -       |
-  |                                                                    |Disables this feature.       |
-  |  Enforce POR                               [Disable]               |                             |
-  |  PPR Type                                  [Auto]                  |                             |
+  |                                                                    |Select POR to enforce POR    |
+  |  --------------------------------------------------                |restrictions for DDR4        |
+  |  Integrated Memory Controller (iMC)                                |frequency and voltage        |
+  |  --------------------------------------------------                |programming                  |
+  |                                                                    |                             |
+  |  Enforce POR                               [POR]                   |                             |
+  |  PPR Type                                  [Hard PPR]              |                             |
+  |  Enhanced PPR                              [Disable]               |                             |
+  |   Operation Mode                           [Test and Repair]       |                             |
   |  Memory Frequency                          [2933]                  |                             |
   |  Data Scrambling for DDR4                  [Auto]                  |                             |
   |  tCCD_L Relaxation                         [Auto]                  |                             |
   |  tRWSR Relaxation                          [Disable]               |                             |
+  |  tRFC Optimization for 16Gb Based DIMM     [Force 550ns]           |                             |
   |  2x Refresh                                [Auto]                  |                             |
   |  Page Policy                               [Auto]                  |                             |
-  |  IMC Interleaving                          [2-way Interleave]      |                             |
-  |> Memory Topology                                                   |                             |
-  |> Memory RAS Configuration                                          |                             |
+  |  IMC Interleaving                          [2-way Interleave]      |-----------------------------|
+  |> Memory Topology                                                   |><: Select Screen            |
+  |> Memory RAS Configuration                                          |^v: Select Item              |
 ```
 
 ##### IIO Configuration
@@ -1069,7 +1084,7 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
   |        1 Keyboard, 1 Mouse, 1 Hub                                  |option will keep USB         |
   |                                                                    |devices available only for   |
   |  Legacy USB Support                        [Enabled]               |EFI applications.            |
-  |  XHCI Hand-off                             [Enabled]              |                             |
+  |  XHCI Hand-off                             [Enabled]               |                             |
   |  Port 60/64 Emulation                      [Enabled]               |                             |
   |  PCIe PLL SSC                              [Disable]               |                             |
   |  Real USB Wake Up                          [Enabled]               |                             |
@@ -1082,28 +1097,31 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
 ### PCIe/PCI/PnP Configuration
 
 ```
-  |  PCI Bus Driver Version                    A5.01.18                |Enables or Disables 64bit    |
-  |                                                                    |capable Devices to be        |
-  |  PCI Devices Common Settings:                                      |Decoded in Above 4G Address  |
-  |  Above 4G Decoding                         [Enabled]               |Space (Only if System        |
-  |  SR-IOV Support                            [Enabled]               |Supports 64 bit PCI          |
-  |  MMIO High Base                            [56T]                   |Decoding).                   |
-  |  MMIO High Granularity Size                [256G]                  |                             |
-  |  Maximum Read Request                      [Auto]                  |                             |
-  |  MMCFG Base                                [2G]                    |                             |
-  |  NVMe Firmware Source                      [Vendor Defined Fi...]  |                             |
-  |  VGA Priority                              [Onboard]               |                             |
-  |  CPU1 SLOT2 PCI-E 3.0 X16 OPROM            [EFI]                   |                             |
-  |  CPU1 SLOT4 PCI-E 3.0 X16 OPROM            [EFI]                   |                             |
-  |  CPU2 SLOT6 PCI-E 3.0 X16 OPROM            [EFI]                   |                             |
-  |  CPU2 SLOT8 PCI-E 3.0 X16 OPROM            [EFI]                   |                             |
-  |  CPU1 SLOT9 PCI-E 3.0 X16 OPROM            [EFI]                   |                             |
-  |  CPU2 SLOT10 PCI-E 3.0 X16 OPROM           [EFI]                   |                             |
-  |  CPU2 SLOT11 PCI-E 3.0 X4(IN X8) OPROM     [EFI]                   |                             |
-  |  M.2 CONNECTOR OPROM                       [EFI]                   |                             |
-  |  Bus Master Enable                         [Enabled]               |                             |
-  |  Onboard LAN1 Option ROM                   [EFI]                   |                             |
-  |  Onboard Video Option ROM                  [EFI]                   |                             |
+  |  PCI Bus Driver Version                    A5.01.18               ^|Enables or Disables 64bit    |
+  |                                                                   *|capable Devices to be        |
+  |  PCI Devices Common Settings:                                     *|Decoded in Above 4G Address  |
+  |  Above 4G Decoding                         [Enabled]              *|Space (Only if System        |
+  |  SR-IOV Support                            [Enabled]              *|Supports 64 bit PCI          |
+  |  ARI Support                               [Enabled]              *|Decoding).                   |
+  |  MMIO High Base                            [56T]                  *|                             |
+  |  MMIO High Granularity Size                [256G]                 *|                             |
+  |  Maximum Read Request                      [Auto]                 *|                             |
+  |  MMCFG Base                                [2G]                   *|                             |
+  |  NVMe Firmware Source                      [Vendor Defined        *|                             |
+  |                                            Firmware]              *|                             |
+  |  VGA Priority                              [Onboard]              *|                             |
+  |  CPU1 SLOT2 PCI-E 3.0 X16 OPROM            [Legacy]               *|                             |
+  |  CPU1 SLOT4 PCI-E 3.0 X16 OPROM            [Legacy]               *|                             |
+  |  CPU2 SLOT6 PCI-E 3.0 X16 OPROM            [Legacy]               *|                             |
+  |  CPU2 SLOT8 PCI-E 3.0 X16 OPROM            [Legacy]               *|-----------------------------|
+  |  CPU1 SLOT9 PCI-E 3.0 X16 OPROM            [Legacy]               *|><: Select Screen            |
+  |  CPU2 SLOT10 PCI-E 3.0 X16 OPROM           [Legacy]               *|^v: Select Item              |
+  |  CPU2 SLOT11 PCI-E 3.0 X4(IN X8) OPROM     [Legacy]               *|Enter: Select                |
+  |  M.2 CONNECTOR OPROM                       [Legacy]               *|+/-: Change Opt.             |
+  |  Bus Master Enable                         [Enabled]              +|F1: General Help             |
+  |  Onboard LAN1 Option ROM                   [Legacy]               +|F2: Previous Values          |
+  |  Onboard LAN2 Option ROM                   [Disabled]             +|F3: Optimized Defaults       |
+  |  Onboard Video Option ROM                  [Legacy]               v|F4: Save & Exit              |
   |> Network Stack Configuration                                       |                             |
 ```
 
@@ -1117,15 +1135,319 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
   |  High Precision Event Timer                [Enabled]               |                             |
 ```
 
+## Xeon CLX Server BIOS Configuration - DUT
+
+### Boot Feature
+
+```
+  |  Quiet Boot                                [Enabled]               |Boot option                  |
+  |                                                                    |                             |
+  |  Option ROM Messages                       [Force BIOS]            |                             |
+  |  Bootup NumLock State                      [On]                    |                             |
+  |  Wait For "F1" If Error                    [Enabled]               |                             |
+  |  INT19 Trap Response                       [Immediate]             |                             |
+  |  Re-try Boot                               [Disabled]              |                             |
+  |  Install Windows 7 USB support             [Disabled]              |                             |
+  |  Port 61h Bit-4 Emulation                  [Disabled]              |                             |
+  |                                                                    |                             |
+  |  Power Configuration                                               |                             |
+  |  Watch Dog Function                        [Disabled]              |                             |
+  |  Restore on AC Power Loss                  [Last State]            |                             |
+  |  Power Button Function                     [Instant Off]           |                             |
+```
+
+### CPU Configuration
+
+```
+  |--------------------------------------------------------------------+-----------------------------\
+  |  Processor Configuration                                          ^|Enables Hyper Threading      |
+  |  --------------------------------------------------               *|(Software Method to          |
+  |  Processor BSP Revision                    50657 - CLX B1         *|Enable/Disable Logical       |
+  |  Processor Socket                          CPU1      |  CPU2      *|Processor threads.           |
+  |  Processor ID                              00050657* |  00050657  *|                             |
+  |  Processor Frequency                       2.300GHz  |  2.300GHz  *|                             |
+  |  Processor Max Ratio                            17H  |  17H       *|                             |
+  |  Processor Min Ratio                            0AH  |  0AH       *|                             |
+  |  Microcode Revision                        0500002C  |  0500002C  *|                             |
+  |  L1 Cache RAM                                  64KB  |      64KB  *|                             |
+  |  L2 Cache RAM                                1024KB  |    1024KB  *|                             |
+  |  L3 Cache RAM                               36608KB  |   36608KB  *|                             |
+  |  Processor 0 Version                                              *|                             |
+  |  Intel(R) Xeon(R) Gold 6252N CPU @ 2.30GHz                        *|                             |
+  |  Processor 1 Version                                              *|                             |
+  |  Intel(R) Xeon(R) Gold 6252N CPU @ 2.30GHz                        *|                             |
+  |                                                                   *|-----------------------------|
+  |  Hyper-Threading [ALL]                     [Enable]               *|><: Select Screen            |
+  |  Cores Enabled                             0                      *|^v: Select Item              |
+  |  Monitor/Mwait                             [Auto]                 *|Enter: Select                |
+  |  Execute Disable Bit                       [Enable]               +|+/-: Change Opt.             |
+  |  Intel Virtualization Technology           [Enable]               +|F1: General Help             |
+  |  PPIN Control                              [Unlock/Enable]        +|F2: Previous Values          |
+  |  Hardware Prefetcher                       [Enable]               +|F3: Optimized Defaults       |
+  |  Adjacent Cache Prefetch                   [Enable]               v|F4: Save & Exit              |
+  |  DCU Streamer Prefetcher                   [Enable]                |                             |
+  |  DCU IP Prefetcher                         [Enable]                |                             |
+  |  LLC Prefetch                              [Disable]               |                             |
+  |  Extended APIC                             [Disable]               |                             |
+  |  AES-NI                                    [Enable]                |                             |
+  |> Advanced Power Management Configuration                           |                             |
+```
+
+#### Advanced Power Management Configuration
+
+```
+  |  Advanced Power Management Configuration                           |Switch CPU Power Management  |
+  |  --------------------------------------------------                |profile                      |
+  |  Power Technology                          [Custom]                |                             |
+  |  Power Performance Tuning                  [BIOS Controls EPB]     |                             |
+  |  ENERGY_PERF_BIAS_CFG mode                 [Maximum Performance]   |                             |
+  |> CPU P State Control                                               |                             |
+  |> Hardware PM State Control                                         |                             |
+  |> CPU C State Control                                               |                             |
+  |> Package C State Control                                           |                             |
+  |> CPU T State Control                                               |                             |
+```
+
+##### CPU P State Control
+
+```
+  |  CPU P State Control                                               |EIST allows the processor    |
+  |                                                                    |to dynamically adjust        |
+  |  SpeedStep (P-States)                      [Disable]               |frequency and voltage based  |
+  |  Activate PBF                              [Disable]               |on power versus performance  |
+  |  Configure PBF                             [Enable]                |needs.                       |
+  |  EIST PSD Function                         [HW_ALL]                |                             |
+```
+
+##### Hardware PM State Control
+
+```
+  |  Hardware PM State Control                                         |If set to Disable, hardware ^|
+  |                                                                    |will choose a P-state       *|
+  |  Hardware P-States                         [Disable]               |setting for the system      *|
+  |                                                                    |based on an OS request.     *|
+  |                                                                    |If set to Native Mode,      *|
+  |                                                                    |hardware will choose a      *|
+  |                                                                    |P-state setting based on OS *|
+  |                                                                    |guidance.                   *|
+  |                                                                    |If set to Native Mode with  *|
+  |                                                                    |No Legacy Support, hardware *|
+  |                                                                    |will choose a P-state       *|
+  |                                                                    |setting independently       *|
+  |                                                                    |without OS guidance.        +|
+  |                                                                    |If set to Out of Band Mode, +|
+  |                                                                    |hardware autonomously       v|
+```
+
+##### CPU C State Control
+
+```
+  |  CPU C State Control                                               |Select Enable to support     |
+  |                                                                    |Autonomous Core C-State      |
+  |  Autonomous Core C-State                   [Disable]               |control which will allow     |
+  |  CPU C6 report                             [Disable]               |the processor core to        |
+  |  Enhanced Halt State (C1E)                 [Disable]               |control its C-State setting  |
+  |                                                                    |automatically and            |
+  |                                                                    |independently.               |
+```
+
+##### Package C State Control
+
+```
+  |  Package C State Control                                           |Limit the lowest package     |
+  |                                                                    |level C-State to             |
+  |  Package C State                           [C0/C1 state]           |processors. Lower package    |
+  |                                                                    |C-State lower processor      |
+  |                                                                    |power consumption upon idle. |
+```
+
+##### CPU T State Control
+
+```
+  |  CPU T State Control                                               |Enable/Disable CPU           |
+  |                                                                    |throttling by OS.            |
+  |  Software Controlled T-States              [Disable]               |Throttling reduces power     |
+  |                                                                    |consumption                  |
+```
+
+#### Chipset Configuration
+
+```
+  |  WARNING: Setting wrong values in below sections may cause         |North Bridge Parameters      |
+  |           system to malfunction.                                   |                             |
+  |> North Bridge                                                      |                             |
+  |> South Bridge                                                      |                             |
+```
+
+##### North Bridge
+
+```
+  |> UPI Configuration                                                 |Displays and provides        |
+  |> Memory Configuration                                              |option to change the UPI     |
+  |> IIO Configuration                                                 |Settings                     |
+```
+
+##### UPI Configuration
+
+```
+  |  UPI Configuration                                                 |Use this feature to select   |
+  |  --------------------------------------------------                |the degrading precedence     |
+  |  Number of CPU                             2                       |option for Ultra Path        |
+  |  Number of Active UPI Link                 3                       |Interconnect connections.    |
+  |  Current UPI Link Speed                    Fast                    |Select Topology Precedent    |
+  |  Current UPI Link Frequency                10.4 GT/s               |to degrade UPI features if   |
+  |  UPI Global MMIO Low Base / Limit          90000000 / FBFFFFFF     |system options are in        |
+  |  UPI Global MMIO High Base / Limit         0000000000000000 /      |conflict. Select Feature     |
+  |                                            00000000FFFFFFFF        |Precedent to degrade UPI     |
+  |  UPI Pci-e Configuration Base / Size       80000000 / 10000000     |topology if system options   |
+  |  Degrade Precedence                        [Topology Precedence]   |are in conflict.             |
+  |  Link L0p Enable                           [Disable]               |                             |
+  |  Link L1 Enable                            [Disable]               |                             |
+  |  IO Directory Cache (IODC)                 [Auto]                  |                             |
+  |  SNC                                       [Disable]               |                             |
+  |  XPT Prefetch                              [Disable]               |                             |
+  |  KTI Prefetch                              [Enable]                |-----------------------------|
+  |  Local/Remote Threshold                    [Auto]                  |><: Select Screen            |
+  |  Stale AtoS                                [Auto]                  |^v: Select Item              |
+  |  LLC Dead Line Alloc                       [Enable]                |Enter: Select                |
+  |  Isoc Mode                                 [Auto]                  |+/-: Change Opt.             |
+```
+
+##### Memory Configuration
+
+```
+  |                                                                    |Select POR to enforce POR    |
+  |  --------------------------------------------------                |restrictions for DDR4        |
+  |  Integrated Memory Controller (iMC)                                |frequency and voltage        |
+  |  --------------------------------------------------                |programming                  |
+  |                                                                    |                             |
+  |  Enforce POR                               [POR]                   |                             |
+  |  PPR Type                                  [Hard PPR]              |                             |
+  |  Enhanced PPR                              [Disable]               |                             |
+  |   Operation Mode                           [Test and Repair]       |                             |
+  |  Memory Frequency                          [2933]                  |                             |
+  |  Data Scrambling for DDR4                  [Auto]                  |                             |
+  |  tCCD_L Relaxation                         [Auto]                  |                             |
+  |  tRWSR Relaxation                          [Disable]               |                             |
+  |  tRFC Optimization for 16Gb Based DIMM     [Force 550ns]           |                             |
+  |  2x Refresh                                [Auto]                  |                             |
+  |  Page Policy                               [Auto]                  |                             |
+  |  IMC Interleaving                          [2-way Interleave]      |-----------------------------|
+  |> Memory Topology                                                   |><: Select Screen            |
+  |> Memory RAS Configuration                                          |^v: Select Item              |
+```
+
+##### IIO Configuration
+
+```
+  |  IIO Configuration                                                 |Expose IIO DFX devices and   |
+  |  --------------------------------------------------                |other CPU devices like PMON  |
+  |                                                                    |                             |
+  |  EV DFX Features                           [Disable]               |                             |
+  |> CPU1 Configuration                                                |                             |
+  |> CPU2 Configuration                                                |                             |
+  |> IOAT Configuration                                                |                             |
+  |> Intel. VT for Directed I/O (VT-d)                                 |                             |
+  |> Intel. VMD technology                                             |                             |
+  |                                                                    |                             |
+  |   IIO-PCIE Express Global Options                                  |                             |
+  |  ========================================                          |                             |
+  |  PCI-E Completion Timeout Disable          [No]                    |                             |
+```
+
+##### CPU1 Configuration
+
+```
+  |  IOU0 (IIO PCIe Br1)                       [Auto]                  |Selects PCIe port            |
+  |  IOU1 (IIO PCIe Br2)                       [Auto]                  |Bifurcation for selected     |
+  |  IOU2 (IIO PCIe Br3)                       [Auto]                  |slot(s)                      |
+  |> CPU1 SLOT2 PCI-E 3.0 X16                                          |                             |
+  |> CPU1 SLOT4 PCI-E 3.0 X16                                          |                             |
+  |> CPU1 SLOT9 PCI-E 3.0 X16                                          |                             |
+```
+
+##### CPU2 Configuration
+
+```
+  |  IOU0 (IIO PCIe Br1)                       [Auto]                  |Selects PCIe port            |
+  |  IOU1 (IIO PCIe Br2)                       [Auto]                  |Bifurcation for selected     |
+  |  IOU2 (IIO PCIe Br3)                       [Auto]                  |slot(s)                      |
+  |> CPU2 SLOT6 PCI-E 3.0 X16                                          |                             |
+  |> CPU2 SLOT8 PCI-E 3.0 X16                                          |                             |
+  |> CPU2 SLOT10 PCI-E 3.0 X16                                         |                             |
+```
+
+#### South Bridge
+
+```
+  |                                                                    |Enables Legacy USB support.  |
+  |  USB Module Version                        21                      |AUTO option disables legacy  |
+  |                                                                    |support if no USB devices    |
+  |  USB Devices:                                                      |are connected. DISABLE       |
+  |        1 Keyboard, 1 Mouse, 1 Hub                                  |option will keep USB         |
+  |                                                                    |devices available only for   |
+  |  Legacy USB Support                        [Enabled]               |EFI applications.            |
+  |  XHCI Hand-off                             [Enabled]               |                             |
+  |  Port 60/64 Emulation                      [Enabled]               |                             |
+  |  PCIe PLL SSC                              [Disable]               |                             |
+  |  Real USB Wake Up                          [Enabled]               |                             |
+  |  Front USB Wake Up                         [Enabled]               |                             |
+  |                                                                    |                             |
+  |  Azalia                                    [Auto]                  |                             |
+  |    Azalia PME Enable                       [Disabled]              |                             |
+```
+
+### PCIe/PCI/PnP Configuration
+
+```
+  |  PCI Bus Driver Version                    A5.01.18               ^|Enables or Disables 64bit    |
+  |                                                                   *|capable Devices to be        |
+  |  PCI Devices Common Settings:                                     *|Decoded in Above 4G Address  |
+  |  Above 4G Decoding                         [Enabled]              *|Space (Only if System        |
+  |  SR-IOV Support                            [Enabled]              *|Supports 64 bit PCI          |
+  |  ARI Support                               [Enabled]              *|Decoding).                   |
+  |  MMIO High Base                            [56T]                  *|                             |
+  |  MMIO High Granularity Size                [256G]                 *|                             |
+  |  Maximum Read Request                      [Auto]                 *|                             |
+  |  MMCFG Base                                [2G]                   *|                             |
+  |  NVMe Firmware Source                      [Vendor Defined        *|                             |
+  |                                            Firmware]              *|                             |
+  |  VGA Priority                              [Onboard]              *|                             |
+  |  CPU1 SLOT2 PCI-E 3.0 X16 OPROM            [Legacy]               *|                             |
+  |  CPU1 SLOT4 PCI-E 3.0 X16 OPROM            [Legacy]               *|                             |
+  |  CPU2 SLOT6 PCI-E 3.0 X16 OPROM            [Legacy]               *|                             |
+  |  CPU2 SLOT8 PCI-E 3.0 X16 OPROM            [Legacy]               *|-----------------------------|
+  |  CPU1 SLOT9 PCI-E 3.0 X16 OPROM            [Legacy]               *|><: Select Screen            |
+  |  CPU2 SLOT10 PCI-E 3.0 X16 OPROM           [Legacy]               *|^v: Select Item              |
+  |  CPU2 SLOT11 PCI-E 3.0 X4(IN X8) OPROM     [Legacy]               *|Enter: Select                |
+  |  M.2 CONNECTOR OPROM                       [Legacy]               *|+/-: Change Opt.             |
+  |  Bus Master Enable                         [Enabled]              +|F1: General Help             |
+  |  Onboard LAN1 Option ROM                   [Legacy]               +|F2: Previous Values          |
+  |  Onboard LAN2 Option ROM                   [Disabled]             +|F3: Optimized Defaults       |
+  |  Onboard Video Option ROM                  [Legacy]               v|F4: Save & Exit              |
+  |> Network Stack Configuration                                       |                             |
+```
+
+### ACPI Settings
+
+```
+  |  ACPI Settings                                                     |Enable or Disable Non        |
+  |                                                                    |uniform Memory Access        |
+  |  NUMA                                      [Enabled]               |(NUMA).                      |
+  |  WHEA Support                              [Enabled]               |                             |
+  |  High Precision Event Timer                [Enabled]               |                             |
+```
+
+
 ## Xeon Clx Server Firmware Inventory
 
 ```
-Host.           IPMI IP.      BIOS. CPLD.     CPU Microcode.  PCI Bus.   X710 Firmware.            XXV710 Firmware.          i40e.
-s32-t14-sut1.   10.30.55.17.  3.2. 03.B1.05. 0500002C.       A5.01.18.  6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s33-t27-sut1.   10.30.55.18.  3.2. 03.B1.05. 0500002C.       A5.01.18.  6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s34-t27-tg1.    10.30.55.19.  3.2. 03.B1.05. 0500002C.       A5.01.18.  6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s35-t28-sut1.   10.30.55.20.  3.2. 03.B1.05. 0500002C.       A5.01.18.  6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s36-t28-tg1.    10.30.55.21.  3.2. 03.B1.05. 0500002C.       A5.01.18.  6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s37-t29-sut1.   10.30.55.22.  3.2. 03.B1.05. 0500002C.       A5.01.18.  6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
-s38-t29-tg1.    10.30.55.23.  3.2. 03.B1.05. 0500002C.       A5.01.18.  6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
+Host.           IPMI IP.      BMC.   BIOS. CPLD.     CPU Microcode.  PCI Bus.   X710 Firmware.            XXV710 Firmware.          i40e.      MLX5 Firmware.    mlx5_core
+s32-t14-sut1.   10.30.55.17.  1.67.  3.0c. 03.B1.05. 0500002C.       A5.01.18.  6.01 0x800034af 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.  N/A.              N/A.
+s33-t27-sut1.   10.30.55.18.  1.67.  3.2.  03.B1.05. 0500002C.       A5.01.18.  6.01 0x800034af 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.  16.25.1020.       4.6.-1.0.1.
+s34-t27-tg1.    10.30.55.19.  1.67.  3.2.  03.B1.05. 0500002C.       A5.01.18.  6.01 0x800034af 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.  16.25.1020.       4.6.-1.0.1.
+s35-t28-sut1.   10.30.55.20.  1.67.  3.2.  03.B1.05. 0500002C.       A5.01.18.  6.01 0x800034af 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.  16.25.1020.       4.6.-1.0.1.
+s36-t28-tg1.    10.30.55.21.  1.67.  3.2.  03.B1.05. 0500002C.       A5.01.18.  6.01 0x800034af 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.  16.25.1020.       4.6.-1.0.1.
+s37-t29-sut1.   10.30.55.22.  1.67.  3.2.  03.B1.05. 0500002C.       A5.01.18.  6.01 0x800034af 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.  16.25.1020.       4.6.-1.0.1.
+s38-t29-tg1.    10.30.55.23.  1.67.  3.2.  03.B1.05. 0500002C.       A5.01.18.  6.01 0x800034af 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.  16.25.1020.       4.6.-1.0.1.
 ```
