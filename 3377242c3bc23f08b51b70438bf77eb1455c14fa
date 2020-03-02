@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b1921a4_e3acdedb",
+        "filename": "resources/libraries/bash/function/reconf-2n-clx.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-02T16:24:27Z",
+      "side": 1,
+      "message": "Will you also trigger some of the new tests added in https://gerrit.fd.io/r/c/csit/+/24482 ?",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "3377242c3bc23f08b51b70438bf77eb1455c14fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
