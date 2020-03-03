@@ -29,6 +29,8 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |                                                            |
 |                | 5. Added TCP/IP tests                                      |
 |                |                                                            |
+|                | 6. Added Soak tests                                        |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .09            | 1. Added data:                                             |
 |                |                                                            |
