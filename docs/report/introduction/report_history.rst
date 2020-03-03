@@ -9,8 +9,16 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 | .10            | 1. Added data:                                             |
 |                |                                                            |
 |                |    - VPP performance tests 3n-hsw                          |
+|                |                                                            |
 |                |      - test sets IP4, IPSec                                |
 |                |      - sets selected for analysis and graphs               |
+|                |                                                            |
+|                |    - VPP performance tests 2n-clx                          |
+|                |                                                            |
+|                |      - test sets IP4, IP6, L2, Memif, loadbalancer, VHost  |
+|                |        VTS                                                 |
+|                |      - all sets selected for analysis and graphs           |
+|                |                                                            |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .09            | 1. Added data:                                             |
