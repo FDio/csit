@@ -173,7 +173,7 @@ def table_oper_data_html(table, input_data):
             u"Average Vector Size"
         )
 
-        for dut_data in tst_data[u"show-run"].values:
+        for dut_data in tst_data[u"show-run"].values():
             trow = ET.SubElement(
                 tbl, u"tr", attrib=dict(bgcolor=colors[u"header"])
             )
