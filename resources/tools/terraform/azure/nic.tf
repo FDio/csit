@@ -16,6 +16,12 @@ resource "azurerm_network_interface" "dut1_if2" {
     }
 }
 
+data "azurerm_network_interface" "dut1_if2" {
+  name                = "dut1_if2"
+  resource_group_name = azurerm_resource_group.CSIT.name
+  depends_on          = [ azurerm_virtual_machine.dut1 ]
+}
+
 resource "azurerm_network_interface" "dut2_if1" {
     name                      = "dut2_if1"
     location                  = azurerm_resource_group.CSIT.location
@@ -30,6 +36,12 @@ resource "azurerm_network_interface" "dut2_if1" {
         private_ip_address_allocation = "Static"
         private_ip_address	      = "200.0.0.102"
     }
+}
+
+data "azurerm_network_interface" "dut2_if1" {
+  name                = "dut2_if1"
+  resource_group_name = azurerm_resource_group.CSIT.name
+  depends_on          = [ azurerm_virtual_machine.dut2 ]
 }
 
 resource "azurerm_network_interface" "dut1_if1" {
@@ -48,6 +60,12 @@ resource "azurerm_network_interface" "dut1_if1" {
     }
 }
 
+data "azurerm_network_interface" "dut1_if1" {
+  name                = "dut1_if1"
+  resource_group_name = azurerm_resource_group.CSIT.name
+  depends_on          = [ azurerm_virtual_machine.dut1 ]
+}
+
 resource "azurerm_network_interface" "dut2_if2" {
     name                      = "dut2_if2"
     location                  = azurerm_resource_group.CSIT.location
@@ -62,6 +80,12 @@ resource "azurerm_network_interface" "dut2_if2" {
         private_ip_address_allocation = "Static"
         private_ip_address	      = "192.168.20.11"
     }
+}
+
+data "azurerm_network_interface" "dut2_if2" {
+  name                = "dut2_if2"
+  resource_group_name = azurerm_resource_group.CSIT.name
+  depends_on          = [ azurerm_virtual_machine.dut2 ]
 }
 
 resource "azurerm_network_interface" "tg_if1" {
@@ -80,6 +104,12 @@ resource "azurerm_network_interface" "tg_if1" {
     }
 }
 
+data "azurerm_network_interface" "tg_if1" {
+  name                = "tg_if1"
+  resource_group_name = azurerm_resource_group.CSIT.name
+  depends_on          = [ azurerm_virtual_machine.tg ]
+}
+
 resource "azurerm_network_interface" "tg_if2" {
     name                      = "tg_if2"
     location                  = azurerm_resource_group.CSIT.location
@@ -96,3 +126,8 @@ resource "azurerm_network_interface" "tg_if2" {
     }
 }
 
+data "azurerm_network_interface" "tg_if2" {
+  name                = "tg_if2"
+  resource_group_name = azurerm_resource_group.CSIT.name
+  depends_on          = [ azurerm_virtual_machine.tg ]
+}
