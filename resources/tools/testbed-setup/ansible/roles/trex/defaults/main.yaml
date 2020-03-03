@@ -17,6 +17,7 @@ packages_by_distro:
     - "libssl-dev"
     - "python3-pip"
     - "zlib1g-dev"
+    - "pciutils"  
 
 packages_by_arch:
   aarch64:
