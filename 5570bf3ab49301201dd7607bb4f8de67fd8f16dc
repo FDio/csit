@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a408d2c_bfd06f0b",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-03-03T16:38:40Z",
+      "side": 1,
+      "message": "What about driver? Only default vfio-pci is supported by tcp/hoststack tests now.",
+      "range": {
+        "startLine": 404,
+        "startChar": 8,
+        "endLine": 404,
+        "endChar": 1
+      },
+      "revId": "5570bf3ab49301201dd7607bb4f8de67fd8f16dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
