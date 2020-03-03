@@ -27,6 +27,8 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |                                                            |
 |                | 4. Edited Test Methodology --> Hoststack Testing           |
 |                |                                                            |
+|                | 5. Added Soak tests                                        |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .09            | 1. Added data:                                             |
 |                |                                                            |
