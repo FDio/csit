@@ -378,7 +378,6 @@
     # 2n-clx
 
     plot-vpp-throughput-lat-tsa-2n-clx:
-      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
@@ -387,13 +386,15 @@
         - 43  # NDRPDR sel
         - 44  # NDRPDR sel
         - 45  # NDRPDR sel
+        - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
+        - 49  # NDRPDR sel
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
 
     plot-vpp-nfv-2n-clx-ndrpdr:
-      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
@@ -402,6 +403,9 @@
         - 43  # NDRPDR sel
         - 44  # NDRPDR sel
         - 45  # NDRPDR sel
+        - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
+        - 49  # NDRPDR sel
 
     plot-vpp-nfv-2n-clx-mrr:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -611,14 +615,22 @@
         - 33  # NDRPDR full
 
     vpp-perf-results-2n-clx:
-      # TODO: Add data
       csit-vpp-perf-verify-2001-2n-clx:
-        - 34  # NDRPDR full
-        - 35  # NDRPDR full
-        - 36  # NDRPDR full
-        - 38  # NDRPDR full
-        - 41  # NDRPDR full
-        - 42  # NDRPDR full
+        - 53  # NDRPDR full
+        - 54  # NDRPDR full
+        - 55  # NDRPDR full
+        - 56  # NDRPDR full
+        - 57  # NDRPDR full
+        - 58  # NDRPDR full
+        - 59  # NDRPDR full
+        - 60  # NDRPDR full
+        - 61  # NDRPDR full
+        - 62  # NDRPDR full
+        - 63  # NDRPDR full
+        - 64  # NDRPDR full
+        - 65  # NDRPDR full
+        - 66  # NDRPDR full
+        - 67  # NDRPDR full
 
     vpp-perf-results-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
@@ -1218,7 +1230,6 @@
         - 27  # NDRPDR sel
         - 29  # NDRPDR sel
     vpp-compare-testbeds-skx-clx-cmp:
-      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
@@ -1227,6 +1238,9 @@
         - 43  # NDRPDR sel
         - 44  # NDRPDR sel
         - 45  # NDRPDR sel
+        - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
+        - 49  # NDRPDR sel
     vpp-compare-testbeds-skx-clx:
       - "vpp-compare-testbeds-skx-clx-ref"
       - "vpp-compare-testbeds-skx-clx-cmp"
@@ -1244,7 +1258,6 @@
         - 32  # NDRPDR sel
         - 34  # NDRPDR sel
     vpp-compare-testbeds-hsw-clx-cmp:
-      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
@@ -1253,6 +1266,9 @@
         - 43  # NDRPDR sel
         - 44  # NDRPDR sel
         - 45  # NDRPDR sel
+        - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
+        - 49  # NDRPDR sel
     vpp-compare-testbeds-hsw-clx:
       - "vpp-compare-testbeds-hsw-clx-ref"
       - "vpp-compare-testbeds-hsw-clx-cmp"
@@ -2234,13 +2250,25 @@
       - 43  # NDRPDR sel
       - 44  # NDRPDR sel
       - 45  # NDRPDR sel
+      - 47  # NDRPDR sel
+      - 48  # NDRPDR sel
+      - 49  # NDRPDR sel
       - 39  # MRR
-      - 34  # NDRPDR full
-      - 35  # NDRPDR full
-      - 36  # NDRPDR full
-      - 38  # NDRPDR full
-      - 41  # NDRPDR full
-      - 42  # NDRPDR full
+      - 53  # NDRPDR full
+      - 54  # NDRPDR full
+      - 55  # NDRPDR full
+      - 56  # NDRPDR full
+      - 57  # NDRPDR full
+      - 58  # NDRPDR full
+      - 59  # NDRPDR full
+      - 60  # NDRPDR full
+      - 61  # NDRPDR full
+      - 62  # NDRPDR full
+      - 63  # NDRPDR full
+      - 64  # NDRPDR full
+      - 65  # NDRPDR full
+      - 66  # NDRPDR full
+      - 67  # NDRPDR full
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
