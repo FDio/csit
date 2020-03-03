@@ -79,7 +79,7 @@ Connections per second
 
 .. raw:: html
 
-    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/http-server-performance-cps.html"></iframe>
+    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/http-server-performance-cps.html"></iframe>
 
 .. raw:: latex
 
@@ -99,7 +99,7 @@ Requests per second
 
 .. raw:: html
 
-    <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/http-server-performance-rps.html"></iframe>
+    <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/http-server-performance-rps.html"></iframe>
 
 .. raw:: latex
 
