@@ -325,12 +325,17 @@
         - 21  # NDRPDR sel
 
     plot-vpp-http-server-performance:
-      # TODO: Replace:
-      # csit-vpp-perf-verify-2001-2n-skx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 29  # TCP
-        - 30  # TCP
-        - 58  # TCP
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 80  # TCP
+        - 82  # TCP
+        - 83  # TCP
+        - 85  # TCP
+        - 86  # TCP
+        - 87  # TCP
+        - 88  # TCP
+        - 89  # TCP
+        - 90  # TCP
+        - 91  # TCP
 
     plot-vpp-soak-2n-skx:
       # TODO: Replace the data
@@ -2371,6 +2376,16 @@
       - 75  # Reconf
       - 76  # Reconf
       - 77  # Reconf
+      - 80  # TCP
+      - 82  # TCP
+      - 83  # TCP
+      - 85  # TCP
+      - 86  # TCP
+      - 87  # TCP
+      - 88  # TCP
+      - 89  # TCP
+      - 90  # TCP
+      - 91  # TCP
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
@@ -6033,48 +6048,46 @@
     title: "3n-hsw-xl710-9000b-1t1c-eth-ip4udpquic-vppecho"
     layout: "plot-hoststack"
 
-## Plots VPP HTTP Server Performance
-#- type: "plot"
-#  title: "VPP HTTP Server Performance"
-#  algorithm: "plot_http_server_perf_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
-#  data:
-#    "plot-vpp-http-server-performance"
-#  # Keep this formatting, the filter is enclosed with " (quotation mark) and
-#  # each tag is enclosed with ' (apostrophe).
-#  filter: "'HTTP' and 'TCP_CPS'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  traces:
-#    hoverinfo: "y+name"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "VPP HTTP Server Performance"
-#    layout:
-#      "plot-cps"
-#
-#- type: "plot"
-#  title: "VPP HTTP Server Performance"
-#  algorithm: "plot_http_server_perf_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
-#  data:
-#    "plot-vpp-http-server-performance"
-#  filter: "'HTTP' and 'TCP_RPS'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  traces:
-#    hoverinfo: "y+name"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "VPP HTTP Server Performance"
-#    layout:
-#      "plot-rps"
+# Plots VPP HTTP Server Performance
+- type: "plot"
+  title: "VPP HTTP Server Performance"
+  algorithm: "plot_http_server_perf_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
+  data:
+    "plot-vpp-http-server-performance"
+  filter: "'HTTP' and 'TCP_CPS' and not '8T4C'"
+  parameters:
+  - "result"
+  - "name"
+  traces:
+    hoverinfo: "y+name"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "VPP HTTP Server Performance"
+    layout:
+      "plot-cps"
+
+- type: "plot"
+  title: "VPP HTTP Server Performance"
+  algorithm: "plot_http_server_perf_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
+  data:
+    "plot-vpp-http-server-performance"
+  filter: "'HTTP' and 'TCP_RPS' and not '8T4C'"
+  parameters:
+  - "result"
+  - "name"
+  traces:
+    hoverinfo: "y+name"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "VPP HTTP Server Performance"
+    layout:
+      "plot-rps"
 
 ################################################################################
 
