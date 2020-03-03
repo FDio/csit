@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -193,7 +193,8 @@ function common_dirs () {
     # Variables set:
     # - BASH_FUNCTION_DIR - Path to existing directory this file is located in.
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
-    # - TOPOLOGIES_DIR - Path to existing directory with available tpologies.
+    # - TOPOLOGIES_DIR - Path to existing directory with available topologies.
+    # - JOB_SPECS_DIR - Path to existing directory with job test specifications.
     # - RESOURCES_DIR - Path to existing CSIT subdirectory "resources".
     # - TOOLS_DIR - Path to existing resources subdirectory "tools".
     # - PYTHON_SCRIPTS_DIR - Path to existing tools subdirectory "scripts".
@@ -221,6 +222,9 @@ function common_dirs () {
     CSIT_DIR=$(readlink -e "${relative_csit_dir}") || die "Readlink failed."
     popd || die "Popd failed."
     TOPOLOGIES_DIR=$(readlink -e "${CSIT_DIR}/topologies/available") || {
+        die "Readlink failed."
+    }
+    JOB_SPECS_DIR=$(readlink -e "${CSIT_DIR}/docs/job_specs") || {
         die "Readlink failed."
     }
     RESOURCES_DIR=$(readlink -e "${CSIT_DIR}/resources") || {
@@ -272,9 +276,6 @@ function compose_pybot_arguments () {
     case "${TEST_CODE}" in
         *"device"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.device")
-            ;;
-        *"func"*)
-            PYBOT_ARGS+=("--suite" "tests.${DUT}.func")
             ;;
         *"perf"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
@@ -763,20 +764,20 @@ function select_tags () {
     sed_nics_sub_cmd+=" | sed -e s/ANDvic1227/ANDnic_cisco-vic-1227/"
     sed_nics_sub_cmd+=" | sed -e s/ANDvic1385/ANDnic_cisco-vic-1385/"
     # Tag file directory shorthand.
-    tfd="${BASH_FUNCTION_DIR}"
+    tfd="${JOB_SPECS_DIR}"
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
         *"ndrpdr-weekly"* )
-            readarray -t test_tag_array < "${tfd}/mlr-weekly.txt" || die
+            readarray -t test_tag_array < "${tfd}/mlr-weekly.md" || die
             ;;
         *"mrr-daily"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.txt |
+                ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.md |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
-                ${tfd}/mrr-weekly.txt) || die
+                ${tfd}/mrr-weekly.md) || die
             ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
