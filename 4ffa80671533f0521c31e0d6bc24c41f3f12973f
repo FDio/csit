@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4094b904_04631d61",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 1865,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-03T12:34:16Z",
+      "side": 1,
+      "message": "No trailing whitespace please.",
+      "range": {
+        "startLine": 1865,
+        "startChar": 0,
+        "endLine": 1865,
+        "endChar": 12
+      },
+      "revId": "4ffa80671533f0521c31e0d6bc24c41f3f12973f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c65dbca_1146e2c6",
+        "filename": "resources/libraries/robot/shared/traffic.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-03T12:34:16Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "4ffa80671533f0521c31e0d6bc24c41f3f12973f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a68e1dc4_5d1da5d8",
+        "filename": "resources/traffic_scripts/ip_ipsec.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-03T12:34:16Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "4ffa80671533f0521c31e0d6bc24c41f3f12973f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
