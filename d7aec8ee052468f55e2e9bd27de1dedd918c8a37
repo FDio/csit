@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e962ab5b_0bec47f7",
+        "filename": "resources/tools/integrated/check_crc.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-03T15:09:13Z",
+      "side": 1,
+      "message": "Even this works. See Sandbox [0] for a pass and [1] for a fail.\n[0] https://jenkins.fd.io/sandbox/job/vpp-csit-verify-api-crc-1908/2/\n[1] https://jenkins.fd.io/sandbox/job/vpp-csit-verify-api-crc-1908/1/",
+      "revId": "d7aec8ee052468f55e2e9bd27de1dedd918c8a37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
