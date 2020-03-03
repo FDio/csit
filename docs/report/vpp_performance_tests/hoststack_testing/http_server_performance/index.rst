@@ -64,7 +64,7 @@ Additional information about graph data:
 .. note::
 
     Data sources for reported test results: i) `FD.io test executor vpp
-    performance job 2n-skx`_, ii) archived FD.io jobs test result `output files
+    performance job 2n-clx`_, ii) archived FD.io jobs test result `output files
     <../../_static/archive/>`_.
 
     CSIT source code for the test cases used for plots can be found in
