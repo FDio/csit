@@ -23,6 +23,8 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |                                                            |
 |                |    - 2n-clx                                                |
 |                |                                                            |
+|                | 3. Added Soak tests                                        |
+|                |                                                            |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .09            | 1. Added data:                                             |
