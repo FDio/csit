@@ -37,8 +37,8 @@ variable "trex_dummy_cidr_port_1" {
 # Create resource group and resources
 
 resource "azurerm_resource_group" "CSIT" {
-  name     = "CSIT_pm"
-  location = "North Europe"
+  name     = "CSIT"
+  location = "East US"
 }
 
 resource "azurerm_virtual_network" "CSIT" {
@@ -360,7 +360,7 @@ resource "azurerm_virtual_machine" "tg" {
         admin_username = "ubuntu"
     }
     os_profile_linux_config {
-        disable_password_authentication = false
+        disable_password_authentication = true
         ssh_keys {
             path     = "/home/ubuntu/.ssh/authorized_keys"
             key_data = file("~/.ssh/id_rsa.pub")
@@ -398,7 +398,7 @@ resource "azurerm_virtual_machine" "dut1" {
         admin_username = "ubuntu"
     }
     os_profile_linux_config {
-        disable_password_authentication = false
+        disable_password_authentication = true
         ssh_keys {
             path     = "/home/ubuntu/.ssh/authorized_keys"
             key_data = file("~/.ssh/id_rsa.pub")
@@ -436,7 +436,7 @@ resource "azurerm_virtual_machine" "dut2" {
         admin_username = "ubuntu"
     }
     os_profile_linux_config {
-        disable_password_authentication = false
+        disable_password_authentication = true
         ssh_keys {
             path     = "/home/ubuntu/.ssh/authorized_keys"
             key_data = file("~/.ssh/id_rsa.pub")
@@ -538,13 +538,13 @@ resource "null_resource" "deploy_dut2" {
   }
 }
 
-eesource "null_resource" "deploy_topology" {
+resource "null_resource" "deploy_topology" {
   depends_on = [ azurerm_virtual_machine.tg,
                  azurerm_network_interface.tg_if1,
                  azurerm_network_interface.tg_if2,
                  azurerm_virtual_machine.dut1,
                  azurerm_network_interface.dut1_if1,
-                 azurerm_network_interface.dut1_if2
+                 azurerm_network_interface.dut1_if2,
                  azurerm_virtual_machine.dut2,
                  azurerm_network_interface.dut2_if1,
                  azurerm_network_interface.dut2_if2 ]
@@ -557,12 +557,12 @@ eesource "null_resource" "deploy_topology" {
       extra_vars = {
         ansible_python_interpreter = "/usr/bin/python3"
         cloud_topology = "azure"
-        tg_if1_mac = azurerm_network_interface.tg_if1.mac_address
-        tg_if2_mac = azurerm_network_interface.tg_if2.mac_address
-        dut1_if1_mac = azurerm_network_interface.dut1_if1.mac_address
-        dut1_if2_mac = azurerm_network_interface.dut1_if2.mac_address
-        dut2_if1_mac = azurerm_network_interface.dut2_if1.mac_address
-        dut2_if2_mac = azurerm_network_interface.dut2_if2.mac_address
+        tg_if1_mac = data.azurerm_network_interface.tg_if1.mac_address
+        tg_if2_mac = data.azurerm_network_interface.tg_if2.mac_address
+        dut1_if1_mac = data.azurerm_network_interface.dut1_if1.mac_address
+        dut1_if2_mac = data.azurerm_network_interface.dut1_if2.mac_address
+        dut2_if1_mac = data.azurerm_network_interface.dut2_if1.mac_address
+        dut2_if2_mac = data.azurerm_network_interface.dut2_if2.mac_address
         tg_public_ip = data.azurerm_public_ip.tg_public_ip.ip_address
         dut1_public_ip = data.azurerm_public_ip.dut1_public_ip.ip_address
         dut2_public_ip = data.azurerm_public_ip.dut2_public_ip.ip_address
