@@ -49,7 +49,6 @@
     DIR[DTR,MRR,VPP,3N,TSH]: "{DIR[DTR]}/vpp_mrr_results_3n_tsh"
     DIR[DTR,MRR,VPP,3N,DNV]: "{DIR[DTR]}/vpp_mrr_results_3n_dnv"
     DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
-    DIR[DTR,PERF,COT,3N,HSW]: "{DIR[DTR]}/cot_performance_results_3n_hsw"
     DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
 
     # Detailed test configurations
@@ -62,7 +61,7 @@
     DIR[DTC,PERF,VPP,3N,TSH]: "{DIR[DTC]}/vpp_performance_configuration_3n_tsh"
     DIR[DTC,PERF,VPP,3N,DNV]: "{DIR[DTC]}/vpp_performance_configuration_3n_dnv"
     DIR[DTC,PERF,VPP,2N,DNV]: "{DIR[DTC]}/vpp_performance_configuration_2n_dnv"
-    DIR[DTC,MRR,VPP,ALL]: "{DIR[DTC]}/vpp_mrr_configuration_3n_hsw"
+    DIR[DTC,MRR,VPP,ALL]: "{DIR[DTC]}/vpp_mrr_configuration"
     DIR[DTC,MRR,VPP,3N,HSW]: "{DIR[DTC]}/vpp_mrr_configuration_3n_hsw"
     DIR[DTC,MRR,VPP,3N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_3n_skx"
     DIR[DTC,MRR,VPP,2N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_2n_skx"

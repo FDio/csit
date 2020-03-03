@@ -226,7 +226,7 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
         u"ip6": u"IPv6 Routing",
         u"ip6_tunnels": u"IPv6 Tunnels",
         u"l2": u"L2 Ethernet Switching",
-        u"lb": u"Link Bonding",
+        u"lb": u"LoadBalancer",
         u"nfv_density": u"NFV Service Density",
         u"srv6": u"SRv6 Routing",
         u"vm_vhost": u"KVM VMs vhost-user",
