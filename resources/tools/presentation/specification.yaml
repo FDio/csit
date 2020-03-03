@@ -251,6 +251,14 @@
       csit-vpp-perf-verify-2001-3n-hsw:
         - 87  # hoststack
         - 88  # hoststack
+        - 89  # hoststack
+        - 90  # hoststack
+        - 91  # hoststack
+        - 92  # hoststack
+        - 93  # hoststack
+        - 94  # hoststack
+        - 95  # hoststack
+        - 96  # hoststack
 
     plot-dpdk-hdrh-lat-3n-hsw:
       csit-dpdk-perf-verify-2001-3n-hsw:
@@ -2163,6 +2171,14 @@
       - 85  # NDRPDR full
       - 87  # hoststack
       - 88  # hoststack
+      - 89  # hoststack
+      - 90  # hoststack
+      - 91  # hoststack
+      - 92  # hoststack
+      - 93  # hoststack
+      - 94  # hoststack
+      - 95  # hoststack
+      - 96  # hoststack
 
 #    csit-vpp-perf-verify-1904-3n-skx:
 #      - 7   # MRR sel
