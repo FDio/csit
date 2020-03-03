@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,6 +15,7 @@
 """
 
 import binascii
+import copy
 import glob
 import json
 import shutil
@@ -354,11 +355,13 @@ class PapiSocketExecutor(object):
         :rtype: PapiSocketExecutor
         :raises RuntimeError: If unverified or conflicting CRC is encountered.
         """
+        self.crc_checker_instance.report_initial_conflicts()
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
+        self.crc_checker_instance.check_api_name(csit_papi_command)
         self._api_command_list.append(
-            dict(api_name=csit_papi_command, api_args=kwargs))
+            dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)))
         return self
 
     def get_replies(self, err_msg="Failed to get replies."):
