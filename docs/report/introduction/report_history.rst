@@ -19,6 +19,10 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |        VTS                                                 |
 |                |      - all sets selected for analysis and graphs           |
 |                |                                                            |
+|                | 2. Added reconfiguration tests:                            |
+|                |                                                            |
+|                |    - 2n-clx                                                |
+|                |                                                            |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .09            | 1. Added data:                                             |
