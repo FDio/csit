@@ -1,3 +1,9 @@
+# vbox
+### tests xx
+### job hrs est. xx.x
+### job hrs real xx.x
+### test mins est. x.x
+### test mins real x.x
 mrrAND${default_nic}ANDbaseAND64bNOTnf_density
 mrrAND${default_nic}ANDbaseAND78bNOTnf_density
 mrrAND64bANDip4baseNOTdot1q
