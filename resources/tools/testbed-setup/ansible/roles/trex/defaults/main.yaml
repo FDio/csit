@@ -15,6 +15,7 @@ packages_by_distro:
     - "librdmacm-dev"
     - "librdmacm1"
     - "libssl-dev"
+    - "pciutils"
     - "python3-pip"
     - "zlib1g-dev"
 
