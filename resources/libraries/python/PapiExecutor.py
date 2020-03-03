@@ -354,11 +354,13 @@ class PapiSocketExecutor(object):
         :rtype: PapiSocketExecutor
         :raises RuntimeError: If unverified or conflicting CRC is encountered.
         """
+        self.crc_checker_instance.report_initial_conflicts()
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
+        self.crc_checker_instance.check_api_name(csit_papi_command)
         self._api_command_list.append(
-            dict(api_name=csit_papi_command, api_args=kwargs))
+            dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)))
         return self
 
     def get_replies(self, err_msg="Failed to get replies."):
