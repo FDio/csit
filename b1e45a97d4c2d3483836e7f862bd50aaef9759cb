@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d7028c4_cb1044e3",
+        "filename": "resources/tools/testbed-setup/ansible/roles/trex/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-03T12:30:15Z",
+      "side": 1,
+      "message": "No trailing spaces please.",
+      "range": {
+        "startLine": 20,
+        "startChar": 16,
+        "endLine": 20,
+        "endChar": 18
+      },
+      "revId": "b1e45a97d4c2d3483836e7f862bd50aaef9759cb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
