@@ -22,6 +22,30 @@
       "revId": "3377242c3bc23f08b51b70438bf77eb1455c14fa",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad140bca_6dd04b9a",
+        "filename": "resources/libraries/bash/function/reconf-2n-clx.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-03-04T15:08:03Z",
+      "side": 1,
+      "message": "The ipsec are 3n tests so cannot be run on 2n-clx ;)\nBut, please, check reconf-3n-skx.txt for crypto.",
+      "parentUuid": "9b1921a4_e3acdedb",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "3377242c3bc23f08b51b70438bf77eb1455c14fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
