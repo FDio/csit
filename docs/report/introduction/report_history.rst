@@ -6,6 +6,13 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+| .11            | 1. Added Soak tests                                        |
+|                |                                                            |
+|                | 2. Added data:                                             |
+|                |                                                            |
+|                |                                                            |
+|                |                                                            |
++----------------+------------------------------------------------------------+
 | .10            | 1. Added data:                                             |
 |                |                                                            |
 |                |    - VPP performance tests 3n-hsw                          |
@@ -28,8 +35,6 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                | 4. Edited Test Methodology --> Hoststack Testing           |
 |                |                                                            |
 |                | 5. Added TCP/IP tests                                      |
-|                |                                                            |
-|                | 6. Added Soak tests                                        |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .09            | 1. Added data:                                             |
