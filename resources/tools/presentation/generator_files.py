@@ -197,6 +197,9 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
                 if _tests_in_suite(suite[u"name"], tests):
                     for tbl_file in table_lst:
                         if suite[u"name"] in tbl_file:
+                            title_line = get_rst_title_char(
+                                suite[u"level"] - start_lvl + 2) * \
+                                         len(suite[u"name"])
                             file_handler.write(
                                 f"\n{suite[u'name']}\n{title_line}\n"
                             )
@@ -256,7 +259,7 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
                 title = titles.get(chapter, chapter)
                 file_handler.write(
                     f"{title}\n"
-                    f"{get_rst_title_char(2) * len(title)}\n\n"
+                    f"{get_rst_title_char(1) * len(title)}\n\n"
                     f".. toctree::\n\n"
                 )
 
