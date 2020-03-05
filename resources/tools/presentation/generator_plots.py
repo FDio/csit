@@ -689,23 +689,26 @@ def plot_perf_box_name(plot, input_data):
         tst_name = re.sub(REGEX_NIC, u"",
                           col.lower().replace(u'-ndrpdr', u'').
                           replace(u'2n1l-', u''))
-        traces.append(
-            plgo.Box(
-                x=[str(i + 1) + u'.'] * len(df_y[col]),
-                y=[y / 1000000 if y else None for y in df_y[col]],
-                name=(
-                    f"{i + 1}. "
-                    f"({nr_of_samples[i]:02d} "
-                    f"run{u's' if nr_of_samples[i] > 1 else u''}) "
-                    f"{tst_name}"
-                ),
-                hoverinfo=u"y+name"
-            )
+        kwargs = dict(
+            x=[str(i + 1) + u'.'] * len(df_y[col]),
+            y=[y / 1e6 if y else None for y in df_y[col]],
+            name=(
+                f"{i + 1}. "
+                f"({nr_of_samples[i]:02d} "
+                f"run{u's' if nr_of_samples[i] > 1 else u''}) "
+                f"{tst_name}"
+            ),
+            hoverinfo=u"y+name"
         )
+        if test_type in (u"SOAK", ):
+            kwargs[u"boxpoints"] = u"all"
+
+        traces.append(plgo.Box(**kwargs))
+
         try:
             val_max = max(df_y[col])
             if val_max:
-                y_max.append(int(val_max / 1000000) + 2)
+                y_max.append(int(val_max / 1e6) + 2)
         except (ValueError, TypeError) as err:
             logging.error(repr(err))
             continue
@@ -975,7 +978,7 @@ def plot_tsa_name(plot, input_data):
             if test_val:
                 avg_val = sum(test_val) / len(test_val)
                 y_vals[test_name][key] = [avg_val, len(test_val)]
-                ideal = avg_val / (int(key) * 1000000.0)
+                ideal = avg_val / (int(key) * 1e6)
                 if test_name not in y_1c_max or ideal > y_1c_max[test_name]:
                     y_1c_max[test_name] = ideal
 
@@ -993,10 +996,10 @@ def plot_tsa_name(plot, input_data):
                     test_name.replace(u'-ndrpdr', u'').replace(u'2n1l-', u'')
                 )
                 vals[name] = OrderedDict()
-                y_val_1 = test_vals[u"1"][0] / 1000000.0
-                y_val_2 = test_vals[u"2"][0] / 1000000.0 if test_vals[u"2"][0] \
+                y_val_1 = test_vals[u"1"][0] / 1e6
+                y_val_2 = test_vals[u"2"][0] / 1e6 if test_vals[u"2"][0] \
                     else None
-                y_val_4 = test_vals[u"4"][0] / 1000000.0 if test_vals[u"4"][0] \
+                y_val_4 = test_vals[u"4"][0] / 1e6 if test_vals[u"4"][0] \
                     else None
 
                 vals[name][u"val"] = [y_val_1, y_val_2, y_val_4]
