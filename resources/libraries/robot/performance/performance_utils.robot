@@ -15,6 +15,7 @@
 | Library | Collections
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.PerfUtil
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
@@ -28,7 +29,7 @@
 *** Variables ***
 | ${trial_duration}= | ${PERF_TRIAL_DURATION}
 | ${trial_multiplicity}= | ${PERF_TRIAL_MULTIPLICITY}
-| ${pkt_trace}= | ${PKT_TRACE}
+| ${extended_debug}= | ${EXTENDED_DEBUG}
 
 *** Keywords ***
 | Find NDR and PDR intervals using optimized search
@@ -423,7 +424,7 @@
 | | ... | Type: integer
 | | ... | - rx_port - RX port of TG, default 1.
 | | ... | Type: integer
-| | ... | - pkt_trace - True to enable packet trace.
+| | ... | - extended_debug- True to enable extended debug.
 | | ... | Type: boolean
 | |
 | | ... | *Example:*
@@ -434,12 +435,12 @@
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${trial_multiplicity}=${trial_multiplicity}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
-| | ... | ${pkt_trace}=${pkt_trace}
+| | ... | ${extended_debug}=${extended_debug}
 | |
+| | Set Test Variable | ${extended_debug}
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
-| | Set Test Variable | ${pkt_trace}
 | | FOR | ${action} | IN | @{pre_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
@@ -614,14 +615,14 @@
 | | [Documentation]
 | | ... | Additional Statistics Action for enable VPP packet trace.
 | |
-| | Run Keyword If | ${pkt_trace}==${True}
+| | Run Keyword If | ${extended_debug}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
 
 | Additional Statistics Action For vpp-show-packettrace
 | | [Documentation]
 | | ... | Additional Statistics Action for show VPP packet trace.
 | |
-| | Run Keyword If | ${pkt_trace}==${True}
+| | Run Keyword If | ${extended_debug}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
 
 | Additional Statistics Action For vpp-enable-elog
@@ -635,3 +636,10 @@
 | | ... | Additional Statistics Action for show VPP elog trace.
 | |
 | | Show Event Logger On All DUTs | ${nodes}
+
+| Additional Statistics Action For bash-perf-stat
+| | [Documentation]
+| | ... | Additional Statistics Action for bash command "perf stat".
+| |
+| | Run Keyword If | ${extended_debug}==${True}
+| | ... | Perf Stat On All DUTs | ${nodes}

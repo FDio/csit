@@ -210,6 +210,9 @@ class Constants:
     # Core dump directory
     CORE_DUMP_DIR = u"/tmp"
 
+    # Perf stat events (comma separated).
+    PERF_STAT_EVENTS = u"machine_clears.smc"
+
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
 
@@ -226,8 +229,10 @@ class Constants:
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
         u"PERF_TRIAL_LATENCY_DURATION", 5.0)
 
-    # VPP packet trace
-    PKT_TRACE = get_pessimistic_bool_from_env(u"PKT_TRACE")
+    # Extended debug (incl. vpp packet trace, linux perf stat, ...).
+    # Full list is available as suite variable (__init__.robot) or is
+    # override by test.
+    EXTENDED_DEBUG = get_pessimistic_bool_from_env(u"EXTENDED_DEBUG")
 
     # UUID string of DUT1 /tmp volume created outside of the
     # DUT1 docker in case of vpp-device test. ${EMPTY} value means that
