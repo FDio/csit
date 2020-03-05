@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,8 +19,6 @@ import sys
 
 from io import open
 from glob import glob
-
-from resources.libraries.python.autogen.Regenerator import Regenerator
 
 
 def edit(text, suite_tag):
@@ -49,7 +47,7 @@ def edit(text, suite_tag):
         line_previous = line
         lines_out.append(line)
         line = next(lines_in)
-        if u"|" == line:
+        if line == u"|":
             break
     # All tags are written, we remember the last one.
     line_suite = u"| ... | " + suite_tag
