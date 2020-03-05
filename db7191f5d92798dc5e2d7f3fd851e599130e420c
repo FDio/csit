@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26c0c83d_999dac9a",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-05T21:21:35Z",
+      "side": 1,
+      "message": "Change doesn\u0027t make sense, original text is good: \"are the same in each direction\".",
+      "range": {
+        "startLine": 189,
+        "startChar": 2,
+        "endLine": 189,
+        "endChar": 37
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a19360c_2e824e51",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-05T21:21:35Z",
+      "side": 1,
+      "message": "then",
+      "range": {
+        "startLine": 237,
+        "startChar": 23,
+        "endLine": 237,
+        "endChar": 27
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98eb214c_76bf9677",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-05T21:21:35Z",
+      "side": 1,
+      "message": "If PLR\u003d0 in step 1 then doing step 2 at the same interval with lower offered transmit rate is counter-intuitive. Wouldn\u0027t you want to skip doing any measurements in step 2. and just set MRR2 according to the width goal of the first intermediate phase?",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 53
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6356966d_3913d44d",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-05T21:21:35Z",
+      "side": 1,
+      "message": "If PLR\u003d0 in step 2, then shouldn\u0027t MRR2 be set below MRR, not above?",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 53
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f51eff81_c55e880a",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-05T21:21:35Z",
+      "side": 1,
+      "message": "Wouldn\u0027t this apply in all cases: MRR2 \u003c MRR? Why the change?",
+      "range": {
+        "startLine": 343,
+        "startChar": 0,
+        "endLine": 345,
+        "endChar": 46
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07c8fd79_ad1ec645",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-05T21:21:35Z",
+      "side": 1,
+      "message": "finds",
+      "range": {
+        "startLine": 455,
+        "startChar": 47,
+        "endLine": 455,
+        "endChar": 51
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33016f35_df7b26d0",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-05T21:21:35Z",
+      "side": 1,
+      "message": "doubling not doublings?",
+      "range": {
+        "startLine": 458,
+        "startChar": 65,
+        "endLine": 458,
+        "endChar": 74
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd5ef3a2_b4703692",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-05T21:21:35Z",
+      "side": 1,
+      "message": "Few comments and suggestions:\n- Consider adding another column marking per row phase type: initial, inter-mediate and final.\n- Consider adding offered_transmit-rates.\n- Consider showing entries in sequence. Right now due to different trial duration values in some rows it is hard to interpret what was transmitted and what was set when.\n- I would add entries for initial phases, so that people can track starting from initial values.",
+      "range": {
+        "startLine": 499,
+        "startChar": 0,
+        "endLine": 499,
+        "endChar": 64
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
