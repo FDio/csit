@@ -28,8 +28,8 @@
 
     </script>
 
-QUIC(picotls)/UDP/IP with vpp_echo
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+QUIC/UDP/IP with vpp_echo
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. todo::
     Add introduction
