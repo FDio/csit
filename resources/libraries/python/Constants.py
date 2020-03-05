@@ -205,6 +205,9 @@ class Constants:
     # Core dump directory
     CORE_DUMP_DIR = u"/tmp"
 
+    # Perf stat events (comma separated).
+    PERF_STAT_EVENTS = u"machine_clears.smc"
+
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
 
