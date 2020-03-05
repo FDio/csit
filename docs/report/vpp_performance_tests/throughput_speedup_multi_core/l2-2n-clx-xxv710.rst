@@ -96,6 +96,49 @@
 
     \clearpage
 
+64b-l2switching-base-scale-avf
+-------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="121" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-64b-l2switching-base-scale-avf-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-64b-l2switching-base-scale-avf-ndr-tsa}
+            \label{fig:2n-clx-xxv710-64b-l2switching-base-scale-avf-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="122" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-64b-l2switching-base-scale-avf-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-64b-l2switching-base-scale-avf-pdr-tsa}
+            \label{fig:2n-clx-xxv710-64b-l2switching-base-scale-avf-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
 64b-l2switching-base-dpdk
 -------------------------
 
