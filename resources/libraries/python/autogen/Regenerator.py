@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,7 +14,7 @@
 """Module defining utilities for test directory regeneration.
 
 TODO: How can we check each suite id is unique,
-when currently the suite generation is run on each directory separately?
+      when currently the suite generation is run on each directory separately?
 """
 
 import sys
@@ -234,7 +234,7 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
             )
             if tmp2_prolog.count(u"HW_") == 2:
                 # TODO CSIT-1481: Crypto HW should be read
-                # from topology file instead.
+                #      from topology file instead.
                 if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW:
                     tmp2_prolog = replace_defensively(
                         tmp2_prolog, u"HW_DH895xcc",
@@ -326,7 +326,7 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
         )
         if tmp_prolog.count(u"HW_") == 2:
             # TODO CSIT-1481: Crypto HW should be read
-            # from topology file instead.
+            #      from topology file instead.
             if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW.keys():
                 tmp_prolog = replace_defensively(
                     tmp_prolog, u"HW_DH895xcc",
@@ -485,7 +485,7 @@ class Regenerator:
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
                 write_tcp_files(in_filename, in_prolog, hs_wrk_kwargs_list)
-            elif in_filename[-10:] in (u"-bps.robot"):
+            elif in_filename[-10:] in (u"-bps.robot", ):
                 write_tcp_files(in_filename, in_prolog, hs_bps_kwargs_list)
             else:
                 raise RuntimeError(
