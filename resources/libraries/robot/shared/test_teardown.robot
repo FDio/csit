@@ -51,8 +51,8 @@
 | | ... | Additional teardown for tests which uses performance measurement.
 | |
 | | Run Keyword If Test Failed
-| | ... | Send traffic at specified rate | ${PERF_TRIAL_DURATION} | 10000pps
-| | ... | ${frame_size} | ${traffic_profile} | pkt_trace=${True}
+| | ... | Send traffic at specified rate | ${1.0} | 10000pps
+| | ... | ${frame_size} | ${traffic_profile} | extended_debug=${True}
 
 | Additional Test Tear Down Action For packet_trace
 | | [Documentation]
