@@ -51,7 +51,7 @@
 | | ${pre_run_stats}= | Create List
 | | ... | vpp-clear-runtime
 | | ${post_run_stats}= | Create List
-| | ... | vpp-show-runtime
+| | ... | vpp-show-runtime | bash-perf-stat
 | | Set Global Variable | ${pre_stats}
 | | Set Global Variable | ${post_stats}
 | | Set Global Variable | ${pre_run_stats}
