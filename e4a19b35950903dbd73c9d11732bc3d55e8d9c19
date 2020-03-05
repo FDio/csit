@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25f7d6b7_c735b24a",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-03-05T07:43:56Z",
+      "side": 1,
+      "message": "@Dave: Would be \"in_filename.endswith\" better?",
+      "range": {
+        "startLine": 488,
+        "startChar": 12,
+        "endLine": 488,
+        "endChar": 56
+      },
+      "revId": "e4a19b35950903dbd73c9d11732bc3d55e8d9c19",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
