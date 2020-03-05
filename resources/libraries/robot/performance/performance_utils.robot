@@ -15,6 +15,7 @@
 | Library | Collections
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.PerfUtil
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
@@ -634,3 +635,9 @@
 | | ... | Additional Statistics Action for show VPP elog trace.
 | |
 | | Show Event Logger On All DUTs | ${nodes}
+
+| Additional Statistics Action For run-perf-util
+| | [Documentation]
+| | ... | Additional Statistics Action for run perf util.
+| |
+| | Perf Stat On All DUTs | ${nodes} | ${cpu_wt} | duration=1
