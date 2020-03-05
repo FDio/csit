@@ -15,6 +15,7 @@
 | Library | Collections
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.PerfUtil
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
@@ -517,6 +518,7 @@
 | | Sleep | ${duration}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | VPP show runtime on all DUTs | ${nodes}
+| | Perf Stat on all DUTs | ${nodes} | ${cpu_wt} | duration=${duration}
 | | Stop traffic on tg
 
 | Start Traffic on Background

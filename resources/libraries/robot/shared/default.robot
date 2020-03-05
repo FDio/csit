@@ -32,6 +32,7 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Namespaces
 | Library | resources.libraries.python.PapiHistory
+| Library | resources.libraries.python.PerfUtil
 | Library | resources.libraries.python.SchedUtils
 | Library | resources.libraries.python.Tap
 | Library | resources.libraries.python.TestConfig
@@ -232,6 +233,7 @@
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | END
+| | Set Test Variable | ${cpu_wt}
 | | Set Test Variable | ${smt_used}
 | | Set Test Variable | ${thr_count_int}
 | | Set Test Variable | ${cpu_count_int}
