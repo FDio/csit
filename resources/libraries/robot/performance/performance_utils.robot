@@ -15,6 +15,7 @@
 | Library | Collections
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.PerfUtil
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
