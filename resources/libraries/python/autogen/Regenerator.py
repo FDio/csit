@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,6 +25,7 @@ from os import getcwd
 
 
 from resources.libraries.python.Constants import Constants
+import resources.libraries.python.autogen.SuiteClass as SuiteClass
 from resources.libraries.python.autogen.Testcase import Testcase
 
 
@@ -116,8 +117,14 @@ def check_suite_tag(suite_tag, prolog):
         raise ValueError(f"Suite tag found {found} times for {suite_tag}")
 
 
-def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
-    """Add default testcases to file.
+def add_testcases(
+        testcase, iface, suite_id, file_out, tc_kwargs_list):
+    """Add testcases to a file.
+
+    Different testcase templates support different set of kwargs,
+    but this function should support them all.
+    See the templates in Testcase.py
+    TODO: Where to document the semantics?
 
     :param testcase: Testcase class.
     :param iface: Interface.
@@ -135,7 +142,9 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
     for num, kwargs in enumerate(tc_kwargs_list, start=1):
         # TODO: Is there a better way to disable some combinations?
         emit = True
-        if kwargs[u"frame_size"] == 9000:
+        frame_size = kwargs.get(u"frame_size", None)
+        phy_cores = kwargs.get(u"phy_cores", None)
+        if frame_size == 9000:
             if u"vic1227" in iface:
                 # Not supported in HW.
                 emit = False
@@ -147,250 +156,111 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
                 # Tracked by Jira ticket VPP-1207.
                 emit = False
         if u"-16vm2t-" in suite_id or u"-16dcr2t-" in suite_id:
-            if kwargs[u"phy_cores"] > 3:
+            if phy_cores > 3:
                 # CSIT lab only has 28 (physical) core processors,
                 # so these test would fail when attempting to assign cores.
                 emit = False
         if u"-24vm1t-" in suite_id or u"-24dcr1t-" in suite_id:
-            if kwargs[u"phy_cores"] > 3:
+            if phy_cores > 3:
                 # CSIT lab only has 28 (physical) core processors,
                 # so these test would fail when attempting to assign cores.
                 emit = False
         if u"soak" in suite_id:
             # Soak test take too long, do not risk other than tc01.
-            if kwargs[u"phy_cores"] != 1:
+            if phy_cores != 1:
                 emit = False
-            if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
+            if frame_size not in MIN_FRAME_SIZE_VALUES:
                 emit = False
         if emit:
             file_out.write(testcase.generate(num=num, **kwargs))
 
 
-def add_tcp_testcases(testcase, file_out, tc_kwargs_list):
-    """Add TCP testcases to file.
+def write_single_file(filename, prolog, kwargs_list):
+    """Using given filename and prolog, write a single suite file.
 
-    :param testcase: Testcase class.
-    :param file_out: File to write testcases to.
-    :param tc_kwargs_list: Key-value pairs used to construct testcases.
-    :type testcase: Testcase
-    :type file_out: file
-    :type tc_kwargs_list: dict
+    Suite tag check is done here and testcase instance is detected.
+
+    :param filename: Template filename to derive real filenames from.
+    :param prolog: Template content to derive real content from.
+    :param kwargs_list: List of kwargs for add_testcases.
+    :type filename: str
+    :type prolog: str
+    :type kwargs_list: list of dict
     """
-    for num, kwargs in enumerate(tc_kwargs_list, start=1):
-        file_out.write(testcase.generate(num=num, **kwargs))
+    iface, suite_id, suite_tag = get_iface_and_suite_ids(filename)
+    check_suite_tag(suite_tag, prolog)
+    testcase = Testcase.auto(suite_id)
+    with open(filename, u"wt") as file_out:
+        file_out.write(prolog)
+        add_testcases(
+            testcase, iface, suite_id, file_out, kwargs_list
+        )
 
 
-def write_default_files(in_filename, in_prolog, kwargs_list):
-    """Using given filename and prolog, write all generated suites.
+def write_multidriver_files(nic_name, in_filename, in_prolog, kwargs_list):
+    """Using given filename and prolog, write suites differing in NIC driver.
 
+    Non-VPP suites (DPDK) do not perform the driver related edits.
+
+    :param nic_name: Name of the nic, affects which drivers are supported.
     :param in_filename: Template filename to derive real filenames from.
     :param in_prolog: Template content to derive real content from.
-    :param kwargs_list: List of kwargs for add_default_testcase.
+    :param kwargs_list: List of kwargs for add_testcases.
+    :type nic_name: str
     :type in_filename: str
     :type in_prolog: str
     :type kwargs_list: list of dict
     """
-    for suite_type in Constants.PERF_TYPE_TO_KEYWORD:
-        tmp_filename = replace_defensively(
-            in_filename, u"ndrpdr", suite_type, 1,
-            u"File name should contain suite type once.", in_filename
+    if SuiteClass.is_suite_dpdk(in_filename):
+        # DPDK does not support different NIC drivers.
+        write_single_file(in_filename, in_prolog, kwargs_list)
+        return
+    # TODO: Remove once hoststack supports NIC drivers.
+    if SuiteClass.is_suite_hoststack(in_filename):
+        write_single_file(in_filename, in_prolog, kwargs_list)
+        return
+    _, old_suite_id, _ = get_iface_and_suite_ids(in_filename)
+    for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+        out_filename = replace_defensively(
+            in_filename, old_suite_id,
+            Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
+            1, u"Error adding driver prefix to suite name.", in_filename
         )
-        tmp_prolog = replace_defensively(
-            in_prolog, u"ndrpdr".upper(), suite_type.upper(), 1,
-            u"Suite type should appear once in uppercase (as tag).",
-            in_filename
+        out_prolog = replace_defensively(
+            in_prolog, u"vfio-pci", driver, 1,
+            u"Driver name should appear once.", in_filename
         )
-        tmp_prolog = replace_defensively(
-            tmp_prolog,
-            u"Find NDR and PDR intervals using optimized search",
-            Constants.PERF_TYPE_TO_KEYWORD[suite_type], 1,
-            u"Main search keyword should appear once in suite.",
-            in_filename
+        out_prolog = replace_defensively(
+            out_prolog, Constants.NIC_DRIVER_TO_TAG[u"vfio-pci"],
+            Constants.NIC_DRIVER_TO_TAG[driver], 1,
+            u"Driver tag should appear once.", in_filename
         )
-        tmp_prolog = replace_defensively(
-            tmp_prolog,
-            Constants.PERF_TYPE_TO_SUITE_DOC_VER[u"ndrpdr"],
-            Constants.PERF_TYPE_TO_SUITE_DOC_VER[suite_type],
-            1, u"Exact suite type doc not found.", in_filename
+        out_prolog = replace_defensively(
+            out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
+            Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+            u"Driver plugin should appear once.", in_filename
         )
-        tmp_prolog = replace_defensively(
-            tmp_prolog,
-            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[u"ndrpdr"],
-            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[suite_type],
-            1, u"Exact template type doc not found.", in_filename
+        out_prolog = replace_defensively(
+            out_prolog, Constants.NIC_DRIVER_TO_SETUP_ARG[u"vfio-pci"],
+            Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
+            u"Perf setup argument should appear once.", in_filename
         )
-        _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
-        testcase = Testcase.default(suite_id)
-        for nic_name in Constants.NIC_NAME_TO_CODE:
-            tmp2_filename = replace_defensively(
-                tmp_filename, u"10ge2p1x710",
-                Constants.NIC_NAME_TO_CODE[nic_name], 1,
-                u"File name should contain NIC code once.", in_filename
-            )
-            tmp2_prolog = replace_defensively(
-                tmp_prolog, u"Intel-X710", nic_name, 2,
-                u"NIC name should appear twice (tag and variable).",
-                in_filename
-            )
-            if tmp2_prolog.count(u"HW_") == 2:
-                # TODO CSIT-1481: Crypto HW should be read
-                # from topology file instead.
-                if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW:
-                    tmp2_prolog = replace_defensively(
-                        tmp2_prolog, u"HW_DH895xcc",
-                        Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
-                        u"HW crypto name should appear.", in_filename
-                    )
-            iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
-                tmp2_filename
-            )
-            if u"DPDK" in in_prolog:
-                check_suite_tag(old_suite_tag, tmp2_prolog)
-                with open(tmp2_filename, u"wt") as file_out:
-                    file_out.write(tmp2_prolog)
-                    add_default_testcases(
-                        testcase, iface, old_suite_id, file_out, kwargs_list
-                    )
-                continue
-            for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
-                out_filename = replace_defensively(
-                    tmp2_filename, old_suite_id,
-                    Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
-                    1, u"Error adding driver prefix.", in_filename
-                )
-                out_prolog = replace_defensively(
-                    tmp2_prolog, u"vfio-pci", driver, 1,
-                    u"Driver name should appear once.", in_filename
-                )
-                out_prolog = replace_defensively(
-                    out_prolog, Constants.NIC_DRIVER_TO_TAG[u"vfio-pci"],
-                    Constants.NIC_DRIVER_TO_TAG[driver], 1,
-                    u"Driver tag should appear once.", in_filename
-                )
-                out_prolog = replace_defensively(
-                    out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
-                    Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
-                    u"Driver plugin should appear once.", in_filename
-                )
-                out_prolog = replace_defensively(
-                    out_prolog, Constants.NIC_DRIVER_TO_SETUP_ARG[u"vfio-pci"],
-                    Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
-                    u"Perf setup argument should appear once.", in_filename
-                )
-                iface, suite_id, suite_tag = get_iface_and_suite_ids(
-                    out_filename
-                )
-                # The next replace is probably a noop, but it is safer to
-                # maintain the same structure as for other edits.
-                out_prolog = replace_defensively(
-                    out_prolog, old_suite_tag, suite_tag, 1,
-                    f"Perf suite tag {old_suite_tag} should appear once.",
-                    in_filename
-                )
-                check_suite_tag(suite_tag, out_prolog)
-                # TODO: Reorder loops so suite_id is finalized sooner.
-                testcase = Testcase.default(suite_id)
-                with open(out_filename, u"wt") as file_out:
-                    file_out.write(out_prolog)
-                    add_default_testcases(
-                        testcase, iface, suite_id, file_out, kwargs_list
-                    )
+        write_single_file(out_filename, out_prolog, kwargs_list)
 
 
-def write_reconf_files(in_filename, in_prolog, kwargs_list):
-    """Using given filename and prolog, write all generated reconf suites.
+def write_multinic_files(in_filename, in_prolog, kwargs_list):
+    """Using given filename and prolog, write suites differing in NIC.
 
-    Use this for suite type reconf, as its local template
-    is incompatible with mrr/ndrpdr/soak local template,
-    while test cases are compatible.
+    This function is to be called for single type suites,
+    e.g. NOT ndrpdr suites.
 
     :param in_filename: Template filename to derive real filenames from.
     :param in_prolog: Template content to derive real content from.
-    :param kwargs_list: List of kwargs for add_testcase.
+    :param kwargs_list: List of kwargs for add_testcases.
     :type in_filename: str
     :type in_prolog: str
     :type kwargs_list: list of dict
     """
-    _, suite_id, _ = get_iface_and_suite_ids(in_filename)
-    testcase = Testcase.default(suite_id)
-    for nic_name in Constants.NIC_NAME_TO_CODE:
-        tmp_filename = replace_defensively(
-            in_filename, u"10ge2p1x710",
-            Constants.NIC_NAME_TO_CODE[nic_name], 1,
-            u"File name should contain NIC code once.", in_filename
-        )
-        tmp_prolog = replace_defensively(
-            in_prolog, u"Intel-X710", nic_name, 2,
-            u"NIC name should appear twice (tag and variable).",
-            in_filename
-        )
-        if tmp_prolog.count(u"HW_") == 2:
-            # TODO CSIT-1481: Crypto HW should be read
-            # from topology file instead.
-            if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW.keys():
-                tmp_prolog = replace_defensively(
-                    tmp_prolog, u"HW_DH895xcc",
-                    Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
-                    u"HW crypto name should appear.", in_filename
-                )
-        iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
-            tmp_filename
-        )
-        for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
-            out_filename = replace_defensively(
-                tmp_filename, old_suite_id,
-                Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
-                1, u"Error adding driver prefix.", in_filename
-            )
-            out_prolog = replace_defensively(
-                tmp_prolog, u"vfio-pci", driver, 1,
-                u"Driver name should appear once.", in_filename
-            )
-            out_prolog = replace_defensively(
-                out_prolog, Constants.NIC_DRIVER_TO_TAG[u"vfio-pci"],
-                Constants.NIC_DRIVER_TO_TAG[driver], 1,
-                u"Driver tag should appear once.", in_filename
-            )
-            out_prolog = replace_defensively(
-                out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
-                Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
-                u"Driver plugin should appear once.", in_filename
-            )
-            out_prolog = replace_defensively(
-                out_prolog, Constants.NIC_DRIVER_TO_SETUP_ARG[u"vfio-pci"],
-                Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
-                u"Perf setup argument should appear once.", in_filename
-            )
-            iface, suite_id, suite_tag = get_iface_and_suite_ids(out_filename)
-            out_prolog = replace_defensively(
-                out_prolog, old_suite_tag, suite_tag, 1,
-                u"Perf suite tag should appear once.", in_filename
-            )
-            check_suite_tag(suite_tag, out_prolog)
-            # TODO: Reorder loops so suite_id is finalized sooner.
-            testcase = Testcase.default(suite_id)
-            with open(out_filename, u"wt") as file_out:
-                file_out.write(out_prolog)
-                add_default_testcases(
-                    testcase, iface, suite_id, file_out, kwargs_list
-                )
-
-
-def write_tcp_files(in_filename, in_prolog, kwargs_list):
-    """Using given filename and prolog, write all generated tcp suites.
-
-    TODO: Suport drivers.
-
-    :param in_filename: Template filename to derive real filenames from.
-    :param in_prolog: Template content to derive real content from.
-    :param kwargs_list: List of kwargs for add_default_testcase.
-    :type in_filename: str
-    :type in_prolog: str
-    :type kwargs_list: list of dict
-    """
-    # TODO: Generate rps from cps? There are subtle differences.
-    _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
-    testcase = Testcase.tcp(suite_id)
     for nic_name in Constants.NIC_NAME_TO_CODE:
         out_filename = replace_defensively(
             in_filename, u"10ge2p1x710",
@@ -402,10 +272,61 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
             u"NIC name should appear twice (tag and variable).",
             in_filename
         )
-        check_suite_tag(suite_tag, out_prolog)
-        with open(out_filename, u"wt") as file_out:
-            file_out.write(out_prolog)
-            add_tcp_testcases(testcase, file_out, kwargs_list)
+        if out_prolog.count(u"| HW_") == 2:
+            # TODO CSIT-1481: Crypto HW should be read
+            # from topology file instead.
+            if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW.keys():
+                out_prolog = replace_defensively(
+                    out_prolog, u"HW_DH895xcc",
+                    Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
+                    u"HW crypto name should appear.", in_filename
+                )
+        write_multidriver_files(nic_name, out_filename, out_prolog, kwargs_list)
+
+
+def write_multitype_files(in_filename, in_prolog, kwargs_list):
+    """Using given filename and prolog, write all generated suites.
+
+    This function is to be called for multi type suites,
+    e.g. ndrpdr suites generating also mrr and soak ones.
+
+    :param in_filename: Template filename to derive real filenames from.
+    :param in_prolog: Template content to derive real content from.
+    :param kwargs_list: List of kwargs for add_testcases.
+    :type in_filename: str
+    :type in_prolog: str
+    :type kwargs_list: list of dict
+    """
+    for suite_type in Constants.PERF_TYPE_TO_KEYWORD:
+        out_filename = replace_defensively(
+            in_filename, u"ndrpdr", suite_type, 1,
+            u"File name should contain suite type once.", in_filename
+        )
+        out_prolog = replace_defensively(
+            in_prolog, u"ndrpdr".upper(), suite_type.upper(), 1,
+            u"Suite type should appear once in uppercase (as tag).",
+            in_filename
+        )
+        out_prolog = replace_defensively(
+            out_prolog,
+            u"Find NDR and PDR intervals using optimized search",
+            Constants.PERF_TYPE_TO_KEYWORD[suite_type], 1,
+            u"Main search keyword should appear once in suite.",
+            in_filename
+        )
+        out_prolog = replace_defensively(
+            out_prolog,
+            Constants.PERF_TYPE_TO_SUITE_DOC_VER[u"ndrpdr"],
+            Constants.PERF_TYPE_TO_SUITE_DOC_VER[suite_type],
+            1, u"Exact suite type doc not found.", in_filename
+        )
+        out_prolog = replace_defensively(
+            out_prolog,
+            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[u"ndrpdr"],
+            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[suite_type],
+            1, u"Exact template type doc not found.", in_filename
+        )
+        write_multinic_files(out_filename, out_prolog, kwargs_list)
 
 
 class Regenerator:
@@ -439,7 +360,7 @@ class Regenerator:
             print(f"Regenerator starts at {getcwd()}", file=sys.stderr)
 
         min_frame_size = PROTOCOL_TO_MIN_FRAME_SIZE[protocol]
-        default_kwargs_list = [
+        multi_kwargs_list = [
             {u"frame_size": min_frame_size, u"phy_cores": 1},
             {u"frame_size": min_frame_size, u"phy_cores": 2},
             {u"frame_size": min_frame_size, u"phy_cores": 4},
@@ -479,14 +400,14 @@ class Regenerator:
                 in_prolog = u"".join(
                     file_in.read().partition(u"*** Test Cases ***")[:-1]
                 )
-            if in_filename.endswith(u"-ndrpdr.robot"):
-                write_default_files(in_filename, in_prolog, default_kwargs_list)
-            elif in_filename.endswith(u"-reconf.robot"):
-                write_reconf_files(in_filename, in_prolog, default_kwargs_list)
-            elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
-                write_tcp_files(in_filename, in_prolog, hs_wrk_kwargs_list)
-            elif in_filename[-10:] in (u"-bps.robot"):
-                write_tcp_files(in_filename, in_prolog, hs_bps_kwargs_list)
+            if SuiteClass.is_suite_ndrpdr(in_filename):
+                write_multitype_files(in_filename, in_prolog, multi_kwargs_list)
+            elif SuiteClass.is_suite_reconf(in_filename):
+                write_multitype_files(in_filename, in_prolog, multi_kwargs_list)
+            elif SuiteClass.is_suite_http(in_filename):
+                write_multinic_files(in_filename, in_prolog, hs_wrk_kwargs_list)
+            elif SuiteClass.is_suite_bps(in_filename):
+                write_multinic_files(in_filename, in_prolog, hs_bps_kwargs_list)
             else:
                 raise RuntimeError(
                     f"Error in {in_filename}: non-primary suite type found."
