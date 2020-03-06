@@ -18,7 +18,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI | UDP | QUIC | VPPECHO
-| ... | 1CLIENT | 1STREAM | HOSTSTACK | 9000B | eth-ip4udpquicbase-vppecho
+| ... | 1CLIENT | 1STREAM | HOSTSTACK | 1280B | eth-ip4udpquicbase-vppecho
 |
 | Suite Setup | Setup suite single link no tg
 | Suite Teardown | Tear down suite
@@ -56,6 +56,6 @@
 | | ... | Defered Failure From Hoststack VPP Echo Test Program
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4udpquicbase-vppecho-bps
+| tc01-1280B-1c-eth-ip4udpquicbase-vppecho-bps
 | | [Tags] | 1C
 | | phy_cores=${1}
