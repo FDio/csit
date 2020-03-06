@@ -1,8 +1,8 @@
 ---
 title: Probabilistic Loss Ratio Search for Packet Throughput (PLRsearch)
 # abbrev: PLRsearch
-docname: draft-vpolak-bmwg-plrsearch-02
-date: 2019-07-08
+docname: draft-vpolak-bmwg-plrsearch-03
+date: 2020-03-06
 
 ipr: trust200902
 area: ops
@@ -38,10 +38,16 @@ normative:
   RFC8174:
 
 informative:
+
+  FDio-CSIT-PLRsearch:
+    target: https://docs.fd.io/csit/rls2001/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.html
+    title: "FD.io CSIT Test Methodology - PLRsearch"
+    date: 2020-02
+
   draft-vpolak-mkonstan-bmwg-mlrsearch:
     target: https://tools.ietf.org/html/draft-vpolak-mkonstan-bmwg-mlrsearch
     title: "Multiple Loss Ratio Search for Packet Throughput (MLRsearch)"
-    date: 2019-07
+    date: 2020-02
 
 --- abstract
 
@@ -56,7 +62,8 @@ probabilistic in nature, and not deterministic.
 
 # Motivation
 
-Network providers are interested in throughput a system can sustain.
+Network providers are interested in throughput a networking system can
+sustain.
 
 [RFC2544] assumes loss ratio is given by a deterministic function of
 offered load. But NFV software systems are not deterministic enough.
@@ -73,6 +80,10 @@ The aim of this document is to become an extension of [RFC2544] suitable
 for benchmarking networking setups such as software based NFV systems.
 
 # Terms And Assumptions
+
+Due to the indeterministic nature of certain NFV systems that are the
+targetted by PLRsearch algorithm, existing network benchmarking terms
+are explicated and a number of new terms and assumptions are introduced.
 
 ## Device Under Test
 
@@ -647,7 +658,12 @@ direct critical load estimate, so users can draw their own conclusion.
 Alternatively, trend analysis may be a part of exit conditions,
 requiring longer searches for systems displaying trends.
 
-# Sample Implementation Specifics: FD.io CSIT
+# Known Implementations
+
+The only known working implementation of PLRsearch is in Linux
+Foundation FD.io CSIT open-source project [FDio-CSIT-PLRsearch].
+
+## FD.io CSIT Implementation Specifics
 
 The search receives min_rate and max_rate values, to avoid measurements
 at offered loads not supporeted by the traffic generator.
@@ -658,7 +674,7 @@ agnostic to flows and directions, it only cares about overall counts of
 packets sent and packets lost), but debug output from traffic generator
 lists unidirectional values.
 
-## Measurement Delay
+### Measurement Delay
 
 In a sample implemenation in FD.io CSIT project, there is roughly 0.5
 second delay between trials due to restrictons imposed by packet traffic
@@ -679,7 +695,7 @@ increasing trial durations with configurable coefficients (currently 5.1
 seconds for the first trial, each subsequent trial being 0.1 second
 longer).
 
-## Rounding Errors and Underflows
+### Rounding Errors and Underflows
 
 In order to avoid them, the current implementation tracks natural
 logarithm (instead of the original quantity) for any quantity which is
@@ -688,7 +704,7 @@ Python), so special value "None" is used instead. Specific functions for
 frequent operations (such as "logarithm of sum of exponentials") are
 defined to handle None correctly.
 
-## Fitting Functions
+### Fitting Functions
 
 Current implementation uses two fitting functions. In general, their
 estimates for critical rate differ, which adds a simple source of
@@ -735,7 +751,7 @@ compute. At the end, both fitting function implementations contain
 multiple "if" branches, discontinuities are a possibility at range
 boundaries.
 
-### Stretch Function
+#### Stretch Function
 
 The original function (before applying logarithm) is Primitive Function
 to Logistic Function. The name "stretch" is used for related a function
@@ -747,7 +763,7 @@ given as InputForm of Wolfram language:
 
     r = (a*(1 + E^(m/a))*Log[(E^(b/a) + E^(m/a))/(1 + E^(m/a))])/E^(m/a)
 
-### Erf Function
+#### Erf Function
 
 The original function is double Primitive Function to Gaussian Function.
 The name "erf" comes from error function, the first primitive to
@@ -760,7 +776,7 @@ given as InputForm of Wolfram language:
     r = ((a*(E^(-((b - m)^2/a^2)) - E^(-(m^2/a^2))))/Sqrt[Pi] + m*Erfc[m/a]
         + (b - m)*Erfc[(-b + m)/a])/(1 + Erf[m/a])
 
-## Prior Distributions
+### Prior Distributions
 
 The numeric integrator expects all the parameters to be distributed
 (independently and) uniformly on an interval (-1, 1).
@@ -776,7 +792,7 @@ The "stretch" parameter is generated simply as the "mrr" value raised to
 a random power between zero and one; thus it follows a Reciprocal
 Distribution.
 
-## Integrator
+### Integrator
 
 After few measurements, the posterior distribution of fitting function
 arguments gets quite concentrated into a small area. The integrator is
@@ -809,7 +825,7 @@ new area the posterior distribution is concentrated at. The second phase
 (dominated by whole sample population) is actually relevant for the
 critical rate estimation.
 
-## Offered Load Selection
+### Offered Load Selection
 
 First two measurements are hardcoded to happen at the middle of rate interval
 and at max_rate. Next two measurements follow MRR-like logic,
@@ -865,6 +881,6 @@ networks.
 
 # Acknowledgements
 
-..
+To be added.
 
 --- back
