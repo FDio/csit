@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -110,8 +110,8 @@ class Testcase:
 | | phy_cores=${{cores_num}}
 '''
         else:
-            template_string = \
-                f"\n| ${{tc_num}}-9000B-${{cores_str}}c-{suite_id[:-4]}" \
-                f"-{suite_id[-3:]}\n" \
-                f"| | [Tags] | ${{cores_str}}C\n| | phy_cores=${{cores_num}}\n"
+            template_string = f'''
+| ${{tc_num}}-${{frame_str}}-${{cores_str}}c-{suite_id[:-4]}-{suite_id[-3:]}
+| | [Tags] | ${{cores_str}}C\n| | phy_cores=${{cores_num}}
+'''
         return cls(template_string)

@@ -17,8 +17,14 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
+<<<<<<< HEAD   (4cfbcb CSIT-1597 API cleanup: policer)
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI | UDP | QUIC | VPPECHO
 | ... | HOSTSTACK | 1CLIENT | 10STREAM | 9000B
+=======
+| ... | NIC_Intel-X710 | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VPPECHO
+| ... | HOSTSTACK | 1CLIENT | 10STREAM | 1280B
+>>>>>>> CHANGE (a765b8 rls2001 perf: fix hoststack test packet sizes)
 | ... | eth-ip4udpquicscale1cl10s-vppecho
 |
 | Suite Setup | Setup suite single link no tg
@@ -28,7 +34,7 @@
 |
 | Test Template | Local template
 |
-| Documentation | *QUIC Unidirectional Echo Client -> Echo Server throughput.
+| Documentation | *QUIC Unidirectional Echo Client -> Echo Server goodput.
 |
 | ... | *[Top] Network Topologies:* DUT-DUT 2-node topology
 | ... | with single link between nodes.
@@ -60,6 +66,6 @@
 | | ... | Defered Failure From Hoststack VPP Echo Test Program
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4udpquicscale1cl10s-vppecho-bps
+| tc01-1280B-1c-eth-ip4udpquicscale1cl10s-vppecho-bps
 | | [Tags] | 1C
 | | phy_cores=${1}
