@@ -15740,10 +15740,10 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-avf-l2bdscale10kmaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-avf-l2bdscale100kmaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-avf-l2bdscale1mmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale1mmaclrn-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr"
     layout: "plot-throughput"
@@ -15754,10 +15754,10 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-64b-2t1c-l2switching-base-scale-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-avf-l2bdscale10kmaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-avf-l2bdscale100kmaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-avf-l2bdscale1mmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale1mmaclrn-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-l2switching-base-scale-avf-pdr"
     layout: "plot-throughput"
@@ -16412,10 +16412,10 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-64b-l2switching-base-scale-avf-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale10Kmaclrn-Ndrpdr.64B-.t.c-avf-l2bdscale10kmaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale100Kmaclrn-Ndrpdr.64B-.t.c-avf-l2bdscale100kmaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-avf-l2bdscale1mmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale1mmaclrn-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-l2switching-base-scale-avf-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -16426,10 +16426,10 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-64b-l2switching-base-scale-avf-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale10Kmaclrn-Ndrpdr.64B-.t.c-avf-l2bdscale10kmaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale100Kmaclrn-Ndrpdr.64B-.t.c-avf-l2bdscale100kmaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-avf-l2bdscale1mmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale1mmaclrn-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-l2switching-base-scale-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
