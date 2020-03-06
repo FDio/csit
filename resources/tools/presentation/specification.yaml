@@ -477,7 +477,6 @@
     # 3n-tsh
 
     plot-vpp-throughput-lat-tsa-3n-tsh:
-      # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-tsh:
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
@@ -488,6 +487,7 @@
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
+        - 21  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
@@ -962,7 +962,6 @@
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
     vpp-performance-changes-3n-tsh-cmp:
-      # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-tsh:
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
@@ -973,6 +972,7 @@
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
+        - 21  # NDRPDR sel
     vpp-performance-changes-3n-tsh:
       - "vpp-performance-changes-3n-tsh-ref"
       - "vpp-performance-changes-3n-tsh-cmp"
@@ -2445,6 +2445,7 @@
       - 13  # NDRPDR sel
       - 14  # NDRPDR sel
       - 15  # NDRPDR sel
+      - 21  # NDRPDR sel
       - 9   # MRR sel
 
     csit-vpp-perf-verify-1908-3n-dnv:
