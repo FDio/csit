@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "f9b753d9_12477b77",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-06T13:00:34Z",
+      "side": 1,
+      "message": "Yes, but my point is how to find the upper bound, if with MTR you get PLR\u003d0?",
+      "parentUuid": "092fce15_a0a0cafd",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 53
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6356966d_3913d44d",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 3
@@ -154,6 +178,30 @@
       "side": 1,
       "message": "If PLR\u003d0 in step 2, it means this result can be used as a valid lower bound. Trying a bigger load makes more sense.",
       "parentUuid": "6356966d_3913d44d",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 53
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cf0f91c_3521265f",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-06T13:00:34Z",
+      "side": 1,
+      "message": "OK, my proposal of putting MRR2 below MRR doesn\u0027t make sense :). But equally I don\u0027t get how setting MRR2 above MRR makes it a valid lower bound. Guess I need to even better understand the semantics of width goal in the first intermediate phase :)",
+      "parentUuid": "d008c78a_353cb4fe",
       "range": {
         "startLine": 317,
         "startChar": 0,
@@ -280,6 +328,30 @@
       "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c395ec04_109e6e36",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-06T13:00:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d6513cd8_5cc2af41",
+      "range": {
+        "startLine": 458,
+        "startChar": 65,
+        "endLine": 458,
+        "endChar": 74
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
