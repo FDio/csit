@@ -1,8 +1,8 @@
 ---
 title: Multiple Loss Ratio Search for Packet Throughput (MLRsearch)
 # abbrev: MLRsearch
-docname: draft-vpolak-mkonstan-bmwg-mlrsearch-02
-date: 2019-07-08
+docname: draft-vpolak-mkonstan-bmwg-mlrsearch-03
+date: 2020-02-28
 
 ipr: trust200902
 area: ops
@@ -39,13 +39,13 @@ normative:
 
 informative:
   FDio-CSIT-MLRsearch:
-    target: https://docs.fd.io/csit/rls1904/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.html
+    target: https://docs.fd.io/csit/rls2001/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.html
     title: "FD.io CSIT Test Methodology - MLRsearch"
-    date: 2019-06
+    date: 2020-02
   PyPI-MLRsearch:
-    target: https://pypi.org/project/MLRsearch/
-    title: MLRsearch 0.2.0, Python Package Index
-    date: 2018-08
+    target: https://pypi.org/project/MLRsearch/0.3.0/
+    title: "MLRsearch 0.3.0, Python Package Index"
+    date: 2020-02
 
 --- abstract
 
@@ -66,10 +66,9 @@ requirements posed by NFV (Network Function Virtualization),
 specifically software based implementations of NFV data planes. Using
 [RFC2544] in the experience of the authors yields often not repetitive
 and not replicable end results due to a large number of factors that are
-out of scope for this draft. MLRsearch aims to address this challenge and
-define a common (standard?) way to evaluate NFV packet throughput
-performance that takes into account varying characteristics of NFV
-systems under test.
+out of scope for this draft. MLRsearch aims to address this challenge
+in a simple way of getting the same result sooner, so more repetitions
+can be done to describe the replicability.
 
 --- middle
 
@@ -79,12 +78,6 @@ systems under test.
   any VLAN tags (dot1q, dot1ad) and Ethernet FCS, but excluding Ethernet
   preamble and inter-frame gap. Measured in bytes.
 * Packet size: same as frame size, both terms used interchangeably.
-* Inner L2 size: for tunneled L2 frames only, size of an encapsulated
-  Ethernet Layer-2 frame, preceded with tunnel header, and followed by
-  tunnel trailer. Measured in Bytes.
-* Inner IP size: for tunneled IP packets only, size of an encapsulated
-  IPv4 or IPv6 packet, preceded with tunnel header, and followed by
-  tunnel trailer. Measured in Bytes.
 * Device Under Test (DUT): In software networking, "device" denotes a
   specific piece of software tasked with packet processing. Such device
   is surrounded with other software components (such as operating system
@@ -98,14 +91,14 @@ systems under test.
   techniques, but this document sticks to blackbox testing.
 * System Under Test (SUT): System under test (SUT) is a part of the
   whole test setup whose performance is to be benchmarked. The complete
-  methodology contains other parts, whose performance is either already
+  test setup contains other parts, whose performance is either already
   established, or not affecting the benchmarking result.
 * Bi-directional throughput tests: involve packets/frames flowing in
   both transmit and receive directions over every tested interface of
   SUT/DUT. Packet flow metrics are measured per direction, and can be
-  reported as aggregate for both directions (i.e. throughput) and/or
-  separately for each measured direction (i.e. latency). In most cases
-  bi-directional tests use the same (symmetric) load in both directions.
+  reported as aggregate for both directions and/or separately
+  for each measured direction. In most cases bi-directional tests
+  use the same (symmetric) load in both directions.
 * Uni-directional throughput tests: involve packets/frames flowing in
   only one direction, i.e. either transmit or receive direction, over
   every tested interface of SUT/DUT. Packet flow metrics are measured
@@ -147,9 +140,9 @@ systems under test.
   specific packet size and MTR as received by DUT/SUT during the
   measurement. Packet MRR measured in packets-per-second (or fps),
   bandwidth MRR expressed in bits-per-second (bps).
-* Trial: a single measurement step.
-* Trial duration: amount of time over which packets are transmitted and
-  received in a single throughput measurement step.
+* Trial: a single measurement step. See [RFC2504] section 23.
+* Trial duration: amount of time over which packets are transmitted
+  in a single measurement step.
 
 # MLRsearch Background
 
@@ -173,7 +166,7 @@ deterministic systems.
 In practice two rates with distinct PLRs are commonly used for packet
 throughput measurements of NFV systems: Non Drop Rate (NDR) with PLR=0
 and Partial Drop Rate (PDR) with PLR>0. The rest of this document
-describes MLRsearch for NDR and PDR. If needed, MLRsearch can be easily
+describes MLRsearch for NDR and PDR. If needed, MLRsearch can be
 adapted to discover more throughput rates with different pre-defined
 PLRs.
 
@@ -192,8 +185,9 @@ throughput tests.
 For bi-directional tests, MLRsearch rates and ratios are aggregates of
 both directions, based on the following assumptions:
 
-* Packet rates transmitted by traffic generator and received by SUT/DUT
-  are the same in each direction, in other words the load is symmetric.
+* Traffic transmitted by traffic generator and received by SUT/DUT
+  has the same packet rate in each direction,
+  in other words the offered load is symmetric.
 * SUT/DUT packet processing capacity is the same in both directions,
   resulting in the same packet loss under load.
 
@@ -206,7 +200,7 @@ The main properties of MLRsearch:
   * Intermediate Phases progress towards defined final search criteria.
   * Final Phase executes measurements according to the final search
     criteria.
-  * Final search criteria is defined by following inputs:
+  * Final search criteria are defined by following inputs:
     * PLRs associated with NDR and PDR.
     * Final trial duration.
     * Measurement resolution.
@@ -232,19 +226,22 @@ The main properties of MLRsearch:
         * They are needed to track interval widths.
       * Valid bounds are real boundaries for the searched value.
       * Each non-initial phase ends with all bounds valid.
-      * Bound can become invalid if it re-measured at longer trial
-        duration in sub-sequent phase.
+      * Bound can become invalid if it re-measured at a longer trial
+        duration in a sub-sequent phase.
   * Search:
     * Start with a large (lower_bound, upper_bound) interval width, that
       determines measurement resolution.
     * Geometrically converge towards the width goal of the phase.
     * Each phase halves the previous width goal.
+      * First measurement of the next phase will be internal search
+        which always gives a valid bound and brings the width to the new goal.
+      * Only one bound then needs to be re-measured with new duration.
   * Use of internal and external searches:
     * External search:
       * Measures at transmit rates outside the (lower_bound,
         upper_bound) interval.
       * Activated when a bound is invalid, to search for a new valid
-        bound by doubling the interval width.
+        bound by multiplying (for example doubling) the interval width.
       * It is a variant of "exponential search".
     * Internal search:
       * A "binary search" that measures at transmit rates within the
@@ -277,36 +274,29 @@ Caveats:
 
 # Sample Implementation
 
-Following is a brief description of a sample MLRsearch implementation
-based on the open-source code running in FD.io CSIT project as part of a
-Continuous Integration / Continuous Development (CI/CD) framework.
+Following is a brief description of a sample MLRsearch implementation,
+which is a simlified version of the existing implementation.
 
 ## Input Parameters
 
 1. **maximum_transmit_rate** - Maximum Transmit Rate (MTR) of packets to
    be used by external traffic generator implementing MLRsearch,
    limited by the actual Ethernet link(s) rate, NIC model or traffic
-   generator capabilities. Sample defaults: 2 * 14.88 Mpps for 64B
-   10GE link rate, 2 * 18.75 Mpps for 64B 40GE NIC (specific model)
-   maximum rate (lower than 2 * 59.52 Mpps 40GE link rate).
+   generator capabilities.
 2. **minimum_transmit_rate** - minimum packet transmit rate to be used for
    measurements. MLRsearch fails if lower transmit rate needs to be
-   used to meet search criteria. Default: 2 * 10 kpps (could be higher).
+   used to meet search criteria.
 3. **final_trial_duration** - required trial duration for final rate
-   measurements. Default: 30 sec.
+   measurements.
 4. **initial_trial_duration** - trial duration for initial MLRsearch phase.
-   Default: 1 sec.
 5. **final_relative_width** - required measurement resolution expressed as
    (lower_bound, upper_bound) interval width relative to upper_bound.
-   Default: 0.5%.
-6. **packet_loss_ratio** - maximum acceptable PLR search criteria for
-   PDR measurements. Default: 0.5%.
+6. **packet_loss_ratio** - maximum acceptable PLR search criterion for
+   PDR measurements.
 7. **number_of_intermediate_phases** - number of phases between the initial
    phase and the final phase. Impacts the overall MLRsearch duration.
    Less phases are required for well behaving cases, more phases
    may be needed to reduce the overall search duration for worse behaving cases.
-   Default (2). (Value chosen based on limited experimentation to date.
-   More experimentation needed to arrive to clearer guidelines.)
 
 ## Initial Phase
 
@@ -317,12 +307,18 @@ Continuous Integration / Continuous Development (CI/CD) framework.
    * DO: single trial.
    * OUT: measured loss ratio.
    * OUT: MRR = measured receive rate.
+   If loss ratio is zero, MRR is set below MTR so that interval width is equal
+   to the width goal of the first intermediate phase.
 2. Second trial measures at MRR and discovers MRR2.
    * IN: trial_duration = initial_trial_duration.
    * IN: offered_transmit_rate = MRR.
    * DO: single trial.
    * OUT: measured loss ratio.
    * OUT: MRR2 = measured receive rate.
+   If loss ratio is zero, MRR2 is set above MRR so that interval width is equal
+   to the width goal of the first intermediate phase.
+   MRR2 could end up being equal to MTR (for example if both measurements so far
+   had zero loss), which was already measured, step 3 is skipped in that case.
 3. Third trial measures at MRR2.
    * IN: trial_duration = initial_trial_duration.
    * IN: offered_transmit_rate = MRR2.
@@ -347,9 +343,9 @@ Continuous Integration / Continuous Development (CI/CD) framework.
       final_relative_width.
    3. IN: ndr_interval, pdr_interval from the previous main loop
       iteration or the previous phase. If the previous phase is the
-      initial phase, both intervals have lower_bound = MRR2, upper_bound
-      = MRR. Note that the initial phase is likely to create intervals
-      with invalid bounds.
+      initial phase, both intervals are formed by a (correctly ordered)
+      pair of MRR2 and MRR. Note that the initial phase is likely
+      to create intervals with invalid bounds.
    4. DO: According to the procedure described in point 2., either exit
       the phase (by jumping to 1.7.), or calculate new transmit rate to
       measure with.
@@ -372,9 +368,7 @@ Continuous Integration / Continuous Development (CI/CD) framework.
    1. If there is an invalid bound then prepare for external search:
       * IF the most recent measurement at NDR lower_bound transmit
         rate had the loss higher than zero, then the new transmit rate
-        is NDR lower_bound decreased by two NDR interval widths or the
-        amount needed to hit the current width goal, whichever is
-        larger.
+        is NDR lower_bound decreased by two NDR interval widths.
       * Else, IF the most recent measurement at PDR lower_bound
         transmit rate had the loss higher than PLR, then the new
         transmit rate is PDR lower_bound decreased by two PDR interval
@@ -386,14 +380,14 @@ Continuous Integration / Continuous Development (CI/CD) framework.
         transmit rate had the loss lower or equal to PLR, then the new
         transmit rate is PDR upper_bound increased by two PDR interval
         widths.
-   2. If interval width is higher than the current phase goal:
-      * Else, IF NDR interval does not meet the current phase width
+   2. Else, if interval width is higher than the current phase goal:
+      * IF NDR interval does not meet the current phase width
         goal, prepare for internal search. The new transmit rate is a
-        geometric average of NDR lower_bound and NDR upper_bound.
-      * Else, IF PDR interval does not meet the current phase width
+        in the middle of NDR lower_bound and NDR upper_bound.
+      * IF PDR interval does not meet the current phase width
         goal, prepare for internal search. The new transmit rate is a
-        geometric average of PDR lower_bound and PDR upper_bound.
-   3. Else, IF some bound has still only been measured at a lower
+        in the middle of PDR lower_bound and PDR upper_bound.
+   3. Else, if some bound has still only been measured at a lower
       duration, prepare to re-measure at the current duration (and the
       same transmit rate). The order of priorities is:
       * NDR lower_bound,
@@ -405,20 +399,19 @@ Continuous Integration / Continuous Development (CI/CD) framework.
       all intervals are valid, narrow enough, and measured
       at current phase trial duration.
 
-## Sample MLRsearch Run
+# FD.io CSIT Implementation
 
-TODO add a sample MLRsearch run with values.
+The only known working implementation of MLRsearch is in
+the open-source code running in Linux Foundation
+FD.io CSIT project [FDio-CSIT-MLRsearch] as part of
+a Continuous Integration / Continuous Development (CI/CD) framework.
 
-# Known Implementations
+MLRsearch is also available as a Python package in [PyPI-MLRsearch].
 
-The only known working implementation of MLRsearch is in Linux
-Foundation FD.io CSIT project [FDio-CSIT-MLRsearch]. MLRsearch is also
-available as a Python package in [PyPI-MLRsearch].
-
-## FD.io CSIT Implementation Deviations
+## Additional details
 
 This document so far has been describing a simplified version of
-MLRsearch algorithm. The full algorithm as implemented contains
+MLRsearch algorithm. The full algorithm as implemented in CSIT contains
 additional logic, which makes some of the details (but not general
 ideas) above incorrect. Here is a short description of the additional
 logic as a list of principles, explaining their main differences from
@@ -437,9 +430,9 @@ their mutual interaction.
    * If a lower bound at that rate is invalid, a phase stops refining
      the interval further (until it gets re-measured).
 4. Conservative interval updates.
-   * Measurements above current upper bound never update a valid upper
+   * Measurements above the current upper bound never update a valid upper
      bound, even if drop ratio is low.
-   * Measurements below current lower bound always update any lower
+   * Measurements below the current lower bound always update any lower
      bound if drop ratio is high.
 5. Ensure sufficient interval width.
    * Narrow intervals make external search take more time to find a
@@ -456,6 +449,81 @@ their mutual interaction.
    * Rather than suffer total search time several times larger than pure
      binary search, the implemented tests fail themselves when the
      search takes too long (given by argument *timeout*).
+7. Pessimistic external search.
+   * Valid bound becoming invalid on re-measurement with higher duration
+     is frequently a sign of SUT behaving in non-deterministic way
+     (from blackbox point of view). If the final width interval goal
+     is too narrow compared to width of rate region where SUT
+     is non-deterministic, it is quite likely that there will be multiple
+     invalid bounds before the external search finds a valid one.
+   * In this case, external search can be sped up by increasing interval width
+     more rapidly. As only powers of two ensure the subsequent internal search
+     will not result in needlessly narrow interval, a parameter *doublings*
+     is introduced to control the pessimism of external search.
+     For example three doublings result in interval width being multiplied
+     by eight in each external search iteration.
+
+### FD.io CSIT Input Parameters
+
+1. **maximum_transmit_rate** - Typical values: 2 * 14.88 Mpps for 64B
+   10GE link rate, 2 * 18.75 Mpps for 64B 40GE NIC (specific model).
+2. **minimum_transmit_rate** - Value: 2 * 10 kpps (traffic generator
+   limitation).
+3. **final_trial_duration** - Value: 30 seconds.
+4. **initial_trial_duration** - Value: 1 second.
+5. **final_relative_width** - Value: 0.005 (0.5%).
+6. **packet_loss_ratio** - Value: 0.005 (0.5%).
+7. **number_of_intermediate_phases** - Value: 2.
+   The value has been chosen based on limited experimentation to date.
+   More experimentation needed to arrive to clearer guidelines.
+8. **timeout** - Limit for the overall search duration (for one search).
+   If MLRsearch oversteps this limit, it immediatelly declares the test failed,
+   to avoid wasting even more time on a misbehaving SUT.
+   Value: 600 (seconds).
+9. **doublings** - Number of dublings when computing new interval width
+   in external search.
+   Value: 2 (interval width is quadroupled).
+   Value of 1 is best for well-behaved SUTs, but value of 2 has been found
+   to decrease overall search time for worse-behaved SUT configurations,
+   contributing more to the overall set of different SUT configurations tested.
+
+## Example MLRsearch Run
+
+The following table shows data from a real test run in CSIT
+(using the default input values as above).
+The first column is the phase, the second is the trial measurement performed
+(aggregate bidirectional offered load in megapackets per second,
+and trial duration in seconds).
+Each of last four columns show one bound as updated after the measurement
+(duration truncated to save space).
+Loss ratio is not shown, but invalid bounds are marked with a plus sign.
+
+| Phase |   Trial    | NDR lower | NDR upper | PDR lower | PDR upper |
+| ----: | ---------: | --------: | --------: | --------: | --------: |
+| init. | 37.50 1.00 |    N/A    |  37.50 1. |    N/A    |  37.50 1. |
+| init. | 10.55 1.00 | +10.55 1. |  37.50 1. | +10.55 1. |  37.50 1. |
+| init. | 9.437 1.00 | +9.437 1. |  10.55 1. | +9.437 1. |  10.55 1. |
+| int 1 | 6.053 1.00 |  6.053 1. |  9.437 1. |  6.053 1. |  9.437 1. |
+| int 1 | 7.558 1.00 |  7.558 1. |  9.437 1. |  7.558 1. |  9.437 1. |
+| int 1 | 8.446 1.00 |  8.446 1. |  9.437 1. |  8.446 1. |  9.437 1. |
+| int 1 | 8.928 1.00 |  8.928 1. |  9.437 1. |  8.928 1. |  9.437 1. |
+| int 1 | 9.179 1.00 |  8.928 1. |  9.179 1. |  9.179 1. |  9.437 1. |
+| int 1 | 9.052 1.00 |  9.052 1. |  9.179 1. |  9.179 1. |  9.437 1. |
+| int 1 | 9.307 1.00 |  9.052 1. |  9.179 1. |  9.179 1. |  9.307 1. |
+| int 2 | 9.115 5.48 |  9.115 5. |  9.179 1. |  9.179 1. |  9.307 1. |
+| int 2 | 9.243 5.48 |  9.115 5. |  9.179 1. |  9.243 5. |  9.307 1. |
+| int 2 | 9.179 5.48 |  9.115 5. |  9.179 5. |  9.243 5. |  9.307 1. |
+| int 2 | 9.307 5.48 |  9.115 5. |  9.179 5. |  9.243 5. | +9.307 5. |
+| int 2 | 9.687 5.48 |  9.115 5. |  9.179 5. |  9.307 5. |  9.687 5. |
+| int 2 | 9.495 5.48 |  9.115 5. |  9.179 5. |  9.307 5. |  9.495 5. |
+| int 2 | 9.401 5.48 |  9.115 5. |  9.179 5. |  9.307 5. |  9.401 5. |
+| final | 9.147 30.0 |  9.115 5. |  9.147 30 |  9.307 5. |  9.401 5. |
+| final | 9.354 30.0 |  9.115 5. |  9.147 30 |  9.307 5. |  9.354 30 |
+| final | 9.115 30.0 | +9.115 30 |  9.147 30 |  9.307 5. |  9.354 30 |
+| final | 8.935 30.0 |  8.935 30 |  9.115 30 |  9.307 5. |  9.354 30 |
+| final | 9.025 30.0 |  9.025 30 |  9.115 30 |  9.307 5. |  9.354 30 |
+| final | 9.070 30.0 |  9.070 30 |  9.115 30 |  9.307 5. |  9.354 30 |
+| final | 9.307 30.0 |  9.070 30 |  9.115 30 |  9.307 30 |  9.354 30 |
 
 # IANA Considerations
 
