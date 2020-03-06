@@ -215,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "bbef8031_b1359a0e",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-06T13:59:06Z",
+      "side": 1,
+      "message": "Makes sense.",
+      "parentUuid": "f3b2b74b_15d1ff7d",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 53
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6356966d_3913d44d",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 3
@@ -310,6 +334,30 @@
     },
     {
       "key": {
+        "uuid": "c62a8fa7_7d5277b7",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-06T13:59:06Z",
+      "side": 1,
+      "message": "OK, this was my logic too. It makes sense to add more explicit text describing the case when PLR\u003d0 in step 1 and PLR\u003d0 in step 2, as current text does not cover this case well enough IMV. Can be done in another place in the doc.",
+      "parentUuid": "0004b3ff_2d37e250",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 53
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f51eff81_c55e880a",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 3
@@ -357,6 +405,30 @@
     },
     {
       "key": {
+        "uuid": "e063cf3e_db72ff36",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-06T13:59:06Z",
+      "side": 1,
+      "message": "OK.",
+      "parentUuid": "e9d2929f_5583d8f8",
+      "range": {
+        "startLine": 343,
+        "startChar": 0,
+        "endLine": 345,
+        "endChar": 46
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07c8fd79_ad1ec645",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 3
@@ -392,6 +464,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "07c8fd79_ad1ec645",
+      "range": {
+        "startLine": 455,
+        "startChar": 47,
+        "endLine": 455,
+        "endChar": 51
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad780ac0_8a25f8f8",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-06T13:59:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "91b1c3ca_f8e12dbe",
       "range": {
         "startLine": 455,
         "startChar": 47,
@@ -475,6 +571,30 @@
     },
     {
       "key": {
+        "uuid": "107bb199_102094ba",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-06T13:59:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c395ec04_109e6e36",
+      "range": {
+        "startLine": 458,
+        "startChar": 65,
+        "endLine": 458,
+        "endChar": 74
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd5ef3a2_b4703692",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 3
@@ -510,6 +630,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "bd5ef3a2_b4703692",
+      "range": {
+        "startLine": 499,
+        "startChar": 0,
+        "endLine": 499,
+        "endChar": 64
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2bf8a3f2_7965f485",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-06T13:59:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f484182c_adb2a67b",
       "range": {
         "startLine": 499,
         "startChar": 0,
