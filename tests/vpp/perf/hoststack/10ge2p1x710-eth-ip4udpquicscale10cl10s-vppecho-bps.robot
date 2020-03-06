@@ -18,7 +18,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI | UDP | QUIC | VPPECHO
-| ... | HOSTSTACK | 10CLIENT | 10STREAM | 9000B
+| ... | HOSTSTACK | 10CLIENT | 10STREAM | 1280B
 | ... | eth-ip4udpquicscale10cl10s-vppecho
 |
 | Suite Setup | Setup suite single link no tg
@@ -41,7 +41,7 @@
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
-| ${frame_size}= | ${9000}
+| ${frame_size}= | ${1280}
 | ${crypto_type}= | ${None}
 | ${clients}= | ${10}
 | ${streams}= | ${10}
@@ -61,6 +61,6 @@
 | | ... | Defered Failure From Hoststack VPP Echo Test Program
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4udpquicscale10cl10s-vppecho-bps
+| tc01-1280B-1c-eth-ip4udpquicscale10cl10s-vppecho-bps
 | | [Tags] | 1C
 | | phy_cores=${1}
