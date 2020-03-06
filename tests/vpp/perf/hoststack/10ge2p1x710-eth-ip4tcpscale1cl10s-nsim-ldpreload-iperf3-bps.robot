@@ -18,7 +18,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI | HOSTSTACK
-| ... | NSIM | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 9000B
+| ... | NSIM | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 1460B
 | ... | eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3
 |
 | Suite Setup | Setup suite single link no tg
@@ -59,6 +59,6 @@
 | | ... | Defered Failure From Hoststack Iperf3 Test Program
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3-bps
+| tc01-1460B-1c-eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3-bps
 | | [Tags] | 1C
 | | phy_cores=${1}
