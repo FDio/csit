@@ -14,7 +14,9 @@
 """Algorithms to generate files.
 """
 
-from os.path import isfile
+import re
+
+from os.path import isfile, join
 from collections import OrderedDict
 
 import logging
@@ -31,6 +33,8 @@ RST_INCLUDE_TABLE = (u"\n.. only:: html\n\n"
                      u"\n.. only:: latex\n\n"
                      u"\n  .. raw:: latex\n\n"
                      u"      \\csvautolongtable{{{file_latex}}}\n\n")
+
+REGEX_NIC_SHORT = re.compile(r'(\d*ge\dp\d)(\D*\d*[a-z]*)-')
 
 
 def generate_files(spec, data):
@@ -151,6 +155,7 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
         if tests.empty:
             return
         tests = input_data.merge_data(tests)
+        tests.sort_index(inplace=True)
 
         logging.info(u"    Creating the suite data set...")
         suites = input_data.filter_data(
@@ -166,8 +171,8 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
 
         logging.info(u"    Generating files...")
 
-        file_name = u""
-        sub_chapter = u"-".join(table_set.split(u"_")[-2:])
+        chapter_l1 = u""
+        chapter_l2 = u"-".join(table_set.split(u"_")[-2:])
         for suite_longname, suite in suites.items():
 
             suite_lvl = len(suite_longname.split(u"."))
@@ -177,48 +182,33 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
 
             if suite_lvl == start_lvl:
                 # Our top-level suite
-                chapter = suite_longname.split(u'.')[-1]
-                file_name = f"{table_set}/{chapter}.rst"
-                logging.info(f"    Writing file {file_name}")
-                with open(file_name, u"a") as file_handler:
-                    file_handler.write(rst_header)
-                if chapters.get(chapter, None) is None:
-                    chapters[chapter] = OrderedDict()
-                chapters[chapter][sub_chapter] = file_name
+                chapter_l1 = suite_longname.split(u'.')[-1]
+                if chapters.get(chapter_l1, None) is None:
+                    chapters[chapter_l1] = OrderedDict()
+                if chapters[chapter_l1].get(chapter_l2, None) is None:
+                    chapters[chapter_l1][chapter_l2] = OrderedDict()
+                continue
 
-            title_line = get_rst_title_char(suite[u"level"] - start_lvl + 2) * \
-                len(sub_chapter)
-            with open(file_name, u"a") as file_handler:
-                if not (u"-ndrpdr" in suite[u"name"] or
-                        u"-mrr" in suite[u"name"] or
-                        u"-dev" in suite[u"name"]):
-                    file_handler.write(f"\n{sub_chapter}\n{title_line}\n")
+            if _tests_in_suite(suite[u"name"], tests):
+                groups = re.search(REGEX_NIC_SHORT, suite[u"name"])
+                nic = groups.group(2) if groups else None
+                if nic is None:
+                    continue
+                if chapters[chapter_l1][chapter_l2].get(nic, None) is None:
+                    chapters[chapter_l1][chapter_l2][nic] = dict(
+                        rst_file=f"{join(table_set, chapter_l1)}_{nic}.rst".
+                        replace(u"2n1l-", u""),
+                        suites=list()
+                    )
+                for idx, tbl_file in enumerate(table_lst):
+                    if suite[u"name"] in tbl_file:
+                        chapters[chapter_l1][chapter_l2][nic][u"suites"].append(
+                            table_lst.pop(idx)
+                        )
+                        break
 
-                if _tests_in_suite(suite[u"name"], tests):
-                    for tbl_file in table_lst:
-                        if suite[u"name"] in tbl_file:
-                            title_line = get_rst_title_char(
-                                suite[u"level"] - start_lvl + 2) * \
-                                         len(suite[u"name"])
-                            file_handler.write(
-                                f"\n{suite[u'name']}\n{title_line}\n"
-                            )
-                            file_handler.write(
-                                f"\n{suite[u'doc']}\n".
-                                replace(u'|br|', u'\n\n -')
-                            )
-                            if frmt == u"html":
-                                file_handler.write(
-                                    f"\n.. include:: {tbl_file.split(u'/')[-1]}"
-                                    f"\n"
-                                )
-                            elif frmt == u"rst":
-                                file_handler.write(
-                                    RST_INCLUDE_TABLE.format(
-                                        file_latex=tbl_file,
-                                        file_html=tbl_file.split(u"/")[-1])
-                                )
-                            break
+    print(chapters)
+
     titles = {
         # VPP Perf, MRR
         u"container_memif": u"LXC/DRC Container Memif",
@@ -242,12 +232,52 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
     }
 
     order_chapters = file_spec.get(u"order-chapters", None)
-    if not order_chapters:
-        order_chapters = chapters.keys()
 
-    order_sub_chapters = file_spec.get(u"order-sub-chapters", None)
+    if order_chapters:
+        order_1 = order_chapters.get(u"level-1", None)
+        order_2 = order_chapters.get(u"level-2", None)
+        order_3 = order_chapters.get(u"level-3", None)
+        if not order_1:
+            order_1 = chapters.keys()
+    else:
+        order_1 = None
+        order_2 = None
+        order_3 = None
 
-    for chapter in order_chapters:
+    for chapter_l1 in order_1:
+        content_l1 = chapters.get(chapter_l1, None)
+        if not content_l1:
+            continue
+        print(titles.get(chapter_l1, chapter_l1))
+        with open(f"{fileset_file_name}/index.rst", u"a") as file_handler:
+            file_handler.write(f"    {chapter_l1}\n")
+
+        if not order_2:
+            order_2 = chapters[chapter_l1].keys()
+        for chapter_l2 in order_2:
+            content_l2 = content_l1.get(chapter_l2, None)
+            if not content_l2:
+                continue
+            print(chapter_l2)
+
+            if not order_3:
+                order_3 = chapters[chapter_l1][chapter_l2].keys()
+            for chapter_l3 in order_3:
+                content_l3 = content_l2.get(chapter_l3, None)
+                if not content_l3:
+                    continue
+                print(chapter_l3)
+
+
+    return
+
+
+
+
+
+
+
+    for chapter in order_1:
         sub_chapters = chapters.get(chapter, None)
         if not sub_chapters:
             continue
@@ -263,9 +293,9 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
                     f".. toctree::\n\n"
                 )
 
-        if not order_sub_chapters:
-            order_sub_chapters = sub_chapters.keys()
-        for sub_chapter in order_sub_chapters:
+        if not order_2:
+            order_2 = sub_chapters.keys()
+        for sub_chapter in order_2:
             testbed = sub_chapters.get(sub_chapter, None)
             if not testbed:
                 continue
