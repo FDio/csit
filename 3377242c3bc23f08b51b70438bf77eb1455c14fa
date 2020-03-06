@@ -46,6 +46,30 @@
       "revId": "3377242c3bc23f08b51b70438bf77eb1455c14fa",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fbad257_bc493440",
+        "filename": "resources/libraries/bash/function/reconf-2n-clx.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T17:45:57Z",
+      "side": 1,
+      "message": "Oh. For some reason I have not looked at all files in this patch. Three out of four algos is fine I guess.",
+      "parentUuid": "ad140bca_6dd04b9a",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "3377242c3bc23f08b51b70438bf77eb1455c14fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
