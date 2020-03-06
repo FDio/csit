@@ -215,10 +215,6 @@ def write_multidriver_files(nic_name, in_filename, in_prolog, kwargs_list):
         # DPDK does not support different NIC drivers.
         write_single_file(in_filename, in_prolog, kwargs_list)
         return
-    # TODO: Remove once hoststack supports NIC drivers.
-    if SuiteClass.is_suite_hoststack(in_filename):
-        write_single_file(in_filename, in_prolog, kwargs_list)
-        return
     _, old_suite_id, _ = get_iface_and_suite_ids(in_filename)
     for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
         out_filename = replace_defensively(
