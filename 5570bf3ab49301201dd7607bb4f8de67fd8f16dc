@@ -46,6 +46,30 @@
       "revId": "5570bf3ab49301201dd7607bb4f8de67fd8f16dc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7211a3e_79aae817",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T17:10:27Z",
+      "side": 1,
+      "message": "\u003e I can prepare autogen change.\n\nDivided to refactor [1] and small edit [2] to enable for hoststack.\n\n[1] https://gerrit.fd.io/r/c/csit/+/25722\n[2] https://gerrit.fd.io/r/c/csit/+/25723",
+      "parentUuid": "a0dbf933_78bb0b4f",
+      "range": {
+        "startLine": 404,
+        "startChar": 8,
+        "endLine": 404,
+        "endChar": 1
+      },
+      "revId": "5570bf3ab49301201dd7607bb4f8de67fd8f16dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
