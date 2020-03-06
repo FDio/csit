@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0fa54d9e_263ebd2f",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-03-06T14:07:55Z",
+      "side": 1,
+      "message": "Pls change to:\n|:-----:|:----------:|:---------:|:---------:|:---------:|:---------:|",
+      "range": {
+        "startLine": 500,
+        "startChar": 0,
+        "endLine": 500,
+        "endChar": 70
+      },
+      "revId": "7e9466db0bb0f952495072487abf78a5e7c59dd7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
