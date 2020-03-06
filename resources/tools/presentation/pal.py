@@ -114,6 +114,8 @@ def main():
         generate_plots(spec, data)
         generate_files(spec, data)
 
+        return
+
         if spec.output[u"output"] == u"report":
             generate_report(args.release, spec, args.week)
         elif spec.output[u"output"] == u"CPTA":
