@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a365093f_ce9062fa",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T13:12:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67f0f0a3_dc536c0f",
+      "range": {
+        "startLine": 189,
+        "startChar": 2,
+        "endLine": 189,
+        "endChar": 37
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a19360c_2e824e51",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 3
@@ -69,6 +93,30 @@
       "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad28cb54_8133f4f9",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T13:12:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a19360c_2e824e51",
+      "range": {
+        "startLine": 237,
+        "startChar": 23,
+        "endLine": 237,
+        "endChar": 27
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "Yes, but my point is how to find the upper bound, if with MTR you get PLR\u003d0?",
       "parentUuid": "092fce15_a0a0cafd",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 53
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3b2b74b_15d1ff7d",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T13:12:04Z",
+      "side": 1,
+      "message": "No bound can be larger than MTR, so if MTR has zero loss, we are content with MTR being invalid upper bound, and pick a lower bound just for tracking interval size. Note that the zero loss was at minimum duration, later re-measurements may find nonzero loss.",
+      "parentUuid": "f9b753d9_12477b77",
       "range": {
         "startLine": 309,
         "startChar": 0,
@@ -214,6 +286,30 @@
     },
     {
       "key": {
+        "uuid": "0004b3ff_2d37e250",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T13:12:04Z",
+      "side": 1,
+      "message": "Loss of trial at MRR decides whether it is valid upper or valid lower bound. We pick MRR2 above or below based on which bound is not valid yet.",
+      "parentUuid": "9cf0f91c_3521265f",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 53
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f51eff81_c55e880a",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 3
@@ -281,6 +377,30 @@
       "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91b1c3ca_f8e12dbe",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T13:12:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07c8fd79_ad1ec645",
+      "range": {
+        "startLine": 455,
+        "startChar": 47,
+        "endLine": 455,
+        "endChar": 51
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -375,6 +495,30 @@
       "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f484182c_adb2a67b",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T13:12:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd5ef3a2_b4703692",
+      "range": {
+        "startLine": 499,
+        "startChar": 0,
+        "endLine": 499,
+        "endChar": 64
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
