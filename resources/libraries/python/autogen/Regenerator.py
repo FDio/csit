@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -457,7 +457,10 @@ class Regenerator:
             {u"frame_size": 0, u"phy_cores": i} for i in (1, 2, 4)
         ]
         hs_bps_kwargs_list = [
-            {u"frame_size": 0, u"phy_cores": 1},
+            {u"frame_size": 1460, u"phy_cores": 1},
+        ]
+        hs_quic_kwargs_list = [
+            {u"frame_size": 1280, u"phy_cores": 1},
         ]
 
         for in_filename in glob(pattern):
@@ -485,8 +488,11 @@ class Regenerator:
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
                 write_tcp_files(in_filename, in_prolog, hs_wrk_kwargs_list)
-            elif in_filename[-10:] in (u"-bps.robot"):
-                write_tcp_files(in_filename, in_prolog, hs_bps_kwargs_list)
+            elif in_filename.endswith(u"-bps.robot"):
+                hoststack_kwargs_list = \
+                    hs_quic_kwargs_list if u"quic" in in_filename \
+                    else hs_bps_kwargs_list
+                write_tcp_files(in_filename, in_prolog, hoststack_kwargs_list)
             else:
                 raise RuntimeError(
                     f"Error in {in_filename}: non-primary suite type found."
