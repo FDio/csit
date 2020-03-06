@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "67f0f0a3_dc536c0f",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T12:13:12Z",
+      "side": 1,
+      "message": "Ah, yes, will edit.",
+      "parentUuid": "26c0c83d_999dac9a",
+      "range": {
+        "startLine": 189,
+        "startChar": 2,
+        "endLine": 189,
+        "endChar": 37
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a19360c_2e824e51",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 3
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "092fce15_a0a0cafd",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T12:13:12Z",
+      "side": 1,
+      "message": "The first intermediate phase needs to start with both bounds measured, to know whether a bound is valid.",
+      "parentUuid": "98eb214c_76bf9677",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 53
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6356966d_3913d44d",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 3
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "d008c78a_353cb4fe",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T12:13:12Z",
+      "side": 1,
+      "message": "If PLR\u003d0 in step 2, it means this result can be used as a valid lower bound. Trying a bigger load makes more sense.",
+      "parentUuid": "6356966d_3913d44d",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 53
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f51eff81_c55e880a",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 3
@@ -105,6 +177,30 @@
       "writtenOn": "2020-03-05T21:21:35Z",
       "side": 1,
       "message": "Wouldn\u0027t this apply in all cases: MRR2 \u003c MRR? Why the change?",
+      "range": {
+        "startLine": 343,
+        "startChar": 0,
+        "endLine": 345,
+        "endChar": 46
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9d2929f_5583d8f8",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T12:13:12Z",
+      "side": 1,
+      "message": "Step 2 can set MRR2 above MRR.",
+      "parentUuid": "f51eff81_c55e880a",
       "range": {
         "startLine": 343,
         "startChar": 0,
@@ -151,6 +247,30 @@
       "writtenOn": "2020-03-05T21:21:35Z",
       "side": 1,
       "message": "doubling not doublings?",
+      "range": {
+        "startLine": 458,
+        "startChar": 65,
+        "endLine": 458,
+        "endChar": 74
+      },
+      "revId": "db7191f5d92798dc5e2d7f3fd851e599130e420c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6513cd8_5cc2af41",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-06T12:13:12Z",
+      "side": 1,
+      "message": "Doublings. It is number of doublings (by default two).",
+      "parentUuid": "33016f35_df7b26d0",
       "range": {
         "startLine": 458,
         "startChar": 65,
