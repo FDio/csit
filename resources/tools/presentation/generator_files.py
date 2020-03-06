@@ -242,12 +242,18 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
     }
 
     order_chapters = file_spec.get(u"order-chapters", None)
-    if not order_chapters:
-        order_chapters = chapters.keys()
+    order_1 = None
+    order_2 = None
+    order_3 = None
 
-    order_sub_chapters = file_spec.get(u"order-sub-chapters", None)
+    if order_chapters:
+        order_1 = order_chapters.get(u"level-1", None)
+        order_2 = order_chapters.get(u"level-2", None)
+        order_3 = order_chapters.get(u"level-3", None)
+        if not order_1:
+            order_1 = chapters.keys()
 
-    for chapter in order_chapters:
+    for chapter in order_1:
         sub_chapters = chapters.get(chapter, None)
         if not sub_chapters:
             continue
@@ -263,9 +269,9 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
                     f".. toctree::\n\n"
                 )
 
-        if not order_sub_chapters:
-            order_sub_chapters = sub_chapters.keys()
-        for sub_chapter in order_sub_chapters:
+        if not order_2:
+            order_2 = sub_chapters.keys()
+        for sub_chapter in order_2:
             testbed = sub_chapters.get(sub_chapter, None)
             if not testbed:
                 continue
