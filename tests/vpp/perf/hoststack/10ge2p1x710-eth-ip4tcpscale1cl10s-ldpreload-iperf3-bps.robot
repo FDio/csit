@@ -19,7 +19,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | HOSTSTACK
-| ... | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 9000B
+| ... | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 1460B
 | ... | eth-ip4tcpscale1cl10s-ldpreload-iperf3
 |
 | Suite Setup | Setup suite single link no tg
@@ -29,7 +29,7 @@
 |
 | Test Template | Local template
 |
-| Documentation | *Iperf3 client -> Iperf3 server throughput.
+| Documentation | *Iperf3 client -> Iperf3 server goodput.
 |
 | ... | *[Top] Network Topologies:* DUT-DUT 2-node topology
 | ... | with single link between nodes.
@@ -60,6 +60,6 @@
 | | ... | Defered Failure From Hoststack Iperf3 Test Program
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4tcpscale1cl10s-ldpreload-iperf3-bps
+| tc01-1460B-1c-eth-ip4tcpscale1cl10s-ldpreload-iperf3-bps
 | | [Tags] | 1C
 | | phy_cores=${1}
