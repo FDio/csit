@@ -19,7 +19,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VPPECHO
-| ... | HOSTSTACK | 10CLIENT | 1STREAM | 9000B
+| ... | HOSTSTACK | 10CLIENT | 1STREAM | 1280B
 | ... | eth-ip4udpquicscale10cl1s-vppecho
 |
 | Suite Setup | Setup suite single link no tg
@@ -29,7 +29,7 @@
 |
 | Test Template | Local template
 |
-| Documentation | *QUIC Unidirectional Echo Client -> Echo Server throughput.
+| Documentation | *QUIC Unidirectional Echo Client -> Echo Server goodput.
 |
 | ... | *[Top] Network Topologies:* DUT-DUT 2-node topology
 | ... | with single link between nodes.
@@ -63,6 +63,6 @@
 | | ... | Defered Failure From Hoststack VPP Echo Test Program
 
 *** Test Cases ***
-| tc01-9000B-1c-eth-ip4udpquicscale10cl1s-vppecho-bps
+| tc01-1280B-1c-eth-ip4udpquicscale10cl1s-vppecho-bps
 | | [Tags] | 1C
 | | phy_cores=${1}
