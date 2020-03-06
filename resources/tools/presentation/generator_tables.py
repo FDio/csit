@@ -354,7 +354,8 @@ def table_merged_details(table, input_data):
 
         # Write the data to file
         if table_lst:
-            file_name = f"{table[u'output-file']}_{suite_name}.csv"
+            separator = u"" if table[u'output-file'].endswith(u"/") else u"_"
+            file_name = f"{table[u'output-file']}{separator}{suite_name}.csv"
             logging.info(f"      Writing file: {file_name}")
             with open(file_name, u"wt") as file_handler:
                 file_handler.write(u",".join(header) + u"\n")
