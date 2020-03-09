@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Library | resources.libraries.python.Cop
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | COPWHLIST | DRV_VFIO_PCI
 | ... | ethip6-ip6base-copwhtlistbase
 |
