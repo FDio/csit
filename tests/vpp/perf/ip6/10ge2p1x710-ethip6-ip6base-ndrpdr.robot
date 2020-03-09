@@ -50,6 +50,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${rxd_count_int}= | ${0}
+| ${txd_count_int}= | ${0}
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
