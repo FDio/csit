@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -485,7 +485,7 @@ class Regenerator:
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
                 write_tcp_files(in_filename, in_prolog, hs_wrk_kwargs_list)
-            elif in_filename[-10:] in (u"-bps.robot"):
+            elif in_filename.endswith(u"-bps.robot"):
                 write_tcp_files(in_filename, in_prolog, hs_bps_kwargs_list)
             else:
                 raise RuntimeError(
