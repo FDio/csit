@@ -79,9 +79,13 @@ class HoststackUtil():
         if iperf3_attributes[u"ld_preload"]:
             iperf3_cmd[u"env_vars"] += \
                 f" LD_PRELOAD={Constants.VCL_LDPRELOAD_LIBRARY}"
-        if iperf3_attributes[u'transparent_tls']:
-            iperf3_cmd[u"env_vars"] += u" LDP_ENV_TLS_TRANS=1"
-
+            if iperf3_attributes[u'ldp_transparent_tls']:
+                iperf3_cmd[u"env_vars"] += \
+                    f" LDP_TRANSPARENT_TLS=1 LDP_DEBUG=1 VCL_DEBUG=1" \
+                    f" LDP_TLS_CERT_FILE={Constants.REMOTE_FW_DIR}/" \
+                    f"{Constants.RESOURCES_LDP_TLS_CERT_FILE} " \
+                    f"LDP_TLS_KEY_FILE={Constants.REMOTE_FW_DIR}/" \
+                    f"{Constants.RESOURCES_LDP_TLS_KEY_FILE}"
         json_results = u" --json" if iperf3_attributes[u'json'] else u""
         ip_address = f" {iperf3_attributes[u'ip_address']}" if u"ip_address" \
                      in iperf3_attributes else u""
@@ -308,7 +312,8 @@ class HoststackUtil():
             f"\n{role} VPP 'show errors' on host {node[u'host']}:\n" \
             f"{PapiSocketExecutor.run_cli_cmd(node, u'show error')}\n"
 
-        if u"error" in program_stderr.lower():
+        if u"error" in program_stderr.lower() or \
+                u"error" in program_stdout:
             test_results += f"ERROR DETECTED:\n{program_stderr}"
             return (True, test_results)
         if not program_stdout:
