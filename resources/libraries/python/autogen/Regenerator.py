@@ -215,10 +215,6 @@ def write_multidriver_files(nic_name, in_filename, in_prolog, kwargs_list):
         # DPDK does not support different NIC drivers.
         write_single_file(in_filename, in_prolog, kwargs_list)
         return
-    # TODO: Remove once hoststack supports NIC drivers.
-    if SuiteClass.is_suite_hoststack(in_filename):
-        write_single_file(in_filename, in_prolog, kwargs_list)
-        return
     _, old_suite_id, _ = get_iface_and_suite_ids(in_filename)
     for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
         out_filename = replace_defensively(
@@ -240,11 +236,12 @@ def write_multidriver_files(nic_name, in_filename, in_prolog, kwargs_list):
             Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
             u"Driver plugin should appear once.", in_filename
         )
-        out_prolog = replace_defensively(
-            out_prolog, Constants.NIC_DRIVER_TO_SETUP_ARG[u"vfio-pci"],
-            Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
-            u"Perf setup argument should appear once.", in_filename
-        )
+        if not SuiteClass.is_suite_hoststack(in_filename):
+            out_prolog = replace_defensively(
+                out_prolog, Constants.NIC_DRIVER_TO_SETUP_ARG[u"vfio-pci"],
+                Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
+                u"Perf setup argument should appear once.", in_filename
+            )
         write_single_file(out_filename, out_prolog, kwargs_list)
 
 
