@@ -148,6 +148,12 @@ class Constants:
     # VPP Communications Library templates location
     RESOURCES_TPL_VCL = u"resources/templates/vcl"
 
+    # LDP TLS Test Certificate File
+    RESOURCES_LDP_TLS_CERT_FILE = f"{RESOURCES_TPL_VCL}/ldp_tls_test.cert"
+
+    # LDP TLS Test Key File
+    RESOURCES_LDP_TLS_KEY_FILE = f"{RESOURCES_TPL_VCL}/ldp_tls_test.key"
+
     # HTTP Server www root directory
     RESOURCES_TP_WRK_WWW = u"resources/traffic_profiles/wrk/www"
 
