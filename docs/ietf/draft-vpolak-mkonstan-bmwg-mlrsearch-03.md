@@ -2,7 +2,7 @@
 title: Multiple Loss Ratio Search for Packet Throughput (MLRsearch)
 # abbrev: MLRsearch
 docname: draft-vpolak-mkonstan-bmwg-mlrsearch-03
-date: 2020-02-28
+date: 2020-03-06
 
 ipr: trust200902
 area: ops
@@ -140,7 +140,7 @@ can be done to describe the replicability.
   specific packet size and MTR as received by DUT/SUT during the
   measurement. Packet MRR measured in packets-per-second (or fps),
   bandwidth MRR expressed in bits-per-second (bps).
-* Trial: a single measurement step. See [RFC2504] section 23.
+* Trial: a single measurement step. See [RFC2544] section 23.
 * Trial duration: amount of time over which packets are transmitted
   in a single measurement step.
 
