@@ -309,21 +309,6 @@ class Constants:
         u"rdma-core": u"DRV_RDMA_CORE",
     }
 
-    # Suite names have to be different, add prefix.
-    NIC_DRIVER_TO_SUITE_PREFIX = {
-        u"vfio-pci": u"",
-        u"avf": u"avf-",
-        u"rdma-core": u"rdma-",
-    }
-
-    # Some identifiers constructed from suite names
-    # have to be independent of NIC driver used.
-    # In order to remove or reject the NIC driver part,
-    # it is useful to have a list of such prefixes precomputed.
-    FORBIDDEN_SUITE_PREFIX_LIST = [
-        prefix for prefix in NIC_DRIVER_TO_SUITE_PREFIX.values() if prefix
-    ]
-
     # Additional step for perf needs to know driver type.
     # Contains part of suite setup line, matching both single and double link.
     NIC_DRIVER_TO_SETUP_ARG = {
@@ -331,6 +316,37 @@ class Constants:
         u"avf": u"le link | performance_avf",
         u"rdma-core": u"le link | performance_rdma",
     }
+
+    # Performance depends on ring sizes. 0 means default.
+    # Applies both to rxq and txq ring size.
+    NIC_DRIVER_TO_RING_SIZES = {
+        u"vfio-pci": [512, 0, 2048],
+        u"avf": [0, 1024, 2048],
+        u"rdma-core": [0],
+    }
+
+    # Suite names have to be different, add prefix.
+    NIC_DRIVER_TO_SUITE_PREFIX = {
+        u"vfio-pci": u"",
+        u"avf": u"avf-",
+        u"rdma-core": u"rdma-",
+    }
+
+    # Suite names have to be different, add prefix.
+    RING_SIZE_TO_SUITE_PREFIX = {
+        0: u"",
+        512: u"512-",
+        1024: u"1024-",
+        2048: u"2048-",
+    }
+
+    # Some identifiers constructed from suite names
+    # have to be independent of NIC driver and ring size used.
+    # In order to remove or reject the NIC driver and ring size part,
+    # it is useful to have a list of such prefixes precomputed.
+    ndsp = tuple(NIC_DRIVER_TO_SUITE_PREFIX.values())
+    rssp = tuple(RING_SIZE_TO_SUITE_PREFIX.values())
+    FORBIDDEN_SUITE_PREFIX_LIST = [pref for pref in ndsp + rssp if pref]
 
     # TODO CSIT-1481: Crypto HW should be read from topology file instead.
     NIC_NAME_TO_CRYPTO_HW = {
