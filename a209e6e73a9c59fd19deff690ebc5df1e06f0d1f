@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d49a27c3_214dffaa",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-09T18:07:46Z",
+      "side": 1,
+      "message": "Alright, good enough for rls2001 I guess.\nMaybe you can update methodology somewhere, explaining (some?) hoststack tests are enabling jumbo frame support, even though they are not sending any jumbo frames.\nGithub does not respond currently (so no clickable link), but we have some comments in docs/report/introduction/methodology_vpp_startup_settings.rst",
+      "parentUuid": "3eb71dfc_d2a74f2d",
+      "range": {
+        "startLine": 44,
+        "startChar": 21,
+        "endLine": 44,
+        "endChar": 25
+      },
+      "revId": "a209e6e73a9c59fd19deff690ebc5df1e06f0d1f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b660fef8_566c13af",
         "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4udpquicbase-vppecho-bps.robot",
         "patchSetId": 2
