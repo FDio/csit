@@ -197,6 +197,43 @@ def write_single_file(filename, prolog, kwargs_list):
         )
 
 
+def write_multiring_files(driver_name, in_filename, in_prolog, kwargs_list):
+    """Using given filename and prolog, write suites differing in ring size.
+
+    :param driver_name: Name of the driver, affects which sizes are supported.
+    :param in_filename: Template filename to derive real filenames from.
+    :param in_prolog: Template content to derive real content from.
+    :param kwargs_list: List of kwargs for add_testcases.
+    :type nic_name: str
+    :type in_filename: str
+    :type in_prolog: str
+    :type kwargs_list: list of dict
+    """
+    _, old_suite_id, _ = get_iface_and_suite_ids(in_filename)
+    for ring_size in Constants.NIC_DRIVER_TO_RING_SIZES[driver_name]:
+        suite_prefix = Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver_name]
+        suite_prefix += Constants.RING_SIZE_TO_SUITE_PREFIX[ring_size]
+        out_filename = replace_defensively(
+            in_filename, old_suite_id, suite_prefix + old_suite_id,
+            1, u"Error adding driver+size prefix to suite name.", in_filename
+        )
+        out_prolog = replace_defensively(
+            in_prolog, u"| RINGSIZE_0", f"| RINGSIZE_{ring_size}", 1,
+            u"Ringsize tag should appear once.", in_filename
+        )
+        out_prolog = replace_defensively(
+            out_prolog, u"| ${rxd_count_int}= | ${0}",
+            f"| ${{rxd_count_int}}= | ${{{ring_size}}}", 1,
+            u"Rxd count variable line should appear once.", in_filename
+        )
+        out_prolog = replace_defensively(
+            out_prolog, u"| ${txd_count_int}= | ${0}",
+            f"| ${{txd_count_int}}= | ${{{ring_size}}}", 1,
+            u"Txd count variable line should appear once.", in_filename
+        )
+        write_single_file(out_filename, out_prolog, kwargs_list)
+
+
 def write_multidriver_files(nic_name, in_filename, in_prolog, kwargs_list):
     """Using given filename and prolog, write suites differing in NIC driver.
 
@@ -219,13 +256,8 @@ def write_multidriver_files(nic_name, in_filename, in_prolog, kwargs_list):
     if SuiteClass.is_suite_hoststack(in_filename):
         write_single_file(in_filename, in_prolog, kwargs_list)
         return
-    _, old_suite_id, _ = get_iface_and_suite_ids(in_filename)
     for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
-        out_filename = replace_defensively(
-            in_filename, old_suite_id,
-            Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
-            1, u"Error adding driver prefix to suite name.", in_filename
-        )
+        # Not setting driver prefix to suite name just yet.
         out_prolog = replace_defensively(
             in_prolog, u"vfio-pci", driver, 1,
             u"Driver name should appear once.", in_filename
@@ -245,7 +277,7 @@ def write_multidriver_files(nic_name, in_filename, in_prolog, kwargs_list):
             Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
             u"Perf setup argument should appear once.", in_filename
         )
-        write_single_file(out_filename, out_prolog, kwargs_list)
+        write_multiring_files(driver, in_filename, out_prolog, kwargs_list)
 
 
 def write_multinic_files(in_filename, in_prolog, kwargs_list):
