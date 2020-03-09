@@ -90,7 +90,7 @@
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
 | ... | ld_preload=${True}
-| ... | transparent_tls=${False}
+| ... | ldp_transparent_tls=${False}
 | ... | json=${True}
 | ... | ip_version=${4}
 | &{iperf3_client_attr}=
@@ -100,7 +100,7 @@
 | ... | namespace=default
 | ... | vcl_config=vcl_iperf3.conf
 | ... | ld_preload=${True}
-| ... | transparent_tls=${False}
+| ... | ldp_transparent_tls=${False}
 | ... | json=${True}
 | ... | ip_version=${4}
 | ... | ip_address=${EMPTY}
@@ -309,8 +309,9 @@
 | | ... | *Arguments:*
 | | ... | - ${vcl_config} - VCL configuration file name Type: string
 | | ... | - ${ld_preload} - Use the VCL LD_PRELOAD library Type: boolean
-| | ... | - ${transparent_tls} - Use VCL Transparent-TLS mode Type: boolean
+| | ... | - ${ldp_transparent_tls} - Use LDP Transparent-TLS mode Type: boolean
 | | ... | - ${ip_version} - IP version (4 or 6) Type: int
+| | ... | - ${json} - Format output in JSON Type: string
 | |
 | | ... | *Example:*
 | |
@@ -320,14 +321,16 @@
 | | [Arguments]
 | | ... | ${vcl_config}=${iperf3_server_attr}[vcl_config]
 | | ... | ${ld_preload}=${iperf3_server_attr}[ld_preload]
-| | ... | ${transparent_tls}=${iperf3_server_attr}[transparent_tls]
+| | ... | ${ldp_transparent_tls}=${iperf3_server_attr}[ldp_transparent_tls]
 | | ... | ${ip_version}=${iperf3_server_attr}[ip_version]
+| | ... | ${json}=${iperf3_server_attr}[json]
 | |
 | | Set To Dictionary | ${iperf3_server_attr} | vcl_config | ${vcl_config}
 | | Set To Dictionary | ${iperf3_server_attr} | ld_preload | ${ld_preload}
-| | Set To Dictionary | ${iperf3_server_attr} | transparent_tls
-| | ... | ${transparent_tls}
+| | Set To Dictionary | ${iperf3_server_attr} | ldp_transparent_tls
+| | ... | ${ldp_transparent_tls}
 | | Set To Dictionary | ${iperf3_server_attr} | ip_version | ${ip_version}
+| | Set To Dictionary | ${iperf3_server_attr} | json | ${json}
 
 | Set Iperf3 Client Attributes
 | | [Documentation]
@@ -337,9 +340,11 @@
 | | ... | *Arguments:*
 | | ... | - ${vcl_config} - VCL configuration file name Type: string
 | | ... | - ${ld_preload} - Use the VCL LD_PRELOAD library Type: boolean
-| | ... | - ${transparent_tls} - Use VCL Transparent-TLS mode Type: boolean
+| | ... | - ${ldp_transparent_tls} - Use LDP Transparent-TLS mode Type: boolean
 | | ... | - ${ip_version} - IP version (4 or 6) Type: int
 | | ... | - ${parallel} - Number of parallel streams Type: int
+| | ... | - ${json} - Format output in JSON Type: string
+| | ... | - ${time} - Duration of test in seconds Type: int
 | |
 | | ... | *Example:*
 | |
@@ -349,16 +354,20 @@
 | | [Arguments]
 | | ... | ${vcl_config}=${iperf3_client_attr}[vcl_config]
 | | ... | ${ld_preload}=${iperf3_client_attr}[ld_preload]
-| | ... | ${transparent_tls}=${iperf3_client_attr}[transparent_tls]
+| | ... | ${ldp_transparent_tls}=${iperf3_client_attr}[ldp_transparent_tls]
 | | ... | ${ip_version}=${iperf3_client_attr}[ip_version]
 | | ... | ${parallel}=${iperf3_client_attr}[parallel]
+| | ... | ${json}=${iperf3_client_attr}[json]
+| | ... | ${time}=${iperf3_client_attr}[time]
 | |
 | | Set To Dictionary | ${iperf3_client_attr} | vcl_config | ${vcl_config}
 | | Set To Dictionary | ${iperf3_client_attr} | ld_preload | ${ld_preload}
-| | Set To Dictionary | ${iperf3_client_attr} | transparent_tls
-| | ... | ${transparent_tls}
+| | Set To Dictionary | ${iperf3_client_attr} | ldp_transparent_tls
+| | ... | ${ldp_transparent_tls}
 | | Set To Dictionary | ${iperf3_client_attr} | ip_version | ${ip_version}
 | | Set To Dictionary | ${iperf3_client_attr} | parallel | ${parallel}
+| | Set To Dictionary | ${iperf3_client_attr} | json | ${json}
+| | Set To Dictionary | ${iperf3_client_attr} | time | ${time}
 
 | Run hoststack test program on DUT
 | | [Documentation]
