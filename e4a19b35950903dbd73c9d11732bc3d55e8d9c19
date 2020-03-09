@@ -22,6 +22,30 @@
       "revId": "e4a19b35950903dbd73c9d11732bc3d55e8d9c19",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cc40958_62f4f8a2",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-09T14:23:19Z",
+      "side": 1,
+      "message": "Yes, that would be better.  Poor choice of copy pasta on my part.\n\nThanks,\n-daw-",
+      "parentUuid": "25f7d6b7_c735b24a",
+      "range": {
+        "startLine": 488,
+        "startChar": 12,
+        "endLine": 488,
+        "endChar": 56
+      },
+      "revId": "e4a19b35950903dbd73c9d11732bc3d55e8d9c19",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
