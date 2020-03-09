@@ -16,6 +16,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP6FWD | BASE | IP6BASE | DRV_VFIO_PCI
+| ... | RINGSIZE_0
 | ... | ethip6-ip6base
 |
 | Suite Setup | Setup suite single link | performance
@@ -50,6 +51,8 @@
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${rxd_count_int}= | ${0}
+| ${txd_count_int}= | ${0}
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
