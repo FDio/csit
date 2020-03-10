@@ -206,7 +206,7 @@ class VppCounters:
                 VppCounters.vpp_clear_hardware(node)
 
     @staticmethod
-    def vpp_clears_errors(node):
+    def vpp_clear_errors(node):
         """Run "clear errors" CLI command.
 
         :param node: Node to run command on.
@@ -217,7 +217,7 @@ class VppCounters:
         )
 
     @staticmethod
-    def vpp_clears_errors_on_all_duts(nodes):
+    def vpp_clear_errors_on_all_duts(nodes):
         """Clear VPP errors counters on all DUTs.
 
         :param nodes: VPP nodes.
@@ -225,7 +225,7 @@ class VppCounters:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                VppCounters.vpp_clears_errors(node)
+                VppCounters.vpp_clear_errors(node)
 
     @staticmethod
     def show_vpp_statistics(node):
