@@ -280,6 +280,7 @@ class Constants:
         u"Intel-X710": u"10ge2p1x710",
         u"Intel-XL710": u"40ge2p1xl710",
         u"Intel-XXV710": u"25ge2p1xxv710",
+        u"Amazon-Nitro-50G": u"50ge1p1ENA",
         u"Mellanox-CX556A": u"100ge2p1cx556a",
     }
 
@@ -292,6 +293,7 @@ class Constants:
         u"Intel-X710": [u"vfio-pci", u"avf"],
         u"Intel-XL710": [u"vfio-pci", u"avf"],
         u"Intel-XXV710": [u"vfio-pci", u"avf"],
+        u"Amazon-Nitro-50G": [u"vfio-pci"],
         u"Mellanox-CX556A": [u"rdma-core"],
     }
 
