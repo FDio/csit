@@ -36,3 +36,4 @@
     - "Reboot server"
   tags:
     - prevent-interface-renaming
+

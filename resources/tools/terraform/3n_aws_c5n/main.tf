@@ -201,6 +201,7 @@ resource "aws_instance" "tg" {
   vpc_security_group_ids = [aws_security_group.CSIT.id]
   depends_on = [aws_vpc.CSIT, aws_placement_group.CSIT]
   placement_group = aws_placement_group.CSIT.id
+  host_id = 1
   source_dest_check = false
 }
 
@@ -219,6 +220,7 @@ resource "aws_instance" "dut1" {
   vpc_security_group_ids = [aws_security_group.CSIT.id]
   depends_on = [aws_vpc.CSIT, aws_placement_group.CSIT]
   placement_group = aws_placement_group.CSIT.id
+  host_id = 2
   source_dest_check = false
 }
 
@@ -237,6 +239,7 @@ resource "aws_instance" "dut2" {
   vpc_security_group_ids = [aws_security_group.CSIT.id]
   depends_on = [aws_vpc.CSIT, aws_placement_group.CSIT]
   placement_group = aws_placement_group.CSIT.id
+  host_id = 3
   source_dest_check = false
 }
 

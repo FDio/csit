@@ -224,6 +224,14 @@
 | | Set Test Variable | ${rxd_count_int}
 | | Set Test Variable | ${txd_count_int}
 
+| Add DPDK vdev to all DUTs
+| | [Documentation]
+| | ... | Add DPDK netsvcdev to VPP startup configuration to all DUTs.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK vdev | ${2}
+| | END
+
 | Add DPDK VLAN strip offload switch off between DUTs
 | | [Documentation]
 | | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
