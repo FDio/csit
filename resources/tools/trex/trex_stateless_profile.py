@@ -61,7 +61,8 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
 
 def simple_burst(
         profile_file, duration, framesize, rate, warmup_time, port_0, port_1,
-        latency, async_start=False, traffic_directions=2, force=False):
+        latency, async_start=False, traffic_directions=2, force=False,
+        ip_profile='none'):
     """Send traffic and measure packet loss and latency.
 
     Procedure:
@@ -90,6 +91,7 @@ def simple_burst(
     :param async_start: Start the traffic and exit.
     :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
     :param force: Force start regardless of ports state.
+    :param ip_profile: IP profile for traffic profile.
     :type profile_file: str
     :type framesize: int or str
     :type duration: float
@@ -101,6 +103,7 @@ def simple_burst(
     :type async_start: bool
     :type traffic_directions: int
     :type force: bool
+    :type ip_profile: str
     """
     client = None
     total_rcvd = 0
@@ -114,7 +117,8 @@ def simple_burst(
     try:
         print(f"### Profile file:\n{profile_file}")
         profile = STLProfile.load(
-            profile_file, direction=0, port_id=0, framesize=framesize
+            profile_file, direction=0, port_id=0, framesize=framesize,
+            ip_profile=ip_profile
         )
         streams = profile.get_streams()
     except STLError as err:
@@ -318,6 +322,10 @@ def main():
         u"--force", action=u"store_true", default=False,
         help=u"Force start regardless of ports state."
     )
+    parser.add_argument(
+        u"--ip_profile", type=str,
+        help=u"Optional IP profile."
+    )
 
     args = parser.parse_args()
 
@@ -330,9 +338,9 @@ def main():
         profile_file=args.profile, duration=args.duration, framesize=framesize,
         rate=args.rate, warmup_time=args.warmup_time, port_0=args.port_0,
         port_1=args.port_1, latency=args.latency, async_start=args.async_start,
-        traffic_directions=args.traffic_directions, force=args.force
+        traffic_directions=args.traffic_directions, force=args.force,
+        ip_profile=args.ip_profile
     )
-
 
 if __name__ == u"__main__":
     main()

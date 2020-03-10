@@ -284,57 +284,56 @@ class TrafficGenerator(AbstractMeasurer):
                     self._node, tg_if1, tg_if2,
                     tg_dtc=Constants.TREX_CORE_COUNT)
 
+            trex_config = \
+                    f"- version: 2\n"\
+                    f"  c: {len(threads)}\n"\
+                    f"  limit_memory: {Constants.TREX_LIMIT_MEMORY}\n"\
+                    f"  interfaces: [\"{if1_pci}\",\"{if2_pci}\"]\n"
+
+            if Constants.CLOUD_ENVIRONMENT == u"azure":
+                trex_config += \
+                    f"  ext_dpdk_opt: "\
+                           f"[\"--vdev=net_vdev_netvsc0,iface=eth1\", "\
+                           f"\"--vdev=net_vdev_netvsc1,iface=eth2\"]\n"\
+                    f"  interfaces_vdevs : [\"net_failsafe_vsc0\", "\
+                           f"\"net_failsafe_vsc1\"]\n"
+
             if osi_layer in (u"L2", u"L3"):
                 dst_mac0 = f"0x{if1_adj_addr.replace(u':', u',0x')}"
                 src_mac0 = f"0x{if1_addr.replace(u':', u',0x')}"
                 dst_mac1 = f"0x{if2_adj_addr.replace(u':', u',0x')}"
                 src_mac1 = f"0x{if2_addr.replace(u':', u',0x')}"
-                exec_cmd_no_error(
-                    self._node,
-                    f"sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
-                    f"- version: 2\n"
-                    f"  c: {len(threads)}\n"
-                    f"  limit_memory: {Constants.TREX_LIMIT_MEMORY}\n"
-                    f"  interfaces: [\"{if1_pci}\",\"{if2_pci}\"]\n"
-                    f"  port_info:\n"
-                    f"      - dest_mac: [{dst_mac0}]\n"
-                    f"        src_mac: [{src_mac0}]\n"
-                    f"      - dest_mac: [{dst_mac1}]\n"
+                trex_config += \
+                    f"  port_info:\n"\
+                    f"      - dest_mac: [{dst_mac0}]\n"\
+                    f"        src_mac: [{src_mac0}]\n"\
+                    f"      - dest_mac: [{dst_mac1}]\n"\
                     f"        src_mac: [{src_mac1}]\n"
-                    f"  platform :\n"
-                    f"      master_thread_id: {master_thread_id}\n"
-                    f"      latency_thread_id: {latency_thread_id}\n"
-                    f"      dual_if:\n"
-                    f"          - socket: {socket}\n"
-                    f"            threads: {threads}\n"
-                    f"EOF'",
-                    sudo=True, message=u"TRex config generation!"
-                )
+
             elif osi_layer == u"L7":
-                exec_cmd_no_error(
-                    self._node,
-                    f"sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
-                    f"- version: 2\n"
-                    f"  c: {len(threads)}\n"
-                    f"  limit_memory: {Constants.TREX_LIMIT_MEMORY}\n"
-                    f"  interfaces: [\"{if1_pci}\",\"{if2_pci}\"]\n"
-                    f"  port_info:\n"
-                    f"      - ip: [{if1_addr}]\n"
-                    f"        default_gw: [{if1_adj_addr}]\n"
-                    f"      - ip: [{if2_addr}]\n"
+                trex_config += \
+                    f"  port_info:\n"\
+                    f"      - ip: [{if1_addr}]\n"\
+                    f"        default_gw: [{if1_adj_addr}]\n"\
+                    f"      - ip: [{if2_addr}]\n"\
                     f"        default_gw: [{if2_adj_addr}]\n"
-                    f"  platform :\n"
-                    f"      master_thread_id: {master_thread_id}\n"
-                    f"      latency_thread_id: {latency_thread_id}\n"
-                    f"      dual_if:\n"
-                    f"          - socket: {socket}\n"
-                    f"            threads: {threads}\n"
-                    f"EOF'",
-                    sudo=True, message=u"TRex config generation!"
-                )
             else:
                 raise ValueError(u"Unknown Test Type!")
 
+            trex_config += \
+                f"  platform :\n"\
+                f"      master_thread_id: {master_thread_id}\n"\
+                f"      latency_thread_id: {latency_thread_id}\n"\
+                f"      dual_if:\n"\
+                f"          - socket: {socket}\n"\
+                f"            threads: {threads}\n"\
+
+            exec_cmd_no_error(self._node,
+                f"sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
+                f"{trex_config}"
+                f"EOF'", sudo=True,
+                message=u"TRex config generation!"
+            )
             TrafficGenerator.startup_trex(
                 self._node, osi_layer, subtype=subtype
             )
@@ -490,7 +489,7 @@ class TrafficGenerator(AbstractMeasurer):
     def trex_stl_start_remote_exec(
             self, duration, rate, frame_size, traffic_profile, async_call=False,
             latency=True, warmup_time=5.0, traffic_directions=2, tx_port=0,
-            rx_port=1):
+            rx_port=1, ip_profile=None):
         """Execute script on remote node over ssh to start traffic.
 
         In sync mode, measurement results are stored internally.
@@ -510,6 +509,8 @@ class TrafficGenerator(AbstractMeasurer):
             Default: 0
         :param rx_port: Traffic generator receive port for first flow.
             Default: 1
+        :param ip_profile: IP profile for traffic profile.
+            Default: none
         :type duration: float
         :type rate: str
         :type frame_size: str
@@ -539,6 +540,8 @@ class TrafficGenerator(AbstractMeasurer):
             f"--rate {rate!r} --warmup_time {warmup_time!r} " \
             f"--port_0 {p_0} --port_1 {p_1} " \
             f"--traffic_directions {traffic_directions}"
+        if ip_profile:
+            command += f" --ip_profile {ip_profile}"
         if async_call:
             command += u" --async_start"
         if latency:
@@ -590,7 +593,7 @@ class TrafficGenerator(AbstractMeasurer):
     def send_traffic_on_tg(
             self, duration, rate, frame_size, traffic_profile, warmup_time=5,
             async_call=False, latency=True, traffic_directions=2, tx_port=0,
-            rx_port=1):
+            rx_port=1, ip_profile=None):
         """Send traffic from all configured interfaces on TG.
 
         In async mode, xstats is stored internally,
@@ -626,6 +629,8 @@ class TrafficGenerator(AbstractMeasurer):
             Default: 0
         :param rx_port: Traffic generator receive port for first flow.
             Default: 1
+        :param ip_profile: IP profile for traffic profile.
+            Default: none
         :type duration: str
         :type rate: str
         :type frame_size: str
@@ -636,6 +641,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type traffic_directions: int
         :type tx_port: int
         :type rx_port: int
+        :type ip_profile: str
         :returns: TG output.
         :rtype: str
         :raises RuntimeError: If TG is not set, or if node is not TG,
@@ -646,7 +652,8 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             self.trex_stl_start_remote_exec(
                 duration, rate, frame_size, traffic_profile, async_call,
-                latency, warmup_time, traffic_directions, tx_port, rx_port
+                latency, warmup_time, traffic_directions, tx_port, rx_port,
+                ip_profile
             )
 
         return self._result
@@ -701,7 +708,7 @@ class TrafficGenerator(AbstractMeasurer):
 
     def set_rate_provider_defaults(
             self, frame_size, traffic_profile, warmup_time=0.0,
-            traffic_directions=2):
+            traffic_directions=2, ip_profile=None):
         """Store values accessed by measure().
 
         :param frame_size: Frame size identifier or value [B].
@@ -710,15 +717,18 @@ class TrafficGenerator(AbstractMeasurer):
         :param warmup_time: Traffic duration before measurement starts [s].
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
+        :param ip_profile: IP profile for traffic profile.
         :type frame_size: str or int
         :type traffic_profile: str
         :type warmup_time: float
         :type traffic_directions: int
+        :type ip_profile: str
         """
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
         self.traffic_directions = traffic_directions
+        self.ip_profile = ip_profile
 
     def get_measurement_result(self, duration=None, transmit_rate=None):
         """Return the result of last measurement as ReceiveRateMeasurement.
@@ -773,7 +783,8 @@ class TrafficGenerator(AbstractMeasurer):
         self.send_traffic_on_tg(
             duration, unit_rate_str, self.frame_size, self.traffic_profile,
             warmup_time=self.warmup_time, latency=True,
-            traffic_directions=self.traffic_directions
+            traffic_directions=self.traffic_directions,
+            ip_profile=self.ip_profile
         )
         return self.get_measurement_result(duration, transmit_rate)
 
@@ -791,7 +802,8 @@ class OptimizedSearch:
             maximum_transmit_rate, packet_loss_ratio=0.005,
             final_relative_width=0.005, final_trial_duration=30.0,
             initial_trial_duration=1.0, number_of_intermediate_phases=2,
-            timeout=720.0, doublings=1, traffic_directions=2):
+            timeout=720.0, doublings=1, traffic_directions=2,
+            ip_profile=None):
         """Setup initialized TG, perform optimized search, return intervals.
 
         :param frame_size: Frame size identifier or value [B].
@@ -816,6 +828,7 @@ class OptimizedSearch:
             less stable tests might get better overal duration with 2 or more.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
+        :param ip_profile: IP profile for traffic profile.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -828,6 +841,7 @@ class OptimizedSearch:
         :type timeout: float
         :type doublings: int
         :type traffic_directions: int
+        :type ip_profile: str
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: NdrPdrResult
@@ -841,7 +855,8 @@ class OptimizedSearch:
             u"resources.libraries.python.TrafficGenerator"
         )
         tg_instance.set_rate_provider_defaults(
-            frame_size, traffic_profile, traffic_directions=traffic_directions)
+            frame_size, traffic_profile, traffic_directions=traffic_directions,
+            ip_profile=ip_profile)
         algorithm = MultipleLossRatioSearch(
             measurer=tg_instance, final_trial_duration=final_trial_duration,
             final_relative_width=final_relative_width,

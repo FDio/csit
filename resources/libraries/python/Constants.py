@@ -205,6 +205,9 @@ class Constants:
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
 
+    # Cloud Enviroment
+    CLOUD_ENVIRONMENT = get_str_from_env(u"CLOUD_ENVIRONMENT", u"")
+
     # Core dump directory
     CORE_DUMP_DIR = u"/tmp"
 
@@ -254,6 +257,7 @@ class Constants:
         u"Intel-XXV710": 24500000000,
         u"Mellanox-CX556A": 100000000000,
         u"Amazon-Nitro-50G": 10000000000,
+        u"Azure-MLX-40G": 10000000000,
         u"virtual": 100000000,
     }
 
@@ -268,6 +272,7 @@ class Constants:
         u"Intel-XXV710": 18750000,
         u"Mellanox-CX556A": 60000000, # 148809523,
         u"Amazon-Nitro-50G": 1500000,
+        u"Azure-MLX-40G": 1500000,
         u"virtual": 14880952,
     }
 

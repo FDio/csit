@@ -45,38 +45,45 @@
 | |
 | | Set interfaces in path up
 | |
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg_if1_mac}
+| | ${tg_if1_ip4}= | Get Variable Value | ${tg_if1_ip4} | 10.10.10.2
+| | ${tg_if2_ip4}= | Get Variable Value | ${tg_if2_ip4} | 20.20.20.2
+| | ${dut1_if1_ip4}= | Get Variable Value | ${dut1_if1_ip4} | 10.10.10.1
+| | ${dut1_if2_ip4}= | Get Variable Value | ${dut1_if2_ip4} | 1.1.1.1
+| | ${dut2_if1_ip4}= | Get Variable Value | ${dut2_if1_ip4} | 1.1.1.2
+| | ${dut2_if2_ip4}= | Get Variable Value | ${dut2_if2_ip4} | 20.20.20.1
+| |
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | ... | ${dut1} | ${dut1_if2} | ${dut2_if1_ip4} | ${dut2_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | ... | ${dut2} | ${dut2_if1} | ${dut1_if2_ip4} | ${dut1_if2_mac}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
-| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 20.20.20.2 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
 | |
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
-| | ... | 10.10.10.1 | 24
+| | ... | ${dut1_if1_ip4} | 24
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address | ${dut1} | ${dut1_if2}
-| | ... | 1.1.1.1 | 30
+| | ... | ${dut1_if2_ip4} | 24
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address | ${dut2} | ${dut2_if1}
-| | ... | 1.1.1.2 | 30
+| | ... | ${dut2_if1_ip4} | 24
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2}
-| | ... | 20.20.20.1 | 24
+| | ... | ${dut2_if2_ip4} | 24
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=1.1.1.2
-| | ... | interface=${dut1_if2}
+| | ... | Vpp Route Add | ${dut1} | ${dut2_if2_ip4} | 24
+| | ... | gateway=${dut2_if1_ip4} | interface=${dut1_if2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
-| | ... | interface=${dut2_if1}
+| | ... | Vpp Route Add | ${dut2} | ${dut1_if1_ip4} | 24
+| | ... | gateway=${dut1_if2_ip4} | interface=${dut2_if1}
 | |
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 32

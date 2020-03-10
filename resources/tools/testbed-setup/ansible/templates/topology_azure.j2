@@ -21,13 +21,13 @@ nodes:
         mac_address: "{{ tg_if1_mac | lower | replace('-',':') }}"
         pci_address: "0002:00:02.0"
         link: link1
-        model: azure-mlx-40g
+        model: Azure-MLX-40G
       port2:
         # tg_instance/p2 - 40GE port2 on Mellanox NIC.
         mac_address: "{{ tg_if2_mac | lower | replace('-',':') }}"
         pci_address: "0003:00:02.0"
         link: link2
-        model: azure-mlx-40g
+        model: Azure-MLX-40G
   DUT1:
     type: DUT
     host: "{{ dut1_public_ip }}"
@@ -47,13 +47,13 @@ nodes:
         mac_address: "{{ dut1_if1_mac | lower | replace('-',':') }}"
         pci_address: "0002:00:02.0"
         link: link1
-        model: azure-mlx-40g
+        model: Azure-MLX-40G
       port2:
         # dut2_instance/p1 - 40GE port2 on Mellanox NIC.
         mac_address: "{{ dut1_if2_mac | lower | replace('-',':') }}"
         pci_address: "0003:00:02.0"
         link: link21
-        model: azure-mlx-40g
+        model: Azure-MLX-40G
   DUT2:
     type: DUT
     host: "{{ dut2_public_ip }}"
@@ -73,10 +73,10 @@ nodes:
         mac_address: "{{ dut2_if1_mac | lower | replace('-',':') }}"
         pci_address: "0002:00:02.0"
         link: link21
-        model: azure-mlx-40g
+        model: Azure-MLX-40G
       port2:
         # dut2_instance/p1 - 40GE port2 on Mellanox NIC.
         mac_address: "{{ dut2_if2_mac | lower | replace('-',':') }}"
         pci_address: "0003:00:02.0"
         link: link2
-        model: azure-mlx-40g
+        model: Azure-MLX-40G

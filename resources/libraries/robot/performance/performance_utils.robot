@@ -43,6 +43,7 @@
 | |
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | - ip_profile - Name of module defining ip addresses for measurements.
 | | ... | Type: string
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
 | | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
@@ -73,12 +74,15 @@
 | | ... | ${doublings}=${2} | ${traffic_directions}=${2}
 | | ... | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
 | |
+| | ${ip_profile}= | Get Variable Value | ${ip_profile} | ${NONE}
+| |
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${traffic_profile} | ${90000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
+| | ... | ip_profile=${ip_profile}
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
@@ -394,6 +398,9 @@
 | | ... | Show various DUT stats, optionally also packet trace.
 | | ... | Return list of measured receive rates.
 | | ... | The rate argument should be TRex friendly, so it should include "pps".
+| | ... |
+| | ... | *Test (or broader scope) variables read:*
+| | ... | - ip_profile - Name of module defining ip addresses for measurements.
 | |
 | | ... | *Arguments:*
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
@@ -417,6 +424,8 @@
 | | ... | ${traffic_profile} | ${subsamples}=${1} | ${traffic_directions}=${2}
 | | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${pkt_trace}=${False}
 | |
+| | ${ip_profile}= | Get Variable Value | ${ip_profile} | ${NONE}
+| |
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
@@ -433,7 +442,7 @@
 | | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
 | | | ... | ${traffic_profile} | warmup_time=${0}
 | | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | | ... | rx_port=${rx_port}
+| | | ... | rx_port=${rx_port} | ip_profile=${ip_profile}
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
@@ -451,7 +460,10 @@
 | | ... | Send traffic at specified rate, single trial.
 | | ... | Extract latency information and append it to text message.
 | | ... | The rate argument should be TRex friendly, so it should include "pps".
-| |
+| | ... |
+| | ... | *Test (or broader scope) variables read:*
+| | ... | - ip_profile - Name of module defining ip addresses for measurements.
+| | ... |
 | | ... | *Arguments:*
 | | ... | - message_prefix - Preface to test message addition. Type: string
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
@@ -473,12 +485,14 @@
 | | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}=${2}
 | | ... | ${tx_port}=${0} | ${rx_port}=${1}
 | |
+| | ${ip_profile}= | Get Variable Value | ${ip_profile} | ${NONE}
+| |
 | | # The following line is skipping some default arguments,
 | | # that is why subsequent arguments have to be named.
 | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | warmup_time=${0}
 | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | ... | rx_port=${rx_port}
+| | ... | rx_port=${rx_port} | ip_profile=${ip_profile}
 | | ${latency} = | Get Latency Int
 | | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
 
@@ -488,6 +502,9 @@
 | | ... | DUTs. Wait for specified amount of time and capture runtime counters
 | | ... | on all DUTs. Finally stop traffic
 | |
+| | ... | *Test (or broader scope) variables read:*
+| | ... | - ip_profile - Name of module defining ip addresses for measurements.
+| | ... |
 | | ... | *Arguments:*
 | | ... | - duration - Duration of traffic run [s]. Type: integer
 | | ... | - rate - Unidirectional rate for sending packets. Type: string
@@ -507,11 +524,13 @@
 | | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | |
+| | ${ip_profile}= | Get Variable Value | ${ip_profile} | ${NONE}
+| |
 | | # Duration of -1 means we will stop traffic manually.
 | | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | warmup_time=${0} | async_call=${True} | latency=${False}
 | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | ... | rx_port=${rx_port}
+| | ... | rx_port=${rx_port} | ip_profile=${ip_profile}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | VPP clear runtime on all DUTs | ${nodes}
 | | Sleep | ${duration}
@@ -544,11 +563,13 @@
 | | [Arguments] | ${rate} | ${traffic_directions}=${2} | ${tx_port}=${0}
 | | ... | ${rx_port}=${1}
 | |
+| | ${ip_profile}= | Get Variable Value | ${ip_profile} | ${NONE}
+| |
 | | # Duration of -1 means we will stop traffic manually.
 | | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | warmup_time=${0} | async_call=${True} | latency=${False}
 | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | ... | rx_port=${rx_port}
+| | ... | rx_port=${rx_port} | ip_profile=${ip_profile}
 
 | Stop Running Traffic
 | | [Documentation]
