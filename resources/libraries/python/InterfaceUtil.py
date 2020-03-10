@@ -698,10 +698,7 @@ class InterfaceUtil:
         def check_cpu_node_count(node_n, val):
             val = int(val)
             if val < 0:
-                if CpuUtils.cpu_node_count(node_n) == 1:
-                    val = 0
-                else:
-                    raise ValueError
+                val = 0
             return val
         ssh = SSH()
         for if_key in Topology.get_node_interfaces(node):
