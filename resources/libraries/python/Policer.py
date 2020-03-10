@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -32,7 +32,7 @@ class PolicerRoundType(IntEnum):
     ROUND_TO_CLOSEST = 0
     ROUND_TO_UP = 1
     ROUND_TO_DOWN = 2
-    ROUND_TO_INVALID = 3
+    ROUND_INVALID = 3
 
 
 class PolicerType(IntEnum):
@@ -132,10 +132,29 @@ class Policer:
         :type exceed_dscp: str
         :type violate_dscp: str
         """
+        conform_action = dict(
+            type=getattr(PolicerAction, conform_action_type.upper()).value,
+            dscp=Policer.get_dscp_num_value(conform_dscp) if
+            conform_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.name
+            else 0
+        )
+        exceed_action = dict(
+            type=getattr(PolicerAction, exceed_action_type.upper()).value,
+            dscp=Policer.get_dscp_num_value(exceed_dscp) if
+            exceed_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.name
+            else 0
+        )
+        violate_action = dict(
+            type=getattr(PolicerAction, violate_action_type.upper()).value,
+            dscp=Policer.get_dscp_num_value(violate_dscp) if
+            violate_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.name
+            else 0
+        )
+
         cmd = u"policer_add_del"
         args = dict(
-            is_add=int(is_add),
-            name=str(policer_name).encode(encoding=u"utf-8"),
+            is_add=is_add,
+            name=str(policer_name),
             cir=int(cir),
             eir=int(eir),
             cb=int(cbs),
@@ -145,28 +164,10 @@ class Policer:
                 PolicerRoundType, f"ROUND_TO_{round_type.upper()}"
             ).value,
             type=getattr(PolicerType, f"TYPE_{policer_type.upper()}").value,
-            conform_action_type=getattr(
-                PolicerAction, conform_action_type.upper()
-            ).value,
-            conform_dscp=getattr(DSCP, f"D_{conform_dscp.upper()}").value
-            if
-            conform_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.name
-            else 0,
-            exceed_action_type=getattr(
-                PolicerAction, exceed_action_type.upper()
-            ).value,
-            exceed_dscp=getattr(DSCP, f"D_{exceed_dscp.upper()}").value
-            if
-            exceed_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.name
-            else 0,
-            violate_action_type=getattr(
-                PolicerAction, violate_action_type.upper()
-            ).value,
-            violate_dscp=getattr(DSCP, f"D_{violate_dscp.upper()}").value
-            if
-            violate_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.name
-            else 0,
-            color_aware=1 if color_aware == u"'ca'" else 0
+            conform_action=conform_action,
+            exceed_action = exceed_action,
+            violate_action = violate_action,
+            color_aware=bool(color_aware == u"'ca'")
         )
         err_msg = f"Failed to configure policer {policer_name} " \
             f"on host {node['host']}"
