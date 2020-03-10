@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -32,7 +32,7 @@ class PolicerRoundType(IntEnum):
     ROUND_TO_CLOSEST = 0
     ROUND_TO_UP = 1
     ROUND_TO_DOWN = 2
-    ROUND_TO_INVALID = 3
+    ROUND_INVALID = 3
 
 
 class PolicerType(IntEnum):
@@ -134,7 +134,7 @@ class Policer:
         """
         cmd = u"policer_add_del"
         args = dict(
-            is_add=int(is_add),
+            is_add=is_add,
             name=str(policer_name).encode(encoding=u"utf-8"),
             cir=int(cir),
             eir=int(eir),
