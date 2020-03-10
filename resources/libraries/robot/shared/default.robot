@@ -290,6 +290,14 @@
 | | | Run keyword | ${dut}.Add DPDK no PCI
 | | END
 
+| Add DPDK netsvcdev to all DUTs
+| | [Documentation]
+| | ... | Add DPDK netsvcdev to VPP startup configuration to all DUTs.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK netsvcdev | ${2}
+| | END
+
 | Add VLAN strip offload switch off between DUTs in 3-node single link topology
 | | [Documentation]
 | | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP

@@ -79,6 +79,7 @@
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
+| | ... | ip_profile=${ip_profile}
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
@@ -91,27 +92,31 @@
 | | Measure and show latency at specified rate | Latency at 90% PDR:
 | | ... | ${latency_duration} | ${rate}pps | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
+| | ... | ip_profile=${ip_profile}
 | | ${rate}= | Evaluate | 0.5 * ${pdr_per_stream}
 | | Measure and show latency at specified rate | Latency at 50% PDR:
 | | ... | ${latency_duration} | ${rate}pps | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
+| | ... | ip_profile=${ip_profile}
 | | ${rate}= | Evaluate | 0.1 * ${pdr_per_stream}
 | | Measure and show latency at specified rate | Latency at 10% PDR:
 | | ... | ${latency_duration} | ${rate}pps | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
+| | ... | ip_profile=${ip_profile}
 | | # Rate needs to be high enough for latency streams.
 | | ${rate}= | Set Variable | ${9500}
 | | Measure and show latency at specified rate | Latency at 0% PDR:
 | | ... | ${latency_duration} | ${rate}pps | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
+| | ... | ip_profile=${ip_profile}
 | | # Finally, trials with runtime and other stats.
 | | # We expect NDR and PDR to have different-looking stats.
 | | Send traffic at specified rate
 | | ... | ${1.0} | ${pdr_per_stream}pps | ${framesize} | ${traffic_profile}
-| | ... | traffic_directions=${traffic_directions}
+| | ... | traffic_directions=${traffic_directions} | ip_profile=${ip_profile}
 | | Send traffic at specified rate
 | | ... | ${1.0} | ${ndr_per_stream}pps | ${framesize} | ${traffic_profile}
-| | ... | traffic_directions=${traffic_directions}
+| | ... | traffic_directions=${traffic_directions} | ip_profile=${ip_profile}
 
 | Find Throughput Using MLRsearch
 | | [Documentation]
@@ -433,7 +438,7 @@
 | | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
 | | | ... | ${traffic_profile} | warmup_time=${0}
 | | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | | ... | rx_port=${rx_port}
+| | | ... | rx_port=${rx_port} | ip_profile=${ip_profile}
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
