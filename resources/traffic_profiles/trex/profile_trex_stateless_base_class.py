@@ -44,6 +44,7 @@ class TrafficStreamsBaseClass:
         # Default value of frame size, it will be overwritten by the value of
         # "framesize" parameter of "get_streams" method.
         self.framesize = 64
+        self.ip_profile = 'none'
 
         # If needed, add your own parameters.
 
@@ -113,6 +114,19 @@ class TrafficStreamsBaseClass:
         :returns: Traffic streams.
         :rtype: list
         """
+        #self.ip_profile = 'trex-sl-3n-azure'
+
+        sys.path.insert(
+                    0, u"/tmp/openvpp-testing/"
+                    )
+
+        if self.ip_profile != 'none':
+            ip_profile_module = importlib.import_module("resources.ip_profiles.trex.%s" % self.ip_profile)
+            ip_profile_vars = {key: value for key, value in ip_profile_module.__dict__.items() if not (key.startswith('__') or key.startswith('_'))}
+
+            for key, value in ip_profile_vars.items():
+                setattr(self, key, value)
+
         base_pkt_a, base_pkt_b, vm1, vm2 = self.define_packets()
 
         # In most cases you will not have to change the code below:
@@ -213,5 +227,6 @@ class TrafficStreamsBaseClass:
         :rtype: list
         """
         self.framesize = kwargs[u"framesize"]
+        self.ip_profile = kwargs[u"ip_profile"]
 
         return self.create_streams()
