@@ -9,6 +9,7 @@ packages_base:
 packages_by_distro:
   ubuntu:
     - "build-essential"
+    - "dmidecode"  
 
 packages_by_arch:
   aarch64:
