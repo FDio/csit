@@ -695,14 +695,6 @@ class InterfaceUtil:
         :raises ValueError: If numa node ia less than 0.
         :raises RuntimeError: If update of numa node failed.
         """
-        def check_cpu_node_count(node_n, val):
-            val = int(val)
-            if val < 0:
-                if CpuUtils.cpu_node_count(node_n) == 1:
-                    val = 0
-                else:
-                    raise ValueError
-            return val
         ssh = SSH()
         for if_key in Topology.get_node_interfaces(node):
             if_pci = Topology.get_interface_pci_addr(node, if_key)
@@ -712,7 +704,7 @@ class InterfaceUtil:
                 ret, out, _ = ssh.exec_command(cmd)
                 if ret == 0:
                     try:
-                        numa_node = check_cpu_node_count(node, out)
+                        numa_node = 0 if int(out) < 0 else int(out)
                     except ValueError:
                         logger.trace(
                             f"Reading numa location failed for: {if_pci}"
