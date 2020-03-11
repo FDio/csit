@@ -346,15 +346,7 @@ class VPPUtil:
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd).get_reply()
 
-        threads_data = list()
-        for thread in reply[u"thread_data"]:
-            thread_data = list()
-            for item in thread:
-                if isinstance(item, str):
-                    item = item.rstrip('\x00')
-                thread_data.append(item)
-            threads_data.append(thread_data)
-
+        threads_data = reply[u"thread_data"]
         logger.trace(f"show threads:\n{threads_data}")
 
         return threads_data
