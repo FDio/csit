@@ -4699,6 +4699,7 @@
 #    data: "data msg"
 #  data: "vpp-perf-results-3n-skx"
 #  filter: "all"
+#  remove-ndr: True  # Temporary solution: remove NDR results from test message:
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -4716,6 +4717,7 @@
 #    data: "data msg"
 #  data: "vpp-perf-results-2n-skx"
 #  filter: "all"
+#  remove-ndr: True  # Temporary solution: remove NDR results from test message:
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5646,6 +5648,7 @@
 #    data: "data msg"
 #  data: "dpdk-perf-results-3n-skx"
 #  filter: "all"
+#  remove-ndr: True  # Temporary solution: remove NDR results from test message:
 #  parameters:
 #  - "name"
 #  - "parent"
@@ -5663,6 +5666,7 @@
 #    data: "data msg"
 #  data: "dpdk-perf-results-2n-skx"
 #  filter: "all"
+#  remove-ndr: True  # Temporary solution: remove NDR results from test message:
 #  parameters:
 #  - "name"
 #  - "parent"
