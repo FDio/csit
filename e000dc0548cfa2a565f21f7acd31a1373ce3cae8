@@ -48,6 +48,75 @@
     },
     {
       "key": {
+        "uuid": "23e0d9e2_fe72b18a",
+        "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-11T08:43:22Z",
+      "side": 1,
+      "message": "notify:",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 10
+      },
+      "revId": "e000dc0548cfa2a565f21f7acd31a1373ce3cae8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18a1e13a_d2367763",
+        "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-11T08:43:22Z",
+      "side": 1,
+      "message": "-\u003e handler",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 28
+      },
+      "revId": "e000dc0548cfa2a565f21f7acd31a1373ce3cae8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de61da9c_739b819d",
+        "filename": "resources/tools/testbed-setup/ansible/roles/azure/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-11T08:43:22Z",
+      "side": 1,
+      "message": "no trailing space",
+      "range": {
+        "startLine": 34,
+        "startChar": 10,
+        "endLine": 34,
+        "endChar": 17
+      },
+      "revId": "e000dc0548cfa2a565f21f7acd31a1373ce3cae8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5ffcdb23_84546b71",
         "filename": "resources/traffic_profiles/trex/profile_trex_stateless_base_class.py",
         "patchSetId": 1
