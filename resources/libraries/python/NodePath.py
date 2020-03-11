@@ -120,10 +120,11 @@ class NodePath:
                     f"No link between {node1[u'host']} and {node2[u'host']}"
                 )
 
+            # Not using set operations, as we need deterministic order.
             if always_same_link:
-                l_set = set(links).intersection(self._links)
+                l_set = [link for link in links if link in self._links]
             else:
-                l_set = set(links).difference(self._links)
+                l_set = [link for link in links if link not in self._links]
                 if not l_set:
                     raise RuntimeError(
                         f"No free link between {node1[u'host']} and "
@@ -131,9 +132,9 @@ class NodePath:
                     )
 
             if not l_set:
-                link = links.pop()
+                link = links[0]
             else:
-                link = l_set.pop()
+                link = l_set[0]
 
             self._links.append(link)
             interface1 = topo.get_interface_by_link_name(node1, link)
