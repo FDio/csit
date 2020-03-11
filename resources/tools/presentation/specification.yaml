@@ -6247,41 +6247,41 @@
 # Hoststack tests 3n-hsw
 
 - type: "plot"
-  title: "Bandwidth: 3n-hsw-xl710-9000b-1t1c-eth-ip4tcp-ldpreload-iperf3"
+  title: "Bandwidth: 3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-ldpreload-iperf3"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-9000b-1t1c-eth-ip4tcp-ldpreload-iperf3-bps"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-ldpreload-iperf3-bps"
   data: "plot-vpp-hoststack-3n-hsw"
   include:
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpbase-Ldpreload-Iperf3-Bps.9000B-1t1c-eth-ip4tcpbase-ldpreload-iperf3-bps"
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpscale1Cl10S-Ldpreload-Iperf3-Bps.9000B-1t1c-eth-ip4tcpscale1cl10s-ldpreload-iperf3-bps"
+    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpbase-Ldpreload-Iperf3-Bps.1460B-1t1c-eth-ip4tcpbase-ldpreload-iperf3-bps"
+    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpscale1Cl10S-Ldpreload-Iperf3-Bps.1460B-1t1c-eth-ip4tcpscale1cl10s-ldpreload-iperf3-bps"
   layout:
-    title: "3n-hsw-xl710-9000b-1t1c-eth-ip4tcp-ldpreload-iperf3"
+    title: "3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-ldpreload-iperf3"
     layout: "plot-hoststack"
 
 - type: "plot"
-  title: "Bandwidth: 3n-hsw-xl710-9000b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3"
+  title: "Bandwidth: 3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-9000b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps"
   data: "plot-vpp-hoststack-3n-hsw"
   include:
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpbase-Nsim-Ldpreload-Iperf3-Bps.9000B-1t1c-eth-ip4tcpbase-nsim-ldpreload-iperf3-bps"
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpscale1Cl10S-Nsim-Ldpreload-Iperf3-Bps.9000B-1t1c-eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3-bps"
+    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpbase-Nsim-Ldpreload-Iperf3-Bps.1460B-1t1c-eth-ip4tcpbase-nsim-ldpreload-iperf3-bps"
+    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpscale1Cl10S-Nsim-Ldpreload-Iperf3-Bps.1460B-1t1c-eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3-bps"
   layout:
-    title: "3n-hsw-xl710-9000b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3"
+    title: "3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3"
     layout: "plot-hoststack"
 
 - type: "plot"
-  title: "Bandwidth: 3n-hsw-xl710-9000b-1t1c-eth-ip4udpquic-vppecho"
+  title: "Bandwidth: 3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-9000b-1t1c-eth-ip4udpquic-vppecho-bps"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho-bps"
   data: "plot-vpp-hoststack-3n-hsw"
   include:
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicbase-Vppecho-Bps.9000B-1t1c-eth-ip4udpquicbase-vppecho-bps"
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicscale1Cl10S-Vppecho-Bps.9000B-1t1c-eth-ip4udpquicscale1cl10s-vppecho-bps"
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicscale10Cl1S-Vppecho-Bps.9000B-1t1c-eth-ip4udpquicscale10cl1s-vppecho-bps"
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicscale10Cl10S-Vppecho-Bps.9000B-1t1c-eth-ip4udpquicscale10cl10s-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicbase-Vppecho-Bps.1280B-1t1c-eth-ip4udpquicbase-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicscale1Cl10S-Vppecho-Bps.1280B-1t1c-eth-ip4udpquicscale1cl10s-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicscale10Cl1S-Vppecho-Bps.1280B-1t1c-eth-ip4udpquicscale10cl1s-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicscale10Cl10S-Vppecho-Bps.1280B-1t1c-eth-ip4udpquicscale10cl10s-vppecho-bps"
   layout:
-    title: "3n-hsw-xl710-9000b-1t1c-eth-ip4udpquic-vppecho"
+    title: "3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho"
     layout: "plot-hoststack"
 
 # Plots VPP HTTP Server Performance
