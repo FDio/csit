@@ -287,6 +287,7 @@ def table_merged_details(table, input_data):
     """
 
     logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
+
     # Transform the data
     logging.info(
         f"    Creating the data set for the {table.get(u'type', u'')} "
@@ -341,9 +342,15 @@ def table_merged_details(table, input_data):
                                        f"{u'-'.join(col_data_lst[half:])}"
                         col_data = f" |prein| {col_data} |preout| "
                     elif column[u"data"].split(u" ")[1] in (u"msg", ):
+                        # Temporary solution: remove NDR results from message:
+                        if bool(table.get(u'remove-ndr', False)):
+                            try:
+                                col_data = col_data.split(u"\n", 1)[1]
+                            except IndexError:
+                                pass
                         col_data = f" |prein| {col_data} |preout| "
                     elif column[u"data"].split(u" ")[1] in \
-                        (u"conf-history", u"show-run"):
+                            (u"conf-history", u"show-run"):
                         col_data = col_data.replace(u" |br| ", u"", 1)
                         col_data = f" |prein| {col_data[:-5]} |preout| "
                     row_lst.append(f'"{col_data}"')
