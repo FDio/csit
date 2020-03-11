@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -125,8 +125,8 @@ class VppCounters:
                 VppCounters.vpp_show_runtime(node)
 
     @staticmethod
-    def vpp_show_interface(node):
-        """Run "show interface" debug CLI command.
+    def vpp_show_hardware(node):
+        """Run "show hardware" debug CLI command.
 
         :param node: Node to run command on.
         :type node: dict
@@ -182,8 +182,8 @@ class VppCounters:
                 VppCounters.vpp_clear_runtime(node)
 
     @staticmethod
-    def vpp_clear_interfaces(node):
-        """Run "clear interfaces" CLI command.
+    def vpp_clear_hardware(node):
+        """Run "clear hardware" CLI command.
 
         :param node: Node to run command on.
         :type node: dict
@@ -191,22 +191,22 @@ class VppCounters:
         :rtype: dict
         """
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(
-            node, u"clear interfaces", log=False
+            node, u"clear hardware", log=False
         )
 
     @staticmethod
-    def vpp_clear_interfaces_on_all_duts(nodes):
-        """Clear interfaces on all DUTs.
+    def vpp_clear_hardware_on_all_duts(nodes):
+        """Clear hardware on all DUTs.
 
         :param nodes: VPP nodes.
         :type nodes: dict
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                VppCounters.vpp_clear_interfaces(node)
+                VppCounters.vpp_clear_hardware(node)
 
     @staticmethod
-    def vpp_clear_errors(node):
+    def vpp_clears_errors(node):
         """Run "clear errors" CLI command.
 
         :param node: Node to run command on.
@@ -217,7 +217,7 @@ class VppCounters:
         )
 
     @staticmethod
-    def vpp_clear_errors_on_all_duts(nodes):
+    def vpp_clears_errors_on_all_duts(nodes):
         """Clear VPP errors counters on all DUTs.
 
         :param nodes: VPP nodes.
@@ -225,17 +225,17 @@ class VppCounters:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                VppCounters.vpp_clear_errors(node)
+                VppCounters.vpp_clears_errors(node)
 
     @staticmethod
     def show_vpp_statistics(node):
-        """Show [error, hardware, interface] stats.
+        """Show [errors, hardware] stats.
 
         :param node: VPP node.
         :type node: dict
         """
         VppCounters.vpp_show_errors(node)
-        VppCounters.vpp_show_interface(node)
+        VppCounters.vpp_show_hardware(node)
 
     @staticmethod
     def show_statistics_on_all_duts(nodes):
@@ -250,13 +250,13 @@ class VppCounters:
 
     @staticmethod
     def clear_vpp_statistics(node):
-        """Clear [error, hardware, interface] stats.
+        """Clear [errors, hardware] stats.
 
         :param node: VPP node.
         :type node: dict
         """
         VppCounters.vpp_clear_errors(node)
-        VppCounters.vpp_clear_interfaces(node)
+        VppCounters.vpp_clear_hardware(node)
 
     @staticmethod
     def clear_statistics_on_all_duts(nodes):
