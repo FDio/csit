@@ -22,9 +22,10 @@ from string import ascii_letters
 
 from ipaddress import ip_network, ip_address
 
-from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
+from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology
@@ -632,16 +633,16 @@ class IPsecUtil:
             sa_id=int(sa_id) if sa_id else 0,
             policy=action.policy_int_repr,
             protocol=int(proto) if proto else 0,
-            remote_address_start=IPUtil.create_ip_address_object(
+            remote_address_start=IPAddress.create_ip_address_object(
                 ip_network(raddr_range, strict=False).network_address
             ),
-            remote_address_stop=IPUtil.create_ip_address_object(
+            remote_address_stop=IPAddress.create_ip_address_object(
                 ip_network(raddr_range, strict=False).broadcast_address
             ),
-            local_address_start=IPUtil.create_ip_address_object(
+            local_address_start=IPAddress.create_ip_address_object(
                 ip_network(laddr_range, strict=False).network_address
             ),
-            local_address_stop=IPUtil.create_ip_address_object(
+            local_address_stop=IPAddress.create_ip_address_object(
                 ip_network(laddr_range, strict=False).broadcast_address
             ),
             remote_port_start=int(rport_range.split(u"-")[0]) if rport_range
@@ -722,12 +723,12 @@ class IPsecUtil:
             sa_id=int(sa_id) if sa_id else 0,
             policy=IPsecUtil.policy_action_protect().policy_int_repr,
             protocol=0,
-            remote_address_start=IPUtil.create_ip_address_object(raddr_ip),
-            remote_address_stop=IPUtil.create_ip_address_object(raddr_ip),
-            local_address_start=IPUtil.create_ip_address_object(
+            remote_address_start=IPAddress.create_ip_address_object(raddr_ip),
+            remote_address_stop=IPAddress.create_ip_address_object(raddr_ip),
+            local_address_start=IPAddress.create_ip_address_object(
                 ip_network(laddr_range, strict=False).network_address
             ),
-            local_address_stop=IPUtil.create_ip_address_object(
+            local_address_stop=IPAddress.create_ip_address_object(
                 ip_network(laddr_range, strict=False).broadcast_address
             ),
             remote_port_start=0,
@@ -743,9 +744,9 @@ class IPsecUtil:
         with PapiSocketExecutor(node) as papi_exec:
             for i in range(n_entries):
                 args[u"entry"][u"remote_address_start"][u"un"] = \
-                    IPUtil.union_addr(raddr_ip + i)
+                    IPAddress.union_addr(raddr_ip + i)
                 args[u"entry"][u"remote_address_stop"][u"un"] = \
-                    IPUtil.union_addr(raddr_ip + i)
+                    IPAddress.union_addr(raddr_ip + i)
                 history = bool(not 1 < i < n_entries - 2)
                 papi_exec.add(cmd, history=history, **args)
             papi_exec.get_replies(err_msg)
@@ -1001,10 +1002,10 @@ class IPsecUtil:
                 )
                 args2[u"local_spi"] = spi_1 + i
                 args2[u"remote_spi"] = spi_2 + i
-                args2[u"local_ip"] = IPUtil.create_ip_address_object(
+                args2[u"local_ip"] = IPAddress.create_ip_address_object(
                     if1_ip + i * addr_incr
                 )
-                args2[u"remote_ip"] = IPUtil.create_ip_address_object(if2_ip)
+                args2[u"remote_ip"] = IPAddress.create_ip_address_object(if2_ip)
                 args2[u"local_crypto_key_len"] = len(ckeys[i])
                 args2[u"local_crypto_key"] = ckeys[i]
                 args2[u"remote_crypto_key_len"] = len(ckeys[i])
@@ -1078,7 +1079,7 @@ class IPsecUtil:
             cmd2 = u"ipsec_tunnel_if_add_del"
             args2 = dict(
                 is_add=True,
-                local_ip=IPUtil.create_ip_address_object(if2_ip),
+                local_ip=IPAddress.create_ip_address_object(if2_ip),
                 remote_ip=None,
                 local_spi=0,
                 remote_spi=0,
@@ -1100,8 +1101,8 @@ class IPsecUtil:
             for i in range(existing_tunnels, n_tunnels):
                 args2[u"local_spi"] = spi_2 + i
                 args2[u"remote_spi"] = spi_1 + i
-                args2[u"local_ip"] = IPUtil.create_ip_address_object(if2_ip)
-                args2[u"remote_ip"] = IPUtil.create_ip_address_object(
+                args2[u"local_ip"] = IPAddress.create_ip_address_object(if2_ip)
+                args2[u"remote_ip"] = IPAddress.create_ip_address_object(
                     if1_ip + i * addr_incr)
                 args2[u"local_crypto_key_len"] = len(ckeys[i])
                 args2[u"local_crypto_key"] = ckeys[i]

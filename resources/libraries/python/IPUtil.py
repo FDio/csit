@@ -20,6 +20,7 @@ from ipaddress import ip_address
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
@@ -30,12 +31,6 @@ from resources.libraries.python.Namespaces import Namespaces
 # from vpp/src/vnet/vnet/mpls/mpls_types.h
 MPLS_IETF_MAX_LABEL = 0xfffff
 MPLS_LABEL_INVALID = MPLS_IETF_MAX_LABEL + 1
-
-
-class AddressFamily(IntEnum):
-    """IP address family."""
-    ADDRESS_IP4 = 0
-    ADDRESS_IP6 = 1
 
 
 class FibPathType(IntEnum):
@@ -513,35 +508,6 @@ class IPUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def union_addr(ip_addr):
-        """Creates union IP address.
-
-        :param ip_addr: IPv4 or IPv6 address.
-        :type ip_addr: IPv4Address or IPv6Address
-        :returns: Union IP address.
-        :rtype: dict
-        """
-        return dict(ip6=ip_addr.packed) if ip_addr.version == 6 \
-            else dict(ip4=ip_addr.packed)
-
-    @staticmethod
-    def create_ip_address_object(ip_addr):
-        """Create IP address object.
-
-        :param ip_addr: IPv4 or IPv6 address
-        :type ip_addr: IPv4Address or IPv6Address
-        :returns: IP address object.
-        :rtype: dict
-        """
-        return dict(
-            af=getattr(
-                AddressFamily, u"ADDRESS_IP6" if ip_addr.version == 6
-                else u"ADDRESS_IP4"
-            ).value,
-            un=IPUtil.union_addr(ip_addr)
-        )
-
-    @staticmethod
     def create_prefix_object(ip_addr, addr_len):
         """Create prefix object.
 
@@ -552,7 +518,7 @@ class IPUtil:
         :returns: Prefix object.
         :rtype: dict
         """
-        addr = IPUtil.create_ip_address_object(ip_addr)
+        addr = IPAddress.create_ip_address_object(ip_addr)
 
         return dict(
             len=int(addr_len),
@@ -594,7 +560,7 @@ class IPUtil:
 
         paths = list()
         n_hop = dict(
-            address=IPUtil.union_addr(ip_address(gateway)) if gateway else 0,
+            address=IPAddress.union_addr(ip_address(gateway)) if gateway else 0,
             via_label=MPLS_LABEL_INVALID,
             obj_id=Constants.BITWISE_NON_ZERO
         )

@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,7 +17,7 @@ from enum import IntEnum
 
 from ipaddress import ip_address
 
-from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
@@ -205,9 +205,9 @@ class GBP:
         err_msg = f"Failed to add GBP endpoint on {node[u'host']}!"
 
         ips = list()
-        ips.append(IPUtil.create_ip_address_object(ip_address(ip_addr)))
-        tun_src = IPUtil.create_ip_address_object(ip_address(u"0.0.0.0"))
-        tun_dst = IPUtil.create_ip_address_object(ip_address(u"0.0.0.0"))
+        ips.append(IPAddress.create_ip_address_object(ip_address(ip_addr)))
+        tun_src = IPAddress.create_ip_address_object(ip_address(u"0.0.0.0"))
+        tun_dst = IPAddress.create_ip_address_object(ip_address(u"0.0.0.0"))
 
         args_in = dict(
             endpoint=dict(
@@ -287,7 +287,7 @@ class GBP:
                 sw_if_index=sw_if_index,
                 sclass=sclass,
                 prefix=dict(
-                    address=IPUtil.create_ip_address_object(
+                    address=IPAddress.create_ip_address_object(
                         ip_address(address)
                     ),
                     len=int(subnet_length)
