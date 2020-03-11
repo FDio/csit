@@ -165,8 +165,8 @@ class Policer:
             ).value,
             type=getattr(PolicerType, f"TYPE_{policer_type.upper()}").value,
             conform_action=conform_action,
-            exceed_action = exceed_action,
-            violate_action = violate_action,
+            exceed_action=exceed_action,
+            violate_action=violate_action,
             color_aware=bool(color_aware == u"'ca'")
         )
         err_msg = f"Failed to configure policer {policer_name} " \
