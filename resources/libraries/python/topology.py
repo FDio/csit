@@ -879,8 +879,6 @@ class Topology:
         :rtype: list
         """
 
-        logger.trace(f"node1: {str(node1)}")
-        logger.trace(f"node2: {str(node2)}")
         node1_links = self._get_node_active_link_names(
             node1, filter_list=filter_list_node1
         )
@@ -894,7 +892,10 @@ class Topology:
         elif node2_links is None:
             logger.error(u"Unable to find active links for node2")
         else:
-            connecting_links = list(set(node1_links).intersection(node2_links))
+            # Not using set operations, as we need deterministic order.
+            connecting_links = [
+                link for link in node1_links if link in node2_links
+            ]
 
         return connecting_links
 
