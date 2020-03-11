@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fbb03e8_46fab0ae",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-11T09:59:42Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 698,
+        "startChar": 0,
+        "endLine": 702,
+        "endChar": 22
+      },
+      "revId": "f3c9e5d0b82323301337c440e29ac3a09df111c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bebd071e_efa8108f",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-11T09:59:42Z",
+      "side": 1,
+      "message": "numa_node \u003d 0 if int(out) \u003c 0 else int(out)",
+      "range": {
+        "startLine": 712,
+        "startChar": 36,
+        "endLine": 712,
+        "endChar": 67
+      },
+      "revId": "f3c9e5d0b82323301337c440e29ac3a09df111c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
