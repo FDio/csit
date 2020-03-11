@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e595c057_a337860a",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-11T10:57:50Z",
+      "side": 1,
+      "message": "ena",
+      "range": {
+        "startLine": 283,
+        "startChar": 38,
+        "endLine": 283,
+        "endChar": 41
+      },
+      "revId": "337538291ef3e53a7916527abfb211d81fe2195a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
