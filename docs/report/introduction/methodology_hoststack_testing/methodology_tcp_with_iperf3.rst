@@ -45,4 +45,6 @@ multi-thread/multi-core execution.
 There are also variations of these test cases which use the VPP Network
 Simulator (NSIM) plugin to test the VPP Hoststack goodput with 1 percent
 of the traffic being dropped at the output interface of VPP1 thereby
-simulating a lossy network.
+simulating a lossy network. The NSIM tests are experimental and the
+test results are not currently representative of typical results in a
+lossy network.
