@@ -38,18 +38,18 @@ QUIC/UDP/IP with vpp_echo
 
     \clearpage
 
-9000b-1t1c-xl710-base-scale
+1280b-1t1c-xl710-base-scale
 ---------------------------
 
 .. raw:: html
 
-    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/3n-hsw-xl710-9000b-1t1c-eth-ip4udpquic-vppecho-bps.html"></iframe>
+    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho-bps.html"></iframe>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-9000b-1t1c-eth-ip4udpquic-vppecho-bps}
-            \label{fig:3n-hsw-xl710-9000b-1t1c-eth-ip4udpquic-vppecho-bps}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho-bps}
+            \label{fig:3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho-bps}
     \end{figure}
