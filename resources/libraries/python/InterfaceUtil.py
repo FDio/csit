@@ -22,6 +22,7 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
+from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
@@ -791,16 +792,16 @@ class InterfaceUtil:
         :raises RuntimeError: if it is unable to create VxLAN interface on the
             node.
         """
-        src_address = ip_address(source_ip)
-        dst_address = ip_address(destination_ip)
-
         cmd = u"vxlan_add_del_tunnel"
         args = dict(
-            is_add=1,
-            is_ipv6=1 if src_address.version == 6 else 0,
+            is_add=True,
             instance=Constants.BITWISE_NON_ZERO,
-            src_address=src_address.packed,
-            dst_address=dst_address.packed,
+            src_address=IPAddress.create_ip_address_object(
+                ip_address(source_ip)
+            ),
+            dst_address=IPAddress.create_ip_address_object(
+                ip_address(destination_ip)
+            ),
             mcast_sw_if_index=Constants.BITWISE_NON_ZERO,
             encap_vrf_id=0,
             decap_next_index=Constants.BITWISE_NON_ZERO,
@@ -838,9 +839,9 @@ class InterfaceUtil:
 
         cmd = u"sw_interface_set_vxlan_bypass"
         args = dict(
-            is_ipv6=0,
+            is_ipv6=False,
             sw_if_index=sw_if_index,
-            enable=1
+            enable=True
         )
         err_msg = f"Failed to set VXLAN bypass on interface " \
             f"on host {node[u'host']}"
@@ -870,16 +871,8 @@ class InterfaceUtil:
             :returns: Processed vxlan interface dump.
             :rtype: dict
             """
-            if vxlan_dump[u"is_ipv6"]:
-                vxlan_dump[u"src_address"] = \
-                    ip_address(vxlan_dump[u"src_address"])
-                vxlan_dump[u"dst_address"] =  \
-                    ip_address(vxlan_dump[u"dst_address"])
-            else:
-                vxlan_dump[u"src_address"] = \
-                    ip_address(vxlan_dump[u"src_address"][0:4])
-                vxlan_dump[u"dst_address"] = \
-                    ip_address(vxlan_dump[u"dst_address"][0:4])
+            vxlan_dump[u"src_address"] = str(vxlan_dump[u"src_address"])
+            vxlan_dump[u"dst_address"] = str(vxlan_dump[u"dst_address"])
             return vxlan_dump
 
         if interface is not None:
