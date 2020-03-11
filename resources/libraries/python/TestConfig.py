@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,6 +19,7 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
+from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
@@ -423,9 +424,9 @@ class TestConfig:
                 args1[u"neighbor"][u"ip_address"] = \
                     str(dst_ip_start + i * ip_step)
                 args2[u"route"][u"prefix"][u"address"][u"un"] = \
-                    IPUtil.union_addr(dst_ip_start + i * ip_step)
+                    IPAddress.union_addr(dst_ip_start + i * ip_step)
                 args2[u"route"][u"paths"][0][u"nh"][u"address"] = \
-                    IPUtil.union_addr(dst_ip_start + i * ip_step)
+                    IPAddress.union_addr(dst_ip_start + i * ip_step)
                 args3[u"rx_sw_if_index"] = Topology.get_interface_sw_index(
                     node, f"vxlan_tunnel{i+1}"
                 )
