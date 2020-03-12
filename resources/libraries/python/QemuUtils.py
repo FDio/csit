@@ -68,14 +68,10 @@ class QemuUtils:
             self._opt[u"machine_args"] = \
                 u"virt,accel=kvm,usb=off,mem-merge=off,gic-version=3"
             self._opt[u"console"] = u"ttyAMA0"
-            self._opt[u"unsafe_iommu"] = u"echo Y > /sys/module/vfio/para" \
-                                         u"meters/enable_unsafe_noiommu_mode"
         else:
             dpdk_target = u"x86_64-native"
             self._opt[u"machine_args"] = u"pc,accel=kvm,usb=off,mem-merge=off"
             self._opt[u"console"] = u"ttyS0"
-            self._opt[u"unsafe_iommu"] = u""
-
         self._testpmd_path = f"{Constants.QEMU_VM_DPDK}/" \
             f"{dpdk_target}-linux-gcc/app"
         self._vm_info = {
@@ -99,11 +95,11 @@ class QemuUtils:
         self._opt[u"vnf"] = vnf
         # Temporary files.
         self._temp = dict()
-        self._temp[u"pidfile"] = f"/var/run/qemu_{qemu_id}.pid"
+        self._temp[u"pidfile"] = f"/run/qemu_{qemu_id}.pid"
         if img == Constants.QEMU_VM_IMAGE:
             self._opt[u"vm_type"] = u"nestedvm"
-            self._temp[u"qmp"] = f"/var/run/qmp_{qemu_id}.sock"
-            self._temp[u"qga"] = f"/var/run/qga_{qemu_id}.sock"
+            self._temp[u"qmp"] = f"/run/qmp_{qemu_id}.sock"
+            self._temp[u"qga"] = f"/run/qga_{qemu_id}.sock"
         elif img == Constants.QEMU_VM_KERNEL:
             self._opt[u"img"], _ = exec_cmd_no_error(
                 node, f"ls -1 {Constants.QEMU_VM_KERNEL}* | tail -1",
@@ -203,7 +199,7 @@ class QemuUtils:
         self._params.add_with_value(
             u"append", f"'ro rootfstype=9p rootflags=trans=virtio "
             f"root=virtioroot console={self._opt.get(u'console')} "
-            f"tsc=reliable hugepages=256 "
+            f"tsc=reliable hugepages=1024 "
             f"init={self._temp.get(u'ini')} fastboot'"
         )
 
@@ -237,8 +233,8 @@ class QemuUtils:
         if not kwargs[u"jumbo_frames"]:
             vpp_config.add_dpdk_no_multi_seg()
             vpp_config.add_dpdk_no_tx_checksum_offload()
-        vpp_config.add_plugin(u"disable", [u"default"])
-        vpp_config.add_plugin(u"enable", [u"dpdk_plugin.so"])
+        vpp_config.add_plugin(u"disable", u"default")
+        vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
         vpp_config.write_config(startup)
 
         # Create VPP running configuration.
@@ -327,8 +323,7 @@ class QemuUtils:
             self.create_kernelvm_config_testpmd_mac(**kwargs)
         else:
             raise RuntimeError(u"QEMU: Unsupported VNF!")
-        self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"),
-                                  unsafe_iommu=self._opt.get(u"unsafe_iommu"))
+        self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
 
     def get_qemu_pids(self):
         """Get QEMU CPU pids.
@@ -427,10 +422,9 @@ class QemuUtils:
             if queue_size else u""
         self._params.add_with_value(
             u"device", f"virtio-net-pci,netdev=vhost{self._vhost_id},mac={mac},"
-            f"addr={self._vhost_id+5}.0,mq=on,vectors={2 * queues + 2},"
+            f"addr={self._vhost_id+5}.0,mq=on,"
             f"csum={u'on' if csum else u'off'},gso={u'on' if gso else u'off'},"
             f"guest_tso4=off,guest_tso6=off,guest_ecn=off,"
-            f"mrg_rxbuf={u'on,host_mtu=9200' if jumbo_frames else u'off'},"
             f"{queue_size}"
         )
 
