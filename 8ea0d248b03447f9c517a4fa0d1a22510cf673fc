@@ -70,6 +70,30 @@
       "revId": "8ea0d248b03447f9c517a4fa0d1a22510cf673fc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0674a7b3_66920707",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-12T14:00:00Z",
+      "side": 1,
+      "message": "\u003e With triple quotes, this fails the line length check which is why I converted it to using f-strings.\n\nI take that back. No that the test names have been refactored, it now fits within 80 characters.  I reverted to using triple quotes.",
+      "parentUuid": "8f7d8c7a_131e1e63",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 79
+      },
+      "revId": "8ea0d248b03447f9c517a4fa0d1a22510cf673fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
