@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -122,8 +122,8 @@
 | | [Arguments] | ${dut} | ${nf_nodes}=${1}
 | |
 | | FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
-| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${number}-1
-| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${number}-2
+| | | ${sock1}= | Set Variable | /run/vpp/sock-${number}-1
+| | | ${sock2}= | Set Variable | /run/vpp/sock-${number}-2
 | | | ${prev_index}= | Evaluate | ${number}-1
 | | | Configure vhost interfaces | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
@@ -190,13 +190,13 @@
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
 | |
 | | Configure vhost interfaces
-| | ... | ${dut1} | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
+| | ... | ${dut1} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure vhost interfaces
-| | ... | ${dut2} | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
+| | ... | ${dut2} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -263,11 +263,11 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces
-| | ... | ${dut1} | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
+| | ... | ${dut1} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | | Configure vhost interfaces
-| | ... | ${dut2} | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
+| | ... | ${dut2} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
