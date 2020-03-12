@@ -19,6 +19,8 @@ from ipaddress import ip_address, IPv6Address
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
@@ -47,9 +49,17 @@ class SRv6Behavior(IntEnum):
 
 
 class SRv6PolicySteeringTypes(IntEnum):
-    """SRv6 LocalSID supported functions."""
+    """SRv6 steering types."""
     SR_STEER_L2 = 2
     SR_STEER_IPV4 = 4
+    SR_STEER_IPV6 = 6
+
+
+class SRv6PolicyOp(IntEnum):
+    """SRv6 policy operations."""
+    SR_POLICY_NONE = 0
+    SR_POLICY_ADD = 2
+    SR_POLICY_DEL = 4
     SR_STEER_IPV6 = 6
 
 
@@ -167,15 +177,14 @@ class SRv6:
 
         cmd = u"sr_localsid_add_del"
         args = dict(
-            is_del=0,
+            is_del=False,
             localsid=SRv6.create_srv6_sid_object(local_sid),
-            end_psp=0,
+            end_psp=False,
             behavior=getattr(SRv6Behavior, beh).value,
             sw_if_index=Constants.BITWISE_NON_ZERO,
             vlan_index=0,
             fib_table=0,
-            nh_addr6=0,
-            nh_addr4=0
+            nh_addr=0
         )
         err_msg = f"Failed to add SR localSID {local_sid} " \
             f"host {node[u'host']}"
@@ -191,11 +200,7 @@ class SRv6:
             args[u"sw_if_index"] = InterfaceUtil.get_interface_index(
                 node, interface
             )
-            next_hop = ip_address(next_hop)
-            if next_hop.version == 6:
-                args[u"nh_addr6"] = next_hop.packed
-            else:
-                args[u"nh_addr4"] = next_hop.packed
+            args[u"nh_addr"] = IPAddress.create_ip_address_object(next_hop)
         elif beh == getattr(SRv6Behavior, u"END_DX2").name:
             if interface is None:
                 raise ValueError(
@@ -246,7 +251,8 @@ class SRv6:
         args = dict(
             bsid_addr=IPv6Address(bsid).packed,
             weight=1,
-            is_encap=1 if mode == u"encap" else 0,
+            is_encap=bool(mode == u"encap"),
+            is_spray=False,
             sids=SRv6.create_srv6_sid_list(sid_list)
         )
         err_msg = f"Failed to add SR policy for BindingSID {bsid} " \
@@ -287,8 +293,7 @@ class SRv6:
         :type interface: str
         :type ip_addr: str
         :type prefix: int
-        :returns: Values for sw_if_index, mask_width, prefix_addr and
-            traffic_type
+        :returns: Values for sw_if_index, prefix and traffic_type
         :rtype: tuple
         :raises ValueError: If unsupported mode used or required parameter
             is missing.
@@ -300,8 +305,7 @@ class SRv6:
                     f"interface: {interface}"
                 )
             sw_if_index = InterfaceUtil.get_interface_index(node, interface)
-            mask_width = 0
-            prefix_addr = 16 * b"\0"
+            prefix = 0
             traffic_type = getattr(
                 SRv6PolicySteeringTypes, u"SR_STEER_L2"
             ).value
@@ -314,21 +318,16 @@ class SRv6:
                 )
             sw_if_index = Constants.BITWISE_NON_ZERO
             ip_addr = ip_address(ip_addr)
-            prefix_addr = ip_addr.packed
-            mask_width = int(prefix)
-            if ip_addr.version == 4:
-                prefix_addr += 12 * b"\0"
-                traffic_type = getattr(
+            prefix = IPUtil.create_prefix_object(ip_addr, int(prefix))
+            traffic_type = getattr(
                     SRv6PolicySteeringTypes, u"SR_STEER_IPV4"
-                ).value
-            else:
-                traffic_type = getattr(
+                ).value if ip_addr.version == 4 else getattr(
                     SRv6PolicySteeringTypes, u"SR_STEER_IPV6"
                 ).value
         else:
             raise ValueError(f"Unsupported mode: {mode}")
 
-        return sw_if_index, mask_width, prefix_addr, traffic_type
+        return sw_if_index, prefix, traffic_type
 
     # TODO: Bring L1 names, arguments and defaults closer to PAPI ones.
     @staticmethod
@@ -354,19 +353,17 @@ class SRv6:
         :raises ValueError: If unsupported mode used or required parameter
             is missing.
         """
-        sw_if_index, mask_width, prefix_addr, traffic_type = \
-            SRv6._get_sr_steer_policy_args(
+        sw_if_index, prefix, traffic_type = SRv6._get_sr_steer_policy_args(
                 node, mode, interface, ip_addr, prefix
             )
 
         cmd = u"sr_steering_add_del"
         args = dict(
-            is_del=0,
+            is_del=False,
             bsid_addr=IPv6Address(str(bsid)).packed,
             sr_policy_index=0,
             table_id=0,
-            prefix_addr=prefix_addr,
-            mask_width=mask_width,
+            prefix=prefix,
             sw_if_index=sw_if_index,
             traffic_type=traffic_type
         )
