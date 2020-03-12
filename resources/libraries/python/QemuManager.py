@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -62,8 +62,8 @@ class QemuManager:
             for nf_node in range(1, nf_nodes + 1):
                 qemu_id = (nf_chain - 1) * nf_nodes + nf_node
                 name = f"{node}_{qemu_id}"
-                sock1 = f"/var/run/vpp/sock-{qemu_id}-1"
-                sock2 = f"/var/run/vpp/sock-{qemu_id}-2"
+                sock1 = f"/run/vpp/sock-{qemu_id}-1"
+                sock2 = f"/run/vpp/sock-{qemu_id}-2"
                 idx1 = (nf_chain - 1) * nf_nodes * 2 + nf_node * 2 - 1
                 vif1_mac = Topology.get_interface_mac(
                     self.nodes[node], f"vhost{idx1}"
