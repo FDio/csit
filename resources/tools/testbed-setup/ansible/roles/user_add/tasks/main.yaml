@@ -1,0 +1,31 @@
+---
+# file: roles/user_add/tasks/main.yaml
+
+- name: Add testuser account
+  user:
+    name: "testuser"
+    state: present
+    shell: "/bin/bash"
+    password: "{{ user_pass }}"
+  tags:
+    - add-user
+
+- name: Allow password login
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: "^PasswordAuthentication no"
+    line: "PasswordAuthentication yes"
+  notify:
+    - "Restart sshd"
+  tags:
+    - allow-password-login
+
+- name: Add visudo entry
+  lineinfile:
+    dest: "/etc/sudoers"
+    state: present
+    line: "testuser ALL=(ALL) NOPASSWD: ALL"
+    validate: "visudo -cf %s"
+  tags:
+    - allow-sudo
+

@@ -1,0 +1,53 @@
+---
+# file: roles/iperf/tasks/main.yaml
+
+- name: iPerf - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
+
+- name: iPerf - Get Release Archive
+  get_url:
+    url: "https://downloads.es.net/pub/iperf/iperf-{{ item }}.tar.gz"
+    dest: "{{ iperf_target_dir }}/iperf-{{ item }}.tar.gz"
+    mode: 0644
+  loop: "{{ iperf_version }}"
+  tags:
+    - install-iperf
+
+- name: iPerf - Extract Release Archive
+  unarchive:
+    remote_src: true
+    src: "{{ iperf_target_dir }}/iperf-{{ item }}.tar.gz"
+    dest: "{{ iperf_target_dir }}/"
+    creates: "{{ iperf_target_dir }}/iperf-{{ item }}/src"
+  loop: "{{ iperf_version }}"
+  tags:
+    - install-iperf
+
+- name: iPerf - Compile Release I
+  command: "./configure"
+  args:
+      chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
+  loop: "{{ iperf_version }}"
+  tags:
+    - install-iperf
+
+- name: iPerf - Compile Release II
+  command: "make"
+  args:
+      chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
+  loop: "{{ iperf_version }}"
+  tags:
+    - install-iperf
+
+- name: iPerf - Compile Release III
+  command: "make install"
+  args:
+      chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
+  loop: "{{ iperf_version }}"
+  tags:
+    - install-iperf

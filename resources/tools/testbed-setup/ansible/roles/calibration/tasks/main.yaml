@@ -1,14 +1,58 @@
 ---
 # file: roles/calibration/tasks/main.yaml
 
-- name: Run Spectre Meltdown checker
-  raw: 'wget -qO - https://meltdown.ovh | sudo bash -s - --no-color || true'
-  register: spectre_meltdown_output
-  tags: run-spectre-meltdown-checker
+- name: Print Ansible facts
+  debug: var=ansible_facts
 
-- debug: var=spectre_meltdown_output.stdout_lines
-  tags: run-spectre-meltdown-checker
+- name: Calibration - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
 
-- name: x86 specific
-  import_tasks: x86_64.yaml
-  when: ansible_machine == 'x86_64'
+- name: Calibration - Get Spectre Meltdown Checker
+  get_url:
+    url: "https://meltdown.ovh"
+    dest: "/opt/spectre-meltdown-checker.sh"
+    mode: "744"
+  tags:
+    - check-spectre-meltdown
+
+- name: Calibration - Run Spectre Meltdown Checker
+  shell: "/opt/spectre-meltdown-checker.sh --no-color || true"
+  async: 60
+  poll: 0
+  ignore_errors: yes
+  register: spectre_meltdown_async
+  tags:
+    - check-spectre-meltdown
+
+- name: Calibration - {{ ansible_machine }} Specific
+  include_tasks: "{{ ansible_machine }}.yaml"
+  tags:
+    - check-machine-specific
+    - check-jitter-tool
+
+- name: Calibration - Get BIOS info
+  shell: "dmidecode -t bios"
+  ignore_errors: yes
+  register: dmidecode_bios
+  tags:
+    - check-bios
+
+- debug: var=dmidecode_bios.stdout_lines
+  tags:
+    - check-bios
+
+- name: Check sync status
+  async_status:
+    jid: "{{ spectre_meltdown_async.ansible_job_id }}"
+  register: "spectre_meltdown_poll_results"
+  until: spectre_meltdown_poll_results.finished
+  retries: 30
+
+- debug: var=spectre_meltdown_poll_results.stdout_lines
+  tags:
+    - check-spectre-meltdown
