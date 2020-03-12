@@ -114,7 +114,7 @@ d-i user-setup/encrypt-home boolean false
 ### Package selection
 tasksel tasksel/first multiselect ubuntu-server
 # Individual additional packages to install
-d-i pkgsel/include string openssh-server python2.7
+d-i pkgsel/include string openssh-server python2.7 python3.6
 # Whether to upgrade packages after debootstrap.
 # Allowed values: none, safe-upgrade, full-upgrade
 #d-i pkgsel/upgrade select none

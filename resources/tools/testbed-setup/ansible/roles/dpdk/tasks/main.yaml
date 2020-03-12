@@ -1,0 +1,49 @@
+---
+# file: roles/dpdk/tasks/main.yaml
+
+- name: DPDK - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
+
+- name: DPDK - Download Release Archive
+  get_url:
+    url: "{{ dpdk_url }}/dpdk-{{ item }}.tar.xz"
+    dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
+    mode: 0644
+  loop: "{{ dpdk_version }}"
+  register: "dpdk_downloaded"
+  tags:
+    - install-dpdk
+
+- name: DPDK - Extract Release Archive
+  unarchive:
+    remote_src: true
+    src: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
+    dest: "{{ dpdk_target_dir }}/"
+    creates: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
+  loop: "{{ dpdk_version }}"
+  when: "dpdk_downloaded"
+  register: "dpdk_extracted"
+  tags:
+    - install-dpdk
+
+- name: DPDK - Compile Release I
+  become: yes
+  command: "make install T={{ dpdk_build_targets[item][ansible_machine] }} DESTDIR={{ dpdk_target_dir }}/dpdk-{{ item }} chdir={{ dpdk_target_dir }}/dpdk-{{ item }}"
+  loop: "{{ dpdk_version }}"
+  when: "dpdk_extracted"
+  register: "dpdk_compiled"
+  tags:
+    - install-dpdk
+
+- name: DPDK - Link igb_uio Module
+  shell: "ln -fs {{ dpdk_target_dir }}/dpdk-{{ item }}/{{ dpdk_build_targets[item][ansible_machine] }}/kmod/igb_uio.ko /lib/modules/`uname -r`/igb_uio.ko && depmod -a"
+  ignore_errors: "yes"
+  loop: "{{ dpdk_version }}"
+  when: "dpdk_compiled"
+  tags:
+    - install-dpdk

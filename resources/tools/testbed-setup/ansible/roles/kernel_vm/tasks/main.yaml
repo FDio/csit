@@ -1,0 +1,92 @@
+---
+# file: roles/kernel_vm/tasks/main.yaml
+
+- name: Kernel VM - Backup remote initramfs modules
+  copy:
+    src: "/etc/initramfs-tools/modules"
+    dest: "/tmp/initramfs_modules.bkp"
+    remote_src: yes
+  ignore_errors: yes
+  register: __initramfs_modules_backuped
+  tags:
+    - install-kernel-image
+
+- name: Kernel VM - Backup remote initramfs resume config
+  copy:
+    src: "/etc/initramfs-tools/conf.d/resume"
+    dest: "/tmp/initramfs-resume.bkp"
+    remote_src: yes
+  ignore_errors: yes
+  register: __initramfs_resume_backuped
+  tags:
+    - install-kernel-image
+
+- name: Kernel VM - Update remote initramfs modules
+  copy:
+    src: "../files/initramfs_modules"
+    dest: "/etc/initramfs-tools/modules"
+  tags:
+    - install-kernel-image
+
+- name: Kernel VM - Update remote initramfs resume config
+  copy:
+    src: "../files/initramfs_resume"
+    dest: "/etc/initramfs-tools/conf.d/resume"
+  tags:
+    - install-kernel-image
+
+- name: Kernel VM - Create target kernel dir
+  file:
+    path: "/opt/boot"
+    state: "directory"
+  tags:
+    - install-kernel-image
+
+- name: Kernel VM - Build initrd image
+  shell: "update-initramfs -k {{ ansible_kernel }} -c -b /opt/boot"
+  tags:
+    - install-kernel-image
+
+- name: Kernel VM - Copy corresponding kernel img
+  copy:
+    src: "/boot/vmlinuz-{{ ansible_kernel }}"
+    dest: "/opt/boot/vmlinuz-{{ ansible_kernel }}"
+    remote_src: yes
+  tags:
+    - install-kernel-image
+
+- name: Kernel VM - Restore remote initramfs modules
+  copy:
+    src: "/tmp/initramfs_modules.bkp"
+    dest: "/etc/initramfs-tools/modules"
+    remote_src: yes
+  ignore_errors: yes
+  when: __initramfs_modules_backuped
+  tags:
+    - install-kernel-image
+
+- name: Kernel VM - Remove remote backup initramfs modules
+  file:
+    path: "/tmp/initramfs_modules.bkp"
+    state: "absent"
+  when: __initramfs_modules_backuped
+  tags:
+    - install-kernel-image
+
+- name: Kernel VM - Restore remote initramfs resume config
+  copy:
+    src: "/tmp/initramfs-resume.bkp"
+    dest: "/etc/initramfs-tools/conf.d/resume"
+    remote_src: yes
+  ignore_errors: yes
+  when: __initramfs_resume_backuped
+  tags:
+    - install-kernel-image
+
+- name: Kernel VM - Remove remote backup initramfs resume config
+  file:
+    path: "/tmp/initramfs-resume.bkp"
+    state: "absent"
+  when: __initramfs_resume_backuped
+  tags:
+    - install-kernel-image

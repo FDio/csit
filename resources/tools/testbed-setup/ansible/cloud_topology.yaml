@@ -1,0 +1,9 @@
+---
+# file: cloud_topology.yaml
+
+- hosts: localhost
+  gather_facts: false
+  roles:
+    - role: topology
+      tags: topology
+
