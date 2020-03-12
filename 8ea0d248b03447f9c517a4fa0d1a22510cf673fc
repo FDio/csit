@@ -22,6 +22,30 @@
       "revId": "8ea0d248b03447f9c517a4fa0d1a22510cf673fc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d197e909_c2a506ab",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-12T11:37:08Z",
+      "side": 1,
+      "message": "I do not have clear preference on which way should be used. With triple quotes it is more natural to see where the line breaks are, but the indentation clashes with the surrounding code.\nBut I agree we should pick one way and then stick to it.",
+      "parentUuid": "300bdd18_6197fb2e",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 79
+      },
+      "revId": "8ea0d248b03447f9c517a4fa0d1a22510cf673fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
