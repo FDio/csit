@@ -8,3 +8,5 @@
   roles:
     - role: cobbler
       tags: cobbler
+    - role: docker
+      tags: docker

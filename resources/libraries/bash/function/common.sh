@@ -459,6 +459,10 @@ function get_test_code () {
             NODENESS="1n"
             FLAVOR="tx2"
             ;;
+        *"2n-clx"*)
+            NODENESS="2n"
+            FLAVOR="clx"
+            ;;
         *"2n-skx"*)
             NODENESS="2n"
             FLAVOR="skx"
@@ -806,6 +810,9 @@ function select_tags () {
     # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
     # TODO: Add missing reasons here (if general) or where used (if specific).
     case "${TEST_CODE}" in
+        *"2n-clx"*)
+            test_tag_array+=("!ipsechw")
+            ;;
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
             ;;
@@ -910,6 +917,10 @@ function select_topology () {
         "1n_skx" | "1n_tx2")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_clx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         "2n_skx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_skx*.yaml )

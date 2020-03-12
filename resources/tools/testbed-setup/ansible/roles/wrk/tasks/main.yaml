@@ -1,0 +1,48 @@
+---
+# file: roles/wrk/tasks/main.yaml
+
+- name: WRK - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
+
+- name: WRK - Get Release Archive
+  get_url:
+    url: "https://github.com/wg/wrk/archive/{{ item }}.tar.gz"
+    dest: "{{ wrk_target_dir }}/wrk-{{ item }}.tar.gz"
+    mode: 0644
+  loop: "{{ wrk_version }}"
+  register: wrk_downloaded
+  tags:
+    - install-wrk
+
+- name: WRK - Extract Release Archive
+  unarchive:
+    remote_src: true
+    src: "{{ wrk_target_dir }}/wrk-{{ item }}.tar.gz"
+    dest: "{{ wrk_target_dir }}/"
+    creates: "{{ wrk_target_dir }}/wrk-{{ item }}/src"
+  loop: "{{ wrk_version }}"
+  register: wrk_extracted
+  tags:
+    - install-wrk
+
+- name: WRK - Compile Release I
+  command: "make"
+  args:
+    chdir: "{{ wrk_target_dir }}/wrk-{{ item }}"
+  loop: "{{ wrk_version }}"
+  when: wrk_extracted
+  register: wrk_compiled
+  tags:
+    - install-wrk
+
+- name: WRK - Copy Binary
+  command: "cp {{ wrk_target_dir }}/wrk-{{ item }}/wrk /usr/local/bin/"
+  loop: "{{ wrk_version }}"
+  when: wrk_compiled
+  tags:
+    - install-wrk
