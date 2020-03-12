@@ -512,7 +512,7 @@ class IPUtil:
         """Create prefix object.
 
         :param ip_addr: IPv4 or IPv6 address.
-        :para, addr_len: Length of IP address.
+        :param addr_len: Length of IP address.
         :type ip_addr: IPv4Address or IPv6Address
         :type addr_len: int
         :returns: Prefix object.
