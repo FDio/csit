@@ -46,6 +46,30 @@
       "revId": "8ea0d248b03447f9c517a4fa0d1a22510cf673fc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f7d8c7a_131e1e63",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-12T13:47:21Z",
+      "side": 1,
+      "message": "With triple quotes, this fails the line length check which is why I converted it to using f-strings.",
+      "parentUuid": "d197e909_c2a506ab",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 79
+      },
+      "revId": "8ea0d248b03447f9c517a4fa0d1a22510cf673fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
