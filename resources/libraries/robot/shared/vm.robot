@@ -102,4 +102,5 @@
 | | ... | enable_gso=${False}
 | | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
+| | Sleep | 5
+#| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
