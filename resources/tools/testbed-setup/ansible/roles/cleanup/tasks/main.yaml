@@ -1,0 +1,31 @@
+---
+# file: roles/cleanup/tasks/main.yaml
+# purpose: Structured per server cleanup tasks.
+# - main:
+#     - tg:
+#         - Run tasks on TG servers only.
+#         - Cleanup processes (T-Rex).
+#     - sut:
+#         - Run tasks on SUT servers only.
+#         - Cleanup file leftovers (logs).
+#         - Cleanup packages (VPP, Honeycomb).
+#         - Cleanup processes (qemu, l3fwd, testpmd, docker, kubernetes)
+#         - Cleanup interfaces.
+#     - vpp_device
+#         - Run tasks on vpp_device servers only.
+#         - Reset SRIOV
+
+- name: tg specific
+  include_tasks: tg.yaml
+  when: "'tg' in group_names"
+  tags: cleanup
+
+- name: sut specific
+  include_tasks: sut.yaml
+  when: "'sut' in group_names"
+  tags: cleanup
+
+- name: vpp_device specific
+  include_tasks: vpp_device.yaml
+  when: "'vpp_device' in group_names"
+  tags: cleanup

@@ -1,0 +1,19 @@
+---
+# file: roles/sut/tasks/main.yaml
+
+- name: SUT - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
+
+- name: SUT - Copy 80-vpp.conf
+  file:
+    src: "/dev/null"
+    dest: "/etc/sysctl.d/80-vpp.conf"
+    state: "link"
+  become: yes
+  tags:
+    - copy-80-vpp
