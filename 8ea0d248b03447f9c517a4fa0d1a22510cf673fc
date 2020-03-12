@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "300bdd18_6197fb2e",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-03-12T07:09:28Z",
+      "side": 1,
+      "message": "Be consistent and use the same form of template_string in the whole file (template_string \u003d f\u0027\u0027\u0027 ... \u0027\u0027\u0027).",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 79
+      },
+      "revId": "8ea0d248b03447f9c517a4fa0d1a22510cf673fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
