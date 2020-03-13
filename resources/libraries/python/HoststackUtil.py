@@ -289,9 +289,9 @@ class HoststackUtil():
         program_cmd = f"{env_vars}{program_name} {program[u'args']}"
         test_results = f"Test Results of '{program_cmd}':\n"
 
-        if nsim_attr[u"output_feature_enable"] or \
-            nsim_attr[u"cross_connect_feature_enable"]:
-            if nsim_attr[u"output_feature_enable"]:
+        if nsim_attr[u"output_nsim_enable"] or \
+            nsim_attr[u"xc_nsim_enable"]:
+            if nsim_attr[u"output_nsim_enable"]:
                 feature_name = u"output"
             else:
                 feature_name = u"cross-connect"
@@ -299,7 +299,7 @@ class HoststackUtil():
                 f"NSIM({feature_name}): delay " \
                 f"{nsim_attr[u'delay_in_usec']} usecs, " \
                 f"avg-pkt-size {nsim_attr[u'average_packet_size']}, " \
-                f"bandwidth {nsim_attr[u'bandwidth_in_bits_per_second']} " \
+                f"bandwidth {nsim_attr[u'bw_in_bits_per_second']} " \
                 f"bits/sec, pkt-drop-rate {nsim_attr[u'packets_per_drop']} " \
                 f"pkts/drop\n"
 
