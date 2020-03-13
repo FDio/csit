@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -36,8 +36,8 @@ class NsimUtil():
                 vpp papi command fails.
         """
         host = node[u"host"]
-        if not vpp_nsim_attr[u"output_feature_enable"] \
-                and not vpp_nsim_attr[u"cross_connect_feature_enable"]:
+        if not vpp_nsim_attr[u"output_nsim_enable"] \
+                and not vpp_nsim_attr[u"xc_nsim_enable"]:
             raise RuntimeError(f"No NSIM features enabled on host {host}:\n"
                                f"vpp_nsim_attr = {vpp_nsim_attr}")
         cmd = u"nsim_configure"
@@ -53,10 +53,10 @@ class NsimUtil():
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        if vpp_nsim_attr[u"output_feature_enable"]:
+        if vpp_nsim_attr[u"output_nsim_enable"]:
             cmd = u"nsim_output_feature_enable_disable"
             args = dict(
-                enable_disable=vpp_nsim_attr[u"output_feature_enable"],
+                enable_disable=vpp_nsim_attr[u"output_nsim_enable"],
                 sw_if_index=InterfaceUtil.get_interface_index(node, interface0),
             )
             err_msg = f"Failed to enable NSIM output feature on " \
@@ -64,10 +64,10 @@ class NsimUtil():
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        elif vpp_nsim_attr[u"cross_connect_feature_enable"]:
+        elif vpp_nsim_attr[u"xc_nsim_enable"]:
             cmd = u"nsim_cross_connect_feature_enable_disable"
             args = dict(
-                enable_disable=vpp_nsim_attr[u"cross_connect_feature_enable"],
+                enable_disable=vpp_nsim_attr[u"xc_nsim_enable"],
                 sw_if_index0=InterfaceUtil.get_interface_index(node,
                                                                interface0),
                 sw_if_index1=InterfaceUtil.get_interface_index(node,

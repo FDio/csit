@@ -289,9 +289,9 @@ class HoststackUtil():
         program_cmd = f"{env_vars}{program_name} {program[u'args']}"
         test_results = f"Test Results of '{program_cmd}':\n"
 
-        if nsim_attr[u"output_feature_enable"] or \
-            nsim_attr[u"cross_connect_feature_enable"]:
-            if nsim_attr[u"output_feature_enable"]:
+        if nsim_attr[u"output_nsim_enable"] or \
+            nsim_attr[u"xc_nsim_enable"]:
+            if nsim_attr[u"output_nsim_enable"]:
                 feature_name = u"output"
             else:
                 feature_name = u"cross-connect"

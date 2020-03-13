@@ -389,7 +389,7 @@
 | | ${is_dut1}= | Run Keyword And Return Status
 | | ... | Dictionaries should be equal | ${node} | ${dut1}
 | | Run Keyword If
-| | ... | ${is_dut1} and ${vpp_nsim_attr}[output_feature_enable]
+| | ... | ${is_dut1} and ${vpp_nsim_attr}[output_nsim_enable]
 | | ... | Configure VPP NSIM | ${node} | ${vpp_nsim_attr} | ${intf}
 | | Run Keyword If | '${cfg_vpp_feature}' != ''
 | | ... | Additional VPP Config for Feature ${cfg_vpp_feature} | ${node}
@@ -432,7 +432,7 @@
 | | | Run keyword | ${dut}.Add api segment api size
 | | | ... | ${vpp_hoststack_attr}[api_seg_api_size]
 | | | Run Keyword If
-| | | ... | '${dut}' == 'DUT1' and ${vpp_nsim_attr}[output_feature_enable]
+| | | ... | '${dut}' == 'DUT1' and ${vpp_nsim_attr}[output_nsim_enable]
 | | | ... | ${dut}.Add Nsim poll main thread
 | | | Run keyword | ${dut}.Add api segment gid | testuser
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
