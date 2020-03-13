@@ -11,17 +11,9 @@
     - "ib_uverbs"
     - "mlx4_ib"
     - "mlx5_ib"
-  register: "modules_added"
+  notify: "AWS - Reload systemd-modules"
   tags:
     - load-kernel-modules
-
-- name: AWS - Reload systemd-modules
-  systemd:
-    name: "systemd-modules-load"
-    state: "restarted"
-  when: "modules_added"
-  tags:
-    - reload-systemd-modules
 
 - name: AWS - Performance Tuning - Adjust nr_hugepages
   sysctl:
@@ -31,4 +23,5 @@
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
     reload: "yes"
   tags:
-    - set-sysctl 
+    - set-sysctl
+
