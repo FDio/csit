@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "810771bd_967b0fc2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-13T15:40:16Z",
+      "side": 1,
+      "message": "Hard to review when I do not know the reason for the revert.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "d159c8f4eeaf72ff854ae346ecb9c190657b4d0b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a6af4b6_28b4c5b8",
+        "filename": "resources/libraries/robot/nsim/nsim.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-13T15:40:16Z",
+      "side": 1,
+      "message": "This reminds me, do we want the copyright year checker also in rls2001?",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "d159c8f4eeaf72ff854ae346ecb9c190657b4d0b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
