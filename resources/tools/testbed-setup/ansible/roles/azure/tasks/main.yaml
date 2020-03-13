@@ -11,5 +11,16 @@
     - "ib_uverbs"
     - "mlx4_ib"
     - "mlx5_ib"
+  notify: "AWS - Reload systemd-modules"
   tags:
     - load-kernel-modules
+
+- name: AWS - Performance Tuning - Adjust nr_hugepages
+  sysctl:
+    name: "vm.nr_hugepages"
+    value: "8192"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
