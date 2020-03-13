@@ -73,15 +73,16 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 2t1c PDR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-pdr.csv>`_
   - `CSV 4t2c PDR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-pdr.csv>`_
 
-  - `HTML 2t1c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-2t1c-pdr.html>`_
-  - `HTML 4t2c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-pdr.html>`_
-  - `HTML 8t4c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-pdr.html>`_
-  - `ASCII 2t1c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-2t1c-pdr.txt>`_
-  - `ASCII 4t2c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-pdr.txt>`_
-  - `ASCII 8t4c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-pdr.txt>`_
-  - `CSV 2t1c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-2t1c-pdr.csv>`_
-  - `CSV 4t2c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-pdr.csv>`_
-  - `CSV 8t4c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-pdr.csv>`_
+..
+    - `HTML 2t1c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-2t1c-pdr.html>`_
+    - `HTML 4t2c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-pdr.html>`_
+    - `HTML 8t4c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-pdr.html>`_
+    - `ASCII 2t1c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-2t1c-pdr.txt>`_
+    - `ASCII 4t2c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-pdr.txt>`_
+    - `ASCII 8t4c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-pdr.txt>`_
+    - `CSV 2t1c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-2t1c-pdr.csv>`_
+    - `CSV 4t2c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-pdr.csv>`_
+    - `CSV 8t4c NFV Service Density PDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-pdr.csv>`_
 
 ..
     MRR Comparison
