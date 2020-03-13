@@ -269,20 +269,16 @@
     plot-vpp-throughput-lat-tsa-3n-skx:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
+        - 46  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
-        - 14  # NDRPDR sel
+        - 46  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-ndrpdr:
       # TODO: Add data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
+        - 46  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-mrr:
       # TODO: Replace
@@ -569,11 +565,9 @@
     # NIC Comparisons
 
     vpp-nic-comparison-3n-skx:
-      # TODO: Replace the data
+      # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
+        - 46  # NDRPDR sel
 
     vpp-nic-comparison-2n-skx:
       # TODO: Add the data
@@ -829,9 +823,7 @@
     vpp-performance-changes-3n-skx-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
+        - 46  # NDRPDR sel
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -1268,9 +1260,7 @@
     vpp-compare-testbeds-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
+        - 46  # NDRPDR sel
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
@@ -1451,9 +1441,7 @@
     vpp-compare-topologies-ref:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
+        - 46  # NDRPDR sel
     vpp-compare-topologies-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2295,10 +2283,8 @@
 #      - 66  # NDRPDR sel vhost
 #      - 67  # NDRPDR sel vhost
 #      - 36  # MRR sel
-#    csit-vpp-perf-verify-2001-3n-skx:
-#      - 14  # NDRPDR sel
-#      - 15  # NDRPDR sel
-#      - 16  # NDRPDR sel
+    csit-vpp-perf-verify-2001-3n-skx:
+      - 46  # NDRPDR sel
 
     csit-vpp-perf-verify-1904-2n-skx:
       - 11  # MRR sel
@@ -3220,7 +3206,7 @@
   reference:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
+#    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
     title: "rls2001 xxv710"
@@ -16917,16 +16903,16 @@
   layout:
     layout: "plot-hdrh-latency-by-percentile"
 
-#- type: "plot"
-#  title: "Latency by percentile: 3n-skx"
-#  algorithm: "plot_hdrh_lat_by_percentile"
-#  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-skx"
-#  output-file-links: "{DIR[LAT,VPP]}/3n_skx.rst"
-#  target-links: "../../_static/vpp"
-#  data: "plot-vpp-hdrh-lat-3n-skx"
-#  filter: "'2T1C' and 'NIC_Intel-XXV710'"
-#  layout:
-#    layout: "plot-hdrh-latency-by-percentile"
+- type: "plot"
+  title: "Latency by percentile: 3n-skx"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-skx"
+  output-file-links: "{DIR[LAT,VPP]}/3n_skx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-3n-skx"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-by-percentile"
 
 - type: "plot"
   title: "Latency by percentile: 2n-clx"
