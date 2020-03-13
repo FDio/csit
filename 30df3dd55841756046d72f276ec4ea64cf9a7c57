@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac19a1e0_f2296834",
+        "filename": "docs/job_specs/perf_tests_job_specs.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-03-13T13:48:07Z",
+      "side": 1,
+      "message": "continuous",
+      "range": {
+        "startLine": 12,
+        "startChar": 19,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "30df3dd55841756046d72f276ec4ea64cf9a7c57",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
