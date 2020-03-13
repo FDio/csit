@@ -55,7 +55,7 @@
 | |
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | Set Iperf3 Client Attributes | parallel=${streams}
-| | Set VPP NSIM Attributes | output_feature_enable=${True} |
+| | Set VPP NSIM Attributes | output_nsim_enable=${True} |
 | | ... | packets_per_drop=${pkts_per_drop}
 | | ${defer_fail}= | Get Test Results From Hoststack Iperf3 Test
 | | Run Keyword If | ${defer_fail}==True | FAIL
