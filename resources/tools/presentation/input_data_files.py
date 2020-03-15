@@ -258,17 +258,13 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
 
     if not success:
 
-        # Try to download .zip from docs.fd.io
+        # Try to download .gz or .zip from docs.fd.io
+        file_name = (spec.input[u"file-name"], spec.input[u"zip-file-name"])
 
-        file_name = spec.input[u"zip-file-name"]
-        new_name = join(
-            spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
-            f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
-        )
         release = re.search(REGEX_RELEASE, job).group(2)
-        for rls in (release, u"master"):
+        for idx, rls in enumerate((release, u"master", )):
             nexus_file_name = \
-                f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+                f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name[idx]}"
             try:
                 rls = f"rls{int(rls)}"
             except ValueError:
@@ -283,6 +279,10 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
 
             logging.info(f"Downloading {url}")
 
+            new_name = join(
+                spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+                f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name[idx]}"
+            )
             success, downloaded_name = _download_file(url, new_name, log)
             if success:
                 break
