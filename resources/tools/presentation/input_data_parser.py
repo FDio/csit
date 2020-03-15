@@ -43,6 +43,7 @@ from robot import errors
 from resources.libraries.python import jumpavg
 from input_data_files import download_and_unzip_data_file
 from pal_errors import PresentationError
+from pal_utils import execute_command
 
 
 # Separator used in file names
