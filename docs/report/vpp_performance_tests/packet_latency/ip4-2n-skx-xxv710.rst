@@ -194,6 +194,9 @@
 
     \clearpage
 
+64b-2t1c-ip4routing-base-scale-avf
+----------------------------------
+
 .. raw:: html
 
     <center>
@@ -476,6 +479,9 @@
 .. raw:: latex
 
     \clearpage
+
+64b-2t1c-ip4routing-features-dpdk
+---------------------------------
 
 .. raw:: html
 
