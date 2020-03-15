@@ -264,7 +264,7 @@ def table_oper_data_html(table, input_data):
         if not html_table:
             continue
         try:
-            file_name = f"{table[u'output-file']}_{suite[u'name']}.rst"
+            file_name = f"{table[u'output-file']}{suite[u'name']}.rst"
             with open(f"{file_name}", u'w') as html_file:
                 logging.info(f"    Writing file: {file_name}")
                 html_file.write(u".. raw:: html\n\n\t")

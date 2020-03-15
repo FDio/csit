@@ -142,7 +142,7 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
             logging.error(
                 f"    No tables to include in {table_set}. Skipping."
             )
-            return
+            continue
 
         logging.info(u"    Creating the test data set...")
         tests = input_data.filter_data(
@@ -153,7 +153,7 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
             continue_on_error=True
         )
         if tests.empty:
-            return
+            continue
         tests = input_data.merge_data(tests)
         tests.sort_index(inplace=True)
 
@@ -165,7 +165,7 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
             data_set=u"suites"
         )
         if suites.empty:
-            return
+            continue
         suites = input_data.merge_data(suites)
         suites.sort_index(inplace=True)
 
