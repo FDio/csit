@@ -3237,7 +3237,7 @@
   reference:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-ref"
-#    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
     title: "rls2001 xxv710"
