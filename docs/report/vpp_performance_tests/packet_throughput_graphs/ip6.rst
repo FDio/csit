@@ -17,10 +17,10 @@ CSIT source code for the test cases used for plots can be found in
 
 .. toctree::
 
-    ip6-3n-skx-xxv710
-    ip6-3n-skx-x710
     ip6-2n-skx-xxv710
     ip6-2n-skx-x710
+    ip6-3n-skx-xxv710
+    ip6-3n-skx-x710
     ip6-2n-clx-xxv710
     ip6-2n-clx-x710
     ip6-2n-clx-cx556a
