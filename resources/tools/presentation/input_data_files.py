@@ -17,6 +17,7 @@ Download all data.
 
 import re
 import logging
+import gzip
 
 from os import rename, mkdir
 from os.path import join
@@ -238,37 +239,10 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
 
     if not success:
 
-        # Try to download .gz from docs.fd.io
-
-        file_name = spec.input[u"file-name"]
-        url = u"{0}/{1}".format(
-            spec.environment[u"urls"][u"URL[NEXUS,DOC]"],
-            spec.input[u"download-path"].format(
-                job=job, build=build[u"build"], filename=file_name
-            )
-        )
-        new_name = join(
-            spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
-            f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
-        )
-
-        logging.info(f"Downloading {url}")
-
-        success, downloaded_name = _download_file(url, new_name, log, arch=arch)
-
-    if not success:
-
-        # Try to download .zip from docs.fd.io
-
-        file_name = spec.input[u"zip-file-name"]
-        new_name = join(
-            spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
-            f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
-        )
+        # Try to download .gz or .zip from docs.fd.io
+        file_name = (spec.input[u"file-name"], spec.input[u"zip-file-name"])
         release = re.search(REGEX_RELEASE, job).group(2)
-        for rls in (release, u"master"):
-            nexus_file_name = \
-                f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+        for idx, rls in enumerate((release, u"master", )):
             try:
                 rls = f"rls{int(rls)}"
             except ValueError:
@@ -278,19 +252,30 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                 f"{spec.environment[u'urls'][u'URL[NEXUS,DOC]']}/"
                 f"{rls}/"
                 f"{spec.environment[u'urls'][u'DIR[NEXUS,DOC]']}/"
-                f"{nexus_file_name}"
+                f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name[idx]}"
             )
 
             logging.info(f"Downloading {url}")
 
-            success, downloaded_name = _download_file(url, new_name, log)
+            new_name = join(
+                spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+                f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name[idx]}"
+            )
+            success, downloaded_name = _download_file(
+                url, new_name, log, arch=arch
+            )
             if success:
+                file_name = file_name[idx]
+                if file_name.endswith(u".gz"):
+                    with gzip.open(downloaded_name[:-3], u"rb") as gzip_file:
+                        file_content = gzip_file.read()
+                    with open(downloaded_name[:-3], u"wb") as xml_file:
+                        xml_file.write(file_content)
                 break
 
     if not success:
 
         # Try to download .zip from jenkins.fd.io
-
         file_name = spec.input[u"zip-file-name"]
         download_path = spec.input[u"zip-download-path"]
         if job.startswith(u"csit-"):
