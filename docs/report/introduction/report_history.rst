@@ -12,7 +12,9 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |                                                            |
 |                |      - all set selected for analysis and graphs            |
 |                |                                                            |
+|                |    - VPP performance tests 3n-skx                          |
 |                |                                                            |
+|                |      - all set selected for analysis and graphs            |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .11            | 1. Added Soak tests                                        |
