@@ -110,10 +110,10 @@ Comparison tables in HTML, ASCII and CSV formats:
       - `CSV 4t2c NFV Service Density MRR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-mrr.csv>`_
       - `CSV 8t4c NFV Service Density MRR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-mrr.csv>`_
 
-..
-    3n-skx
-    ~~~~~~
+3n-skx
+~~~~~~
 
+..
     NDR Comparison
     ``````````````
 
@@ -126,18 +126,19 @@ Comparison tables in HTML, ASCII and CSV formats:
       - `CSV 2t1c NDR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-ndr.csv>`_
       - `CSV 4t2c NDR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-ndr.csv>`_
 
-    PDR Comparison
-    ``````````````
+PDR Comparison
+``````````````
 
-    Comparison tables in HTML, ASCII and CSV formats:
+Comparison tables in HTML, ASCII and CSV formats:
 
-      - `HTML 2t1c PDR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-pdr.html>`_
-      - `HTML 4t2c PDR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-pdr.html>`_
-      - `ASCII 2t1c PDR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-pdr.txt>`_
-      - `ASCII 4t2c PDR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-pdr.txt>`_
-      - `CSV 2t1c PDR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-pdr.csv>`_
-      - `CSV 4t2c PDR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-pdr.csv>`_
+  - `HTML 2t1c PDR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-pdr.html>`_
+  - `HTML 4t2c PDR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-pdr.html>`_
+  - `ASCII 2t1c PDR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-pdr.txt>`_
+  - `ASCII 4t2c PDR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-pdr.txt>`_
+  - `CSV 2t1c PDR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-pdr.csv>`_
+  - `CSV 4t2c PDR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-pdr.csv>`_
 
+..
     MRR Comparison
     ``````````````
 
