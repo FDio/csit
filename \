@@ -1,0 +1,15 @@
+PAL: Download .gz first
+
+Change-Id: Ic83a63e5043ea1342b40e5b0aab189cfe24ba95c
+Signed-off-by: Tibor Frank <tifrank@cisco.com>
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Sun Mar 15 18:58:46 2020 +0100
+#
+# On branch report-comparisons
+# Changes to be committed:
+#	modified:   resources/tools/presentation/input_data_files.py
+#	modified:   resources/tools/presentation/specification.yaml
+#

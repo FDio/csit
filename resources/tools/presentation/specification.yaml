@@ -2183,18 +2183,18 @@
 
   builds:
 
-    csit-vpp-perf-verify-1904-3n-hsw:
-      - 9   # MRR sel
-      - 11  # NDRPDR sel
-      - 12  # NDRPDR sel
-      - 20  # NDRPDR sel
-      - 21  # NDRPDR sel
-      - 23  # NDRPDR sel
-      - 24  # NDRPDR sel
-      - 25  # NDRPDR sel
-      - 26  # NDRPDR sel
-      - 29  # NDRPDR sel
-      - 30  # NDRPDR sel
+#    csit-vpp-perf-verify-1904-3n-hsw:
+#      - 9   # MRR sel
+#      - 11  # NDRPDR sel
+#      - 12  # NDRPDR sel
+#      - 20  # NDRPDR sel
+#      - 21  # NDRPDR sel
+#      - 23  # NDRPDR sel
+#      - 24  # NDRPDR sel
+#      - 25  # NDRPDR sel
+#      - 26  # NDRPDR sel
+#      - 29  # NDRPDR sel
+#      - 30  # NDRPDR sel
     csit-vpp-perf-verify-1908-3n-hsw:
       - 12  # NDRPDR sel
       - 13  # NDRPDR sel
@@ -3237,7 +3237,7 @@
   reference:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-ref"
-#    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
+    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
     title: "rls2001 xxv710"
