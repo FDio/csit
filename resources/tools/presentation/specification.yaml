@@ -11493,29 +11493,29 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-ndr"
+  title: "Throughput: 3n-skx-x710-78b-2t1c-ip6routing-base-scale-avf-ndr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-ndr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-2t1c-ip6routing-base-scale-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-avf-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
   layout:
-    title: "3n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-ndr"
+    title: "3n-skx-x710-78b-2t1c-ip6routing-base-scale-avf-ndr"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-pdr"
+  title: "Throughput: 3n-skx-x710-78b-2t1c-ip6routing-base-scale-avf-pdr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-pdr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-2t1c-ip6routing-base-scale-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-avf-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
   layout:
-    title: "3n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk-pdr"
+    title: "3n-skx-x710-78b-2t1c-ip6routing-base-scale-avf-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -13385,29 +13385,29 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-x710-78b-ip6routing-base-scale-dpdk-ndr-tsa"
+  title: "Speedup: 3n-skx-x710-78b-ip6routing-base-scale-avf-ndr-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-ip6routing-base-scale-dpdk-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-ip6routing-base-scale-avf-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-avf-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-ndrpdr"
   layout:
-    title: "3n-skx-x710-78b-ip6routing-base-scale-dpdk-ndr"
+    title: "3n-skx-x710-78b-ip6routing-base-scale-avf-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-x710-78b-ip6routing-base-scale-dpdk-pdr-tsa"
+  title: "Speedup: 3n-skx-x710-78b-ip6routing-base-scale-avf-pdr-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-ip6routing-base-scale-dpdk-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-ip6routing-base-scale-avf-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-avf-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-ndrpdr"
   layout:
-    title: "3n-skx-x710-78b-ip6routing-base-scale-dpdk-pdr"
+    title: "3n-skx-x710-78b-ip6routing-base-scale-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
