@@ -1588,7 +1588,7 @@ class InputData:
         :type job: str
         :type build_nr: int
         :type replace: bool
-        :raises: PresentationError in an error occurs.
+        :raises: PresentationError if an error occurs.
         """
         if not isfile(local_file):
             raise PresentationError(f"The file {local_file} does not exist.")
@@ -1632,7 +1632,7 @@ class InputData:
 
     def process_local_directory(self, local_dir, replace=True):
         """Process local directory with XML file(s). The directory is processed
-        as a 'job' and the XML files in in as builds.
+        as a 'job' and the XML files in it as builds.
         If the given directory contains only sub-directories, these
         sub-directories processed as jobs and corresponding XML files as builds
         of their job.
