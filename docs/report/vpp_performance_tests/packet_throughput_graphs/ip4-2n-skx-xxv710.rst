@@ -121,7 +121,7 @@
     .. raw:: html
 
         <center>
-        <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-rnd-ndr.html"></iframe>
+        <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-ip4routing-scale-avf-rnd-ndr.html"></iframe>
         <p><br></p>
         </center>
 
@@ -130,8 +130,8 @@
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-rnd-ndr}
-                \label{fig:2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-avf-rnd}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-ip4routing-scale-avf-rnd-ndr}
+                \label{fig:2n-skx-xxv710-64b-2t1c-ip4routing-scale-avf-rnd}
         \end{figure}
 
     .. raw:: latex
@@ -141,7 +141,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-rnd-pdr.html"></iframe>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-ip4routing-scale-avf-rnd-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -150,8 +150,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-rnd-pdr}
-            \label{fig:2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-rnd-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-ip4routing-scale-avf-rnd-pdr}
+            \label{fig:2n-skx-xxv710-64b-2t1c-ip4routing-scale-avf-rnd-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -206,7 +206,7 @@
     .. raw:: html
 
         <center>
-        <iframe id="111" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-dpdk-rnd-ndr.html"></iframe>
+        <iframe id="111" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-ip4routing-scale-dpdk-rnd-ndr.html"></iframe>
         <p><br></p>
         </center>
 
@@ -215,8 +215,8 @@
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-dpdk-rnd-ndr}
-                \label{fig:2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-dpdk-rnd-ndr}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-ip4routing-scale-dpdk-rnd-ndr}
+                \label{fig:2n-skx-xxv710-64b-2t1c-ip4routing-scale-dpdk-rnd-ndr}
         \end{figure}
 
     .. raw:: latex
@@ -226,7 +226,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="112" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-dpdk-rnd-pdr.html"></iframe>
+    <iframe id="112" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-ip4routing-scale-dpdk-rnd-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -235,8 +235,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-dpdk-rnd-pdr}
-            \label{fig:2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-dpdk-rnd-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-ip4routing-scale-dpdk-rnd-pdr}
+            \label{fig:2n-skx-xxv710-64b-2t1c-ip4routing-scale-dpdk-rnd-pdr}
     \end{figure}
 
 .. raw:: latex
