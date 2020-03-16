@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ac57042_aa93f551",
+        "filename": "resources/tools/presentation/input_data_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1591,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-16T09:53:40Z",
+      "side": 1,
+      "message": "PresentationError: If",
+      "range": {
+        "startLine": 1591,
+        "startChar": 15,
+        "endLine": 1591,
+        "endChar": 37
+      },
+      "revId": "3795907d5e3ebe816bae402450493f6f983e277e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e404959_de0b9fd8",
+        "filename": "resources/tools/presentation/input_data_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-16T09:53:40Z",
+      "side": 1,
+      "message": "it",
+      "range": {
+        "startLine": 1635,
+        "startChar": 40,
+        "endLine": 1635,
+        "endChar": 42
+      },
+      "revId": "3795907d5e3ebe816bae402450493f6f983e277e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
