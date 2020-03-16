@@ -274,6 +274,7 @@
         - 45  # NDRPDR sel
         - 46  # NDRPDR sel
         - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -285,6 +286,7 @@
         - 45  # NDRPDR sel
         - 46  # NDRPDR sel
         - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-mrr:
       # TODO: Replace
@@ -580,6 +582,7 @@
         - 45  # NDRPDR sel
         - 46  # NDRPDR sel
         - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
 
     vpp-nic-comparison-2n-skx:
       # TODO: Add the data
@@ -842,6 +845,7 @@
         - 45  # NDRPDR sel
         - 46  # NDRPDR sel
         - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -1293,6 +1297,7 @@
         - 45  # NDRPDR sel
         - 46  # NDRPDR sel
         - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
@@ -1480,6 +1485,7 @@
         - 45  # NDRPDR sel
         - 46  # NDRPDR sel
         - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
     vpp-compare-topologies-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2329,6 +2335,7 @@
       - 45  # NDRPDR sel
       - 46  # NDRPDR sel
       - 47  # NDRPDR sel
+      - 48  # NDRPDR sel
 
     csit-vpp-perf-verify-1904-2n-skx:
       - 11  # MRR sel
@@ -3171,10 +3178,10 @@
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 x710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    nic: "NIC_Intel-X710"
+    nic: "NIC_Intel-XXV710"
   compare:
     title: "rls2001 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
@@ -3198,10 +3205,10 @@
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 x710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    nic: "NIC_Intel-X710"
+    nic: "NIC_Intel-XXV710"
   compare:
     title: "rls2001 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
@@ -3225,10 +3232,10 @@
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 x710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    nic: "NIC_Intel-X710"
+    nic: "NIC_Intel-XXV710"
   compare:
     title: "rls2001 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
