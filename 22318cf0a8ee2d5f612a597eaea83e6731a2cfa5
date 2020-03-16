@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f738b08_b15085a8",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-16T13:59:12Z",
+      "side": 1,
+      "message": "Remove the temporary collection.",
+      "range": {
+        "startLine": 281,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 8
+      },
+      "revId": "22318cf0a8ee2d5f612a597eaea83e6731a2cfa5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
