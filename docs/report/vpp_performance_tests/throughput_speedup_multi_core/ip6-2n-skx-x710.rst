@@ -37,14 +37,14 @@
 2n-skx-x710
 ~~~~~~~~~~~
 
-78b-ip6routing-base-scale-dpdk
-------------------------------
+78b-ip6routing-base-scale-[avf,dpdk]
+------------------------------------
 
 ..
     .. raw:: html
 
         <center>
-        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-ip6routing-base-scale-dpdk-ndr-tsa.html"></iframe>
+        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-ndr-tsa.html"></iframe>
         <p><br></p>
         </center>
 
@@ -53,8 +53,8 @@
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-ip6routing-base-scale-dpdk-ndr-tsa}
-                \label{fig:2n-skx-x710-78b-ip6routing-base-scale-dpdk-ndr-tsa}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-ndr-tsa}
+                \label{fig:2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-ndr-tsa}
         \end{figure}
 
     .. raw:: latex
@@ -64,7 +64,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-ip6routing-base-scale-dpdk-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -73,6 +73,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-ip6routing-base-scale-dpdk-pdr-tsa}
-            \label{fig:2n-skx-x710-78b-ip6routing-base-scale-dpdk-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-pdr-tsa}
+            \label{fig:2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-pdr-tsa}
     \end{figure}
