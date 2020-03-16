@@ -1,0 +1,10 @@
+# Mapping of the old names of test cases to the new (actual) one.
+#
+# Data structure:
+#
+# old-name: new-name
+#
+# All TC names (old and new) are the long names. The mapping table is converted
+# to lowercase when loaded.
+
+
