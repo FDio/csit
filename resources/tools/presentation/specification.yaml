@@ -371,31 +371,16 @@
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 26  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 27  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 25  # NDRPDR sel
+        - 35  # NDRPDR sel xxv710
+        - 36  # NDRPDR sel xxv710
+        - 37  # NDRPDR sel xxv710
+        - 38  # NDRPDR sel x710
+        - 39  # NDRPDR sel x710
+        - 40  # NDRPDR sel x710
 
     plot-dpdk-hdrh-lat-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
-        - 1   # NDRPDR sel
-        - 19  # NDRPDR sel
+        - 35  # NDRPDR sel xxv710
 
     # 2n-clx
 
@@ -744,7 +729,8 @@
 
     dpdk-perf-results-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
-        - 1   # NDRPDR sel
+        - 35  # NDRPDR sel xxv710
+        - 38  # NDRPDR sel x710
 
     dpdk-perf-results-2n-clx:
       csit-dpdk-perf-verify-2001-2n-clx:
@@ -1248,26 +1234,12 @@
         - 12  # NDRPDR sel
     dpdk-performance-changes-2n-skx-cmp:
       csit-dpdk-perf-verify-2001-2n-skx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 26  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 27  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 25  # NDRPDR sel
+        - 35  # NDRPDR sel xxv710
+        - 36  # NDRPDR sel xxv710
+        - 37  # NDRPDR sel xxv710
+        - 38  # NDRPDR sel x710
+        - 39  # NDRPDR sel x710
+        - 40  # NDRPDR sel x710
     dpdk-performance-changes-2n-skx:
       - "dpdk-performance-changes-2n-skx-h1"
       - "dpdk-performance-changes-2n-skx-ref"
@@ -1424,26 +1396,12 @@
 
     dpdk-compare-testbeds-skx-clx-ref:
       csit-dpdk-perf-verify-2001-2n-skx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 26  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 27  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 25  # NDRPDR sel
+        - 35  # NDRPDR sel xxv710
+        - 36  # NDRPDR sel xxv710
+        - 37  # NDRPDR sel xxv710
+        - 38  # NDRPDR sel x710
+        - 39  # NDRPDR sel x710
+        - 40  # NDRPDR sel x710
     dpdk-compare-testbeds-skx-clx-cmp:
       csit-dpdk-perf-verify-2001-2n-clx:
         - 15  # NDRPDR sel
@@ -1520,26 +1478,12 @@
         - 10  # NDRPDR sel
     dpdk-compare-topologies-cmp:
       csit-dpdk-perf-verify-2001-2n-skx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 26  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 27  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 25  # NDRPDR sel
+        - 35  # NDRPDR sel xxv710
+        - 36  # NDRPDR sel xxv710
+        - 37  # NDRPDR sel xxv710
+        - 38  # NDRPDR sel x710
+        - 39  # NDRPDR sel x710
+        - 40  # NDRPDR sel x710
     dpdk-compare-topologies:
       - "dpdk-compare-topologies-ref"
       - "dpdk-compare-topologies-cmp"
@@ -2605,49 +2549,36 @@
 #      - 9   # NDRPDR sel
 #      - 10  # NDRPDR sel
 
-#    csit-dpdk-perf-verify-1904-2n-skx:
-#      - 2   # NDRPDR sel
-#      - 3   # NDRPDR sel
-#      - 4   # NDRPDR sel
-#      - 5   # NDRPDR sel
-#      - 7   # NDRPDR sel
-#      - 8   # NDRPDR sel
-#      - 9   # NDRPDR sel
-#      - 10  # NDRPDR sel
-#      - 11  # NDRPDR sel
-#      - 12  # NDRPDR sel
-#    csit-dpdk-perf-verify-1908-2n-skx:
-#      - 2   # NDRPDR sel
-#      - 3   # NDRPDR sel
-#      - 4   # NDRPDR sel
-#      - 5   # NDRPDR sel
-#      - 7   # NDRPDR sel
-#      - 8   # NDRPDR sel
-#      - 9   # NDRPDR sel
-#      - 10  # NDRPDR sel
-#      - 11  # NDRPDR sel
-#      - 12  # NDRPDR sel
-#    csit-dpdk-perf-verify-2001-2n-skx:
-#      - 1   # NDRPDR sel
-#      - 2   # NDRPDR sel
-#      - 3   # NDRPDR sel
-#      - 4   # NDRPDR sel
-#      - 5   # NDRPDR sel
-#      - 6   # NDRPDR sel
-#      - 7   # NDRPDR sel
-#      - 8   # NDRPDR sel
-#      - 9   # NDRPDR sel
-#      - 10  # NDRPDR sel
-#      - 11  # NDRPDR sel
-#      - 13  # NDRPDR sel
-#      - 26  # NDRPDR sel
-#      - 16  # NDRPDR sel
-#      - 17  # NDRPDR sel
-#      - 18  # NDRPDR sel
-#      - 19  # NDRPDR sel
-#      - 27  # NDRPDR sel
-#      - 21  # NDRPDR sel
-#      - 25  # NDRPDR sel
+    csit-dpdk-perf-verify-1904-2n-skx:
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+    csit-dpdk-perf-verify-1908-2n-skx:
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+    csit-dpdk-perf-verify-2001-2n-skx:
+      - 35  # NDRPDR sel xxv710
+      - 36  # NDRPDR sel xxv710
+      - 37  # NDRPDR sel xxv710
+      - 38  # NDRPDR sel x710
+      - 39  # NDRPDR sel x710
+      - 40  # NDRPDR sel x710
+
 
     csit-dpdk-perf-verify-2001-2n-clx:
       - 15  # NDRPDR sel
@@ -5426,95 +5357,95 @@
 #  - "name"
 #  - "parent"
 #  - "throughput"
-#
-## DPDK Performance Changes 2n-skx 2t1c pdr
-#- type: "table"
-#  title: "DPDK Performance Changes 2n-skx 2t1c pdr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-pdr"
-#  history:
-#    - title: "rls1904"
-#      data: "dpdk-performance-changes-2n-skx-h1"
-#  reference:
-#    title: "rls1908"
-#    data: "dpdk-performance-changes-2n-skx-ref"
-#  compare:
-#    title: "rls2001"
-#    data: "dpdk-performance-changes-2n-skx-cmp"
-#  data: "dpdk-performance-changes-2n-skx"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'NDRPDR'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#
-## DPDK Performance Changes 2n-skx 4t2c pdr
-#- type: "table"
-#  title: "DPDK Performance Changes 2n-skx 4t2c pdr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-pdr"
-#  history:
-#    - title: "rls1904"
-#      data: "dpdk-performance-changes-2n-skx-h1"
-#  reference:
-#    title: "rls1908"
-#    data: "dpdk-performance-changes-2n-skx-ref"
-#  compare:
-#    title: "rls2001"
-#    data: "dpdk-performance-changes-2n-skx-cmp"
-#  data: "dpdk-performance-changes-2n-skx"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'NDRPDR'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#
-## DPDK Performance Changes 2n-skx 2t1c ndr
-#- type: "table"
-#  title: "DPDK Performance Changes 2n-skx 2t1c ndr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-ndr"
-#  history:
-#    - title: "rls1904"
-#      data: "dpdk-performance-changes-2n-skx-h1"
-#  reference:
-#    title: "rls1908"
-#    data: "dpdk-performance-changes-2n-skx-ref"
-#  compare:
-#    title: "rls2001"
-#    data: "dpdk-performance-changes-2n-skx-cmp"
-#  data: "dpdk-performance-changes-2n-skx"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'NDRPDR'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#
-## DPDK Performance Changes 2n-skx 4t2c ndr
-#- type: "table"
-#  title: "DPDK Performance Changes 2n-skx 4t2c ndr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-ndr"
-#  history:
-#    - title: "rls1904"
-#      data: "dpdk-performance-changes-2n-skx-h1"
-#  reference:
-#    title: "rls1908"
-#    data: "dpdk-performance-changes-2n-skx-ref"
-#  compare:
-#    title: "rls2001"
-#    data: "dpdk-performance-changes-2n-skx-cmp"
-#  data: "dpdk-performance-changes-2n-skx"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'NDRPDR'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#
+
+# DPDK Performance Changes 2n-skx 2t1c pdr
+- type: "table"
+  title: "DPDK Performance Changes 2n-skx 2t1c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-pdr"
+  history:
+    - title: "rls1904"
+      data: "dpdk-performance-changes-2n-skx-h1"
+  reference:
+    title: "rls1908"
+    data: "dpdk-performance-changes-2n-skx-ref"
+  compare:
+    title: "rls2001"
+    data: "dpdk-performance-changes-2n-skx-cmp"
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Performance Changes 2n-skx 4t2c pdr
+- type: "table"
+  title: "DPDK Performance Changes 2n-skx 4t2c pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-pdr"
+  history:
+    - title: "rls1904"
+      data: "dpdk-performance-changes-2n-skx-h1"
+  reference:
+    title: "rls1908"
+    data: "dpdk-performance-changes-2n-skx-ref"
+  compare:
+    title: "rls2001"
+    data: "dpdk-performance-changes-2n-skx-cmp"
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Performance Changes 2n-skx 2t1c ndr
+- type: "table"
+  title: "DPDK Performance Changes 2n-skx 2t1c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-ndr"
+  history:
+    - title: "rls1904"
+      data: "dpdk-performance-changes-2n-skx-h1"
+  reference:
+    title: "rls1908"
+    data: "dpdk-performance-changes-2n-skx-ref"
+  compare:
+    title: "rls2001"
+    data: "dpdk-performance-changes-2n-skx-cmp"
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Performance Changes 2n-skx 4t2c ndr
+- type: "table"
+  title: "DPDK Performance Changes 2n-skx 4t2c ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-ndr"
+  history:
+    - title: "rls1904"
+      data: "dpdk-performance-changes-2n-skx-h1"
+  reference:
+    title: "rls1908"
+    data: "dpdk-performance-changes-2n-skx-ref"
+  compare:
+    title: "rls2001"
+    data: "dpdk-performance-changes-2n-skx-cmp"
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
 ## DPDK Comparison Across Testbeds 3n-hsw to 3n-skx ndr
 #- type: "table"
 #  title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx ndr"
@@ -5552,82 +5483,82 @@
 #  - "name"
 #  - "parent"
 #  - "throughput"
-#
-## DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr
-#- type: "table"
-#  title: "DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-clx-ndr"
-#  reference:
-#    title: "2-Node Skx"
-#    data: "dpdk-compare-testbeds-skx-clx-ref"
-#  compare:
-#    title: "2-Node Clx"
-#    data: "dpdk-compare-testbeds-skx-clx-cmp"
-#  data: "dpdk-compare-testbeds-skx-clx"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#
-## DPDK Comparison Across Testbeds 2n-skx to 2n-clx pdr
-#- type: "table"
-#  title: "DPDK Comparison Across Testbeds 2n-skx to 2n-clx pdr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-clx-pdr"
-#  reference:
-#    title: "2-Node Skx"
-#    data: "dpdk-compare-testbeds-skx-clx-ref"
-#  compare:
-#    title: "2-Node Clx"
-#    data: "dpdk-compare-testbeds-skx-clx-cmp"
-#  data: "dpdk-compare-testbeds-skx-clx"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#
-## DPDK Comparison Across Topologies 3n-skx to 2n-skx ndr
-#- type: "table"
-#  title: "DPDK Comparison Across Topologies 3n-skx to 2n-skx ndr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,DPDK]}/performance-compare-topologies-3n-skx-2n-skx-ndr"
-#  reference:
-#    title: "3-Node Skx"
-#    data: "dpdk-compare-topologies-ref"
-#  compare:
-#    title: "2-Node Skx"
-#    data: "dpdk-compare-topologies-cmp"
-#  data: "dpdk-compare-topologies"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#
-## DPDK Comparison Across Topologies 3n-skx to 2n-skx pdr
-#- type: "table"
-#  title: "DPDK Comparison Across Topologies 3n-skx to 2n-skx pdr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,DPDK]}/performance-compare-topologies-3n-skx-2n-skx-pdr"
-#  reference:
-#    title: "3-Node Skx"
-#    data: "dpdk-compare-topologies-ref"
-#  compare:
-#    title: "2-Node Skx"
-#    data: "dpdk-compare-topologies-cmp"
-#  data: "dpdk-compare-topologies"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
+
+# DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr
+- type: "table"
+  title: "DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-clx-ndr"
+  reference:
+    title: "2-Node Skx"
+    data: "dpdk-compare-testbeds-skx-clx-ref"
+  compare:
+    title: "2-Node Clx"
+    data: "dpdk-compare-testbeds-skx-clx-cmp"
+  data: "dpdk-compare-testbeds-skx-clx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Comparison Across Testbeds 2n-skx to 2n-clx pdr
+- type: "table"
+  title: "DPDK Comparison Across Testbeds 2n-skx to 2n-clx pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-clx-pdr"
+  reference:
+    title: "2-Node Skx"
+    data: "dpdk-compare-testbeds-skx-clx-ref"
+  compare:
+    title: "2-Node Clx"
+    data: "dpdk-compare-testbeds-skx-clx-cmp"
+  data: "dpdk-compare-testbeds-skx-clx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Comparison Across Topologies 3n-skx to 2n-skx ndr
+- type: "table"
+  title: "DPDK Comparison Across Topologies 3n-skx to 2n-skx ndr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-topologies-3n-skx-2n-skx-ndr"
+  reference:
+    title: "3-Node Skx"
+    data: "dpdk-compare-topologies-ref"
+  compare:
+    title: "2-Node Skx"
+    data: "dpdk-compare-topologies-cmp"
+  data: "dpdk-compare-topologies"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Comparison Across Topologies 3n-skx to 2n-skx pdr
+- type: "table"
+  title: "DPDK Comparison Across Topologies 3n-skx to 2n-skx pdr"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-topologies-3n-skx-2n-skx-pdr"
+  reference:
+    title: "3-Node Skx"
+    data: "dpdk-compare-topologies-ref"
+  compare:
+    title: "2-Node Skx"
+    data: "dpdk-compare-topologies-cmp"
+  data: "dpdk-compare-topologies"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
 
 # Detailed Test Results - DPDK Performance Results 3n-hsw
 - type: "table"
@@ -5663,24 +5594,24 @@
 #  - "name"
 #  - "parent"
 #  - "msg"
-#
-## Detailed Test Results - DPDK Performance Results 2n-skx
-#- type: "table"
-#  title: "Detailed Test Results - DPDK Performance Results 2n-skx"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTR,PERF,DPDK,2N,SKX]}/dpdk_performance_results_2n_skx"
-#  columns:
-#  - title: " |prein| Test Name |preout| "
-#    data: "data name"
-#  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-#    data: "data msg"
-#  data: "dpdk-perf-results-2n-skx"
-#  filter: "all"
-#  remove-ndr: True  # Temporary solution: remove NDR results from test message
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
+
+# Detailed Test Results - DPDK Performance Results 2n-skx
+- type: "table"
+  title: "Detailed Test Results - DPDK Performance Results 2n-skx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,DPDK,2N,SKX]}/dpdk_performance_results_2n_skx"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+    data: "data msg"
+  data: "dpdk-perf-results-2n-skx"
+  filter: "all"
+  remove-ndr: True  # Temporary solution: remove NDR results from test message
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
 
 # Detailed Test Results - DPDK Performance Results 2n-clx
 - type: "table"
@@ -6073,16 +6004,16 @@
 #  data: "dpdk-perf-results-3n-skx"
 #  filter: "all"
 #  data-start-level: 4
-#
-## DPDK Performance Results 2n-skx
-#- type: "file"
-#  title: "DPDK Performance Results 2n-skx"
-#  algorithm: "file_test_results"
-#  output-file: "{DIR[DTR,PERF,DPDK,2N,SKX]}"
-#  dir-tables: "{DIR[DTR,PERF,DPDK,2N,SKX]}"
-#  data: "dpdk-perf-results-2n-skx"
-#  filter: "all"
-#  data-start-level: 4
+
+# DPDK Performance Results 2n-skx
+- type: "file"
+  title: "DPDK Performance Results 2n-skx"
+  algorithm: "file_test_results"
+  output-file: "{DIR[DTR,PERF,DPDK,2N,SKX]}"
+  dir-tables: "{DIR[DTR,PERF,DPDK,2N,SKX]}"
+  data: "dpdk-perf-results-2n-skx"
+  filter: "all"
+  data-start-level: 4
 
 # DPDK Performance Results 2n-clx
 - type: "file"
@@ -15927,104 +15858,104 @@
 
 # 2n-skx-xxv710
 
-#- type: "plot"
-#  title: "DPDK Throughput: 2n-skx-xxv710-64b-2t1c-base-ndr"
-#  algorithm: "plot_perf_box_name"
-#  output-file: "{DIR[STATIC,DPDK]}/2n-skx-xxv710-64b-2t1c-base-ndr"
-#  data: "plot-dpdk-throughput-latency-2n-skx"
-#  include:
-#    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
-#    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
-#  layout:
-#    title: "2n-skx-xxv710-64b-2t1c-base-ndr"
-#    layout: "plot-throughput"
-#
-#- type: "plot"
-#  title: "DPDK Throughput: 2n-skx-xxv710-64b-4t2c-base-ndr"
-#  algorithm: "plot_perf_box_name"
-#  output-file: "{DIR[STATIC,DPDK]}/2n-skx-xxv710-64b-4t2c-base-ndr"
-#  data: "plot-dpdk-throughput-latency-2n-skx"
-#  include:
-#    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
-#    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
-#  layout:
-#    title: "2n-skx-xxv710-64b-4t2c-base-ndr"
-#    layout: "plot-throughput"
-#
-#- type: "plot"
-#  title: "DPDK Throughput: 2n-skx-xxv710-64b-2t1c-base-pdr"
-#  algorithm: "plot_perf_box_name"
-#  output-file: "{DIR[STATIC,DPDK]}/2n-skx-xxv710-64b-2t1c-base-pdr"
-#  data: "plot-dpdk-throughput-latency-2n-skx"
-#  include:
-#    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
-#    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
-#  layout:
-#    title: "2n-skx-xxv710-64b-2t1c-base-pdr"
-#    layout: "plot-throughput"
-#
-#- type: "plot"
-#  title: "DPDK Throughput: 2n-skx-xxv710-64b-4t2c-base-pdr"
-#  algorithm: "plot_perf_box_name"
-#  output-file: "{DIR[STATIC,DPDK]}/2n-skx-xxv710-64b-4t2c-base-pdr"
-#  data: "plot-dpdk-throughput-latency-2n-skx"
-#  include:
-#    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
-#    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
-#  layout:
-#    title: "2n-skx-xxv710-64b-4t2c-base-pdr"
-#    layout: "plot-throughput"
-#
-## 2n-skx-x710
-#
-#- type: "plot"
-#  title: "DPDK Throughput: 2n-skx-x710-64b-2t1c-base-ndr"
-#  algorithm: "plot_perf_box_name"
-#  output-file: "{DIR[STATIC,DPDK]}/2n-skx-x710-64b-2t1c-base-ndr"
-#  data: "plot-dpdk-throughput-latency-2n-skx"
-#  include:
-#    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
-#    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
-#  layout:
-#    title: "2n-skx-x710-64b-2t1c-base-ndr"
-#    layout: "plot-throughput"
-#
-#- type: "plot"
-#  title: "DPDK Throughput: 2n-skx-x710-64b-4t2c-base-ndr"
-#  algorithm: "plot_perf_box_name"
-#  output-file: "{DIR[STATIC,DPDK]}/2n-skx-x710-64b-4t2c-base-ndr"
-#  data: "plot-dpdk-throughput-latency-2n-skx"
-#  include:
-#    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
-#    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
-#  layout:
-#    title: "2n-skx-x710-64b-4t2c-base-ndr"
-#    layout: "plot-throughput"
-#
-#- type: "plot"
-#  title: "DPDK Throughput: 2n-skx-x710-64b-2t1c-base-pdr"
-#  algorithm: "plot_perf_box_name"
-#  output-file: "{DIR[STATIC,DPDK]}/2n-skx-x710-64b-2t1c-base-pdr"
-#  data: "plot-dpdk-throughput-latency-2n-skx"
-#  include:
-#    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
-#    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
-#  layout:
-#    title: "2n-skx-x710-64b-2t1c-base-pdr"
-#    layout: "plot-throughput"
-#
-#- type: "plot"
-#  title: "DPDK Throughput: 2n-skx-x710-64b-4t2c-base-pdr"
-#  algorithm: "plot_perf_box_name"
-#  output-file: "{DIR[STATIC,DPDK]}/2n-skx-x710-64b-4t2c-base-pdr"
-#  data: "plot-dpdk-throughput-latency-2n-skx"
-#  include:
-#    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
-#    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
-#  layout:
-#    title: "2n-skx-x710-64b-4t2c-base-pdr"
-#    layout: "plot-throughput"
-#
+- type: "plot"
+  title: "DPDK Throughput: 2n-skx-xxv710-64b-2t1c-base-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-skx-xxv710-64b-2t1c-base-ndr"
+  data: "plot-dpdk-throughput-latency-2n-skx"
+  include:
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-64b-2t1c-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "DPDK Throughput: 2n-skx-xxv710-64b-4t2c-base-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-skx-xxv710-64b-4t2c-base-ndr"
+  data: "plot-dpdk-throughput-latency-2n-skx"
+  include:
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-64b-4t2c-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "DPDK Throughput: 2n-skx-xxv710-64b-2t1c-base-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-skx-xxv710-64b-2t1c-base-pdr"
+  data: "plot-dpdk-throughput-latency-2n-skx"
+  include:
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-64b-2t1c-base-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "DPDK Throughput: 2n-skx-xxv710-64b-4t2c-base-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-skx-xxv710-64b-4t2c-base-pdr"
+  data: "plot-dpdk-throughput-latency-2n-skx"
+  include:
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-64b-4t2c-base-pdr"
+    layout: "plot-throughput"
+
+# 2n-skx-x710
+
+- type: "plot"
+  title: "DPDK Throughput: 2n-skx-x710-64b-2t1c-base-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-skx-x710-64b-2t1c-base-ndr"
+  data: "plot-dpdk-throughput-latency-2n-skx"
+  include:
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-skx-x710-64b-2t1c-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "DPDK Throughput: 2n-skx-x710-64b-4t2c-base-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-skx-x710-64b-4t2c-base-ndr"
+  data: "plot-dpdk-throughput-latency-2n-skx"
+  include:
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-skx-x710-64b-4t2c-base-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "DPDK Throughput: 2n-skx-x710-64b-2t1c-base-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-skx-x710-64b-2t1c-base-pdr"
+  data: "plot-dpdk-throughput-latency-2n-skx"
+  include:
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-2t1c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-2t1c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-skx-x710-64b-2t1c-base-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "DPDK Throughput: 2n-skx-x710-64b-4t2c-base-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-skx-x710-64b-4t2c-base-pdr"
+  data: "plot-dpdk-throughput-latency-2n-skx"
+  include:
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-4t2c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-4t2c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-skx-x710-64b-4t2c-base-pdr"
+    layout: "plot-throughput"
+
 ## 3n-skx-xxv710
 #
 #- type: "plot"
@@ -17987,6 +17918,17 @@
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-3n-tsh"
   filter: "'1T1C' and 'NIC_Intel-X520-DA2'"
+  layout:
+    layout: "plot-hdrh-latency-by-percentile"
+
+- type: "plot"
+  title: "Latency by percentile: DPDK 2n-skx"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-2n-skx"
+  output-file-links: "{DIR[LAT,DPDK]}/skx.rst"
+  target-links: "../../_static/dpdk"
+  data: "plot-dpdk-hdrh-lat-2n-skx"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
 

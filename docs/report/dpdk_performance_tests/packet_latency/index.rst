@@ -41,10 +41,10 @@ Additional information about graph data:
 .. toctree::
     :maxdepth: 3
 
+    2n-skx-xxv710
+    2n-clx-xxv710
     3n-hsw-xl710
     3n-tsh-x520
-    2n-clx-xxv710
 
 ..
-    2n-skx-xxv710
     3n-skx-xxv710
