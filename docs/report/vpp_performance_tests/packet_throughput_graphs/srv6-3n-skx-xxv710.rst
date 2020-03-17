@@ -28,34 +28,17 @@
 
     </script>
 
-..
-    ## 3n-skx-xxv710
-    ### 78b-?t?c-srv6-ip6routing-base-dpdk
-    10ge2p1xxv710-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
-    10ge2p1xxv710-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr
-    10ge2p1xxv710-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr
-    10ge2p1xxv710-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr
-    10ge2p1xxv710-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr
-    10ge2p1xxv710-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-
-    Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-2t1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
-    Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr
-    Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr
-    Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr
-    Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr
-    Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
-
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
-78b-2t1c-srv6-ip6routing-base-dpdk
-----------------------------------
+78b-2t1c-srv6-ip6routing-base-avf
+---------------------------------
 
 ..
     .. raw:: html
 
         <center>
-        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-ndr.html"></iframe>
+        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-ndr.html"></iframe>
         <p><br></p>
         </center>
 
@@ -64,8 +47,8 @@
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-ndr}
-                \label{fig:3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-ndr}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-ndr}
+                \label{fig:3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-ndr}
         \end{figure}
 
     .. raw:: latex
@@ -75,7 +58,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -84,6 +67,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-pdr}
-            \label{fig:3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-pdr}
+            \label{fig:3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-pdr}
     \end{figure}

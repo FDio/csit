@@ -28,29 +28,6 @@
 
     </script>
 
-..
-    ## 3n-skx-xxv710
-    ### 64b-ip4routing-base-scale-avf
-    10ge2p1xxv710-avf-eth-ip4base-ndrpdr
-    10ge2p1xxv710-avf-ethip4-ip4scale20k-ndrpdr
-    10ge2p1xxv710-avf-ethip4-ip4scale200k-ndrpdr
-    10ge2p1xxv710-avf-ethip4-ip4scale2m-ndrpdr
-
-    ### 64b-ip4routing-base-scale-dpdk
-    10ge2p1xxv710-dot1q-ip4base-ndrpdr
-    10ge2p1xxv710-ethip4-ip4base-ndrpdr
-    10ge2p1xxv710-ethip4-ip4scale20k-ndrpdr
-    10ge2p1xxv710-ethip4-ip4scale200k-ndrpdr
-    10ge2p1xxv710-ethip4-ip4scale2m-ndrpdr
-
-    ### 64b-features-ip4routing-base-dpdk
-    10ge2p1xxv710-ethip4-ip4base-ndrpdr
-    10ge2p1xxv710-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr
-    10ge2p1xxv710-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr
-    10ge2p1xxv710-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr
-    10ge2p1xxv710-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr
-    10ge2p1xxv710-ethip4udp-ip4base-nat44-ndrpdr
-
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
@@ -136,6 +113,50 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-pdr-tsa}
             \label{fig:3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-features-ip4routing-base-avf
+--------------------------------
+
+..
+    .. raw:: html
+
+        <center>
+        <iframe id="221" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-avf-ndr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-avf-ndr-tsa}
+                \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-avf-ndr-tsa}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="222" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-avf-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-avf-pdr-tsa}
+            \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-avf-pdr-tsa}
     \end{figure}
 
 .. raw:: latex

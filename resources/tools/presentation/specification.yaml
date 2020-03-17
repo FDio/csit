@@ -324,6 +324,7 @@
         - 96  # NDRPDR sel
         - 97  # NDRPDR sel
         - 98  # NDRPDR sel
+        - 99  # NDRPDR sel
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -594,6 +595,7 @@
         - 96  # NDRPDR sel
         - 97  # NDRPDR sel
         - 98  # NDRPDR sel
+        - 99  # NDRPDR sel
 
     vpp-nic-comparison-3n-skx-mrr:
       # TODO: Replace
@@ -885,6 +887,7 @@
         - 96  # NDRPDR sel
         - 97  # NDRPDR sel
         - 98  # NDRPDR sel
+        - 99  # NDRPDR sel
     vpp-performance-changes-2n-skx:
       - "vpp-performance-changes-2n-skx-h1"
       - "vpp-performance-changes-2n-skx-ref"
@@ -997,6 +1000,7 @@
         - 96  # NDRPDR sel
         - 97  # NDRPDR sel
         - 98  # NDRPDR sel
+        - 99  # NDRPDR sel
     vpp-soak-vs-ndr-2n-skx-cmp:
       # TODO: Replace
       # csit-vpp-perf-verify-2001-2n-skx:
@@ -1012,6 +1016,7 @@
         - 96  # NDRPDR sel
         - 97  # NDRPDR sel
         - 98  # NDRPDR sel
+        - 99  # NDRPDR sel
         - 83  # SOAK
         - 86  # SOAK
 
@@ -1312,6 +1317,7 @@
         - 96  # NDRPDR sel
         - 97  # NDRPDR sel
         - 98  # NDRPDR sel
+        - 99  # NDRPDR sel
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
@@ -1496,6 +1502,7 @@
         - 96  # NDRPDR sel
         - 97  # NDRPDR sel
         - 98  # NDRPDR sel
+        - 99  # NDRPDR sel
     vpp-compare-topologies:
       - "vpp-compare-topologies-ref"
       - "vpp-compare-topologies-cmp"
@@ -2386,6 +2393,7 @@
       - 96  # NDRPDR sel
       - 97  # NDRPDR sel
       - 98  # NDRPDR sel
+      - 99  # NDRPDR sel
 
     csit-vpp-perf-verify-2001-2n-clx:
       - 28  # NDRPDR sel
@@ -10746,6 +10754,36 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-memif-base-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-memif-base-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-eth-l2xcbase-avf-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-eth-l2xcbase-avf-eth-2memif-1lxc-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-memif-base-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-memif-base-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-memif-base-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-eth-2memif-1lxc-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Lxc-Ndrpdr.64B-avf-2t1c-avf-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-memif-base-avf-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-memif-base-dpdk-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-memif-base-dpdk-ndr"
@@ -11041,6 +11079,7 @@
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-avf-dot1q-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-avf-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-avf-ethip4-ip4scale200k-ndrpdr"
@@ -11055,6 +11094,7 @@
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-avf-dot1q-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-avf-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-avf-ethip4-ip4scale200k-ndrpdr"
@@ -11091,6 +11131,38 @@
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-ethip4-ip4scale2m-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-dpdk-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -11333,6 +11405,34 @@
     - "Tests.Vpp.Perf.Ip4 Tunnels.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
   layout:
     title: "3n-hsw-xl710-64b-1t1c-ip4tunnel-base-dpdk-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-ip4tunnel-base-scale-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-ip4tunnel-base-scale-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-2t1c-avf-ethip4vxlan-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Dot1Q--Ethip4Vxlan-L2Bdscale1L2Bd1Vlan1Vxlan-Ndrpdr.64B-2t1c-avf-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Dot1Q--Ethip4Vxlan-L2Bdscale100L2Bd100Vlan100Vxlan-Ndrpdr.64B-2t1c-avf-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-ip4tunnel-base-scale-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-ip4tunnel-base-scale-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-ip4tunnel-base-scale-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-2t1c-avf-ethip4vxlan-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Dot1Q--Ethip4Vxlan-L2Bdscale1L2Bd1Vlan1Vxlan-Ndrpdr.64B-2t1c-avf-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Dot1Q--Ethip4Vxlan-L2Bdscale100L2Bd100Vlan100Vxlan-Ndrpdr.64B-2t1c-avf-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-ip4tunnel-base-scale-avf-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -11774,6 +11874,38 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-2t1c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-avf-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-dpdk-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-dpdk-ndr"
@@ -12055,6 +12187,8 @@
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-avf-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-2t1c-avf-eth-l2patch-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
@@ -12068,6 +12202,8 @@
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-avf-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-2t1c-avf-eth-l2patch-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
@@ -12104,6 +12240,38 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-2t1c-avf-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-2t1c-avf-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-l2switching-base-scale-dpdk-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-dpdk-ndr"
@@ -12136,35 +12304,35 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-ndr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr"
+    title: "3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-ndr"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-pdr"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-pdr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-pdr"
+    title: "3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -12444,35 +12612,35 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-ndr"
+  title: "Throughput: 3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-ndr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-ndr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-2t1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-2t1c-avf-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-ndr"
+    title: "3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-ndr"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-pdr"
+  title: "Throughput: 3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-pdr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-pdr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-2t1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-2t1c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-2t1c-avf-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-pdr"
+    title: "3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -12646,59 +12814,123 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-ndr"
+  title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-ndr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-ndr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-ndr"
+    title: "3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-ndr"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-pdr"
+  title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-pdr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-pdr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-pdr"
+    title: "3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-ndr"
+  title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-ndr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-ndr"
+    title: "3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-pdr"
+  title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-pdr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-pdr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "3n-skx-x710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-pdr"
+    title: "3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-vhost-base-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-vhost-base-avf-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-avf-vpp-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-avf-vpp-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-vhost-base-avf-vpp-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-avf-vpp-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-avf-vpp-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-2t1c-vhost-base-avf-vpp-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -12712,6 +12944,7 @@
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-2t1c-vhost-base-dpdk-ndr"
     layout: "plot-throughput"
@@ -12727,6 +12960,7 @@
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-2t1c-vhost-base-dpdk-pdr"
     layout: "plot-throughput"
@@ -12762,67 +12996,51 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-ndr"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-ndr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-ndr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-ndr"
+    title: "3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-ndr"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-pdr"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-pdr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-pdr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-pdr"
+    title: "3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-ndr"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-ndr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-ndr"
+    title: "3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-pdr"
+  title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-vpp-pdr"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-pdr"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-vpp-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-2t1c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-pdr"
+    title: "3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-vpp-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -12973,6 +13191,36 @@
     - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-memif-base-dpdk-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-memif-base-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-memif-base-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Lxc-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2memif-1lxc-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Lxc-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-memif-base-avf-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-memif-base-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-memif-base-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Lxc-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2memif-1lxc-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Lxc-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-memif-base-dpdk-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -13241,6 +13489,7 @@
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-ip4routing-base-scale-avf-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Dot1Q-Ip4Base-Ndrpdr.64B-.t.c-avf-dot1q-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-avf-eth-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-avf-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-Ndrpdr.64B-.t.c-avf-ethip4-ip4scale200k-ndrpdr"
@@ -13255,6 +13504,7 @@
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-ip4routing-base-scale-avf-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Dot1Q-Ip4Base-Ndrpdr.64B-.t.c-avf-dot1q-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-avf-eth-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-avf-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-Ndrpdr.64B-.t.c-avf-ethip4-ip4scale200k-ndrpdr"
@@ -13291,6 +13541,38 @@
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Ethip4-Ip4Scale2M-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-features-ip4routing-base-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-features-ip4routing-base-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-features-ip4routing-base-avf-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-features-ip4routing-base-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-features-ip4routing-base-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-features-ip4routing-base-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -13347,6 +13629,34 @@
     - "Tests.Vpp.Perf.Ip4 Tunnels.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
   layout:
     title: "3n-hsw-xl710-64b-ip4tunnel-base-dpdk-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-ip4tunnel-base-scale-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-ip4tunnel-base-scale-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-.t.c-avf-ethip4vxlan-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Dot1Q--Ethip4Vxlan-L2Bdscale1L2Bd1Vlan1Vxlan-Ndrpdr.64B-.t.c-avf-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Dot1Q--Ethip4Vxlan-L2Bdscale100L2Bd100Vlan100Vxlan-Ndrpdr.64B-.t.c-avf-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-ip4tunnel-base-scale-avf-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-ip4tunnel-base-scale-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-ip4tunnel-base-scale-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-.t.c-avf-ethip4vxlan-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Dot1Q--Ethip4Vxlan-L2Bdscale1L2Bd1Vlan1Vxlan-Ndrpdr.64B-.t.c-avf-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Dot1Q--Ethip4Vxlan-L2Bdscale100L2Bd100Vlan100Vxlan-Ndrpdr.64B-.t.c-avf-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-ip4tunnel-base-scale-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -13642,6 +13952,38 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
+  title: "Speedup: 3n-skx-xxv710-imix-ipsec-ip4routing-base-scale-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-imix-ipsec-ip4routing-base-scale-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-imix-ipsec-ip4routing-base-scale-avf-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-imix-ipsec-ip4routing-base-scale-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-imix-ipsec-ip4routing-base-scale-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-imix-ipsec-ip4routing-base-scale-avf-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
   title: "Speedup: 3n-skx-xxv710-imix-ipsec-ip4routing-base-scale-dpdk-ndr-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-imix-ipsec-ip4routing-base-scale-dpdk-ndr-tsa"
@@ -13859,6 +14201,8 @@
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-l2switching-base-avf-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Ndrpdr.64B-.t.c-avf-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-dot1q-l2bdbasemaclrn-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-.t.c-avf-eth-l2patch-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-ndrpdr"
@@ -13872,6 +14216,8 @@
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-l2switching-base-avf-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Ndrpdr.64B-.t.c-avf-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-dot1q-l2bdbasemaclrn-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-.t.c-avf-eth-l2patch-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-ndrpdr"
     - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-ndrpdr"
@@ -13908,6 +14254,38 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-l2switching-base-scale-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-l2switching-base-scale-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-.t.c-avf-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-l2switching-base-scale-avf-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-l2switching-base-scale-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-l2switching-base-scale-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-.t.c-avf-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-l2switching-base-scale-avf-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
   title: "Speedup: 3n-skx-xxv710-64b-l2switching-base-scale-dpdk-ndr-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-l2switching-base-scale-dpdk-ndr-tsa"
@@ -13940,35 +14318,35 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-xxv710-64b-features-l2switching-base-dpdk-ndr-tsa"
+  title: "Speedup: 3n-skx-xxv710-64b-features-l2switching-base-avf-ndr-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-features-l2switching-base-dpdk-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-features-l2switching-base-avf-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-features-l2switching-base-dpdk-ndr"
+    title: "3n-skx-xxv710-64b-features-l2switching-base-avf-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-xxv710-64b-features-l2switching-base-dpdk-pdr-tsa"
+  title: "Speedup: 3n-skx-xxv710-64b-features-l2switching-base-avf-pdr-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-features-l2switching-base-dpdk-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-features-l2switching-base-avf-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr"
-    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-features-l2switching-base-dpdk-pdr"
+    title: "3n-skx-xxv710-64b-features-l2switching-base-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -14004,35 +14382,35 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-xxv710-78b-srv6-ip6routing-base-dpdk-ndr-tsa"
+  title: "Speedup: 3n-skx-xxv710-78b-srv6-ip6routing-base-avf-ndr-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-srv6-ip6routing-base-dpdk-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-srv6-ip6routing-base-avf-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-.t.c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-.t.c-avf-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-78b-srv6-ip6routing-base-dpdk-ndr"
+    title: "3n-skx-xxv710-78b-srv6-ip6routing-base-avf-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-xxv710-78b-srv6-ip6routing-base-dpdk-pdr-tsa"
+  title: "Speedup: 3n-skx-xxv710-78b-srv6-ip6routing-base-avf-pdr-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-srv6-ip6routing-base-dpdk-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-srv6-ip6routing-base-avf-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-.t.c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-.t.c-avf-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-78b-srv6-ip6routing-base-dpdk-pdr"
+    title: "3n-skx-xxv710-78b-srv6-ip6routing-base-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -14148,59 +14526,123 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-dpdk-ndr"
+  title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-avf-ndr"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-dpdk-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-avf-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-x710-64b-link-bonding-vhost-base-dpdk-ndr"
+    title: "3n-skx-x710-64b-link-bonding-vhost-base-avf-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-dpdk-pdr"
+  title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-avf-pdr"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-dpdk-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-avf-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-x710-64b-link-bonding-vhost-base-dpdk-pdr"
+    title: "3n-skx-x710-64b-link-bonding-vhost-base-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-dpdk-vpp-ndr"
+  title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-avf-vpp-ndr"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-dpdk-vpp-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-avf-vpp-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "3n-skx-x710-64b-link-bonding-vhost-base-dpdk-vpp-ndr"
+    title: "3n-skx-x710-64b-link-bonding-vhost-base-avf-vpp-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-dpdk-vpp-pdr"
+  title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-avf-vpp-pdr"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-dpdk-vpp-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-avf-vpp-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X710-Avf-2Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "3n-skx-x710-64b-link-bonding-vhost-base-dpdk-vpp-pdr"
+    title: "3n-skx-x710-64b-link-bonding-vhost-base-avf-vpp-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-vhost-base-avf-ndr"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-vhost-base-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-vhost-base-avf-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-vhost-base-avf-pdr"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-vhost-base-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-vhost-base-avf-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-vhost-base-avf-vpp-ndr"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-vhost-base-avf-vpp-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-.t.c-avf-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-vhost-base-avf-vpp-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-vhost-base-avf-vpp-pdr"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-vhost-base-avf-vpp-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-.t.c-avf-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-vhost-base-avf-vpp-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -14214,6 +14656,7 @@
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-vhost-base-dpdk-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -14229,6 +14672,7 @@
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-vhost-base-dpdk-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -14264,67 +14708,51 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-ndr"
+  title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-avf-ndr"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-avf-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-ndr"
+    title: "3n-skx-xxv710-64b-link-bonding-vhost-base-avf-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-pdr"
+  title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-avf-pdr"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-avf-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-pdr"
+    title: "3n-skx-xxv710-64b-link-bonding-vhost-base-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-vpp-ndr"
+  title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-avf-vpp-ndr"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-vpp-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-avf-vpp-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-vpp-ndr"
+    title: "3n-skx-xxv710-64b-link-bonding-vhost-base-avf-vpp-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-vpp-pdr"
+  title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-avf-vpp-pdr"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-vpp-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-avf-vpp-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+    - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-link-bonding-vhost-base-dpdk-vpp-pdr"
+    title: "3n-skx-xxv710-64b-link-bonding-vhost-base-avf-vpp-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
