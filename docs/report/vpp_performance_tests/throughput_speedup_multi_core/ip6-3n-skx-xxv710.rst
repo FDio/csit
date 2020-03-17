@@ -28,15 +28,6 @@
 
     </script>
 
-..
-    ## 3n-skx-xxv710
-    ### 78b-ip6routing-base-scale-dpdk
-    10ge2p1xxv710-dot1q-ip6base-ndrpdr
-    10ge2p1xxv710-ethip6-ip6base-ndrpdr
-    10ge2p1xxv710-ethip6-ip6scale20k-ndrpdr
-    10ge2p1xxv710-ethip6-ip6scale200k-ndrpdr
-    10ge2p1xxv710-ethip6-ip6scale2m-ndrpdr
-
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
@@ -91,7 +82,7 @@
     .. raw:: html
 
         <center>
-        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-ip6routing-base-scale-dpdk-ndr-tsa.html"></iframe>
+        <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-ip6routing-base-scale-dpdk-ndr-tsa.html"></iframe>
         <p><br></p>
         </center>
 
@@ -111,7 +102,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-ip6routing-base-scale-dpdk-pdr-tsa.html"></iframe>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-ip6routing-base-scale-dpdk-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
