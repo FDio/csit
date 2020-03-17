@@ -28,58 +28,6 @@
 
     </script>
 
-..
-    ## 3n-skx-xxv710
-    ### 64b-?t?c-l2switching-base-avf
-    10ge2p1xxv710-avf-eth-l2patch-ndrpdr
-    10ge2p1xxv710-avf-eth-l2xcbase-ndrpdr
-    10ge2p1xxv710-avf-eth-l2bdbasemaclrn-ndrpdr
-
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-2t1c-avf-eth-l2patch-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr
-
-    ### 64b-?t?c-l2switching-base-dpdk
-    10ge2p1xxv710-dot1q-l2xcbase-ndrpdr
-    10ge2p1xxv710-eth-l2xcbase-ndrpdr
-    10ge2p1xxv710-dot1q-l2bdbasemaclrn-ndrpdr
-    10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
-
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-dot1q-l2xcbase-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Xcbase-Ndrpdr.64B-2t1c-eth-l2xcbase-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr
-
-    ### 64b-?t?c-l2switching-base-scale-dpdk
-    10ge2p1xxv710-eth-l2patch-ndrpdr
-    10ge2p1xxv710-eth-l2xcbase-ndrpdr
-    10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
-    10ge2p1xxv710-eth-l2bdscale10kmaclrn-ndrpdr
-    10ge2p1xxv710-eth-l2bdscale100kmaclrn-ndrpdr
-    10ge2p1xxv710-eth-l2bdscale1mmaclrn-ndrpdr
-
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Patch-Ndrpdr.64B-2t1c-eth-l2patch-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Xcbase-Ndrpdr.64B-2t1c-eth-l2xcbase-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale10kmaclrn-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale100kmaclrn-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale1mmaclrn-ndrpdr
-
-    ###  64b-?t?c-features-l2switching-base-dpdk
-    10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
-    10ge2p1xxv710-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr
-    10ge2p1xxv710-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr
-    10ge2p1xxv710-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr
-    10ge2p1xxv710-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
-    10ge2p1xxv710-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr
-
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
-    Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr
-
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
@@ -171,6 +119,50 @@
 
     \clearpage
 
+64b-2t1c-l2switching-base-scale-avf
+-----------------------------------
+
+..
+    .. raw:: html
+
+        <center>
+        <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr}
+                \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-pdr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
 64b-2t1c-l2switching-base-scale-dpdk
 ------------------------------------
 
@@ -215,14 +207,14 @@
 
     \clearpage
 
-64b-2t1c-features-l2switching-base-dpdk
----------------------------------------
+64b-2t1c-features-l2switching-base-avf
+--------------------------------------
 
 ..
     .. raw:: html
 
         <center>
-        <iframe id="31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr.html"></iframe>
+        <iframe id="31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-ndr.html"></iframe>
         <p><br></p>
         </center>
 
@@ -231,8 +223,8 @@
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr}
-                \label{fig:3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-ndr}
+                \label{fig:3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-ndr}
         \end{figure}
 
     .. raw:: latex
@@ -242,7 +234,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-pdr.html"></iframe>
+    <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -251,6 +243,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-pdr}
-            \label{fig:3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr}
     \end{figure}
