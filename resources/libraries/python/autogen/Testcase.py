@@ -15,6 +15,8 @@
 
 from string import Template
 
+import resources.libraries.python.autogen.SuiteClass as SuiteClass
+
 
 class Testcase:
     """Class containing a template string and a substitution method."""
@@ -72,46 +74,34 @@ class Testcase:
         return self.template.substitute(subst_dict)
 
     @classmethod
-    def default(cls, suite_id):
-        """Factory method for creating "default" testcase objects.
+    def auto(cls, suite_id):
+        """Factory method for creating testcase objects based on suite_id.
 
-        Testcase name will contain both frame size and core count.
-        Used for most performance tests, except TCP ones.
-
-        :param suite_id: Part of suite name to distinguish from other suites.
-        :type suite_id: str
-        :returns: Instance for generating testcase text of this type.
-        :rtype: Testcase
-        """
-        template_string = f'''
-| ${{tc_num}}-${{frame_str}}-${{cores_str}}c-{suite_id}
-| | [Tags] | ${{frame_str}} | ${{cores_str}}C
-| | frame_size=${{frame_num}} | phy_cores=${{cores_num}}
-'''
-        return cls(template_string)
-
-    @classmethod
-    def tcp(cls, suite_id):
-        """Factory method for creating "tcp" testcase objects.
-
-        Testcase name will contain core count, but not frame size.
+        For ndrpdr and reconf, testcase name will contain both frame size
+        and core count. Hoststack suites have two other types of test cases.
 
         :param suite_id: Part of suite name to distinguish from other suites.
         :type suite_id: str
         :returns: Instance for generating testcase text of this type.
         :rtype: Testcase
         """
-        # TODO: Choose a better frame size identifier for streamed protocols
-        # (TCP, QUIC, SCTP, ...) where DUT (not TG) decides frame size.
-        if u"tcphttp" in suite_id:
+        if SuiteClass.is_suite_http(suite_id):
             template_string = f'''
 | ${{tc_num}}-IMIX-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{cores_str}}C
 | | phy_cores=${{cores_num}}
 '''
-        else:
+        elif SuiteClass.is_suite_bps(suite_id):
             template_string = f'''
 | ${{tc_num}}-${{frame_str}}-${{cores_str}}c-{suite_id[:-4]}-{suite_id[-3:]}
-| | [Tags] | ${{cores_str}}C\n| | phy_cores=${{cores_num}}
+| | [Tags] | ${{cores_str}}C
+| | phy_cores=${{cores_num}}
+'''
+        else:
+            # Assuming ndrpdr or reconf.
+            template_string = f'''
+| ${{tc_num}}-${{frame_str}}-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{frame_str}} | ${{cores_str}}C
+| | frame_size=${{frame_num}} | phy_cores=${{cores_num}}
 '''
         return cls(template_string)
