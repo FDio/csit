@@ -39,18 +39,17 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 1c PDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-pdr.csv>`_
   - `CSV 2c PDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-pdr.csv>`_
 
-..
-    MRR Comparison
-    ~~~~~~~~~~~~~~
+MRR Comparison
+~~~~~~~~~~~~~~
 
-    Comparison tables in HTML, ASCII and CSV formats:
+Comparison tables in HTML, ASCII and CSV formats:
 
-      - `HTML 1c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-mrr.html>`_
-      - `HTML 2c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-mrr.html>`_
-      - `HTML 4c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-8t4c-mrr.html>`_
-      - `ASCII 1c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-mrr.txt>`_
-      - `ASCII 2c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-mrr.txt>`_
-      - `ASCII 4c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-8t4c-mrr.txt>`_
-      - `CSV 1c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-mrr.csv>`_
-      - `CSV 2c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-mrr.csv>`_
-      - `CSV 4c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-8t4c-mrr.csv>`_
+  - `HTML 1c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-mrr.html>`_
+  - `HTML 2c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-mrr.html>`_
+  - `HTML 4c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-8t4c-mrr.html>`_
+  - `ASCII 1c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-mrr.txt>`_
+  - `ASCII 2c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-mrr.txt>`_
+  - `ASCII 4c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-8t4c-mrr.txt>`_
+  - `CSV 1c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-mrr.csv>`_
+  - `CSV 2c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-mrr.csv>`_
+  - `CSV 4c MRR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-8t4c-mrr.csv>`_

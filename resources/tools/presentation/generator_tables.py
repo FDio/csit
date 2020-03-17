@@ -448,7 +448,6 @@ def _tpc_sort_table(table):
     :rtype: list
     """
 
-
     tbl_new = list()
     tbl_see = list()
     tbl_delta = list()
@@ -469,7 +468,8 @@ def _tpc_sort_table(table):
 
     # Put the tables together:
     table = list()
-    table.extend(tbl_new)
+    # We do not want "New in CSIT":
+    # table.extend(tbl_new)
     table.extend(tbl_see)
     table.extend(tbl_delta)
 
