@@ -28,15 +28,6 @@
 
     </script>
 
-..
-    ## 2n-skx-x710
-    ###  64b-ip4routing-base-scale-[avf,dpdk]
-    2n1l-10ge2p1x710-avf-ethip4-ip4base-ndrpdr
-    2n1l-10ge2p1x710-avf-ethip4-ip4scale2m-ndrpdr
-    2n1l-10ge2p1x710-dot1q-ip4base-ndrpdr
-    2n1l-10ge2p1x710-ethip4-ip4base-ndrpdr
-    2n1l-10ge2p1x710-ethip4-ip4scale2m-ndrpdr
-
 2n-skx-x710
 ~~~~~~~~~~~
 
