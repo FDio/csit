@@ -289,10 +289,8 @@
         - 48  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-mrr:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-3n-skx:
-      csit-vpp-perf-verify-1908-3n-skx:
-        - 36  # MRR sel
+      csit-vpp-perf-verify-2001-3n-skx:
+        - 50  # MRR sel
 
     plot-dpdk-throughput-latency-3n-skx:
       csit-dpdk-perf-verify-2001-3n-skx:
@@ -598,10 +596,8 @@
         - 99  # NDRPDR sel
 
     vpp-nic-comparison-3n-skx-mrr:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-3n-skx:
-      csit-vpp-perf-verify-1908-3n-skx:
-        - 36  # MRR sel
+      csit-vpp-perf-verify-2001-3n-skx:
+        - 50  # MRR sel
 
     vpp-nic-comparison-2n-skx-mrr:
       # TODO: Replace
@@ -710,10 +706,8 @@
         - 17  # MRR sel
 
     vpp-mrr-results-3n-skx:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-3n-skx:
-      csit-vpp-perf-verify-1908-3n-skx:
-        - 36  # MRR sel
+      csit-vpp-perf-verify-2001-3n-skx:
+        - 50  # MRR sel
 
     vpp-mrr-results-2n-skx:
       # TODO: Replace
@@ -1072,10 +1066,8 @@
       csit-vpp-perf-verify-1908-3n-skx:
         - 36  # MRR sel
     vpp-performance-changes-3n-skx-mrr-cmp:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-3n-skx:
-      csit-vpp-perf-verify-1908-3n-skx:
-        - 36  # MRR sel
+      csit-vpp-perf-verify-2001-3n-skx:
+        - 50  # MRR sel
     vpp-performance-changes-3n-skx-mrr:
       - "vpp-performance-changes-3n-skx-mrr-h1"
       - "vpp-performance-changes-3n-skx-mrr-ref"
@@ -1366,10 +1358,8 @@
       csit-vpp-perf-verify-2001-3n-hsw:
         - 17  # MRR sel
     vpp-compare-testbeds-mrr-cmp:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-3n-skx:
-      csit-vpp-perf-verify-1908-3n-skx:
-        - 36  # MRR sel
+      csit-vpp-perf-verify-2001-3n-skx:
+        - 50  # MRR sel
     vpp-compare-testbeds-mrr:
       - "vpp-compare-testbeds-mrr-ref"
       - "vpp-compare-testbeds-mrr-cmp"
@@ -1508,10 +1498,8 @@
       - "vpp-compare-topologies-cmp"
 
     vpp-compare-topologies-mrr-ref:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-3n-skx:
-      csit-vpp-perf-verify-1908-3n-skx:
-        - 36  # MRR sel
+      csit-vpp-perf-verify-2001-3n-skx:
+        - 50  # MRR sel
     vpp-compare-topologies-mrr-cmp:
       # TODO: Replace
       # csit-vpp-perf-verify-2001-2n-skx:
@@ -2343,6 +2331,7 @@
       - 46  # NDRPDR sel
       - 47  # NDRPDR sel
       - 48  # NDRPDR sel
+      - 50  # MRR sel
 
     csit-vpp-perf-verify-1904-2n-skx:
       - 11  # MRR sel
@@ -2854,65 +2843,65 @@
   - "throughput"
   - "tags"
 
-## VPP Compare NICs 3n-skx 2t1c mrr
-#- type: "table"
-#  title: "VPP Compare NICs 3n-skx 2t1c mrr"
-#  algorithm: "table_nics_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-mrr"
-#  reference:
-#    title: "x710"
-#    nic: "NIC_Intel-X710"
-#  compare:
-#    title: "xxv710"
-#    nic: "NIC_Intel-XXV710"
-#  data: "vpp-nic-comparison-3n-skx-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#  - "tags"
-#
-## VPP Compare NICs 3n-skx 4t2c mrr
-#- type: "table"
-#  title: "VPP Compare NICs 3n-skx 4t2c mrr"
-#  algorithm: "table_nics_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-mrr"
-#  reference:
-#    title: "x710"
-#    nic: "NIC_Intel-X710"
-#  compare:
-#    title: "xxv710"
-#    nic: "NIC_Intel-XXV710"
-#  data: "vpp-nic-comparison-3n-skx-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#  - "tags"
-#
-# # VPP Compare NICs 3n-skx 8t4c mrr
-#- type: "table"
-#  title: "VPP Compare NICs 3n-skx 8t4c mrr"
-#  algorithm: "table_nics_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-nics-mrr"
-#  reference:
-#    title: "x710"
-#    nic: "NIC_Intel-X710"
-#  compare:
-#    title: "xxv710"
-#    nic: "NIC_Intel-XXV710"
-#  data: "vpp-nic-comparison-3n-skx-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#  - "tags"
+# VPP Compare NICs 3n-skx 2t1c mrr
+- type: "table"
+  title: "VPP Compare NICs 3n-skx 2t1c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-mrr"
+  reference:
+    title: "x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-3n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Compare NICs 3n-skx 4t2c mrr
+- type: "table"
+  title: "VPP Compare NICs 3n-skx 4t2c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-mrr"
+  reference:
+    title: "x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-3n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+ # VPP Compare NICs 3n-skx 8t4c mrr
+- type: "table"
+  title: "VPP Compare NICs 3n-skx 8t4c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-nics-mrr"
+  reference:
+    title: "x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-3n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
 
 # VPP Compare NICs 2n-skx 2t1c ndr
 - type: "table"
@@ -4083,72 +4072,72 @@
   - "parent"
   - "result"
 
-## VPP Performance Changes 3n-skx 2t1c MRR
-#- type: "table"
-#  title: "VPP Performance Changes 3n-skx 2t1c MRR"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-mrr"
-#  history:
-#    - title: "rls1904"
-#      data: "vpp-performance-changes-3n-skx-mrr-h1"
-#  reference:
-#    title: "rls1908"
-#    data: "vpp-performance-changes-3n-skx-mrr-ref"
-#  compare:
-#    title: "rls2001"
-#    data: "vpp-performance-changes-3n-skx-mrr-cmp"
-#  data: "vpp-performance-changes-3n-skx-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#
-## VPP Performance Changes 3n-skx 4t2c MRR
-#- type: "table"
-#  title: "VPP Performance Changes 3n-skx 4t2c MRR"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-mrr"
-#  history:
-#    - title: "rls1904"
-#      data: "vpp-performance-changes-3n-skx-mrr-h1"
-#  reference:
-#    title: "rls1908"
-#    data: "vpp-performance-changes-3n-skx-mrr-ref"
-#  compare:
-#    title: "rls2001"
-#    data: "vpp-performance-changes-3n-skx-mrr-cmp"
-#  data: "vpp-performance-changes-3n-skx-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#
-## VPP Performance Changes 3n-skx 8t4c MRR
-#- type: "table"
-#  title: "VPP Performance Changes 3n-skx 8t4c MRR"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-mrr"
-#  history:
-#    - title: "rls1904"
-#      data: "vpp-performance-changes-3n-skx-mrr-h1"
-#  reference:
-#    title: "rls1908"
-#    data: "vpp-performance-changes-3n-skx-mrr-ref"
-#  compare:
-#    title: "rls2001"
-#    data: "vpp-performance-changes-3n-skx-mrr-cmp"
-#  data: "vpp-performance-changes-3n-skx-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#
+# VPP Performance Changes 3n-skx 2t1c MRR
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 2t1c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-mrr"
+  history:
+    - title: "rls1904"
+      data: "vpp-performance-changes-3n-skx-mrr-h1"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-skx-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-skx-mrr-cmp"
+  data: "vpp-performance-changes-3n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 3n-skx 4t2c MRR
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 4t2c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-mrr"
+  history:
+    - title: "rls1904"
+      data: "vpp-performance-changes-3n-skx-mrr-h1"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-skx-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-skx-mrr-cmp"
+  data: "vpp-performance-changes-3n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 3n-skx 8t4c MRR
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 8t4c MRR"
+  algorithm: "table_perf_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-mrr"
+  history:
+    - title: "rls1904"
+      data: "vpp-performance-changes-3n-skx-mrr-h1"
+  reference:
+    title: "rls1908"
+    data: "vpp-performance-changes-3n-skx-mrr-ref"
+  compare:
+    title: "rls2001"
+    data: "vpp-performance-changes-3n-skx-mrr-cmp"
+  data: "vpp-performance-changes-3n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
 ## VPP Performance Changes 2n-skx 2t1c MRR
 #- type: "table"
 #  title: "VPP Performance Changes 2n-skx 2t1c MRR"
@@ -4443,71 +4432,71 @@
   - "parent"
   - "result"
 
-## VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr
-#- type: "table"
-#  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr"
-#  algorithm: "table_perf_comparison_nic"
-#  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-mrr"
-#  reference:
-#    title: "3n-hsw xl710"
-#    data: "vpp-compare-testbeds-mrr-ref"
-#    nic: "NIC_Intel-XL710"
-#  compare:
-#    title: "3n-skx xxv710"
-#    data: "vpp-compare-testbeds-mrr-cmp"
-#    nic: "NIC_Intel-XXV710"
-#  data: "vpp-compare-testbeds-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '1C'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#  - "tags"
-#
-## VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c mrr
-#- type: "table"
-#  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c mrr"
-#  algorithm: "table_perf_comparison_nic"
-#  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-mrr"
-#  reference:
-#    title: "3n-hsw xl710"
-#    data: "vpp-compare-testbeds-mrr-ref"
-#    nic: "NIC_Intel-XL710"
-#  compare:
-#    title: "3n-skx xxv710"
-#    data: "vpp-compare-testbeds-mrr-cmp"
-#    nic: "NIC_Intel-XXV710"
-#  data: "vpp-compare-testbeds-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '2C'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#  - "tags"
-#
-## VPP Comparison Across Testbeds 3n-hsw to 3n-skx 4c mrr
-#- type: "table"
-#  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 4c mrr"
-#  algorithm: "table_perf_comparison_nic"
-#  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-4c-mrr"
-#  reference:
-#    title: "3n-hsw xl710"
-#    data: "vpp-compare-testbeds-mrr-ref"
-#    nic: "NIC_Intel-XL710"
-#  compare:
-#    title: "3n-skx xxv710"
-#    data: "vpp-compare-testbeds-mrr-cmp"
-#    nic: "NIC_Intel-XXV710"
-#  data: "vpp-compare-testbeds-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '4C'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#  - "tags"
+# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr"
+  algorithm: "table_perf_comparison_nic"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-mrr"
+  reference:
+    title: "3n-hsw xl710"
+    data: "vpp-compare-testbeds-mrr-ref"
+    nic: "NIC_Intel-XL710"
+  compare:
+    title: "3n-skx xxv710"
+    data: "vpp-compare-testbeds-mrr-cmp"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-compare-testbeds-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c mrr"
+  algorithm: "table_perf_comparison_nic"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-mrr"
+  reference:
+    title: "3n-hsw xl710"
+    data: "vpp-compare-testbeds-mrr-ref"
+    nic: "NIC_Intel-XL710"
+  compare:
+    title: "3n-skx xxv710"
+    data: "vpp-compare-testbeds-mrr-cmp"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-compare-testbeds-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 4c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 4c mrr"
+  algorithm: "table_perf_comparison_nic"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-4c-mrr"
+  reference:
+    title: "3n-hsw xl710"
+    data: "vpp-compare-testbeds-mrr-ref"
+    nic: "NIC_Intel-XL710"
+  compare:
+    title: "3n-skx xxv710"
+    data: "vpp-compare-testbeds-mrr-cmp"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-compare-testbeds-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '4C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
 
 ## VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr
 #- type: "table"
@@ -5005,39 +4994,39 @@
   - "parent"
   - "msg"
 
-## Detailed Test Results - VPP MRR Results 3n-skx
-#- type: "table"
-#  title: "Detailed Test Results - VPP MRR Results 3n-skx"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTR,MRR,VPP,3N,SKX]}/"
-#  columns:
-#  - title: " |prein| Test Name |preout| "
-#    data: "data name"
-#  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-#    data: "data msg"
-#  data: "vpp-mrr-results-3n-skx"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
-#
-## Detailed Test Results - VPP MRR Results 2n-skx
-#- type: "table"
-#  title: "Detailed Test Results - VPP MRR Results 2n-skx"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTR,MRR,VPP,2N,SKX]}/"
-#  columns:
-#  - title: " |prein| Test Name |preout| "
-#    data: "data name"
-#  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-#    data: "data msg"
-#  data: "vpp-mrr-results-2n-skx"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
+# Detailed Test Results - VPP MRR Results 3n-skx
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 3n-skx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,MRR,VPP,3N,SKX]}/"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+    data: "data msg"
+  data: "vpp-mrr-results-3n-skx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - VPP MRR Results 2n-skx
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 2n-skx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,MRR,VPP,2N,SKX]}/"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+    data: "data msg"
+  data: "vpp-mrr-results-2n-skx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
 
 # Detailed Test Results - VPP MRR Results 2n-clx
 - type: "table"
@@ -5124,39 +5113,39 @@
   - "name"
   - "conf-history"
 
-## Test configuration - VPP MRR Test Configs 3n-skx
-#- type: "table"
-#  title: "Test configuration - VPP MRR Test Configs 3n-skx"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTC,MRR,VPP,3N,SKX]}/"
-#  columns:
-#  - title: " |prein| Test Name |preout| "
-#    data: "data name"
-#  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-#    data: "data conf-history"
-#  data: "vpp-mrr-results-3n-skx"
-#  filter: "all"
-#  parameters:
-#  - "parent"
-#  - "name"
-#  - "conf-history"
-#
-## Test configuration - VPP MRR Test Configs 2n-skx
-#- type: "table"
-#  title: "Test configuration - VPP MRR Test Configs 2n-skx"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTC,MRR,VPP,2N,SKX]}/"
-#  columns:
-#  - title: " |prein| Test Name |preout| "
-#    data: "data name"
-#  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-#    data: "data conf-history"
-#  data: "vpp-mrr-results-2n-skx"
-#  filter: "all"
-#  parameters:
-#  - "parent"
-#  - "name"
-#  - "conf-history"
+# Test configuration - VPP MRR Test Configs 3n-skx
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 3n-skx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,MRR,VPP,3N,SKX]}/"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+    data: "data conf-history"
+  data: "vpp-mrr-results-3n-skx"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP MRR Test Configs 2n-skx
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 2n-skx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,MRR,VPP,2N,SKX]}/"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+    data: "data conf-history"
+  data: "vpp-mrr-results-2n-skx"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
 
 # Test configuration - VPP MRR Test Configs 2n-clx
 - type: "table"
@@ -5941,7 +5930,7 @@
   output-file: "{DIR[DTR,MRR,VPP,ALL]}"
   dir-tables:
 #    - "{DIR[DTR,MRR,VPP,2N,SKX]}"
-#    - "{DIR[DTR,MRR,VPP,3N,SKX]}"
+    - "{DIR[DTR,MRR,VPP,3N,SKX]}"
     - "{DIR[DTR,MRR,VPP,2N,CLX]}"
     - "{DIR[DTR,MRR,VPP,3N,HSW]}"
     - "{DIR[DTR,MRR,VPP,3N,TSH]}"
@@ -5949,7 +5938,7 @@
     - "{DIR[DTR,MRR,VPP,3N,DNV]}"
   data:
 #    - "vpp-mrr-results-2n-skx"
-#    - "vpp-mrr-results-3n-skx"
+    - "vpp-mrr-results-3n-skx"
     - "vpp-mrr-results-2n-clx"
     - "vpp-mrr-results-3n-hsw"
     - "vpp-mrr-results-3n-tsh"
@@ -5997,7 +5986,7 @@
   output-file: "{DIR[DTC,MRR,VPP,ALL]}"
   dir-tables:
 #    - "{DIR[DTC,MRR,VPP,2N,SKX]}"
-#    - "{DIR[DTC,MRR,VPP,3N,SKX]}"
+    - "{DIR[DTC,MRR,VPP,3N,SKX]}"
     - "{DIR[DTC,MRR,VPP,2N,CLX]}"
     - "{DIR[DTC,MRR,VPP,3N,HSW]}"
     - "{DIR[DTC,MRR,VPP,3N,TSH]}"
@@ -6005,7 +5994,7 @@
     - "{DIR[DTC,MRR,VPP,3N,DNV]}"
   data:
 #    - "vpp-mrr-results-2n-skx"
-#    - "vpp-mrr-results-3n-skx"
+    - "vpp-mrr-results-3n-skx"
     - "vpp-mrr-results-2n-clx"
     - "vpp-mrr-results-3n-hsw"
     - "vpp-mrr-results-3n-tsh"
