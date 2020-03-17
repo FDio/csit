@@ -31,11 +31,22 @@
   tags:
     - install-dpdk
 
+- name: Ensure igb_uio module is enabled
+  lineinfile:
+    dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}/config/common_base"
+    regexp: "^CONFIG_RTE_EAL_IGB_UIO"
+    line: "CONFIG_RTE_EAL_IGB_UIO=y"
+  loop: "{{ dpdk_version }}"
+  when: "dpdk_extracted"
+  register: "dpdk_configured"
+  tags:
+    - install-dpdk
+
 - name: DPDK - Compile Release I
   become: yes
   command: "make install T={{ dpdk_build_targets[item][ansible_machine] }} DESTDIR={{ dpdk_target_dir }}/dpdk-{{ item }} chdir={{ dpdk_target_dir }}/dpdk-{{ item }}"
   loop: "{{ dpdk_version }}"
-  when: "dpdk_extracted"
+  when: "dpdk_configured"
   register: "dpdk_compiled"
   tags:
     - install-dpdk
