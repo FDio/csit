@@ -138,21 +138,20 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 2t1c PDR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-pdr.csv>`_
   - `CSV 4t2c PDR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-pdr.csv>`_
 
-..
-    MRR Comparison
-    ``````````````
+MRR Comparison
+``````````````
 
-    Comparison tables in HTML, ASCII and CSV formats:
+Comparison tables in HTML, ASCII and CSV formats:
 
-      - `HTML 2t1c MRR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-mrr.html>`_
-      - `HTML 4t2c MRR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-mrr.html>`_
-      - `HTML 8t4c MRR comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-mrr.html>`_
-      - `ASCII 2t1c MRR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-mrr.txt>`_
-      - `ASCII 4t2c MRR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-mrr.txt>`_
-      - `ASCII 8t4c MRR comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-mrr.txt>`_
-      - `CSV 2t1c MRR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-mrr.csv>`_
-      - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-mrr.csv>`_
-      - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-mrr.csv>`_
+  - `HTML 2t1c MRR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-mrr.html>`_
+  - `HTML 4t2c MRR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-mrr.html>`_
+  - `HTML 8t4c MRR comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-mrr.html>`_
+  - `ASCII 2t1c MRR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-mrr.txt>`_
+  - `ASCII 4t2c MRR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-mrr.txt>`_
+  - `ASCII 8t4c MRR comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-mrr.txt>`_
+  - `CSV 2t1c MRR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-mrr.csv>`_
+  - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-mrr.csv>`_
+  - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-mrr.csv>`_
 
 3n-hsw
 ~~~~~~
