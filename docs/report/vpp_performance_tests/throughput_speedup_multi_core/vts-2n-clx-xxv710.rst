@@ -28,13 +28,6 @@
 
     </script>
 
-..
-    ## 2n-clx-xxv710
-    ### 64b-vts-l2switching-base-dpdk
-    10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
-    10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
-    10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
-
 2n-clx-xxv710
 ~~~~~~~~~~~~~
 
