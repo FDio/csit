@@ -28,23 +28,6 @@
 
     </script>
 
-..
-    ## 3n-tsh-x520
-    ### imix-?t?c-ipsec-ip4routing-base-scale-sw-ixgbe
-    10ge2p1x520-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr
-    10ge2p1x520-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-    10ge2p1x520-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr
-    10ge2p1x520-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-    10ge2p1x520-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr
-    10ge2p1x520-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-
-    Tests.Vpp.Perf.Crypto.10Ge2P1X520-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-1t1c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr
-    Tests.Vpp.Perf.Crypto.10Ge2P1X520-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-1t1c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-    Tests.Vpp.Perf.Crypto.10Ge2P1X520-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-1t1c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr
-    Tests.Vpp.Perf.Crypto.10Ge2P1X520-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-1t1c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-    Tests.Vpp.Perf.Crypto.10Ge2P1X520-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-1t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr
-    Tests.Vpp.Perf.Crypto.10Ge2P1X520-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-1t1c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-
 3n-tsh-x520
 ~~~~~~~~~~~
 
