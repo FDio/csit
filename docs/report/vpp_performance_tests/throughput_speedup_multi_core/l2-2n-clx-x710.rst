@@ -28,26 +28,16 @@
 
     </script>
 
-..
-    ## 2n-clx-x710
-    ### 64b-l2switching-base-scale-[avf,dpdk]
-    2n1l-10ge2p1x710-avf-eth-l2xcbase-ndrpdr
-    2n1l-10ge2p1x710-avf-dot1q-l2bdbasemaclrn-ndrpdr
-    2n1l-10ge2p1x710-avf-eth-l2bdbasemaclrn-ndrpdr
-    2n1l-10ge2p1x710-dot1q-l2bdbasemaclrn-ndrpdr
-    2n1l-10ge2p1x710-eth-l2bdbasemaclrn-ndrpdr
-    2n1l-10ge2p1x710-eth-l2bdscale1mmaclrn-ndrpdr
-
 2n-clx-x710
 ~~~~~~~~~~~
 
-64b-l2switching-base-scale-[avf,dpdk]
------------------------------------
+64b-l2switching-base-scale-avf
+------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-x710-64b-l2switching-base-scale-[avf,dpdk]-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-x710-64b-l2switching-base-scale-avf-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -56,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-l2switching-base-scale-[avf,dpdk]-ndr-tsa}
-            \label{fig:2n-clx-x710-64b-l2switching-base-scale-[avf,dpdk]-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-l2switching-base-scale-avf-ndr-tsa}
+            \label{fig:2n-clx-x710-64b-l2switching-base-scale-avf-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -67,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-x710-64b-l2switching-base-scale-[avf,dpdk]-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-x710-64b-l2switching-base-scale-avf-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -76,6 +66,49 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-l2switching-base-scale-[avf,dpdk]-pdr-tsa}
-            \label{fig:2n-clx-x710-64b-l2switching-base-scale-[avf,dpdk]-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-l2switching-base-scale-avf-pdr-tsa}
+            \label{fig:2n-clx-x710-64b-l2switching-base-scale-avf-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-l2switching-base-scale-dpdk
+-------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-x710-64b-l2switching-base-scale-dpdk-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-l2switching-base-scale-dpdk-ndr-tsa}
+            \label{fig:2n-clx-x710-64b-l2switching-base-scale-dpdk-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-x710-64b-l2switching-base-scale-dpdk-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-x710-64b-l2switching-base-scale-dpdk-pdr-tsa}
+            \label{fig:2n-clx-x710-64b-l2switching-base-scale-dpdk-pdr-tsa}
     \end{figure}
