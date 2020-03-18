@@ -28,24 +28,6 @@
 
     </script>
 
-..
-    ## 3n-hsw-xl710
-    ### 64b-?t?c-vhost-base-dpdk
-    10ge2p1xl710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
-    10ge2p1xl710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-    10ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-    10ge2p1xl710-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr
-
-    Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
-    Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-    Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-    Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr
-
-    Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
-    Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr10241Vm-Vppl2Xc-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
-    Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1V-m-Vppl2Xc-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
-    Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr
-
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
