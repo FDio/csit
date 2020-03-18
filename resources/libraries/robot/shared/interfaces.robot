@@ -300,12 +300,12 @@
 | | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
 | | ${dut_new_if1}= | VPP Create Rdma Interface | ${nodes['${dut}']}
 | | ... | ${${dut}_if1} | num_rx_queues=${rxq_count_int}
-| | ... | rxq_size=${nic_rxq_size} | txq_size=${rdma_txq_size}
+| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
 | | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if1}
 | | ${dut_new_if2}= | VPP Create Rdma Interface | ${nodes['${dut}']}
 | | ... | ${${dut}_if2} | num_rx_queues=${rxq_count_int}
-| | ... | rxq_size=${nic_rxq_size} | txq_size=${rdma_txq_size}
+| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
 | | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
 | | ... | ${dut_new_if2}
 | | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
