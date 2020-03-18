@@ -26,6 +26,7 @@
             ifrm.style.visibility = 'visible';
         }
 
+    </script>
 
 2n-skx-xxv710
 ~~~~~~~~~~~~~

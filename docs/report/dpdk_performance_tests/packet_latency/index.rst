@@ -42,9 +42,7 @@ Additional information about graph data:
     :maxdepth: 3
 
     2n-skx-xxv710
+    3n-skx-xxv710
     2n-clx-xxv710
     3n-hsw-xl710
     3n-tsh-x520
-
-..
-    3n-skx-xxv710
