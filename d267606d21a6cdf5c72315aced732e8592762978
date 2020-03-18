@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ddcc69d_f927f634",
+        "filename": "resources/tools/testbed-setup/ansible/roles/dpdk/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-18T07:57:50Z",
+      "side": 1,
+      "message": "DPDK - Build igb_uio by default",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 40
+      },
+      "revId": "d267606d21a6cdf5c72315aced732e8592762978",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
