@@ -28,28 +28,6 @@
 
     </script>
 
-..
-    ## 2n-clx-xxv710
-    ### 64b-l2switching-base-avf
-    2n1l-10ge2p1xxv710-avf-eth-l2patch-ndrpdr
-    2n1l-10ge2p1xxv710-avf-eth-l2xcbase-ndrpdr
-    2n1l-10ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-ndrpdr
-    2n1l-10ge2p1xxv710-avf-eth-l2bdbasemaclrn-ndrpdr
-    2n1l-10ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr
-
-    ### 64b-l2switching-base-dpdk
-    2n1l-10ge2p1xxv710-eth-l2patch-ndrpdr
-    2n1l-10ge2p1xxv710-dot1q-l2xcbase-ndrpdr
-    2n1l-10ge2p1xxv710-eth-l2xcbase-ndrpdr
-    2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-ndrpdr
-    2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
-
-    ### 64b-l2switching-base-scale-dpdk
-    2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
-    2n1l-10ge2p1xxv710-eth-l2bdscale10kmaclrn-ndrpdr
-    2n1l-10ge2p1xxv710-eth-l2bdscale100kmaclrn-ndrpdr
-    2n1l-10ge2p1xxv710-eth-l2bdscale1mmaclrn-ndrpdr
-
 2n-clx-xxv710
 ~~~~~~~~~~~~~
 

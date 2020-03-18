@@ -28,17 +28,51 @@
 
     </script>
 
-..
-    ## 2n-clx-xxv710
-    ### 78b-ip6routing-base-scale-dpdk
-    2n1l-10ge2p1xxv710-dot1q-ip6base-ndrpdr
-    2n1l-10ge2p1xxv710-ethip6-ip6base-ndrpdr
-    2n1l-10ge2p1xxv710-ethip6-ip6scale20k-ndrpdr
-    2n1l-10ge2p1xxv710-ethip6-ip6scale200k-ndrpdr
-    2n1l-10ge2p1xxv710-ethip6-ip6scale2m-ndrpdr
-
 2n-clx-xxv710
 ~~~~~~~~~~~~~
+
+78b-ip6routing-base-scale-avf
+-----------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-78b-ip6routing-base-scale-avf-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-78b-ip6routing-base-scale-avf-ndr-tsa}
+            \label{fig:2n-clx-xxv710-78b-ip6routing-base-scale-avf-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-78b-ip6routing-base-scale-avf-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-78b-ip6routing-base-scale-avf-pdr-tsa}
+            \label{fig:2n-clx-xxv710-78b-ip6routing-base-scale-avf-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 78b-ip6routing-base-scale-dpdk
 ------------------------------
