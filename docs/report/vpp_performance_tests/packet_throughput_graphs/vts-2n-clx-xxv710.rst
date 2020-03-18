@@ -28,17 +28,6 @@
 
     </script>
 
-..
-    ## 2n-clx-xxv710
-    ### 64b-?t?c-vts-l2switching-base-dpdk
-    10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
-    10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
-    10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
-
-    Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
-    Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
-    Tests.Vpp.Perf.Vts.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
-
 2n-clx-xxv710
 ~~~~~~~~~~~~~
 
