@@ -1,4 +1,6 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+
+
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -43,6 +45,7 @@ function gather_build () {
 
     set -exuo pipefail
 
+    # Not skipping for fake runs, as they need DUT set.
     pushd "${DOWNLOAD_DIR}" || die "Pushd failed."
     case "${TEST_CODE}" in
         *"hc2vpp"*)
@@ -71,6 +74,7 @@ function gather_dpdk () {
     #
     # Variables read:
     # - TEST_CODE - The test selection string from environment or argument.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Hardcoded:
     # - dpdk archive name to download if TEST_CODE is not time based.
     # Directories updated:
@@ -80,6 +84,9 @@ function gather_dpdk () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     dpdk_repo="https://fast.dpdk.org/rel"
     # Use downloaded packages with specific version
     if [[ "${TEST_CODE}" == *"daily"* ]] || \
@@ -118,6 +125,7 @@ function gather_vpp () {
     # - TEST_CODE - The test selection string from environment or argument.
     # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Variables set:
     # - VPP_VERSION - VPP stable version under test.
     # Files read:
@@ -137,6 +145,9 @@ function gather_vpp () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     case "${TEST_CODE}" in
         "csit-"*)
             # Use downloaded packages with specific version.

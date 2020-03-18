@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,11 +21,12 @@ function archive_test_results () {
 
     # Arguments:
     # - ${1}: Directory to archive to. Required. Parent has to exist.
-    # Variable set:
-    # - TARGET - Target directory.
     # Variables read:
     # - ARCHIVE_DIR - Path to where robot result files are created in.
     # - VPP_DIR - Path to existing directory, root for to relative paths.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
+    # Variable set:
+    # - TARGET - Target directory.
     # Directories updated:
     # - ${1} - Created, and robot and parsing files are moved/created there.
     # Functions called:
@@ -34,6 +35,9 @@ function archive_test_results () {
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory command failed."
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     TARGET="$(readlink -f "$1")"
     mkdir -p "${TARGET}" || die "Directory creation failed."
     for filename in "output.xml" "log.html" "report.html"; do
@@ -74,6 +78,7 @@ function build_vpp_ubuntu_amd64 () {
     # - ${1} - String identifier for echo, can be unset.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Directories updated:
     # - ${VPP_DIR} - Whole subtree, many files (re)created by the build process.
     # Functions called:
@@ -81,6 +86,9 @@ function build_vpp_ubuntu_amd64 () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     cd "${VPP_DIR}" || die "Change directory command failed."
     make UNATTENDED=y pkg-verify || die "VPP build using make pkg-verify failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
@@ -95,6 +103,7 @@ function compare_test_results () {
     # - VPP_DIR - Path to directory with VPP git repo (at least built parts).
     # - ARCHIVE_DIR - Path to where robot result files are created in.
     # - PYTHON_SCRIPTS_DIR - Path to directory holding comparison utility.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Directories recreated:
     # - csit_parent - Sibling to csit directory, for holding results
     #   of parent build.
@@ -107,6 +116,9 @@ function compare_test_results () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     cd "${VPP_DIR}" || die "Change directory operation failed."
     # Reusing CSIT main virtualenv.
     python3 "${TOOLS_DIR}/integrated/compare_perpatch.py"
@@ -122,6 +134,7 @@ function download_builds () {
     # - ${1} - URL to download VPP builds from.
     # Variables read:
     # - VPP_DIR - Path to WORKSPACE, parent of created directories.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Directories created:
     # - archive - Ends up empty, not to be confused with ${ARCHIVE_DIR}.
     # - build_current - Holding built artifacts of the patch under test (PUT).
@@ -131,6 +144,9 @@ function download_builds () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     cd "${VPP_DIR}" || die "Change directory operation failed."
     dirs=("build-root" "build_parent" "build_current" "archive" "csit_current")
     rm -rf ${dirs[@]} || {
@@ -174,6 +190,8 @@ function parse_bmrr_results () {
     #
     # Arguments:
     # - ${1} - Path to (existing) directory holding robot output.xml result.
+    # Variables read:
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Files read:
     # - output.xml - From argument location.
     # Files updated:
@@ -183,6 +201,9 @@ function parse_bmrr_results () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     rel_dir="$(readlink -e "${1}")" || die "Readlink failed."
     in_file="${rel_dir}/output.xml"
     out_file="${rel_dir}/results.txt"
@@ -204,6 +225,7 @@ function select_build () {
     # Variables read:
     # - DOWNLOAD_DIR - Path to directory where Robot takes builds to test from.
     # - VPP_DIR - Path to existing directory, root for relative paths.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Directories read:
     # - ${1} - Existing directory with built new VPP artifacts (and DPDK).
     # Directories updated:
@@ -213,6 +235,9 @@ function select_build () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     cd "${VPP_DIR}" || die "Change directory operation failed."
     source_dir="$(readlink -e "$1")"
     rm -rf "${DOWNLOAD_DIR}"/* || die "Cleanup of download dir failed."
@@ -228,6 +253,7 @@ function set_aside_commit_build_artifacts () {
     # further use and clean git.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Directories read:
     # - build-root - Existing directory with built VPP artifacts (also DPDK).
     # Directories updated:
@@ -238,6 +264,9 @@ function set_aside_commit_build_artifacts () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "build_current" || die "Remove operation failed."
     mkdir -p "build_current" || die "Directory creation failed."
@@ -259,6 +288,7 @@ function set_aside_parent_build_artifacts () {
     # further use. Checkout to parent is not part of this function.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent of accessed directories.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Directories read:
     # - build-root - Existing directory with built VPP artifacts (also DPDK).
     # Directories updated:
@@ -268,6 +298,9 @@ function set_aside_parent_build_artifacts () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "build_parent" || die "Remove failed."
     mkdir -p "build_parent" || die "Directory creation operation failed."

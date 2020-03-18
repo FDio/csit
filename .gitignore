@@ -12,6 +12,7 @@
 # limitations under the License.
 
 /.tox
+/archive
 /archive_dir
 /download_dir
 /env

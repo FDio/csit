@@ -1,4 +1,6 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+
+
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -34,10 +36,15 @@ function activate_docker_topology () {
     # - FLAVOR - Node flavor string, usually describing the processor.
     # - IMAGE_VER_FILE - Name of file that contains the image version.
     # - CSIT_DIR - Directory where ${IMAGE_VER_FILE} is located.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Variables set:
     # - WORKING_TOPOLOGY - Path to topology file.
 
     set -exuo pipefail
+
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
 
     source "${BASH_FUNCTION_DIR}/device.sh" || {
         die "Source failed!"
@@ -138,6 +145,8 @@ function archive_tests () {
     # Create .tar.xz of generated/tests for archiving.
     # To be run after generate_tests, kept separate to offer more flexibility.
 
+    # Variables read:
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Directory read:
     # - ${GENERATED_DIR}/tests - Tree of executed suites to archive.
     # File rewriten:
@@ -145,6 +154,10 @@ function archive_tests () {
 
     set -exuo pipefail
 
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     tar c "${GENERATED_DIR}/tests" | xz -9e > "${ARCHIVE_DIR}/tests.tar.xz" || {
         die "Error creating archive of generated tests."
     }
@@ -157,6 +170,7 @@ function check_download_dir () {
     #
     # Variables read:
     # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Directories read:
     # - ${DOWNLOAD_DIR} - Has to be non-empty to proceed.
     # Functions called:
@@ -164,6 +178,9 @@ function check_download_dir () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     if [[ ! "$(ls -A "${DOWNLOAD_DIR}")" ]]; then
         die "No artifacts downloaded!"
     fi
@@ -174,12 +191,17 @@ function check_prerequisites () {
 
     # Fail if prerequisites are not met.
     #
+    # Variables read:
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Functions called:
     # - installed - Check if application is installed/present in system.
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     if ! installed sshpass; then
         die "Please install sshpass before continue!"
     fi
@@ -304,6 +326,7 @@ function copy_archives () {
     # - WORKSPACE - Jenkins workspace, copy only if the value is not empty.
     #   Can be unset, then it speeds up manual testing.
     # - ARCHIVE_DIR - Path to directory with content to be copied.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Directories updated:
     # - ${WORKSPACE}/archives/ - Created if does not exist.
     #   Content of ${ARCHIVE_DIR}/ is copied here.
@@ -312,6 +335,9 @@ function copy_archives () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     if [[ -n "${WORKSPACE-}" ]]; then
         mkdir -p "${WORKSPACE}/archives/" || die "Archives dir create failed."
         cp -rf "${ARCHIVE_DIR}"/* "${WORKSPACE}/archives" || die "Copy failed."
@@ -326,9 +352,13 @@ function deactivate_docker_topology () {
     # Variables read:
     # - NODENESS - Node multiplicity of desired testbed.
     # - FLAVOR - Node flavor string, usually describing the processor.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
         "1n_skx" | "1n_tx2")
@@ -379,11 +409,15 @@ function die_on_pybot_error () {
     #
     # Variables read:
     # - PYBOT_EXIT_STATUS - Set by a pybot running fragment.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Functions called:
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     if [[ "${PYBOT_EXIT_STATUS}" != "0" ]]; then
         die "Test failures are present!" "${PYBOT_EXIT_STATUS}"
     fi
@@ -409,6 +443,8 @@ function generate_tests () {
 
     rm -rf "${GENERATED_DIR}/tests" || die
     cp -r "${CSIT_DIR}/tests" "${GENERATED_DIR}/tests" || die
+    # Create a symlink to resources, so paths work from generated tests.
+    ln -s -T "${GENERATED_DIR}/../resources" "${GENERATED_DIR}/resources"
     cmd_line=("find" "${GENERATED_DIR}/tests" "-type" "f")
     cmd_line+=("-executable" "-name" "*.py")
     # We sort the directories, so log output can be compared between runs.
@@ -556,6 +592,8 @@ function reserve_and_cleanup_testbed () {
     # - PYTHON_SCRIPTS_DIR - Path to directory holding the reservation script.
     # - BUILD_TAG - Any string suitable as filename, identifying
     #   test run executing this function. May be unset.
+    # - RUN_IS_FAKE - Skip most actions if this is set, nonempty and not "false".
+    #   Not skipped: Setting working topology as robot needs to parse something.
     # Variables set:
     # - TOPOLOGIES - Array of paths to topologies, with failed cleanups removed.
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
@@ -569,12 +607,17 @@ function reserve_and_cleanup_testbed () {
 
     while true; do
         for topo in "${TOPOLOGIES[@]}"; do
-            set +e
-            scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
-            opts=("-t" "${topo}" "-r" "${BUILD_TAG:-Unknown}")
-            python3 "${scrpt}" "${opts[@]}"
-            result="$?"
-            set -e
+            if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+                warn "Faking sucessful reservation."
+                result="0"
+            else
+                set +e
+                scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
+                opts=("-t" "${topo}" "-r" "${BUILD_TAG:-Unknown}")
+                python3 "${scrpt}" "${opts[@]}"
+                result="$?"
+                set -e
+            fi
             if [[ "${result}" == "0" ]]; then
                 # Trap unreservation before cleanup check,
                 # so multiple jobs showing failed cleanup improve chances
@@ -589,10 +632,15 @@ function reserve_and_cleanup_testbed () {
                     die "Trap attempt failed, unreserve succeeded. Aborting."
                 }
                 # Cleanup + calibration checks.
-                set +e
-                ansible_playbook "cleanup, calibration"
-                result="$?"
-                set -e
+                if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+                    warn "Faking sucessful cleanup and calibration."
+                    result="0"
+                else
+                    set +e
+                    ansible_playbook "cleanup, calibration"
+                    result="$?"
+                    set -e
+                fi
                 if [[ "${result}" == "0" ]]; then
                     break
                 fi
@@ -663,6 +711,8 @@ function select_arch_os () {
 
     # Set variables affected by local CPU architecture and operating system.
     #
+    # Variables read:
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Variables set:
     # - VPP_VER_FILE - Name of file in CSIT dir containing vpp stable version.
     # - IMAGE_VER_FILE - Name of file in CSIT dir containing the image name.
@@ -670,6 +720,9 @@ function select_arch_os () {
 
     set -exuo pipefail
 
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        return 0
+    fi
     os_id=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g') || {
         die "Get OS release failed."
     }
@@ -1027,6 +1080,7 @@ function untrap_and_unreserve_testbed () {
     # Variables read (by inner function):
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # - PYTHON_SCRIPTS_DIR - Path to directory holding Python scripts.
+    # - RUN_IS_FAKE - Skip any action if this is set, nonempty and not "false".
     # Variables written:
     # - WORKING_TOPOLOGY - Set to empty string on successful unreservation.
     # Trap unregistered:
@@ -1037,7 +1091,12 @@ function untrap_and_unreserve_testbed () {
 
     set -xo pipefail
     set +eu  # We do not want to exit early in a "teardown" function.
+
     trap - EXIT || echo "Trap deactivation failed, continuing anyway."
+    if [[ "${RUN_IS_FAKE:-false}" != "false" ]]; then
+        warn "Faking successful cleanup and unreservation."
+        return 0
+    fi
     wt="${WORKING_TOPOLOGY}"  # Just to avoid too long lines.
     if [[ -z "${wt-}" ]]; then
         set -eu

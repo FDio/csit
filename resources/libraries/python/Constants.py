@@ -124,6 +124,9 @@ class Constants:
     that works regardless of current working directory.
     """
 
+    # Kill switch, fake runs are prohibited from any interaction with testbeds.
+    RUN_IS_FAKE = get_pessimistic_bool_from_env(u"RUN_IS_FAKE")
+
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = u"/tmp/openvpp-testing"
 
