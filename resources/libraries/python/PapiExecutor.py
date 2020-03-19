@@ -28,10 +28,13 @@ import time
 from pprint import pformat
 from robot.api import logger
 
+from resources.libraries.python.bytes_template import BytesTemplate
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PapiHistory import PapiHistory
+from resources.libraries.python.PythonThree import raise_from
+from resources.libraries.python.spying_socket import SpyingSocket
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
 from resources.libraries.python.topology import Topology, SocketType
@@ -544,7 +547,7 @@ class PapiSocketExecutor:
                 dump = papi_exec.add(cmd).get_details()
                 logger.debug(f"{cmd}:\n{pformat(dump)}")
 
-    def _execute(self, err_msg=u"Undefined error message", exp_rv=0):
+    def _execute(self, err_msg=u"Undefined error message"):
         """Turn internal command list into data and execute; return replies.
 
         This method also clears the internal command list.
@@ -646,13 +649,30 @@ class PapiSocketExecutor:
         max_inflight = 256  # TODO: Customize.
         vpp_instance = self.vpp_instance
         api_object = vpp_instance.api  # Just to save some CPU work inside loop.
+        socket = vpp_instance.transport.socket
+        if not isinstance(socket, SpyingSocket):
+            socket = SpyingSocket(socket)
+            vpp_instance.transport.socket = socket
+            logger.trace("Spying socket inserted.")
+        else:
+            logger.debug("Already a spying socket?")
         ret_list = list()
         lll = len(local_list)
         # Phase one: only sending commands.
-        for command in local_list[:max_inflight]:
+        for count, command in enumerate(local_list[:max_inflight]):
             logger.trace(f"args {command[u'api_args']!r}")
             # The getattr result is a function, called immediatelly.
             getattr(api_object, command[u"api_name"])(**command[u"api_args"])
+            if count == 0:
+                first, _ = socket.flush_remembered()
+                logger.trace(f"Got remembered first msg {first!r}")
+            elif count == 1:
+                second, _ = socket.flush_remembered()
+                logger.trace(f"Got remembered second msg {second!r}")
+                iterator = BytesTemplate.from_two_messages(first, second).generator(3, vpp_instance.get_context).__iter__()
+            else:
+                generated = iterator.__next__()  # Fails after 3.
+                logger.trace(f"Generator says {generated!r}")
         # Phase two: receive one, send one.
         send_index = max_inflight
         # TODO: Put repeated blocks into functions?
@@ -664,8 +684,9 @@ class PapiSocketExecutor:
             # TODO: In future we will need to insert no_type_conversion.
             response = vpp_instance.read_blocking()
             if response is None:
+                recv_index = send_index - max_inflight
                 err = AssertionError(
-                    f"Timeout index {recv_index} cmd {block[recv_index]!r}"
+                    f"Timeout index {recv_index} cmd {local_list[recv_index]!r}"
                 )
                 raise_from(AssertionError(err_msg), err, f"INFO")
             ret_list.append(dictize_and_check_retval(response))
@@ -681,7 +702,7 @@ class PapiSocketExecutor:
             response = vpp_instance.read_blocking()
             if response is None:
                 err = AssertionError(
-                    f"Timeout index {recv_index} cmd {block[recv_index]!r}"
+                    f"Timeout. TODO: Track from which command."
                 )
                 raise_from(AssertionError(err_msg), err, f"INFO")
             ret_list.append(dictize_and_check_retval(response))
