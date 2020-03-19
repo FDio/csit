@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "e955ebe3_67b9beb7",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:34:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbec58d0_22013fce",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 6
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d6360be_492dbff8",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -190,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "ce8d6eee_abf8c00d",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:34:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f28073dc_f5bec8e7",
+      "range": {
+        "startLine": 155,
+        "startChar": 5,
+        "endLine": 155,
+        "endChar": 17
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb07f2b9_20dedbc9",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -234,6 +282,30 @@
       "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c79dbb47_3d33c3b2",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:34:43Z",
+      "side": 1,
+      "message": "Ack, [0] https://gerrit.fd.io/r/c/csit/+/22354 clarifies use of terminology.",
+      "parentUuid": "a544aa81_f2d14e03",
+      "range": {
+        "startLine": 158,
+        "startChar": 6,
+        "endLine": 158,
+        "endChar": 23
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -284,6 +356,30 @@
     },
     {
       "key": {
+        "uuid": "e0b5b09d_332125c9",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:34:43Z",
+      "side": 1,
+      "message": "[0] https://gerrit.fd.io/r/c/csit/+/22354 clarifies this.",
+      "parentUuid": "0122c23d_ea734538",
+      "range": {
+        "startLine": 159,
+        "startChar": 2,
+        "endLine": 159,
+        "endChar": 79
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b4b3d24_0351626c",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -328,6 +424,30 @@
       "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16b19318_df7778f4",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:34:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f73879ec_c6558c56",
+      "range": {
+        "startLine": 161,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 25
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -402,6 +522,30 @@
     },
     {
       "key": {
+        "uuid": "73297fd5_368b3c3c",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:34:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3d3aaf8a_c2d0d946",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 14
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f3cdcc8_f6f9865f",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -446,6 +590,30 @@
       "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94e84dc1_bf2957f1",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:34:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a45f0320_e8e3060c",
+      "range": {
+        "startLine": 171,
+        "startChar": 6,
+        "endLine": 171,
+        "endChar": 22
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -496,6 +664,30 @@
     },
     {
       "key": {
+        "uuid": "f6549b27_e0eb4b4c",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:34:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf623d35_a89321c6",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 0
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf7a6520_d26cc754",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 3
@@ -540,6 +732,30 @@
       "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe6ded06_3bc4de9b",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:34:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d4fe8505_7b222b4c",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 42
+      },
+      "revId": "d88fd69d18ed27fe32bddd5b46a3276b47321737",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
