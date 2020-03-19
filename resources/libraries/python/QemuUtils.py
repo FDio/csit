@@ -422,9 +422,8 @@ class QemuUtils:
             if queue_size else u""
         self._params.add_with_value(
             u"device", f"virtio-net-pci,netdev=vhost{self._vhost_id},mac={mac},"
-            f"addr={self._vhost_id+5}.0,mq=on,vectors={2 * queues + 2},"
+            f"addr={self._vhost_id+5}.0,mq=on,"
             f"csum={u'on' if csum else u'off'},gso={u'on' if gso else u'off'},"
-            f"guest_tso4=off,guest_tso6=off,guest_ecn=off,"
             f"{queue_size}"
         )
 
