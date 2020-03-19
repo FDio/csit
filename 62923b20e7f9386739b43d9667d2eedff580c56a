@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50d27b06_9c05ef13",
+        "filename": "docs/ideal.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:27:05Z",
+      "side": 1,
+      "message": "convenient",
+      "range": {
+        "startLine": 98,
+        "startChar": 13,
+        "endLine": 98,
+        "endChar": 24
+      },
+      "revId": "62923b20e7f9386739b43d9667d2eedff580c56a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb84299b_562ea01d",
+        "filename": "docs/ideal.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:27:05Z",
+      "side": 1,
+      "message": "snapshots",
+      "range": {
+        "startLine": 129,
+        "startChar": 56,
+        "endLine": 129,
+        "endChar": 65
+      },
+      "revId": "62923b20e7f9386739b43d9667d2eedff580c56a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c14ee1db_baed1f69",
+        "filename": "docs/ideal.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:27:05Z",
+      "side": 1,
+      "message": "This is a critically important characteristic of the process which may deserve emphasis above.\n\nAnother improvement would be to provide a mechanism to communicate \u0026 manage the ongoing stream of API changes.\nIn particular, a way for a non-participant in the process to see:\n\n1) \"THE open API change\" with CSIT \u0026 VPP process owners\n2) the backlog of \"API changes\" waiting to be processed\n3) ETA for completion of the process\n4) an estimate of the size of the CSIT changes required (ie. small/medium/large) for API changes in the backlog\n5) a mechanism to manage the backlog (other than random selection by CSIT contributors).\n\nPersonally, I find that the announcement of API changes on slack and the vpp-api-dev@lists.fd.io list to be hard to utilize in a practical manner.",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 0
+      },
+      "revId": "62923b20e7f9386739b43d9667d2eedff580c56a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93747ad0_c98baafd",
+        "filename": "docs/ideal.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:27:05Z",
+      "side": 1,
+      "message": "Gone!  Hopefully forever...",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 439,
+        "endChar": 0
+      },
+      "revId": "62923b20e7f9386739b43d9667d2eedff580c56a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3499b3f_e443733a",
+        "filename": "docs/ideal.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:27:05Z",
+      "side": 1,
+      "message": "a proper",
+      "range": {
+        "startLine": 447,
+        "startChar": 4,
+        "endLine": 447,
+        "endChar": 10
+      },
+      "revId": "62923b20e7f9386739b43d9667d2eedff580c56a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a7a3f2a_0a4cbc3b",
+        "filename": "docs/ideal.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:27:05Z",
+      "side": 1,
+      "message": "Agreed, but as noted above, better visibility into the state of the process would be most helpful.",
+      "range": {
+        "startLine": 465,
+        "startChar": 0,
+        "endLine": 467,
+        "endChar": 0
+      },
+      "revId": "62923b20e7f9386739b43d9667d2eedff580c56a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f83b7a7e_3df5fb83",
+        "filename": "docs/ideal.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-19T22:27:05Z",
+      "side": 1,
+      "message": "consisting",
+      "range": {
+        "startLine": 480,
+        "startChar": 0,
+        "endLine": 480,
+        "endChar": 9
+      },
+      "revId": "62923b20e7f9386739b43d9667d2eedff580c56a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
