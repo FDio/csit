@@ -276,7 +276,6 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
-        - 50  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -290,7 +289,6 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
-        - 50  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-mrr:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -306,7 +304,7 @@
         - 37  # NDRPDR sel xxv710
         - 41  # NDRPDR sel xxv710
         - 42  # NDRPDR sel xxv710
-        - 44  # NDRPDR sel xxv710
+        - 43  # NDRPDR sel xxv710
         - 45  # NDRPDR sel xxv710
         - 30  # NDRPDR sel x710
         - 31  # NDRPDR sel x710
@@ -314,6 +312,7 @@
         - 38  # NDRPDR sel x710
         - 39  # NDRPDR sel x710
         - 40  # NDRPDR sel x710
+        - 44  # NDRPDR sel x710
         - 46  # NDRPDR sel x710
         - 47  # NDRPDR sel x710
         - 48  # NDRPDR sel x710
@@ -595,7 +594,6 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
-        - 50  # NDRPDR sel
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -856,7 +854,6 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
-        - 50  # NDRPDR sel
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -1234,7 +1231,7 @@
         - 37  # NDRPDR sel xxv710
         - 41  # NDRPDR sel xxv710
         - 42  # NDRPDR sel xxv710
-        - 44  # NDRPDR sel xxv710
+        - 43  # NDRPDR sel xxv710
         - 45  # NDRPDR sel xxv710
         - 30  # NDRPDR sel x710
         - 31  # NDRPDR sel x710
@@ -1242,6 +1239,7 @@
         - 38  # NDRPDR sel x710
         - 39  # NDRPDR sel x710
         - 40  # NDRPDR sel x710
+        - 44  # NDRPDR sel x710
         - 46  # NDRPDR sel x710
         - 47  # NDRPDR sel x710
         - 48  # NDRPDR sel x710
@@ -1323,7 +1321,6 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
-        - 50  # NDRPDR sel
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
@@ -1447,7 +1444,7 @@
         - 37  # NDRPDR sel xxv710
         - 41  # NDRPDR sel xxv710
         - 42  # NDRPDR sel xxv710
-        - 44  # NDRPDR sel xxv710
+        - 43  # NDRPDR sel xxv710
         - 45  # NDRPDR sel xxv710
         - 30  # NDRPDR sel x710
         - 31  # NDRPDR sel x710
@@ -1455,6 +1452,7 @@
         - 38  # NDRPDR sel x710
         - 39  # NDRPDR sel x710
         - 40  # NDRPDR sel x710
+        - 44  # NDRPDR sel x710
         - 46  # NDRPDR sel x710
         - 47  # NDRPDR sel x710
         - 48  # NDRPDR sel x710
@@ -1521,7 +1519,6 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
-        - 50  # NDRPDR sel
     vpp-compare-topologies-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
@@ -1559,7 +1556,7 @@
         - 37  # NDRPDR sel xxv710
         - 41  # NDRPDR sel xxv710
         - 42  # NDRPDR sel xxv710
-        - 44  # NDRPDR sel xxv710
+        - 43  # NDRPDR sel xxv710
         - 45  # NDRPDR sel xxv710
         - 30  # NDRPDR sel x710
         - 31  # NDRPDR sel x710
@@ -1567,6 +1564,7 @@
         - 38  # NDRPDR sel x710
         - 39  # NDRPDR sel x710
         - 40  # NDRPDR sel x710
+        - 44  # NDRPDR sel x710
         - 46  # NDRPDR sel x710
         - 47  # NDRPDR sel x710
         - 48  # NDRPDR sel x710
@@ -2381,7 +2379,6 @@
       - 47  # NDRPDR sel
       - 48  # NDRPDR sel
       - 49  # NDRPDR sel
-      - 50  # NDRPDR sel
       - 50  # MRR sel
 
     csit-vpp-perf-verify-1904-2n-skx:
@@ -2654,7 +2651,7 @@
       - 37  # NDRPDR sel xxv710
       - 41  # NDRPDR sel xxv710
       - 42  # NDRPDR sel xxv710
-      - 44  # NDRPDR sel xxv710
+      - 43  # NDRPDR sel xxv710
       - 45  # NDRPDR sel xxv710
       - 30  # NDRPDR sel x710
       - 31  # NDRPDR sel x710
@@ -2662,6 +2659,7 @@
       - 38  # NDRPDR sel x710
       - 39  # NDRPDR sel x710
       - 40  # NDRPDR sel x710
+      - 44  # NDRPDR sel x710
       - 46  # NDRPDR sel x710
       - 47  # NDRPDR sel x710
       - 48  # NDRPDR sel x710
