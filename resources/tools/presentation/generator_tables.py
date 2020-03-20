@@ -463,8 +463,9 @@ def _tpc_sort_table(table):
     # Sort the tables:
     tbl_new.sort(key=lambda rel: rel[0], reverse=False)
     tbl_see.sort(key=lambda rel: rel[0], reverse=False)
-    tbl_see.sort(key=lambda rel: rel[-1], reverse=False)
-    tbl_delta.sort(key=lambda rel: rel[-1], reverse=True)
+    tbl_see.sort(key=lambda rel: rel[-2], reverse=False)
+    tbl_delta.sort(key=lambda rel: rel[0], reverse=False)
+    tbl_delta.sort(key=lambda rel: rel[-2], reverse=True)
 
     # Put the tables together:
     table = list()
@@ -549,7 +550,7 @@ def _tpc_generate_html_table(header, data, output_file_name):
                 xanchor=u"left",
                 y=1.045,
                 yanchor=u"top",
-                active=len(menu_items) - 1,
+                active=len(menu_items) - 2,
                 buttons=list(buttons)
             )
         ],
@@ -813,6 +814,7 @@ def table_perf_comparison(table, input_data):
             pass
         elif item[-4] == u"Not tested":
             item.append(u"New in CSIT-2001")
+            item.append(u"New in CSIT-2001")
         # elif topo == u"2n-skx" and u"dot1q" in tbl_dict[tst_name][u"name"]:
         #     item.append(u"See footnote [1]")
         #     footnote = True
@@ -822,7 +824,7 @@ def table_perf_comparison(table, input_data):
             )
             item.append(round(delta, 2))
             item.append(round(d_stdev, 2))
-        if (len(item) == len(header)) and (item[-3] != u"Not tested"):
+        if (len(item) == len(header)) and (item[-4] != u"Not tested"):
             tbl_lst.append(item)
 
     tbl_lst = _tpc_sort_table(tbl_lst)
@@ -1105,6 +1107,7 @@ def table_perf_comparison_nic(table, input_data):
             pass
         elif item[-4] == u"Not tested":
             item.append(u"New in CSIT-2001")
+            item.append(u"New in CSIT-2001")
         # elif topo == u"2n-skx" and u"dot1q" in tbl_dict[tst_name][u"name"]:
         #     item.append(u"See footnote [1]")
         #     footnote = True
@@ -1114,7 +1117,7 @@ def table_perf_comparison_nic(table, input_data):
             )
             item.append(round(delta, 2))
             item.append(round(d_stdev, 2))
-        if (len(item) == len(header)) and (item[-3] != u"Not tested"):
+        if (len(item) == len(header)) and (item[-4] != u"Not tested"):
             tbl_lst.append(item)
 
     tbl_lst = _tpc_sort_table(tbl_lst)
