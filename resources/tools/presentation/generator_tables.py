@@ -611,7 +611,8 @@ def table_perf_comparison(table, input_data):
                 f"{table[u'reference'][u'title']} Stdev [Mpps]",
                 f"{table[u'compare'][u'title']} {hdr_param} [Mpps]",
                 f"{table[u'compare'][u'title']} Stdev [Mpps]",
-                u"Delta [%]"
+                u"Delta [%]",
+                u"Stdev of delta [%]"
             ]
         )
         header_str = u",".join(header) + u"\n"
@@ -788,17 +789,25 @@ def table_perf_comparison(table, input_data):
                         item.extend([u"Not tested", u"Not tested"])
             else:
                 item.extend([u"Not tested", u"Not tested"])
-        data_t = tbl_dict[tst_name][u"ref-data"]
-        if data_t:
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+        data_r = tbl_dict[tst_name][u"ref-data"]
+        if data_r:
+            data_r_mean = mean(data_r)
+            item.append(round(data_r_mean / 1000000, 2))
+            data_r_stdev = stdev(data_r)
+            item.append(round(data_r_stdev / 1000000, 2))
         else:
+            data_r_mean = None
+            data_r_stdev = None
             item.extend([u"Not tested", u"Not tested"])
-        data_t = tbl_dict[tst_name][u"cmp-data"]
-        if data_t:
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+        data_c = tbl_dict[tst_name][u"cmp-data"]
+        if data_c:
+            data_c_mean = mean(data_c)
+            item.append(round(data_c_mean / 1000000, 2))
+            data_c_stdev = stdev(data_c)
+            item.append(round(data_c_stdev / 1000000, 2))
         else:
+            data_c_mean = None
+            data_c_stdev = None
             item.extend([u"Not tested", u"Not tested"])
         if item[-2] == u"Not tested":
             pass
@@ -807,8 +816,14 @@ def table_perf_comparison(table, input_data):
         # elif topo == u"2n-skx" and u"dot1q" in tbl_dict[tst_name][u"name"]:
         #     item.append(u"See footnote [1]")
         #     footnote = True
-        elif item[-4] != 0:
-            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
+        elif data_r_mean and data_c_mean:
+            delta, d_stdev = relative_change_stdev(
+                data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
+            )
+            item.append(round(delta, 2))
+            item.append(round(d_stdev, 2))
+        # elif item[-4] != 0:
+        #     item.append(int(relative_change(float(item[-4]), float(item[-2]))))
         if (len(item) == len(header)) and (item[-3] != u"Not tested"):
             tbl_lst.append(item)
 
@@ -884,7 +899,8 @@ def table_perf_comparison_nic(table, input_data):
                 f"{table[u'reference'][u'title']} Stdev [Mpps]",
                 f"{table[u'compare'][u'title']} {hdr_param} [Mpps]",
                 f"{table[u'compare'][u'title']} Stdev [Mpps]",
-                u"Delta [%]"
+                u"Delta [%]",
+                u"Stdev of delta [%]"
             ]
         )
         header_str = u",".join(header) + u"\n"
@@ -1067,17 +1083,25 @@ def table_perf_comparison_nic(table, input_data):
                         item.extend([u"Not tested", u"Not tested"])
             else:
                 item.extend([u"Not tested", u"Not tested"])
-        data_t = tbl_dict[tst_name][u"ref-data"]
-        if data_t:
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+        data_r = tbl_dict[tst_name][u"ref-data"]
+        if data_r:
+            data_r_mean = mean(data_r)
+            item.append(round(data_r_mean / 1000000, 2))
+            data_r_stdev = stdev(data_r)
+            item.append(round(data_r_stdev / 1000000, 2))
         else:
+            data_r_mean = None
+            data_r_stdev = None
             item.extend([u"Not tested", u"Not tested"])
-        data_t = tbl_dict[tst_name][u"cmp-data"]
-        if data_t:
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+        data_c = tbl_dict[tst_name][u"cmp-data"]
+        if data_c:
+            data_c_mean = mean(data_c)
+            item.append(round(data_c_mean / 1000000, 2))
+            data_c_stdev = stdev(data_c)
+            item.append(round(data_c_stdev / 1000000, 2))
         else:
+            data_c_mean = None
+            data_c_stdev = None
             item.extend([u"Not tested", u"Not tested"])
         if item[-2] == u"Not tested":
             pass
@@ -1086,8 +1110,14 @@ def table_perf_comparison_nic(table, input_data):
         # elif topo == u"2n-skx" and u"dot1q" in tbl_dict[tst_name][u"name"]:
         #     item.append(u"See footnote [1]")
         #     footnote = True
-        elif item[-4] != 0:
-            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
+        elif data_r_mean and data_c_mean:
+            delta, d_stdev = relative_change_stdev(
+                data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
+            )
+            item.append(round(delta, 2))
+            item.append(round(d_stdev, 2))
+        # elif item[-4] != 0:
+        #     item.append(int(relative_change(float(item[-4]), float(item[-2]))))
         if (len(item) == len(header)) and (item[-3] != u"Not tested"):
             tbl_lst.append(item)
 
@@ -1155,7 +1185,8 @@ def table_nics_comparison(table, input_data):
                 f"{table[u'reference'][u'title']} Stdev [Mpps]",
                 f"{table[u'compare'][u'title']} {hdr_param} [Mpps]",
                 f"{table[u'compare'][u'title']} Stdev [Mpps]",
-                u"Delta [%]"
+                u"Delta [%]",
+                u"Stdev of delta [%]"
             ]
         )
 
@@ -1177,7 +1208,6 @@ def table_nics_comparison(table, input_data):
                         u"cmp-data": list()
                     }
                 try:
-                    result = None
                     if table[u"include-tests"] == u"MRR":
                         result = tst_data[u"result"][u"receive-rate"]
                     elif table[u"include-tests"] == u"PDR":
@@ -1200,21 +1230,32 @@ def table_nics_comparison(table, input_data):
     tbl_lst = list()
     for tst_name in tbl_dict:
         item = [tbl_dict[tst_name][u"name"], ]
-        data_t = tbl_dict[tst_name][u"ref-data"]
-        if data_t:
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+        data_r = tbl_dict[tst_name][u"ref-data"]
+        if data_r:
+            data_r_mean = mean(data_r)
+            item.append(round(data_r_mean / 1000000, 2))
+            data_r_stdev = stdev(data_r)
+            item.append(round(data_r_stdev / 1000000, 2))
         else:
+            data_r_mean = None
+            data_r_stdev = None
             item.extend([None, None])
-        data_t = tbl_dict[tst_name][u"cmp-data"]
-        if data_t:
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+        data_c = tbl_dict[tst_name][u"cmp-data"]
+        if data_c:
+            data_c_mean = mean(data_c)
+            item.append(round(data_c_mean / 1000000, 2))
+            data_c_stdev = stdev(data_c)
+            item.append(round(data_c_stdev / 1000000, 2))
         else:
+            data_c_mean = None
+            data_c_stdev = None
             item.extend([None, None])
-        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
-            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
-        if len(item) == len(header):
+        if data_r_mean and data_c_mean:
+            delta, d_stdev = relative_change_stdev(
+                data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
+            )
+            item.append(round(delta, 2))
+            item.append(round(d_stdev, 2))
             tbl_lst.append(item)
 
     # Sort the table according to the relative change
@@ -1260,7 +1301,8 @@ def table_soak_vs_ndr(table, input_data):
             f"{table[u'reference'][u'title']} Stdev [Mpps]",
             f"{table[u'compare'][u'title']} Thput [Mpps]",
             f"{table[u'compare'][u'title']} Stdev [Mpps]",
-            u"Delta [%]", u"Stdev of delta [%]"
+            u"Delta [%]",
+            u"Stdev of delta [%]"
         ]
         header_str = u",".join(header) + u"\n"
     except (AttributeError, KeyError) as err:
