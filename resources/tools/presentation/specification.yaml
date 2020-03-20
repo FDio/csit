@@ -615,6 +615,7 @@
     vpp-nic-comparison-2n-skx-mrr:
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
+        - 128 # MRR sel addition
 
     # Results
 
@@ -723,6 +724,7 @@
     vpp-mrr-results-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
+        - 128 # MRR sel addition
 
     vpp-mrr-results-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -1099,6 +1101,7 @@
     vpp-performance-changes-2n-skx-mrr-cmp:
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
+        - 128 # MRR sel addition
     vpp-performance-changes-2n-skx-mrr:
       - "vpp-performance-changes-2n-skx-mrr-h1"
       - "vpp-performance-changes-2n-skx-mrr-ref"
@@ -1395,6 +1398,7 @@
     vpp-compare-testbeds-mrr-skx-clx-ref:
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
+        - 128 # MRR sel addition
     vpp-compare-testbeds-mrr-skx-clx-cmp:
       csit-vpp-perf-verify-2001-2n-clx:
         - 39  # MRR
@@ -1542,6 +1546,7 @@
     vpp-compare-topologies-mrr-cmp:
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
+        - 128 # MRR sel addition
     vpp-compare-topologies-mrr:
       - "vpp-compare-topologies-mrr-ref"
       - "vpp-compare-topologies-mrr-cmp"
@@ -2431,6 +2436,7 @@
       - 100 # NDRPDR sel
       - 102 # NDRPDR sel
       - 101 # MRR sel
+      - 128 # MRR sel addition
 
     csit-vpp-perf-verify-2001-2n-clx:
       - 28  # NDRPDR sel
@@ -4147,7 +4153,7 @@
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
+  filter: "'2T1C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -4169,7 +4175,7 @@
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
+  filter: "'4T2C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -4191,7 +4197,7 @@
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
+  filter: "'8T4C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -4213,7 +4219,7 @@
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
+  filter: "'2T1C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -4235,7 +4241,7 @@
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
+  filter: "'4T2C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -4257,7 +4263,7 @@
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
+  filter: "'8T4C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
