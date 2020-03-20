@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f6aa9fa_8288b0f2",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-20T14:00:20Z",
+      "side": 1,
+      "message": "False.",
+      "range": {
+        "startLine": 818,
+        "startChar": 75,
+        "endLine": 818,
+        "endChar": 76
+      },
+      "revId": "e02ed896a4a7ec386e9ca98ce2e3c987d2408536",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e69ba4a_09e5fe42",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 882,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-20T14:00:20Z",
+      "side": 1,
+      "message": "udp_encap:",
+      "range": {
+        "startLine": 882,
+        "startChar": 23,
+        "endLine": 882,
+        "endChar": 38
+      },
+      "revId": "e02ed896a4a7ec386e9ca98ce2e3c987d2408536",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "275317a4_8e047492",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-20T14:00:20Z",
+      "side": 1,
+      "message": "{encap}",
+      "range": {
+        "startLine": 907,
+        "startChar": 26,
+        "endLine": 907,
+        "endChar": 31
+      },
+      "revId": "e02ed896a4a7ec386e9ca98ce2e3c987d2408536",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b090a3ba_589a40b5",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1368,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-20T14:00:20Z",
+      "side": 1,
+      "message": "No trailing whitespace please.",
+      "range": {
+        "startLine": 1368,
+        "startChar": 21,
+        "endLine": 1368,
+        "endChar": 22
+      },
+      "revId": "e02ed896a4a7ec386e9ca98ce2e3c987d2408536",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
