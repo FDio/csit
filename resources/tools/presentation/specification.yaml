@@ -335,6 +335,16 @@
         - 99  # NDRPDR sel
         - 100 # NDRPDR sel
         - 102 # NDRPDR sel
+        - 129 # NDRPDR sel addition
+        - 130 # NDRPDR sel addition
+        - 131 # NDRPDR sel addition
+        - 132 # NDRPDR sel addition
+        - 133 # NDRPDR sel addition
+        - 134 # NDRPDR sel addition
+        - 135 # NDRPDR sel addition
+        - 136 # NDRPDR sel addition
+        - 137 # NDRPDR sel addition
+        - 138 # NDRPDR sel addition
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -607,6 +617,16 @@
         - 99  # NDRPDR sel
         - 100 # NDRPDR sel
         - 102 # NDRPDR sel
+        - 129 # NDRPDR sel addition
+        - 130 # NDRPDR sel addition
+        - 131 # NDRPDR sel addition
+        - 132 # NDRPDR sel addition
+        - 133 # NDRPDR sel addition
+        - 134 # NDRPDR sel addition
+        - 135 # NDRPDR sel addition
+        - 136 # NDRPDR sel addition
+        - 137 # NDRPDR sel addition
+        - 138 # NDRPDR sel addition
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -897,6 +917,16 @@
         - 99  # NDRPDR sel
         - 100 # NDRPDR sel
         - 102 # NDRPDR sel
+        - 129 # NDRPDR sel addition
+        - 130 # NDRPDR sel addition
+        - 131 # NDRPDR sel addition
+        - 132 # NDRPDR sel addition
+        - 133 # NDRPDR sel addition
+        - 134 # NDRPDR sel addition
+        - 135 # NDRPDR sel addition
+        - 136 # NDRPDR sel addition
+        - 137 # NDRPDR sel addition
+        - 138 # NDRPDR sel addition
     vpp-performance-changes-2n-skx:
       - "vpp-performance-changes-2n-skx-h1"
       - "vpp-performance-changes-2n-skx-ref"
@@ -1012,6 +1042,16 @@
         - 99  # NDRPDR sel
         - 100 # NDRPDR sel
         - 102 # NDRPDR sel
+        - 129 # NDRPDR sel addition
+        - 130 # NDRPDR sel addition
+        - 131 # NDRPDR sel addition
+        - 132 # NDRPDR sel addition
+        - 133 # NDRPDR sel addition
+        - 134 # NDRPDR sel addition
+        - 135 # NDRPDR sel addition
+        - 136 # NDRPDR sel addition
+        - 137 # NDRPDR sel addition
+        - 138 # NDRPDR sel addition
     vpp-soak-vs-ndr-2n-skx-cmp:
       # TODO: Replace
       # csit-vpp-perf-verify-2001-2n-skx:
@@ -1030,6 +1070,16 @@
         - 99  # NDRPDR sel
         - 100 # NDRPDR sel
         - 102 # NDRPDR sel
+        - 129 # NDRPDR sel addition
+        - 130 # NDRPDR sel addition
+        - 131 # NDRPDR sel addition
+        - 132 # NDRPDR sel addition
+        - 133 # NDRPDR sel addition
+        - 134 # NDRPDR sel addition
+        - 135 # NDRPDR sel addition
+        - 136 # NDRPDR sel addition
+        - 137 # NDRPDR sel addition
+        - 138 # NDRPDR sel addition
         - 83  # SOAK
         - 86  # SOAK
 
@@ -1329,7 +1379,6 @@
       - "vpp-compare-testbeds-cmp"
 
     vpp-compare-testbeds-skx-clx-ref:
-      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
         - 92  # NDRPDR sel
         - 93  # NDRPDR sel
@@ -1341,6 +1390,16 @@
         - 99  # NDRPDR sel
         - 100 # NDRPDR sel
         - 102 # NDRPDR sel
+        - 129 # NDRPDR sel addition
+        - 130 # NDRPDR sel addition
+        - 131 # NDRPDR sel addition
+        - 132 # NDRPDR sel addition
+        - 133 # NDRPDR sel addition
+        - 134 # NDRPDR sel addition
+        - 135 # NDRPDR sel addition
+        - 136 # NDRPDR sel addition
+        - 137 # NDRPDR sel addition
+        - 138 # NDRPDR sel addition
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
@@ -1536,6 +1595,16 @@
         - 99  # NDRPDR sel
         - 100 # NDRPDR sel
         - 102 # NDRPDR sel
+        - 129 # NDRPDR sel addition
+        - 130 # NDRPDR sel addition
+        - 131 # NDRPDR sel addition
+        - 132 # NDRPDR sel addition
+        - 133 # NDRPDR sel addition
+        - 134 # NDRPDR sel addition
+        - 135 # NDRPDR sel addition
+        - 136 # NDRPDR sel addition
+        - 137 # NDRPDR sel addition
+        - 138 # NDRPDR sel addition
     vpp-compare-topologies:
       - "vpp-compare-topologies-ref"
       - "vpp-compare-topologies-cmp"
@@ -2435,6 +2504,16 @@
       - 99  # NDRPDR sel
       - 100 # NDRPDR sel
       - 102 # NDRPDR sel
+      - 129 # NDRPDR sel addition
+      - 130 # NDRPDR sel addition
+      - 131 # NDRPDR sel addition
+      - 132 # NDRPDR sel addition
+      - 133 # NDRPDR sel addition
+      - 134 # NDRPDR sel addition
+      - 135 # NDRPDR sel addition
+      - 136 # NDRPDR sel addition
+      - 137 # NDRPDR sel addition
+      - 138 # NDRPDR sel addition
       - 101 # MRR sel
       - 128 # MRR sel addition
 
