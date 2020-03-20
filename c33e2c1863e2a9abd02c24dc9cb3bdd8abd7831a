@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "c6b16084_f23c0988",
+        "filename": "resources/ip_profiles/trex/trex-sl-3n-azure.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-20T14:32:10Z",
+      "side": 1,
+      "message": "If I understand it correctly, for cloud testbeds each NIC/port has some restriction on IP addresses. If that is true, the restrictions should be a part of the testbed yaml definition.\nEach suite can call a library that looks at yaml definition and chooses specific ranges for the traffic.\nAs traffic profiles run on a TG (not on Robot executor), they also need to have access to the chosen range. The library could create a file (I prefer .json or .yaml) to be copied on TG, where profile_trex_stateless_base_class.py reads it and overrides the defaults set in the traffic profile .py file.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 15
+      },
+      "revId": "c33e2c1863e2a9abd02c24dc9cb3bdd8abd7831a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fd6330ac_e73d6318",
         "filename": "resources/ip_profiles/trex/trex-sl-3n-azure.py",
         "patchSetId": 6
@@ -64,6 +87,29 @@
         "startChar": 48,
         "endLine": 29,
         "endChar": 49
+      },
+      "revId": "c33e2c1863e2a9abd02c24dc9cb3bdd8abd7831a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2790b57_ff597ffb",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-20T14:32:10Z",
+      "side": 1,
+      "message": "I do not see a way how the values from trex-sl-3n-azure.py make it here.",
+      "range": {
+        "startLine": 48,
+        "startChar": 42,
+        "endLine": 48,
+        "endChar": 55
       },
       "revId": "c33e2c1863e2a9abd02c24dc9cb3bdd8abd7831a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
