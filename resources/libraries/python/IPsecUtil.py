@@ -81,6 +81,43 @@ class IntegAlg(Enum):
         self.scapy_name = scapy_name
         self.key_len = key_len
 
+class IPdscp(IntEnum):
+    """IP DSPC"""
+    IP_API_DSCP_CS0 = 0
+    IP_API_DSCP_CS1 = 8
+    IP_API_DSCP_AF11 = 10
+    IP_API_DSCP_AF12 = 12
+    IP_API_DSCP_AF13 = 14
+    IP_API_DSCP_CS2 = 16
+    IP_API_DSCP_AF21 = 18
+    IP_API_DSCP_AF22 = 20
+    IP_API_DSCP_AF23 = 22
+    IP_API_DSCP_CS3 = 24
+    IP_API_DSCP_AF31 = 26
+    IP_API_DSCP_AF32 = 28
+    IP_API_DSCP_AF33 = 30
+    IP_API_DSCP_CS4 = 32
+    IP_API_DSCP_AF41 = 34
+    IP_API_DSCP_AF42 = 36
+    IP_API_DSCP_AF43 = 38
+    IP_API_DSCP_CS5 = 40
+    IP_API_DSCP_EF = 46
+    IP_API_DSCP_CS6 = 48
+    IP_API_DSCP_CS7 = 50
+
+class IPIPtunnelMode(IntEnum):
+    """IPIP tunnel_mode"""
+    TUNNEL_API_MODE_P2P = 0
+    TUNNEL_API_MODE_MP = 1
+
+class IPIPtunnelEncapDecapFlags(IntEnum):
+    """IPIP tunnel_encap_decap_flags"""
+    TUNNEL_API_ENCAP_DECAP_FLAG_NONE = 0
+    TUNNEL_API_ENCAP_DECAP_FLAG_ENCAP_COPY_DF = 1
+    TUNNEL_API_ENCAP_DECAP_FLAG_ENCAP_SET_DF = 2
+    TUNNEL_API_ENCAP_DECAP_FLAG_ENCAP_COPY_DSCP = 4
+    TUNNEL_API_ENCAP_DECAP_FLAG_ENCAP_COPY_ECN = 8
+    TUNNEL_API_ENCAP_DECAP_FLAG_DECAP_COPY_ECN = 16
 
 class IPsecProto(IntEnum):
     """IPsec protocol."""
@@ -91,9 +128,12 @@ class IPsecProto(IntEnum):
 class IPsecSadFlags(IntEnum):
     """IPsec Security Association Database flags."""
     IPSEC_API_SAD_FLAG_NONE = 0
+    IPSEC_API_SAD_FLAG_USE_ESN = 1
+    IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY = 2
     IPSEC_API_SAD_FLAG_IS_TUNNEL = 4
     IPSEC_API_SAD_FLAG_IS_TUNNEL_V6 = 8
-
+    IPSEC_API_SAD_FLAG_UDP_ENCAP = 16
+    IPSEC_API_SAD_FLAG_IS_INBOUND = 64
 
 class IPsecUtil:
     """IPsec utilities."""
@@ -755,7 +795,7 @@ class IPsecUtil:
     def vpp_ipsec_create_tunnel_interfaces(
             nodes, if1_ip_addr, if2_ip_addr, if1_key, if2_key, n_tunnels,
             crypto_alg, integ_alg, raddr_ip1, raddr_ip2, raddr_range,
-            existing_tunnels=0):
+            existing_tunnels=0, udp_encap=False, protection_model=False):
         """Create multiple IPsec tunnel interfaces between two VPP nodes.
 
         :param nodes: VPP nodes to create tunnel interfaces.
@@ -775,6 +815,9 @@ class IPsecUtil:
             and to 128 in case of IPv6.
         :param existing_tunnels: Number of tunnel interfaces before creation.
             Useful mainly for reconf tests. Default 0.
+        :param udp_encap: Use UDP Encapsulation for IPSec tunnels. Default False.
+        :param protection_model: Use new ipsec tunnel interface mode.
+            Default False.
         :type nodes: dict
         :type if1_ip_addr: str
         :type if2_ip_addr: str
@@ -787,6 +830,8 @@ class IPsecUtil:
         :type raddr_ip2: string
         :type raddr_range: int
         :type existing_tunnels: int
+        :type udp_encap: bool
+        :type protection_model: bool
         """
         n_tunnels = int(n_tunnels)
         existing_tunnels = int(existing_tunnels)
@@ -834,6 +879,10 @@ class IPsecUtil:
                             f"local_integ_key {ikey} remote_integ_key {ikey} "
                     else:
                         integ = u""
+                    if udp_encap:
+                        encap = f"udp_encap {udp_encap} "
+                    else:
+                        encap = u""
                     tmp_f1.write(
                         f"exec set interface ip address loop0 "
                         f"{if1_ip + i * addr_incr}/32\n"
@@ -844,6 +893,7 @@ class IPsecUtil:
                         f"{integ} "
                         f"local_ip {if1_ip + i * addr_incr} "
                         f"remote_ip {if2_ip} "
+                        f"{encap} "
                         f"instance {i}\n"
                     )
                     tmp_f2.write(
@@ -854,6 +904,7 @@ class IPsecUtil:
                         f"{integ} "
                         f"local_ip {if2_ip} "
                         f"remote_ip {if1_ip + i * addr_incr} "
+                        f"{encap} "
                         f"instance {i}\n"
                     )
             vat.execute_script(
@@ -965,59 +1016,172 @@ class IPsecUtil:
                 del_all=False,
                 prefix=None
             )
-            cmd2 = u"ipsec_tunnel_if_add_del"
-            args2 = dict(
-                is_add=True,
-                local_ip=None,
-                remote_ip=None,
-                local_spi=0,
-                remote_spi=0,
-                crypto_alg=crypto_alg.alg_int_repr,
-                local_crypto_key_len=0,
-                local_crypto_key=None,
-                remote_crypto_key_len=0,
-                remote_crypto_key=None,
-                integ_alg=integ_alg.alg_int_repr if integ_alg else 0,
-                local_integ_key_len=0,
-                local_integ_key=None,
-                remote_integ_key_len=0,
-                remote_integ_key=None,
-                tx_table_id=0
-            )
+            if protection_model:
+                ipip_flags = int(
+                    IPIPtunnelEncapDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE)
+                ipip_mode = int(IPIPtunnelMode.TUNNEL_API_MODE_P2P)
+                dscp = int(IPdscp.IP_API_DSCP_CS0)
+                cmd2 = u"ipip_add_tunnel"
+                args2 = dict(
+                    tunnel=dict(
+                        instance=0,
+                        src=None,
+                        dst=None,
+                        flags=ipip_flags,
+                        mode=ipip_mode,
+                        dscp=dscp
+                    )
+                )
+                cmd3 = u"ipsec_sad_entry_add_del"
+                sad_flags = int(IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE)
+                if udp_encap:
+                    sad_flags = sad_flags | int(
+                        IPsecSadFlags.IPSEC_API_SAD_FLAG_UDP_ENCAP)
+                    sad_flags = sad_flags | int(
+                        IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL)
+                sad_entry_in = dict(
+                    sad_id=0,
+                    spi=0,
+                    crypto_algorithm=crypto_alg.alg_int_repr,
+                    crypto_key=0,
+                    integrity_algorithm=integ_alg.alg_int_repr if integ_alg \
+                        else 0,
+                    integrity_key=0,
+                    flags=sad_flags | int(
+                        IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_INBOUND),
+                    tunnel_src=u"",
+                    tunnel_dst=u"",
+                    protocol=int(IPsecProto.IPSEC_API_PROTO_ESP)
+                )
+                args3_in = dict(
+                     is_add=True,
+                     entry=sad_entry_in
+                )
+                sad_entry_out = dict(
+                    sad_id=0,
+                    spi=0,
+                    crypto_algorithm=crypto_alg.alg_int_repr,
+                    crypto_key=0,
+                    integrity_algorithm=integ_alg.alg_int_repr if integ_alg \
+                        else 0,
+                    integrity_key=0,
+                    flags=sad_flags,
+                    tunnel_src=u"",
+                    tunnel_dst=u"",
+                    protocol=int(IPsecProto.IPSEC_API_PROTO_ESP)
+                )
+                args3_out = dict(
+                     is_add=True,
+                     entry=sad_entry_out
+                )
+            else:
+                cmd2 = u"ipsec_tunnel_if_add_del"
+                args2 = dict(
+                    is_add=True,
+                    local_ip=None,
+                    remote_ip=None,
+                    local_spi=0,
+                    remote_spi=0,
+                    crypto_alg=crypto_alg.alg_int_repr,
+                    local_crypto_key_len=0,
+                    local_crypto_key=None,
+                    remote_crypto_key_len=0,
+                    remote_crypto_key=None,
+                    integ_alg=integ_alg.alg_int_repr if integ_alg else 0,
+                    local_integ_key_len=0,
+                    local_integ_key=None,
+                    remote_integ_key_len=0,
+                    remote_integ_key=None,
+                    udp_encap=0,
+                    tx_table_id=0
+                )
             err_msg = f"Failed to add IPsec tunnel interfaces " \
                 f"on host {nodes[u'DUT1'][u'host']}"
             ipsec_tunnels = [None] * existing_tunnels
             ckeys = [None] * existing_tunnels
             ikeys = [None] * existing_tunnels
+            flags = int(
+                IPIPtunnelEncapDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE)
+            mode = int(IPIPtunnelMode.TUNNEL_API_MODE_P2P)
+            dscp = int(IPdscp.IP_API_DSCP_CS0)
             for i in range(existing_tunnels, n_tunnels):
-                ckeys.append(
-                    gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
-                )
-                if integ_alg:
-                    ikeys.append(
-                        gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                    )
                 args1[u"prefix"] = IPUtil.create_prefix_object(
                     if1_ip + i * addr_incr, 128 if if1_ip.version == 6 else 32
                 )
-                args2[u"local_spi"] = spi_1 + i
-                args2[u"remote_spi"] = spi_2 + i
-                args2[u"local_ip"] = IPAddress.create_ip_address_object(
-                    if1_ip + i * addr_incr
-                )
-                args2[u"remote_ip"] = IPAddress.create_ip_address_object(if2_ip)
-                args2[u"local_crypto_key_len"] = len(ckeys[i])
-                args2[u"local_crypto_key"] = ckeys[i]
-                args2[u"remote_crypto_key_len"] = len(ckeys[i])
-                args2[u"remote_crypto_key"] = ckeys[i]
-                if integ_alg:
-                    args2[u"local_integ_key_len"] = len(ikeys[i])
-                    args2[u"local_integ_key"] = ikeys[i]
-                    args2[u"remote_integ_key_len"] = len(ikeys[i])
-                    args2[u"remote_integ_key"] = ikeys[i]
-                history = bool(not 1 < i < n_tunnels - 2)
-                papi_exec.add(cmd1, history=history, **args1).\
-                    add(cmd2, history=history, **args2)
+                if protection_model:
+                    ckey = gen_key(
+                        IPsecUtil.get_crypto_alg_key_len(crypto_alg)
+                    )
+                    ckeys.append(dict(
+                        length=len(ckey),
+                        data=ckey
+                        )
+                    )
+                    if integ_alg:
+                        ikey = gen_key(
+                            IPsecUtil.get_crypto_alg_key_len(integ_alg)
+                        )
+                        ikeys.append(dict(
+                            lenght=len(ikey),
+                            data=ikey
+                            )
+                        )
+                    args2[u"tunnel"][u"instance"] = i
+                    args2[u"tunnel"][u"src"] = IPAddress.\
+                        create_ip_address_object(if1_ip + i * addr_incr)
+                    args2[u"tunnel"][u"dst"] = IPAddress.\
+                        create_ip_address_object(if2_ip)
+                    if udp_encap:
+                        args3_in[u"entry"][u"tunnel_src"] = IPAddress.\
+                            create_ip_address_object(if2_ip)
+                        args3_in[u"entry"][u"tunnel_dst"] = IPAddress.\
+                            create_ip_address_object(if1_ip + i * addr_incr)
+                        args3_out[u"entry"][u"tunnel_src"] = IPAddress.\
+                            create_ip_address_object(if1_ip + i * addr_incr)
+                        args3_out[u"entry"][u"tunnel_dst"] = IPAddress.\
+                            create_ip_address_object(if2_ip)
+                    args3_in[u"entry"][u"sad_id"] = spi_1 + i
+                    args3_in[u"entry"][u"spi"] = spi_1 + i
+                    args3_in[u"entry"][u"crypto_key"]= ckeys[i]
+                    args3_out[u"entry"][u"sad_id"] = spi_2 + i
+                    args3_out[u"entry"][u"spi"] = spi_2 + i
+                    args3_out[u"entry"][u"crypto_key"]= ckeys[i]
+                    if integ_alg:
+                        args3_in[u"entry"][u"integgrity_key"] = ikeys[i]
+                        args3_out[u"entry"][u"integgrity_key"] = ikeys[i]
+                    history = bool(not 1 < i < n_tunnels - 2)
+                    papi_exec.add(cmd1, history=history, **args1).\
+                        add(cmd2, history=history, **args2).\
+                        add(cmd3, history=history, **args3_in).\
+                        add(cmd3, history=history, **args3_out)
+                else:
+                    ckeys.append(
+                        gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
+                    )
+                    if integ_alg:
+                        ikeys.append(
+                            gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
+                        )
+                    args2[u"local_spi"] = spi_1 + i
+                    args2[u"remote_spi"] = spi_2 + i
+                    args2[u"local_ip"] = IPAddress.\
+                        create_ip_address_object(if1_ip + i * addr_incr)
+                    args2[u"remote_ip"] = IPAddress.\
+                        create_ip_address_object(if2_ip)
+                    args2[u"local_crypto_key_len"] = len(ckeys[i])
+                    args2[u"local_crypto_key"] = ckeys[i]
+                    args2[u"remote_crypto_key_len"] = len(ckeys[i])
+                    args2[u"remote_crypto_key"] = ckeys[i]
+                    if integ_alg:
+                        args2[u"local_integ_key_len"] = len(ikeys[i])
+                        args2[u"local_integ_key"] = ikeys[i]
+                        args2[u"remote_integ_key_len"] = len(ikeys[i])
+                        args2[u"remote_integ_key"] = ikeys[i]
+                    if udp_encap != 0:
+                        args2[u"udp_encap"] = udp_encap
+                    history = bool(not 1 < i < n_tunnels - 2)
+                    papi_exec.add(cmd1, history=history, **args1).\
+                        add(cmd2, history=history, **args2)
             replies = papi_exec.get_replies(err_msg)
             for reply in replies:
                 if u"sw_if_index" in reply:
@@ -1042,6 +1206,17 @@ class IPsecUtil:
                 is_multipath=0,
                 route=None
             )
+            if protection_model:
+                cmd4 = u"ipsec_tunnel_protect_update"
+                args4 = dict(
+                    tunnel=dict(
+                        sw_if_index=None,
+                        nh = 0,
+                        sa_out = None,
+                        n_sa_in = 1,
+                        sa_in = { None }
+                    )
+                )
             err_msg = f"Failed to add IP routes " \
                 f"on host {nodes[u'DUT1'][u'host']}"
             for i in range(existing_tunnels, n_tunnels):
@@ -1052,10 +1227,20 @@ class IPsecUtil:
                     prefix_len=128 if raddr_ip2.version == 6 else 32,
                     interface=ipsec_tunnels[i]
                 )
-                history = bool(not 1 < i < n_tunnels - 2)
-                papi_exec.add(cmd1, history=history, **args1).\
-                    add(cmd2, history=history, **args2).\
-                    add(cmd3, history=history, **args3)
+                if protection_model:
+                    args4[u"tunnel"]["sw_if_index"] = ipsec_tunnels[i]
+                    args4[u"tunnel"][u"sa_in"] = { spi_1 + i }
+                    args4[u"tunnel"][u"sa_out"] = spi_2 + i
+                    history = bool(not 1 < i < n_tunnels - 2)
+                    papi_exec.add(cmd1, history=history, **args1).\
+                        add(cmd2, history=history, **args2).\
+                        add(cmd3, history=history, **args3).\
+                        add(cmd4, history=history, **args4)
+                else:
+                    history = bool(not 1 < i < n_tunnels - 2)
+                    papi_exec.add(cmd1, history=history, **args1).\
+                        add(cmd2, history=history, **args2).\
+                        add(cmd3, history=history, **args3)
             papi_exec.get_replies(err_msg)
 
         with PapiSocketExecutor(nodes[u"DUT2"]) as papi_exec:
@@ -1076,45 +1261,137 @@ class IPsecUtil:
                     f"on host {nodes[u'DUT2'][u'host']}"
                 papi_exec.add(cmd1, **args1).get_reply(err_msg)
             # Configure IPsec tunnel interfaces
-            cmd2 = u"ipsec_tunnel_if_add_del"
-            args2 = dict(
-                is_add=True,
-                local_ip=IPAddress.create_ip_address_object(if2_ip),
-                remote_ip=None,
-                local_spi=0,
-                remote_spi=0,
-                crypto_alg=crypto_alg.alg_int_repr,
-                local_crypto_key_len=0,
-                local_crypto_key=None,
-                remote_crypto_key_len=0,
-                remote_crypto_key=None,
-                integ_alg=integ_alg.alg_int_repr if integ_alg else 0,
-                local_integ_key_len=0,
-                local_integ_key=None,
-                remote_integ_key_len=0,
-                remote_integ_key=None,
-                tx_table_id=0
-            )
+            if protection_model:
+                ipip_flags = int(IPIPtunnelEncapDecapFlags.\
+                    TUNNEL_API_ENCAP_DECAP_FLAG_NONE)
+                ipip_mode = int(IPIPtunnelMode.TUNNEL_API_MODE_P2P)
+                dscp = int(IPdscp.IP_API_DSCP_CS0)
+                cmd2 = u"ipip_add_tunnel"
+                args2 = dict(
+                    tunnel=dict(
+                        instance=0,
+                        src=None,
+                        dst=None,
+                        flags=ipip_flags,
+                        mode=ipip_mode,
+                        dscp=dscp
+                    )
+                )
+                cmd3 = u"ipsec_sad_entry_add_del"
+                sad_flags = int(IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE)
+                if udp_encap:
+                    sad_flags = sad_flags | int(IPsecSadFlags.\
+                       IPSEC_API_SAD_FLAG_UDP_ENCAP)
+                    sad_flags = sad_flags | int(
+                       IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL)
+                sad_entry_in = dict(
+                    sad_id=0,
+                    spi=0,
+                    crypto_algorithm=crypto_alg.alg_int_repr,
+                    crypto_key=0,
+                    integrity_algorithm=integ_alg.alg_int_repr if integ_alg
+                        else 0,
+                    integrity_key=0,
+                    flags=sad_flags | int(
+                        IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_INBOUND),
+                    tunnel_src=u"",
+                    tunnel_dst=u"",
+                    protocol=int(IPsecProto.IPSEC_API_PROTO_ESP)
+                )
+                args3_in = dict(
+                     is_add=True,
+                     entry=sad_entry_in
+                )
+                sad_entry_out = dict(
+                    sad_id=0,
+                    spi=0,
+                    crypto_algorithm=crypto_alg.alg_int_repr,
+                    crypto_key=0,
+                    integrity_algorithm=integ_alg.alg_int_repr if integ_alg
+                        else 0,
+                    integrity_key=0,
+                    flags=sad_flags,
+                    tunnel_src=u"",
+                    tunnel_dst=u"",
+                    protocol=int(IPsecProto.IPSEC_API_PROTO_ESP)
+                )
+                args3_out = dict(
+                     is_add=True,
+                     entry=sad_entry_out
+                )
+            else:
+                cmd2 = u"ipsec_tunnel_if_add_del"
+                args2 = dict(
+                    is_add=True,
+                    local_ip=IPAddress.create_ip_address_object(if2_ip),
+                    remote_ip=None,
+                    local_spi=0,
+                    remote_spi=0,
+                    crypto_alg=crypto_alg.alg_int_repr,
+                    local_crypto_key_len=0,
+                    local_crypto_key=None,
+                    remote_crypto_key_len=0,
+                    remote_crypto_key=None,
+                    integ_alg=integ_alg.alg_int_repr if integ_alg else 0,
+                    local_integ_key_len=0,
+                    local_integ_key=None,
+                    remote_integ_key_len=0,
+                    remote_integ_key=None,
+                    udp_encap=0,
+                    tx_table_id=0
+                )
             err_msg = f"Failed to add IPsec tunnel interfaces " \
                 f"on host {nodes[u'DUT2'][u'host']}"
             ipsec_tunnels = [None] * existing_tunnels
             for i in range(existing_tunnels, n_tunnels):
-                args2[u"local_spi"] = spi_2 + i
-                args2[u"remote_spi"] = spi_1 + i
-                args2[u"local_ip"] = IPAddress.create_ip_address_object(if2_ip)
-                args2[u"remote_ip"] = IPAddress.create_ip_address_object(
-                    if1_ip + i * addr_incr)
-                args2[u"local_crypto_key_len"] = len(ckeys[i])
-                args2[u"local_crypto_key"] = ckeys[i]
-                args2[u"remote_crypto_key_len"] = len(ckeys[i])
-                args2[u"remote_crypto_key"] = ckeys[i]
-                if integ_alg:
-                    args2[u"local_integ_key_len"] = len(ikeys[i])
-                    args2[u"local_integ_key"] = ikeys[i]
-                    args2[u"remote_integ_key_len"] = len(ikeys[i])
-                    args2[u"remote_integ_key"] = ikeys[i]
-                history = bool(not 1 < i < n_tunnels - 2)
-                papi_exec.add(cmd2, history=history, **args2)
+                if protection_model:
+                    args2[u"tunnel"][u"instance"] = i
+                    args2[u"tunnel"][u"src"] = IPAddress.\
+                        create_ip_address_object(if2_ip)
+                    args2[u"tunnel"][u"dst"] = IPAddress.\
+                        create_ip_address_object(if1_ip + i * addr_incr)
+                    if udp_encap:
+                        args3_in[u"entry"][u"tunnel_src"] = IPAddress.\
+                            create_ip_address_object(if1_ip + i * addr_incr)
+                        args3_in[u"entry"][u"tunnel_dst"] = IPAddress.\
+                            create_ip_address_object(if2_ip)
+                        args3_out[u"entry"][u"tunnel_src"] = IPAddress.\
+                            create_ip_address_object(if2_ip)
+                        args3_out[u"entry"][u"tunnel_dst"] = IPAddress.\
+                            create_ip_address_object(if1_ip + i * addr_incr)
+                    args3_in[u"entry"][u"sad_id"] = spi_2 + i
+                    args3_in[u"entry"][u"spi"] = spi_2 + i
+                    args3_in[u"entry"][u"crypto_key"]= ckeys[i]
+                    args3_out[u"entry"][u"sad_id"] = spi_1 + i
+                    args3_out[u"entry"][u"spi"] = spi_1 + i
+                    args3_out[u"entry"][u"crypto_key"]= ckeys[i]
+                    if integ_alg:
+                        args3_in[u"entry"][u"integgrity_key"] = ikeys[i]
+                        args3_out[u"entry"][u"integgrity_key"] = ikeys[i]
+                    history = bool(not 1 < i < n_tunnels - 2)
+                    papi_exec.add(cmd2, history=history, **args2).\
+                         add(cmd3, history=history, **args3_in).\
+                         add(cmd3, history=history, **args3_out)
+                else:
+                    args2[u"local_spi"] = spi_2 + i
+                    args2[u"remote_spi"] = spi_1 + i
+                    args2[u"local_ip"] = IPAddress.\
+                        create_ip_address_object(if2_ip)
+                    args2[u"remote_ip"] = IPAddress.\
+                        create_ip_address_object(if1_ip + i * addr_incr)
+                    args2[u"local_crypto_key_len"] = len(ckeys[i])
+                    args2[u"local_crypto_key"] = ckeys[i]
+                    args2[u"remote_crypto_key_len"] = len(ckeys[i])
+                    args2[u"remote_crypto_key"] = ckeys[i]
+                    if integ_alg:
+                        args2[u"local_integ_key_len"] = len(ikeys[i])
+                        args2[u"local_integ_key"] = ikeys[i]
+                        args2[u"remote_integ_key_len"] = len(ikeys[i])
+                        args2[u"remote_integ_key"] = ikeys[i]
+                    if udp_encap:
+                        args2[u"udp_encap"] = udp_encap
+                    history = bool(not 1 < i < n_tunnels - 2)
+                    papi_exec.add(cmd2, history=history, **args2)
             replies = papi_exec.get_replies(err_msg)
             for reply in replies:
                 if u"sw_if_index" in reply:
@@ -1153,6 +1430,17 @@ class IPsecUtil:
                 is_multipath=0,
                 route=None
             )
+            if protection_model:
+                cmd4 = u"ipsec_tunnel_protect_update"
+                args4 = dict(
+                    tunnel=dict(
+                        sw_if_index=None,
+                        nh = 0,
+                        sa_out = None,
+                        n_sa_in = 1,
+                        sa_in = { None }
+                    )
+                )
             err_msg = f"Failed to add IP routes " \
                 f"on host {nodes[u'DUT2'][u'host']}"
             for i in range(existing_tunnels, n_tunnels):
@@ -1163,10 +1451,20 @@ class IPsecUtil:
                     prefix_len=128 if raddr_ip1.version == 6 else 32,
                     interface=ipsec_tunnels[i]
                 )
-                history = bool(not 1 < i < n_tunnels - 2)
-                papi_exec.add(cmd1, history=history, **args1). \
-                    add(cmd2, history=history, **args2). \
-                    add(cmd3, history=history, **args3)
+                if protection_model:
+                    args4[u"tunnel"][u"sw_if_index"] = ipsec_tunnels[i]
+                    args4[u"tunnel"][u"sa_in"] = { spi_2 + i }
+                    args4[u"tunnel"][u"sa_out"] = spi_1 + i
+                    history = bool(not 1 < i < n_tunnels - 2)
+                    papi_exec.add(cmd1, history=history, **args1).\
+                        add(cmd2, history=history, **args2).\
+                        add(cmd3, history=history, **args3).\
+                        add(cmd4, history=history, **args4)
+                else:
+                    history = bool(not 1 < i < n_tunnels - 2)
+                    papi_exec.add(cmd1, history=history, **args1).\
+                        add(cmd2, history=history, **args2).\
+                        add(cmd3, history=history, **args3)
             papi_exec.get_replies(err_msg)
 
     @staticmethod
