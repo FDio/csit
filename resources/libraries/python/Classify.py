@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,8 +20,9 @@ from ipaddress import ip_address
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
-from resources.libraries.python.topology import Topology
 
 
 class Classify:
@@ -332,11 +333,10 @@ class Classify:
         :type acls: list
         """
         cmd = u"acl_interface_set_acl_list"
-        n_input = len(acls) if acl_type == u"input" else 0
         args = dict(
             sw_if_index=sw_if_index,
             acls=acls,
-            n_input=n_input,
+            n_input=len(acls) if acl_type == u"input" else 0,
             count=len(acls)
         )
 
@@ -361,7 +361,7 @@ class Classify:
         """
         cmd = u"acl_add_replace"
         args = dict(
-            tag=tag.encode("utf-8"),
+            tag=tag,
             acl_index=4294967295 if acl_idx is None else acl_idx,
             count=len(rules),
             r=rules
@@ -606,15 +606,11 @@ class Classify:
         :type acl_type: str
         :type acl_idx: list
         """
-        if isinstance(interface, str):
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
-        else:
-            sw_if_index = int(interface)
-
-        acls = acl_idx if isinstance(acl_idx, list) else list()
-
         Classify._acl_interface_set_acl_list(
-            node=node, sw_if_index=sw_if_index, acl_type=acl_type, acls=acls
+            node=node,
+            sw_if_index=int(InterfaceUtil.get_interface_index(node, interface)),
+            acl_type=acl_type,
+            acls=acl_idx if isinstance(acl_idx, list) else list()
         )
 
     @staticmethod
@@ -639,51 +635,56 @@ class Classify:
 
         acl_rules = list()
         for rule in rules.split(u", "):
-            acl_rule = dict()
-            acl_rule[u"is_permit"] = 1 if u"permit" in rule else 0
-            acl_rule[u"is_ipv6"] = 1 if u"ipv6" in rule else 0
+            acl_rule = dict(
+                is_permit=2 if u"permit+reflect" in rule
+                else 1 if u"permit" in rule else 0,
+                src_prefix=0,
+                dst_prefix=0,
+                proto=0,
+                srcport_or_icmptype_first=0,
+                srcport_or_icmptype_last=65535,
+                dstport_or_icmpcode_first=0,
+                dstport_or_icmpcode_last=65535,
+                tcp_flags_mask=0,
+                tcp_flags_value=0
+            )
 
             groups = re.search(reg_ex_src_ip, rule)
             if groups:
                 grp = groups.group(1).split(u" ")[1].split(u"/")
-                acl_rule[u"src_ip_addr"] = ip_address(grp[0]).packed
-                acl_rule[u"src_ip_prefix_len"] = int(grp[1])
+                acl_rule[u"src_prefix"] = IPUtil.create_prefix_object(
+                    ip_address(grp[0]).packed, int(grp[1])
+                )
 
             groups = re.search(reg_ex_dst_ip, rule)
             if groups:
                 grp = groups.group(1).split(u" ")[1].split(u"/")
-                acl_rule[u"dst_ip_addr"] = ip_address(grp[0]).packed
-                acl_rule[u"dst_ip_prefix_len"] = int(grp[1])
+                acl_rule[u"dst_prefix"] = IPUtil.create_prefix_object(
+                    ip_address(grp[0]).packed, int(grp[1])
+                )
 
             groups = re.search(reg_ex_sport, rule)
             if groups:
                 port = int(groups.group(1).split(u" ")[1])
                 acl_rule[u"srcport_or_icmptype_first"] = port
                 acl_rule[u"srcport_or_icmptype_last"] = port
-            else:
-                acl_rule[u"srcport_or_icmptype_first"] = 0
-                acl_rule[u"srcport_or_icmptype_last"] = 65535
 
             groups = re.search(reg_ex_dport, rule)
             if groups:
                 port = int(groups.group(1).split(u" ")[1])
                 acl_rule[u"dstport_or_icmpcode_first"] = port
                 acl_rule[u"dstport_or_icmpcode_last"] = port
-            else:
-                acl_rule[u"dstport_or_icmpcode_first"] = 0
-                acl_rule[u"dstport_or_icmpcode_last"] = 65535
 
             groups = re.search(reg_ex_proto, rule)
             if groups:
                 proto = int(groups.group(1).split(' ')[1])
                 acl_rule[u"proto"] = proto
-            else:
-                acl_rule[u"proto"] = 0
 
             acl_rules.append(acl_rule)
 
         Classify._acl_add_replace(
-            node, acl_idx=acl_idx, rules=acl_rules, tag=tag)
+            node, acl_idx=acl_idx, rules=acl_rules, tag=tag
+        )
 
     @staticmethod
     def add_macip_acl_multi_entries(node, rules=u""):
@@ -700,9 +701,13 @@ class Classify:
 
         acl_rules = list()
         for rule in rules.split(u", "):
-            acl_rule = dict()
-            acl_rule[u"is_permit"] = 1 if u"permit" in rule else 0
-            acl_rule[u"is_ipv6"] = 1 if u"ipv6" in rule else 0
+            acl_rule = dict(
+                is_permit=2 if u"permit+reflect" in rule
+                else 1 if u"permit" in rule else 0,
+                src_mac=6*b'0',
+                src_mac_mask=6*b'0',
+                prefix=0
+            )
 
             groups = re.search(reg_ex_mac, rule)
             if groups:
@@ -717,8 +722,9 @@ class Classify:
             groups = re.search(reg_ex_ip, rule)
             if groups:
                 grp = groups.group(1).split(u" ")[1].split(u"/")
-                acl_rule[u"src_ip_addr"] = ip_address((grp[0])).packed
-                acl_rule[u"src_ip_prefix_len"] = int(grp[1])
+                acl_rule[u"src_prefix"] = IPUtil.create_prefix_object(
+                    ip_address((grp[0])).packed, int(grp[1])
+                )
 
             acl_rules.append(acl_rule)
 
@@ -748,18 +754,11 @@ class Classify:
         :type acl_idx: str or int
         :raises RuntimeError: If unable to set MACIP ACL for the interface.
         """
-        if isinstance(interface, str):
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
-        else:
-            sw_if_index = interface
-
-        is_add = 1 if action == u"add" else 0
-
         cmd = u"macip_acl_interface_add_del"
         err_msg = f"Failed to get 'macip_acl_interface' on host {node[u'host']}"
         args = dict(
-            is_add=is_add,
-            sw_if_index=int(sw_if_index),
+            is_add=bool(action == u"add"),
+            sw_if_index=int(InterfaceUtil.get_interface_index(node, interface)),
             acl_index=int(acl_idx)
         )
         with PapiSocketExecutor(node) as papi_exec:
