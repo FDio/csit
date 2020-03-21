@@ -487,7 +487,7 @@ class Topology:
         """
         try:
             if isinstance(iface_key, str):
-                return node[u"interfaces"][iface_key].get(u"vpp_sw_index")
+                return int(node[u"interfaces"][iface_key].get(u"vpp_sw_index"))
             # TODO: use only iface_key, do not use integer
             return int(iface_key)
         except (KeyError, ValueError):
@@ -508,7 +508,7 @@ class Topology:
             if not isinstance(iface_name, str):
                 raise TypeError(u"Interface name must be a string.")
             iface_key = Topology.get_interface_by_name(node, iface_name)
-            return node[u"interfaces"][iface_key].get(u"vpp_sw_index")
+            return int(node[u"interfaces"][iface_key].get(u"vpp_sw_index"))
         except (KeyError, ValueError):
             return None
 
