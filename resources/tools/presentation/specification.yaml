@@ -276,6 +276,17 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
+<<<<<<< HEAD   (9ac896 Report: Remove decimals from delta and stdev in tables)
+=======
+        - 51  # NDRPDR sel
+        - 52  # NDRPDR sel
+        - 54  # NDRPDR sel addition
+        - 55  # NDRPDR sel addition
+        - 56  # NDRPDR sel addition
+        - 57  # NDRPDR sel addition
+        - 58  # NDRPDR sel addition
+        - 61  # NDRPDR sel addition
+>>>>>>> CHANGE (d3467a Report: Add data)
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -604,6 +615,17 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
+<<<<<<< HEAD   (9ac896 Report: Remove decimals from delta and stdev in tables)
+=======
+        - 51  # NDRPDR sel
+        - 52  # NDRPDR sel
+        - 54  # NDRPDR sel addition
+        - 55  # NDRPDR sel addition
+        - 56  # NDRPDR sel addition
+        - 57  # NDRPDR sel addition
+        - 58  # NDRPDR sel addition
+        - 61  # NDRPDR sel addition
+>>>>>>> CHANGE (d3467a Report: Add data)
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -876,6 +898,17 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
+<<<<<<< HEAD   (9ac896 Report: Remove decimals from delta and stdev in tables)
+=======
+        - 51  # NDRPDR sel
+        - 52  # NDRPDR sel
+        - 54  # NDRPDR sel addition
+        - 55  # NDRPDR sel addition
+        - 56  # NDRPDR sel addition
+        - 57  # NDRPDR sel addition
+        - 58  # NDRPDR sel addition
+        - 61  # NDRPDR sel addition
+>>>>>>> CHANGE (d3467a Report: Add data)
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -1374,6 +1407,17 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
+<<<<<<< HEAD   (9ac896 Report: Remove decimals from delta and stdev in tables)
+=======
+        - 51  # NDRPDR sel
+        - 52  # NDRPDR sel
+        - 54  # NDRPDR sel addition
+        - 55  # NDRPDR sel addition
+        - 56  # NDRPDR sel addition
+        - 57  # NDRPDR sel addition
+        - 58  # NDRPDR sel addition
+        - 61  # NDRPDR sel addition
+>>>>>>> CHANGE (d3467a Report: Add data)
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
@@ -1582,6 +1626,17 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
+<<<<<<< HEAD   (9ac896 Report: Remove decimals from delta and stdev in tables)
+=======
+        - 51  # NDRPDR sel
+        - 52  # NDRPDR sel
+        - 54  # NDRPDR sel addition
+        - 55  # NDRPDR sel addition
+        - 56  # NDRPDR sel addition
+        - 57  # NDRPDR sel addition
+        - 58  # NDRPDR sel addition
+        - 61  # NDRPDR sel addition
+>>>>>>> CHANGE (d3467a Report: Add data)
     vpp-compare-topologies-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2453,6 +2508,17 @@
       - 47  # NDRPDR sel
       - 48  # NDRPDR sel
       - 49  # NDRPDR sel
+<<<<<<< HEAD   (9ac896 Report: Remove decimals from delta and stdev in tables)
+=======
+      - 51  # NDRPDR sel
+      - 52  # NDRPDR sel
+      - 54  # NDRPDR sel addition
+      - 55  # NDRPDR sel addition
+      - 56  # NDRPDR sel addition
+      - 57  # NDRPDR sel addition
+      - 58  # NDRPDR sel addition
+      - 61  # NDRPDR sel addition
+>>>>>>> CHANGE (d3467a Report: Add data)
       - 50  # MRR sel
 
     csit-vpp-perf-verify-1904-2n-skx:
