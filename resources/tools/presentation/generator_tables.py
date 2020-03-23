@@ -29,6 +29,7 @@ import plotly.offline as ploff
 import pandas as pd
 
 from numpy import nan, isnan
+from yaml import load, FullLoader, YAMLError
 
 from pal_utils import mean, stdev, classify_anomalies, \
     convert_csv_to_pretty_txt, relative_change_stdev
@@ -886,6 +887,16 @@ def table_perf_comparison_nic(table, input_data):
     try:
         header = [u"Test case", ]
 
+        rca_data = None
+        rca = table.get(u"rca", None)
+        if rca:
+            try:
+                with open(rca.get(u"data-file", ""), u"r") as rca_file:
+                    rca_data = load(rca_file, Loader=FullLoader)
+                header.append(rca.get(u"title", "RCA"))
+            except (YAMLError, IOError) as err:
+                logging.warning(repr(err))
+
         if table[u"include-tests"] == u"MRR":
             hdr_param = u"Rec Rate"
         else:
@@ -1129,6 +1140,8 @@ def table_perf_comparison_nic(table, input_data):
                 item.append(round(d_stdev))
             except ValueError:
                 item.append(d_stdev)
+        if rca_data:
+            item.insert(0, rca_data.get(item[0], u" "))
         if (len(item) == len(header)) and (item[-4] != u"Not tested"):
             tbl_lst.append(item)
 
