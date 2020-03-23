@@ -312,6 +312,10 @@ Name                      | Comment
 10.30.51.30               | t4-sut3
 10.30.51.30               | s23-t35-sut2 screen -r /dev/ttyUSB1, TO BE VERIFIED
 10.30.51.30               | s24-t35-sut3 screen -r /dev/ttyUSB2, TO BE VERIFIED
+10.30.51.32               | nomad1 (undocumented h/w config)
+10.30.51.33               | nomad2 (undocumented h/w config)
+10.30.51.34               | nomad3 (undocumented h/w config)
+10.30.51.35               | nomad4 (undocumented h/w config)
 10.30.51.36               | s17-t33-sut1
 10.30.51.37               | s18-t33-sut2
 10.30.51.41               | s20-t34-sut1
@@ -344,6 +348,9 @@ Name                      | Comment
 10.32.8.11                | s29-t26-sut1
 10.32.8.12                | s30-t35-sut1
 10.32.8.13                | s31-t35-sut2
+10.32.8.14                | server-type-c4-1
+10.32.8.15                | server-type-c4-2
+10.32.8.16                | server-type-c4-3
 10.32.8.17                | s32-t14-sut1
 10.32.8.18                | s33-t27-sut1
 10.32.8.19                | s34-t27-tg1
