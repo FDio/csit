@@ -822,8 +822,14 @@ def table_perf_comparison(table, input_data):
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
             )
-            item.append(round(delta))
-            item.append(round(d_stdev))
+            try:
+                item.append(round(delta))
+            except ValueError:
+                item.append(delta)
+            try:
+                item.append(round(d_stdev))
+            except ValueError:
+                item.append(d_stdev)
         if (len(item) == len(header)) and (item[-4] != u"Not tested"):
             tbl_lst.append(item)
 
@@ -1115,8 +1121,14 @@ def table_perf_comparison_nic(table, input_data):
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
             )
-            item.append(round(delta))
-            item.append(round(d_stdev))
+            try:
+                item.append(round(delta))
+            except ValueError:
+                item.append(delta)
+            try:
+                item.append(round(d_stdev))
+            except ValueError:
+                item.append(d_stdev)
         if (len(item) == len(header)) and (item[-4] != u"Not tested"):
             tbl_lst.append(item)
 
@@ -1253,8 +1265,14 @@ def table_nics_comparison(table, input_data):
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
             )
-            item.append(round(delta))
-            item.append(round(d_stdev))
+            try:
+                item.append(round(delta))
+            except ValueError:
+                item.append(delta)
+            try:
+                item.append(round(d_stdev))
+            except ValueError:
+                item.append(d_stdev)
             tbl_lst.append(item)
 
     # Sort the table according to the relative change
@@ -1387,8 +1405,14 @@ def table_soak_vs_ndr(table, input_data):
         if data_r_mean and data_c_mean:
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev)
-            item.append(round(delta))
-            item.append(round(d_stdev))
+            try:
+                item.append(round(delta))
+            except ValueError:
+                item.append(delta)
+            try:
+                item.append(round(d_stdev))
+            except ValueError:
+                item.append(d_stdev)
             tbl_lst.append(item)
 
     # Sort the table according to the relative change
