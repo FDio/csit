@@ -297,24 +297,27 @@ def classify_anomalies(data):
     return classification, avgs
 
 
-def convert_csv_to_pretty_txt(csv_file_name, txt_file_name):
+def convert_csv_to_pretty_txt(csv_file_name, txt_file_name, delimiter=u","):
     """Convert the given csv table to pretty text table.
 
     :param csv_file_name: The path to the input csv file.
     :param txt_file_name: The path to the output pretty text file.
+    :param delimiter: Delimiter for csv file.
     :type csv_file_name: str
     :type txt_file_name: str
+    :type delimiter: str
     """
 
     txt_table = None
     with open(csv_file_name, u"rt") as csv_file:
-        csv_content = csv.reader(csv_file, delimiter=u',', quotechar=u'"')
+        csv_content = csv.reader(csv_file, delimiter=delimiter, quotechar=u'"')
         for row in csv_content:
             if txt_table is None:
                 txt_table = prettytable.PrettyTable(row)
             else:
                 txt_table.add_row(row)
         txt_table.align[u"Test case"] = u"l"
+        txt_table.align[u"RCA"] = u"l"
     if txt_table:
         with open(txt_file_name, u"wt") as txt_file:
             txt_file.write(str(txt_table))
