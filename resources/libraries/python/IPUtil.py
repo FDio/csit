@@ -630,14 +630,15 @@ class IPUtil:
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
 
+        fast = 0 if count < 128 else count
         with PapiSocketExecutor(node, do_async=True) as papi_exec:
-            for i in range(count):
+            for i in range(2 if fast else count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, net_addr + i, prefix_len, **kwargs
                 )
                 history = bool(not 1 < i < kwargs.get(u"count", 1))
                 papi_exec.add(cmd, history=history, **args)
-            papi_exec.get_replies(err_msg)
+            papi_exec.get_replies(err_msg, fast)
 
     @staticmethod
     def flush_ip_addresses(node, interface):
