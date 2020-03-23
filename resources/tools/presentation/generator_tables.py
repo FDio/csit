@@ -29,6 +29,7 @@ import plotly.offline as ploff
 import pandas as pd
 
 from numpy import nan, isnan
+from yaml import load, FullLoader, YAMLError
 
 from pal_utils import mean, stdev, classify_anomalies, \
     convert_csv_to_pretty_txt, relative_change_stdev
@@ -492,14 +493,24 @@ def _tpc_generate_html_table(header, data, output_file_name):
     :type output_file_name: str
     """
 
+    try:
+        idx = header.index(u"Test case")
+    except ValueError:
+        idx = 0
+    params = {
+        u"align-hdr": ([u"left", u"center"], [u"left", u"left", u"center"]),
+        u"align-itm": ([u"left", u"right"], [u"left", u"left", u"right"]),
+        u"width": ([28, 9], [4, 24, 10])
+    }
+
     df_data = pd.DataFrame(data, columns=header)
 
     df_sorted = [df_data.sort_values(
-        by=[key, header[0]], ascending=[True, True]
-        if key != header[0] else [False, True]) for key in header]
+        by=[key, header[idx]], ascending=[True, True]
+        if key != header[idx] else [False, True]) for key in header]
     df_sorted_rev = [df_data.sort_values(
-        by=[key, header[0]], ascending=[False, True]
-        if key != header[0] else [True, True]) for key in header]
+        by=[key, header[idx]], ascending=[False, True]
+        if key != header[idx] else [True, True]) for key in header]
     df_sorted.extend(df_sorted_rev)
 
     fill_color = [[u"#d4e4f7" if idx % 2 else u"#e9f1fb"
@@ -507,7 +518,7 @@ def _tpc_generate_html_table(header, data, output_file_name):
     table_header = dict(
         values=[f"<b>{item}</b>" for item in header],
         fill_color=u"#7eade7",
-        align=[u"left", u"center"]
+        align=params[u"align-hdr"][idx]
     )
 
     fig = go.Figure()
@@ -516,12 +527,12 @@ def _tpc_generate_html_table(header, data, output_file_name):
         columns = [table.get(col) for col in header]
         fig.add_trace(
             go.Table(
-                columnwidth=[30, 10],
+                columnwidth=params[u"width"][idx],
                 header=table_header,
                 cells=dict(
                     values=columns,
                     fill_color=fill_color,
-                    align=[u"left", u"right"]
+                    align=params[u"align-itm"][idx]
                 )
             )
         )
@@ -550,7 +561,7 @@ def _tpc_generate_html_table(header, data, output_file_name):
                 xanchor=u"left",
                 y=1.045,
                 yanchor=u"top",
-                active=len(menu_items) - 2,
+                active=len(menu_items) - 1,
                 buttons=list(buttons)
             )
         ],
@@ -593,6 +604,16 @@ def table_perf_comparison(table, input_data):
     try:
         header = [u"Test case", ]
 
+        rca_data = None
+        rca = table.get(u"rca", None)
+        if rca:
+            try:
+                with open(rca.get(u"data-file", ""), u"r") as rca_file:
+                    rca_data = load(rca_file, Loader=FullLoader)
+                header.insert(0, rca.get(u"title", "RCA"))
+            except (YAMLError, IOError) as err:
+                logging.warning(repr(err))
+
         if table[u"include-tests"] == u"MRR":
             hdr_param = u"Rec Rate"
         else:
@@ -616,16 +637,14 @@ def table_perf_comparison(table, input_data):
                 u"Stdev of delta [%]"
             ]
         )
-        header_str = u",".join(header) + u"\n"
+        header_str = u";".join(header) + u"\n"
     except (AttributeError, KeyError) as err:
         logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
 
     # Prepare data to the table:
     tbl_dict = dict()
-    # topo = ""
     for job, builds in table[u"reference"][u"data"].items():
-        # topo = u"2n-skx" if u"2n-skx" in job else u""
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = _tpc_modify_test_name(tst_name)
@@ -777,7 +796,6 @@ def table_perf_comparison(table, input_data):
                         pass
 
     tbl_lst = list()
-    footnote = False
     for tst_name in tbl_dict:
         item = [tbl_dict[tst_name][u"name"], ]
         if history:
@@ -815,9 +833,6 @@ def table_perf_comparison(table, input_data):
         elif item[-4] == u"Not tested":
             item.append(u"New in CSIT-2001")
             item.append(u"New in CSIT-2001")
-        # elif topo == u"2n-skx" and u"dot1q" in tbl_dict[tst_name][u"name"]:
-        #     item.append(u"See footnote [1]")
-        #     footnote = True
         elif data_r_mean and data_c_mean:
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
@@ -830,6 +845,8 @@ def table_perf_comparison(table, input_data):
                 item.append(round(d_stdev))
             except ValueError:
                 item.append(d_stdev)
+        if rca_data:
+            item.insert(0, rca_data.get(item[0], u" "))
         if (len(item) == len(header)) and (item[-4] != u"Not tested"):
             tbl_lst.append(item)
 
@@ -840,24 +857,16 @@ def table_perf_comparison(table, input_data):
     with open(csv_file, u"wt") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
-            file_handler.write(u",".join([str(item) for item in test]) + u"\n")
+            file_handler.write(u";".join([str(item) for item in test]) + u"\n")
 
     txt_file_name = f"{table[u'output-file']}.txt"
     convert_csv_to_pretty_txt(csv_file, txt_file_name)
 
-    if footnote:
-        with open(txt_file_name, u'a') as txt_file:
-            txt_file.writelines([
-                u"\nFootnotes:\n",
-                u"[1] CSIT-1908 changed test methodology of dot1q tests in "
-                u"2-node testbeds, dot1q encapsulation is now used on both "
-                u"links of SUT.\n",
-                u"    Previously dot1q was used only on a single link with the "
-                u"other link carrying untagged Ethernet frames. This changes "
-                u"results\n",
-                u"    in slightly lower throughput in CSIT-1908 for these "
-                u"tests. See release notes."
-            ])
+    if rca_data:
+        footnote = rca_data.get(u"footnote", "")
+        if footnote:
+            with open(txt_file_name, u'a') as txt_file:
+                txt_file.writelines(footnote)
 
     # Generate html table:
     _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
@@ -886,6 +895,16 @@ def table_perf_comparison_nic(table, input_data):
     try:
         header = [u"Test case", ]
 
+        rca_data = None
+        rca = table.get(u"rca", None)
+        if rca:
+            try:
+                with open(rca.get(u"data-file", ""), u"r") as rca_file:
+                    rca_data = load(rca_file, Loader=FullLoader)
+                header.insert(0, rca.get(u"title", "RCA"))
+            except (YAMLError, IOError) as err:
+                logging.warning(repr(err))
+
         if table[u"include-tests"] == u"MRR":
             hdr_param = u"Rec Rate"
         else:
@@ -909,16 +928,14 @@ def table_perf_comparison_nic(table, input_data):
                 u"Stdev of delta [%]"
             ]
         )
-        header_str = u",".join(header) + u"\n"
+        header_str = u";".join(header) + u"\n"
     except (AttributeError, KeyError) as err:
         logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
 
     # Prepare data to the table:
     tbl_dict = dict()
-    # topo = u""
     for job, builds in table[u"reference"][u"data"].items():
-        # topo = u"2n-skx" if u"2n-skx" in job else u""
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].items():
                 if table[u"reference"][u"nic"] not in tst_data[u"tags"]:
@@ -1076,7 +1093,6 @@ def table_perf_comparison_nic(table, input_data):
                         pass
 
     tbl_lst = list()
-    footnote = False
     for tst_name in tbl_dict:
         item = [tbl_dict[tst_name][u"name"], ]
         if history:
@@ -1114,9 +1130,6 @@ def table_perf_comparison_nic(table, input_data):
         elif item[-4] == u"Not tested":
             item.append(u"New in CSIT-2001")
             item.append(u"New in CSIT-2001")
-        # elif topo == u"2n-skx" and u"dot1q" in tbl_dict[tst_name][u"name"]:
-        #     item.append(u"See footnote [1]")
-        #     footnote = True
         elif data_r_mean and data_c_mean:
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
@@ -1129,6 +1142,8 @@ def table_perf_comparison_nic(table, input_data):
                 item.append(round(d_stdev))
             except ValueError:
                 item.append(d_stdev)
+        if rca_data:
+            item.insert(0, rca_data.get(item[0], u" "))
         if (len(item) == len(header)) and (item[-4] != u"Not tested"):
             tbl_lst.append(item)
 
@@ -1139,24 +1154,16 @@ def table_perf_comparison_nic(table, input_data):
     with open(csv_file, u"wt") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
-            file_handler.write(u",".join([str(item) for item in test]) + u"\n")
+            file_handler.write(u";".join([str(item) for item in test]) + u"\n")
 
     txt_file_name = f"{table[u'output-file']}.txt"
-    convert_csv_to_pretty_txt(csv_file, txt_file_name)
+    convert_csv_to_pretty_txt(csv_file, txt_file_name, delimiter=u";")
 
-    if footnote:
-        with open(txt_file_name, u'a') as txt_file:
-            txt_file.writelines([
-                u"\nFootnotes:\n",
-                u"[1] CSIT-1908 changed test methodology of dot1q tests in "
-                u"2-node testbeds, dot1q encapsulation is now used on both "
-                u"links of SUT.\n",
-                u"    Previously dot1q was used only on a single link with the "
-                u"other link carrying untagged Ethernet frames. This changes "
-                u"results\n",
-                u"    in slightly lower throughput in CSIT-1908 for these "
-                u"tests. See release notes."
-            ])
+    if rca_data:
+        footnote = rca_data.get(u"footnote", "")
+        if footnote:
+            with open(txt_file_name, u'a') as txt_file:
+                txt_file.writelines(footnote)
 
     # Generate html table:
     _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
