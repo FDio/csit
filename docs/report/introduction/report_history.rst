@@ -6,16 +6,20 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-| .12            | 1. Added data:                                             |
+| .13            | 1. Added data:                                             |
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
 |                |      - all set selected for analysis and graphs            |
+|                |      - MRR tests                                           |
 |                |                                                            |
 |                |    - VPP performance tests 3n-skx                          |
 |                |                                                            |
 |                |      - all set selected for analysis and graphs            |
+|                |      - MRR tests                                           |
 |                |                                                            |
++----------------+------------------------------------------------------------+
+| .12            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .11            | 1. Added Soak tests                                        |
 |                |                                                            |
