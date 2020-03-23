@@ -3462,6 +3462,9 @@
   title: "VPP Performance Changes 2n-skx 2t1c pdr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-2n-skx-2t1c.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
@@ -3479,16 +3482,19 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+    - "name"
+    - "parent"
+    - "throughput"
+    - "tags"
 
 # VPP Performance Changes 2n-skx 4t2c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 4t2c pdr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-pdr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-2n-skx-4t2c.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
@@ -3506,16 +3512,19 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+    - "name"
+    - "parent"
+    - "throughput"
+    - "tags"
 
 # VPP Performance Changes 2n-skx 2t1c ndr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 2t1c ndr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-ndr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-2n-skx-2t1c.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
@@ -3533,16 +3542,19 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+    - "name"
+    - "parent"
+    - "throughput"
+    - "tags"
 
 # VPP Performance Changes 2n-skx 4t2c ndr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 4t2c ndr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-ndr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-2n-skx-4t2c.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
@@ -3560,10 +3572,10 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
   parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+    - "name"
+    - "parent"
+    - "throughput"
+    - "tags"
 
 ## VPP Performance Changes NFV Service Density 2n-skx 2t1c pdr
 #- type: "table"
