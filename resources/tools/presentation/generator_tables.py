@@ -29,6 +29,7 @@ import plotly.offline as ploff
 import pandas as pd
 
 from numpy import nan, isnan
+from yaml import load, FullLoader, YAMLError
 
 from pal_utils import mean, stdev, classify_anomalies, \
     convert_csv_to_pretty_txt, relative_change_stdev
@@ -886,6 +887,17 @@ def table_perf_comparison_nic(table, input_data):
     try:
         header = [u"Test case", ]
 
+        rca_data = None
+        rca = table.get(u"rca", None)
+        if rca:
+            try:
+                with open(rca.get(u"data-file", ""), u"r") as rca_file:
+                    rca_data = load(rca_file, Loader=FullLoader)
+                header.insert(0, rca.get(u"title", "RCA"))
+                footnote = True
+            except (YAMLError, IOError) as err:
+                logging.warning(repr(err))
+
         if table[u"include-tests"] == u"MRR":
             hdr_param = u"Rec Rate"
         else:
@@ -1076,7 +1088,7 @@ def table_perf_comparison_nic(table, input_data):
                         pass
 
     tbl_lst = list()
-    footnote = False
+    # footnote = False
     for tst_name in tbl_dict:
         item = [tbl_dict[tst_name][u"name"], ]
         if history:
@@ -1129,6 +1141,8 @@ def table_perf_comparison_nic(table, input_data):
                 item.append(round(d_stdev))
             except ValueError:
                 item.append(d_stdev)
+        if rca_data:
+            item.insert(0, rca_data.get(item[0], u" "))
         if (len(item) == len(header)) and (item[-4] != u"Not tested"):
             tbl_lst.append(item)
 
@@ -1147,15 +1161,10 @@ def table_perf_comparison_nic(table, input_data):
     if footnote:
         with open(txt_file_name, u'a') as txt_file:
             txt_file.writelines([
-                u"\nFootnotes:\n",
-                u"[1] CSIT-1908 changed test methodology of dot1q tests in "
-                u"2-node testbeds, dot1q encapsulation is now used on both "
-                u"links of SUT.\n",
-                u"    Previously dot1q was used only on a single link with the "
-                u"other link carrying untagged Ethernet frames. This changes "
-                u"results\n",
-                u"    in slightly lower throughput in CSIT-1908 for these "
-                u"tests. See release notes."
+                u"\nRoot causes:\n",
+                u"rc1: Description 1\n",
+                u"rc2: Description 2\n",
+                u"rc3: Description 3"
             ])
 
     # Generate html table:
