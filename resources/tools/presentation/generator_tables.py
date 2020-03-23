@@ -29,6 +29,7 @@ import plotly.offline as ploff
 import pandas as pd
 
 from numpy import nan, isnan
+from yaml import load, FullLoader, YAMLError
 
 from pal_utils import mean, stdev, classify_anomalies, \
     convert_csv_to_pretty_txt, relative_change_stdev
@@ -886,6 +887,16 @@ def table_perf_comparison_nic(table, input_data):
     try:
         header = [u"Test case", ]
 
+        rca_data = None
+        rca = table.get(u"rca", None)
+        if rca:
+            try:
+                with open(rca.get(u"data-file", ""), u"r") as rca_file:
+                    rca_data = load(rca_file, Loader=FullLoader)
+                header.insert(0, rca.get(u"title", "RCA"))
+            except (YAMLError, IOError) as err:
+                logging.warning(repr(err))
+
         if table[u"include-tests"] == u"MRR":
             hdr_param = u"Rec Rate"
         else:
@@ -909,7 +920,7 @@ def table_perf_comparison_nic(table, input_data):
                 u"Stdev of delta [%]"
             ]
         )
-        header_str = u",".join(header) + u"\n"
+        header_str = u";".join(header) + u"\n"
     except (AttributeError, KeyError) as err:
         logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
@@ -1076,7 +1087,7 @@ def table_perf_comparison_nic(table, input_data):
                         pass
 
     tbl_lst = list()
-    footnote = False
+    # footnote = False
     for tst_name in tbl_dict:
         item = [tbl_dict[tst_name][u"name"], ]
         if history:
@@ -1129,6 +1140,8 @@ def table_perf_comparison_nic(table, input_data):
                 item.append(round(d_stdev))
             except ValueError:
                 item.append(d_stdev)
+        if rca_data:
+            item.insert(0, rca_data.get(item[0], u" "))
         if (len(item) == len(header)) and (item[-4] != u"Not tested"):
             tbl_lst.append(item)
 
@@ -1139,24 +1152,15 @@ def table_perf_comparison_nic(table, input_data):
     with open(csv_file, u"wt") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
-            file_handler.write(u",".join([str(item) for item in test]) + u"\n")
+            file_handler.write(u";".join([str(item) for item in test]) + u"\n")
 
     txt_file_name = f"{table[u'output-file']}.txt"
-    convert_csv_to_pretty_txt(csv_file, txt_file_name)
+    convert_csv_to_pretty_txt(csv_file, txt_file_name, delimiter=u";")
 
+    footnote = rca_data.get(u"footnote", "")
     if footnote:
         with open(txt_file_name, u'a') as txt_file:
-            txt_file.writelines([
-                u"\nFootnotes:\n",
-                u"[1] CSIT-1908 changed test methodology of dot1q tests in "
-                u"2-node testbeds, dot1q encapsulation is now used on both "
-                u"links of SUT.\n",
-                u"    Previously dot1q was used only on a single link with the "
-                u"other link carrying untagged Ethernet frames. This changes "
-                u"results\n",
-                u"    in slightly lower throughput in CSIT-1908 for these "
-                u"tests. See release notes."
-            ])
+            txt_file.writelines(footnote)
 
     # Generate html table:
     _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
