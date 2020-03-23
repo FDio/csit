@@ -237,6 +237,10 @@ Name         | Comment
 10.30.50.28  | t4-sut1
 10.30.50.29  | t4-sut2
 10.30.50.30  | t4-sut3
+10.30.50.32  | nomad1
+10.30.50.33  | nomad2
+10.30.50.34  | nomad3
+10.30.50.35  | nomad4
 10.30.50.36  | s17-t33-sut1
 10.30.50.37  | s18-t33-sut2
 10.30.50.41  | s3-t21-sut1
@@ -294,8 +298,8 @@ Name                      | Comment
 10.30.51.10               | s23-t35-sut2 (netgate-2)
 10.30.51.11               | s24-t35-sut3 (netgate-3)
 10.30.51.12               | softiron-1
-10.30.51.13               | softiron-2
-10.30.51.14               | softiron-3
+10.30.51.13               | nomad1arm arm cluster controller
+10.30.51.14               | nomad2arm arm cluster controller
 10.30.51.15               | LF Reserved
 10.30.51.16               | t1-tg1
 10.30.51.17               | t1-sut1
@@ -312,8 +316,15 @@ Name                      | Comment
 10.30.51.30               | t4-sut3
 10.30.51.30               | s23-t35-sut2 screen -r /dev/ttyUSB1, TO BE VERIFIED
 10.30.51.30               | s24-t35-sut3 screen -r /dev/ttyUSB2, TO BE VERIFIED
+10.30.51.32               | nomad1 (undocumented h/w config)
+10.30.51.33               | nomad2 (undocumented h/w config)
+10.30.51.34               | nomad3 (undocumented h/w config)
+10.30.51.35               | nomad4 (undocumented h/w config)
 10.30.51.36               | s17-t33-sut1
 10.30.51.37               | s18-t33-sut2
+10.30.51.38               | nomad3arm
+10.30.51.39               | nomad4arm
+10.30.51.40               | nomad5arm
 10.30.51.41               | s20-t34-sut1
 10.30.51.42               | s21-t34-sut2
 10.30.51.44               | s3-t21-sut1
@@ -322,8 +333,8 @@ Name                      | Comment
 10.30.51.47               | s12-t31-sut2
 10.30.51.48               | s13-t31-tg1
 10.30.51.49               | s19-t33t34-tg1
-10.30.51.50               | s1-t11-sut1
-10.30.51.51               | s2-t12-sut1
+10.30.51.50               | s1-t11-sut1 (nomad client)
+10.30.51.51               | s2-t12-sut1 (nomad client)
 10.30.51.52               | s5-t22-sut1
 10.30.51.53               | s6-t22-tg1
 10.30.51.54               | s7-t23-sut1
@@ -335,7 +346,7 @@ Name                      | Comment
 10.30.51.60               | s16-t32-tg1
 10.30.51.61               | s25-t25-sut1
 10.30.51.62               | s26-t25-tg1
-10.30.51.69               | s27-t13-sut1
+10.30.51.69               | s27-t13-sut1 (nomad client)
 10.30.51.70-10.30.51.105  | VIRL1 TO BE VERIFIED
 10.30.51.106-10.30.51.180 | VIRL2
 10.30.51.181-10.30.51.254 | VIRL3
@@ -344,6 +355,9 @@ Name                      | Comment
 10.32.8.11                | s29-t26-sut1
 10.32.8.12                | s30-t35-sut1
 10.32.8.13                | s31-t35-sut2
+10.32.8.14                | server-type-c4-1
+10.32.8.15                | server-type-c4-2
+10.32.8.16                | server-type-c4-3
 10.32.8.17                | s32-t14-sut1
 10.32.8.18                | s33-t27-sut1
 10.32.8.19                | s34-t27-tg1
