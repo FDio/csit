@@ -70,3 +70,43 @@
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-pdr}
             \label{fig:3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-pdr}
     \end{figure}
+
+78b-2t1c-srv6-ip6routing-base-dpdk
+----------------------------------
+
+..
+    .. raw:: html
+
+        <center>
+        <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-ndr.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-ndr}
+                \label{fig:3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-ndr}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-pdr}
+            \label{fig:3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk-pdr}
+    \end{figure}
