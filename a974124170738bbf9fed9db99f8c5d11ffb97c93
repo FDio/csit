@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "362adb63_736ef572",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-03-23T18:38:08Z",
+      "side": 1,
+      "message": "This is not currently included in the NOMAD cluster, but is accessible via ssh.",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 44
+      },
+      "revId": "a974124170738bbf9fed9db99f8c5d11ffb97c93",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
