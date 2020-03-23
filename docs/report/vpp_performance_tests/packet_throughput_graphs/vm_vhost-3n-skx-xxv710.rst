@@ -163,6 +163,50 @@
 
     \clearpage
 
+64b-2t1c-vhost-base-dpdk-vpp
+----------------------------
+
+..
+    .. raw:: html
+
+        <center>
+        <iframe id="111" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-vhost-base-dpdk-vpp-ndr.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-vhost-base-dpdk-vpp-ndr}
+                \label{fig:3n-skx-xxv710-64b-2t1c-vhost-base-dpdk-vpp-ndr}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="112" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-vhost-base-dpdk-vpp-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-vhost-base-dpdk-vpp-pdr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-vhost-base-dpdk-vpp-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
 64b-2t1c-link-bonding-vhost-base-avf-testpmd
 --------------------------------------------
 
@@ -245,4 +289,92 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-vpp-pdr}
             \label{fig:3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-vpp-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t1c-link-bonding-vhost-base-dpdk-testpmd
+---------------------------------------------
+
+..
+    .. raw:: html
+
+        <center>
+        <iframe id="421" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-ndr.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-ndr}
+                \label{fig:3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-ndr}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="422" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-pdr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t1c-link-bonding-vhost-base-dpdk-vpp
+-----------------------------------------
+
+..
+    .. raw:: html
+
+        <center>
+        <iframe id="431" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-ndr.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-ndr}
+                \label{fig:3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-ndr}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="432" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-dpdk-vpp-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-dpdk-pdr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-avf-dpdk-pdr}
     \end{figure}
