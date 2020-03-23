@@ -85,7 +85,6 @@ get_test_code "${1-}" || die
 get_test_tag_string || die
 # Unfortunately, git bisect only works at the top of the repo.
 cd "${VPP_DIR}" || die
-git bisect start || die
 # TODO: Can we add a trap for "git bisect reset" or even "deactivate",
 # without affecting the inner trap for unreserve and cleanup?
 
@@ -113,11 +112,22 @@ git bisect start || die
 # v20.01-rc0-593  4d11b6cecaa9c1be20aa149bc8779f197f6393ed
 #  - fixed dpdk patch memif issue
 
+git checkout -b fakemaster
+#git reset --hard 27bb99ec804afc5977897fe97043735a508c4a78
+git checkout -t fakemaster -b old
+#git reset --hard 2bcf86f485f35182f139a6b69b03b79b613fa981
+git reset --hard 47d8f5dcd655f0e01774822fca17dd38e7f557dd
+git fetch "https://gerrit.fd.io/r/vpp" refs/changes/21/26021/1 && git cherry-pick FETCH_HEAD
+git checkout -t fakemaster -b new
+git rebase old
+
+git bisect start || die
 git describe || die
 git bisect new || die
 # Building HEAD first, good for avoiding DPDK rebuilds.
 build_vpp_ubuntu "NEW" || die
-set_aside_current_build_artifacts "${GIT_BISECT_FROM}" || die
+#set_aside_current_build_artifacts "${GIT_BISECT_FROM}" || die
+set_aside_current_build_artifacts old || die
 git describe || die
 build_vpp_ubuntu "OLD" || die
 set_aside_parent_build_artifacts || die
