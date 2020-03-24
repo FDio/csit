@@ -285,8 +285,13 @@
         - 56  # NDRPDR sel addition
         - 57  # NDRPDR sel addition
         - 58  # NDRPDR sel addition
+        - 60  # NDRPDR sel addition
         - 61  # NDRPDR sel addition
+<<<<<<< HEAD   (ed7c88 API: Add collection for 25647/3)
 >>>>>>> CHANGE (d3467a Report: Add data)
+=======
+        - 62  # NDRPDR sel addition
+>>>>>>> CHANGE (306b11 Report: Add data)
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -624,8 +629,13 @@
         - 56  # NDRPDR sel addition
         - 57  # NDRPDR sel addition
         - 58  # NDRPDR sel addition
+        - 60  # NDRPDR sel addition
         - 61  # NDRPDR sel addition
+<<<<<<< HEAD   (ed7c88 API: Add collection for 25647/3)
 >>>>>>> CHANGE (d3467a Report: Add data)
+=======
+        - 62  # NDRPDR sel addition
+>>>>>>> CHANGE (306b11 Report: Add data)
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -907,8 +917,13 @@
         - 56  # NDRPDR sel addition
         - 57  # NDRPDR sel addition
         - 58  # NDRPDR sel addition
+        - 60  # NDRPDR sel addition
         - 61  # NDRPDR sel addition
+<<<<<<< HEAD   (ed7c88 API: Add collection for 25647/3)
 >>>>>>> CHANGE (d3467a Report: Add data)
+=======
+        - 62  # NDRPDR sel addition
+>>>>>>> CHANGE (306b11 Report: Add data)
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -1416,8 +1431,13 @@
         - 56  # NDRPDR sel addition
         - 57  # NDRPDR sel addition
         - 58  # NDRPDR sel addition
+        - 60  # NDRPDR sel addition
         - 61  # NDRPDR sel addition
+<<<<<<< HEAD   (ed7c88 API: Add collection for 25647/3)
 >>>>>>> CHANGE (d3467a Report: Add data)
+=======
+        - 62  # NDRPDR sel addition
+>>>>>>> CHANGE (306b11 Report: Add data)
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
@@ -1635,8 +1655,13 @@
         - 56  # NDRPDR sel addition
         - 57  # NDRPDR sel addition
         - 58  # NDRPDR sel addition
+        - 60  # NDRPDR sel addition
         - 61  # NDRPDR sel addition
+<<<<<<< HEAD   (ed7c88 API: Add collection for 25647/3)
 >>>>>>> CHANGE (d3467a Report: Add data)
+=======
+        - 62  # NDRPDR sel addition
+>>>>>>> CHANGE (306b11 Report: Add data)
     vpp-compare-topologies-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2517,8 +2542,13 @@
       - 56  # NDRPDR sel addition
       - 57  # NDRPDR sel addition
       - 58  # NDRPDR sel addition
+      - 60  # NDRPDR sel addition
       - 61  # NDRPDR sel addition
+<<<<<<< HEAD   (ed7c88 API: Add collection for 25647/3)
 >>>>>>> CHANGE (d3467a Report: Add data)
+=======
+      - 62  # NDRPDR sel addition
+>>>>>>> CHANGE (306b11 Report: Add data)
       - 50  # MRR sel
 
     csit-vpp-perf-verify-1904-2n-skx:
