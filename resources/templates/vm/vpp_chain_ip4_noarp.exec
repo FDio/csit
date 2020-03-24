@@ -7,4 +7,6 @@ set interface state GigabitEthernet0/7/0 up
 ip route add 10.0.0.0/8 via 1.1.1.2 GigabitEthernet0/6/0
 ip route add 20.0.0.0/8 via 1.1.2.2 GigabitEthernet0/7/0
 
+show logging
+
 show version
