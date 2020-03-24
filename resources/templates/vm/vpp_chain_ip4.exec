@@ -15,4 +15,6 @@ set ip neighbor static GigabitEthernet0/7/0 1.1.2.2 $vif2_mac
 ip route add 10.0.0.0/8 via 1.1.1.2
 ip route add 20.0.0.0/8 via 1.1.2.2
 
+show logging
+
 show version
