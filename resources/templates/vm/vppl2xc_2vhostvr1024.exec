@@ -1,7 +1,9 @@
-set int state GigabitEthernet0/6/0 up
-set int state GigabitEthernet0/7/0 up
+set interface state GigabitEthernet0/6/0 up
+set interface state GigabitEthernet0/7/0 up
 
 set interface l2 xconnect GigabitEthernet0/6/0 GigabitEthernet0/7/0
 set interface l2 xconnect GigabitEthernet0/7/0 GigabitEthernet0/6/0
+
+show logging
 
 show version

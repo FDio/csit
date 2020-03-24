@@ -227,14 +227,15 @@ class QemuUtils:
         vpp_config.add_cpu_main_core(u"0")
         if self._opt.get(u"smp") > 1:
             vpp_config.add_cpu_corelist_workers(f"1-{self._opt.get(u'smp')-1}")
-        vpp_config.add_dpdk_dev(u"0000:00:06.0", u"0000:00:07.0")
-        vpp_config.add_dpdk_dev_default_rxq(kwargs[u"queues"])
-        vpp_config.add_dpdk_log_level(u"debug")
-        if not kwargs[u"jumbo_frames"]:
-            vpp_config.add_dpdk_no_multi_seg()
-            vpp_config.add_dpdk_no_tx_checksum_offload()
         vpp_config.add_plugin(u"disable", u"default")
-        vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
+        if "virtio" not in self._opt.get(u'vnf'):
+            vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
+            vpp_config.add_dpdk_dev(u"0000:00:06.0", u"0000:00:07.0")
+            vpp_config.add_dpdk_dev_default_rxq(kwargs[u"queues"])
+            vpp_config.add_dpdk_log_level(u"debug")
+            if not kwargs[u"jumbo_frames"]:
+                vpp_config.add_dpdk_no_multi_seg()
+                vpp_config.add_dpdk_no_tx_checksum_offload()
         vpp_config.write_config(startup)
 
         # Create VPP running configuration.
