@@ -283,7 +283,9 @@
         - 56  # NDRPDR sel addition
         - 57  # NDRPDR sel addition
         - 58  # NDRPDR sel addition
+        - 60  # NDRPDR sel addition
         - 61  # NDRPDR sel addition
+        - 62  # NDRPDR sel addition
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -619,7 +621,9 @@
         - 56  # NDRPDR sel addition
         - 57  # NDRPDR sel addition
         - 58  # NDRPDR sel addition
+        - 60  # NDRPDR sel addition
         - 61  # NDRPDR sel addition
+        - 62  # NDRPDR sel addition
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -902,7 +906,9 @@
         - 56  # NDRPDR sel addition
         - 57  # NDRPDR sel addition
         - 58  # NDRPDR sel addition
+        - 60  # NDRPDR sel addition
         - 61  # NDRPDR sel addition
+        - 62  # NDRPDR sel addition
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -1409,7 +1415,9 @@
         - 56  # NDRPDR sel addition
         - 57  # NDRPDR sel addition
         - 58  # NDRPDR sel addition
+        - 60  # NDRPDR sel addition
         - 61  # NDRPDR sel addition
+        - 62  # NDRPDR sel addition
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
@@ -1626,7 +1634,9 @@
         - 56  # NDRPDR sel addition
         - 57  # NDRPDR sel addition
         - 58  # NDRPDR sel addition
+        - 60  # NDRPDR sel addition
         - 61  # NDRPDR sel addition
+        - 62  # NDRPDR sel addition
     vpp-compare-topologies-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2506,7 +2516,9 @@
       - 56  # NDRPDR sel addition
       - 57  # NDRPDR sel addition
       - 58  # NDRPDR sel addition
+      - 60  # NDRPDR sel addition
       - 61  # NDRPDR sel addition
+      - 62  # NDRPDR sel addition
       - 50  # MRR sel
       - 53  # MRR sel addition
 
