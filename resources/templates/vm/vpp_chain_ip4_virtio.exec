@@ -1,0 +1,22 @@
+set logging class virtio level debug
+
+create interface virtio 0000:00:06.0
+create interface virtio 0000:00:07.0
+
+set interface state virtio-0/0/6/0 up
+set interface state virtio-0/0/7/0 up
+
+set interface mac address virtio-0/0/6/0 $mac1
+set interface ip address virtio-0/0/6/0 1.1.1.1/24
+set interface mac address virtio-0/0/7/0 $mac2
+set interface ip address virtio-0/0/7/0 1.1.2.1/24
+
+set ip neighbor static virtio-0/0/6/0 1.1.1.2 $vif1_mac
+set ip neighbor static virtio-0/0/7/0 1.1.2.2 $vif2_mac
+
+ip route add 10.0.0.0/8 via 1.1.1.2
+ip route add 20.0.0.0/8 via 1.1.2.2
+
+show logging
+
+show version
