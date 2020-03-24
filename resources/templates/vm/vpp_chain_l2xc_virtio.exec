@@ -1,0 +1,14 @@
+set logging class virtio level debug
+
+create interface virtio 0000:00:06.0
+create interface virtio 0000:00:07.0
+
+set interface state virtio-0/0/6/0 up
+set interface state virtio-0/0/7/0 up
+
+set interface l2 xconnect virtio-0/0/6/0 virtio-0/0/7/0
+set interface l2 xconnect virtio-0/0/7/0 virtio-0/0/6/0
+
+show logging
+
+show version
