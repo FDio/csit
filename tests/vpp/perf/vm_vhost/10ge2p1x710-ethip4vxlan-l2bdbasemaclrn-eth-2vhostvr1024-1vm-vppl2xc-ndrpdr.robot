@@ -98,7 +98,8 @@
 | | ... | ${bd_id1} | ${bd_id2}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_chains} | jumbo=${jumbo}
-| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
+| | ... | use_tuned_cfs=${False} | auto_scale=${True}
+| | ... | vnf=vppl2xc_2vhostvr1024
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

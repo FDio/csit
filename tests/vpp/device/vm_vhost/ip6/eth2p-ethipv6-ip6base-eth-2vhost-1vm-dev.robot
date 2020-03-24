@@ -82,8 +82,8 @@
 | | And Initialize IPv6 forwarding with vhost in 2-node circular topology
 | | ... | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | vnf=vpp_chain_ip6
-| | ... | pinning=${False}
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
+| | ... | vnf=vppip6_2vhostvr1024 | pinning=${False}
 | | Then Send packet and verify headers
 | | ... | ${tg} | ${tg_if1_ip} | ${tg_if2_ip}
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]

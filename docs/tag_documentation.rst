@@ -531,13 +531,19 @@ Interface Tags
 
     All test cases which uses VHOST.
 
-.. topic:: VHOST_256
-
-    All test cases which uses VHOST with qemu queue size set to 256.
-
 .. topic:: VHOST_1024
 
-    All test cases which uses VHOST with qemu queue size set to 1024.
+    All test cases which uses VHOST DPDK driver with qemu queue size set
+    to 1024.
+
+.. topic:: VIRTIO
+
+    All test cases which uses VIRTIO native VPP driver.
+
+.. topic:: VIRTIO_1024
+
+    All test cases which uses VIRTIO native VPP driver with qemu queue size set
+    to 1024.
 
 .. topic:: CFS_OPT
 
