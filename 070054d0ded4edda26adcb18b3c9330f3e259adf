@@ -46,6 +46,30 @@
       "revId": "070054d0ded4edda26adcb18b3c9330f3e259adf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "283092f3_a2943fe3",
+        "filename": "resources/libraries/bash/function/report/report-2n-dnv.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-24T10:28:56Z",
+      "side": 1,
+      "message": "Poor discipline should be handled by PAL job failing (or jenkins job failing, depending on which value is wrong), not by manually maintaining sync between file name and testbed value (and figuring out what to do if they do not match).\nBut still only a minor issue, as edits on this line will be very rare, and typos even rarer.",
+      "parentUuid": "38c234de_271e700c",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 17
+      },
+      "revId": "070054d0ded4edda26adcb18b3c9330f3e259adf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
