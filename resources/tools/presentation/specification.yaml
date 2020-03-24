@@ -291,7 +291,11 @@
 >>>>>>> CHANGE (d3467a Report: Add data)
 =======
         - 62  # NDRPDR sel addition
+<<<<<<< HEAD   (f18902 Report: Add RCA to comp tables)
 >>>>>>> CHANGE (306b11 Report: Add data)
+=======
+        - 63  # NDRPDR sel addition
+>>>>>>> CHANGE (b95d85 Report: Add mrr stdev to comp tables)
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -635,7 +639,11 @@
 >>>>>>> CHANGE (d3467a Report: Add data)
 =======
         - 62  # NDRPDR sel addition
+<<<<<<< HEAD   (f18902 Report: Add RCA to comp tables)
 >>>>>>> CHANGE (306b11 Report: Add data)
+=======
+        - 63  # NDRPDR sel addition
+>>>>>>> CHANGE (b95d85 Report: Add mrr stdev to comp tables)
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -923,7 +931,11 @@
 >>>>>>> CHANGE (d3467a Report: Add data)
 =======
         - 62  # NDRPDR sel addition
+<<<<<<< HEAD   (f18902 Report: Add RCA to comp tables)
 >>>>>>> CHANGE (306b11 Report: Add data)
+=======
+        - 63  # NDRPDR sel addition
+>>>>>>> CHANGE (b95d85 Report: Add mrr stdev to comp tables)
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -1437,7 +1449,11 @@
 >>>>>>> CHANGE (d3467a Report: Add data)
 =======
         - 62  # NDRPDR sel addition
+<<<<<<< HEAD   (f18902 Report: Add RCA to comp tables)
 >>>>>>> CHANGE (306b11 Report: Add data)
+=======
+        - 63  # NDRPDR sel addition
+>>>>>>> CHANGE (b95d85 Report: Add mrr stdev to comp tables)
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
@@ -1661,7 +1677,11 @@
 >>>>>>> CHANGE (d3467a Report: Add data)
 =======
         - 62  # NDRPDR sel addition
+<<<<<<< HEAD   (f18902 Report: Add RCA to comp tables)
 >>>>>>> CHANGE (306b11 Report: Add data)
+=======
+        - 63  # NDRPDR sel addition
+>>>>>>> CHANGE (b95d85 Report: Add mrr stdev to comp tables)
     vpp-compare-topologies-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2548,7 +2568,11 @@
 >>>>>>> CHANGE (d3467a Report: Add data)
 =======
       - 62  # NDRPDR sel addition
+<<<<<<< HEAD   (f18902 Report: Add RCA to comp tables)
 >>>>>>> CHANGE (306b11 Report: Add data)
+=======
+      - 63  # NDRPDR sel addition
+>>>>>>> CHANGE (b95d85 Report: Add mrr stdev to comp tables)
       - 50  # MRR sel
 
     csit-vpp-perf-verify-1904-2n-skx:
@@ -3491,9 +3515,9 @@
   title: "VPP Performance Changes 2n-skx 2t1c pdr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-2n-skx-2t1c.yaml"
+  rca:
+    title: "RCA"
+    data-file: "rca/rca-2n-skx-2t1c.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
