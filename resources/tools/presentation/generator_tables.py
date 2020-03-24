@@ -427,7 +427,12 @@ def _tpc_insert_data(target, src, include_tests):
     """
     try:
         if include_tests == u"MRR":
-            target.append(src[u"result"][u"receive-rate"])
+            target.append(
+                (
+                    src[u"result"][u"receive-rate"],
+                    src[u"result"][u"receive-stdev"]
+                )
+            )
         elif include_tests == u"PDR":
             target.append(src[u"throughput"][u"PDR"][u"LOWER"])
         elif include_tests == u"NDR":
@@ -783,7 +788,8 @@ def table_perf_comparison(table, input_data):
                             u"title"]] = list()
                     try:
                         if table[u"include-tests"] == u"MRR":
-                            res = tst_data[u"result"][u"receive-rate"]
+                            res = (tst_data[u"result"][u"receive-rate"],
+                                   tst_data[u"result"][u"receive-stdev"])
                         elif table[u"include-tests"] == u"PDR":
                             res = tst_data[u"throughput"][u"PDR"][u"LOWER"]
                         elif table[u"include-tests"] == u"NDR":
@@ -802,28 +808,40 @@ def table_perf_comparison(table, input_data):
             if tbl_dict[tst_name].get(u"history", None) is not None:
                 for hist_data in tbl_dict[tst_name][u"history"].values():
                     if hist_data:
-                        item.append(round(mean(hist_data) / 1000000, 2))
-                        item.append(round(stdev(hist_data) / 1000000, 2))
+                        if table[u"include-tests"] == u"MRR":
+                            item.append(round(hist_data[0][0] / 1e6, 2))
+                            item.append(round(hist_data[0][1] / 1e6, 2))
+                        else:
+                            item.append(round(mean(hist_data) / 1e6, 2))
+                            item.append(round(stdev(hist_data) / 1e6, 2))
                     else:
                         item.extend([u"Not tested", u"Not tested"])
             else:
                 item.extend([u"Not tested", u"Not tested"])
         data_r = tbl_dict[tst_name][u"ref-data"]
         if data_r:
-            data_r_mean = mean(data_r)
-            item.append(round(data_r_mean / 1000000, 2))
-            data_r_stdev = stdev(data_r)
-            item.append(round(data_r_stdev / 1000000, 2))
+            if table[u"include-tests"] == u"MRR":
+                data_r_mean = data_r[0][0]
+                data_r_stdev = data_r[0][1]
+            else:
+                data_r_mean = mean(data_r)
+                data_r_stdev = stdev(data_r)
+            item.append(round(data_r_mean / 1e6, 2))
+            item.append(round(data_r_stdev / 1e6, 2))
         else:
             data_r_mean = None
             data_r_stdev = None
             item.extend([u"Not tested", u"Not tested"])
         data_c = tbl_dict[tst_name][u"cmp-data"]
         if data_c:
-            data_c_mean = mean(data_c)
-            item.append(round(data_c_mean / 1000000, 2))
-            data_c_stdev = stdev(data_c)
-            item.append(round(data_c_stdev / 1000000, 2))
+            if table[u"include-tests"] == u"MRR":
+                data_c_mean = data_c[0][0]
+                data_c_stdev = data_c[0][1]
+            else:
+                data_c_mean = mean(data_c)
+                data_c_stdev = stdev(data_c)
+            item.append(round(data_c_mean / 1e6, 2))
+            item.append(round(data_c_stdev / 1e6, 2))
         else:
             data_c_mean = None
             data_c_stdev = None
@@ -833,7 +851,7 @@ def table_perf_comparison(table, input_data):
         elif item[-4] == u"Not tested":
             item.append(u"New in CSIT-2001")
             item.append(u"New in CSIT-2001")
-        elif data_r_mean and data_c_mean:
+        elif data_r_mean is not None and data_c_mean is not None:
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
             )
@@ -846,7 +864,7 @@ def table_perf_comparison(table, input_data):
             except ValueError:
                 item.append(d_stdev)
         if rca_data:
-            item.insert(0, rca_data.get(item[0], u" "))
+            item.insert(0, rca_data.get(item[0], u"-"))
         if (len(item) == len(header)) and (item[-4] != u"Not tested"):
             tbl_lst.append(item)
 
@@ -860,7 +878,7 @@ def table_perf_comparison(table, input_data):
             file_handler.write(u";".join([str(item) for item in test]) + u"\n")
 
     txt_file_name = f"{table[u'output-file']}.txt"
-    convert_csv_to_pretty_txt(csv_file, txt_file_name)
+    convert_csv_to_pretty_txt(csv_file, txt_file_name, delimiter=u";")
 
     if rca_data:
         footnote = rca_data.get(u"footnote", "")
@@ -1080,7 +1098,8 @@ def table_perf_comparison_nic(table, input_data):
                             u"title"]] = list()
                     try:
                         if table[u"include-tests"] == u"MRR":
-                            res = tst_data[u"result"][u"receive-rate"]
+                            res = (tst_data[u"result"][u"receive-rate"],
+                                   tst_data[u"result"][u"receive-stdev"])
                         elif table[u"include-tests"] == u"PDR":
                             res = tst_data[u"throughput"][u"PDR"][u"LOWER"]
                         elif table[u"include-tests"] == u"NDR":
@@ -1099,28 +1118,40 @@ def table_perf_comparison_nic(table, input_data):
             if tbl_dict[tst_name].get(u"history", None) is not None:
                 for hist_data in tbl_dict[tst_name][u"history"].values():
                     if hist_data:
-                        item.append(round(mean(hist_data) / 1000000, 2))
-                        item.append(round(stdev(hist_data) / 1000000, 2))
+                        if table[u"include-tests"] == u"MRR":
+                            item.append(round(hist_data[0][0] / 1e6, 2))
+                            item.append(round(hist_data[0][1] / 1e6, 2))
+                        else:
+                            item.append(round(mean(hist_data) / 1e6, 2))
+                            item.append(round(stdev(hist_data) / 1e6, 2))
                     else:
                         item.extend([u"Not tested", u"Not tested"])
             else:
                 item.extend([u"Not tested", u"Not tested"])
         data_r = tbl_dict[tst_name][u"ref-data"]
         if data_r:
-            data_r_mean = mean(data_r)
-            item.append(round(data_r_mean / 1000000, 2))
-            data_r_stdev = stdev(data_r)
-            item.append(round(data_r_stdev / 1000000, 2))
+            if table[u"include-tests"] == u"MRR":
+                data_r_mean = data_r[0][0]
+                data_r_stdev = data_r[0][1]
+            else:
+                data_r_mean = mean(data_r)
+                data_r_stdev = stdev(data_r)
+            item.append(round(data_r_mean / 1e6, 2))
+            item.append(round(data_r_stdev / 1e6, 2))
         else:
             data_r_mean = None
             data_r_stdev = None
             item.extend([u"Not tested", u"Not tested"])
         data_c = tbl_dict[tst_name][u"cmp-data"]
         if data_c:
-            data_c_mean = mean(data_c)
-            item.append(round(data_c_mean / 1000000, 2))
-            data_c_stdev = stdev(data_c)
-            item.append(round(data_c_stdev / 1000000, 2))
+            if table[u"include-tests"] == u"MRR":
+                data_c_mean = data_c[0][0]
+                data_c_stdev = data_c[0][1]
+            else:
+                data_c_mean = mean(data_c)
+                data_c_stdev = stdev(data_c)
+            item.append(round(data_c_mean / 1e6, 2))
+            item.append(round(data_c_stdev / 1e6, 2))
         else:
             data_c_mean = None
             data_c_stdev = None
@@ -1130,7 +1161,7 @@ def table_perf_comparison_nic(table, input_data):
         elif item[-4] == u"Not tested":
             item.append(u"New in CSIT-2001")
             item.append(u"New in CSIT-2001")
-        elif data_r_mean and data_c_mean:
+        elif data_r_mean is not None and data_c_mean is not None:
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
             )
@@ -1227,7 +1258,8 @@ def table_nics_comparison(table, input_data):
                     }
                 try:
                     if table[u"include-tests"] == u"MRR":
-                        result = tst_data[u"result"][u"receive-rate"]
+                        result = (tst_data[u"result"][u"receive-rate"],
+                                  tst_data[u"result"][u"receive-stdev"])
                     elif table[u"include-tests"] == u"PDR":
                         result = tst_data[u"throughput"][u"PDR"][u"LOWER"]
                     elif table[u"include-tests"] == u"NDR":
@@ -1250,25 +1282,33 @@ def table_nics_comparison(table, input_data):
         item = [tbl_dict[tst_name][u"name"], ]
         data_r = tbl_dict[tst_name][u"ref-data"]
         if data_r:
-            data_r_mean = mean(data_r)
-            item.append(round(data_r_mean / 1000000, 2))
-            data_r_stdev = stdev(data_r)
-            item.append(round(data_r_stdev / 1000000, 2))
+            if table[u"include-tests"] == u"MRR":
+                data_r_mean = data_r[0][0]
+                data_r_stdev = data_r[0][1]
+            else:
+                data_r_mean = mean(data_r)
+                data_r_stdev = stdev(data_r)
+            item.append(round(data_r_mean / 1e6, 2))
+            item.append(round(data_r_stdev / 1e6, 2))
         else:
             data_r_mean = None
             data_r_stdev = None
             item.extend([None, None])
         data_c = tbl_dict[tst_name][u"cmp-data"]
         if data_c:
-            data_c_mean = mean(data_c)
-            item.append(round(data_c_mean / 1000000, 2))
-            data_c_stdev = stdev(data_c)
-            item.append(round(data_c_stdev / 1000000, 2))
+            if table[u"include-tests"] == u"MRR":
+                data_c_mean = data_c[0][0]
+                data_c_stdev = data_c[0][1]
+            else:
+                data_c_mean = mean(data_c)
+                data_c_stdev = stdev(data_c)
+            item.append(round(data_c_mean / 1e6, 2))
+            item.append(round(data_c_stdev / 1e6, 2))
         else:
             data_c_mean = None
             data_c_stdev = None
             item.extend([None, None])
-        if data_r_mean and data_c_mean:
+        if data_r_mean is not None and data_c_mean is not None:
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev
             )
@@ -1371,7 +1411,8 @@ def table_soak_vs_ndr(table, input_data):
                     if tst_data[u"type"] not in (u"NDRPDR", u"MRR", u"BMRR"):
                         continue
                     if table[u"include-tests"] == u"MRR":
-                        result = tst_data[u"result"][u"receive-rate"]
+                        result = (tst_data[u"result"][u"receive-rate"],
+                                  tst_data[u"result"][u"receive-stdev"])
                     elif table[u"include-tests"] == u"PDR":
                         result = \
                             tst_data[u"throughput"][u"PDR"][u"LOWER"]
@@ -1391,25 +1432,33 @@ def table_soak_vs_ndr(table, input_data):
         item = [tbl_dict[tst_name][u"name"], ]
         data_r = tbl_dict[tst_name][u"ref-data"]
         if data_r:
-            data_r_mean = mean(data_r)
-            item.append(round(data_r_mean / 1000000, 2))
-            data_r_stdev = stdev(data_r)
-            item.append(round(data_r_stdev / 1000000, 2))
+            if table[u"include-tests"] == u"MRR":
+                data_r_mean = data_r[0][0]
+                data_r_stdev = data_r[0][1]
+            else:
+                data_r_mean = mean(data_r)
+                data_r_stdev = stdev(data_r)
+            item.append(round(data_r_mean / 1e6, 2))
+            item.append(round(data_r_stdev / 1e6, 2))
         else:
             data_r_mean = None
             data_r_stdev = None
             item.extend([None, None])
         data_c = tbl_dict[tst_name][u"cmp-data"]
         if data_c:
-            data_c_mean = mean(data_c)
-            item.append(round(data_c_mean / 1000000, 2))
-            data_c_stdev = stdev(data_c)
-            item.append(round(data_c_stdev / 1000000, 2))
+            if table[u"include-tests"] == u"MRR":
+                data_c_mean = data_c[0][0]
+                data_c_stdev = data_c[0][1]
+            else:
+                data_c_mean = mean(data_c)
+                data_c_stdev = stdev(data_c)
+            item.append(round(data_c_mean / 1e6, 2))
+            item.append(round(data_c_stdev / 1e6, 2))
         else:
             data_c_mean = None
             data_c_stdev = None
             item.extend([None, None])
-        if data_r_mean and data_c_mean:
+        if data_r_mean is not None and data_c_mean is not None:
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev)
             try:
