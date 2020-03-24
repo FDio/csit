@@ -4751,7 +4751,7 @@
     data: "vpp-compare-testbeds-mrr-skx-clx-cmp"
   data: "vpp-compare-testbeds-mrr-skx-clx"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C'"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4771,7 +4771,7 @@
     data: "vpp-compare-testbeds-mrr-skx-clx-cmp"
   data: "vpp-compare-testbeds-mrr-skx-clx"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C'"
+  filter: "'4T2C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4791,7 +4791,7 @@
     data: "vpp-compare-testbeds-mrr-skx-clx-cmp"
   data: "vpp-compare-testbeds-mrr-skx-clx"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'8T4C'"
+  filter: "'8T4C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4811,7 +4811,7 @@
     data: "vpp-compare-topologies-mrr-cmp"
   data: "vpp-compare-topologies-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'MRR' and '1C'"
+  filter: "'MRR' and '1C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4830,7 +4830,7 @@
     data: "vpp-compare-topologies-mrr-cmp"
   data: "vpp-compare-topologies-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'MRR' and '2C'"
+  filter: "'MRR' and '2C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4849,7 +4849,7 @@
     data: "vpp-compare-topologies-mrr-cmp"
   data: "vpp-compare-topologies-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'MRR' and '4C'"
+  filter: "'MRR' and '4C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
