@@ -82,8 +82,8 @@
 | | And Initialize layer interface
 | | And Initialize L2 xconnect with Vhost-User | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | vnf=vpp_chain_l2xc
-| | ... | pinning=${False}
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
+| | ... | vnf=vppl2xc_2vhostvr1024 | pinning=${False}
 | | Then Send IPv4 bidirectionally and verify received packets | ${tg}
 | | ... | ${TG_pf1}[0] | ${TG_pf2}[0]
 
