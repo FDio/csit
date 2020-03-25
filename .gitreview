@@ -2,4 +2,4 @@
 host=gerrit.fd.io
 port=29418
 project=csit.git
-defaultbranch=rls1908_1
+defaultbranch=rls1908_2
