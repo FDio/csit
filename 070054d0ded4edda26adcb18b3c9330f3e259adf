@@ -111,6 +111,30 @@
       "revId": "070054d0ded4edda26adcb18b3c9330f3e259adf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aeb167c_e22d4842",
+        "filename": "resources/libraries/bash/function/report/report-2n-dnv.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-25T17:30:09Z",
+      "side": 1,
+      "message": "\u003e no topo-arch info, neither in file name\n\nWe can create a tox checker which votes -1 if a file with invalid name is detected in the directory PAL is looking at.",
+      "parentUuid": "fe52b419_aa412e5b",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 17
+      },
+      "revId": "070054d0ded4edda26adcb18b3c9330f3e259adf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
