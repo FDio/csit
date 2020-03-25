@@ -44,6 +44,7 @@ source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
+sudo -E apt-get -y install gcc-9
 build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
 build_vpp_ubuntu_amd64 "PARENT" || die
