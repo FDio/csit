@@ -158,8 +158,7 @@ class TestConfig:
         )
         cmd2 = u"vxlan_add_del_tunnel"
         args2 = dict(
-            is_add=1,
-            is_ipv6=0,
+            is_add=True,
             instance=Constants.BITWISE_NON_ZERO,
             src_address=None,
             dst_address=None,
@@ -190,8 +189,12 @@ class TestConfig:
                 args1[u"prefix"] = IPUtil.create_prefix_object(
                     src_ip, 128 if src_ip_start.version == 6 else 32
                 )
-                args2[u"src_address"] = getattr(src_ip, u"packed")
-                args2[u"dst_address"] = getattr(dst_ip, u"packed")
+                args2[u"src_address"] = IPAddress.create_ip_address_object(
+                    src_ip
+                )
+                args2[u"dst_address"] = IPAddress.create_ip_address_object(
+                    dst_ip
+                )
                 args2[u"vni"] = int(vni_start) + i
                 args3[u"vlan_id"] = i + 1
                 history = bool(not 1 < i < vxlan_count - 1)
