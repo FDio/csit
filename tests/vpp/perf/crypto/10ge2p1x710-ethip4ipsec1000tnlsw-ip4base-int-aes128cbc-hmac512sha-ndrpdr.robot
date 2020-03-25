@@ -16,7 +16,7 @@
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1000
-| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
+| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | TEST
 | ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES
 | ...
 | Suite Setup | Setup suite single link | performance

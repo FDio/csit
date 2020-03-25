@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | SRv6 | IP6FWD | FEATURE | SRv6_PROXY
-| ... | SRv6_PROXY_STAT | MEMIF | LXC
+| ... | SRv6_PROXY_STAT | MEMIF | LXC | TEST
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
