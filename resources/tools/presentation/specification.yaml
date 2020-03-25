@@ -278,6 +278,7 @@
         - 49  # NDRPDR sel
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
+        - 59  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
         - 56  # NDRPDR sel addition
@@ -287,6 +288,7 @@
         - 61  # NDRPDR sel addition
         - 62  # NDRPDR sel addition
         - 63  # NDRPDR sel addition
+        - 64  # NDRPDR sel addition
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -300,6 +302,9 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
+        - 51  # NDRPDR sel
+        - 52  # NDRPDR sel
+        - 59  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-mrr:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -617,6 +622,7 @@
         - 49  # NDRPDR sel
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
+        - 59  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
         - 56  # NDRPDR sel addition
@@ -626,6 +632,7 @@
         - 61  # NDRPDR sel addition
         - 62  # NDRPDR sel addition
         - 63  # NDRPDR sel addition
+        - 64  # NDRPDR sel addition
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -903,6 +910,7 @@
         - 49  # NDRPDR sel
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
+        - 59  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
         - 56  # NDRPDR sel addition
@@ -912,6 +920,7 @@
         - 61  # NDRPDR sel addition
         - 62  # NDRPDR sel addition
         - 63  # NDRPDR sel addition
+        - 64  # NDRPDR sel addition
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -1413,6 +1422,7 @@
         - 49  # NDRPDR sel
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
+        - 59  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
         - 56  # NDRPDR sel addition
@@ -1422,6 +1432,7 @@
         - 61  # NDRPDR sel addition
         - 62  # NDRPDR sel addition
         - 63  # NDRPDR sel addition
+        - 64  # NDRPDR sel addition
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
@@ -1633,6 +1644,7 @@
         - 49  # NDRPDR sel
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
+        - 59  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
         - 56  # NDRPDR sel addition
@@ -1642,6 +1654,7 @@
         - 61  # NDRPDR sel addition
         - 62  # NDRPDR sel addition
         - 63  # NDRPDR sel addition
+        - 64  # NDRPDR sel addition
     vpp-compare-topologies-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2516,6 +2529,7 @@
       - 49  # NDRPDR sel
       - 51  # NDRPDR sel
       - 52  # NDRPDR sel
+      - 59  # NDRPDR sel
       - 54  # NDRPDR sel addition
       - 55  # NDRPDR sel addition
       - 56  # NDRPDR sel addition
@@ -2525,6 +2539,7 @@
       - 61  # NDRPDR sel addition
       - 62  # NDRPDR sel addition
       - 63  # NDRPDR sel addition
+      - 64  # NDRPDR sel addition
       - 50  # MRR sel
       - 53  # MRR sel addition
 
@@ -3360,6 +3375,9 @@
   title: "VPP Performance Changes 3n-skx 2t1c pdr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-pdr"
+  rca:
+    title: "RCA"
+    data-file: "rca/rca-3n-skx-2t1c-pdr.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-3n-skx-h1"
@@ -3387,6 +3405,9 @@
   title: "VPP Performance Changes 3n-skx 4t2c pdr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-pdr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-3n-skx-4t2c-pdr.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-3n-skx-h1"
@@ -3414,6 +3435,9 @@
   title: "VPP Performance Changes 3n-skx 2t1c ndr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-ndr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-3n-skx-2t1c-ndr.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-3n-skx-h1"
@@ -3441,6 +3465,9 @@
   title: "VPP Performance Changes 3n-skx 4t2c ndr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-ndr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-3n-skx-4t2c-ndr.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-3n-skx-h1"
@@ -3470,7 +3497,7 @@
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr"
   rca:
     title: "RCA"
-    data-file: "rca/rca-2n-skx-2t1c.yaml"
+    data-file: "rca/rca-2n-skx-2t1c-pdr.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
@@ -3500,7 +3527,7 @@
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-pdr"
 #  rca:
 #    title: "RCA"
-#    data-file: "rca/rca-2n-skx-4t2c.yaml"
+#    data-file: "rca/rca-2n-skx-4t2c-pdr.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
@@ -3530,7 +3557,7 @@
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-ndr"
 #  rca:
 #    title: "RCA"
-#    data-file: "rca/rca-2n-skx-2t1c.yaml"
+#    data-file: "rca/rca-2n-skx-2t1c-ndr.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
@@ -3560,7 +3587,7 @@
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-ndr"
 #  rca:
 #    title: "RCA"
-#    data-file: "rca/rca-2n-skx-4t2c.yaml"
+#    data-file: "rca/rca-2n-skx-4t2c-ndr.yaml"
   history:
     - title: "rls1904 x710"
       data: "vpp-performance-changes-2n-skx-h1"
@@ -4306,6 +4333,9 @@
   title: "VPP Performance Changes 3n-skx 2t1c MRR"
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-mrr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-3n-skx-2t1c-mrr.yaml"
   history:
     - title: "rls1904"
       data: "vpp-performance-changes-3n-skx-mrr-h1"
@@ -4328,6 +4358,9 @@
   title: "VPP Performance Changes 3n-skx 4t2c MRR"
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-mrr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-3n-skx-4t2c-mrr.yaml"
   history:
     - title: "rls1904"
       data: "vpp-performance-changes-3n-skx-mrr-h1"
@@ -4350,6 +4383,9 @@
   title: "VPP Performance Changes 3n-skx 8t4c MRR"
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-mrr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-3n-skx-8t4c-mrr.yaml"
   history:
     - title: "rls1904"
       data: "vpp-performance-changes-3n-skx-mrr-h1"
@@ -4372,6 +4408,9 @@
   title: "VPP Performance Changes 2n-skx 2t1c MRR"
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-mrr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-2n-skx-2t1c-mrr.yaml"
   history:
     - title: "rls1904"
       data: "vpp-performance-changes-2n-skx-mrr-h1"
@@ -4394,6 +4433,9 @@
   title: "VPP Performance Changes 2n-skx 4t2c MRR"
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-mrr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-2n-skx-4t2c-mrr.yaml"
   history:
     - title: "rls1904"
       data: "vpp-performance-changes-2n-skx-mrr-h1"
@@ -4416,6 +4458,9 @@
   title: "VPP Performance Changes 2n-skx 8t4c MRR"
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-8t4c-mrr"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-2n-skx-8t4c-mrr.yaml"
   history:
     - title: "rls1904"
       data: "vpp-performance-changes-2n-skx-mrr-h1"
