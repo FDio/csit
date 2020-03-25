@@ -16,7 +16,7 @@
 | Resource | resources/libraries/robot/l2/tagging.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | L2XCFWD | BASE | DOT1Q
+| ... | NIC_Intel-X710 | L2XCFWD | BASE | DOT1Q | TEST
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

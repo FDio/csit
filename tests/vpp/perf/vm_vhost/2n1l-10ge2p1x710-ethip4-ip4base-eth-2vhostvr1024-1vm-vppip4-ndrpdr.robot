@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | VHOST | 1VM | VHOST_1024
-| ... | NF_VPPIP4
+| ... | NF_VPPIP4 | TEST
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
