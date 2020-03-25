@@ -18,6 +18,9 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |      - all set selected for analysis and graphs            |
 |                |      - MRR tests                                           |
 |                |                                                            |
+|                |  2. Added Root Cause Analysis for VPP performance tests    |
+|                |     2n-skx and 3n-skx.                                     |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .12            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
