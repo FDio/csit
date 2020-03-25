@@ -87,6 +87,30 @@
       "revId": "070054d0ded4edda26adcb18b3c9330f3e259adf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe52b419_aa412e5b",
+        "filename": "resources/libraries/bash/function/report/report-2n-dnv.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-03-25T08:31:54Z",
+      "side": 1,
+      "message": "If there is no topo-arch info, neither in file name, nor in the file, PAL is helpless. That is the reason why I put it to the rules.",
+      "parentUuid": "283092f3_a2943fe3",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 17
+      },
+      "revId": "070054d0ded4edda26adcb18b3c9330f3e259adf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
