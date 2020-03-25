@@ -28,10 +28,13 @@ import time
 from pprint import pformat
 from robot.api import logger
 
+from resources.libraries.python.bytes_template import BytesTemplate
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PapiHistory import PapiHistory
+from resources.libraries.python.PythonThree import raise_from
+from resources.libraries.python.spying_socket import SpyingSocket
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
 from resources.libraries.python.topology import Topology, SocketType
@@ -411,19 +414,40 @@ class PapiSocketExecutor:
         )
         return self
 
-    def get_replies(self, err_msg="Failed to get replies."):
+    def get_replies(self, err_msg="Failed to get replies.", fast=0):
         """Get replies from VPP Python API.
 
         The replies are parsed into dict-like objects,
-        "retval" field is guaranteed to be zero on success.
+        "retval" field (if present) is guaranteed to be zero on success.
+
+        If the "fast" argument is non-zero,
+        this method requires exactly two commands added,
+        assumed to be the same type with minimal differences in arguments.
+        A fast but stupid method is then used to generate and send
+        subsequent commands, saving much time for large scale tests.
+        Replies are still processed by full PAPI parsing (includig ret value check),
+        assuming each request results in exactly one reply.
+
+        Here is a typical pattern for scale tests:
+
+        cmd = some_command
+        fast = 0 if scale < 128 else scale
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            for count in range(2 if fast else scale):
+                args = get_args(count)
+                history = bool(not 1 < count < scale - 2)
+                papi_exec.add(cmd, history=history, **args)
+            papi_exec.get_replies(err_msg, fast)
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
+        :param fast: This many (minus two) fast commands are added.
         :type err_msg: str
+        :type fast: int
         :returns: Responses, dict objects with fields due to API and "retval".
         :rtype: list of dict
         :raises RuntimeError: If retval is nonzero, parsing or ssh error.
         """
-        return self._execute(err_msg=err_msg)
+        return self._execute(err_msg=err_msg, fast=fast)
 
     def get_reply(self, err_msg=u"Failed to get reply."):
         """Get reply from VPP Python API.
@@ -544,7 +568,7 @@ class PapiSocketExecutor:
                 dump = papi_exec.add(cmd).get_details()
                 logger.debug(f"{cmd}:\n{pformat(dump)}")
 
-    def _execute(self, err_msg=u"Undefined error message", exp_rv=0):
+    def _execute(self, err_msg=u"Undefined error message", fast=0):
         """Turn internal command list into data and execute; return replies.
 
         This method also clears the internal command list.
@@ -556,7 +580,9 @@ class PapiSocketExecutor:
         - get_sw_if_index()
         - get_details()
 
+        :param fast: This many (minus two) fast commands are added.
         :param err_msg: The message used if the PAPI command(s) execution fails.
+        :type fast: int
         :type err_msg: str
         :returns: Papi responses parsed into a dict-like object,
             with fields due to API (possibly including retval).
@@ -567,7 +593,9 @@ class PapiSocketExecutor:
         # Clear first as execution may fail.
         self._api_command_list = list()
         if self._async:
-            return self._execute_async(local_list, err_msg=err_msg)
+            return self._execute_async(local_list, err_msg=err_msg, fast=fast)
+        if fast:
+            raise RuntimeError(u"Fast sending is not supported in sync mode.")
         return self._execute_sync(local_list, err_msg=err_msg)
 
     def _execute_sync(self, local_list, err_msg="Undefined error message"):
@@ -613,7 +641,8 @@ class PapiSocketExecutor:
                 ret_list.append(dict_item)
         return ret_list
 
-    def _execute_async(self, local_list, err_msg=u"Undefined error message"):
+    def _execute_async(
+            self, local_list, err_msg=u"Undefined error message", fast=False):
         """Send command messages, process replies lazily; return replies.
 
         Beware: It is not clear what to do when socket read fails
@@ -629,50 +658,98 @@ class PapiSocketExecutor:
         Currently, the bottleneck seems to be sending commands.
         Replies tend to be shorter, and there is probably less
         overhead in the VPP part of PAPI code.
+        Using "fast" flag can avoid this bottleneck,
+        but requires exactly two commands in the local list.
 
         :param local_list: The list of PAPI commands to be executed on the node.
         :param err_msg: The message used if the PAPI command(s) execution fails.
+        :param fast: Use speedy but dumb method for creating messages to send.
         :type local_list: list of dict
         :type err_msg: str
+        :type fast: bool
         :returns: Papi responses parsed into a dict-like object,
             with fields due to API (possibly including retval).
         :rtype: list of dict
         :raises RuntimeError: If the replies are not all correct.
         """
+        if fast and len(local_list) != 2:
+            raise RuntimeError(u"Fast sending requires exactly two commands.")
         # Unix Domain Sockets can hold 256 messages of length 256.
         # https://unix.stackexchange.com/a/424381
         # Deadlock can hapen if the following value (times average message size)
         # is too large, so all buffers get full before reply processing starts.
-        max_inflight = 256  # TODO: Customize.
+        max_inflight = 128  # TODO: Customize.
         vpp_instance = self.vpp_instance
         api_object = vpp_instance.api  # Just to save some CPU work inside loop.
+        if fast:
+            under_socket = vpp_instance.transport.socket
+            socket = SpyingSocket(under_socket, capture_send=True)
+            vpp_instance.transport.socket = socket
+            # under_socket could have been SpyingSocket already.
+            under_socket = socket.under_socket
+            logger.trace(f"socket {socket!r} under_socket {under_socket!r} fileno {socket.fileno()!r}")
+            import os
+            logger.trace(f"inhertiable {os.get_inheritable(under_socket.fileno())}")
         ret_list = list()
-        lll = len(local_list)
+        lll = max(fast, len(local_list))
         # Phase one: only sending commands.
-        for command in local_list[:max_inflight]:
-            logger.trace(f"args {command[u'api_args']!r}")
-            # The getattr result is a function, called immediatelly.
-            getattr(api_object, command[u"api_name"])(**command[u"api_args"])
+        len_one = min(max_inflight, lll)
+        logger.trace(f"ll {len(local_list)} fast {fast} lll {lll} lo {len_one}")
+        for count in range(len_one):
+            if not fast or count <= 1:
+                command = local_list[count]
+                # The getattr result is a function, called immediatelly.
+                getattr(api_object, command[u"api_name"])(**command[u"api_args"])
+                if not fast:
+                    continue
+                if count == 0:
+                    first = socket.flush_sent()
+                    continue
+                # Fast and count == 1.
+                second = socket.flush_sent()
+#                socket.capture_send = False
+                template_instance = BytesTemplate.from_two_messages(first, second)
+                logger.trace(f"template {template_instance.template!r}")
+                iterator = template_instance.generator(
+                    fast - 2, vpp_instance.get_context).__iter__()
+                continue
+            # Fast and count >= 2.
+            generated = iterator.__next__()
+            socket.sendall(generated)
+            # Debug. After done, switch the line above to under_socket.
+            sent = socket.flush_sent()
+            logger.trace(f"fast-sent: {sent.hex()}")
+        socket.capture_send = False
         # Phase two: receive one, send one.
+        logger.debug(f"phase two")
         send_index = max_inflight
         # TODO: Put repeated blocks into functions?
         while 1:
             if send_index >= lll:
                 break
+            logger.trace(f"send index {send_index}")
             # Receive one.
             # Blocks up to timeout.
             # TODO: In future we will need to insert no_type_conversion.
             response = vpp_instance.read_blocking()
+            logger.trace(f"response {response!r}")
             if response is None:
+                received = socket.flush_received()
+                print(f"received: {received.hex()}")
+                recv_index = send_index - max_inflight
                 err = AssertionError(
-                    f"Timeout index {recv_index} cmd {block[recv_index]!r}"
+                    f"Timeout index {recv_index} cmd {local_list[recv_index]!r}"
                 )
                 raise_from(AssertionError(err_msg), err, f"INFO")
             ret_list.append(dictize_and_check_retval(response))
             # Send one.
-            command = local_list[send_index]
-            # The getattr result is a function, called immediatelly.
-            getattr(api_object, command[f"api_name"])(**command[f"api_args"])
+            if fast:
+                generated = iterator.__next__()
+                socket.sendall(generated)
+            else:
+                command = local_list[send_index]
+                # The getattr result is a function, called immediatelly.
+                getattr(api_object, command[f"api_name"])(**command[f"api_args"])
             send_index += 1
         # Phase three: only receiving.
         for _ in local_list[-max_inflight:]:
@@ -681,7 +758,7 @@ class PapiSocketExecutor:
             response = vpp_instance.read_blocking()
             if response is None:
                 err = AssertionError(
-                    f"Timeout index {recv_index} cmd {block[recv_index]!r}"
+                    f"Timeout. TODO: Track from which command."
                 )
                 raise_from(AssertionError(err_msg), err, f"INFO")
             ret_list.append(dictize_and_check_retval(response))
