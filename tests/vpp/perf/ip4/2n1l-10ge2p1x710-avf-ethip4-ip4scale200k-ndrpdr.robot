@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_200k | DRV_AVF
+| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_200k | DRV_AVF | TEST
 | ...
 | Suite Setup | Setup suite single link | performance_avf
 | Suite Teardown | Tear down suite | performance | vifs

@@ -1,5 +1,5 @@
 # Copyright (c) 2019 Cisco and/or its affiliates.
-# Licensed under the Apache License, Version 2.0 (the "License");
+# Licensed under the Apache License, Version 2.0 (the "License"); | TEST
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
 #
@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | MEMIF | DOCKER
+| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | MEMIF | DOCKER | TEST
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

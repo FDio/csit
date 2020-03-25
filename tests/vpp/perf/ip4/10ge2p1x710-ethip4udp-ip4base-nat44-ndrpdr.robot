@@ -17,7 +17,7 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | BASE
+| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | BASE | TEST
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance

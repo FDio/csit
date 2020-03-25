@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | SCALE | L2BD_100 | DOT1Q | VLAN_100
-| ... | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY | VXLAN_100
+| ... | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY | VXLAN_100 | TEST
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
