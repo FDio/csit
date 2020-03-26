@@ -694,6 +694,19 @@ class Specification:
                     if isinstance(data_set, str):
                         table[u"history"][i][u"data-replacement"] = \
                             self.configuration[u"data-sets"][data_set]
+
+            if table.get(u"columns", None):
+                for i in range(len(table[u"columns"])):
+                    data_set = table[u"columns"][i].get(u"data-set", None)
+                    if isinstance(data_set, str):
+                        table[u"columns"][i][u"data-set"] = \
+                            self.configuration[u"data-sets"][data_set]
+                    data_set = table[u"columns"][i].get(
+                        u"data-replacement", None)
+                    if isinstance(data_set, str):
+                        table[u"columns"][i][u"data-replacement"] = \
+                            self.configuration[u"data-sets"][data_set]
+
         except KeyError:
             raise PresentationError(
                 f"Wrong data set used in {table.get(u'title', u'')}."
