@@ -309,15 +309,39 @@ def convert_csv_to_pretty_txt(csv_file_name, txt_file_name, delimiter=u","):
     """
 
     txt_table = None
-    with open(csv_file_name, u"rt") as csv_file:
+    with open(csv_file_name, u"rt", encoding='utf-8') as csv_file:
         csv_content = csv.reader(csv_file, delimiter=delimiter, quotechar=u'"')
         for row in csv_content:
             if txt_table is None:
                 txt_table = prettytable.PrettyTable(row)
             else:
                 txt_table.add_row(row)
-        txt_table.align[u"Test case"] = u"l"
-        txt_table.align[u"RCA"] = u"l"
-    if txt_table:
-        with open(txt_file_name, u"wt") as txt_file:
+    txt_table.align = u"r"
+    txt_table.align[u"Test Case"] = u"l"
+    txt_table.align[u"RCA"] = u"l"
+    txt_table.align[u"RCA1"] = u"l"
+    txt_table.align[u"RCA2"] = u"l"
+    txt_table.align[u"RCA3"] = u"l"
+
+    if not txt_table:
+        return
+
+    if txt_file_name.endswith(u".txt"):
+        with open(txt_file_name, u"wt", encoding='utf-8') as txt_file:
             txt_file.write(str(txt_table))
+    elif txt_file_name.endswith(u".rst"):
+        with open(txt_file_name, u"wt") as txt_file:
+            txt_file.write(
+                u"\n"
+                u".. |br| raw:: html\n\n    <br />\n\n\n"
+                u".. |prein| raw:: html\n\n    <pre>\n\n\n"
+                u".. |preout| raw:: html\n\n    </pre>\n\n"
+            )
+            txt_file.write(
+                u"\n.. only:: html\n\n"
+                u"    .. csv-table::\n"
+                u"        :header-rows: 1\n"
+                u"        :widths: auto\n"
+                u"        :align: center\n"
+                f"        :file: {csv_file_name.split(u'/')[-1]}\n"
+            )
