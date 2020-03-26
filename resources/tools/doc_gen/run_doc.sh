@@ -28,16 +28,16 @@ rsync -a --include '*/' --include '*.robot' --exclude '*' ../../../resources/lib
 rsync -a --include '*/' --include '*.robot' --exclude '*' ../../../tests/ ${WORKING_DIR}/tests/
 
 # Create virtual environment:
-virtualenv ${WORKING_DIR}/env
+virtualenv --python=$(which python3) ${WORKING_DIR}/env
 . ${WORKING_DIR}/env/bin/activate
 
 # Install CSIT requirements:
-pip install -r ../../../requirements.txt
+pip3 install --upgrade -r ../../../requirements.txt
 
 export PYTHONPATH=`pwd`
 
 # Generate rst files:
-python gen_rst.py
+python3 gen_rst.py
 
 # Remove all rst files from ./${WORKING_DIR}/env directory - we do not need them
 find ./${WORKING_DIR}/env -type f -name '*.rst' | xargs rm -f
