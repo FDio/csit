@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -26,17 +26,17 @@ class Tap:
     """Tap utilities."""
 
     @staticmethod
-    def add_tap_interface(node, tap_name, mac=None, num_rx_queues=1):
+    def add_tap_interface(node, tap_name, mac=None, num_queue_pairs=1):
         """Add tap interface with name and optionally with MAC.
 
         :param node: Node to add tap on.
         :param tap_name: Tap interface name for linux tap.
         :param mac: Optional MAC address for VPP tap.
-        :param num_rx_queues: Number of RX queues.
+        :param num_queue_pairs: Number of Rx/Tx queue pairs.
         :type node: dict
         :type tap_name: str
         :type mac: str
-        :type num_rx_queues: int
+        :type num_queue_pairs: int
         :returns: Returns a interface index.
         :rtype: int
         """
@@ -45,7 +45,7 @@ class Tap:
             id=Constants.BITWISE_NON_ZERO,
             use_random_mac=bool(mac is None),
             mac_address=L2Util.mac_to_bin(mac) if mac else None,
-            num_rx_queues=int(num_rx_queues),
+            num_queue_pairs=int(num_queue_pairs),
             host_mtu_set=False,
             host_mac_addr_set=False,
             host_ip4_prefix_set=False,

@@ -30,8 +30,8 @@
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 # https://logs.fd.io/production/vex-yul-rot-jenkins-1
-# /vpp-merge-master-ubuntu1804/921/
-20.01-rc0~424:
+# /vpp-merge-master-ubuntu1804/xxx/
+20.01-rc0~xxx:
     acl_add_replace: '0x1cabdeab'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
     acl_details: '0x7a97f21c'  # perf teardown
@@ -267,7 +267,7 @@
     sw_interface_tap_v2_details: '0xe53c16de'  # dev
     sw_interface_vhost_user_details: '0x98530df1'  # dev
     sw_interface_vhost_user_dump: '0xf9e6675e'  # dev
-    tap_create_v2: '0x445835fd'  # dev
+    tap_create_v2: '0x0f6b6051'  # dev
     tap_create_v2_reply: '0x5383d31f'  # dev
     vxlan_add_del_tunnel: '0xa35dc8f5'  # dev
     vxlan_add_del_tunnel_reply: '0x5383d31f'  # dev
