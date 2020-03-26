@@ -4,13 +4,6 @@
 64b-ip4routing-base-scale-avf-dpdk
 ``````````````````````````````````
 
-..
-    2n1l-10ge2p1x710-avf-ethip4-ip4base-mrr
-    2n1l-10ge2p1x710-avf-ethip4-ip4scale2m-mrr
-    2n1l-10ge2p1x710-dot1q-ip4base-mrr
-    2n1l-10ge2p1x710-ethip4-ip4base-mrr
-    2n1l-10ge2p1x710-ethip4-ip4scale2m-mrr
-
 2t1c
 ::::
 
