@@ -316,8 +316,9 @@ def convert_csv_to_pretty_txt(csv_file_name, txt_file_name, delimiter=u","):
                 txt_table = prettytable.PrettyTable(row)
             else:
                 txt_table.add_row(row)
-        txt_table.align[u"Test case"] = u"l"
-        txt_table.align[u"RCA"] = u"l"
+    txt_table.align = u"r"
+    txt_table.align[u"Test Case"] = u"l"
+    txt_table.align[u"RCA"] = u"l"
     if txt_table:
         with open(txt_file_name, u"wt") as txt_file:
             txt_file.write(str(txt_table))
