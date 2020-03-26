@@ -130,52 +130,52 @@ def main():
         return 1
 
     ret_code = 1
-    try:
-        env = Environment(spec.environment, args.force)
-        env.set_environment()
+    # try:
+    env = Environment(spec.environment, args.force)
+    env.set_environment()
 
-        prepare_static_content(spec)
+    prepare_static_content(spec)
 
-        data = InputData(spec)
-        if args.input_file:
-            data.process_local_file(args.input_file)
-        elif args.input_directory:
-            data.process_local_directory(args.input_directory)
-        else:
-            data.download_and_parse_data(repeat=1)
+    data = InputData(spec)
+    if args.input_file:
+        data.process_local_file(args.input_file)
+    elif args.input_directory:
+        data.process_local_directory(args.input_directory)
+    else:
+        data.download_and_parse_data(repeat=1)
 
-        if args.print_all_oper_data:
-            data.print_all_oper_data()
+    if args.print_all_oper_data:
+        data.print_all_oper_data()
 
-        generate_tables(spec, data)
-        generate_plots(spec, data)
-        generate_files(spec, data)
+    generate_tables(spec, data)
+    # generate_plots(spec, data)
+    # generate_files(spec, data)
+    #
+    # if spec.output[u"output"] == u"report":
+    #     generate_report(args.release, spec, args.week)
+    # elif spec.output[u"output"] == u"trending":
+    #     sys.stdout.write(generate_cpta(spec, data))
+    #     try:
+    #         alert = Alerting(spec)
+    #         alert.generate_alerts()
+    #     except AlertingError as err:
+    #         logging.warning(repr(err))
+    # else:
+    #     logging.info("No output will be generated.")
 
-        if spec.output[u"output"] == u"report":
-            generate_report(args.release, spec, args.week)
-        elif spec.output[u"output"] == u"trending":
-            sys.stdout.write(generate_cpta(spec, data))
-            try:
-                alert = Alerting(spec)
-                alert.generate_alerts()
-            except AlertingError as err:
-                logging.warning(repr(err))
-        else:
-            logging.info("No output will be generated.")
+    logging.info(u"Successfully finished.")
+    ret_code = 0
 
-        logging.info(u"Successfully finished.")
-        ret_code = 0
-
-    except AlertingError as err:
-        logging.critical(f"Finished with an alerting error.\n{repr(err)}")
-    except PresentationError as err:
-        logging.critical(f"Finished with a PAL error.\n{str(err)}")
-    except (KeyError, ValueError) as err:
-        logging.critical(f"Finished with an error.\n{repr(err)}")
-    finally:
-        if spec is not None:
-            clean_environment(spec.environment)
-    return ret_code
+    # except AlertingError as err:
+    #     logging.critical(f"Finished with an alerting error.\n{repr(err)}")
+    # except PresentationError as err:
+    #     logging.critical(f"Finished with a PAL error.\n{str(err)}")
+    # except (KeyError, ValueError) as err:
+    #     logging.critical(f"Finished with an error.\n{repr(err)}")
+    # finally:
+    #     if spec is not None:
+    #         clean_environment(spec.environment)
+    # return ret_code
 
 
 if __name__ == u"__main__":
