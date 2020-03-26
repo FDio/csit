@@ -43,6 +43,8 @@
     avf_create_reply: '0xfda5941f'  # perf
     # ^^ tc01-64B-1c-avf-eth-l2bdbasemaclrn-mrr
     # ^ l2bdmaclrnANDbaseANDdrv_avf
+    bond_create: '0xf19b4ad0'  # perf
+    bond_enslave: '0x0ded34f6'  # perf
     bridge_domain_add_del: '0xc6360720'  # dev
     bridge_domain_add_del_reply: '0xe8d4e804'  # dev
     classify_add_del_session: '0x85fd79f4'  # dev
@@ -96,6 +98,7 @@
     ip_source_check_interface_add_del_reply: '0xe8d4e804'  # virl
     ip_table_add_del: '0xe5d378f2'  # dev
     ip_table_add_del_reply: '0xe8d4e804'  # dev
+    ipsec_tunnel_if_add_del: '0xd5a98274'  # perf
     ipsec_interface_add_del_spd: '0x1e3b8286'  # dev
     ipsec_interface_add_del_spd_reply: '0xe8d4e804'  # dev
     ipsec_sad_entry_add_del: '0xa25ab61e'  # dev
@@ -128,6 +131,10 @@
     lisp_locator_set_dump: '0xc79e8ab0'  # virl
     lisp_map_resolver_details: '0x60a5f5ca'  # virl
     lisp_map_resolver_dump: '0x51077d14'  # virl
+    macip_acl_add: '0x0c680ca5'  # perf
+    macip_acl_dump: '0xef34fea4'  # perf
+    macip_acl_interface_add_del: '0x6a6be97c'  # perf
+    macip_acl_interface_get: '0x51077d14'  # perf
     memif_create: '0x6597cdb2'  # dev
     memif_create_reply: '0xfda5941f'  # dev
     memif_details: '0x4f5a3397'  # dev
@@ -150,6 +157,7 @@
     show_version_reply: '0xc919bde1'  # dev setup
     sw_interface_add_del_address: '0x7b583179'  # dev
     sw_interface_add_del_address_reply: '0xe8d4e804'  # dev
+    sw_interface_bond_dump: '0x51077d14'  # perf
     sw_interface_details: '0x52a9262e'  # dev setup
     sw_interface_dump: '0xaa610c27'  # dev setup
     sw_interface_ip6nd_ra_config: '0xc3f02daa'  # dev
@@ -172,8 +180,10 @@
     sw_interface_set_table_reply: '0xe8d4e804'  # dev
     sw_interface_set_vxlan_bypass: '0xe74ca095'  # dev
     sw_interface_set_vxlan_bypass_reply: '0xe8d4e804'  # dev
+    sw_interface_slave_dump: '0x529cb13f'  # perf
     sw_interface_tap_v2_dump: '0x51077d14'  # dev
     sw_interface_tap_v2_details: '0x5ee87a5f'  # dev
+    sw_interface_set_unnumbered: '0xa2c1bbda'  # perf
     sw_interface_vhost_user_details: '0x91ff3307'  # dev
     sw_interface_vhost_user_dump: '0x51077d14'  # dev
     tap_create_v2: '0x8fa99320'  # dev
