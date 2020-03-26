@@ -4,14 +4,6 @@
 64b-l2switching-base-scale-avf-dpdk
 ```````````````````````````````````
 
-..
-    2n1l-10ge2p1x710-avf-eth-l2xcbase-mrr
-    2n1l-10ge2p1x710-avf-dot1q-l2bdbasemaclrn-mrr
-    2n1l-10ge2p1x710-avf-eth-l2bdbasemaclrn-mrr
-    2n1l-10ge2p1x710-dot1q-l2bdbasemaclrn-mrr
-    2n1l-10ge2p1x710-eth-l2bdbasemaclrn-mrr
-    2n1l-10ge2p1x710-eth-l2bdscale1mmaclrn-mrr
-
 2t1c
 ::::
 
