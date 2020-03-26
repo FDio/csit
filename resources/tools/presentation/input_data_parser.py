@@ -1594,6 +1594,11 @@ class InputData:
         if not isfile(local_file):
             raise PresentationError(f"The file {local_file} does not exist.")
 
+        try:
+            build_nr = int(local_file.split(u"/")[-1].split(u".")[0])
+        except (IndexError, ValueError):
+            pass
+
         build = {
             u"build": build_nr,
             u"status": u"failed",
