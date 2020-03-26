@@ -64,6 +64,7 @@ class VppCounters:
                 with PapiExecutor(node) as papi_exec:
                     stats = papi_exec.add(u"vpp-stats", **args).\
                         get_stats(socket=socket)[0]
+                logger.trace(f"Stats before processing: {pformat(stats)}")
 
                 names = stats[u"/sys/node/names"]
 
