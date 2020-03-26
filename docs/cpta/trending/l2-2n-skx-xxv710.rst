@@ -4,13 +4,6 @@
 64b-l2switching-base-avf
 ````````````````````````
 
-..
-    2n1l-25ge2p1xxv710-avf-eth-l2patch-mrr
-    2n1l-25ge2p1xxv710-avf-eth-l2xcbase-mrr
-    2n1l-25ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-mrr
-    2n1l-25ge2p1xxv710-avf-eth-l2bdbasemaclrn-mrr
-    2n1l-25ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-gbp-mrr
-
 2t1c
 ::::
 
@@ -56,13 +49,6 @@
 64b-l2switching-base-dpdk
 `````````````````````````
 
-..
-    2n1l-25ge2p1xxv710-eth-l2patch-mrr
-    2n1l-25ge2p1xxv710-dot1q-l2xcbase-mrr
-    2n1l-25ge2p1xxv710-eth-l2xcbase-mrr
-    2n1l-25ge2p1xxv710-dot1q-l2bdbasemaclrn-mrr
-    2n1l-25ge2p1xxv710-eth-l2bdbasemaclrn-mrr
-
 2t1c
 ::::
 
@@ -107,12 +93,6 @@
 
 64b-l2switching-base-scale-dpdk
 ```````````````````````````````
-
-..
-    2n1l-25ge2p1xxv710-eth-l2bdbasemaclrn-mrr
-    2n1l-25ge2p1xxv710-eth-l2bdscale10kmaclrn-mrr
-    2n1l-25ge2p1xxv710-eth-l2bdscale100kmaclrn-mrr
-    2n1l-25ge2p1xxv710-eth-l2bdscale1mmaclrn-mrr
 
 2t1c
 ::::

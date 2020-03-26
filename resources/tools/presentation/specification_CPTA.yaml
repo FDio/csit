@@ -196,29 +196,28 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 965
+        start: 1035
         end: "lastCompletedBuild"
         skip:
-          - 987
           - 1052
           - 1054
           - 1056
           - 1063
           - 1102
       csit-dpdk-perf-mrr-weekly-master:
-        start: 102
+        start: 107
         end: "lastCompletedBuild"
         skip:
           - 110
           - 111
           - 112
+          - 114
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 965
+        start: 1035
         end: "lastCompletedBuild"
         skip:
-          - 987
           - 1052
           - 1054
           - 1056
@@ -227,109 +226,110 @@
 
     plot-performance-trending-dpdk-3n-hsw:
       csit-dpdk-perf-mrr-weekly-master:
-        start: 102
+        start: 107
         end: "lastCompletedBuild"
         skip:
           - 110
           - 111
           - 112
+          - 114
 
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 707
+        start: 782
         end: "lastCompletedBuild"
         skip:
-          - 743
-          - 749
-          - 761
           - 796
           - 803
           - 804
           - 805
           - 818
           - 849
+          - 851
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
-        start: 63
+        start: 72
         end: "lastCompletedBuild"
         skip:
-          - 66
           - 76
           - 77
+          - 79
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 707
+        start: 782
         end: "lastCompletedBuild"
         skip:
-          - 743
-          - 749
-          - 761
           - 796
           - 803
           - 804
           - 805
           - 818
           - 849
+          - 851
 
     plot-performance-trending-dpdk-3n-skx:
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
-        start: 63
+        start: 72
         end: "lastCompletedBuild"
         skip:
-          - 66
           - 76
           - 77
+          - 79
 
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 729
+        start: 804
         end: "lastCompletedBuild"
         skip:
-          - 768
           - 828
           - 830
+          - 868
+          - 870
+          - 874
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
-        start: 67
+        start: 72
         end: "lastCompletedBuild"
         skip:
           - 76
           - 77
+          - 79
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 729
+        start: 804
         end: "lastCompletedBuild"
         skip:
-          - 768
           - 828
           - 830
+          - 868
+          - 870
+          - 874
 
     plot-performance-trending-dpdk-2n-skx:
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
-        start: 67
+        start: 72
         end: "lastCompletedBuild"
         skip:
           - 76
           - 77
+          - 79
 
     plot-performance-trending-vpp-nfv-2n-skx:
       csit-vpp-perf-mrr-weekly-master-2n-skx:
-        start: 35
+        start: 45
         end: "lastCompletedBuild"
         skip:
-          - 37
+          - 52
+          - 54
+          - 55
 
     plot-performance-trending-vpp-2n-clx:
       csit-vpp-perf-mrr-daily-master-2n-clx:
-        start: 112
+        start: 183
         end: "lastCompletedBuild"
         skip:
-          - 121
-          - 153
-          - 154
-          - 155
           - 204
           - 206
           - 208
@@ -343,49 +343,60 @@
           - 231
           - 239
           - 248
+          - 251
+          - 252
+          - 253
 
     plot-performance-trending-dpdk-2n-clx:
       csit-dpdk-perf-mrr-weekly-master-2n-clx:
-        start: 11
+        start: 16
         end: "lastCompletedBuild"
         skip:
           - 18
           - 21
           - 22
+          - 24
 
     # 3n-tsh
     plot-performance-trending-all-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
-        start: 101
+        start: 115
         end: "lastCompletedBuild"
         skip:
-          - 105
           - 126
           - 127
           - 135
           - 149
+          - 150
+          - 152
+          - 153
+          - 154
+          - 155
+          - 156
+          - 157
 
     plot-performance-trending-vpp-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
-        start: 101
+        start: 115
         end: "lastCompletedBuild"
         skip:
-          - 105
           - 126
           - 127
           - 135
           - 149
+          - 150
+          - 152
+          - 153
+          - 154
+          - 155
+          - 156
+          - 157
 
     plot-performance-trending-vpp-3n-dnv:
       csit-vpp-perf-mrr-daily-master-3n-dnv:
-        start: 203
+        start: 276
         end: "lastCompletedBuild"
         skip:
-          - 227
-          - 228
-          - 246
-          - 247
-          - 248
           - 297
           - 318
           - 319
@@ -398,10 +409,20 @@
           - 326
           - 327
           - 343
+          - 344
+          - 345
+          - 348
+          - 350
+          - 356
+          - 357
+          - 358
+          - 360
+          - 363
+          - 364
 
     plot-performance-trending-vpp-2n-dnv:
       csit-vpp-perf-mrr-daily-master-2n-dnv:
-        start: 203
+        start: 279
         end: "lastCompletedBuild"
         skip:
           - 228
@@ -421,6 +442,14 @@
           - 332
           - 344
           - 349
+          - 350
+          - 351
+          - 354
+          - 360
+          - 364
+          - 365
+          - 366
+          - 370
 
   plot-layouts:
 
@@ -518,73 +547,72 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 965
+      start: 1035
       end: "lastCompletedBuild"
       skip:
-        - 987
         - 1052
         - 1054
         - 1056
         - 1063
         - 1102
     csit-dpdk-perf-mrr-weekly-master:
-      start: 102
+      start: 107
       end: "lastCompletedBuild"
       skip:
         - 110
         - 111
         - 112
+        - 114
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 707
+      start: 782
       end: "lastCompletedBuild"
       skip:
-        - 743
-        - 749
-        - 761
         - 796
         - 803
         - 804
         - 805
         - 818
         - 849
+        - 851
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
-      start: 63
+      start: 72
       end: "lastCompletedBuild"
       skip:
-        - 66
         - 76
         - 77
+        - 79
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
-      start: 729
+      start: 804
       end: "lastCompletedBuild"
       skip:
-        - 768
         - 828
         - 830
+        - 868
+        - 870
+        - 874
     csit-vpp-perf-mrr-weekly-master-2n-skx:
-      start: 40
+      start: 45
       end: "lastCompletedBuild"
       skip:
-        - 37
+        - 52
+        - 54
+        - 55
     csit-dpdk-perf-mrr-weekly-master-2n-skx:
-      start: 67
+      start: 72
       end: "lastCompletedBuild"
       skip:
         - 76
         - 77
+        - 79
 
     csit-vpp-perf-mrr-daily-master-2n-clx:
-      start: 112
+      start: 183
       end: "lastCompletedBuild"
       skip:
-        - 121
-        - 153
-        - 154
-        - 155
         - 204
         - 206
         - 208
@@ -598,36 +626,41 @@
         - 231
         - 239
         - 248
+        - 251
+        - 252
+        - 253
 
     csit-dpdk-perf-mrr-weekly-master-2n-clx:
-      start: 11
+      start: 16
       end: "lastCompletedBuild"
       skip:
         - 18
         - 21
         - 22
+        - 24
 
     # 3n-tsh
     csit-vpp-perf-mrr-daily-master-3n-tsh:
-      start: 101
+      start: 115
       end: "lastCompletedBuild"
       skip:
-        - 105
         - 126
         - 127
         - 135
         - 149
+        - 150
+        - 152
+        - 153
+        - 154
+        - 155
+        - 156
+        - 157
 
     # 3n-dnv
     csit-vpp-perf-mrr-daily-master-3n-dnv:
-      start: 203
+      start: 276
       end: "lastCompletedBuild"
       skip:
-        - 227
-        - 228
-        - 246
-        - 247
-        - 248
         - 297
         - 318
         - 319
@@ -640,10 +673,20 @@
         - 326
         - 327
         - 343
+        - 344
+        - 345
+        - 348
+        - 350
+        - 356
+        - 357
+        - 358
+        - 360
+        - 363
+        - 364
 
     # 2n-dnv
     csit-vpp-perf-mrr-daily-master-2n-dnv:
-      start: 203
+      start: 279
       end: "lastCompletedBuild"
       skip:
         - 228
@@ -663,6 +706,14 @@
         - 332
         - 344
         - 349
+        - 350
+        - 351
+        - 354
+        - 360
+        - 364
+        - 365
+        - 366
+        - 370
 
 -
   type: "output"
@@ -1787,6 +1838,36 @@
         - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1Cx556A-Rdma-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Mrr.64B-8t4c-rdma-ethip4-ip4base-eth-2memif-1dcr-mrr"
       layout: "plot-cpta"
 
+    - title: "2n-skx-xxv710-64b-2t1c-memif-base-avf"
+      output-file-name: "2n-skx-xxv710-64b-2t1c-memif-base-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-mrr.64B-2t1c-avf-eth-l2xcbase-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-mrr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-mrr.64B-2t1c-avf-ethip4-ip4base-eth-2memif-1dcr-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-4t2c-memif-base-avf"
+      output-file-name: "2n-skx-xxv710-64b-4t2c-memif-base-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-mrr.64B-4t2c-avf-eth-l2xcbase-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-mrr.64B-4t2c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-mrr.64B-4t2c-avf-ethip4-ip4base-eth-2memif-1dcr-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-8t4c-memif-base-avf"
+      output-file-name: "2n-skx-xxv710-64b-8t4c-memif-base-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-mrr.64B-8t4c-avf-eth-l2xcbase-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-mrr.64B-8t4c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-mrr.64B-8t4c-avf-ethip4-ip4base-eth-2memif-1dcr-mrr"
+      layout: "plot-cpta"
+
     - title: "2n-skx-xxv710-64b-2t1c-memif-base-dpdk"
       output-file-name: "2n-skx-xxv710-64b-2t1c-memif-base-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
@@ -2184,39 +2265,43 @@
       output-file-name: "2n-skx-x710-64b-2t1c-ip4-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip4Base-Mrr.64B-2t1c-avf-dot1q-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Ethip4-Ip4Base-mrr.64B-2t1c-avf-ethip4-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Ethip4-Ip4Scale2M-mrr.64B-2t1c-avf-ethip4-ip4scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Ethip4-Ip4Scale2M-Rnd-Mrr.64B-2t1c-avf-ethip4-ip4scale2m-rnd-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Dot1Q-Ip4Base-mrr.64B-2t1c-dot1q-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Ethip4-Ip4Base-mrr.64B-2t1c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Ethip4-Ip4Scale2M-mrr.64B-2t1c-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-x710-64b-4t2c-ip4routing-base-scale-avf-dpdk"
       output-file-name: "2n-skx-x710-64b-4t2c-ip4-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip4Base-Mrr.64B-4t2c-avf-dot1q-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Ethip4-Ip4Base-mrr.64B-4t2c-avf-ethip4-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Ethip4-Ip4Scale2M-mrr.64B-4t2c-avf-ethip4-ip4scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Ethip4-Ip4Scale2M-Rnd-Mrr.64B-4t2c-avf-ethip4-ip4scale2m-rnd-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Dot1Q-Ip4Base-mrr.64B-4t2c-dot1q-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Ethip4-Ip4Base-mrr.64B-4t2c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Ethip4-Ip4Scale2M-mrr.64B-4t2c-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-x710-64b-8t4c-ip4routing-base-scale-avf-dpdk"
       output-file-name: "2n-skx-x710-64b-8t4c-ip4-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip4Base-Mrr.64B-8t4c-avf-dot1q-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Ethip4-Ip4Base-mrr.64B-8t4c-avf-ethip4-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Ethip4-Ip4Scale2M-mrr.64B-8t4c-avf-ethip4-ip4scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Avf-Ethip4-Ip4Scale2M-Rnd-Mrr.64B-8t4c-avf-ethip4-ip4scale2m-rnd-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Dot1Q-Ip4Base-mrr.64B-8t4c-dot1q-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Ethip4-Ip4Base-mrr.64B-8t4c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X710-Ethip4-Ip4Scale2M-mrr.64B-8t4c-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf"
       output-file-name: "2n-skx-xxv710-64b-2t1c-ip4-base-scale-avf"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-Ip4Base-Mrr.64B-2t1c-avf-dot1q-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-mrr.64B-2t1c-avf-ethip4-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-mrr.64B-2t1c-avf-ethip4-ip4scale20k-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-mrr.64B-2t1c-avf-ethip4-ip4scale200k-mrr"
@@ -2227,6 +2312,7 @@
       output-file-name: "2n-skx-xxv710-64b-4t2c-ip4-base-scale-avf"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-Ip4Base-Mrr.64B-4t2c-avf-dot1q-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-mrr.64B-4t2c-avf-ethip4-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-mrr.64B-4t2c-avf-ethip4-ip4scale20k-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-mrr.64B-4t2c-avf-ethip4-ip4scale200k-mrr"
@@ -2237,10 +2323,38 @@
       output-file-name: "2n-skx-xxv710-64b-8t4c-ip4-base-scale-avf"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-Ip4Base-Mrr.64B-8t4c-avf-dot1q-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-mrr.64B-8t4c-avf-ethip4-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-mrr.64B-8t4c-avf-ethip4-ip4scale20k-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-mrr.64B-8t4c-avf-ethip4-ip4scale200k-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale2M-mrr.64B-8t4c-avf-ethip4-ip4scale2m-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-rnd"
+      output-file-name: "2n-skx-xxv710-64b-2t1c-ip4-base-scale-avf-rnd"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-Rnd-Mrr.64B-2t1c-avf-ethip4-ip4scale20k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-Rnd-Mrr.64B-2t1c-avf-ethip4-ip4scale200k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale2M-Rnd-Mrr.64B-2t1c-avf-ethip4-ip4scale2m-rnd-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-4t2c-ip4routing-base-scale-avf-rnd"
+      output-file-name: "2n-skx-xxv710-64b-4t2c-ip4-base-scale-avf-rnd"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-Rnd-Mrr.64B-4t2c-avf-ethip4-ip4scale20k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-Rnd-Mrr.64B-4t2c-avf-ethip4-ip4scale200k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale2M-Rnd-Mrr.64B-4t2c-avf-ethip4-ip4scale2m-rnd-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-8t4c-ip4routing-base-scale-avf-rnd"
+      output-file-name: "2n-skx-xxv710-64b-8t4c-ip4-base-scale-avf-rnd"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-Rnd-Mrr.64B-8t4c-avf-ethip4-ip4scale20k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-Rnd-Mrr.64B-8t4c-avf-ethip4-ip4scale200k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale2M-Rnd-Mrr.64B-8t4c-avf-ethip4-ip4scale2m-rnd-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-dpdk"
@@ -2274,6 +2388,69 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale20K-mrr.64B-8t4c-ethip4-ip4scale20k-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale200K-mrr.64B-8t4c-ethip4-ip4scale200k-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale2M-mrr.64B-8t4c-ethip4-ip4scale2m-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-dpdk-rnd"
+      output-file-name: "2n-skx-xxv710-64b-2t1c-ip4-base-scale-dpdk-rnd"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale20K-Rnd-Mrr.64B-2t1c-ethip4-ip4scale20k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale200K-Rnd-Mrr.64B-2t1c-ethip4-ip4scale200k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale2M-Rnd-Mrr.64B-2t1c-ethip4-ip4scale2m-rnd-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-4t2c-ip4routing-base-scale-dpdk-rnd"
+      output-file-name: "2n-skx-xxv710-64b-4t2c-ip4-base-scale-dpdk-rnd"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale20K-Rnd-Mrr.64B-4t2c-ethip4-ip4scale20k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale200K-Rnd-Mrr.64B-4t2c-ethip4-ip4scale200k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale2M-Rnd-Mrr.64B-4t2c-ethip4-ip4scale2m-rnd-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-8t4c-ip4routing-base-scale-dpdk-rnd"
+      output-file-name: "2n-skx-xxv710-64b-8t4c-ip4-base-scale-dpdk-rnd"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale20K-Rnd-Mrr.64B-8t4c-ethip4-ip4scale20k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale200K-Rnd-Mrr.64B-8t4c-ethip4-ip4scale200k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale2M-Rnd-Mrr.64B-8t4c-ethip4-ip4scale2m-rnd-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf"
+      output-file-name: "2n-skx-xxv710-64b-2t1c-ip4-features-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-mrr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-mrr.64B-2t1c-avf-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Mrr.64B-2t1c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-4t2c-features-ip4routing-base-avf"
+      output-file-name: "2n-skx-xxv710-64b-4t2c-ip4-features-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-mrr.64B-4t2c-avf-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-4t2c-avf-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-4t2c-avf-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-4t2c-avf-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-mrr.64B-4t2c-avf-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Mrr.64B-4t2c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-8t4c-features-ip4routing-base-avf"
+      output-file-name: "2n-skx-xxv710-64b-8t4c-ip4-features-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-mrr.64B-8t4c-avf-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-8t4c-avf-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-8t4c-avf-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-8t4c-avf-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-mrr.64B-8t4c-avf-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Mrr.64B-8t4c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-2t1c-features-ip4routing-base-dpdk"
@@ -2819,31 +2996,70 @@
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale2M-mrr.78B-4t4c-ethip6-ip6scale2m-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-skx-x710-78b-2t1c-ip6routing-base-scale-dpdk"
-      output-file-name: "2n-skx-x710-78b-2t1c-ip6-base-scale-dpdk"
+    - title: "2n-skx-x710-78b-2t1c-ip6routing-base-scale-avf-dpdk"
+      output-file-name: "2n-skx-x710-78b-2t1c-ip6-base-scale-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Mrr.78B-2t1c-avf-dot1q-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Mrr.78B-2t1c-avf-ethip6-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Mrr.78B-2t1c-avf-ethip6-ip6scale2m-mrr"
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-mrr.78B-2t1c-dot1q-ip6base-mrr"
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-mrr.78B-2t1c-ethip6-ip6base-mrr"
-        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-mrr.78B-2t1c-ethip6-ip6scale2m-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-skx-x710-78b-4t2c-ip6routing-base-scale-dpdk"
-      output-file-name: "2n-skx-x710-78b-4t2c-ip6-base-scale-dpdk"
+    - title: "2n-skx-x710-78b-4t2c-ip6routing-base-scale-avf-dpdk"
+      output-file-name: "2n-skx-x710-78b-4t2c-ip6-base-scale-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Mrr.78B-4t2c-avf-dot1q-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Mrr.78B-4t2c-avf-ethip6-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Mrr.78B-4t2c-avf-ethip6-ip6scale2m-mrr"
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-mrr.78B-4t2c-dot1q-ip6base-mrr"
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-mrr.78B-4t2c-ethip6-ip6base-mrr"
-        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-mrr.78B-4t2c-ethip6-ip6scale2m-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-skx-x710-78b-8t4c-ip6routing-base-scale-dpdk"
-      output-file-name: "2n-skx-x710-78b-8t4c-ip6-base-scale-dpdk"
+    - title: "2n-skx-x710-78b-8t4c-ip6routing-base-scale-avf-dpdk"
+      output-file-name: "2n-skx-x710-78b-8t4c-ip6-base-scale-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Mrr.78B-8t4c-avf-dot1q-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Mrr.78B-8t4c-avf-ethip6-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Mrr.78B-8t4c-avf-ethip6-ip6scale2m-mrr"
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-mrr.78B-8t4c-dot1q-ip6base-mrr"
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-mrr.78B-8t4c-ethip6-ip6base-mrr"
-        - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-mrr.78B-8t4c-ethip6-ip6scale2m-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-78b-2t1c-ip6routing-base-scale-avf"
+      output-file-name: "2n-skx-xxv710-78b-2t1c-ip6-base-scale-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-Ip6Base-mrr.78B-2t1c-avf-dot1q-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-mrr.78B-2t1c-avf-ethip6-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-mrr.78B-2t1c-avf-ethip6-ip6scale20k-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-mrr.78B-2t1c-avf-ethip6-ip6scale200k-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-mrr.78B-2t1c-avf-ethip6-ip6scale2m-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-78b-4t2c-ip6routing-base-scale-avf"
+      output-file-name: "2n-skx-xxv710-78b-4t2c-ip6-base-scale-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-Ip6Base-mrr.78B-4t2c-avf-dot1q-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-mrr.78B-4t2c-avf-ethip6-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-mrr.78B-4t2c-avf-ethip6-ip6scale20k-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-mrr.78B-4t2c-avf-ethip6-ip6scale200k-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-mrr.78B-4t2c-avf-ethip6-ip6scale2m-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-78b-8t4c-ip6routing-base-scale-avf"
+      output-file-name: "2n-skx-xxv710-78b-8t4c-ip6-base-scale-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-Ip6Base-mrr.78B-8t4c-avf-dot1q-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-mrr.78B-8t4c-avf-ethip6-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-mrr.78B-8t4c-avf-ethip6-ip6scale20k-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-mrr.78B-8t4c-avf-ethip6-ip6scale200k-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-mrr.78B-8t4c-avf-ethip6-ip6scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-78b-2t1c-ip6routing-base-scale-dpdk"
@@ -3507,9 +3723,11 @@
       output-file-name: "2n-skx-xxv710-64b-2t1c-l2-base-avf"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Mrr.64B-2t1c-avf-dot1q-l2xcbase-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-gbp-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Patch-mrr.64B-2t1c-avf-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-mrr.64B-2t1c-avf-eth-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-mrr"
       layout: "plot-cpta"
 
@@ -3517,9 +3735,11 @@
       output-file-name: "2n-skx-xxv710-64b-4t2c-l2-base-avf"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Mrr.64B-4t2c-avf-dot1q-l2xcbase-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-4t2c-avf-dot1q-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-4t2c-avf-dot1q-l2bdbasemaclrn-gbp-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Patch-mrr.64B-4t2c-avf-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-mrr.64B-4t2c-avf-eth-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-4t2c-avf-dot1q-l2bdbasemaclrn-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-mrr"
       layout: "plot-cpta"
 
@@ -3527,9 +3747,11 @@
       output-file-name: "2n-skx-xxv710-64b-8t4c-l2-base-avf"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Mrr.64B-8t4c-avf-dot1q-l2xcbase-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-8t4c-avf-dot1q-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-8t4c-avf-dot1q-l2bdbasemaclrn-gbp-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Patch-mrr.64B-8t4c-avf-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-mrr.64B-8t4c-avf-eth-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-8t4c-avf-dot1q-l2bdbasemaclrn-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-mrr"
       layout: "plot-cpta"
 
@@ -3537,10 +3759,11 @@
       output-file-name: "2n-skx-xxv710-64b-2t1c-l2-base-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Patch-mrr.64B-2t1c-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Dot1Q-L2Xcbase-mrr.64B-2t1c-dot1q-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-mrr.64B-2t1c-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-mrr.64B-2t1c-dot1q-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-2t1c-dot1q-l2bdbasemaclrn-gbp-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Patch-mrr.64B-2t1c-eth-l2patch-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-mrr.64B-2t1c-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-mrr.64B-2t1c-eth-l2bdbasemaclrn-mrr"
       layout: "plot-cpta"
 
@@ -3548,10 +3771,11 @@
       output-file-name: "2n-skx-xxv710-64b-4t2c-l2-base-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Patch-mrr.64B-4t2c-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Dot1Q-L2Xcbase-mrr.64B-4t2c-dot1q-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-mrr.64B-4t2c-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-mrr.64B-4t2c-dot1q-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-4t2c-dot1q-l2bdbasemaclrn-gbp-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Patch-mrr.64B-4t2c-eth-l2patch-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-mrr.64B-4t2c-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-mrr.64B-4t2c-eth-l2bdbasemaclrn-mrr"
       layout: "plot-cpta"
 
@@ -3559,11 +3783,42 @@
       output-file-name: "2n-skx-xxv710-64b-8t4c-l2-base-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Patch-mrr.64B-8t4c-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Dot1Q-L2Xcbase-mrr.64B-8t4c-dot1q-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-mrr.64B-8t4c-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-mrr.64B-8t4c-dot1q-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-8t4c-dot1q-l2bdbasemaclrn-gbp-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Patch-mrr.64B-8t4c-eth-l2patch-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-mrr.64B-8t4c-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-mrr.64B-8t4c-eth-l2bdbasemaclrn-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf"
+      output-file-name: "2n-skx-xxv710-64b-2t1c-l2-base-scale-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-mrr.64B-2t1c-avf-eth-l2bdscale10kmaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-mrr.64B-2t1c-avf-eth-l2bdscale100kmaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-mrr.64B-2t1c-avf-eth-l2bdscale1mmaclrn-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-4t2c-l2switching-base-scale-avf"
+      output-file-name: "2n-skx-xxv710-64b-4t2c-l2-base-scale-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-mrr.64B-4t2c-avf-eth-l2bdscale10kmaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-mrr.64B-4t2c-avf-eth-l2bdscale100kmaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-mrr.64B-4t2c-avf-eth-l2bdscale1mmaclrn-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-8t4c-l2switching-base-scale-avf"
+      output-file-name: "2n-skx-xxv710-64b-8t4c-l2-base-scale-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-mrr.64B-8t4c-avf-eth-l2bdscale10kmaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-mrr.64B-8t4c-avf-eth-l2bdscale100kmaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-mrr.64B-8t4c-avf-eth-l2bdscale1mmaclrn-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-2t1c-l2switching-base-scale-dpdk"
@@ -4253,12 +4508,73 @@
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
       layout: "plot-cpta"
 
+    - title: "2n-skx-xxv710-64b-2t1c-vhost-base-avf-testpmd"
+      output-file-name: "2n-skx-xxv710-64b-2t1c-vhost-base-avf-testpmd"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Mrr.64B-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-mrr.64B-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-4t2c-vhost-base-avf-testpmd"
+      output-file-name: "2n-skx-xxv710-64b-4t2c-vhost-base-avf-testpmd"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Mrr.64B-4t2c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-4t2c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-mrr.64B-4t2c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-8t4c-vhost-base-avf-testpmd"
+      output-file-name: "2n-skx-xxv710-64b-8t4c-vhost-base-avf-testpmd"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Mrr.64B-8t4c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-8t4c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-mrr.64B-8t4c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-2t1c-vhost-base-avf-vpp"
+      output-file-name: "2n-skx-xxv710-64b-2t1c-vhost-base-avf-vpp"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-4t2c-vhost-base-avf-vpp"
+      output-file-name: "2n-skx-xxv710-64b-4t2c-vhost-base-avf-vpp"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-4t2c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-4t2c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-4t2c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-64b-8t4c-vhost-base-avf-vpp"
+      output-file-name: "2n-skx-xxv710-64b-8t4c-vhost-base-avf-vpp"
+      data: "plot-performance-trending-vpp-2n-skx"
+      include:
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-8t4c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-8t4c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-8t4c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+      layout: "plot-cpta"
+
     - title: "2n-skx-xxv710-64b-2t1c-vhost-base-dpdk-testpmd"
       output-file-name: "2n-skx-xxv710-64b-2t1c-vhost-base-dpdk-testpmd"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
-        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-mrr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Mrr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-mrr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-mrr.64B-2t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr"
       layout: "plot-cpta"
@@ -4267,8 +4583,9 @@
       output-file-name: "2n-skx-xxv710-64b-4t2c-vhost-base-dpdk-testpmd"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
-        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-mrr.64B-4t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Mrr.64B-4t2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-4t2c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-mrr.64B-4t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-4t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-mrr.64B-4t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr"
       layout: "plot-cpta"
@@ -4277,8 +4594,9 @@
       output-file-name: "2n-skx-xxv710-64b-8t4c-vhost-base-dpdk-testpmd"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
-        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-mrr.64B-8t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Mrr.64B-8t4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-8t4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-mrr.64B-8t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-8t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-mrr.64B-8t4c-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr"
       layout: "plot-cpta"
@@ -4287,8 +4605,9 @@
       output-file-name: "2n-skx-xxv710-64b-2t1c-vhost-base-dpdk-vpp"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
-        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-mrr.64B-2t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-mrr"
       layout: "plot-cpta"
@@ -4297,8 +4616,9 @@
       output-file-name: "2n-skx-xxv710-64b-4t2c-vhost-base-dpdk-vpp"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
-        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-4t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-4t2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-4t2c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-4t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-4t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-mrr.64B-4t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-mrr"
       layout: "plot-cpta"
@@ -4307,8 +4627,9 @@
       output-file-name: "2n-skx-xxv710-64b-8t4c-vhost-base-dpdk-vpp"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
-        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-8t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-8t4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-8t4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-8t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-mrr.64B-8t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-mrr.64B-8t4c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-mrr"
       layout: "plot-cpta"
@@ -4640,28 +4961,37 @@
         - "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-mrr.64B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-skx-xxv710-114b-2t1c-vts-l2switching-base-dpdk"
-      output-file-name: "2n-skx-xxv710-114b-2t1c-vts-l2switching-base-dpdk"
+    - title: "2n-skx-xxv710-114b-2t1c-vts-l2switching-base-avf-dpdk"
+      output-file-name: "2n-skx-xxv710-114b-2t1c-vts-l2switching-base-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-mrr.114B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-mrr.114B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-mrr.114B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-mrr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-mrr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-mrr.114B-2t1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-skx-xxv710-114b-4t2c-vts-l2switching-base-dpdk"
-      output-file-name: "2n-skx-xxv710-114b-4t2c-vts-l2switching-base-dpdk"
+    - title: "2n-skx-xxv710-114b-4t2c-vts-l2switching-base-avf-dpdk"
+      output-file-name: "2n-skx-xxv710-114b-4t2c-vts-l2switching-base-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-mrr.114B-4t2c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-mrr.114B-4t2c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-mrr.114B-4t2c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-mrr.114B-4t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-mrr.114B-4t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-mrr.114B-4t2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-skx-xxv710-114b-8t4c-vts-l2switching-base-dpdk"
-      output-file-name: "2n-skx-xxv710-114b-8t4c-vts-l2switching-base-dpdk"
+    - title: "2n-skx-xxv710-114b-8t4c-vts-l2switching-base-avf-dpdk"
+      output-file-name: "2n-skx-xxv710-114b-8t4c-vts-l2switching-base-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
       include:
+        - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-mrr.114B-8t4c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-mrr.114B-8t4c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-mrr.114B-8t4c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-mrr.114B-8t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-mrr.114B-8t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-mrr.114B-8t4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-mrr"
