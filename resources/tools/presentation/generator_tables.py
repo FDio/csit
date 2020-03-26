@@ -483,7 +483,8 @@ def _tpc_sort_table(table):
     return table
 
 
-def _tpc_generate_html_table(header, data, output_file_name):
+def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
+                             footnote=u""):
     """Generate html table from input data with simple sorting possibility.
 
     :param header: Table header.
@@ -491,15 +492,19 @@ def _tpc_generate_html_table(header, data, output_file_name):
         Inner lists are rows in the table. All inner lists must be of the same
         length. The length of these lists must be the same as the length of the
         header.
-    :param output_file_name: The name (relative or full path) where the
+    :param out_file_name: The name (relative or full path) where the
         generated html table is written.
+    :param legend: The legend to display below the table.
+    :param footnote: The footnote to display below the table (and legend).
     :type header: list
     :type data: list of lists
-    :type output_file_name: str
+    :type out_file_name: str
+    :type legend: str
+    :type footnote: str
     """
 
     try:
-        idx = header.index(u"Test case")
+        idx = header.index(u"Test Case")
     except ValueError:
         idx = 0
     params = {
@@ -562,7 +567,7 @@ def _tpc_generate_html_table(header, data, output_file_name):
             go.layout.Updatemenu(
                 type=u"dropdown",
                 direction=u"down",
-                x=0.03,
+                x=0.0,  # 0.03,
                 xanchor=u"left",
                 y=1.045,
                 yanchor=u"top",
@@ -570,20 +575,49 @@ def _tpc_generate_html_table(header, data, output_file_name):
                 buttons=list(buttons)
             )
         ],
-        annotations=[
-            go.layout.Annotation(
-                text=u"<b>Sort by:</b>",
-                x=0,
-                xref=u"paper",
-                y=1.035,
-                yref=u"paper",
-                align=u"left",
-                showarrow=False
-            )
-        ]
+        # annotations=[
+        #     go.layout.Annotation(
+        #         text=u"<b>Sort by:</b>",
+        #         x=0,
+        #         xref=u"paper",
+        #         y=1.035,
+        #         yref=u"paper",
+        #         align=u"left",
+        #         showarrow=False
+        #     )
+        # ]
     )
 
-    ploff.plot(fig, show_link=False, auto_open=False, filename=output_file_name)
+    ploff.plot(
+        fig,
+        show_link=False,
+        auto_open=False,
+        filename=f"{out_file_name}_in.html"
+    )
+
+    file_name = out_file_name.split(u"/")[-1]
+    if u"vpp" in out_file_name:
+        path = u"_tmp/src/vpp_performance_tests/comparisons/"
+    else:
+        path = u"_tmp/src/dpdk_performance_tests/comparisons/"
+    with open(f"{path}{file_name}.rst", u"wt") as rst_file:
+        rst_file.write(
+            u"\n"
+            u".. |br| raw:: html\n\n    <br />\n\n\n"
+            u".. |prein| raw:: html\n\n    <pre>\n\n\n"
+            u".. |preout| raw:: html\n\n    </pre>\n\n"
+        )
+        rst_file.write(
+            u".. raw:: html\n\n"
+            f'    <iframe frameborder="0" scrolling="no" '
+            f'width="1600" height="1000" '
+            f'src="../..{out_file_name.replace(u"_build", u"")}_in.html">'
+            f'</iframe>\n\n'
+        )
+        if legend:
+            rst_file.write(legend[1:].replace(u"\n", u" |br| "))
+        if footnote:
+            rst_file.write(footnote.replace(u"\n", u" |br| ")[1:])
 
 
 def table_perf_comparison(table, input_data):
@@ -607,7 +641,8 @@ def table_perf_comparison(table, input_data):
 
     # Prepare the header of the tables
     try:
-        header = [u"Test case", ]
+        header = [u"Test Case", ]
+        legend = u"\nLegend:\n"
 
         rca_data = None
         rca = table.get(u"rca", None)
@@ -616,33 +651,75 @@ def table_perf_comparison(table, input_data):
                 with open(rca.get(u"data-file", ""), u"r") as rca_file:
                     rca_data = load(rca_file, Loader=FullLoader)
                 header.insert(0, rca.get(u"title", "RCA"))
+                legend += (
+                    u"RCA: Reference to the Root Cause Analysis, see below.\n"
+                )
             except (YAMLError, IOError) as err:
                 logging.warning(repr(err))
-
-        if table[u"include-tests"] == u"MRR":
-            hdr_param = u"Rec Rate"
-        else:
-            hdr_param = u"Thput"
 
         history = table.get(u"history", list())
         for item in history:
             header.extend(
                 [
-                    f"{item[u'title']} {hdr_param} [Mpps]",
-                    f"{item[u'title']} Stdev [Mpps]"
+                    f"{item[u'title']} Avg({table[u'include-tests']})",
+                    f"{item[u'title']} Stdev({table[u'include-tests']})"
                 ]
+            )
+            legend += (
+                f"{item[u'title']} Avg({table[u'include-tests']}): "
+                f"Mean value of {table[u'include-tests']} [Mpps] computed from "
+                f"a series of runs of the listed tests executed against "
+                f"{item[u'title']}.\n"
+                f"{item[u'title']} Stdev({table[u'include-tests']}): "
+                f"Standard deviation value of {table[u'include-tests']} [Mpps] "
+                f"computed from a series of runs of the listed tests executed "
+                f"against {item[u'title']}.\n"
             )
         header.extend(
             [
-                f"{table[u'reference'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'reference'][u'title']} Stdev [Mpps]",
-                f"{table[u'compare'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'compare'][u'title']} Stdev [Mpps]",
-                u"Delta [%]",
-                u"Stdev of delta [%]"
+                f"{table[u'reference'][u'title']} "
+                f"Avg({table[u'include-tests']})",
+                f"{table[u'reference'][u'title']} "
+                f"Stdev({table[u'include-tests']})",
+                f"{table[u'compare'][u'title']} "
+                f"Avg({table[u'include-tests']})",
+                f"{table[u'compare'][u'title']} "
+                f"Stdev({table[u'include-tests']})",
+                f"Diff({table[u'reference'][u'title']},"
+                f"{table[u'compare'][u'title']})",
+                u"Stdev(Diff)"
             ]
         )
         header_str = u";".join(header) + u"\n"
+        legend += (
+            f"{table[u'reference'][u'title']} "
+            f"Avg({table[u'include-tests']}): "
+            f"Mean value of {table[u'include-tests']} [Mpps] computed from a "
+            f"series of runs of the listed tests executed against "
+            f"{table[u'reference'][u'title']}.\n"
+            f"{table[u'reference'][u'title']} "
+            f"Stdev({table[u'include-tests']}): "
+            f"Standard deviation value of {table[u'include-tests']} [Mpps] "
+            f"computed from a series of runs of the listed tests executed "
+            f"against {table[u'reference'][u'title']}.\n"
+            f"{table[u'compare'][u'title']} "
+            f"Avg({table[u'include-tests']}): "
+            f"Mean value of {table[u'include-tests']} [Mpps] computed from a "
+            f"series of runs of the listed tests executed against "
+            f"{table[u'compare'][u'title']}.\n"
+            f"{table[u'compare'][u'title']} "
+            f"Stdev({table[u'include-tests']}): "
+            f"Standard deviation value of {table[u'include-tests']} [Mpps] "
+            f"computed from a series of runs of the listed tests executed "
+            f"against {table[u'compare'][u'title']}.\n"
+            f"Diff({table[u'reference'][u'title']},"
+            f"{table[u'compare'][u'title']}): "
+            f"Percentage change calculated for mean values.\n"
+            u"Stdev(Diff): "
+            u"Standard deviation of percentage change calculated for mean "
+            u"values.\n"
+            u"NT: Not Tested\n"
+        )
     except (AttributeError, KeyError) as err:
         logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
@@ -809,15 +886,15 @@ def table_perf_comparison(table, input_data):
                 for hist_data in tbl_dict[tst_name][u"history"].values():
                     if hist_data:
                         if table[u"include-tests"] == u"MRR":
-                            item.append(round(hist_data[0][0] / 1e6, 2))
-                            item.append(round(hist_data[0][1] / 1e6, 2))
+                            item.append(round(hist_data[0][0] / 1e6, 1))
+                            item.append(round(hist_data[0][1] / 1e6, 1))
                         else:
-                            item.append(round(mean(hist_data) / 1e6, 2))
-                            item.append(round(stdev(hist_data) / 1e6, 2))
+                            item.append(round(mean(hist_data) / 1e6, 1))
+                            item.append(round(stdev(hist_data) / 1e6, 1))
                     else:
-                        item.extend([u"Not tested", u"Not tested"])
+                        item.extend([u"NT", u"NT"])
             else:
-                item.extend([u"Not tested", u"Not tested"])
+                item.extend([u"NT", u"NT"])
         data_r = tbl_dict[tst_name][u"ref-data"]
         if data_r:
             if table[u"include-tests"] == u"MRR":
@@ -826,12 +903,12 @@ def table_perf_comparison(table, input_data):
             else:
                 data_r_mean = mean(data_r)
                 data_r_stdev = stdev(data_r)
-            item.append(round(data_r_mean / 1e6, 2))
-            item.append(round(data_r_stdev / 1e6, 2))
+            item.append(round(data_r_mean / 1e6, 1))
+            item.append(round(data_r_stdev / 1e6, 1))
         else:
             data_r_mean = None
             data_r_stdev = None
-            item.extend([u"Not tested", u"Not tested"])
+            item.extend([u"NT", u"NT"])
         data_c = tbl_dict[tst_name][u"cmp-data"]
         if data_c:
             if table[u"include-tests"] == u"MRR":
@@ -840,15 +917,15 @@ def table_perf_comparison(table, input_data):
             else:
                 data_c_mean = mean(data_c)
                 data_c_stdev = stdev(data_c)
-            item.append(round(data_c_mean / 1e6, 2))
-            item.append(round(data_c_stdev / 1e6, 2))
+            item.append(round(data_c_mean / 1e6, 1))
+            item.append(round(data_c_stdev / 1e6, 1))
         else:
             data_c_mean = None
             data_c_stdev = None
-            item.extend([u"Not tested", u"Not tested"])
-        if item[-2] == u"Not tested":
+            item.extend([u"NT", u"NT"])
+        if item[-2] == u"NT":
             pass
-        elif item[-4] == u"Not tested":
+        elif item[-4] == u"NT":
             item.append(u"New in CSIT-2001")
             item.append(u"New in CSIT-2001")
         elif data_r_mean is not None and data_c_mean is not None:
@@ -866,7 +943,7 @@ def table_perf_comparison(table, input_data):
         if rca_data:
             rca_nr = rca_data.get(item[0], u"-")
             item.insert(0, f"[{rca_nr}]" if rca_nr != u"-" else u"-")
-        if (len(item) == len(header)) and (item[-4] != u"Not tested"):
+        if (len(item) == len(header)) and (item[-4] != u"NT"):
             tbl_lst.append(item)
 
     tbl_lst = _tpc_sort_table(tbl_lst)
@@ -881,14 +958,23 @@ def table_perf_comparison(table, input_data):
     txt_file_name = f"{table[u'output-file']}.txt"
     convert_csv_to_pretty_txt(csv_file, txt_file_name, delimiter=u";")
 
-    if rca_data:
-        footnote = rca_data.get(u"footnote", "")
-        if footnote:
-            with open(txt_file_name, u'a') as txt_file:
-                txt_file.writelines(footnote)
+    footnote = u""
+    with open(txt_file_name, u'a') as txt_file:
+        txt_file.write(legend)
+        if rca_data:
+            footnote = rca_data.get(u"footnote", u"")
+            if footnote:
+                txt_file.write(footnote)
+        txt_file.write(u":END")
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
+    _tpc_generate_html_table(
+        header,
+        tbl_lst,
+        table[u'output-file'],
+        legend=legend,
+        footnote=footnote
+    )
 
 
 def table_perf_comparison_nic(table, input_data):
@@ -912,7 +998,8 @@ def table_perf_comparison_nic(table, input_data):
 
     # Prepare the header of the tables
     try:
-        header = [u"Test case", ]
+        header = [u"Test Case", ]
+        legend = u"\nLegend:\n"
 
         rca_data = None
         rca = table.get(u"rca", None)
@@ -921,33 +1008,75 @@ def table_perf_comparison_nic(table, input_data):
                 with open(rca.get(u"data-file", ""), u"r") as rca_file:
                     rca_data = load(rca_file, Loader=FullLoader)
                 header.insert(0, rca.get(u"title", "RCA"))
+                legend += (
+                    u"RCA: Reference to the Root Cause Analysis, see below.\n"
+                )
             except (YAMLError, IOError) as err:
                 logging.warning(repr(err))
-
-        if table[u"include-tests"] == u"MRR":
-            hdr_param = u"Rec Rate"
-        else:
-            hdr_param = u"Thput"
 
         history = table.get(u"history", list())
         for item in history:
             header.extend(
                 [
-                    f"{item[u'title']} {hdr_param} [Mpps]",
-                    f"{item[u'title']} Stdev [Mpps]"
+                    f"{item[u'title']} Avg({table[u'include-tests']})",
+                    f"{item[u'title']} Stdev({table[u'include-tests']})"
                 ]
+            )
+            legend += (
+                f"{item[u'title']} Avg({table[u'include-tests']}): "
+                f"Mean value of {table[u'include-tests']} [Mpps] computed from "
+                f"a series of runs of the listed tests executed against "
+                f"{item[u'title']}.\n"
+                f"{item[u'title']} Stdev({table[u'include-tests']}): "
+                f"Standard deviation value of {table[u'include-tests']} [Mpps] "
+                f"computed from a series of runs of the listed tests executed "
+                f"against {item[u'title']}.\n"
             )
         header.extend(
             [
-                f"{table[u'reference'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'reference'][u'title']} Stdev [Mpps]",
-                f"{table[u'compare'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'compare'][u'title']} Stdev [Mpps]",
-                u"Delta [%]",
-                u"Stdev of delta [%]"
+                f"{table[u'reference'][u'title']} "
+                f"Avg({table[u'include-tests']})",
+                f"{table[u'reference'][u'title']} "
+                f"Stdev({table[u'include-tests']})",
+                f"{table[u'compare'][u'title']} "
+                f"Avg({table[u'include-tests']})",
+                f"{table[u'compare'][u'title']} "
+                f"Stdev({table[u'include-tests']})",
+                f"Diff({table[u'reference'][u'title']},"
+                f"{table[u'compare'][u'title']})",
+                u"Stdev(Diff)"
             ]
         )
         header_str = u";".join(header) + u"\n"
+        legend += (
+            f"{table[u'reference'][u'title']} "
+            f"Avg({table[u'include-tests']}): "
+            f"Mean value of {table[u'include-tests']} [Mpps] computed from a "
+            f"series of runs of the listed tests executed against "
+            f"{table[u'reference'][u'title']}.\n"
+            f"{table[u'reference'][u'title']} "
+            f"Stdev({table[u'include-tests']}): "
+            f"Standard deviation value of {table[u'include-tests']} [Mpps] "
+            f"computed from a series of runs of the listed tests executed "
+            f"against {table[u'reference'][u'title']}.\n"
+            f"{table[u'compare'][u'title']} "
+            f"Avg({table[u'include-tests']}): "
+            f"Mean value of {table[u'include-tests']} [Mpps] computed from a "
+            f"series of runs of the listed tests executed against "
+            f"{table[u'compare'][u'title']}.\n"
+            f"{table[u'compare'][u'title']} "
+            f"Stdev({table[u'include-tests']}): "
+            f"Standard deviation value of {table[u'include-tests']} [Mpps] "
+            f"computed from a series of runs of the listed tests executed "
+            f"against {table[u'compare'][u'title']}.\n"
+            f"Diff({table[u'reference'][u'title']},"
+            f"{table[u'compare'][u'title']}): "
+            f"Percentage change calculated for mean values.\n"
+            u"Stdev(Diff): "
+            u"Standard deviation of percentage change calculated for mean "
+            u"values.\n"
+            u"NT: Not Tested\n"
+        )
     except (AttributeError, KeyError) as err:
         logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
@@ -1120,15 +1249,15 @@ def table_perf_comparison_nic(table, input_data):
                 for hist_data in tbl_dict[tst_name][u"history"].values():
                     if hist_data:
                         if table[u"include-tests"] == u"MRR":
-                            item.append(round(hist_data[0][0] / 1e6, 2))
-                            item.append(round(hist_data[0][1] / 1e6, 2))
+                            item.append(round(hist_data[0][0] / 1e6, 1))
+                            item.append(round(hist_data[0][1] / 1e6, 1))
                         else:
-                            item.append(round(mean(hist_data) / 1e6, 2))
-                            item.append(round(stdev(hist_data) / 1e6, 2))
+                            item.append(round(mean(hist_data) / 1e6, 1))
+                            item.append(round(stdev(hist_data) / 1e6, 1))
                     else:
-                        item.extend([u"Not tested", u"Not tested"])
+                        item.extend([u"NT", u"NT"])
             else:
-                item.extend([u"Not tested", u"Not tested"])
+                item.extend([u"NT", u"NT"])
         data_r = tbl_dict[tst_name][u"ref-data"]
         if data_r:
             if table[u"include-tests"] == u"MRR":
@@ -1137,12 +1266,12 @@ def table_perf_comparison_nic(table, input_data):
             else:
                 data_r_mean = mean(data_r)
                 data_r_stdev = stdev(data_r)
-            item.append(round(data_r_mean / 1e6, 2))
-            item.append(round(data_r_stdev / 1e6, 2))
+            item.append(round(data_r_mean / 1e6, 1))
+            item.append(round(data_r_stdev / 1e6, 1))
         else:
             data_r_mean = None
             data_r_stdev = None
-            item.extend([u"Not tested", u"Not tested"])
+            item.extend([u"NT", u"NT"])
         data_c = tbl_dict[tst_name][u"cmp-data"]
         if data_c:
             if table[u"include-tests"] == u"MRR":
@@ -1151,15 +1280,15 @@ def table_perf_comparison_nic(table, input_data):
             else:
                 data_c_mean = mean(data_c)
                 data_c_stdev = stdev(data_c)
-            item.append(round(data_c_mean / 1e6, 2))
-            item.append(round(data_c_stdev / 1e6, 2))
+            item.append(round(data_c_mean / 1e6, 1))
+            item.append(round(data_c_stdev / 1e6, 1))
         else:
             data_c_mean = None
             data_c_stdev = None
-            item.extend([u"Not tested", u"Not tested"])
-        if item[-2] == u"Not tested":
+            item.extend([u"NT", u"NT"])
+        if item[-2] == u"NT":
             pass
-        elif item[-4] == u"Not tested":
+        elif item[-4] == u"NT":
             item.append(u"New in CSIT-2001")
             item.append(u"New in CSIT-2001")
         elif data_r_mean is not None and data_c_mean is not None:
@@ -1177,7 +1306,7 @@ def table_perf_comparison_nic(table, input_data):
         if rca_data:
             rca_nr = rca_data.get(item[0], u"-")
             item.insert(0, f"[{rca_nr}]" if rca_nr != u"-" else u"-")
-        if (len(item) == len(header)) and (item[-4] != u"Not tested"):
+        if (len(item) == len(header)) and (item[-4] != u"NT"):
             tbl_lst.append(item)
 
     tbl_lst = _tpc_sort_table(tbl_lst)
@@ -1192,14 +1321,23 @@ def table_perf_comparison_nic(table, input_data):
     txt_file_name = f"{table[u'output-file']}.txt"
     convert_csv_to_pretty_txt(csv_file, txt_file_name, delimiter=u";")
 
-    if rca_data:
-        footnote = rca_data.get(u"footnote", "")
-        if footnote:
-            with open(txt_file_name, u'a') as txt_file:
-                txt_file.writelines(footnote)
+    footnote = u""
+    with open(txt_file_name, u'a') as txt_file:
+        txt_file.write(legend)
+        if rca_data:
+            footnote = rca_data.get(u"footnote", u"")
+            if footnote:
+                txt_file.write(footnote)
+        txt_file.write(u":END")
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
+    _tpc_generate_html_table(
+        header,
+        tbl_lst,
+        table[u'output-file'],
+        legend=legend,
+        footnote=footnote
+    )
 
 
 def table_nics_comparison(table, input_data):
@@ -1223,22 +1361,49 @@ def table_nics_comparison(table, input_data):
 
     # Prepare the header of the tables
     try:
-        header = [u"Test case", ]
-
-        if table[u"include-tests"] == u"MRR":
-            hdr_param = u"Rec Rate"
-        else:
-            hdr_param = u"Thput"
-
-        header.extend(
-            [
-                f"{table[u'reference'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'reference'][u'title']} Stdev [Mpps]",
-                f"{table[u'compare'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'compare'][u'title']} Stdev [Mpps]",
-                u"Delta [%]",
-                u"Stdev of delta [%]"
-            ]
+        header = [
+            u"Test Case",
+            f"{table[u'reference'][u'title']} "
+            f"Avg({table[u'include-tests']})",
+            f"{table[u'reference'][u'title']} "
+            f"Stdev({table[u'include-tests']})",
+            f"{table[u'compare'][u'title']} "
+            f"Avg({table[u'include-tests']})",
+            f"{table[u'compare'][u'title']} "
+            f"Stdev({table[u'include-tests']})",
+            f"Diff({table[u'reference'][u'title']},"
+            f"{table[u'compare'][u'title']})",
+            u"Stdev(Diff)"
+        ]
+        legend = (
+            u"\nLegend:\n"
+            f"{table[u'reference'][u'title']} "
+            f"Avg({table[u'include-tests']}): "
+            f"Mean value of {table[u'include-tests']} [Mpps] computed from a "
+            f"series of runs of the listed tests executed using "
+            f"{table[u'reference'][u'title']} NIC.\n"
+            f"{table[u'reference'][u'title']} "
+            f"Stdev({table[u'include-tests']}): "
+            f"Standard deviation value of {table[u'include-tests']} [Mpps] "
+            f"computed from a series of runs of the listed tests executed "
+            f"using {table[u'reference'][u'title']} NIC.\n"
+            f"{table[u'compare'][u'title']} "
+            f"Avg({table[u'include-tests']}): "
+            f"Mean value of {table[u'include-tests']} [Mpps] computed from a "
+            f"series of runs of the listed tests executed using "
+            f"{table[u'compare'][u'title']} NIC.\n"
+            f"{table[u'compare'][u'title']} "
+            f"Stdev({table[u'include-tests']}): "
+            f"Standard deviation value of {table[u'include-tests']} [Mpps] "
+            f"computed from a series of runs of the listed tests executed "
+            f"using {table[u'compare'][u'title']} NIC.\n"
+            f"Diff({table[u'reference'][u'title']},"
+            f"{table[u'compare'][u'title']}): "
+            f"Percentage change calculated for mean values.\n"
+            u"Stdev(Diff): "
+            u"Standard deviation of percentage change calculated for mean "
+            u"values.\n"
+            u":END"
         )
 
     except (AttributeError, KeyError) as err:
@@ -1290,8 +1455,8 @@ def table_nics_comparison(table, input_data):
             else:
                 data_r_mean = mean(data_r)
                 data_r_stdev = stdev(data_r)
-            item.append(round(data_r_mean / 1e6, 2))
-            item.append(round(data_r_stdev / 1e6, 2))
+            item.append(round(data_r_mean / 1e6, 1))
+            item.append(round(data_r_stdev / 1e6, 1))
         else:
             data_r_mean = None
             data_r_stdev = None
@@ -1304,8 +1469,8 @@ def table_nics_comparison(table, input_data):
             else:
                 data_c_mean = mean(data_c)
                 data_c_stdev = stdev(data_c)
-            item.append(round(data_c_mean / 1e6, 2))
-            item.append(round(data_c_stdev / 1e6, 2))
+            item.append(round(data_c_mean / 1e6, 1))
+            item.append(round(data_c_stdev / 1e6, 1))
         else:
             data_c_mean = None
             data_c_stdev = None
@@ -1329,15 +1494,24 @@ def table_nics_comparison(table, input_data):
 
     # Generate csv tables:
     with open(f"{table[u'output-file']}.csv", u"wt") as file_handler:
-        file_handler.write(u",".join(header) + u"\n")
+        file_handler.write(u";".join(header) + u"\n")
         for test in tbl_lst:
-            file_handler.write(u",".join([str(item) for item in test]) + u"\n")
+            file_handler.write(u";".join([str(item) for item in test]) + u"\n")
 
     convert_csv_to_pretty_txt(f"{table[u'output-file']}.csv",
-                              f"{table[u'output-file']}.txt")
+                              f"{table[u'output-file']}.txt",
+                              delimiter=u";")
+
+    with open(table[u'output-file'], u'a') as txt_file:
+        txt_file.write(legend)
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
+    _tpc_generate_html_table(
+        header,
+        tbl_lst,
+        table[u'output-file'],
+        legend=legend
+    )
 
 
 def table_soak_vs_ndr(table, input_data):
@@ -1362,15 +1536,37 @@ def table_soak_vs_ndr(table, input_data):
     # Prepare the header of the table
     try:
         header = [
-            u"Test case",
-            f"{table[u'reference'][u'title']} Thput [Mpps]",
-            f"{table[u'reference'][u'title']} Stdev [Mpps]",
-            f"{table[u'compare'][u'title']} Thput [Mpps]",
-            f"{table[u'compare'][u'title']} Stdev [Mpps]",
-            u"Delta [%]",
-            u"Stdev of delta [%]"
+            u"Test Case",
+            f"Avg({table[u'reference'][u'title']})",
+            f"Stdev({table[u'reference'][u'title']})",
+            f"Avg({table[u'compare'][u'title']})",
+            f"Stdev{table[u'compare'][u'title']})",
+            u"Diff",
+            u"Stdev(Diff)"
         ]
-        header_str = u",".join(header) + u"\n"
+        header_str = u";".join(header) + u"\n"
+        legend = (
+            u"\nLegend:\n"
+            f"Avg({table[u'reference'][u'title']}): "
+            f"Mean value of {table[u'reference'][u'title']} [Mpps] computed "
+            f"from a series of runs of the listed tests.\n"
+            f"Stdev({table[u'reference'][u'title']}): "
+            f"Standard deviation value of {table[u'reference'][u'title']} "
+            f"[Mpps] computed from a series of runs of the listed tests.\n"
+            f"Avg({table[u'compare'][u'title']}): "
+            f"Mean value of {table[u'compare'][u'title']} [Mpps] computed from "
+            f"a series of runs of the listed tests.\n"
+            f"Stdev({table[u'compare'][u'title']}): "
+            f"Standard deviation value of {table[u'compare'][u'title']} [Mpps] "
+            f"computed from a series of runs of the listed tests.\n"
+            f"Diff({table[u'reference'][u'title']},"
+            f"{table[u'compare'][u'title']}): "
+            f"Percentage change calculated for mean values.\n"
+            u"Stdev(Diff): "
+            u"Standard deviation of percentage change calculated for mean "
+            u"values.\n"
+            u":END"
+        )
     except (AttributeError, KeyError) as err:
         logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
@@ -1440,8 +1636,8 @@ def table_soak_vs_ndr(table, input_data):
             else:
                 data_r_mean = mean(data_r)
                 data_r_stdev = stdev(data_r)
-            item.append(round(data_r_mean / 1e6, 2))
-            item.append(round(data_r_stdev / 1e6, 2))
+            item.append(round(data_r_mean / 1e6, 1))
+            item.append(round(data_r_stdev / 1e6, 1))
         else:
             data_r_mean = None
             data_r_stdev = None
@@ -1454,8 +1650,8 @@ def table_soak_vs_ndr(table, input_data):
             else:
                 data_c_mean = mean(data_c)
                 data_c_stdev = stdev(data_c)
-            item.append(round(data_c_mean / 1e6, 2))
-            item.append(round(data_c_stdev / 1e6, 2))
+            item.append(round(data_c_mean / 1e6, 1))
+            item.append(round(data_c_stdev / 1e6, 1))
         else:
             data_c_mean = None
             data_c_stdev = None
@@ -1481,12 +1677,21 @@ def table_soak_vs_ndr(table, input_data):
     with open(csv_file, u"wt") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
-            file_handler.write(u",".join([str(item) for item in test]) + u"\n")
+            file_handler.write(u";".join([str(item) for item in test]) + u"\n")
 
-    convert_csv_to_pretty_txt(csv_file, f"{table[u'output-file']}.txt")
+    convert_csv_to_pretty_txt(
+        csv_file, f"{table[u'output-file']}.txt", delimiter=u";"
+    )
+    with open(f"{table[u'output-file']}.txt", u'a') as txt_file:
+        txt_file.write(legend)
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
+    _tpc_generate_html_table(
+        header,
+        tbl_lst,
+        table[u'output-file'],
+        legend=legend
+    )
 
 
 def table_perf_trending_dash(table, input_data):
