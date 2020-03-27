@@ -70,6 +70,30 @@
       "revId": "f06b81adad55104633b43f0bb57247d54793ed54",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "172e9bb5_3dbf3a86",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-27T18:58:25Z",
+      "side": 1,
+      "message": "Yes, test teardown should work ok.",
+      "parentUuid": "85283e81_e19ddc07",
+      "range": {
+        "startLine": 226,
+        "startChar": 17,
+        "endLine": 226,
+        "endChar": 20
+      },
+      "revId": "f06b81adad55104633b43f0bb57247d54793ed54",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
