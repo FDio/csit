@@ -148,6 +148,16 @@
   tags:
     - copy-cpufrequtils
 
+- name: Performance Tuning - Copy Irqbalance File
+  copy:
+    src: "files/irqbalance"
+    dest: "/etc/default/irqbalance"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  tags:
+    - copy-irqbalance
+
 - name: Performance Tuning - Set Ondemand Service To Disable
   service:
     name: "ondemand"
