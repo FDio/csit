@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a3c65edf_6fc707c3",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-27T13:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95d94101_371a0d83",
+      "range": {
+        "startLine": 223,
+        "startChar": 53,
+        "endLine": 223,
+        "endChar": 54
+      },
+      "revId": "a21685ce475e5862f93aa2bc0a931d3276f6f163",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "574306a3_3b2ce221",
         "filename": "resources/libraries/python/NodePath.py",
         "patchSetId": 39
@@ -45,6 +69,30 @@
       "revId": "a21685ce475e5862f93aa2bc0a931d3276f6f163",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49333e33_737b8d6c",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-27T13:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "574306a3_3b2ce221",
+      "range": {
+        "startLine": 226,
+        "startChar": 8,
+        "endLine": 226,
+        "endChar": 28
+      },
+      "revId": "a21685ce475e5862f93aa2bc0a931d3276f6f163",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "edfb8dc4_d0abda04",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-27T13:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "762a526f_f141d6bf",
+      "range": {
+        "startLine": 229,
+        "startChar": 35,
+        "endLine": 229,
+        "endChar": 36
+      },
+      "revId": "a21685ce475e5862f93aa2bc0a931d3276f6f163",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07efe518_4a70cb8c",
         "filename": "resources/libraries/python/NodePath.py",
         "patchSetId": 39
@@ -91,6 +163,30 @@
       "revId": "a21685ce475e5862f93aa2bc0a931d3276f6f163",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "914bf799_a0d0d674",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-27T13:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07efe518_4a70cb8c",
+      "range": {
+        "startLine": 242,
+        "startChar": 15,
+        "endLine": 242,
+        "endChar": 35
+      },
+      "revId": "a21685ce475e5862f93aa2bc0a931d3276f6f163",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
