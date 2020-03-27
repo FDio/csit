@@ -207,10 +207,7 @@ class SRv6:
         :type node: dict
         """
         cmd = u"sr_localsids_dump"
-        err_msg = f"Failed to get SR localSID dump on host {node[u'host']}"
-
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd).get_details(err_msg)
+        PapiSocketExecutor.dump_and_log(node, (cmd,))
 
     @staticmethod
     def configure_sr_policy(node, bsid, sid_list, mode=u"encap"):
@@ -247,10 +244,7 @@ class SRv6:
         :type node: dict
         """
         cmd = u"sr_policies_dump"
-        err_msg = f"Failed to get SR policies dump on host {node[u'host']}"
-
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd).get_details(err_msg)
+        PapiSocketExecutor.dump_and_log(node, (cmd,))
 
     @staticmethod
     def _get_sr_steer_policy_args(
@@ -359,10 +353,7 @@ class SRv6:
         :type node: dict
         """
         cmd = u"sr_steering_pol_dump"
-        err_msg = f"Failed to get SR localSID dump on host {node[u'host']}"
-
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd).get_details(err_msg)
+        PapiSocketExecutor.dump_and_log(node, (cmd,))
 
     @staticmethod
     def set_sr_encaps_source_address(node, ip6_addr):
