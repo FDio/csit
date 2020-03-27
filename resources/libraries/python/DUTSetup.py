@@ -215,13 +215,13 @@ class DUTSetup:
         :type node: dict
         :type process: str
         :returns: PID
-        :rtype: int
+        :rtype: list
         :raises RuntimeError: If it is not possible to get the PID.
         """
         ssh = SSH()
         ssh.connect(node)
 
-        retval = None
+        pid_list = list()
         for i in range(3):
             logger.trace(f"Try {i}: Get {process} PID")
             ret_code, stdout, stderr = ssh.exec_command(f"pidof {process}")
@@ -233,16 +233,16 @@ class DUTSetup:
                 )
 
             pid_list = stdout.split()
-            if len(pid_list) == 1:
-                return [int(stdout)]
             if not pid_list:
                 logger.debug(f"No {process} PID found on node {node[u'host']}")
                 continue
-            logger.debug(f"More than one {process} PID found " \
-                         f"on node {node[u'host']}")
-            retval = [int(pid) for pid in pid_list]
+            elif len(pid_list) > 1:
+                logger.debug(
+                    f"More than one {process} PID found on node {node[u'host']}"
+                )
+            break
 
-        return retval
+        return [int(pid) for pid in pid_list]
 
     @staticmethod
     def get_vpp_pids(nodes):
