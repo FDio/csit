@@ -55,6 +55,9 @@ function checkout_csit_for_vpp () {
         "stable/"*)
             branch_id="origin/${1/stable\//oper-rls}"
             ;;
+        "rls"*)
+            branch_id="origin/oper-${1}"
+            ;;
         *)  # This includes "master".
             branch_id="origin/oper"
     esac
