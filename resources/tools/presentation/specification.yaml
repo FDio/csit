@@ -3349,14 +3349,14 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-pdr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-hsw-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -3372,14 +3372,14 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-pdr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-hsw-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -3395,14 +3395,14 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-ndr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-hsw-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -3418,14 +3418,14 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-ndr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-hsw-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -3444,16 +3444,16 @@
     title: "RCA"
     data-file: "rca/rca-3n-skx-2t1c-pdr.yaml"
   history:
-    - title: "rls1904 x710"
+    - title: "1904"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 xxv710"
+    title: "1908"
     data: "vpp-performance-changes-3n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
-    title: "rls2001 xxv710"
+    title: "2001"
     data: "vpp-performance-changes-3n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
@@ -3474,16 +3474,16 @@
 #    title: "RCA"
 #    data-file: "rca/rca-3n-skx-4t2c-pdr.yaml"
   history:
-    - title: "rls1904 x710"
+    - title: "1904"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 xxv710"
+    title: "1908"
     data: "vpp-performance-changes-3n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
-    title: "rls2001 xxv710"
+    title: "2001"
     data: "vpp-performance-changes-3n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
@@ -3504,16 +3504,16 @@
 #    title: "RCA"
 #    data-file: "rca/rca-3n-skx-2t1c-ndr.yaml"
   history:
-    - title: "rls1904 x710"
+    - title: "1904"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 xxv710"
+    title: "1908"
     data: "vpp-performance-changes-3n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
-    title: "rls2001 xxv710"
+    title: "2001"
     data: "vpp-performance-changes-3n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
@@ -3534,16 +3534,16 @@
 #    title: "RCA"
 #    data-file: "rca/rca-3n-skx-4t2c-ndr.yaml"
   history:
-    - title: "rls1904 x710"
+    - title: "1904"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 xxv710"
+    title: "1908"
     data: "vpp-performance-changes-3n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
-    title: "rls2001 xxv710"
+    title: "2001"
     data: "vpp-performance-changes-3n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
@@ -3564,16 +3564,16 @@
     title: "RCA"
     data-file: "rca/rca-2n-skx-2t1c-pdr.yaml"
   history:
-    - title: "rls1904 x710"
+    - title: "1904"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 xxv710"
+    title: "1908"
     data: "vpp-performance-changes-2n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
-    title: "rls2001 xxv710"
+    title: "2001"
     data: "vpp-performance-changes-2n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
@@ -3594,16 +3594,16 @@
 #    title: "RCA"
 #    data-file: "rca/rca-2n-skx-4t2c-pdr.yaml"
   history:
-    - title: "rls1904 x710"
+    - title: "1904"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 xxv710"
+    title: "1908"
     data: "vpp-performance-changes-2n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
-    title: "rls2001 xxv710"
+    title: "2001"
     data: "vpp-performance-changes-2n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
@@ -3624,16 +3624,16 @@
 #    title: "RCA"
 #    data-file: "rca/rca-2n-skx-2t1c-ndr.yaml"
   history:
-    - title: "rls1904 x710"
+    - title: "1904"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 xxv710"
+    title: "1908"
     data: "vpp-performance-changes-2n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
-    title: "rls2001 xxv710"
+    title: "2001"
     data: "vpp-performance-changes-2n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
@@ -3654,16 +3654,16 @@
 #    title: "RCA"
 #    data-file: "rca/rca-2n-skx-4t2c-ndr.yaml"
   history:
-    - title: "rls1904 x710"
+    - title: "1904"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1908 xxv710"
+    title: "1908"
     data: "vpp-performance-changes-2n-skx-ref"
     data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   compare:
-    title: "rls2001 xxv710"
+    title: "2001"
     data: "vpp-performance-changes-2n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
@@ -3681,10 +3681,10 @@
 #  algorithm: "table_perf_comparison"
 #  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-2t1c-pdr"
 #  reference:
-#    title: "rls1908"
+#    title: "1908"
 #    data: "vpp-performance-changes-nfv-2n-skx-ref"
 #  compare:
-#    title: "rls2001"
+#    title: "2001"
 #    data: "vpp-performance-changes-nfv-2n-skx-cmp"
 #  data: "vpp-performance-changes-nfv-2n-skx"
 #  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -3701,10 +3701,10 @@
 #  algorithm: "table_perf_comparison"
 #  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-4t2c-pdr"
 #  reference:
-#    title: "rls1908"
+#    title: "1908"
 #    data: "vpp-performance-changes-nfv-2n-skx-ref"
 #  compare:
-#    title: "rls2001"
+#    title: "2001"
 #    data: "vpp-performance-changes-nfv-2n-skx-cmp"
 #  data: "vpp-performance-changes-nfv-2n-skx"
 #  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -3721,10 +3721,10 @@
 #  algorithm: "table_perf_comparison"
 #  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-2t1c-ndr"
 #  reference:
-#    title: "rls1908"
+#    title: "1908"
 #    data: "vpp-performance-changes-nfv-2n-skx-ref"
 #  compare:
-#    title: "rls2001"
+#    title: "2001"
 #    data: "vpp-performance-changes-nfv-2n-skx-cmp"
 #  data: "vpp-performance-changes-nfv-2n-skx"
 #  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -3741,10 +3741,10 @@
 #  algorithm: "table_perf_comparison"
 #  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-4t2c-ndr"
 #  reference:
-#    title: "rls1908"
+#    title: "1908"
 #    data: "vpp-performance-changes-nfv-2n-skx-ref"
 #  compare:
-#    title: "rls2001"
+#    title: "2001"
 #    data: "vpp-performance-changes-nfv-2n-skx-cmp"
 #  data: "vpp-performance-changes-nfv-2n-skx"
 #  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -3761,10 +3761,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-pdr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-2n-dnv-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-2n-dnv-cmp"
   data: "vpp-performance-changes-2n-dnv"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -3781,10 +3781,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-pdr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-2n-dnv-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-2n-dnv-cmp"
   data: "vpp-performance-changes-2n-dnv"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -3801,10 +3801,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-ndr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-2n-dnv-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-2n-dnv-cmp"
   data: "vpp-performance-changes-2n-dnv"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -3821,10 +3821,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-ndr"
   reference:
-    title: "rls1908 "
+    title: "1908"
     data: "vpp-performance-changes-2n-dnv-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-2n-dnv-cmp"
   data: "vpp-performance-changes-2n-dnv"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -3841,10 +3841,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-pdr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-dnv-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-dnv-cmp"
   data: "vpp-performance-changes-3n-dnv"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -3861,10 +3861,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-pdr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-dnv-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-dnv-cmp"
   data: "vpp-performance-changes-3n-dnv"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -3881,10 +3881,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-ndr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-dnv-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-dnv-cmp"
   data: "vpp-performance-changes-3n-dnv"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -3901,10 +3901,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-ndr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-dnv-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-dnv-cmp"
   data: "vpp-performance-changes-3n-dnv"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -3921,10 +3921,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-pdr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-tsh-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-tsh-cmp"
   data: "vpp-performance-changes-3n-tsh"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -3941,10 +3941,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-pdr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-tsh-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-tsh-cmp"
   data: "vpp-performance-changes-3n-tsh"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -3961,10 +3961,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-ndr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-tsh-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-tsh-cmp"
   data: "vpp-performance-changes-3n-tsh"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -3981,10 +3981,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-ndr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-tsh-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-tsh-cmp"
   data: "vpp-performance-changes-3n-tsh"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4257,10 +4257,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-1c-ndr"
   reference:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "vpp-compare-topologies-ref"
   compare:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "vpp-compare-topologies-cmp"
   data: "vpp-compare-topologies"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4276,10 +4276,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-2c-ndr"
   reference:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "vpp-compare-topologies-ref"
   compare:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "vpp-compare-topologies-cmp"
   data: "vpp-compare-topologies"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4295,10 +4295,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-1c-pdr"
   reference:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "vpp-compare-topologies-ref"
   compare:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "vpp-compare-topologies-cmp"
   data: "vpp-compare-topologies"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -4314,10 +4314,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-2c-pdr"
   reference:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "vpp-compare-topologies-ref"
   compare:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "vpp-compare-topologies-cmp"
   data: "vpp-compare-topologies"
   include-tests: "PDR"
@@ -4333,13 +4333,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-mrr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-3n-hsw-mrr-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-hsw-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4355,13 +4355,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-mrr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-3n-hsw-mrr-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-hsw-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4377,13 +4377,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-4t4c-mrr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-3n-hsw-mrr-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-hsw-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4402,13 +4402,13 @@
 #    title: "RCA"
 #    data-file: "rca/rca-3n-skx-2t1c-mrr.yaml"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-3n-skx-mrr-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-skx-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4427,13 +4427,13 @@
 #    title: "RCA"
 #    data-file: "rca/rca-3n-skx-4t2c-mrr.yaml"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-3n-skx-mrr-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-skx-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4452,13 +4452,13 @@
 #    title: "RCA"
 #    data-file: "rca/rca-3n-skx-8t4c-mrr.yaml"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-3n-skx-mrr-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-skx-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4477,13 +4477,13 @@
 #    title: "RCA"
 #    data-file: "rca/rca-2n-skx-2t1c-mrr.yaml"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-2n-skx-mrr-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-2n-skx-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4502,13 +4502,13 @@
 #    title: "RCA"
 #    data-file: "rca/rca-2n-skx-4t2c-mrr.yaml"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-2n-skx-mrr-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-2n-skx-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4527,13 +4527,13 @@
 #    title: "RCA"
 #    data-file: "rca/rca-2n-skx-8t4c-mrr.yaml"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "vpp-performance-changes-2n-skx-mrr-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-2n-skx-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4549,10 +4549,10 @@
 #  algorithm: "table_perf_comparison"
 #  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-2t1c-mrr"
 #  reference:
-#    title: "rls1908"
+#    title: "1908"
 #    data: "vpp-performance-changes-nfv-2n-skx-mrr-ref"
 #  compare:
-#    title: "rls2001"
+#    title: "2001"
 #    data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
 #  data: "vpp-performance-changes-nfv-2n-skx-mrr"
 #  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4568,10 +4568,10 @@
 #  algorithm: "table_perf_comparison"
 #  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-4t2c-mrr"
 #  reference:
-#    title: "rls1908"
+#    title: "1908"
 #    data: "vpp-performance-changes-nfv-2n-skx-mrr-ref"
 #  compare:
-#    title: "rls2001"
+#    title: "2001"
 #    data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
 #  data: "vpp-performance-changes-nfv-2n-skx-mrr"
 #  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4587,10 +4587,10 @@
 #  algorithm: "table_perf_comparison"
 #  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-8t4c-mrr"
 #  reference:
-#    title: "rls1908"
+#    title: "1908"
 #    data: "vpp-performance-changes-nfv-2n-skx-mrr-ref"
 #  compare:
-#    title: "rls2001"
+#    title: "2001"
 #    data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
 #  data: "vpp-performance-changes-nfv-2n-skx-mrr"
 #  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4606,10 +4606,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-mrr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-2n-dnv-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-2n-dnv-mrr-cmp"
   data: "vpp-performance-changes-2n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4625,10 +4625,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-mrr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-2n-dnv-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-2n-dnv-mrr-cmp"
   data: "vpp-performance-changes-2n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4644,10 +4644,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-4t4c-mrr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-2n-dnv-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-2n-dnv-mrr-cmp"
   data: "vpp-performance-changes-2n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4663,10 +4663,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-mrr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-dnv-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-dnv-mrr-cmp"
   data: "vpp-performance-changes-3n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4682,10 +4682,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-mrr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-dnv-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-dnv-mrr-cmp"
   data: "vpp-performance-changes-3n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4701,10 +4701,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-4t4c-mrr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-dnv-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-dnv-mrr-cmp"
   data: "vpp-performance-changes-3n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4720,10 +4720,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-mrr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-tsh-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-tsh-mrr-cmp"
   data: "vpp-performance-changes-3n-tsh-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4739,10 +4739,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-mrr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-tsh-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-tsh-mrr-cmp"
   data: "vpp-performance-changes-3n-tsh-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4758,10 +4758,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-4t4c-mrr"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "vpp-performance-changes-3n-tsh-mrr-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "vpp-performance-changes-3n-tsh-mrr-cmp"
   data: "vpp-performance-changes-3n-tsh-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4903,10 +4903,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-1c-mrr"
   reference:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "vpp-compare-topologies-mrr-ref"
   compare:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "vpp-compare-topologies-mrr-cmp"
   data: "vpp-compare-topologies-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4922,10 +4922,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-2c-mrr"
   reference:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "vpp-compare-topologies-mrr-ref"
   compare:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "vpp-compare-topologies-mrr-cmp"
   data: "vpp-compare-topologies-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -4941,10 +4941,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-4c-mrr"
   reference:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "vpp-compare-topologies-mrr-ref"
   compare:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "vpp-compare-topologies-mrr-cmp"
   data: "vpp-compare-topologies-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -5597,13 +5597,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-1t1c-pdr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5619,13 +5619,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-2t2c-pdr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5641,13 +5641,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-1t1c-ndr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5663,13 +5663,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-2t2c-ndr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-3n-hsw-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5685,13 +5685,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-2t1c-pdr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-3n-skx-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-3n-skx-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5707,13 +5707,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-4t2c-pdr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-3n-skx-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-3n-skx-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5729,13 +5729,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-2t1c-ndr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-3n-skx-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-3n-skx-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5751,13 +5751,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-4t2c-ndr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-3n-skx-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-3n-skx-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5773,13 +5773,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-pdr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-2n-skx-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-2n-skx-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5795,13 +5795,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-pdr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-2n-skx-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-2n-skx-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5817,13 +5817,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-ndr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-2n-skx-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-2n-skx-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5839,13 +5839,13 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-ndr"
   history:
-    - title: "rls1904"
+    - title: "1904"
       data: "dpdk-performance-changes-2n-skx-h1"
   reference:
-    title: "rls1908"
+    title: "1908"
     data: "dpdk-performance-changes-2n-skx-ref"
   compare:
-    title: "rls2001"
+    title: "2001"
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5861,10 +5861,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-3n-hsw-3n-skx-ndr"
   reference:
-    title: "3-Node Hsw"
+    title: "3n-hsw"
     data: "dpdk-compare-testbeds-ref"
   compare:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "dpdk-compare-testbeds-cmp"
   data: "dpdk-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5880,10 +5880,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-3n-hsw-3n-skx-pdr"
   reference:
-    title: "3-Node Hsw"
+    title: "3n-hsw"
     data: "dpdk-compare-testbeds-ref"
   compare:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "dpdk-compare-testbeds-cmp"
   data: "dpdk-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5899,10 +5899,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-clx-ndr"
   reference:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "dpdk-compare-testbeds-skx-clx-ref"
   compare:
-    title: "2-Node Clx"
+    title: "2n-clx"
     data: "dpdk-compare-testbeds-skx-clx-cmp"
   data: "dpdk-compare-testbeds-skx-clx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5918,10 +5918,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-clx-pdr"
   reference:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "dpdk-compare-testbeds-skx-clx-ref"
   compare:
-    title: "2-Node Clx"
+    title: "2n-clx"
     data: "dpdk-compare-testbeds-skx-clx-cmp"
   data: "dpdk-compare-testbeds-skx-clx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5937,10 +5937,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-topologies-3n-skx-2n-skx-ndr"
   reference:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "dpdk-compare-topologies-ref"
   compare:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "dpdk-compare-topologies-cmp"
   data: "dpdk-compare-topologies"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5956,10 +5956,10 @@
   algorithm: "table_perf_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-topologies-3n-skx-2n-skx-pdr"
   reference:
-    title: "3-Node Skx"
+    title: "3n-skx"
     data: "dpdk-compare-topologies-ref"
   compare:
-    title: "2-Node Skx"
+    title: "2n-skx"
     data: "dpdk-compare-topologies-cmp"
   data: "dpdk-compare-topologies"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
