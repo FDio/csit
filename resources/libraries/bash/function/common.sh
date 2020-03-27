@@ -786,7 +786,8 @@ function select_tags () {
                 ${tfd}/mrr-daily-${FLAVOR}.txt) || die
             ;;
         *"mrr-weekly"* )
-            readarray -t test_tag_array < "${tfd}/mrr-weekly.txt" || die
+            readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
+                ${tfd}/mrr-weekly.txt) || die
             ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
