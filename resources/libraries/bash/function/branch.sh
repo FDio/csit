@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -54,6 +54,9 @@ function checkout_csit_for_vpp () {
     case "${1}" in
         "stable/"*)
             branch_id="origin/${1/stable\//oper-rls}"
+            ;;
+        "rls"*)
+            branch_id="origin/oper-${1}"
             ;;
         *)  # This includes "master".
             branch_id="origin/oper"
