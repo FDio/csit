@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a491a5f_326546bc",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-27T15:32:29Z",
+      "side": 1,
+      "message": "e",
+      "range": {
+        "startLine": 47,
+        "startChar": 26,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "b2fdeae5d5ba809f3b0a3d056c6f6308af402619",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
