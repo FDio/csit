@@ -619,27 +619,27 @@ def table_perf_comparison(table, input_data):
             except (YAMLError, IOError) as err:
                 logging.warning(repr(err))
 
-        if table[u"include-tests"] == u"MRR":
-            hdr_param = u"Rec Rate"
-        else:
-            hdr_param = u"Thput"
-
         history = table.get(u"history", list())
         for item in history:
             header.extend(
                 [
-                    f"{item[u'title']} {hdr_param} [Mpps]",
-                    f"{item[u'title']} Stdev [Mpps]"
+                    f"{item[u'title']} Avg({table[u'include-tests']})",
+                    f"{item[u'title']} Stdev({table[u'include-tests']})"
                 ]
             )
         header.extend(
             [
-                f"{table[u'reference'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'reference'][u'title']} Stdev [Mpps]",
-                f"{table[u'compare'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'compare'][u'title']} Stdev [Mpps]",
-                u"Delta [%]",
-                u"Stdev of delta [%]"
+                f"{table[u'reference'][u'title']} "
+                f"Avg({table[u'include-tests']})",
+                f"{table[u'reference'][u'title']} "
+                f"Stdev({table[u'include-tests']})",
+                f"{table[u'compare'][u'title']} "
+                f"Avg({table[u'include-tests']})",
+                f"{table[u'compare'][u'title']} "
+                f"Stdev({table[u'include-tests']})",
+                f"Diff({table[u'reference'][u'title']},"
+                f"{table[u'compare'][u'title']})",
+                u"Stdev(Diff)"
             ]
         )
         header_str = u";".join(header) + u"\n"
@@ -809,11 +809,11 @@ def table_perf_comparison(table, input_data):
                 for hist_data in tbl_dict[tst_name][u"history"].values():
                     if hist_data:
                         if table[u"include-tests"] == u"MRR":
-                            item.append(round(hist_data[0][0] / 1e6, 2))
-                            item.append(round(hist_data[0][1] / 1e6, 2))
+                            item.append(round(hist_data[0][0] / 1e6, 1))
+                            item.append(round(hist_data[0][1] / 1e6, 1))
                         else:
-                            item.append(round(mean(hist_data) / 1e6, 2))
-                            item.append(round(stdev(hist_data) / 1e6, 2))
+                            item.append(round(mean(hist_data) / 1e6, 1))
+                            item.append(round(stdev(hist_data) / 1e6, 1))
                     else:
                         item.extend([u"Not tested", u"Not tested"])
             else:
@@ -826,8 +826,8 @@ def table_perf_comparison(table, input_data):
             else:
                 data_r_mean = mean(data_r)
                 data_r_stdev = stdev(data_r)
-            item.append(round(data_r_mean / 1e6, 2))
-            item.append(round(data_r_stdev / 1e6, 2))
+            item.append(round(data_r_mean / 1e6, 1))
+            item.append(round(data_r_stdev / 1e6, 1))
         else:
             data_r_mean = None
             data_r_stdev = None
@@ -840,8 +840,8 @@ def table_perf_comparison(table, input_data):
             else:
                 data_c_mean = mean(data_c)
                 data_c_stdev = stdev(data_c)
-            item.append(round(data_c_mean / 1e6, 2))
-            item.append(round(data_c_stdev / 1e6, 2))
+            item.append(round(data_c_mean / 1e6, 1))
+            item.append(round(data_c_stdev / 1e6, 1))
         else:
             data_c_mean = None
             data_c_stdev = None
@@ -924,27 +924,27 @@ def table_perf_comparison_nic(table, input_data):
             except (YAMLError, IOError) as err:
                 logging.warning(repr(err))
 
-        if table[u"include-tests"] == u"MRR":
-            hdr_param = u"Rec Rate"
-        else:
-            hdr_param = u"Thput"
-
         history = table.get(u"history", list())
         for item in history:
             header.extend(
                 [
-                    f"{item[u'title']} {hdr_param} [Mpps]",
-                    f"{item[u'title']} Stdev [Mpps]"
+                    f"{item[u'title']} Avg({table[u'include-tests']})",
+                    f"{item[u'title']} Stdev({table[u'include-tests']})"
                 ]
             )
         header.extend(
             [
-                f"{table[u'reference'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'reference'][u'title']} Stdev [Mpps]",
-                f"{table[u'compare'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'compare'][u'title']} Stdev [Mpps]",
-                u"Delta [%]",
-                u"Stdev of delta [%]"
+                f"{table[u'reference'][u'title']} "
+                f"Avg({table[u'include-tests']})",
+                f"{table[u'reference'][u'title']} "
+                f"Stdev({table[u'include-tests']})",
+                f"{table[u'compare'][u'title']} "
+                f"Avg({table[u'include-tests']})",
+                f"{table[u'compare'][u'title']} "
+                f"Stdev({table[u'include-tests']})",
+                f"Diff({table[u'reference'][u'title']},"
+                f"{table[u'compare'][u'title']})",
+                u"Stdev(Diff)"
             ]
         )
         header_str = u";".join(header) + u"\n"
@@ -1120,11 +1120,11 @@ def table_perf_comparison_nic(table, input_data):
                 for hist_data in tbl_dict[tst_name][u"history"].values():
                     if hist_data:
                         if table[u"include-tests"] == u"MRR":
-                            item.append(round(hist_data[0][0] / 1e6, 2))
-                            item.append(round(hist_data[0][1] / 1e6, 2))
+                            item.append(round(hist_data[0][0] / 1e6, 1))
+                            item.append(round(hist_data[0][1] / 1e6, 1))
                         else:
-                            item.append(round(mean(hist_data) / 1e6, 2))
-                            item.append(round(stdev(hist_data) / 1e6, 2))
+                            item.append(round(mean(hist_data) / 1e6, 1))
+                            item.append(round(stdev(hist_data) / 1e6, 1))
                     else:
                         item.extend([u"Not tested", u"Not tested"])
             else:
@@ -1137,8 +1137,8 @@ def table_perf_comparison_nic(table, input_data):
             else:
                 data_r_mean = mean(data_r)
                 data_r_stdev = stdev(data_r)
-            item.append(round(data_r_mean / 1e6, 2))
-            item.append(round(data_r_stdev / 1e6, 2))
+            item.append(round(data_r_mean / 1e6, 1))
+            item.append(round(data_r_stdev / 1e6, 1))
         else:
             data_r_mean = None
             data_r_stdev = None
@@ -1151,8 +1151,8 @@ def table_perf_comparison_nic(table, input_data):
             else:
                 data_c_mean = mean(data_c)
                 data_c_stdev = stdev(data_c)
-            item.append(round(data_c_mean / 1e6, 2))
-            item.append(round(data_c_stdev / 1e6, 2))
+            item.append(round(data_c_mean / 1e6, 1))
+            item.append(round(data_c_stdev / 1e6, 1))
         else:
             data_c_mean = None
             data_c_stdev = None
@@ -1223,23 +1223,20 @@ def table_nics_comparison(table, input_data):
 
     # Prepare the header of the tables
     try:
-        header = [u"Test case", ]
-
-        if table[u"include-tests"] == u"MRR":
-            hdr_param = u"Rec Rate"
-        else:
-            hdr_param = u"Thput"
-
-        header.extend(
-            [
-                f"{table[u'reference'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'reference'][u'title']} Stdev [Mpps]",
-                f"{table[u'compare'][u'title']} {hdr_param} [Mpps]",
-                f"{table[u'compare'][u'title']} Stdev [Mpps]",
-                u"Delta [%]",
-                u"Stdev of delta [%]"
-            ]
-        )
+        header = [
+            u"Test case",
+            f"{table[u'reference'][u'title']} "
+            f"Avg({table[u'include-tests']})",
+            f"{table[u'reference'][u'title']} "
+            f"Stdev({table[u'include-tests']})",
+            f"{table[u'compare'][u'title']} "
+            f"Avg({table[u'include-tests']})",
+            f"{table[u'compare'][u'title']} "
+            f"Stdev({table[u'include-tests']})",
+            f"Diff({table[u'reference'][u'title']},"
+            f"{table[u'compare'][u'title']})",
+            u"Stdev(Diff)"
+        ]
 
     except (AttributeError, KeyError) as err:
         logging.error(f"The model is invalid, missing parameter: {repr(err)}")
@@ -1290,8 +1287,8 @@ def table_nics_comparison(table, input_data):
             else:
                 data_r_mean = mean(data_r)
                 data_r_stdev = stdev(data_r)
-            item.append(round(data_r_mean / 1e6, 2))
-            item.append(round(data_r_stdev / 1e6, 2))
+            item.append(round(data_r_mean / 1e6, 1))
+            item.append(round(data_r_stdev / 1e6, 1))
         else:
             data_r_mean = None
             data_r_stdev = None
@@ -1304,8 +1301,8 @@ def table_nics_comparison(table, input_data):
             else:
                 data_c_mean = mean(data_c)
                 data_c_stdev = stdev(data_c)
-            item.append(round(data_c_mean / 1e6, 2))
-            item.append(round(data_c_stdev / 1e6, 2))
+            item.append(round(data_c_mean / 1e6, 1))
+            item.append(round(data_c_stdev / 1e6, 1))
         else:
             data_c_mean = None
             data_c_stdev = None
@@ -1440,8 +1437,8 @@ def table_soak_vs_ndr(table, input_data):
             else:
                 data_r_mean = mean(data_r)
                 data_r_stdev = stdev(data_r)
-            item.append(round(data_r_mean / 1e6, 2))
-            item.append(round(data_r_stdev / 1e6, 2))
+            item.append(round(data_r_mean / 1e6, 1))
+            item.append(round(data_r_stdev / 1e6, 1))
         else:
             data_r_mean = None
             data_r_stdev = None
@@ -1454,8 +1451,8 @@ def table_soak_vs_ndr(table, input_data):
             else:
                 data_c_mean = mean(data_c)
                 data_c_stdev = stdev(data_c)
-            item.append(round(data_c_mean / 1e6, 2))
-            item.append(round(data_c_stdev / 1e6, 2))
+            item.append(round(data_c_mean / 1e6, 1))
+            item.append(round(data_c_stdev / 1e6, 1))
         else:
             data_c_mean = None
             data_c_stdev = None
