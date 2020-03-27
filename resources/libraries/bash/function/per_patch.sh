@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -48,6 +48,7 @@ function archive_parse_test_results () {
 
     # Arguments:
     # - ${1}: Directory to archive to. Required. Parent has to exist.
+    # - ${2} - Control word "fake" to fake data on failure. Optional.
     # Variables read:
     # - TARGET - Target directory.
     # Functions called:
@@ -58,13 +59,13 @@ function archive_parse_test_results () {
     set -exuo pipefail
 
     archive_test_results "$1" || die
-    parse_bmrr_results "${TARGET}" || {
+    parse_results "${TARGET}" "${2-}" || {
         die "The function should have died on error."
     }
 }
 
 
-function build_vpp_ubuntu_amd64 () {
+function build_vpp_ubuntu () {
 
     # This function is using make pkg-verify to build VPP with all dependencies
     # that is ARCH/OS aware. VPP repo is SSOT for building mechanics and CSIT
@@ -82,7 +83,10 @@ function build_vpp_ubuntu_amd64 () {
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory command failed."
-    make UNATTENDED=y pkg-verify || die "VPP build using make pkg-verify failed."
+    # TODO: Switch to pkg-verify once VOM compilation fits to memory.
+    make UNATTENDED=y install-dep install-ext-deps pkg-deb || {
+        die "VPP build failed."
+    }
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
@@ -167,17 +171,28 @@ function initialize_csit_dirs () {
 }
 
 
-function parse_bmrr_results () {
+function parse_results () {
 
-    # Currently "parsing" is just two greps.
+    # Currently "parsing" is just few greps.
     # TODO: Re-use PAL parsing code, make parsing more general and centralized.
+    #
+    # The current implementation attempts to parse for PDR,
+    # if parsing for BMRR fails.
+    #
+    # If the results are malformed or missing, the behavior is configurable.
+    # By default, die is called. But optionally fake results are constructed.
+    # Fake results are useful for bisection, as we do not want to die there.
+    # Bisection with mixed result finds the cause (or the fix) of the failure.
     #
     # Arguments:
     # - ${1} - Path to (existing) directory holding robot output.xml result.
+    # - ${2} - Control word "fake" to fake data on failure. Optional.
     # Files read:
     # - output.xml - From argument location.
     # Files updated:
     # - results.txt - (Re)created, in argument location.
+    # Variables read:
+    # - CSIT_PERF_TRIAL_MULTIPLICITY - To create fake results of this length.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
@@ -191,9 +206,70 @@ function parse_bmrr_results () {
     echo "TODO: Re-use parts of PAL when they support subsample test parsing."
     pattern='Maximum Receive Rate trial results in packets'
     pattern+=' per second: .*\]</status>'
-    grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}" || {
-        die "Some parsing grep command has failed."
-    }
+    set +e
+    grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}"
+    rc="${?}"
+    set -e
+    if [[ "${rc}" == "0" ]]; then
+        # Parsing succeeded, return early.
+        return 0
+    fi
+    # BMRR parsing failed. Attempt PDR.
+    echo "[" > "${out_file}"
+    # Adapted from https://superuser.com/a/377084
+    pattern='(?<=: ).*(?= pps)'
+    set +e
+    fgrep -o "PDR_LOWER: " "${in_file}" | grep -Po "${pattern}" >> "${out_file}"
+    rc="${?}"
+    set -e
+    echo "]" >> "${out_file}"
+    if [[ "${rc}" == "0" ]]; then
+        # Parsing succeeded, return early.
+        return 0
+    fi
+    # PDR parsing failed.
+    if [[ "${2-}" != "fake" ]]; then
+        die "Malformed or missing test results."
+    fi
+    warn "Faking test results to allow bisect script locate the cause."
+    out_arr=("[")
+    for i in `seq "${CSIT_PERF_TRIAL_MULTIPLICITY:-1}"`; do
+        out_arr+=("2.0" ",")
+    done
+    # The Python part uses JSON parser, the last comma has to be removed.
+    # Requires Bash 4.3 https://stackoverflow.com/a/36978740
+    out_arr[-1]="]"
+    # TODO: Is it possible to avoid space separation by manipulating IFS?
+    echo "${out_arr[@]}" > "${out_file}"
+}
+
+
+function run_and_parse () {
+
+    # Run test and parse results (creating fake ones on failure).
+    # Retry few times if there was a failure in the test.
+    # Else leave fake results.
+
+    # Variables read:
+    # - TARGET - Directory to store parsed test results.
+    # Files rewritten:
+    # - ${TARGET}/results.txt - Stored parsed (or fake) results.
+    # Functions called:
+    # - run_pybot - see common.sh
+    # - copy_archives - see common.sh
+    # - archive_parse_test_results - see this file
+
+    set -exuo pipefail
+
+    for try in {1..5}; do
+        run_pybot || die
+        copy_archives || die
+        archive_parse_test_results "${1}" "fake" || die
+        results=$(<"${TARGET}/results.txt")
+        if [[ "[ 2.0 "* != "${results}" ]]; then
+            break
+        fi
+    done
 }
 
 
@@ -222,10 +298,15 @@ function select_build () {
 }
 
 
-function set_aside_commit_build_artifacts () {
+function set_aside_current_build_artifacts () {
 
-    # Function is copying VPP built artifacts from actual checkout commit for
-    # further use and clean git.
+    # Function is copying VPP built artifacts from currently checked-out
+    # commit for further use and clean git.
+    # At the end, earclier commit is checked out, HEAD~ by default
+    #
+    # Arguments:
+    # - ${1} - commit identifier to checkout at the end. Optional.
+    #          Default: HEAD~
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
     # Directories read:
@@ -238,6 +319,7 @@ function set_aside_commit_build_artifacts () {
 
     set -exuo pipefail
 
+    parent_id="${1:-HEAD~}"
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "build_current" || die "Remove operation failed."
     mkdir -p "build_current" || die "Directory creation failed."
@@ -247,7 +329,7 @@ function set_aside_commit_build_artifacts () {
     # Also, there usually is a copy of dpdk artifact in build-root.
     git clean -dffx "build"/ "build-root"/ || die "Git clean operation failed."
     # Finally, check out the parent commit.
-    git checkout HEAD~ || die "Git checkout operation failed."
+    git checkout "${parent_id}" || die "Git checkout operation failed."
     # Display any other leftovers.
     git status || die "Git status operation failed."
 }
