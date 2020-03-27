@@ -1326,12 +1326,13 @@ def table_nics_comparison(table, input_data):
 
     # Generate csv tables:
     with open(f"{table[u'output-file']}.csv", u"wt") as file_handler:
-        file_handler.write(u",".join(header) + u"\n")
+        file_handler.write(u";".join(header) + u"\n")
         for test in tbl_lst:
-            file_handler.write(u",".join([str(item) for item in test]) + u"\n")
+            file_handler.write(u";".join([str(item) for item in test]) + u"\n")
 
     convert_csv_to_pretty_txt(f"{table[u'output-file']}.csv",
-                              f"{table[u'output-file']}.txt")
+                              f"{table[u'output-file']}.txt",
+                              delimiter=u";")
 
     # Generate html table:
     _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
@@ -1367,7 +1368,7 @@ def table_soak_vs_ndr(table, input_data):
             u"Delta [%]",
             u"Stdev of delta [%]"
         ]
-        header_str = u",".join(header) + u"\n"
+        header_str = u";".join(header) + u"\n"
     except (AttributeError, KeyError) as err:
         logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
@@ -1478,9 +1479,11 @@ def table_soak_vs_ndr(table, input_data):
     with open(csv_file, u"wt") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
-            file_handler.write(u",".join([str(item) for item in test]) + u"\n")
+            file_handler.write(u";".join([str(item) for item in test]) + u"\n")
 
-    convert_csv_to_pretty_txt(csv_file, f"{table[u'output-file']}.txt")
+    convert_csv_to_pretty_txt(
+        csv_file, f"{table[u'output-file']}.txt", delimiter=u";"
+    )
 
     # Generate html table:
     _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
