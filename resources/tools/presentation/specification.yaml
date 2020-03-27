@@ -281,6 +281,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 66  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
         - 56  # NDRPDR sel addition
@@ -317,6 +318,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 66  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-mrr:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -637,6 +639,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 66  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
         - 56  # NDRPDR sel addition
@@ -934,6 +937,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 66  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
         - 56  # NDRPDR sel addition
@@ -1457,6 +1461,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 66  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
         - 56  # NDRPDR sel addition
@@ -1690,6 +1695,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 66  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
         - 56  # NDRPDR sel addition
@@ -1711,7 +1717,6 @@
         - 64  # NDRPDR sel addition
 >>>>>>> CHANGE (8a050f Report: Add data and RCA)
     vpp-compare-topologies-cmp:
-      # TODO: Add the data
       csit-vpp-perf-verify-2001-2n-skx:
         - 92  # NDRPDR sel
         - 93  # NDRPDR sel
@@ -2586,6 +2591,7 @@
       - 51  # NDRPDR sel
       - 52  # NDRPDR sel
       - 59  # NDRPDR sel
+      - 66  # NDRPDR sel
       - 54  # NDRPDR sel addition
       - 55  # NDRPDR sel addition
       - 56  # NDRPDR sel addition
