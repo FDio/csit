@@ -1,4 +1,6 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+
+
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -276,7 +278,7 @@ function compose_pybot_arguments () {
         *"func"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.func")
             ;;
-        *"perf"*)
+        *"perf"* | *"bisect"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
             ;;
         *)
@@ -498,6 +500,8 @@ function get_test_tag_string () {
     # Variables set:
     # - TEST_TAG_STRING - The string following trigger word in gerrit comment.
     #   May be empty, or even not set on event types not adding comment.
+    # - GIT_BISECT_FROM - If bisecttest, the commit hash to bisect from.
+    #   Else not set.
 
     # TODO: ci-management scripts no longer need to perform this.
 
@@ -505,6 +509,10 @@ function get_test_tag_string () {
 
     if [[ "${GERRIT_EVENT_TYPE-}" == "comment-added" ]]; then
         case "${TEST_CODE}" in
+            # Order matters, bisect job contains "perf" in its name.
+            *"bisect"*)
+                trigger="bisecttest"
+                ;;
             *"device"*)
                 trigger="devicetest"
                 ;;
@@ -523,6 +531,18 @@ function get_test_tag_string () {
         cmd=("grep" "-oP" '\S*'"${trigger}"'\S*\s\K.+$') || die "Unset trigger?"
         # On parsing error, TEST_TAG_STRING probably stays empty.
         TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}") || true
+        if [[ "${trigger}" == "bisecttest" ]]; then
+            # Intentionally without quotes, so spaces delimit elements.
+            test_tag_array=(${TEST_TAG_STRING}) || die "How could this fail?"
+            # First "argument" of bisecttest is a commit hash.
+            GIT_BISECT_FROM="${test_tag_array[0]}" || {
+                die "Bisect job requires commit hash."
+            }
+            # Update the tag string (tag expressions only, no commit hash).
+            TEST_TAG_STRING="${test_tag_array[@]:1}" || {
+                die "Bisect job needs a single test, no default."
+            }
+        fi
     fi
 }
 
