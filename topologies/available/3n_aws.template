@@ -1,0 +1,83 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 3-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "{{ tg_public_ip }}"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port1:
+        # tg_instance/p1 - 50GE port1 on ENA NIC.
+        mac_address: {{ tg_if1_mac }}
+        pci_address: "0000:00:06.0"
+        link: link1
+        model: Amazon-Nitro-50G
+      port2:
+        # tg_instance/p2 - 50GE port2 on ENA NIC.
+        mac_address: {{ tg_if2_mac }}
+        pci_address: "0000:00:07.0"
+        link: link2
+        model: Amazon-Nitro-50G
+  DUT1:
+    type: DUT
+    host: "{{ dut1_public_ip }}"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    uio_driver: vfio-pci
+    honeycomb:
+      user: admin
+      passwd: admin
+      port: 8183
+      netconf_port: 2831
+    interfaces:
+      port1:
+        # dut1_instance/p1 - 50GE port1 on ENA NIC.
+        mac_address: {{ dut1_if1_mac }}
+        pci_address: "0000:00:06.0"
+        link: link1
+        model: Amazon-Nitro-50G
+      port2:
+        # dut1_instance/p2 - 50GE port2 on ENA NIC.
+        mac_address: {{ dut1_if2_mac }}
+        pci_address: "0000:00:07.0"
+        link: link21
+        model: Amazon-Nitro-50G
+  DUT2:
+    type: DUT
+    host: "{{ dut2_public_ip }}"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    uio_driver: vfio-pci
+    honeycomb:
+      user: admin
+      passwd: admin
+      port: 8183
+      netconf_port: 2831
+    interfaces:
+      port1:
+        # dut2_instance/p1 - 50GE port1 on ENA NIC.
+        mac_address: {{ dut2_if1_mac }}
+        pci_address: "0000:00:06.0"
+        link: link21
+        model: Amazon-Nitro-50G
+      port2:
+        # dut2_instance/p2 - 50GE port1 on ENA NIC.
+        mac_address: {{ dut2_if2_mac }}
+        pci_address: "0000:00:07.0"
+        link: link2
+        model: Amazon-Nitro-50G
+
