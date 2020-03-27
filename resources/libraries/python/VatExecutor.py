@@ -308,17 +308,17 @@ class VatTerminal:
         except Exception:
             self._exec_failure = True
             vpp_pid = get_vpp_pid(self._node)
-            if vpp_pid:
-                if isinstance(vpp_pid, int):
-                    msg = f"VPP running on node {self._node[u'host']} " \
-                        f"but VAT command {cmd} execution failed."
-                else:
-                    msg = f"More instances of VPP running on node " \
-                        f"{self._node[u'host']}. VAT command {cmd} " \
-                        f"execution failed."
-            else:
+            if not vpp_pid:
                 msg = f"VPP not running on node {self._node[u'host']}. " \
                     f"VAT command {cmd} execution failed."
+            elif len(vpp_pid) == 1:
+                msg = f"VPP running on node {self._node[u'host']} " \
+                    f"but VAT command {cmd} execution failed."
+            else:
+                msg = f"More instances of VPP running on node " \
+                    f"{self._node[u'host']}. VAT command {cmd} " \
+                    f"execution failed."
+
             raise RuntimeError(msg)
 
         logger.debug(f"VAT output: {out}")
