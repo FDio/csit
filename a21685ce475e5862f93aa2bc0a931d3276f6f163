@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "bcd46667_ac12535c",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-27T16:46:39Z",
+      "side": 1,
+      "message": "\"int\" is not read only for now. It is a pointer to which set of variables to use. The reset of interface variables is happening on suite level (read topology) and then in the test in the KW of initialization driver. After that it always become u\"vf\" (virtual CSIT interface?). This way we are bifurcating PF into \"pieces\" of VFs. If we will use SRIOV they are VFs if not tere is just one interface (copy\u0026paste from PF). This way we can have same KWs for both.\nSo far Scapy and TG both are only on u\"pf\" (unless we make use of SRIOV there), but the DUTs should always read PF on suite level (parsing topology as always in CSIT) and then on test level they become u\"vf\". Benefit is also that we keep previous information and we can still use (if needed).\n\nPreviously when i implemented initial way, i used the trick of overwriting u\"if\" to fake it. But then i realize i cannot really use multiple NICs and multiple VFs per one NIC. That is why Jan started to bloat code with lot of if else condition to detect multiple variables.\n\nNow we have an array (we can check how many VFs are there), in VPP we \"do not care\" if they are AVF/RDMA/DPDK/TAP...",
+      "parentUuid": "ecdaf943_e30f6447",
+      "range": {
+        "startLine": 226,
+        "startChar": 8,
+        "endLine": 226,
+        "endChar": 28
+      },
+      "revId": "a21685ce475e5862f93aa2bc0a931d3276f6f163",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "762a526f_f141d6bf",
         "filename": "resources/libraries/python/NodePath.py",
         "patchSetId": 39
