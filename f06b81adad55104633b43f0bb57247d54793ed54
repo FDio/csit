@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2139bbf8_af7617ee",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-27T18:38:32Z",
+      "side": 1,
+      "message": "Now that you set this in Setup Test, you do not need to set it here. Or maybe you want to set something like initial_layer (to be set on each test setup), in case there will be some testbeds starting at a layer different than pf?",
+      "range": {
+        "startLine": 226,
+        "startChar": 17,
+        "endLine": 226,
+        "endChar": 20
+      },
+      "revId": "f06b81adad55104633b43f0bb57247d54793ed54",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
