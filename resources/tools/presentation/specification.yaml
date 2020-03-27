@@ -279,6 +279,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 65  # NDRPDR sel
         - 66  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
@@ -306,6 +307,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 65  # NDRPDR sel
         - 66  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-mrr:
@@ -625,6 +627,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 65  # NDRPDR sel
         - 66  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
@@ -914,6 +917,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 65  # NDRPDR sel
         - 66  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
@@ -1427,6 +1431,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 65  # NDRPDR sel
         - 66  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
@@ -1650,6 +1655,7 @@
         - 51  # NDRPDR sel
         - 52  # NDRPDR sel
         - 59  # NDRPDR sel
+        - 65  # NDRPDR sel
         - 66  # NDRPDR sel
         - 54  # NDRPDR sel addition
         - 55  # NDRPDR sel addition
@@ -2535,6 +2541,7 @@
       - 51  # NDRPDR sel
       - 52  # NDRPDR sel
       - 59  # NDRPDR sel
+      - 65  # NDRPDR sel
       - 66  # NDRPDR sel
       - 54  # NDRPDR sel addition
       - 55  # NDRPDR sel addition
