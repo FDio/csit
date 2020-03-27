@@ -46,6 +46,30 @@
       "revId": "f06b81adad55104633b43f0bb57247d54793ed54",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85283e81_e19ddc07",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-27T18:52:21Z",
+      "side": 1,
+      "message": "hmm but i know now why i did not do it before. Suite setup action have AVF init...so i need to move it to teardown.",
+      "parentUuid": "53678a31_adbf8343",
+      "range": {
+        "startLine": 226,
+        "startChar": 17,
+        "endLine": 226,
+        "endChar": 20
+      },
+      "revId": "f06b81adad55104633b43f0bb57247d54793ed54",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
