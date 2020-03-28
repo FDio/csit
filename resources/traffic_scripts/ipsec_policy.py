@@ -16,7 +16,6 @@
 """Traffic script for IPsec verification."""
 
 import sys
-import logging
 
 from ipaddress import ip_address
 from scapy.layers.inet import IP
