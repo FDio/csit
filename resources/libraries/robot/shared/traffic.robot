@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -286,7 +286,7 @@
 | |
 | | ${tx_src_mac}= | Get Interface Mac | ${node} | ${tx_interface}
 | | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_interface}
-| | ${rx_dst_mac}= | Get Interface Mac | ${node} | ${tx_interface}
+| | ${rx_dst_mac}= | Get Interface Mac | ${node} | ${rx_interface}
 | | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_interface}
 | | ${args}= | Catenate | --rx_if ${rx_if_name} | --tx_if ${tx_if_name}
 | | ... | --tx_src_mac ${tx_src_mac} | --tx_dst_mac ${tx_dst_mac}
@@ -301,7 +301,7 @@
 | | ... | ${args} --src_tun ${l_tunnel}
 | | ${args}= | Set Variable If | "${r_tunnel}" == "${None}" | ${args}
 | | ... | ${args} --dst_tun ${r_tunnel}
-| | Run Traffic Script On Node | ipsec.py | ${node} | ${args}
+| | Run Traffic Script On Node | ipsec_policy.py | ${node} | ${args}
 
 | Send packet and verify LISP encap
 | | [Documentation] | Send ICMP packet to DUT out one interface and receive\
@@ -347,6 +347,61 @@
 | | ... | --src_rloc | ${src_rloc} | --dst_rloc | ${dst_rloc}
 | | Run Traffic Script On Node | lisp/lisp_check.py | ${tg_node}
 | | ... | ${args}
+
+| Send IP Packet and verify ESP encapsulation in received packet
+| | [Documentation] | Send IP packet from TG to DUT. Receive IPsec packet\
+| | ... | from DUT on TG and verify ESP encapsulation. Send IPsec packet in\
+| | ... | opposite direction and verify received IP packet.
+| |
+| | ... | *Arguments:*
+| | ... | - node - TG node. Type: dictionary
+| | ... | - tx_interface - TG Interface 1. Type: string
+| | ... | - rx_interface - TG Interface 2. Type: string
+| | ... | - tx_dst_mac - Destination MAC for TX interface / DUT interface 1 MAC.
+| | ... | Type: string
+| | ... | - rx_src_mac - Source MAC for RX interface / DUT interface 2 MAC.
+| | ... | Type: string
+| | ... | - crypto_alg - Encrytion algorithm. Type: enum
+| | ... | - crypto_key - Encryption key. Type: string
+| | ... | - integ_alg - Integrity algorithm. Type: enum
+| | ... | - integ_key - Integrity key. Type: string
+| | ... | - l_spi - Local SPI. Type: integer
+| | ... | - r_spi - Remote SPI. Type: integer
+| | ... | - src_ip - Source IP address. Type: string
+| | ... | - dst_ip - Destination IP address. Type: string
+| | ... | - src_tun - Source tunnel IP address. Type: string
+| | ... | - dst_tun - Destination tunnel IP address. Type: string
+| |
+| | ... | *Example:*
+| | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
+| | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
+| | ... | \| Send IPsec Packet and verify ESP encapsulation in received packet\
+| | ... | \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| ${encr_alg} \
+| | ... | \| sixteenbytes_key \| ${auth_alg} \| twentybytessecretkey \
+| | ... | \| ${1001} \| ${1000} \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \
+| | ... | \| 192.168.100.3 \|
+| |
+| | [Arguments] | ${node} | ${tx_interface} | ${rx_interface} | ${tx_dst_mac}
+| | ... | ${rx_src_mac} | ${crypto_alg} | ${crypto_key} | ${integ_alg}
+| | ... | ${integ_key} | ${l_spi} | ${r_spi} | ${src_ip} | ${dst_ip}
+| | ... | ${src_tun} | ${dst_tun}
+| |
+| | ${tx_src_mac}= | Get Interface Mac | ${node} | ${tx_interface}
+| | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_interface}
+| | ${rx_dst_mac}= | Get Interface Mac | ${node} | ${rx_interface}
+| | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_interface}
+| | ${crypto_alg_str}= | Get Crypto Alg Scapy Name | ${crypto_alg}
+| | ${integ_alg_str}= | Get Integ Alg Scapy Name | ${integ_alg}
+| | ${args}= | Catenate | --rx_if ${rx_if_name} | --tx_if ${tx_if_name}
+| | ... | --tx_src_mac ${tx_src_mac} | --tx_dst_mac ${tx_dst_mac}
+| | ... | --rx_src_mac ${rx_src_mac} | --rx_dst_mac ${rx_dst_mac}
+| | ... | --src_ip ${src_ip} | --dst_ip ${dst_ip}
+| | ... | --crypto_alg ${crypto_alg_str} | --crypto_key ${crypto_key}
+| | ... | --integ_alg ${integ_alg_str} | --integ_key ${integ_key}
+| | ... | --l_spi ${l_spi} | --r_spi ${r_spi} | --src_tun ${src_tun}
+| | ... | --dst_tun ${dst_tun}
+| | Run Traffic Script On Node | ipsec_interface.py | ${node} | ${args}
 
 | Send packet and verify LISP GPE encap
 | | [Documentation] | Send ICMP packet to DUT out one interface and receive\
