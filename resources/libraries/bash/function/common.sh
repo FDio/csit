@@ -1,5 +1,5 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
-# Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2020 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -972,7 +972,7 @@ function select_vpp_device_tags () {
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags. Items of array will be concatenated by OR
                 # in Robot Framework.
-                test_tag_array=()
+                test_tag_array=("ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha")
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
