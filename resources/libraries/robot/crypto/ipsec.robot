@@ -170,11 +170,10 @@
 | Initialize IPSec in 3-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
-| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
-| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG and
-| | ... | DUT1-DUT2 links. Set routing for encrypted traffic on both DUT nodes
-| | ... | with prefix /8 and next hop of neighbour DUT or TG interface IPv4
-| | ... | address.
+| | ... | topology. Get the interface MAC addresses and setup ARP on VPP
+| | ... | interfaces towards TG. Setup IPv4 addresses with /24 prefix on DUT-TG
+| | ... | links. Set routing for decrypted traffic on both DUT nodes
+| | ... | with prefix /8 and next hop of neighbour TG interface IPv4 address.
 | |
 | | Set interfaces in path up
 | | VPP Interface Set IP Address
@@ -203,7 +202,24 @@
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut1_if1_ip4} | 24
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_if1_ip4} | ${TG_pf1}[0]
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_if1_ip4} | ${TG_pf1_mac}[0]
+| | Vpp Route Add
+| | ... | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
+| | ... | interface=${DUT1_${int}1}[0]
+
+| Initialize IPSec in 2-node circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on node in 2-node circular
+| | ... | topology. Get the interface MAC address and setup ARP on VPP
+| | ... | interface towards TG. Setup IPv4 address with /24 prefix on one
+| | ... | DUT-TG link. Set routing for decrypted traffic on DUT
+| | ... | with prefix /8 and next hop of neighbour TG interface IPv4 address.
+| |
+| | Set interfaces in path up
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut1_if1_ip4} | 24
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_if1_ip4} | ${TG_pf1_mac}[0]
 | | Vpp Route Add
 | | ... | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
 | | ... | interface=${DUT1_${int}1}[0]
