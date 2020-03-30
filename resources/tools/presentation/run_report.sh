@@ -38,7 +38,11 @@ export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
+<<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
     --week "12" \
+=======
+    --week "14" \
+>>>>>>> CHANGE (0ed80e Report: COnfigure reoirt 2001.14)
     --logging INFO \
     --force
 

@@ -6,7 +6,11 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+<<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
 | .12            | 1. Added data:                                             |
+=======
+| .14            | 1. Added data:                                             |
+>>>>>>> CHANGE (0ed80e Report: COnfigure reoirt 2001.14)
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -20,6 +24,13 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
+<<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
+=======
+| .13            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .12            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+>>>>>>> CHANGE (0ed80e Report: COnfigure reoirt 2001.14)
 | .11            | 1. Added Soak tests                                        |
 |                |                                                            |
 |                | 2. Added data:                                             |
