@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ecf60615_d06c6563",
+        "filename": "docs/job_specs/report/report-2n-dnv.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-30T12:06:58Z",
+      "side": 1,
+      "message": "I forgot one more thing. The current format means if a test results are to be shown, they need to be actively running. This may be an issue for report runs, where we want to re-run only a subset of tests, while still showing data from the previously run superset.\nIt can also affect trending, but there we are maybe better just not showing the previously run test if we do not run them anymore.",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 8
+      },
+      "revId": "561e58bee6ffe190b51b0a884a84c7541ed00833",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
