@@ -6,7 +6,7 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-| .13            | 1. Added data:                                             |
+| .14            | 1. Added data:                                             |
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -21,6 +21,8 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |  2. Added Root Cause Analysis for VPP performance tests    |
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
++----------------+------------------------------------------------------------+
+| .13            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .12            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
