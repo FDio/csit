@@ -46,7 +46,15 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
+<<<<<<< HEAD   (35a360 Report: Add data)
 report_week = u'13'
+=======
+<<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
+report_week = u'12'
+=======
+report_week = u'14'
+>>>>>>> CHANGE (0ed80e Report: COnfigure reoirt 2001.14)
+>>>>>>> CHANGE (bdfc93 Report: COnfigure reoirt 2001.14)
 project = u'FD.io CSIT-2001.{week}'.format(week=report_week)
 copyright = u'2020, FD.io'
 author = u'FD.io CSIT'
