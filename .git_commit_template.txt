@@ -1,0 +1,44 @@
+# <feature-name>: <subject>
+# |<----  Using a maximum of 50 characters  ---->|
+#
+# Explain why this change is being made
+# |<----   Try to limit each line to a maximum of 72 characters   ---->|
+
+# Ticket: <JIRA #id>
+# Type: <type>
+# Fixes: <offending-git-commit-id>
+# Change-Id: <sha1>
+# Signed-off-by: <email>
+#
+#
+# --- COMMIT END ---
+#
+# Type can be
+#    feature     (new feature)
+#    fix         (bug fix)
+#    refactor    (refactoring production code)
+#    improvement (minor improvements in existing feature)
+#    style       (formatting, missing semi colons, etc; no code change)
+#    docs        (changes to documentation)
+#
+# feature-name: Is the name of the CSIT feature, or test directory.
+#               Commits across multiple components should be split.
+#
+# Fixes: If type is fix refers to the original commit (optional).
+# Ticket: Refers to JIRA ticket if it exists (optional).
+#
+# --------------------
+# Remember to:
+#    Lowercase the subject line.
+#    Use the imperative mood in the subject line.
+#    Not end the subject line with a period.
+#    Separate subject from body with a blank line.
+#    Use the body to explain what and why vs. how.
+#    Use multiple lines with "-" or "+" or "*" for bullet points in body.
+# --------------------
+# Usage:
+#
+# Please, run this command manually to see the template upon commit.
+# git config commit.template .git_commit_template.txt
+#
+# --------------------
