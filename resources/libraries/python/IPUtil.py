@@ -620,30 +620,7 @@ class IPUtil:
         :type prefix_len: int
         :type kwargs: dict
         """
-        count = kwargs.get(u"count", 1)
-
-        if count > 100:
-            gateway = kwargs.get(u"gateway", '')
-            interface = kwargs.get(u"interface", '')
-            vrf = kwargs.get(u"vrf", None)
-            multipath = kwargs.get(u"multipath", False)
-
-            with VatTerminal(node, json_param=False) as vat:
-
-                vat.vat_terminal_exec_cmd_from_template(
-                    u"vpp_route_add.vat",
-                    network=network,
-                    prefix_length=prefix_len,
-                    via=f"via {gateway}" if gateway else u"",
-                    sw_if_index=f"sw_if_index "
-                    f"{InterfaceUtil.get_interface_index(node, interface)}"
-                    if interface else u"",
-                    vrf=f"vrf {vrf}" if vrf else u"",
-                    count=f"count {count}" if count else u"",
-                    multipath=u"multipath" if multipath else u""
-                )
-            return
-
+        count = kwargs.get("count", 1)
         net_addr = ip_address(network)
         cmd = u"ip_route_add_del"
         args = dict(
@@ -653,14 +630,15 @@ class IPUtil:
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
-            for i in range(kwargs.get(u"count", 1)):
+        fast = 0 if count < 100 else count
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            for i in range(2 if fast else count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, net_addr + i, prefix_len, **kwargs
                 )
                 history = bool(not 1 < i < kwargs.get(u"count", 1))
                 papi_exec.add(cmd, history=history, **args)
-            papi_exec.get_replies(err_msg)
+            papi_exec.get_replies(err_msg, fast)
 
     @staticmethod
     def flush_ip_addresses(node, interface):
