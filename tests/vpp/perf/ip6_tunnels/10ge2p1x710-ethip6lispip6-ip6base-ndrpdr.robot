@@ -13,7 +13,8 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/overlay/lisp_static_adjacency.robot
+| Resource | resources/libraries/robot/overlay/lisp.robot
+|
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
