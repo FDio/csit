@@ -107,12 +107,12 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv6 forwarding over SRv6 with encapsulation with '1' x SID 'with' decapsulation in 3-node circular topology
+| | And Initialize IPv6 forwarding over SRv6 with encapsulation with '1' x SID 'with' decapsulation in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | tc01-78B-1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
-| | [Tags] | 78B | 1C
+| | [Tags] | 78B | 1C | TEST
 | | frame_size=${78} | phy_cores=${1}
 
 | tc02-78B-2c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
