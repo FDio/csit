@@ -36,8 +36,8 @@
 | ... | TG-DUTn for IPv6 routing over SRv6.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6\
 | ... | routing and static route, SR policy and steering policy for one\
-| ... | direction and one SR behaviour (function) - End - for other direction.\
-| ... | DUT1 and DUT2 are tested with ${nic_name}.\
+| ... | direction and one SR behaviour (function) - End.DX6 - for other\
+| ... | direction. DUT1 and DUT2 are tested with ${nic_name}.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -107,7 +107,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv6 forwarding over SRv6 with encapsulation with '1' x SID 'with' decapsulation in 3-node circular topology
+| | And Initialize IPv6 forwarding over SRv6 with encapsulation with '1' x SID 'with' decapsulation in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
