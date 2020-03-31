@@ -194,7 +194,7 @@ class Constants:
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 4096)
 
     # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 7)
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 15)
 
     # Trex force start regardles ports state
     TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")
@@ -258,6 +258,8 @@ class Constants:
     }
 
     # Mapping from NIC name to its pps limit.
+    # The values are unidirectional, assuming the test
+    # uses two ports on the same NIC.
     NIC_NAME_TO_PPS_LIMIT = {
         u"Cisco-VIC-1227": 14880952,
         u"Cisco-VIC-1385": 18750000,
@@ -266,7 +268,9 @@ class Constants:
         u"Intel-X710": 14880952,
         u"Intel-XL710": 18750000,
         u"Intel-XXV710": 18750000,
-        u"Mellanox-CX556A": 60000000, # 148809523,
+        # The Mellanox card is able to do more, but the current TRex version
+        # shows non-negligible duration stretching, depending on cores used.
+        u"Mellanox-CX556A": 47000000,  # 148809523,
         u"Amazon-Nitro-50G": 1500000,
         u"virtual": 14880952,
     }
