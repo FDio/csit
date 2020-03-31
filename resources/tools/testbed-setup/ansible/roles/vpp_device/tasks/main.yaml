@@ -11,6 +11,26 @@
   tags:
     - load-kernel-modules
 
+- name: VPP_device - Disable ipv6 router advertisement
+  sysctl:
+    name: "net.ipv6.conf.default.accept_ra"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: VPP_device - Disable ipv6 router advertisement
+  sysctl:
+    name: "net.ipv6.conf.all.accept_ra"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
 - name: VPP_device - Copy csit-initialize-vfs.sh
   copy:
    src: "files/csit-initialize-vfs.sh"
