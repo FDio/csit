@@ -67,7 +67,6 @@
 | ${dut1_sid2}= | 2003:2::
 | ${dut1_bsid}= | 2002:1::1
 | ${dut2_sid1}= | 2002:2::
-| ${dut2_sid1}= | 2002:2::
 | ${dut2_sid2}= | 2003:1::
 | ${dut2_bsid}= | 2003:1::1
 | ${out_sid1_1}= | 2002:3::
@@ -123,7 +122,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Start containers for test | nf_chains=${1} | nf_nodes=${1}
-| | And Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'static_proxy' behaviour in 3-node circular topology
+| | And Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'static_proxy' behaviour in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

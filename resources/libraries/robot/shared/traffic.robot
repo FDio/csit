@@ -495,3 +495,50 @@
 | | ... | --ot_mode | ${ot_mode}
 | | Run Traffic Script On Node | lisp/lispgpe_check.py | ${tg_node}
 | | ... | ${args}
+
+| Send IPv6 Packet and verify SRv6 encapsulation in received packet
+| | [Documentation] | Send IP packet from TG to DUT. Receive IPv6 packet with\
+| | ... | SRv6 extension header from DUT on TG and verify SRv6 encapsulation.\
+| | ... | Send IPv6 packet with SRv6 extension header in opposite direction and\
+| | ... | verify received IP packet.
+| |
+| | ... | *Arguments:*
+| | ... | - node - TG node. Type: dictionary
+| | ... | - tx_interface - TG Interface 1. Type: string
+| | ... | - rx_interface - TG Interface 2. Type: string
+| | ... | - tx_dst_mac - Destination MAC for TX interface / DUT interface 1 MAC.
+| | ... | Type: string
+| | ... | - rx_src_mac - Source MAC for RX interface / DUT interface 2 MAC.
+| | ... | Type: string
+| | ... | - l_spi - Local SPI. Type: integer
+| | ... | - r_spi - Remote SPI. Type: integer
+| | ... | - src_ip - Source IP address. Type: string
+| | ... | - dst_ip - Destination IP address. Type: string
+| | ... | - src_tun - Source tunnel IP address. Type: string
+| | ... | - dst_tun - Destination tunnel IP address. Type: string
+| |
+| | ... | *Example:*
+| | ... | \| Send IPv6 Packet and verify SRv6 encapsulation in received packet\
+| | ... | \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| ${encr_alg} \
+| | ... | \| sixteenbytes_key \| ${auth_alg} \| twentybytessecretkey \
+| | ... | \| ${1001} \| ${1000} \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \
+| | ... | \| 192.168.100.3 \|
+| |
+| | [Arguments] | ${node} | ${tx_interface} | ${rx_interface} | ${tx_dst_mac}
+| | ... | ${rx_src_mac} | ${src_ip} | ${dst_ip} | ${dut1_srcsid}
+| | ... | ${dut1_dstsid1} | ${dut2_srcsid} | ${dut2_dstsid1}
+| | ... | ${dut1_dstsid2}=${None} | ${dut2_dstsid2}=${None} | ${decap}=${True}
+| |
+| | ${tx_src_mac}= | Get Interface Mac | ${node} | ${tx_interface}
+| | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_interface}
+| | ${rx_dst_mac}= | Get Interface Mac | ${node} | ${rx_interface}
+| | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_interface}
+| | ${args}= | Catenate | --rx_if ${rx_if_name} | --tx_if ${tx_if_name}
+| | ... | --tx_src_mac ${tx_src_mac} | --tx_dst_mac ${tx_dst_mac}
+| | ... | --rx_src_mac ${rx_src_mac} | --rx_dst_mac ${rx_dst_mac}
+| | ... | --src_ip ${src_ip} | --dst_ip ${dst_ip} | --dir0_srcsid ${dut1_srcsid}
+| | ... | --dir0_dstsid1 ${dut2_dstsid1} | --dir0_dstsid2 ${dut2_dstsid2}
+| | ... | --dir1_srcsid ${dut2_srcsid} | --dir1_dstsid1 ${dut1_dstsid1}
+| | ... | --dir1_dstsid2 ${dut1_dstsid2} | --decap ${decap}
+| | Run Traffic Script On Node | srv6_encap.py | ${node} | ${args}
