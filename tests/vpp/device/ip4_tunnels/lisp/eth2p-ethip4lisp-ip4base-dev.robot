@@ -17,7 +17,7 @@
 | Variables | resources/test_data/lisp/lisp.py
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | IP4FWD | LISP_IP4o4 | DRV_VFIO_PCI
+| ... | NIC_Virtual | IP4FWD | LISP | LISP_IP4o4 | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4lisp-ip4base
 |
