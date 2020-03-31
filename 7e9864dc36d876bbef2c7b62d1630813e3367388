@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34a0abe1_8f1b9aa7",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-03-31T09:41:00Z",
+      "side": 1,
+      "message": "leave the comment of #148809523 there,\nalso this will cut the 4t2c and 8t4c numbers. So we need to consult with t-rex the further steps",
+      "revId": "7e9864dc36d876bbef2c7b62d1630813e3367388",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
