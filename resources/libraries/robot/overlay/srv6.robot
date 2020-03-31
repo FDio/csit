@@ -225,7 +225,7 @@
 | | | Show SR LocalSIDs | ${nodes['${dut}']}
 | | END
 
-| Initialize IPv6 forwarding over SRv6 with encapsulation with '${n}' x SID '${prepos}' decapsulation in 3-node circular topology
+| Initialize IPv6 forwarding over SRv6 with encapsulation with '${n}' x SID '${prepos}' decapsulation in circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
 | | ... | topology. Get the interface MAC addresses and setup neighbours on all
@@ -233,85 +233,113 @@
 | | ... | routing for IPv6 for required number of SIDs and configure IPv6 routes
 | | ... | on both DUT nodes.
 | |
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| |
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut1_if1_ip6} | ${prefix}
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut1_if2_ip6} | ${prefix}
-| | VPP Interface Set IP Address
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Interface Set IP Address
 | | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut2_if1_ip6} | ${prefix}
-| | VPP Interface Set IP Address
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Interface Set IP Address
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_if2_ip6} | ${prefix}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
 | | FOR | ${number} | IN RANGE | 2 | ${dst_addr_nr}+2
 | | | ${hexa_nr}= | Convert To Hex | ${number}
-| | | VPP Add IP Neighbor | ${dut1}
-| | | ... | ${DUT1_${int}1}[0] | ${tg_if1_ip6_subnet}${hexa_nr}
+| | | VPP Add IP Neighbor
+| | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_if1_ip6_subnet}${hexa_nr}
 | | | ... | ${TG_pf1_mac}[0]
-| | | VPP Add IP Neighbor | ${dut2}
-| | | ... | ${DUT2_${int}2}[0] | ${tg_if2_ip6_subnet}${hexa_nr}
+| | | Run Keyword If | '${dut2_status}' == 'PASS'
+| | | ... | VPP Add IP Neighbor
+| | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${tg_if2_ip6_subnet}${hexa_nr}
 | | | ... | ${TG_pf2_mac}[0]
 | | END
-| | VPP Add IP Neighbor
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6}
 | | ... | ${DUT2_${int}1_mac}[0]
-| | VPP Add IP Neighbor
-| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut1_if2_ip6}
-| | ... | ${DUT1_${int}2_mac}[0]
+| | Run Keyword Unless | '${dut2_status}' == 'PASS'
+| | ... | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6} | ${TG_pf2_mac}[0]
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Add IP Neighbor
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut1_if2_ip6}| ${DUT1_${int}2_mac}[0]
 | | ${sid1}= | Set Variable If
 | | ... | "${n}" == "1" | ${dut2_sid1}
 | | ... | "${n}" == "2" | ${dut2_sid1_1}
 | | ${sid2}= | Set Variable If
 | | ... | "${n}" == "1" | ${dut1_sid2}
 | | ... | "${n}" == "2" | ${dut1_sid2_1}
-| | Vpp Route Add | ${dut1} | ${sid1} | ${sid_prefix} | gateway=${dut2_if1_ip6}
+| | Vpp Route Add
+| | ... | ${dut1} | ${sid1} | ${sid_prefix} | gateway=${dut2_if1_ip6}
 | | ... | interface=${DUT1_${int}2}[0]
-| | Vpp Route Add | ${dut2} | ${sid2} | ${sid_prefix} | gateway=${dut1_if2_ip6}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add
+| | ... | ${dut2} | ${sid2} | ${sid_prefix} | gateway=${dut1_if2_ip6}
 | | ... | interface=${DUT2_${int}1}[0]
 # Configure SRv6 for direction0
-| | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
-| | @{sid_list_dir0}= | Run Keyword If | "${n}" == "1"
+| | Set SR Encaps Source Address on DUT
+| | ... | ${dut1} | ${dut1_sid1}
+| | @{sid_list_dir0}= | Run Keyword If | '${n}' == '1'
 | | ... | Create List | ${dut2_sid1}
-| | ... | ELSE IF | "${n}" == "2"
+| | ... | ELSE IF | '${n}' == '2'
 | | ... | Create List | ${dut2_sid1_1} | ${dut2_sid1_2}
-| | Configure SR Policy on DUT | ${dut1} | ${dut1_bsid} | encap
-| | ... | @{sid_list_dir0}
-| | Configure SR Steer on DUT | ${dut1} | L3 | ${dut1_bsid}
-| | ... | ip_addr=${tg_if2_ip6_subnet} | prefix=${sid_prefix}
-| | Run Keyword If | "${n}" == "1"
-| | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.dx6
+| | Configure SR Policy on DUT
+| | ... | ${dut1} | ${dut1_bsid} | encap | @{sid_list_dir0}
+| | Configure SR Steer on DUT
+| | ... | ${dut1} | L3 | ${dut1_bsid} | ip_addr=${tg_if2_ip6_subnet}
+| | ... | prefix=${sid_prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS' and '${n}' == '1'
+| | ... | Configure SR LocalSID on DUT
+| | ... | ${dut2} | ${dut2_sid1} | end.dx6 | interface=${DUT2_${int}2}[0]
+| | ... | next_hop=${tg_if2_ip6_subnet}2
+| | Run Keyword If | '${dut2_status}' == 'PASS' and '${n}' == '2'
+| | ... | Configure SR LocalSID on DUT
+| | ... | ${dut2} | ${dut2_sid1_1} | end
+| | Run Keyword If | '${dut2_status}' == 'PASS' and '${n}' == '2' and '${prepos}' != 'without'
+| | ... | Configure SR LocalSID on DUT
+| | ... | ${dut2} | ${dut2_sid1_2} | end.dx6
 | | ... | interface=${DUT2_${int}2}[0] | next_hop=${tg_if2_ip6_subnet}2
-| | Run Keyword If | "${n}" == "2"
-| | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1_1} | end
-| | Run Keyword If | "${n}" == "2" and "${prepos}" != "without"
-| | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1_2} | end.dx6
-| | ... | interface=${DUT2_${int}2}[0] | next_hop=${tg_if2_ip6_subnet}2
-| | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
-| | ... | Vpp Route Add | ${dut2} | ${dut2_sid1_2} | ${sid_prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS' and '${n}' == '2' and '${prepos}' == 'without'
+| | ... | Vpp Route Add
+| | ... | ${dut2} | ${dut2_sid1_2} | ${sid_prefix}
 | | ... | gateway=${tg_if2_ip6_subnet}2 | interface=${DUT2_${int}2}[0]
 # Configure SRv6 for direction1
-| | Set SR Encaps Source Address on DUT | ${dut2} | ${dut2_sid2}
-| | @{sid_list_dir1}= | Run Keyword If | "${n}" == "1"
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set SR Encaps Source Address on DUT
+| | ... | ${dut2} | ${dut2_sid2}
+| | @{sid_list_dir1}= | Run Keyword If | '${n}' == '1'
 | | ... | Create List | ${dut1_sid2}
-| | ... | ELSE IF | "${n}" == "2"
+| | ... | ELSE IF | '${n}' == '2'
 | | ... | Create List | ${dut1_sid2_1} | ${dut1_sid2_2}
-| | Configure SR Policy on DUT | ${dut2} | ${dut2_bsid} | encap
-| | ... | @{sid_list_dir1}
-| | Configure SR Steer on DUT | ${dut2} | L3 | ${dut2_bsid}
-| | ... | ip_addr=${tg_if1_ip6_subnet} | prefix=${sid_prefix}
-| | Run Keyword If | "${n}" == "1"
-| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.dx6
-| | ... | interface=${DUT1_${int}1}[0] | next_hop=${tg_if1_ip6_subnet}2
-| | Run Keyword If | "${n}" == "2"
-| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_1} | end
-| | Run Keyword If | "${n}" == "2" and "${prepos}" != "without"
-| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_2} | end.dx6
-| | ... | interface=${DUT1_${int}1}[0] | next_hop=${tg_if1_ip6_subnet}2
-| | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
-| | ... | Vpp Route Add | ${dut1} | ${dut1_sid2_2} | ${sid_prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure SR Policy on DUT
+| | ... | ${dut2} | ${dut2_bsid} | encap | @{sid_list_dir1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure SR Steer on DUT
+| | ... | ${dut2} | L3 | ${dut2_bsid} | ip_addr=${tg_if1_ip6_subnet}
+| | ... | prefix=${sid_prefix}
+| | Run Keyword If | '${n}' == '1'
+| | ... | Configure SR LocalSID on DUT
+| | ... | ${dut1} | ${dut1_sid2} | end.dx6 | interface=${DUT1_${int}1}[0]
+| | ... | next_hop=${tg_if1_ip6_subnet}2
+| | Run Keyword If | '${n}' == '2'
+| | ... | Configure SR LocalSID on DUT
+| | ... | ${dut1} | ${dut1_sid2_1} | end
+| | Run Keyword If | '${n}' == '2' and '${prepos}' != 'without'
+| | ... | Configure SR LocalSID on DUT
+| | ... | ${dut1} | ${dut1_sid2_2} | end.dx6 | interface=${DUT1_${int}1}[0]
+| | ... | next_hop=${tg_if1_ip6_subnet}2
+| | Run Keyword If | '${n}' == '2' and '${prepos}' == 'without'
+| | ... | Vpp Route Add
+| | ... | ${dut1} | ${dut1_sid2_2} | ${sid_prefix}
 | | ... | gateway=${tg_if1_ip6_subnet}2 | interface=${DUT1_${int}1}[0]
 | | Set interfaces in path up
 
-| Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via '${behavior}' behaviour in 3-node circular topology
+| Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via '${behavior}' behaviour in circular topology
 | | [Documentation]
 | | ... | Create pair of Memif interfaces on all defined VPP nodes. Set UP
 | | ... | state on VPP interfaces in path on nodes in 3-node circular topology.
@@ -324,6 +352,9 @@
 | | ... | KW uses test variable rxq_count_int set by KW Add worker threads
 | | ... | and rxqueues to all DUTs
 | |
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| |
 | | ${sock1}= | Set Variable | memif-DUT1_CNF
 | | ${sock2}= | Set Variable | memif-DUT2_CNF
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock1}
@@ -331,11 +362,14 @@
 | | ... | ${rxq_count_int}
 | | VPP Set interface MTU | ${dut1} | ${dut1-memif-1-if1}
 | | VPP Set interface MTU | ${dut1} | ${dut1-memif-1-if2}
-| | Set up memif interfaces on DUT node | ${dut2} | ${sock2} | ${sock2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set up memif interfaces on DUT node | ${dut2} | ${sock2} | ${sock2}
 | | ... | ${1} | dut2-memif-1-if1 | dut2-memif-1-if2 | ${rxq_count_int}
 | | ... | ${rxq_count_int}
-| | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if1}
-| | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if2}
 | | FOR | ${dut} | IN | @{duts}
 | | | Show Memif | ${nodes['${dut}']}
 | | END
@@ -347,40 +381,54 @@
 | | ... | ${dut1-memif-1-if1_ip6} | ${mem_prefix}
 | | VPP Interface Set IP Address | ${dut1} | ${dut1-memif-1-if2}
 | | ... | ${dut1-memif-1-if2_ip6} | ${mem_prefix}
-| | VPP Interface Set IP Address
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Interface Set IP Address
 | | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut2_if1_ip6} | ${prefix}
-| | VPP Interface Set IP Address
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Interface Set IP Address
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_if2_ip6} | ${prefix}
-| | VPP Interface Set IP Address | ${dut2} | ${dut2-memif-1-if1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Interface Set IP Address | ${dut2} | ${dut2-memif-1-if1}
 | | ... | ${dut2-memif-1-if1_ip6} | ${mem_prefix}
-| | VPP Interface Set IP Address | ${dut2} | ${dut2-memif-1-if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Interface Set IP Address | ${dut2} | ${dut2-memif-1-if2}
 | | ... | ${dut2-memif-1-if2_ip6} | ${mem_prefix}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
-| | VPP Add IP Neighbor
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6}
 | | ... | ${DUT2_${int}1_mac}[0]
-| | VPP Add IP Neighbor
+| | Run Keyword Unless | '${dut2_status}' == 'PASS'
+| | ... | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6} | ${TG_pf2_mac}[0]
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Add IP Neighbor
 | | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut1_if2_ip6}
 | | ... | ${DUT1_${int}2_mac}[0]
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_if1_ip6_subnet}2
 | | ... | ${TG_pf1_mac}[0]
-| | VPP Add IP Neighbor
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Add IP Neighbor
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${tg_if2_ip6_subnet}2
 | | ... | ${TG_pf2_mac}[0]
 | | ${dut1-memif-1-if2_mac}= | Get Interface MAC | ${dut1} | memif2
-| | ${dut2-memif-1-if2_mac}= | Get Interface MAC | ${dut2} | memif2
+| | ${dut2-memif-1-if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut2} | memif2
 | | VPP Add IP Neighbor | ${dut1}
 | | ... | ${dut1-memif-1-if1} | ${dut1_nh} | ${dut1-memif-1-if2_mac}
-| | VPP Add IP Neighbor | ${dut2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Add IP Neighbor | ${dut2}
 | | ... | ${dut2-memif-1-if1} | ${dut2_nh} | ${dut2-memif-1-if2_mac}
 | | Vpp Route Add | ${dut1} | ${dut2_sid1} | ${sid_prefix}
 | | ... | gateway=${dut2_if1_ip6} | interface=${dut1_if2}
 | | Vpp Route Add | ${dut1} | ${out_sid2_1} | ${sid_prefix}
 | | ... | gateway=${tg_if1_ip6_subnet}2 | interface=${dut1_if1}
-| | Vpp Route Add | ${dut2} | ${dut1_sid2} | ${sid_prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | ${dut1_sid2} | ${sid_prefix}
 | | ... | gateway=${dut1_if2_ip6} | interface=${dut2_if1}
-| | Vpp Route Add | ${dut2} | ${out_sid1_1} | ${sid_prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | ${out_sid1_1} | ${sid_prefix}
 | | ... | gateway=${tg_if2_ip6_subnet}2 | interface=${dut2_if2}
 # Configure SRv6 for direction0 on DUT1
 | | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
@@ -391,40 +439,46 @@
 | | Configure SR Steer on DUT | ${dut1} | L3 | ${dut1_bsid}
 | | ... | ip_addr=${tg_if2_ip6_subnet} | prefix=${sid_prefix}
 # Configure SRv6 for direction1 on DUT2
-| | Set SR Encaps Source Address on DUT | ${dut2} | ${dut2_sid2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set SR Encaps Source Address on DUT | ${dut2} | ${dut2_sid2}
 | | @{sid_list_dir1}= | Create List | ${dut1_sid2} | ${out_sid2_1}
 | | ... | ${out_sid2_2}
-| | Configure SR Policy on DUT | ${dut2} | ${dut2_bsid} | encap
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure SR Policy on DUT | ${dut2} | ${dut2_bsid} | encap
 | | ... | @{sid_list_dir1}
-| | Configure SR Steer on DUT | ${dut2} | L3 | ${dut2_bsid}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure SR Steer on DUT | ${dut2} | L3 | ${dut2_bsid}
 | | ... | ip_addr=${tg_if1_ip6_subnet} | prefix=${sid_prefix}
 # Configure SRv6 for direction0 on DUT2
-| | ${dut2_out_if}= | Get Interface Name | ${dut2} | memif1
-| | ${dut2_in_if}= | Get Interface Name | ${dut2} | memif2
+| | ${dut2_out_if}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface Name | ${dut2} | memif1
+| | ${dut2_in_if}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface Name | ${dut2} | memif2
 | | Remove Values From List | ${sid_list_dir0} | ${dut2_sid1}
-| | Run Keyword If | "${behavior}" == "static_proxy"
+| | Run Keyword If | '${dut2_status}' == 'PASS' and '${behavior}' == 'static_proxy'
 | | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.as
 | | ... | ${NONE} | ${dut2_nh} | ${NONE} | ${dut2_out_if} | ${dut2_in_if}
 | | ... | ${dut1_sid1} | @{sid_list_dir0}
-| | ... | ELSE IF | "${behavior}" == "dynamic_proxy"
+| | ... | ELSE IF | '${dut2_status}' == 'PASS' and '${behavior}' == 'dynamic_proxy'
 | | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.ad
 | | ... | next_hop=${dut2_nh} | out_if=${dut2_out_if} | in_if=${dut2_in_if}
-| | ... | ELSE IF | "${behavior}" == "masquerading"
+| | ... | ELSE IF | '${dut2_status}' == 'PASS' and '${behavior}' == 'masquerading'
 | | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.am
 | | ... | next_hop=${dut2_nh} | out_if=${dut2_out_if} | in_if=${dut2_in_if}
-| | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
+| | ... | ELSE IF | '${dut2_status}' == 'PASS'
+| | ... | Fail | Unsupported behaviour: ${behavior}
 # Configure SRv6 for direction1 on DUT1
 | | ${dut1_out_if}= | Get Interface Name | ${dut1} | memif1
 | | ${dut1_in_if}= | Get Interface Name | ${dut1} | memif2
 | | Remove Values From List | ${sid_list_dir1} | ${dut1_sid2}
-| | Run Keyword If | "${behavior}" == "static_proxy"
+| | Run Keyword If | '${behavior}' == 'static_proxy'
 | | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.as
 | | ... | ${NONE} | ${dut1_nh} | ${NONE} | ${dut1_out_if} | ${dut1_in_if}
 | | ... | ${dut2_sid2} | @{sid_list_dir1}
-| | ... | ELSE IF | "${behavior}" == "dynamic_proxy"
+| | ... | ELSE IF | '${behavior}' == 'dynamic_proxy'
 | | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.ad
 | | ... | next_hop=${dut1_nh} | out_if=${dut1_out_if} | in_if=${dut1_in_if}
-| | ... | ELSE IF | "${behavior}" == "masquerading"
+| | ... | ELSE IF | '${behavior}' == 'masquerading'
 | | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.am
 | | ... | next_hop=${dut1_nh} | out_if=${dut1_out_if} | in_if=${dut1_in_if}
 | | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
