@@ -495,3 +495,64 @@
 | | ... | --ot_mode | ${ot_mode}
 | | Run Traffic Script On Node | lisp/lispgpe_check.py | ${tg_node}
 | | ... | ${args}
+
+| Send IPv6 Packet and verify SRv6 encapsulation in received packet
+| | [Documentation] | Send IP packet from TG to DUT. Receive IPv6 packet with\
+| | ... | SRv6 extension header from DUT on TG and verify SRv6 encapsulation.\
+| | ... | Send IPv6 packet with SRv6 extension header in opposite direction and\
+| | ... | verify received IP packet.
+| |
+| | ... | *Arguments:*
+| | ... | - node - TG node. Type: dictionary
+| | ... | - tx_interface - TG Interface 1. Type: string
+| | ... | - rx_interface - TG Interface 2. Type: string
+| | ... | - tx_dst_mac - Destination MAC for TX interface / DUT interface 1 MAC.
+| | ... | Type: string
+| | ... | - rx_src_mac - Source MAC for RX interface / DUT interface 2 MAC.
+| | ... | Type: string
+| | ... | - src_ip - Source IP address. Type: string
+| | ... | - dst_ip - Destination IP address. Type: string
+| | ... | - dut_srcsid - Source SID on DUT (dir0). Type: string
+| | ... | - dut_dstsid1 - The first destination SID on DUT (dir1). Type: string
+| | ... | - tg_srcsid - Source SID on TG (dir1). Type: string
+| | ... | - tg_dstsid1 - The first destination SID on TG (dir0). Type: string
+| | ... | - dut_dstsid2 - The second destination SID on DUT (dir1). Type: string
+| | ... | - tg_dstsid2 - The second destination SID on TG (dir0). Type: string
+| | ... | - decap - True if decapsulation expected, false if encapsulated packet
+| | ... | expected on receiving interface (Optional). Type: boolean
+| | ... | - tg_dstsid3 - The third destination SID on TG (dir0) (Optional).
+| | ... | Type: string
+| | ... | - dut_dstsid3 - The third destination SID on DUT (dir1) (Optional).
+| | ... | Type: string
+| | ... | - static_proxy - Switch for SRv6 with endpoint to SR-unaware Service
+| | ... | Function via static proxy (Optional). Type: boolean
+| |
+| | ... | *Example:*
+| | ... | \| Send IPv6 Packet and verify SRv6 encapsulation in received packet\
+| | ... | \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| 2002:1:: \
+| | ... | \| 2003:2:: \| 2003:1:: \| 2002:2:: \| decap=${False} \
+| | ... | \| tg_dstsid3=2002:4:: \| dut_dstsid3=2003:4:: \
+| | ... | \| static_proxy=${True} \|
+| |
+| | [Arguments] | ${node} | ${tx_interface} | ${rx_interface} | ${tx_dst_mac}
+| | ... | ${rx_src_mac} | ${src_ip} | ${dst_ip} | ${dut_srcsid}
+| | ... | ${dut_dstsid1} | ${tg_srcsid} | ${tg_dstsid1}
+| | ... | ${dut_dstsid2}=${None} | ${tg_dstsid2}=${None} | ${decap}=${True}
+| | ... | ${tg_dstsid3}=${None} | ${dut_dstsid3}=${None}
+| | ... | ${static_proxy}=${False}
+| |
+| | ${tx_src_mac}= | Get Interface Mac | ${node} | ${tx_interface}
+| | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_interface}
+| | ${rx_dst_mac}= | Get Interface Mac | ${node} | ${rx_interface}
+| | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_interface}
+| | ${args}= | Catenate | --rx_if ${rx_if_name} | --tx_if ${tx_if_name}
+| | ... | --tx_src_mac ${tx_src_mac} | --tx_dst_mac ${tx_dst_mac}
+| | ... | --rx_src_mac ${rx_src_mac} | --rx_dst_mac ${rx_dst_mac}
+| | ... | --src_ip ${src_ip} | --dst_ip ${dst_ip} | --dir0_srcsid ${dut_srcsid}
+| | ... | --dir0_dstsid1 ${tg_dstsid1} | --dir0_dstsid2 ${tg_dstsid2}
+| | ... | --dir1_srcsid ${tg_srcsid} | --dir1_dstsid1 ${dut_dstsid1}
+| | ... | --dir1_dstsid2 ${dut_dstsid2} | --decap ${decap}
+| | ... | --dir0_dstsid3 ${tg_dstsid3} | --dir1_dstsid3 ${dut_dstsid3}
+| | ... | --static_proxy ${static_proxy}
+| | Run Traffic Script On Node | srv6_encap.py | ${node} | ${args}
