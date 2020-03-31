@@ -52,7 +52,7 @@
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | 1.1.1.2 | ${DUT2_${int}1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut2} | ${DUT2_${int}1_mac}[0] | 1.1.1.1 | ${DUT1_${int}2_mac}[0]
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | 1.1.1.1 | ${DUT1_${int}2_mac}[0]
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
