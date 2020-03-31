@@ -258,6 +258,8 @@ class Constants:
     }
 
     # Mapping from NIC name to its pps limit.
+    # The values are unidirectional, assuming the test
+    # uses two ports on the same NIC.
     NIC_NAME_TO_PPS_LIMIT = {
         u"Cisco-VIC-1227": 14880952,
         u"Cisco-VIC-1385": 18750000,
@@ -266,7 +268,9 @@ class Constants:
         u"Intel-X710": 14880952,
         u"Intel-XL710": 18750000,
         u"Intel-XXV710": 18750000,
-        u"Mellanox-CX556A": 60000000, # 148809523,
+        # The Mellanox card can do much more, but the current TRex version
+        # shows non-negligible duration stretching above 28 Mpps.
+        u"Mellanox-CX556A": 28000000,
         u"Amazon-Nitro-50G": 1500000,
         u"virtual": 14880952,
     }
