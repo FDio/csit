@@ -16,7 +16,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | SRv6 | SRv6_1SID
-| ... | DRV_VFIO_PCI
+| ... | DRV_VFIO_PCI | TEST
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6ip6-ip6base-srv6enc1sid
 |
@@ -107,7 +107,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv6 forwarding over SRv6 with encapsulation with '1' x SID 'with' decapsulation in 3-node circular topology
+| | And Initialize IPv6 forwarding over SRv6 with encapsulation with '1' x SID 'with' decapsulation in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
