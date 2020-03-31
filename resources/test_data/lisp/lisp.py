@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,7 +14,7 @@
 """Test variables of lisp and lispgpe (ip4/ip6) encapsulation test suite."""
 
 # Lisp default global value
-locator_name = b"tst_locator"
+locator_name = u"tst_locator"
 
 # Test configuration data
 tg_if1_ip4= u"6.0.0.2"
