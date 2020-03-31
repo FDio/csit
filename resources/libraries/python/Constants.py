@@ -194,7 +194,7 @@ class Constants:
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 4096)
 
     # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 7)
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 26)
 
     # Trex force start regardles ports state
     TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")
@@ -270,7 +270,7 @@ class Constants:
         u"Intel-XXV710": 18750000,
         # The Mellanox card is able to do more, but the current TRex version
         # shows non-negligible duration stretching already at 30 Mpps.
-        u"Mellanox-CX556A": 28000000,  # 148809523
+        u"Mellanox-CX556A": 60000000,  # 148809523,
         u"Amazon-Nitro-50G": 1500000,
         u"virtual": 14880952,
     }
