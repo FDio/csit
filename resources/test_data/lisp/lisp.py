@@ -14,7 +14,7 @@
 """Test variables of lisp and lispgpe (ip4/ip6) encapsulation test suite."""
 
 # Lisp default global value
-locator_name = b"tst_locator"
+locator_name = u"tst_locator"
 
 # Test configuration data
 tg_if1_ip4= u"6.0.0.2"

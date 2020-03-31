@@ -14,7 +14,7 @@
 """Test variables for Lisp remote static mapping test suite."""
 
 # Lisp default global value
-locator_name = b"ls1"
+locator_name = u"ls1"
 
 # Lisp default locator_set value
 duts_locator_set = {
