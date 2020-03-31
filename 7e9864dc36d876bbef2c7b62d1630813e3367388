@@ -16,6 +16,24 @@
       "revId": "7e9864dc36d876bbef2c7b62d1630813e3367388",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "863d3afe_92c20ee2",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-03-31T11:19:05Z",
+      "side": 1,
+      "message": "\u003e leave the comment\n\nDone.\n\n\u003e also this will cut the 4t2c and 8t4c numbers.\n\nYes. We need to decide whether we want to present the cut numbers or the wrong numbers.\n\nThe alternative is to do some computation in MRR keywords to compensate for the increased duration (assuming the real rate stays constant, which we have no easy way to check).\nBut in that case we would need a different workaround for ndrpdr, reconf and soak tests.",
+      "parentUuid": "34a0abe1_8f1b9aa7",
+      "revId": "7e9864dc36d876bbef2c7b62d1630813e3367388",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
