@@ -292,10 +292,10 @@ class SRv6:
             ip_addr = ip_address(ip_addr)
             prefix = IPUtil.create_prefix_object(ip_addr, int(prefix))
             traffic_type = getattr(
-                    SRv6PolicySteeringTypes, u"SR_STEER_IPV4"
-                ).value if ip_addr.version == 4 else getattr(
-                    SRv6PolicySteeringTypes, u"SR_STEER_IPV6"
-                ).value
+                SRv6PolicySteeringTypes, u"SR_STEER_IPV4"
+            ).value if ip_addr.version == 4 else getattr(
+                SRv6PolicySteeringTypes, u"SR_STEER_IPV6"
+            ).value
         else:
             raise ValueError(f"Unsupported mode: {mode}")
 
@@ -326,8 +326,8 @@ class SRv6:
             is missing.
         """
         sw_if_index, prefix, traffic_type = SRv6._get_sr_steer_policy_args(
-                node, mode, interface, ip_addr, prefix
-            )
+            node, mode, interface, ip_addr, prefix
+        )
 
         cmd = u"sr_steering_add_del"
         args = dict(
