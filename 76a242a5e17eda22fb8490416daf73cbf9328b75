@@ -259,6 +259,30 @@
       "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2629995_831950c1",
+        "filename": "resources/libraries/robot/shared/test_setup.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-01T16:53:49Z",
+      "side": 1,
+      "message": "\u003e i made this bullet proof solution\n\nThe solution works despite the line we are commenting on. Looking at this [0] suite, I see you prepare a variable with prevf in name here [1] and override int to prevf here [2]. Then this bogus line executes here [3], setting wrong value to luckily ignored variable. Then a variable with int in name is accessed here [4] and gets the correct value.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/360/archives/log.html.gz#s1-s1-s1-s1-s9\n[1] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/360/archives/log.html.gz#s1-s1-s1-s1-s9-k1-k5-k1-k1-k1-k1-k1-k1-k1-k1-k1-k7\n[2] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/360/archives/log.html.gz#s1-s1-s1-s1-s9-k1-k5-k1-k1-k1-k1-k1-k1-k1-k2\n[3] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/360/archives/log.html.gz#s1-s1-s1-s1-s9-t1-k1-k2\n[4] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/360/archives/log.html.gz#s1-s1-s1-s1-s9-t1-k2-k7-k1-k1-k1-k1-k1-k1",
+      "parentUuid": "62c63e7f_7b233745",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
