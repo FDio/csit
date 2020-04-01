@@ -140,6 +140,30 @@
       "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a52532f_bd331602",
+        "filename": "resources/libraries/robot/shared/test_setup.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-01T16:04:04Z",
+      "side": 1,
+      "message": "\u003e once the ${int} was declared as suite var in suite setup\n\nAh, you are right. Suite variables are writeable and it is enough to declare them suite-scope once. It shows how rarely I use mutable suite variables.\nExcept that there are caveats. I cannot find the description in Robot User Guide, but I remember there was some limitation in what variables survive from setup keywords. In __init__.robot files I used global variables instead.\n\nMy secondary point is that I think you have the values in wrong order, \"prevf\" suggests it is for the ${nic_vfs} \u003e 0 case. The fact that it works probably means we do not need prevf as (a part of) a separate variable name. Or perhaps some tests are currently doing wrong things in a subtle way not resulting in test failure.\n\nHere is a toy example example, using Set Test Variable in the last line is enough to make it work as intended:\n\n*** Settings ***\n| Suite Setup | setups\n| Test Setup | setupt\n\n***Test Cases***\n| Foo\n| | Log To Console | ${foo}\n\n*** Keywords ***\n| setups\n| | Set Suite Variable | ${foo} | foo\n\n| setupt\n| | Set Variable | ${foo} | bar",
+      "parentUuid": "88e84bf6_0076cf23",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
