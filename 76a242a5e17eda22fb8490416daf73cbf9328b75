@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5dfa6b22_fb15233d",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-01T14:15:48Z",
+      "side": 1,
+      "message": "NodePath is properly computed. And yes double link is working now",
+      "parentUuid": "7e677e6a_6c5b7c8d",
+      "range": {
+        "startLine": 474,
+        "startChar": 18,
+        "endLine": 474,
+        "endChar": 34
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e7ca436_ebfb797b",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 59
