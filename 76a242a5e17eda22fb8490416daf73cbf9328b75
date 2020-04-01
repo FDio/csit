@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6450a484_5d18b51b",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 59
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-01T17:10:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03bd7c1e_a8a8806c",
+      "range": {
+        "startLine": 223,
+        "startChar": 15,
+        "endLine": 223,
+        "endChar": 11
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e677e6a_6c5b7c8d",
         "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
         "patchSetId": 59
@@ -331,6 +355,30 @@
       "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82672f5b_3887c9fa",
+        "filename": "resources/libraries/robot/shared/test_setup.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-01T17:10:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83e53f3d_8180cd2b",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
