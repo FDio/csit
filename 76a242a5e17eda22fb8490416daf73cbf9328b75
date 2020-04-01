@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "bc4fbab7_f2b1a123",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-01T17:12:08Z",
+      "side": 1,
+      "message": "IOW Trex is not yet multiport",
+      "parentUuid": "938afeca_863def54",
+      "range": {
+        "startLine": 474,
+        "startChar": 18,
+        "endLine": 474,
+        "endChar": 34
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e7ca436_ebfb797b",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 59
