@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7e677e6a_6c5b7c8d",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-01T14:04:00Z",
+      "side": 1,
+      "message": "It is not clear to me how do you know PFs 2 and 4 are the ones (the DUT-DUT links) we want to enslave. We can document is somewhere near topology files, but I would prefer a proper NodePath computation. But I see double link tests have troubles (in daily jobs) since switching to AVF as the primary driver, so perhaps this can be used until a specific fix comes.",
+      "range": {
+        "startLine": 474,
+        "startChar": 18,
+        "endLine": 474,
+        "endChar": 34
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e7ca436_ebfb797b",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 59
