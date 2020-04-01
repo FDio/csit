@@ -188,6 +188,30 @@
       "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62c63e7f_7b233745",
+        "filename": "resources/libraries/robot/shared/test_setup.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-01T16:23:29Z",
+      "side": 1,
+      "message": "\u003e The fact that it works probably means we do not need prevf as (a part of) a separate variable name. Or perhaps some tests are currently doing wrong things in a subtle way not resulting in test failure.\n\nI was puzzling but, we have to create new physical (although it is called SRIOV VF) interface in topology file (this is prevf prepare-vf) then we are creating new interfaces in VPP (AVFs or RDMAs). they are different sets (but sharing same info almost). But due to how other KW are designed we have in teardown the routing that VPP interfaces and any other that was created are destroyed between tests in suite (which is good and expected as they no longer exists), but then if i would only use only one set of RF variables i found they become lost (as suite setup is expensive operation taking up to 15s we cannot do it every TC) so i created prevf as a way of \"backup\" that are restored quickly for TC (cheaper then full SRIOV init). I admit it is sort of speed-workaround but (time is time), back to your comment #1 RF seems to not handling it properly in terms of scope when we are overwriting variables so i made this bullet proof solution",
+      "parentUuid": "3a52532f_bd331602",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
