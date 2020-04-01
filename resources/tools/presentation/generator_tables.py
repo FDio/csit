@@ -483,7 +483,8 @@ def _tpc_sort_table(table):
     return table
 
 
-def _tpc_generate_html_table(header, data, output_file_name):
+def _tpc_generate_html_table(header, data, output_file_name, legend=u"",
+                             footnote=u""):
     """Generate html table from input data with simple sorting possibility.
 
     :param header: Table header.
@@ -493,9 +494,13 @@ def _tpc_generate_html_table(header, data, output_file_name):
         header.
     :param output_file_name: The name (relative or full path) where the
         generated html table is written.
+    :param legend: The legend to display below the table.
+    :param footnote: The footnote to display below the table (and legend).
     :type header: list
     :type data: list of lists
     :type output_file_name: str
+    :type legend: str
+    :type footnote: str
     """
 
     try:
@@ -584,6 +589,26 @@ def _tpc_generate_html_table(header, data, output_file_name):
     )
 
     ploff.plot(fig, show_link=False, auto_open=False, filename=output_file_name)
+
+    # Add legend and footnote:
+    if not (legend or footnote):
+        return
+
+    with open(output_file_name, u"rt") as html_file:
+        html_text = html_file.read()
+    if html_text:
+        try:
+            idx = html_text.rindex(u"</div>")
+        except ValueError:
+            return
+        footnote = (legend + footnote).replace(u'\n', u'<br>')
+        html_text = (
+            html_text[:idx] +
+            f"<div>{footnote}</div>" +
+            html_text[idx:]
+        )
+        with open(output_file_name, u"wt") as html_file:
+            html_file.write(html_text)
 
 
 def table_perf_comparison(table, input_data):
@@ -924,17 +949,23 @@ def table_perf_comparison(table, input_data):
     txt_file_name = f"{table[u'output-file']}.txt"
     convert_csv_to_pretty_txt(csv_file, txt_file_name, delimiter=u";")
 
+    footnote = u""
     with open(txt_file_name, u'a') as txt_file:
         txt_file.write(legend)
         if rca_data:
             footnote = rca_data.get(u"footnote", u"")
             if footnote:
-                txt_file.write(u"\n")
                 txt_file.write(footnote)
         txt_file.write(u":END")
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
+    _tpc_generate_html_table(
+        header,
+        tbl_lst,
+        f"{table[u'output-file']}.html",
+        legend=legend,
+        footnote=footnote
+    )
 
 
 def table_perf_comparison_nic(table, input_data):
@@ -1281,17 +1312,23 @@ def table_perf_comparison_nic(table, input_data):
     txt_file_name = f"{table[u'output-file']}.txt"
     convert_csv_to_pretty_txt(csv_file, txt_file_name, delimiter=u";")
 
+    footnote = u""
     with open(txt_file_name, u'a') as txt_file:
         txt_file.write(legend)
         if rca_data:
             footnote = rca_data.get(u"footnote", u"")
             if footnote:
-                txt_file.write(u"\n")
                 txt_file.write(footnote)
         txt_file.write(u":END")
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
+    _tpc_generate_html_table(
+        header,
+        tbl_lst,
+        f"{table[u'output-file']}.html",
+        legend=legend,
+        footnote=footnote
+    )
 
 
 def table_nics_comparison(table, input_data):
@@ -1460,7 +1497,12 @@ def table_nics_comparison(table, input_data):
         txt_file.write(legend)
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
+    _tpc_generate_html_table(
+        header,
+        tbl_lst,
+        f"{table[u'output-file']}.html",
+        legend=legend
+    )
 
 
 def table_soak_vs_ndr(table, input_data):
@@ -1635,7 +1677,12 @@ def table_soak_vs_ndr(table, input_data):
         txt_file.write(legend)
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst, f"{table[u'output-file']}.html")
+    _tpc_generate_html_table(
+        header,
+        tbl_lst,
+        f"{table[u'output-file']}.html",
+        legend=legend
+    )
 
 
 def table_perf_trending_dash(table, input_data):
@@ -1731,7 +1778,7 @@ def table_perf_trending_dash(table, input_data):
                 continue
             tbl_lst.append(
                 [tbl_dict[tst_name][u"name"],
-                 round(last_avg / 1000000, 2),
+                 round(last_avg / 1e6, 2),
                  rel_change_last,
                  rel_change_long,
                  classification_lst[-win_size:].count(u"regression"),
