@@ -307,6 +307,30 @@
       "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83e53f3d_8180cd2b",
+        "filename": "resources/libraries/robot/shared/test_setup.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-01T17:03:20Z",
+      "side": 1,
+      "message": "And here is my idea of a fix: https://gerrit.fd.io/r/c/csit/+/26286/1/resources/libraries/robot/shared/test_setup.robot",
+      "parentUuid": "f2629995_831950c1",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
