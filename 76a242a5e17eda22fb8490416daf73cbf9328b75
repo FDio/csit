@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5034db9a_bce7da2b",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-01T14:23:30Z",
+      "side": 1,
+      "message": "Comparing MRR results, old daily has 5.81 Mpps for 1link [0] and 5.46 Mpps [1] for 2link; this patch has 5.89 Mpps for 1link [2] and 5.28 Mpps for 2link...\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-mrr-daily-master-3n-skx/827/archives/log.html.gz#s1-s1-s1-s8-s3-t1\n[1] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-mrr-daily-master-3n-skx/827/archives/log.html.gz#s1-s1-s1-s8-s7-t1\n[2] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/360/archives/log.html.gz#s1-s1-s1-s1-s3-t1\n[3] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/360/archives/log.html.gz#s1-s1-s1-s1-s7-t1",
+      "parentUuid": "7e677e6a_6c5b7c8d",
+      "range": {
+        "startLine": 474,
+        "startChar": 18,
+        "endLine": 474,
+        "endChar": 34
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e7ca436_ebfb797b",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 59
