@@ -45,6 +45,30 @@
       "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88e84bf6_0076cf23",
+        "filename": "resources/libraries/robot/shared/test_setup.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-01T13:33:58Z",
+      "side": 1,
+      "message": "Without this line it would fail and fall as house of cards.\n\nThe biggest challenge was to connect suite setup with tests isolation. Every test should recover the original variables done on suite level. Sure it can be \"test variable\" although not sure if Robot does sees difference or not once the ${int} was declared as suite var in suite setup",
+      "parentUuid": "75a301c4_2e006019",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
