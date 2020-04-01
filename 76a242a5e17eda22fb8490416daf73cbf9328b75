@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "9fc750cb_3c86087d",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-01T16:18:49Z",
+      "side": 1,
+      "message": "\u003e NodePath is properly computed. And yes double link is working now\n\nOk, I think I understand now. Previously we were setting up only the interfaces we know we will use (no secondary TG-DUT links). Now the code is simplified, it sets all interfaces up, but relies on TRex (and VPP config) keeping the secondary TG-DUT links idle.\nOdd numbers here work with even numbers for DUT2 to select both DUT-DUT links, as NodePath orders it that way (interfaces along primary path first).\n\nAlright, hopefully a VPP worker reading (also) from one more idle interface is not much of a deal.",
+      "parentUuid": "5034db9a_bce7da2b",
+      "range": {
+        "startLine": 474,
+        "startChar": 18,
+        "endLine": 474,
+        "endChar": 34
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e7ca436_ebfb797b",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 59
