@@ -22,6 +22,29 @@
       "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75a301c4_2e006019",
+        "filename": "resources/libraries/robot/shared/test_setup.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-01T13:21:01Z",
+      "side": 1,
+      "message": "It took me a while to realize this does absolutely nothing, as you are setting only a local variable, while the suite variable is already handled correctly by calling (or not) Additional Suite Setup Action For performance vf.",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
