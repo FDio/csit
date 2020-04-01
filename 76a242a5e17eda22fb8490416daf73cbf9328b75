@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "938afeca_863def54",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-01T16:43:09Z",
+      "side": 1,
+      "message": "Trex is not an issue as we are specifying which to use. \nVPP we can decide. we can adjust which are not needed. So for bonding we can use only even. This is why asymetrical setups are what they are (one worker is now handling two interfaces + bonding).",
+      "parentUuid": "9fc750cb_3c86087d",
+      "range": {
+        "startLine": 474,
+        "startChar": 18,
+        "endLine": 474,
+        "endChar": 34
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e7ca436_ebfb797b",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 59
