@@ -567,25 +567,14 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
             go.layout.Updatemenu(
                 type=u"dropdown",
                 direction=u"down",
-                x=0.0,  # 0.03,
+                x=0.0,
                 xanchor=u"left",
                 y=1.045,
                 yanchor=u"top",
                 active=len(menu_items) - 1,
                 buttons=list(buttons)
             )
-        ],
-        # annotations=[
-        #     go.layout.Annotation(
-        #         text=u"<b>Sort by:</b>",
-        #         x=0,
-        #         xref=u"paper",
-        #         y=1.035,
-        #         yref=u"paper",
-        #         align=u"left",
-        #         showarrow=False
-        #     )
-        # ]
+        ]
     )
 
     ploff.plot(
