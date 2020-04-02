@@ -483,7 +483,7 @@ def _tpc_sort_table(table):
     return table
 
 
-def _tpc_generate_html_table(header, data, output_file_name, legend=u"",
+def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
                              footnote=u""):
     """Generate html table from input data with simple sorting possibility.
 
@@ -492,13 +492,13 @@ def _tpc_generate_html_table(header, data, output_file_name, legend=u"",
         Inner lists are rows in the table. All inner lists must be of the same
         length. The length of these lists must be the same as the length of the
         header.
-    :param output_file_name: The name (relative or full path) where the
+    :param out_file_name: The name (relative or full path) where the
         generated html table is written.
     :param legend: The legend to display below the table.
     :param footnote: The footnote to display below the table (and legend).
     :type header: list
     :type data: list of lists
-    :type output_file_name: str
+    :type out_file_name: str
     :type legend: str
     :type footnote: str
     """
@@ -567,7 +567,7 @@ def _tpc_generate_html_table(header, data, output_file_name, legend=u"",
             go.layout.Updatemenu(
                 type=u"dropdown",
                 direction=u"down",
-                x=0.03,
+                x=0.0,  # 0.03,
                 xanchor=u"left",
                 y=1.045,
                 yanchor=u"top",
@@ -575,40 +575,49 @@ def _tpc_generate_html_table(header, data, output_file_name, legend=u"",
                 buttons=list(buttons)
             )
         ],
-        annotations=[
-            go.layout.Annotation(
-                text=u"<b>Sort by:</b>",
-                x=0,
-                xref=u"paper",
-                y=1.035,
-                yref=u"paper",
-                align=u"left",
-                showarrow=False
-            )
-        ]
+        # annotations=[
+        #     go.layout.Annotation(
+        #         text=u"<b>Sort by:</b>",
+        #         x=0,
+        #         xref=u"paper",
+        #         y=1.035,
+        #         yref=u"paper",
+        #         align=u"left",
+        #         showarrow=False
+        #     )
+        # ]
     )
 
-    ploff.plot(fig, show_link=False, auto_open=False, filename=output_file_name)
+    ploff.plot(
+        fig,
+        show_link=False,
+        auto_open=False,
+        filename=f"{out_file_name}_in.html"
+    )
 
-    # Add legend and footnote:
-    if not (legend or footnote):
-        return
-
-    with open(output_file_name, u"rt") as html_file:
-        html_text = html_file.read()
-    if html_text:
-        try:
-            idx = html_text.rindex(u"</div>")
-        except ValueError:
-            return
-        footnote = (legend + footnote).replace(u'\n', u'<br>')
-        html_text = (
-            html_text[:idx] +
-            f"<div>{footnote}</div>" +
-            html_text[idx:]
+    file_name = out_file_name.split(u"/")[-1]
+    if u"vpp" in out_file_name:
+        path = u"_tmp/src/vpp_performance_tests/comparisons/"
+    else:
+        path = u"_tmp/src/dpdk_performance_tests/comparisons/"
+    with open(f"{path}{file_name}.rst", u"wt") as rst_file:
+        rst_file.write(
+            u"\n"
+            u".. |br| raw:: html\n\n    <br />\n\n\n"
+            u".. |prein| raw:: html\n\n    <pre>\n\n\n"
+            u".. |preout| raw:: html\n\n    </pre>\n\n"
         )
-        with open(output_file_name, u"wt") as html_file:
-            html_file.write(html_text)
+        rst_file.write(
+            u".. raw:: html\n\n"
+            f'    <iframe frameborder="0" scrolling="no" '
+            f'width="1600" height="1000" '
+            f'src="../..{out_file_name.replace(u"_build", u"")}_in.html">'
+            f'</iframe>\n\n'
+        )
+        if legend:
+            rst_file.write(legend[1:].replace(u"\n", u" |br| "))
+        if footnote:
+            rst_file.write(footnote.replace(u"\n", u" |br| ")[1:])
 
 
 def table_perf_comparison(table, input_data):
@@ -962,7 +971,7 @@ def table_perf_comparison(table, input_data):
     _tpc_generate_html_table(
         header,
         tbl_lst,
-        f"{table[u'output-file']}.html",
+        table[u'output-file'],
         legend=legend,
         footnote=footnote
     )
@@ -1325,7 +1334,7 @@ def table_perf_comparison_nic(table, input_data):
     _tpc_generate_html_table(
         header,
         tbl_lst,
-        f"{table[u'output-file']}.html",
+        table[u'output-file'],
         legend=legend,
         footnote=footnote
     )
@@ -1500,7 +1509,7 @@ def table_nics_comparison(table, input_data):
     _tpc_generate_html_table(
         header,
         tbl_lst,
-        f"{table[u'output-file']}.html",
+        table[u'output-file'],
         legend=legend
     )
 
@@ -1680,7 +1689,7 @@ def table_soak_vs_ndr(table, input_data):
     _tpc_generate_html_table(
         header,
         tbl_lst,
-        f"{table[u'output-file']}.html",
+        table[u'output-file'],
         legend=legend
     )
 
