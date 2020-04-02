@@ -660,11 +660,11 @@ def table_perf_comparison(table, input_data):
                 f"{item[u'title']} Avg({table[u'include-tests']}): "
                 f"Mean value of {table[u'include-tests']} [Mpps] computed from "
                 f"a series of runs of the listed tests executed against "
-                f"rls{item[u'title']}.\n"
+                f"{item[u'title']}.\n"
                 f"{item[u'title']} Stdev({table[u'include-tests']}): "
                 f"Standard deviation value of {table[u'include-tests']} [Mpps] "
                 f"computed from a series of runs of the listed tests executed "
-                f"against rls{item[u'title']}.\n"
+                f"against {item[u'title']}.\n"
             )
         header.extend(
             [
@@ -687,22 +687,22 @@ def table_perf_comparison(table, input_data):
             f"Avg({table[u'include-tests']}): "
             f"Mean value of {table[u'include-tests']} [Mpps] computed from a "
             f"series of runs of the listed tests executed against "
-            f"rls{table[u'reference'][u'title']}.\n"
+            f"{table[u'reference'][u'title']}.\n"
             f"{table[u'reference'][u'title']} "
             f"Stdev({table[u'include-tests']}): "
             f"Standard deviation value of {table[u'include-tests']} [Mpps] "
             f"computed from a series of runs of the listed tests executed "
-            f"against rls{table[u'reference'][u'title']}.\n"
+            f"against {table[u'reference'][u'title']}.\n"
             f"{table[u'compare'][u'title']} "
             f"Avg({table[u'include-tests']}): "
             f"Mean value of {table[u'include-tests']} [Mpps] computed from a "
             f"series of runs of the listed tests executed against "
-            f"rls{table[u'compare'][u'title']}.\n"
+            f"{table[u'compare'][u'title']}.\n"
             f"{table[u'compare'][u'title']} "
             f"Stdev({table[u'include-tests']}): "
             f"Standard deviation value of {table[u'include-tests']} [Mpps] "
             f"computed from a series of runs of the listed tests executed "
-            f"against rls{table[u'compare'][u'title']}.\n"
+            f"against {table[u'compare'][u'title']}.\n"
             f"Diff({table[u'reference'][u'title']},"
             f"{table[u'compare'][u'title']}): "
             f"Percentage change calculated for mean values.\n"
@@ -1017,11 +1017,11 @@ def table_perf_comparison_nic(table, input_data):
                 f"{item[u'title']} Avg({table[u'include-tests']}): "
                 f"Mean value of {table[u'include-tests']} [Mpps] computed from "
                 f"a series of runs of the listed tests executed against "
-                f"rls{item[u'title']}.\n"
+                f"{item[u'title']}.\n"
                 f"{item[u'title']} Stdev({table[u'include-tests']}): "
                 f"Standard deviation value of {table[u'include-tests']} [Mpps] "
                 f"computed from a series of runs of the listed tests executed "
-                f"against rls{item[u'title']}.\n"
+                f"against {item[u'title']}.\n"
             )
         header.extend(
             [
@@ -1044,22 +1044,22 @@ def table_perf_comparison_nic(table, input_data):
             f"Avg({table[u'include-tests']}): "
             f"Mean value of {table[u'include-tests']} [Mpps] computed from a "
             f"series of runs of the listed tests executed against "
-            f"rls{table[u'reference'][u'title']}.\n"
+            f"{table[u'reference'][u'title']}.\n"
             f"{table[u'reference'][u'title']} "
             f"Stdev({table[u'include-tests']}): "
             f"Standard deviation value of {table[u'include-tests']} [Mpps] "
             f"computed from a series of runs of the listed tests executed "
-            f"against rls{table[u'reference'][u'title']}.\n"
+            f"against {table[u'reference'][u'title']}.\n"
             f"{table[u'compare'][u'title']} "
             f"Avg({table[u'include-tests']}): "
             f"Mean value of {table[u'include-tests']} [Mpps] computed from a "
             f"series of runs of the listed tests executed against "
-            f"rls{table[u'compare'][u'title']}.\n"
+            f"{table[u'compare'][u'title']}.\n"
             f"{table[u'compare'][u'title']} "
             f"Stdev({table[u'include-tests']}): "
             f"Standard deviation value of {table[u'include-tests']} [Mpps] "
             f"computed from a series of runs of the listed tests executed "
-            f"against rls{table[u'compare'][u'title']}.\n"
+            f"against {table[u'compare'][u'title']}.\n"
             f"Diff({table[u'reference'][u'title']},"
             f"{table[u'compare'][u'title']}): "
             f"Percentage change calculated for mean values.\n"
@@ -1493,7 +1493,7 @@ def table_nics_comparison(table, input_data):
                               f"{table[u'output-file']}.txt",
                               delimiter=u";")
 
-    with open(table[u'output-file'], u'a') as txt_file:
+    with open(f"{table[u'output-file']}.txt", u'a') as txt_file:
         txt_file.write(legend)
 
     # Generate html table:
