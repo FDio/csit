@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b6cb2cf_99e8a821",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-02T12:55:54Z",
+      "side": 1,
+      "message": "just exec_cmd_no_error and remove ssh\u003dSSH() and next \"raise\"",
+      "range": {
+        "startLine": 227,
+        "startChar": 43,
+        "endLine": 227,
+        "endChar": 55
+      },
+      "revId": "99f9d6948cb11193abe51cddd931321ef21b363f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70ab9d53_e53dd712",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-02T12:55:54Z",
+      "side": 1,
+      "message": "Reading the whole function few times, the less sense it makes.\n\nPID is either existing or not (sure we can have some unpredictable error 3x) then why the logic is allowing return empty list (specially line 236)? Previously none was considered as system did not return anything.\n\nThe logic should be:\n\npid_list()\nfor 3:\n   exec(pidof)\n   try:\n       pid_list \u003d [int(pid) for pid in stdout.split()]\n       return pid_list\n   except:\n       continue\nelse:\n   do error\n\n\n\nOR\n\nremove the loop and do only:\n   exec\n   try:\n       pid_list \u003d [int(pid) for pid in stdout.split()]\n       return pid_list\n   except:\n       raise",
+      "revId": "99f9d6948cb11193abe51cddd931321ef21b363f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
