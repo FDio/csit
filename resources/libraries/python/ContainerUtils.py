@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -194,8 +194,8 @@ class ContainerManager:
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
-            elif chain_topology == u"cross_horiz":
-                self._configure_vpp_cross_horiz(
+            elif chain_topology == u"sriov_chain_ip4":
+                self._configure_vpp_sriov_chain_ip4(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, **kwargs
                 )
@@ -247,28 +247,27 @@ class ContainerManager:
             f"{self.engine.container.name}-{kwargs[u'sid2']}"
         )
 
-    def _configure_vpp_cross_horiz(self, **kwargs):
-        """Configure VPP in cross horizontal topology (single memif).
+    def _configure_vpp_sriov_chain_ip4(self, **kwargs):
+        """Configure VPP in ... .
 
         :param kwargs: Named parameters.
         :type kwargs: dict
         """
-        if u"DUT1" in self.engine.container.name:
-            if_pci = Topology.get_interface_pci_addr(
-                self.engine.container.node, kwargs[u"dut1_if"])
-            if_name = Topology.get_interface_name(
-                self.engine.container.node, kwargs[u"dut1_if"])
-        if u"DUT2" in self.engine.container.name:
-            if_pci = Topology.get_interface_pci_addr(
-                self.engine.container.node, kwargs[u"dut2_if"])
-            if_name = Topology.get_interface_name(
-                self.engine.container.node, kwargs[u"dut2_if"])
-        self.engine.create_vpp_startup_config_dpdk_dev(if_pci)
+#        if u"DUT1" in self.engine.container.name:
+#            if_pci = Topology.get_interface_pci_addr(
+#                self.engine.container.node, kwargs[u"dut1_if"])
+#            if_name = Topology.get_interface_name(
+#                self.engine.container.node, kwargs[u"dut1_if"])
+#        if u"DUT2" in self.engine.container.name:
+#            if_pci = Topology.get_interface_pci_addr(
+#                self.engine.container.node, kwargs[u"dut2_if"])
+#            if_name = Topology.get_interface_name(
+#                self.engine.container.node, kwargs[u"dut2_if"])
+        self.engine.create_base_vpp_startup_config()
         self.engine.create_vpp_exec_config(
-            u"memif_create_cross_horizon.exec",
-            mid1=kwargs[u"mid1"], sid1=kwargs[u"sid1"], if_name=if_name,
-            socket1=f"{kwargs[u'guest_dir']}/memif-"
-            f"{self.engine.container.name}-{kwargs[u'sid1']}"
+            u"sriov_create_chain_ip4.exec",
+            mid1=kwargs[u"mid1"], sid1=kwargs[u"sid1"],
+            if_name=if_name
         )
 
     def _configure_vpp_chain_functional(self, **kwargs):
@@ -626,7 +625,9 @@ class ContainerEngine:
             vpp_config.add_cpu_corelist_workers(corelist_workers)
         vpp_config.add_buffers_per_numa(215040)
         vpp_config.add_plugin(u"disable", u"default")
+        vpp_config.add_plugin(u"enable", u"avf_plugin.so")
         vpp_config.add_plugin(u"enable", u"memif_plugin.so")
+        vpp_config.add_plugin(u"enable", u"rdma_plugin.so")
         vpp_config.add_heapsize(u"4G")
         vpp_config.add_ip_heap_size(u"4G")
         vpp_config.add_statseg_size(u"4G")
