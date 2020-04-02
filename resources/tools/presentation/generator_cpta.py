@@ -247,7 +247,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
             u"symbol": u"circle",
         },
         text=hover_text,
-        hoverinfo=u"text"
+        hoverinfo=u"text+name"
     )
     traces = [trace_samples, ]
 
