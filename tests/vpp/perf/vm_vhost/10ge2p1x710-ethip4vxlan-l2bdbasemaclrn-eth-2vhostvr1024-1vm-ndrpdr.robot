@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | 1VM | VHOST_1024 | NF_TESTPMD
+| ... | VHOST | 1VM | VHOST_1024 | NF_TESTPMD | TEST
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
