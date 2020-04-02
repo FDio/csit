@@ -206,17 +206,13 @@
 | | ... | - container_chain_topology - Topology type used for configuring CNF
 | | ... | (VPP) in container. Type: string
 | |
-| | ${dut1_if2} = | Get Variable Value | \${dut1_if2} | ${None}
-| | ${dut2_if2} = | Get Variable Value | \${dut2_if2} | ${None}
 | | Run Keyword If | '${container_chain_topology}' == 'chain_ip4'
-| | ... | ${group}.Configure VPP In All Containers
-| | ... | ${container_chain_topology}
-| | ... | tg_if1_mac=${TG_pf1_mac}
-| | ... | tg_if2_mac=${TG_pf2_mac}
+| | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
+| | ... | tg_if1_mac=${TG_pf1_mac}[0]
+| | ... | tg_if2_mac=${TG_pf2_mac}[0]
 | | ... | nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'chain_ipsec'
-| | ... | ${group}.Configure VPP In All Containers
-| | ... | ${container_chain_topology}
+| | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
 | | ... | tg_if1_ip4=${tg_if1_ip4}
 | | ... | tg_if1_mac=${TG_pf1_mac}[0]
 | | ... | tg_if2_ip4=${tg_if2_ip4}
@@ -230,19 +226,14 @@
 | | ... | nodes=${nodes}
 | | ... | nf_nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'pipeline_ip4'
-| | ... | ${group}.Configure VPP In All Containers
-| | ... | ${container_chain_topology}
+| | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
 | | ... | tg_if1_mac=${TG_pf1_mac}[0]
 | | ... | tg_if2_mac=${TG_pf2_mac}[0]
 | | ... | nodes=${nf_nodes}
-| | ... | ELSE IF | '${container_chain_topology}' == 'cross_horiz'
-| | ... | ${group}.Configure VPP In All Containers
-| | ... | ${container_chain_topology}
-| | ... | dut1_if=${DUT1_${int}2}[0]
-| | ... | dut2_if=${DUT2_${int}2}[0]
+| | ... | ELSE IF | '${container_chain_topology}' == 'chain_ip4_novs'
+| | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
 | | ... | ELSE
-| | ... | ${group}.Configure VPP In All Containers
-| | ... | ${container_chain_topology}
+| | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
 
 | Stop all '${group}' containers
 | | [Documentation] | Stop all container(s) in specific container group on all
