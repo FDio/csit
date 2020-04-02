@@ -216,6 +216,30 @@
     },
     {
       "key": {
+        "uuid": "efd729e4_4d47df3c",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-02T09:18:02Z",
+      "side": 1,
+      "message": "My point is that the new code brings one more interface up (for the unused secondary TG-DUT link), VPP does not know it can ignore it.\nBut I guess we can fix that in a separate change.",
+      "parentUuid": "bc4fbab7_f2b1a123",
+      "range": {
+        "startLine": 474,
+        "startChar": 18,
+        "endLine": 474,
+        "endChar": 34
+      },
+      "revId": "76a242a5e17eda22fb8490416daf73cbf9328b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e7ca436_ebfb797b",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 59
