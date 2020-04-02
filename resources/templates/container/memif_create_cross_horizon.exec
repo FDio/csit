@@ -1,8 +1,0 @@
-create memif socket id $sid1 filename $socket1
-create interface memif id $mid1 socket-id $sid1 master
-
-set int state memif$sid1/$mid1 up
-set int state $if_name up
-
-set interface l2 xconnect $if_name memif$sid1/$mid1
-set interface l2 xconnect memif$sid1/$mid1 $if_name

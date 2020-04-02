@@ -1,0 +1,14 @@
+create interface avf $vf1_pci $rxq_size $txq_size $rxq_count
+create interface avf $vf2_pci $rxq_size $txq_size $rxq_count
+
+set interface ip address memif$sid1/$mid1 1.1.$sid1.1/24
+set interface ip address memif$sid2/$mid2 1.1.$sid2.1/24
+
+set interface state $vf1_name up
+set interface state $vf2_name up
+
+set ip neighbor static memif$sid1/$mid1 1.1.$sid1.2 $vf1_mac
+set ip neighbor static memif$sid2/$mid2 1.1.$sid2.2 $vf2_mac
+
+ip route add 10.0.0.0/8 via 1.1.$sid1.2
+ip route add 20.0.0.0/8 via 1.1.$sid2.2
