@@ -1,6 +1,14 @@
 ---
 # file: roles/mellanox/tasks/main.yaml
 
+- name: Mellanox Install - Install Distribution - Release - Machine Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - install-dependencies
+
 - name: Mellanox Install - Check Presence of Mellanox Hardware
   shell: "lspci | grep Mellanox | awk '{print $1}'"
   register: mellanox_pcis

@@ -9,6 +9,8 @@ packages_base:
 packages_by_distro:
   ubuntu:
     - "build-essential"
+    - "libnl-3-dev"
+    - "libnl-route-3-dev"
 
 packages_by_arch:
   aarch64:
