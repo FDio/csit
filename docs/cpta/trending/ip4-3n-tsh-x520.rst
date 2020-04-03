@@ -4,13 +4,6 @@
 64b-ip4routing-base-scale-ixgbe
 ```````````````````````````````
 
-..
-    10ge2p1x520-dot1q-ip4base-mrr
-    10ge2p1x520-ethip4-ip4base-mrr
-    10ge2p1x520-ethip4-ip4scale20k-mrr
-    10ge2p1x520-ethip4-ip4scale200k-mrr
-    10ge2p1x520-ethip4-ip4scale2m-mrr
-
 1t1c
 ::::
 
@@ -58,14 +51,6 @@
 
 64b-features-ip4routing-base-ixgbe
 ``````````````````````````````````
-
-..
-    10ge2p1x520-ethip4-ip4base-mrr
-    10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-iacl50sl-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-oacl50sf-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-oacl50sl-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-nat44-mrr
 
 1t1c
 ::::
