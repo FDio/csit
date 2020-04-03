@@ -4,12 +4,6 @@
 64b-vhost-base-dpdk-testpmd
 ```````````````````````````
 
-..
-    40ge2p1xl710-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
-    40ge2p1xl710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
-    40ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
-    40ge2p1xl710-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr
-
 1t1c
 ::::
 
@@ -54,12 +48,6 @@
 
 64b-vhost-base-dpdk-vpp
 ```````````````````````
-
-..
-    40ge2p1xl710-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-mrr
-    40ge2p1xl710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr
-    40ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr
-    40ge2p1xl710-ethip4-ip4base-eth-2vhostvr1024-1vm-vppl2xc-mrr
 
 1t1c
 ::::
