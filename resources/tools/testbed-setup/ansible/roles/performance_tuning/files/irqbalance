@@ -17,8 +17,7 @@
 #    corresponding bits set to one in this mask will not have any
 #    irq's assigned to them on rebalance
 #
-IRQBALANCE_BANNED_CPUS=ffffffff,ffffffff,ffffffff,fffffffe
-
+IRQBALANCE_BANNED_CPUS="{{ ansible_processor_cores | irqbalance_banned_cpu_mask(ansible_processor_count, ansible_processor_threads_per_core) }}"
 #
 # IRQBALANCE_ARGS
 #    append any args here to the irqbalance daemon as documented in the man page

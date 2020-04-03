@@ -1,0 +1,28 @@
+---
+# file: roles/kernel/defaults/main.yaml
+
+# Kernel version to install (Default to any version).
+kernel_version: "{{ kernel_version_by_distro[ansible_distribution | lower] | join(' ') }}"
+
+kernel_version_by_distro:
+  ubuntu:
+    - "4.15.0-72"
+
+kernel_packages: "{{ kernel_packages_by_distro[ansible_distribution | lower] | flatten(levels=1) }}"
+
+kernel_packages_by_distro:
+  ubuntu:
+    - "linux-image"
+    - "linux-headers"
+    - "linux-modules"
+    - "linux-modules-extra"
+    - "linux-tools"
+
+# Packages to remove in relation to kernel upgrade.
+absent_packages: "{{ absent_packages_by_distro[ansible_distribution | lower] | flatten(levels=1) }}"
+
+absent_packages_by_distro:
+  ubuntu:
+    - "amd64-microcode"
+    - "intel-microcode"
+    - "iucode-tool"
