@@ -149,7 +149,7 @@
     - copy-cpufrequtils
 
 - name: Performance Tuning - Copy Irqbalance File
-  copy:
+  template:
     src: "files/irqbalance"
     dest: "/etc/default/irqbalance"
     owner: "root"
