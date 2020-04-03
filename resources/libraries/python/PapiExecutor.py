@@ -723,14 +723,26 @@ class PapiSocketExecutor:
         logger.trace(u"Phase two.")
         send_index = max_inflight
         # TODO: Put repeated blocks into functions?
+        loop_avg, send_avg, recv_avg, gen_avg = 0.0, 0.0, 0.0, 0.0
+        loop_max, send_max, recv_max, gen_max = 0.0, 0.0, 0.0, 0.0
+        send_index = max_inflight
+        receive_index = 0
+        # TODO: Put repeated blocks into functions?
         while 1:
+            loop_start = time.monotonic()
             if send_index >= lll:
                 break
             # Receive one.
 #            logger.trace(f"recv {send_index - max_inflight}")
             # Blocks up to timeout.
             # TODO: In future we will need to insert no_type_conversion.
+            start = time.monotonic()
             response = vpp_instance.read_blocking()
+            delta = time.monotonic() - start
+            if delta > recv_max:
+                recv_max = delta
+            diff = delta - recv_avg
+            recv_avg += diff / (1.0 + receive_index)
             if response is None:
                 recv_index = send_index - max_inflight
                 err = AssertionError(
@@ -741,14 +753,34 @@ class PapiSocketExecutor:
             ret_list.append(dictize_and_check_retval(response))
             # Send one.
             if fast:
+                start = time.monotonic()
                 generated = iterator.__next__()
+                delta = time.monotonic() - start
+                if delta > gen_max:
+                    gen_max = delta
+                diff = delta - gen_avg
+                gen_avg += diff / (1.0 + receive_index)
+                start = time.monotonic()
                 socket.sendall(generated)
+                delta = time.monotonic() - start
+                if delta > send_max:
+                    send_max = delta
+                diff = delta - send_avg
+                send_avg += diff / (1.0 + receive_index)
             else:
                 command = local_list[send_index]
                 # The getattr result is a function, called immediatelly.
                 getattr(api_object, command[f"api_name"])(**command[f"api_args"])
 #            logger.trace(f"send {send_index}")
             send_index += 1
+            receive_index += 1
+            delta = time.monotonic() - loop_start
+            if delta > loop_max:
+                loop_max = delta
+            diff = delta - loop_avg
+            loop_avg += diff / (1.0 + receive_index)
+        logger.trace(f"loop avg {loop_avg} send avg {send_avg} recv avg {recv_avg} gen avg {gen_avg}")
+        logger.trace(f"loop max {loop_max} send max {send_max} recv max {recv_max} gen max {gen_max}")
         logger.trace(u"Phase three.")
         # Phase three: only receiving.
         for count in range(len_one):
