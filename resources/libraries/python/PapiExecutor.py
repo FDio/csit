@@ -758,13 +758,13 @@ class PapiSocketExecutor:
 #            logger.trace(f"sent {generated.hex()}")
         # Phase two: receive one, send one.
 #        logger.trace(u"Phase two.")
-#        loop_avg, send_avg, recv_avg, gen_avg = 0.0, 0.0, 0.0, 0.0
-#        loop_rec, send_rec, recv_rec, gen_rec = 0.0, 0.0, 0.0, 0.0
+        loop_avg, send_avg, recv_avg, gen_avg = 0.0, 0.0, 0.0, 0.0
+        loop_rec, send_rec, recv_rec, gen_rec = 0.0, 0.0, 0.0, 0.0
         send_index = max_inflight
         receive_index = 0
         # TODO: Put repeated blocks into functions?
         while 1:
-#            loop_start = time.monotonic()
+            loop_start = time.monotonic()
             if send_index >= lll:
                 break
             # Receive one.
@@ -773,15 +773,15 @@ class PapiSocketExecutor:
             if fast_receive:
                 # We already handled first two responses.
                 if receive_index >= 2:
-#                    start = time.monotonic()
+                    start = time.monotonic()
                     vpp_instance.transport.q.get(
                         timeout=vpp_instance.read_timeout
                     )
-#                    delta = time.monotonic() - start
-#                    if delta > recv_rec:
-#                        recv_rec = delta
-#                    diff = delta - recv_avg
-#                    recv_avg += diff / (1.0 + receive_index)
+                    delta = time.monotonic() - start
+                    if delta > recv_rec:
+                        recv_rec = delta
+                    diff = delta - recv_avg
+                    recv_avg += diff / (1.0 + receive_index)
             else:
                 # Blocks up to timeout.
                 # TODO: In future we will need to insert no_type_conversion.
@@ -797,20 +797,20 @@ class PapiSocketExecutor:
                 raise_from(RuntimeError(err_msg), err, f"INFO")
             # Send one.
             if fast_send:
-#                start = time.monotonic()
+                start = time.monotonic()
                 generated = send_iterator.__next__()
-#                delta = time.monotonic() - start
-#                if delta > gen_rec:
-#                    gen_rec = delta
-#                diff = delta - gen_avg
-#                gen_avg += diff / (1.0 + receive_index)
-#                start = time.monotonic()
+                delta = time.monotonic() - start
+                if delta > gen_rec:
+                    gen_rec = delta
+                diff = delta - gen_avg
+                gen_avg += diff / (1.0 + receive_index)
+                start = time.monotonic()
                 socket.sendall(generated)
-#                delta = time.monotonic() - start
-#                if delta > send_rec:
-#                    send_rec = delta
-#                diff = delta - send_avg
-#                send_avg += diff / (1.0 + receive_index)
+                delta = time.monotonic() - start
+                if delta > send_rec:
+                    send_rec = delta
+                diff = delta - send_avg
+                send_avg += diff / (1.0 + receive_index)
             else:
                 command = local_list[send_index]
                 func = getattr(api_object, command[f"api_name"])
@@ -818,13 +818,13 @@ class PapiSocketExecutor:
 #            logger.trace(f"send {send_index}")
             send_index += 1
             receive_index += 1
-#        delta = time.monotonic() - loop_start
-#        if delta > loop_rec:
-#            loop_rec = delta
-#        diff = delta - loop_avg
-#        loop_avg += diff / (1.0 + receive_index)
-#        logger.trace(f"loop avg {loop_avg} send avg {send_avg} recv avg {recv_avg} gen avg {gen_avg}")
-#        logger.trace(f"loop rec {loop_rec} send rec {send_rec} recv rec {recv_rec} gen rec {gen_rec}")
+        delta = time.monotonic() - loop_start
+        if delta > loop_rec:
+            loop_rec = delta
+        diff = delta - loop_avg
+        loop_avg += diff / (1.0 + receive_index)
+        logger.trace(f"loop avg {loop_avg} send avg {send_avg} recv avg {recv_avg} gen avg {gen_avg}")
+        logger.trace(f"loop rec {loop_rec} send rec {send_rec} recv rec {recv_rec} gen rec {gen_rec}")
 #        logger.trace(u"Phase three.")
         # Phase three: only receiving.
         for count in range(len_one):
