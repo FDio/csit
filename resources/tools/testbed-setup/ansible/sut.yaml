@@ -24,6 +24,8 @@
       tags: kernel_vm
     - role: performance_tuning
       tags: performance_tuning
+    - role: kernel
+      tags: kernel
     - role: cleanup
       tags: cleanup
     - role: calibration
