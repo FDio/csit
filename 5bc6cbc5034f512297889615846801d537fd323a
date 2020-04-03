@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5ad89445_ba944a91",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 64
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-04-03T09:53:41Z",
+      "side": 1,
+      "message": "Usage of vlan strip off depends also on used driver - it needs to be set in case of vfio-pci driver but cannot be set in case of avf driver.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 0
+      },
+      "revId": "5bc6cbc5034f512297889615846801d537fd323a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b23feee_8b9e4e4b",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 64
