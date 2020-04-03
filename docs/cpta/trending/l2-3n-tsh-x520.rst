@@ -4,12 +4,6 @@
 64b-l2switching-base-ixgbe
 ``````````````````````````
 
-..
-    10ge2p1x520-dot1q-l2xcbase-mrr
-    10ge2p1x520-eth-l2xcbase-mrr
-    10ge2p1x520-dot1q-l2bdbasemaclrn-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-mrr
-
 1t1c
 ::::
 
@@ -54,14 +48,6 @@
 
 64b-l2switching-base-scale-ixgbe
 ````````````````````````````````
-
-..
-    10ge2p1x520-eth-l2patch-mrr
-    10ge2p1x520-eth-l2xcbase-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-mrr
-    10ge2p1x520-eth-l2bdscale10kmaclrn-mrr
-    10ge2p1x520-eth-l2bdscale100kmaclrn-mrr
-    10ge2p1x520-eth-l2bdscale1mmaclrn-mrr
 
 1t1c
 ::::
@@ -110,14 +96,6 @@
 
 64b-features-l2switching-base-ixgbe
 ```````````````````````````````````
-
-..
-    10ge2p1x520-eth-l2bdbasemaclrn-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-oacl50sf-10kflows-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr
 
 1t1c
 ::::
