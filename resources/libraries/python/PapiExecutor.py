@@ -779,10 +779,14 @@ class PapiSocketExecutor:
 #            logger.trace(f"sent {generated.hex()}")
         # Phase two: receive one, send one.
 #        logger.trace(u"Phase two.")
+        loop_avg, send_avg, recv_avg, gen_avg = 0.0, 0.0, 0.0, 0.0
+        loop_max, send_max, recv_max, gen_max = 0.0, 0.0, 0.0, 0.0
+        loop_min, send_min, recv_min, gen_min = 9000.0, 9000.0, 9000.0, 9000.0
         send_index = max_inflight
         receive_index = 0
         # TODO: Put repeated blocks into functions?
         while 1:
+            loop_start = time.monotonic()
             if send_index >= lll:
                 break
             # Receive one.
@@ -791,13 +795,29 @@ class PapiSocketExecutor:
             if fast_receive:
                 # We already handled first two responses.
                 if receive_index >= 2:
+                    start = time.monotonic()
                     _ = select.select([under_socket], [], [])
                     msg = transport._read()
                     # TODO: Check something on the msg?
+                    delta = time.monotonic() - start
+                    if delta > recv_max:
+                        recv_max = delta
+                    if delta < recv_min:
+                        recv_min = delta
+                    diff = delta - recv_avg
+                    recv_avg += diff / (receive_index - 1.0)
             else:
                 # Blocks up to timeout.
                 # TODO: In future we will need to insert no_type_conversion.
+                start = time.monotonic()
                 response = vpp_instance.read_blocking()
+                delta = time.monotonic() - start
+                if delta > recv_max:
+                    recv_max = delta
+                if delta < recv_min:
+                    recv_min = delta
+                diff = delta - recv_avg
+                recv_avg += diff / (receive_index + 1.0)
                 if response is None:
                     cmd = local_list[receive_index]
                     err = AssertionError(
@@ -809,9 +829,25 @@ class PapiSocketExecutor:
                 raise_from(RuntimeError(err_msg), err, f"INFO")
             # Send one.
             if fast_send:
+                start = time.monotonic()
                 generated = send_iterator.__next__()
+                delta = time.monotonic() - start
+                if delta > gen_max:
+                    gen_max = delta
+                if delta < gen_min:
+                    gen_min = delta
+                diff = delta - gen_avg
+                gen_avg += diff / (1.0 + receive_index)
+                start = time.monotonic()
                 # Make it triple sure.
                 under_socket.sendall(generated)
+                delta = time.monotonic() - start
+                if delta > send_max:
+                    send_max = delta
+                if delta < send_min:
+                    send_min = delta
+                diff = delta - send_avg
+                send_avg += diff / (1.0 + receive_index)
             else:
                 command = local_list[send_index]
                 func = getattr(api_object, command[f"api_name"])
@@ -819,6 +855,16 @@ class PapiSocketExecutor:
 #            logger.trace(f"send {send_index}")
             send_index += 1
             receive_index += 1
+            delta = time.monotonic() - loop_start
+            if delta > loop_max:
+                loop_max = delta
+            if delta < loop_min:
+                loop_min = delta
+            diff = delta - loop_avg
+            loop_avg += diff / (1.0 + receive_index)
+        logger.trace(f"loop avg {loop_avg} send avg {send_avg} recv avg {recv_avg} gen avg {gen_avg}")
+        logger.trace(f"loop max {loop_max} send max {send_max} recv max {recv_max} gen max {gen_max}")
+        logger.trace(f"loop min {loop_min} send min {send_min} recv min {recv_min} gen min {gen_min}")
 #        logger.trace(u"Phase three.")
         # Phase three: only receiving.
         for count in range(len_one):
