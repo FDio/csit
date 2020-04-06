@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -33,6 +33,8 @@
 | |
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show PAPI History On All DUTs | ${nodes}
+| | Run Keyword If Test Failed
+| | ... | Show Log On All DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Get Core Files on All Nodes | ${nodes}
 | | Run Keyword If Test Failed
