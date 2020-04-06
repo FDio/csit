@@ -38,15 +38,24 @@ export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
+<<<<<<< HEAD   (ede849 Report: Add pdf version)
 <<<<<<< HEAD   (35a360 Report: Add data)
+=======
+<<<<<<< HEAD   (ef4187 Report: Add pdf version)
+>>>>>>> CHANGE (68013a Report: Configure report 2001.15)
     --week "13" \
 =======
+<<<<<<< HEAD   (ede849 Report: Add pdf version)
 <<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
     --week "12" \
 =======
     --week "14" \
 >>>>>>> CHANGE (0ed80e Report: COnfigure reoirt 2001.14)
 >>>>>>> CHANGE (bdfc93 Report: COnfigure reoirt 2001.14)
+=======
+    --week "15" \
+>>>>>>> CHANGE (8e601d Report: Configure report 2001.15)
+>>>>>>> CHANGE (68013a Report: Configure report 2001.15)
     --logging INFO \
     --force
 
