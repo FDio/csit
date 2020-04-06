@@ -6,7 +6,11 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+<<<<<<< HEAD   (ef4187 Report: Add pdf version)
 | .13            | 1. Added data:                                             |
+=======
+| .15            | 1. Added data:                                             |
+>>>>>>> CHANGE (8e601d Report: Configure report 2001.15)
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -22,6 +26,13 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
+<<<<<<< HEAD   (ef4187 Report: Add pdf version)
+=======
+| .14            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .13            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+>>>>>>> CHANGE (8e601d Report: Configure report 2001.15)
 | .12            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .11            | 1. Added Soak tests                                        |

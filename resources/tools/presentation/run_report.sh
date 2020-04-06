@@ -38,7 +38,11 @@ export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
+<<<<<<< HEAD   (ef4187 Report: Add pdf version)
     --week "13" \
+=======
+    --week "15" \
+>>>>>>> CHANGE (8e601d Report: Configure report 2001.15)
     --logging INFO \
     --force
 
