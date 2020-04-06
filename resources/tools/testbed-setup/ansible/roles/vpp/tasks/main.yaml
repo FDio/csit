@@ -9,6 +9,14 @@
   tags:
     - install-dependencies
 
+- name: SUT - Install VPP 19.08 PIP requirements
+  pip:
+    name:
+      - "aenum==2.1.2"
+    executable: pip2
+  tags:
+    - install-pip
+
 - name: SUT - Copy 80-vpp.conf
   file:
     src: "/dev/null"
@@ -16,4 +24,4 @@
     state: "link"
   become: yes
   tags:
-    - copy-80-vpp
+    - create-80-vpp
