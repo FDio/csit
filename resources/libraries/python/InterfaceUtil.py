@@ -1184,6 +1184,10 @@ class InterfaceUtil:
         :raises RuntimeError: If it is not possible to create RDMA interface on
             the node.
         """
+        PapiSocketExecutor.run_cli_cmd(
+            node, u"set logging class avf level debug"
+        )
+
         cmd = u"rdma_create"
         pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
