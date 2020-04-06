@@ -34,7 +34,9 @@ function ansible_adhoc () {
         die "Failed to read hosts from working topology!"
     }
     pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
-    ANSIBLE_STDOUT_CALLBACK=yaml ansible \
+    ANSIBLE_STDOUT_CALLBACK=yaml \
+    ANSIBLE_PIPELINING=true \
+        ansible \
         --vault-password-file=vault_pass \
         --extra-vars '@vault.yml' \
         --inventory inventories/lf_inventory/hosts site.yaml \
@@ -63,7 +65,9 @@ function ansible_playbook () {
         die "Failed to read hosts from working topology!"
     }
     pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
-    ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook \
+    ANSIBLE_STDOUT_CALLBACK=yaml \
+    ANSIBLE_PIPELINING=true \
+        ansible-playbook \
         --vault-password-file=vault_pass \
         --extra-vars '@vault.yml' \
         --inventory inventories/lf_inventory/hosts site.yaml \
