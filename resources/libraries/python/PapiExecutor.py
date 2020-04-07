@@ -18,11 +18,13 @@ import copy
 import glob
 import json
 import logging
+import select
 import shutil
 import struct  # vpp-papi can raise struct.error
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 
 from pprint import pformat
@@ -706,11 +708,13 @@ class PapiSocketExecutor:
         # Just to save some CPU work inside loop.
         vpp_instance = self.vpp_instance
         api_object = vpp_instance.api
+        transport = vpp_instance.transport
         read_timeout = vpp_instance.read_timeout
+        restore_thread = False
         if fast_send:
-            under_socket = vpp_instance.transport.socket
+            under_socket = transport.socket
             socket = SpyingSocket(under_socket, capture=True)
-            vpp_instance.transport.socket = socket
+            transport.socket = socket
             # The under_socket could have been SpyingSocket already.
             under_socket = socket.under_socket
         ret_list = list()
@@ -735,7 +739,7 @@ class PapiSocketExecutor:
                 second_sent = socket.flush_sent()
 #                logger.trace(f"second sent {second_sent.hex()}")
                 # No need for spying anymore, swap back.
-                vpp_instance.transport.socket = under_socket
+                transport.socket = under_socket
                 # Be double sure no spying can happen from now on.
                 # I wasted many hours investigating why sending becomes slow.
                 socket.capture = False
@@ -759,6 +763,18 @@ class PapiSocketExecutor:
                 if response is None:
                     raise RuntimeError(f"Timeout processing second reply.")
                 ret_list.append(dictize_and_check_retval(response))
+                # Now, we disable the PAPI listening thread.
+                transport.sque.put(True)
+                transport.message_thread.join()
+                restore_thread = True
+                # Pop the one None added when the thread closes.
+                non = transport.q.get(block=True, timeout=read_timeout)
+                if non is not None:
+                    raise RuntimeError(f"Got non-None from q {non!r}")
+                # Also pop the None we used to kill the thread with.
+                non = transport.sque.get(block=False)
+                if non is not None:
+                    raise RuntimeError(f"Got non-None from sque {non!r}")
                 continue
             # fast_send and count >= 2.
 #            logger.trace(f"template before {send_template!r}")
@@ -779,21 +795,21 @@ class PapiSocketExecutor:
             if fast_receive:
                 # We already handled first two responses.
                 if receive_index >= 2:
-                    vpp_instance.transport.q.get(
-                        block=True, timeout=read_timeout
-                    )
-                    # TODO: Handle queue.Empty
+                    _ = select.select([under_socket], [], [])
+                    msg = transport._read()
+                    # TODO: Check something on the msg?
             else:
                 # Blocks up to timeout.
                 # TODO: In future we will need to insert no_type_conversion.
                 response = vpp_instance.read_blocking()
+#                logger.trace(f"reponse {response!r}")
                 if response is None:
                     cmd = local_list[receive_index]
                     err = AssertionError(
                         f"Timeout index {receive_index} cmd {cmd!r}"
                     )
-#                logger.trace(f"reponse {response!r}")
-                ret_list.append(dictize_and_check_retval(response))
+                else:
+                    ret_list.append(dictize_and_check_retval(response))
             if err:
                 raise_from(RuntimeError(err_msg), err, f"INFO")
             # Send one.
@@ -816,10 +832,9 @@ class PapiSocketExecutor:
             if fast_receive:
                 # We already handled first two responses.
                 if receive_index >= 2:
-                    vpp_instance.transport.q.get(
-                        block=True, timeout=read_timeout
-                    )
-                    # TODO: Handle queue.Empty
+                    _ = select.select([under_socket], [], [])
+                    msg = transport._read()
+                    # TODO: Check something on the msg?
             else:
                 # Blocks up to timeout.
                 # TODO: In future we will need to insert no_type_conversion.
@@ -829,10 +844,16 @@ class PapiSocketExecutor:
                     err = AssertionError(
                         f"Timeout index {receive_index} cmd {cmd!r}"
                     )
-                ret_list.append(dictize_and_check_retval(response))
+                else:
+                    ret_list.append(dictize_and_check_retval(response))
             if err:
                 raise_from(RuntimeError(err_msg), err, f"INFO")
             receive_index += 1
+        # Re-start the background reading thread.
+        if restore_thread:
+            transport.message_thread = threading.Thread(target=transport.msg_thread_func)
+            transport.message_thread.daemon = True
+            transport.message_thread.start()
         return ret_list
 
 
