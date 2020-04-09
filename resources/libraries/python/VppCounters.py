@@ -112,6 +112,8 @@ class VppCounters:
                         f"stats runtime ({node[u'host']} - {socket}):\n"
                         f"{pformat(runtime_nz)}"
                     )
+        # Run also the CLI command, the above sometimes misses some info.
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show runtime")
 
     @staticmethod
     def vpp_show_runtime_on_all_duts(nodes):
