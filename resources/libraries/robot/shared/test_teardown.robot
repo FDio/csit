@@ -33,6 +33,8 @@
 | |
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show PAPI History On All DUTs | ${nodes}
+| | VPP Show Threads On All DUTs | ${nodes}
+| | Dump Rx Placement On All DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Get Core Files on All Nodes | ${nodes}
 | | Run Keyword If Test Failed

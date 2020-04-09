@@ -1633,6 +1633,19 @@ class InterfaceUtil:
         return sorted(details, key=lambda k: k[u"sw_if_index"])
 
     @staticmethod
+    def dump_rx_placement_on_all_duts(nodes):
+        """Dump VPP interface RX placement on all DUTs.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                PapiSocketExecutor.dump_and_log(
+                    node, [u"sw_interface_rx_placement_dump",]
+                )
+
+    @staticmethod
     def vpp_sw_interface_set_rx_placement(
             node, sw_if_index, queue_id, worker_id):
         """Set interface RX placement to worker on node.

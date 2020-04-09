@@ -350,3 +350,14 @@ class VPPUtil:
         logger.trace(f"show threads:\n{threads_data}")
 
         return threads_data
+
+    @staticmethod
+    def vpp_show_threads_on_all_duts(nodes):
+        """Show VPP threads on all DUTs in the given topology.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                VPPUtil.vpp_show_threads(node)
