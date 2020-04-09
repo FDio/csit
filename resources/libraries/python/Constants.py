@@ -191,7 +191,7 @@ class Constants:
     TREX_INSTALL_DIR = u"/opt/trex-core-2.73"
 
     # TRex limit memory.
-    TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 4096)
+    TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 8192)
 
     # TRex number of cores
     TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 15)
@@ -200,7 +200,8 @@ class Constants:
     TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")
 
     # TRex extra commandline arguments
-    TREX_EXTRA_CMDLINE = get_str_from_env(u"TREX_EXTRA_CMDLINE", u"")
+    TREX_EXTRA_CMDLINE = get_str_from_env(
+        u"TREX_EXTRA_CMDLINE", u"--mbuf-factor 32")
 
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
