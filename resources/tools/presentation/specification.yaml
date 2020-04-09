@@ -251,16 +251,16 @@
 
     plot-vpp-hoststack-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
-        - 87  # hoststack
-        - 88  # hoststack
-        - 89  # hoststack
-        - 90  # hoststack
-        - 91  # hoststack
-        - 92  # hoststack
-        - 93  # hoststack
-        - 94  # hoststack
-        - 95  # hoststack
-        - 96  # hoststack
+        - 103  # hoststack
+        - 104  # hoststack
+        - 105  # hoststack
+        - 106  # hoststack
+        - 107  # hoststack
+        - 108  # hoststack
+        - 109  # hoststack
+        - 110  # hoststack
+        - 111  # hoststack
+        - 112  # hoststack
 
     plot-dpdk-hdrh-lat-3n-hsw:
       csit-dpdk-perf-verify-2001-3n-hsw:
@@ -271,44 +271,16 @@
     plot-vpp-throughput-lat-tsa-3n-skx:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 45  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 49  # NDRPDR sel
-        - 51  # NDRPDR sel
-        - 52  # NDRPDR sel
-        - 59  # NDRPDR sel
-        - 65  # NDRPDR sel
-        - 66  # NDRPDR sel
-        - 54  # NDRPDR sel addition
-        - 55  # NDRPDR sel addition
-        - 56  # NDRPDR sel addition
-        - 57  # NDRPDR sel addition
-        - 58  # NDRPDR sel addition
-        - 60  # NDRPDR sel addition
-        - 61  # NDRPDR sel addition
-        - 62  # NDRPDR sel addition
-        - 63  # NDRPDR sel addition
-        - 64  # NDRPDR sel addition
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
-        - 46  # NDRPDR sel
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-nfv-3n-skx-ndrpdr:
       # TODO: Add data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 45  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 49  # NDRPDR sel
-        - 51  # NDRPDR sel
-        - 52  # NDRPDR sel
-        - 59  # NDRPDR sel
-        - 65  # NDRPDR sel
-        - 66  # NDRPDR sel
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-nfv-3n-skx-mrr:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -345,30 +317,19 @@
 
     plot-vpp-throughput-lat-tsa-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 92  # NDRPDR sel
-        - 93  # NDRPDR sel
-        - 94  # NDRPDR sel
-        - 95  # NDRPDR sel
-        - 96  # NDRPDR sel
-        - 97  # NDRPDR sel
-        - 98  # NDRPDR sel
-        - 99  # NDRPDR sel
-        - 100 # NDRPDR sel
-        - 102 # NDRPDR sel
-        - 129 # NDRPDR sel addition
-        - 130 # NDRPDR sel addition
-        - 131 # NDRPDR sel addition
-        - 132 # NDRPDR sel addition
-        - 133 # NDRPDR sel addition
-        - 134 # NDRPDR sel addition
-        - 135 # NDRPDR sel addition
-        - 136 # NDRPDR sel addition
-        - 137 # NDRPDR sel addition
-        - 138 # NDRPDR sel addition
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 92  # NDRPDR sel
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-http-server-performance:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -619,49 +580,19 @@
     vpp-nic-comparison-3n-skx:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 45  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 49  # NDRPDR sel
-        - 51  # NDRPDR sel
-        - 52  # NDRPDR sel
-        - 59  # NDRPDR sel
-        - 65  # NDRPDR sel
-        - 66  # NDRPDR sel
-        - 54  # NDRPDR sel addition
-        - 55  # NDRPDR sel addition
-        - 56  # NDRPDR sel addition
-        - 57  # NDRPDR sel addition
-        - 58  # NDRPDR sel addition
-        - 60  # NDRPDR sel addition
-        - 61  # NDRPDR sel addition
-        - 62  # NDRPDR sel addition
-        - 63  # NDRPDR sel addition
-        - 64  # NDRPDR sel addition
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 92  # NDRPDR sel
-        - 93  # NDRPDR sel
-        - 94  # NDRPDR sel
-        - 95  # NDRPDR sel
-        - 96  # NDRPDR sel
-        - 97  # NDRPDR sel
-        - 98  # NDRPDR sel
-        - 99  # NDRPDR sel
-        - 100 # NDRPDR sel
-        - 102 # NDRPDR sel
-        - 129 # NDRPDR sel addition
-        - 130 # NDRPDR sel addition
-        - 131 # NDRPDR sel addition
-        - 132 # NDRPDR sel addition
-        - 133 # NDRPDR sel addition
-        - 134 # NDRPDR sel addition
-        - 135 # NDRPDR sel addition
-        - 136 # NDRPDR sel addition
-        - 137 # NDRPDR sel addition
-        - 138 # NDRPDR sel addition
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -717,13 +648,12 @@
     vpp-perf-results-3n-skx:
       # TODO: Replace
       csit-vpp-perf-verify-2001-3n-skx:
-        - 47  # NDRPDR sel
-        - 54  # NDRPDR sel addition
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         # TODO: Replace
-        - 92  # NDRPDR sel
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
 
     vpp-perf-results-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -909,26 +839,7 @@
     vpp-performance-changes-3n-skx-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 45  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 49  # NDRPDR sel
-        - 51  # NDRPDR sel
-        - 52  # NDRPDR sel
-        - 59  # NDRPDR sel
-        - 65  # NDRPDR sel
-        - 66  # NDRPDR sel
-        - 54  # NDRPDR sel addition
-        - 55  # NDRPDR sel addition
-        - 56  # NDRPDR sel addition
-        - 57  # NDRPDR sel addition
-        - 58  # NDRPDR sel addition
-        - 60  # NDRPDR sel addition
-        - 61  # NDRPDR sel addition
-        - 62  # NDRPDR sel addition
-        - 63  # NDRPDR sel addition
-        - 64  # NDRPDR sel addition
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -960,26 +871,15 @@
         - 46  # NDRPDR sel
     vpp-performance-changes-2n-skx-cmp:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 92  # NDRPDR sel
-        - 93  # NDRPDR sel
-        - 94  # NDRPDR sel
-        - 95  # NDRPDR sel
-        - 96  # NDRPDR sel
-        - 97  # NDRPDR sel
-        - 98  # NDRPDR sel
-        - 99  # NDRPDR sel
-        - 100 # NDRPDR sel
-        - 102 # NDRPDR sel
-        - 129 # NDRPDR sel addition
-        - 130 # NDRPDR sel addition
-        - 131 # NDRPDR sel addition
-        - 132 # NDRPDR sel addition
-        - 133 # NDRPDR sel addition
-        - 134 # NDRPDR sel addition
-        - 135 # NDRPDR sel addition
-        - 136 # NDRPDR sel addition
-        - 137 # NDRPDR sel addition
-        - 138 # NDRPDR sel addition
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     vpp-performance-changes-2n-skx:
       - "vpp-performance-changes-2n-skx-h1"
       - "vpp-performance-changes-2n-skx-ref"
@@ -1085,26 +985,15 @@
 
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 92  # NDRPDR sel
-        - 93  # NDRPDR sel
-        - 94  # NDRPDR sel
-        - 95  # NDRPDR sel
-        - 96  # NDRPDR sel
-        - 97  # NDRPDR sel
-        - 98  # NDRPDR sel
-        - 99  # NDRPDR sel
-        - 100 # NDRPDR sel
-        - 102 # NDRPDR sel
-        - 129 # NDRPDR sel addition
-        - 130 # NDRPDR sel addition
-        - 131 # NDRPDR sel addition
-        - 132 # NDRPDR sel addition
-        - 133 # NDRPDR sel addition
-        - 134 # NDRPDR sel addition
-        - 135 # NDRPDR sel addition
-        - 136 # NDRPDR sel addition
-        - 137 # NDRPDR sel addition
-        - 138 # NDRPDR sel addition
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     vpp-soak-vs-ndr-2n-skx-cmp:
       # TODO: Replace
       # csit-vpp-perf-verify-2001-2n-skx:
@@ -1113,26 +1002,15 @@
         - 86  # SOAK
     vpp-soak-vs-ndr-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 92  # NDRPDR sel
-        - 93  # NDRPDR sel
-        - 94  # NDRPDR sel
-        - 95  # NDRPDR sel
-        - 96  # NDRPDR sel
-        - 97  # NDRPDR sel
-        - 98  # NDRPDR sel
-        - 99  # NDRPDR sel
-        - 100 # NDRPDR sel
-        - 102 # NDRPDR sel
-        - 129 # NDRPDR sel addition
-        - 130 # NDRPDR sel addition
-        - 131 # NDRPDR sel addition
-        - 132 # NDRPDR sel addition
-        - 133 # NDRPDR sel addition
-        - 134 # NDRPDR sel addition
-        - 135 # NDRPDR sel addition
-        - 136 # NDRPDR sel addition
-        - 137 # NDRPDR sel addition
-        - 138 # NDRPDR sel addition
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
         - 83  # SOAK
         - 86  # SOAK
 
@@ -1423,52 +1301,22 @@
     vpp-compare-testbeds-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 45  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 49  # NDRPDR sel
-        - 51  # NDRPDR sel
-        - 52  # NDRPDR sel
-        - 59  # NDRPDR sel
-        - 65  # NDRPDR sel
-        - 66  # NDRPDR sel
-        - 54  # NDRPDR sel addition
-        - 55  # NDRPDR sel addition
-        - 56  # NDRPDR sel addition
-        - 57  # NDRPDR sel addition
-        - 58  # NDRPDR sel addition
-        - 60  # NDRPDR sel addition
-        - 61  # NDRPDR sel addition
-        - 62  # NDRPDR sel addition
-        - 63  # NDRPDR sel addition
-        - 64  # NDRPDR sel addition
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
 
     vpp-compare-testbeds-skx-clx-ref:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 92  # NDRPDR sel
-        - 93  # NDRPDR sel
-        - 94  # NDRPDR sel
-        - 95  # NDRPDR sel
-        - 96  # NDRPDR sel
-        - 97  # NDRPDR sel
-        - 98  # NDRPDR sel
-        - 99  # NDRPDR sel
-        - 100 # NDRPDR sel
-        - 102 # NDRPDR sel
-        - 129 # NDRPDR sel addition
-        - 130 # NDRPDR sel addition
-        - 131 # NDRPDR sel addition
-        - 132 # NDRPDR sel addition
-        - 133 # NDRPDR sel addition
-        - 134 # NDRPDR sel addition
-        - 135 # NDRPDR sel addition
-        - 136 # NDRPDR sel addition
-        - 137 # NDRPDR sel addition
-        - 138 # NDRPDR sel addition
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
@@ -1647,48 +1495,18 @@
     vpp-compare-topologies-ref:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 45  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 49  # NDRPDR sel
-        - 51  # NDRPDR sel
-        - 52  # NDRPDR sel
-        - 59  # NDRPDR sel
-        - 65  # NDRPDR sel
-        - 66  # NDRPDR sel
-        - 54  # NDRPDR sel addition
-        - 55  # NDRPDR sel addition
-        - 56  # NDRPDR sel addition
-        - 57  # NDRPDR sel addition
-        - 58  # NDRPDR sel addition
-        - 60  # NDRPDR sel addition
-        - 61  # NDRPDR sel addition
-        - 62  # NDRPDR sel addition
-        - 63  # NDRPDR sel addition
-        - 64  # NDRPDR sel addition
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     vpp-compare-topologies-cmp:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 92  # NDRPDR sel
-        - 93  # NDRPDR sel
-        - 94  # NDRPDR sel
-        - 95  # NDRPDR sel
-        - 96  # NDRPDR sel
-        - 97  # NDRPDR sel
-        - 98  # NDRPDR sel
-        - 99  # NDRPDR sel
-        - 100 # NDRPDR sel
-        - 102 # NDRPDR sel
-        - 129 # NDRPDR sel addition
-        - 130 # NDRPDR sel addition
-        - 131 # NDRPDR sel addition
-        - 132 # NDRPDR sel addition
-        - 133 # NDRPDR sel addition
-        - 134 # NDRPDR sel addition
-        - 135 # NDRPDR sel addition
-        - 136 # NDRPDR sel addition
-        - 137 # NDRPDR sel addition
-        - 138 # NDRPDR sel addition
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     vpp-compare-topologies:
       - "vpp-compare-topologies-ref"
       - "vpp-compare-topologies-cmp"
@@ -2533,26 +2351,27 @@
       - 67  # NDRPDR sel vhost
       - 36  # MRR sel
     csit-vpp-perf-verify-2001-3n-skx:
-      - 45  # NDRPDR sel
-      - 46  # NDRPDR sel
-      - 47  # NDRPDR sel
-      - 48  # NDRPDR sel
-      - 49  # NDRPDR sel
-      - 51  # NDRPDR sel
-      - 52  # NDRPDR sel
-      - 59  # NDRPDR sel
-      - 65  # NDRPDR sel
-      - 66  # NDRPDR sel
-      - 54  # NDRPDR sel addition
-      - 55  # NDRPDR sel addition
-      - 56  # NDRPDR sel addition
-      - 57  # NDRPDR sel addition
-      - 58  # NDRPDR sel addition
-      - 60  # NDRPDR sel addition
-      - 61  # NDRPDR sel addition
-      - 62  # NDRPDR sel addition
-      - 63  # NDRPDR sel addition
-      - 64  # NDRPDR sel addition
+#      - 45  # NDRPDR sel
+#      - 46  # NDRPDR sel
+#      - 47  # NDRPDR sel
+#      - 48  # NDRPDR sel
+#      - 49  # NDRPDR sel
+#      - 51  # NDRPDR sel
+#      - 52  # NDRPDR sel
+#      - 59  # NDRPDR sel
+#      - 65  # NDRPDR sel
+#      - 66  # NDRPDR sel
+#      - 54  # NDRPDR sel addition
+#      - 55  # NDRPDR sel addition
+#      - 56  # NDRPDR sel addition
+#      - 57  # NDRPDR sel addition
+#      - 58  # NDRPDR sel addition
+#      - 60  # NDRPDR sel addition
+#      - 61  # NDRPDR sel addition
+#      - 62  # NDRPDR sel addition
+#      - 63  # NDRPDR sel addition
+#      - 64  # NDRPDR sel addition
+      - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 50  # MRR sel
       - 53  # MRR sel addition
 
@@ -2595,28 +2414,37 @@
 #      - 32  # NFV
 #      - 71  # NFV MRR
     csit-vpp-perf-verify-2001-2n-skx:
-      - 92  # NDRPDR sel
-      - 93  # NDRPDR sel
-      - 94  # NDRPDR sel
-      - 95  # NDRPDR sel
-      - 96  # NDRPDR sel
-      - 97  # NDRPDR sel
-      - 98  # NDRPDR sel
-      - 99  # NDRPDR sel
-      - 100 # NDRPDR sel
-      - 102 # NDRPDR sel
-      - 129 # NDRPDR sel addition
-      - 130 # NDRPDR sel addition
-      - 131 # NDRPDR sel addition
-      - 132 # NDRPDR sel addition
-      - 133 # NDRPDR sel addition
-      - 134 # NDRPDR sel addition
-      - 135 # NDRPDR sel addition
-      - 136 # NDRPDR sel addition
-      - 137 # NDRPDR sel addition
-      - 138 # NDRPDR sel addition
-      - 101 # MRR sel
-      - 128 # MRR sel addition
+#      - 92  # NDRPDR sel
+#      - 93  # NDRPDR sel
+#      - 94  # NDRPDR sel
+#      - 95  # NDRPDR sel
+#      - 96  # NDRPDR sel
+#      - 97  # NDRPDR sel
+#      - 98  # NDRPDR sel
+#      - 99  # NDRPDR sel
+#      - 100 # NDRPDR sel
+#      - 102 # NDRPDR sel
+#      - 129 # NDRPDR sel addition
+#      - 130 # NDRPDR sel addition
+#      - 131 # NDRPDR sel addition
+#      - 132 # NDRPDR sel addition
+#      - 133 # NDRPDR sel addition
+#      - 134 # NDRPDR sel addition
+#      - 135 # NDRPDR sel addition
+#      - 136 # NDRPDR sel addition
+#      - 137 # NDRPDR sel addition
+#      - 138 # NDRPDR sel addition
+      - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 101  # MRR sel
+      - 128  # MRR sel addition
 
     csit-vpp-perf-verify-2001-2n-clx:
       - 28  # NDRPDR sel
@@ -3308,7 +3136,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3331,7 +3159,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3354,7 +3182,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -3377,7 +3205,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -4044,7 +3872,7 @@
     data: "vpp-compare-testbeds-skx-clx-cmp"
   data: "vpp-compare-testbeds-skx-clx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C'"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4064,7 +3892,7 @@
     data: "vpp-compare-testbeds-skx-clx-cmp"
   data: "vpp-compare-testbeds-skx-clx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C'"
+  filter: "'4T2C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4084,7 +3912,7 @@
     data: "vpp-compare-testbeds-skx-clx-cmp"
   data: "vpp-compare-testbeds-skx-clx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C'"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4104,7 +3932,7 @@
     data: "vpp-compare-testbeds-skx-clx-cmp"
   data: "vpp-compare-testbeds-skx-clx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C'"
+  filter: "'4T2C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4212,7 +4040,7 @@
     data: "vpp-compare-topologies-cmp"
   data: "vpp-compare-topologies"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NDRPDR' and '1C'"
+  filter: "'NDRPDR' and '1C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4231,7 +4059,7 @@
     data: "vpp-compare-topologies-cmp"
   data: "vpp-compare-topologies"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NDRPDR' and '2C'"
+  filter: "'NDRPDR' and '2C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4250,7 +4078,7 @@
     data: "vpp-compare-topologies-cmp"
   data: "vpp-compare-topologies"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NDRPDR' and '1C'"
+  filter: "'NDRPDR' and '1C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4269,7 +4097,7 @@
     data: "vpp-compare-topologies-cmp"
   data: "vpp-compare-topologies"
   include-tests: "PDR"
-  filter: "'NDRPDR' and '2C'"
+  filter: "'NDRPDR' and '2C' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -4291,7 +4119,7 @@
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'MRR' and not 'NF_DENSITY'"
+  filter: "'1T1C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -4313,7 +4141,7 @@
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'MRR' and not 'NF_DENSITY'"
+  filter: "'2T2C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -4335,7 +4163,7 @@
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T4C' and 'MRR' and not 'NF_DENSITY'"
+  filter: "'4T4C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   parameters:
   - "name"
   - "parent"
@@ -5555,7 +5383,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'NDRPDR'"
+  filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710'"
   parameters:
   - "name"
   - "parent"
@@ -5577,7 +5405,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'NDRPDR'"
+  filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710'"
   parameters:
   - "name"
   - "parent"
@@ -5599,7 +5427,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'NDRPDR'"
+  filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710'"
   parameters:
   - "name"
   - "parent"
@@ -5621,7 +5449,7 @@
     data: "dpdk-performance-changes-3n-hsw-cmp"
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'NDRPDR'"
+  filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710'"
   parameters:
   - "name"
   - "parent"
@@ -5643,7 +5471,7 @@
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5665,7 +5493,7 @@
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5687,7 +5515,7 @@
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5709,7 +5537,7 @@
     data: "dpdk-performance-changes-3n-skx-cmp"
   data: "dpdk-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5731,7 +5559,7 @@
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5753,7 +5581,7 @@
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5775,7 +5603,7 @@
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5797,7 +5625,7 @@
     data: "dpdk-performance-changes-2n-skx-cmp"
   data: "dpdk-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5854,7 +5682,7 @@
     data: "dpdk-compare-testbeds-skx-clx-cmp"
   data: "dpdk-compare-testbeds-skx-clx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "all"
+  filter: "'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5873,7 +5701,7 @@
     data: "dpdk-compare-testbeds-skx-clx-cmp"
   data: "dpdk-compare-testbeds-skx-clx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "all"
+  filter: "'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5892,7 +5720,7 @@
     data: "dpdk-compare-topologies-cmp"
   data: "dpdk-compare-topologies"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "all"
+  filter: "'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -5911,7 +5739,7 @@
     data: "dpdk-compare-topologies-cmp"
   data: "dpdk-compare-topologies"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "all"
+  filter: "'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
