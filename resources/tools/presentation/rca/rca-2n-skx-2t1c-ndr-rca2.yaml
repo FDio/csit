@@ -23,8 +23,26 @@
 64b-2t1c-ethip4-ip4scale2m: 1
 64b-2t1c-avf-dot1q-ip4base: 1
 64b-2t1c-avf-ethip4-ip4base: 1
-64b-2t1c-avf-ethip4-ip4scale200k: 1
-64b-2t1c-avf-ethip4-ip4scale20k: 1
-64b-2t1c-avf-ethip4-ip4scale2m: 1
-64b-2t1c-ethip4udp-ip4base-nat44: 1
-footnote: "[1] Impact of Skx ucode upgrade from 0x2000043 to 0x2000065 in combination with SuperMicro motherboards/firmware and kernel updates, subject to the ongoing detailed RCA investigation with Intel NPG.\n[2] Applied fix of FVL NIC firmware 6.0.1 for increasing TRex Mpps rate from 27 Mpps to 37 Mpps, [CSIT-1503], [TRex-519].\n[3] Applied VPP PAPI fix to enable memif zero-copy, [CSIT-1592], [VPP-1764].\n[4] To-Be-Investigated, vhost-user avg PDR throughput rate has higher stdev than before.\n[5] To-Be-Investigated, dot1q-l2xc with DPDK FVL.\n"
+64b-2t1c-avf-ethip4-ip4scale200k: 7
+64b-2t1c-avf-ethip4-ip4scale20k: 7
+64b-2t1c-avf-ethip4-ip4scale2m: 7
+64b-2t1c-ethip4udp-ip4base-nat44: 6
+# Multiline string, empty lines (or \n) are required, see https://yaml-multiline.info/
+footnote: "[1] Impact of Skx ucode upgrade from 0x2000043 to 0x2000065
+    in combination with SuperMicro motherboards/firmware and kernel updates,
+    subjec to the ongoing detailed RCA investigation with Intel NPG.
+
+    [2] Applied fix of FVL NIC firmware 6.0.1 for increasing TRex Mpps rate
+    from 27 Mpps to 37 Mpps, [CSIT-1503], [TRex-519].
+
+    [3] Applied VPP PAPI fix to enable memif zero-copy, [CSIT-1592], [VPP-1764].
+
+    [4] vhost-user PDR throughput rate has higher stdev than before.
+    Caused by combination of non-deterministic traffic direction and uneven worker load.
+    Fixed on CSIT side too late.
+
+    [5] Unknown progression very early after 1908 release, bisect does not work due to frequent API changes.
+
+    [6] Regression: https://gerrit.fd.io/r/c/vpp/+/23963#message-044278e6_752c3327
+
+    [7] Unknown regression in avf-ip6scale tests."
