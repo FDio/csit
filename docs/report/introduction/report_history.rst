@@ -6,6 +6,7 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+<<<<<<< HEAD   (b95753 PAL: Fix table data model)
 <<<<<<< HEAD   (ede849 Report: Add pdf version)
 <<<<<<< HEAD   (35a360 Report: Add data)
 =======
@@ -17,13 +18,22 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 <<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
 | .12            | 1. Added data:                                             |
 =======
+=======
+<<<<<<< HEAD   (9b9bbb PAL: Fix table data model)
+>>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
 | .14            | 1. Added data:                                             |
+<<<<<<< HEAD   (b95753 PAL: Fix table data model)
 >>>>>>> CHANGE (0ed80e Report: COnfigure reoirt 2001.14)
 >>>>>>> CHANGE (bdfc93 Report: COnfigure reoirt 2001.14)
 =======
 | .15            | 1. Added data:                                             |
 >>>>>>> CHANGE (8e601d Report: Configure report 2001.15)
 >>>>>>> CHANGE (68013a Report: Configure report 2001.15)
+=======
+=======
+| .16            | 1. Added data:                                             |
+>>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
+>>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -39,6 +49,7 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
+<<<<<<< HEAD   (b95753 PAL: Fix table data model)
 <<<<<<< HEAD   (ede849 Report: Add pdf version)
 <<<<<<< HEAD   (35a360 Report: Add data)
 =======
@@ -55,6 +66,15 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 =======
 <<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
 =======
+=======
+<<<<<<< HEAD   (9b9bbb PAL: Fix table data model)
+=======
+| .15            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .14            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+>>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
+>>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
 | .13            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .12            | Skipped.                                                   |
