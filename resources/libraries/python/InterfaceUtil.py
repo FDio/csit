@@ -1185,7 +1185,7 @@ class InterfaceUtil:
             the node.
         """
         PapiSocketExecutor.run_cli_cmd(
-            node, u"set logging class avf level debug"
+            node, u"set logging class rdma level debug"
         )
 
         cmd = u"rdma_create"
