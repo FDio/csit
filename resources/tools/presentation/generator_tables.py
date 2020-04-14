@@ -490,7 +490,7 @@ def _tpc_sort_table(table):
 
 
 def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
-                             footnote=u"", sort_data=True):
+                             footnote=u"", sort_data=True, title=u""):
     """Generate html table from input data with simple sorting possibility.
 
     :param header: Table header.
@@ -503,12 +503,14 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
     :param legend: The legend to display below the table.
     :param footnote: The footnote to display below the table (and legend).
     :param sort_data: If True the data sorting is enabled.
+    :param title: The table (and file) title.
     :type header: list
     :type data: list of lists
     :type out_file_name: str
     :type legend: str
     :type footnote: str
     :type sort_data: bool
+    :type title: str
     """
 
     try:
@@ -517,9 +519,9 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
         idx = 0
     params = {
         u"align-hdr": (
-            [u"left", u"center"],
-            [u"left", u"left", u"center"],
-            [u"left", u"left", u"left", u"center"]
+            [u"left", u"right"],
+            [u"left", u"left", u"right"],
+            [u"left", u"left", u"left", u"right"]
         ),
         u"align-itm": (
             [u"left", u"right"],
@@ -547,7 +549,11 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
     table_header = dict(
         values=[f"<b>{item.replace(u',', u',<br>')}</b>" for item in header],
         fill_color=u"#7eade7",
-        align=params[u"align-hdr"][idx]
+        align=params[u"align-hdr"][idx],
+        font=dict(
+            family=u"Courier New",
+            size=13
+        )
     )
 
     fig = go.Figure()
@@ -562,7 +568,11 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
                     cells=dict(
                         values=columns,
                         fill_color=fill_color,
-                        align=params[u"align-itm"][idx]
+                        align=params[u"align-itm"][idx],
+                        font=dict(
+                            family=u"Courier New",
+                            size=13
+                        )
                     )
                 )
             )
@@ -604,7 +614,11 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
                 cells=dict(
                     values=[df_sorted.get(col) for col in header],
                     fill_color=fill_color,
-                    align=params[u"align-itm"][idx]
+                    align=params[u"align-itm"][idx],
+                    font=dict(
+                        family=u"Courier New",
+                        size=13
+                    )
                 )
             )
         )
@@ -628,6 +642,9 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
             u".. |prein| raw:: html\n\n    <pre>\n\n\n"
             u".. |preout| raw:: html\n\n    </pre>\n\n"
         )
+        if title:
+            rst_file.write(f"{title}\n")
+            rst_file.write(f"{u'~' * len(title)}\n\n")
         rst_file.write(
             u".. raw:: html\n\n"
             f'    <iframe frameborder="0" scrolling="no" '
@@ -2368,13 +2385,13 @@ def table_comparison(table, input_data):
 
     cols = list()
     for idx, col in enumerate(columns):
-        if col.get(u"data", None) is None:
+        if col.get(u"data-set", None) is None:
             logging.warning(f"No data for column {col.get(u'title', u'')}")
             continue
         data = input_data.filter_data(
             table,
             params=[u"throughput", u"result", u"name", u"parent", u"tags"],
-            data=col[u"data"],
+            data=col[u"data-set"],
             continue_on_error=True
         )
         col_data = {
@@ -2546,13 +2563,7 @@ def table_comparison(table, input_data):
 
     tbl_for_csv = list()
     for line in tbl_cmp_lst:
-
         row = [line[0], ]
-
-        for idx, rca in enumerate(rcas):
-            rca_nr = rca[u"data"].get(row[0 + idx], u"-")
-            row.insert(idx, f"[{rca_nr}]" if rca_nr != u"-" else u"-")
-
         for idx, itm in enumerate(line[1:]):
             if itm is None:
                 row.append(u"NT")
@@ -2560,61 +2571,98 @@ def table_comparison(table, input_data):
             else:
                 row.append(round(float(itm[u'mean']) / 1e6, 3))
                 row.append(round(float(itm[u'stdev']) / 1e6, 3))
+        for rca in rcas:
+            rca_nr = rca[u"data"].get(row[0], u"-")
+            row.append(f"[{rca_nr}]" if rca_nr != u"-" else u"-")
         tbl_for_csv.append(row)
 
-    header_csv = [rca[u"title"] for rca in rcas]
-    header_csv.append(u"Test Case")
+    header_csv = [u"Test Case", ]
     for col in cols:
         header_csv.append(f"Avg({col[u'title']})")
         header_csv.append(f"Stdev({col[u'title']})")
     for comp in comparisons:
         header_csv.append(
-            f"Avg({cols[comp[u'reference'] - 1][u'title']},"
-            f"{cols[comp[u'compare'] - 1][u'title']})"
+            f"Avg({comp.get(u'title', u'')}"
         )
         header_csv.append(
-            f"Stdev({cols[comp[u'reference'] - 1][u'title']},"
-            f"{cols[comp[u'compare'] - 1][u'title']})"
+            f"Stdev({comp.get(u'title', u'')})"
         )
+    header_csv.extend([rca[u"title"] for rca in rcas])
+
+    legend_lst = table.get(u"legend", None)
+    if legend_lst is None:
+        legend = u""
+    else:
+        legend = u"\n" + u"\n".join(legend_lst) + u"\n"
+
+    footnote = u""
+    for rca in rcas:
+        footnote += f"\n{rca[u'title']}:\n"
+        footnote += rca[u"data"].get(u"footnote", u"")
 
     csv_file = f"{table[u'output-file']}-csv.csv"
     with open(csv_file, u"wt", encoding='utf-8') as file_handler:
-        file_handler.write(u";".join(header_csv) + u"\n")
+        file_handler.write(
+            u",".join([f'"{itm}"' for itm in header_csv]) + u"\n"
+        )
         for test in tbl_for_csv:
-            file_handler.write(u";".join([str(item) for item in test]) + u"\n")
+            file_handler.write(
+                u",".join([f'"{item}"' for item in test]) + u"\n"
+            )
+        if legend_lst:
+            for item in legend_lst:
+                file_handler.write(f'"{item}"\n')
+        if footnote:
+            for itm in footnote.split(u"\n"):
+                file_handler.write(f'"{itm}"\n')
 
-    tbl_final = list()
+    tbl_tmp = list()
+    max_lens = [0, ] * len(tbl_cmp_lst[0])
     for line in tbl_cmp_lst:
         row = [line[0], ]
-        for idx, rca in enumerate(rcas):
-            rca_nr = rca[u"data"].get(row[0 + idx], u"-")
-            row.insert(idx, f"[{rca_nr}]" if rca_nr != u"-" else u"-")
         for idx, itm in enumerate(line[1:]):
             if itm is None:
-                row.append(u"NT")
+                new_itm = u"NT"
             else:
                 if idx < len(cols):
-                    row.append(
+                    new_itm = (
                         f"{round(float(itm[u'mean']) / 1e6, 1)} "
                         f"\u00B1{round(float(itm[u'stdev']) / 1e6, 1)}".
                         replace(u"nan", u"NaN")
                     )
                 else:
-                    row.append(
+                    new_itm = (
                         f"{round(float(itm[u'mean']) / 1e6, 1):+} "
                         f"\u00B1{round(float(itm[u'stdev']) / 1e6, 1)}".
                         replace(u"nan", u"NaN")
                     )
+            if len(new_itm.rsplit(u" ", 1)[-1]) > max_lens[idx]:
+                max_lens[idx] = len(new_itm.rsplit(u" ", 1)[-1])
+            row.append(new_itm)
+
+        tbl_tmp.append(row)
+
+    tbl_final = list()
+    for line in tbl_tmp:
+        row = [line[0], ]
+        for idx, itm in enumerate(line[1:]):
+            if itm in (u"NT", u"NaN"):
+                row.append(itm)
+                continue
+            itm_lst = itm.rsplit(u"\u00B1", 1)
+            itm_lst[-1] = \
+                f"{u' ' * (max_lens[idx] - len(itm_lst[-1]))}{itm_lst[-1]}"
+            row.append(u"\u00B1".join(itm_lst))
+        for rca in rcas:
+            rca_nr = rca[u"data"].get(row[0], u"-")
+            row.append(f"[{rca_nr}]" if rca_nr != u"-" else u"-")
+
         tbl_final.append(row)
 
-    header = [rca[u"title"] for rca in rcas]
-    header.append(u"Test Case")
+    header = [u"Test Case", ]
     header.extend([col[u"title"] for col in cols])
-    header.extend(
-        [f"Diff({cols[comp[u'reference'] - 1][u'title']},"
-         f"{cols[comp[u'compare'] - 1][u'title']})"
-         for comp in comparisons]
-    )
+    header.extend([comp.get(u"title", u"") for comp in comparisons])
+    header.extend([rca[u"title"] for rca in rcas])
 
     # Generate csv tables:
     csv_file = f"{table[u'output-file']}.csv"
@@ -2627,64 +2675,10 @@ def table_comparison(table, input_data):
     txt_file_name = f"{table[u'output-file']}.txt"
     convert_csv_to_pretty_txt(csv_file, txt_file_name, delimiter=u";")
 
-    # Generate rst table:
-    file_name = table[u'output-file'].split(u"/")[-1]
-    if u"vpp" in table[u'output-file']:
-        path = u"_tmp/src/vpp_performance_tests/comparisons/"
-    else:
-        path = u"_tmp/src/dpdk_performance_tests/comparisons/"
-    rst_file_name = f"{path}{file_name}-txt.rst"
-    csv_file_name = f"{path}{file_name}.csv"
-    with open(csv_file_name, u"wt", encoding='utf-8') as file_handler:
-        file_handler.write(
-            u",".join(
-                [f'"{itm}"' for itm in header]
-            ) + u"\n"
-        )
-        for test in tbl_final:
-            file_handler.write(
-                u",".join(
-                    [f'"{itm}"' for itm in test]
-                ) + u"\n"
-            )
-
-    convert_csv_to_pretty_txt(csv_file_name, rst_file_name, delimiter=u",")
-
-    legend = u"\nLegend:\n"
-    for idx, rca in enumerate(rcas):
-        try:
-            desc = (
-                f"Diff({cols[comparisons[idx][u'reference'] - 1][u'title']},"
-                f"{cols[comparisons[idx][u'compare'] - 1][u'title']})\n"
-            )
-        except (KeyError, IndexError):
-            desc = u"\n"
-        legend += f"{rca[u'title']}: Root Cause Analysis for {desc}"
-    legend += (
-        u"First part of the result is a mean value [Mpps].\n"
-        f"Second part of the result following '\u00B1' is a standard "
-        u"deviation [Mpps].\n"
-        u"First part of Diff is a relative change of mean values [%].\n"
-        f"Second part of Diff following '\u00B1' is a standard deviation "
-        u"of the Diff [percentual points].\n"
-        u"NT: Not tested.\n"
-    )
-
-    footnote = u""
-    for rca in rcas:
-        footnote += f"\n{rca[u'title']}:\n"
-        footnote += rca[u"data"].get(u"footnote", u"")
-
     with open(txt_file_name, u'a', encoding='utf-8') as txt_file:
         txt_file.write(legend)
         if footnote:
             txt_file.write(footnote)
-        txt_file.write(u":END")
-
-    with open(rst_file_name, u'a', encoding='utf-8') as txt_file:
-        txt_file.write(legend.replace(u"\n", u" |br| "))
-        if footnote:
-            txt_file.write(footnote.replace(u"\n", u" |br| "))
         txt_file.write(u":END")
 
     # Generate html table:
@@ -2694,5 +2688,6 @@ def table_comparison(table, input_data):
         table[u'output-file'],
         legend=legend,
         footnote=footnote,
-        sort_data=False
+        sort_data=False,
+        title=table.get(u"title", u"")
     )
