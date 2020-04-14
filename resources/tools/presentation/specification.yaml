@@ -163,29 +163,29 @@
 
     replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost:
       csit-vpp-perf-verify-1908-3n-skx:
-        - 52  # NDRPDR sel vhost
-        - 53  # NDRPDR sel vhost
-        - 55  # NDRPDR sel vhost
-        - 61  # NDRPDR sel vhost
-        - 62  # NDRPDR sel vhost
-        - 63  # NDRPDR sel vhost
-        - 64  # NDRPDR sel vhost
-        - 65  # NDRPDR sel vhost
-        - 66  # NDRPDR sel vhost
-        - 67  # NDRPDR sel vhost
+        - 52  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 53  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 55  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 61  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 62  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 63  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 64  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 65  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 66  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 67  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
 
     replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost:
       csit-vpp-perf-verify-1908-2n-skx:
-        - 88  # NDRPDR sel vhost
-        - 89  # NDRPDR sel vhost
-        - 91  # NDRPDR sel vhost
-        - 92  # NDRPDR sel vhost
-        - 93  # NDRPDR sel vhost
-        - 94  # NDRPDR sel vhost
-        - 95  # NDRPDR sel vhost
-        - 96  # NDRPDR sel vhost
-        - 97  # NDRPDR sel vhost
-        - 98  # NDRPDR sel vhost
+        - 88  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 89  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 91  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 92  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 93  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 94  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 95  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 96  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 97  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+        - 98  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
 
     ###########################################################################
     # Plots:
@@ -271,16 +271,18 @@
     plot-vpp-throughput-lat-tsa-3n-skx:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
-        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-nfv-3n-skx-ndrpdr:
       # TODO: Add data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-nfv-3n-skx-mrr:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -317,19 +319,20 @@
 
     plot-vpp-throughput-lat-tsa-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-http-server-performance:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -580,19 +583,22 @@
     vpp-nic-comparison-3n-skx:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -652,8 +658,20 @@
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
-        # TODO: Replace
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 155  # NDRPDR full - perf-full-2n-skx-ip4_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 156  # NDRPDR full - perf-full-2n-skx-ip4_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 157  # NDRPDR full - perf-full-2n-skx-ip4_III - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 158  # NDRPDR full - perf-full-2n-skx-ip4_V - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 159  # NDRPDR full - perf-full-2n-skx-ip4_VIII - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 160  # NDRPDR full - perf-full-2n-skx-ip4_IX - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 161  # NDRPDR full - perf-full-2n-skx-ip6_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 162  # NDRPDR full - perf-full-2n-skx-ip6_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 163  # NDRPDR full - perf-full-2n-skx-l2_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 164  # NDRPDR full - perf-full-2n-skx-l2_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 165  # NDRPDR full - perf-full-2n-skx-memif - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 166  # NDRPDR full - perf-full-2n-skx-vhost I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 167  # NDRPDR full - perf-full-2n-skx-vhost II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 168  # NDRPDR full - perf-full-2n-skx-vts - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-perf-results-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -771,6 +789,92 @@
 
     # Performance changes
 
+    vpp-perf-changes-2n-skx-old1908_0:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 27  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 34  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 35  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 36  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 42  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 43  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 44  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 45  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 46  # NDRPDR sel - old1908 - vpp build: 19.08-release
+    vpp-perf-changes-2n-skx-old1908_1:
+      csit-vpp-perf-verify-1908_1-2n-skx:
+        - 3   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 4   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 6   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 10  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 14  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 16  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 21  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 23  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 24  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 25  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+    vpp-perf-changes-2n-skx-new1908_1:
+      csit-vpp-perf-verify-1908_1-2n-skx:
+        - 39  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 40  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 41  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 43  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 44  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 45  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 46  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 47  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 48  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 49  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+    vpp-perf-changes-2n-skx-new2001_0:
+      csit-vpp-perf-verify-2001-2n-skx:
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+
+    vpp-perf-changes-3n-skx-old1908_0:
+      csit-vpp-perf-verify-1908-3n-skx:
+        - 14  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 16  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 19  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 20  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 22  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 23  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 24  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 25  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 29  # NDRPDR sel - old1908 - vpp build: 19.08-release
+    vpp-perf-changes-3n-skx-old1908_1:
+      csit-vpp-perf-verify-1908_1-3n-skx:
+        - 3   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 4   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 7   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 8   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 9   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 10  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 11  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 12  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 13  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+        - 14  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+    vpp-perf-changes-3n-skx-new1908_1:
+      csit-vpp-perf-verify-1908_1-3n-skx:
+        - 26  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 27  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 28  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 29  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 30  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+    vpp-perf-changes-3n-skx-new2001_0:
+      csit-vpp-perf-verify-2001-3n-skx:
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+
     vpp-performance-changes-3n-hsw-h1:
       csit-vpp-perf-verify-1904-3n-hsw:
         - 11  # NDRPDR sel
@@ -826,20 +930,22 @@
         - 25  # NDRPDR sel
     vpp-performance-changes-3n-skx-ref:
       csit-vpp-perf-verify-1908-3n-skx:
-        - 14  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 22  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 24  # NDRPDR sel
-        - 25  # NDRPDR sel
-        - 26  # NDRPDR sel
-        - 29  # NDRPDR sel
+        - 14  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 16  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 19  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 20  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 22  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 23  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 24  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 25  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 29  # NDRPDR sel - old1908 - vpp build: 19.08-release
     vpp-performance-changes-3n-skx-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -859,27 +965,28 @@
         - 32  # NDRPDR sel
     vpp-performance-changes-2n-skx-ref:
       csit-vpp-perf-verify-1908-2n-skx:
-        - 26  # NDRPDR sel
-        - 27  # NDRPDR sel
-        - 34  # NDRPDR sel
-        - 35  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 43  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 45  # NDRPDR sel
-        - 46  # NDRPDR sel
+        - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 27  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 34  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 35  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 36  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 42  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 43  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 44  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 45  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 46  # NDRPDR sel - old1908 - vpp build: 19.08-release
     vpp-performance-changes-2n-skx-cmp:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-performance-changes-2n-skx:
       - "vpp-performance-changes-2n-skx-h1"
       - "vpp-performance-changes-2n-skx-ref"
@@ -985,15 +1092,16 @@
 
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-soak-vs-ndr-2n-skx-cmp:
       # TODO: Replace
       # csit-vpp-perf-verify-2001-2n-skx:
@@ -1002,15 +1110,16 @@
         - 86  # SOAK
     vpp-soak-vs-ndr-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 83  # SOAK
         - 86  # SOAK
 
@@ -1301,22 +1410,25 @@
     vpp-compare-testbeds-cmp:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
 
     vpp-compare-testbeds-skx-clx-ref:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
@@ -1495,18 +1607,21 @@
     vpp-compare-topologies-ref:
       # TODO: Add the data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-compare-topologies-cmp:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-compare-topologies:
       - "vpp-compare-topologies-ref"
       - "vpp-compare-topologies-cmp"
@@ -2305,16 +2420,16 @@
       - 82  # NDRPDR full
       - 84  # NDRPDR full
       - 85  # NDRPDR full
-      - 87  # hoststack
-      - 88  # hoststack
-      - 89  # hoststack
-      - 90  # hoststack
-      - 91  # hoststack
-      - 92  # hoststack
-      - 93  # hoststack
-      - 94  # hoststack
-      - 95  # hoststack
-      - 96  # hoststack
+      - 103  # hoststack
+      - 104  # hoststack
+      - 105  # hoststack
+      - 106  # hoststack
+      - 107  # hoststack
+      - 108  # hoststack
+      - 109  # hoststack
+      - 110  # hoststack
+      - 111  # hoststack
+      - 112  # hoststack
 
     csit-vpp-perf-verify-1904-3n-skx:
       - 7   # MRR sel
@@ -2329,27 +2444,43 @@
       - 23  # NDRPDR sel
       - 25  # NDRPDR sel
     csit-vpp-perf-verify-1908-3n-skx:
-      - 14  # NDRPDR sel
-      - 16  # NDRPDR sel
-      - 19  # NDRPDR sel
-      - 20  # NDRPDR sel
-      - 22  # NDRPDR sel
-      - 23  # NDRPDR sel
-      - 24  # NDRPDR sel
-      - 25  # NDRPDR sel
-      - 26  # NDRPDR sel
-      - 29  # NDRPDR sel
-      - 52  # NDRPDR sel vhost
-      - 53  # NDRPDR sel vhost
-      - 55  # NDRPDR sel vhost
-      - 61  # NDRPDR sel vhost
-      - 62  # NDRPDR sel vhost
-      - 63  # NDRPDR sel vhost
-      - 64  # NDRPDR sel vhost
-      - 65  # NDRPDR sel vhost
-      - 66  # NDRPDR sel vhost
-      - 67  # NDRPDR sel vhost
-      - 36  # MRR sel
+      - 14  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 16  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 19  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 20  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 22  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 23  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 24  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 25  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 29  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 52  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 53  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 55  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 61  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 62  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 63  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 64  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 65  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 66  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 67  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 36  # MRR sel - old1908 - vpp build: 19.08-release
+    csit-vpp-perf-verify-1908_1-3n-skx:
+      - 3   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 4   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 7   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 8   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 9   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 10  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 11  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 12  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 13  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 14  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 26  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 27  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 28  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 29  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 30  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     csit-vpp-perf-verify-2001-3n-skx:
 #      - 45  # NDRPDR sel
 #      - 46  # NDRPDR sel
@@ -2371,7 +2502,9 @@
 #      - 62  # NDRPDR sel addition
 #      - 63  # NDRPDR sel addition
 #      - 64  # NDRPDR sel addition
-      - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 50  # MRR sel
       - 53  # MRR sel addition
 
@@ -2388,63 +2521,99 @@
       - 31  # NDRPDR sel
       - 32  # NDRPDR sel
     csit-vpp-perf-verify-1908-2n-skx:
-      - 26  # NDRPDR sel
-      - 27  # NDRPDR sel
-      - 34  # NDRPDR sel
-      - 35  # NDRPDR sel
-      - 36  # NDRPDR sel
-      - 42  # NDRPDR sel
-      - 43  # NDRPDR sel
-      - 44  # NDRPDR sel
-      - 45  # NDRPDR sel
-      - 46  # NDRPDR sel
-      - 88  # NDRPDR sel vhost
-      - 89  # NDRPDR sel vhost
-      - 91  # NDRPDR sel vhost
-      - 92  # NDRPDR sel vhost
-      - 93  # NDRPDR sel vhost
-      - 94  # NDRPDR sel vhost
-      - 95  # NDRPDR sel vhost
-      - 96  # NDRPDR sel vhost
-      - 97  # NDRPDR sel vhost
-      - 98  # NDRPDR sel vhost
-      - 69  # MRR sel
+      - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 27  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 34  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 35  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 36  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 42  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 43  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 44  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 45  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 46  # NDRPDR sel - old1908 - vpp build: 19.08-release
+      - 88  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 89  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 91  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 92  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 93  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 94  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 95  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 96  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 97  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 98  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
+      - 69  # MRR sel - old1908 - vpp build: 19.08-release
 #      - 22  # NFV
 #      - 31  # NFV
 #      - 32  # NFV
 #      - 71  # NFV MRR
+    csit-vpp-perf-verify-1908_1-2n-skx:
+      - 3   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 4   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 6   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 10  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 14  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 16  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 21  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 23  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 24  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 25  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
+      - 39  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 40  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 41  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 43  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 44  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 45  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 46  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 47  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 48  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 49  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     csit-vpp-perf-verify-2001-2n-skx:
-#      - 92  # NDRPDR sel
-#      - 93  # NDRPDR sel
-#      - 94  # NDRPDR sel
-#      - 95  # NDRPDR sel
-#      - 96  # NDRPDR sel
-#      - 97  # NDRPDR sel
-#      - 98  # NDRPDR sel
-#      - 99  # NDRPDR sel
-#      - 100 # NDRPDR sel
-#      - 102 # NDRPDR sel
-#      - 129 # NDRPDR sel addition
-#      - 130 # NDRPDR sel addition
-#      - 131 # NDRPDR sel addition
-#      - 132 # NDRPDR sel addition
-#      - 133 # NDRPDR sel addition
-#      - 134 # NDRPDR sel addition
-#      - 135 # NDRPDR sel addition
-#      - 136 # NDRPDR sel addition
-#      - 137 # NDRPDR sel addition
-#      - 138 # NDRPDR sel addition
-      - 143  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-      - 146  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-      - 147  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-      - 148  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-      - 149  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-      - 150  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-      - 151  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-      - 152  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-      - 153  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-      - 101  # MRR sel
-      - 128  # MRR sel addition
+#      - 92  # NDRPDR sel - old
+#      - 93  # NDRPDR sel - old
+#      - 94  # NDRPDR sel - old
+#      - 95  # NDRPDR sel - old
+#      - 96  # NDRPDR sel - old
+#      - 97  # NDRPDR sel - old
+#      - 98  # NDRPDR sel - old
+#      - 99  # NDRPDR sel - old
+#      - 100 # NDRPDR sel - old
+#      - 102 # NDRPDR sel - old
+#      - 129 # NDRPDR sel addition - old
+#      - 130 # NDRPDR sel addition - old
+#      - 131 # NDRPDR sel addition - old
+#      - 132 # NDRPDR sel addition - old
+#      - 133 # NDRPDR sel addition - old
+#      - 134 # NDRPDR sel addition - old
+#      - 135 # NDRPDR sel addition - old
+#      - 136 # NDRPDR sel addition - old
+#      - 137 # NDRPDR sel addition - old
+#      - 138 # NDRPDR sel addition - old
+      - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 155  # NDRPDR full - perf-full-2n-skx-ip4_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 156  # NDRPDR full - perf-full-2n-skx-ip4_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 157  # NDRPDR full - perf-full-2n-skx-ip4_III - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 158  # NDRPDR full - perf-full-2n-skx-ip4_V - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 159  # NDRPDR full - perf-full-2n-skx-ip4_VIII - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 160  # NDRPDR full - perf-full-2n-skx-ip4_IX - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 161  # NDRPDR full - perf-full-2n-skx-ip6_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 162  # NDRPDR full - perf-full-2n-skx-ip6_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 163  # NDRPDR full - perf-full-2n-skx-l2_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 164  # NDRPDR full - perf-full-2n-skx-l2_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 165  # NDRPDR full - perf-full-2n-skx-memif - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 166  # NDRPDR full - perf-full-2n-skx-vhost I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 167  # NDRPDR full - perf-full-2n-skx-vhost II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 168  # NDRPDR full - perf-full-2n-skx-vts - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 101  # MRR sel - old
+      - 128  # MRR sel addition - old
 
     csit-vpp-perf-verify-2001-2n-clx:
       - 28  # NDRPDR sel
@@ -3211,14 +3380,94 @@
   - "parent"
   - "throughput"
 
+# VPP Root Cause Analysis 3n-skx-xxv710 2t1c pdr
+- type: "table"
+  title: "VPP Root Cause Analysis 3n-skx-xxv710 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-rca-3n-skx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  rca:
+    - title: "RCA1"
+      data: "rca/rca-3n-skx-2t1c-pdr-rca1.yaml"
+    - title: "RCA2"
+      data: "rca/rca-3n-skx-2t1c-pdr-rca2.yaml"
+  columns:
+    - title: "1908.0.pe"
+      data-set: "vpp-perf-changes-3n-skx-old1908_0"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
+    - title: "1908.1.pe"
+      data-set: "vpp-perf-changes-3n-skx-old1908_1"
+    - title: "1908.1.ce"
+      data-set: "vpp-perf-changes-3n-skx-new1908_1"
+    - title: "2001.0.ce"
+      data-set: "vpp-perf-changes-3n-skx-new2001_0"
+  comparisons:
+    - title: "Diff1"
+      reference: 2
+      reference-alt: 1
+      compare: 3
+    - title: "Diff2"
+      reference: 3
+      compare: 4
+  legend:
+    - "Legend to Table"
+    - "1908.0, 1908.1, 2001.0 - VPP versions tested."
+    - "pe - previous environment used for testing, per CSIT-1908 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
+    - "ce - current environment used for testing, per CSIT-2001 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
+    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1.ce vs. 1908.1.pe (if latter results not available, 1908.0.pe is used)."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0.ce vs. 1908.1.ce."
+    - "RCA1 - root cause analysis reference for Diff1."
+    - "RCA2 - root cause analysis reference for Diff2."
+
+# VPP Root Cause Analysis 3n-skx-xxv710 2t1c ndr
+- type: "table"
+  title: "VPP Root Cause Analysis 3n-skx-xxv710 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-rca-3n-skx-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  rca:
+    - title: "RCA1"
+      data: "rca/rca-3n-skx-2t1c-ndr-rca1.yaml"
+    - title: "RCA2"
+      data: "rca/rca-3n-skx-2t1c-ndr-rca2.yaml"
+  columns:
+    - title: "1908.0.pe"
+      data-set: "vpp-perf-changes-3n-skx-old1908_0"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
+    - title: "1908.1.pe"
+      data-set: "vpp-perf-changes-3n-skx-old1908_1"
+    - title: "1908.1.ce"
+      data-set: "vpp-perf-changes-3n-skx-new1908_1"
+    - title: "2001.0.ce"
+      data-set: "vpp-perf-changes-3n-skx-new2001_0"
+  comparisons:
+    - title: "Diff1"
+      reference: 2
+      reference-alt: 1
+      compare: 3
+    - title: "Diff2"
+      reference: 3
+      compare: 4
+  legend:
+    - "Legend to Table"
+    - "1908.0, 1908.1, 2001.0 - VPP versions tested."
+    - "pe - previous environment used for testing, per CSIT-1908 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
+    - "ce - current environment used for testing, per CSIT-2001 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
+    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1.ce vs. 1908.1.pe (if latter results not available, 1908.0.pe is used)."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0.ce vs. 1908.1.ce."
+    - "RCA1 - root cause analysis reference for Diff1."
+    - "RCA2 - root cause analysis reference for Diff2."
+
 # VPP Performance Changes 3n-skx 2t1c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 2t1c pdr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-pdr"
-  rca:
-    title: "RCA"
-    data-file: "rca/rca-3n-skx-2t1c-pdr.yaml"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-3n-skx-2t1c-pdr.yaml"
   history:
     - title: "1904"
       data: "vpp-performance-changes-3n-skx-h1"
@@ -3331,14 +3580,94 @@
   - "throughput"
   - "tags"
 
+# VPP Root Cause Analysis 2n-skx-xxv710 2t1c pdr
+- type: "table"
+  title: "VPP Root Cause Analysis 2n-skx-xxv710 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-rca-2n-skx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  rca:
+    - title: "RCA1"
+      data: "rca/rca-2n-skx-2t1c-pdr-rca1.yaml"
+    - title: "RCA2"
+      data: "rca/rca-2n-skx-2t1c-pdr-rca2.yaml"
+  columns:
+    - title: "1908.0.pe"
+      data-set: "vpp-perf-changes-2n-skx-old1908_0"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
+    - title: "1908.1.pe"
+      data-set: "vpp-perf-changes-2n-skx-old1908_1"
+    - title: "1908.1.ce"
+      data-set: "vpp-perf-changes-2n-skx-new1908_1"
+    - title: "2001.0.ce"
+      data-set: "vpp-perf-changes-2n-skx-new2001_0"
+  comparisons:
+    - title: "Diff1"
+      reference: 2
+      reference-alt: 1
+      compare: 3
+    - title: "Diff2"
+      reference: 3
+      compare: 4
+  legend:
+    - "Legend to Table"
+    - "1908.0, 1908.1, 2001.0 - VPP versions tested."
+    - "pe - previous environment used for testing, per CSIT-1908 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
+    - "ce - current environment used for testing, per CSIT-2001 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
+    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1.ce vs. 1908.1.pe (if latter results not available, 1908.0.pe is used)."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0.ce vs. 1908.1.ce."
+    - "RCA1 - root cause analysis reference for Diff1."
+    - "RCA2 - root cause analysis reference for Diff2."
+
+# VPP Root Cause Analysis 2n-skx-xxv710 2t1c ndr
+- type: "table"
+  title: "VPP Root Cause Analysis 2n-skx-xxv710 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-rca-2n-skx-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  rca:
+    - title: "RCA1"
+      data: "rca/rca-2n-skx-2t1c-ndr-rca1.yaml"
+    - title: "RCA2"
+      data: "rca/rca-2n-skx-2t1c-ndr-rca2.yaml"
+  columns:
+    - title: "1908.0.pe"
+      data-set: "vpp-perf-changes-2n-skx-old1908_0"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
+    - title: "1908.1.pe"
+      data-set: "vpp-perf-changes-2n-skx-old1908_1"
+    - title: "1908.1.ce"
+      data-set: "vpp-perf-changes-2n-skx-new1908_1"
+    - title: "2001.0.ce"
+      data-set: "vpp-perf-changes-2n-skx-new2001_0"
+  comparisons:
+    - title: "Diff1"
+      reference: 2
+      reference-alt: 1
+      compare: 3
+    - title: "Diff2"
+      reference: 3
+      compare: 4
+  legend:
+    - "Legend to Table"
+    - "1908.0, 1908.1, 2001.0 - VPP versions tested."
+    - "pe - previous environment used for testing, per CSIT-1908 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
+    - "ce - current environment used for testing, per CSIT-2001 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
+    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1.ce vs. 1908.1.pe (if latter results not available, 1908.0.pe is used)."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0.ce vs. 1908.1.ce."
+    - "RCA1 - root cause analysis reference for Diff1."
+    - "RCA2 - root cause analysis reference for Diff2."
+
 # VPP Performance Changes 2n-skx 2t1c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 2t1c pdr"
   algorithm: "table_perf_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr"
-  rca:
-    title: "RCA"
-    data-file: "rca/rca-2n-skx-2t1c-pdr.yaml"
+#  rca:
+#    title: "RCA"
+#    data-file: "rca/rca-2n-skx-2t1c-pdr.yaml"
   history:
     - title: "1904"
       data: "vpp-performance-changes-2n-skx-h1"

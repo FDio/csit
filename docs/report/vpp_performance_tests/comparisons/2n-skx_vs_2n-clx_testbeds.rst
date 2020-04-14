@@ -14,18 +14,17 @@ skx) and 2-Node Cascade Lake (2n-clx) physical testbed types, in 1-core,
     with RF result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
 
-..
-    NDR Comparison
-    ~~~~~~~~~~~~~~
+NDR Comparison
+~~~~~~~~~~~~~~
 
-    Comparison tables in HTML, ASCII and CSV formats:
+Comparison tables in HTML, ASCII and CSV formats:
 
-      - `HTML 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-ndr.html>`_
-      - `HTML 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-ndr.html>`_
-      - `ASCII 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-ndr.txt>`_
-      - `ASCII 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-ndr.txt>`_
-      - `CSV 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-ndr.csv>`_
-      - `CSV 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-ndr.csv>`_
+  - `HTML 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-ndr.html>`_
+  - `HTML 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-ndr.html>`_
+  - `ASCII 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-ndr.txt>`_
+  - `ASCII 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-ndr.txt>`_
+  - `CSV 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-2t1c-ndr.csv>`_
+  - `CSV 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-2n-skx-2n-clx-4t2c-ndr.csv>`_
 
 PDR Comparison
 ~~~~~~~~~~~~~~
