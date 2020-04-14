@@ -38,7 +38,11 @@ export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
+<<<<<<< HEAD   (9b9bbb PAL: Fix table data model)
     --week "14" \
+=======
+    --week "16" \
+>>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
     --logging INFO \
     --force
 

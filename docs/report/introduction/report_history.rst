@@ -6,7 +6,11 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+<<<<<<< HEAD   (9b9bbb PAL: Fix table data model)
 | .14            | 1. Added data:                                             |
+=======
+| .16            | 1. Added data:                                             |
+>>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -22,6 +26,13 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
+<<<<<<< HEAD   (9b9bbb PAL: Fix table data model)
+=======
+| .15            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .14            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+>>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
 | .13            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .12            | Skipped.                                                   |
