@@ -4802,10 +4802,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,VPP,3N,HSW]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "vpp-perf-results-3n-hsw"
   filter: "all"
   parameters:
@@ -4819,10 +4819,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,VPP,3N,SKX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "vpp-perf-results-3n-skx"
   filter: "all"
   remove-ndr: True  # Temporary solution: remove NDR results from test message
@@ -4837,10 +4837,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,VPP,2N,SKX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "vpp-perf-results-2n-skx"
   filter: "all"
   remove-ndr: True  # Temporary solution: remove NDR results from test message
@@ -4855,10 +4855,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,VPP,2N,CLX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "vpp-perf-results-2n-clx"
   filter: "all"
   parameters:
@@ -4872,10 +4872,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,VPP,3N,TSH]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "vpp-perf-results-3n-tsh"
   filter: "all"
   parameters:
@@ -4889,10 +4889,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,VPP,3N,DNV]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "vpp-perf-results-3n-dnv"
   filter: "all"
   parameters:
@@ -4906,10 +4906,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,VPP,2N,DNV]}/vpp_performance_results_2n_dnv"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "vpp-perf-results-2n-dnv"
   filter: "all"
   parameters:
@@ -4923,10 +4923,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,PERF,VPP,3N,HSW]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-perf-results-3n-hsw"
   filter: "all"
   parameters:
@@ -4940,10 +4940,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,PERF,VPP,3N,SKX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-perf-results-3n-skx"
   filter: "all"
   parameters:
@@ -4957,10 +4957,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,PERF,VPP,2N,SKX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-perf-results-2n-skx"
   filter: "all"
   parameters:
@@ -4974,10 +4974,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,PERF,VPP,2N,CLX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-perf-results-2n-clx"
   filter: "all"
   parameters:
@@ -4991,10 +4991,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,PERF,VPP,3N,TSH]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-perf-results-3n-tsh"
   filter: "all"
   parameters:
@@ -5008,10 +5008,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,PERF,VPP,3N,DNV]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-perf-results-3n-dnv"
   filter: "all"
   parameters:
@@ -5025,10 +5025,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,PERF,VPP,2N,DNV]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-perf-results-2n-dnv"
   filter: "all"
   parameters:
@@ -5098,10 +5098,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,MRR,VPP,3N,HSW]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
   data: "vpp-mrr-results-3n-hsw"
   filter: "all"
   parameters:
@@ -5115,10 +5115,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,MRR,VPP,3N,SKX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
   data: "vpp-mrr-results-3n-skx"
   filter: "all"
   parameters:
@@ -5132,10 +5132,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,MRR,VPP,2N,SKX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
   data: "vpp-mrr-results-2n-skx"
   filter: "all"
   parameters:
@@ -5149,10 +5149,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,MRR,VPP,2N,CLX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
   data: "vpp-mrr-results-2n-clx"
   filter: "all"
   parameters:
@@ -5166,10 +5166,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,MRR,VPP,3N,TSH]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
   data: "vpp-mrr-results-3n-tsh"
   filter: "all"
   parameters:
@@ -5183,10 +5183,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,MRR,VPP,3N,DNV]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
   data: "vpp-mrr-results-3n-dnv"
   filter: "all"
   parameters:
@@ -5200,10 +5200,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,MRR,VPP,2N,DNV]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
   data: "vpp-mrr-results-2n-dnv"
   filter: "all"
   parameters:
@@ -5217,10 +5217,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,MRR,VPP,3N,HSW]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-mrr-results-3n-hsw"
   filter: "all"
   parameters:
@@ -5234,10 +5234,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,MRR,VPP,3N,SKX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-mrr-results-3n-skx"
   filter: "all"
   parameters:
@@ -5251,10 +5251,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,MRR,VPP,2N,SKX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-mrr-results-2n-skx"
   filter: "all"
   parameters:
@@ -5268,10 +5268,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,MRR,VPP,2N,CLX]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-mrr-results-2n-clx"
   filter: "all"
   parameters:
@@ -5285,10 +5285,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,MRR,VPP,3N,TSH]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-mrr-results-3n-tsh"
   filter: "all"
   parameters:
@@ -5302,10 +5302,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,MRR,VPP,3N,DNV]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-mrr-results-3n-dnv"
   filter: "all"
   parameters:
@@ -5319,10 +5319,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,MRR,VPP,2N,DNV]}/"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-mrr-results-2n-dnv"
   filter: "all"
   parameters:
@@ -5336,10 +5336,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_results_ubuntu"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Status |preout| "
-    data: "data status"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Status |preout| "
+      data: "data status"
   data: "vpp-device-results-ubuntu"
   filter: "all"
   parameters:
@@ -5354,10 +5354,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_configuration_ubuntu"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-    data: "data conf-history"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
   data: "vpp-device-results-ubuntu"
   filter: "all"
   parameters:
@@ -5751,10 +5751,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,DPDK,3N,HSW]}/dpdk_performance_results_3n_hsw"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "dpdk-perf-results-3n-hsw"
   filter: "all"
   parameters:
@@ -5768,10 +5768,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,DPDK,3N,SKX]}/dpdk_performance_results_3n_skx"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "dpdk-perf-results-3n-skx"
   filter: "all"
   remove-ndr: True  # Temporary solution: remove NDR results from test message
@@ -5786,10 +5786,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,DPDK,2N,SKX]}/dpdk_performance_results_2n_skx"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "dpdk-perf-results-2n-skx"
   filter: "all"
   remove-ndr: True  # Temporary solution: remove NDR results from test message
@@ -5804,10 +5804,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,DPDK,2N,CLX]}/dpdk_performance_results_2n_clx"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "dpdk-perf-results-2n-clx"
   filter: "all"
   parameters:
@@ -5821,10 +5821,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,DPDK,2N,DNV]}/dpdk_performance_results_2n_dnv"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "dpdk-perf-results-2n-dnv"
   filter: "all"
   parameters:
@@ -5838,10 +5838,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,DPDK,3N,DNV]}/dpdk_performance_results_3n_dnv"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "dpdk-perf-results-3n-dnv"
   filter: "all"
   parameters:
@@ -5855,10 +5855,10 @@
   algorithm: "table_merged_details"
   output-file: "{DIR[DTR,PERF,DPDK,3N,TSH]}/dpdk_performance_results_3n_tsh"
   columns:
-  - title: " |prein| Test Name |preout| "
-    data: "data name"
-  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-    data: "data msg"
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
   data: "dpdk-perf-results-3n-tsh"
   filter: "all"
   parameters:
