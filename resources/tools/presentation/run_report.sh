@@ -38,6 +38,7 @@ export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
+<<<<<<< HEAD   (b95753 PAL: Fix table data model)
 <<<<<<< HEAD   (ede849 Report: Add pdf version)
 <<<<<<< HEAD   (35a360 Report: Add data)
 =======
@@ -49,13 +50,22 @@ python pal.py \
 <<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
     --week "12" \
 =======
+=======
+<<<<<<< HEAD   (9b9bbb PAL: Fix table data model)
+>>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
     --week "14" \
+<<<<<<< HEAD   (b95753 PAL: Fix table data model)
 >>>>>>> CHANGE (0ed80e Report: COnfigure reoirt 2001.14)
 >>>>>>> CHANGE (bdfc93 Report: COnfigure reoirt 2001.14)
 =======
     --week "15" \
 >>>>>>> CHANGE (8e601d Report: Configure report 2001.15)
 >>>>>>> CHANGE (68013a Report: Configure report 2001.15)
+=======
+=======
+    --week "16" \
+>>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
+>>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
     --logging INFO \
     --force
 

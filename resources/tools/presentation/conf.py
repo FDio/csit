@@ -46,6 +46,7 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
+<<<<<<< HEAD   (b95753 PAL: Fix table data model)
 <<<<<<< HEAD   (ede849 Report: Add pdf version)
 <<<<<<< HEAD   (35a360 Report: Add data)
 =======
@@ -57,13 +58,22 @@ report_week = u'13'
 <<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
 report_week = u'12'
 =======
+=======
+<<<<<<< HEAD   (9b9bbb PAL: Fix table data model)
+>>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
 report_week = u'14'
+<<<<<<< HEAD   (b95753 PAL: Fix table data model)
 >>>>>>> CHANGE (0ed80e Report: COnfigure reoirt 2001.14)
 >>>>>>> CHANGE (bdfc93 Report: COnfigure reoirt 2001.14)
 =======
 report_week = u'15'
 >>>>>>> CHANGE (8e601d Report: Configure report 2001.15)
 >>>>>>> CHANGE (68013a Report: Configure report 2001.15)
+=======
+=======
+report_week = u'16'
+>>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
+>>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
 project = u'FD.io CSIT-2001.{week}'.format(week=report_week)
 copyright = u'2020, FD.io'
 author = u'FD.io CSIT'
