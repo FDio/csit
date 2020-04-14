@@ -15,18 +15,17 @@ skx) and 3-Node Haswell (3n-hsw) physical testbed types, in 1-core,
     files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
 
-..
-    NDR Comparison
-    ~~~~~~~~~~~~~~
+NDR Comparison
+~~~~~~~~~~~~~~
 
-    Comparison tables in HTML, ASCII and CSV formats:
+Comparison tables in HTML, ASCII and CSV formats:
 
-      - `HTML 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr.html>`_
-      - `HTML 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr.html>`_
-      - `ASCII 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr.txt>`_
-      - `ASCII 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr.txt>`_
-      - `CSV 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr.csv>`_
-      - `CSV 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr.csv>`_
+  - `HTML 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr.html>`_
+  - `HTML 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr.html>`_
+  - `ASCII 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr.txt>`_
+  - `ASCII 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr.txt>`_
+  - `CSV 1c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr.csv>`_
+  - `CSV 2c NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr.csv>`_
 
 PDR Comparison
 ~~~~~~~~~~~~~~
