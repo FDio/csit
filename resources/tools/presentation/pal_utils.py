@@ -315,13 +315,11 @@ def convert_csv_to_pretty_txt(csv_file_name, txt_file_name, delimiter=u","):
             if txt_table is None:
                 txt_table = prettytable.PrettyTable(row)
             else:
-                txt_table.add_row(row)
+                txt_table.add_row(
+                    [str(itm.replace(u"\u00B1", u"+-")) for itm in row]
+                )
     txt_table.align = u"r"
     txt_table.align[u"Test Case"] = u"l"
-    txt_table.align[u"RCA"] = u"l"
-    txt_table.align[u"RCA1"] = u"l"
-    txt_table.align[u"RCA2"] = u"l"
-    txt_table.align[u"RCA3"] = u"l"
 
     if not txt_table:
         return
