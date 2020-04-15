@@ -552,7 +552,7 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
         align=params[u"align-hdr"][idx],
         font=dict(
             family=u"Courier New",
-            size=13
+            size=12
         )
     )
 
@@ -571,7 +571,7 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
                         align=params[u"align-itm"][idx],
                         font=dict(
                             family=u"Courier New",
-                            size=13
+                            size=12
                         )
                     )
                 )
@@ -617,7 +617,7 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
                     align=params[u"align-itm"][idx],
                     font=dict(
                         family=u"Courier New",
-                        size=13
+                        size=12
                     )
                 )
             )
@@ -644,7 +644,7 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
         )
         if title:
             rst_file.write(f"{title}\n")
-            rst_file.write(f"{u'~' * len(title)}\n\n")
+            rst_file.write(f"{u'`' * len(title)}\n\n")
         rst_file.write(
             u".. raw:: html\n\n"
             f'    <iframe frameborder="0" scrolling="no" '
@@ -1009,7 +1009,8 @@ def table_perf_comparison(table, input_data):
         tbl_lst,
         table[u'output-file'],
         legend=legend,
-        footnote=footnote
+        footnote=footnote,
+        title=table.get(u"title", u"")
     )
 
 
@@ -1379,7 +1380,8 @@ def table_perf_comparison_nic(table, input_data):
         tbl_lst,
         table[u'output-file'],
         legend=legend,
-        footnote=footnote
+        footnote=footnote,
+        title=table.get(u"title", u"")
     )
 
 
@@ -1553,7 +1555,8 @@ def table_nics_comparison(table, input_data):
         header,
         tbl_lst,
         table[u'output-file'],
-        legend=legend
+        legend=legend,
+        title=table.get(u"title", u"")
     )
 
 
@@ -1733,7 +1736,8 @@ def table_soak_vs_ndr(table, input_data):
         header,
         tbl_lst,
         table[u'output-file'],
-        legend=legend
+        legend=legend,
+        title=table.get(u"title", u"")
     )
 
 
