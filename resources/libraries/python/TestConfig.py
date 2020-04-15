@@ -23,7 +23,6 @@ from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatExecutor
 
 
 class TestConfig:
@@ -117,38 +116,6 @@ class TestConfig:
         src_ip_start = ip_address(src_ip_start)
         dst_ip_start = ip_address(dst_ip_start)
 
-        if vxlan_count > 10:
-            commands = list()
-            for i in range(0, vxlan_count):
-                try:
-                    src_ip = src_ip_start + i * ip_step
-                    dst_ip = dst_ip_start + i * ip_step
-                except AddressValueError:
-                    logger.warn(
-                        u"Can't do more iterations - IP address limit "
-                        u"has been reached."
-                    )
-                    vxlan_count = i
-                    break
-                commands.append(
-                    f"sw_interface_add_del_address sw_if_index "
-                    f"{Topology.get_interface_sw_index(node, node_vxlan_if)} "
-                    f"{src_ip}/{128 if src_ip.version == 6 else 32}\n"
-                )
-                commands.append(
-                    f"vxlan_add_del_tunnel src {src_ip} dst {dst_ip} "
-                    f"vni {vni_start + i}\n"
-                )
-                commands.append(
-                    f"create_vlan_subif sw_if_index "
-                    f"{Topology.get_interface_sw_index(node, node_vlan_if)} "
-                    f"vlan {i + 1}\n"
-                )
-            VatExecutor().write_and_execute_script(
-                node, u"/tmp/create_vxlan_interfaces.config", commands
-            )
-            return vxlan_count
-
         cmd1 = u"sw_interface_add_del_address"
         args1 = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, node_vxlan_if),
@@ -220,50 +187,6 @@ class TestConfig:
         :type node_vlan_if: str
         """
         if_data = InterfaceUtil.vpp_get_interface_data(node)
-        if vxlan_count > 10:
-            commands = list()
-            for i in range(0, vxlan_count):
-                vxlan_subif_key = Topology.add_new_port(node, u"vxlan_tunnel")
-                vxlan_subif_name = f"vxlan_tunnel{i}"
-                founds = dict(vxlan=False, vlan=False)
-                vxlan_subif_idx = None
-                vlan_subif_key = Topology.add_new_port(node, u"vlan_subif")
-                vlan_subif_name = \
-                    f"{Topology.get_interface_name(node, node_vlan_if)}.{i + 1}"
-                vlan_idx = None
-                for data in if_data:
-                    if_name = data[u"interface_name"]
-                    if not founds[u"vxlan"] and if_name == vxlan_subif_name:
-                        vxlan_subif_idx = data[u"sw_if_index"]
-                        founds[u"vxlan"] = True
-                    elif not founds[u"vlan"] and if_name == vlan_subif_name:
-                        vlan_idx = data[u"sw_if_index"]
-                        founds[u"vlan"] = True
-                    if founds[u"vxlan"] and founds[u"vlan"]:
-                        break
-                Topology.update_interface_sw_if_index(
-                    node, vxlan_subif_key, vxlan_subif_idx)
-                Topology.update_interface_name(
-                    node, vxlan_subif_key, vxlan_subif_name)
-                commands.append(
-                    f"sw_interface_set_flags sw_if_index {vxlan_subif_idx} "
-                    f"admin-up link-up\n"
-                )
-                Topology.update_interface_sw_if_index(
-                    node, vlan_subif_key, vlan_idx
-                )
-                Topology.update_interface_name(
-                    node, vlan_subif_key, vlan_subif_name
-                )
-                commands.append(
-                    f"sw_interface_set_flags sw_if_index {vlan_idx} admin-up "
-                    f"link-up\n"
-                )
-            VatExecutor().write_and_execute_script(
-                node, u"/tmp/put_subinterfaces_up.config", commands
-            )
-            return
-
         cmd = u"sw_interface_set_flags"
         args1 = dict(
             sw_if_index=None,
@@ -343,43 +266,6 @@ class TestConfig:
         :type bd_id_start: int
         """
         dst_ip_start = ip_address(dst_ip_start)
-
-        if vxlan_count > 1:
-            idx_vxlan_if = Topology.get_interface_sw_index(node, node_vxlan_if)
-            commands = list()
-            for i in range(0, vxlan_count):
-                dst_ip = dst_ip_start + i * ip_step
-                commands.append(
-                    f"exec ip neighbor "
-                    f"{Topology.get_interface_name(node, node_vxlan_if)} "
-                    f"{dst_ip} "
-                    f"{Topology.get_interface_mac(op_node, op_node_if)} static "
-                    f"\n"
-                )
-                commands.append(
-                    f"ip_route_add_del "
-                    f"{dst_ip}/{128 if dst_ip.version == 6 else 32} count 1 "
-                    f"via {dst_ip} sw_if_index {idx_vxlan_if}\n"
-                )
-                sw_idx_vxlan = Topology.get_interface_sw_index(
-                    node, f"vxlan_tunnel{i + 1}"
-                )
-                commands.append(
-                    f"sw_interface_set_l2_bridge sw_if_index {sw_idx_vxlan} "
-                    f"bd_id {bd_id_start + i} shg 0 enable\n"
-                )
-                sw_idx_vlan = Topology.get_interface_sw_index(
-                    node, f"vlan_subif{i + 1}"
-                )
-                commands.append(
-                    f"sw_interface_set_l2_bridge sw_if_index {sw_idx_vlan} "
-                    f"bd_id {bd_id_start + i} shg 0 enable\n"
-                )
-            VatExecutor().write_and_execute_script(
-                node, u"/tmp/configure_routes_and_bridge_domains.config",
-                commands
-            )
-            return
 
         cmd1 = u"ip_neighbor_add_del"
         neighbor = dict(
