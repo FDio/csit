@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1683bc7d_92f8339b",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-16T14:26:27Z",
+      "side": 1,
+      "message": "\u003e gerrit UI filter which only lists gerrit changes which have been Verified +1.\n\nLooking at [0] I see we have \"s5ci\" as a Label separate from Verified. Perhaps we can add Label \"Csit-Verified\" (and teach the crc check job to set that, and teach Gerrit to hide the submit button if it is -1)?\n\nBefore that, I think it is better to merge the text as it is here, and leave it to the contributors to figure out how to draw committer attention to their patch.\n\n[0] https://gerrit.fd.io/r/admin/repos/All-Projects,access",
+      "parentUuid": "7781b893_8be5b822",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 67
+      },
+      "revId": "bbb68a20b3f6102db41b011625b8c0e1fcb3a3e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "676f4c2f_3eda7cfe",
         "filename": "resources/tools/integrated/check_crc.py",
         "patchSetId": 2
