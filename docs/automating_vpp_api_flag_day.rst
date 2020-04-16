@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2019 Cisco and/or its affiliates.
+   Copyright (c) 2020 Cisco and/or its affiliates.
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at:
@@ -189,9 +189,21 @@ Changes
   This process does not specify what to do with CSIT-blocked changes
   that are not also API changes.
 
-+ The *active API change*: The API change currently being processed
++ A *candidate API change*: An API change that meets all requirements
+  to become active (see below). Currently, the requirements are:
+
+  + No -1 nor -2 from from any human reviewer.
+
+  + All verify jobs (except vpp-csit ones) pass.
+
+  + +1 from a VPP committer.
+
+  The reason is to avoid situations where an API change becomes active,
+  but the VPP committers are unwilling to merge it for some reason.
+
++ The *active API change*: The candidate API change currently being processed
   by the API Flag Day Algorithm.
-  While many API changes can be open (waiting/queued/scheduled),
+  While many API changes can be candidates at the same time,
   only one is allowed be active at a time.
 
 + The *activating change*: The name for a Gerrit Change for CSIT repository
@@ -233,6 +245,8 @@ The following steps describe the application of the API "Flag Day" algorithm:
 #. If the api-crc job fails, an email with the appropriate reason
    is sent to the VPP patch submitter and vpp-api-dev@lists.fd.io
    including the VPP patch information and .api files that are edited.
+#. The VPP patch developer works with a VPP committer
+   to ensure the patch meets requirements to become a candidate (see above).
 #. The VPP patch developer and CSIT team create a CSIT JIRA ticket
    to identify the work required to support the new VPP API version.
 #. CSIT developer creates a patch of the deactivating change
