@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4e1c453_bbbe60d4",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-04-16T12:43:14Z",
+      "side": 1,
+      "message": "If https://gerrit.fd.io/r/c/csit/+/26418 is merged first then this file needs to be updated.",
+      "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8accda73_e512391c",
+        "filename": "resources/libraries/python/TestConfig.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-04-16T12:43:14Z",
+      "side": 1,
+      "message": "When we always execute only one type of cmd in papi_exec.get_replies() then no need to use cmd1/args1, cmd2/args2, ... variables but cmd/args is enough (this could fix some too many local variables pylint issues).\n- valid in all py libs",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 158,
+        "endChar": 21
+      },
+      "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d6fdb5a_7c695f32",
+        "filename": "resources/libraries/python/bytes_template.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-04-16T12:43:14Z",
+      "side": 1,
+      "message": "template",
+      "range": {
+        "startLine": 43,
+        "startChar": 28,
+        "endLine": 43,
+        "endChar": 38
+      },
+      "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9997b76_8ffa7707",
+        "filename": "resources/libraries/python/bytes_template.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-04-16T12:43:14Z",
+      "side": 1,
+      "message": "correct",
+      "range": {
+        "startLine": 43,
+        "startChar": 65,
+        "endLine": 43,
+        "endChar": 72
+      },
+      "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a56cae99_8dc971ac",
+        "filename": "resources/libraries/python/bytes_template.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-04-16T12:43:14Z",
+      "side": 1,
+      "message": "Such number looks strange.. what about usage of int(0x100000000) ( or int(0xffffffff +1) or int(Constants.BITWISE_NON_ZERO + 1)) ?",
+      "range": {
+        "startLine": 187,
+        "startChar": 36,
+        "endLine": 187,
+        "endChar": 37
+      },
+      "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
