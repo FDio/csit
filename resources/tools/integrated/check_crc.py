@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -60,9 +60,13 @@ def main():
             u"Either this Change and/or its ancestors were editing .api files,",
             u"or your chain is not rebased upon a recent enough VPP codebase.",
             u"",
-            u"Please rebase the patch to see if that fixes the problem.",
-            u"If that fails email csit-dev@lists.fd.io for a new",
-            u"operational branch supporting the api changes.",
+            u"In the former case, please consult the following document",
+            u"to see how to make CSIT accept the .api editing change.",
+            u"https://github.com/FDio/csit/blob/master/docs/automating_vpp_api_flag_day.rst"
+            u"",
+            u"For the latter case, please rebase the patch to see",
+            u"if that fixes the problem. If repeated rebases do not help",
+            u"send and email to csit-dev@lists.fd.io asking to investigate.",
             u"",
             u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
         ]
