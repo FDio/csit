@@ -245,12 +245,41 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                 tmp2_filename
             )
             if u"DPDK" in in_prolog:
-                check_suite_tag(old_suite_tag, tmp2_prolog)
-                with open(tmp2_filename, u"wt") as file_out:
-                    file_out.write(tmp2_prolog)
-                    add_default_testcases(
-                        testcase, iface, old_suite_id, file_out, kwargs_list
+                for driver in Constants.DPDK_NIC_NAME_TO_DRIVER[nic_name]:
+                    out_filename = replace_defensively(
+                        tmp2_filename, old_suite_id,
+                        Constants.DPDK_NIC_DRIVER_TO_SUITE_PREFIX[driver] \
+                            + old_suite_id,
+                        1, u"Error adding driver prefix.", in_filename
                     )
+                    out_prolog = replace_defensively(
+                        tmp2_prolog, u"vfio-pci", driver, 1,
+                        u"Driver name should appear once.", in_filename
+                    )
+                    out_prolog = replace_defensively(
+                        out_prolog,
+                        Constants.DPDK_NIC_DRIVER_TO_TAG[u"vfio-pci"],
+                        Constants.DPDK_NIC_DRIVER_TO_TAG[driver], 1,
+                        u"Driver tag should appear once.", in_filename
+                    )
+                    iface, suite_id, suite_tag = get_iface_and_suite_ids(
+                        out_filename
+                    )
+                    # The next replace is probably a noop, but it is safer to
+                    # maintain the same structure as for other edits.
+                    out_prolog = replace_defensively(
+                        out_prolog, old_suite_tag, suite_tag, 1,
+                        f"Perf suite tag {old_suite_tag} should appear once.",
+                        in_filename
+                    )
+                    check_suite_tag(suite_tag, out_prolog)
+                    # TODO: Reorder loops so suite_id is finalized sooner.
+                    testcase = Testcase.default(suite_id)
+                    with open(out_filename, u"wt") as file_out:
+                        file_out.write(out_prolog)
+                        add_default_testcases(
+                            testcase, iface, suite_id, file_out, kwargs_list
+                        )
                 continue
             for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
                 out_filename = replace_defensively(

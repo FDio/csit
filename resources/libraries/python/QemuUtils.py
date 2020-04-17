@@ -254,15 +254,22 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
+        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo_frames"] else u"1518"
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
             eal_driver=False,
+            eal_pci_whitelist0=u"0000:00:06.0",
+            eal_pci_whitelist1=u"0000:00:07.0",
             eal_in_memory=True,
             pmd_num_mbufs=16384,
+            pmd_fwd_mode=u"io",
+            pmd_nb_ports=u"2",
+            pmd_portmask=u"0x3",
+            pmd_max_pkt_len=pmd_max_pkt_len,
+            pmd_mbuf_size=u"16384",
             pmd_rxq=kwargs[u"queues"],
             pmd_txq=kwargs[u"queues"],
             pmd_tx_offloads='0x0',
-            pmd_disable_hw_vlan=False,
             pmd_nb_cores=str(self._opt.get(u"smp") - 1)
         )
 
@@ -274,18 +281,24 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
+        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo_frames"] else u"1518"
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
             eal_driver=False,
+            eal_pci_whitelist0=u"0000:00:06.0",
+            eal_pci_whitelist1=u"0000:00:07.0",
             eal_in_memory=True,
             pmd_num_mbufs=16384,
             pmd_fwd_mode=u"mac",
+            pmd_nb_ports=u"2",
+            pmd_portmask=u"0x3",
+            pmd_max_pkt_len=pmd_max_pkt_len,
+            pmd_mbuf_size=u"16384",
             pmd_eth_peer_0=f"0,{kwargs[u'vif1_mac']}",
             pmd_eth_peer_1=f"1,{kwargs[u'vif2_mac']}",
             pmd_rxq=kwargs[u"queues"],
             pmd_txq=kwargs[u"queues"],
             pmd_tx_offloads=u"0x0",
-            pmd_disable_hw_vlan=False,
             pmd_nb_cores=str(self._opt.get(u"smp") - 1)
         )
 
