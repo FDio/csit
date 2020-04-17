@@ -13,8 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Cleanup the DPDK framework on the DUT node. Bind interfaces to
-# driver.
+# Helper functions for starting testpmd.
 
 set -exuo pipefail
 
@@ -132,23 +131,51 @@ function dpdk_kill () {
 }
 
 
-function dpdk_bind () {
+function dpdk_testpmd () {
 
-    # Bind interfaces to driver.
+    # Run DPDK testpmd.
     #
     # Variables read:
     # - DPDK_DIR - Path to DPDK framework.
-    # - @ - Script cli arguments.
     # Functions called:
     # - die - Print to stderr and exit.
 
-    pushd "${DPDK_DIR}/" || die "Pushd failed"
+    set -exuo pipefail
 
-    sudo ./usertools/dpdk-devbind.py -b "${@}" || {
-        die "Bind ${@} failed"
+    arch=$(uname -m) || {
+        die "Get CPU architecture failed."
     }
 
-    popd || die "Popd failed"
+    # DPDK prefers "arm64" to "aarch64" and does not allow arm64 native target.
+    if [ ${arch} == "aarch64" ]; then
+        arch="arm64"
+        machine="armv8a"
+    else
+        machine="native"
+    fi
+
+    rm -f screenlog.0 || true
+    binary="${DPDK_DIR}/${arch}-${machine}-linuxapp-gcc/app/testpmd"
+
+    sudo sh -c "screen -dmSL DPDK-test ${binary} ${@}" || {
+        die "Failed to start testpmd"
+    }
+
+    # Function will be noisy and requires custom error handling.
+    set -x
+    set +eu
+
+    for attempt in {1..60}; do
+        echo "Checking if testpmd is alive, attempt nr ${attempt}"
+        fgrep "Press enter to exit" screenlog.0
+        if [ "${?}" -eq "0" ]; then
+            exit 0
+        fi
+        sleep 1
+    done
+    cat screenlog.0
+
+    exit 1
 }
 
 
@@ -167,4 +194,4 @@ function warn () {
 
 common_dirs || die
 dpdk_kill || die
-dpdk_bind "${@}" || die
+dpdk_testpmd "${@}" || die

@@ -323,6 +323,38 @@ class Constants:
         u"rdma-core": u"rdma-",
     }
 
+    # Number of virtual functions of physical nic.
+    NIC_DRIVER_TO_VFS = {
+        u"vfio-pci": u"nic_vfs}= | 0",
+        u"avf": u"nic_vfs}= | 1",
+        u"rdma-core": u"nic_vfs}= | 0",
+    }
+
+    # Not each driver is supported by each NIC.
+    DPDK_NIC_NAME_TO_DRIVER = {
+        u"Cisco-VIC-1227": [u"vfio-pci"],
+        u"Cisco-VIC-1385": [u"vfio-pci"],
+        u"Intel-X520-DA2": [u"vfio-pci"],
+        u"Intel-X553": [u"vfio-pci"],
+        u"Intel-X710": [u"vfio-pci"],
+        u"Intel-XL710": [u"vfio-pci"],
+        u"Intel-XXV710": [u"vfio-pci"],
+        u"Amazon-Nitro-50G": [u"vfio-pci"],
+        u"Mellanox-CX556A": [u"mlx5_core"],
+    }
+
+    # Tags to differentiate tests for different NIC driver.
+    DPDK_NIC_DRIVER_TO_TAG = {
+        u"vfio-pci": u"DRV_VFIO_PCI",
+        u"mlx5_core": u"DRV_MLX5_CORE",
+    }
+
+    # Suite names have to be different, add prefix.
+    DPDK_NIC_DRIVER_TO_SUITE_PREFIX = {
+        u"vfio-pci": u"",
+        u"mlx5_core": u"mlx5-",
+    }
+
     # Some identifiers constructed from suite names
     # have to be independent of NIC driver used.
     # In order to remove or reject the NIC driver part,
@@ -330,13 +362,6 @@ class Constants:
     FORBIDDEN_SUITE_PREFIX_LIST = [
         prefix for prefix in NIC_DRIVER_TO_SUITE_PREFIX.values() if prefix
     ]
-
-    # Number of virtual functions of physical nic.
-    NIC_DRIVER_TO_VFS = {
-        u"vfio-pci": u"nic_vfs}= | 0",
-        u"avf": u"nic_vfs}= | 1",
-        u"rdma-core": u"nic_vfs}= | 0",
-    }
 
     # TODO CSIT-1481: Crypto HW should be read from topology file instead.
     NIC_NAME_TO_CRYPTO_HW = {
