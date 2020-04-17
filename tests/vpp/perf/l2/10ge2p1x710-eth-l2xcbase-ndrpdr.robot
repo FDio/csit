@@ -82,6 +82,7 @@
 | | And Apply Startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
+| | And Set interfaces in path up
 | | And Initialize L2 cross connect
 | | Then Find NDR and PDR intervals using optimized search
 
