@@ -30,8 +30,8 @@
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 # https://logs.fd.io/production/vex-yul-rot-jenkins-1
-# /vpp-merge-master-ubuntu1804/1029/
-20.05-rc0~532:
+# /vpp-merge-master-ubuntu1804/921/
+20.01-rc0~424:
     acl_add_replace: '0x1cabdeab'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
     acl_details: '0x7a97f21c'  # perf teardown
@@ -183,7 +183,7 @@
     nat_det_add_del_map: '0x112fde05'  # perf
     nat_det_add_del_map_reply: '0xe8d4e804'  # perf
     nat_show_config: '0x51077d14'  # perf teardown
-    nat_show_config_reply: '0x7903ef06'  # perf teardown
+    nat_show_config_reply: '0x006a0786'  # perf teardown
     # 6x^ tc01-64B-1c-ethip4udp-ip4base-nat44-mrr
     # ^ nat44NOTscaleNOTsrc_user_1
     nsim_configure: '0x16ed400f'  # perf
