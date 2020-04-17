@@ -18,6 +18,8 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | HW_ENV | PERFTEST | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | ETH | L2XCFWD | BASE
+| ... | DRV_VFIO_PCI
+| ... | RXQ_SIZE_1024 | TXQ_SIZE_1024
 | ... | eth-l2xcbase-testpmd
 |
 | Suite Setup | Setup suite single link | performance | dpdk
@@ -44,10 +46,14 @@
 | ... | MAC addresses are matching MAC addresses of the TG node interfaces.
 
 *** Variables ***
-| ${osi_layer}= | L2
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 1024
 | ${nic_txq_size}= | 1024
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
+| ${osi_layer}= | L2
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
@@ -63,8 +69,8 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Set Max Rate And Jumbo
-| | Given Start L2FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
+| | Given Set Max Rate And Jumbo
+| | When Start testpmd on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
