@@ -75,6 +75,23 @@ class DpdkUtil:
         options.add_equals_from_dict(
             u"total-num-mbufs", u"pmd_num_mbufs", kwargs
         )
+        # Set the number of forwarding ports.
+        options.add_equals_from_dict(
+            u"nb-ports", u"pmd_nb_ports", kwargs
+        )
+        # Set the hexadecimal bitmask of the ports used by the packet
+        # forwarding test.
+        options.add_equals_from_dict(
+            u"portmask", u"pmd_portmask", kwargs
+        )
+        # Run by default.
+        options.add_if_from_dict(
+            u"auto-start", u"pmd_auto_start", kwargs, True
+        )
+        # Disable link status check.
+        options.add_if_from_dict(
+            u"disable-link-check", u"pmd_disable_link_check", kwargs, True
+        )
         # Disable hardware VLAN.
         options.add_if_from_dict(
             u"disable-hw-vlan", u"pmd_disable_hw_vlan", kwargs, True

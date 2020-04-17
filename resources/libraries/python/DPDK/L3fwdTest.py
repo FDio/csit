@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,7 +16,8 @@ This module exists to provide the l3fwd test for DPDK on topology nodes.
 """
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.DpdkUtil import DpdkUtil
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -24,33 +25,35 @@ class L3fwdTest:
     """Test the DPDK l3fwd performance."""
 
     @staticmethod
-    def start_the_l3fwd_test(
-            nodes_info, dut_node, dut_if1, dut_if2, nb_cores, lcores_list,
-            queue_nums, jumbo_frames):
+    def start_l3fwd(
+            nodes, node, if1, if2, nb_cores, lcores_list, queue_nums,
+            jumbo_frames):
         """
         Execute the l3fwd on the dut_node.
 
-        :param nodes_info: All the nodes info in the topology file.
-        :param dut_node: Will execute the l3fwd on this node
-        :param dut_if1: The test link interface 1.
-        :param dut_if2: The test link interface 2.
+        :param nodes: All the nodes info in the topology file.
+        :param node: Will execute the l3fwd on this node
+        :param if1: The test link interface 1.
+        :param if2: The test link interface 2.
         :param nb_cores: The cores number for the forwarding
         :param lcores_list: The lcore list string for the l3fwd routing
         :param queue_nums: The queues number for the NIC
         :param jumbo_frames: Indication if the jumbo frames are used (True) or
                              not (False).
-        :type nodes_info: dict
-        :type dut_node: dict
-        :type dut_if1: str
-        :type dut_if2: str
+        :type nodes: dict
+        :type node: dict
+        :type if1: str
+        :type if2: str
         :type nb_cores: str
         :type lcores_list: str
         :type queue_nums: str
         :type jumbo_frames: bool
         """
-        if dut_node[u"type"] == NodeType.DUT:
+        if node[u"type"] == NodeType.DUT:
+            max_pkt_len = u"9000" if jumbo_frames else u"1518"
+
             adj_mac0, adj_mac1 = L3fwdTest.get_adj_mac(
-                nodes_info, dut_node, dut_if1, dut_if2
+                nodes, node, if1, if2
             )
 
             list_cores = [int(item) for item in lcores_list.split(u",")]
@@ -65,51 +68,46 @@ class L3fwdTest:
                     port_config += f"({port}, {queue}, {list_cores[index]}),"
                     index += 1
 
-            ssh = SSH()
-            ssh.connect(dut_node)
+            command = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
+                f"/run_l3fwd.sh -l {lcores_list} -- -P -L -p 0x3 "\
+                f"--config='{port_config.rstrip(u',')}' " \
+                f"--enable-jumbo --max-pkt-len=9000 --eth-dest=0,${adj_mac0}" \
+                f"--eth-dest=1,${adj_mac1} --parse-ptype"
+            message = f"Failed to execute l3fwd test at node {node['host']}"
+            exec_cmd_no_error(node, command, timeout=1800, message=message)
 
-            cmd = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
-                f"/run_l3fwd.sh \"{lcores_list}\" " \
-                f"\"{port_config.rstrip(u',')}\" " \
-                f"{adj_mac0} {adj_mac1} {u'yes' if jumbo_frames else u'no'}"
-
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=1800)
-            if ret_code != 0:
-                raise Exception(
-                    f"Failed to execute l3fwd test at node {dut_node[u'host']}"
-                )
 
     @staticmethod
-    def get_adj_mac(nodes_info, dut_node, dut_if1, dut_if2):
+    def get_adj_mac(nodes, node, if1, if2):
         """
         Get adjacency MAC addresses of the DUT node.
 
-        :param nodes_info: All the nodes info in the topology file.
-        :param dut_node: Will execute the l3fwd on this node
-        :param dut_if1: The test link interface 1.
-        :param dut_if2: The test link interface 2.
-        :type nodes_info: dict
-        :type dut_node: dict
-        :type dut_if1: str
-        :type dut_if2: str
+        :param nodes: All the nodes info in the topology file.
+        :param node: Will execute the l3fwd on this node
+        :param if1: The test link interface 1.
+        :param if2: The test link interface 2.
+        :type nodes: dict
+        :type node: dict
+        :type if1: str
+        :type if2: str
         :returns: Returns MAC addresses of adjacency DUT nodes.
         :rtype: str
         """
-        if_key0 = dut_if1
-        if_key1 = dut_if2
-        if_pci0 = Topology.get_interface_pci_addr(dut_node, if_key0)
-        if_pci1 = Topology.get_interface_pci_addr(dut_node, if_key1)
+        if_key0 = if1
+        if_key1 = if2
+        if_pci0 = Topology.get_interface_pci_addr(node, if_key0)
+        if_pci1 = Topology.get_interface_pci_addr(node, if_key1)
 
         # detect which is the port 0
         if min(if_pci0, if_pci1) != if_pci0:
             if_key0, if_key1 = if_key1, if_key0
-            L3fwdTest.patch_l3fwd(dut_node, u"patch_l3fwd_flip_routes")
+            L3fwdTest.patch_l3fwd(node, u"patch_l3fwd_flip_routes")
 
         adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface(
-            nodes_info, dut_node, if_key0
+            nodes, node, if_key0
         )
         adj_node1, adj_if_key1 = Topology.get_adjacent_node_and_interface(
-            nodes_info, dut_node, if_key1
+            nodes, node, if_key1
         )
 
         adj_mac0 = Topology.get_interface_mac(adj_node0, adj_if_key0)
@@ -128,16 +126,9 @@ class L3fwdTest:
         :type patch: str
         :raises RuntimeError: Patching of l3fwd failed.
         """
-        arch = Topology.get_node_arch(node)
-
-        ssh = SSH()
-        ssh.connect(node)
-
-        ret_code, _, _ = ssh.exec_command(
-            f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts/patch_l3fwd.sh "
-            f"{arch} {Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts/{patch}",
-            timeout=600
-        )
-
-        if ret_code != 0:
-            raise RuntimeError(u"Patch of l3fwd failed.")
+        command = \
+            f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts/ " \
+            f"patch_l3fwd.sh " \
+            f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts/{patch}"
+        message = f"Failed to patch l3fwd at node {node['host']}"
+        exec_cmd_no_error(node, command, timeout=1800, message=message)

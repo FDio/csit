@@ -16,21 +16,22 @@ DUT nodes.
 """
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.DpdkUtil import DpdkUtil
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
 
-class L2fwdTest:
-    """Setup the DPDK for l2fwd performance test."""
+class TestpmdTest:
+    """Setup the DPDK for testpmd performance test."""
 
     @staticmethod
-    def start_the_l2fwd_test(
+    def start_testpmd(
             node, cpu_cores, nb_cores, queue_nums, jumbo_frames,
             rxq_size=1024, txq_size=1024):
         """
-        Execute the l2fwd on the DUT node.
+        Execute the testpmd on the DUT node.
 
-        :param node: Will execute the l2fwd on this node.
+        :param node: Will execute the testpmd on this node.
         :param cpu_cores: The DPDK run cores.
         :param nb_cores: The cores number for the forwarding.
         :param queue_nums: The queues number for the NIC.
@@ -45,14 +46,30 @@ class L2fwdTest:
         :type jumbo_frames: bool
         :type rxq_size: int
         :type txq_size: int
-        :raises RuntimeError: If the script "run_l2fwd.sh" fails.
+        :raises RuntimeError: If the script "run_testpmd.sh" fails.
         """
         if node[u"type"] == NodeType.DUT:
-            jumbo = u"yes" if jumbo_frames else u"no"
+            max_pkt_len = u"9000" if jumbo_frames else u"1518"
+            tx_offloads = 0x7FFFFFFF if jumbo_frames else 0x0
+
+            testpmd_args = DpdkUtil.get_testpmd_cmdline(
+                eal_corelist=cpu_cores,
+                eal_driver=False,
+                pmd_fwd_mode=u"io",
+                pmd_nb_ports=u"2",
+                pmd_portmask=u"0x3",
+                pmd_max_pkt_len=max_pkt_len,
+                pmd_rxq=queue_nums,
+                pmd_txq=queue_nums,
+                pmd_rxd=rxq_size,
+                pmd_txd=txq_size,
+                pmd_tx_offloads=tx_offloads,
+                pmd_nb_cores=nb_cores,
+                pmd_disable_link_check=True,
+                pmd_auto_start=True
+            )
+
             command = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
-                f"/run_l2fwd.sh {cpu_cores} {nb_cores} {queue_nums} {jumbo} " \
-                f"{rxq_size} {txq_size}"
-
-            message = f"Failed to execute l2fwd test at node {node['host']}"
-
+                f"/run_testpmd.sh {testpmd_args}"
+            message = f"Failed to execute testpmd at node {node['host']}"
             exec_cmd_no_error(node, command, timeout=1800, message=message)

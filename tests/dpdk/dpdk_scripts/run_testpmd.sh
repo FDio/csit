@@ -24,8 +24,6 @@ function common_dirs () {
     # - BASH_FUNCTION_DIR - Path to existing directory this file is located in.
     # - DPDK_DIR - Path to DPDK framework.
     # - CSIT_DIR - Path to CSIT framework.
-    # Directories created if not present:
-    # - DPDK_DIR.
     # Functions called:
     # - die - Print to stderr and exit.
 
@@ -45,6 +43,7 @@ function common_dirs () {
     }
 }
 
+
 function die () {
 
     # Print the message to standard error end exit with error code specified
@@ -63,13 +62,79 @@ function die () {
 }
 
 
-function dpdk_l3fwd_compile () {
+function dpdk_kill () {
 
-    # Compile DPDK l3fwd sample app.
+    # Kill testpmd and/or l3fwd if running.
+
+    # Function will be noisy and requires custom error handling.
+    set -x
+    set +eu
+
+    # Try to kill the testpmd.
+    sudo pgrep testpmd
+    if [ $? -eq "0" ]; then
+        success=false
+        sudo pkill testpmd
+        echo "RC = $?"
+        for attempt in {1..60}; do
+            echo "Checking if testpmd is still alive, attempt nr ${attempt}"
+            sudo pgrep testpmd
+            if [ $? -eq "1" ]; then
+                echo "testpmd is dead"
+                success=true
+                break
+            fi
+            echo "testpmd is still alive, waiting 1 second"
+            sleep 1
+        done
+        if [ "$success" = false ]; then
+            echo "The command sudo pkill testpmd failed"
+            sudo pkill -9 testpmd
+            echo "RC = $?"
+            exit 1
+        fi
+    else
+        echo "testpmd is not running"
+    fi
+
+    # Try o kill the l3fwd.
+    sudo pgrep l3fwd
+    if [ $? -eq "0" ]; then
+        success=false
+        sudo pkill l3fwd
+        echo "RC = $?"
+        for attempt in {1..60}; do
+            echo "Checking if l3fwd is still alive, attempt nr ${attempt}"
+            sudo pgrep l3fwd
+            if [ $? -eq "1" ]; then
+                echo "l3fwd is dead"
+                success=true
+                break
+            fi
+            echo "l3fwd is still alive, waiting 1 second"
+            sleep 1
+        done
+        if [ "$success" = false ]; then
+            echo "The command sudo pkill l3fwd failed"
+            sudo pkill -9 l3fwd
+            echo "RC = $?"
+            exit 1
+        fi
+    else
+        echo "l3fwd is not running"
+    fi
+
+    # Remove hugepages
+    sudo rm -f /dev/hugepages/*
+}
+
+
+function dpdk_testpmd () {
+
+    # Run DPDK testpmd.
     #
     # Variables read:
     # - DPDK_DIR - Path to DPDK framework.
-    # - CSIT_DIR - Path to CSIT framework.
     # Functions called:
     # - die - Print to stderr and exit.
 
@@ -87,22 +152,28 @@ function dpdk_l3fwd_compile () {
         machine="native"
     fi
 
-    # Patch settings.
+    rm -f "screenlog.0" || true
+    binary="${DPDK_DIR}/${arch}-${machine}-linuxapp-gcc/app/testpmd"
 
-    # Compile the l3fwd.
-    export RTE_SDK="${DPDK_DIR}/"
-    export RTE_TARGET="${arch}-${machine}-linuxapp-gcc"
-    # Patch settings.
-    sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128/#define RTE_TEST_RX_DESC_DEFAULT 2048/g"
-    sed_txd="s/^#define RTE_TEST_TX_DESC_DEFAULT 512/#define RTE_TEST_TX_DESC_DEFAULT 2048/g"
-    sed_file="./main.c"
-    pushd "${RTE_SDK}"/examples/l3fwd || die "Pushd failed"
-    sed -i "${sed_rxd}" "${sed_file}" || die "Patch failed"
-    sed -i "${sed_txd}" "${sed_file}" || die "Patch failed"
-    chmod +x ${1} && source ${1} || die "Patch failed"
-    make clean || die "Failed to compile l3fwd"
-    make -j || die "Failed to compile l3fwd"
-    popd || die "Popd failed"
+    sudo sh -c "screen -dmSL DPDK-test ${binary} ${@}" || {
+        die "Failed to start testpmd"
+    }
+
+    # Function will be noisy and requires custom error handling.
+    set -x
+    set +eu
+
+    for attempt in {1..60}; do
+        echo "Checking if testpmd is alive, attempt nr ${attempt}"
+        fgrep "Press enter to exit" screenlog.0
+        if [ "${?}" -eq "0" ]; then
+            exit 0
+        fi
+        sleep 1
+    done
+    cat "screenlog.0"
+
+    exit 1
 }
 
 
@@ -120,4 +191,5 @@ function warn () {
 
 
 common_dirs || die
-dpdk_l3fwd_compile "${@}" || die
+dpdk_kill || die
+dpdk_testpmd "${@}" || die
