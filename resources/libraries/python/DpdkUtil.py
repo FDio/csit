@@ -45,8 +45,8 @@ class DpdkUtil:
         return options
 
     @staticmethod
-    def get_pmd_options(**kwargs):
-        """Create PMD parameters options (without --).
+    def get_testpmd_pmd_options(**kwargs):
+        """Create PMD parameters options for testpmd (without --).
 
         :param kwargs: List of testpmd parameters.
         :type kwargs: dict
@@ -75,6 +75,23 @@ class DpdkUtil:
         options.add_equals_from_dict(
             u"total-num-mbufs", u"pmd_num_mbufs", kwargs
         )
+        # Set the number of forwarding ports.
+        options.add_equals_from_dict(
+            u"nb-ports", u"pmd_nb_ports", kwargs
+        )
+        # Set the hexadecimal bitmask of the ports used by the packet
+        # forwarding test.
+        options.add_equals_from_dict(
+            u"portmask", u"pmd_portmask", kwargs
+        )
+        # Run by default.
+        options.add_if_from_dict(
+            u"auto-start", u"pmd_auto_start", kwargs, True
+        )
+        # Disable link status check.
+        options.add_if_from_dict(
+            u"disable-link-check", u"pmd_disable_link_check", kwargs, True
+        )
         # Disable hardware VLAN.
         options.add_if_from_dict(
             u"disable-hw-vlan", u"pmd_disable_hw_vlan", kwargs, True
@@ -101,7 +118,7 @@ class DpdkUtil:
         options.add(u"testpmd")
         options.extend(DpdkUtil.get_eal_options(**kwargs))
         options.add(u"--")
-        options.extend(DpdkUtil.get_pmd_options(**kwargs))
+        options.extend(DpdkUtil.get_testpmd_pmd_options(**kwargs))
         return options
 
     @staticmethod
@@ -117,7 +134,7 @@ class DpdkUtil:
         cmd_options.add(u"/start-testpmd.sh")
         cmd_options.extend(DpdkUtil.get_eal_options(**kwargs))
         cmd_options.add(u"--")
-        cmd_options.extend(DpdkUtil.get_pmd_options(**kwargs))
+        cmd_options.extend(DpdkUtil.get_testpmd_pmd_options(**kwargs))
         exec_cmd_no_error(node, cmd_options, sudo=True, disconnect=True)
 
     @staticmethod
@@ -130,3 +147,48 @@ class DpdkUtil:
         """
         cmd = u"/stop-testpmd.sh"  # Completed string, simple one.
         exec_cmd_no_error(node, cmd, sudo=True, disconnect=True)
+
+
+    @staticmethod
+    def get_l3fwd_pmd_options(**kwargs):
+        """Create PMD parameters options for l3fwd (without --).
+
+        :param kwargs: List of l3fwd parameters.
+        :type kwargs: dict
+        :returns: PMD parameters.
+        :rtype: OptionString
+        """
+        options = OptionString(prefix=u"--")
+        # Set to use software to analyze packet type.
+        options.add_if_from_dict(
+            u"parse-ptype", u"pmd_parse_ptype", kwargs, True
+        )
+        # Set the MAC address XX:XX:XX:XX:XX:XX of the peer port N.
+        options.add_equals_from_dict(u"eth-dest", u"pmd_eth_dest_0", kwargs)
+        options.add_equals_from_dict(u"eth-dest", u"pmd_eth_dest_1", kwargs)
+        # Determines which queues from which ports are mapped to which cores.
+        options.add_equals_from_dict(u"config", u"pmd_config", kwargs)
+        # Enables jumbo frames.
+        options.add_if_from_dict(
+            u"enable_jumbo", u"pmd_enable_jumbo", kwargs, True
+        )
+        options.add_with_value_if_from_dict(
+            u"max_pkt_len", u"9000", u"pmd_max_pkt_len", kwargs, False
+        )
+        return options
+
+
+    @staticmethod
+    def get_l3fwd_cmdline(**kwargs):
+        """Get DPDK l3fwd command line arguments.
+
+        :param kwargs: Key-value l3fwd parameters.
+        :type kwargs: dict
+        :returns: Command line string.
+        :rtype: OptionString
+        """
+        options = OptionString()
+        options.extend(DpdkUtil.get_eal_options(**kwargs))
+        options.add(u"--")
+        options.extend(DpdkUtil.get_l3fwd_pmd_options(**kwargs))
+        return options

@@ -18,6 +18,8 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | IP4FWD | BASE | ETH
+| ... | DRV_VFIO_PCI
+| ... | RXQ_SIZE_1024 | TXQ_SIZE_1024
 | ... | ethip4-ip4base-l3fwd
 |
 | Suite Setup | Setup suite single link | performance | dpdk
@@ -44,10 +46,14 @@
 | ... | interfaces.
 
 *** Variables ***
-| ${osi_layer}= | L3
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 1024
 | ${nic_txq_size}= | 1024
+| ${nic_pfs}= | 2
+| ${nic_vfs}= | 0
+| ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst253_l3fwd
@@ -63,8 +69,8 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | Set Max Rate And Jumbo
-| | Given Start L3FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
+| | Given Set Max Rate And Jumbo
+| | When Start L3FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

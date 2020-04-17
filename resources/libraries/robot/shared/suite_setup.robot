@@ -152,8 +152,8 @@
 | | ... | Additional Setup for suites which uses dpdk.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Initialize DPDK Environment | ${nodes['${dut}']}
-| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
+| | | Initialize DPDK Framework | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0] | ${nic_driver}
 | | END
 
 | Additional Suite Setup Action For performance vf
