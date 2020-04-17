@@ -14,13 +14,13 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.CpuUtils
-| Library | resources.libraries.python.DPDK.L2fwdTest
+| Library | resources.libraries.python.DPDK.TestpmdTest
 | Library | resources.libraries.python.DPDK.L3fwdTest
 | Library | Collections
 
 *** Keywords ***
-| Start L2FWD on all DUTs
-| | [Documentation] | Start the l2fwd with M worker threads and rxqueues N and
+| Start testpmd on all DUTs
+| | [Documentation] | Start the testpmd with M worker threads and rxqueues N and
 | | ... | jumbo support frames on/off on all DUTs.
 | |
 | | ... | *Arguments:*
@@ -30,7 +30,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Start L2FWD on all DUTs \| ${1} \| ${1} \| ${False} \|
+| | ... | \| Start testpmd on all DUTs \| ${1} \| ${1} \| ${False} \|
 | |
 | | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${jumbo_frames}=${False}
 | |
@@ -52,7 +52,8 @@
 | | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | Start the l2fwd test | ${nodes['${dut}']} | ${cpus} | ${thr_count_int}
+| | | Start testpmd
+| | | ... | ${nodes['${dut}']} | ${cpus} | ${thr_count_int}
 | | | ... | ${rxq_count_int} | ${jumbo_frames}
 | | | ... | ${nic_rxq_size} | ${nic_txq_size}
 | | | Run keyword if | ${thr_count_int} > 1
@@ -60,7 +61,7 @@
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | END
 
-| Start L3FWD on all DUTs
+| Start l3fwd on all DUTs
 | | [Documentation] | Start the l3fwd with M worker threads and rxqueues N and
 | | ... | jumbo support frames on/off on all DUTs.
 | |
@@ -93,7 +94,7 @@
 | | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | Start the l3fwd test
+| | | Start l3fwd
 | | | ... | ${nodes} | ${nodes['${dut}']}
 | | | ... | ${${dut}_pf1}[0] | ${${dut}_pf2}[0]
 | | | ... | ${thr_count_int} | ${cpus} | ${rxq_count_int} | ${jumbo_frames}

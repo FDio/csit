@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,7 +17,7 @@
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -28,84 +28,66 @@ class DPDKTools:
     """
 
     @staticmethod
-    def initialize_dpdk_environment(dut_node, dut_if1, dut_if2):
+    def initialize_dpdk_framework(node, if1, if2, nic_driver):
         """
-        Initialize the DPDK test environment on the dut_node.
+        Initialize the DPDK framework on the DUT node.
         Load the module uio and igb_uio, then bind the test NIC to the igb_uio.
 
-        :param dut_node: Will init the DPDK on this node.
-        :param dut_if1: DUT interface name.
-        :param dut_if2: DUT interface name.
-        :type dut_node: dict
-        :type dut_if1: str
-        :type dut_if2: str
-        :raises RuntimeError: If it fails to bind the interfaces to igb_uio.
+        :param node: DUT node.
+        :param if1: DUT first interface name.
+        :param if2: DUT second interface name.
+        :param nic_driver: Interface driver.
+        :type node: dict
+        :type if1: str
+        :type if2: str
+        :type nic_driver: str
+        :raises RuntimeError: If it fails to bind the interfaces to driver.
         """
-        if dut_node[u"type"] == NodeType.DUT:
-            pci_address1 = Topology.get_interface_pci_addr(dut_node, dut_if1)
-            pci_address2 = Topology.get_interface_pci_addr(dut_node, dut_if2)
+        if node[u"type"] == NodeType.DUT:
+            pci_address1 = Topology.get_interface_pci_addr(node, if1)
+            pci_address2 = Topology.get_interface_pci_addr(node, if2)
 
-            ssh = SSH()
-            ssh.connect(dut_node)
-
-            arch = Topology.get_node_arch(dut_node)
-            cmd = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
-                f"/init_dpdk.sh {pci_address1} {pci_address2} {arch}"
-
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
-            if ret_code != 0:
-                raise RuntimeError(
-                    f"Failed to bind the interfaces to igb_uio at node "
-                    f"{dut_node['host']}"
-                )
+            command = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
+                f"/init_dpdk.sh {nic_driver} {pci_address1} {pci_address2}"
+            message = u"Initialize the DPDK failed!"
+            exec_cmd_no_error(node, command, timeout=600, message=message)
 
     @staticmethod
-    def cleanup_dpdk_environment(dut_node, dut_if1, dut_if2):
+    def cleanup_dpdk_framework(node, if1, if2):
         """
-        Cleanup the DPDK test environment on the DUT node.
+        Cleanup the DPDK framework on the DUT node.
         Unbind the NIC from the igb_uio and bind them to the kernel driver.
 
-        :param dut_node: Will cleanup the DPDK on this node.
-        :param dut_if1: DUT interface name.
-        :param dut_if2: DUT interface name.
-        :type dut_node: dict
-        :type dut_if1: str
-        :type dut_if2: str
+        :param node: Will cleanup the DPDK on this node.
+        :param if1: DUT first interface name.
+        :param if2: DUT second interface name.
+        :type node: dict
+        :type if1: str
+        :type if2: str
         :raises RuntimeError: If it fails to cleanup the dpdk.
         """
-        if dut_node[u"type"] == NodeType.DUT:
-            pci_address1 = Topology.get_interface_pci_addr(dut_node, dut_if1)
-            if1_driver = Topology.get_interface_driver(dut_node, dut_if1)
-            pci_address2 = Topology.get_interface_pci_addr(dut_node, dut_if2)
-            if2_driver = Topology.get_interface_driver(dut_node, dut_if2)
+        if node[u"type"] == NodeType.DUT:
+            pci_address1 = Topology.get_interface_pci_addr(node, if1)
+            pci_address2 = Topology.get_interface_pci_addr(node, if2)
+            # We are not supporting more than one driver
+            pci_driver = Topology.get_interface_driver(node, if1)
 
-            ssh = SSH()
-            ssh.connect(dut_node)
-
-            cmd = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
-                f"/cleanup_dpdk.sh {if1_driver} {pci_address1} {if2_driver} " \
-                f"{pci_address2}"
-
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=1200)
-            if ret_code != 0:
-                raise RuntimeError(
-                    f"Failed to cleanup the dpdk at node {dut_node[u'host']}"
-                )
+            command = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
+                f"/cleanup_dpdk.sh {pci_driver} {pci_address1} {pci_address2}"
+            message = u"Cleanup the DPDK failed!"
+            exec_cmd_no_error(node, command, timeout=1200, message=message)
 
     @staticmethod
-    def install_dpdk_test(node):
+    def install_dpdk_framework(node):
         """
-        Prepare the DPDK test environment
+        Prepare the DPDK framework on the DUT node.
 
-        :param node: Dictionary created from topology
+        :param node: Node from topology file.
         :type node: dict
-        :returns: nothing
         :raises RuntimeError: If command returns nonzero return code.
         """
-        arch = Topology.get_node_arch(node)
-
         command = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
-            f"/install_dpdk.sh {arch}"
+            f"/install_dpdk.sh"
         message = u"Install the DPDK failed!"
         exec_cmd_no_error(node, command, timeout=600, message=message)
 
@@ -116,14 +98,13 @@ class DPDKTools:
         logger.info(f"DPDK Version: {stdout}")
 
     @staticmethod
-    def install_dpdk_test_on_all_duts(nodes):
+    def install_dpdk_framework_on_all_duts(nodes):
         """
-        Prepare the DPDK test environment on all DUTs.
+        Prepare the DPDK framework on all DUTs.
 
         :param nodes: Nodes from topology file.
         :type nodes: dict
-        :returns: nothing
         """
         for node in list(nodes.values()):
             if node[u"type"] == NodeType.DUT:
-                DPDKTools.install_dpdk_test(node)
+                DPDKTools.install_dpdk_framework(node)
