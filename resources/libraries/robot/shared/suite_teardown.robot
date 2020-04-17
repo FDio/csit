@@ -46,7 +46,7 @@
 | | ... | Additional teardown for suites which uses dpdk.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Cleanup DPDK Environment
+| | | Cleanup DPDK Framework
 | | | ... | ${nodes['${dut}']} | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
 | | END
 
