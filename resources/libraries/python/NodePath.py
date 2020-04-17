@@ -268,6 +268,9 @@ class NodePath:
                 t_dict[f"{n_pfx}_pf_pci"] = []
             t_dict[f"{n_pfx}_pf_pci"].append(
                 Topology.get_interface_pci_addr(node, interface))
+            if f"{n_pfx}_pf_keys" not in t_dict:
+                t_dict[f"{n_pfx}_pf_keys"] = []
+            t_dict[f"{n_pfx}_pf_keys"].append(interface)
             # Backward compatibility below
             t_dict[f"{n_pfx.lower()}_{i_pfx}"] = interface
             t_dict[f"{n_pfx.lower()}_{i_pfx}_mac"] = \
