@@ -47,5 +47,4 @@
 | | [Documentation]
 | | ... | Additional Setup for tests which uses namespace.
 | |
-| | ${trex_running}= | Is Trex Running | ${tg}
-| | Run Keyword Unless | ${trex_running} | Startup Trex | ${tg} | ${osi_layer}
+| | Startup Trex | ${tg} | ${osi_layer}

@@ -187,7 +187,7 @@
 | | ${txd_count_int}= | Set variable | ${txd}
 | | FOR | ${dut} | IN | @{duts}
 | | | ${numa}= | Get interfaces numa node
-| | | ... | ${nodes['${dut}']} | @{${dut}_pf_pci}
+| | | ... | ${nodes['${dut}']} | @{${dut}_pf}
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
 | | | ${skip_cnt}= | Set variable | ${CPU_CNT_SYSTEM}
 | | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
