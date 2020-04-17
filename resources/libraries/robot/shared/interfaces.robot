@@ -47,6 +47,9 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Set interfaces in path up on node | ${dut}
 | | END
+| | FOR | ${dut} | IN | @{duts}
+| | | Set MTU on node | ${dut}
+| | END
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${60}
 
 | Set interfaces in path up on node
@@ -68,10 +71,27 @@
 | | | Set interfaces in path up on node on PF | ${dut} | ${pf}
 | | END
 
+| Set MTU on node
+| | [Documentation]
+| | ... | *Set maximal MTU on the node.*
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node on which to set MTU on.
+| | ... | Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set MTU on node \| DUT1 \|
+| |
+| | [Arguments] | ${dut}
+| |
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Set MTU on node on PF | ${dut} | ${pf}
+| | END
+
 | Set interfaces in path up on node on PF
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
-| | ... | set maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node.*
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node on which to set the interfaces up.
@@ -90,6 +110,28 @@
 | | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
 | | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
 | | | Set Interface State | ${nodes['${dut}']} | ${if} | up
+| | END
+
+| Set MTU on node on PF
+| | [Documentation]
+| | ... | *Set maximal MTU on port.*
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node on which to set the interfaces up.
+| | ... | Type: string
+| | ... | - pf - NIC physical function (physical port).
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set MTU on node on PF \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
+| |
+| | ${_chains} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | @{${dut}_${int}${pf}_1}
+| | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
+| | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
 | | | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
 | | END
 
