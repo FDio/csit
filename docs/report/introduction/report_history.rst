@@ -45,6 +45,15 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |      - all set selected for analysis and graphs            |
 |                |      - MRR tests                                           |
 |                |                                                            |
+<<<<<<< HEAD   (4279a5 Report: Comparison tables)
+=======
+|                |    - Hoststack 3n-hsw tests                                |
+|                |                                                            |
+|                |    - Reconfiguration Tests 2n-skx                          |
+|                |                                                            |
+|                |    - Soak Tests 2n-skx                                     |
+|                |                                                            |
+>>>>>>> CHANGE (b1af33 Report: Add 2n-skx Soak and Reconf tests)
 |                |  2. Added Root Cause Analysis for VPP performance tests    |
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |

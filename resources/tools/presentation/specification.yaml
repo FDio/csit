@@ -348,11 +348,9 @@
         - 91  # TCP
 
     plot-vpp-soak-2n-skx:
-      # TODO: Replace the data
-      # csit-vpp-perf-verify-2001-2n-skx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 83  # SOAK
-        - 86  # SOAK
+      csit-vpp-perf-verify-2001-2n-skx:
+        - 181  # Soak
+        - 182  # Soak
 
     plot-vpp-nfv-2n-skx-ndrpdr:
       # TODO: Replace the data
@@ -367,12 +365,17 @@
         - 71  # NFV MRR
 
     plot-vpp-nfv-reconf-2n-skx:
-      # TODO: Replace the data
-      # csit-vpp-perf-verify-2001-2n-skx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 113 # NFV reconf sel
-        - 114 # NFV reconf sel
-        - 115 # NFV reconf sel
+      csit-vpp-perf-verify-2001-2n-skx:
+        - 169  # Reconf
+        - 171  # Reconf
+        - 172  # Reconf
+        - 173  # Reconf
+        - 174  # Reconf
+        - 175  # Reconf
+        - 176  # Reconf
+        - 177  # Reconf
+        - 178  # Reconf
+        - 179  # Reconf
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
@@ -1103,11 +1106,9 @@
         - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-soak-vs-ndr-2n-skx-cmp:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-2n-skx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 83  # SOAK
-        - 86  # SOAK
+      csit-vpp-perf-verify-2001-2n-skx:
+        - 181  # Soak
+        - 182  # Soak
     vpp-soak-vs-ndr-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -1120,8 +1121,8 @@
         - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 83  # SOAK
-        - 86  # SOAK
+        - 181  # Soak
+        - 182  # Soak
 
     vpp-soak-vs-ndr-2n-clx-ref:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -2614,6 +2615,18 @@
       - 168  # NDRPDR full - perf-full-2n-skx-vts - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 101  # MRR sel - old
       - 128  # MRR sel addition - old
+      - 169  # Reconf
+      - 171  # Reconf
+      - 172  # Reconf
+      - 173  # Reconf
+      - 174  # Reconf
+      - 175  # Reconf
+      - 176  # Reconf
+      - 177  # Reconf
+      - 178  # Reconf
+      - 179  # Reconf
+      - 181  # Soak
+      - 182  # Soak
 
     csit-vpp-perf-verify-2001-2n-clx:
       - 28  # NDRPDR sel
@@ -2965,24 +2978,24 @@
 ###                               T A B L E S                                ###
 ################################################################################
 
-## VPP Soak vs NDR - 2n-skx
-#- type: "table"
-#  title: "VPP Soak vs NDR 2n-skx"
-#  algorithm: "table_soak_vs_ndr"
-#  output-file: "{DIR[STATIC,VPP]}/soak-vs-ndr-2n-skx"
-#  reference:
-#    title: "NDR"
-#    data: "vpp-soak-vs-ndr-2n-skx-ref"
-#  compare:
-#    title: "Soak"
-#    data: "vpp-soak-vs-ndr-2n-skx-cmp"
-#  data: "vpp-soak-vs-ndr-2n-skx"
-#  include-tests: "NDR"
-#  filter: "('NDRPDR' or 'SOAK') and not 'NF_DENSITY'"
-#  parameters:
-#    - "throughput"
-#    - "name"
-#    - "parent"
+# VPP Soak vs NDR - 2n-skx
+- type: "table"
+  title: "VPP Soak vs NDR 2n-skx"
+  algorithm: "table_soak_vs_ndr"
+  output-file: "{DIR[STATIC,VPP]}/soak-vs-ndr-2n-skx"
+  reference:
+    title: "NDR"
+    data: "vpp-soak-vs-ndr-2n-skx-ref"
+  compare:
+    title: "Soak"
+    data: "vpp-soak-vs-ndr-2n-skx-cmp"
+  data: "vpp-soak-vs-ndr-2n-skx"
+  include-tests: "NDR"
+  filter: "('NDRPDR' or 'SOAK') and not 'NF_DENSITY'"
+  parameters:
+    - "throughput"
+    - "name"
+    - "parent"
 
 # VPP Soak vs NDR - 2n-clx
 - type: "table"
@@ -6692,57 +6705,93 @@
     title: "30 Minutes Soak Test (PLRsearch)"
     layout: "plot-soak-throughput"
 
+# Soak Test (PLRsearch), boxes - 2n-skx
+- type: "plot"
+  title: "VPP Critical rate: 30 Minutes Soak Test (PLRsearch)"
+  algorithm: "plot_perf_box_name"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/soak-test-2n-skx-1"
+  data: "plot-vpp-soak-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Soak.64B-2t1c-avf-eth-l2xcbase-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Soak.64B-2t1c-eth-l2xcbase-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-eth-l2bdbasemaclrn-soak"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Soak.64B-2t1c-avf-ethip4-ip4base-soak"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Soak.64B-2t1c-ethip4-ip4base-soak"
+  layout:
+    title: "30 Minutes Soak Test (PLRsearch)"
+    layout: "plot-soak-throughput"
+
+# Soak Test (PLRsearch), boxes - 2n-skx
+- type: "plot"
+  title: "VPP Critical rate: 30 Minutes Soak Test (PLRsearch)"
+  algorithm: "plot_perf_box_name"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/soak-test-2n-skx-2"
+  data: "plot-vpp-soak-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Soak.78B-2t1c-avf-ethip6-ip6base-soak"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Soak.78B-2t1c-ethip6-ip6base-soak"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-soak"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Soak.64B-2t1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-soak"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-soak"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-soak"
+  layout:
+    title: "30 Minutes Soak Test (PLRsearch)"
+    layout: "plot-soak-throughput"
+
 ###############################################################################
 
 # Reconf tests 2n-skx
 
-#- type: "plot"
-#  title: "NFV Implied time lost: 2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
-#  algorithm: "plot_nf_reconf_box_name"
-#  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf"
-#  data: "plot-vpp-nfv-reconf-2n-skx"
-#  include:
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
-#  layout:
-#    title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
-#    layout: "plot-throughput"
-#
-#- type: "plot"
-#  title: "NFV Implied time lost: 2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
-#  algorithm: "plot_nf_reconf_box_name"
-#  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf"
-#  data: "plot-vpp-nfv-reconf-2n-skx"
-#  include:
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
-#  layout:
-#    title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
-#    layout: "plot-throughput"
-#
-#- type: "plot"
-#  title: "NFV Implied time lost: 2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
-#  algorithm: "plot_nf_reconf_box_name"
-#  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf"
-#  data: "plot-vpp-nfv-reconf-2n-skx"
-#  include:
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
-#    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
-#  layout:
-#    title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
-#    layout: "plot-throughput"
+- type: "plot"
+  title: "NFV Implied time lost: 2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf"
+  data: "plot-vpp-nfv-reconf-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
+  layout:
+    title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "NFV Implied time lost: 2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf"
+  data: "plot-vpp-nfv-reconf-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
+  layout:
+    title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "NFV Implied time lost: 2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf"
+  data: "plot-vpp-nfv-reconf-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
+  layout:
+    title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
+    layout: "plot-throughput"
 
 ###############################################################################
 
