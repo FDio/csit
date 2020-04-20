@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,32 +16,37 @@
 
 import copy
 import glob
-import json
+import logging
+import select
 import shutil
 import struct  # vpp-papi can raise struct.error
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 
 from pprint import pformat
 from robot.api import logger
 
+from resources.libraries.python.bytes_template import BytesTemplate
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PapiHistory import PapiHistory
-from resources.libraries.python.ssh import (
-    SSH, SSHTimeout, exec_cmd_no_error, scp_node)
+from resources.libraries.python.raise_from import raise_from
+from resources.libraries.python.spying_socket import SpyingSocket
+from resources.libraries.python.ssh import (exec_cmd_no_error, scp_node)
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
 
-__all__ = [u"PapiExecutor", u"PapiSocketExecutor"]
+__all__ = [u"PapiSocketExecutor"]
 
 
+# TODO: CSIT-1633: Switch libraries to attribute access and remove dictization.
 def dictize(obj):
-    """A helper method, to make namedtuple-like object accessible as dict.
+    """Make namedtuple-like object accessible as dict.
 
     If the object is namedtuple-like, its _asdict() form is returned,
     but in the returned object __getitem__ method is wrapped
@@ -64,9 +69,38 @@ def dictize(obj):
     if not hasattr(obj, u"_asdict"):
         return obj
     ret = obj._asdict()
-    old_get = ret.__getitem__
-    new_get = lambda self, key: dictize(old_get(self, key))
-    ret.__getitem__ = new_get
+    ret.__getitem__ = lambda self, key: dictize(ret.__getitem__(self, key))
+    return ret
+
+
+def dictize_and_check_retval(obj, err_msg="Retval present and nonzero."):
+    """Make namedtuple-like object accessible as dict, check retval if exists.
+
+    If the object contains "retval" field, raise when the value is non-zero.
+    Actually, two chained exceptions are raised,
+    as it is not easy for err_msg to have placeholder for retval value.
+
+    See dictize() for what it means to dictize.
+
+    :param obj: Arbitrary object to dictize.
+    :param err_msg: The text for the raised exception.
+    :type obj: object
+    :type err_msg: str
+    :returns: Dictized object.
+    :rtype: same as obj type or collections.OrderedDict
+    :raises AssertionError: If retval field is present with nonzero.
+    """
+    ret = dictize(obj)
+    if "retval" in ret.keys():
+        # *_details messages do not contain retval.
+        retval = ret["retval"]
+        if retval != 0:
+            # TODO: What exactly to log and raise here?
+            err = AssertionError("Retval nonzero in object {o!r}".format(
+                o=ret))
+            # Lowering log level, some retval!=0 calls are expected.
+            # TODO: Expose level argument so callers can decide?
+            raise_from(AssertionError(err_msg), err, level="DEBUG")
     return ret
 
 
@@ -134,13 +168,20 @@ class PapiSocketExecutor:
     crc_checker = None
     """Accesses .api.json files at creation, caching allows deleting them."""
 
-    def __init__(self, node, remote_vpp_socket=Constants.SOCKSVR_PATH):
+    def __init__(self, node, remote_vpp_socket=Constants.SOCKSVR_PATH,
+                 do_async=False):
         """Store the given arguments, declare managed variables.
+
+        Async mode is faster when many commands are to be executed.
+        But for *_dump commands it is safer to not use async mode,
+        as that mode is not informed all *_details responses have arrived.
 
         :param node: Node to connect to and forward unix domain socket from.
         :param remote_vpp_socket: Path to remote socket to tunnel to.
+        :param do_async: Whether the client should connect in async mode.
         :type node: dict
         :type remote_vpp_socket: str
+        :type do_async: bool
         """
         self._node = node
         self._remote_vpp_socket = remote_vpp_socket
@@ -150,6 +191,7 @@ class PapiSocketExecutor:
         self._temp_dir = None
         self._ssh_control_socket = None
         self._local_vpp_socket = None
+        self._async = do_async
         self.initialize_vpp_instance()
 
     def initialize_vpp_instance(self):
@@ -201,11 +243,14 @@ class PapiSocketExecutor:
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
             vpp_class.apidir = api_json_directory
             # We need to create instance before removing from sys.path.
-            cls.vpp_instance = vpp_class(
-                use_socket=True, server_address=u"TBD", async_thread=False,
-                read_timeout=14, logger=FilteredLogger(logger, u"INFO"))
             # Cannot use loglevel parameter, robot.api.logger lacks support.
             # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
+            cls.vpp_instance = vpp_class(
+                use_socket=True, server_address=None, async_thread=False,
+                read_timeout=14, logger=FilteredLogger(logger, "INFO"))
+            # The following is needed to prevent union (e.g. Ip4) debug logging
+            # of VPP part of PAPI from spamming robot logs.
+            logging.getLogger("vpp_papi.vpp_serializer").setLevel(logging.INFO)
         finally:
             shutil.rmtree(tmp_dir)
             if sys.path[-1] == package_path:
@@ -221,7 +266,7 @@ class PapiSocketExecutor:
         :returns: self
         :rtype: PapiSocketExecutor
         """
-        time_enter = time.time()
+        time_enter = time.monotonic()
         # Parsing takes longer than connecting, prepare instance before tunnel.
         vpp_instance = self.vpp_instance
         node = self._node
@@ -272,14 +317,14 @@ class PapiSocketExecutor:
         if password:
             # Prepend sshpass command to set password.
             ssh_cmd[:0] = [u"sshpass", u"-p", password]
-        time_stop = time.time() + 10.0
+        time_stop = time.monotonic() + 10.0
         # subprocess.Popen seems to be the best way to run commands
         # on background. Other ways (shell=True with "&" and ssh with -f)
         # seem to be too dependent on shell behavior.
         # In particular, -f does NOT return values for run().
         subprocess.Popen(ssh_cmd)
         # Check socket presence on local side.
-        while time.time() < time_stop:
+        while time.monotonic() < time_stop:
             # It can take a moment for ssh to create the socket file.
             ret_code, _ = run(
                 [u"ls", u"-l", self._local_vpp_socket], check=False
@@ -294,20 +339,20 @@ class PapiSocketExecutor:
             key_file.close()
         # Everything is ready, set the local socket address and connect.
         vpp_instance.transport.server_address = self._local_vpp_socket
-        # It seems we can get read error even if every preceding check passed.
-        # Single retry seems to help.
-        for _ in range(2):
-            try:
-                vpp_instance.connect_sync(u"csit_socket")
-            except (IOError, struct.error) as err:
-                logger.warn(f"Got initial connect error {err!r}")
-                vpp_instance.disconnect()
+        try:
+            if self._async:
+                # The rx_qlen argument is ignored for socket transport.
+                vpp_instance.connect(u"csit_socket", do_async=True)
             else:
-                break
-        else:
-            raise RuntimeError(u"Failed to connect to VPP over a socket.")
+                # We are still not interested in notifications.
+                vpp_instance.connect_sync(u"csit_socket")
+        except (IOError, struct.error) as err:
+            vpp_instance.disconnect()
+            raising = RuntimeError(u"Failed to connect to VPP over a socket.")
+            raise_from(raising, err, level="WARN")
         logger.trace(
-            f"Establishing socket connection took {time.time()-time_enter}s"
+            u"Establishing socket connection took"
+            f" {time.monotonic() - time_enter} seconds."
         )
         return self
 
@@ -364,19 +409,57 @@ class PapiSocketExecutor:
         )
         return self
 
-    def get_replies(self, err_msg="Failed to get replies."):
+    def get_replies(
+            self, err_msg="Failed to get replies.", fast_send=0,
+            fast_receive=False):
         """Get replies from VPP Python API.
 
+        If the "fast_send" argument is non-zero,
+        this method requires exactly two commands added,
+        assumed to be the same type with minimal differences in arguments.
+        A fast but stupid method is then used to generate and send
+        subsequent commands, saving much time for large scale tests.
+
+        If fast_send is zero, or fast_receive is false,
         The replies are parsed into dict-like objects,
-        "retval" field is guaranteed to be zero on success.
+        "retval" field (if present) is guaranteed to be zero on success.
+        If fast_send is non-zero and fast_receive is false,
+        replies are still processed by full PAPI parsing includig retval check,
+        assuming each request results in exactly one reply.
+
+        If fast_send is non-zero and fast_receive is true,
+        only first two replies are processed normally.
+        Other replies are not checked at all, to save time,
+        and also to avoid issues with non-deterministic response fields
+        (e.g. stats_index of ip_route_add_del_reply).
+
+        Here is a typical pattern for scale tests:
+
+        cmd = some_command
+        fast = 0 if scale < 100 else scale
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            for count in range(2 if fast else scale):
+                args = get_args(count)
+                history = bool(not 1 < count < scale - 2)
+                papi_exec.add(cmd, history=history, **args)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
+        :param fast_send: This many (minus initia two) fast commands are added.
+        :param fast_receive: Whether responses are to be parsed and returned.
         :type err_msg: str
-        :returns: Responses, dict objects with fields due to API and "retval".
+        :type fast_send: int
+        :type fast_receive: bool
+        :returns: Papi responses parsed into a dict-like object,
+            with fields due to API (possibly including retval).
         :rtype: list of dict
         :raises RuntimeError: If retval is nonzero, parsing or ssh error.
         """
-        return self._execute(err_msg=err_msg)
+        return self._execute(
+            err_msg=err_msg, fast_send=fast_send, fast_receive=fast_receive
+        )
 
     def get_reply(self, err_msg=u"Failed to get reply."):
         """Get reply from VPP Python API.
@@ -412,7 +495,6 @@ class PapiSocketExecutor:
         :raises AssertionError: If retval is nonzero, parsing or ssh error.
         """
         reply = self.get_reply(err_msg=err_msg)
-        logger.trace(f"Getting index from {reply!r}")
         return reply[u"sw_if_index"]
 
     def get_details(self, err_msg="Failed to get dump details."):
@@ -498,7 +580,9 @@ class PapiSocketExecutor:
                 dump = papi_exec.add(cmd).get_details()
                 logger.debug(f"{cmd}:\n{pformat(dump)}")
 
-    def _execute(self, err_msg=u"Undefined error message", exp_rv=0):
+    def _execute(
+            self, err_msg=u"Undefined error message", fast_send=0,
+            fast_receive=False):
         """Turn internal command list into data and execute; return replies.
 
         This method also clears the internal command list.
@@ -511,6 +595,37 @@ class PapiSocketExecutor:
         - get_details()
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
+        :param fast_send: This many (minus initia two) fast commands are added.
+        :param fast_receive: Whether responses are to be parsed and returned.
+        :type err_msg: str
+        :type fast_send: int
+        :type fast_receive: bool
+        :returns: Papi responses parsed into a dict-like object,
+            with fields due to API (possibly including retval).
+        :rtype: NoneType or list of dict
+        :raises RuntimeError: If the replies are not all correct.
+        """
+        local_list = self._api_command_list
+        # Clear first as execution may fail.
+        self._api_command_list = list()
+        if self._async:
+            return self._execute_async(
+                local_list, err_msg=err_msg, fast_send=fast_send,
+                fast_receive=fast_receive
+            )
+        if fast_send:
+            raise RuntimeError(u"Fast sending is not supported in sync mode.")
+        return self._execute_sync(local_list, err_msg=err_msg)
+
+    def _execute_sync(self, local_list, err_msg="Undefined error message"):
+        """Execute command waiting for replies one by one; return replies.
+
+        This is the implementation using sync PAPI calls.
+        Reliable, but slow.
+
+        :param local_list: The list of PAPI commands to be executed on the node.
+        :param err_msg: The message used if the PAPI command(s) execution fails.
+        :type local_list: list of dict
         :type err_msg: str
         :returns: Papi responses parsed into a dict-like object,
             with fields due to API (possibly including retval).
@@ -518,10 +633,7 @@ class PapiSocketExecutor:
         :raises RuntimeError: If the replies are not all correct.
         """
         vpp_instance = self.vpp_instance
-        local_list = self._api_command_list
-        # Clear first as execution may fail.
-        self._api_command_list = list()
-        replies = list()
+        ret_list = list()
         for command in local_list:
             api_name = command[u"api_name"]
             papi_fn = getattr(vpp_instance.api, api_name)
@@ -540,233 +652,327 @@ class PapiSocketExecutor:
             except (AttributeError, IOError, struct.error) as err:
                 raise AssertionError(err_msg) from err
             # *_dump commands return list of objects, convert, ordinary reply.
-            if not isinstance(reply, list):
-                reply = [reply]
-            for item in reply:
+            replies = reply if isinstance(reply, list) else [reply]
+            for item in replies:
+                # Request CRC has been checked in add, here check reply CRC.
                 self.crc_checker.check_api_name(item.__class__.__name__)
-                dict_item = dictize(item)
-                if u"retval" in dict_item.keys():
-                    # *_details messages do not contain retval.
-                    retval = dict_item[u"retval"]
-                    if retval != exp_rv:
-                        # TODO: What exactly to log and raise here?
-                        raise AssertionError(
-                            f"Retval {retval!r} does not match expected "
-                            f"retval {exp_rv!r}"
-                        )
-                replies.append(dict_item)
-        return replies
+                dict_item = dictize_and_check_retval(item)
+                ret_list.append(dict_item)
+        return ret_list
 
+    class AsyncState:
+        """Inner class, collection of variables updated during async execution.
 
-class PapiExecutor:
-    """Contains methods for executing VPP Python API commands on DUTs.
-
-    TODO: Remove .add step, make get_stats accept paths directly.
-
-    This class processes only one type of VPP PAPI methods: vpp-stats.
-
-    The recommended ways of use are (examples):
-
-    path = ['^/if', '/err/ip4-input', '/sys/node/ip4-input']
-    with PapiExecutor(node) as papi_exec:
-        stats = papi_exec.add(api_name='vpp-stats', path=path).get_stats()
-
-    print('RX interface core 0, sw_if_index 0:\n{0}'.\
-        format(stats[0]['/if/rx'][0][0]))
-
-    or
-
-    path_1 = ['^/if', ]
-    path_2 = ['^/if', '/err/ip4-input', '/sys/node/ip4-input']
-    with PapiExecutor(node) as papi_exec:
-        stats = papi_exec.add('vpp-stats', path=path_1).\
-            add('vpp-stats', path=path_2).get_stats()
-
-    print('RX interface core 0, sw_if_index 0:\n{0}'.\
-        format(stats[1]['/if/rx'][0][0]))
-
-    Note: In this case, when PapiExecutor method 'add' is used:
-    - its parameter 'csit_papi_command' is used only to keep information
-      that vpp-stats are requested. It is not further processed but it is
-      included in the PAPI history this way:
-      vpp-stats(path=['^/if', '/err/ip4-input', '/sys/node/ip4-input'])
-      Always use csit_papi_command="vpp-stats" if the VPP PAPI method
-      is "stats".
-    - the second parameter must be 'path' as it is used by PapiExecutor
-      method 'add'.
-    """
-
-    def __init__(self, node):
-        """Initialization.
-
-        :param node: Node to run command(s) on.
-        :type node: dict
-        """
-        # Node to run command(s) on.
-        self._node = node
-
-        # The list of PAPI commands to be executed on the node.
-        self._api_command_list = list()
-
-        self._ssh = SSH()
-
-    def __enter__(self):
-        try:
-            self._ssh.connect(self._node)
-        except IOError:
-            raise RuntimeError(
-                f"Cannot open SSH connection to host {self._node[u'host']} "
-                f"to execute PAPI command(s)"
-            )
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self._ssh.disconnect(self._node)
-
-    def add(self, csit_papi_command=u"vpp-stats", history=True, **kwargs):
-        """Add next command to internal command list; return self.
-
-        The argument name 'csit_papi_command' must be unique enough as it cannot
-        be repeated in kwargs.
-        The kwargs dict is deep-copied, so it is safe to use the original
-        with partial modifications for subsequent commands.
-
-        :param csit_papi_command: VPP API command.
-        :param history: Enable/disable adding command to PAPI command history.
-        :param kwargs: Optional key-value arguments.
-        :type csit_papi_command: str
-        :type history: bool
-        :type kwargs: dict
-        :returns: self, so that method chaining is possible.
-        :rtype: PapiExecutor
-        """
-        if history:
-            PapiHistory.add_to_papi_history(
-                self._node, csit_papi_command, **kwargs
-            )
-        self._api_command_list.append(
-            dict(
-                api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)
-            )
-        )
-        return self
-
-    def get_stats(
-            self, err_msg=u"Failed to get statistics.", timeout=120,
-            socket=Constants.SOCKSTAT_PATH):
-        """Get VPP Stats from VPP Python API.
-
-        :param err_msg: The message used if the PAPI command(s) execution fails.
-        :param timeout: Timeout in seconds.
-        :param socket: Path to Stats socket to tunnel to.
-        :type err_msg: str
-        :type timeout: int
-        :type socket: str
-        :returns: Requested VPP statistics.
-        :rtype: list of dict
-        """
-        paths = [cmd[u"api_args"][u"path"] for cmd in self._api_command_list]
-        self._api_command_list = list()
-
-        stdout = self._execute_papi(
-            paths, method=u"stats", err_msg=err_msg, timeout=timeout,
-            socket=socket
-        )
-
-        return json.loads(stdout)
-
-    @staticmethod
-    def _process_api_data(api_d):
-        """Process API data for smooth converting to JSON string.
-
-        Apply binascii.hexlify() method for string values.
-
-        :param api_d: List of APIs with their arguments.
-        :type api_d: list
-        :returns: List of APIs with arguments pre-processed for JSON.
-        :rtype: list
+        Instead of methods related to async execution having multile arguments
+        and returning tuple of multiple values, instance of this class is used.
         """
 
-        def process_value(val):
-            """Process value.
+        def __init__(
+                self, local_list, fast_send, fast_receive, err_msg,
+                max_inflight=None, lll=None, restore_thread=False,
+                ret_list=None, len_one=None, send_iterator=None, send_index=0,
+                receive_index=0):
+            """Set fields to given or default values.
 
-            :param val: Value to be processed.
-            :type val: object
-            :returns: Processed value.
-            :rtype: dict or str or int
+            Value None means the field is not set yet.
+
+            :param local_list: Copy of commands to execute.
+            :param fast_send: Zero or total number of similar commands.
+            :param fast_receive: Whether response processing is to be skipped.
+            :param err_msg: Text to use when raising an error.
+            :param max_inflight: How many sends before reply is read.
+            :param lll: Originally, Length of Local List.
+                Currently, the overall number of messages to send.
+                With nonzero fast_send, this is derived from that.
+            :param restore_thread: Whether the default PAPI background
+                read thread has to be restored at the end.
+            :param ret_list: Responses gathered so far.
+            :param len_one: Length of first (and third) phase.
+                Depends on max_inflight and length of local list (or fast_send).
+            :param send_iterator: Iterator used to construct data to send.
+            :param send_index: Index of the next command to be send.
+            :param receive_index: Index of the next response to be read.
+            :type local_list: list
+            :type fast_send: int
+            :type fast_receive: bool
+            :type err_msg: str
+            :type max_inflight: int
+            :type lll: int
+            :type restore_thread: bool
+            :type ret_list: list
+            :type len_one: int
+            :type send_iterator: NoneType or iterator yielding bytes
+            :type send_index: int
+            :type receive_index: int
             """
-            if isinstance(val, dict):
-                for val_k, val_v in val.items():
-                    val[str(val_k)] = process_value(val_v)
-                retval = val
-            elif isinstance(val, list):
-                for idx, val_l in enumerate(val):
-                    val[idx] = process_value(val_l)
-                retval = val
-            else:
-                retval = val.encode().hex() if isinstance(val, str) else val
-            return retval
+            self.local_list = local_list
+            self.fast_send = fast_send
+            self.fast_receive = fast_receive
+            self.err_msg = err_msg
+            self.max_inflight = max_inflight
+            self.lll = lll
+            self.restore_thread = restore_thread
+            self.ret_list = ret_list
+            self.len_one = len_one
+            self.send_iterator = send_iterator
+            self.send_index = send_index
+            self.receive_index = receive_index
 
-        api_data_processed = list()
-        for api in api_d:
-            api_args_processed = dict()
-            for a_k, a_v in api[u"api_args"].items():
-                api_args_processed[str(a_k)] = process_value(a_v)
-            api_data_processed.append(
-                dict(
-                    api_name=api[u"api_name"],
-                    api_args=api_args_processed
-                )
-            )
-        return api_data_processed
+    def _execute_async(
+            self, local_list, err_msg=u"Undefined error message",
+            fast_send=0, fast_receive=False):
+        """Send command messages, process replies lazily; return replies.
 
-    def _execute_papi(
-            self, api_data, method=u"request", err_msg=u"", timeout=120,
-            socket=None):
-        """Execute PAPI command(s) on remote node and store the result.
+        Beware: It is not clear what to do when socket read fails
+        in the middle of async processing.
+        Yet another reason to use sync executor for *_dump commands.
 
-        :param api_data: List of APIs with their arguments.
-        :param method: VPP Python API method. Supported methods are: 'request',
-            'dump' and 'stats'.
+        The implementation assumes each command results in one reply,
+        there is no reordering in either commands nor replies,
+        and context numbers increase one by one (and are matching for replies).
+
+        To speed processing up, reply CRC values are not checked.
+
+        :param local_list: The list of PAPI commands to be executed on the node.
         :param err_msg: The message used if the PAPI command(s) execution fails.
-        :param timeout: Timeout in seconds.
-        :type api_data: list
-        :type method: str
+        :param fast_send: This many (minus initia two) fast commands are added.
+        :param fast_receive: Whether responses are to be parsed and returned.
+        :type local_list: list of dict
         :type err_msg: str
-        :type timeout: int
-        :returns: Stdout from remote python utility, to be parsed by caller.
-        :rtype: str
-        :raises SSHTimeout: If PAPI command(s) execution has timed out.
-        :raises RuntimeError: If PAPI executor failed due to another reason.
-        :raises AssertionError: If PAPI command(s) execution has failed.
+        :type fast_send: int
+        :type fast_receive: bool
+        :returns: Papi responses parsed into a dict-like object,
+            with fields due to API (possibly including retval).
+        :rtype: list of dict
+        :raises RuntimeError: If the replies are not all correct.
         """
-        if not api_data:
-            raise RuntimeError(u"No API data provided.")
+        # TODO: Add fast receive checking only if it does not affect speed.
 
-        json_data = json.dumps(api_data) \
-            if method in (u"stats", u"stats_request") \
-            else json.dumps(self._process_api_data(api_data))
-
-        sock = f" --socket {socket}" if socket else u""
-        cmd = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_PAPI_PROVIDER}" \
-            f" --method {method} --data '{json_data}'{sock}"
-        try:
-            ret_code, stdout, _ = self._ssh.exec_command_sudo(
-                cmd=cmd, timeout=timeout, log_stdout_err=False
-            )
-        # TODO: Fail on non-empty stderr?
-        except SSHTimeout:
-            logger.error(
-                f"PAPI command(s) execution timeout on host "
-                f"{self._node[u'host']}:\n{api_data}"
-            )
-            raise
-        except Exception as exc:
+        # Sanity checks.
+        if fast_send and len(local_list) != 2:
+            raise RuntimeError(u"Fast sending requires exactly two commands.")
+        if fast_receive and not fast_send:
             raise RuntimeError(
-                f"PAPI command(s) execution on host {self._node[u'host']} "
-                f"failed: {api_data}"
-            ) from exc
-        if ret_code != 0:
-            raise AssertionError(err_msg)
+                u"Fast receive without fast send is not supported."
+            )
 
-        return stdout
+        # The rest is divided into sub-methods to keep complexity low (pylint).
+        # Initialize the dynamic state object.
+        state = self.AsyncState(
+            local_list=local_list, fast_send=fast_send,
+            fast_receive=fast_receive, err_msg=err_msg, ret_list=list()
+        )
+        # Phase zero: Initialize, handle two messages for fast send.
+        state = self._phase_zero(state)
+        # Phase one: Only sending commands.
+        state = self._phase_one(state)
+        # Phase two: Receive one, send one; repeat.
+        state = self._phase_two(state)
+        # Phase three: Only receiving.
+        state = self._phase_three(state)
+        # Re-start the background reading thread (phase four?).
+        if state.restore_thread:
+            transport = self.vpp_instance.transport
+            transport.message_thread = threading.Thread(
+                target=transport.msg_thread_func
+            )
+            transport.message_thread.daemon = True
+            transport.message_thread.start()
+        return state.ret_list
+
+    def _phase_zero(self, state):
+        """Compute dependent state fields adn other setup actions.
+
+        For fast sending, this includes handling first two commands
+        (including responses) and updating max_inflight to a higher value,
+        as we know all other commands will have the same length.
+        The handling includes inserting a spying socket into transport,
+        but only temporarily. Send_iterator is constructed.
+        Send-index and receive_index are updated,
+        so next phases work correctly.
+
+        For fast receiving, this includes ending the background reading thread
+        and setting restore_thread.
+
+        :param state: Container holding current execution state.
+        :type state: AsyncState
+        """
+        # Just to save some CPU work inside loop.
+        vpp_instance = self.vpp_instance
+        api_object = vpp_instance.api
+        transport = vpp_instance.transport
+        read_timeout = vpp_instance.read_timeout
+        # Unix Domain Sockets can hold 256 messages of length 256.
+        # https://unix.stackexchange.com/a/424381
+        # Linux TCP write buffer can hold 212992 bytes.
+        # Deadlock can hapen if the following value (times average message size)
+        # is too large, so all buffers get full before reply processing starts.
+        # Performance is good so far even without adding TCP write buffer.
+        # 603 is the biggest message length seen by Vratko during testing.
+        state.max_inflight = 256 * 256 // 603
+        state.lll = max(state.fast_send, len(state.local_list))
+        state.len_one = min(state.max_inflight, state.lll)
+        if not state.fast_send:
+            return state
+        # Two more local variables, not visible to other phases.
+        socket = SpyingSocket(transport.socket, capture=True)
+        transport.socket = socket
+        # The under_socket could have been SpyingSocket already.
+        under_socket = socket.under_socket
+        # Handle the two commands needed to construct data generator.
+        command = state.local_list[state.send_index]
+        state.send_index += 1
+        func = getattr(api_object, command[u"api_name"])
+        func(**command[u"api_args"])
+        first_sent = socket.flush_sent()
+        # Re-compute max_inflight.
+        state.max_inflight = 256 * 256 // len(first_sent)
+        logger.trace(
+            f"Fast sending, command {command} message length"
+            " {len(first_sent)} max_inflight {max_inflight}."
+        )
+        state.len_one = min(state.max_inflight, state.lll)
+        command = state.local_list[state.send_index]
+        state.send_index += 1
+        func = getattr(api_object, command[u"api_name"])
+        func(**command[u"api_args"])
+        second_sent = socket.flush_sent()
+        # No need for spying anymore, swap back.
+        transport.socket = under_socket
+        # Be double sure no spying can happen from now on.
+        # I wasted many hours investigating why sending becomes slow.
+        socket.capture = False
+        socket = None
+        # Contruct the iterator.
+        send_template = BytesTemplate.from_two_messages(
+            first_sent, second_sent
+        )
+        state.send_iterator = send_template.generator(
+            state.fast_send - 2, vpp_instance.get_context
+        ).__iter__()
+        # We need to wait for replies here, as we are not sure
+        # whether first real reads are in phase two or three.
+        # Check possible retval. No peek for multiprocessing.Queue.
+        response = vpp_instance.read_blocking()
+        state.receive_index += 1
+        if response is None:
+            raise RuntimeError(f"Timeout processing first reply.")
+        state.ret_list.append(dictize_and_check_retval(response))
+        response = vpp_instance.read_blocking()
+        state.receive_index += 1
+        if response is None:
+            raise RuntimeError(f"Timeout processing second reply.")
+        state.ret_list.append(dictize_and_check_retval(response))
+        if not state.fast_receive:
+            return state
+        # Now, we disable the PAPI listening thread.
+        transport.sque.put(True)
+        transport.message_thread.join()
+        state.restore_thread = True
+        # Pop the one None added when the thread closes.
+        non = transport.q.get(block=True, timeout=read_timeout)
+        if non is not None:
+            raise RuntimeError(f"Got non-None from q {non!r}")
+        # Also pop the True we used to kill the thread with.
+        non = transport.sque.get(block=False)
+        if non is not True:
+            raise RuntimeError(f"Got non-True from sque {non!r}")
+        # Finally we are done with phase zero.
+        return state
+
+    def _phase_one(self, state):
+        """Keep sending len_one command without reading replies.
+
+        :param state: Container holding current execution state.
+        :type state: AsyncState
+        """
+        # Just to save some CPU work inside loop.
+        api_object = self.vpp_instance.api
+        socket = self.vpp_instance.transport.socket
+        # The state.receive_index can be 0 or 2.
+        stop_index = state.receive_index + state.len_one
+        while state.send_index < stop_index:
+            if state.fast_send:
+                generated = state.send_iterator.__next__()
+                socket.sendall(generated)
+            else:
+                command = state.local_list[state.send_index]
+                func = getattr(api_object, command[u"api_name"])
+                func(**command[u"api_args"])
+            state.send_index += 1
+        return state
+
+    def _phase_two(self, state):
+        """One read, one send, repeat until all is sent.
+
+        :param state: Container holding current execution state.
+        :type state: AsyncState
+        """
+        # TODO: Send step and receive step can be moved to a function.
+        #       It would make the conde more maintainable.
+        #       Investigate whether the call overhead is low enough.
+
+        # Just to save some CPU work inside loop.
+        vpp_instance = self.vpp_instance
+        api_object = vpp_instance.api
+        transport = vpp_instance.transport
+        socket = transport.socket
+        while state.send_index < state.lll:
+            # Receive one.
+            err = None
+            if state.fast_receive:
+                _ = select.select([socket], [], [])
+                transport._read()
+            else:
+                # Blocks up to timeout.
+                response = vpp_instance.read_blocking()
+                if response is None:
+                    cmd = state.local_list[state.receive_index]
+                    err = AssertionError(
+                        f"Timeout index {state.receive_index} cmd {cmd!r}"
+                    )
+                else:
+                    state.ret_list.append(dictize_and_check_retval(response))
+            if err:
+                raise_from(RuntimeError(state.err_msg), err, f"INFO")
+            state.receive_index += 1
+            # Send one.
+            if state.fast_send:
+                generated = state.send_iterator.__next__()
+                socket.sendall(generated)
+            else:
+                command = state.local_list[state.send_index]
+                func = getattr(api_object, command[f"api_name"])
+                func(**command[f"api_args"])
+            state.send_index += 1
+        return state
+
+    def _phase_three(self, state):
+        """Handle all remaining replies.
+
+        :param state: Container holding current execution state.
+        :type state: AsyncState
+        """
+        # Just to save some CPU work inside loop.
+        vpp_instance = self.vpp_instance
+        transport = vpp_instance.transport
+        socket = transport.socket
+        while state.receive_index < state.lll:
+            err = None
+            if state.fast_receive:
+                _ = select.select([socket], [], [])
+                transport._read()
+            else:
+                # Blocks up to timeout.
+                response = vpp_instance.read_blocking()
+                if response is None:
+                    cmd = state.local_list[state.receive_index]
+                    err = AssertionError(
+                        f"Timeout index {state.receive_index} cmd {cmd!r}"
+                    )
+                else:
+                    state.ret_list.append(dictize_and_check_retval(response))
+            if err:
+                raise_from(RuntimeError(state.err_msg), err, f"INFO")
+            state.receive_index += 1
+        return state
