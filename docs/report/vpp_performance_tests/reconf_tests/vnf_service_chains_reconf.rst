@@ -80,75 +80,74 @@ Additional information about graph data:
 
     \clearpage
 
-..
-    2n-skx-xxv710
-    ~~~~~~~~~~~~~
+2n-skx-xxv710
+~~~~~~~~~~~~~
 
-    imix-2t1c-dot1qip4vxlan-l2bd
-    ----------------------------
+imix-2t1c-dot1qip4vxlan-l2bd
+----------------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf.html"></iframe>
-        </center>
+    <center>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf.html"></iframe>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf}
-                \label{fig:2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf}
+            \label{fig:2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    imix-4t2c-dot1qip4vxlan-l2bd
-    ----------------------------
+imix-4t2c-dot1qip4vxlan-l2bd
+----------------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf.html"></iframe>
-        </center>
+    <center>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf.html"></iframe>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf}
-                \label{fig:2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf}
+            \label{fig:2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    imix-8t4c-dot1qip4vxlan-l2bd
-    ----------------------------
+imix-8t4c-dot1qip4vxlan-l2bd
+----------------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf.html"></iframe>
-        </center>
+    <center>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf.html"></iframe>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf}
-                \label{fig:2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf}
+            \label{fig:2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 2n-clx-xxv710
 ~~~~~~~~~~~~~
