@@ -196,6 +196,7 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
         start: 894
@@ -205,8 +206,12 @@
 =======
         start: 1035
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        start: 1082
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
         end: "lastCompletedBuild"
         skip:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
           - 899
@@ -236,6 +241,8 @@
           - 1054
           - 1056
           - 1063
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
           - 1102
 >>>>>>> CHANGE (b51708 Trending: Plots)
       csit-dpdk-perf-mrr-weekly-master:
@@ -249,6 +256,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
         start: 894
@@ -258,8 +266,12 @@
 =======
         start: 1035
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        start: 1082
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
         end: "lastCompletedBuild"
         skip:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
           - 899
@@ -289,6 +301,8 @@
           - 1054
           - 1056
           - 1063
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
           - 1102
 >>>>>>> CHANGE (b51708 Trending: Plots)
 
@@ -305,6 +319,7 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
         start: 635
@@ -314,8 +329,12 @@
 =======
         start: 782
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        start: 830
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
         end: "lastCompletedBuild"
         skip:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
           - 641
@@ -350,12 +369,19 @@
           - 804
           - 805
           - 818
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
           - 849
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
 =======
           - 851
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+          - 862
+          - 864
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 72
         end: "lastCompletedBuild"
@@ -366,6 +392,7 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
         start: 635
@@ -375,8 +402,12 @@
 =======
         start: 782
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        start: 830
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
         end: "lastCompletedBuild"
         skip:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
           - 641
@@ -411,12 +442,19 @@
           - 804
           - 805
           - 818
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
           - 849
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
 =======
           - 851
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+          - 862
+          - 864
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
 
     plot-performance-trending-dpdk-3n-skx:
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
@@ -430,6 +468,7 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
         start: 647
@@ -439,8 +478,12 @@
 =======
         start: 804
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        start: 856
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
         end: "lastCompletedBuild"
         skip:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
           - 653
           - 654
@@ -470,6 +513,8 @@
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
 =======
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
           - 868
           - 870
           - 874
@@ -484,6 +529,7 @@
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
         start: 647
@@ -493,8 +539,12 @@
 =======
         start: 804
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        start: 856
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
         end: "lastCompletedBuild"
         skip:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
           - 653
           - 654
@@ -531,6 +581,8 @@
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
 =======
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
           - 868
           - 870
           - 874
@@ -558,20 +610,9 @@
 =======
     plot-performance-trending-vpp-2n-clx:
       csit-vpp-perf-mrr-daily-master-2n-clx:
-        start: 183
+        start: 234
         end: "lastCompletedBuild"
         skip:
-          - 204
-          - 206
-          - 208
-          - 213
-          - 214
-          - 215
-          - 216
-          - 217
-          - 224
-          - 230
-          - 231
           - 239
           - 248
           - 251
@@ -845,6 +886,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
       start: 894
@@ -854,8 +896,12 @@
 =======
       start: 1035
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+      start: 1082
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
       end: "lastCompletedBuild"
       skip:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
         - 899
@@ -885,6 +931,8 @@
         - 1054
         - 1056
         - 1063
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
         - 1102
 >>>>>>> CHANGE (b51708 Trending: Plots)
     csit-dpdk-perf-mrr-weekly-master:
@@ -898,6 +946,7 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
       start: 635
@@ -907,8 +956,12 @@
 =======
       start: 782
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+      start: 830
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
       end: "lastCompletedBuild"
       skip:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
         - 641
@@ -943,12 +996,19 @@
         - 804
         - 805
         - 818
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
         - 849
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
 =======
         - 851
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        - 862
+        - 864
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
       start: 72
       end: "lastCompletedBuild"
@@ -959,6 +1019,7 @@
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
       start: 647
@@ -968,8 +1029,12 @@
 =======
       start: 804
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+      start: 856
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
       end: "lastCompletedBuild"
       skip:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
         - 653
         - 654
@@ -999,6 +1064,8 @@
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
 =======
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
         - 868
         - 870
         - 874
@@ -1019,9 +1086,10 @@
         - 79
 
     csit-vpp-perf-mrr-daily-master-2n-clx:
-      start: 183
+      start: 234
       end: "lastCompletedBuild"
       skip:
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (b54dc7 PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d3ea22 Report: Add data)
         - 97
@@ -1043,6 +1111,8 @@
         - 224
         - 230
         - 231
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
         - 239
         - 248
         - 251
@@ -2859,42 +2929,6 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale2M-mrr.64B-4t4c-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe"
-      output-file-name: "2n-dnv-x553-64b-1t1c-ip4-features-ixgbe"
-      data: "plot-performance-trending-vpp-2n-dnv"
-      include:
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4-Ip4Base-mrr.64B-1t1c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-mrr.64B-1t1c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-1t1c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-1t1c-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-1t1c-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Nat44-mrr.64B-1t1c-ethip4udp-ip4base-nat44-mrr"
-      layout: "plot-cpta"
-
-    - title: "2n-dnv-x553-64b-2t2c-features-ip4routing-base-ixgbe"
-      output-file-name: "2n-dnv-x553-64b-2t2c-ip4-features-ixgbe"
-      data: "plot-performance-trending-vpp-2n-dnv"
-      include:
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4-Ip4Base-mrr.64B-2t2c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-mrr.64B-2t2c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-2t2c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-2t2c-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-2t2c-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Nat44-mrr.64B-2t2c-ethip4udp-ip4base-nat44-mrr"
-      layout: "plot-cpta"
-
-    - title: "2n-dnv-x553-64b-4t4c-features-ip4routing-base-ixgbe"
-      output-file-name: "2n-dnv-x553-64b-4t4c-ip4-features-ixgbe"
-      data: "plot-performance-trending-vpp-2n-dnv"
-      include:
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4-Ip4Base-mrr.64B-4t4c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-mrr.64B-4t4c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-4t4c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-4t4c-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-4t4c-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-.10Ge2P1X553-Ethip4Udp-Ip4Base-Nat44-mrr.64B-4t4c-ethip4udp-ip4base-nat44-mrr"
-      layout: "plot-cpta"
-
     - title: "2n-skx-x710-64b-2t1c-ip4routing-base-scale-avf-dpdk"
       output-file-name: "2n-skx-x710-64b-2t1c-ip4-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-skx"
@@ -3144,42 +3178,6 @@
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale2M-mrr.64B-4t4c-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
-    - title: "3n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe"
-      output-file-name: "3n-dnv-x553-64b-1t1c-ip4-features-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Base-mrr.64B-1t1c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-mrr.64B-1t1c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-1t1c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-1t1c-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-1t1c-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Nat44-mrr.64B-1t1c-ethip4udp-ip4base-nat44-mrr"
-      layout: "plot-cpta"
-
-    - title: "3n-dnv-x553-64b-2t2c-features-ip4routing-base-ixgbe"
-      output-file-name: "3n-dnv-x553-64b-2t2c-ip4-features-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Base-mrr.64B-2t2c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-mrr.64B-2t2c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-2t2c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-2t2c-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-2t2c-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Nat44-mrr.64B-2t2c-ethip4udp-ip4base-nat44-mrr"
-      layout: "plot-cpta"
-
-    - title: "3n-dnv-x553-64b-4t4c-features-ip4routing-base-ixgbe"
-      output-file-name: "3n-dnv-x553-64b-4t4c-ip4-features-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Base-mrr.64B-4t4c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-mrr.64B-4t4c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-4t4c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-4t4c-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-4t4c-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4Udp-Ip4Base-Nat44-mrr.64B-4t4c-ethip4udp-ip4base-nat44-mrr"
-      layout: "plot-cpta"
-
     - title: "3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-dpdk"
       output-file-name: "3n-hsw-xl710-64b-1t1c-ip4-base-scale-dpdk"
       data: "plot-performance-trending-vpp-3n-hsw"
@@ -3394,7 +3392,7 @@
       layout: "plot-cpta"
 
     - title: "3n-tsh-x520-64b-1t1c-ip4routing-features-ixgbe"
-      output-file-name: "3n-tsh-x520-64b-1t1c-ip4-features-ixgbe-ixgbe"
+      output-file-name: "3n-tsh-x520-64b-1t1c-ip4-features-ixgbe"
       data: "plot-performance-trending-vpp-3n-tsh"
       include:
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Mrr.64B-1t1c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
@@ -3406,7 +3404,7 @@
       layout: "plot-cpta"
 
     - title: "3n-tsh-x520-64b-2t2c-ip4routing-features-ixgbe"
-      output-file-name: "3n-tsh-x520-64b-2t2c-ip4-features-ixgbe-ixgbe"
+      output-file-name: "3n-tsh-x520-64b-2t2c-ip4-features-ixgbe"
       data: "plot-performance-trending-vpp-3n-tsh"
       include:
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Mrr.64B-2t2c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
@@ -3418,7 +3416,7 @@
       layout: "plot-cpta"
 
     - title: "3n-tsh-x520-64b-4t4c-ip4routing-features-ixgbe"
-      output-file-name: "3n-tsh-x520-64b-4t4c-ip4-features-ixgbe-ixgbe"
+      output-file-name: "3n-tsh-x520-64b-4t4c-ip4-features-ixgbe"
       data: "plot-performance-trending-vpp-3n-tsh"
       include:
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Mrr.64B-4t4c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
@@ -3549,8 +3547,8 @@
         - "Tests.Vpp.Perf.Ip4 Tunnels.10Ge2P1X520-Dot1Q--Ethip4Vxlan-L2Bdscale100L2Bd100Vlan100Vxlan-mrr.64B-1t1c-4t4c--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-clx-x710-78b-2t1c-ip6routing-base-scale-dpdk"
-      output-file-name: "2n-clx-x710-78b-2t1c-ip6-base-scale-dpdk"
+    - title: "2n-clx-x710-78b-2t1c-ip6routing-base-scale-avf-dpdk"
+      output-file-name: "2n-clx-x710-78b-2t1c-ip6-base-scale-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-clx"
       include:
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Mrr.78B-2t1c-avf-dot1q-ip6base-mrr"
@@ -3560,8 +3558,8 @@
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-mrr.78B-2t1c-ethip6-ip6base-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-clx-x710-78b-4t2c-ip6routing-base-scale-dpdk"
-      output-file-name: "2n-clx-x710-78b-4t2c-ip6-base-scale-dpdk"
+    - title: "2n-clx-x710-78b-4t2c-ip6routing-base-scale-avf-dpdk"
+      output-file-name: "2n-clx-x710-78b-4t2c-ip6-base-scale-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-clx"
       include:
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Mrr.78B-4t2c-avf-dot1q-ip6base-mrr"
@@ -3571,8 +3569,8 @@
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-mrr.78B-4t2c-ethip6-ip6base-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-clx-x710-78b-8t4c-ip6routing-base-scale-dpdk"
-      output-file-name: "2n-clx-x710-78b-8t4c-ip6-base-scale-dpdk"
+    - title: "2n-clx-x710-78b-8t4c-ip6routing-base-scale-avf-dpdk"
+      output-file-name: "2n-clx-x710-78b-8t4c-ip6-base-scale-avf-dpdk"
       data: "plot-performance-trending-vpp-2n-clx"
       include:
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Mrr.78B-8t4c-avf-dot1q-ip6base-mrr"
@@ -4030,6 +4028,42 @@
         - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.IMIX-4t4c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
         - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-mrr.IMIX-4t4c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-mrr"
         - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.IMIX-4t4c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+      layout: "plot-cpta"
+
+    - title: "3n-dnv-x553-1518b-1t1c-ipsec-base-scale-sw-ixgbe"
+      output-file-name: "3n-dnv-x553-1518b-1t1c-ipsec-base-scale-sw-ixgbe"
+      data: "plot-performance-trending-vpp-3n-dnv"
+      include:
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-mrr.1518b-1t1c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.1518b-1t1c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-mrr.1518b-1t1c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.1518b-1t1c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-mrr.1518b-1t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.1518b-1t1c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+      layout: "plot-cpta"
+
+    - title: "3n-dnv-x553-1518b-2t2c-ipsec-base-scale-sw-ixgbe"
+      output-file-name: "3n-dnv-x553-1518b-2t2c-ipsec-base-scale-sw-ixgbe"
+      data: "plot-performance-trending-vpp-3n-dnv"
+      include:
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-mrr.1518b-2t2c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.1518b-2t2c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-mrr.1518b-2t2c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.1518b-2t2c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-mrr.1518b-2t2c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.1518b-2t2c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+      layout: "plot-cpta"
+
+    - title: "3n-dnv-x553-1518b-4t4c-ipsec-base-scale-sw-ixgbe"
+      output-file-name: "3n-dnv-x553-1518b-4t4c-ipsec-base-scale-sw-ixgbe"
+      data: "plot-performance-trending-vpp-3n-dnv"
+      include:
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-mrr.1518b-4t4c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.1518b-4t4c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-mrr.1518b-4t4c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.1518b-4t4c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-mrr.1518b-4t4c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-mrr"
+        - "Tests.Vpp.Perf.Crypto.10Ge2P1X553-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-mrr.1518b-4t4c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
       layout: "plot-cpta"
 
     - title: "3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-dpdk"
@@ -4529,6 +4563,7 @@
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdscale1Mmaclrn-Mrr.64B-8t4c-rdma-eth-l2bdscale1mmaclrn-mrr"
       layout: "plot-cpta"
 
+<<<<<<< HEAD   (914f8e Report: Add 2n-skx Soak and Reconf tests)
 >>>>>>> CHANGE (b51708 Trending: Plots)
     - title: "2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe"
       output-file-name: "2n-dnv-x553-64b-1t1c-l2-base-ixgbe"
@@ -4560,6 +4595,8 @@
         - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdbasemaclrn-mrr.64B-4t4c-eth-l2bdbasemaclrn-mrr"
       layout: "plot-cpta"
 
+=======
+>>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
     - title: "2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe"
       output-file-name: "2n-dnv-x553-64b-1t1c-l2-base-scale-ixgbe"
       data: "plot-performance-trending-vpp-2n-dnv"
@@ -4764,36 +4801,6 @@
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale1Mmaclrn-mrr.64B-8t4c-eth-l2bdscale1mmaclrn-mrr"
       layout: "plot-cpta"
 
-    - title: "3n-dnv-x553-64b-1t1c-l2switching-base-ixgbe"
-      output-file-name: "3n-dnv-x553-64b-1t1c-l2-base-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Dot1Q-L2Xcbase-mrr.64B-1t1c-dot1q-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Xcbase-mrr.64B-1t1c-eth-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Dot1Q-L2Bdbasemaclrn-mrr.64B-1t1c-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-mrr.64B-1t1c-eth-l2bdbasemaclrn-mrr"
-      layout: "plot-cpta"
-
-    - title: "3n-dnv-x553-64b-2t2c-l2switching-base-ixgbe"
-      output-file-name: "3n-dnv-x553-64b-2t2c-l2-base-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Dot1Q-L2Xcbase-mrr.64B-2t2c-dot1q-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Xcbase-mrr.64B-2t2c-eth-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Dot1Q-L2Bdbasemaclrn-mrr.64B-2t2c-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-mrr.64B-2t2c-eth-l2bdbasemaclrn-mrr"
-      layout: "plot-cpta"
-
-    - title: "3n-dnv-x553-64b-4t4c-l2switching-base-ixgbe"
-      output-file-name: "3n-dnv-x553-64b-4t4c-l2-base-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Dot1Q-L2Xcbase-mrr.64B-4t4c-dot1q-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Xcbase-mrr.64B-4t4c-eth-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Dot1Q-L2Bdbasemaclrn-mrr.64B-4t4c-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-mrr.64B-4t4c-eth-l2bdbasemaclrn-mrr"
-      layout: "plot-cpta"
-
     - title: "3n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe"
       output-file-name: "3n-dnv-x553-64b-1t1c-l2-base-scale-ixgbe"
       data: "plot-performance-trending-vpp-3n-dnv"
@@ -4828,42 +4835,6 @@
         - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdscale10Kmaclrn-mrr.64B-4t4c-eth-l2bdscale10kmaclrn-mrr"
         - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdscale100Kmaclrn-mrr.64B-4t4c-eth-l2bdscale100kmaclrn-mrr"
         - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdscale1Mmaclrn-mrr.64B-4t4c-eth-l2bdscale1mmaclrn-mrr"
-      layout: "plot-cpta"
-
-    - title: "3n-dnv-x553-64b-1t1c-features-l2switching-base-ixgbe"
-      output-file-name: "3n-dnv-x553-64b-1t1c-l2-features-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Xcbase-mrr.64B-1t1c-eth-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-mrr.64B-1t1c-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-mrr.64B-1t1c-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-mrr.64B-1t1c-eth-l2bdbasemaclrn-oacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-mrr.64B-1t1c-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-mrr.64B-1t1c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr"
-      layout: "plot-cpta"
-
-    - title: "3n-dnv-x553-64b-2t2c-features-l2switching-base-ixgbe"
-      output-file-name: "3n-dnv-x553-64b-2t2c-l2-features-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Xcbase-mrr.64B-2t2c-eth-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-mrr.64B-2t2c-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-mrr.64B-2t2c-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-mrr.64B-2t2c-eth-l2bdbasemaclrn-oacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-mrr.64B-2t2c-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-mrr.64B-2t2c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr"
-      layout: "plot-cpta"
-
-    - title: "3n-dnv-x553-64b-4t4c-features-l2switching-base-ixgbe"
-      output-file-name: "3n-dnv-x553-64b-4t4c-l2-features-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Xcbase-mrr.64B-4t4c-eth-l2xcbase-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-mrr.64B-4t4c-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-mrr.64B-4t4c-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-mrr.64B-4t4c-eth-l2bdbasemaclrn-oacl50sf-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-mrr.64B-4t4c-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.L2.10Ge2P1X553-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-mrr.64B-4t4c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr"
       layout: "plot-cpta"
 
     - title: "3n-hsw-xl710-64b-1t1c-l2switching-base-scale-dpdk"
@@ -5034,6 +5005,42 @@
         - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdscale1Mmaclrn-mrr.64B-8t4c-eth-l2bdscale1mmaclrn-mrr"
       layout: "plot-cpta"
 
+    - title: "3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf"
+      output-file-name: "3n-skx-xxv710-64b-2t1c-l2-features-avf"
+      data: "plot-performance-trending-vpp-3n-skx"
+      include:
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-oacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr"
+      layout: "plot-cpta"
+
+    - title: "3n-skx-xxv710-64b-4t2c-features-l2switching-base-avf"
+      output-file-name: "3n-skx-xxv710-64b-4t2c-l2-features-avf"
+      data: "plot-performance-trending-vpp-3n-skx"
+      include:
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-oacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr"
+      layout: "plot-cpta"
+
+    - title: "3n-skx-xxv710-64b-8t4c-features-l2switching-base-avf"
+      output-file-name: "3n-skx-xxv710-64b-8t4c-l2-features-avf"
+      data: "plot-performance-trending-vpp-3n-skx"
+      include:
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-oacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr"
+      layout: "plot-cpta"
+
     - title: "3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk"
       output-file-name: "3n-skx-xxv710-64b-2t1c-l2-features-dpdk"
       data: "plot-performance-trending-vpp-3n-skx"
@@ -5175,33 +5182,6 @@
         - "Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-mrr.64B-4t4c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr"
       layout: "plot-cpta"
 
-    - title: "3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe"
-      output-file-name: "3n-dnv-x553-78b-1t1c-srv6-base-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-mrr.78B-1t1c-ethip6ip6-ip6base-srv6enc1sid-mrr"
-        - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-mrr.78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-mrr"
-        - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-mrr.78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr"
-      layout: "plot-cpta"
-
-    - title: "3n-dnv-x553-78b-2t2c-srv6-ip6routing-base-ixgbe"
-      output-file-name: "3n-dnv-x553-78b-2t2c-srv6-base-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-mrr.78B-2t2c-ethip6ip6-ip6base-srv6enc1sid-mrr"
-        - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-mrr.78B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-mrr"
-        - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-mrr.78B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr"
-      layout: "plot-cpta"
-
-    - title: "3n-dnv-x553-78b-4t4c-srv6-ip6routing-base-ixgbe"
-      output-file-name: "3n-dnv-x553-78b-4t4c-srv6-base-ixgbe"
-      data: "plot-performance-trending-vpp-3n-dnv"
-      include:
-        - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-mrr.78B-4t4c-ethip6ip6-ip6base-srv6enc1sid-mrr"
-        - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-mrr.78B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-mrr"
-        - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-mrr.78B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr"
-      layout: "plot-cpta"
-
     - title: "3n-hsw-xl710-78b-1t1c-srv6-ip6routing-base-dpdk"
       output-file-name: "3n-hsw-xl710-78b-1t1c-srv6-base-dpdk"
       data: "plot-performance-trending-vpp-3n-hsw"
@@ -5238,8 +5218,8 @@
         - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-mrr.78B-4t4c-ethip6srhip6-ip6base-srv6proxy-stat-mrr"
       layout: "plot-cpta"
 
-    - title: "3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-dpdk"
-      output-file-name: "3n-skx-xxv710-78b-2t1c-srv6-base-dpdk"
+    - title: "3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-avf-dpdk"
+      output-file-name: "3n-skx-xxv710-78b-2t1c-srv6-base-avf-dpdk"
       data: "plot-performance-trending-vpp-3n-skx"
       include:
         - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-mrr.78B-2t1c-avf-ethip6ip6-ip6base-srv6enc1sid-mrr"
@@ -5250,8 +5230,8 @@
         - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-mrr.78B-2t1c-avf-ethip6srhip6-ip6base-srv6proxy-stat-mrr"
       layout: "plot-cpta"
 
-    - title: "3n-skx-xxv710-78b-4t2c-srv6-ip6routing-base-dpdk"
-      output-file-name: "3n-skx-xxv710-78b-4t2c-srv6-base-dpdk"
+    - title: "3n-skx-xxv710-78b-4t2c-srv6-ip6routing-base-avf-dpdk"
+      output-file-name: "3n-skx-xxv710-78b-4t2c-srv6-base-avf-dpdk"
       data: "plot-performance-trending-vpp-3n-skx"
       include:
         - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-mrr.78B-4t2c-avf-ethip6ip6-ip6base-srv6enc1sid-mrr"
@@ -5262,8 +5242,8 @@
         - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-mrr.78B-4t2c-avf-ethip6srhip6-ip6base-srv6proxy-stat-mrr"
       layout: "plot-cpta"
 
-    - title: "3n-skx-xxv710-78b-8t4c-srv6-ip6routing-base-dpdk"
-      output-file-name: "3n-skx-xxv710-78b-8t4c-srv6-base-dpdk"
+    - title: "3n-skx-xxv710-78b-8t4c-srv6-ip6routing-base-avf-dpdk"
+      output-file-name: "3n-skx-xxv710-78b-8t4c-srv6-base-avf-dpdk"
       data: "plot-performance-trending-vpp-3n-skx"
       include:
         - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-mrr.78B-8t4c-avf-ethip6ip6-ip6base-srv6enc1sid-mrr"
