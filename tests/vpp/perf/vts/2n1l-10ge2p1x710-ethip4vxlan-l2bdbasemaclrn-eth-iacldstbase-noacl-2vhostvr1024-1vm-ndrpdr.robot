@@ -101,8 +101,8 @@
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | @{permit_list} = | Create List | 172.17.0.2/32 | 172.27.0.2/32
 | | Run Keyword If | '${acl_type}' != '${EMPTY}'
-| | ... | Configure ACLs on a single interface | ${dut1} | ${DUT1_${int}2}[0] | input
-| | ... | ${acl_type} | @{permit_list}
+| | ... | Configure ACLs on a single interface | ${dut1} | ${DUT1_${int}2_1}[0]
+| | ... | input | ${acl_type} | @{permit_list}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
