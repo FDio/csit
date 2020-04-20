@@ -467,7 +467,7 @@
 | | ... | ${vlan_per_chain}=${True} | ${start}=${1}
 | |
 | | FOR | ${id} | IN RANGE | ${start} | ${count} + 1
-| | | ${_dot1q} | Initialize layer dot1q on node on PF for chain
+| | | ${_dot1q}= | Initialize layer dot1q on node on PF for chain
 | | | ... | dut=${dut} | pf=${pf} | id=${id} | vlan_per_chain=${vlan_per_chain}
 | | | # First id results in non-None indices, after that _1_ are defined.
 | | | ${_dot1q}= | Set Variable If | '${_dot1q}' == '${NONE}'
@@ -590,10 +590,12 @@
 | | | ${_ip4vxlan}= | Create VXLAN interface
 | | | ... | ${nodes['${dut}']} | ${_vni}
 | | | ... | 172.${pf}6.0.1 | 172.${pf}7.${_subnet}.2
-| | | ${_prev_mac}= | Set Variable If | '${dut}' == 'DUT1'
-| | | ... | ${tg_if1_mac} | ${dut1_if2_mac}
-| | | ${_next_mac}= | Set Variable If | '${dut}' == 'DUT1' and ${duts_count} == 2
-| | | ... | ${dut2_if1_mac} | ${tg_if2_mac}
+| | | ${_prev_mac}=
+| | | ... | Set Variable If | '${dut}' == 'DUT1'
+| | | ... | ${TG_pf1_mac}[0] | ${DUT1_pf2_mac}[0]
+| | | ${_next_mac}=
+| | | ... | Set Variable If | '${dut}' == 'DUT1' and ${duts_count} == 2
+| | | ... | ${DUT2_pf1_mac}[0] | ${TG_pf2_mac}[0]
 | | | ${_even}= | Evaluate | ${pf} % 2
 | | | ${_mac}= | Set Variable If | ${_even}
 | | | ... | ${_prev_mac} | ${_next_mac}
