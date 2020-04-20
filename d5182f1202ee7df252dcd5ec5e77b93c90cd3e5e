@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c20aec3e_a6222d1d",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-20T12:48:15Z",
+      "side": 1,
+      "message": "I need the whole block of this function",
+      "parentUuid": "69c154f3_781843da",
+      "range": {
+        "startLine": 69,
+        "startChar": 23,
+        "endLine": 69,
+        "endChar": 28
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccafe9ff_99fb0c45",
         "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2020-04-20T12:30:47Z",
       "side": 1,
       "message": "This is usually recommended for \"teardown\" functions where we want to attempt executing all the code no matter what.\n\nUpdate line 69, as when I hear \"custom error handling\" I imagine small blocks with \"set +e\" before and \"set -e\" after, checking $? after each.\nI see no good reason for \"set +u\" unless you are sourcing a third part script (e.g. virtualenv activate).",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 11
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36d25738_529a7519",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-20T12:48:15Z",
+      "side": 1,
+      "message": "This is teardown function. I can remove +u",
+      "parentUuid": "ccafe9ff_99fb0c45",
       "range": {
         "startLine": 71,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d61a05be_190f867d",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-20T12:48:15Z",
+      "side": 1,
+      "message": "I do not understand. If you want to use warn function then no as it does turn on -euxo, it would be complicate to turn it off again.",
+      "parentUuid": "59cd5230_d4b5a514",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 12
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a6a3a455_4fc95ab7",
         "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
         "patchSetId": 8
@@ -82,6 +154,30 @@
       "writtenOn": "2020-04-20T12:30:47Z",
       "side": 1,
       "message": "Is this undoing lines 154-155 of install_dpdk.sh?\nAs this is called from suite teardown, I assumed it undoes changes only from init_dpdk.sh as that is called on suite setup.",
+      "range": {
+        "startLine": 128,
+        "startChar": 9,
+        "endLine": 128,
+        "endChar": 11
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "728959bf_8711ce97",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-20T12:48:15Z",
+      "side": 1,
+      "message": "no it is not.",
+      "parentUuid": "a6a3a455_4fc95ab7",
       "range": {
         "startLine": 128,
         "startChar": 9,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "922a2da0_f4b394da",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-20T12:48:15Z",
+      "side": 1,
+      "message": "It is bind. Not unbind.",
+      "parentUuid": "8716ddb9_79ffc429",
+      "range": {
+        "startLine": 132,
+        "startChar": 9,
+        "endLine": 132,
+        "endChar": 18
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ffe34333_a0b6e64d",
         "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
         "patchSetId": 8
@@ -137,6 +257,30 @@
       "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3d1ca8e_22cfc0c7",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-20T12:48:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ffe34333_a0b6e64d",
+      "range": {
+        "startLine": 140,
+        "startChar": 38,
+        "endLine": 140,
+        "endChar": 39
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "66921c6e_e2502160",
+        "filename": "tests/dpdk/dpdk_scripts/install_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-20T12:48:15Z",
+      "side": 1,
+      "message": "Definitely not. You can easily guess why not.",
+      "parentUuid": "d6c2eb43_cfea63a4",
+      "range": {
+        "startLine": 116,
+        "startChar": 56,
+        "endLine": 116,
+        "endChar": 57
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5485c049_3212b555",
         "filename": "tests/dpdk/dpdk_scripts/install_dpdk.sh",
         "patchSetId": 8
@@ -174,6 +342,30 @@
       "writtenOn": "2020-04-20T12:30:47Z",
       "side": 1,
       "message": "1?",
+      "range": {
+        "startLine": 152,
+        "startChar": 40,
+        "endLine": 152,
+        "endChar": 41
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9bca80e_c85b82db",
+        "filename": "tests/dpdk/dpdk_scripts/install_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-20T12:48:15Z",
+      "side": 1,
+      "message": "typo...i\u0027ll fix",
+      "parentUuid": "5485c049_3212b555",
       "range": {
         "startLine": 152,
         "startChar": 40,
