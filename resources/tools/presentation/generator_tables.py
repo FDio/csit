@@ -1000,8 +1000,8 @@ def table_perf_comparison(table, input_data):
         if rca_data:
             footnote = rca_data.get(u"footnote", u"")
             if footnote:
-                txt_file.write(footnote)
-        txt_file.write(u":END")
+                txt_file.write(f"\n{footnote}")
+        txt_file.write(u"\n:END")
 
     # Generate html table:
     _tpc_generate_html_table(
@@ -1371,8 +1371,8 @@ def table_perf_comparison_nic(table, input_data):
         if rca_data:
             footnote = rca_data.get(u"footnote", u"")
             if footnote:
-                txt_file.write(footnote)
-        txt_file.write(u":END")
+                txt_file.write(f"\n{footnote}")
+        txt_file.write(u"\n:END")
 
     # Generate html table:
     _tpc_generate_html_table(
@@ -2581,7 +2581,7 @@ def table_comparison(table, input_data):
         header_csv.append(f"Stdev({col[u'title']})")
     for comp in comparisons:
         header_csv.append(
-            f"Avg({comp.get(u'title', u'')}"
+            f"Avg({comp.get(u'title', u'')})"
         )
         header_csv.append(
             f"Stdev({comp.get(u'title', u'')})"
@@ -2678,7 +2678,7 @@ def table_comparison(table, input_data):
         txt_file.write(legend)
         if footnote:
             txt_file.write(footnote)
-        txt_file.write(u":END")
+        txt_file.write(u"\n:END")
 
     # Generate html table:
     _tpc_generate_html_table(
