@@ -17,12 +17,11 @@ in 1-core configurations.
 
 Comparison tables in ASCII and CSV formats:
 
-..
-    2n-skx
-    ~~~~~~
+2n-skx
+~~~~~~
 
-      - `ASCII Soak vs. NDR comparison <../../_static/vpp/soak-vs-ndr-2n-skx.txt>`_
-      - `CSV Soak vs. NDR comparison <../../_static/vpp/soak-vs-ndr-2n-skx.csv>`_
+  - `ASCII Soak vs. NDR comparison <../../_static/vpp/soak-vs-ndr-2n-skx.txt>`_
+  - `CSV Soak vs. NDR comparison <../../_static/vpp/soak-vs-ndr-2n-skx.csv>`_
 
 2n-clx
 ~~~~~~
