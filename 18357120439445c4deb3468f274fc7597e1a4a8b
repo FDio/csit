@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c13c2c2_9230f071",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-20T14:14:37Z",
+      "side": 1,
+      "message": "usable by DPDK.\n\nOr other formulation hinting that Topology.get_interface_driver is probably not the driver we want to use.",
+      "range": {
+        "startLine": 39,
+        "startChar": 43,
+        "endLine": 39,
+        "endChar": 44
+      },
+      "revId": "18357120439445c4deb3468f274fc7597e1a4a8b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31ef0b01_54673d29",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-20T14:14:37Z",
+      "side": 1,
+      "message": "\"kernel driver\"? \"default driver\"? \"driver specified in topology\"?",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 14
+      },
+      "revId": "18357120439445c4deb3468f274fc7597e1a4a8b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c45170e_b8f61637",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-20T14:14:37Z",
+      "side": 1,
+      "message": "is a teardown function, so we want any failure to be silently ignored.",
+      "range": {
+        "startLine": 72,
+        "startChar": 33,
+        "endLine": 72,
+        "endChar": 63
+      },
+      "revId": "18357120439445c4deb3468f274fc7597e1a4a8b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
