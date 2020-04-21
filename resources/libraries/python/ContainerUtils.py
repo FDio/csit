@@ -313,7 +313,7 @@ class ContainerManager:
             f"{self.engine.container.name}-{kwargs[u'sid2']}",
             mac1=f"52:54:00:00:{kwargs[u'mid1']:02X}:01",
             mac2=f"52:54:00:00:{kwargs[u'mid2']:02X}:02",
-            vif1_mac=vif1_mac, vif2_mac=vif2_mac
+            vif1_mac=vif1_mac[0], vif2_mac=vif2_mac[0]
         )
 
     def _configure_vpp_chain_vswitch(self, **kwargs):
@@ -476,7 +476,7 @@ class ContainerManager:
             socket1=socket1, socket2=socket2, role1=role1, role2=role2,
             mac1=f"52:54:00:00:{mid1:02X}:01",
             mac2=f"52:54:00:00:{mid2:02X}:02",
-            vif1_mac=vif1_mac, vif2_mac=vif2_mac
+            vif1_mac=vif1_mac[0], vif2_mac=vif2_mac[0]
         )
 
     def stop_all_containers(self):
