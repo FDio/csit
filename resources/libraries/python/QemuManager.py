@@ -91,7 +91,7 @@ class QemuManager:
                 self.machines[name].configure_kernelvm_vnf(
                     mac1=f"52:54:00:00:{qemu_id:02x}:01",
                     mac2=f"52:54:00:00:{qemu_id:02x}:02",
-                    vif1_mac=vif1_mac, vif2_mac=vif2_mac, queues=queues,
+                    vif1_mac=vif1_mac[0], vif2_mac=vif2_mac[0], queues=queues,
                     jumbo_frames=kwargs[u"jumbo"]
                 )
                 self.machines[name].qemu_add_vhost_user_if(

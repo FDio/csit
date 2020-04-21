@@ -211,16 +211,16 @@
 | | Run Keyword If | '${container_chain_topology}' == 'chain_ip4'
 | | ... | ${group}.Configure VPP In All Containers
 | | ... | ${container_chain_topology}
-| | ... | tg_if1_mac=${TG_pf1_mac}
-| | ... | tg_if2_mac=${TG_pf2_mac}
+| | ... | tg_pf1_mac=${TG_pf1_mac}
+| | ... | tg_pf2_mac=${TG_pf2_mac}
 | | ... | nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'chain_ipsec'
 | | ... | ${group}.Configure VPP In All Containers
 | | ... | ${container_chain_topology}
-| | ... | tg_if1_ip4=${tg_if1_ip4}
-| | ... | tg_if1_mac=${TG_pf1_mac}[0]
-| | ... | tg_if2_ip4=${tg_if2_ip4}
-| | ... | tg_if2_mac=${TG_pf2_mac}[0]
+| | ... | tg_pf1_ip4=${tg_if1_ip4}
+| | ... | tg_pf1_mac=${TG_pf1_mac}[0]
+| | ... | tg_pf2_ip4=${tg_if2_ip4}
+| | ... | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | dut1_if1_ip4=${dut1_if1_ip4}
 | | ... | dut1_if2_ip4=${dut1_if2_ip4}
 | | ... | dut2_if1_ip4=${dut2_if1_ip4}
@@ -232,8 +232,8 @@
 | | ... | ELSE IF | '${container_chain_topology}' == 'pipeline_ip4'
 | | ... | ${group}.Configure VPP In All Containers
 | | ... | ${container_chain_topology}
-| | ... | tg_if1_mac=${TG_pf1_mac}[0]
-| | ... | tg_if2_mac=${TG_pf2_mac}[0]
+| | ... | tg_pf1_mac=${TG_pf1_mac}[0]
+| | ... | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'cross_horiz'
 | | ... | ${group}.Configure VPP In All Containers
@@ -341,8 +341,8 @@
 | | ... | dut1_if1=${DUT1_${int}1}[0] | dut1_if2=${DUT1_${int}2}[0]
 | | ... | dut2_if1=${DUT2_${int}1}[0] | dut2_if2=${DUT2_${int}2}[0]
 | | ... | dut2_if2_ip4=${dut2_if2_ip4}
-| | ... | tg_if1_ip4=${tg_if1_ip4} | tg_if1_mac=${TG_pf1_mac}[0]
-| | ... | tg_if2_ip4=${tgi_f2_ip4} | tg_if2_mac=${TG_pf2_mac}[0]
+| | ... | tg_pf1_ip4=${tg_if1_ip4} | tg_pf1_mac=${TG_pf1_mac}[0]
+| | ... | tg_pf2_ip4=${tgi_f2_ip4} | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | nodes=${nodes}
 | | Start VPP in all '${container_group}' containers
 
