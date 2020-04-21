@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -297,10 +297,10 @@ class ContainerManager:
         """
         self.engine.create_vpp_startup_config()
 
-        vif1_mac = kwargs[u"tg_if1_mac"] \
+        vif1_mac = kwargs[u"tg_pf1_mac"] \
             if (kwargs[u"mid1"] - 1) % kwargs[u"nodes"] + 1 == 1 \
             else f"52:54:00:00:{(kwargs[u'mid1'] - 1):02X}:02"
-        vif2_mac = kwargs[u"tg_if2_mac"] \
+        vif2_mac = kwargs[u"tg_pf2_mac"] \
             if (kwargs[u"mid2"] - 1) % kwargs[u"nodes"] + 1 == kwargs[u"nodes"]\
             else f"52:54:00:00:{(kwargs['mid2'] + 1):02X}:01"
         self.engine.create_vpp_exec_config(
@@ -332,11 +332,11 @@ class ContainerManager:
                 self.engine.container.node, kwargs[u"dut1_if2"])
             if_black_name = Topology.get_interface_name(
                 self.engine.container.node, kwargs[u"dut1_if1"])
-            tg_if_ip4 = kwargs[u"tg_if2_ip4"]
-            tg_if_mac = kwargs[u"tg_if2_mac"]
+            tg_pf_ip4 = kwargs[u"tg_pf2_ip4"]
+            tg_pf_mac = kwargs[u"tg_pf2_mac"]
         else:
-            tg_if_ip4 = kwargs[u"tg_if1_ip4"]
-            tg_if_mac = kwargs[u"tg_if1_mac"]
+            tg_pf_ip4 = kwargs[u"tg_pf1_ip4"]
+            tg_pf_mac = kwargs[u"tg_pf1_mac"]
             if1_pci = Topology.get_interface_pci_addr(
                 self.engine.container.node, kwargs[u"dut2_if1"])
             if2_pci = Topology.get_interface_pci_addr(
@@ -368,7 +368,7 @@ class ContainerManager:
                 f"create interface memif id {i} socket-id 2 master\n"
                 f"set interface state memif2/{i} up\n"
                 f"set interface l2 bridge memif2/{i} 2\n"
-                f"set ip neighbor memif2/{i} {tg_if_ip4} {tg_if_mac} "
+                f"set ip neighbor memif2/{i} {tg_pf_ip4} {tg_pf_mac} "
                 f"static\n\n"
             )
 
@@ -401,8 +401,8 @@ class ContainerManager:
             tnl_local_ip = f"{local_ip_base}.{nf_instance + 100}"
             tnl_remote_ip = f"{local_ip_base}.{nf_instance}"
             remote_ip_base = kwargs[u"dut1_if1_ip4"].rsplit(u".", 1)[0]
-            tg_if_ip4 = kwargs[u"tg_if1_ip4"]
-            tg_if_mac = kwargs[u"tg_if1_mac"]
+            tg_pf_ip4 = kwargs[u"tg_pf1_ip4"]
+            tg_pf_mac = kwargs[u"tg_pf1_mac"]
             raddr_ip4 = kwargs[u"laddr_ip4"]
             l_mac1 = 17
             l_mac2 = 18
@@ -411,8 +411,8 @@ class ContainerManager:
             tnl_local_ip = f"{local_ip_base}.{nf_instance}"
             tnl_remote_ip = f"{local_ip_base}.{nf_instance + 100}"
             remote_ip_base = kwargs[u"dut2_if2_ip4"].rsplit(u".", 1)[0]
-            tg_if_ip4 = kwargs[u"tg_if2_ip4"]
-            tg_if_mac = kwargs[u"tg_if2_mac"]
+            tg_pf_ip4 = kwargs[u"tg_pf2_ip4"]
+            tg_pf_mac = kwargs[u"tg_pf2_mac"]
             raddr_ip4 = kwargs[u"raddr_ip4"]
             l_mac1 = 1
             l_mac2 = 2
@@ -428,8 +428,8 @@ class ContainerManager:
             sid2=u"2",
             mac1=f"02:02:00:00:{l_mac1:02X}:{(nf_instance - 1):02X}",
             mac2=f"02:02:00:00:{l_mac2:02X}:{(nf_instance - 1):02X}",
-            tg_if2_ip4=tg_if_ip4,
-            tg_if2_mac=tg_if_mac,
+            tg_pf2_ip4=tg_pf_ip4,
+            tg_pf2_mac=tg_pf_mac,
             raddr_ip4=raddr_ip4,
             tnl_local_ip=tnl_local_ip,
             tnl_remote_ip=tnl_remote_ip,
@@ -455,10 +455,10 @@ class ContainerManager:
         role2 = u"master" if node == kwargs[u"nodes"] else u"slave"
         kwargs[u"mid2"] = kwargs[u"mid2"] \
             if node == kwargs[u"nodes"] else kwargs[u"mid2"] + 1
-        vif1_mac = kwargs[u"tg_if1_mac"] \
+        vif1_mac = kwargs[u"tg_pf1_mac"] \
             if (kwargs[u"mid1"] - 1) % kwargs[u"nodes"] + 1 == 1 \
             else f"52:54:00:00:{(kwargs[u'mid1'] - 1):02X}:02"
-        vif2_mac = kwargs[u"tg_if2_mac"] \
+        vif2_mac = kwargs[u"tg_pf2_mac"] \
             if (kwargs[u"mid2"] - 1) % kwargs[u"nodes"] + 1 == kwargs[u"nodes"]\
             else f"52:54:00:00:{(kwargs[u'mid2'] + 1):02X}:01"
         socket1 = f"{kwargs[u'guest_dir']}/memif-{self.engine.container.name}-"\

@@ -68,13 +68,13 @@ class QemuManager:
                 vif1_mac = Topology.get_interface_mac(
                     self.nodes[node], f"vhost{idx1}"
                 ) if kwargs[u"vnf"] == u"testpmd_mac" \
-                    else kwargs[u"tg_if1_mac"] if nf_node == 1 \
+                    else kwargs[u"tg_pf1_mac"] if nf_node == 1 \
                     else f"52:54:00:00:{(qemu_id - 1):02x}:02"
                 idx2 = (nf_chain - 1) * nf_nodes * 2 + nf_node * 2
                 vif2_mac = Topology.get_interface_mac(
                     self.nodes[node], f"vhost{idx2}"
                 ) if kwargs[u"vnf"] == u"testpmd_mac" \
-                    else kwargs[u"tg_if2_mac"] if nf_node == nf_nodes \
+                    else kwargs[u"tg_pf2_mac"] if nf_node == nf_nodes \
                     else f"52:54:00:00:{(qemu_id + 1):02x}:01"
 
                 self.machines_affinity[name] = CpuUtils.get_affinity_nf(

@@ -50,7 +50,7 @@
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
 | | ... | auto_scale=${auto_scale} | vnf=${vnf}
-| | ... | tg_if1_mac=${TG_pf1_mac} | tg_if2_mac=${TG_pf2_mac}
+| | ... | tg_pf1_mac=${TG_pf1_mac}[0] | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
 | | ... | enable_gso=${False}
@@ -96,7 +96,7 @@
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
 | | ... | auto_scale=${auto_scale} | vnf=${vnf}
-| | ... | tg_if1_mac=${TG_pf1_mac} | tg_if2_mac=${TG_pf2_mac}
+| | ... | tg_pf1_mac=${TG_pf1_mac}[0] | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
 | | ... | enable_gso=${False}
