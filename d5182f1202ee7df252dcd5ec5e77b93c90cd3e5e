@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "233525a0_364f7cf5",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-21T14:39:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c733d4f_5f1582f1",
+      "range": {
+        "startLine": 69,
+        "startChar": 23,
+        "endLine": 69,
+        "endChar": 28
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccafe9ff_99fb0c45",
         "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
         "patchSetId": 8
@@ -215,6 +239,30 @@
     },
     {
       "key": {
+        "uuid": "6734856e_694e1da2",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-21T14:39:47Z",
+      "side": 1,
+      "message": "i think after merge into /function this cannot be done. But i will reduce outputs.",
+      "parentUuid": "1f31be34_953c3bb7",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 12
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a6a3a455_4fc95ab7",
         "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
         "patchSetId": 8
@@ -274,6 +322,30 @@
       "side": 1,
       "message": "Ah, yes, sorry, read the path wrong.\nAnyway, a script-level comment should mention why do we need this.",
       "parentUuid": "728959bf_8711ce97",
+      "range": {
+        "startLine": 128,
+        "startChar": 9,
+        "endLine": 128,
+        "endChar": 11
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f136f71_9282ded8",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-21T14:39:47Z",
+      "side": 1,
+      "message": "Similarly to many other lines of code uncommented in whole CSIT I cannot comment every line for new commers. It requires some knowledge of how this works.",
+      "parentUuid": "a08e0de3_1447c5dc",
       "range": {
         "startLine": 128,
         "startChar": 9,
@@ -357,6 +429,30 @@
     },
     {
       "key": {
+        "uuid": "9ebea744_05f13866",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-21T14:39:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdc223ef_9c49c95f",
+      "range": {
+        "startLine": 132,
+        "startChar": 9,
+        "endLine": 132,
+        "endChar": 18
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ffe34333_a0b6e64d",
         "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
         "patchSetId": 8
@@ -428,6 +524,30 @@
     },
     {
       "key": {
+        "uuid": "8d4c1f7f_990f32fa",
+        "filename": "tests/dpdk/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-21T14:39:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c84f63b0_73bd8414",
+      "range": {
+        "startLine": 140,
+        "startChar": 38,
+        "endLine": 140,
+        "endChar": 39
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6c2eb43_cfea63a4",
         "filename": "tests/dpdk/dpdk_scripts/install_dpdk.sh",
         "patchSetId": 8
@@ -487,6 +607,30 @@
       "side": 1,
       "message": "It was not that easy.\n\n1. If lsmod fails, we want to die.\n2. If lsmod passes, but grep fails, we want to continue (skipping this sed).\n3. If both lsmod and grep pass, but sed fails, we want to die.\n\nNeither the current code nor addition of \"|| die\" handle all cases properly.\nI am not even sure what really happens, as \"set -e\" is complicating things.\n\nI think this will work correctly though:\n\n  if ( lsmod || die ) | fgrep mlx; then\n    sed -i \"${sed_mlx}\" \"${sed_file}\" || die\n  fi",
       "parentUuid": "66921c6e_e2502160",
+      "range": {
+        "startLine": 116,
+        "startChar": 56,
+        "endLine": 116,
+        "endChar": 57
+      },
+      "revId": "d5182f1202ee7df252dcd5ec5e77b93c90cd3e5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d20b5fba_7f030613",
+        "filename": "tests/dpdk/dpdk_scripts/install_dpdk.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-21T14:39:47Z",
+      "side": 1,
+      "message": "I will give it a shot. Looks fine. Although doing lsmod||die is similar to me as cat||die, but i get your point you want to have it error prone.",
+      "parentUuid": "476bf1f3_14ca1236",
       "range": {
         "startLine": 116,
         "startChar": 56,
