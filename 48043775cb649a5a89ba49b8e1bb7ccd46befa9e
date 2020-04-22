@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "102bda02_eac81af6",
+        "filename": "resources/libraries/python/DpdkUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-04-22T11:21:09Z",
+      "side": 1,
+      "message": "closing bracket at separate line\n- all occurrences below too",
+      "range": {
+        "startLine": 36,
+        "startChar": 41,
+        "endLine": 36,
+        "endChar": 34
+      },
+      "revId": "48043775cb649a5a89ba49b8e1bb7ccd46befa9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0e815c6_4f3cb02f",
+        "filename": "resources/libraries/python/DpdkUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-04-22T11:21:09Z",
+      "side": 1,
+      "message": "closing bracket at separate line\n- all occurrences below too",
+      "range": {
+        "startLine": 71,
+        "startChar": 24,
+        "endLine": 71,
+        "endChar": 5
+      },
+      "revId": "48043775cb649a5a89ba49b8e1bb7ccd46befa9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5533aa2c_e637846e",
+        "filename": "resources/libraries/python/DpdkUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-04-22T11:21:09Z",
+      "side": 1,
+      "message": "closing bracket at separate line\n\n- all occurrences below too",
+      "range": {
+        "startLine": 204,
+        "startChar": 50,
+        "endLine": 204,
+        "endChar": 5
+      },
+      "revId": "48043775cb649a5a89ba49b8e1bb7ccd46befa9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
