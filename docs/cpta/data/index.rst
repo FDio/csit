@@ -57,3 +57,8 @@ in the ASCII and CSV formats:
 
         - `ASCII format <../_static/vpp/csit-dpdk-perf-mrr-weekly-master-2n-skx-trending.txt>`_
         - `CSV format <../_static/vpp/csit-dpdk-perf-mrr-weekly-master-2n-skx-trending.csv>`_
+
+    - 2n-clx
+
+        - `ASCII format <../_static/vpp/csit-dpdk-perf-mrr-weekly-master-2n-clx-trending.txt>`_
+        - `CSV format <../_static/vpp/csit-dpdk-perf-mrr-weekly-master-2n-clx-trending.csv>`_
