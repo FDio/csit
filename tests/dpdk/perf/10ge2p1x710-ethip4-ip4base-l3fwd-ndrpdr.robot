@@ -70,6 +70,7 @@
 | | Set Test Variable | \${frame_size}
 | |
 | | Given Set Max Rate And Jumbo
+| | And Pre-initialize layer driver | ${nic_driver}
 | | When Start L3FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
 
