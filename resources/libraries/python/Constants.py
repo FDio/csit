@@ -271,7 +271,7 @@ class Constants:
         u"Intel-XXV710": 18750000,
         # The Mellanox card is able to do more, but the current TRex version
         # shows non-negligible duration stretching, depending on cores used.
-        u"Mellanox-CX556A": 47000000,  # 148809523,
+        u"Mellanox-CX556A": 40000000,  # 148809523,
         u"Amazon-Nitro-50G": 1500000,
         u"virtual": 14880952,
     }
