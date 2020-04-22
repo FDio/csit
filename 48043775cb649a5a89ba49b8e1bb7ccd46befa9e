@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "a9b3944e_7d29523c",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-22T11:40:05Z",
+      "side": 1,
+      "message": "Either dash here, or convert other nic driver names to use underscore.\nAlso, is the \"core\" part still needed, the same way as it was needed for rdma?",
+      "range": {
+        "startLine": 343,
+        "startChar": 31,
+        "endLine": 343,
+        "endChar": 40
+      },
+      "revId": "48043775cb649a5a89ba49b8e1bb7ccd46befa9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f39ecf8_8166efa6",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-22T11:40:05Z",
+      "side": 1,
+      "message": "Only a failed run made me realize you need to also add values from DPDK_NIC_DRIVER_TO_SUITE_PREFIX, otherwise mlx5- remains in the suite tag.",
+      "range": {
+        "startLine": 363,
+        "startChar": 29,
+        "endLine": 363,
+        "endChar": 55
+      },
+      "revId": "48043775cb649a5a89ba49b8e1bb7ccd46befa9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "102bda02_eac81af6",
         "filename": "resources/libraries/python/DpdkUtil.py",
         "patchSetId": 13
