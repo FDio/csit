@@ -114,6 +114,8 @@
 | | ... | Pre-initialize vfio-pci driver by adding related sections to startup
 | | ... | config on all DUTs.
 | |
+| | ${index}= | Get Index From List | ${TEST TAGS} | DPDK
+| | Run Keyword If | ${index} >= 0 | Return From Keyword
 | | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
@@ -146,6 +148,17 @@
 | | ... | Pre-initialize rdma-core driver. Currently no operation.
 | |
 | | No operation
+
+| Pre-initialize layer mlx5_core on all DUTs
+| | [Documentation]
+| | ... | Pre-initialize mlx5_core driver.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | ${jumbo}
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
+| | | ... | ELSE
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1500
+| | END
 
 | Initialize layer driver
 | | [Documentation]
@@ -285,6 +298,13 @@
 | | ... | num_rx_queues=${rxq_count_int}
 | | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
 | | Set List Value | ${${dut}_vf${pf}} | 0 | ${_rdma}
+
+| Initialize layer mlx5_core on node
+| | [Documentation]
+| | ... | Initialize mlx5_core interfaces on DUT on NIC PF.
+| | ... | Currently no operation.
+| |
+| | No operation
 
 | Initialize layer interface
 | | [Documentation]
