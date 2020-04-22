@@ -228,45 +228,20 @@ class InterfaceUtil:
             )
 
     @staticmethod
-    def set_interface_ethernet_mtu(node, iface_key, mtu):
+    def set_interface_mtu(node, pf_pcis, mtu=9200):
         """Set Ethernet MTU for specified interface.
 
-        Function can be used only for TGs.
-
-        :param node: Node where the interface is.
-        :param iface_key: Interface key from topology file.
-        :param mtu: MTU to set.
-        :type node: dict
-        :type iface_key: str
+        :param node: Topology node.
+        :param pf_pcis: List of node's interfaces PCI addresses.
+        :param mtu: MTU to set. Default: 9200.
+        :type nodes: dict
+        :type pf_pcis: str
         :type mtu: int
-        :returns: Nothing.
-        :raises ValueError: If the node type is "DUT".
-        :raises ValueError: If the node has an unknown node type.
         """
-        if node[u"type"] == NodeType.DUT:
-            msg = f"Node {node[u'host']}: Setting Ethernet MTU for interface " \
-                f"on DUT nodes not supported"
-        elif node[u"type"] != NodeType.TG:
-            msg = f"Node {node[u'host']} has unknown NodeType: {node[u'type']}"
-        else:
-            iface_name = Topology.get_interface_name(node, iface_key)
-            cmd = f"ip link set {iface_name} mtu {mtu}"
+        for pf_pci in pf_pcis:
+            pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
+            cmd = f"ip link set \"{pf_eth}\" mtu {mtu}"
             exec_cmd_no_error(node, cmd, sudo=True)
-            return
-        raise ValueError(msg)
-
-    @staticmethod
-    def set_default_ethernet_mtu_on_all_interfaces_on_node(node):
-        """Set default Ethernet MTU on all interfaces on node.
-
-        Function can be used only for TGs.
-
-        :param node: Node where to set default MTU.
-        :type node: dict
-        :returns: Nothing.
-        """
-        for ifc in node[u"interfaces"]:
-            InterfaceUtil.set_interface_ethernet_mtu(node, ifc, 1500)
 
     @staticmethod
     def vpp_set_interface_mtu(node, interface, mtu=9200):
