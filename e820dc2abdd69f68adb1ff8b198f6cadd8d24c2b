@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2de4640_ae7e7eab",
+        "filename": "resources/libraries/bash/entry/patch_l3fwd_flip_routes",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-22T13:40:21Z",
+      "side": 1,
+      "message": "Copyright?\nMaybe come short comment about what does this do and what the working directory should be?",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 1,
+        "endChar": 9
+      },
+      "revId": "e820dc2abdd69f68adb1ff8b198f6cadd8d24c2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cd287d1_372011bd",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-22T13:40:21Z",
+      "side": 1,
+      "message": "Mention the difference from common.sh common_dirs. That assumes execution on robot executor, this assumes execution on DUT.",
+      "range": {
+        "startLine": 21,
+        "startChar": 40,
+        "endLine": 21,
+        "endChar": 51
+      },
+      "revId": "e820dc2abdd69f68adb1ff8b198f6cadd8d24c2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6436ed79_4c277cc6",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-22T13:40:21Z",
+      "side": 1,
+      "message": "Add those to the function documentation.",
+      "range": {
+        "startLine": 113,
+        "startChar": 11,
+        "endLine": 113,
+        "endChar": 18
+      },
+      "revId": "e820dc2abdd69f68adb1ff8b198f6cadd8d24c2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cf3390f_2eacb5af",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-22T13:40:21Z",
+      "side": 1,
+      "message": "Yes. Used twice, differing only in app name. Worth making it a separate function?",
+      "range": {
+        "startLine": 279,
+        "startChar": 6,
+        "endLine": 279,
+        "endChar": 14
+      },
+      "revId": "e820dc2abdd69f68adb1ff8b198f6cadd8d24c2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68c4765a_f77ebcbe",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-22T13:40:21Z",
+      "side": 1,
+      "message": "if fgrep \"Press enter to exit\" screenlog.0; then\n\nAnd you no longer need \"set +e\" for \"custom error handling\".",
+      "range": {
+        "startLine": 358,
+        "startChar": 8,
+        "endLine": 359,
+        "endChar": 35
+      },
+      "revId": "e820dc2abdd69f68adb1ff8b198f6cadd8d24c2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e5983ff_16a6a399",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-22T13:40:21Z",
+      "side": 1,
+      "message": "It is better to use return, in case the entry script wants to do something more.\n\nAnd in that case, \"set -e\" and \"set +x\" are probably needed.",
+      "range": {
+        "startLine": 360,
+        "startChar": 12,
+        "endLine": 360,
+        "endChar": 18
+      },
+      "revId": "e820dc2abdd69f68adb1ff8b198f6cadd8d24c2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
