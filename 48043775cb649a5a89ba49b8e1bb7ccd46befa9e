@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7e02a54f_d998c6a0",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-22T11:49:15Z",
+      "side": 1,
+      "message": "It is the name of linux driver. mlx5_core so i can use it for bind. similarly for vfio-pci. I am using naming convention from original linux drivers.",
+      "parentUuid": "a9b3944e_7d29523c",
+      "range": {
+        "startLine": 343,
+        "startChar": 31,
+        "endLine": 343,
+        "endChar": 40
+      },
+      "revId": "48043775cb649a5a89ba49b8e1bb7ccd46befa9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f39ecf8_8166efa6",
         "filename": "resources/libraries/python/Constants.py",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "48043775cb649a5a89ba49b8e1bb7ccd46befa9e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a61fcdd_761b5e5c",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-22T11:49:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f39ecf8_8166efa6",
+      "range": {
+        "startLine": 363,
+        "startChar": 29,
+        "endLine": 363,
+        "endChar": 55
+      },
+      "revId": "48043775cb649a5a89ba49b8e1bb7ccd46befa9e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
