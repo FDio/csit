@@ -196,6 +196,7 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -214,6 +215,9 @@
 =======
         start: 1082
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+        start: 1086
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
@@ -266,6 +270,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -284,6 +289,9 @@
 =======
         start: 1082
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+        start: 1086
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
@@ -339,6 +347,7 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -357,6 +366,9 @@
 =======
         start: 830
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+        start: 834
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
@@ -411,7 +423,12 @@
 =======
           - 862
           - 864
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+          - 865
+          - 866
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 72
         end: "lastCompletedBuild"
@@ -422,6 +439,7 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -440,6 +458,9 @@
 =======
         start: 830
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+        start: 834
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
@@ -494,7 +515,12 @@
 =======
           - 862
           - 864
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+          - 865
+          - 866
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
 
     plot-performance-trending-dpdk-3n-skx:
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
@@ -508,6 +534,7 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -526,6 +553,9 @@
 =======
         start: 856
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+        start: 858
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
@@ -569,15 +599,14 @@
           - 874
 >>>>>>> CHANGE (01597c Trending: Update graphs)
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
-        start: 72
+        start: 78
         end: "lastCompletedBuild"
         skip:
-          - 76
-          - 77
           - 79
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -596,6 +625,9 @@
 =======
         start: 856
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+        start: 858
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
@@ -648,16 +680,14 @@
 
     plot-performance-trending-dpdk-2n-skx:
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
-        start: 72
+        start: 78
         end: "lastCompletedBuild"
         skip:
-          - 76
-          - 77
           - 79
 
     plot-performance-trending-vpp-nfv-2n-skx:
       csit-vpp-perf-mrr-weekly-master-2n-skx:
-        start: 45
+        start: 50
         end: "lastCompletedBuild"
         skip:
           - 52
@@ -668,7 +698,7 @@
 =======
     plot-performance-trending-vpp-2n-clx:
       csit-vpp-perf-mrr-daily-master-2n-clx:
-        start: 234
+        start: 236
         end: "lastCompletedBuild"
         skip:
           - 239
@@ -679,21 +709,19 @@
 
     plot-performance-trending-dpdk-2n-clx:
       csit-dpdk-perf-mrr-weekly-master-2n-clx:
-        start: 16
+        start: 23
         end: "lastCompletedBuild"
         skip:
-          - 18
-          - 21
-          - 22
           - 24
 
 >>>>>>> CHANGE (b51708 Trending: Plots)
     # 3n-tsh
     plot-performance-trending-all-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
-        start: 115
+        start: 144
         end: "lastCompletedBuild"
         skip:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
           - 105
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -703,6 +731,8 @@
           - 126
           - 127
           - 135
+=======
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
           - 149
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
@@ -718,9 +748,10 @@
 
     plot-performance-trending-vpp-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
-        start: 115
+        start: 144
         end: "lastCompletedBuild"
         skip:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
           - 105
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -730,6 +761,8 @@
           - 126
           - 127
           - 135
+=======
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
           - 149
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
@@ -745,6 +778,7 @@
 
     plot-performance-trending-vpp-3n-dnv:
       csit-vpp-perf-mrr-daily-master-3n-dnv:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
         start: 134
@@ -754,8 +788,12 @@
 =======
         start: 276
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        start: 329
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
         skip:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
           - 150
@@ -784,6 +822,8 @@
           - 325
           - 326
           - 327
+=======
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
           - 343
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
@@ -798,10 +838,20 @@
           - 360
           - 363
           - 364
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+          - 381
+          - 387
+          - 388
+          - 390
+          - 391
+          - 392
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
 
     plot-performance-trending-vpp-2n-dnv:
       csit-vpp-perf-mrr-daily-master-2n-dnv:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
         start: 133
@@ -811,8 +861,12 @@
 =======
         start: 279
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        start: 335
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
         skip:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
           - 145
           - 149
           - 150
@@ -833,6 +887,8 @@
           - 330
           - 331
           - 332
+=======
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
           - 344
           - 349
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -846,7 +902,16 @@
           - 365
           - 366
           - 370
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+          - 378
+          - 387
+          - 394
+          - 395
+          - 396
+          - 397
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
 
   plot-layouts:
 
@@ -944,6 +1009,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -962,6 +1028,9 @@
 =======
       start: 1082
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+      start: 1086
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       end: "lastCompletedBuild"
       skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
@@ -1004,16 +1073,14 @@
         - 1102
 >>>>>>> CHANGE (b51708 Trending: Plots)
     csit-dpdk-perf-mrr-weekly-master:
-      start: 107
+      start: 113
       end: "lastCompletedBuild"
       skip:
-        - 110
-        - 111
-        - 112
         - 114
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -1032,6 +1099,9 @@
 =======
       start: 830
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+      start: 834
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       end: "lastCompletedBuild"
       skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
@@ -1086,17 +1156,21 @@
 =======
         - 862
         - 864
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+        - 865
+        - 866
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
-      start: 72
+      start: 78
       end: "lastCompletedBuild"
       skip:
-        - 76
-        - 77
         - 79
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -1115,6 +1189,9 @@
 =======
       start: 856
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
+=======
+      start: 858
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       end: "lastCompletedBuild"
       skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
@@ -1158,22 +1235,20 @@
         - 874
 >>>>>>> CHANGE (01597c Trending: Update graphs)
     csit-vpp-perf-mrr-weekly-master-2n-skx:
-      start: 45
+      start: 50
       end: "lastCompletedBuild"
       skip:
         - 52
         - 54
         - 55
     csit-dpdk-perf-mrr-weekly-master-2n-skx:
-      start: 72
+      start: 78
       end: "lastCompletedBuild"
       skip:
-        - 76
-        - 77
         - 79
 
     csit-vpp-perf-mrr-daily-master-2n-clx:
-      start: 234
+      start: 236
       end: "lastCompletedBuild"
       skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
@@ -1212,23 +1287,27 @@
         - 253
 
     csit-dpdk-perf-mrr-weekly-master-2n-clx:
-      start: 16
+      start: 23
       end: "lastCompletedBuild"
       skip:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
         - 18
         - 21
         - 22
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
 =======
+=======
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         - 24
 >>>>>>> CHANGE (01597c Trending: Update graphs)
 
     # 3n-tsh
     csit-vpp-perf-mrr-daily-master-3n-tsh:
-      start: 115
+      start: 144
       end: "lastCompletedBuild"
       skip:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
         - 105
 <<<<<<< HEAD   (d31b87 Report: Add data)
@@ -1238,6 +1317,8 @@
         - 126
         - 127
         - 135
+=======
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         - 149
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
@@ -1253,6 +1334,7 @@
 
     # 3n-dnv
     csit-vpp-perf-mrr-daily-master-3n-dnv:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
       start: 134
@@ -1262,8 +1344,12 @@
 =======
       start: 276
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+      start: 329
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       end: "lastCompletedBuild"
       skip:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
         - 150
@@ -1292,6 +1378,8 @@
         - 325
         - 326
         - 327
+=======
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         - 343
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 >>>>>>> CHANGE (b51708 Trending: Plots)
@@ -1306,10 +1394,20 @@
         - 360
         - 363
         - 364
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        - 381
+        - 387
+        - 388
+        - 390
+        - 391
+        - 392
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
 
     # 2n-dnv
     csit-vpp-perf-mrr-daily-master-2n-dnv:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
 <<<<<<< HEAD   (d31b87 Report: Add data)
       start: 133
@@ -1319,8 +1417,12 @@
 =======
       start: 279
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+      start: 335
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       end: "lastCompletedBuild"
       skip:
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
         - 145
         - 149
         - 150
@@ -1341,6 +1443,8 @@
         - 330
         - 331
         - 332
+=======
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         - 344
         - 349
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -1354,7 +1458,16 @@
         - 365
         - 366
         - 370
+<<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        - 378
+        - 387
+        - 394
+        - 395
+        - 396
+        - 397
+>>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
 
 -
   type: "output"
