@@ -70,7 +70,8 @@
 | | Set Test Variable | \${frame_size}
 | |
 | | Given Set Max Rate And Jumbo
-| | When Start testpmd on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
+| | When Pre-initialize layer driver
+| | And Start testpmd on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

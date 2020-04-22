@@ -114,6 +114,8 @@
 | | ... | Pre-initialize vfio-pci driver by adding related sections to startup
 | | ... | config on all DUTs.
 | |
+| | Run Keyword And Return If
+| | ... | ${rc} > 0 | Get Index From List | @{TEST TAGS} | DPDK
 | | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
