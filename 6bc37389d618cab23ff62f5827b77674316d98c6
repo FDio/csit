@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4799e8fa_00b7497d",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-23T15:21:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "375af343_e906aa83",
+      "range": {
+        "startLine": 170,
+        "startChar": 25,
+        "endLine": 170,
+        "endChar": 36
+      },
+      "revId": "6bc37389d618cab23ff62f5827b77674316d98c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66d45986_72f1bd3d",
         "filename": "resources/tools/trex/trex_stateless_profile.py",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e41d145a_a2823f5a",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-23T15:21:54Z",
+      "side": 1,
+      "message": "i think no. what happens in warmup stays there. we have trex dump, but....",
+      "parentUuid": "66d45986_72f1bd3d",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 33
+      },
+      "revId": "6bc37389d618cab23ff62f5827b77674316d98c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "86a4b262_53c35e2d",
         "filename": "resources/tools/trex/trex_stateless_profile.py",
         "patchSetId": 8
@@ -59,6 +107,30 @@
       "writtenOn": "2020-04-23T15:05:35Z",
       "side": 1,
       "message": "This will probably still lead to an error, in line 272.",
+      "range": {
+        "startLine": 250,
+        "startChar": 16,
+        "endLine": 250,
+        "endChar": 20
+      },
+      "revId": "6bc37389d618cab23ff62f5827b77674316d98c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c087741_c55c973b",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-23T15:21:54Z",
+      "side": 1,
+      "message": "hmm, we can set hardcoded zero? but line 109 should keep it safe?",
+      "parentUuid": "86a4b262_53c35e2d",
       "range": {
         "startLine": 250,
         "startChar": 16,
