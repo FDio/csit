@@ -533,8 +533,7 @@ class Specification:
                     except ValueError:
                         # defined as a range <start, build_type>
                         build_end = self._get_build_number(job, build_end)
-                    builds = [x for x in range(builds[u"start"],
-                                               build_end + 1)
+                    builds = [x for x in range(builds[u"start"], build_end + 1)
                               if x not in builds.get(u"skip", list())]
                     self.configuration[u"data-sets"][set_name][job] = builds
                 elif isinstance(builds, list):
@@ -594,10 +593,17 @@ class Specification:
                             build_end = int(build_end)
                         except ValueError:
                             # defined as a range <start, build_type>
+                            if build_end in (u"lastCompletedBuild",
+                                             u"lastSuccessfulBuild"):
+                                reverse = True
+                            else:
+                                reverse = False
                             build_end = self._get_build_number(job, build_end)
                         builds = [x for x in range(builds[u"start"],
                                                    build_end + 1)
                                   if x not in builds.get(u"skip", list())]
+                        if reverse:
+                            builds.reverse()
                     self._specification[u"input"][u"builds"][job] = list()
                     for build in builds:
                         self._specification[u"input"][u"builds"][job]. \
@@ -608,6 +614,9 @@ class Specification:
                         f"No build is defined for the job {job}. Trying to "
                         f"continue without it."
                     )
+
+            print(self._specification[u"input"])
+
         except KeyError:
             raise PresentationError(u"No data to process.")
 
