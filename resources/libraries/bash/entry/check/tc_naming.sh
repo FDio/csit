@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -49,7 +49,7 @@ r_parse='(.*)\/(.*).robot.*(tc[[:digit:]]{2}-.*)'
 # as majority of Testcases does not meet naming criteria.
 s_testc_rules=(
     'TC id'
-    'packet size'
+    'packet size or file size'
     'core combination'
     'NIC driver mode'
     'packet encapsulation on L2 layer'
@@ -57,7 +57,7 @@ s_testc_rules=(
     )
 r_testc_rules=(
     '^tc[[:digit:]]{2}-'
-    '([[:digit:]]{2,4}B|IMIX)-'
+    '([[:digit:]]{1,4}B|IMIX)-'
     '([[:digit:]]+c-){0,1}'
     '(avf-|1lbvpplacp-|2lbvpplacp-){0,1}'
     '(eth|dot1q|dot1ad)'
