@@ -13,8 +13,7 @@
 
 """Path utilities library for nodes in the topology."""
 
-from resources.libraries.python.topology import Topology, NodeType
-
+from resources.libraries.python.topology import Topology
 
 class NodePath:
     """Path utilities for nodes in the topology.
@@ -207,17 +206,26 @@ class NodePath:
             raise RuntimeError(u"No path for topology")
         return self._path[-2]
 
-    def compute_circular_topology(self, nodes, filter_list=None, nic_pfs=1):
+    def compute_circular_topology(self, nodes, filter_list=None, nic_pfs=1,
+                                  always_same_link=False, topo_has_tg=True):
         """Return computed circular path.
 
         :param nodes: Nodes to append to the path.
         :param filter_list: Filter criteria list.
         :param nic_pfs: Number of PF of NIC.
+        :param always_same_link: If True use always same link between two nodes
+            in path. If False use different link (if available)
+            between two nodes if one link was used before.
+        :param topo_has_tg: If True, the topology has a TG node. If False,
+            the topology consists entirely of DUT nodes.
         :type nodes: dict
         :type filter_list: list of strings
-        :type path_count: int
+        :type nic_pfs: int
+        :type always_same_link: bool
+        :type topo_has_tg: bool
         :returns: Topology information dictionary.
         :rtype: dict
+        :raises RuntimeError: If unsupported combination of parameters.
         """
         t_dict = dict()
         duts = [key for key in nodes if u"DUT" in key]
@@ -225,32 +233,58 @@ class NodePath:
         t_dict[u"duts_count"] = len(duts)
         t_dict[u"int"] = u"pf"
 
-        for idx in range(0, nic_pfs // 2):
-            self.append_node(nodes[u"TG"])
+        for _ in range(0, nic_pfs // 2):
+            if topo_has_tg:
+                self.append_node(nodes[u"TG"])
             for dut in duts:
                 self.append_node(nodes[dut], filter_list=filter_list)
-        self.append_node(nodes[u"TG"])
-        self.compute_path(always_same_link=False)
+        if topo_has_tg:
+            self.append_node(nodes[u"TG"])
+        self.compute_path(always_same_link)
 
-        n_idx = 0
-        t_idx = 1
-        d_idx = 0
+        n_idx = 0 # node index
+        t_idx = 1 # TG interface index
+        d_idx = 0 # DUT interface index
+        prev_host = None
         while True:
             interface, node = self.next_interface()
             if not interface:
                 break
-            if node[u"type"] == u"TG":
-                n_pfx = f"TG"
-                p_pfx = f"pf{t_idx}"
-                i_pfx = f"if{t_idx}"
+            if topo_has_tg and node.get(u"type") == u"TG":
+                n_pfx = f"TG" # node prefix
+                p_pfx = f"pf{t_idx}" # physical interface prefix
+                i_pfx = f"if{t_idx}" # [backwards compatible] interface prefix
                 n_idx = 0
                 t_idx = t_idx + 1
-            else:
+            elif topo_has_tg:
+                # Each node has 2 interfaces, starting with 1
+                # Calculate prefixes appropriately for current
+                # path topology nomenclature:
+                #   tg1_if1 -> dut1_if1 -> dut1_if2 ->
+                #        [dut2_if1 -> dut2_if2 ...] -> tg1_if2
+                # TODO: Support multiple paths by enabling path topology
+                # nomenclature:
+                #   tg1_if3 -> dut1_if3 -> dut1_if4 ->
+                #        [dut2_if3 -> dut2_if4 ...] -> tg1_if4
                 n_pfx = f"DUT{n_idx // 2 + 1}"
                 p_pfx = f"pf{d_idx % 2 + t_idx - 1}"
                 i_pfx = f"if{d_idx % 2 + t_idx - 1}"
                 n_idx = n_idx + 1
                 d_idx = d_idx + 1
+            elif not topo_has_tg and always_same_link:
+                this_host = node.get(u"host")
+                if prev_host != this_host:
+                    # When moving to a new host in the path,
+                    # increment the node index (n_idx) and
+                    # reset DUT interface index (d_idx) to 1.
+                    n_idx = n_idx + 1
+                    d_idx = 1
+                n_pfx = f"DUT{n_idx}"
+                p_pfx = f"pf{d_idx}"
+                i_pfx = f"if{d_idx}"
+                d_idx = d_idx + 1
+            else:
+                raise RuntimeError(u"Unsupported combination of paramters")
 
             t_dict[f"{n_pfx}"] = node
             t_dict[f"{n_pfx}_{p_pfx}"] = [interface]
