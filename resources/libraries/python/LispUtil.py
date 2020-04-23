@@ -17,7 +17,7 @@ from ipaddress import IPv4Address, IPv6Address
 from robot.api import logger
 
 from resources.libraries.python.L2Util import L2Util
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 
 class LispUtil:

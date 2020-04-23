@@ -20,7 +20,7 @@ from enum import IntEnum
 from robot.api import logger
 
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 
 
 class NATConfigFlags(IntEnum):
