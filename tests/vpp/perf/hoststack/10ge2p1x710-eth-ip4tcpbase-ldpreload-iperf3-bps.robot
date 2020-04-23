@@ -17,13 +17,12 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-
 | ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | HOSTSTACK
 | ... | LDPRELOAD | IPERF3 | 1CLIENT | 1STREAM | 1460B
 | ... | eth-ip4tcpbase-ldpreload-iperf3
 |
-| Suite Setup | Setup suite topology interfaces no tg
+| Suite Setup | Setup suite topology interfaces
 | Suite Teardown | Tear down suite | hoststack
 | Test Setup | Setup test
 | Test Teardown | Tear down test
@@ -49,6 +48,8 @@
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
+| ${always_same_link}= | ${True}
+| ${topo_has_tg}= | ${False}
 
 *** Keywords ***
 | Local template
