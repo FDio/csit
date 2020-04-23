@@ -338,11 +338,7 @@ def _generate_all_charts(spec, input_data):
         :rtype: dict
         """
 
-        logs = list()
-
-        logs.append(
-            (u"INFO", f"  Generating the chart {graph.get(u'title', u'')} ...")
-        )
+        logging.info(f"  Generating the chart {graph.get(u'title', u'')} ...")
 
         job_name = list(graph[u"data"].keys())[0]
 
@@ -350,11 +346,9 @@ def _generate_all_charts(spec, input_data):
         res = dict()
 
         # Transform the data
-        logs.append(
-            (u"INFO",
+        logging.info(
              f"    Creating the data set for the {graph.get(u'type', u'')} "
              f"{graph.get(u'title', u'')}."
-            )
         )
 
         if graph.get(u"include", None):
@@ -410,13 +404,10 @@ def _generate_all_charts(spec, input_data):
                 for tag in group:
                     for tst_name, test_data in chart_data.items():
                         if not test_data:
-                            logs.append(
-                                (u"WARNING", f"No data for the test {tst_name}")
-                            )
+                            logging.warning(f"No data for the test {tst_name}")
                             continue
                         if tag not in chart_tags[tst_name]:
                             continue
-                        message = f"index: {index}, test: {tst_name}"
                         try:
                             trace, rslt = _generate_trending_traces(
                                 test_data,
@@ -426,10 +417,8 @@ def _generate_all_charts(spec, input_data):
                                                split(u'-')[2:-1]),
                                 color=COLORS[index])
                         except IndexError:
-                            logs.append(
-                                (u"ERROR", f"Out of colors: {message}")
-                            )
-                            logging.error(f"Out of colors: {message}")
+                            logging.error(f"Out of colors: index: "
+                                          f"{index}, test: {tst_name}")
                             index += 1
                             continue
                         traces.extend(trace)
@@ -441,11 +430,8 @@ def _generate_all_charts(spec, input_data):
         else:
             for tst_name, test_data in chart_data.items():
                 if not test_data:
-                    logs.append(
-                        (u"WARNING", f"No data for the test {tst_name}")
-                    )
+                    logging.warning(f"No data for the test {tst_name}")
                     continue
-                message = f"index: {index}, test: {tst_name}"
                 try:
                     trace, rslt = _generate_trending_traces(
                         test_data,
@@ -455,8 +441,9 @@ def _generate_all_charts(spec, input_data):
                             tst_name.split(u'.')[-1].split(u'-')[2:-1]),
                         color=COLORS[index])
                 except IndexError:
-                    logs.append((u"ERROR", f"Out of colors: {message}"))
-                    logging.error(f"Out of colors: {message}")
+                    logging.error(
+                        f"Out of colors: index: {index}, test: {tst_name}"
+                    )
                     index += 1
                     continue
                 traces.extend(trace)
@@ -514,25 +501,13 @@ def _generate_all_charts(spec, input_data):
                 f"{spec.cpta[u'output-file']}/{graph[u'output-file-name']}"
                 f"{spec.cpta[u'output-file-type']}")
 
-            logs.append((u"INFO", f"    Writing the file {name_file} ..."))
+            logging.info(f"    Writing the file {name_file} ...")
             plpl = plgo.Figure(data=traces, layout=layout)
             try:
                 ploff.plot(plpl, show_link=False, auto_open=False,
                            filename=name_file)
             except plerr.PlotlyEmptyDataError:
-                logs.append((u"WARNING", u"No data for the plot. Skipped."))
-
-        for level, line in logs:
-            if level == u"INFO":
-                logging.info(line)
-            elif level == u"ERROR":
-                logging.error(line)
-            elif level == u"DEBUG":
-                logging.debug(line)
-            elif level == u"CRITICAL":
-                logging.critical(line)
-            elif level == u"WARNING":
-                logging.warning(line)
+                logging.warning(u"No data for the plot. Skipped.")
 
         return {u"job_name": job_name, u"csv_table": csv_tbl, u"results": res}
 
@@ -542,7 +517,7 @@ def _generate_all_charts(spec, input_data):
             builds_dict[job] = list()
         for build in spec.input[u"builds"][job]:
             status = build[u"status"]
-            if status not in (u"failed", u"not found", u"removed"):
+            if status not in (u"failed", u"not found", u"removed", None):
                 builds_dict[job].append(str(build[u"build"]))
 
     # Create "build ID": "date" dict:
