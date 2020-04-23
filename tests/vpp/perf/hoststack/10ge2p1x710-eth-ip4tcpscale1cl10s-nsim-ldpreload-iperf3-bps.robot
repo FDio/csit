@@ -22,7 +22,7 @@
 | ... | NSIM | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 1460B
 | ... | eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3
 |
-| Suite Setup | Setup suite topology interfaces no tg
+| Suite Setup | Setup suite topology interfaces with no TG
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test
