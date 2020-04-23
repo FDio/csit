@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -23,9 +23,9 @@ from scapy.layers.inet import IP, UDP
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
-from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
-from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
-from resources.traffic_scripts import vxlan
+from .PacketVerifier import RxQueue, TxQueue
+from .TrafficScriptArg import TrafficScriptArg
+from . import vxlan
 
 
 def main():
