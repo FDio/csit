@@ -193,8 +193,9 @@ class Constants:
     # TRex limit memory.
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 8192)
 
-    # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 15)
+    # TRex number of worker cores. Trex uses two more (main and latency).
+    # As Haswell has only 18 cores (per numa), 16 is the maximum.
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 16)
 
     # Trex force start regardles ports state
     TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")
@@ -271,7 +272,7 @@ class Constants:
         u"Intel-XXV710": 18750000,
         # The Mellanox card is able to do more, but the current TRex version
         # shows non-negligible duration stretching, depending on cores used.
-        u"Mellanox-CX556A": 47000000,  # 148809523,
+        u"Mellanox-CX556A": 40000000,  # 148809523,
         u"Amazon-Nitro-50G": 1500000,
         u"virtual": 14880952,
     }
