@@ -21,7 +21,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VPPECHO
 | ... | 1CLIENT | 1STREAM | HOSTSTACK | 1280B | eth-ip4udpquicbase-vppecho
 |
-| Suite Setup | Setup suite topology interfaces no tg
+| Suite Setup | Setup suite topology interfaces with no TG
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test
