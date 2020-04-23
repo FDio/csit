@@ -16,7 +16,7 @@
 from ipaddress import ip_address
 
 from resources.libraries.python.L2Util import L2Util
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType
 
 

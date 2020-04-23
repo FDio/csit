@@ -14,7 +14,7 @@
 """TCP util library."""
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 
 
 class TCPUtils:
