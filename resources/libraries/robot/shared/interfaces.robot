@@ -145,9 +145,14 @@
 
 | Pre-initialize layer rdma-core on all DUTs
 | | [Documentation]
-| | ... | Pre-initialize rdma-core driver. Currently no operation.
+| | ... | Pre-initialize rdma-core driver.
 | |
-| | No operation
+| | FOR | ${dut} | IN | @{duts}
+| | | Set Interface Flow Control
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rx="off" | tx="off"
+| | | Set PCI Parameter
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | key="68.w" | value="3BCD"
+| | END
 
 | Pre-initialize layer mlx5_core on all DUTs
 | | [Documentation]
@@ -158,6 +163,10 @@
 | | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
 | | | ... | ELSE
 | | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1500
+| | | Set Interface Flow Control
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rx="off" | tx="off"
+| | | Set PCI Parameter
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | key="68.w" | value="3BCD"
 | | END
 
 | Initialize layer driver
