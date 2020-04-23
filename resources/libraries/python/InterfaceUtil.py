@@ -25,7 +25,7 @@ from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
 
@@ -229,7 +229,7 @@ class InterfaceUtil:
 
     @staticmethod
     def set_interface_mtu(node, pf_pcis, mtu=9200):
-        """Set Ethernet MTU for specified interface.
+        """Set Ethernet MTU for specified interfaces.
 
         :param node: Topology node.
         :param pf_pcis: List of node's interfaces PCI addresses.
@@ -237,10 +237,48 @@ class InterfaceUtil:
         :type nodes: dict
         :type pf_pcis: list
         :type mtu: int
+        :raises RuntimeError: If failed to set MTU on interface.
         """
         for pf_pci in pf_pcis:
             pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
             cmd = f"ip link set {pf_eth} mtu {mtu}"
+            ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
+            if int(ret_code) not in (0, 78):
+                raise RuntimeError("Failed to set MTU on {pf_eth}!")
+
+    @staticmethod
+    def set_interface_flow_control(node, pf_pcis, rx=u"off", tx=u"off"):
+        """Set Ethernet flow control for specified interfaces.
+
+        :param node: Topology node.
+        :param pf_pcis: List of node's interfaces PCI addresses.
+        :param rx: RX flow. Default: off.
+        :param tx: TX flow. Default: off.
+        :type nodes: dict
+        :type pf_pcis: list
+        :type rx: str
+        :type tx: str
+        """
+        for pf_pci in pf_pcis:
+            pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
+            cmd = f"ethtool -A {pf_eth} rx off tx off"
+            exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def set_pci_parameter(node, pf_pcis, key, value):
+        """Set PCI parameter for specified interfaces.
+
+        :param node: Topology node.
+        :param pf_pcis: List of node's interfaces PCI addresses.
+        :param key: Key to set.
+        :param value: Value to set.
+        :type nodes: dict
+        :type pf_pcis: list
+        :type key: str
+        :type value: str
+        """
+        for pf_pci in pf_pcis:
+            cmd = f"setpci -s {pf_pci} {key}={value}"
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
