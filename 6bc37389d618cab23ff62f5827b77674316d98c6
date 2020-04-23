@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "375af343_e906aa83",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-23T15:05:35Z",
+      "side": 1,
+      "message": "Currently I prefer time.monotonic().",
+      "range": {
+        "startLine": 170,
+        "startChar": 25,
+        "endLine": 170,
+        "endChar": 36
+      },
+      "revId": "6bc37389d618cab23ff62f5827b77674316d98c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66d45986_72f1bd3d",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-23T15:05:35Z",
+      "side": 1,
+      "message": "This usually gets overwritten in line 213.\nAre we even interested in duration of warmup?",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 33
+      },
+      "revId": "6bc37389d618cab23ff62f5827b77674316d98c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86a4b262_53c35e2d",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-23T15:05:35Z",
+      "side": 1,
+      "message": "This will probably still lead to an error, in line 272.",
+      "range": {
+        "startLine": 250,
+        "startChar": 16,
+        "endLine": 250,
+        "endChar": 20
+      },
+      "revId": "6bc37389d618cab23ff62f5827b77674316d98c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

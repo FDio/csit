@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f15f7054_16e584f1",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-23T15:05:35Z",
+      "side": 0,
+      "message": "Please keep this included, so people do not need to scroll up to see what the value was.",
+      "range": {
+        "startLine": 266,
+        "startChar": 18,
+        "endLine": 266,
+        "endChar": 32
+      },
+      "revId": "54beb458703ff91e9f522f8af0a57722966f093e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
