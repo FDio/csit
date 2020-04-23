@@ -23,7 +23,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
@@ -399,7 +399,6 @@ class InterfaceUtil:
 
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
-        logger.debug(f"Received data:\n{details!r}")
 
         data = list() if interface is None else dict()
         for dump in details:
@@ -409,7 +408,6 @@ class InterfaceUtil:
                 data = process_if_dump(dump)
                 break
 
-        logger.debug(f"Interface data:\n{data}")
         return data
 
     @staticmethod

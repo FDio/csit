@@ -18,31 +18,17 @@ import os
 from enum import Enum, IntEnum
 from io import open
 from random import choice
-from string import ascii_letters
 
 from ipaddress import ip_network, ip_address
 
-from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
-    InterfaceStatusFlags
+from resources.libraries.python.InterfaceUtil import (
+    InterfaceUtil, InterfaceStatusFlags
+)
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatExecutor
-
-
-def gen_key(length):
-    """Generate random string as a key.
-
-    :param length: Length of generated payload.
-    :type length: int
-    :returns: The generated payload.
-    :rtype: bytes
-    """
-    return u"".join(
-        choice(ascii_letters) for _ in range(length)
-    ).encode(encoding=u"utf-8")
 
 
 class PolicyAction(Enum):
@@ -97,6 +83,32 @@ class IPsecSadFlags(IntEnum):
 
 class IPsecUtil:
     """IPsec utilities."""
+
+    # We are generating random keys. But fast request generator
+    # relies on a sequence on nonequal bytes.
+    # In order to prevent error, we make sure the last bit always flips.
+    LAST_KEY_BITS = list()
+
+    @classmethod
+    def gen_key(cls, length):
+        """Generate random bytes string as a key.
+
+        :param length: Length of generated payload.
+        :type length: int
+        :returns: The generated payload.
+        :rtype: bytes
+        """
+        key = bytearray(os.urandom(length))
+        for index, _ in enumerate(key):
+            if index == len(cls.LAST_KEY_BITS):
+                cls.LAST_KEY_BITS.append(choice([False, True]))
+            if cls.LAST_KEY_BITS[index]:
+                key[index] &= 0xfe
+                cls.LAST_KEY_BITS[index] = False
+            else:
+                key[index] |= 1
+                cls.LAST_KEY_BITS[index] = True
+        return bytes(key)
 
     @staticmethod
     def policy_action_bypass():
@@ -266,8 +278,12 @@ class IPsecUtil:
     @staticmethod
     def vpp_ipsec_add_sad_entry(
             node, sad_id, spi, crypto_alg, crypto_key, integ_alg=None,
-            integ_key=u"", tunnel_src=None, tunnel_dst=None):
+            integ_key=b"", tunnel_src=None, tunnel_dst=None):
         """Create Security Association Database entry on the VPP node.
+
+        The keys are assumet to be bytes.
+        If a key is str, utf-8 encode is attempted.
+        This is useful if keys are not generated, but written in Robot suite.
 
         :param node: VPP node to add SAD entry on.
         :param sad_id: SAD entry ID.
@@ -284,9 +300,9 @@ class IPsecUtil:
         :type sad_id: int
         :type spi: int
         :type crypto_alg: CryptoAlg
-        :type crypto_key: str
+        :type crypto_key: bytes or str
         :type integ_alg: IntegAlg
-        :type integ_key: str
+        :type integ_key: bytes or str
         :type tunnel_src: str
         :type tunnel_dst: str
         """
@@ -300,7 +316,7 @@ class IPsecUtil:
         )
         ikey = dict(
             length=len(integ_key),
-            data=integ_key if integ_key else 0
+            data=integ_key
         )
 
         flags = int(IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE)
@@ -340,8 +356,12 @@ class IPsecUtil:
     @staticmethod
     def vpp_ipsec_add_sad_entries(
             node, n_entries, sad_id, spi, crypto_alg, crypto_key,
-            integ_alg=None, integ_key=u"", tunnel_src=None, tunnel_dst=None):
+            integ_alg=None, integ_key=b"", tunnel_src=None, tunnel_dst=None):
         """Create multiple Security Association Database entries on VPP node.
+
+        The keys are assumet to be bytes.
+        If a key is str, utf-8 encode is attempted.
+        This is useful if keys are not generated, but written in Robot suite.
 
         :param node: VPP node to add SAD entry on.
         :param n_entries: Number of SAD entries to be created.
@@ -362,9 +382,9 @@ class IPsecUtil:
         :type sad_id: int
         :type spi: int
         :type crypto_alg: CryptoAlg
-        :type crypto_key: str
+        :type crypto_key: bytes or str
         :type integ_alg: IntegAlg
-        :type integ_key: str
+        :type integ_key: bytes or str
         :type tunnel_src: str
         :type tunnel_dst: str
         """
@@ -382,37 +402,13 @@ class IPsecUtil:
         addr_incr = 1 << (128 - 96) if src_addr.version == 6 \
             else 1 << (32 - 24)
 
-        if int(n_entries) > 10:
-            tmp_filename = f"/tmp/ipsec_sad_{sad_id}_add_del_entry.script"
-
-            with open(tmp_filename, 'w') as tmp_file:
-                for i in range(n_entries):
-                    integ = f"integ-alg {integ_alg.alg_name} " \
-                        f"integ-key {integ_key.hex()}" \
-                        if integ_alg else u""
-                    tunnel = f"tunnel-src {src_addr + i * addr_incr} " \
-                        f"tunnel-dst {dst_addr + i * addr_incr}" \
-                        if tunnel_src and tunnel_dst else u""
-                    conf = f"exec ipsec sa add {sad_id + i} esp spi {spi + i} "\
-                        f"crypto-alg {crypto_alg.alg_name} " \
-                        f"crypto-key {crypto_key.hex()} " \
-                        f"{integ} {tunnel}\n"
-                    tmp_file.write(conf)
-            vat = VatExecutor()
-            vat.execute_script(
-                tmp_filename, node, timeout=300, json_out=False,
-                copy_on_execute=True
-            )
-            os.remove(tmp_filename)
-            return
-
         ckey = dict(
             length=len(crypto_key),
             data=crypto_key
         )
         ikey = dict(
             length=len(integ_key),
-            data=integ_key if integ_key else 0
+            data=integ_key
         )
 
         flags = int(IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE)
@@ -443,17 +439,19 @@ class IPsecUtil:
             is_add=True,
             entry=sad_entry
         )
-        with PapiSocketExecutor(node) as papi_exec:
-            for i in range(n_entries):
+        fast = 0 if n_entries < 3 else n_entries
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            for i in range(2 if fast else n_entries):
                 args[u"entry"][u"sad_id"] = int(sad_id) + i
                 args[u"entry"][u"spi"] = int(spi) + i
                 args[u"entry"][u"tunnel_src"] = str(src_addr + i * addr_incr) \
                     if tunnel_src and tunnel_dst else src_addr
                 args[u"entry"][u"tunnel_dst"] = str(dst_addr + i * addr_incr) \
                     if tunnel_src and tunnel_dst else dst_addr
-                history = bool(not 1 < i < n_entries - 2)
-                papi_exec.add(cmd, history=history, **args)
-            papi_exec.get_replies(err_msg)
+                papi_exec.add(cmd, **args)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
 
     @staticmethod
     def vpp_ipsec_set_ip_route(
@@ -484,55 +482,42 @@ class IPsecUtil:
         addr_incr = 1 << (128 - raddr_range) if tunnel_src.version == 6 \
             else 1 << (32 - raddr_range)
 
-        if int(n_tunnels) > 10:
-            tmp_filename = u"/tmp/ipsec_set_ip.script"
-
-            with open(tmp_filename, 'w') as tmp_file:
-                if_name = Topology.get_interface_name(node, interface)
-                for i in range(n_tunnels):
-                    conf = f"exec set interface ip address {if_name} " \
-                        f"{tunnel_src + i * addr_incr}/{raddr_range}\n" \
-                        f"exec ip route add {traffic_addr + i}/" \
-                        f"{128 if traffic_addr.version == 6 else 32} " \
-                        f"via {tunnel_dst + i * addr_incr} {if_name}\n"
-                    tmp_file.write(conf)
-            VatExecutor().execute_script(
-                tmp_filename, node, timeout=300, json_out=False,
-                copy_on_execute=True
-            )
-            os.remove(tmp_filename)
-            return
-
-        cmd1 = u"sw_interface_add_del_address"
-        args1 = dict(
-            sw_if_index=InterfaceUtil.get_interface_index(node, interface),
-            is_add=True,
-            del_all=False,
-            prefix=None
-        )
-        cmd2 = u"ip_route_add_del"
-        args2 = dict(
-            is_add=1,
-            is_multipath=0,
-            route=None
-        )
         err_msg = f"Failed to configure IP addresses and IP routes " \
             f"on interface {interface} on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
-            for i in range(n_tunnels):
-                args1[u"prefix"] = IPUtil.create_prefix_object(
+        fast = 0 if n_tunnels < 3 else n_tunnels
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            cmd = u"sw_interface_add_del_address"
+            args = dict(
+                sw_if_index=InterfaceUtil.get_interface_index(node, interface),
+                is_add=True,
+                del_all=False,
+                prefix=None
+            )
+            for i in range(2 if fast else n_tunnels):
+                args[u"prefix"] = IPUtil.create_prefix_object(
                     tunnel_src + i * addr_incr, raddr_range
                 )
-                args2[u"route"] = IPUtil.compose_vpp_route_structure(
+                papi_exec.add(cmd, **args)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
+            cmd = u"ip_route_add_del"
+            args = dict(
+                is_add=1,
+                is_multipath=0,
+                route=None
+            )
+            for i in range(2 if fast else n_tunnels):
+                args[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, traffic_addr + i,
                     prefix_len=128 if traffic_addr.version == 6 else 32,
                     interface=interface, gateway=tunnel_dst + i * addr_incr
                 )
-                history = bool(not 1 < i < n_tunnels - 2)
-                papi_exec.add(cmd1, history=history, **args1).\
-                    add(cmd2, history=history, **args2)
-            papi_exec.get_replies(err_msg)
+                papi_exec.add(cmd, **args)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
 
     @staticmethod
     def vpp_ipsec_add_spd(node, spd_id):
@@ -689,26 +674,6 @@ class IPsecUtil:
         :type raddr_range: int
         """
         raddr_ip = ip_address(raddr_ip)
-        if int(n_entries) > 10:
-            tmp_filename = f"/tmp/ipsec_spd_{sa_id}_add_del_entry.script"
-
-            with open(tmp_filename, 'w') as tmp_file:
-                for i in range(n_entries):
-                    direction = u'inbound' if inbound else u'outbound'
-                    tunnel = f"exec ipsec policy add spd {spd_id} " \
-                        f"priority {priority} {direction} " \
-                        f"action protect sa {sa_id+i} " \
-                        f"remote-ip-range {raddr_ip + i * (raddr_range + 1)} " \
-                        f"- {raddr_ip + (i  + 1) * raddr_range + i} " \
-                        f"local-ip-range 0.0.0.0 - 255.255.255.255\n"
-                    tmp_file.write(tunnel)
-            VatExecutor().execute_script(
-                tmp_filename, node, timeout=300, json_out=False,
-                copy_on_execute=True
-            )
-            os.remove(tmp_filename)
-            return
-
         laddr_range = u"::/0" if raddr_ip.version == 6 else u"0.0.0.0/0"
 
         cmd = u"ipsec_spd_entry_add_del"
@@ -723,7 +688,9 @@ class IPsecUtil:
             policy=getattr(PolicyAction.PROTECT, u"policy_int_repr"),
             protocol=0,
             remote_address_start=IPAddress.create_ip_address_object(raddr_ip),
-            remote_address_stop=IPAddress.create_ip_address_object(raddr_ip),
+            remote_address_stop=IPAddress.create_ip_address_object(
+                raddr_ip + raddr_range
+            ),
             local_address_start=IPAddress.create_ip_address_object(
                 ip_network(laddr_range, strict=False).network_address
             ),
@@ -740,217 +707,21 @@ class IPsecUtil:
             entry=spd_entry
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
-            for i in range(n_entries):
+        fast = 0 if n_entries < 3 else n_entries
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            for i in range(2 if fast else n_entries):
                 args[u"entry"][u"remote_address_start"][u"un"] = \
                     IPAddress.union_addr(raddr_ip + i)
                 args[u"entry"][u"remote_address_stop"][u"un"] = \
                     IPAddress.union_addr(raddr_ip + i)
-                history = bool(not 1 < i < n_entries - 2)
-                papi_exec.add(cmd, history=history, **args)
-            papi_exec.get_replies(err_msg)
+                papi_exec.add(cmd, **args)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
 
     @staticmethod
-    def _ipsec_create_tunnel_interfaces_dut1_vat(
-            nodes, tun_ips, if1_key, if2_key, n_tunnels, crypto_alg, integ_alg,
-            raddr_ip2, addr_incr, spi_d, existing_tunnels=0):
-        """Create multiple IPsec tunnel interfaces on DUT1 node using VAT.
-
-        :param nodes: VPP nodes to create tunnel interfaces.
-        :param tun_ips: Dictionary with VPP node 1 ipsec tunnel interface
-            IPv4/IPv6 address (ip1) and VPP node 2 ipsec tunnel interface
-            IPv4/IPv6 address (ip2).
-        :param if1_key: VPP node 1 interface key from topology file.
-        :param if2_key: VPP node 2 / TG node (in case of 2-node topology)
-            interface key from topology file.
-        :param n_tunnels: Number of tunnel interfaces to be there at the end.
-        :param crypto_alg: The encryption algorithm name.
-        :param integ_alg: The integrity algorithm name.
-        :param raddr_ip2: Policy selector remote IPv4/IPv6 start address for the
-            first tunnel in direction node2->node1.
-        :param spi_d: Dictionary with SPIs for VPP node 1 and VPP node 2.
-        :param addr_incr: IP / IPv6 address incremental step.
-        :param existing_tunnels: Number of tunnel interfaces before creation.
-            Useful mainly for reconf tests. Default 0.
-        :type nodes: dict
-        :type tun_ips: dict
-        :type if1_key: str
-        :type if2_key: str
-        :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
-        :type integ_alg: IntegAlg
-        :type raddr_ip2: IPv4Address or IPv6Address
-        :type addr_incr: int
-        :type spi_d: dict
-        :type existing_tunnels: int
-        """
-        tmp_fn1 = u"/tmp/ipsec_create_tunnel_dut1.config"
-        if1_n = Topology.get_interface_name(nodes[u"DUT1"], if1_key)
-
-        ckeys = [bytes()] * existing_tunnels
-        ikeys = [bytes()] * existing_tunnels
-
-        vat = VatExecutor()
-        with open(tmp_fn1, u"w") as tmp_f1:
-            rmac = Topology.get_interface_mac(nodes[u"DUT2"], if2_key) \
-                if u"DUT2" in nodes.keys() \
-                else Topology.get_interface_mac(nodes[u"TG"], if2_key)
-            if not existing_tunnels:
-                tmp_f1.write(
-                    f"exec create loopback interface\n"
-                    f"exec set interface state loop0 up\n"
-                    f"exec set interface ip address {if1_n} "
-                    f"{tun_ips[u'ip2'] - 1}/"
-                    f"{len(tun_ips[u'ip2'].packed)*8*3//4}\n"
-                    f"exec set ip neighbor {if1_n} {tun_ips[u'ip2']} {rmac} "
-                    f"static\n"
-                )
-            for i in range(existing_tunnels, n_tunnels):
-                ckeys.append(
-                    gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
-                )
-                if integ_alg:
-                    ikeys.append(
-                        gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                    )
-                    integ = f"integ_alg {integ_alg.alg_name} " \
-                        f"local_integ_key {ikeys[i].hex()} " \
-                        f"remote_integ_key {ikeys[i].hex()} "
-                else:
-                    integ = u""
-                tmp_f1.write(
-                    f"exec set interface ip address loop0 "
-                    f"{tun_ips[u'ip1'] + i * addr_incr}/32\n"
-                    f"ipsec_tunnel_if_add_del "
-                    f"local_spi {spi_d[u'spi_1'] + i} "
-                    f"remote_spi {spi_d[u'spi_2'] + i} "
-                    f"crypto_alg {crypto_alg.alg_name} "
-                    f"local_crypto_key {ckeys[i].hex()} "
-                    f"remote_crypto_key {ckeys[i].hex()} "
-                    f"{integ} "
-                    f"local_ip {tun_ips[u'ip1'] + i * addr_incr} "
-                    f"remote_ip {tun_ips[u'ip2']} "
-                    f"instance {i}\n"
-                )
-        vat.execute_script(
-            tmp_fn1, nodes[u"DUT1"], timeout=1800, json_out=False,
-            copy_on_execute=True,
-            history=bool(n_tunnels < 100)
-        )
-        os.remove(tmp_fn1)
-
-        with open(tmp_fn1, 'w') as tmp_f1:
-            for i in range(existing_tunnels, n_tunnels):
-                tmp_f1.write(
-                    f"exec set interface unnumbered ipip{i} use {if1_n}\n"
-                    f"exec set interface state ipip{i} up\n"
-                    f"exec ip route add "
-                    f"{raddr_ip2 + i}/{len(raddr_ip2.packed)*8} "
-                    f"via ipip{i}\n"
-                )
-        vat.execute_script(
-            tmp_fn1, nodes[u"DUT1"], timeout=1800, json_out=False,
-            copy_on_execute=True,
-            history=bool(n_tunnels < 100)
-        )
-        os.remove(tmp_fn1)
-
-        return ckeys, ikeys
-
-    @staticmethod
-    def _ipsec_create_tunnel_interfaces_dut2_vat(
-            nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys, integ_alg,
-            ikeys, raddr_ip1, addr_incr, spi_d, existing_tunnels=0):
-        """Create multiple IPsec tunnel interfaces on DUT2 node using VAT.
-
-        :param nodes: VPP nodes to create tunnel interfaces.
-        :param tun_ips: Dictionary with VPP node 1 ipsec tunnel interface
-            IPv4/IPv6 address (ip1) and VPP node 2 ipsec tunnel interface
-            IPv4/IPv6 address (ip2).
-        :param if2_key: VPP node 2 / TG node (in case of 2-node topology)
-            interface key from topology file.
-        :param n_tunnels: Number of tunnel interfaces to be there at the end.
-        :param crypto_alg: The encryption algorithm name.
-        :param ckeys: List of encryption keys.
-        :param integ_alg: The integrity algorithm name.
-        :param ikeys: List of integrity keys.
-        :param spi_d: Dictionary with SPIs for VPP node 1 and VPP node 2.
-        :param addr_incr: IP / IPv6 address incremental step.
-        :param existing_tunnels: Number of tunnel interfaces before creation.
-            Useful mainly for reconf tests. Default 0.
-        :type nodes: dict
-        :type tun_ips: dict
-        :type if2_key: str
-        :type n_tunnels: int
-        :type crypto_alg: CryptoAlg
-        :type ckeys: list
-        :type integ_alg: IntegAlg
-        :type ikeys: list
-        :type addr_incr: int
-        :type spi_d: dict
-        :type existing_tunnels: int
-        """
-        tmp_fn2 = u"/tmp/ipsec_create_tunnel_dut2.config"
-        if2_n = Topology.get_interface_name(nodes[u"DUT2"], if2_key)
-
-        vat = VatExecutor()
-        with open(tmp_fn2, 'w') as tmp_f2:
-            if not existing_tunnels:
-                tmp_f2.write(
-                    f"exec set interface ip address {if2_n}"
-                    f" {tun_ips[u'ip2']}/{len(tun_ips[u'ip2'].packed)*8*3/4}\n"
-                )
-            for i in range(existing_tunnels, n_tunnels):
-                if integ_alg:
-                    integ = f"integ_alg {integ_alg.alg_name} " \
-                        f"local_integ_key {ikeys[i].hex()} " \
-                        f"remote_integ_key {ikeys[i].hex()} "
-                else:
-                    integ = u""
-                tmp_f2.write(
-                    f"ipsec_tunnel_if_add_del "
-                    f"local_spi {spi_d[u'spi_2'] + i} "
-                    f"remote_spi {spi_d[u'spi_1'] + i} "
-                    f"crypto_alg {crypto_alg.alg_name} "
-                    f"local_crypto_key {ckeys[i].hex()} "
-                    f"remote_crypto_key {ckeys[i].hex()} "
-                    f"{integ} "
-                    f"local_ip {tun_ips[u'ip2']} "
-                    f"remote_ip {tun_ips[u'ip1'] + i * addr_incr} "
-                    f"instance {i}\n"
-                )
-        vat.execute_script(
-            tmp_fn2, nodes[u"DUT2"], timeout=1800, json_out=False,
-            copy_on_execute=True,
-            history=bool(n_tunnels < 100)
-        )
-        os.remove(tmp_fn2)
-
-        with open(tmp_fn2, 'w') as tmp_f2:
-            if not existing_tunnels:
-                tmp_f2.write(
-                    f"exec ip route add {tun_ips[u'ip1']}/8 "
-                    f"via {tun_ips[u'ip2'] - 1} {if2_n}\n"
-                )
-            for i in range(existing_tunnels, n_tunnels):
-                tmp_f2.write(
-                    f"exec set interface unnumbered ipip{i} use {if2_n}\n"
-                    f"exec set interface state ipip{i} up\n"
-                    f"exec ip route add "
-                    f"{raddr_ip1 + i}/{len(raddr_ip1.packed)*8} "
-                    f"via ipip{i}\n"
-                )
-        vat.execute_script(
-            tmp_fn2, nodes[u"DUT2"], timeout=1800, json_out=False,
-            copy_on_execute=True,
-            history=bool(n_tunnels < 100)
-        )
-        os.remove(tmp_fn2)
-
-    @staticmethod
-    def _ipsec_create_loopback_dut1_papi(nodes, tun_ips, if1_key, if2_key):
-        """Create loopback interface and set IP address on VPP node 1 interface
-        using PAPI.
+    def _ipsec_create_loopback_dut1(nodes, tun_ips, if1_key, if2_key):
+        """Create loopback interface and set IP address on VPP node 1 interface.
 
         :param nodes: VPP nodes to create tunnel interfaces.
         :param tun_ips: Dictionary with VPP node 1 ipsec tunnel interface
@@ -972,8 +743,8 @@ class IPsecUtil:
             )
             err_msg = f"Failed to create loopback interface " \
                 f"on host {nodes[u'DUT1'][u'host']}"
-            loop_sw_if_idx = papi_exec.add(cmd, **args). \
-                get_sw_if_index(err_msg)
+            papi_exec.add(cmd, **args)
+            loop_sw_if_idx = papi_exec.get_sw_if_index(err_msg)
             cmd = u"sw_interface_set_flags"
             args = dict(
                 sw_if_index=loop_sw_if_idx,
@@ -998,8 +769,8 @@ class IPsecUtil:
             err_msg = f"Failed to set IP address on interface {if1_key} " \
                 f"on host {nodes[u'DUT1'][u'host']}"
             papi_exec.add(cmd, **args).get_reply(err_msg)
-            cmd2 = u"ip_neighbor_add_del"
-            args2 = dict(
+            cmd = u"ip_neighbor_add_del"
+            args = dict(
                 is_add=1,
                 neighbor=dict(
                     sw_if_index=Topology.get_interface_sw_index(
@@ -1017,15 +788,15 @@ class IPsecUtil:
                 )
             )
             err_msg = f"Failed to add IP neighbor on interface {if1_key}"
-            papi_exec.add(cmd2, **args2).get_reply(err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
             return loop_sw_if_idx
 
     @staticmethod
-    def _ipsec_create_tunnel_interfaces_dut1_papi(
+    def _ipsec_create_tunnel_interfaces_dut1(
             nodes, tun_ips, if1_key, if2_key, n_tunnels, crypto_alg, integ_alg,
             raddr_ip2, addr_incr, spi_d, existing_tunnels=0):
-        """Create multiple IPsec tunnel interfaces on DUT1 node using PAPI.
+        """Create multiple IPsec tunnel interfaces on DUT1 node.
 
         :param nodes: VPP nodes to create tunnel interfaces.
         :param tun_ips: Dictionary with VPP node 1 ipsec tunnel interface
@@ -1056,14 +827,14 @@ class IPsecUtil:
         :type existing_tunnels: int
         """
         if not existing_tunnels:
-            loop_sw_if_idx = IPsecUtil._ipsec_create_loopback_dut1_papi(
+            loop_sw_if_idx = IPsecUtil._ipsec_create_loopback_dut1(
                 nodes, tun_ips, if1_key, if2_key
             )
         else:
             loop_sw_if_idx = InterfaceUtil.vpp_get_interface_sw_index(
                 nodes[u"DUT1"], u"loop0"
             )
-        with PapiSocketExecutor(nodes[u"DUT1"]) as papi_exec:
+        with PapiSocketExecutor(nodes[u"DUT1"], do_async=True) as papi_exec:
             # Configure IP addresses on loop0 interface
             cmd = u"sw_interface_add_del_address"
             args = dict(
@@ -1072,14 +843,19 @@ class IPsecUtil:
                 del_all=False,
                 prefix=None
             )
-            for i in range(existing_tunnels, n_tunnels):
+            new_tunnels = n_tunnels - existing_tunnels
+            fast = 0 if new_tunnels < 3 else new_tunnels
+            iter_max = existing_tunnels + 2 if fast else n_tunnels
+            for i in range(existing_tunnels, iter_max):
                 args[u"prefix"] = IPUtil.create_prefix_object(
                     tun_ips[u"ip1"] + i * addr_incr,
                     128 if tun_ips[u"ip1"].version == 6 else 32
                 )
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
+                papi_exec.add(cmd, **args)
+            err_msg = u"Failed to add address."
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
             # Configure IPsec tunnel interfaces
             cmd = u"ipsec_tunnel_if_add_del"
             args = dict(
@@ -1103,14 +879,14 @@ class IPsecUtil:
             ipsec_tunnels = [None] * existing_tunnels
             ckeys = [bytes()] * existing_tunnels
             ikeys = [bytes()] * existing_tunnels
-            for i in range(existing_tunnels, n_tunnels):
-                ckeys.append(
-                    gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
-                )
+            for i in range(existing_tunnels, iter_max):
+                ckeys.append(IPsecUtil.gen_key(
+                    IPsecUtil.get_crypto_alg_key_len(crypto_alg)
+                ))
                 if integ_alg:
-                    ikeys.append(
-                        gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                    )
+                    ikeys.append(IPsecUtil.gen_key(
+                        IPsecUtil.get_integ_alg_key_len(integ_alg)
+                    ))
                 args[u"local_spi"] = spi_d[u"spi_1"] + i
                 args[u"remote_spi"] = spi_d[u"spi_2"] + i
                 args[u"local_ip"] = IPAddress.create_ip_address_object(
@@ -1128,15 +904,16 @@ class IPsecUtil:
                     args[u"local_integ_key"] = ikeys[i]
                     args[u"remote_integ_key_len"] = len(ikeys[i])
                     args[u"remote_integ_key"] = ikeys[i]
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
+                papi_exec.add(cmd, **args)
             err_msg = f"Failed to add IPsec tunnel interfaces on host" \
                 f" {nodes[u'DUT1'][u'host']}"
+            replies = papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=False
+            )
             ipsec_tunnels.extend(
                 [
                     reply[u"sw_if_index"]
-                    for reply in papi_exec.get_replies(err_msg)
+                    for reply in replies
                     if u"sw_if_index" in reply
                 ]
             )
@@ -1149,22 +926,24 @@ class IPsecUtil:
                 ),
                 unnumbered_sw_if_index=0
             )
-            for i in range(existing_tunnels, n_tunnels):
+            for i in range(existing_tunnels, iter_max):
                 args[u"unnumbered_sw_if_index"] = ipsec_tunnels[i]
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
+                papi_exec.add(cmd, **args)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
             # Set interfaces up
             cmd = u"sw_interface_set_flags"
             args = dict(
                 sw_if_index=0,
                 flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
             )
-            for i in range(existing_tunnels, n_tunnels):
+            for i in range(existing_tunnels, iter_max):
                 args[u"sw_if_index"] = ipsec_tunnels[i]
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
+                papi_exec.add(cmd, **args)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
             # Configure IP routes
             cmd = u"ip_route_add_del"
             args = dict(
@@ -1172,26 +951,26 @@ class IPsecUtil:
                 is_multipath=0,
                 route=None
             )
-            for i in range(existing_tunnels, n_tunnels):
+            for i in range(existing_tunnels, iter_max):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     nodes[u"DUT1"], (raddr_ip2 + i).compressed,
                     prefix_len=128 if raddr_ip2.version == 6 else 32,
                     interface=ipsec_tunnels[i]
                 )
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
+                papi_exec.add(cmd, **args)
             err_msg = f"Failed to add IP routes on host " \
                 f"{nodes[u'DUT1'][u'host']}"
-            papi_exec.get_replies(err_msg)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
 
         return ckeys, ikeys
 
     @staticmethod
-    def _ipsec_create_tunnel_interfaces_dut2_papi(
+    def _ipsec_create_tunnel_interfaces_dut2(
             nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys, integ_alg,
             ikeys, raddr_ip1, addr_incr, spi_d, existing_tunnels=0):
-        """Create multiple IPsec tunnel interfaces on DUT2 node using PAPI.
+        """Create multiple IPsec tunnel interfaces on DUT2 node.
 
         :param nodes: VPP nodes to create tunnel interfaces.
         :param tun_ips: Dictionary with VPP node 1 ipsec tunnel interface
@@ -1220,7 +999,7 @@ class IPsecUtil:
         :type spi_d: dict
         :type existing_tunnels: int
         """
-        with PapiSocketExecutor(nodes[u"DUT2"]) as papi_exec:
+        with PapiSocketExecutor(nodes[u"DUT2"], do_async=True) as papi_exec:
             if not existing_tunnels:
                 # Set IP address on VPP node 2 interface
                 cmd = u"sw_interface_add_del_address"
@@ -1259,7 +1038,10 @@ class IPsecUtil:
                 tx_table_id=0
             )
             ipsec_tunnels = [None] * existing_tunnels
-            for i in range(existing_tunnels, n_tunnels):
+            new_tunnels = n_tunnels - existing_tunnels
+            fast = 0 if new_tunnels < 3 else new_tunnels
+            iter_max = existing_tunnels + 2 if fast else n_tunnels
+            for i in range(existing_tunnels, iter_max):
                 args[u"local_spi"] = spi_d[u"spi_2"] + i
                 args[u"remote_spi"] = spi_d[u"spi_1"] + i
                 args[u"local_ip"] = IPAddress.create_ip_address_object(
@@ -1277,15 +1059,16 @@ class IPsecUtil:
                     args[u"local_integ_key"] = ikeys[i]
                     args[u"remote_integ_key_len"] = len(ikeys[i])
                     args[u"remote_integ_key"] = ikeys[i]
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
+                papi_exec.add(cmd, **args)
             err_msg = f"Failed to add IPsec tunnel interfaces " \
                 f"on host {nodes[u'DUT2'][u'host']}"
+            replies = papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=False
+            )
             ipsec_tunnels.extend(
                 [
                     reply[u"sw_if_index"]
-                    for reply in papi_exec.get_replies(err_msg)
+                    for reply in replies
                     if u"sw_if_index" in reply
                 ]
             )
@@ -1303,7 +1086,7 @@ class IPsecUtil:
                     is_multipath=0,
                     route=route
                 )
-                papi_exec.add(cmd, **args)
+                papi_exec.add(cmd, **args).get_reply()
             # Configure unnumbered interfaces
             cmd = u"sw_interface_set_unnumbered"
             args = dict(
@@ -1313,22 +1096,24 @@ class IPsecUtil:
                 ),
                 unnumbered_sw_if_index=0
             )
-            for i in range(existing_tunnels, n_tunnels):
+            for i in range(existing_tunnels, iter_max):
                 args[u"unnumbered_sw_if_index"] = ipsec_tunnels[i]
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
+                papi_exec.add(cmd, **args)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
             # Set interfaces up
             cmd = u"sw_interface_set_flags"
             args = dict(
                 sw_if_index=0,
                 flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
             )
-            for i in range(existing_tunnels, n_tunnels):
+            for i in range(existing_tunnels, iter_max):
                 args[u"sw_if_index"] = ipsec_tunnels[i]
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
+                papi_exec.add(cmd, **args)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
             # Configure IP routes
             cmd = u"ip_route_add_del"
             args = dict(
@@ -1336,18 +1121,18 @@ class IPsecUtil:
                 is_multipath=0,
                 route=None
             )
-            for i in range(existing_tunnels, n_tunnels):
+            for i in range(existing_tunnels, iter_max):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     nodes[u"DUT1"], (raddr_ip1 + i).compressed,
                     prefix_len=128 if raddr_ip1.version == 6 else 32,
                     interface=ipsec_tunnels[i]
                 )
-                papi_exec.add(
-                    cmd, history=bool(not 1 < i < n_tunnels - 2), **args
-                )
+                papi_exec.add(cmd, **args)
             err_msg = f"Failed to add IP routes " \
                 f"on host {nodes[u'DUT2'][u'host']}"
-            papi_exec.get_replies(err_msg)
+            papi_exec.get_replies(
+                err_msg=err_msg, fast_send=fast, fast_receive=True
+            )
 
     @staticmethod
     def vpp_ipsec_create_tunnel_interfaces(
@@ -1404,28 +1189,16 @@ class IPsecUtil:
         addr_incr = 1 << (128 - raddr_range) if tun_ips[u"ip1"].version == 6 \
             else 1 << (32 - raddr_range)
 
-        if n_tunnels - existing_tunnels > 10:
-            ckeys, ikeys = IPsecUtil._ipsec_create_tunnel_interfaces_dut1_vat(
-                nodes, tun_ips, if1_key, if2_key, n_tunnels, crypto_alg,
-                integ_alg, raddr_ip2, addr_incr, spi_d, existing_tunnels
-            )
-            if u"DUT2" not in nodes.keys():
-                return ckeys[0], ikeys[0], spi_d[u"spi_1"], spi_d[u"spi_2"]
-            IPsecUtil._ipsec_create_tunnel_interfaces_dut2_vat(
-                nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys,
-                integ_alg, ikeys, raddr_ip1, addr_incr, spi_d, existing_tunnels
-            )
-        else:
-            ckeys, ikeys = IPsecUtil._ipsec_create_tunnel_interfaces_dut1_papi(
-                nodes, tun_ips, if1_key, if2_key, n_tunnels, crypto_alg,
-                integ_alg, raddr_ip2, addr_incr, spi_d, existing_tunnels
-            )
-            if u"DUT2" not in nodes.keys():
-                return ckeys[0], ikeys[0], spi_d[u"spi_1"], spi_d[u"spi_2"]
-            IPsecUtil._ipsec_create_tunnel_interfaces_dut2_papi(
-                nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys,
-                integ_alg, ikeys, raddr_ip1, addr_incr, spi_d, existing_tunnels
-            )
+        ckeys, ikeys = IPsecUtil._ipsec_create_tunnel_interfaces_dut1(
+            nodes, tun_ips, if1_key, if2_key, n_tunnels, crypto_alg,
+            integ_alg, raddr_ip2, addr_incr, spi_d, existing_tunnels
+        )
+        if u"DUT2" not in nodes.keys():
+            return ckeys[0], ikeys[0], spi_d[u"spi_1"], spi_d[u"spi_2"]
+        IPsecUtil._ipsec_create_tunnel_interfaces_dut2(
+            nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys,
+            integ_alg, ikeys, raddr_ip1, addr_incr, spi_d, existing_tunnels
+        )
 
         return None, None, None, None
 
@@ -1466,7 +1239,6 @@ class IPsecUtil:
                 f"/tmp/ipsec_create_tunnel_cnf_{dut}_{cnf + 1}.config"
             )
             scp_node(nodes[dut], script_filename, script_filename)
-
 
     @staticmethod
     def vpp_ipsec_create_tunnel_interfaces_in_containers(
@@ -1521,14 +1293,14 @@ class IPsecUtil:
 
         for tnl in range(0, n_tunnels):
             cnf = tnl % n_instances
-            ckey = getattr(
-                gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg)), u"hex"
-            )
+            ckey = IPsecUtil.gen_key(
+                IPsecUtil.get_crypto_alg_key_len(crypto_alg)
+            ).hex()
             integ = u""
             if integ_alg:
-                ikey = getattr(
-                    gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)), u"hex"
-                )
+                ikey = IPsecUtil.gen_key(
+                    IPsecUtil.get_integ_alg_key_len(integ_alg)
+                ).hex()
                 integ = (
                     f"integ-alg {integ_alg.alg_name} "
                     f"local-integ-key {ikey} "
@@ -1621,12 +1393,12 @@ class IPsecUtil:
         spi_1 = 300000
         spi_2 = 400000
 
-        crypto_key = gen_key(
+        crypto_key = IPsecUtil.gen_key(
             IPsecUtil.get_crypto_alg_key_len(crypto_alg)
-        ).decode()
-        integ_key = gen_key(
+        )
+        integ_key = IPsecUtil.gen_key(
             IPsecUtil.get_integ_alg_key_len(integ_alg)
-        ).decode() if integ_alg else u""
+        ) if integ_alg else b""
 
         IPsecUtil.vpp_ipsec_set_ip_route(
             nodes[u"DUT1"], n_tunnels, tunnel_ip1, raddr_ip2, tunnel_ip2,

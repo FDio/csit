@@ -19,7 +19,7 @@ from ipaddress import ip_address
 
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 
 
 class GBPEndpointFlags(IntEnum):
