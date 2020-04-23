@@ -219,6 +219,7 @@
         start: 1086
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
+<<<<<<< HEAD   (89bdc8 Trending: Fixes in plots, data)
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -259,14 +260,13 @@
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
           - 1102
 >>>>>>> CHANGE (b51708 Trending: Plots)
+=======
+        max-builds: 180  # Max nr of builds to use
+>>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
       csit-dpdk-perf-mrr-weekly-master:
         start: 107
         end: "lastCompletedBuild"
-        skip:
-          - 110
-          - 111
-          - 112
-          - 114
+        max-builds: 15  # Max nr of builds to use
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
@@ -293,6 +293,7 @@
         start: 1086
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
+<<<<<<< HEAD   (89bdc8 Trending: Fixes in plots, data)
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -333,16 +334,15 @@
 >>>>>>> CHANGE (51210b Trending: Update graphs - dnv)
           - 1102
 >>>>>>> CHANGE (b51708 Trending: Plots)
+=======
+        max-builds: 180  # Max nr of builds to use
+>>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
 
     plot-performance-trending-dpdk-3n-hsw:
       csit-dpdk-perf-mrr-weekly-master:
         start: 107
         end: "lastCompletedBuild"
-        skip:
-          - 110
-          - 111
-          - 112
-          - 114
+        max-builds: 15  # Max nr of builds to use
 
     # 3n-skx
     plot-performance-trending-all-3n-skx:
@@ -370,6 +370,7 @@
         start: 834
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
+<<<<<<< HEAD   (89bdc8 Trending: Fixes in plots, data)
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -429,13 +430,13 @@
           - 865
           - 866
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
+=======
+        max-builds: 180  # Max nr of builds to use
+>>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 72
         end: "lastCompletedBuild"
-        skip:
-          - 76
-          - 77
-          - 79
+        max-builds: 15  # Max nr of builds to use
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
@@ -462,6 +463,7 @@
         start: 834
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
+<<<<<<< HEAD   (89bdc8 Trending: Fixes in plots, data)
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -521,15 +523,15 @@
           - 865
           - 866
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
+=======
+        max-builds: 180  # Max nr of builds to use
+>>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
 
     plot-performance-trending-dpdk-3n-skx:
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 72
         end: "lastCompletedBuild"
-        skip:
-          - 76
-          - 77
-          - 79
+        max-builds: 15  # Max nr of builds to use
 
     # 2n-skx
     plot-performance-trending-all-2n-skx:
@@ -557,6 +559,7 @@
         start: 858
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
+<<<<<<< HEAD   (89bdc8 Trending: Fixes in plots, data)
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -598,11 +601,13 @@
           - 870
           - 874
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        max-builds: 180  # Max nr of builds to use
+>>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 78
         end: "lastCompletedBuild"
-        skip:
-          - 79
+        max-builds: 15  # Max nr of builds to use
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
@@ -629,6 +634,7 @@
         start: 858
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
+<<<<<<< HEAD   (89bdc8 Trending: Fixes in plots, data)
         skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -677,22 +683,21 @@
           - 870
           - 874
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        max-builds: 180  # Max nr of builds to use
+>>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
 
     plot-performance-trending-dpdk-2n-skx:
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 78
         end: "lastCompletedBuild"
-        skip:
-          - 79
+        max-builds: 15  # Max nr of builds to use
 
     plot-performance-trending-vpp-nfv-2n-skx:
       csit-vpp-perf-mrr-weekly-master-2n-skx:
         start: 50
         end: "lastCompletedBuild"
-        skip:
-          - 52
-          - 54
-          - 55
+        max-builds: 15  # Max nr of builds to use
 
 <<<<<<< HEAD   (d31b87 Report: Add data)
 =======
@@ -700,19 +705,13 @@
       csit-vpp-perf-mrr-daily-master-2n-clx:
         start: 236
         end: "lastCompletedBuild"
-        skip:
-          - 239
-          - 248
-          - 251
-          - 252
-          - 253
+        max-builds: 180  # Max nr of builds to use
 
     plot-performance-trending-dpdk-2n-clx:
       csit-dpdk-perf-mrr-weekly-master-2n-clx:
         start: 23
         end: "lastCompletedBuild"
-        skip:
-          - 24
+        max-builds: 15  # Max nr of builds to use
 
 >>>>>>> CHANGE (b51708 Trending: Plots)
     # 3n-tsh
@@ -720,6 +719,7 @@
       csit-vpp-perf-mrr-daily-master-3n-tsh:
         start: 144
         end: "lastCompletedBuild"
+<<<<<<< HEAD   (89bdc8 Trending: Fixes in plots, data)
         skip:
 <<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -745,11 +745,15 @@
           - 156
           - 157
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        max-builds: 180  # Max nr of builds to use
+>>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
 
     plot-performance-trending-vpp-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
         start: 144
         end: "lastCompletedBuild"
+<<<<<<< HEAD   (89bdc8 Trending: Fixes in plots, data)
         skip:
 <<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -775,6 +779,9 @@
           - 156
           - 157
 >>>>>>> CHANGE (01597c Trending: Update graphs)
+=======
+        max-builds: 180  # Max nr of builds to use
+>>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
 
     plot-performance-trending-vpp-3n-dnv:
       csit-vpp-perf-mrr-daily-master-3n-dnv:
@@ -792,6 +799,7 @@
         start: 329
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
+<<<<<<< HEAD   (89bdc8 Trending: Fixes in plots, data)
         skip:
 <<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -848,6 +856,9 @@
           - 391
           - 392
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
+=======
+        max-builds: 180  # Max nr of builds to use
+>>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
 
     plot-performance-trending-vpp-2n-dnv:
       csit-vpp-perf-mrr-daily-master-2n-dnv:
@@ -865,6 +876,7 @@
         start: 335
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
         end: "lastCompletedBuild"
+<<<<<<< HEAD   (89bdc8 Trending: Fixes in plots, data)
         skip:
 <<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
           - 145
@@ -912,6 +924,8 @@
           - 396
           - 397
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
+=======
+>>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
 
   plot-layouts:
 
@@ -1032,6 +1046,7 @@
       start: 1086
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -1075,6 +1090,7 @@
     csit-dpdk-perf-mrr-weekly-master:
       start: 113
       end: "lastCompletedBuild"
+      max-builds: 15  # Max nr of builds to download
       skip:
         - 114
 
@@ -1103,6 +1119,7 @@
       start: 834
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -1165,6 +1182,7 @@
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
       start: 78
       end: "lastCompletedBuild"
+      max-builds: 15  # Max nr of builds to download
       skip:
         - 79
 
@@ -1193,6 +1211,7 @@
       start: 858
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -1237,6 +1256,7 @@
     csit-vpp-perf-mrr-weekly-master-2n-skx:
       start: 50
       end: "lastCompletedBuild"
+      max-builds: 15  # Max nr of builds to download
       skip:
         - 52
         - 54
@@ -1244,12 +1264,14 @@
     csit-dpdk-perf-mrr-weekly-master-2n-skx:
       start: 78
       end: "lastCompletedBuild"
+      max-builds: 15  # Max nr of builds to download
       skip:
         - 79
 
     csit-vpp-perf-mrr-daily-master-2n-clx:
       start: 236
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
 <<<<<<< HEAD   (80f211 Report: Add 2n-skx Soak and Reconf tests)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -1289,6 +1311,7 @@
     csit-dpdk-perf-mrr-weekly-master-2n-clx:
       start: 23
       end: "lastCompletedBuild"
+      max-builds: 15  # Max nr of builds to download
       skip:
 <<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
         - 18
@@ -1306,6 +1329,7 @@
     csit-vpp-perf-mrr-daily-master-3n-tsh:
       start: 144
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
 <<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -1348,6 +1372,7 @@
       start: 329
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
 <<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
 <<<<<<< HEAD   (ffdffb PAL: Local mode uses xml file name as a build number)
@@ -1421,6 +1446,7 @@
       start: 335
 >>>>>>> CHANGE (12d5c9 Trending: Fixes in plots, data)
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
 <<<<<<< HEAD   (31e8f6 Trending: Update graphs - dnv)
         - 145
