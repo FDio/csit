@@ -1492,6 +1492,7 @@ class InputData:
 
         # If the time-period is defined in the specification file, remove all
         # files which are outside the time period.
+        is_last = False
         timeperiod = self._cfg.input.get(u"time-period", None)
         if timeperiod and data:
             now = dt.utcnow()
@@ -1505,6 +1506,7 @@ class InputData:
                         # Remove the data and the file:
                         state = u"removed"
                         data = None
+                        is_last = True
                         logs.append(
                             (u"INFO",
                              f"    The build {job}/{build[u'build']} is "
@@ -1524,7 +1526,13 @@ class InputData:
             elif level == u"WARNING":
                 logging.warning(line)
 
-        return {u"data": data, u"state": state, u"job": job, u"build": build}
+        return {
+            u"data": data,
+            u"state": state,
+            u"job": job,
+            u"build": build,
+            u"last": is_last
+        }
 
     def download_and_parse_data(self, repeat=1):
         """Download the input data files, parse input data from input files and
@@ -1541,6 +1549,8 @@ class InputData:
             for build in builds:
 
                 result = self._download_and_parse_build(job, build, repeat)
+                if result[u"last"]:
+                    break
                 build_nr = result[u"build"][u"build"]
 
                 if result[u"data"]:
