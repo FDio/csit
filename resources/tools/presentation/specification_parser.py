@@ -526,6 +526,7 @@ class Specification:
             for job, builds in data_set.items():
                 if not builds:
                     continue
+                max_builds = builds.get(u"max-builds", None)
                 if isinstance(builds, dict):
                     build_end = builds.get(u"end", None)
                     try:
@@ -533,11 +534,13 @@ class Specification:
                     except ValueError:
                         # defined as a range <start, build_type>
                         build_end = self._get_build_number(job, build_end)
-                    builds = [x for x in range(builds[u"start"],
-                                               build_end + 1)
-                              if x not in builds.get(u"skip", list())]
+                    builds = [x for x in range(builds[u"start"], build_end + 1)]
+                    if max_builds and max_builds < len(builds):
+                        builds = builds[:max_builds]
                     self.configuration[u"data-sets"][set_name][job] = builds
                 elif isinstance(builds, list):
+                    if max_builds and max_builds < len(builds):
+                        builds = builds[:max_builds]
                     for idx, item in enumerate(builds):
                         try:
                             builds[idx] = int(item)
@@ -588,16 +591,25 @@ class Specification:
 
             for job, builds in self._cfg_yaml[idx][u"builds"].items():
                 if builds:
+                    max_builds = builds.get(u"max-builds", None)
+                    reverse = bool(builds.get(u"reverse", False))
                     if isinstance(builds, dict):
                         build_end = builds.get(u"end", None)
                         try:
                             build_end = int(build_end)
                         except ValueError:
                             # defined as a range <start, build_type>
+                            if build_end in (u"lastCompletedBuild",
+                                             u"lastSuccessfulBuild"):
+                                reverse = True
                             build_end = self._get_build_number(job, build_end)
                         builds = [x for x in range(builds[u"start"],
                                                    build_end + 1)
                                   if x not in builds.get(u"skip", list())]
+                    if reverse:
+                        builds.reverse()
+                    if max_builds and max_builds < len(builds):
+                        builds = builds[:max_builds]
                     self._specification[u"input"][u"builds"][job] = list()
                     for build in builds:
                         self._specification[u"input"][u"builds"][job]. \
@@ -608,6 +620,7 @@ class Specification:
                         f"No build is defined for the job {job}. Trying to "
                         f"continue without it."
                     )
+
         except KeyError:
             raise PresentationError(u"No data to process.")
 
