@@ -22,7 +22,7 @@
 | ... | HOSTSTACK | 10CLIENT | 1STREAM | 1280B
 | ... | eth-ip4udpquicscale10cl1s-vppecho
 |
-| Suite Setup | Setup suite topology interfaces no tg
+| Suite Setup | Setup suite topology interfaces
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test
@@ -50,6 +50,8 @@
 | ${crypto_type}= | ${None}
 | ${clients}= | ${10}
 | ${bytes}= | 1G
+| ${always_same_link}= | ${True}
+| ${topo_has_tg}= | ${False}
 
 *** Keywords ***
 | Local template

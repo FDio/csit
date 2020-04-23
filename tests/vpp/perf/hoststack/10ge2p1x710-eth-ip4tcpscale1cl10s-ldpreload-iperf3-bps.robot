@@ -22,7 +22,7 @@
 | ... | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 1460B
 | ... | eth-ip4tcpscale1cl10s-ldpreload-iperf3
 |
-| Suite Setup | Setup suite topology interfaces no tg
+| Suite Setup | Setup suite topology interfaces
 | Suite Teardown | Tear down suite | hoststack
 | Test Setup | Setup test
 | Test Teardown | Tear down test
@@ -49,6 +49,8 @@
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
 | ${streams} | ${10}
+| ${always_same_link}= | ${True}
+| ${topo_has_tg}= | ${False}
 
 *** Keywords ***
 | Local template
