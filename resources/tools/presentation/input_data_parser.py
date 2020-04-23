@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1394,16 +1394,14 @@ class InputData:
         """
         return self.data[job][build][u"tests"]
 
-    def _parse_tests(self, job, build, log):
+    def _parse_tests(self, job, build):
         """Process data from robot output.xml file and return JSON structured
         data.
 
         :param job: The name of job which build output data will be processed.
         :param build: The build which output data will be processed.
-        :param log: List of log messages.
         :type job: str
         :type build: dict
-        :type log: list of tuples (severity, msg)
         :returns: JSON data structure.
         :rtype: dict
         """
@@ -1417,9 +1415,8 @@ class InputData:
             try:
                 result = ExecutionResult(data_file)
             except errors.DataError as err:
-                log.append(
-                    (u"ERROR", f"Error occurred while parsing output.xml: "
-                               f"{repr(err)}")
+                logging.error(
+                    f"Error occurred while parsing output.xml: {repr(err)}"
                 )
                 return None
         checker = ExecutionChecker(metadata, self._cfg.mapping,
@@ -1444,40 +1441,30 @@ class InputData:
         :type repeat: int
         """
 
-        logs = list()
-
-        logs.append(
-            (u"INFO", f"  Processing the job/build: {job}: {build[u'build']}")
-        )
+        logging.info(f"  Processing the job/build: {job}: {build[u'build']}")
 
         state = u"failed"
         success = False
         data = None
         do_repeat = repeat
         while do_repeat:
-            success = download_and_unzip_data_file(self._cfg, job, build, pid,
-                                                   logs)
+            success = download_and_unzip_data_file(self._cfg, job, build, pid)
             if success:
                 break
             do_repeat -= 1
         if not success:
-            logs.append(
-                (u"ERROR",
+            logging.error(
                  f"It is not possible to download the input data file from the "
                  f"job {job}, build {build[u'build']}, or it is damaged. "
-                 f"Skipped.")
+                 f"Skipped."
             )
         if success:
-            logs.append(
-                (u"INFO",
-                 f"    Processing data from the build {build[u'build']} ...")
-            )
-            data = self._parse_tests(job, build, logs)
+            logging.info(f"    Processing data from build {build[u'build']}")
+            data = self._parse_tests(job, build)
             if data is None:
-                logs.append(
-                    (u"ERROR",
+                logging.error(
                      f"Input data file from the job {job}, build "
-                     f"{build[u'build']} is damaged. Skipped.")
+                     f"{build[u'build']} is damaged. Skipped."
                 )
             else:
                 state = u"processed"
@@ -1485,13 +1472,13 @@ class InputData:
             try:
                 remove(build[u"file-name"])
             except OSError as err:
-                logs.append(
-                    ("ERROR", f"Cannot remove the file {build[u'file-name']}: "
-                              f"{repr(err)}")
+                logging.error(
+                    f"Cannot remove the file {build[u'file-name']}: {repr(err)}"
                 )
 
         # If the time-period is defined in the specification file, remove all
         # files which are outside the time period.
+        is_last = False
         timeperiod = self._cfg.input.get(u"time-period", None)
         if timeperiod and data:
             now = dt.utcnow()
@@ -1505,26 +1492,20 @@ class InputData:
                         # Remove the data and the file:
                         state = u"removed"
                         data = None
-                        logs.append(
-                            (u"INFO",
-                             f"    The build {job}/{build[u'build']} is "
-                             f"outdated, will be removed.")
+                        is_last = True
+                        logging.info(
+                            f"    The build {job}/{build[u'build']} is "
+                            f"outdated, will be removed."
                         )
-        logs.append((u"INFO", u"  Done."))
+        logging.info(u"  Done.")
 
-        for level, line in logs:
-            if level == u"INFO":
-                logging.info(line)
-            elif level == u"ERROR":
-                logging.error(line)
-            elif level == u"DEBUG":
-                logging.debug(line)
-            elif level == u"CRITICAL":
-                logging.critical(line)
-            elif level == u"WARNING":
-                logging.warning(line)
-
-        return {u"data": data, u"state": state, u"job": job, u"build": build}
+        return {
+            u"data": data,
+            u"state": state,
+            u"job": job,
+            u"build": build,
+            u"last": is_last
+        }
 
     def download_and_parse_data(self, repeat=1):
         """Download the input data files, parse input data from input files and
@@ -1541,6 +1522,8 @@ class InputData:
             for build in builds:
 
                 result = self._download_and_parse_build(job, build, repeat)
+                if result[u"last"]:
+                    break
                 build_nr = result[u"build"][u"build"]
 
                 if result[u"data"]:
@@ -1908,7 +1891,7 @@ class InputData:
                                                 data[job][str(build)][
                                                     test_id][param] = u"No Data"
                         except KeyError as err:
-                            logging.error(repr(err))
+                            logging.debug(repr(err))
                             if continue_on_error:
                                 continue
                             return None
