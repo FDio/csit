@@ -198,206 +198,111 @@
       csit-vpp-perf-mrr-daily-master:
         start: 1086
         end: "lastCompletedBuild"
-        skip:
-          - 1102
+        max-builds: 180  # Max nr of builds to use
       csit-dpdk-perf-mrr-weekly-master:
         start: 107
         end: "lastCompletedBuild"
-        skip:
-          - 110
-          - 111
-          - 112
-          - 114
+        max-builds: 15  # Max nr of builds to use
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
         start: 1086
         end: "lastCompletedBuild"
-        skip:
-          - 1102
+        max-builds: 180  # Max nr of builds to use
 
     plot-performance-trending-dpdk-3n-hsw:
       csit-dpdk-perf-mrr-weekly-master:
         start: 107
         end: "lastCompletedBuild"
-        skip:
-          - 110
-          - 111
-          - 112
-          - 114
+        max-builds: 15  # Max nr of builds to use
 
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
         start: 834
         end: "lastCompletedBuild"
-        skip:
-          - 849
-          - 851
-          - 862
-          - 864
-          - 865
-          - 866
+        max-builds: 180  # Max nr of builds to use
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 72
         end: "lastCompletedBuild"
-        skip:
-          - 76
-          - 77
-          - 79
+        max-builds: 15  # Max nr of builds to use
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
         start: 834
         end: "lastCompletedBuild"
-        skip:
-          - 849
-          - 851
-          - 862
-          - 864
-          - 865
-          - 866
+        max-builds: 180  # Max nr of builds to use
 
     plot-performance-trending-dpdk-3n-skx:
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 72
         end: "lastCompletedBuild"
-        skip:
-          - 76
-          - 77
-          - 79
+        max-builds: 15  # Max nr of builds to use
 
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
         start: 858
         end: "lastCompletedBuild"
-        skip:
-          - 868
-          - 870
-          - 874
+        max-builds: 180  # Max nr of builds to use
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 78
         end: "lastCompletedBuild"
-        skip:
-          - 79
+        max-builds: 15  # Max nr of builds to use
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
         start: 858
         end: "lastCompletedBuild"
-        skip:
-          - 868
-          - 870
-          - 874
+        max-builds: 180  # Max nr of builds to use
 
     plot-performance-trending-dpdk-2n-skx:
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 78
         end: "lastCompletedBuild"
-        skip:
-          - 79
+        max-builds: 15  # Max nr of builds to use
 
     plot-performance-trending-vpp-nfv-2n-skx:
       csit-vpp-perf-mrr-weekly-master-2n-skx:
         start: 50
         end: "lastCompletedBuild"
-        skip:
-          - 52
-          - 54
-          - 55
+        max-builds: 15  # Max nr of builds to use
 
     plot-performance-trending-vpp-2n-clx:
       csit-vpp-perf-mrr-daily-master-2n-clx:
         start: 236
         end: "lastCompletedBuild"
-        skip:
-          - 239
-          - 248
-          - 251
-          - 252
-          - 253
+        max-builds: 180  # Max nr of builds to use
 
     plot-performance-trending-dpdk-2n-clx:
       csit-dpdk-perf-mrr-weekly-master-2n-clx:
         start: 23
         end: "lastCompletedBuild"
-        skip:
-          - 24
+        max-builds: 15  # Max nr of builds to use
 
     # 3n-tsh
     plot-performance-trending-all-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
         start: 144
         end: "lastCompletedBuild"
-        skip:
-          - 149
-          - 150
-          - 152
-          - 153
-          - 154
-          - 155
-          - 156
-          - 157
+        max-builds: 180  # Max nr of builds to use
 
     plot-performance-trending-vpp-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
         start: 144
         end: "lastCompletedBuild"
-        skip:
-          - 149
-          - 150
-          - 152
-          - 153
-          - 154
-          - 155
-          - 156
-          - 157
+        max-builds: 180  # Max nr of builds to use
 
     plot-performance-trending-vpp-3n-dnv:
       csit-vpp-perf-mrr-daily-master-3n-dnv:
         start: 329
         end: "lastCompletedBuild"
-        skip:
-          - 343
-          - 344
-          - 345
-          - 348
-          - 350
-          - 356
-          - 357
-          - 358
-          - 360
-          - 363
-          - 364
-          - 381
-          - 387
-          - 388
-          - 390
-          - 391
-          - 392
+        max-builds: 180  # Max nr of builds to use
 
     plot-performance-trending-vpp-2n-dnv:
       csit-vpp-perf-mrr-daily-master-2n-dnv:
         start: 335
         end: "lastCompletedBuild"
-        skip:
-          - 344
-          - 349
-          - 350
-          - 351
-          - 354
-          - 360
-          - 364
-          - 365
-          - 366
-          - 370
-          - 378
-          - 387
-          - 394
-          - 395
-          - 396
-          - 397
 
   plot-layouts:
 
@@ -497,11 +402,13 @@
     csit-vpp-perf-mrr-daily-master:
       start: 1086
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
         - 1102
     csit-dpdk-perf-mrr-weekly-master:
       start: 113
       end: "lastCompletedBuild"
+      max-builds: 15  # Max nr of builds to download
       skip:
         - 114
 
@@ -509,6 +416,7 @@
     csit-vpp-perf-mrr-daily-master-3n-skx:
       start: 834
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
         - 849
         - 851
@@ -519,6 +427,7 @@
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
       start: 78
       end: "lastCompletedBuild"
+      max-builds: 15  # Max nr of builds to download
       skip:
         - 79
 
@@ -526,6 +435,7 @@
     csit-vpp-perf-mrr-daily-master-2n-skx:
       start: 858
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
         - 868
         - 870
@@ -533,6 +443,7 @@
     csit-vpp-perf-mrr-weekly-master-2n-skx:
       start: 50
       end: "lastCompletedBuild"
+      max-builds: 15  # Max nr of builds to download
       skip:
         - 52
         - 54
@@ -540,12 +451,14 @@
     csit-dpdk-perf-mrr-weekly-master-2n-skx:
       start: 78
       end: "lastCompletedBuild"
+      max-builds: 15  # Max nr of builds to download
       skip:
         - 79
 
     csit-vpp-perf-mrr-daily-master-2n-clx:
       start: 236
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
         - 239
         - 248
@@ -556,6 +469,7 @@
     csit-dpdk-perf-mrr-weekly-master-2n-clx:
       start: 23
       end: "lastCompletedBuild"
+      max-builds: 15  # Max nr of builds to download
       skip:
         - 24
 
@@ -563,6 +477,7 @@
     csit-vpp-perf-mrr-daily-master-3n-tsh:
       start: 144
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
         - 149
         - 150
@@ -577,6 +492,7 @@
     csit-vpp-perf-mrr-daily-master-3n-dnv:
       start: 329
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
         - 343
         - 344
@@ -600,6 +516,7 @@
     csit-vpp-perf-mrr-daily-master-2n-dnv:
       start: 335
       end: "lastCompletedBuild"
+      max-builds: 180  # Max nr of builds to download
       skip:
         - 344
         - 349
