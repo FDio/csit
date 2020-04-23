@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -42,16 +42,14 @@ SEPARATOR = u"__"
 REGEX_RELEASE = re.compile(r'(\D*)(\d{4}|master)(\D*)')
 
 
-def _download_file(url, file_name, log, arch=False):
+def _download_file(url, file_name, arch=False):
     """Download a file with input data.
 
     :param url: URL to the file to download.
     :param file_name: Name of file to download.
-    :param log: List of log messages.
     :param arch: If True, also .gz file is downloaded
     :type url: str
     :type file_name: str
-    :type log: list of tuples (severity, msg)
     :type arch: bool
     :returns: True if the download was successful, otherwise False.
     :rtype: bool
@@ -90,29 +88,27 @@ def _download_file(url, file_name, log, arch=False):
     success = False
     session = None
     try:
-        log.append((u"INFO", f"    Connecting to {url} ..."))
+        logging.info(f"    Connecting to {url} ...")
         session = requests_retry_session()
         response = session.get(url, stream=True)
         code = response.status_code
-        log.append((u"INFO", f"    {code}: {responses[code]}"))
+        logging.info(f"    {code}: {responses[code]}")
 
         if code != codes[u"OK"]:
             if session:
                 session.close()
             url = url.replace(u"_info", u"")
-            log.append((u"INFO", f"    Connecting to {url} ..."))
+            logging.info(f"    Connecting to {url} ...")
             session = requests_retry_session()
             response = session.get(url, stream=True)
             code = response.status_code
-            log.append((u"INFO", f"    {code}: {responses[code]}"))
+            logging.info(f"    {code}: {responses[code]}")
             if code != codes[u"OK"]:
                 return False, file_name
             file_name = file_name.replace(u"_info", u"")
 
         dst_file_name = file_name.replace(u".gz", u"")
-        log.append(
-            (u"INFO", f"    Downloading the file {url} to {dst_file_name} ...")
-        )
+        logging.info(f"    Downloading the file {url} to {dst_file_name} ...")
         with open(dst_file_name, u"wb") as file_handle:
             for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
                 if chunk:
@@ -121,44 +117,37 @@ def _download_file(url, file_name, log, arch=False):
         if arch and u".gz" in file_name:
             if session:
                 session.close()
-            log.append(
-                (u"INFO", f"    Downloading the file {url} to {file_name} ...")
-            )
+            logging.info(f"    Downloading the file {url} to {file_name} ...")
             session = requests_retry_session()
             response = session.get(url, stream=True)
             if response.status_code == codes[u"OK"]:
                 with open(file_name, u"wb") as file_handle:
                     file_handle.write(response.raw.read())
             else:
-                log.append(
-                    (u"ERROR", f"Not possible to download the file {url} to "
-                               f"{file_name} ...")
+                logging.error(
+                    f"Not possible to download the file {url} to {file_name}"
                 )
 
         success = True
     except RequestException as err:
-        log.append(
-            (u"ERROR", f"HTTP Request exception:\n{repr(err)}")
-        )
+        logging.error(f"HTTP Request exception:\n{repr(err)}")
     except (IOError, ValueError, KeyError) as err:
-        log.append((u"ERROR", f"Download failed.\n{repr(err)}"))
+        logging.error(f"Download failed.\n{repr(err)}")
     finally:
         if session:
             session.close()
 
-    log.append((u"INFO", u"    Download finished."))
+    logging.info(u"    Download finished.")
     return success, file_name
 
 
-def _unzip_file(spec, build, pid, log):
+def _unzip_file(spec, build, pid):
     """Unzip downloaded source file.
 
     :param spec: Specification read form the specification file.
     :param build: Information about the build.
-    :param log: List of log messages.
     :type spec: Specification
     :type build: dict
-    :type log: list of tuples (severity, msg)
     :returns: True if the download was successful, otherwise False.
     :rtype: bool
     """
@@ -178,42 +167,35 @@ def _unzip_file(spec, build, pid, log):
     new_name = \
         f"{file_name.rsplit(u'.')[-2]}{SEPARATOR}{data_file.split(u'/')[-1]}"
 
-    log.append((u"INFO", f"    Unzipping: {data_file} from {file_name}."))
+    logging.info(f"    Unzipping: {data_file} from {file_name}.")
     try:
         with ZipFile(file_name, u'r') as zip_file:
             zip_file.extract(data_file, tmp_dir)
-        log.append(
-            (u"INFO", f"    Renaming the file {join(tmp_dir, data_file)} to "
-                      f"{new_name}")
+        logging.info(
+            f"    Renaming the file {join(tmp_dir, data_file)} to {new_name}"
         )
         rename(join(tmp_dir, data_file), new_name)
         build[u"file-name"] = new_name
         return True
     except (BadZipfile, RuntimeError) as err:
-        log.append(
-            (u"ERROR", f"Failed to unzip the file {file_name}: {repr(err)}.")
-        )
+        logging.error(f"Failed to unzip the file {file_name}: {repr(err)}.")
         return False
     except OSError as err:
-        log.append(
-            (u"ERROR", f"Failed to rename the file {data_file}: {repr(err)}.")
-        )
+        logging.error(f"Failed to rename the file {data_file}: {repr(err)}.")
         return False
 
 
-def download_and_unzip_data_file(spec, job, build, pid, log):
+def download_and_unzip_data_file(spec, job, build, pid):
     """Download and unzip a source file.
 
     :param spec: Specification read form the specification file.
     :param job: Name of the Jenkins job.
     :param build: Information about the build.
     :param pid: PID of the process executing this method.
-    :param log: List of log messages.
     :type spec: Specification
     :type job: str
     :type build: dict
     :type pid: int
-    :type log: list of tuples (severity, msg)
     :returns: True if the download was successful, otherwise False.
     :rtype: bool
     """
@@ -235,7 +217,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
     logging.info(f"Trying to download {url}")
 
     arch = bool(spec.configuration.get(u"archive-inputs", True))
-    success, downloaded_name = _download_file(url, new_name, log, arch=arch)
+    success, downloaded_name = _download_file(url, new_name, arch=arch)
 
     if not success:
 
@@ -261,9 +243,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                 spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
                 f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name[idx]}"
             )
-            success, downloaded_name = _download_file(
-                url, new_name, log, arch=arch
-            )
+            success, downloaded_name = _download_file(url, new_name, arch=arch)
             if success:
                 file_name = file_name[idx]
                 if file_name.endswith(u".gz"):
@@ -296,11 +276,11 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
 
         logging.info(f"Downloading {url}")
 
-        success, downloaded_name = _download_file(url, new_name, log)
+        success, downloaded_name = _download_file(url, new_name)
 
     if success and downloaded_name.endswith(u".zip"):
         if not is_zipfile(downloaded_name):
-            log.append((u"ERROR", f"Zip file {new_name} is corrupted."))
+            logging.error(f"Zip file {new_name} is corrupted.")
             success = False
 
     if success:
@@ -310,6 +290,6 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
             build[u"file-name"] = downloaded_name[:-3]
 
         if downloaded_name.endswith(u".zip"):
-            success = _unzip_file(spec, build, pid, log)
+            success = _unzip_file(spec, build, pid)
 
     return success
