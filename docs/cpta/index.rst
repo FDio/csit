@@ -14,6 +14,7 @@ analysis and anomaly detection methodology.
     Description <introduction/introduction>
     Dashboard <introduction/dashboard>
     Failed Tests <introduction/failures>
+    Weekly Comparison <introduction/weekly>
 
 .. toctree::
     :maxdepth: 2
