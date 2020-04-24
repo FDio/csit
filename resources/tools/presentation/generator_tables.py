@@ -60,12 +60,15 @@ def generate_tables(spec, data):
         u"table_failed_tests": table_failed_tests,
         u"table_failed_tests_html": table_failed_tests_html,
         u"table_oper_data_html": table_oper_data_html,
-        u"table_comparison": table_comparison
+        u"table_comparison": table_comparison,
+        u"table_weekly_comparison": table_weekly_comparison
     }
 
     logging.info(u"Generating the tables ...")
     for table in spec.tables:
         try:
+            if table[u"algorithm"] == u"table_weekly_comparison":
+                table[u"testbeds"] = spec.environment.get(u"testbeds", None)
             generator[table[u"algorithm"]](table, data)
         except NameError as err:
             logging.error(
@@ -2698,3 +2701,81 @@ def table_comparison(table, input_data):
         sort_data=False,
         title=table.get(u"title", u"")
     )
+
+
+def table_weekly_comparison(table, input_data):
+    """Generate the table(s) with algorithm: table_weekly_comparison
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+    logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
+
+    # Transform the data
+    logging.info(
+        f"    Creating the data set for the {table.get(u'type', u'')} "
+        f"{table.get(u'title', u'')}."
+    )
+
+    incl_tests = table.get(u"include-tests", None)
+    if incl_tests not in (u"NDR", u"PDR"):
+        logging.error(f"Wrong tests to include specified ({incl_tests}).")
+        return
+
+    nr_cols = table.get(u"nr-of-data-columns", None)
+    if not nr_cols or nr_cols < 2:
+        logging.error(
+            f"No columns specified for {table.get(u'title', u'')}. Skipping."
+        )
+        return
+
+    data = input_data.filter_data(
+        table,
+        params=[u"throughput", u"result", u"name", u"parent", u"tags"],
+        continue_on_error=True
+    )
+
+    cols = list()
+    idx = 0
+    tb_tbl = table.get(u"testbeds", None)
+    for job_name, job_data in data.items():
+        for build_nr, build in job_data.items():
+            if idx >= nr_cols:
+                break
+            if build.empty:
+                continue
+
+            tb_ip = input_data.metadata(job_name, build_nr).get(u"testbed", u"")
+            if tb_ip and tb_tbl:
+                testbed = tb_tbl.get(tb_ip, u"")
+            else:
+                testbed = u""
+            build_data = dict(
+                testbed=testbed,
+                version=
+                input_data.metadata(job_name, build_nr).get(u"version", u""),
+                generated=
+                input_data.metadata(job_name, build_nr).get(u"generated", u""),
+                data=dict()
+            )
+            for tst_name, tst_data in build.items():
+                tst_name_mod = \
+                    _tpc_modify_test_name(tst_name).replace(u"2n1l-", u"")
+                build_data[u"data"][tst_name_mod] = dict(
+                    name=tst_data[u'name'].rsplit(u'-', 1)[0],
+                    result=tst_data[u"throughput"][incl_tests][u"LOWER"]
+                )
+            cols.append(build_data)
+            idx += 1
+
+    logging.info(cols)
+
+    if idx < nr_cols:
+        logging.error(u"Not enough data to build the table! Skipping")
+        return
+
+
+
