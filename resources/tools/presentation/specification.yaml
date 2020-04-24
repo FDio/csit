@@ -872,6 +872,7 @@
         - 28  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
         - 29  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
         - 30  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 31  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     vpp-perf-changes-3n-skx-new2001_0:
       csit-vpp-perf-verify-2001-3n-skx:
         - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -2482,6 +2483,7 @@
       - 28  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 29  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 30  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 31  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
     csit-vpp-perf-verify-2001-3n-skx:
 #      - 45  # NDRPDR sel
 #      - 46  # NDRPDR sel
