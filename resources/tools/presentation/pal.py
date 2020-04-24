@@ -148,22 +148,22 @@ def main():
             data.print_all_oper_data()
 
         generate_tables(spec, data)
-        generate_plots(spec, data)
-        generate_files(spec, data)
-
-        if spec.output[u"output"] == u"report":
-            generate_report(args.release, spec, args.week)
-        elif spec.output[u"output"] == u"trending":
-            sys.stdout.write(generate_cpta(spec, data))
-            try:
-                alert = Alerting(spec)
-                alert.generate_alerts()
-            except AlertingError as err:
-                logging.warning(repr(err))
-        else:
-            logging.info("No output will be generated.")
-
-        logging.info(u"Successfully finished.")
+        # generate_plots(spec, data)
+        # generate_files(spec, data)
+        #
+        # if spec.output[u"output"] == u"report":
+        #     generate_report(args.release, spec, args.week)
+        # elif spec.output[u"output"] == u"trending":
+        #     sys.stdout.write(generate_cpta(spec, data))
+        #     try:
+        #         alert = Alerting(spec)
+        #         alert.generate_alerts()
+        #     except AlertingError as err:
+        #         logging.warning(repr(err))
+        # else:
+        #     logging.info("No output will be generated.")
+        #
+        # logging.info(u"Successfully finished.")
         ret_code = 0
 
     except AlertingError as err:
