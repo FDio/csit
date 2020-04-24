@@ -491,6 +491,20 @@ class Regenerator:
         hs_quic_kwargs_list = [
             {u"frame_size": 1280, u"phy_cores": 1},
         ]
+        vsap_ab_kwargs_list = [
+            {u"frame_size": u"0", u"phy_cores": 1},
+            {u"frame_size": u"0", u"phy_cores": 2},
+            {u"frame_size": u"0", u"phy_cores": 4},
+            {u"frame_size": u"64", u"phy_cores": 1},
+            {u"frame_size": u"64", u"phy_cores": 2},
+            {u"frame_size": u"64", u"phy_cores": 4},
+            {u"frame_size": u"1024", u"phy_cores": 1},
+            {u"frame_size": u"1024", u"phy_cores": 2},
+            {u"frame_size": u"1024", u"phy_cores": 4},
+            {u"frame_size": u"2048", u"phy_cores": 1},
+            {u"frame_size": u"2048", u"phy_cores": 2},
+            {u"frame_size": u"2048", u"phy_cores": 4},
+        ]
 
         for in_filename in glob(pattern):
             if not self.quiet:
@@ -516,7 +530,11 @@ class Regenerator:
             elif in_filename.endswith(u"-reconf.robot"):
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
-                write_tcp_files(in_filename, in_prolog, hs_wrk_kwargs_list)
+                if u"aes" in in_filename:
+                    hoststack_kwargs_list = vsap_ab_kwargs_list
+                else:
+                    hoststack_kwargs_list = hs_wrk_kwargs_list
+                write_tcp_files(in_filename, in_prolog, hoststack_kwargs_list)
             elif in_filename.endswith(u"-bps.robot"):
                 hoststack_kwargs_list = \
                     hs_quic_kwargs_list if u"quic" in in_filename \
