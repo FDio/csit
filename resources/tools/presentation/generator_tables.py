@@ -28,12 +28,13 @@ from copy import deepcopy
 import plotly.graph_objects as go
 import plotly.offline as ploff
 import pandas as pd
+import prettytable
 
 from numpy import nan, isnan
 from yaml import load, FullLoader, YAMLError
 
 from pal_utils import mean, stdev, classify_anomalies, \
-    convert_csv_to_pretty_txt, relative_change_stdev
+    convert_csv_to_pretty_txt, relative_change_stdev, relative_change
 
 
 REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)')
@@ -60,12 +61,15 @@ def generate_tables(spec, data):
         u"table_failed_tests": table_failed_tests,
         u"table_failed_tests_html": table_failed_tests_html,
         u"table_oper_data_html": table_oper_data_html,
-        u"table_comparison": table_comparison
+        u"table_comparison": table_comparison,
+        u"table_weekly_comparison": table_weekly_comparison
     }
 
     logging.info(u"Generating the tables ...")
     for table in spec.tables:
         try:
+            if table[u"algorithm"] == u"table_weekly_comparison":
+                table[u"testbeds"] = spec.environment.get(u"testbeds", None)
             generator[table[u"algorithm"]](table, data)
         except NameError as err:
             logging.error(
@@ -490,7 +494,8 @@ def _tpc_sort_table(table):
 
 
 def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
-                             footnote=u"", sort_data=True, title=u""):
+                             footnote=u"", sort_data=True, title=u"",
+                             generate_rst=True):
     """Generate html table from input data with simple sorting possibility.
 
     :param header: Table header.
@@ -504,6 +509,7 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
     :param footnote: The footnote to display below the table (and legend).
     :param sort_data: If True the data sorting is enabled.
     :param title: The table (and file) title.
+    :param generate_rst: If True, wrapping rst file is generated.
     :type header: list
     :type data: list of lists
     :type out_file_name: str
@@ -511,6 +517,7 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
     :type footnote: str
     :type sort_data: bool
     :type title: str
+    :type generate_rst: bool
     """
 
     try:
@@ -528,7 +535,7 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
             [u"left", u"left", u"right"],
             [u"left", u"left", u"left", u"right"]
         ),
-        u"width": ([28, 9], [4, 24, 10], [4, 4, 32, 10])
+        u"width": ([15, 9], [4, 24, 10], [4, 4, 32, 10])
     }
 
     df_data = pd.DataFrame(data, columns=header)
@@ -629,6 +636,9 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
         auto_open=False,
         filename=f"{out_file_name}_in.html"
     )
+
+    if not generate_rst:
+        return
 
     file_name = out_file_name.split(u"/")[-1]
     if u"vpp" in out_file_name:
@@ -2697,4 +2707,166 @@ def table_comparison(table, input_data):
         footnote=footnote,
         sort_data=False,
         title=table.get(u"title", u"")
+    )
+
+
+def table_weekly_comparison(table, in_data):
+    """Generate the table(s) with algorithm: table_weekly_comparison
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param in_data: Data to process.
+    :type table: pandas.Series
+    :type in_data: InputData
+    """
+    logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
+
+    # Transform the data
+    logging.info(
+        f"    Creating the data set for the {table.get(u'type', u'')} "
+        f"{table.get(u'title', u'')}."
+    )
+
+    incl_tests = table.get(u"include-tests", None)
+    if incl_tests not in (u"NDR", u"PDR"):
+        logging.error(f"Wrong tests to include specified ({incl_tests}).")
+        return
+
+    nr_cols = table.get(u"nr-of-data-columns", None)
+    if not nr_cols or nr_cols < 2:
+        logging.error(
+            f"No columns specified for {table.get(u'title', u'')}. Skipping."
+        )
+        return
+
+    data = in_data.filter_data(
+        table,
+        params=[u"throughput", u"result", u"name", u"parent", u"tags"],
+        continue_on_error=True
+    )
+
+    header = [
+        [u"Version"],
+        [u"Date", ],
+        [u"Build", ],
+        [u"Testbed", ]
+    ]
+    tbl_dict = dict()
+    idx = 0
+    tb_tbl = table.get(u"testbeds", None)
+    for job_name, job_data in data.items():
+        for build_nr, build in job_data.items():
+            if idx >= nr_cols:
+                break
+            if build.empty:
+                continue
+
+            tb_ip = in_data.metadata(job_name, build_nr).get(u"testbed", u"")
+            if tb_ip and tb_tbl:
+                testbed = tb_tbl.get(tb_ip, u"")
+            else:
+                testbed = u""
+            header[2].insert(1, build_nr)
+            header[3].insert(1, testbed)
+            header[1].insert(
+                1, in_data.metadata(job_name, build_nr).get(u"generated", u"")
+            )
+            header[0].insert(
+                1, in_data.metadata(job_name, build_nr).get(u"version", u"")
+            )
+
+            for tst_name, tst_data in build.items():
+                tst_name_mod = \
+                    _tpc_modify_test_name(tst_name).replace(u"2n1l-", u"")
+                if not tbl_dict.get(tst_name_mod, None):
+                    tbl_dict[tst_name_mod] = dict(
+                        name=tst_data[u'name'].rsplit(u'-', 1)[0],
+                    )
+                tbl_dict[tst_name_mod][-idx - 1] = \
+                    tst_data[u"throughput"][incl_tests][u"LOWER"]
+            idx += 1
+
+    if idx < nr_cols:
+        logging.error(u"Not enough data to build the table! Skipping")
+        return
+
+    cmp_dict = dict()
+    for idx, cmp in enumerate(table.get(u"comparisons", list())):
+        idx_ref = cmp.get(u"reference", None)
+        idx_cmp = cmp.get(u"compare", None)
+        if idx_ref is None or idx_cmp is None:
+            continue
+        header[0].append(f"Diff{idx + 1}")
+        header[1].append(header[0][idx_ref - idx - 1])
+        header[2].append(u"vs")
+        header[3].append(header[0][idx_cmp - idx - 1])
+        for tst_name, tst_data in tbl_dict.items():
+            if not cmp_dict.get(tst_name, None):
+                cmp_dict[tst_name] = list()
+            ref_data = tst_data.get(idx_ref, None)
+            cmp_data = tst_data.get(idx_cmp, None)
+            if ref_data is None or cmp_data is None:
+                cmp_dict[tst_name].append(None)
+            else:
+                cmp_dict[tst_name].append(
+                    relative_change(ref_data, cmp_data)
+                )
+
+    tbl_lst = list()
+    for tst_name, tst_data in tbl_dict.items():
+        itm_lst = [tst_data[u"name"], ]
+        for idx in range(nr_cols):
+            item = tst_data.get(-idx - 1, None)
+            if item is None:
+                itm_lst.insert(1, None)
+            else:
+                itm_lst.insert(1, round(item / 1e6, 1))
+        itm_lst.extend(
+            [
+                None if itm is None else round(itm, 1)
+                for itm in cmp_dict[tst_name]
+            ]
+        )
+        tbl_lst.append(itm_lst)
+
+    tbl_lst.sort(key=lambda rel: rel[0], reverse=False)
+    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+
+    # Generate csv table:
+    csv_file = f"{table[u'output-file']}.csv"
+    with open(csv_file, u"wt", encoding='utf-8') as file_handler:
+        for hdr in header:
+            file_handler.write(u",".join(hdr) + u"\n")
+        for test in tbl_lst:
+            file_handler.write(
+                u",".join([str(item) for item in test]) + u"\n"
+            )
+
+    txt_file = f"{table[u'output-file']}.txt"
+    convert_csv_to_pretty_txt(csv_file, txt_file, delimiter=u",")
+
+    # Reorganize header in txt table
+    txt_table = list()
+    with open(txt_file, u"rt", encoding='utf-8') as file_handler:
+        for line in file_handler:
+            txt_table.append(line)
+
+    try:
+        txt_table.insert(5, txt_table.pop(2))
+        with open(txt_file, u"wt", encoding='utf-8') as file_handler:
+            file_handler.writelines(txt_table)
+    except IndexError:
+        pass
+
+    # Generate html table:
+    hdr_html = [
+        u"<br>".join(row) for row in zip(*header)
+    ]
+    _tpc_generate_html_table(
+        hdr_html,
+        tbl_lst,
+        table[u'output-file'],
+        sort_data=True,
+        title=table.get(u"title", u""),
+        generate_rst=False
     )
