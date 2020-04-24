@@ -320,6 +320,7 @@ def convert_csv_to_pretty_txt(csv_file_name, txt_file_name, delimiter=u","):
                 )
     txt_table.align = u"r"
     txt_table.align[u"Test Case"] = u"l"
+    txt_table.align[u"Build"] = u"l"
 
     if not txt_table:
         return
