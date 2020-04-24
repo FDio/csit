@@ -33,7 +33,7 @@ from numpy import nan, isnan
 from yaml import load, FullLoader, YAMLError
 
 from pal_utils import mean, stdev, classify_anomalies, \
-    convert_csv_to_pretty_txt, relative_change_stdev
+    convert_csv_to_pretty_txt, relative_change_stdev, relative_change
 
 
 REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)')
@@ -60,12 +60,15 @@ def generate_tables(spec, data):
         u"table_failed_tests": table_failed_tests,
         u"table_failed_tests_html": table_failed_tests_html,
         u"table_oper_data_html": table_oper_data_html,
-        u"table_comparison": table_comparison
+        u"table_comparison": table_comparison,
+        u"table_weekly_comparison": table_weekly_comparison
     }
 
     logging.info(u"Generating the tables ...")
     for table in spec.tables:
         try:
+            if table[u"algorithm"] == u"table_weekly_comparison":
+                table[u"testbeds"] = spec.environment.get(u"testbeds", None)
             generator[table[u"algorithm"]](table, data)
         except NameError as err:
             logging.error(
@@ -2698,3 +2701,130 @@ def table_comparison(table, input_data):
         sort_data=False,
         title=table.get(u"title", u"")
     )
+
+
+def table_weekly_comparison(table, in_data):
+    """Generate the table(s) with algorithm: table_weekly_comparison
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param in_data: Data to process.
+    :type table: pandas.Series
+    :type in_data: InputData
+    """
+    logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
+
+    # Transform the data
+    logging.info(
+        f"    Creating the data set for the {table.get(u'type', u'')} "
+        f"{table.get(u'title', u'')}."
+    )
+
+    incl_tests = table.get(u"include-tests", None)
+    if incl_tests not in (u"NDR", u"PDR"):
+        logging.error(f"Wrong tests to include specified ({incl_tests}).")
+        return
+
+    nr_cols = table.get(u"nr-of-data-columns", None)
+    if not nr_cols or nr_cols < 2:
+        logging.error(
+            f"No columns specified for {table.get(u'title', u'')}. Skipping."
+        )
+        return
+
+    data = in_data.filter_data(
+        table,
+        params=[u"throughput", u"result", u"name", u"parent", u"tags"],
+        continue_on_error=True
+    )
+
+    header = [
+        (
+            u"Build",
+            u"Testbed",
+            u"Date",
+            u"Version"
+        ),
+    ]
+    tbl_dict = dict()
+    idx = 0
+    tb_tbl = table.get(u"testbeds", None)
+    for job_name, job_data in data.items():
+        for build_nr, build in job_data.items():
+            if idx >= nr_cols:
+                break
+            if build.empty:
+                continue
+
+            tb_ip = in_data.metadata(job_name, build_nr).get(u"testbed", u"")
+            if tb_ip and tb_tbl:
+                testbed = tb_tbl.get(tb_ip, u"")
+            else:
+                testbed = u""
+            header.insert(
+                1,
+                (
+                    build_nr,
+                    testbed,
+                    in_data.metadata(job_name, build_nr).get(u"generated", u""),
+                    in_data.metadata(job_name, build_nr).get(u"version", u"")
+                )
+            )
+            for tst_name, tst_data in build.items():
+                tst_name_mod = \
+                    _tpc_modify_test_name(tst_name).replace(u"2n1l-", u"")
+                if not tbl_dict.get(tst_name_mod, None):
+                    tbl_dict[tst_name_mod] = dict(
+                        name=tst_data[u'name'].rsplit(u'-', 1)[0],
+                    )
+                tbl_dict[tst_name_mod][-idx - 1] = \
+                    tst_data[u"throughput"][incl_tests][u"LOWER"]
+            idx += 1
+
+    if idx < nr_cols:
+        logging.error(u"Not enough data to build the table! Skipping")
+        return
+
+    cmp_dict = dict()
+    for idx, cmp in enumerate(table.get(u"comparisons", list())):
+        idx_ref = cmp.get(u"reference", None)
+        idx_cmp = cmp.get(u"compare", None)
+        if idx_ref is None or idx_cmp is None:
+            continue
+        header.append(
+            (
+                header[idx_ref - idx][-1],
+                header[idx_cmp - idx][-1]
+            )
+        )
+        for tst_name, tst_data in tbl_dict.items():
+            tst_name_mod = \
+                _tpc_modify_test_name(tst_name).replace(u"2n1l-", u"")
+            if not cmp_dict.get(tst_name_mod, None):
+                cmp_dict[tst_name_mod] = list()
+            ref_data = tst_data.get(idx_ref, None)
+            cmp_data = tst_data.get(idx_cmp, None)
+            if ref_data is None or cmp_data is None:
+                cmp_dict[tst_name_mod].append(None)
+            else:
+                cmp_dict[tst_name_mod].append(
+                    relative_change(ref_data, cmp_data)
+                )
+
+    tbl_lst = list()
+    for tst_name, tst_data in tbl_dict.items():
+        itm_lst = [tst_data[u"name"], ]
+        tst_name_mod = \
+            _tpc_modify_test_name(tst_name).replace(u"2n1l-", u"")
+        for idx in range(nr_cols):
+            itm_lst.append(tst_data.get(-idx - 1, None))
+        itm_lst.extend(cmp_dict[tst_name_mod])
+        tbl_lst.append(itm_lst)
+
+    logging.info(header)
+    for itm in tbl_dict.values():
+        logging.info(itm)
+    for itm in cmp_dict.values():
+        logging.info(itm)
+    for itm in tbl_lst:
+        logging.info(itm)

@@ -529,6 +529,7 @@ class Specification:
                 if isinstance(builds, dict):
                     build_end = builds.get(u"end", None)
                     max_builds = builds.get(u"max-builds", None)
+                    reverse = builds.get(u"reverse", False)
                     try:
                         build_end = int(build_end)
                     except ValueError:
@@ -536,7 +537,9 @@ class Specification:
                         build_end = self._get_build_number(job, build_end)
                     builds = [x for x in range(builds[u"start"], build_end + 1)]
                     if max_builds and max_builds < len(builds):
-                        builds = builds[:max_builds]
+                        builds = builds[-max_builds:]
+                    if reverse:
+                        builds.reverse()
                     self.configuration[u"data-sets"][set_name][job] = builds
                 elif isinstance(builds, list):
                     for idx, item in enumerate(builds):
