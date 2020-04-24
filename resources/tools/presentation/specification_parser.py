@@ -536,7 +536,7 @@ class Specification:
                         build_end = self._get_build_number(job, build_end)
                     builds = [x for x in range(builds[u"start"], build_end + 1)]
                     if max_builds and max_builds < len(builds):
-                        builds = builds[:max_builds]
+                        builds = builds[-max_builds:]
                     self.configuration[u"data-sets"][set_name][job] = builds
                 elif isinstance(builds, list):
                     for idx, item in enumerate(builds):
