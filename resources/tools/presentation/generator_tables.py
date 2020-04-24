@@ -60,7 +60,8 @@ def generate_tables(spec, data):
         u"table_failed_tests": table_failed_tests,
         u"table_failed_tests_html": table_failed_tests_html,
         u"table_oper_data_html": table_oper_data_html,
-        u"table_comparison": table_comparison
+        u"table_comparison": table_comparison,
+        u"table_weekly_comparison": table_weekly_comparison
     }
 
     logging.info(u"Generating the tables ...")
@@ -2698,3 +2699,49 @@ def table_comparison(table, input_data):
         sort_data=False,
         title=table.get(u"title", u"")
     )
+
+
+def table_weekly_comparison(table, input_data):
+    """Generate the table(s) with algorithm: table_weekly_comparison
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+    logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
+
+    # Transform the data
+    logging.info(
+        f"    Creating the data set for the {table.get(u'type', u'')} "
+        f"{table.get(u'title', u'')}."
+    )
+
+    nr_cols = table.get(u"nr-of-data-columns", None)
+    if not nr_cols:
+        logging.error(
+            f"No columns specified for {table.get(u'title', u'')}. Skipping."
+        )
+        return
+
+    data = input_data.filter_data(
+        table,
+        params=[u"throughput", u"result", u"name", u"parent", u"tags"],
+        continue_on_error=True
+    )[0]
+
+    # logging.info(data.values)
+
+    build_info = list()
+    cols = list()
+    idx = 0
+    for build_nr, build in data.items():
+        if idx >= nr_cols:
+            break
+        logging.info(f"idx = {idx}")
+        logging.info(f"build_nr = {build_nr}")
+        logging.info(build)
+        idx += 1
+
+
