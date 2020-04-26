@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "96c14bca_4834cb55",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-04-26T21:31:13Z",
+      "side": 1,
+      "message": "\u003e ack,\n\u003e [n]ode\n\u003e [t]g\n\u003e [d]ut\n\u003e \n\u003e I think i Over-Maciek-ized-it. Too much of Maciek\u0027s acronyms :) Lets call it MACRO - Maciek\u0027s ACRonyms Overused?\n\n:D\n\nDone",
+      "parentUuid": "a0a5c407_7797aced",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 2
+      },
+      "revId": "50dfc382d9400d9ade24ff755ade1ba2c0a1239e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d37758a_c330045a",
         "filename": "resources/libraries/python/NodePath.py",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "50dfc382d9400d9ade24ff755ade1ba2c0a1239e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "219772f0_c35c5917",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-04-26T21:31:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d37758a_c330045a",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 2
+      },
+      "revId": "50dfc382d9400d9ade24ff755ade1ba2c0a1239e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "10865a44_413539e4",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-04-26T21:31:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ab3013d_5d629f6e",
+      "range": {
+        "startLine": 266,
+        "startChar": 32,
+        "endLine": 266,
+        "endChar": 49
+      },
+      "revId": "50dfc382d9400d9ade24ff755ade1ba2c0a1239e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "144e130e_f1776c14",
         "filename": "resources/libraries/python/NodePath.py",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "5b34795c_a0786f44",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-04-26T21:31:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "144e130e_f1776c14",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 2
+      },
+      "revId": "50dfc382d9400d9ade24ff755ade1ba2c0a1239e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "458acd38_12b89108",
         "filename": "resources/libraries/python/NodePath.py",
         "patchSetId": 3
@@ -114,6 +210,30 @@
       "revId": "50dfc382d9400d9ade24ff755ade1ba2c0a1239e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9615b302_7a7f65ef",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-04-26T21:31:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "458acd38_12b89108",
+      "range": {
+        "startLine": 279,
+        "startChar": 48,
+        "endLine": 279,
+        "endChar": 53
+      },
+      "revId": "50dfc382d9400d9ade24ff755ade1ba2c0a1239e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
