@@ -6,7 +6,11 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+<<<<<<< HEAD   (a7c466 Report: Add data)
 | .16            | 1. Added data:                                             |
+=======
+| .18            | 1. Added data:                                             |
+>>>>>>> CHANGE (dfd4a2 Report: Configure Report 2001.18)
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -31,6 +35,13 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
+<<<<<<< HEAD   (a7c466 Report: Add data)
+=======
+| .17            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .16            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+>>>>>>> CHANGE (dfd4a2 Report: Configure Report 2001.18)
 | .15            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .14            | Skipped.                                                   |
