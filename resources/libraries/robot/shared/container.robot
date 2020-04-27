@@ -211,8 +211,8 @@
 | | Run Keyword If | '${container_chain_topology}' == 'chain_ip4'
 | | ... | ${group}.Configure VPP In All Containers
 | | ... | ${container_chain_topology}
-| | ... | tg_pf1_mac=${TG_pf1_mac}
-| | ... | tg_pf2_mac=${TG_pf2_mac}
+| | ... | tg_pf1_mac=${TG_pf1_mac}[0]
+| | ... | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'chain_ipsec'
 | | ... | ${group}.Configure VPP In All Containers
