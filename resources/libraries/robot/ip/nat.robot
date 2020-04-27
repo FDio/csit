@@ -96,7 +96,7 @@
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${DUT2_${int}1}[0]
+| | ... | Set Variable | ${DUT2_${int}2}[0]
 | | ... | ELSE | Set Variable | ${DUT1_${int}2}[0]
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 12.0.0.1 | 20
 | |
