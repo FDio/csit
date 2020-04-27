@@ -38,6 +38,7 @@ export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
+<<<<<<< HEAD   (793b6b Report: Add data)
 <<<<<<< HEAD   (b95753 PAL: Fix table data model)
 <<<<<<< HEAD   (ede849 Report: Add pdf version)
 <<<<<<< HEAD   (35a360 Report: Add data)
@@ -66,6 +67,9 @@ python pal.py \
     --week "16" \
 >>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
 >>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
+=======
+    --week "18" \
+>>>>>>> CHANGE (dfd4a2 Report: Configure Report 2001.18)
     --logging INFO \
     --force
 

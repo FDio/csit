@@ -6,6 +6,7 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+<<<<<<< HEAD   (793b6b Report: Add data)
 <<<<<<< HEAD   (b95753 PAL: Fix table data model)
 <<<<<<< HEAD   (ede849 Report: Add pdf version)
 <<<<<<< HEAD   (35a360 Report: Add data)
@@ -34,6 +35,9 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 | .16            | 1. Added data:                                             |
 >>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
 >>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
+=======
+| .18            | 1. Added data:                                             |
+>>>>>>> CHANGE (dfd4a2 Report: Configure Report 2001.18)
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -58,12 +62,21 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
+<<<<<<< HEAD   (793b6b Report: Add data)
 <<<<<<< HEAD   (b95753 PAL: Fix table data model)
 <<<<<<< HEAD   (ede849 Report: Add pdf version)
 <<<<<<< HEAD   (35a360 Report: Add data)
 =======
 <<<<<<< HEAD   (ef4187 Report: Add pdf version)
 =======
+=======
+| .17            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .16            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .15            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+>>>>>>> CHANGE (dfd4a2 Report: Configure Report 2001.18)
 | .14            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .13            | Skipped.                                                   |
