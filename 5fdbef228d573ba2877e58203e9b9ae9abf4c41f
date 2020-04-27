@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4bbf85a7_1ec14c95",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-27T18:15:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4e1c453_bbbe60d4",
+      "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8accda73_e512391c",
         "filename": "resources/libraries/python/TestConfig.py",
         "patchSetId": 84
@@ -39,6 +57,30 @@
       "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7017a684_db1f1be4",
+        "filename": "resources/libraries/python/TestConfig.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-27T18:15:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8accda73_e512391c",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 158,
+        "endChar": 21
+      },
+      "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +130,54 @@
     },
     {
       "key": {
+        "uuid": "84d6acb4_07b3fe39",
+        "filename": "resources/libraries/python/bytes_template.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-27T18:15:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9997b76_8ffa7707",
+      "range": {
+        "startLine": 43,
+        "startChar": 65,
+        "endLine": 43,
+        "endChar": 72
+      },
+      "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1264d987_c188c43a",
+        "filename": "resources/libraries/python/bytes_template.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-27T18:15:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d6fdb5a_7c695f32",
+      "range": {
+        "startLine": 43,
+        "startChar": 28,
+        "endLine": 43,
+        "endChar": 38
+      },
+      "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a56cae99_8dc971ac",
         "filename": "resources/libraries/python/bytes_template.py",
         "patchSetId": 84
@@ -108,6 +198,30 @@
       "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2496dc09_4ea3ac16",
+        "filename": "resources/libraries/python/bytes_template.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-27T18:15:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a56cae99_8dc971ac",
+      "range": {
+        "startLine": 187,
+        "startChar": 36,
+        "endLine": 187,
+        "endChar": 37
+      },
+      "revId": "5fdbef228d573ba2877e58203e9b9ae9abf4c41f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
