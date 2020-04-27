@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebc411d1_a801a9ff",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-27T14:21:07Z",
+      "side": 1,
+      "message": "Before I start commenting on other parts, I am interested whether we can run such new tests in FD.io lab, as a verify job.\nThe complete verify job will need to obtain such .deb files.\nFor that you need to add new logic to this file [0], or maybe create an analogue of this function [1].\n\nAs the current code in ci-management is hardcoded to support only CSIT jobs with VPP [2] or DPDK [3], you will also need a contribution to ci-management. For testing such a contribution on sandbox [4], see [5]. If you are lacking rights to use FD.io sandbox, I can create jobs there and run them, once your ci-management Change is in Gerrit.\n\n[0] https://github.com/FDio/csit/blob/master/resources/libraries/bash/function/gather.sh\n[1] https://github.com/FDio/csit/blob/3111f250640b2f0364bd62104416ada41098b280/resources/libraries/bash/function/per_patch.sh#L67-L89\n[2] https://github.com/FDio/ci-management/blob/b082bcf3bf0ccd29d0356b4b11537887eee30e0c/jjb/csit/csit-perf.yaml#L118-L119\n[3] https://github.com/FDio/ci-management/blob/b082bcf3bf0ccd29d0356b4b11537887eee30e0c/jjb/csit/csit-perf.yaml#L449-L450\n[4] https://jenkins.fd.io/sandbox/\n[5] https://docs.releng.linuxfoundation.org/en/latest/jenkins-sandbox.html",
+      "range": {
+        "startLine": 98,
+        "startChar": 52,
+        "endLine": 98,
+        "endChar": 73
+      },
+      "revId": "d1d75b2b02a3d1233991b45b99294ac71245f850",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
