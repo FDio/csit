@@ -22,6 +22,30 @@
       "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "530d6f4d_08c0ec59",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-04-27T20:38:40Z",
+      "side": 1,
+      "message": "\u003e I think it will be more readable to set these values in Variable table (of the suite file).\n\u003e (I verified variables defined in one suite Variables table are not visible in another suites.)\n\nThe downside to doing that is then all of the suite files will need to have the variables added to them, instead of having the default values set in the library file and overridden by those suites that need to change them.\n\nIMHO it is not a good idea to propagate variables across all of the suite files.  This has broken many tests which were either under development or overlooked when new \u0027universal\u0027 variables were added which are library/keyword dependent.  This makes for larger patch sets and higher maintenance costs.",
+      "parentUuid": "0a30003c_b558cf64",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 77
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
