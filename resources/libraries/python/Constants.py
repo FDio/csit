@@ -133,9 +133,6 @@ class Constants:
     # Python API provider location
     RESOURCES_PAPI_PROVIDER = u"resources/tools/papi/vpp_papi_provider.py"
 
-    # vat templates location
-    RESOURCES_TPL_VAT = u"resources/templates/vat"
-
     # Kubernetes templates location
     RESOURCES_TPL_K8S = u"resources/templates/kubernetes"
 
