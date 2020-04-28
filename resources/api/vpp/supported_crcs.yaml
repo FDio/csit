@@ -320,7 +320,7 @@
     create_subif_reply: '0x5383d31f'  # perf
     # ^^ tc01-64B-1c-dot1ad-l2xcbase-mrr
     # ^ 3n: dot1adANDl2xcfwd
-    create_vhost_user_if: '0x591ee951'  # dev
+    create_vhost_user_if: '0xc785c6fc'  # dev
     create_vhost_user_if_reply: '0x5383d31f'  # dev
     create_vlan_subif: '0xaf34ac8b'  # dev
     create_vlan_subif_reply: '0x5383d31f'  # dev
