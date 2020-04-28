@@ -70,6 +70,30 @@
       "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc2de8b8_03e5fe90",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-28T15:20:09Z",
+      "side": 1,
+      "message": "\u003e The downside to doing that is then all of the suite files will need to have the variables added to them, instead of having the default values set in the library file and overridden by those suites that need to change them.\n\nNo. If a (variable table of a) suite does not specify some value, the value from a (variable table of a) library is applied. Hence only the suites wanting to override the defaults need to add the variables.\n\n\u003e Both wrong.\n\u003e Downside is that you need to copy topology files\n\nCan you give more details? This is what I imagined, but you maybe think about something different:\n\nAre you suggesting to have multiple topology files selectable for the same testbed? I do not think that will work, at least not easily enough. Currently, when a reservation succeeds, unique topology file is selected. And jenkins jobs have different names based on testbed type. Are you suggesting to have separate \"no TG\" and \"yes TG\" jobs?\nNote that reservation flag is selected on TG, so even \"no TG\" jobs will need to know which TG to flag (so no other \"yes TG\" job thinks the testbed is free).",
+      "parentUuid": "1968f299_6d133892",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 77
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
