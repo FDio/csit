@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "509a963a_79d258ac",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-28T17:58:53Z",
+      "side": 1,
+      "message": ":returns:\n:rtype:",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 9
+      },
+      "revId": "99b2e6a806652ea5e55f98f0a9fe31c45e6466d6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfb3fa76_383f80aa",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-28T17:58:53Z",
+      "side": 1,
+      "message": ":returns:\n:rtype:",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 9
+      },
+      "revId": "99b2e6a806652ea5e55f98f0a9fe31c45e6466d6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
