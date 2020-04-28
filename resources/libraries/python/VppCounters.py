@@ -17,8 +17,8 @@ from pprint import pformat
 
 from robot.api import logger
 
-from resources.libraries.python.PapiExecutor import PapiExecutor, \
-    PapiSocketExecutor
+from resources.libraries.python.PapiStatsExecutor import PapiStatsExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology, SocketType, NodeType
 
 
@@ -57,13 +57,12 @@ class VppCounters:
         :type node: dict
         :type log_zeros: bool
         """
-        args = dict(path=u"^/sys/node")
         sockets = Topology.get_node_sockets(node, socket_type=SocketType.STATS)
         if sockets:
             for socket in sockets.values():
-                with PapiExecutor(node) as papi_exec:
-                    stats = papi_exec.add(u"vpp-stats", **args).\
-                        get_stats(socket=socket)[0]
+                with PapiStatsExecutor(node) as papi_exec:
+                    papi_exec.add(u"vpp-stats", path=u"^/sys/node")
+                    stats = papi_exec.get_stats(socket=socket)[0]
 
                 names = stats[u"/sys/node/names"]
 
@@ -77,29 +76,33 @@ class VppCounters:
                     runtime.append({u"name": name})
 
                 for idx, runtime_item in enumerate(runtime):
+                    nonzero = False
 
-                    calls_th = []
+                    threads = list()
                     for thread in stats[u"/sys/node/calls"]:
-                        calls_th.append(thread[idx])
-                    runtime_item[u"calls"] = calls_th
+                        threads.append(thread[idx])
+                    runtime_item[u"calls"] = threads
+                    nonzero = nonzero or sum(threads)
 
-                    vectors_th = []
+                    threads = list()
                     for thread in stats[u"/sys/node/vectors"]:
-                        vectors_th.append(thread[idx])
-                    runtime_item[u"vectors"] = vectors_th
+                        threads.append(thread[idx])
+                    runtime_item[u"vectors"] = threads
+                    nonzero = nonzero or sum(threads)
 
-                    suspends_th = []
+                    threads = list()
                     for thread in stats[u"/sys/node/suspends"]:
-                        suspends_th.append(thread[idx])
-                    runtime_item[u"suspends"] = suspends_th
+                        threads.append(thread[idx])
+                    runtime_item[u"suspends"] = threads
+                    nonzero = nonzero or sum(threads)
 
-                    clocks_th = []
+                    threads = list()
                     for thread in stats[u"/sys/node/clocks"]:
-                        clocks_th.append(thread[idx])
-                    runtime_item[u"clocks"] = clocks_th
+                        threads.append(thread[idx])
+                    runtime_item[u"clocks"] = threads
+                    nonzero = nonzero or sum(threads)
 
-                    if (sum(calls_th) or sum(vectors_th) or
-                            sum(suspends_th) or sum(clocks_th)):
+                    if nonzero:
                         runtime_nz.append(runtime_item)
 
                 if log_zeros:
