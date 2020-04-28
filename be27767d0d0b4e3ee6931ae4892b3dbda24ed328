@@ -94,6 +94,30 @@
       "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16347cdd_dfc06f8d",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-28T17:40:22Z",
+      "side": 1,
+      "message": "No different jobs. And yes that is why reservation was always DUT, when we put IXIA One TG there will be no more TG reservation as it is HW tester. So yes moving reservation to TG was never the plan from design point of view. Once we include IXIA PSOne TG we will move reservation back to DUT and finally find root cause why it was breaking perf.",
+      "parentUuid": "dc2de8b8_03e5fe90",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 77
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
