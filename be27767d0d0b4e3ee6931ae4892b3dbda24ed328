@@ -46,6 +46,30 @@
       "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1968f299_6d133892",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-28T07:00:11Z",
+      "side": 1,
+      "message": "Both wrong.\n\nInitial CSIT design assumes to have the topology file without TG part in it. Thus you do not need to bother at all (require of course all the KWs to be DUT and TG aware). Not sure how much work it would be to test such approach. The only problem is to rewrite \"Setup suite topology interfaces\" to check if TG is in DICT or not (easy to do).\n\nDownside is that you need to copy topology files but as they are not frequently changed, it does not matter.\nBrightside is that we would not need any special excuses in common.sh to eliminate tests from 3-node and so on.",
+      "parentUuid": "530d6f4d_08c0ec59",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 77
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
