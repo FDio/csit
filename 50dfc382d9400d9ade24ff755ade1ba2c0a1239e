@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "04b644ec_a1dca10e",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-28T07:05:40Z",
+      "side": 1,
+      "message": "I mean the purpose is to enumerate: node, dut tg, to be able to index them separately. TG1..N (i do not expect more than 1), DUT1..N, interface indexes are for each node again from 1, but each \"circuit\" must use separated one. So hard to make it readable , but algo somewhat works. Maybe we can add better documentation for how it increases in sample topology.",
+      "parentUuid": "5b34795c_a0786f44",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 2
+      },
+      "revId": "50dfc382d9400d9ade24ff755ade1ba2c0a1239e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "458acd38_12b89108",
         "filename": "resources/libraries/python/NodePath.py",
         "patchSetId": 3
