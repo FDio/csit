@@ -12,6 +12,39 @@
   tags:
     - install-dependencies
 
+- name: Calibration - Check CPU
+  shell: "lscpu"
+  register: current_lscpu
+  changed_when: false
+  failed_when: |
+    'CPU min MHz' in current_lscpu.stdout
+  tags:
+    - check-cpu-frequency
+
+- name: Calibration - Check Kernel Version of "{{ kernel_version }}"
+  shell: "uname -r"
+  register: current_kernel_version
+  changed_when: false
+  failed_when: |
+    kernel_version not in current_kernel_version.stdout
+  tags:
+    - check-kernel-version
+
+- name: Calibration - Check Kernel Parameters
+  shell: "cat /proc/cmdline"
+  register: current_kernel_parameters
+  changed_when: false
+  failed_when: |
+    'isolcpus' not in current_kernel_parameters.stdout or
+    'nohz_full' not in current_kernel_parameters.stdout or
+    'rcu_nocbs' not in current_kernel_parameters.stdout or
+    'processor.max_cstate=1' not in current_kernel_parameters.stdout or
+    'nmi_watchdog=0' not in current_kernel_parameters.stdout or
+    'intel_iommu=on' not in current_kernel_parameters.stdout or
+    'nosoftlockup' not in current_kernel_parameters.stdout
+  tags:
+    - check-cmdline
+
 - name: Calibration - Get Spectre Meltdown Checker
   get_url:
     url: "https://meltdown.ovh"
@@ -24,7 +57,7 @@
   shell: "/opt/spectre-meltdown-checker.sh --no-color || true"
   async: 60
   poll: 0
-  ignore_errors: yes
+  ignore_errors: true
   register: spectre_meltdown_async
   tags:
     - check-spectre-meltdown
@@ -37,7 +70,8 @@
 
 - name: Calibration - Get BIOS info
   shell: "dmidecode -t bios"
-  ignore_errors: yes
+  ignore_errors: true
+  changed_when: false
   register: dmidecode_bios
   tags:
     - check-bios
