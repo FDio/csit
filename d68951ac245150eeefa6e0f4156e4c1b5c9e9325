@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "685efaeb_143c09d8",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 78
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-04-28T13:40:32Z",
+      "side": 1,
+      "message": "These are just initial values for remote_address_start and remote_address_stop parameters. IP values for papi call(s) are modified on lines 755 and  757.\nBut you are right that with current implementation the papi part is independend from raddr_range. We should use (raddr_ip + i * (raddr_range + 1)) on lines 756 and 758 to provide possibility to use ip address range in one papi call (currently the range is 0 in case of papi call).",
+      "parentUuid": "59deca15_571d46f2",
+      "range": {
+        "startLine": 736,
+        "startChar": 64,
+        "endLine": 736,
+        "endChar": 72
+      },
+      "revId": "d68951ac245150eeefa6e0f4156e4c1b5c9e9325",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7e79e04e_151eae93",
         "filename": "resources/libraries/python/LoadBalancerUtil.py",
         "patchSetId": 78
