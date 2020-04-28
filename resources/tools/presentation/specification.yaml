@@ -828,6 +828,14 @@
         - 47  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
         - 48  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
         - 49  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+    vpp-perf-changes-2n-skx-new1908_2:
+      csit-vpp-perf-verify-1908_2-2n-skx:
+        - 1   # NDRPDR sel
+        - 2   # NDRPDR sel
+        - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel
+        - 6   # NDRPDR sel
     vpp-perf-changes-2n-skx-new2001_0:
       csit-vpp-perf-verify-2001-2n-skx:
         - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -873,6 +881,14 @@
         - 29  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
         - 30  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
         - 31  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 33  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 34  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 35  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 36  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+    vpp-perf-changes-3n-skx-new1908_2:
+      csit-vpp-perf-verify-1908_2-3n-skx:
+        - 1   # NDRPDR sel
+        - 2   # NDRPDR sel
     vpp-perf-changes-3n-skx-new2001_0:
       csit-vpp-perf-verify-2001-3n-skx:
         - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -2484,6 +2500,13 @@
       - 29  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 30  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 31  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 33  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 34  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 35  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+      - 36  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+    csit-vpp-perf-verify-1908_2-3n-skx:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
     csit-vpp-perf-verify-2001-3n-skx:
 #      - 45  # NDRPDR sel
 #      - 46  # NDRPDR sel
@@ -2570,6 +2593,13 @@
       - 47  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 48  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 49  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+    csit-vpp-perf-verify-1908_2-2n-skx:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
     csit-vpp-perf-verify-2001-2n-skx:
 #      - 92  # NDRPDR sel - old
 #      - 93  # NDRPDR sel - old
@@ -3302,6 +3332,74 @@
 
 ################################################################################
 # VPP
+
+# VPP Performance changes 2n-skx-xxv710 2t1c ndr
+- type: "table"
+  title: "VPP Performance changes 2n-skx-xxv710 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-2n-skx-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1"
+      data-set: "vpp-perf-changes-2n-skx-new1908_1"
+    - title: "1908.2"
+      data-set: "vpp-perf-changes-2n-skx-new1908_2"
+  comparisons:
+    - title: "Diff1"
+      reference: 1
+      compare: 2
+
+# VPP Performance changes 2n-skx-xxv710 2t1c pdr
+- type: "table"
+  title: "VPP Performance changes 2n-skx-xxv710 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-2n-skx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1"
+      data-set: "vpp-perf-changes-2n-skx-new1908_1"
+    - title: "1908.2"
+      data-set: "vpp-perf-changes-2n-skx-new1908_2"
+  comparisons:
+    - title: "Diff1"
+      reference: 1
+      compare: 2
+
+# VPP Performance changes 3n-skx-xxv710 2t1c ndr
+- type: "table"
+  title: "VPP Performance changes 3n-skx-xxv710 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-3n-skx-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1"
+      data-set: "vpp-perf-changes-3n-skx-new1908_1"
+    - title: "1908.2"
+      data-set: "vpp-perf-changes-3n-skx-new1908_2"
+  comparisons:
+    - title: "Diff1"
+      reference: 1
+      compare: 2
+
+# VPP Performance changes 3n-skx-xxv710 2t1c pdr
+- type: "table"
+  title: "VPP Performance changes 3n-skx-xxv710 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-3n-skx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1"
+      data-set: "vpp-perf-changes-3n-skx-new1908_1"
+    - title: "1908.2"
+      data-set: "vpp-perf-changes-3n-skx-new1908_2"
+  comparisons:
+    - title: "Diff1"
+      reference: 1
+      compare: 2
 
 # VPP Performance Changes 3n-hsw 1t1c pdr
 - type: "table"
