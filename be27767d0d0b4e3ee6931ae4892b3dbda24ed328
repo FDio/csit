@@ -190,6 +190,30 @@
       "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1677b11e_d8c41757",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T17:14:12Z",
+      "side": 1,
+      "message": "In past we used for variables that are global __init__.robot which applies on suite level. This is candidate. Although hard to find but still better then pollute \"topo_has_tg\" to every file. see main __init__.robot files. Suite gen currently only changes values that require permutations in volume. E.g nic/driver/pkt_size. As \"topo_has_tg\" does not require alternations rather it is feature of suite (settings) that is why i said that carboncopy of \"Setup suite variables with no tg\" is also an option and it is much cleanuer. it is safe to move to globals for some suite to __init__.robot. Same for always_same_link.\n\nQuickie:\n1) create Set suite Variables without TG, kw calling Set Suite Variable with special params true,true\n\nmake it a call here. better then polute variables at all. Thanks ;)",
+      "parentUuid": "765c6bc8_bb038311",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 77
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
