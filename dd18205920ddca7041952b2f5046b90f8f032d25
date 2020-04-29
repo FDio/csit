@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "4c66eef2_7e944407",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T11:45:12Z",
+      "side": 1,
+      "message": "Not only to match the 2 from line 719, but also to avoid lines that set history\u003dFalse.",
+      "range": {
+        "startLine": 717,
+        "startChar": 32,
+        "endLine": 717,
+        "endChar": 33
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da4c969a_c4066366",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 96
@@ -36,6 +59,30 @@
       "writtenOn": "2020-04-29T09:25:07Z",
       "side": 1,
       "message": "why from 2? This is not intuitive during coding",
+      "range": {
+        "startLine": 719,
+        "startChar": 27,
+        "endLine": 719,
+        "endChar": 29
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef4296b1_cc63bd6e",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T11:45:12Z",
+      "side": 1,
+      "message": "It is not from 2, but _to_ 2.\nRequest generator needs exactly two commands to detect which bytes are constant and which are increasing.\n\nSee docstring of PapiSocketExecutor.get_replies(). I can add more details there (or elsewhere) if needed.",
+      "parentUuid": "da4c969a_c4066366",
       "range": {
         "startLine": 719,
         "startChar": 27,
@@ -65,6 +112,24 @@
     },
     {
       "key": {
+        "uuid": "ab40fb42_f6efc32a",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T11:45:12Z",
+      "side": 1,
+      "message": "Ideally, this should be a data class. See [0] and [1]. But we need at least Python 3.7 for that.\nI contemplated using \"attr\" (mentioned in [0]) or some other solution, but that needs adding to requirements.txt, not sure we want to go there.\nNamedtuple is one possible solution, I can use that, but it is less friendly to docstrings.\n\nI think I mentioned (in several places) why I do not like \"dict\" as a type for an object that needs to have specific keys with specific value types (example: nodes).\nIf not, I will create a Jira task and we can discuss there.\n\nI will add some explanations to the class docstring.\n\n[0] https://www.python.org/dev/peps/pep-0557/\n[1] https://docs.python.org/3.7/library/dataclasses.html",
+      "parentUuid": "ae309d51_ed78e63e",
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "037ebb61_9f905a85",
         "filename": "resources/libraries/python/PapiSocketExecutor.py",
         "patchSetId": 96
@@ -76,6 +141,30 @@
       "writtenOn": "2020-04-29T09:25:07Z",
       "side": 1,
       "message": "decide and remove",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 55
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b69d9443_b950d5ea",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T11:45:12Z",
+      "side": 1,
+      "message": "Ah, I think I already fixed this by line 106, just forgot to remove the TODO.\n\nAnd I noticed I am missing several u\" or f\". Will fix.",
+      "parentUuid": "037ebb61_9f905a85",
       "range": {
         "startLine": 101,
         "startChar": 0,
@@ -134,6 +223,30 @@
     },
     {
       "key": {
+        "uuid": "31fd3361_4596ce66",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T11:45:12Z",
+      "side": 1,
+      "message": "\u003e remove _\n\nAh, will do.\n\n\u003e this pointless comment\n\nWill clarify the comment. Its point is to explain why there is a pylint violation and why we do not want to fix it just yet.",
+      "parentUuid": "08b9a555_ee546984",
+      "range": {
+        "startLine": 918,
+        "startChar": 2,
+        "endLine": 922,
+        "endChar": 71
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "00e3d868_9a39a36b",
         "filename": "resources/libraries/python/PapiSocketExecutor.py",
         "patchSetId": 96
@@ -157,6 +270,30 @@
     },
     {
       "key": {
+        "uuid": "25fef9c6_1f2d14f0",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T11:45:12Z",
+      "side": 1,
+      "message": "I will reformulate.",
+      "parentUuid": "00e3d868_9a39a36b",
+      "range": {
+        "startLine": 962,
+        "startChar": 1,
+        "endLine": 966,
+        "endChar": 71
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "71de8d0f_9d912b05",
         "filename": "resources/libraries/python/VppCounters.py",
         "patchSetId": 96
@@ -168,6 +305,30 @@
       "writtenOn": "2020-04-29T09:25:07Z",
       "side": 1,
       "message": "this is not threads, this is calls_th, fix to original naming.",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 28
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be4b2578_3bfe6512",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T11:45:12Z",
+      "side": 1,
+      "message": "The original naming leads to \"too many locals\". But I will chose a better name for this.",
+      "parentUuid": "71de8d0f_9d912b05",
       "range": {
         "startLine": 81,
         "startChar": 20,
