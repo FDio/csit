@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f0a662b_32d38cbf",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T09:25:07Z",
+      "side": 1,
+      "message": "assumed",
+      "range": {
+        "startLine": 297,
+        "startChar": 21,
+        "endLine": 297,
+        "endChar": 29
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da4c969a_c4066366",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T09:25:07Z",
+      "side": 1,
+      "message": "why from 2? This is not intuitive during coding",
+      "range": {
+        "startLine": 719,
+        "startChar": 27,
+        "endLine": 719,
+        "endChar": 29
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae309d51_ed78e63e",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T09:25:07Z",
+      "side": 1,
+      "message": "no class for such simple thing. Make a dict()",
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "037ebb61_9f905a85",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T09:25:07Z",
+      "side": 1,
+      "message": "decide and remove",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 55
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "138b06f7_ffd35144",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T09:25:07Z",
+      "side": 1,
+      "message": "code",
+      "range": {
+        "startLine": 905,
+        "startChar": 34,
+        "endLine": 905,
+        "endChar": 40
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08b9a555_ee546984",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T09:25:07Z",
+      "side": 1,
+      "message": "remove _ and also this pointless comment",
+      "range": {
+        "startLine": 918,
+        "startChar": 2,
+        "endLine": 922,
+        "endChar": 71
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00e3d868_9a39a36b",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T09:25:07Z",
+      "side": 1,
+      "message": "If you need to touch it it is not private. Anyway Python is not java",
+      "range": {
+        "startLine": 962,
+        "startChar": 1,
+        "endLine": 966,
+        "endChar": 71
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71de8d0f_9d912b05",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T09:25:07Z",
+      "side": 1,
+      "message": "this is not threads, this is calls_th, fix to original naming.",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 28
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
