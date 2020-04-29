@@ -214,6 +214,30 @@
       "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b10682f1_7f1c59df",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T17:36:43Z",
+      "side": 1,
+      "message": "Oh, I forgot about __init__.robot; yes, that is better than specifying the same value in all suite files within a directory.\n\nBy the way, what is the motivation for the \"use Setup Suite Topology Interfaces\" requirement?\n\nBecause one solution would be to add optional arguments to Setup Suite Topology Interfaces keyword (default values for \"yes TG\"), and turn Setup Suite Topology Interfaces No TG keyword to be just a wrapper to call Setup Suite Topology Interfaces keyword with \"no TG\" values. That way you need no edits in current suites, and setup keywords remain maintainable.\n\nBut calling such Setup Suite Topology Interfaces keyword directly from suites (with \"no TG\" argument values specified in \"no TG\" suites; \"yes TG\" suites calling without arguments as before) is also good, at least if the values are short and descriptive (e.g. \"no_tg\u003d${True}\" if that also implies same link).",
+      "parentUuid": "1677b11e_d8c41757",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 77
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
