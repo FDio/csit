@@ -2693,9 +2693,9 @@ def table_comparison(table, input_data):
 
     with open(txt_file_name, u'a', encoding='utf-8') as txt_file:
         txt_file.write(legend)
-        if footnote:
-            txt_file.write(footnote)
-        txt_file.write(u"\n:END")
+        txt_file.write(footnote)
+        if legend or footnote:
+            txt_file.write(u"\n:END")
 
     # Generate html table:
     _tpc_generate_html_table(
