@@ -529,7 +529,7 @@
 | | [Arguments] | ${dut} | ${pf} | ${id} | ${vlan_per_chain}=${True}
 | |
 | | Return From Keyword If | ${id} != ${1} and not ${vlan_per_chain}
-| | ... | ${NONE} | ${NONE}
+| | ... | ${NONE}
 | | ${_default}= | Evaluate | ${pf} * ${100} + ${id} - ${1}
 | | ${_vlan}= | Get Variable Value | \${${dut}_pf${pf}_vlan}
 | | ${_vlan}= | Set Variable If | '${_vlan}[0]' != '${NONE}'
