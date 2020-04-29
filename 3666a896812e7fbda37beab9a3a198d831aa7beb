@@ -16,6 +16,24 @@
       "revId": "3666a896812e7fbda37beab9a3a198d831aa7beb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe18b9ee_87e0c46a",
+        "filename": "resources/tools/trex/trex_server_info.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T15:33:23Z",
+      "side": 1,
+      "message": "As I spotted in the previous code, it is a consequence of changing the executable flag.",
+      "parentUuid": "a982d115_28c745c6",
+      "revId": "3666a896812e7fbda37beab9a3a198d831aa7beb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
