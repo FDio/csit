@@ -328,7 +328,9 @@ class IPsecUtil:
             flags=flags,
             tunnel_src=str(src_addr),
             tunnel_dst=str(dst_addr),
-            protocol=int(IPsecProto.IPSEC_API_PROTO_ESP)
+            protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
+            udp_src_port=4500,  # default value in api
+            udp_dst_port=4500  # default value in api
         )
         args = dict(
             is_add=True,
@@ -437,7 +439,9 @@ class IPsecUtil:
             flags=flags,
             tunnel_src=str(src_addr),
             tunnel_dst=str(dst_addr),
-            protocol=int(IPsecProto.IPSEC_API_PROTO_ESP)
+            protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
+            udp_src_port=4500,  # default value in api
+            udp_dst_port=4500  # default value in api
         )
         args = dict(
             is_add=True,
