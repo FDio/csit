@@ -1,9 +1,6 @@
 ---
 # file: roles/calibration/tasks/main.yaml
 
-- name: Print Ansible facts
-  debug: var=ansible_facts
-
 - name: Calibration - Install Distribution - Release - Machine Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
