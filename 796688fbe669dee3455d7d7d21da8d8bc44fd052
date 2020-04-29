@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eeada32_fead817e",
+        "filename": "resources/libraries/bash/entry/bisect.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T10:10:23Z",
+      "side": 1,
+      "message": "remove before merge",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 21
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d375fde_edcecee9",
+        "filename": "resources/libraries/bash/entry/bisect.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T10:10:23Z",
+      "side": 1,
+      "message": "cleanup should run before and after run_...",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 33
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa35cb41_9ac409c9",
+        "filename": "resources/libraries/bash/entry/bisect.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T10:10:23Z",
+      "side": 1,
+      "message": "make a hard stop if there is too many iterations to avoid long duration in days.",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 1
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "215490c8_f95a6462",
+        "filename": "resources/libraries/bash/entry/bisect.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T10:10:23Z",
+      "side": 1,
+      "message": "we agreed that entry scripts do have only function call. Similarily above, bisect should be function",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 17
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24db6d3f_092ab770",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T10:10:23Z",
+      "side": 1,
+      "message": "Rename or make a default || die",
+      "range": {
+        "startLine": 542,
+        "startChar": 56,
+        "endLine": 542,
+        "endChar": 76
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a4cdc62_5bbd8fb2",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T10:10:23Z",
+      "side": 1,
+      "message": "it is sub-function that is settings this. so no need to copy here.",
+      "range": {
+        "startLine": 660,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 76
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07a884a6_0c17ebc7",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-04-29T10:10:23Z",
+      "side": 1,
+      "message": "must stays as pkg-verify",
+      "range": {
+        "startLine": 87,
+        "startChar": 22,
+        "endLine": 87,
+        "endChar": 58
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
