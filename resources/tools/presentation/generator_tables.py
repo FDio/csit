@@ -2404,6 +2404,7 @@ def table_comparison(table, input_data):
         if col.get(u"data-set", None) is None:
             logging.warning(f"No data for column {col.get(u'title', u'')}")
             continue
+        tag = table.get(u"tag", None)
         data = input_data.filter_data(
             table,
             params=[u"throughput", u"result", u"name", u"parent", u"tags"],
@@ -2417,6 +2418,8 @@ def table_comparison(table, input_data):
         for builds in data.values:
             for build in builds:
                 for tst_name, tst_data in build.items():
+                    if tag and tag not in tst_data[u"tags"]:
+                        continue
                     tst_name_mod = \
                         _tpc_modify_test_name(tst_name).replace(u"2n1l-", u"")
                     if col_data[u"data"].get(tst_name_mod, None) is None:
@@ -2448,6 +2451,8 @@ def table_comparison(table, input_data):
             for builds in rpl_data.values:
                 for build in builds:
                     for tst_name, tst_data in build.items():
+                        if tag and tag not in tst_data[u"tags"]:
+                            continue
                         tst_name_mod = \
                             _tpc_modify_test_name(tst_name).\
                             replace(u"2n1l-", u"")
