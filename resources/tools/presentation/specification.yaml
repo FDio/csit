@@ -941,10 +941,6 @@
         - 31  # NDRPDR sel
         - 32  # NDRPDR sel
         - 34  # NDRPDR sel
-    vpp-performance-changes-3n-hsw:
-      - "vpp-performance-changes-3n-hsw-h1"
-      - "vpp-performance-changes-3n-hsw-ref"
-      - "vpp-performance-changes-3n-hsw-cmp"
 
     vpp-performance-changes-3n-skx-h1:
       csit-vpp-perf-verify-1904-3n-skx:
@@ -978,10 +974,6 @@
         - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-    vpp-performance-changes-3n-skx:
-      - "vpp-performance-changes-3n-skx-h1"
-      - "vpp-performance-changes-3n-skx-ref"
-      - "vpp-performance-changes-3n-skx-cmp"
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -1019,10 +1011,6 @@
         - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-    vpp-performance-changes-2n-skx:
-      - "vpp-performance-changes-2n-skx-h1"
-      - "vpp-performance-changes-2n-skx-ref"
-      - "vpp-performance-changes-2n-skx-cmp"
 
     vpp-performance-changes-nfv-2n-skx-ref:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -1034,9 +1022,6 @@
       csit-vpp-perf-verify-2001-2n-skx:
         - 30  # NFV
         - 31  # NFV
-    vpp-performance-changes-nfv-2n-skx:
-      - "vpp-performance-changes-nfv-2n-skx-ref"
-      - "vpp-performance-changes-nfv-2n-skx-cmp"
 
     vpp-performance-changes-2n-dnv-ref:
       csit-vpp-perf-verify-1908-2n-dnv:
@@ -1062,9 +1047,6 @@
         - 11  # NDRPDR sel
         - 13  # NDRPDR sel
         - 16  # NDRPDR sel
-    vpp-performance-changes-2n-dnv:
-      - "vpp-performance-changes-2n-dnv-ref"
-      - "vpp-performance-changes-2n-dnv-cmp"
 
     vpp-performance-changes-3n-dnv-ref:
       csit-vpp-perf-verify-1908-3n-dnv:
@@ -1090,9 +1072,6 @@
         - 16  # NDRPDR sel
         - 17  # NDRPDR sel
         - 18  # NDRPDR sel
-    vpp-performance-changes-3n-dnv:
-      - "vpp-performance-changes-3n-dnv-ref"
-      - "vpp-performance-changes-3n-dnv-cmp"
 
     vpp-performance-changes-3n-tsh-ref:
       csit-vpp-perf-verify-1908-3n-tsh:
@@ -1118,9 +1097,6 @@
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 21  # NDRPDR sel
-    vpp-performance-changes-3n-tsh:
-      - "vpp-performance-changes-3n-tsh-ref"
-      - "vpp-performance-changes-3n-tsh-cmp"
 
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -1193,10 +1169,6 @@
     vpp-performance-changes-3n-hsw-mrr-cmp:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 17  # MRR sel
-    vpp-performance-changes-3n-hsw-mrr:
-      - "vpp-performance-changes-3n-hsw-mrr-h1"
-      - "vpp-performance-changes-3n-hsw-mrr-ref"
-      - "vpp-performance-changes-3n-hsw-mrr-cmp"
 
     vpp-performance-changes-3n-skx-mrr-h1:
       csit-vpp-perf-verify-1904-3n-skx:
@@ -1208,10 +1180,6 @@
       csit-vpp-perf-verify-2001-3n-skx:
         - 50  # MRR sel
         - 53  # MRR sel addition
-    vpp-performance-changes-3n-skx-mrr:
-      - "vpp-performance-changes-3n-skx-mrr-h1"
-      - "vpp-performance-changes-3n-skx-mrr-ref"
-      - "vpp-performance-changes-3n-skx-mrr-cmp"
 
     vpp-performance-changes-2n-skx-mrr-h1:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -1223,10 +1191,6 @@
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
         - 128 # MRR sel addition
-    vpp-performance-changes-2n-skx-mrr:
-      - "vpp-performance-changes-2n-skx-mrr-h1"
-      - "vpp-performance-changes-2n-skx-mrr-ref"
-      - "vpp-performance-changes-2n-skx-mrr-cmp"
 
     vpp-performance-changes-nfv-2n-skx-mrr-ref:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -1236,9 +1200,6 @@
       # csit-vpp-perf-verify-2001-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 71  # NFV MRR
-    vpp-performance-changes-nfv-2n-skx-mrr:
-      - "vpp-performance-changes-nfv-2n-skx-mrr-ref"
-      - "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
 
     vpp-performance-changes-2n-dnv-mrr-ref:
       csit-vpp-perf-verify-1908-2n-dnv:
@@ -1246,9 +1207,6 @@
     vpp-performance-changes-2n-dnv-mrr-cmp:
       csit-vpp-perf-verify-2001-2n-dnv:
         - 12  # MRR sel
-    vpp-performance-changes-2n-dnv-mrr:
-      - "vpp-performance-changes-2n-dnv-mrr-ref"
-      - "vpp-performance-changes-2n-dnv-mrr-cmp"
 
     vpp-performance-changes-3n-dnv-mrr-ref:
       csit-vpp-perf-verify-1908-3n-dnv:
@@ -1256,9 +1214,6 @@
     vpp-performance-changes-3n-dnv-mrr-cmp:
       csit-vpp-perf-verify-2001-3n-dnv:
         - 11  # MRR sel
-    vpp-performance-changes-3n-dnv-mrr:
-      - "vpp-performance-changes-3n-dnv-mrr-ref"
-      - "vpp-performance-changes-3n-dnv-mrr-cmp"
 
     vpp-performance-changes-3n-tsh-mrr-ref:
       csit-vpp-perf-verify-1908-3n-tsh:
@@ -1266,9 +1221,6 @@
     vpp-performance-changes-3n-tsh-mrr-cmp:
       csit-vpp-perf-verify-2001-3n-tsh:
         - 9   # MRR sel
-    vpp-performance-changes-3n-tsh-mrr:
-      - "vpp-performance-changes-3n-tsh-mrr-ref"
-      - "vpp-performance-changes-3n-tsh-mrr-cmp"
 
     dpdk-performance-changes-3n-hsw-h1:
       csit-dpdk-perf-verify-1904-3n-hsw:
@@ -1316,10 +1268,6 @@
         - 22  # NDRPDR sel
         - 23  # NDRPDR sel
         - 24  # NDRPDR sel
-    dpdk-performance-changes-3n-hsw:
-      - "dpdk-performance-changes-3n-hsw-h1"
-      - "dpdk-performance-changes-3n-hsw-ref"
-      - "dpdk-performance-changes-3n-hsw-cmp"
 
     dpdk-performance-changes-3n-skx-h1:
       csit-dpdk-perf-verify-1904-3n-skx:
@@ -1367,10 +1315,6 @@
         - 46  # NDRPDR sel x710
         - 47  # NDRPDR sel x710
         - 48  # NDRPDR sel x710
-    dpdk-performance-changes-3n-skx:
-      - "dpdk-performance-changes-3n-skx-h1"
-      - "dpdk-performance-changes-3n-skx-ref"
-      - "dpdk-performance-changes-3n-skx-cmp"
 
     dpdk-performance-changes-2n-skx-h1:
       csit-dpdk-perf-verify-1904-2n-skx:
@@ -1418,10 +1362,6 @@
         - 50  # NDRPDR sel x710
         - 51  # NDRPDR sel x710
         - 54  # NDRPDR sel x710
-    dpdk-performance-changes-2n-skx:
-      - "dpdk-performance-changes-2n-skx-h1"
-      - "dpdk-performance-changes-2n-skx-ref"
-      - "dpdk-performance-changes-2n-skx-cmp"
 
     # Compare testbeds
 
@@ -1445,9 +1385,6 @@
         - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-    vpp-compare-testbeds:
-      - "vpp-compare-testbeds-ref"
-      - "vpp-compare-testbeds-cmp"
 
     vpp-compare-testbeds-skx-clx-ref:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -1473,9 +1410,6 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
-    vpp-compare-testbeds-skx-clx:
-      - "vpp-compare-testbeds-skx-clx-ref"
-      - "vpp-compare-testbeds-skx-clx-cmp"
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-verify-2001-3n-hsw:
@@ -1501,9 +1435,6 @@
         - 47  # NDRPDR sel
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
-    vpp-compare-testbeds-hsw-clx:
-      - "vpp-compare-testbeds-hsw-clx-ref"
-      - "vpp-compare-testbeds-hsw-clx-cmp"
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-verify-2001-3n-hsw:
@@ -1512,9 +1443,6 @@
       csit-vpp-perf-verify-2001-3n-skx:
         - 50  # MRR sel
         - 53  # MRR sel addition
-    vpp-compare-testbeds-mrr:
-      - "vpp-compare-testbeds-mrr-ref"
-      - "vpp-compare-testbeds-mrr-cmp"
 
     vpp-compare-testbeds-mrr-skx-clx-ref:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -1523,9 +1451,6 @@
     vpp-compare-testbeds-mrr-skx-clx-cmp:
       csit-vpp-perf-verify-2001-2n-clx:
         - 39  # MRR
-    vpp-compare-testbeds-mrr-skx-clx:
-      - "vpp-compare-testbeds-mrr-skx-clx-ref"
-      - "vpp-compare-testbeds-mrr-skx-clx-cmp"
 
     vpp-compare-testbeds-mrr-hsw-clx-ref:
       csit-vpp-perf-verify-2001-3n-hsw:
@@ -1533,9 +1458,6 @@
     vpp-compare-testbeds-mrr-hsw-clx-cmp:
       csit-vpp-perf-verify-2001-2n-clx:
         - 39  # MRR
-    vpp-compare-testbeds-mrr-hsw-clx:
-      - "vpp-compare-testbeds-mrr-hsw-clx-ref"
-      - "vpp-compare-testbeds-mrr-hsw-clx-cmp"
 
     dpdk-compare-testbeds-ref:
       csit-dpdk-perf-verify-2001-3n-hsw:
@@ -1581,9 +1503,6 @@
         - 46  # NDRPDR sel x710
         - 47  # NDRPDR sel x710
         - 48  # NDRPDR sel x710
-    dpdk-compare-testbeds:
-      - "dpdk-compare-testbeds-ref"
-      - "dpdk-compare-testbeds-cmp"
 
     dpdk-compare-testbeds-skx-clx-ref:
       csit-dpdk-perf-verify-2001-2n-skx:
@@ -1630,10 +1549,6 @@
         - 33  # NDRPDR sel
         - 34  # NDRPDR sel
 
-    dpdk-compare-testbeds-skx-clx:
-      - "dpdk-compare-testbeds-skx-clx-ref"
-      - "dpdk-compare-testbeds-skx-clx-cmp"
-
     # Compare topologies
 
     vpp-compare-topologies-ref:
@@ -1656,9 +1571,6 @@
         - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-    vpp-compare-topologies:
-      - "vpp-compare-topologies-ref"
-      - "vpp-compare-topologies-cmp"
 
     vpp-compare-topologies-mrr-ref:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -1668,9 +1580,6 @@
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
         - 128 # MRR sel addition
-    vpp-compare-topologies-mrr:
-      - "vpp-compare-topologies-mrr-ref"
-      - "vpp-compare-topologies-mrr-cmp"
 
     dpdk-compare-topologies-ref:
       csit-dpdk-perf-verify-2001-3n-skx:
@@ -1716,9 +1625,6 @@
         - 50  # NDRPDR sel x710
         - 51  # NDRPDR sel x710
         - 54  # NDRPDR sel x710
-    dpdk-compare-topologies:
-      - "dpdk-compare-topologies-ref"
-      - "dpdk-compare-topologies-cmp"
 
   plot-layouts:
 
@@ -2524,26 +2430,6 @@
       - 1   # NDRPDR sel
       - 2   # NDRPDR sel
     csit-vpp-perf-verify-2001-3n-skx:
-#      - 45  # NDRPDR sel
-#      - 46  # NDRPDR sel
-#      - 47  # NDRPDR sel
-#      - 48  # NDRPDR sel
-#      - 49  # NDRPDR sel
-#      - 51  # NDRPDR sel
-#      - 52  # NDRPDR sel
-#      - 59  # NDRPDR sel
-#      - 65  # NDRPDR sel
-#      - 66  # NDRPDR sel
-#      - 54  # NDRPDR sel addition
-#      - 55  # NDRPDR sel addition
-#      - 56  # NDRPDR sel addition
-#      - 57  # NDRPDR sel addition
-#      - 58  # NDRPDR sel addition
-#      - 60  # NDRPDR sel addition
-#      - 61  # NDRPDR sel addition
-#      - 62  # NDRPDR sel addition
-#      - 63  # NDRPDR sel addition
-#      - 64  # NDRPDR sel addition
       - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -2586,10 +2472,6 @@
       - 97  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
       - 98  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
       - 69  # MRR sel - old1908 - vpp build: 19.08-release
-#      - 22  # NFV
-#      - 31  # NFV
-#      - 32  # NFV
-#      - 71  # NFV MRR
     csit-vpp-perf-verify-1908_1-2n-skx:
       - 3   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
       - 4   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
@@ -2623,26 +2505,6 @@
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
     csit-vpp-perf-verify-2001-2n-skx:
-#      - 92  # NDRPDR sel - old
-#      - 93  # NDRPDR sel - old
-#      - 94  # NDRPDR sel - old
-#      - 95  # NDRPDR sel - old
-#      - 96  # NDRPDR sel - old
-#      - 97  # NDRPDR sel - old
-#      - 98  # NDRPDR sel - old
-#      - 99  # NDRPDR sel - old
-#      - 100 # NDRPDR sel - old
-#      - 102 # NDRPDR sel - old
-#      - 129 # NDRPDR sel addition - old
-#      - 130 # NDRPDR sel addition - old
-#      - 131 # NDRPDR sel addition - old
-#      - 132 # NDRPDR sel addition - old
-#      - 133 # NDRPDR sel addition - old
-#      - 134 # NDRPDR sel addition - old
-#      - 135 # NDRPDR sel addition - old
-#      - 136 # NDRPDR sel addition - old
-#      - 137 # NDRPDR sel addition - old
-#      - 138 # NDRPDR sel addition - old
       - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -2958,7 +2820,6 @@
       - 51  # NDRPDR sel x710
       - 54  # NDRPDR sel x710
 
-
     csit-dpdk-perf-verify-2001-2n-clx:
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
@@ -3075,282 +2936,324 @@
 # VPP Compare NICs 3n-skx 2t1c ndr
 - type: "table"
   title: "VPP Compare NICs 3n-skx 2t1c ndr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-ndr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 3n-skx 4t2c ndr
 - type: "table"
   title: "VPP Compare NICs 3n-skx 4t2c ndr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-ndr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 3n-skx 2t1c pdr
 - type: "table"
   title: "VPP Compare NICs 3n-skx 2t1c pdr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-pdr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
- # VPP Compare NICs 3n-skx 4t2c pdr
+# VPP Compare NICs 3n-skx 4t2c pdr
 - type: "table"
   title: "VPP Compare NICs 3n-skx 4t2c pdr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-pdr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 3n-skx 2t1c mrr
 - type: "table"
   title: "VPP Compare NICs 3n-skx 2t1c mrr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-mrr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 3n-skx 4t2c mrr
 - type: "table"
   title: "VPP Compare NICs 3n-skx 4t2c mrr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-mrr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
- # VPP Compare NICs 3n-skx 8t4c mrr
+# VPP Compare NICs 3n-skx 8t4c mrr
 - type: "table"
   title: "VPP Compare NICs 3n-skx 8t4c mrr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-nics-mrr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 2n-skx 2t1c ndr
 - type: "table"
   title: "VPP Compare NICs 2n-skx 2t1c ndr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-nics-ndr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-2n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-2n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 2n-skx 4t2c ndr
 - type: "table"
   title: "VPP Compare NICs 2n-skx 4t2c ndr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-nics-ndr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-2n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-2n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
- # VPP Compare NICs 2n-skx 2t1c pdr
+# VPP Compare NICs 2n-skx 2t1c pdr
 - type: "table"
   title: "VPP Compare NICs 2n-skx 2t1c pdr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-nics-pdr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-2n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-2n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 2n-skx 4t2c pdr
 - type: "table"
   title: "VPP Compare NICs 2n-skx 4t2c pdr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-nics-pdr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-2n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-2n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 2n-skx 2t1c mrr
 - type: "table"
   title: "VPP Compare NICs 2n-skx 2t1c mrr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-nics-mrr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-2n-skx-mrr"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-2n-skx-mrr"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 2n-skx 4t2c mrr
 - type: "table"
   title: "VPP Compare NICs 2n-skx 4t2c mrr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-nics-mrr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-2n-skx-mrr"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-2n-skx-mrr"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 2n-skx 8t4c mrr
 - type: "table"
   title: "VPP Compare NICs 2n-skx 8t4c mrr"
-  algorithm: "table_nics_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-8t4c-nics-mrr"
-  reference:
-    title: "x710"
-    nic: "NIC_Intel-X710"
-  compare:
-    title: "xxv710"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-nic-comparison-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-2n-skx-mrr"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-2n-skx-mrr"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 ################################################################################
 # VPP
@@ -3442,94 +3345,94 @@
 # VPP Performance Changes 3n-hsw 1t1c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-hsw 1t1c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-pdr"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-hsw-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-hsw-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-hsw-cmp"
-  data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-hsw 2t2c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-hsw 2t2c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-pdr"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-hsw-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-hsw-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-hsw-cmp"
-  data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-hsw 1t1c ndr
 - type: "table"
   title: "VPP Performance Changes 3n-hsw 1t1c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-ndr"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-hsw-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-hsw-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-hsw-cmp"
-  data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-hsw 2t2c ndr
 - type: "table"
   title: "VPP Performance Changes 3n-hsw 2t2c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-ndr"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-hsw-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-hsw-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-hsw-vhost"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-hsw-cmp"
-  data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Root Cause Analysis 3n-skx-xxv710 2t1c pdr
 - type: "table"
@@ -3614,122 +3517,110 @@
 # VPP Performance Changes 3n-skx 2t1c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 2t1c pdr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-pdr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-3n-skx-2t1c-pdr.yaml"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-skx-h1"
-      nic: "NIC_Intel-X710"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-skx-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    nic: "NIC_Intel-XXV710"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-skx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+      tag: "NIC_Intel-X710"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
+      tag: "NIC_Intel-XXV710"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-skx 4t2c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 4t2c pdr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-pdr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-3n-skx-4t2c-pdr.yaml"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-skx-h1"
-      nic: "NIC_Intel-X710"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-skx-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    nic: "NIC_Intel-XXV710"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-skx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+      tag: "NIC_Intel-X710"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
+      tag: "NIC_Intel-XXV710"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-skx 2t1c ndr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 2t1c ndr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-ndr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-3n-skx-2t1c-ndr.yaml"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-skx-h1"
-      nic: "NIC_Intel-X710"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-skx-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    nic: "NIC_Intel-XXV710"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-skx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+      tag: "NIC_Intel-X710"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
+      tag: "NIC_Intel-XXV710"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-skx 4t2c ndr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 4t2c ndr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-ndr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-3n-skx-4t2c-ndr.yaml"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-skx-h1"
-      nic: "NIC_Intel-X710"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-skx-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    nic: "NIC_Intel-XXV710"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-skx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+      tag: "NIC_Intel-X710"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
+      tag: "NIC_Intel-XXV710"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Root Cause Analysis 2n-skx-xxv710 2t1c pdr
 - type: "table"
@@ -3814,1467 +3705,1374 @@
 # VPP Performance Changes 2n-skx 2t1c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 2t1c pdr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-2n-skx-2t1c-pdr.yaml"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-2n-skx-h1"
-      nic: "NIC_Intel-X710"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-skx-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-    nic: "NIC_Intel-XXV710"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-skx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-    - "name"
-    - "parent"
-    - "throughput"
-    - "tags"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-2n-skx-h1"
+      tag: "NIC_Intel-X710"
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
+      tag: "NIC_Intel-XXV710"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 2n-skx 4t2c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 4t2c pdr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-pdr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-2n-skx-4t2c-pdr.yaml"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-2n-skx-h1"
-      nic: "NIC_Intel-X710"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-skx-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-    nic: "NIC_Intel-XXV710"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-skx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-    - "name"
-    - "parent"
-    - "throughput"
-    - "tags"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-2n-skx-h1"
+      tag: "NIC_Intel-X710"
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
+      tag: "NIC_Intel-XXV710"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 2n-skx 2t1c ndr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 2t1c ndr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-ndr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-2n-skx-2t1c-ndr.yaml"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-2n-skx-h1"
-      nic: "NIC_Intel-X710"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-skx-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-    nic: "NIC_Intel-XXV710"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-skx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-    - "name"
-    - "parent"
-    - "throughput"
-    - "tags"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-2n-skx-h1"
+      tag: "NIC_Intel-X710"
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
+      tag: "NIC_Intel-XXV710"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 2n-skx 4t2c ndr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 4t2c ndr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-ndr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-2n-skx-4t2c-ndr.yaml"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-2n-skx-h1"
-      nic: "NIC_Intel-X710"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-skx-ref"
-    data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-    nic: "NIC_Intel-XXV710"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-skx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
-  parameters:
-    - "name"
-    - "parent"
-    - "throughput"
-    - "tags"
-
-## VPP Performance Changes NFV Service Density 2n-skx 2t1c pdr
-#- type: "table"
-#  title: "VPP Performance Changes NFV Service Density 2n-skx 2t1c pdr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-2t1c-pdr"
-#  reference:
-#    title: "1908"
-#    data: "vpp-performance-changes-nfv-2n-skx-ref"
-#  compare:
-#    title: "2001"
-#    data: "vpp-performance-changes-nfv-2n-skx-cmp"
-#  data: "vpp-performance-changes-nfv-2n-skx"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'NDRPDR' and 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#  - "tags"
-#
-## VPP Performance Changes NFV Service Density 2n-skx 4t2c pdr
-#- type: "table"
-#  title: "VPP Performance Changes NFV Service Density 2n-skx 4t2c pdr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-4t2c-pdr"
-#  reference:
-#    title: "1908"
-#    data: "vpp-performance-changes-nfv-2n-skx-ref"
-#  compare:
-#    title: "2001"
-#    data: "vpp-performance-changes-nfv-2n-skx-cmp"
-#  data: "vpp-performance-changes-nfv-2n-skx"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'NDRPDR' and 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#  - "tags"
-#
-## VPP Performance Changes NFV Service Density 2n-skx 2t1c ndr
-#- type: "table"
-#  title: "VPP Performance Changes NFV Service Density 2n-skx 2t1c ndr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-2t1c-ndr"
-#  reference:
-#    title: "1908"
-#    data: "vpp-performance-changes-nfv-2n-skx-ref"
-#  compare:
-#    title: "2001"
-#    data: "vpp-performance-changes-nfv-2n-skx-cmp"
-#  data: "vpp-performance-changes-nfv-2n-skx"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'NDRPDR' and 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#  - "tags"
-#
-## VPP Performance Changes NFV Service Density 2n-skx 4t2c ndr
-#- type: "table"
-#  title: "VPP Performance Changes NFV Service Density 2n-skx 4t2c ndr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-4t2c-ndr"
-#  reference:
-#    title: "1908"
-#    data: "vpp-performance-changes-nfv-2n-skx-ref"
-#  compare:
-#    title: "2001"
-#    data: "vpp-performance-changes-nfv-2n-skx-cmp"
-#  data: "vpp-performance-changes-nfv-2n-skx"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'NDRPDR' and 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#  - "tags"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-2n-skx-h1"
+      tag: "NIC_Intel-X710"
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
+      tag: "NIC_Intel-XXV710"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 2n-dnv 1t1c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-dnv 1t1c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-pdr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-dnv-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-dnv-cmp"
-  data: "vpp-performance-changes-2n-dnv"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 2n-dnv 2t2c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-dnv 2t2c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-pdr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-dnv-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-dnv-cmp"
-  data: "vpp-performance-changes-2n-dnv"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 2n-dnv 1t1c ndr
 - type: "table"
   title: "VPP Performance Changes 2n-dnv 1t1c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-ndr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-dnv-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-dnv-cmp"
-  data: "vpp-performance-changes-2n-dnv"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 2n-dnv 2t2c ndr
 - type: "table"
   title: "VPP Performance Changes 2n-dnv 2t2c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-ndr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-dnv-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-dnv-cmp"
-  data: "vpp-performance-changes-2n-dnv"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-dnv 1t1c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-dnv 1t1c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-pdr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-dnv-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-dnv-cmp"
-  data: "vpp-performance-changes-3n-dnv"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-dnv 2t2c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-dnv 2t2c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-pdr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-dnv-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-dnv-cmp"
-  data: "vpp-performance-changes-3n-dnv"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-dnv 1t1c ndr
 - type: "table"
   title: "VPP Performance Changes 3n-dnv 1t1c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-ndr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-dnv-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-dnv-cmp"
-  data: "vpp-performance-changes-3n-dnv"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-dnv 2t2c ndr
 - type: "table"
   title: "VPP Performance Changes 3n-dnv 2t2c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-ndr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-dnv-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-dnv-cmp"
-  data: "vpp-performance-changes-3n-dnv"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-tsh 1t1c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-tsh 1t1c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-pdr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-tsh-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-tsh-cmp"
-  data: "vpp-performance-changes-3n-tsh"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-tsh 2t2c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-tsh 2t2c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-pdr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-tsh-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-tsh-cmp"
-  data: "vpp-performance-changes-3n-tsh"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-tsh 1t1c ndr
 - type: "table"
   title: "VPP Performance Changes 3n-tsh 1t1c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-ndr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-tsh-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-tsh-cmp"
-  data: "vpp-performance-changes-3n-tsh"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Performance Changes 3n-tsh 2t2c ndr
 - type: "table"
   title: "VPP Performance Changes 3n-tsh 2t2c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-ndr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-tsh-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-tsh-cmp"
-  data: "vpp-performance-changes-3n-tsh"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "3n-skx xxv710"
-    data: "vpp-compare-testbeds-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "3n-skx xxv710"
+      data-set: "vpp-compare-testbeds-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c ndr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "3n-skx xxv710"
-    data: "vpp-compare-testbeds-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "3n-skx xxv710"
+      data-set: "vpp-compare-testbeds-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c pdr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c pdr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-pdr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "3n-skx xxv710"
-    data: "vpp-compare-testbeds-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "3n-skx xxv710"
+      data-set: "vpp-compare-testbeds-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c pdr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c pdr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-pdr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "3n-skx xxv710"
-    data: "vpp-compare-testbeds-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
-
-# VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c pdr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c pdr"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-2t1c-pdr"
-  reference:
-    title: "2n-skx"
-    data: "vpp-compare-testbeds-skx-clx-ref"
-  compare:
-    title: "2n-clx"
-    data: "vpp-compare-testbeds-skx-clx-cmp"
-  data: "vpp-compare-testbeds-skx-clx"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
-
-# VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c pdr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c pdr"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-4t2c-pdr"
-  reference:
-    title: "2n-skx"
-    data: "vpp-compare-testbeds-skx-clx-ref"
-  compare:
-    title: "2n-clx"
-    data: "vpp-compare-testbeds-skx-clx-cmp"
-  data: "vpp-compare-testbeds-skx-clx"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "3n-skx xxv710"
+      data-set: "vpp-compare-testbeds-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-2t1c-ndr"
-  reference:
-    title: "2n-skx"
-    data: "vpp-compare-testbeds-skx-clx-ref"
-  compare:
-    title: "2n-clx"
-    data: "vpp-compare-testbeds-skx-clx-cmp"
-  data: "vpp-compare-testbeds-skx-clx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "2n-skx"
+      data-set: "vpp-compare-testbeds-skx-clx-ref"
+    - title: "2n-clx"
+      data-set: "vpp-compare-testbeds-skx-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2n-skx, 2n-clx - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx and 2n-clx testbeds."
 
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-4t2c-ndr"
-  reference:
-    title: "2n-skx"
-    data: "vpp-compare-testbeds-skx-clx-ref"
-  compare:
-    title: "2n-clx"
-    data: "vpp-compare-testbeds-skx-clx-cmp"
-  data: "vpp-compare-testbeds-skx-clx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "2n-skx"
+      data-set: "vpp-compare-testbeds-skx-clx-ref"
+    - title: "2n-clx"
+      data-set: "vpp-compare-testbeds-skx-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2n-skx, 2n-clx - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx and 2n-clx testbeds."
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c pdr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  columns:
+    - title: "2n-skx"
+      data-set: "vpp-compare-testbeds-skx-clx-ref"
+    - title: "2n-clx"
+      data-set: "vpp-compare-testbeds-skx-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2n-skx, 2n-clx - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx and 2n-clx testbeds."
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c pdr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-4t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NIC_Intel-XXV710'"
+  columns:
+    - title: "2n-skx"
+      data-set: "vpp-compare-testbeds-skx-clx-ref"
+    - title: "2n-clx"
+      data-set: "vpp-compare-testbeds-skx-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2n-skx, 2n-clx - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx and 2n-clx testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c ndr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-1c-ndr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-hsw-clx-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "2n-clx xxv710"
-    data: "vpp-compare-testbeds-hsw-clx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds-hsw-clx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-hsw-clx-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "2n-clx xxv710"
+      data-set: "vpp-compare-testbeds-hsw-clx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c ndr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-2c-ndr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-hsw-clx-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "2n-clx xxv710"
-    data: "vpp-compare-testbeds-hsw-clx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds-hsw-clx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-hsw-clx-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "2n-clx xxv710"
+      data-set: "vpp-compare-testbeds-hsw-clx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c pdr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c pdr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-1c-pdr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-hsw-clx-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "2n-clx xxv710"
-    data: "vpp-compare-testbeds-hsw-clx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds-hsw-clx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-hsw-clx-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "2n-clx xxv710"
+      data-set: "vpp-compare-testbeds-hsw-clx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c pdr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c pdr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-2c-pdr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-hsw-clx-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "2n-clx xxv710"
-    data: "vpp-compare-testbeds-hsw-clx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds-hsw-clx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-hsw-clx-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "2n-clx xxv710"
+      data-set: "vpp-compare-testbeds-hsw-clx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
 
 # VPP Comparison Across Topologies 3n-skx to 2n-skx 1c ndr
 - type: "table"
   title: "VPP Comparison Across Topologies 3n-skx to 2n-skx 1c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-1c-ndr"
-  reference:
-    title: "3n-skx"
-    data: "vpp-compare-topologies-ref"
-  compare:
-    title: "2n-skx"
-    data: "vpp-compare-topologies-cmp"
-  data: "vpp-compare-topologies"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NDRPDR' and '1C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "3n-skx"
+      data-set: "vpp-compare-topologies-ref"
+    - title: "2n-skx"
+      data-set: "vpp-compare-topologies-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-skx, 2n-skx - topologies tested."
+    - "Diff - difference between 3n-skx and 2n-skx topologies."
 
 # VPP Comparison Across Topologies 3n-skx to 2n-skx 2c ndr
 - type: "table"
   title: "VPP Comparison Across Topologies 3n-skx to 2n-skx 2c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-2c-ndr"
-  reference:
-    title: "3n-skx"
-    data: "vpp-compare-topologies-ref"
-  compare:
-    title: "2n-skx"
-    data: "vpp-compare-topologies-cmp"
-  data: "vpp-compare-topologies"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NDRPDR' and '2C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "3n-skx"
+      data-set: "vpp-compare-topologies-ref"
+    - title: "2n-skx"
+      data-set: "vpp-compare-topologies-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-skx, 2n-skx - topologies tested."
+    - "Diff - difference between 3n-skx and 2n-skx topologies."
 
 # VPP Comparison Across Topologies 3n-skx to 2n-skx 1c pdr
 - type: "table"
   title: "VPP Comparison Across Topologies 3n-skx to 2n-skx 1c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-1c-pdr"
-  reference:
-    title: "3n-skx"
-    data: "vpp-compare-topologies-ref"
-  compare:
-    title: "2n-skx"
-    data: "vpp-compare-topologies-cmp"
-  data: "vpp-compare-topologies"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NDRPDR' and '1C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "3n-skx"
+      data-set: "vpp-compare-topologies-ref"
+    - title: "2n-skx"
+      data-set: "vpp-compare-topologies-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-skx, 2n-skx - topologies tested."
+    - "Diff - difference between 3n-skx and 2n-skx topologies."
 
 # VPP Comparison Across Topologies 3n-skx to 2n-skx 2c pdr
 - type: "table"
   title: "VPP Comparison Across Topologies 3n-skx to 2n-skx 2c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-2c-pdr"
-  reference:
-    title: "3n-skx"
-    data: "vpp-compare-topologies-ref"
-  compare:
-    title: "2n-skx"
-    data: "vpp-compare-topologies-cmp"
-  data: "vpp-compare-topologies"
-  include-tests: "PDR"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NDRPDR' and '2C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "3n-skx"
+      data-set: "vpp-compare-topologies-ref"
+    - title: "2n-skx"
+      data-set: "vpp-compare-topologies-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-skx, 2n-skx - topologies tested."
+    - "Diff - difference between 3n-skx and 2n-skx topologies."
 
-# VPP Performance Changes 3n-hsw 1t1c MRR
+# VPP Performance Changes 3n-hsw 1t1c mrr
 - type: "table"
-  title: "VPP Performance Changes 3n-hsw 1t1c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 3n-hsw 1t1c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-mrr"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-hsw-mrr-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-hsw-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-hsw-mrr-cmp"
-  data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 3n-hsw 2t2c MRR
+# VPP Performance Changes 3n-hsw 2t2c mrr
 - type: "table"
-  title: "VPP Performance Changes 3n-hsw 2t2c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 3n-hsw 2t2c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-mrr"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-hsw-mrr-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-hsw-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-hsw-mrr-cmp"
-  data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-
-# VPP Performance Changes 3n-hsw 4t4c MRR
-- type: "table"
-  title: "VPP Performance Changes 3n-hsw 4t4c MRR"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-4t4c-mrr"
-  history:
+  filter: "'2t2c' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
+  columns:
     - title: "1904"
-      data: "vpp-performance-changes-3n-hsw-mrr-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-hsw-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-hsw-mrr-cmp"
-  data: "vpp-performance-changes-3n-hsw-mrr"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
+
+# VPP Performance Changes 3n-hsw 4t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-hsw 4t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-4t4c-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T4C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 3n-skx 2t1c MRR
+# VPP Performance Changes 3n-skx 2t1c mrr
 - type: "table"
-  title: "VPP Performance Changes 3n-skx 2t1c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 3n-skx 2t1c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-mrr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-3n-skx-2t1c-mrr.yaml"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-skx-mrr-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-skx-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-skx-mrr-cmp"
-  data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-3n-skx-mrr-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 3n-skx 4t2c MRR
+# VPP Performance Changes 3n-skx 4t2c mrr
 - type: "table"
-  title: "VPP Performance Changes 3n-skx 4t2c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 3n-skx 4t2c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-mrr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-3n-skx-4t2c-mrr.yaml"
-  history:
-    - title: "1904"
-      data: "vpp-performance-changes-3n-skx-mrr-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-skx-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-skx-mrr-cmp"
-  data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-
-# VPP Performance Changes 3n-skx 8t4c MRR
-- type: "table"
-  title: "VPP Performance Changes 3n-skx 8t4c MRR"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-mrr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-3n-skx-8t4c-mrr.yaml"
-  history:
+  columns:
     - title: "1904"
-      data: "vpp-performance-changes-3n-skx-mrr-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-skx-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-skx-mrr-cmp"
-  data: "vpp-performance-changes-3n-skx-mrr"
+      data-set: "vpp-performance-changes-3n-skx-mrr-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
+
+# VPP Performance Changes 3n-skx 8t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 8t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'8T4C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-
-# VPP Performance Changes 2n-skx 2t1c MRR
-- type: "table"
-  title: "VPP Performance Changes 2n-skx 2t1c MRR"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-mrr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-2n-skx-2t1c-mrr.yaml"
-  history:
+  columns:
     - title: "1904"
-      data: "vpp-performance-changes-2n-skx-mrr-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-skx-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-skx-mrr-cmp"
-  data: "vpp-performance-changes-2n-skx-mrr"
+      data-set: "vpp-performance-changes-3n-skx-mrr-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
+
+# VPP Performance Changes 2n-skx 2t1c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-skx 2t1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-
-# VPP Performance Changes 2n-skx 4t2c MRR
-- type: "table"
-  title: "VPP Performance Changes 2n-skx 4t2c MRR"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-mrr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-2n-skx-4t2c-mrr.yaml"
-  history:
+  columns:
     - title: "1904"
-      data: "vpp-performance-changes-2n-skx-mrr-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-skx-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-skx-mrr-cmp"
-  data: "vpp-performance-changes-2n-skx-mrr"
+      data-set: "vpp-performance-changes-2n-skx-mrr-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
+
+# VPP Performance Changes 2n-skx 4t2c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-skx 4t2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-
-# VPP Performance Changes 2n-skx 8t4c MRR
-- type: "table"
-  title: "VPP Performance Changes 2n-skx 8t4c MRR"
-  algorithm: "table_perf_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-8t4c-mrr"
-#  rca:
-#    title: "RCA"
-#    data-file: "rca/rca-2n-skx-8t4c-mrr.yaml"
-  history:
+  columns:
     - title: "1904"
-      data: "vpp-performance-changes-2n-skx-mrr-h1"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-skx-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-skx-mrr-cmp"
-  data: "vpp-performance-changes-2n-skx-mrr"
+      data-set: "vpp-performance-changes-2n-skx-mrr-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
+
+# VPP Performance Changes 2n-skx 8t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-skx 8t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-8t4c-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'8T4C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  columns:
+    - title: "1904"
+      data-set: "vpp-performance-changes-2n-skx-mrr-h1"
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-## VPP Performance Changes NFV Service Density 2n-skx 2t1c mrr
-#- type: "table"
-#  title: "VPP Performance Changes NFV Service Density 2n-skx 2t1c mrr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-2t1c-mrr"
-#  reference:
-#    title: "1908"
-#    data: "vpp-performance-changes-nfv-2n-skx-mrr-ref"
-#  compare:
-#    title: "2001"
-#    data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
-#  data: "vpp-performance-changes-nfv-2n-skx-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'MRR' and 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#
-## VPP Performance Changes NFV Service Density 2n-skx 4t2c mrr
-#- type: "table"
-#  title: "VPP Performance Changes NFV Service Density 2n-skx 4t2c mrr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-4t2c-mrr"
-#  reference:
-#    title: "1908"
-#    data: "vpp-performance-changes-nfv-2n-skx-mrr-ref"
-#  compare:
-#    title: "2001"
-#    data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
-#  data: "vpp-performance-changes-nfv-2n-skx-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'MRR' and 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-#
-## VPP Performance Changes NFV Service Density 2n-skx 8t4c mrr
-#- type: "table"
-#  title: "VPP Performance Changes NFV Service Density 2n-skx 8t4c mrr"
-#  algorithm: "table_perf_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-nfv-2n-skx-8t4c-mrr"
-#  reference:
-#    title: "1908"
-#    data: "vpp-performance-changes-nfv-2n-skx-mrr-ref"
-#  compare:
-#    title: "2001"
-#    data: "vpp-performance-changes-nfv-2n-skx-mrr-cmp"
-#  data: "vpp-performance-changes-nfv-2n-skx-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'8T4C' and 'MRR' and 'NF_DENSITY'"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "result"
-
-# VPP Performance Changes 2n-dnv 1t1c MRR
+# VPP Performance Changes 2n-dnv 1t1c mrr
 - type: "table"
-  title: "VPP Performance Changes 2n-dnv 1t1c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 2n-dnv 1t1c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-mrr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-dnv-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-dnv-mrr-cmp"
-  data: "vpp-performance-changes-2n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  filter: "'1T1C'"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 2n-dnv 2t2c MRR
+# VPP Performance Changes 2n-dnv 2t2c mrr
 - type: "table"
-  title: "VPP Performance Changes 2n-dnv 2t2c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 2n-dnv 2t2c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-mrr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-dnv-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-dnv-mrr-cmp"
-  data: "vpp-performance-changes-2n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  filter: "'2T2C'"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 2n-dnv 4t4c MRR
+# VPP Performance Changes 2n-dnv 4t4c mrr
 - type: "table"
-  title: "VPP Performance Changes 2n-dnv 4t4c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 2n-dnv 4t4c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-4t4c-mrr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-2n-dnv-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-2n-dnv-mrr-cmp"
-  data: "vpp-performance-changes-2n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T4C' and 'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  filter: "'4T4C'"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 3n-dnv 1t1c MRR
+# VPP Performance Changes 3n-dnv 1t1c mrr
 - type: "table"
-  title: "VPP Performance Changes 3n-dnv 1t1c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 3n-dnv 1t1c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-mrr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-dnv-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-dnv-mrr-cmp"
-  data: "vpp-performance-changes-3n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  filter: "'1T1C'"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 3n-dnv 2t2c MRR
+# VPP Performance Changes 3n-dnv 2t2c mrr
 - type: "table"
-  title: "VPP Performance Changes 3n-dnv 2t2c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 3n-dnv 2t2c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-mrr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-dnv-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-dnv-mrr-cmp"
-  data: "vpp-performance-changes-3n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  filter: "'2T2C'"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 3n-dnv 4t4c MRR
+# VPP Performance Changes 3n-dnv 4t4c mrr
 - type: "table"
-  title: "VPP Performance Changes 3n-dnv 4t4c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 3n-dnv 4t4c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-4t4c-mrr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-dnv-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-dnv-mrr-cmp"
-  data: "vpp-performance-changes-3n-dnv-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T4C' and 'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  filter: "'4T4C'"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 3n-tsh 1t1c MRR
+# VPP Performance Changes 3n-tsh 1t1c mrr
 - type: "table"
-  title: "VPP Performance Changes 3n-tsh 1t1c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 3n-tsh 1t1c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-mrr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-tsh-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-tsh-mrr-cmp"
-  data: "vpp-performance-changes-3n-tsh-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  filter: "'1T1C'"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 3n-tsh 2t2c MRR
+# VPP Performance Changes 3n-tsh 2t2c mrr
 - type: "table"
-  title: "VPP Performance Changes 3n-tsh 2t2c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 3n-tsh 2t2c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-mrr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-tsh-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-tsh-mrr-cmp"
-  data: "vpp-performance-changes-3n-tsh-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  filter: "'2T2C'"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
-# VPP Performance Changes 3n-tsh 4t4c MRR
+# VPP Performance Changes 3n-tsh 4t4c mrr
 - type: "table"
-  title: "VPP Performance Changes 3n-tsh 4t4c MRR"
-  algorithm: "table_perf_comparison"
+  title: "VPP Performance Changes 3n-tsh 4t4c mrr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-4t4c-mrr"
-  reference:
-    title: "1908"
-    data: "vpp-performance-changes-3n-tsh-mrr-ref"
-  compare:
-    title: "2001"
-    data: "vpp-performance-changes-3n-tsh-mrr-cmp"
-  data: "vpp-performance-changes-3n-tsh-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T4C' and 'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  filter: "'4T4C'"
+  columns:
+    - title: "1908"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+    - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "1908, 2001 - VPP versions tested."
+    - "Diff - difference between 1908 and 2001 VPP version."
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-mrr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-mrr-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "3n-skx xxv710"
-    data: "vpp-compare-testbeds-mrr-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-mrr-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "3n-skx xxv710"
+      data-set: "vpp-compare-testbeds-mrr-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c mrr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-mrr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-mrr-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "3n-skx xxv710"
-    data: "vpp-compare-testbeds-mrr-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-mrr-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "3n-skx xxv710"
+      data-set: "vpp-compare-testbeds-mrr-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 4c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 4c mrr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-4c-mrr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-mrr-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "3n-skx xxv710"
-    data: "vpp-compare-testbeds-mrr-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '4C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-mrr-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "3n-skx xxv710"
+      data-set: "vpp-compare-testbeds-mrr-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-2t1c-mrr"
-  reference:
-    title: "2n-skx"
-    data: "vpp-compare-testbeds-mrr-skx-clx-ref"
-  compare:
-    title: "2n-clx"
-    data: "vpp-compare-testbeds-mrr-skx-clx-cmp"
-  data: "vpp-compare-testbeds-mrr-skx-clx"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "2n-skx"
+      data-set: "vpp-compare-testbeds-mrr-skx-clx-ref"
+    - title: "2n-clx"
+      data-set: "vpp-compare-testbeds-mrr-skx-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2n-skx, 2n-clx - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx and 2n-clx testbeds."
 
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 4t2c mrr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-4t2c-mrr"
-  reference:
-    title: "2n-skx"
-    data: "vpp-compare-testbeds-mrr-skx-clx-ref"
-  compare:
-    title: "2n-clx"
-    data: "vpp-compare-testbeds-mrr-skx-clx-cmp"
-  data: "vpp-compare-testbeds-mrr-skx-clx"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "2n-skx"
+      data-set: "vpp-compare-testbeds-mrr-skx-clx-ref"
+    - title: "2n-clx"
+      data-set: "vpp-compare-testbeds-mrr-skx-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2n-skx, 2n-clx - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx and 2n-clx testbeds."
 
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 8t4c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 8t4c mrr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-clx-8t4c-mrr"
-  reference:
-    title: "2n-skx"
-    data: "vpp-compare-testbeds-mrr-skx-clx-ref"
-  compare:
-    title: "2n-clx"
-    data: "vpp-compare-testbeds-mrr-skx-clx-cmp"
-  data: "vpp-compare-testbeds-mrr-skx-clx"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'8T4C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "2n-skx"
+      data-set: "vpp-compare-testbeds-mrr-skx-clx-ref"
+    - title: "2n-clx"
+      data-set: "vpp-compare-testbeds-mrr-skx-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2n-skx, 2n-clx - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx and 2n-clx testbeds."
 
 # VPP Comparison Across Topologies 3n-skx to 2n-skx 1c mrr
 - type: "table"
   title: "VPP Comparison Across Topologies 3n-skx to 2n-skx 1c mrr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-1c-mrr"
-  reference:
-    title: "3n-skx"
-    data: "vpp-compare-topologies-mrr-ref"
-  compare:
-    title: "2n-skx"
-    data: "vpp-compare-topologies-mrr-cmp"
-  data: "vpp-compare-topologies-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'MRR' and '1C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  columns:
+    - title: "3n-skx"
+      data-set: "vpp-compare-topologies-mrr-ref"
+    - title: "2n-skx"
+      data-set: "vpp-compare-topologies-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-skx, 2n-skx - topologies tested."
+    - "Diff - difference between 3n-skx and 2n-skx topologies."
 
 # VPP Comparison Across Topologies 3n-skx to 2n-skx 2c mrr
 - type: "table"
   title: "VPP Comparison Across Topologies 3n-skx to 2n-skx 2c mrr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-2c-mrr"
-  reference:
-    title: "3n-skx"
-    data: "vpp-compare-topologies-mrr-ref"
-  compare:
-    title: "2n-skx"
-    data: "vpp-compare-topologies-mrr-cmp"
-  data: "vpp-compare-topologies-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'MRR' and '2C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  columns:
+    - title: "3n-skx"
+      data-set: "vpp-compare-topologies-mrr-ref"
+    - title: "2n-skx"
+      data-set: "vpp-compare-topologies-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-skx, 2n-skx - topologies tested."
+    - "Diff - difference between 3n-skx and 2n-skx topologies."
 
 # VPP Comparison Across Topologies 3n-skx to 2n-skx 4c mrr
 - type: "table"
   title: "VPP Comparison Across Topologies 3n-skx to 2n-skx 4c mrr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-4c-mrr"
-  reference:
-    title: "3n-skx"
-    data: "vpp-compare-topologies-mrr-ref"
-  compare:
-    title: "2n-skx"
-    data: "vpp-compare-topologies-mrr-cmp"
-  data: "vpp-compare-topologies-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'MRR' and '4C' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
+  columns:
+    - title: "3n-skx"
+      data-set: "vpp-compare-topologies-mrr-ref"
+    - title: "2n-skx"
+      data-set: "vpp-compare-topologies-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-skx, 2n-skx - topologies tested."
+    - "Diff - difference between 3n-skx and 2n-skx topologies."
 
 # VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c mrr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-1c-mrr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-mrr-hsw-clx-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "2n-clx xxv710"
-    data: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds-mrr-hsw-clx"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-mrr-hsw-clx-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "2n-clx xxv710"
+      data-set: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c mrr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-2c-mrr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-mrr-hsw-clx-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "2n-clx xxv710"
-    data: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds-mrr-hsw-clx"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-mrr-hsw-clx-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "2n-clx xxv710"
+      data-set: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-hsw to 2n-clx 4c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 4c mrr"
-  algorithm: "table_perf_comparison_nic"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-4c-mrr"
-  reference:
-    title: "3n-hsw xl710"
-    data: "vpp-compare-testbeds-mrr-hsw-clx-ref"
-    nic: "NIC_Intel-XL710"
-  compare:
-    title: "2n-clx xxv710"
-    data: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
-    nic: "NIC_Intel-XXV710"
-  data: "vpp-compare-testbeds-mrr-hsw-clx"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '4C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  - "tags"
+  columns:
+    - title: "3n-hsw xl710"
+      data-set: "vpp-compare-testbeds-mrr-hsw-clx-ref"
+      tag: "NIC_Intel-XL710"
+    - title: "2n-clx xxv710"
+      data-set: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
 
 # Detailed Test Results - VPP Performance Results 3n-hsw
 - type: "table"
@@ -5850,380 +5648,404 @@
 # DPDK Performance Changes 3n-hsw 1t1c pdr
 - type: "table"
   title: "DPDK Performance Changes 3n-hsw 1t1c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-1t1c-pdr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-3n-hsw-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-3n-hsw-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-3n-hsw-cmp"
-  data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-3n-hsw-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-3n-hsw-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-3n-hsw-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Performance Changes 3n-hsw 2t2c pdr
 - type: "table"
   title: "DPDK Performance Changes 3n-hsw 2t2c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-2t2c-pdr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-3n-hsw-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-3n-hsw-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-3n-hsw-cmp"
-  data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-3n-hsw-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-3n-hsw-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-3n-hsw-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
-# DPDK Performance Changes 3n-hsw 1t1c ndr
+# DPDK Performance Changes 3n-hsw 1t1c pdr
 - type: "table"
   title: "DPDK Performance Changes 3n-hsw 1t1c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-1t1c-ndr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-3n-hsw-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-3n-hsw-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-3n-hsw-cmp"
-  data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-3n-hsw-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-3n-hsw-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-3n-hsw-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Performance Changes 3n-hsw 2t2c ndr
 - type: "table"
   title: "DPDK Performance Changes 3n-hsw 2t2c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-2t2c-ndr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-3n-hsw-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-3n-hsw-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-3n-hsw-cmp"
-  data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-3n-hsw-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-3n-hsw-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-3n-hsw-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Performance Changes 3n-skx 2t1c pdr
 - type: "table"
   title: "DPDK Performance Changes 3n-skx 2t1c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-2t1c-pdr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-3n-skx-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-3n-skx-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-3n-skx-cmp"
-  data: "dpdk-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-3n-skx-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-3n-skx-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-3n-skx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Performance Changes 3n-skx 4t2c pdr
 - type: "table"
   title: "DPDK Performance Changes 3n-skx 4t2c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-4t2c-pdr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-3n-skx-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-3n-skx-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-3n-skx-cmp"
-  data: "dpdk-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-3n-skx-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-3n-skx-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-3n-skx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Performance Changes 3n-skx 2t1c ndr
 - type: "table"
   title: "DPDK Performance Changes 3n-skx 2t1c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-2t1c-ndr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-3n-skx-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-3n-skx-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-3n-skx-cmp"
-  data: "dpdk-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-3n-skx-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-3n-skx-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-3n-skx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Performance Changes 3n-skx 4t2c ndr
 - type: "table"
   title: "DPDK Performance Changes 3n-skx 4t2c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-skx-4t2c-ndr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-3n-skx-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-3n-skx-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-3n-skx-cmp"
-  data: "dpdk-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-3n-skx-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-3n-skx-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-3n-skx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Performance Changes 2n-skx 2t1c pdr
 - type: "table"
   title: "DPDK Performance Changes 2n-skx 2t1c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-pdr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-2n-skx-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-2n-skx-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-2n-skx-cmp"
-  data: "dpdk-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-2n-skx-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-2n-skx-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-2n-skx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Performance Changes 2n-skx 4t2c pdr
 - type: "table"
   title: "DPDK Performance Changes 2n-skx 4t2c pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-pdr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-2n-skx-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-2n-skx-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-2n-skx-cmp"
-  data: "dpdk-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-2n-skx-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-2n-skx-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-2n-skx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Performance Changes 2n-skx 2t1c ndr
 - type: "table"
   title: "DPDK Performance Changes 2n-skx 2t1c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-ndr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-2n-skx-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-2n-skx-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-2n-skx-cmp"
-  data: "dpdk-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-2n-skx-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-2n-skx-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-2n-skx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Performance Changes 2n-skx 4t2c ndr
 - type: "table"
   title: "DPDK Performance Changes 2n-skx 4t2c ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-ndr"
-  history:
-    - title: "1904"
-      data: "dpdk-performance-changes-2n-skx-h1"
-  reference:
-    title: "1908"
-    data: "dpdk-performance-changes-2n-skx-ref"
-  compare:
-    title: "2001"
-    data: "dpdk-performance-changes-2n-skx-cmp"
-  data: "dpdk-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "1904"
+      data-set: "dpdk-performance-changes-2n-skx-h1"
+    - title: "1908"
+      data-set: "dpdk-performance-changes-2n-skx-ref"
+    - title: "2001"
+      data-set: "dpdk-performance-changes-2n-skx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 2
+      compare: 3
+  legend:
+    - "Legend to Table"
+    - "1904, 1908, 2001 - DPDK versions tested."
+    - "Diff - difference between 1908 and 2001 DPDK version."
 
 # DPDK Comparison Across Testbeds 3n-hsw to 3n-skx ndr
 - type: "table"
   title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-3n-hsw-3n-skx-ndr"
-  reference:
-    title: "3n-hsw"
-    data: "dpdk-compare-testbeds-ref"
-  compare:
-    title: "3n-skx"
-    data: "dpdk-compare-testbeds-cmp"
-  data: "dpdk-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "3n-hsw x710"
+      data-set: "dpdk-compare-testbeds-ref"
+    - title: "3n-skx x710"
+      data-set: "dpdk-compare-testbeds-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw x710, 3n-skx x710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw x710 and 3n-skx x710 testbeds."
 
 # DPDK Comparison Across Testbeds 3n-hsw to 3n-skx pdr
 - type: "table"
   title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-3n-hsw-3n-skx-pdr"
-  reference:
-    title: "3n-hsw"
-    data: "dpdk-compare-testbeds-ref"
-  compare:
-    title: "3n-skx"
-    data: "dpdk-compare-testbeds-cmp"
-  data: "dpdk-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "3n-hsw x710"
+      data-set: "dpdk-compare-testbeds-ref"
+    - title: "3n-skx x710"
+      data-set: "dpdk-compare-testbeds-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-hsw x710, 3n-skx x710 - testbeds and NICs tested."
+    - "Diff - difference between 3n-hsw x710 and 3n-skx x710 testbeds."
 
 # DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr
 - type: "table"
   title: "DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-clx-ndr"
-  reference:
-    title: "2n-skx"
-    data: "dpdk-compare-testbeds-skx-clx-ref"
-  compare:
-    title: "2n-clx"
-    data: "dpdk-compare-testbeds-skx-clx-cmp"
-  data: "dpdk-compare-testbeds-skx-clx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "2n-skx"
+      data-set: "dpdk-compare-testbeds-skx-clx-ref"
+    - title: "2n-clx"
+      data-set: "dpdk-compare-testbeds-skx-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2n-skx, 2n-clx - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx and 2n-clx testbeds."
 
 # DPDK Comparison Across Testbeds 2n-skx to 2n-clx pdr
 - type: "table"
   title: "DPDK Comparison Across Testbeds 2n-skx to 2n-clx pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-clx-pdr"
-  reference:
-    title: "2n-skx"
-    data: "dpdk-compare-testbeds-skx-clx-ref"
-  compare:
-    title: "2n-clx"
-    data: "dpdk-compare-testbeds-skx-clx-cmp"
-  data: "dpdk-compare-testbeds-skx-clx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "2n-skx"
+      data-set: "dpdk-compare-testbeds-skx-clx-ref"
+    - title: "2n-clx"
+      data-set: "dpdk-compare-testbeds-skx-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2n-skx, 2n-clx - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx and 2n-clx testbeds."
 
 # DPDK Comparison Across Topologies 3n-skx to 2n-skx ndr
 - type: "table"
   title: "DPDK Comparison Across Topologies 3n-skx to 2n-skx ndr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-topologies-3n-skx-2n-skx-ndr"
-  reference:
-    title: "3n-skx"
-    data: "dpdk-compare-topologies-ref"
-  compare:
-    title: "2n-skx"
-    data: "dpdk-compare-topologies-cmp"
-  data: "dpdk-compare-topologies"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "3n-skx"
+      data-set: "dpdk-compare-topologies-ref"
+    - title: "2n-skx"
+      data-set: "dpdk-compare-topologies-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-skx, 2n-skx - topologies tested."
+    - "Diff - difference between 3n-skx and 2n-skx topologies."
 
 # DPDK Comparison Across Topologies 3n-skx to 2n-skx pdr
 - type: "table"
   title: "DPDK Comparison Across Topologies 3n-skx to 2n-skx pdr"
-  algorithm: "table_perf_comparison"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-compare-topologies-3n-skx-2n-skx-pdr"
-  reference:
-    title: "3n-skx"
-    data: "dpdk-compare-topologies-ref"
-  compare:
-    title: "2n-skx"
-    data: "dpdk-compare-topologies-cmp"
-  data: "dpdk-compare-topologies"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+  columns:
+    - title: "3n-skx"
+      data-set: "dpdk-compare-topologies-ref"
+    - title: "2n-skx"
+      data-set: "dpdk-compare-topologies-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "3n-skx, 2n-skx - topologies tested."
+    - "Diff - difference between 3n-skx and 2n-skx topologies."
 
 # Detailed Test Results - DPDK Performance Results 3n-hsw
 - type: "table"
