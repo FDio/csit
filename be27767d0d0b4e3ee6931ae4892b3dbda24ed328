@@ -142,6 +142,30 @@
       "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a96145c_a00e745e",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-04-29T13:24:22Z",
+      "side": 1,
+      "message": "\u003e No. If a (variable table of a) suite does not specify some value, \n\u003e the value from a (variable table of a) library is applied. Hence \n\u003e only the suites wanting to override the defaults need to add the\n\u003e variables.\n\nOk, then do you agree that it would be good to refactor the existing libraries/suites to reduce the number of variables replicated across the test suites which are all set to the same value?  I think this would be a good thing to put on the \u0027housekeeping\u0027 list.\n\nWill fix this patch accordingly.",
+      "parentUuid": "e278d1c6_58515658",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 77
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
