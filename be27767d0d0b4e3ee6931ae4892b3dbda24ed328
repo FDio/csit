@@ -118,6 +118,30 @@
       "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e278d1c6_58515658",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T12:00:19Z",
+      "side": 1,
+      "message": "\u003e No different jobs.\n\nSo a single job. Will it allow a trigger that selects both \"yes TG\" and \"no TG\" tests? If not, how?\nI guess this patch shows how \"yes TG\" and \"no TG\" tests can be triggered in the same job.\nI am still not sure how do you plan to define multiple topologies for the same testbed. Or is it just a single topology file (without TG) and our setup keywords will add the missing details? If yes, based on what?\n\n\u003e that is why reservation was always DUT\n\nOk. We have moved the reservation out of DUT because apparently SSH access was messing with VPP workers. Maybe after latest irqbalance fixes it no longer does?\nBut with \"no different jobs\" it should not matter where do the jobs check the reservation.",
+      "parentUuid": "16347cdd_dfc06f8d",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 77
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
