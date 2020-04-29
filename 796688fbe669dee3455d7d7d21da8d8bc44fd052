@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fe5f44c5_cfebca8e",
+        "filename": "resources/libraries/bash/entry/bisect.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T13:50:04Z",
+      "side": 1,
+      "message": "This is still useful info, especially for RCA.\n\nBut I will move the info somewhere else, probably into a new table somewhere in docs, so future methodology description can point to it.",
+      "parentUuid": "6eeada32_fead817e",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 21
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6d375fde_edcecee9",
         "filename": "resources/libraries/bash/entry/bisect.sh",
         "patchSetId": 137
@@ -36,6 +60,30 @@
       "writtenOn": "2020-04-29T10:10:23Z",
       "side": 1,
       "message": "cleanup should run before and after run_...",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 33
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bac0a6f9_d3dd3a2c",
+        "filename": "resources/libraries/bash/entry/bisect.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T13:50:04Z",
+      "side": 1,
+      "message": "Looking at it now, this is not required here, since we added \"and cleanup\" to line 135.\nWill review other instances and move cleanup to a more logical places where needed.",
+      "parentUuid": "6d375fde_edcecee9",
       "range": {
         "startLine": 142,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d7ab9e12_9d584f63",
+        "filename": "resources/libraries/bash/entry/bisect.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T13:50:04Z",
+      "side": 1,
+      "message": "Currenty the whole VPP repo (from initial commit to master HEAD) is 14 iterations, so I do not expect any surprises there.\nBut why not, I will add such hard stop to avoid possible bugs in future.",
+      "parentUuid": "fa35cb41_9ac409c9",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 1
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "215490c8_f95a6462",
         "filename": "resources/libraries/bash/entry/bisect.sh",
         "patchSetId": 137
@@ -82,6 +154,30 @@
       "writtenOn": "2020-04-29T10:10:23Z",
       "side": 1,
       "message": "we agreed that entry scripts do have only function call. Similarily above, bisect should be function",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 17
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58f72c32_d6625c26",
+        "filename": "resources/libraries/bash/entry/bisect.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T13:50:04Z",
+      "side": 1,
+      "message": "Ok, will do, I agree this is too complicated for an entry script.",
+      "parentUuid": "215490c8_f95a6462",
       "range": {
         "startLine": 152,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "a894421a_38cc2db6",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T13:50:04Z",
+      "side": 1,
+      "message": "I agree, default die is better than confused messages.",
+      "parentUuid": "24db6d3f_092ab770",
+      "range": {
+        "startLine": 542,
+        "startChar": 56,
+        "endLine": 542,
+        "endChar": 76
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a4cdc62_5bbd8fb2",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 137
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "f305215d_747213d9",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T13:50:04Z",
+      "side": 1,
+      "message": "I will replace with text telling users which sub-function to investigate.",
+      "parentUuid": "0a4cdc62_5bbd8fb2",
+      "range": {
+        "startLine": 660,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 76
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07a884a6_0c17ebc7",
         "filename": "resources/libraries/bash/function/per_patch.sh",
         "patchSetId": 137
@@ -151,6 +295,30 @@
       "writtenOn": "2020-04-29T10:10:23Z",
       "side": 1,
       "message": "must stays as pkg-verify",
+      "range": {
+        "startLine": 87,
+        "startChar": 22,
+        "endLine": 87,
+        "endChar": 58
+      },
+      "revId": "796688fbe669dee3455d7d7d21da8d8bc44fd052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71ae1c7e_2a95ff51",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 137
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-29T13:50:04Z",
+      "side": 1,
+      "message": "Last time I checked it lead to memory-related error on ARM (or was it Denverton?), as the line 86 suggests.\nI will probably use pkg-verify in this Change, and create another change (putting the highlighted text back) as a fix, if runs show the fix is needed.",
+      "parentUuid": "07a884a6_0c17ebc7",
       "range": {
         "startLine": 87,
         "startChar": 22,
