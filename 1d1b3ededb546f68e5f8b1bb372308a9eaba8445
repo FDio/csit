@@ -138,6 +138,30 @@
       "revId": "1d1b3ededb546f68e5f8b1bb372308a9eaba8445",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06e462e9_20a40fd3",
+        "filename": "resources/tools/block_replacer/replace.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T13:25:46Z",
+      "side": 1,
+      "message": "Ok, so this is more difficult.\nWhat I was thinking about is collections.namedtuple (without space), but that is just a factory function [0], and the created objects do not share a common parent class [1].\nNow, finding a better description I actually checked what the type of args 9as created in line 58) is. It is argparse.Namespace.\nThe worst thing is this function does not care whether args is named tuple or Namespace or what else. It cares about presence of attributes (already mentioned) and their semantics (not mentioned here, just in help\u003d lines).\nAnyway, next patch will have a better description.\n\n[0] https://docs.python.org/3/library/collections.html#collections.namedtuple\n[1] https://stackoverflow.com/questions/2166818/how-to-check-if-an-object-is-an-instance-of-a-namedtuple",
+      "parentUuid": "b325ecca_2334c44d",
+      "range": {
+        "startLine": 67,
+        "startChar": 16,
+        "endLine": 67,
+        "endChar": 27
+      },
+      "revId": "1d1b3ededb546f68e5f8b1bb372308a9eaba8445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
