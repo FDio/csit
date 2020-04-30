@@ -365,7 +365,10 @@ class PapiSocketExecutor:
         Also remove the local sockets by deleting the temporary directory.
         Arguments related to possible exception are entirely ignored.
         """
-        self.vpp_instance.disconnect()
+        try:
+            self.vpp_instance.disconnect()
+        except self.vpp_instance.VPPApiError:
+            pass
         run([
             u"ssh", u"-S", self._ssh_control_socket, u"-O", u"exit", u"0.0.0.0"
         ], check=False)
