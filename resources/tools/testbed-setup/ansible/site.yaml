@@ -9,6 +9,3 @@
 
 - import_playbook: vpp_device.yaml
   tags: vpp-device
-
-- import_playbook: cobbler.yaml
-  tags: cobbler
