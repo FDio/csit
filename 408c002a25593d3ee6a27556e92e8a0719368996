@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6590c237_d488d8e4",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca2.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T17:43:10Z",
+      "side": 1,
+      "message": "What is the peferred way to refer to a cause? This is a gerrit number. We can also use commit hash, or \"git describe\" string (e.g. v20.05-rc0-653-gd7586d50f). Or open a Jira task and point to that.",
+      "range": {
+        "startLine": 22,
+        "startChar": 61,
+        "endLine": 22,
+        "endChar": 66
+      },
+      "revId": "408c002a25593d3ee6a27556e92e8a0719368996",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
