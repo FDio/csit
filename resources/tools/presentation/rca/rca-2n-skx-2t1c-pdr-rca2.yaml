@@ -19,14 +19,22 @@ footnote: "[5] Unknown VPP progression, retro-inspection of weekly
     [6] Known VPP Regression:
     https://gerrit.fd.io/r/c/vpp/+/23963#message-044278e6_752c3327
 
-    [7] Unknown VPP regression in avf-ip4scale tests.
+    [7] Regression in avf-ip4scale tests, probably caused by 23036.
+    There is some uncertainty, as different jobs see different performance.
+    https://gerrit.fd.io/r/c/vpp/+/23036#message-3d27f881_597f5cd1
 
     [8] VPP vhost-user (with vpp inside VM) PDR throughput rate has
     somewhat higher stdev than before.
 
     [9] Unknown VPP Progression in vhost-user tests (with testpmd inside
-    VM).
+    VM). Cause not exactly known, as it happened before 22277,
+    a major vhost-used API change.
 
     [10] Unknown VPP regression in avf-ip4base tests.
+    It happened somewhere between 18361 and 24505,
+    but this bisect job is particularly likely to cause SSD failure,
+    so the search is postoned.
 
-    [11] Unknown VPP regression in memif tests."
+    [11] The regression happened here:
+    https://gerrit.fd.io/r/c/vpp/+/23801/2#message-6a7a04368c75d7a3a1d477940651ce71710aedf6
+"
