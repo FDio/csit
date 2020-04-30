@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0ad0c9b3_b91f3af5",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T14:59:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f0a662b_32d38cbf",
+      "range": {
+        "startLine": 297,
+        "startChar": 21,
+        "endLine": 297,
+        "endChar": 29
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c66eef2_7e944407",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 96
@@ -45,6 +69,30 @@
       "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2821892e_0cd743e2",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T14:59:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c66eef2_7e944407",
+      "range": {
+        "startLine": 717,
+        "startChar": 32,
+        "endLine": 717,
+        "endChar": 33
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "b47a48a7_5e1ed188",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T14:59:31Z",
+      "side": 1,
+      "message": "I find get_replies docstring sufficient.\nI was thinking to include a comment line in each call site using the fast pattern, but eventually decided it is not really needed. Similarly to the slow pattern, I think we can assume it will become a common knowledge.",
+      "parentUuid": "ef4296b1_cc63bd6e",
+      "range": {
+        "startLine": 719,
+        "startChar": 27,
+        "endLine": 719,
+        "endChar": 29
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae309d51_ed78e63e",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 96
@@ -127,6 +199,24 @@
       "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "422e2783_221ed5af",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T14:59:31Z",
+      "side": 1,
+      "message": "Added TODOs to convert to dataclasses when on Python3.7, that should be sufficient for now.",
+      "parentUuid": "ab40fb42_f6efc32a",
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -177,6 +267,30 @@
     },
     {
       "key": {
+        "uuid": "0255e12f_30ac791d",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T14:59:31Z",
+      "side": 1,
+      "message": "Done and done.",
+      "parentUuid": "b69d9443_b950d5ea",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 55
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "138b06f7_ffd35144",
         "filename": "resources/libraries/python/PapiSocketExecutor.py",
         "patchSetId": 96
@@ -197,6 +311,30 @@
       "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2193d919_9a1baa11",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T14:59:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "138b06f7_ffd35144",
+      "range": {
+        "startLine": 905,
+        "startChar": 34,
+        "endLine": 905,
+        "endChar": 40
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -247,6 +385,30 @@
     },
     {
       "key": {
+        "uuid": "eccddb03_88784f84",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T14:59:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31fd3361_4596ce66",
+      "range": {
+        "startLine": 918,
+        "startChar": 2,
+        "endLine": 922,
+        "endChar": 71
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "00e3d868_9a39a36b",
         "filename": "resources/libraries/python/PapiSocketExecutor.py",
         "patchSetId": 96
@@ -294,6 +456,30 @@
     },
     {
       "key": {
+        "uuid": "3d855e23_4dbb2d4f",
+        "filename": "resources/libraries/python/PapiSocketExecutor.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T14:59:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25fef9c6_1f2d14f0",
+      "range": {
+        "startLine": 962,
+        "startChar": 1,
+        "endLine": 966,
+        "endChar": 71
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71de8d0f_9d912b05",
         "filename": "resources/libraries/python/VppCounters.py",
         "patchSetId": 96
@@ -338,6 +524,30 @@
       "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4666af0_9948e49d",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 96
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-04-30T14:59:31Z",
+      "side": 1,
+      "message": "Decided to rename \"threads\" to \"counter-list\" (because it is a list containing values of a counter) and \"thread\" to \"vpp_thread\" (as it enumerates the union of main thread and worker threads).",
+      "parentUuid": "be4b2578_3bfe6512",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 28
+      },
+      "revId": "dd18205920ddca7041952b2f5046b90f8f032d25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
