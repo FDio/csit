@@ -819,6 +819,7 @@ class PapiSocketExecutor:
         func = getattr(api_object, command[u"api_name"])
         func(**command[u"api_args"])
         first_sent = socket.flush_sent()
+        logger.trace(f"sent first command {command}")
         command = state.local_list[state.send_index]
         state.send_index += 1
         func = getattr(api_object, command[u"api_name"])
