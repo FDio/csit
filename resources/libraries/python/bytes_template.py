@@ -15,6 +15,8 @@
 
 import struct
 
+from robot.api import logger
+
 
 class BytesTemplate:
     """This is a class for internal use (no Robot keywords are defined here).
@@ -86,6 +88,7 @@ class BytesTemplate:
         second = bytes(second)
         length = len(first)
         sec_len = len(second)
+        logger.trace(f"first : {first.hex()}\nsecond: {second.hex()}")
         if sec_len != length:
             raise RuntimeError(f"Lengths do not match. {length} vs {sec_len}")
         # Substrings are always equal.
@@ -150,6 +153,8 @@ class BytesTemplate:
             # Reserve contains the final substring.
             template.append(reserve_2)
         # Create and return the new instance.
+        instance = cls(template)
+        logger.trace(f"created template {instance}")
         return cls(template)
 
     def generator(self, iterations, get_context=None):

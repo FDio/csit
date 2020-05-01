@@ -110,7 +110,8 @@ class IPsecUtil:
         :returns: The generated payload.
         :rtype: bytes
         """
-        letters = ascii_lowercase[1:-1] + ascii_uppercase[1:-1]
+        letters = u"bc"
+#        letters = ascii_lowercase[1:-1] + ascii_uppercase[1:-1]
         key = bytearray(map(ord, choices(letters, k=length)))
         for index, key_byte in enumerate(key):
             if index == len(cls.LAST_KEY_BITS):
