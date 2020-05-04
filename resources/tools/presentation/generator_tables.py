@@ -829,6 +829,8 @@ def table_perf_trending_dash(table, input_data):
     ]
     header_str = u",".join(header) + u"\n"
 
+    incl_tests = table.get(u"include-tests", u"MRR")
+
     # Prepare data to the table:
     tbl_dict = dict()
     for job, builds in table[u"data"].items():
@@ -846,8 +848,15 @@ def table_perf_trending_dash(table, input_data):
                         u"data": OrderedDict()
                     }
                 try:
-                    tbl_dict[tst_name][u"data"][str(build)] = \
-                        tst_data[u"result"][u"receive-rate"]
+                    if incl_tests == u"MRR":
+                        tbl_dict[tst_name][u"data"][str(build)] = \
+                            tst_data[u"result"][u"receive-rate"]
+                    elif incl_tests == u"NDR":
+                        tbl_dict[tst_name][u"data"][str(build)] = \
+                            tst_data[u"throughput"][u"NDR"][u"LOWER"]
+                    elif incl_tests == u"PDR":
+                        tbl_dict[tst_name][u"data"][str(build)] = \
+                            tst_data[u"throughput"][u"PDR"][u"LOWER"]
                 except (TypeError, KeyError):
                     pass  # No data in output.xml for this test
 
@@ -1799,9 +1808,9 @@ def table_weekly_comparison(table, in_data):
 
     header = [
         [u"Version"],
-        [u"Date", ],
-        [u"Build", ],
-        [u"Testbed", ]
+        [u"Start Timestamp", ],
+        [u"CSIT Build", ],
+        [u"CSIT Testbed", ]
     ]
     tbl_dict = dict()
     idx = 0
