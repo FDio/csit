@@ -4443,7 +4443,7 @@
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2t2c' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
+  filter: "'2T2C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   columns:
     - title: "1904"
       data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
