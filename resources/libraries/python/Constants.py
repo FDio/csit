@@ -229,7 +229,9 @@ class Constants(object):
     SOCKSTAT_PATH = "/run/vpp/stats.sock"
 
     # Global "kill switch" for CRC checking during runtime.
-    FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env("FAIL_ON_CRC_MISMATCH")
+    FAIL_ON_CRC_MISMATCH = False  # get_pessimistic_bool_from_env(
+#        u"FAIL_ON_CRC_MISMATCH"
+#    )
 
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
