@@ -109,9 +109,9 @@ class Tap:
         :param name: Optional name of a specific TAP interface.
         :type node: dict
         :type name: str
-        :returns: Dictionary of information about a specific TAP interface, or
+        :returns: Object with information about a specific TAP interface, or
             a List of dictionaries containing all TAP data for the given node.
-        :rtype: dict or list
+        :rtype: named tuple or list
         """
         def process_tap_dump(tap_dump):
             """Process tap dump.
@@ -119,20 +119,20 @@ class Tap:
             :param tap_dump: Tap interface dump.
             :type tap_dump: dict
             :returns: Processed tap interface dump.
-            :rtype: dict
+            :rtype: named tuple
             """
-            tap_dump[u"host_mac_addr"] = str(tap_dump[u"host_mac_addr"])
-            tap_dump[u"host_ip4_prefix"] = str(tap_dump[u"host_ip4_prefix"])
-            tap_dump[u"host_ip6_prefix"] = str(tap_dump[u"host_ip6_prefix"])
-            tap_dump[u"tap_flags"] = tap_dump[u"tap_flags"].value \
-                if hasattr(tap_dump[u"tap_flags"], u"value") \
-                else int(tap_dump[u"tap_flags"])
-            tap_dump[u"host_namespace"] = None \
-                if tap_dump[u"host_namespace"] == u"(nil)" \
-                else tap_dump[u"host_namespace"]
-            tap_dump[u"host_bridge"] = None \
-                if tap_dump[u"host_bridge"] == u"(nil)" \
-                else tap_dump[u"host_bridge"]
+            tap_dump.host_mac_addr = str(tap_dump.host_mac_addr)
+            tap_dump.host_ip4_prefix = str(tap_dump.host_ip4_prefix)
+            tap_dump.host_ip6_prefix = str(tap_dump.host_ip6_prefix)
+            tap_dump.tap_flags = tap_dump.tap_flags.value \
+                if hasattr(tap_dump.tap_flags, u"value") \
+                else int(tap_dump.tap_flags)
+            tap_dump.host_namespace = None \
+                if tap_dump.host_namespace == u"(nil)" \
+                else tap_dump.host_namespace
+            tap_dump.host_bridge = None \
+                if tap_dump.host_bridge == u"(nil)" \
+                else tap_dump.host_bridge
 
             return tap_dump
 
