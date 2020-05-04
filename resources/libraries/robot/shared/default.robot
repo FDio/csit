@@ -214,8 +214,6 @@
 | | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${107520}
 | | | ${ipsec} | Get Match Count | ${TEST TAGS} | IPSEC
 | | | ... | case_insensitive=True
-| | | Run keyword if | ${ipsec} and ${jumbo}
-| | | ... | ${dut}.Add Buffers Default Data Size | 9200
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
