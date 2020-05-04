@@ -28,6 +28,11 @@ function checkout_csit_for_vpp () {
     # When the refspec is overriden, the computation is still performed,
     # in order to show (on Sandbox) the computation is correct.
     #
+    # Git status and git log -1 are executed, so the current state
+    # of the checked-out branch is visible.
+    # This is mainly useful for identifying trending anomalies
+    # caused by changes in CSIT code.
+    #
     # On failure, working directory could remain changed to ${CSIT_DIR}.
     # TODO: It could be possible to use ERR trap to force popd,
     #   but with "set -x" the noise is not worth it,
@@ -82,5 +87,7 @@ function checkout_csit_for_vpp () {
     else
         git checkout "${csit_branch}" || die
     fi
+    git status || die
+    git log -1 || die
     popd || die
 }
