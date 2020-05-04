@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,46 +14,72 @@
 # limitations under the License.
 
 """Traffic script that sends an ICMP/ICMPv6 packet out one interface, receives
-a LISP-encapsulated packet on the other interface and verifies received packet.
+a LISPGPE-encapsulated packet on the other interface and verifies received
+packet.
 """
 
 import sys
 import ipaddress
 
 from scapy.all import bind_layers, Packet
-from scapy.fields import FlagsField, BitField, IntField
+from scapy.fields import FlagsField, BitField, XBitField, IntField
 from scapy.layers.inet import ICMP, IP, UDP
 from scapy.layers.inet6 import ICMPv6EchoRequest
 from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
-from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
-from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
+from ..PacketVerifier import RxQueue, TxQueue
+from ..TrafficScriptArg import TrafficScriptArg
 
 
-class LispHeader(Packet):
-    """Scapy header for the LISP Layer."""
+class LispGPEHeader(Packet):
+    """Scapy header for the Lisp GPE Layer."""
 
-    name = u"Lisp Header"
+    name = "Lisp GPE Header"
     fields_desc = [
         FlagsField(
-            u"flags", None, 8, [u"N", u"L", u"E", u"V", u"I", u"", u"", u""]
+            u"flags", None, 8, [u"N", u"L", u"E", u"V", u"I", u"P", u"R", u"O"]
         ),
-        BitField(u"nonce/map_version", 0, size=24),
-        IntField(u"instance_id/locator_status_bits", 0)]
+        BitField(u"version", 0, size=2),
+        BitField(u"reserved", 0, size=14),
+        XBitField(u"next_protocol", 0, size=8),
+        IntField(u"instance_id/locator_status_bits", 0)
+    ]
+
+    def guess_payload_class(self, payload):
+        protocol = {
+            0x1: LispGPEInnerIP,
+            0x2: LispGPEInnerIPv6,
+            0x3: LispGPEInnerEther,
+            0x4: LispGPEInnerNSH
+        }
+        return protocol[self.next_protocol]
 
 
-class LispInnerIP(IP):
-    """Scapy inner LISP layer for IPv4-in-IPv4."""
+class LispGPEInnerIP(IP):
+    """Scapy inner LISP GPE layer for IPv4-in-IPv4."""
 
-    name = u"Lisp Inner Layer - IPv4"
+    name = u"Lisp GPE Inner Layer - IPv4"
 
 
-class LispInnerIPv6(IPv6):
-    """Scapy inner LISP layer for IPv6-in-IPv6."""
+class LispGPEInnerIPv6(IPv6):
+    """Scapy inner LISP GPE layer for IPv6-in-IPv6."""
 
-    name = u"Lisp Inner Layer - IPv6"
+    name = u"Lisp GPE Inner Layer - IPv6"
+
+
+class LispGPEInnerEther(Ether):
+    """Scapy inner LISP GPE layer for Lisp-L2."""
+
+    name = u"Lisp GPE Inner Layer - Ethernet"
+
+
+class LispGPEInnerNSH(Packet):
+    """Scapy inner LISP GPE layer for Lisp-NSH.
+
+    Parsing not implemented.
+    """
 
 
 def valid_ipv4(ip):
@@ -106,17 +132,14 @@ def main():
         pkt_raw /= IP(src=src_ip, dst=dst_ip)
         pkt_raw /= ICMP()
         ip_format = IP
-        lisp_layer = LispInnerIP
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
         pkt_raw /= IPv6(src=src_ip, dst=dst_ip)
         pkt_raw /= ICMPv6EchoRequest()
         ip_format = IPv6
-        lisp_layer = LispInnerIPv6
     else:
         raise ValueError(u"IP not in correct format")
 
-    bind_layers(UDP, LispHeader, dport=4341)
-    bind_layers(LispHeader, lisp_layer)
+    bind_layers(UDP, LispGPEHeader, dport=4341)
 
     pkt_raw /= Raw()
     sent_packets = list()
@@ -147,9 +170,9 @@ def main():
     elif not isinstance(ip, ip_format):
             raise RuntimeError(f"Not an IP packet received {ip!r}")
 
-    lisp = ether.getlayer(lisp_layer)
+    lisp = ether.getlayer(LispGPEHeader).underlayer
     if not lisp:
-        raise RuntimeError("Lisp layer not present or parsing failed.")
+        raise RuntimeError(u"Lisp layer not present or parsing failed.")
 
     # Compare data from packets
     if src_ip == lisp.src:
