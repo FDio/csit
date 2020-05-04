@@ -1539,6 +1539,10 @@ def table_comparison(table, input_data):
                 u"stdev": tst_data[u"stdev"]
             }
 
+    if not tbl_dict:
+        logging.warning(f"No data for table {table.get(u'title', u'')}!")
+        return
+
     tbl_lst = list()
     for tst_data in tbl_dict.values():
         row = [tst_data[u"name"], ]
