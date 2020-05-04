@@ -169,8 +169,17 @@ def _generate_trending_traces(in_data, job_name, build_info,
     """
 
     data_x = list(in_data.keys())
-    data_y_pps = list(in_data.values())
-    data_y_mpps = [float(item) / 1e6 for item in data_y_pps]
+    data_y_pps = list()
+    data_y_stdev = list()
+    for item in in_data.values():
+        if isinstance(item, dict):
+            data_y_pps.append(float(item.get(u"receive-rate", u"nan")))
+            data_y_stdev.append(float(item.get(u"receive-stdev", u"nan")))
+        else:
+            data_y_pps.append(float(u"nan"))
+            data_y_stdev.append(float(u"nan"))
+
+    data_y_mpps = [item / 1e6 for item in data_y_pps]
 
     hover_text = list()
     xaxis = list()
@@ -179,6 +188,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         date = build_info[job_name][str_key][0]
         hover_str = (u"date: {date}<br>"
                      u"value [Mpps]: {value:.3f}<br>"
+                     u"stdev [Mpps]: {stdev:.3f}<br>"
                      u"{sut}-ref: {build}<br>"
                      u"csit-ref: mrr-{period}-build-{build_nr}<br>"
                      u"testbed: {testbed}")
@@ -186,6 +196,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
             hover_text.append(hover_str.format(
                 date=date,
                 value=data_y_mpps[index],
+                stdev=data_y_stdev[index],
                 sut=u"dpdk",
                 build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
                 period=u"weekly",
@@ -195,6 +206,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
             hover_text.append(hover_str.format(
                 date=date,
                 value=data_y_mpps[index],
+                stdev=data_y_stdev[index],
                 sut=u"vpp",
                 build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
                 period=u"daily",
@@ -377,8 +389,7 @@ def _generate_all_charts(spec, input_data):
                     if chart_data.get(test_name, None) is None:
                         chart_data[test_name] = OrderedDict()
                     try:
-                        chart_data[test_name][int(index)] = \
-                            test[u"result"][u"receive-rate"]
+                        chart_data[test_name][int(index)] = test[u"result"]
                         chart_tags[test_name] = test.get(u"tags", None)
                     except (KeyError, TypeError):
                         pass
@@ -387,9 +398,12 @@ def _generate_all_charts(spec, input_data):
         for tst_name, tst_data in chart_data.items():
             tst_lst = list()
             for bld in builds_dict[job_name]:
-                itm = tst_data.get(int(bld), u'')
+                itm = tst_data.get(int(bld), dict())
                 # CSIT-1180: Itm will be list, compute stats.
-                tst_lst.append(str(itm))
+                try:
+                    tst_lst.append(str(itm.get(u"receive-rate", u"")))
+                except AttributeError:
+                    tst_lst.append(u"")
             csv_tbl.append(f"{tst_name}," + u",".join(tst_lst) + u'\n')
 
         # Generate traces:
