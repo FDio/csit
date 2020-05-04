@@ -175,7 +175,7 @@ class Policer:
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        return reply[u"policer_index"]
+        return reply.policer_index
 
     @staticmethod
     def policer_classify_set_interface(

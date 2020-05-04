@@ -17,6 +17,7 @@ from time import sleep
 from enum import IntEnum
 
 from ipaddress import ip_address
+from namedlist import namedlist
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
@@ -353,8 +354,8 @@ class InterfaceUtil:
             not_ready = list()
             out = InterfaceUtil.vpp_get_interface_data(node)
             for interface in out:
-                if interface.get(u"flags") == 1:
-                    not_ready.append(interface.get(u"interface_name"))
+                if interface.flags == 1:
+                    not_ready.append(interface.interface_name)
             if not_ready:
                 logger.debug(
                     f"Interfaces still not in link-up state:\n{not_ready}"
@@ -393,9 +394,9 @@ class InterfaceUtil:
         :param interface: Numeric index or name string of a specific interface.
         :type node: dict
         :type interface: int or str
-        :returns: List of dictionaries containing data for each interface, or a
-            single dictionary for the specified interface.
-        :rtype: list or dict
+        :returns: List of named tuples containing data for each interface, or a
+            single named tuple for the specified interface.
+        :rtype: list or obj
         :raises TypeError: if the data type of interface is neither basestring
             nor int.
         """
@@ -407,17 +408,19 @@ class InterfaceUtil:
             :returns: Processed interface dump.
             :rtype: dict
             """
-            if_dump[u"l2_address"] = str(if_dump[u"l2_address"])
-            if_dump[u"b_dmac"] = str(if_dump[u"b_dmac"])
-            if_dump[u"b_smac"] = str(if_dump[u"b_smac"])
-            if_dump[u"flags"] = if_dump[u"flags"].value
-            if_dump[u"type"] = if_dump[u"type"].value
-            if_dump[u"link_duplex"] = if_dump[u"link_duplex"].value
-            if_dump[u"sub_if_flags"] = if_dump[u"sub_if_flags"].value \
-                if hasattr(if_dump[u"sub_if_flags"], u"value") \
-                else int(if_dump[u"sub_if_flags"])
+            ret_init = namedlist(u"IfDump", if_dump._fields, rename=True)
+            ret = ret_init(*if_dump)
+            ret.l2_address = str(if_dump.l2_address)
+            ret.b_dmac = str(if_dump.b_dmac)
+            ret.b_smac = str(if_dump.b_smac)
+            ret.flags = if_dump.flags.value
+            ret.type = if_dump.type.value
+            ret.link_duplex = if_dump.link_duplex.value
+            ret.sub_if_flags = if_dump.sub_if_flags.value \
+                if hasattr(if_dump.sub_if_flags, u"value") \
+                else int(if_dump.sub_if_flags)
 
-            return if_dump
+            return ret
 
         if interface is not None:
             if isinstance(interface, str):
@@ -439,11 +442,11 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
-        data = list() if interface is None else dict()
+        data = list() if interface is None else None
         for dump in details:
             if interface is None:
                 data.append(process_if_dump(dump))
-            elif str(dump.get(param)).rstrip(u"\x00") == str(interface):
+            elif str(getattr(dump, param)) == str(interface):
                 data = process_if_dump(dump)
                 break
 
@@ -462,12 +465,12 @@ class InterfaceUtil:
         :rtype: str
         """
         if_data = InterfaceUtil.vpp_get_interface_data(node, sw_if_index)
-        if if_data[u"sup_sw_if_index"] != if_data[u"sw_if_index"]:
+        if if_data.sup_sw_if_index != if_data.sw_if_index:
             if_data = InterfaceUtil.vpp_get_interface_data(
-                node, if_data[u"sup_sw_if_index"]
+                node, if_data.sup_sw_if_index
             )
 
-        return if_data.get(u"interface_name")
+        return if_data.interface_name
 
     @staticmethod
     def vpp_get_interface_sw_index(node, interface_name):
@@ -497,11 +500,11 @@ class InterfaceUtil:
         :rtype: str
         """
         if_data = InterfaceUtil.vpp_get_interface_data(node, interface)
-        if if_data[u"sup_sw_if_index"] != if_data[u"sw_if_index"]:
+        if if_data.sup_sw_if_index != if_data.sw_if_index:
             if_data = InterfaceUtil.vpp_get_interface_data(
-                node, if_data[u"sup_sw_if_index"])
+                node, if_data.sup_sw_if_index)
 
-        return if_data.get(u"l2_address")
+        return if_data.l2_address
 
     @staticmethod
     def vpp_set_interface_mac(node, interface, mac):
@@ -600,22 +603,22 @@ class InterfaceUtil:
         interface_list = InterfaceUtil.vpp_get_interface_data(node)
         interface_dict = dict()
         for ifc in interface_list:
-            interface_dict[ifc[u"l2_address"]] = ifc
+            interface_dict[ifc.l2_address] = ifc
 
         for if_name, if_data in node[u"interfaces"].items():
-            ifc_dict = interface_dict.get(if_data[u"mac_address"])
-            if ifc_dict is not None:
-                if_data[u"name"] = ifc_dict[u"interface_name"]
-                if_data[u"vpp_sw_index"] = ifc_dict[u"sw_if_index"]
-                if_data[u"mtu"] = ifc_dict[u"mtu"][0]
+            ifc_obj = interface_dict.get(if_data.mac_address)
+            if ifc_obj is not None:
+                if_data[u"name"] = ifc_obj.interface_name
+                if_data[u"vpp_sw_index"] = ifc_obj.sw_if_index
+                if_data[u"mtu"] = ifc_obj.mtu[0]
                 logger.trace(
                     f"Interface {if_name} found by MAC "
-                    f"{if_data[u'mac_address']}"
+                    f"{if_data.mac_address}"
                 )
             else:
                 logger.trace(
                     f"Interface {if_name} not found by MAC "
-                    f"{if_data[u'mac_address']}"
+                    f"{if_data.mac_address}"
                 )
                 if_data[u"vpp_sw_index"] = None
 
@@ -880,11 +883,13 @@ class InterfaceUtil:
             :param vxlan_dump: Vxlan interface dump.
             :type vxlan_dump: dict
             :returns: Processed vxlan interface dump.
-            :rtype: dict
+            :rtype: object
             """
-            vxlan_dump[u"src_address"] = str(vxlan_dump[u"src_address"])
-            vxlan_dump[u"dst_address"] = str(vxlan_dump[u"dst_address"])
-            return vxlan_dump
+            ret_init = namedlist(u"VxlanDump", vxlan_dump._fields, rename=True)
+            ret = ret_init(*vxlan_dump)
+            ret.src_address = str(vxlan_dump.src_address)
+            ret.dst_address = str(vxlan_dump.dst_address)
+            return ret
 
         if interface is not None:
             sw_if_index = InterfaceUtil.get_interface_index(node, interface)
@@ -904,7 +909,7 @@ class InterfaceUtil:
         for dump in details:
             if interface is None:
                 data.append(process_vxlan_dump(dump))
-            elif dump[u"sw_if_index"] == sw_if_index:
+            elif dump.sw_if_index == sw_if_index:
                 data = process_vxlan_dump(dump)
                 break
 
@@ -1266,29 +1271,29 @@ class InterfaceUtil:
             details = papi_exec.add(cmd).get_details(err_msg)
 
         for bond in details:
-            data += f"{bond[u'interface_name']}\n"
+            data += f"{bond.interface_name}\n"
             data += u"  mode: {m}\n".format(
-                m=bond[u"mode"].name.replace(u"BOND_API_MODE_", u"").lower()
+                m=bond.mode.name.replace(u"BOND_API_MODE_", u"").lower()
             )
             data += u"  load balance: {lb}\n".format(
-                lb=bond[u"lb"].name.replace(u"BOND_API_LB_ALGO_", u"").lower()
+                lb=bond.lb.name.replace(u"BOND_API_LB_ALGO_", u"").lower()
             )
-            data += f"  number of active slaves: {bond[u'active_slaves']}\n"
+            data += f"  number of active slaves: {bond.active_slaves}\n"
             if verbose:
                 slave_data = InterfaceUtil.vpp_bond_slave_dump(
                     node, Topology.get_interface_by_sw_index(
-                        node, bond[u"sw_if_index"]
+                        node, bond.sw_if_index
                     )
                 )
                 for slave in slave_data:
-                    if not slave[u"is_passive"]:
-                        data += f"    {slave[u'interface_name']}\n"
-            data += f"  number of slaves: {bond[u'slaves']}\n"
+                    if not slave.is_passive:
+                        data += f"    {slave.interface_name}\n"
+            data += f"  number of slaves: {bond.slaves}\n"
             if verbose:
                 for slave in slave_data:
-                    data += f"    {slave[u'interface_name']}\n"
-            data += f"  interface id: {bond[u'id']}\n"
-            data += f"  sw_if_index: {bond[u'sw_if_index']}\n"
+                    data += f"    {slave.interface_name}\n"
+            data += f"  interface id: {bond.id}\n"
+            data += f"  sw_if_index: {bond.sw_if_index}\n"
         logger.info(data)
 
     @staticmethod
@@ -1413,23 +1418,27 @@ class InterfaceUtil:
         :returns: Dictionary containing data for the given VxLAN GPE interface
             or if interface=None, the list of dictionaries with all VxLAN GPE
             interfaces.
-        :rtype: dict or list
+        :rtype: named tuple or list
         """
         def process_vxlan_gpe_dump(vxlan_dump):
             """Process vxlan_gpe dump.
 
             :param vxlan_dump: Vxlan_gpe nterface dump.
-            :type vxlan_dump: dict
+            :type vxlan_dump: named tuple
             :returns: Processed vxlan_gpe interface dump.
-            :rtype: dict
+            :rtype: named tuple
             """
-            if vxlan_dump[u"is_ipv6"]:
-                vxlan_dump[u"local"] = ip_address(vxlan_dump[u"local"])
-                vxlan_dump[u"remote"] = ip_address(vxlan_dump[u"remote"])
+            ret_init = namedlist(
+                u"VxlanGpeDump", vxlan_dump._fields, rename=True
+            )
+            ret = ret_init(*vxlan_dump)
+            if ret.is_ipv6:
+                ret.local = ip_address(vxlan_dump.local)
+                ret.remote = ip_address(vxlan_dump.remote)
             else:
-                vxlan_dump[u"local"] = ip_address(vxlan_dump[u"local"][0:4])
-                vxlan_dump[u"remote"] = ip_address(vxlan_dump[u"remote"][0:4])
-            return vxlan_dump
+                ret.local = ip_address(vxlan_dump.local[0:4])
+                ret.remote = ip_address(vxlan_dump.remote[0:4])
+            return ret
 
         if interface_name is not None:
             sw_if_index = InterfaceUtil.get_interface_index(
@@ -1450,7 +1459,7 @@ class InterfaceUtil:
         for dump in details:
             if interface_name is None:
                 data.append(process_vxlan_gpe_dump(dump))
-            elif dump[u"sw_if_index"] == sw_if_index:
+            elif dump.sw_if_index == sw_if_index:
                 data = process_vxlan_gpe_dump(dump)
                 break
 
@@ -1646,7 +1655,7 @@ class InterfaceUtil:
                 if ifc[u"vpp_sw_index"] is not None:
                     papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
             details = papi_exec.get_details(err_msg)
-        return sorted(details, key=lambda k: k[u"sw_if_index"])
+        return sorted(details, key=lambda k: k.sw_if_index)
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(
