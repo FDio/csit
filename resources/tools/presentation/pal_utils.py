@@ -318,13 +318,12 @@ def convert_csv_to_pretty_txt(csv_file_name, txt_file_name, delimiter=u","):
                 txt_table.add_row(
                     [str(itm.replace(u"\u00B1", u"+-")) for itm in row]
                 )
-    txt_table.align = u"r"
-    txt_table.align[u"Test Case"] = u"l"
-    txt_table.align[u"Build"] = u"l"
-    txt_table.align[u"Version"] = u"l"
-
     if not txt_table:
         return
+
+    txt_table.align = u"r"
+    for itm in (u"Test Case", u"Build", u"Version", u"VPP Version"):
+        txt_table.align[itm] = u"l"
 
     if txt_file_name.endswith(u".txt"):
         with open(txt_file_name, u"wt", encoding='utf-8') as txt_file:
