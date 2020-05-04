@@ -401,7 +401,7 @@
     extract: "output.xml"
     # Number of days from now to the past. Only files generated in this
     # time period are used.
-    time-period: 90
+    time-period: 10
 
     zip-file-name: "robot-plugin.zip"
     zip-file-format: ".zip"
