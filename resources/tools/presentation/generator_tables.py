@@ -829,6 +829,8 @@ def table_perf_trending_dash(table, input_data):
     ]
     header_str = u",".join(header) + u"\n"
 
+    incl_tests = table.get(u"include-tests", u"MRR")
+
     # Prepare data to the table:
     tbl_dict = dict()
     for job, builds in table[u"data"].items():
@@ -846,8 +848,15 @@ def table_perf_trending_dash(table, input_data):
                         u"data": OrderedDict()
                     }
                 try:
-                    tbl_dict[tst_name][u"data"][str(build)] = \
-                        tst_data[u"result"][u"receive-rate"]
+                    if incl_tests == u"MRR":
+                        tbl_dict[tst_name][u"data"][str(build)] = \
+                            tst_data[u"result"][u"receive-rate"]
+                    elif incl_tests == u"NDR":
+                        tbl_dict[tst_name][u"data"][str(build)] = \
+                            tst_data[u"throughput"][u"NDR"][u"LOWER"]
+                    elif incl_tests == u"PDR":
+                        tbl_dict[tst_name][u"data"][str(build)] = \
+                            tst_data[u"throughput"][u"PDR"][u"LOWER"]
                 except (TypeError, KeyError):
                     pass  # No data in output.xml for this test
 
@@ -1798,10 +1807,10 @@ def table_weekly_comparison(table, in_data):
     )
 
     header = [
-        [u"Version"],
-        [u"Date", ],
-        [u"Build", ],
-        [u"Testbed", ]
+        [u"VPP Version", ],
+        [u"Start Timestamp", ],
+        [u"CSIT Build", ],
+        [u"CSIT Testbed", ]
     ]
     tbl_dict = dict()
     idx = 0
@@ -1851,10 +1860,13 @@ def table_weekly_comparison(table, in_data):
         idx_cmp = cmp.get(u"compare", None)
         if idx_ref is None or idx_cmp is None:
             continue
-        header[0].append(f"Diff{idx + 1}")
-        header[1].append(header[0][idx_ref - idx - 1])
-        header[2].append(u"vs")
-        header[3].append(header[0][idx_cmp - idx - 1])
+        header[0].append(
+            f"Diff({header[0][idx_ref - idx].split(u'~')[-1]} vs "
+            f"{header[0][idx_cmp - idx].split(u'~')[-1]})"
+        )
+        header[1].append(u"")
+        header[2].append(u"")
+        header[3].append(u"")
         for tst_name, tst_data in tbl_dict.items():
             if not cmp_dict.get(tst_name, None):
                 cmp_dict[tst_name] = list()
