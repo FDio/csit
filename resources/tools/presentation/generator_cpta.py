@@ -170,7 +170,8 @@ def _generate_trending_traces(in_data, job_name, build_info,
 
     data_x = list(in_data.keys())
     data_y_pps = list(in_data.values())
-    data_y_mpps = [float(item) / 1e6 for item in data_y_pps]
+    data_y_mpps = [float(item[u"receive-rate"]) / 1e6 for item in data_y_pps]
+    data_y_stdev = [float(item[u"receive-stdev"]) / 1e6 for item in data_y_pps]
 
     hover_text = list()
     xaxis = list()
@@ -179,6 +180,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         date = build_info[job_name][str_key][0]
         hover_str = (u"date: {date}<br>"
                      u"value [Mpps]: {value:.3f}<br>"
+                     u"stdev [Mpps]: {stdev:.3f}<br>"
                      u"{sut}-ref: {build}<br>"
                      u"csit-ref: mrr-{period}-build-{build_nr}<br>"
                      u"testbed: {testbed}")
@@ -186,6 +188,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
             hover_text.append(hover_str.format(
                 date=date,
                 value=data_y_mpps[index],
+                stdev=data_y_stdev[index],
                 sut=u"dpdk",
                 build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
                 period=u"weekly",
@@ -195,6 +198,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
             hover_text.append(hover_str.format(
                 date=date,
                 value=data_y_mpps[index],
+                stdev=data_y_stdev[index],
                 sut=u"vpp",
                 build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
                 period=u"daily",
@@ -377,8 +381,7 @@ def _generate_all_charts(spec, input_data):
                     if chart_data.get(test_name, None) is None:
                         chart_data[test_name] = OrderedDict()
                     try:
-                        chart_data[test_name][int(index)] = \
-                            test[u"result"][u"receive-rate"]
+                        chart_data[test_name][int(index)] = test[u"result"]
                         chart_tags[test_name] = test.get(u"tags", None)
                     except (KeyError, TypeError):
                         pass
@@ -387,7 +390,7 @@ def _generate_all_charts(spec, input_data):
         for tst_name, tst_data in chart_data.items():
             tst_lst = list()
             for bld in builds_dict[job_name]:
-                itm = tst_data.get(int(bld), u'')
+                itm = tst_data[u"receive-rate"].get(int(bld), u'')
                 # CSIT-1180: Itm will be list, compute stats.
                 tst_lst.append(str(itm))
             csv_tbl.append(f"{tst_name}," + u",".join(tst_lst) + u'\n')
@@ -403,7 +406,7 @@ def _generate_all_charts(spec, input_data):
                 visible = list()
                 for tag in group:
                     for tst_name, test_data in chart_data.items():
-                        if not test_data:
+                        if not test_data[u"receive-rate"]:
                             logging.warning(f"No data for the test {tst_name}")
                             continue
                         if tag not in chart_tags[tst_name]:
@@ -429,7 +432,7 @@ def _generate_all_charts(spec, input_data):
                 visibility.append(visible)
         else:
             for tst_name, test_data in chart_data.items():
-                if not test_data:
+                if not test_data[u"receive-rate"]:
                     logging.warning(f"No data for the test {tst_name}")
                     continue
                 try:
