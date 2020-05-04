@@ -22,8 +22,8 @@ from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, IPv6ExtHdrSegmentRouting,\
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
-from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
-from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
+from ..PacketVerifier import RxQueue, TxQueue
+from ..TrafficScriptArg import TrafficScriptArg
 
 
 def check_srv6(
