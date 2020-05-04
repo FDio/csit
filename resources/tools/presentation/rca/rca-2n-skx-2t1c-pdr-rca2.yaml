@@ -8,25 +8,28 @@
 64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 8
 64b-2t1c-eth-l2xcbase-eth-2memif-1dcr: 11
 64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 8
-64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm: 8
+64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm: 9
 64b-2t1c-ethip4-ip4base-eth-2memif-1dcr: 11
 64b-2t1c-ethip4udp-ip4base-nat44: 6
 # Multiline string, empty lines (or \n) are required, see https://yaml-multiline.info/
-footnote: "[5] Unknown VPP progression, retro-inspection of weekly
-    ndrpdr tests points to https://gerrit.fd.io/r/c/vpp/+/22805,
-    automated bisect script does not work due to frequent API changes.
+footnote: "[5] OPEN, dot1q-l2xcbase progression, retro-inspection of
+    weekly ndrpdr tests points to ge-22805
+    (https://gerrit.fd.io/r/c/vpp/+/22805), automated bisect script does
+    not work due to frequent API changes.
 
-    [6] Known VPP Regression:
-    https://gerrit.fd.io/r/c/vpp/+/23963#message-044278e6_752c3327
+    [6] DONE, ip4base-nat44 regression, ge-23963
+    (https://gerrit.fd.io/r/c/vpp/+/23963#message-044278e6_752c3327).
 
-    [7] Unknown VPP regression in avf-ip4scale tests.
+    [7] WIP, avf-ip4scale regression, CANDIDATE(S) before ge-22699.
 
-    [8] VPP vhost-user (with vpp inside VM) PDR throughput rate has
-    somewhat higher stdev than before.
+    [8] OPEN, VPP vhost-user with VPP-inside-VM higher than before stdev
+    of PDR throughput, under investigation.
 
-    [9] Unknown VPP Progression in vhost-user tests (with testpmd inside
-    VM).
+    [9] WIP, vhost-user with testpmd-in-VM progression, CANDIDATE(S)
+    before 22277.
 
-    [10] Unknown VPP regression in avf-ip4base tests.
+    [10] WIP, avf-ip4base regression, CANDIDATE(S) range
+    ge-18361..ge-24505.
 
-    [11] Unknown VPP regression in memif tests."
+    [11] DONE, memif regression, CANDIDATE(S) confirmed 23801.
+"
