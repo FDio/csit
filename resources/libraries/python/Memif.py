@@ -48,11 +48,11 @@ class Memif:
             details = papi_exec.add(cmd).get_details()
 
         for memif in details:
-            memif[u"hw_addr"] = str(memif[u"hw_addr"])
-            memif[u"role"] = memif[u"role"].value
-            memif[u"mode"] = memif[u"mode"].value
-            memif[u"flags"] = memif[u"flags"].value \
-                if hasattr(memif[u"flags"], u"value") else int(memif[u"flags"])
+            memif.hw_addr = str(memif.hw_addr)
+            memif.role = memif.role.value
+            memif.mode = memif.mode.value
+            memif.flags = memif.flags.value \
+                if hasattr(memif.flags, u"value") else int(memif.flags)
 
         logger.debug(f"MEMIF details:\n{details}")
 
@@ -202,8 +202,8 @@ class Memif:
         details = Memif._memif_details(node)
 
         for memif in details:
-            if memif[u"sw_if_index"] == sw_if_index:
-                return memif[u"if_name"]
+            if memif.sw_if_index == sw_if_index:
+                return memif.if_name
         return None
 
     @staticmethod
@@ -220,6 +220,6 @@ class Memif:
         details = Memif._memif_details(node)
 
         for memif in details:
-            if memif[u"sw_if_index"] == sw_if_index:
-                return memif[u"hw_addr"]
+            if memif.sw_if_index == sw_if_index:
+                return memif.hw_addr
         return None
