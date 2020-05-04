@@ -401,7 +401,7 @@
     extract: "output.xml"
     # Number of days from now to the past. Only files generated in this
     # time period are used.
-    time-period: 90
+    time-period: 10
 
     zip-file-name: "robot-plugin.zip"
     zip-file-format: ".zip"
@@ -811,10 +811,6 @@
   - "name"
   - "parent"
   - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 14
   long-trend-window: 180
 
@@ -830,10 +826,6 @@
   - "name"
   - "parent"
   - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-2t2c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 14
   long-trend-window: 180
 
@@ -849,12 +841,204 @@
   - "name"
   - "parent"
   - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-4t4c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 14
   long-trend-window: 180
+
+# 3n-hsw
+-
+  type: "table"
+  title: "Performance trending dashboard 1t1c-3n-hsw ndr"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-ndr"
+  data: "table-ndrpdr-comparison-3n-hsw"
+  filter: "'NDRPDR' and '1T1C'"
+  include-tests: "NDR"
+  parameters:
+    - "name"
+    - "parent"
+    - "throughput"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "Performance trending dashboard 1t1c-3n-hsw pdr"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-pdr"
+  data: "table-ndrpdr-comparison-3n-hsw"
+  filter: "'NDRPDR' and '1T1C'"
+  include-tests: "PDR"
+  parameters:
+    - "name"
+    - "parent"
+    - "throughput"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 1t1c-3n-hsw ndr"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-ndr.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-ndr.rst"
+  testbed: "3n-hsw"
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 1t1c-3n-hsw pdr"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-pdr.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-pdr.rst"
+  testbed: "3n-hsw"
+
+# 3n-skx
+-
+  type: "table"
+  title: "Performance trending dashboard 2t1c-3n-skx ndr"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-ndr"
+  data: "table-ndrpdr-comparison-3n-skx"
+  filter: "'NDRPDR' and '2T1C'"
+  include-tests: "NDR"
+  parameters:
+    - "name"
+    - "parent"
+    - "throughput"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "Performance trending dashboard 2t1c-3n-skx pdr"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-pdr"
+  data: "table-ndrpdr-comparison-3n-skx"
+  filter: "'NDRPDR' and '2T1C'"
+  include-tests: "PDR"
+  parameters:
+    - "name"
+    - "parent"
+    - "throughput"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 2t1c-3n-skx ndr"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-ndr.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-ndr.rst"
+  testbed: "3n-skx"
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 2t1c-3n-skx pdr"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-pdr.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-pdr.rst"
+  testbed: "3n-skx"
+
+# 2n-skx
+-
+  type: "table"
+  title: "Performance trending dashboard 2t1c-2n-skx ndr"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-ndr"
+  data: "table-ndrpdr-comparison-2n-skx"
+  filter: "'NDRPDR' and '2T1C'"
+  include-tests: "NDR"
+  parameters:
+    - "name"
+    - "parent"
+    - "throughput"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "Performance trending dashboard 2t1c-2n-skx pdr"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-pdr"
+  data: "table-ndrpdr-comparison-2n-skx"
+  filter: "'NDRPDR' and '2T1C'"
+  include-tests: "PDR"
+  parameters:
+    - "name"
+    - "parent"
+    - "throughput"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 2t1c-2n-skx ndr"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-ndr.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-ndr.rst"
+  testbed: "2n-skx"
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 2t1c-2n-skx pdr"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-pdr.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-pdr.rst"
+  testbed: "2n-skx"
+
+# 2n-clx
+-
+  type: "table"
+  title: "Performance trending dashboard 2t1c-2n-clx ndr"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-ndr"
+  data: "table-ndrpdr-comparison-2n-clx"
+  filter: "'NDRPDR' and '2T1C'"
+  include-tests: "NDR"
+  parameters:
+    - "name"
+    - "parent"
+    - "throughput"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "Performance trending dashboard 2t1c-2n-clx pdr"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-pdr"
+  data: "table-ndrpdr-comparison-2n-clx"
+  filter: "'NDRPDR' and '2T1C'"
+  include-tests: "PDR"
+  parameters:
+    - "name"
+    - "parent"
+    - "throughput"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 2t1c-2n-clx ndr"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-ndr.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-ndr.rst"
+  testbed: "2n-clx"
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 2t1c-2n-clx pdr"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-pdr.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-pdr.rst"
+  testbed: "2n-clx"
 
 -
   type: "table"
@@ -892,10 +1076,6 @@
   - "name"
   - "parent"
   - "status"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 7  # days
 
 -
@@ -920,10 +1100,6 @@
   - "name"
   - "parent"
   - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 14
   long-trend-window: 180
 
@@ -939,10 +1115,6 @@
   - "name"
   - "parent"
   - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-4t2c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 14
   long-trend-window: 180
 
@@ -958,10 +1130,6 @@
   - "name"
   - "parent"
   - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-8t4c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 14
   long-trend-window: 180
 
@@ -1001,10 +1169,6 @@
   - "name"
   - "parent"
   - "status"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 7  # days
 
 -
@@ -1029,10 +1193,6 @@
   - "name"
   - "parent"
   - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 14
   long-trend-window: 180
 
@@ -1048,10 +1208,6 @@
   - "name"
   - "parent"
   - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-4t2c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 14
   long-trend-window: 180
 
@@ -1067,10 +1223,6 @@
   - "name"
   - "parent"
   - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-8t4c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 14
   long-trend-window: 180
 
@@ -1110,10 +1262,6 @@
   - "name"
   - "parent"
   - "status"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
   window: 7  # days
 
 -
