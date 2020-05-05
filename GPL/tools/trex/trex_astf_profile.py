@@ -176,7 +176,7 @@ def simple_burst(
 
         # Choose CPS and start traffic.
         client.start(
-            mult=mult, duration=duration, nc=True,
+            mult=1000, duration=duration, nc=True,
             latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
         )
 

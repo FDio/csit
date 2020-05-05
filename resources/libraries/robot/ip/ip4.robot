@@ -81,18 +81,18 @@
 | | ... | interface=${DUT2_${int}1}[0]
 | |
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
-| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 24
+| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 16
 | | ... | gateway=10.10.10.2 | interface=${DUT1_${int}1}[0]
 | | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
-| | ... | Vpp Route Add | ${dut} | ${remote_host2_ip} | 24
+| | ... | Vpp Route Add | ${dut} | ${remote_host2_ip} | 16
 | | ... | gateway=20.20.20.2 | interface=${dut_if2}
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 24
+| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 16
 | | ... | gateway=1.1.1.2 | interface=${DUT1_${int}2}[0]
 | | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip} | 24
+| | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip} | 16
 | | ... | gateway=1.1.1.1 | interface=${DUT2_${int}1}[0]
 
 | Initialize IPv4 forwarding with scaling in circular topology
