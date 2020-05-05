@@ -379,17 +379,22 @@
 | | ... | Type: integer
 | | ... | - rx_port - RX port of TG, default 1.
 | | ... | Type: integer
+| | ... | - latency - False to disable latency measurement.
+| | ... | Type: boolean
+| | ... | - skip_clear_and_show - True to skip "Clear and show runtime counters
+| | ... | with running traffic" KW (e.g. in case of UDP/TCP flows tests).
+| | ... | Type: boolean
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Traffic should pass with maximum rate \| \${1} \| \${10.0} \
-| | ... | \| \${False} \| \${2} \| \${0} \| \${1} \|
+| | ... | \| Traffic should pass with maximum rate \| \${1} \| \${False} \
+| | ... | \| \${10.0} \| \${2} \| \${0} \| \${1} \| \${False} \| \${True} \|
 | |
 | | [Arguments] | ${trial_duration}=${trial_duration}
 | | ... | ${fail_no_traffic}=${True}
 | | ... | ${trial_multiplicity}=${trial_multiplicity}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
-| | ... | ${latency}=${True}
+| | ... | ${latency}=${True} | ${skip_clear_and_show}=${False}
 | |
 | | ${results}= | Send traffic at specified rate
 | | ... | ${trial_duration} | ${max_rate} | ${frame_size}
@@ -422,27 +427,36 @@
 | | ... | Type: integer
 | | ... | - rx_port - RX port of TG, default 1.
 | | ... | Type: integer
-| | ... | - extended_debug- True to enable extended debug.
+| | ... | - extended_debug - True to enable extended debug.
+| | ... | Type: boolean
+| | ... | - latency - False to disable latency measurement.
+| | ... | Type: boolean
+| | ... | - skip_clear_and_show - True to skip "Clear and show runtime counters
+| | ... | with running traffic" KW (e.g. in case of UDP/TCP flows tests).
 | | ... | Type: boolean
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Send traffic at specified rate \| \${1.0} \| ${4000000.0} \
 | | ... | \| \${64} \| 3-node-IPv4 \| \${10} \| \${2} \| \${0} \| \${1} \
-| | ... | \${False} \|
+| | ... | \| ${False} \| ${True} \| ${False} \|
 | |
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${trial_multiplicity}=${trial_multiplicity}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ... | ${extended_debug}=${extended_debug} | ${latency}=${True}
+| | ... | ${skip_clear_and_show}=${False}
 | |
 | | Set Test Variable | ${extended_debug}
-| | Clear and show runtime counters with running traffic | ${trial_duration}
-| | ... | ${rate} | ${frame_size} | ${traffic_profile}
+| | Run Keyword Unless | ${skip_clear_and_show}
+| | ... | Clear and show runtime counters with running traffic
+| | ... | ${trial_duration} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | FOR | ${action} | IN | @{pre_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
+| | Run Keyword If | ${skip_clear_and_show}
+| | ... | VPP clear runtime on all DUTs | ${nodes}
 | | ${results} = | Create List
 | | FOR | ${i} | IN RANGE | ${trial_multiplicity}
 | | | # The following line is skipping some default arguments,
@@ -458,6 +472,8 @@
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
+| | Run Keyword If | ${skip_clear_and_show}
+| | ... | VPP show runtime on all DUTs | ${nodes}
 | | Return From Keyword | ${results}
 
 | Measure and show latency at specified rate
