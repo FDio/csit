@@ -71,7 +71,7 @@ class TrafficProfileBaseClass:
         # TODO: Add support for IMIX frame size;
         #  use random.randrange(0, len(self.STREAM_TABLE[self.framesize])) ?
         if not required_length:
-           required_length = self.framesize
+            required_length = self.framesize
 
         return str(choices(ascii_letters, k=required_length - current_length))
 
