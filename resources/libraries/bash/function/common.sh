@@ -582,7 +582,7 @@ function reserve_and_cleanup_testbed () {
                 # so multiple jobs showing failed cleanup improve chances
                 # of humans to notice and fix.
 #                WORKING_TOPOLOGY="${topo}"
-                WORKING_TOPOLOGY="/w/workspace/csit-vpp-perf-verify-master-2n-skx/topologies/available/lf_2n_skx_testbed23.yaml"
+                WORKING_TOPOLOGY="/w/workspace/csit-vpp-perf-verify-master-2n-skx/topologies/available/lf_2n_skx_testbed24.yaml"
                 echo "Reserved: ${WORKING_TOPOLOGY}"
                 trap "untrap_and_unreserve_testbed" EXIT || {
                     message="TRAP ATTEMPT AND UNRESERVE FAILED, FIX MANUALLY."
