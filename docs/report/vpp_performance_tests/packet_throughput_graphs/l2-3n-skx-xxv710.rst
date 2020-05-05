@@ -34,26 +34,25 @@
 64b-2t1c-l2switching-base-avf
 -----------------------------
 
-..
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr}
-                \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 .. raw:: html
 
@@ -78,26 +77,25 @@
 64b-2t1c-l2switching-base-dpdk
 ------------------------------
 
-..
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-l2switching-base-dpdk-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-l2switching-base-dpdk-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-l2switching-base-dpdk-ndr}
-                \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-dpdk-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-l2switching-base-dpdk-ndr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-dpdk-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 .. raw:: html
 
@@ -122,26 +120,25 @@
 64b-2t1c-l2switching-base-scale-avf
 -----------------------------------
 
-..
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="221" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="221" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr}
-                \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-scale-avf-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 .. raw:: html
 
@@ -166,26 +163,25 @@
 64b-2t1c-l2switching-base-scale-dpdk
 ------------------------------------
 
-..
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-dpdk-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-dpdk-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-l2switching-base-scale-dpdk-ndr}
-                \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-scale-dpdk-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-l2switching-base-scale-dpdk-ndr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-scale-dpdk-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 .. raw:: html
 
@@ -203,14 +199,14 @@
             \label{fig:3n-skx-xxv710-64b-2t1c-l2switching-base-scale-dpdk-pdr}
     \end{figure}
 
-.. raw:: latex
-
-    \clearpage
-
-64b-2t1c-features-l2switching-base-avf
---------------------------------------
-
 ..
+    .. raw:: latex
+
+        \clearpage
+
+    64b-2t1c-features-l2switching-base-avf
+    --------------------------------------
+
     .. raw:: html
 
         <center>
@@ -231,30 +227,10 @@
 
         \clearpage
 
-.. raw:: html
-
-    <center>
-    <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr}
-            \label{fig:3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr}
-    \end{figure}
-
-64b-2t1c-features-l2switching-base-dpdk
----------------------------------------
-
-..
     .. raw:: html
 
         <center>
-        <iframe id="331" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr.html"></iframe>
+        <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr.html"></iframe>
         <p><br></p>
         </center>
 
@@ -263,13 +239,36 @@
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr}
-                \label{fig:3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr}
+                \label{fig:3n-skx-xxv710-64b-2t1c-features-l2switching-base-avf-pdr}
         \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
+
+64b-2t1c-features-l2switching-base-dpdk
+---------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="331" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-features-l2switching-base-dpdk-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 .. raw:: html
 

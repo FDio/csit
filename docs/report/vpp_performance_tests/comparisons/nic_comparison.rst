@@ -31,18 +31,14 @@ results repeatability vary between the test cases.
 3n-skx
 ~~~~~~
 
-..
-    NDR Comparison
-    ``````````````
+NDR Comparison
+``````````````
 
-    Comparison tables in HTML, ASCII and CSV formats:
+Comparison tables in HTML, ASCII and CSV formats:
 
-      - `HTML 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-ndr.html>`_
-      - `HTML 4t2c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-nics-ndr.html>`_
-      - `ASCII 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-ndr.txt>`_
-      - `ASCII 4t2c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-nics-ndr.txt>`_
-      - `CSV 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-ndr.csv>`_
-      - `CSV 4t2c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-nics-ndr.csv>`_
+  - `HTML 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-ndr.html>`_
+  - `ASCII 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-ndr.txt>`_
+  - `CSV 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-ndr.csv>`_
 
 PDR Comparison
 ``````````````
@@ -50,42 +46,20 @@ PDR Comparison
 Comparison tables in HTML, ASCII and CSV formats:
 
   - `HTML 2t1c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-pdr.html>`_
-  - `HTML 4t2c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-nics-pdr.html>`_
   - `ASCII 2t1c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-pdr.txt>`_
-  - `ASCII 4t2c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-nics-pdr.txt>`_
   - `CSV 2t1c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-pdr.csv>`_
-  - `CSV 4t2c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-nics-pdr.csv>`_
-
-MRR Comparison
-``````````````
-
-Comparison tables in HTML, ASCII and CSV formats:
-
-  - `HTML 2t1c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-mrr.html>`_
-  - `HTML 4t2c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-nics-mrr.html>`_
-  - `HTML 8t4c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-nics-mrr.html>`_
-  - `ASCII 2t1c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-mrr.txt>`_
-  - `ASCII 4t2c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-nics-mrr.txt>`_
-  - `ASCII 8t4c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-nics-mrr.txt>`_
-  - `CSV 2t1c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-nics-mrr.csv>`_
-  - `CSV 4t2c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-nics-mrr.csv>`_
-  - `CSV 8t4c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-nics-mrr.csv>`_
 
 2n-skx
 ~~~~~~
 
-..
-    NDR Comparison
-    ``````````````
+NDR Comparison
+``````````````
 
-    Comparison tables in HTML, ASCII and CSV formats:
+Comparison tables in HTML, ASCII and CSV formats:
 
-      - `HTML 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-ndr.html>`_
-      - `HTML 4t2c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-nics-ndr.html>`_
-      - `ASCII 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-ndr.txt>`_
-      - `ASCII 4t2c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-nics-ndr.txt>`_
-      - `CSV 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-ndr.csv>`_
-      - `CSV 4t2c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-nics-ndr.csv>`_
+  - `HTML 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-ndr.html>`_
+  - `ASCII 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-ndr.txt>`_
+  - `CSV 2t1c NDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-ndr.csv>`_
 
 PDR Comparison
 ``````````````
@@ -93,23 +67,5 @@ PDR Comparison
 Comparison tables in HTML, ASCII and CSV formats:
 
   - `HTML 2t1c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-pdr.html>`_
-  - `HTML 4t2c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-nics-pdr.html>`_
   - `ASCII 2t1c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-pdr.txt>`_
-  - `ASCII 4t2c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-nics-pdr.txt>`_
   - `CSV 2t1c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-pdr.csv>`_
-  - `CSV 4t2c PDR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-nics-pdr.csv>`_
-
-MRR Comparison
-``````````````
-
-Comparison tables in HTML, ASCII and CSV formats:
-
-  - `HTML 2t1c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-mrr.html>`_
-  - `HTML 4t2c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-nics-mrr.html>`_
-  - `HTML 8t4c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-8t4c-nics-mrr.html>`_
-  - `ASCII 2t1c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-mrr.txt>`_
-  - `ASCII 4t2c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-nics-mrr.txt>`_
-  - `ASCII 8t4c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-8t4c-nics-mrr.txt>`_
-  - `CSV 2t1c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-nics-mrr.csv>`_
-  - `CSV 4t2c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-nics-mrr.csv>`_
-  - `CSV 8t4c MRR Intel-x710 and Intel-xxv710 comparison <../../_static/vpp/performance-changes-2n-skx-8t4c-nics-mrr.csv>`_
