@@ -50,7 +50,7 @@ class TrafficStreamsBaseClass:
     def _gen_payload(self, length):
         """Generate payload.
 
-        If needed, implement your own algorithm.
+        If needed, implement your own algorithm. TODO: remove if unused
 
         :param length: Length of generated payload.
         :type length: int
