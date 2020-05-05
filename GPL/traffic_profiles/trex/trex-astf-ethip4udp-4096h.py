@@ -39,13 +39,15 @@ class TrafficProfile(TrafficProfileBaseClass):
         super(TrafficProfileBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = u"192.168.10.1"
-        self.p1_src_end_ip = u"192.168.10.253"
-        self.p1_dst_start_ip = u"192.168.20.1"
-        self.p1_dst_end_ip = u"192.168.20.253"
+        self.p1_src_start_ip = u"192.168.0.0"
+        self.p1_src_end_ip = u"192.168.15.255"
+        self.p1_dst_start_ip = u"20.0.0.0"
+        self.p1_dst_end_ip = u"20.0.15.255"
 
         self.udp_req = u"GET"
         self.udp_res = u"ACK"
+
+        self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B udp
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
@@ -58,11 +60,13 @@ class TrafficProfile(TrafficProfileBaseClass):
         :rtype: tuple
         """
         # client commands
+        self.udp_req += self._gen_padding(self.headers_size + len(self.udp_req))
         prog_c = ASTFProgram(stream=False)
         prog_c.send_msg(self.udp_req)  # size and fill not supported in v2.73
         prog_c.recv_msg(1)
 
         # server commands
+        self.udp_res += self._gen_padding(self.headers_size + len(self.udp_res))
         prog_s = ASTFProgram(stream=False)
         prog_s.recv_msg(1)
         prog_s.send_msg(self.udp_res)
@@ -82,15 +86,18 @@ class TrafficProfile(TrafficProfileBaseClass):
             dist_server=ip_gen_s
         )
 
+        # server association
+        s_assoc = ASTFAssociation(rules=ASTFAssociationRule(port=8080))
+
         # template
-        temp_c = ASTFTCPClientTemplate(program=prog_c, ip_gen=ip_gen)
-        temp_s = ASTFTCPServerTemplate(program=prog_s)  # TODO: default association ?
+        temp_c = ASTFTCPClientTemplate(program=prog_c, ip_gen=ip_gen, port=8080)
+        temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)  # TODO: default association ?
         template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
 
         return ip_gen, template
 
 
-        # TODO: imix packet size ?
+        # TODO: packet size ?
 
 
 def register():
