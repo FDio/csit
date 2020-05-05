@@ -71,7 +71,7 @@ nodes:
         ip4_address: "172.16.70.2"
         driver: i40e
         link: link7
-        model: Intel-X710
+        model: Intel-X710-B2B
       port8:
         # s10-t24-tg1-c10/p2 - 10GE port1 on Intel NIC x710 4p10GE.
         mac_address: "3c:fd:fe:a8:ae:41"
@@ -79,7 +79,7 @@ nodes:
         ip4_address: "172.16.70.1"
         driver: i40e
         link: link7
-        model: Intel-X710
+        model: Intel-X710-B2B
       port9:
         # s10-t24-tg1-c10/p3 - 10GE port1 on Intel NIC x710 4p10GE.
         mac_address: "3c:fd:fe:a8:ae:42"

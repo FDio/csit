@@ -175,12 +175,24 @@
     memif_dump: '0x51077d14'  # dev
     memif_socket_filename_add_del: '0xa2ce1a10'  # dev
     memif_socket_filename_add_del_reply: '0xe8d4e804'  # dev
+    nat44_add_del_address_range: '0xd4c7568c'  # perf
+    nat44_add_del_address_range_reply: '0xe8d4e804'  # perf
+    nat44_address_details: '0x45410ac4'  # perf teardown
+    nat44_address_dump: '0x51077d14'  # perf teardown
     nat44_interface_add_del_feature: '0xf3699b83'  # perf
     nat44_interface_add_del_feature_reply: '0xe8d4e804'  # perf
+    nat44_interface_addr_details: '0x51077d14'  # perf teardown
+    nat44_interface_addr_dump: '0x51077d14'  # perf teardown
+    nat44_user_details: '0x84bf06fc'  # perf teardown
+    nat44_user_dump: '0x355896c2'  # perf teardown
+    nat44_user_session_details: '0xe1899c98'  # perf teardown
+    nat44_user_session_dump: '0xe1899c98'  # perf teardown
     nat_det_add_del_map: '0x112fde05'  # perf
     nat_det_add_del_map_reply: '0xe8d4e804'  # perf
     nat_show_config: '0x51077d14'  # perf teardown
     nat_show_config_reply: '0x7903ef06'  # perf teardown
+    nat_worker_details: '0x51077d14'  # perf teardown
+    nat_worker_dump: '0x51077d14'  # perf teardown
     # 6x^ tc01-64B-1c-ethip4udp-ip4base-nat44-mrr
     # ^ nat44NOTscaleNOTsrc_user_1
     nsim_configure: '0x16ed400f'  # perf
