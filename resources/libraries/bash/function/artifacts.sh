@@ -88,7 +88,7 @@ function download_ubuntu_artifacts () {
 
     packages=$(apt-cache -o Dir::Etc::SourceList=${apt_fdio_repo_file} \
                -o Dir::Etc::SourceParts=${apt_fdio_repo_file} dumpavail \
-               | grep Package: | cut -d " " -f 2) || {
+               | grep Package: | cut -d " " -f 2 | grep -v hicn) || {
                    die "Retrieval of available VPP packages failed."
                }
     if [ -z "${VPP_VERSION-}" ]; then
