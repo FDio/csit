@@ -4,8 +4,8 @@ Calibration Data - Denverton
 Following sections include sample calibration data measured on
 Denverton server at Intel SH labs.
 
-And VPP-18.10 2-Node Atom Denverton testing took place at Intel Corporation
-carefully adhering to FD.io CSIT best practices.
+A 2-Node Atom Denverton testing took place at Intel Corporation carefully
+adhering to FD.io CSIT best practices.
 
 
 Linux cmdline

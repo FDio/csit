@@ -28,35 +28,6 @@
 
     </script>
 
-..
-    ### 64b-?t?c-ip4routing-base-scale-ixgbe
-    10ge2p1x520-dot1q-ip4base-ndrpdr
-    10ge2p1x520-ethip4-ip4base-ndrpdr
-    10ge2p1x520-ethip4-ip4scale20k-ndrpdr
-    10ge2p1x520-ethip4-ip4scale200k-ndrpdr
-    10ge2p1x520-ethip4-ip4scale2m-ndrpdr
-
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Dot1Q-Ip4Base-Ndrpdr.64B-1t1c-dot1q-ip4base-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4-Ip4Base-Ndrpdr.64B-1t1c-ethip4-ip4base-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4-Ip4Scale20K-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4-Ip4Scale200K-Ndrpdr.64B-1t1c-ethip4-ip4scale200k-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4-Ip4Scale2M-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-ndrpdr
-
-    ### 64b-?t?c-features-ip4routing-base-ixgbe
-    10ge2p1x520-ethip4-ip4base-ndrpdr
-    10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr
-    10ge2p1x520-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr
-    10ge2p1x520-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr
-    10ge2p1x520-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr
-    10ge2p1x520-ethip4udp-ip4base-nat44-ndrpdr
-
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4-Ip4Base-Ndrpdr.64B-1t1c-ethip4-ip4base-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-1t1c-ethip4udp-ip4base-nat44-ndrpdr
-
 3n-tsh-x520
 ~~~~~~~~~~~
 

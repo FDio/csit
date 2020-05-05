@@ -5,7 +5,7 @@ Current vs. Previous Release
 ----------------------------
 
 Relative comparison of DPDK Testpmd and L3fwd packet throughput (NDR,
-PDR and MRR) between |dpdk-release| and DPDK-18.02 (measured for
+PDR and MRR) between |dpdk-release| and |dpdk-release-1| (measured for
 |csit-release| and |csit-release-1| respectively) is calculated from
 results of tests running on 3-Node Intel Xeon Haswell testbeds (3n-hsw)
 in 1-core and 2-core configurations.
@@ -49,15 +49,16 @@ Comparison tables in ASCII and CSV formats:
 3n-skx
 ~~~~~~
 
-NDR Comparison
-``````````````
+..
+    NDR Comparison
+    ``````````````
 
-Comparison tables in ASCII and CSV formats:
+    Comparison tables in ASCII and CSV formats:
 
-  - `ASCII 2t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-ndr.txt>`_
-  - `ASCII 4t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-ndr.txt>`_
-  - `CSV 2t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-ndr.csv>`_
-  - `CSV 4t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-ndr.csv>`_
+      - `ASCII 2t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-ndr.txt>`_
+      - `ASCII 4t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-ndr.txt>`_
+      - `CSV 2t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-ndr.csv>`_
+      - `CSV 4t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-ndr.csv>`_
 
 PDR Comparison
 ``````````````
@@ -72,15 +73,16 @@ Comparison tables in ASCII and CSV formats:
 2n-skx
 ~~~~~~
 
-NDR Comparison
-``````````````
+..
+    NDR Comparison
+    ``````````````
 
-Comparison tables in ASCII and CSV formats:
+    Comparison tables in ASCII and CSV formats:
 
-  - `ASCII 2t1c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-2t1c-ndr.txt>`_
-  - `ASCII 4t1c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-4t2c-ndr.txt>`_
-  - `CSV 2t1c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-2t1c-ndr.csv>`_
-  - `CSV 4t1c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-4t2c-ndr.csv>`_
+      - `ASCII 2t1c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-2t1c-ndr.txt>`_
+      - `ASCII 4t1c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-4t2c-ndr.txt>`_
+      - `CSV 2t1c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-2t1c-ndr.csv>`_
+      - `CSV 4t1c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-4t2c-ndr.csv>`_
 
 PDR Comparison
 ``````````````

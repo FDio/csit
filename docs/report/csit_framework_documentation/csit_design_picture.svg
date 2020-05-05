@@ -114,7 +114,7 @@
    <font-face font-family="StarSymbol embedded" units-per-em="2048" font-weight="normal" font-style="normal" ascent="1879" descent="635"/>
    <missing-glyph horiz-adv-x="2048" d="M 0,0 L 2047,0 2047,2047 0,2047 0,0 Z"/>
    <glyph unicode="●" horiz-adv-x="1191" d="M 813,0 C 632,0 489,54 383,161 276,268 223,411 223,592 223,773 276,916 383,1023 489,1130 632,1184 813,1184 992,1184 1136,1130 1245,1023 1353,916 1407,772 1407,592 1407,412 1353,268 1245,161 1136,54 992,0 813,0 Z"/>
-   <glyph unicode="–" horiz-adv-x="1139" d="M -4,459 L 1135,459 1135,606 -4,606 -4,459 Z"/>
+   <glyph unicode="-" horiz-adv-x="1139" d="M -4,459 L 1135,459 1135,606 -4,606 -4,459 Z"/>
   </font>
  </defs>
  <defs class="TextShapeIndex">

@@ -30,7 +30,7 @@
 
 ..
     ## 3n-hsw-xl710
-    ### 78b-ip6routing-base-scale-i40e
+    ### 78b-ip6routing-base-scale-dpdk
     10ge2p1xl710-dot1q-ip6base-ndrpdr
     10ge2p1xl710-ethip6-ip6base-ndrpdr
     10ge2p1xl710-ethip6-ip6scale2m-ndrpdr
@@ -38,13 +38,13 @@
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
-78b-ip6routing-base-scale-i40e
+78b-ip6routing-base-scale-dpdk
 ------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-78b-ip6routing-base-scale-i40e-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-78b-ip6routing-base-scale-dpdk-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -64,7 +64,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-78b-ip6routing-base-scale-i40e-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-78b-ip6routing-base-scale-dpdk-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 

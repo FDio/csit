@@ -30,7 +30,7 @@
 
 ..
     ## 3n-skx-x710
-    ### 64b-ip4routing-base-scale-avf-i40e
+    ### 64b-ip4routing-base-scale-[avf,dpdk]
     10ge2p1x710-avf-ethip4-ip4base-ndrpdr
     10ge2p1x710-avf-ethip4-ip4scale2m-ndrpdr
     10ge2p1x710-dot1q-ip4base-ndrpdr
@@ -40,33 +40,34 @@
 3n-skx-x710
 ~~~~~~~~~~~
 
-64b-ip4routing-base-scale-avf-i40e
-----------------------------------
+64b-ip4routing-base-scale-[avf,dpdk]
+------------------------------------
+
+..
+    .. raw:: html
+
+        <center>
+        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-ip4routing-base-scale-[avf,dpdk]-ndr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-x710-64b-base_and_scale-ndr-tsa}
+                \label{fig:ip4-3n-skx-x710-64b-base_and_scale-ndr-tsa}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-ip4routing-base-scale-avf-i40e-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-x710-64b-base_and_scale-ndr-tsa}
-            \label{fig:ip4-3n-skx-x710-64b-base_and_scale-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-ip4routing-base-scale-avf-i40e-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-ip4routing-base-scale-[avf,dpdk]-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 

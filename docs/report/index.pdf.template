@@ -1,4 +1,4 @@
-CSIT-1908.1
+CSIT-1908.2
 ===========
 
 .. toctree::
@@ -6,9 +6,6 @@ CSIT-1908.1
 
     introduction/index
     vpp_performance_tests/index
-    vpp_device_tests/index
-    vpp_functional_tests/index
-    csit_framework_documentation/index
-
-..
     dpdk_performance_tests/index
+    vpp_device_tests/index
+    csit_framework_documentation/index

@@ -9,4 +9,3 @@ VPP Device
 
 .. toctree::
 
-    vpp_device_configuration_ubuntu

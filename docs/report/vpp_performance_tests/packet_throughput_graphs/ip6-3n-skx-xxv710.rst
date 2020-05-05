@@ -28,31 +28,37 @@
 
     </script>
 
-..
-    ## 3n-skx-xxv710
-    ### 78b-?t?c-ip6routing-base-scale-i40e
-    10ge2p1xxv710-dot1q-ip6base-ndrpdr
-    10ge2p1xxv710-ethip6-ip6base-ndrpdr
-    10ge2p1xxv710-ethip6-ip6scale20k-ndrpdr
-    10ge2p1xxv710-ethip6-ip6scale200k-ndrpdr
-    10ge2p1xxv710-ethip6-ip6scale2m-ndrpdr
-
-    Tests.Vpp.Perf.Ip6.25Ge2P1Xxv710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr
-    Tests.Vpp.Perf.Ip6.25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr
-    Tests.Vpp.Perf.Ip6.25Ge2P1Xxv710-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-ethip6-ip6scale20k-ndrpdr
-    Tests.Vpp.Perf.Ip6.25Ge2P1Xxv710-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-ethip6-ip6scale200k-ndrpdr
-    Tests.Vpp.Perf.Ip6.25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr
-
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
-78b-2t1c-ip6routing-base-scale-i40e
------------------------------------
+78b-2t1c-ip6routing-base-scale-avf
+----------------------------------
+
+..
+    .. raw:: html
+
+        <center>
+        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-avf-ndr.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-avf-ndr}
+                \label{fig:3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-avf-ndr}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-ndr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -61,18 +67,42 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-ndr}
-            \label{fig:3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-avf-pdr}
+            \label{fig:3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-avf-pdr}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
+78b-2t1c-ip6routing-base-scale-dpdk
+-----------------------------------
+
+..
+    .. raw:: html
+
+        <center>
+        <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-ndr.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-ndr}
+                \label{fig:3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-ndr}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-pdr.html"></iframe>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -81,6 +111,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-pdr}
-            \label{fig:3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-pdr}
+            \label{fig:3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-pdr}
     \end{figure}

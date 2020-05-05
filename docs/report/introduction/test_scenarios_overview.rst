@@ -48,24 +48,6 @@ Brief overview of test scenarios covered in this report:
    cover vNIC-to-vNIC vNIC-to-nestedVM-to-vNIC forwarding topologies.
    Scapy is used as a traffic generator.
 
-..
-    #. **Honeycomb Functional**: Honeycomb functional tests are executed in
-       virtual FD.io testbeds, focusing on Honeycomb management and
-       programming functionality of VPP. Tests cover a range of CRUD
-       operations executed against VPP.
-    #. **DMM Functional**: DMM functional tests are executed in virtual
-       FD.io testbeds demonstrating a single server (DUT1) and single
-       client (DUT2) scenario using DMM framework and Linux kernel TCP/IP
-       stack.
-    #. **K8s Container/Pod Topologies Performance**: VPP container
-       performance tests using memif for interconnecting VPP-in-
-       Container/Pod instances orchestrated by K8s integrated with `Ligato
-       <https://github.com/ligato>`_ for container networking. TRex is
-       used as a traffic generator.
-    #. **NSH_SFC Functional**: NSH_SFC functional tests are executed in
-       virtual FD.io testbeds focusing on VPP nsh-plugin data plane
-       functionality. Scapy is used as a traffic generator.
-
 All CSIT test data included in this report is auto-
 generated from :abbr:`RF (Robot Framework)` :file:`output.xml` files
 produced by :abbr:`LF (Linux Foundation)` FD.io Jenkins jobs executed

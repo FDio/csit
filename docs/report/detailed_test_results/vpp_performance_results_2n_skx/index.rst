@@ -9,4 +9,3 @@
 
 .. toctree::
 
-    vpp_performance_results_2n_skx

@@ -56,6 +56,21 @@
     Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale100kmaclrn-ndrpdr
     Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale1mmaclrn-ndrpdr
 
+    ###  64b-?t?c-features-l2switching-base-ixgbe
+    10ge2p1x520-eth-l2bdbasemaclrn-ndrpdr
+    10ge2p1x520-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr
+    10ge2p1x520-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr
+    10ge2p1x520-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr
+    10ge2p1x520-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
+    10ge2p1x520-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr
+
+    Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-ndrpdr
+    Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr
+    Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdbasemaclrn-Iacl50Sl-10Kflows-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr
+    Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdbasemaclrn-Oacl50Sf-10Kflows-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr
+    Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdbasemaclrn-Oacl50Sl-10Kflows-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
+    Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr
+
 3n-tsh-x520
 ~~~~~~~~~~~
 
@@ -139,4 +154,47 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-pdr}
             \label{fig:3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-1t1c-features-l2switching-base-ixgbe
+----------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-ndr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-ndr}
+            \label{fig:3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-pdr}
+            \label{fig:3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-pdr}
     \end{figure}

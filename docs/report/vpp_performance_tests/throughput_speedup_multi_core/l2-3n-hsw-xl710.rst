@@ -30,7 +30,7 @@
 
 ..
     ## 3n-hsw-xl710
-    ### 64b-l2switching-base-scale-i40e
+    ### 64b-l2switching-base-scale-dpdk
     10ge2p1xl710-eth-l2patch-ndrpdr
     10ge2p1xl710-dot1q-l2xcbase-ndrpdr
     10ge2p1xl710-eth-l2xcbase-ndrpdr
@@ -41,13 +41,13 @@
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
-64b-l2switching-base-scale-i40e
+64b-l2switching-base-scale-dpdk
 -------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-l2switching-base-scale-i40e-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-l2switching-base-scale-dpdk-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -67,7 +67,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-l2switching-base-scale-i40e-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-l2switching-base-scale-dpdk-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 

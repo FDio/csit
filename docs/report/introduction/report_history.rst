@@ -1,20 +1,12 @@
 Report History
 ==============
 
-FD.io CSIT-1908.1 Report history and per .[ww] revision changes are listed
-below.
+FD.io CSIT-1908.2 Report history and per .[ww] revision changes are listed below.
 
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-| .41            | 1. Added data:                                             |
-|                |                                                            |
-|                |    - VPP performance NDRPDR tests on 3n-skx                |
-|                |    - VPP performance NDRPDR tests on 3n-hsw                |
-|                |    - VPP performance NDRPDR tests on 3n-tsh                |
-|                |                                                            |
-+----------------+------------------------------------------------------------+
-| .40            | Initial version                                            |
+| .19            | Initial version                                            |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 

@@ -9,4 +9,3 @@
 
 .. toctree::
 
-    vpp_performance_results_3n_tsh

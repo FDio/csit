@@ -27,13 +27,13 @@ Terminology
   methodology contains other parts, whose performance is either already
   established, or not affecting the benchmarking result.
 - **Bi-directional throughput tests**: involve packets/frames flowing in
-  both transmit and receive directions over every tested interface of
+  both east-west and west-east directions over every tested interface of
   SUT/DUT. Packet flow metrics are measured per direction, and can be
   reported as aggregate for both directions (i.e. throughput) and/or
   separately for each measured direction (i.e. latency). In most cases
   bi-directional tests use the same (symmetric) load in both directions.
 - **Uni-directional throughput tests**: involve packets/frames flowing in
-  only one direction, i.e. either transmit or receive direction, over
+  only one direction, i.e. either east-west or west-east direction, over
   every tested interface of SUT/DUT. Packet flow metrics are measured
   and are reported for measured direction.
 - **Packet Loss Ratio (PLR)**: ratio of packets received relative to packets
@@ -50,8 +50,8 @@ Terminology
   Measured in packets-per-second (pps) or frames-per-second (fps),
   equivalent metrics.
 - **Bandwidth Throughput Rate**: a secondary metric calculated from packet
-  throughput rate using formula: bw_rate = pkt_rate - (frame_size +
-  L1_overhead) - 8, where L1_overhead for Ethernet includes preamble (8
+  throughput rate using formula: bw_rate = pkt_rate * (frame_size +
+  L1_overhead) * 8, where L1_overhead for Ethernet includes preamble (8
   Bytes) and inter-frame gap (12 Bytes). For bi-directional tests,
   bandwidth throughput rate should be reported as aggregate for both
   directions. Expressed in bits-per-second (bps).
@@ -75,4 +75,4 @@ Terminology
   bandwidth MRR expressed in bits-per-second (bps).
 - **Trial**: a single measurement step.
 - **Trial duration**: amount of time over which packets are transmitted and
-  received in a single throughput measurement step.
+  received in a single measurement step.

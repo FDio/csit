@@ -35,10 +35,10 @@
     10ge2p1x520-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-ndrpdr
     10ge2p1x520-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-ndrpdr
 
+    Tests.Vpp.Perf.Ip4 Tunnels.10Ge2P1X520-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-1t1c-ethip4vxlan-l2xcbase-ndrpdr
+    Tests.Vpp.Perf.Ip4 Tunnels.10Ge2P1X520-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-ethip4vxlan-l2bdbasemaclrn-ndrpdr
     Tests.Vpp.Perf.Ip4 Tunnels.10Ge2P1X520-Dot1Q--Ethip4Vxlan-L2Bdscale1L2Bd1Vlan1Vxlan-Ndrpdr.64B-1t1c-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-ndrpdr
-    Tests.Vpp.Perf.Ip4 Tunnels.10Ge2P1X520-Dot1Q--Ethip4Vxlan-L2Bdscale10L2Bd10Vlan10Vxlan-Ndrpdr.64B-1t1c-dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan-ndrpdr
     Tests.Vpp.Perf.Ip4 Tunnels.10Ge2P1X520-Dot1Q--Ethip4Vxlan-L2Bdscale100L2Bd100Vlan100Vxlan-Ndrpdr.64B-1t1c-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-ndrpdr
-    Tests.Vpp.Perf.Ip4 Tunnels.10Ge2P1X520-Dot1Q--Ethip4Vxlan-L2Bdscale1Kl2Bd1Kvlan1Kvxlan-Ndrpdr.64B-1t1c-dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan-ndrpdr
 
 3n-tsh-x520
 ~~~~~~~~~~~

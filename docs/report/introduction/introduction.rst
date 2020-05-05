@@ -72,27 +72,6 @@ available for download.
    - **Documentation**: Pointers to CSIT source code documentation for
      VPP functional tests.
 
-#. VPP FUNCTIONAL: VPP functional tests executed in virtual FD.io
-   testbeds.
-
-   - **Overview**: Tested virtual topologies, test coverage and naming
-     specifics;
-   - **Release Notes**: Changes in |csit-release|, added tests,
-     environment or methodology changes, known issues.
-   - **Test Environment**: Functional test environment configuration.
-   - **Documentation**: Pointers to CSIT source code documentation for
-     VPP functional tests.
-
-#. HONEYCOMB FUNCTIONAL: Honeycomb functional tests executed in
-   virtual FD.io testbeds.
-
-   - **Overview**: Tested virtual topologies, test coverage and naming
-     specifics;
-   - **Release Notes**: Changes in |csit-release|, known issues.
-   - **Test Environment**: Functional test environment configuration.
-   - **Documentation**: Pointers to CSIT source code documentation for
-     Honeycomb functional tests.
-
 #. DETAILED RESULTS: Detailed result tables auto-generated from CSIT
    test job executions using RF (Robot Framework) output files as
    sources.
@@ -101,8 +80,6 @@ available for download.
    - **VPP Performance MRR**: VPP MRR throughput.
    - **DPDK Performance**: DPDK Testpmd and L3fwd NDR/PDR throughput
      and latency.
-   - **VPP Functional**: Detailed VPP functional results.
-   - **Honeycomb Functional**: Detailed HoneyComb functional results.
 
 #. TEST CONFIGURATION: VPP DUT configuration data based on VPP API
    Test (VAT) Commands History auto-generated from CSIT test job
@@ -110,7 +87,6 @@ available for download.
 
    - **VPP Performance NDR/PDR**: Configuration data.
    - **VPP Performance MRR**: Configuration data.
-   - **VPP Functional**: Configuration data.
 
 #. TEST OPERATIONAL DATA: VPP DUT operational data auto-generated
    from CSIT test job executions using RFoutput files as sources.
@@ -127,24 +103,3 @@ available for download.
      analytics module.
    - **CSIT RF Tags Descriptions**: CSIT RF Tags used for test suite and
      test case grouping and selection.
-
-..
-    #. DMM FUNCTIONAL: DMM functional tests executed in
-       virtual FD.io testbeds.
-
-       - **Overview**: Tested virtual topologies, test coverage and naming
-         specifics;
-       - **Release Notes**: Changes in |csit-release|, known issues.
-       - **Test Environment**: Functional test environment configuration.
-       - **Documentation**: Pointers to CSIT source code documentation for
-         DMM functional tests.
-
-    #. NSH_SFC FUNCTIONAL: NSH_SFC functional tests executed in
-       virtual FD.io testbeds.
-
-       - **Overview**: Tested virtual topologies, test coverage and naming
-         specifics;
-       - **Release Notes**: Changes in |csit-release|, known issues.
-       - **Test Environment**: Functional test environment configuration.
-       - **Documentation**: Pointers to CSIT source code documentation for
-         NSH_SFC functional tests.

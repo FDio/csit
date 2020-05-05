@@ -169,10 +169,7 @@ The structure of the section "Environment" is as follows (example):
         DIR[DTR]: "{DIR[WORKING,SRC]}/detailed_test_results"
         DIR[DTR,PERF,DPDK]: "{DIR[DTR]}/dpdk_performance_results"
         DIR[DTR,PERF,VPP]: "{DIR[DTR]}/vpp_performance_results"
-        DIR[DTR,PERF,HC]: "{DIR[DTR]}/honeycomb_performance_results"
         DIR[DTR,FUNC,VPP]: "{DIR[DTR]}/vpp_functional_results"
-        DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
-        DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
         DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
 
         # Detailed test configurations
@@ -367,10 +364,6 @@ The structure of the section "Debug" is as follows (example):
         -
           build: 9
           file: "csit-dpdk-perf-1707-all__9.xml"
-        csit-nsh_sfc-verify-func-1707-ubuntu1604-virl:
-        -
-          build: 2
-          file: "csit-nsh_sfc-verify-func-1707-ubuntu1604-virl-2.xml"
         csit-vpp-functional-1707-ubuntu1604-virl:
         -
           build: lastSuccessfulBuild
@@ -473,9 +466,6 @@ The structure of the section "Input" is as follows (example from 17.07 report):
         - 9
         hc2vpp-csit-integration-1707-ubuntu1604:
         - lastSuccessfulBuild
-        csit-nsh_sfc-verify-func-1707-ubuntu1604-virl:
-        - 2
-
 
 Section: Output
 '''''''''''''''
@@ -851,7 +841,7 @@ VPP HTTP server performance in a box chart with pre-defined data
     -
       type: "plot"
       title: "VPP HTTP Server Performance"
-      algorithm: "plot_http_server_performance_box"
+      algorithm: "plot_http_server_perf_box"
       output-file-type: ".html"
       output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
       data:
@@ -1273,7 +1263,7 @@ The model specifies:
     -
       type: "table"
       title: "Performance comparison"
-      algorithm: "table_performance_comparison"
+      algorithm: "table_perf_comparison"
       output-file-ext: ".csv"
       output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/vpp_performance_comparison"
       reference:
@@ -1490,7 +1480,7 @@ At first, the .csv tables are generated (only the table for 1t1c is shown):
     -
       type: "table"
       title: "Performance trending dashboard"
-      algorithm: "table_performance_trending_dashboard"
+      algorithm: "table_perf_trending_dash"
       output-file-ext: ".csv"
       output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c"
       data: "plot-performance-trending-all"
@@ -1513,7 +1503,7 @@ Then, html tables stored inside .rst files are generated:
     -
       type: "table"
       title: "HTML performance trending dashboard 1t1c"
-      algorithm: "table_performance_trending_dashboard_html"
+      algorithm: "table_perf_trending_dash_html"
       input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c.csv"
       output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c.rst"
 

@@ -16,15 +16,15 @@ with zero packet loss, PLR=0) and Partial Drop Rate (PDR, with packet
 loss rate not greater than the configured non-zero PLR).
 
 MLRsearch discovers NDR and PDR in a single pass reducing required time
-duration compared to separate binary searches for NDR and PDR. Overall
+duration compared to separate `binary search`_es for NDR and PDR. Overall
 search time is reduced even further by relying on shorter trial
 durations of intermediate steps, with only the final measurements
 conducted at the specified final trial duration. This results in the
 shorter overall execution time when compared to standard NDR/PDR binary
 search, while guaranteeing similar results.
 
-If needed, MLRsearch can be easily adopted to discover more throughput
-rates with different pre-defined PLRs.
+If needed, next version of MLRsearch can be easily adopted
+to discover more throughput rates with different pre-defined PLRs.
 
 .. Note:: All throughput rates are *always* bi-directional
    aggregates of two equal (symmetric) uni-directional packet rates
@@ -45,11 +45,8 @@ MLRsearch is also available as a `PyPI (Python Package Index) library
 Implementation Deviations
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-FD.io CSIT implementation of MLRsearch so far is fully based on the -01
-version of the `draft-vpolak-mkonstan-mlrsearch-01
-<https://tools.ietf.org/html/draft-vpolak-mkonstan-bmwg-mlrsearch-01>`_.
+FD.io CSIT implementation of MLRsearch so far is fully based on the -02
+version of the `draft-vpolak-mkonstan-mlrsearch-02
+<https://tools.ietf.org/html/draft-vpolak-mkonstan-bmwg-mlrsearch-02>`_.
 
 .. _binary search: https://en.wikipedia.org/wiki/Binary_search
-.. _exponential search: https://en.wikipedia.org/wiki/Exponential_search
-.. _estimation of standard deviation: https://en.wikipedia.org/wiki/Unbiased_estimation_of_standard_deviation
-.. _simplified error propagation formula: https://en.wikipedia.org/wiki/Propagation_of_uncertainty#Simplification

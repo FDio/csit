@@ -102,7 +102,7 @@ of sum of exponentials") are defined to handle None correctly.
 Fitting Functions
 `````````````````
 
-Current implementation uses two fitting functions.
+Current implementation uses two fitting functions, called "stretch" and "erf".
 In general, their estimates for critical rate differ,
 which adds a simple source of systematic error,
 on top of randomness error reported by integrator.
@@ -113,7 +113,7 @@ Both functions are not only increasing, but also convex
 (meaning the rate of increase is also increasing).
 
 Both fitting functions have several mathematically equivalent formulas,
-each can lead to an overflow or underflow in different sub-terms.
+each can lead to an arithmetic overflow or underflow in different sub-terms.
 Overflows can be eliminated by using different exact formulas
 for different argument ranges.
 Underflows can be avoided by using approximate formulas
@@ -128,7 +128,7 @@ Prior Distributions
 The numeric integrator expects all the parameters to be distributed
 (independently and) uniformly on an interval (-1, 1).
 
-As both "mrr" and "spread" parameters are positive and not not dimensionless,
+As both "mrr" and "spread" parameters are positive and not dimensionless,
 a transformation is needed. Dimentionality is inherited from max_rate value.
 
 The "mrr" parameter follows a `Lomax distribution`_
@@ -303,7 +303,7 @@ The following analysis will rely on frequency of zero loss measurements
 and magnitude of loss ratio if nonzero.
 
 The offered load selection strategy used implies zero loss measurements
-can be gleamed from the graph by looking at offered load points.
+can be gleaned from the graph by looking at offered load points.
 When the points move up farther from lower estimate, it means
 the previous measurement had zero loss. After non-zero loss,
 the offered load starts again right between (the previous values of)

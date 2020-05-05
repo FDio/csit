@@ -11,9 +11,13 @@ NFV Service Density
 NFV Service Density is benchmarked in three distinct NF service
 configurations:
 
-- VNF Service Chains
-- CNF Service Chains
-- CNF Service Pipelines
+- VNF Service Chains Routing
+- CNF Service Chains Routing
+- CNF Service Pipelines Routing
+- VNF Service Chains Tunnels
+
+..
+    - CNF Service Chains IPSEC
 
 Each configuration is tested in a number of service density combinations
 [Number of Service Instances] x [Number of NFs per Service Instance].
@@ -25,3 +29,7 @@ resources.
     vnf_service_chains
     cnf_service_chains
     cnf_service_pipelines
+    vnf_service_chains_vxlan
+
+..
+    cnf_service_chains_ipsec

@@ -1,0 +1,208 @@
+# Mapping of the old names of test cases to the new (actual) one.
+#
+# Data structure:
+#
+# old-name: new-name
+#
+# All TC names (old and new) are the long names. The mapping table is converted
+# to lowercase when loaded.
+
+# 3n, x710
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc03-64B-4c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc03-64B-4c-avf-ethip4-ip4base-mrr"
+
+# 3n, xxv710
+
+Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc03-64B-4c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc03-64B-4c-avf-ethip4-ip4base-mrr"
+
+# 3n, x553
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+# 3n, x520
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+# 3n, cx556a
+
+Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+# 2n, x710
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+# 2n, xxv710
+
+Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+# 2n, x553
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X553-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+# 2n, x520
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-10Ge2P1X520-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+# 2n, cx556a
+
+Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-ndrpdr:
+  "Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-ndrpdr"
+
+Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc01-64B-1c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc01-64B-1c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc02-64B-2c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"
+
+Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Eth-Ip4Base-Ndrpdr.tc03-64B-4c-avf-eth-ip4base-mrr:
+  "Tests.Vpp.Perf.Ip4.2N1l-100Ge2P1Cx556A-Avf-Ethip4-Ip4Base-Ndrpdr.tc02-64B-2c-avf-ethip4-ip4base-mrr"

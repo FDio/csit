@@ -30,7 +30,7 @@
 
 ..
     ## 3n-hsw-xl710
-    ### imix-?t?c-ipsec-ip4routing-base-scale-sw-i40e
+    ### imix-?t?c-ipsec-ip4routing-base-scale-sw-dpdk
     10ge2p1xl710-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr
     10ge2p1xl710-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
     10ge2p1xl710-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr
@@ -45,7 +45,7 @@
     Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-1t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr
     Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-1t1c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 
-    ### imix-?t?c-ipsec-ip4routing-base-scale-hw-i40e
+    ### imix-?t?c-ipsec-ip4routing-base-scale-hw-dpdk
     10ge2p1xl710-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-ndrpdr
     10ge2p1xl710-ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
     10ge2p1xl710-ethip4ipsec1000tnlhw-ip4base-int-aes256gcm-ndrpdr - missing
@@ -59,13 +59,13 @@
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e
+imix-1t1c-ipsec-ip4routing-base-scale-sw-dpdk
 ---------------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-dpdk-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -74,8 +74,8 @@ imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-ndr}
-            \label{fig:3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-dpdk-ndr}
+            \label{fig:3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-dpdk-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -85,7 +85,7 @@ imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-dpdk-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -94,21 +94,21 @@ imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-pdr}
-            \label{fig:3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-dpdk-pdr}
+            \label{fig:3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-dpdk-pdr}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e
+imix-1t1c-ipsec-ip4routing-base-scale-hw-dpdk
 ---------------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e-ndr.html"></iframe>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-dpdk-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -117,8 +117,8 @@ imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e-ndr}
-            \label{fig:3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-dpdk-ndr}
+            \label{fig:3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-dpdk-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -128,7 +128,7 @@ imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e
 .. raw:: html
 
     <center>
-    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e-pdr.html"></iframe>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-dpdk-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -137,6 +137,6 @@ imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e-pdr}
-            \label{fig:3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-dpdk-pdr}
+            \label{fig:3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-dpdk-pdr}
     \end{figure}

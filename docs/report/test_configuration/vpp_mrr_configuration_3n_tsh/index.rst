@@ -9,4 +9,3 @@
 
 .. toctree::
 
-    vpp_mrr_configuration_3n_tsh

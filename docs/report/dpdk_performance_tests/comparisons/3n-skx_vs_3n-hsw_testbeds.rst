@@ -15,13 +15,14 @@ types, in 1-core, 2-core and 4-core configurations.
     files csit-dpdk-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
 
-NDR Comparison
-~~~~~~~~~~~~~~
+..
+    NDR Comparison
+    ~~~~~~~~~~~~~~
 
-Comparison tables in ASCII and CSV formats:
+    Comparison tables in ASCII and CSV formats:
 
-  - `ASCII NDR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-ndr.txt>`_
-  - `CSV NDR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-ndr.csv>`_
+      - `ASCII NDR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-ndr.txt>`_
+      - `CSV NDR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-ndr.csv>`_
 
 PDR Comparison
 ~~~~~~~~~~~~~~

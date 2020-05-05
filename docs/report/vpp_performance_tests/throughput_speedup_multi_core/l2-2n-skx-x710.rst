@@ -30,7 +30,7 @@
 
 ..
     ## 2n-skx-x710
-    ### 64b-l2switching-base-scale-avf-i40e
+    ### 64b-l2switching-base-scale-[avf,dpdk]
     2n1l-10ge2p1x710-avf-eth-l2xcbase-ndrpdr
     2n1l-10ge2p1x710-avf-dot1q-l2bdbasemaclrn-ndrpdr
     2n1l-10ge2p1x710-avf-eth-l2bdbasemaclrn-ndrpdr
@@ -41,13 +41,34 @@
 2n-skx-x710
 ~~~~~~~~~~~
 
-64b-l2switching-base-scale-avf-i40e
+64b-l2switching-base-scale-[avf,dpdk]
 -----------------------------------
 
+..
+    .. raw:: html
+
+        <center>
+        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-l2switching-base-scale-[avf,dpdk]-ndr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-l2switching-base-scale-[avf,dpdk]-ndr-tsa}
+                \label{fig:2n-skx-x710-64b-l2switching-base-scale-[avf,dpdk]-ndr-tsa}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-l2switching-base-scale-avf-i40e-ndr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-l2switching-base-scale-[avf,dpdk]-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -56,26 +77,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-l2switching-base-scale-avf-i40e-ndr-tsa}
-            \label{fig:2n-skx-x710-64b-l2switching-base-scale-avf-i40e-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-l2switching-base-scale-avf-i40e-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-l2switching-base-scale-avf-i40e-pdr-tsa}
-            \label{fig:2n-skx-x710-64b-l2switching-base-scale-avf-i40e-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-l2switching-base-scale-[avf,dpdk]-pdr-tsa}
+            \label{fig:2n-skx-x710-64b-l2switching-base-scale-[avf,dpdk]-pdr-tsa}
     \end{figure}
