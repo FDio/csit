@@ -17,18 +17,20 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | BASE | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44
+| ... | NAT44_ENDPOINT_DEPENDENT | BASE | DRV_VFIO_PCI | TEST | TEST_NAT
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4udp-ip4base-nat44
+| ... | ethip4udp-snat44ed-host65536-udp63
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance
+| Test Teardown | Tear down test | performance | nat
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput NAT44 performance test cases*
+| Documentation | *RFC2544: Pkt throughput NAT44 endpoint-dependent mode
+| ... | performance test cases*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
 | ... | with single links between nodes.
@@ -57,10 +59,32 @@
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
-| ${osi_layer}= | L3
+| ${osi_layer}= | L7
 | ${overhead}= | ${0}
+# IP settings
+| ${tg_if1_ip4}= | 10.0.0.2
+| ${tg_if1_mask}= | ${20}
+| ${tg_if2_ip4}= | 12.0.0.2
+| ${tg_if2_mask}= | ${20}
+| ${dut1_if1_ip4}= | 10.0.0.1
+| ${dut1_if1_mask}= | ${24}
+| ${dut1_if2_ip4}= | 12.0.0.1
+| ${dut1_if2_mask}= | ${24}
+| ${dest_net}= | 20.0.0.0
+| ${dest_mask}= | ${16}
+# NAT settings
+| ${nat_mode}= | endpoint-dependent
+| ${max_translations_per_thread}= | 2621440
+| ${in_net}= | 192.168.0.0
+| ${in_mask}= | ${16}
+| ${out_net}= | 68.142.68.0
+| ${out_net_end}= | 68.142.68.63
+| ${out_mask}= | ${26}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4udp-1u1p
+| ${traffic_profile}= | trex-astf-ethip4udp-65536h
+# Trial data overwrite
+| ${PERF_TRIAL_DURATION}= | ${1.1}
+| ${PERF_TRIAL_MULTIPLICITY}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -83,58 +107,61 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | And Add NAT to all DUTs
+| | And Add NAT to all DUTs | nat_mode=${nat_mode}
+| | And Add NAT max translations per thread to all DUTs | ${max_translations_per_thread}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize NAT44 in circular topology
-| | Then Find NDR and PDR intervals using optimized search
+| | And Initialize IPv4 forwarding for NAT44 in circular topology
+| | And Initialize NAT44 endpoint-dependent mode in circular topology
+| | Set Test Variable | \${max_rate} | ${4128768}
+| | Then Find NDR and PDR intervals using optimized search | latency=${False}
 
 *** Test Cases ***
-| 64B-1c-ethip4udp-ip4base-nat44-ndrpdr
+| tc01-64B-1c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4udp-ip4base-nat44-ndrpdr
+| tc02-64B-2c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4udp-ip4base-nat44-ndrpdr
+| tc03-64B-4c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4udp-ip4base-nat44-ndrpdr
+| tc04-1518B-1c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4udp-ip4base-nat44-ndrpdr
+| tc05-1518B-2c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4udp-ip4base-nat44-ndrpdr
+| tc06-1518B-4c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4udp-ip4base-nat44-ndrpdr
+| tc07-9000B-1c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4udp-ip4base-nat44-ndrpdr
+| tc08-9000B-2c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4udp-ip4base-nat44-ndrpdr
+| tc09-9000B-4c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4udp-ip4base-nat44-ndrpdr
+| tc10-IMIX-1c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4udp-ip4base-nat44-ndrpdr
+| tc11-IMIX-2c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4udp-ip4base-nat44-ndrpdr
+| tc12-IMIX-4c-ethip4udp-snat44ed-host65536-udp63-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
