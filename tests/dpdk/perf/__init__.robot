@@ -39,7 +39,8 @@
 | | ... | - pre_run_stats - Statistics actions during traffic before timer.
 | | ... | - post_run_stats - Statistics actions during traffic after timer.
 | |
-| | ${pre_stats}= | Create List | ${EMPTY}
+| | ${pre_stats}= | Create List
+| | ... | vpp-clear-show-runtime-with-traffic
 | | ${post_stats}= | Create List | ${EMPTY}
 | | ${pre_run_stats}= | Create List | ${EMPTY}
 | | ${post_run_stats}= | Create List | ${EMPTY}
