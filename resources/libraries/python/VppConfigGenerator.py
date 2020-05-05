@@ -487,12 +487,39 @@ class VppConfigGenerator:
         self.add_config_item(self._nodeconfig, u"", path)
 
     def add_nat(self, value=u"deterministic"):
-        """Add NAT configuration.
+        """Add NAT mode configuration.
 
         :param value: NAT mode.
         :type value: str
         """
-        path = [u"nat"]
+        path = [u"nat", value]
+        self.add_config_item(self._nodeconfig, u"", path)
+
+    def add_nat_user_memory(self, value):
+        """Add NAT user memory size configuration.
+
+        :param value: Size of NAT mode.
+        :type value: str
+        """
+        path = [u"nat", u"user-memory-size"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_nat_translation_memory(self, value):
+        """Add NAT translation memory size configuration.
+
+        :param value: NAT mode.
+        :type value: str
+        """
+        path = [u"nat", u"translation-hash-memory"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_nat_max_translations_per_thread(self, value):
+        """Add NAT max. translations per thread number configuration.
+
+        :param value: NAT mode.
+        :type value: str
+        """
+        path = [u"nat", u"max translations per thread"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_nsim_poll_main_thread(self):
