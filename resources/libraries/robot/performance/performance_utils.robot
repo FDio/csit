@@ -50,7 +50,8 @@
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+| | ... | string
 | | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
 | | ... | Type: float
 | |
@@ -59,11 +60,13 @@
 | | ... | - final_relative_width - Maximal width multiple of upper. Type: float
 | | ... | - final_trial_duration - Duration of final trials [s]. Type: float
 | | ... | - initial_trial_duration - Duration of initial trials [s]. Type: float
-| | ... | - intermediate phases - Number of intermediate phases [1]. Type: int
+| | ... | - intermediate phases - Number of intermediate phases [1].
+| | ... | Type: integer
 | | ... | - timeout - Fail if search duration is longer [s]. Type: float
-| | ... | - doublings - How many doublings to do when expanding [1]. Type: int
+| | ... | - doublings - How many doublings to do when expanding [1].
+| | ... | Type: integer
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: int
+| | ... | Type: integer
 | | ... | - latency_duration - Duration for latency-specific trials. Type: float
 | |
 | | ... | *Example:*
@@ -128,7 +131,8 @@
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+| | ... | string
 | | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
 | | ... | Type: float
 | |
@@ -137,11 +141,13 @@
 | | ... | - final_relative_width - Maximal width multiple of upper. Type: float
 | | ... | - final_trial_duration - Duration of final trials [s]. Type: float
 | | ... | - initial_trial_duration - Duration of initial trials [s]. Type: float
-| | ... | - intermediate phases - Number of intermediate phases [1]. Type: int
+| | ... | - intermediate phases - Number of intermediate phases [1].
+| | ... | Type: integer
 | | ... | - timeout - Fail if search duration is longer [s]. Type: float
-| | ... | - doublings - How many doublings to do when expanding [1]. Type: int
+| | ... | - doublings - How many doublings to do when expanding [1].
+| | ... | Type: integer
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: int
+| | ... | Type: integer
 | |
 | | ... | *Returns:*
 | | ... | - Lower bound for bi-directional throughput at given PLR. Type: float
@@ -181,7 +187,8 @@
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+| | ... | string
 | | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
 | | ... | Type: float
 | |
@@ -189,7 +196,7 @@
 | | ... | - packet_loss_ratio - Accepted loss during search. Type: float
 | | ... | - timeout - Stop when search duration is longer [s]. Type: float
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: int
+| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
@@ -271,7 +278,8 @@
 | | ... | The given result should contain latency data as well.
 | |
 | | ... | *Test (or broader scope) variables read:*
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+| | ... | string
 | | ... | *Arguments:*
 | | ... | - result - Measured result data per stream [pps]. Type: NdrPdrResult
 | |
@@ -304,7 +312,8 @@
 | | ... | (Throughput * (L2 Frame Size + IPG) * 8)
 | |
 | | ... | *Test (or broader scope) variables read:*
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+| | ... | string
 | | ... | *Arguments:*
 | | ... | - avg - Estimated average critical load [pps]. Type: float
 | | ... | - stdev - Standard deviation of critical load [pps]. Type: float
@@ -362,34 +371,37 @@
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+| | ... | string
 | | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
 | | ... | Type: float
 | |
 | | ... | *Arguments:*
-| | ... | - trial_duration - Duration of single trial [s].
-| | ... | Type: float
-| | ... | - fail_no_traffic - Whether to fail on zero receive count.
-| | ... | Type: boolean
+| | ... | - trial_duration - Duration of single trial [s]. Type: float
+| | ... | - fail_no_traffic - Whether to fail on zero receive count;
+| | ... | default value: True. Type: boolean
 | | ... | - trial_multiplicity - How many trials in this measurement.
-| | ... | Type: int
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: int
-| | ... | - tx_port - TX port of TG, default 0.
 | | ... | Type: integer
-| | ... | - rx_port - RX port of TG, default 1.
-| | ... | Type: integer
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic;
+| | ... | default value: 2. Type: integer
+| | ... | - tx_port - TX port of TG, default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG, default value: 1. Type: integer
+| | ... | - latency - False to disable latency measurement; default value: True.
+| | ... | Type: boolean
+| | ... | - skip_clear_and_show - True to skip "Clear and show runtime counters
+| | ... | with running traffic" KW (e.g. in case of UDP/TCP flow tests);
+| | ... | default value: False. Type: boolean
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Traffic should pass with maximum rate \| \${1} \| \${10.0} \
-| | ... | \| \${False} \| \${2} \| \${0} \| \${1} \|
+| | ... | \| Traffic should pass with maximum rate \| \${1} \| \${False} \
+| | ... | \| \${10.0} \| \${2} \| \${0} \| \${1} \| \${False} \| \${True} \|
 | |
 | | [Arguments] | ${trial_duration}=${trial_duration}
 | | ... | ${fail_no_traffic}=${True}
 | | ... | ${trial_multiplicity}=${trial_multiplicity}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
-| | ... | ${latency}=${True}
+| | ... | ${latency}=${True} | ${skip_clear_and_show}=${False}
 | |
 | | ${results}= | Send traffic at specified rate
 | | ... | ${trial_duration} | ${max_rate} | ${frame_size}
@@ -411,38 +423,45 @@
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
 | | ... | - rate - Target aggregate transmit rate [pps] / Connections per second
 | | ... | (CPS) for UDP/TCP flows. Type: float
-| | ... | - frame_size - L2 Frame Size [B]. Type: integer/string
+| | ... | - frame_size - L2 Frame Size [B]. Type: integer or string
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
 | | ... | - trial_multiplicity - How many trials in this measurement.
-| | ... | Type: int
+| | ... | Type: integer
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: int
-| | ... | - tx_port - TX port of TG, default 0.
 | | ... | Type: integer
-| | ... | - rx_port - RX port of TG, default 1.
-| | ... | Type: integer
-| | ... | - extended_debug- True to enable extended debug.
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
+| | ... | - extended_debug - True to enable extended debug.
+| | ... | Type: boolean
+| | ... | - latency - False to disable latency measurement.
+| | ... | Type: boolean
+| | ... | - skip_clear_and_show - True to skip "Clear and show runtime counters
+| | ... | with running traffic" KW (e.g. in case of UDP/TCP flows tests).
 | | ... | Type: boolean
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Send traffic at specified rate \| \${1.0} \| ${4000000.0} \
 | | ... | \| \${64} \| 3-node-IPv4 \| \${10} \| \${2} \| \${0} \| \${1} \
-| | ... | \${False} \|
+| | ... | \| ${False} \| ${True} \| ${False} \|
 | |
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${trial_multiplicity}=${trial_multiplicity}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ... | ${extended_debug}=${extended_debug} | ${latency}=${True}
+| | ... | ${skip_clear_and_show}=${False}
 | |
 | | Set Test Variable | ${extended_debug}
-| | Clear and show runtime counters with running traffic | ${trial_duration}
-| | ... | ${rate} | ${frame_size} | ${traffic_profile}
+| | Run Keyword Unless | ${skip_clear_and_show}
+| | ... | Clear and show runtime counters with running traffic
+| | ... | ${trial_duration} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | FOR | ${action} | IN | @{pre_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
+| | Run Keyword If | ${skip_clear_and_show}
+| | ... | VPP clear runtime on all DUTs | ${nodes}
 | | ${results} = | Create List
 | | FOR | ${i} | IN RANGE | ${trial_multiplicity}
 | | | # The following line is skipping some default arguments,
@@ -458,6 +477,8 @@
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
+| | Run Keyword If | ${skip_clear_and_show}
+| | ... | VPP show runtime on all DUTs | ${nodes}
 | | Return From Keyword | ${results}
 
 | Measure and show latency at specified rate
@@ -473,15 +494,15 @@
 | | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
 | | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
 | | ... | Type: float
-| | ... | - frame_size - L2 Frame Size [B]. Type: integer/string
+| | ... | - frame_size - L2 Frame Size [B]. Type: integer or string
 | | ... | - traffic_profile - Name of module defining traffic for measurements.
 | | ... | Type: string
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: int
-| | ... | - tx_port - TX port of TG, default 0. Type: integer
-| | ... | - rx_port - RX port of TG, default 1. Type: integer
+| | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
 | | ... | - safe_rate - To apply if rate is below this, as latency pps is fixed.
-| | ... | In pps, type int.
+| | ... | In pps. Type: integer.
 | |
 | | ... | *Example:*
 | |
@@ -514,13 +535,13 @@
 | | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
 | | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
 | | ... | Type: float
-| | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer/string
+| | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer or string
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: int
-| | ... | - tx_port - TX port of TG, default 0. Type: integer
-| | ... | - rx_port - RX port of TG, default 1. Type: integer
+| | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG, default value: 1. Type: integer
 | |
 | | ... | *Example:*
 | |
@@ -553,15 +574,16 @@
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+| | ... | string
 | | ... | *Arguments:*
 | | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
 | | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
 | | ... | Type: float
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: int
-| | ... | - tx_port - TX port of TG, default 0. Type: integer
-| | ... | - rx_port - RX port of TG, default 1. Type: integer
+| | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
 | |
 | | ... | *Example:*
 | |

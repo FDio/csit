@@ -18,8 +18,8 @@ Traffic profile:
    1 --> 0 (server -> client, responses) at the same time.
  - Packet: ETH / IP / UDP
  - Direction 0 --> 1:
-   - Source IP address range:      192.168.0.0 - 192.168.3.255
-   - Destination IP address range: 20.0.0.0 - 20.0.3.255
+   - Source IP address range:      172.16.0.0 - 172.19.255.255
+   - Destination IP address range: 20.16.0.0 - 20.19.255.255
  - Direction 1 --> 0:
    - Source IP address range:      destination IP address from packet received
      on port 1
@@ -41,10 +41,10 @@ class TrafficProfile(TrafficProfileBaseClass):
         super(TrafficProfileBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.3.255"
-        self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.3.255"
+        self.p1_src_start_ip = u"172.16.0.0"
+        self.p1_src_end_ip = u"172.19.255.255"
+        self.p1_dst_start_ip = u"20.16.0.0"
+        self.p1_dst_end_ip = u"20.19.255.255"
 
         # UDP messages
         self.udp_req = u"GET"
@@ -97,7 +97,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         temp_c = ASTFTCPClientTemplate(
             program=prog_c,
             ip_gen=ip_gen,
-            limit=64512,  # TODO: set via input parameter ?
+            limit=16515072,  # TODO: set via input parameter ?
             port=8080
         )
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
