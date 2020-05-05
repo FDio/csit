@@ -192,16 +192,22 @@ def simple_burst(
         else:
             # Do not block until done.
             time_start = time.monotonic()
-            while client.is_traffic_active(ports=ports):
-                # Sample the stats.
-                stats = client.get_stats(ports=ports)
-                time.sleep(1)
+            # while client.is_traffic_active(ports=ports):
+            #     # Sample the stats.
+            #     stats = client.get_stats(ports=ports)
+            #     time.sleep(1)
+
+            # Block until done:
+            client.wait_on_traffic(timeout=duration + 30)
             time_stop = time.monotonic()
             approximated_duration = time_stop - time_start
 
             if client.get_warnings():
                 for warning in client.get_warnings():
                     print(warning)
+
+            # Read the stats after the test
+            stats = client.get_stats()
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
