@@ -9,15 +9,15 @@
   tags:
     - install-dependencies
 
-#- name: Calibration - Check CPU Power States
-#  shell: "lscpu"
-#  register: current_lscpu
-#  changed_when: false
-#  failed_when: |
-#    'CPU min MHz' in current_lscpu.stdout and
-#    'Intel(R) Xeon(R)' in current_lscpu.stdout
-#  tags:
-#    - check-cpu-frequency
+- name: Calibration - Check CPU Power States
+  shell: "lscpu"
+  register: current_lscpu
+  changed_when: false
+  failed_when: |
+    'CPU min MHz' in current_lscpu.stdout and
+    'Intel(R) Xeon(R)' in current_lscpu.stdout
+  tags:
+    - check-cpu-frequency
 
 - name: Calibration - Check Kernel Version of "{{ kernel_version }}"
   shell: "uname -r"
