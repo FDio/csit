@@ -175,10 +175,13 @@
     memif_dump: '0x51077d14'  # dev
     memif_socket_filename_add_del: '0xa2ce1a10'  # dev
     memif_socket_filename_add_del_reply: '0xe8d4e804'  # dev
+    nat44_add_del_address_range: '0xd4c7568c'  # perf
+    nat44_add_del_address_range_reply: '0xe8d4e804'  # perf
     nat44_interface_add_del_feature: '0xf3699b83'  # perf
     nat44_interface_add_del_feature_reply: '0xe8d4e804'  # perf
     nat_det_add_del_map: '0x112fde05'  # perf
     nat_det_add_del_map_reply: '0xe8d4e804'  # perf
+    nat_set_addr_and_port_alloc_alg: '0xXXXXXX'  # perf
     nat_show_config: '0x51077d14'  # perf teardown
     nat_show_config_reply: '0x7903ef06'  # perf teardown
     # 6x^ tc01-64B-1c-ethip4udp-ip4base-nat44-mrr
@@ -413,10 +416,13 @@
     memif_dump: '0x51077d14'  # dev
     memif_socket_filename_add_del: '0xa2ce1a10'  # dev
     memif_socket_filename_add_del_reply: '0xe8d4e804'  # dev
+    nat44_add_del_address_range: '0xd4c7568c'  # perf
+    nat44_add_del_address_range_reply: '0xe8d4e804'  # perf
     nat44_interface_add_del_feature: '0xf3699b83'  # perf
     nat44_interface_add_del_feature_reply: '0xe8d4e804'  # perf
     nat_det_add_del_map: '0x112fde05'  # perf
     nat_det_add_del_map_reply: '0xe8d4e804'  # perf
+    nat_set_addr_and_port_alloc_alg: '0xXXXXXX'  # perf
     nat_show_config: '0x51077d14'  # perf teardown
     nat_show_config_reply: '0x7903ef06'  # perf teardown
     # 6x^ tc01-64B-1c-ethip4udp-ip4base-nat44-mrr
