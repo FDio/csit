@@ -87,54 +87,6 @@ def main():
     tx_1, rx_1 = xstats1[u"tx_good_packets"], xstats1[u"rx_good_packets"]
     lost_a, lost_b = tx_0 - rx_1, tx_1 - rx_0
 
-    client_stats = xstats0[u"traffic"][u"client"]
-    server_stats = xstats1[u"traffic"][u"server"]
-    # Active and established flows UDP/TCP
-    # Client
-    c_act_flows = client_stats[u"m_active_flows"]
-    c_est_flows = client_stats[u"m_est_flows"]
-    l7_data = f"client_active_flows={c_act_flows}, "
-    l7_data += f"client_established_flows={c_est_flows}, "
-    # Server
-    s_act_flows = server_stats[u"m_active_flows"]
-    s_est_flows = server_stats[u"m_est_flows"]
-    l7_data += f"server_active_flows={s_act_flows}, "
-    l7_data += f"server_established_flows={s_est_flows}, "
-    # Some zero counters are not sent
-    # Client
-    # Established connections
-    c_udp_connects = client_stats.get(u"udps_connects", 0)
-    l7_data += f"client_udp_connects={c_udp_connects}, "
-    # Closed connections
-    c_udp_closed = client_stats.get(u"udps_closed", 0)
-    l7_data += f"client_udp_closed={c_udp_closed}, "
-    # Server
-    # Accepted connections
-    s_udp_accepts = server_stats.get(u"udps_accepts", 0)
-    l7_data += f"server_udp_accepts={s_udp_accepts}, "
-    # Closed connections
-    s_udp_closed = server_stats.get(u"udps_closed", 0)
-    # Client
-    # Initiated connections
-    c_tcp_connatt = client_stats.get(u"tcps_connattempt", 0)
-    l7_data += f"client_tcp_connect_inits={c_tcp_connatt}, "
-    # Established connections
-    c_tcp_connects = client_stats.get(u"tcps_connects", 0)
-    l7_data += f"client_tcp_connects={c_tcp_connects}, "
-    # Closed connections
-    c_tcp_closed = client_stats.get(u"tcps_closed", 0)
-    l7_data += f"client_tcp_closed={c_tcp_closed}, "
-    # Server
-    # Accepted connections
-    s_tcp_accepts = server_stats.get(u"tcps_accepts", 0)
-    l7_data += f"server_tcp_accepts={s_tcp_accepts}, "
-    # Established connections
-    s_tcp_connects = server_stats.get(u"tcps_connects", 0)
-    l7_data += f"server_tcp_connects={s_tcp_connects}, "
-    # Closed connections
-    s_tcp_closed = server_stats.get(u"tcps_closed", 0)
-    l7_data += f"server_tcp_closed={s_tcp_closed}, "
-
     print(f"packets lost from 0 --> 1:   {lost_a} pkts")
     print(f"packets lost from 1 --> 0:   {lost_b} pkts")
 
@@ -146,7 +98,6 @@ def main():
         f"frame_loss={total_lost}, "
         f"latency_stream_0(usec)=-1/-1/-1, latency_stream_1(usec)=-1/-1/-1, "
         u"latency_hist_stream_0={}, latency_hist_stream_1={}, "
-        f"{l7_data}"
     )
 
 
