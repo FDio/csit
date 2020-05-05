@@ -98,17 +98,17 @@ rst_epilog = u"""
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1804/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}&id={vpp_release_commit_id}
-""".format(release=u'rls2001',
+""".format(release=u'rls2005',
            report_week=report_week,
-           prev_release=u'rls1908',
-           srelease=u'2001',
-           csitrelease=u'2001',
-           csit_prev_release=u'1908',
-           vpprelease=u'20.01',
-           vpp_prev_release=u'19.08',
-           dpdkrelease=u'19.08',
-           dpdk_prev_release=u'19.05',
-           sdpdkrelease=u'1908',
+           prev_release=u'rls2001',
+           srelease=u'2005',
+           csitrelease=u'2005',
+           csit_prev_release=u'2001',
+           vpprelease=u'20.05',
+           vpp_prev_release=u'20.01',
+           dpdkrelease=u'20.02',
+           dpdk_prev_release=u'19.08',
+           sdpdkrelease=u'2002',
            trex_version=u'v2.73',
            vpp_release_commit_id=u'fce396738f865293f0a023bc7f172086f81da456')
 
