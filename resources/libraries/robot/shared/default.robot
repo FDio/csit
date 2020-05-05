@@ -244,8 +244,17 @@
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | |
+| | ... | *Arguments:*
+| | ... | - nat_mode - NAT mode. Type: string, default value: deterministic
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Add NAT to all DUTs \| value=endpoint-dependent \|
+| |
+| | [Arguments] | ${nat_mode}=deterministic
+| |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add NAT
+| | | Run keyword | ${dut}.Add NAT | value=${nat_mode}
 | | END
 
 | Write startup configuration on all VPP DUTs
