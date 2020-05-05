@@ -44,9 +44,9 @@ VPP Startup Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 VPP startup configuration vary per test case, with different settings
-for `$$CORELIST_WORKERS`, `$$NUM_RX_QUEUES`, `$$UIO_DRIVER`, `$$NUM-
-MBUFS` and `$$NO_MULTI_SEG` parameter. Default template is provided
-below:
+for `$$CORELIST_WORKERS`, `$$NUM_RX_QUEUES`, `$$UIO_DRIVER`, and
+`$$NO_MULTI_SEG` parameter. Plugin list to enable is driven by test
+requirements. Default template is provided below:
 
 ::
 
@@ -57,12 +57,14 @@ below:
     statseg
     {
       size 4G
+      per-node-counters on
     }
     unix
     {
       cli-listen /run/vpp/cli.sock
       log /tmp/vpe.log
       nodaemon
+      full-coredump
     }
     socksvr {
       socket-name /run/vpp/api.sock
@@ -79,7 +81,7 @@ below:
       {
         disable
       }
-      plugin dpdk_plugin.so
+      plugin <$$test_requirement>_plugin.so
       {
         enable
       }
@@ -89,9 +91,14 @@ below:
       corelist-workers $$CORELIST_WORKERS
       main-core 1
     }
+    buffers
+    {
+      buffers-per-numa 215040
+    }
+
+    # Below: in case of dpdk based drivers (vfio-pci) only
     dpdk
     {
-      num-mbufs $$NUM-MBUFS
       uio-driver $$UIO_DRIVER
       $$NO_MULTI_SEG
       log-level debug
