@@ -7,14 +7,14 @@ install and
 
 Below a subset of the running configuration:
 
-1. Ubuntu 18.04.x LTS
+1. Ubuntu 18.04.2 LTS
 
 ::
 
     $ lsb_release -a
     No LSB modules are available.
     Distributor ID: Ubuntu
-    Description:    Ubuntu 18.04.3 LTS
+    Description:    Ubuntu 18.04.2 LTS
     Release:        18.04
     Codename:       bionic
 
@@ -60,7 +60,7 @@ Linux Boot Parameters
 Hugepages Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Huge pages are namaged via sysctl configuration located in
+Huge pages are managed via sysctl configuration located in
 `/etc/sysctl.d/90-csit.conf` on each testbed. Default huge page size is 2M.
 The exact amount of huge pages depends on testbed. All the values are defined
 in `Ansible inventory - hosts` files.
