@@ -47,21 +47,21 @@ class TrafficProfileBaseClass:
 
         # If needed, add your own parameters.
 
-    def _gen_payload(self, length):
-        """Generate payload.
+    def _gen_padding(self, current_length):
+        """Generate padding.
 
-        If needed, implement your own algorithm. TODO: remove if unused
+        If needed, implement your own algorithm.
 
-        :param length: Length of generated payload.
-        :type length: int
-        :returns: The generated payload.
+        :param current_length: Current length of the packet.
+        :type current_length: int
+        :returns: The generated padding.
         :rtype: str
         """
-        payload = u""
-        for _ in range(length):
-            payload += choice(ascii_letters)
+        padding = u""
+        for _ in range(self.framesize - current_length):
+            padding += choice(ascii_letters)
 
-        return payload
+        return padding
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
