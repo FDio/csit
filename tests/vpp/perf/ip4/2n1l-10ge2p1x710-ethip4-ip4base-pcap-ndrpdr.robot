@@ -17,7 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST
-| ... | ethip4-ip4base
+| ... | ethip4-ip4base-pcap
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -88,55 +88,55 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology | 192.168.0.1 | 30.0.0.1
 | | Set Test Variable | \${max_rate} | ${1032192}
-#| | Pcap Trace On | ${dut1} | rx | ${2000000} | ${DUT1_${int}1}[0] | dut1_if1_ip4_rx_16384u_1s_1032192cps.pcap
+| | Pcap Trace On | ${dut1} | rx | ${2000000} | ${DUT1_${int}1}[0] | dut1_if1_ip4_rx_4c_16384u_1s_1032192cps_noICMP.pcap
 | | Then Find NDR and PDR intervals using optimized search
-#| | Pcap Trace Off | ${dut1}
+| | Pcap Trace Off | ${dut1}
 
 *** Test Cases ***
-| 64B-1c-ethip4-ip4base-ndrpdr
+| 64B-1c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4-ip4base-ndrpdr
+| 64B-2c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4-ip4base-ndrpdr
+| 64B-4c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4-ip4base-ndrpdr
+| 1518B-1c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4-ip4base-ndrpdr
+| 1518B-2c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4-ip4base-ndrpdr
+| 1518B-4c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4-ip4base-ndrpdr
+| 9000B-1c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4-ip4base-ndrpdr
+| 9000B-2c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4-ip4base-ndrpdr
+| 9000B-4c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4-ip4base-ndrpdr
+| IMIX-1c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4-ip4base-ndrpdr
+| IMIX-2c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4-ip4base-ndrpdr
+| IMIX-4c-ethip4-ip4base-pcap-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
