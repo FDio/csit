@@ -18,11 +18,11 @@ Stream profile:
  - Packet: ETH / IP / UDP
  - Direction 0 --> 1:
    - Source IP address range:      20.0.0.0
-   - Destination IP address range: 12.0.0.2
+   - Destination IP address range: 30.0.0.0
    - Source UDP port range:        1024
    - Destination UDP port range:   1024
  - Direction 1 --> 0:
-   - Source IP address range:      12.0.0.2
+   - Source IP address range:      30.0.0.0
    - Destination IP address range: 200.0.0.0
    - Source UDP port range:        1024
    - Destination UDP port range:   1028
@@ -42,9 +42,9 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # IPs used in packet headers.
         self.p1_src_ip = u"20.0.0.0"
-        self.p1_dst_ip = u"12.0.0.2"
+        self.p1_dst_ip = u"30.0.0.0"
 
-        self.p2_src_ip = u"12.0.0.2"
+        self.p2_src_ip = u"30.0.0.0"
         self.p2_dst_ip = u"200.0.0.0"
 
         # UDP ports used in packet headers.
@@ -52,7 +52,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
         self.p1_dst_udp_port = 1024
 
         self.p2_src_udp_port = 1024
-        self.p2_dst_udp_port = 1028
+        self.p2_dst_udp_port = 2048
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
