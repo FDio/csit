@@ -83,8 +83,25 @@
 | | ... | Additional teardown for tests which uses NAT feature.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If Test Failed
-| | | ... | Show NAT verbose | ${nodes['${dut}']}
+#| | | Run Keyword If Test Failed
+#| | | ... | Show NAT verbose | ${nodes['${dut}']}
+| | | Show NAT Config | ${nodes['${dut}']}
+| | | Vpp Get Ip Table Summary | ${nodes['${dut}']}
+| | | Vpp Get Ip Table | ${nodes['${dut}']}
+| | END
+
+| Additional Test Tear Down Action For nat-ed
+| | [Documentation]
+| | ... | Additional teardown for tests which uses NAT feature.
+| |
+| | FOR | ${dut} | IN | @{duts}
+#| | | Run Keyword If Test Failed
+#| | | ... | Show NAT verbose | ${nodes['${dut}']}
+| | | Show NAT Config | ${nodes['${dut}']}
+| | | Show NAT44 Summary | ${nodes['${dut}']}
+| | | Show NAT Base Data | ${nodes['${dut}']}
+| | | Show NAT User Data | ${nodes['${dut}']}
+| | | Vpp Get Ip Table Summary | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For namespace
