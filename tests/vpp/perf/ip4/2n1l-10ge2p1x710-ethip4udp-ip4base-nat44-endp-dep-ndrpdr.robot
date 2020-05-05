@@ -17,9 +17,10 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | BASE | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44
+| ... | NAT44_ENDPOINT_DEPENDENT | BASE | DRV_VFIO_PCI | TEST
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4udp-ip4base-nat44
+| ... | ethip4udp-ip4base-nat44-endp-dep
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -28,7 +29,8 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput NAT44 performance test cases*
+| Documentation | *RFC2544: Pkt throughput NAT44 endpoint-dependent mode
+| ... | performance test cases*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
 | ... | with single links between nodes.
@@ -59,6 +61,23 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
+# IP settings
+| ${tg_if1_ip4}= | 10.0.0.2
+| ${tg_if2_ip4}= | 12.0.0.2
+| ${dut1_if1_ip4}= | 10.0.0.1
+| ${dut1_if2_ip4}= | 12.0.0.1
+| ${ip4_prefix}= | ${20}
+# NAT settings
+| ${nat_mode}= | endpoint-dependent
+| ${local_ip4_start}= | 20.0.0.0
+| ${local_ip4_end}= | 20.0.0.0
+| ${external_ip4_start}= | 200.0.0.0
+| ${external_ip4_end}= | 200.0.0.0
+| ${external_port_start}= | 2048
+| ${external_port_end}= | 2048
+| ${target_ip4_start}= | 30.0.0.0
+| ${targed_ip4_end}= | 30.0.0.0
+| ${nat_prefix}= | ${32}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n-ethip4udp-1u1p
 
@@ -83,58 +102,59 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | And Add NAT to all DUTs
+| | And Add NAT to all DUTs | nat_mode=${nat_mode}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize NAT44 in circular topology
+| | And Initialize IPv4 forwarding for NAT44 in circular topology
+| | And Initialize NAT44 endpoint-dependent mode in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4udp-ip4base-nat44-ndrpdr
+| tc01-64B-1c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4udp-ip4base-nat44-ndrpdr
+| tc02-64B-2c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4udp-ip4base-nat44-ndrpdr
+| tc03-64B-4c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4udp-ip4base-nat44-ndrpdr
+| tc04-1518B-1c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4udp-ip4base-nat44-ndrpdr
+| tc05-1518B-2c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4udp-ip4base-nat44-ndrpdr
+| tc06-1518B-4c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4udp-ip4base-nat44-ndrpdr
+| tc07-9000B-1c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4udp-ip4base-nat44-ndrpdr
+| tc08-9000B-2c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4udp-ip4base-nat44-ndrpdr
+| tc09-9000B-4c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4udp-ip4base-nat44-ndrpdr
+| tc10-IMIX-1c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4udp-ip4base-nat44-ndrpdr
+| tc11-IMIX-2c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4udp-ip4base-nat44-ndrpdr
+| tc12-IMIX-4c-ethip4udp-ip4base-nat44-endp-dep-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
