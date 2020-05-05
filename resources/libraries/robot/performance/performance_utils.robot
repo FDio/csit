@@ -387,11 +387,12 @@
 | | ... | ${fail_no_traffic}=${True}
 | | ... | ${trial_multiplicity}=${trial_multiplicity}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
+| | ... | ${latency}=${True}
 | |
 | | ${results}= | Send traffic at specified rate
 | | ... | ${trial_duration} | ${max_rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${trial_multiplicity}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
+| | ... | ${traffic_directions} | ${tx_port} | ${rx_port} | latency=${latency}
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
 | | ... | append=yes
@@ -432,11 +433,13 @@
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${trial_multiplicity}=${trial_multiplicity}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
-| | ... | ${pkt_trace}=${False}
+| | ... | ${pkt_trace}=${False} | ${latency}=${True}
 | |
-| | Clear and show runtime counters with running traffic | ${trial_duration}
-| | ... | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
+#| | Clear and show runtime counters with running traffic | ${trial_duration}
+#| | ... | ${rate} | ${frame_size} | ${traffic_profile}
+#| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
+| | Run Keyword If | ${dut_stats}==${True}
+| | ... | VPP clear runtime on all DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | Clear statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
@@ -450,14 +453,16 @@
 | | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
 | | | ... | ${traffic_profile} | warmup_time=${0}
 | | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | | ... | rx_port=${rx_port}
+| | | ... | rx_port=${rx_port} | latency=${latency}
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
 | | END
-| | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
-| | ... | ${nodes}
+| | Run Keyword If | ${dut_stats}==${True}
+| | ... | VPP show runtime on all DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs
+| | ... | ${nodes}
+| | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
 | | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
