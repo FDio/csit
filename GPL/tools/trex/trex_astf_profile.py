@@ -203,6 +203,9 @@ def simple_burst(
                 for warning in client.get_warnings():
                     print(warning)
 
+            # Read the stats after the test
+            stats = client.get_stats()
+
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
 
