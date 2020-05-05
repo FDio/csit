@@ -465,9 +465,9 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             # Last line from console output
             line = stdout.splitlines()[-1]
-            results = line.split(",")
-            if results[-1] == u" ":
-                results.remove(u" ")
+            results = line.split(u",")
+            if results[-1] in (u" ", u""):
+                results.pop(-1)
             self._result = dict()
             for result in results:
                 key, value = result.split(u"=", maxsplit=1)
@@ -667,6 +667,7 @@ class TrafficGenerator(AbstractMeasurer):
             self._loss = None
             self._latency = None
             xstats = [None, None]
+            self._l7_data = dict()
             self._l7_data[u"client"] = dict()
             self._l7_data[u"client"][u"active_flows"] = None
             self._l7_data[u"client"][u"established_flows"] = None
