@@ -154,7 +154,7 @@ def simple_burst(
                 for warning in client.get_warnings():
                     print(warning)
 
-            client.reset(ports=ports)
+            client.reset()
 
             print(u"##### Warmup Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
@@ -176,7 +176,7 @@ def simple_burst(
 
         # Choose CPS and start traffic.
         client.start(
-            mult=mult, duration=duration, nc=True,
+            mult=mult, duration=duration, nc=False,
             latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
         )
         time_start = time.monotonic()
@@ -206,12 +206,13 @@ def simple_burst(
                 for warning in client.get_warnings():
                     print(warning)
 
-            client.reset(ports=ports)
+            client.reset()
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
 
             # TODO: check stats format
+            approximated_duration = list(sorted(stats.keys()))[-1]
             stats = stats[sorted(stats.keys())[-1]]
             lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
             if traffic_directions > 1:
@@ -292,6 +293,7 @@ def simple_burst(
                 print(
                     f"rate={mult!r}, totalReceived={total_rcvd}, "
                     f"totalSent={total_sent}, frameLoss={lost_a + lost_b}, "
+                    f"approximatedDuration={approximated_duration}, "
                     f"latencyStream0(usec)={lat_a}, "
                     f"latencyStream1(usec)={lat_b}, "
                     f"latencyHistStream0={lat_a_hist}, "
