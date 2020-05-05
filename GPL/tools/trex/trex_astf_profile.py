@@ -176,7 +176,7 @@ def simple_burst(
 
         # Choose CPS and start traffic.
         client.start(
-            mult=mult, duration=duration, nc=True,
+            mult=mult, duration=duration, nc=False,
             latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
         )
 
@@ -202,6 +202,9 @@ def simple_burst(
             if client.get_warnings():
                 for warning in client.get_warnings():
                     print(warning)
+
+            # Read the stats after the test
+            stats = client.get_stats()
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
