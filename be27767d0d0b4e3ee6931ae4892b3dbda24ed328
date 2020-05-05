@@ -262,6 +262,30 @@
       "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f7cde47_42ae2c09",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-05-05T15:10:15Z",
+      "side": 1,
+      "message": "With patchset 8, I\u0027ve cleaned up the tests to use local suite variables to override the default values in suite_setup.robot.\n\nI\u0027m not convinced that adding a \u0027no TG\u0027 wrapper keyword adds any real value since it is now adding topology context to a keyword that doesn\u0027t appear to be tightly coupled to the topology.  Now that I think of it, whether a topology contains a TG is a characteristic of the topology itself, thus could be determined dynamically instead of specified in the test suite.\n\nOn the other hand, \u0027always_same_link\u0027 is a requirement of the test suite, so I recommend leaving that as a suite variable to be overridden in the test suite.",
+      "parentUuid": "7a87e9ad_713174a4",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 77
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
