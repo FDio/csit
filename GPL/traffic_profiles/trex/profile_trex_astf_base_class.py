@@ -14,10 +14,6 @@
 """Base class for profiles for T-rex advanced stateful (astf) traffic generator.
 """
 
-import sys
-import socket
-import struct
-
 from random import choice
 from string import ascii_letters
 
@@ -44,24 +40,38 @@ class TrafficProfileBaseClass:
         # Default value of frame size, it will be overwritten by the value of
         # "framesize" parameter of "get_streams" method.
         self.framesize = 64
+        self.pcap_dir = u"/opt/trex-core-2.73/scripts/avl"
 
         # If needed, add your own parameters.
 
-    def _gen_payload(self, length):
-        """Generate payload.
+    @property
+    def _get_pcap_dir(self):
+        """Generate padding.
 
-        If needed, implement your own algorithm. TODO: remove if unused
+        If needed, implement your own algorithm.
 
-        :param length: Length of generated payload.
-        :type length: int
-        :returns: The generated payload.
+        :param current_length: Current length of the packet.
+        :type current_length: int
+        :returns: The generated padding.
         :rtype: str
         """
-        payload = u""
-        for _ in range(length):
-            payload += choice(ascii_letters)
+        return self.pcap_dir
 
-        return payload
+    def _gen_padding(self, current_length):
+        """Generate padding.
+
+        If needed, implement your own algorithm.
+
+        :param current_length: Current length of the packet.
+        :type current_length: int
+        :returns: The generated padding.
+        :rtype: str
+        """
+        padding = u""
+        for _ in range(self.framesize - current_length):
+            padding += choice(ascii_letters)
+
+        return padding
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
@@ -85,12 +95,14 @@ class TrafficProfileBaseClass:
         :returns: Traffic profile.
         :rtype: trex.astf.trex_astf_profile.ASTFProfile
         """
-        ip_gen, templates = self.define_profile()
+        ip_gen, templates, cap_list = self.define_profile()
 
         # In most cases you will not have to change the code below:
 
         # profile
-        profile = ASTFProfile(default_ip_gen=ip_gen, templates=templates)
+        profile = ASTFProfile(
+            default_ip_gen=ip_gen, templates=templates, cap_list=cap_list
+        )
 
         return profile
 
@@ -105,5 +117,6 @@ class TrafficProfileBaseClass:
         :rtype: trex.astf.trex_astf_profile.ASTFProfile
         """
         self.framesize = kwargs[u"framesize"]
+        self.pcap_dir = u"/opt/trex-core-2.73/scripts/avl"
 
         return self.create_profile()
