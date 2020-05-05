@@ -33,29 +33,28 @@ DPDK Compile Parameters
 
 .. code-block:: bash
 
-    make install T=<arch>-native-linuxapp-gcc -j
+    make install T=<arch>-<machine>-linuxapp-gcc -j
 
 Testpmd Startup Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Testpmd startup configuration changes per test case with different
-settings for `$$CORES`, `$$RXQ` and max-pkt-len parameter if test is
+Testpmd startup configuration changes per test case with different settings for
+`$$INT`, `$$CORES`, `$$RXQ`, `$$RXD` and max-pkt-len parameter if test is
 sending jumbo frames. Startup command template:
 
 .. code-block:: bash
 
-    testpmd -c $$CORE_MASK -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=$$CORES [--max-pkt-len=9000] --txqflags=0 --forward-mode=io --rxq=$$RXQ --txq=$$TXQ --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
+    testpmd -v -l $$CORE_LIST -w $$INT1 -w $$INT2 --master-lcore 0 --in-memory -- --forward-mode=io --burst=64 --txd=$$TXD --rxd=$$RXD --txq=$$TXQ --rxq=$$RXQ --tx-offloads=0x0 --numa --auto-start --total-num-mbufs=16384 --nb-ports=2 --portmask=0x3 --disable-link-check --max-pkt-len=$$PKT_LEN [--mbuf-size=16384] --nb-cores=$$CORES
 
 L3FWD Startup Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-L3FWD startup configuration changes per test case with different
-settings for `$$CORES` and enable-jumbo parameter if test is sending
-jumbo frames. Startup command template:
+L3FWD startup configuration changes per test case with different settings for
+`$$INT`, `$$CORES` and enable-jumbo parameter if test is sending jumbo frames.
+Startup command template:
 
 .. code-block:: bash
 
-    l3fwd -l $$CORE_LIST -n 4 -- -P -L -p 0x3 --config='${port_config}' [--enable-jumbo --max-pkt-len=9000] --eth-dest=0,${adj_mac0} --eth-dest=1,${adj_mac1} --parse-ptype
-
+    l3fwd -v -l $$CORE_LIST -w $$INT1 -w $$INT2 --master-lcore 0 --in-memory -- --parse-ptype --eth-dest="0,${adj_mac0}" --eth-dest="1,${adj_mac1}" --config="${port_config}" [--enable-jumbo] -P -L -p 0x3
 
 .. include:: ../introduction/test_environment_tg.rst
