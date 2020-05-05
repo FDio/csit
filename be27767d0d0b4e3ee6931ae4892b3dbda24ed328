@@ -286,6 +286,30 @@
       "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d034f7e_51574471",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-05-05T16:02:15Z",
+      "side": 1,
+      "message": "\u003e With patchset 8, I\u0027ve cleaned up the tests to use local suite variables to override the default values in suite_setup.robot.\n\u003e \n\u003e I\u0027m not convinced that adding a \u0027no TG\u0027 wrapper keyword adds any real value since it is now adding topology context to a keyword that doesn\u0027t appear to be tightly coupled to the topology.  Now that I think of it, whether a topology contains a TG is a characteristic of the topology itself, thus could be determined dynamically instead of specified in the test suite.\n\u003e \n\u003e On the other hand, \u0027always_same_link\u0027 is a requirement of the test suite, so I recommend leaving that as a suite variable to be overridden in the test suite.\n\nActually, I take that back, the \u0027no TG\u0027 _is_ a requirement of the test suite -- basically a directive to not use the TG.\n\nAm I correct in understanding that it is preferable to have a \u0027Setup suite topology interfaces no TG\u0027 wrapper keyword instead of using suite variables in the test suites as exists in patchset 8?  Or can patchset 8 be merged?",
+      "parentUuid": "1f7cde47_42ae2c09",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 77
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
