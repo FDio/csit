@@ -140,6 +140,24 @@ class IPUtil:
         PapiSocketExecutor.run_cli_cmd(node, u"show ip6 fib summary")
 
     @staticmethod
+    def vpp_get_ip_table_summary(node):
+        """Get IPv4 FIB table summary on a VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd(node, u"show ip fib summary")
+
+    @staticmethod
+    def vpp_get_ip_table(node):
+        """Get IPv4 FIB table on a VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd(node, u"show ip fib")
+
+    @staticmethod
     def vpp_get_ip_tables_prefix(node, address):
         """Get dump of all IP FIB tables on a VPP node.
 
