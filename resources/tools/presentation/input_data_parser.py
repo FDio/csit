@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,27 +20,33 @@
 """
 
 import re
+import copy
 import resource
-import pandas as pd
 import logging
-import prettytable
 
-from robot.api import ExecutionResult, ResultVisitor
-from robot import errors
 from collections import OrderedDict
-from string import replace
-from os import remove
-from os.path import join
+from os import remove, walk, listdir
+from os.path import isfile, isdir, join
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
-from jumpavg.AvgStdevMetadataFactory import AvgStdevMetadataFactory
+from json.decoder import JSONDecodeError
 
+import hdrh.histogram
+import hdrh.codec
+import prettytable
+import pandas as pd
+
+from robot.api import ExecutionResult, ResultVisitor
+from robot import errors
+
+from resources.libraries.python import jumpavg
 from input_data_files import download_and_unzip_data_file
+from pal_errors import PresentationError
 
 
 # Separator used in file names
-SEPARATOR = "__"
+SEPARATOR = u"__"
 
 
 class ExecutionChecker(ResultVisitor):
@@ -98,24 +104,28 @@ class ExecutionChecker(ResultVisitor):
                         "direction1": {
                             "min": float,
                             "avg": float,
-                            "max": float
+                            "max": float,
+                            "hdrh": str
                         },
                         "direction2": {
                             "min": float,
                             "avg": float,
-                            "max": float
+                            "max": float,
+                            "hdrh": str
                         }
                     },
                     "PDR": {
                         "direction1": {
                             "min": float,
                             "avg": float,
-                            "max": float
+                            "max": float,
+                            "hdrh": str
                         },
                         "direction2": {
                             "min": float,
                             "avg": float,
-                            "max": float
+                            "max": float,
+                            "hdrh": str
                         }
                     }
                 }
@@ -143,64 +153,12 @@ class ExecutionChecker(ResultVisitor):
                 "type": "MRR" | "BMRR",
                 "status": "PASS" | "FAIL",
                 "result": {
-                    "receive-rate": AvgStdevMetadata,
+                    "receive-rate": float,
+                    # Average of a list, computed using AvgStdevStats.
+                    # In CSIT-1180, replace with List[float].
                 }
             }
 
-            # TODO: Remove when definitely no NDRPDRDISC tests are used:
-            # NDRPDRDISC tests:
-            "ID": {
-                "name": "Test name",
-                "parent": "Name of the parent of the test",
-                "doc": "Test documentation",
-                "msg": "Test message",
-                "tags": ["tag 1", "tag 2", "tag n"],
-                "type": "PDR" | "NDR",
-                "status": "PASS" | "FAIL",
-                "throughput": {  # Only type: "PDR" | "NDR"
-                    "value": int,
-                    "unit": "pps" | "bps" | "percentage"
-                },
-                "latency": {  # Only type: "PDR" | "NDR"
-                    "direction1": {
-                        "100": {
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        },
-                        "50": {  # Only for NDR
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        },
-                        "10": {  # Only for NDR
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        }
-                    },
-                    "direction2": {
-                        "100": {
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        },
-                        "50": {  # Only for NDR
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        },
-                        "10": {  # Only for NDR
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        }
-                    }
-                },
-                "lossTolerance": "lossTolerance",  # Only type: "PDR"
-                "conf-history": "DUT1 and DUT2 VAT History"
-                "show-run": "Show Run"
-            },
             "ID" {
                 # next test
             }
@@ -248,52 +206,74 @@ class ExecutionChecker(ResultVisitor):
     .. note:: ID is the lowercase full path to the test.
     """
 
-    # TODO: Remove when definitely no NDRPDRDISC tests are used:
-    REGEX_RATE = re.compile(r'^[\D\d]*FINAL_RATE:\s(\d+\.\d+)\s(\w+)')
+    REGEX_PLR_RATE = re.compile(
+        r'PLRsearch lower bound::?\s(\d+.\d+).*\n'
+        r'PLRsearch upper bound::?\s(\d+.\d+)'
+    )
+    REGEX_NDRPDR_RATE = re.compile(
+        r'NDR_LOWER:\s(\d+.\d+).*\n.*\n'
+        r'NDR_UPPER:\s(\d+.\d+).*\n'
+        r'PDR_LOWER:\s(\d+.\d+).*\n.*\n'
+        r'PDR_UPPER:\s(\d+.\d+)'
+    )
+    REGEX_PERF_MSG_INFO = re.compile(
+        r'NDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*\n'
+        r'PDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*\n'
+        r'Latency at 90% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
+        r'Latency at 50% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
+        r'Latency at 10% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
+    )
+    REGEX_MRR_MSG_INFO = re.compile(r'.*\[(.*)\]')
 
-    REGEX_PLR_RATE = re.compile(r'PLRsearch lower bound::\s(\d+.\d+).*\n'
-                                r'PLRsearch upper bound::\s(\d+.\d+)')
-
-    REGEX_NDRPDR_RATE = re.compile(r'NDR_LOWER:\s(\d+.\d+).*\n.*\n'
-                                   r'NDR_UPPER:\s(\d+.\d+).*\n'
-                                   r'PDR_LOWER:\s(\d+.\d+).*\n.*\n'
-                                   r'PDR_UPPER:\s(\d+.\d+)')
-
-    # TODO: Remove when definitely no NDRPDRDISC tests are used:
-    REGEX_LAT_NDR = re.compile(r'^[\D\d]*'
-                               r'LAT_\d+%NDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
-                               r'\s\'(-?\d+/-?\d+/-?\d+)\'\]\s\n'
-                               r'LAT_\d+%NDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
-                               r'\s\'(-?\d+/-?\d+/-?\d+)\'\]\s\n'
-                               r'LAT_\d+%NDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
-                               r'\s\'(-?\d+/-?\d+/-?\d+)\'\]')
-
-    REGEX_LAT_PDR = re.compile(r'^[\D\d]*'
-                               r'LAT_\d+%PDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
-                               r'\s\'(-?\d+/-?\d+/-?\d+)\'\][\D\d]*')
-
-    REGEX_NDRPDR_LAT = re.compile(r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
-                                  r'LATENCY.*\[\'(.*)\', \'(.*)\'\]')
-
-    REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
-                                 r'[\D\d]*')
-
-    REGEX_VERSION_VPP = re.compile(r"(return STDOUT Version:\s*|"
-                                   r"VPP Version:\s*|VPP version:\s*)(.*)")
-
-    REGEX_VERSION_DPDK = re.compile(r"(DPDK version:\s*|DPDK Version:\s*)(.*)")
-
-    REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s(\d*).*$')
-
-    REGEX_MRR = re.compile(r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
-                           r'tx\s(\d*),\srx\s(\d*)')
-
-    REGEX_BMRR = re.compile(r'Maximum Receive Rate trial results'
-                            r' in packets per second: \[(.*)\]')
-
-    REGEX_RECONF_LOSS = re.compile(r'Packets lost due to reconfig: (\d*)')
-    REGEX_RECONF_TIME = re.compile(r'Implied time lost: (\d*.[\de-]*)')
-
+    # TODO: Remove when not needed
+    REGEX_NDRPDR_LAT_BASE = re.compile(
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]'
+    )
+    REGEX_NDRPDR_LAT = re.compile(
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]'
+    )
+    # TODO: Remove when not needed
+    REGEX_NDRPDR_LAT_LONG = re.compile(
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\'\]'
+    )
+    REGEX_VERSION_VPP = re.compile(
+        r"(return STDOUT Version:\s*|"
+        r"VPP Version:\s*|VPP version:\s*)(.*)"
+    )
+    REGEX_VERSION_DPDK = re.compile(
+        r"(DPDK version:\s*|DPDK Version:\s*)(.*)"
+    )
+    REGEX_TCP = re.compile(
+        r'Total\s(rps|cps|throughput):\s(\d*).*$'
+    )
+    REGEX_MRR = re.compile(
+        r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
+        r'tx\s(\d*),\srx\s(\d*)'
+    )
+    REGEX_BMRR = re.compile(
+        r'Maximum Receive Rate trial results'
+        r' in packets per second: \[(.*)\]'
+    )
+    REGEX_RECONF_LOSS = re.compile(
+        r'Packets lost due to reconfig: (\d*)'
+    )
+    REGEX_RECONF_TIME = re.compile(
+        r'Implied time lost: (\d*.[\de-]*)'
+    )
     REGEX_TC_TAG = re.compile(r'\d+[tT]\d+[cC]')
 
     REGEX_TC_NAME_OLD = re.compile(r'-\d+[tT]\d+[cC]-')
@@ -301,6 +281,8 @@ class ExecutionChecker(ResultVisitor):
     REGEX_TC_NAME_NEW = re.compile(r'-\d+[cC]-')
 
     REGEX_TC_NUMBER = re.compile(r'tc\d{2}-')
+
+    REGEX_TC_PAPI_CLI = re.compile(r'.*\((\d+.\d+.\d+.\d+.) - (.*)\)')
 
     def __init__(self, metadata, mapping, ignore):
         """Initialisation.
@@ -333,43 +315,40 @@ class ExecutionChecker(ResultVisitor):
         # Ignore list
         self._ignore = ignore
 
-        # Number of VAT History messages found:
+        # Number of PAPI History messages found:
         # 0 - no message
-        # 1 - VAT History of DUT1
-        # 2 - VAT History of DUT2
-        self._lookup_kw_nr = 0
+        # 1 - PAPI History of DUT1
+        # 2 - PAPI History of DUT2
         self._conf_history_lookup_nr = 0
 
-        # Number of Show Running messages found
-        # 0 - no message
-        # 1 - Show run message found
-        self._show_run_lookup_nr = 0
+        self._sh_run_counter = 0
 
         # Test ID of currently processed test- the lowercase full path to the
         # test
-        self._test_ID = None
+        self._test_id = None
 
         # The main data structure
         self._data = {
-            "metadata": OrderedDict(),
-            "suites": OrderedDict(),
-            "tests": OrderedDict()
+            u"metadata": OrderedDict(),
+            u"suites": OrderedDict(),
+            u"tests": OrderedDict()
         }
 
         # Save the provided metadata
         for key, val in metadata.items():
-            self._data["metadata"][key] = val
+            self._data[u"metadata"][key] = val
 
         # Dictionary defining the methods used to parse different types of
         # messages
         self.parse_msg = {
-            "timestamp": self._get_timestamp,
-            "vpp-version": self._get_vpp_version,
-            "dpdk-version": self._get_dpdk_version,
-            "teardown-vat-history": self._get_vat_history,
-            "teardown-papi-history": self._get_papi_history,
-            "test-show-runtime": self._get_show_run,
-            "testbed": self._get_testbed
+            u"timestamp": self._get_timestamp,
+            u"vpp-version": self._get_vpp_version,
+            u"dpdk-version": self._get_dpdk_version,
+            # TODO: Remove when not needed:
+            u"teardown-vat-history": self._get_vat_history,
+            u"teardown-papi-history": self._get_papi_history,
+            u"test-show-runtime": self._get_show_run,
+            u"testbed": self._get_testbed
         }
 
     @property
@@ -381,6 +360,140 @@ class ExecutionChecker(ResultVisitor):
         """
         return self._data
 
+    def _get_data_from_mrr_test_msg(self, msg):
+        """Get info from message of MRR performance tests.
+
+        :param msg: Message to be processed.
+        :type msg: str
+        :returns: Processed message or original message if a problem occurs.
+        :rtype: str
+        """
+
+        groups = re.search(self.REGEX_MRR_MSG_INFO, msg)
+        if not groups or groups.lastindex != 1:
+            return u"Test Failed."
+
+        try:
+            data = groups.group(1).split(u", ")
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return u"Test Failed."
+
+        out_str = u"["
+        try:
+            for item in data:
+                out_str += f"{(float(item) / 1e6):.2f}, "
+            return out_str[:-2] + u"]"
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return u"Test Failed."
+
+    def _get_data_from_perf_test_msg(self, msg):
+        """Get info from message of NDRPDR performance tests.
+
+        :param msg: Message to be processed.
+        :type msg: str
+        :returns: Processed message or original message if a problem occurs.
+        :rtype: str
+        """
+
+        groups = re.search(self.REGEX_PERF_MSG_INFO, msg)
+        if not groups or groups.lastindex != 10:
+            return u"Test Failed."
+
+        try:
+            data = {
+                u"ndr_low": float(groups.group(1)),
+                u"ndr_low_b": float(groups.group(2)),
+                u"pdr_low": float(groups.group(3)),
+                u"pdr_low_b": float(groups.group(4)),
+                u"pdr_lat_90_1": groups.group(5),
+                u"pdr_lat_90_2": groups.group(6),
+                u"pdr_lat_50_1": groups.group(7),
+                u"pdr_lat_50_2": groups.group(8),
+                u"pdr_lat_10_1": groups.group(9),
+                u"pdr_lat_10_2": groups.group(10),
+            }
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return u"Test Failed."
+
+        def _process_lat(in_str_1, in_str_2):
+            """Extract min, avg, max values from latency string.
+
+            :param in_str_1: Latency string for one direction produced by robot
+                framework.
+            :param in_str_2: Latency string for second direction produced by
+                robot framework.
+            :type in_str_1: str
+            :type in_str_2: str
+            :returns: Processed latency string or None if a problem occurs.
+            :rtype: tuple
+            """
+            in_list_1 = in_str_1.split('/', 3)
+            in_list_2 = in_str_2.split('/', 3)
+
+            if len(in_list_1) != 4 and len(in_list_2) != 4:
+                return None
+
+            in_list_1[3] += u"=" * (len(in_list_1[3]) % 4)
+            try:
+                hdr_lat_1 = hdrh.histogram.HdrHistogram.decode(in_list_1[3])
+            except hdrh.codec.HdrLengthException:
+                return None
+
+            in_list_2[3] += u"=" * (len(in_list_2[3]) % 4)
+            try:
+                hdr_lat_2 = hdrh.histogram.HdrHistogram.decode(in_list_2[3])
+            except hdrh.codec.HdrLengthException:
+                return None
+
+            if hdr_lat_1 and hdr_lat_2:
+                hdr_lat = (
+                    hdr_lat_1.get_value_at_percentile(50.0),
+                    hdr_lat_1.get_value_at_percentile(90.0),
+                    hdr_lat_1.get_value_at_percentile(99.0),
+                    hdr_lat_2.get_value_at_percentile(50.0),
+                    hdr_lat_2.get_value_at_percentile(90.0),
+                    hdr_lat_2.get_value_at_percentile(99.0)
+                )
+
+                if all(hdr_lat):
+                    return hdr_lat
+
+            return None
+
+        try:
+            out_msg = (
+                f"1. {(data[u'ndr_low'] / 1e6):5.2f}      "
+                f"{data[u'ndr_low_b']:5.2f}"
+                f"\n2. {(data[u'pdr_low'] / 1e6):5.2f}      "
+                f"{data[u'pdr_low_b']:5.2f}"
+            )
+            latency = (
+                _process_lat(data[u'pdr_lat_10_1'], data[u'pdr_lat_10_2']),
+                _process_lat(data[u'pdr_lat_50_1'], data[u'pdr_lat_50_2']),
+                _process_lat(data[u'pdr_lat_90_1'], data[u'pdr_lat_90_2'])
+            )
+            if all(latency):
+                max_len = len(str(max((max(item) for item in latency))))
+                max_len = 4 if max_len < 4 else max_len
+
+                for idx, lat in enumerate(latency):
+                    if not idx:
+                        out_msg += u"\n"
+                    out_msg += (
+                        f"\n{idx + 3}. "
+                        f"{lat[0]:{max_len}d} "
+                        f"{lat[1]:{max_len}d} "
+                        f"{lat[2]:{max_len}d}      "
+                        f"{lat[3]:{max_len}d} "
+                        f"{lat[4]:{max_len}d} "
+                        f"{lat[5]:{max_len}d} "
+                    )
+
+            return out_msg
+
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return u"Test Failed."
+
     def _get_testbed(self, msg):
         """Called when extraction of testbed IP is required.
         The testbed is identified by TG node IP address.
@@ -390,15 +503,16 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if msg.message.count("Setup of TG node"):
+        if msg.message.count(u"Setup of TG node") or \
+                msg.message.count(u"Setup of node TG host"):
             reg_tg_ip = re.compile(
-                r'Setup of TG node (\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}) done')
+                r'.*TG .* (\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}).*')
             try:
                 self._testbed = str(re.search(reg_tg_ip, msg.message).group(1))
             except (KeyError, ValueError, IndexError, AttributeError):
                 pass
             finally:
-                self._data["metadata"]["testbed"] = self._testbed
+                self._data[u"metadata"][u"testbed"] = self._testbed
                 self._msg_type = None
 
     def _get_vpp_version(self, msg):
@@ -409,12 +523,12 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if msg.message.count("return STDOUT Version:") or \
-            msg.message.count("VPP Version:") or \
-            msg.message.count("VPP version:"):
+        if msg.message.count(u"return STDOUT Version:") or \
+            msg.message.count(u"VPP Version:") or \
+            msg.message.count(u"VPP version:"):
             self._version = str(re.search(self.REGEX_VERSION_VPP, msg.message).
                                 group(2))
-            self._data["metadata"]["version"] = self._version
+            self._data[u"metadata"][u"version"] = self._version
             self._msg_type = None
 
     def _get_dpdk_version(self, msg):
@@ -425,11 +539,11 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if msg.message.count("DPDK Version:"):
+        if msg.message.count(u"DPDK Version:"):
             try:
                 self._version = str(re.search(
-                    self.REGEX_VERSION_DPDK, msg.message). group(2))
-                self._data["metadata"]["version"] = self._version
+                    self.REGEX_VERSION_DPDK, msg.message).group(2))
+                self._data[u"metadata"][u"version"] = self._version
             except IndexError:
                 pass
             finally:
@@ -444,30 +558,32 @@ class ExecutionChecker(ResultVisitor):
         """
 
         self._timestamp = msg.timestamp[:14]
-        self._data["metadata"]["generated"] = self._timestamp
+        self._data[u"metadata"][u"generated"] = self._timestamp
         self._msg_type = None
 
     def _get_vat_history(self, msg):
         """Called when extraction of VAT command history is required.
 
+        TODO: Remove when not needed.
+
         :param msg: Message to process.
         :type msg: Message
         :returns: Nothing.
         """
-        if msg.message.count("VAT command history:"):
+        if msg.message.count(u"VAT command history:"):
             self._conf_history_lookup_nr += 1
             if self._conf_history_lookup_nr == 1:
-                self._data["tests"][self._test_ID]["conf-history"] = str()
+                self._data[u"tests"][self._test_id][u"conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          "VAT command history:", "", msg.message, count=1). \
-                replace("\n\n", "\n").replace('\n', ' |br| ').\
-                replace('\r', '').replace('"', "'")
+            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
+                          r"VAT command history:", u"",
+                          msg.message, count=1).replace(u'\n', u' |br| ').\
+                replace(u'"', u"'")
 
-            self._data["tests"][self._test_ID]["conf-history"] += " |br| "
-            self._data["tests"][self._test_ID]["conf-history"] += \
-                "**DUT" + str(self._conf_history_lookup_nr) + ":** " + text
+            self._data[u"tests"][self._test_id][u"conf-history"] += (
+                f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
+            )
 
     def _get_papi_history(self, msg):
         """Called when extraction of PAPI command history is required.
@@ -476,20 +592,19 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
-        if msg.message.count("PAPI command history:"):
+        if msg.message.count(u"PAPI command history:"):
             self._conf_history_lookup_nr += 1
             if self._conf_history_lookup_nr == 1:
-                self._data["tests"][self._test_ID]["conf-history"] = str()
+                self._data[u"tests"][self._test_id][u"conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          "PAPI command history:", "", msg.message, count=1). \
-                replace("\n\n", "\n").replace('\n', ' |br| ').\
-                replace('\r', '').replace('"', "'")
-
-            self._data["tests"][self._test_ID]["conf-history"] += " |br| "
-            self._data["tests"][self._test_ID]["conf-history"] += \
-                "**DUT" + str(self._conf_history_lookup_nr) + ":** " + text
+            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
+                          r"PAPI command history:", u"",
+                          msg.message, count=1).replace(u'\n', u' |br| ').\
+                replace(u'"', u"'")
+            self._data[u"tests"][self._test_id][u"conf-history"] += (
+                f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
+            )
 
     def _get_show_run(self, msg):
         """Called when extraction of VPP operational data (output of CLI command
@@ -499,108 +614,75 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
-        if msg.message.count("Runtime:"):
-            self._show_run_lookup_nr += 1
-            if self._lookup_kw_nr == 1 and self._show_run_lookup_nr == 1:
-                self._data["tests"][self._test_ID]["show-run"] = str()
-            if self._lookup_kw_nr > 1:
-                self._msg_type = None
-            if self._show_run_lookup_nr > 0:
-                message = str(msg.message).replace(' ', '').replace('\n', '').\
-                    replace("'", '"').replace('b"', '"').replace('u"', '"')[8:]
-                runtime = loads(message)
-                try:
-                    threads_nr = len(runtime[0]["clocks"])
-                except (IndexError, KeyError):
-                    return
-                tbl_hdr = ["Name", "Calls", "Vectors", "Suspends", "Clocks"]
-                table = [[tbl_hdr, ] for _ in range(threads_nr)]
-                for item in runtime:
-                    for idx in range(threads_nr):
-                        table[idx].append([
-                            item["name"],
-                            item["calls"][idx],
-                            item["vectors"][idx],
-                            item["suspends"][idx],
-                            item["clocks"][idx]
-                        ])
-                text = ""
-                for idx in range(threads_nr):
-                    text += "Thread {idx} ".format(idx=idx)
-                    text += "vpp_main\n" if idx == 0 else \
-                        "vpp_wk_{idx}\n".format(idx=idx-1)
-                    txt_table = None
-                    for row in table[idx]:
-                        if txt_table is None:
-                            txt_table = prettytable.PrettyTable(row)
-                        else:
-                            if any(row[1:]):
-                                txt_table.add_row(row)
-                    txt_table.set_style(prettytable.MSWORD_FRIENDLY)
-                    txt_table.align["Name"] = "l"
-                    txt_table.align["Calls"] = "r"
-                    txt_table.align["Vectors"] = "r"
-                    txt_table.align["Suspends"] = "r"
-                    txt_table.align["Clocks"] = "r"
 
-                    text += txt_table.get_string(sortby="Name") + '\n'
+        if not msg.message.count(u"stats runtime"):
+            return
 
-                text = text.replace('\n', ' |br| ').replace('\r', '').\
-                    replace('"', "'")
-                try:
-                    self._data["tests"][self._test_ID]["show-run"] += " |br| "
-                    self._data["tests"][self._test_ID]["show-run"] += \
-                        "**DUT" + str(self._show_run_lookup_nr) + ":** |br| " \
-                        + text
-                except KeyError:
-                    pass
+        # Temporary solution
+        if self._sh_run_counter > 1:
+            return
 
-    # TODO: Remove when definitely no NDRPDRDISC tests are used:
-    def _get_latency(self, msg, test_type):
-        """Get the latency data from the test message.
+        if u"show-run" not in self._data[u"tests"][self._test_id].keys():
+            self._data[u"tests"][self._test_id][u"show-run"] = dict()
 
-        :param msg: Message to be parsed.
-        :param test_type: Type of the test - NDR or PDR.
-        :type msg: str
-        :type test_type: str
-        :returns: Latencies parsed from the message.
-        :rtype: dict
-        """
+        groups = re.search(self.REGEX_TC_PAPI_CLI, msg.message)
+        if not groups:
+            return
+        try:
+            host = groups.group(1)
+        except (AttributeError, IndexError):
+            host = u""
+        try:
+            sock = groups.group(2)
+        except (AttributeError, IndexError):
+            sock = u""
 
-        if test_type == "NDR":
-            groups = re.search(self.REGEX_LAT_NDR, msg)
-            groups_range = range(1, 7)
-        elif test_type == "PDR":
-            groups = re.search(self.REGEX_LAT_PDR, msg)
-            groups_range = range(1, 3)
-        else:
-            return {}
+        runtime = loads(str(msg.message).replace(u' ', u'').replace(u'\n', u'').
+                        replace(u"'", u'"').replace(u'b"', u'"').
+                        replace(u'u"', u'"').split(u":", 1)[1])
 
-        latencies = list()
-        for idx in groups_range:
-            try:
-                lat = [int(item) for item in str(groups.group(idx)).split('/')]
-            except (AttributeError, ValueError):
-                lat = [-1, -1, -1]
-            latencies.append(lat)
+        try:
+            threads_nr = len(runtime[0][u"clocks"])
+        except (IndexError, KeyError):
+            return
 
-        keys = ("min", "avg", "max")
-        latency = {
-            "direction1": {
-            },
-            "direction2": {
-            }
+        dut = u"DUT{nr}".format(
+            nr=len(self._data[u'tests'][self._test_id][u'show-run'].keys()) + 1)
+
+        oper = {
+            u"host": host,
+            u"socket": sock,
+            u"threads": OrderedDict({idx: list() for idx in range(threads_nr)})
         }
 
-        latency["direction1"]["100"] = dict(zip(keys, latencies[0]))
-        latency["direction2"]["100"] = dict(zip(keys, latencies[1]))
-        if test_type == "NDR":
-            latency["direction1"]["50"] = dict(zip(keys, latencies[2]))
-            latency["direction2"]["50"] = dict(zip(keys, latencies[3]))
-            latency["direction1"]["10"] = dict(zip(keys, latencies[4]))
-            latency["direction2"]["10"] = dict(zip(keys, latencies[5]))
+        for item in runtime:
+            for idx in range(threads_nr):
+                if item[u"vectors"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"vectors"][idx]
+                elif item[u"calls"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"calls"][idx]
+                elif item[u"suspends"][idx] > 0:
+                    clocks = item[u"clocks"][idx] / item[u"suspends"][idx]
+                else:
+                    clocks = 0.0
 
-        return latency
+                if item[u"calls"][idx] > 0:
+                    vectors_call = item[u"vectors"][idx] / item[u"calls"][idx]
+                else:
+                    vectors_call = 0.0
+
+                if int(item[u"calls"][idx]) + int(item[u"vectors"][idx]) + \
+                        int(item[u"suspends"][idx]):
+                    oper[u"threads"][idx].append([
+                        item[u"name"],
+                        item[u"calls"][idx],
+                        item[u"vectors"][idx],
+                        item[u"suspends"][idx],
+                        clocks,
+                        vectors_call
+                    ])
+
+        self._data[u'tests'][self._test_id][u'show-run'][dut] = copy.copy(oper)
 
     def _get_ndrpdr_throughput(self, msg):
         """Get NDR_LOWER, NDR_UPPER, PDR_LOWER and PDR_UPPER from the test
@@ -613,19 +695,19 @@ class ExecutionChecker(ResultVisitor):
         """
 
         throughput = {
-            "NDR": {"LOWER": -1.0, "UPPER": -1.0},
-            "PDR": {"LOWER": -1.0, "UPPER": -1.0}
+            u"NDR": {u"LOWER": -1.0, u"UPPER": -1.0},
+            u"PDR": {u"LOWER": -1.0, u"UPPER": -1.0}
         }
-        status = "FAIL"
+        status = u"FAIL"
         groups = re.search(self.REGEX_NDRPDR_RATE, msg)
 
         if groups is not None:
             try:
-                throughput["NDR"]["LOWER"] = float(groups.group(1))
-                throughput["NDR"]["UPPER"] = float(groups.group(2))
-                throughput["PDR"]["LOWER"] = float(groups.group(3))
-                throughput["PDR"]["UPPER"] = float(groups.group(4))
-                status = "PASS"
+                throughput[u"NDR"][u"LOWER"] = float(groups.group(1))
+                throughput[u"NDR"][u"UPPER"] = float(groups.group(2))
+                throughput[u"PDR"][u"LOWER"] = float(groups.group(3))
+                throughput[u"PDR"][u"UPPER"] = float(groups.group(4))
+                status = u"PASS"
             except (IndexError, ValueError):
                 pass
 
@@ -642,17 +724,17 @@ class ExecutionChecker(ResultVisitor):
         """
 
         throughput = {
-            "LOWER": -1.0,
-            "UPPER": -1.0
+            u"LOWER": -1.0,
+            u"UPPER": -1.0
         }
-        status = "FAIL"
+        status = u"FAIL"
         groups = re.search(self.REGEX_PLR_RATE, msg)
 
         if groups is not None:
             try:
-                throughput["LOWER"] = float(groups.group(1))
-                throughput["UPPER"] = float(groups.group(2))
-                status = "PASS"
+                throughput[u"LOWER"] = float(groups.group(1))
+                throughput[u"UPPER"] = float(groups.group(2))
+                status = u"PASS"
             except (IndexError, ValueError):
                 pass
 
@@ -666,36 +748,165 @@ class ExecutionChecker(ResultVisitor):
         :returns: Parsed data as a dict and the status (PASS/FAIL).
         :rtype: tuple(dict, str)
         """
-
-        latency = {
-            "NDR": {
-                "direction1": {"min": -1.0, "avg": -1.0, "max": -1.0},
-                "direction2": {"min": -1.0, "avg": -1.0, "max": -1.0}
-            },
-            "PDR": {
-                "direction1": {"min": -1.0, "avg": -1.0, "max": -1.0},
-                "direction2": {"min": -1.0, "avg": -1.0, "max": -1.0}
-            }
+        latency_default = {
+            u"min": -1.0,
+            u"avg": -1.0,
+            u"max": -1.0,
+            u"hdrh": u""
         }
-        status = "FAIL"
-        groups = re.search(self.REGEX_NDRPDR_LAT, msg)
+        latency = {
+            u"NDR": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"PDR": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"LAT0": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"PDR10": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"PDR50": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+            u"PDR90": {
+                u"direction1": copy.copy(latency_default),
+                u"direction2": copy.copy(latency_default)
+            },
+        }
 
-        if groups is not None:
-            keys = ("min", "avg", "max")
+        # TODO: Rewrite when long and base are not needed
+        groups = re.search(self.REGEX_NDRPDR_LAT_LONG, msg)
+        if groups is None:
+            groups = re.search(self.REGEX_NDRPDR_LAT, msg)
+        if groups is None:
+            groups = re.search(self.REGEX_NDRPDR_LAT_BASE, msg)
+        if groups is None:
+            return latency, u"FAIL"
+
+        def process_latency(in_str):
+            """Return object with parsed latency values.
+
+            TODO: Define class for the return type.
+
+            :param in_str: Input string, min/avg/max/hdrh format.
+            :type in_str: str
+            :returns: Dict with corresponding keys, except hdrh float values.
+            :rtype dict:
+            :throws IndexError: If in_str does not have enough substrings.
+            :throws ValueError: If a substring does not convert to float.
+            """
+            in_list = in_str.split('/', 3)
+
+            rval = {
+                u"min": float(in_list[0]),
+                u"avg": float(in_list[1]),
+                u"max": float(in_list[2]),
+                u"hdrh": u""
+            }
+
+            if len(in_list) == 4:
+                rval[u"hdrh"] = str(in_list[3])
+
+            return rval
+
+        try:
+            latency[u"NDR"][u"direction1"] = process_latency(groups.group(1))
+            latency[u"NDR"][u"direction2"] = process_latency(groups.group(2))
+            latency[u"PDR"][u"direction1"] = process_latency(groups.group(3))
+            latency[u"PDR"][u"direction2"] = process_latency(groups.group(4))
+            if groups.lastindex == 4:
+                return latency, u"PASS"
+        except (IndexError, ValueError):
+            pass
+
+        try:
+            latency[u"PDR90"][u"direction1"] = process_latency(groups.group(5))
+            latency[u"PDR90"][u"direction2"] = process_latency(groups.group(6))
+            latency[u"PDR50"][u"direction1"] = process_latency(groups.group(7))
+            latency[u"PDR50"][u"direction2"] = process_latency(groups.group(8))
+            latency[u"PDR10"][u"direction1"] = process_latency(groups.group(9))
+            latency[u"PDR10"][u"direction2"] = process_latency(groups.group(10))
+            latency[u"LAT0"][u"direction1"] = process_latency(groups.group(11))
+            latency[u"LAT0"][u"direction2"] = process_latency(groups.group(12))
+            if groups.lastindex == 12:
+                return latency, u"PASS"
+        except (IndexError, ValueError):
+            pass
+
+        # TODO: Remove when not needed
+        latency[u"NDR10"] = {
+            u"direction1": copy.copy(latency_default),
+            u"direction2": copy.copy(latency_default)
+        }
+        latency[u"NDR50"] = {
+            u"direction1": copy.copy(latency_default),
+            u"direction2": copy.copy(latency_default)
+        }
+        latency[u"NDR90"] = {
+            u"direction1": copy.copy(latency_default),
+            u"direction2": copy.copy(latency_default)
+        }
+        try:
+            latency[u"LAT0"][u"direction1"] = process_latency(groups.group(5))
+            latency[u"LAT0"][u"direction2"] = process_latency(groups.group(6))
+            latency[u"NDR10"][u"direction1"] = process_latency(groups.group(7))
+            latency[u"NDR10"][u"direction2"] = process_latency(groups.group(8))
+            latency[u"NDR50"][u"direction1"] = process_latency(groups.group(9))
+            latency[u"NDR50"][u"direction2"] = process_latency(groups.group(10))
+            latency[u"NDR90"][u"direction1"] = process_latency(groups.group(11))
+            latency[u"NDR90"][u"direction2"] = process_latency(groups.group(12))
+            latency[u"PDR10"][u"direction1"] = process_latency(groups.group(13))
+            latency[u"PDR10"][u"direction2"] = process_latency(groups.group(14))
+            latency[u"PDR50"][u"direction1"] = process_latency(groups.group(15))
+            latency[u"PDR50"][u"direction2"] = process_latency(groups.group(16))
+            latency[u"PDR90"][u"direction1"] = process_latency(groups.group(17))
+            latency[u"PDR90"][u"direction2"] = process_latency(groups.group(18))
+            return latency, u"PASS"
+        except (IndexError, ValueError):
+            pass
+
+        return latency, u"FAIL"
+
+    @staticmethod
+    def _get_hoststack_data(msg, tags):
+        """Get data from the hoststack test message.
+
+        :param msg: The test message to be parsed.
+        :param tags: Test tags.
+        :type msg: str
+        :type tags: list
+        :returns: Parsed data as a JSON dict and the status (PASS/FAIL).
+        :rtype: tuple(dict, str)
+        """
+        result = dict()
+        status = u"FAIL"
+
+        msg = msg.replace(u"'", u'"').replace(u" ", u"")
+        if u"LDPRELOAD" in tags:
             try:
-                latency["NDR"]["direction1"] = dict(
-                    zip(keys, [float(l) for l in groups.group(1).split('/')]))
-                latency["NDR"]["direction2"] = dict(
-                    zip(keys, [float(l) for l in groups.group(2).split('/')]))
-                latency["PDR"]["direction1"] = dict(
-                    zip(keys, [float(l) for l in groups.group(3).split('/')]))
-                latency["PDR"]["direction2"] = dict(
-                    zip(keys, [float(l) for l in groups.group(4).split('/')]))
-                status = "PASS"
-            except (IndexError, ValueError):
+                result = loads(msg)
+                status = u"PASS"
+            except JSONDecodeError:
+                pass
+        elif u"VPPECHO" in tags:
+            try:
+                msg_lst = msg.replace(u"}{", u"} {").split(u" ")
+                result = dict(
+                    client=loads(msg_lst[0]),
+                    server=loads(msg_lst[1])
+                )
+                status = u"PASS"
+            except (JSONDecodeError, IndexError):
                 pass
 
-        return latency, status
+        return result, status
 
     def visit_suite(self, suite):
         """Implements traversing through the suite and its direct children.
@@ -722,17 +933,22 @@ class ExecutionChecker(ResultVisitor):
         except AttributeError:
             return
 
-        doc_str = suite.doc.replace('"', "'").replace('\n', ' ').\
-            replace('\r', '').replace('*[', ' |br| *[').replace("*", "**")
-        doc_str = replace(doc_str, ' |br| *[', '*[', maxreplace=1)
+        doc_str = suite.doc.\
+            replace(u'"', u"'").\
+            replace(u'\n', u' ').\
+            replace(u'\r', u'').\
+            replace(u'*[', u' |br| *[').\
+            replace(u"*", u"**").\
+            replace(u' |br| *[', u'*[', 1)
 
-        self._data["suites"][suite.longname.lower().replace('"', "'").
-            replace(" ", "_")] = {
-                "name": suite.name.lower(),
-                "doc": doc_str,
-                "parent": parent_name,
-                "level": len(suite.longname.split("."))
-            }
+        self._data[u"suites"][suite.longname.lower().
+                              replace(u'"', u"'").
+                              replace(u" ", u"_")] = {
+                                  u"name": suite.name.lower(),
+                                  u"doc": doc_str,
+                                  u"parent": parent_name,
+                                  u"level": len(suite.longname.split(u"."))
+                              }
 
         suite.keywords.visit(self)
 
@@ -743,7 +959,6 @@ class ExecutionChecker(ResultVisitor):
         :type suite: Suite
         :returns: Nothing.
         """
-        pass
 
     def visit_test(self, test):
         """Implements traversing through the test.
@@ -764,6 +979,8 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
+        self._sh_run_counter = 0
+
         longname_orig = test.longname.lower()
 
         # Check the ignore list
@@ -776,158 +993,138 @@ class ExecutionChecker(ResultVisitor):
         # Change the TC long name and name if defined in the mapping table
         longname = self._mapping.get(longname_orig, None)
         if longname is not None:
-            name = longname.split('.')[-1]
-            logging.debug("{0}\n{1}\n{2}\n{3}".format(
-                self._data["metadata"], longname_orig, longname, name))
+            name = longname.split(u'.')[-1]
+            logging.debug(
+                f"{self._data[u'metadata']}\n{longname_orig}\n{longname}\n"
+                f"{name}"
+            )
         else:
             longname = longname_orig
             name = test.name.lower()
 
         # Remove TC number from the TC long name (backward compatibility):
-        self._test_ID = re.sub(self.REGEX_TC_NUMBER, "", longname)
+        self._test_id = re.sub(self.REGEX_TC_NUMBER, u"", longname)
         # Remove TC number from the TC name (not needed):
-        test_result["name"] = re.sub(self.REGEX_TC_NUMBER, "", name)
+        test_result[u"name"] = re.sub(self.REGEX_TC_NUMBER, "", name)
 
-        test_result["parent"] = test.parent.name.lower()
-        test_result["tags"] = tags
-        doc_str = test.doc.replace('"', "'").replace('\n', ' '). \
-            replace('\r', '').replace('[', ' |br| [')
-        test_result["doc"] = replace(doc_str, ' |br| [', '[', maxreplace=1)
-        test_result["msg"] = test.message.replace('\n', ' |br| '). \
-            replace('\r', '').replace('"', "'")
-        test_result["type"] = "FUNC"
-        test_result["status"] = test.status
+        test_result[u"parent"] = test.parent.name.lower()
+        test_result[u"tags"] = tags
+        test_result["doc"] = test.doc.\
+            replace(u'"', u"'").\
+            replace(u'\n', u' ').\
+            replace(u'\r', u'').\
+            replace(u'[', u' |br| [').\
+            replace(u' |br| [', u'[', 1)
+        test_result[u"type"] = u"FUNC"
+        test_result[u"status"] = test.status
 
-        if "PERFTEST" in tags:
+        if test.status == u"PASS":
+            if u"NDRPDR" in tags:
+                test_result[u"msg"] = self._get_data_from_perf_test_msg(
+                    test.message).replace(u'\n', u' |br| ').\
+                    replace(u'\r', u'').replace(u'"', u"'")
+            elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
+                test_result[u"msg"] = self._get_data_from_mrr_test_msg(
+                    test.message).replace(u'\n', u' |br| ').\
+                    replace(u'\r', u'').replace(u'"', u"'")
+            else:
+                test_result[u"msg"] = test.message.replace(u'\n', u' |br| ').\
+                    replace(u'\r', u'').replace(u'"', u"'")
+        else:
+            test_result[u"msg"] = u"Test Failed."
+
+        if u"PERFTEST" in tags:
             # Replace info about cores (e.g. -1c-) with the info about threads
             # and cores (e.g. -1t1c-) in the long test case names and in the
             # test case names if necessary.
-            groups = re.search(self.REGEX_TC_NAME_OLD, self._test_ID)
+            groups = re.search(self.REGEX_TC_NAME_OLD, self._test_id)
             if not groups:
                 tag_count = 0
                 tag_tc = str()
-                for tag in test_result["tags"]:
+                for tag in test_result[u"tags"]:
                     groups = re.search(self.REGEX_TC_TAG, tag)
                     if groups:
                         tag_count += 1
                         tag_tc = tag
 
                 if tag_count == 1:
-                    self._test_ID = re.sub(self.REGEX_TC_NAME_NEW,
-                                           "-{0}-".format(tag_tc.lower()),
-                                           self._test_ID,
-                                           count=1)
-                    test_result["name"] = re.sub(self.REGEX_TC_NAME_NEW,
-                                                 "-{0}-".format(tag_tc.lower()),
-                                                 test_result["name"],
-                                                 count=1)
+                    self._test_id = re.sub(
+                        self.REGEX_TC_NAME_NEW, f"-{tag_tc.lower()}-",
+                        self._test_id, count=1
+                    )
+                    test_result[u"name"] = re.sub(
+                        self.REGEX_TC_NAME_NEW, f"-{tag_tc.lower()}-",
+                        test_result["name"], count=1
+                    )
                 else:
-                    test_result["status"] = "FAIL"
-                    self._data["tests"][self._test_ID] = test_result
-                    logging.debug("The test '{0}' has no or more than one "
-                                  "multi-threading tags.".format(self._test_ID))
-                    logging.debug("Tags: {0}".format(test_result["tags"]))
+                    test_result[u"status"] = u"FAIL"
+                    self._data[u"tests"][self._test_id] = test_result
+                    logging.debug(
+                        f"The test {self._test_id} has no or more than one "
+                        f"multi-threading tags.\n"
+                        f"Tags: {test_result[u'tags']}"
+                    )
                     return
 
-        if test.status == "PASS" and ("NDRPDRDISC" in tags or
-                                      "NDRPDR" in tags or
-                                      "SOAK" in tags or
-                                      "TCP" in tags or
-                                      "MRR" in tags or
-                                      "BMRR" in tags or
-                                      "RECONF" in tags):
-            # TODO: Remove when definitely no NDRPDRDISC tests are used:
-            if "NDRDISC" in tags:
-                test_result["type"] = "NDR"
-            # TODO: Remove when definitely no NDRPDRDISC tests are used:
-            elif "PDRDISC" in tags:
-                test_result["type"] = "PDR"
-            elif "NDRPDR" in tags:
-                test_result["type"] = "NDRPDR"
-            elif "SOAK" in tags:
-                test_result["type"] = "SOAK"
-            elif "TCP" in tags:
-                test_result["type"] = "TCP"
-            elif "MRR" in tags:
-                test_result["type"] = "MRR"
-            elif "FRMOBL" in tags or "BMRR" in tags:
-                test_result["type"] = "BMRR"
-            elif "RECONF" in tags:
-                test_result["type"] = "RECONF"
-            else:
-                test_result["status"] = "FAIL"
-                self._data["tests"][self._test_ID] = test_result
-                return
-
-            # TODO: Remove when definitely no NDRPDRDISC tests are used:
-            if test_result["type"] in ("NDR", "PDR"):
-                try:
-                    rate_value = str(re.search(
-                        self.REGEX_RATE, test.message).group(1))
-                except AttributeError:
-                    rate_value = "-1"
-                try:
-                    rate_unit = str(re.search(
-                        self.REGEX_RATE, test.message).group(2))
-                except AttributeError:
-                    rate_unit = "-1"
-
-                test_result["throughput"] = dict()
-                test_result["throughput"]["value"] = \
-                    int(rate_value.split('.')[0])
-                test_result["throughput"]["unit"] = rate_unit
-                test_result["latency"] = \
-                    self._get_latency(test.message, test_result["type"])
-                if test_result["type"] == "PDR":
-                    test_result["lossTolerance"] = str(re.search(
-                        self.REGEX_TOLERANCE, test.message).group(1))
-
-            elif test_result["type"] in ("NDRPDR", ):
-                test_result["throughput"], test_result["status"] = \
+        if test.status == u"PASS":
+            if u"NDRPDR" in tags:
+                test_result[u"type"] = u"NDRPDR"
+                test_result[u"throughput"], test_result[u"status"] = \
                     self._get_ndrpdr_throughput(test.message)
-                test_result["latency"], test_result["status"] = \
+                test_result[u"latency"], test_result[u"status"] = \
                     self._get_ndrpdr_latency(test.message)
-
-            elif test_result["type"] in ("SOAK", ):
-                test_result["throughput"], test_result["status"] = \
+            elif u"SOAK" in tags:
+                test_result[u"type"] = u"SOAK"
+                test_result[u"throughput"], test_result[u"status"] = \
                     self._get_plr_throughput(test.message)
-
-            elif test_result["type"] in ("TCP", ):
+            elif u"HOSTSTACK" in tags:
+                test_result[u"type"] = u"HOSTSTACK"
+                test_result[u"result"], test_result[u"status"] = \
+                    self._get_hoststack_data(test.message, tags)
+            elif u"TCP" in tags:
+                test_result[u"type"] = u"TCP"
                 groups = re.search(self.REGEX_TCP, test.message)
-                test_result["result"] = int(groups.group(2))
+                test_result[u"result"] = int(groups.group(2))
+            elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
+                if u"MRR" in tags:
+                    test_result[u"type"] = u"MRR"
+                else:
+                    test_result[u"type"] = u"BMRR"
 
-            elif test_result["type"] in ("MRR", "BMRR"):
-                test_result["result"] = dict()
+                test_result[u"result"] = dict()
                 groups = re.search(self.REGEX_BMRR, test.message)
                 if groups is not None:
                     items_str = groups.group(1)
                     items_float = [float(item.strip()) for item
                                    in items_str.split(",")]
-                    metadata = AvgStdevMetadataFactory.from_data(items_float)
-                    # Next two lines have been introduced in CSIT-1179,
-                    # to be removed in CSIT-1180.
-                    metadata.size = 1
-                    metadata.stdev = 0.0
-                    test_result["result"]["receive-rate"] = metadata
+                    # Use whole list in CSIT-1180.
+                    stats = jumpavg.AvgStdevStats.for_runs(items_float)
+                    test_result[u"result"][u"receive-rate"] = stats.avg
+                    test_result[u"result"][u"receive-stdev"] = stats.stdev
                 else:
                     groups = re.search(self.REGEX_MRR, test.message)
-                    test_result["result"]["receive-rate"] = \
-                        AvgStdevMetadataFactory.from_data([
-                            float(groups.group(3)) / float(groups.group(1)), ])
-
-            elif test_result["type"] == "RECONF":
-                test_result["result"] = None
+                    test_result[u"result"][u"receive-rate"] = \
+                        float(groups.group(3)) / float(groups.group(1))
+            elif u"RECONF" in tags:
+                test_result[u"type"] = u"RECONF"
+                test_result[u"result"] = None
                 try:
                     grps_loss = re.search(self.REGEX_RECONF_LOSS, test.message)
                     grps_time = re.search(self.REGEX_RECONF_TIME, test.message)
-                    test_result["result"] = {
-                        "loss": int(grps_loss.group(1)),
-                        "time": float(grps_time.group(1))
+                    test_result[u"result"] = {
+                        u"loss": int(grps_loss.group(1)),
+                        u"time": float(grps_time.group(1))
                     }
                 except (AttributeError, IndexError, ValueError, TypeError):
-                    test_result["status"] = "FAIL"
+                    test_result[u"status"] = u"FAIL"
+            elif u"DEVICETEST" in tags:
+                test_result[u"type"] = u"DEVICETEST"
+            else:
+                test_result[u"status"] = u"FAIL"
+                self._data[u"tests"][self._test_id] = test_result
+                return
 
-        self._data["tests"][self._test_ID] = test_result
+        self._data[u"tests"][self._test_id] = test_result
 
     def end_test(self, test):
         """Called when test ends.
@@ -936,7 +1133,6 @@ class ExecutionChecker(ResultVisitor):
         :type test: Test
         :returns: Nothing.
         """
-        pass
 
     def visit_keyword(self, keyword):
         """Implements traversing through the keyword and its child keywords.
@@ -956,13 +1152,11 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
         try:
-            if keyword.type == "setup":
+            if keyword.type == u"setup":
                 self.visit_setup_kw(keyword)
-            elif keyword.type == "teardown":
-                self._lookup_kw_nr = 0
+            elif keyword.type == u"teardown":
                 self.visit_teardown_kw(keyword)
             else:
-                self._lookup_kw_nr = 0
                 self.visit_test_kw(keyword)
         except AttributeError:
             pass
@@ -974,7 +1168,6 @@ class ExecutionChecker(ResultVisitor):
         :type keyword: Keyword
         :returns: Nothing.
         """
-        pass
 
     def visit_test_kw(self, test_kw):
         """Implements traversing through the test keyword and its child
@@ -997,12 +1190,13 @@ class ExecutionChecker(ResultVisitor):
         :type test_kw: Keyword
         :returns: Nothing.
         """
-        if test_kw.name.count("Show Runtime Counters On All Duts"):
-            self._lookup_kw_nr += 1
-            self._show_run_lookup_nr = 0
-            self._msg_type = "test-show-runtime"
-        elif test_kw.name.count("Install Dpdk Test") and not self._version:
-            self._msg_type = "dpdk-version"
+        if test_kw.name.count(u"Show Runtime On All Duts") or \
+                test_kw.name.count(u"Show Runtime Counters On All Duts"):
+            self._msg_type = u"test-show-runtime"
+            self._sh_run_counter += 1
+        elif test_kw.name.count(u"Install Dpdk Test On All Duts") and \
+                not self._version:
+            self._msg_type = u"dpdk-version"
         else:
             return
         test_kw.messages.visit(self)
@@ -1014,7 +1208,6 @@ class ExecutionChecker(ResultVisitor):
         :type test_kw: Keyword
         :returns: Nothing.
         """
-        pass
 
     def visit_setup_kw(self, setup_kw):
         """Implements traversing through the teardown keyword and its child
@@ -1037,14 +1230,14 @@ class ExecutionChecker(ResultVisitor):
         :type setup_kw: Keyword
         :returns: Nothing.
         """
-        if setup_kw.name.count("Show Vpp Version On All Duts") \
+        if setup_kw.name.count(u"Show Vpp Version On All Duts") \
                 and not self._version:
-            self._msg_type = "vpp-version"
-        elif setup_kw.name.count("Set Global Variable") \
+            self._msg_type = u"vpp-version"
+        elif setup_kw.name.count(u"Set Global Variable") \
                 and not self._timestamp:
-            self._msg_type = "timestamp"
-        elif setup_kw.name.count("Setup Framework") and not self._testbed:
-            self._msg_type = "testbed"
+            self._msg_type = u"timestamp"
+        elif setup_kw.name.count(u"Setup Framework") and not self._testbed:
+            self._msg_type = u"testbed"
         else:
             return
         setup_kw.messages.visit(self)
@@ -1056,7 +1249,6 @@ class ExecutionChecker(ResultVisitor):
         :type setup_kw: Keyword
         :returns: Nothing.
         """
-        pass
 
     def visit_teardown_kw(self, teardown_kw):
         """Implements traversing through the teardown keyword and its child
@@ -1072,21 +1264,21 @@ class ExecutionChecker(ResultVisitor):
                 self.end_teardown_kw(keyword)
 
     def start_teardown_kw(self, teardown_kw):
-        """Called when teardown keyword starts. Default implementation does
-        nothing.
+        """Called when teardown keyword starts
 
         :param teardown_kw: Keyword to process.
         :type teardown_kw: Keyword
         :returns: Nothing.
         """
 
-        if teardown_kw.name.count("Show Vat History On All Duts"):
+        if teardown_kw.name.count(u"Show Vat History On All Duts"):
+            # TODO: Remove when not needed:
             self._conf_history_lookup_nr = 0
-            self._msg_type = "teardown-vat-history"
+            self._msg_type = u"teardown-vat-history"
             teardown_kw.messages.visit(self)
-        elif teardown_kw.name.count("Show Papi History On All Duts"):
+        elif teardown_kw.name.count(u"Show Papi History On All Duts"):
             self._conf_history_lookup_nr = 0
-            self._msg_type = "teardown-papi-history"
+            self._msg_type = u"teardown-papi-history"
             teardown_kw.messages.visit(self)
 
     def end_teardown_kw(self, teardown_kw):
@@ -1096,7 +1288,6 @@ class ExecutionChecker(ResultVisitor):
         :type teardown_kw: Keyword
         :returns: Nothing.
         """
-        pass
 
     def visit_message(self, msg):
         """Implements visiting the message.
@@ -1116,7 +1307,6 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
-
         if self._msg_type:
             self.parse_msg[self._msg_type](msg)
 
@@ -1127,10 +1317,9 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
-        pass
 
 
-class InputData(object):
+class InputData:
     """Input data
 
     The data is extracted from output.xml files generated by Jenkins jobs and
@@ -1179,8 +1368,7 @@ class InputData(object):
         :returns: Metadata
         :rtype: pandas.Series
         """
-
-        return self.data[job][build]["metadata"]
+        return self.data[job][build][u"metadata"]
 
     def suites(self, job, build):
         """Getter - suites
@@ -1192,8 +1380,7 @@ class InputData(object):
         :returns: Suites.
         :rtype: pandas.Series
         """
-
-        return self.data[job][str(build)]["suites"]
+        return self.data[job][str(build)][u"suites"]
 
     def tests(self, job, build):
         """Getter - tests
@@ -1205,34 +1392,32 @@ class InputData(object):
         :returns: Tests.
         :rtype: pandas.Series
         """
+        return self.data[job][build][u"tests"]
 
-        return self.data[job][build]["tests"]
-
-    def _parse_tests(self, job, build, log):
+    def _parse_tests(self, job, build):
         """Process data from robot output.xml file and return JSON structured
         data.
 
         :param job: The name of job which build output data will be processed.
         :param build: The build which output data will be processed.
-        :param log: List of log messages.
         :type job: str
         :type build: dict
-        :type log: list of tuples (severity, msg)
         :returns: JSON data structure.
         :rtype: dict
         """
 
         metadata = {
-            "job": job,
-            "build": build
+            u"job": job,
+            u"build": build
         }
 
-        with open(build["file-name"], 'r') as data_file:
+        with open(build[u"file-name"], u'r') as data_file:
             try:
                 result = ExecutionResult(data_file)
             except errors.DataError as err:
-                log.append(("ERROR", "Error occurred while parsing output.xml: "
-                                     "{0}".format(err)))
+                logging.error(
+                    f"Error occurred while parsing output.xml: {repr(err)}"
+                )
                 return None
         checker = ExecutionChecker(metadata, self._cfg.mapping,
                                    self._cfg.ignore)
@@ -1256,94 +1441,71 @@ class InputData(object):
         :type repeat: int
         """
 
-        logs = list()
+        logging.info(f"  Processing the job/build: {job}: {build[u'build']}")
 
-        logs.append(("INFO", "  Processing the job/build: {0}: {1}".
-                     format(job, build["build"])))
-
-        state = "failed"
+        state = u"failed"
         success = False
         data = None
         do_repeat = repeat
         while do_repeat:
-            success = download_and_unzip_data_file(self._cfg, job, build, pid,
-                                                   logs)
+            success = download_and_unzip_data_file(self._cfg, job, build, pid)
             if success:
                 break
             do_repeat -= 1
         if not success:
-            logs.append(("ERROR", "It is not possible to download the input "
-                                  "data file from the job '{job}', build "
-                                  "'{build}', or it is damaged. Skipped.".
-                         format(job=job, build=build["build"])))
+            logging.error(
+                 f"It is not possible to download the input data file from the "
+                 f"job {job}, build {build[u'build']}, or it is damaged. "
+                 f"Skipped."
+            )
         if success:
-            logs.append(("INFO", "    Processing data from the build '{0}' ...".
-                         format(build["build"])))
-            data = self._parse_tests(job, build, logs)
+            logging.info(f"    Processing data from build {build[u'build']}")
+            data = self._parse_tests(job, build)
             if data is None:
-                logs.append(("ERROR", "Input data file from the job '{job}', "
-                                      "build '{build}' is damaged. Skipped.".
-                             format(job=job, build=build["build"])))
+                logging.error(
+                     f"Input data file from the job {job}, build "
+                     f"{build[u'build']} is damaged. Skipped."
+                )
             else:
-                state = "processed"
+                state = u"processed"
 
             try:
-                remove(build["file-name"])
+                remove(build[u"file-name"])
             except OSError as err:
-                logs.append(("ERROR", "Cannot remove the file '{0}': {1}".
-                             format(build["file-name"], repr(err))))
+                logging.error(
+                    f"Cannot remove the file {build[u'file-name']}: {repr(err)}"
+                )
 
         # If the time-period is defined in the specification file, remove all
         # files which are outside the time period.
-        timeperiod = self._cfg.input.get("time-period", None)
+        is_last = False
+        timeperiod = self._cfg.input.get(u"time-period", None)
         if timeperiod and data:
             now = dt.utcnow()
             timeperiod = timedelta(int(timeperiod))
-            metadata = data.get("metadata", None)
+            metadata = data.get(u"metadata", None)
             if metadata:
-                generated = metadata.get("generated", None)
+                generated = metadata.get(u"generated", None)
                 if generated:
-                    generated = dt.strptime(generated, "%Y%m%d %H:%M")
+                    generated = dt.strptime(generated, u"%Y%m%d %H:%M")
                     if (now - generated) > timeperiod:
                         # Remove the data and the file:
-                        state = "removed"
+                        state = u"removed"
                         data = None
-                        logs.append(
-                            ("INFO",
-                             "    The build {job}/{build} is outdated, will be "
-                             "removed".format(job=job, build=build["build"])))
-                        file_name = self._cfg.input["file-name"]
-                        full_name = join(
-                            self._cfg.environment["paths"]["DIR[WORKING,DATA]"],
-                            "{job}{sep}{build}{sep}{name}".format(
-                                job=job,
-                                sep=SEPARATOR,
-                                build=build["build"],
-                                name=file_name))
-                        try:
-                            remove(full_name)
-                            logs.append(("INFO",
-                                         "    The file {name} has been removed".
-                                         format(name=full_name)))
-                        except OSError as err:
-                            logs.append(("ERROR",
-                                         "Cannot remove the file '{0}': {1}".
-                                         format(full_name, repr(err))))
-        logs.append(("INFO", "  Done."))
+                        is_last = True
+                        logging.info(
+                            f"    The build {job}/{build[u'build']} is "
+                            f"outdated, will be removed."
+                        )
+        logging.info(u"  Done.")
 
-        for level, line in logs:
-            if level == "INFO":
-                logging.info(line)
-            elif level == "ERROR":
-                logging.error(line)
-            elif level == "DEBUG":
-                logging.debug(line)
-            elif level == "CRITICAL":
-                logging.critical(line)
-            elif level == "WARNING":
-                logging.warning(line)
-
-        return {"data": data, "state": state, "job": job, "build": build}
+        return {
+            u"data": data,
+            u"state": state,
+            u"job": job,
+            u"build": build,
+            u"last": is_last
+        }
 
     def download_and_parse_data(self, repeat=1):
         """Download the input data files, parse input data from input files and
@@ -1354,41 +1516,171 @@ class InputData(object):
         :type repeat: int
         """
 
-        logging.info("Downloading and parsing input files ...")
+        logging.info(u"Downloading and parsing input files ...")
 
         for job, builds in self._cfg.builds.items():
             for build in builds:
 
                 result = self._download_and_parse_build(job, build, repeat)
-                build_nr = result["build"]["build"]
+                if result[u"last"]:
+                    break
+                build_nr = result[u"build"][u"build"]
 
-                if result["data"]:
-                    data = result["data"]
+                if result[u"data"]:
+                    data = result[u"data"]
                     build_data = pd.Series({
-                        "metadata": pd.Series(
-                            data["metadata"].values(),
-                            index=data["metadata"].keys()),
-                        "suites": pd.Series(data["suites"].values(),
-                                            index=data["suites"].keys()),
-                        "tests": pd.Series(data["tests"].values(),
-                                           index=data["tests"].keys())})
+                        u"metadata": pd.Series(
+                            list(data[u"metadata"].values()),
+                            index=list(data[u"metadata"].keys())
+                        ),
+                        u"suites": pd.Series(
+                            list(data[u"suites"].values()),
+                            index=list(data[u"suites"].keys())
+                        ),
+                        u"tests": pd.Series(
+                            list(data[u"tests"].values()),
+                            index=list(data[u"tests"].keys())
+                        )
+                    })
 
                     if self._input_data.get(job, None) is None:
                         self._input_data[job] = pd.Series()
                     self._input_data[job][str(build_nr)] = build_data
 
                     self._cfg.set_input_file_name(
-                        job, build_nr, result["build"]["file-name"])
+                        job, build_nr, result[u"build"][u"file-name"])
 
-                self._cfg.set_input_state(job, build_nr, result["state"])
+                self._cfg.set_input_state(job, build_nr, result[u"state"])
 
-                logging.info("Memory allocation: {0:,d}MB".format(
-                    resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000))
+                mem_alloc = \
+                    resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000
+                logging.info(f"Memory allocation: {mem_alloc:.0f}MB")
 
-        logging.info("Done.")
+        logging.info(u"Done.")
+
+    def process_local_file(self, local_file, job=u"local", build_nr=1,
+                           replace=True):
+        """Process local XML file given as a command-line parameter.
+
+        :param local_file: The file to process.
+        :param job: Job name.
+        :param build_nr: Build number.
+        :param replace: If True, the information about jobs and builds is
+            replaced by the new one, otherwise the new jobs and builds are
+            added.
+        :type local_file: str
+        :type job: str
+        :type build_nr: int
+        :type replace: bool
+        :raises: PresentationError if an error occurs.
+        """
+        if not isfile(local_file):
+            raise PresentationError(f"The file {local_file} does not exist.")
+
+        try:
+            build_nr = int(local_file.split(u"/")[-1].split(u".")[0])
+        except (IndexError, ValueError):
+            pass
+
+        build = {
+            u"build": build_nr,
+            u"status": u"failed",
+            u"file-name": local_file
+        }
+        if replace:
+            self._cfg.builds = dict()
+        self._cfg.add_build(job, build)
+
+        logging.info(f"Processing {job}: {build_nr:2d}: {local_file}")
+        data = self._parse_tests(job, build, list())
+        if data is None:
+            raise PresentationError(
+                f"Error occurred while parsing the file {local_file}"
+            )
+
+        build_data = pd.Series({
+            u"metadata": pd.Series(
+                list(data[u"metadata"].values()),
+                index=list(data[u"metadata"].keys())
+            ),
+            u"suites": pd.Series(
+                list(data[u"suites"].values()),
+                index=list(data[u"suites"].keys())
+            ),
+            u"tests": pd.Series(
+                list(data[u"tests"].values()),
+                index=list(data[u"tests"].keys())
+            )
+        })
+
+        if self._input_data.get(job, None) is None:
+            self._input_data[job] = pd.Series()
+        self._input_data[job][str(build_nr)] = build_data
+
+        self._cfg.set_input_state(job, build_nr, u"processed")
+
+    def process_local_directory(self, local_dir, replace=True):
+        """Process local directory with XML file(s). The directory is processed
+        as a 'job' and the XML files in it as builds.
+        If the given directory contains only sub-directories, these
+        sub-directories processed as jobs and corresponding XML files as builds
+        of their job.
+
+        :param local_dir: Local directory to process.
+        :param replace: If True, the information about jobs and builds is
+            replaced by the new one, otherwise the new jobs and builds are
+            added.
+        :type local_dir: str
+        :type replace: bool
+        """
+        if not isdir(local_dir):
+            raise PresentationError(
+                f"The directory {local_dir} does not exist."
+            )
+
+        # Check if the given directory includes only files, or only directories
+        _, dirnames, filenames = next(walk(local_dir))
+
+        if filenames and not dirnames:
+            filenames.sort()
+            # local_builds:
+            # key: dir (job) name, value: list of file names (builds)
+            local_builds = {
+                local_dir: [join(local_dir, name) for name in filenames]
+            }
+
+        elif dirnames and not filenames:
+            dirnames.sort()
+            # local_builds:
+            # key: dir (job) name, value: list of file names (builds)
+            local_builds = dict()
+            for dirname in dirnames:
+                builds = [
+                    join(local_dir, dirname, name)
+                    for name in listdir(join(local_dir, dirname))
+                    if isfile(join(local_dir, dirname, name))
+                ]
+                if builds:
+                    local_builds[dirname] = sorted(builds)
+
+        elif not filenames and not dirnames:
+            raise PresentationError(f"The directory {local_dir} is empty.")
+        else:
+            raise PresentationError(
+                f"The directory {local_dir} can include only files or only "
+                f"directories, not both.\nThe directory {local_dir} includes "
+                f"file(s):\n{filenames}\nand directories:\n{dirnames}"
+            )
+
+        if replace:
+            self._cfg.builds = dict()
+
+        for job, files in local_builds.items():
+            for idx, local_file in enumerate(files):
+                self.process_local_file(local_file, job, idx + 1, replace=False)
 
     @staticmethod
-    def _end_of_tag(tag_filter, start=0, closer="'"):
+    def _end_of_tag(tag_filter, start=0, closer=u"'"):
         """Return the index of character in the string which is the end of tag.
 
         :param tag_filter: The string where the end of tag is being searched.
@@ -1400,7 +1692,6 @@ class InputData(object):
         :returns: The index of the tag closer.
         :rtype: int
         """
-
         try:
             idx_opener = tag_filter.index(closer, start)
             return tag_filter.index(closer, idx_opener + 1)
@@ -1416,21 +1707,19 @@ class InputData(object):
         :returns: Conditional statement which can be evaluated.
         :rtype: str
         """
-
         index = 0
         while True:
             index = InputData._end_of_tag(tag_filter, index)
             if index is None:
                 return tag_filter
             index += 1
-            tag_filter = tag_filter[:index] + " in tags" + tag_filter[index:]
+            tag_filter = tag_filter[:index] + u" in tags" + tag_filter[index:]
 
-    def filter_data(self, element, params=None, data=None, data_set="tests",
+    def filter_data(self, element, params=None, data=None, data_set=u"tests",
                     continue_on_error=False):
         """Filter required data from the given jobs and builds.
 
         The output data structure is:
-
         - job 1
           - build 1
             - test (or suite) 1 ID:
@@ -1465,21 +1754,23 @@ class InputData(object):
         """
 
         try:
-            if element["filter"] in ("all", "template"):
-                cond = "True"
+            if data_set == "suites":
+                cond = u"True"
+            elif element[u"filter"] in (u"all", u"template"):
+                cond = u"True"
             else:
-                cond = InputData._condition(element["filter"])
-            logging.debug("   Filter: {0}".format(cond))
+                cond = InputData._condition(element[u"filter"])
+            logging.debug(f"   Filter: {cond}")
         except KeyError:
-            logging.error("  No filter defined.")
+            logging.error(u"  No filter defined.")
             return None
 
         if params is None:
-            params = element.get("parameters", None)
+            params = element.get(u"parameters", None)
             if params:
-                params.append("type")
+                params.append(u"type")
 
-        data_to_filter = data if data else element["data"]
+        data_to_filter = data if data else element[u"data"]
         data = pd.Series()
         try:
             for job, builds in data_to_filter.items():
@@ -1487,46 +1778,50 @@ class InputData(object):
                 for build in builds:
                     data[job][str(build)] = pd.Series()
                     try:
-                        data_iter = self.data[job][str(build)][data_set].\
-                            iteritems()
+                        data_dict = dict(
+                            self.data[job][str(build)][data_set].items())
                     except KeyError:
                         if continue_on_error:
                             continue
-                        else:
-                            return None
-                    for test_ID, test_data in data_iter:
-                        if eval(cond, {"tags": test_data.get("tags", "")}):
-                            data[job][str(build)][test_ID] = pd.Series()
+                        return None
+
+                    for test_id, test_data in data_dict.items():
+                        if eval(cond, {u"tags": test_data.get(u"tags", u"")}):
+                            data[job][str(build)][test_id] = pd.Series()
                             if params is None:
                                 for param, val in test_data.items():
-                                    data[job][str(build)][test_ID][param] = val
+                                    data[job][str(build)][test_id][param] = val
                             else:
                                 for param in params:
                                     try:
-                                        data[job][str(build)][test_ID][param] =\
+                                        data[job][str(build)][test_id][param] =\
                                             test_data[param]
                                     except KeyError:
-                                        data[job][str(build)][test_ID][param] =\
-                                            "No Data"
+                                        data[job][str(build)][test_id][param] =\
+                                            u"No Data"
             return data
 
         except (KeyError, IndexError, ValueError) as err:
-            logging.error("   Missing mandatory parameter in the element "
-                          "specification: {0}".format(err))
+            logging.error(
+                f"Missing mandatory parameter in the element specification: "
+                f"{repr(err)}"
+            )
             return None
-        except AttributeError:
+        except AttributeError as err:
+            logging.error(repr(err))
             return None
-        except SyntaxError:
-            logging.error("   The filter '{0}' is not correct. Check if all "
-                          "tags are enclosed by apostrophes.".format(cond))
+        except SyntaxError as err:
+            logging.error(
+                f"The filter {cond} is not correct. Check if all tags are "
+                f"enclosed by apostrophes.\n{repr(err)}"
+            )
             return None
 
-    def filter_tests_by_name(self, element, params=None, data_set="tests",
+    def filter_tests_by_name(self, element, params=None, data_set=u"tests",
                              continue_on_error=False):
         """Filter required data from the given jobs and builds.
 
         The output data structure is:
-
         - job 1
           - build 1
             - test (or suite) 1 ID:
@@ -1557,59 +1852,61 @@ class InputData(object):
         :rtype pandas.Series
         """
 
-        include = element.get("include", None)
+        include = element.get(u"include", None)
         if not include:
-            logging.warning("No tests to include, skipping the element.")
+            logging.warning(u"No tests to include, skipping the element.")
             return None
 
         if params is None:
-            params = element.get("parameters", None)
+            params = element.get(u"parameters", None)
             if params:
-                params.append("type")
+                params.append(u"type")
 
         data = pd.Series()
         try:
-            for job, builds in element["data"].items():
+            for job, builds in element[u"data"].items():
                 data[job] = pd.Series()
                 for build in builds:
                     data[job][str(build)] = pd.Series()
                     for test in include:
                         try:
                             reg_ex = re.compile(str(test).lower())
-                            for test_ID in self.data[job][str(build)]\
-                                    [data_set].keys():
-                                if re.match(reg_ex, str(test_ID).lower()):
-                                    test_data = self.data[job][str(build)]\
-                                        [data_set][test_ID]
-                                    data[job][str(build)][test_ID] = pd.Series()
+                            for test_id in self.data[job][
+                                    str(build)][data_set].keys():
+                                if re.match(reg_ex, str(test_id).lower()):
+                                    test_data = self.data[job][
+                                        str(build)][data_set][test_id]
+                                    data[job][str(build)][test_id] = pd.Series()
                                     if params is None:
                                         for param, val in test_data.items():
-                                            data[job][str(build)][test_ID]\
+                                            data[job][str(build)][test_id]\
                                                 [param] = val
                                     else:
                                         for param in params:
                                             try:
-                                                data[job][str(build)][test_ID]\
-                                                    [param] = test_data[param]
+                                                data[job][str(build)][
+                                                    test_id][param] = \
+                                                    test_data[param]
                                             except KeyError:
-                                                data[job][str(build)][test_ID]\
-                                                    [param] = "No Data"
+                                                data[job][str(build)][
+                                                    test_id][param] = u"No Data"
                         except KeyError as err:
-                            logging.error("{err!r}".format(err=err))
                             if continue_on_error:
+                                logging.debug(repr(err))
                                 continue
-                            else:
-                                return None
+                            logging.error(repr(err))
+                            return None
             return data
 
         except (KeyError, IndexError, ValueError) as err:
-            logging.error("Missing mandatory parameter in the element "
-                          "specification: {err!r}".format(err=err))
+            logging.error(
+                f"Missing mandatory parameter in the element "
+                f"specification: {repr(err)}"
+            )
             return None
         except AttributeError as err:
-            logging.error("{err!r}".format(err=err))
+            logging.error(repr(err))
             return None
-
 
     @staticmethod
     def merge_data(data):
@@ -1632,12 +1929,54 @@ class InputData(object):
         :rtype: pandas.Series
         """
 
-        logging.info("    Merging data ...")
+        logging.info(u"    Merging data ...")
 
         merged_data = pd.Series()
-        for _, builds in data.iteritems():
-            for _, item in builds.iteritems():
-                for ID, item_data in item.iteritems():
-                    merged_data[ID] = item_data
-
+        for builds in data.values:
+            for item in builds.values:
+                for item_id, item_data in item.items():
+                    merged_data[item_id] = item_data
         return merged_data
+
+    def print_all_oper_data(self):
+        """Print all operational data to console.
+        """
+
+        tbl_hdr = (
+            u"Name",
+            u"Nr of Vectors",
+            u"Nr of Packets",
+            u"Suspends",
+            u"Cycles per Packet",
+            u"Average Vector Size"
+        )
+
+        for job in self._input_data.values:
+            for build in job.values:
+                for test_id, test_data in build[u"tests"].items():
+                    print(f"{test_id}")
+                    if test_data.get(u"show-run", None) is None:
+                        continue
+                    for dut_name, data in test_data[u"show-run"].items():
+                        if data.get(u"threads", None) is None:
+                            continue
+                        print(f"Host IP: {data.get(u'host', '')}, "
+                              f"Socket: {data.get(u'socket', '')}")
+                        for thread_nr, thread in data[u"threads"].items():
+                            txt_table = prettytable.PrettyTable(tbl_hdr)
+                            avg = 0.0
+                            for row in thread:
+                                txt_table.add_row(row)
+                                avg += row[-1]
+                            if len(thread) == 0:
+                                avg = u""
+                            else:
+                                avg = f", Average Vector Size per Node: " \
+                                      f"{(avg / len(thread)):.2f}"
+                            th_name = u"main" if thread_nr == 0 \
+                                else f"worker_{thread_nr}"
+                            print(f"{dut_name}, {th_name}{avg}")
+                            txt_table.float_format = u".2"
+                            txt_table.align = u"r"
+                            txt_table.align[u"Name"] = u"l"
+                            print(f"{txt_table.get_string()}\n")
