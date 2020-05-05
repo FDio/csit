@@ -420,9 +420,9 @@
 | | ... | ${traffic_profile} | ${subsamples}=${1} | ${traffic_directions}=${2}
 | | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${pkt_trace}=${True}
 | |
-| | Clear and show runtime counters with running traffic | ${trial_duration}
-| | ... | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
+#| | Clear and show runtime counters with running traffic | ${trial_duration}
+#| | ... | ${rate} | ${frame_size} | ${traffic_profile}
+#| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | Clear statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
