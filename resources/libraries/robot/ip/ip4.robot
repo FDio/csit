@@ -32,13 +32,16 @@
 | | ... | Type: string
 | | ... | - remote_host2_ip - IP address of remote host2 (Optional).
 | | ... | Type: string
+| | ... | - remote_host_mask - Mask of remote host IP addresses (Optional).
+| | ... | Type: string
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Initialize IPv4 forwarding in circular topology \
-| | ... | \| 192.168.0.1 \| 192.168.0.2 \|
+| | ... | \| 192.168.0.1 \| 192.168.0.2 \| 24 \|
 | |
 | | [Arguments] | ${remote_host1_ip}=${NONE} | ${remote_host2_ip}=${NONE}
+| | ... | ${remote_host_mask}=32
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
@@ -81,18 +84,18 @@
 | | ... | interface=${DUT2_${int}1}[0]
 | |
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
-| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 24
+| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | ${remote_host_mask}
 | | ... | gateway=10.10.10.2 | interface=${DUT1_${int}1}[0]
 | | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
-| | ... | Vpp Route Add | ${dut} | ${remote_host2_ip} | 24
+| | ... | Vpp Route Add | ${dut} | ${remote_host2_ip} | ${remote_host_mask}
 | | ... | gateway=20.20.20.2 | interface=${dut_if2}
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 24
+| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | ${remote_host_mask}
 | | ... | gateway=1.1.1.2 | interface=${DUT1_${int}2}[0]
 | | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip} | 24
+| | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip} | ${remote_host_mask}
 | | ... | gateway=1.1.1.1 | interface=${DUT2_${int}1}[0]
 
 | Initialize IPv4 forwarding with scaling in circular topology
