@@ -52,13 +52,12 @@ class TrafficProfileBaseClass:
 
         :param current_length: Current length of the packet.
         :type current_length: int
-
         :returns: The generated padding.
         :rtype: str
         """
         return self._pcap_dir
 
-    def _gen_payload(self, current_length, required_length=0):
+    def _gen_padding(self, current_length, required_length=0):
         """Generate padding.
 
         If needed, implement your own algorithm.
