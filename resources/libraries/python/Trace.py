@@ -46,3 +46,26 @@ class Trace:
             if node[u"type"] == NodeType.DUT:
                 PapiSocketExecutor.run_cli_cmd_on_all_sockets(
                     node, u"clear trace")
+
+    @staticmethod
+    def pcap_trace_on(node, filter, max, interface, file):
+        """Clear VPP packet trace.
+
+        :param node: Node where the pcap trace will be run.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, f"pcap trace {filter} max {max} intfc {interface} file {file}"
+        )
+
+    @staticmethod
+    def pcap_trace_off(node, filter, max, interface, file):
+        """Clear VPP packet trace.
+
+        :param node: Node where the pcap trace will be run.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, f"pcap trace {filter} max {max} intfc {interface} file {file}"
+        )
+
