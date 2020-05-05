@@ -667,6 +667,7 @@ class TrafficGenerator(AbstractMeasurer):
             self._loss = None
             self._latency = None
             xstats = [None, None]
+            self._l7_data = dict()
             self._l7_data[u"client"] = dict()
             self._l7_data[u"client"][u"active_flows"] = None
             self._l7_data[u"client"][u"established_flows"] = None
