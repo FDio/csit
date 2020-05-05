@@ -27,7 +27,10 @@ Traffic profile: TODO: update !
 """
 
 from trex.astf.api import *
-from profile_trex_astf_base_class import TrafficProfileBaseClass
+
+from .profile_trex_astf_base_class import TrafficProfileBaseClass
+
+from resources.libraries.python.Constants import Constants
 
 
 class TrafficProfile(TrafficProfileBaseClass):
@@ -38,54 +41,30 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         super(TrafficProfileBaseClass, self).__init__()
 
-        # Number of requests per HTTP transaction.
-        self.requests = kwargs.get('req', 1)
-        # Number of transactions per HTTP connection.
-        self.transaction_per_conn = kwargs.get('tpc', 1)
-        # Use TCP RST instead of FIN+ACK.
-        self.tcp_reset = kwargs.get('rst', False)
-        # HTTP connection.
-        self.http_conn = kwargs.get('con', 'close')
-
         # IPs used in packet headers.
-        self.p1_src_start_ip = u"20.0.0.0"
-        self.p1_src_end_ip = u"20.0.0.10"
-        self.p1_dst_start_ip = u"30.0.0.0"
+        self.p1_src_start_ip = u"192.168.0.0"
+        self.p1_src_end_ip = u"192.168.3.255"
+        self.p1_dst_start_ip = u"20.0.0.0"
+        self.p1_dst_end_ip = u"20.0.3.255"
 
-        self.p2_src_start_ip = u"20.20.20.1"
-        self.p2_src_end_ip = u"20.20.20.254"
-        self.p2_dst_start_ip = u"10.10.10.1"
-
-        self.udp_req = u"GET"
-        self.udp_res = u"ACK"
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
         This method MUST return:
 
-            return ip_gen, templates
+            return ip_gen, None, cap_list
 
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
-        # client commands
-        prog_c = ASTFProgram(stream=False)
-        prog_c.send_msg(self.udp_req, size=self.framesize)
-        prog_c.recv_msg(1)
-
-        # server commands
-        prog_s = ASTFProgram(stream=False)
-        prog_s.recv_msg(1)
-        prog_s.send_msg(self.udp_res, size=self.framesize)
-
-        # ip generators
+        # ip generator
         ip_gen_c = ASTFIPGenDist(
             ip_range=[self.p1_src_start_ip, self.p1_src_end_ip],
             distribution=u"seq"
         )
         ip_gen_s = ASTFIPGenDist(
-            ip_range=[self.p2_src_start_ip, self.p2_src_end_ip],
+            ip_range=[self.p1_dst_start_ip, self.p1_dst_end_ip],
             distribution=u"seq"
         )
         ip_gen = ASTFIPGen(
@@ -94,15 +73,16 @@ class TrafficProfile(TrafficProfileBaseClass):
             dist_server=ip_gen_s
         )
 
-        # template
-        temp_c = ASTFTCPClientTemplate(program=prog_c, ip_gen=ip_gen)
-        temp_s = ASTFTCPServerTemplate(program=prog_s)  # TODO: default association ?
-        template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
+        # pcap list
+        cap_list = [
+            ASTFCapInfo(
+                file=f"{Constants.TREX_PCAP_DIR}/delay_10_http_get_0.pcap",
+                cps=1,
+                port=8080
+            )
+        ]
 
-        return ip_gen, template
-
-
-        # TODO: imix packet size ?
+        return ip_gen, None, cap_list
 
 
 def register():
