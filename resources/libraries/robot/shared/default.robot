@@ -142,20 +142,20 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
-| | | Run keyword | ${dut}.Set Node |  ${nodes['${dut}']} | node_key=${dut}
+| | | Run keyword | ${dut}.Set Node | ${nodes['${dut}']} | node_key=${dut}
 | | | Run keyword | ${dut}.Add Unix Log
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
 | | | Run keyword | ${dut}.Add Unix Coredump
 | | | Run keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
-| | | Run keyword | ${dut}.Add Heapsize | 4G
-| | | Run keyword | ${dut}.Add Statseg size | 4G
+| | | Run keyword | ${dut}.Add Heapsize | 8G
+| | | Run keyword | ${dut}.Add Statseg size | 8G
 | | | Run keyword | ${dut}.Add Statseg Per Node Counters | on
 | | | Run keyword | ${dut}.Add Plugin | disable | default
 | | | Run keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
 | | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
-| | | Run keyword | ${dut}.Add IP Heap Size | 4G
+| | | Run keyword | ${dut}.Add IP Heap Size | 8G
 | | END
 
 | Add worker threads to all DUTs
@@ -244,8 +244,17 @@
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | |
+| | ... | *Arguments:*
+| | ... | - nat_mode - NAT mode. Type: string, default value: deterministic
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Add NAT to all DUTs \| value=endpoint-dependent \|
+| |
+| | [Arguments] | ${nat_mode}=deterministic
+| |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add NAT
+| | | Run keyword | ${dut}.Add NAT | value=${nat_mode}
 | | END
 
 | Write startup configuration on all VPP DUTs
