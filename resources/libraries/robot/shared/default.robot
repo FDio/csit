@@ -142,7 +142,7 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
-| | | Run keyword | ${dut}.Set Node |  ${nodes['${dut}']} | node_key=${dut}
+| | | Run keyword | ${dut}.Set Node | ${nodes['${dut}']} | node_key=${dut}
 | | | Run keyword | ${dut}.Add Unix Log
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
@@ -244,8 +244,33 @@
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | |
+| | ... | *Arguments:*
+| | ... | - nat_mode - NAT mode. Type: string, default value: deterministic
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Add NAT to all DUTs \| value=endpoint-dependent \|
+| |
+| | [Arguments] | ${nat_mode}=deterministic
+| |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add NAT
+| | | Run keyword | ${dut}.Add NAT | value=${nat_mode}
+| | END
+
+| Add NAT max translation per thread to all DUTs
+| | [Documentation] | Add NAT configuration to all DUTs.
+| |
+| | ... | *Arguments:*
+| | ... | - nat_mode - NAT mode. Type: string, default value: deterministic
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Add NAT max translation per thread to all DUTs \| value=2048 \|
+| |
+| | [Arguments] | ${max_translations_per_thread}=1024
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add NAT max translations per thread | value=${max_translations_per_thread}
 | | END
 
 | Write startup configuration on all VPP DUTs
