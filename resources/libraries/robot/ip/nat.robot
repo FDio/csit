@@ -71,59 +71,82 @@
 | |
 | | Show NAT | ${node}
 
-| Initialize NAT44 in circular topology
-| | [Documentation] | Initialization of 2-node / 3-node topology with NAT44
-| | ... | between DUTs:
-| | ... | - set interfaces up
-| | ... | - set IP addresses
-| | ... | - set ARP
-| | ... | - create routes
-| | ... | - set NAT44 - only on DUT1
-| |
-| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${dut2}
-| |
-| | Set interfaces in path up
-| |
-| | VPP Interface Set IP Address | ${dut1} | ${DUT1_${int}1}[0] | 10.0.0.1 | 20
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Interface Set IP Address | ${dut1} | ${DUT1_${int}2}[0]
-| | ... | 11.0.0.1 | 20
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Interface Set IP Address | ${dut2} | ${DUT2_${int}1}[0]
-| | ... | 11.0.0.2 | 20
-| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2}
-| | ... | ELSE | Set Variable | ${dut1}
-| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${DUT2_${int}2}[0]
-| | ... | ELSE | Set Variable | ${DUT1_${int}2}[0]
-| | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 12.0.0.1 | 20
-| |
-| | VPP Add IP Neighbor
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | 10.0.0.2 | ${TG_pf1_mac}[0]
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Add IP Neighbor
-| | ... | ${dut1} | ${DUT1_${int}2}[0] | 11.0.0.2 | ${DUT2_${int}1_mac}[0]
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | VPP Add IP Neighbor
-| | ... | ${dut2} | ${DUT2_${int}1}[0] | 11.0.0.1 | ${DUT1_${int}2_mac}[0]
-| | VPP Add IP Neighbor
-| | ... | ${dut} | ${dut_if2} | 12.0.0.2 | ${TG_pf2_mac}[0]
-| |
-| | Vpp Route Add | ${dut1} | 20.0.0.0 | 18 | gateway=10.0.0.2
-| | ... | interface=${DUT1_${int}1}[0]
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | 12.0.0.2 | 32 | gateway=11.0.0.2
-| | ... | interface=${DUT1_${int}2}[0]
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 12.0.0.0 | 24 | gateway=12.0.0.2
-| | ... | interface=${DUT2_${int}2}[0]
-| | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 200.0.0.0 | 30 | gateway=11.0.0.1
-| | ... | interface=${DUT2_${int}1}[0]
+| Initialize NAT44 deterministic mode in circular topology
+| | [Documentation] | Initialization of NAT44 deterministic mode on DUT1
 | |
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
 | | Configure deterministic mode for NAT44
-| | ... | ${dut1} | 20.0.0.0 | 18 | 200.0.0.0 | 30
+| | ... | ${dut1} | ${local_ip4_start} | ${nat_prefix} | ${external_ip4_start}
+| | ... | ${nat_prefix}
+
+| Initialize NAT44 endpoint-dependent mode in circular topology
+| | [Documentation] | Initialization of NAT44 endpoint-dependent mode on DUT1
+| |
+| | Configure inside and outside interfaces
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
+| | Set NAT44 Address Range
+| | ... | ${dut1} | ${external_ip4_start} | ${external_ip4_end}
+| | Set NAT Addr Port Alloc Alg
+| | ... | ${dut1} | port_range | ${external_port_start} | ${external_port_end}
+
+# TODO: Remove when 'ip4.Initialize IPv4 forwarding in circular topology' KW
+# adapted to use IP values from variables
+| Initialize IPv4 forwarding for NAT44 in circular topology
+| | [Documentation]
+| | ... | Set IPv4 forwarding for NAT44:
+| | ... | - set interfaces up
+| | ... | - set IP addresses
+| | ... | - set ARP
+| | ... | - create routes
+| |
+| | ${status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ${dut2_status}= | Set Variable If | '${status}' == 'PASS' | ${True}
+| | ... | ${False}
+| |
+| | Set interfaces in path up
+| |
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${dut1_if1_ip4} | ${ip4_prefix}
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut1_if2_ip4} | ${ip4_prefix}
+| | Run Keyword If | ${dut2_status}
+| | ... | VPP Interface Set IP Address
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut2_if1_ip4} | ${ip4_prefix}
+| | Run Keyword If | ${dut2_status}
+| | ... | VPP Interface Set IP Address
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_if2_ip4} | ${ip4_prefix}
+| |
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_if1_ip4} | ${TG_pf1_mac}[0]
+| | Run Keyword If |  ${dut2_status}
+| | ... | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip4}
+| | ... | ${DUT2_${int}1_mac}[0]
+| | ... | ELSE | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${tg_if1_ip4} | ${TG_pf2_mac}[0]
+| | Run Keyword If |  ${dut2_status}
+| | ... | VPP Add IP Neighbor
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut1_if1_ip4}
+| | ... | ${DUT1_${int}2_mac}[0]
+| | Run Keyword If |  ${dut2_status}
+| | ... | VPP Add IP Neighbor
+| | ... | ${dut} | ${dut_if2} | ${dut2_if2_ip4}| ${TG_pf2_mac}[0]
+| |
+| | Vpp Route Add
+| | ... | ${dut1} | ${local_ip4_start} | ${nat_prefix} | gateway=${tg_if1_ip4}
+| | ... | interface=${DUT1_${int}1}[0]
+| | Run Keyword If | ${dut2_status}
+| | ... | Vpp Route Add | ${dut1} | ${target_ip4_start} | ${nat_prefix}
+| | ... | gateway=${dut2_if1_ip4} | interface=${DUT1_${int}2}[0]
+| | ... | ELSE | Vpp Route Add | ${dut1} | ${target_ip4_start} | ${nat_prefix}
+| | ... | gateway=${tg_if2_ip4} | interface=${DUT1_${int}2}[0]
+| | Run Keyword If | ${dut2_status}
+| | ... | Vpp Route Add
+| | ... | ${dut2} | ${target_ip4_start} | ${nat_prefix} | gateway=${tg_if2_ip4}
+| | ... | interface=${DUT2_${int}2}[0]
+| | Run Keyword If | ${dut2_status}
+| | ... | Vpp Route Add
+| | ... | ${dut2} | ${external_ip4_start} | ${nat_prefix}
+| | ... | gateway=${dut1_if2_ip4} | interface=${DUT2_${int}1}[0]
