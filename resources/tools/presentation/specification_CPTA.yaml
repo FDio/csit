@@ -1929,6 +1929,7 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-ndr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-ndr.rst"
   testbed: "3n-hsw"
+  add-links: False
 
 -
   type: "table"
@@ -1937,6 +1938,7 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-pdr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-pdr.rst"
   testbed: "3n-hsw"
+  add-links: False
 
 # 3n-skx
 -
@@ -1978,6 +1980,7 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-ndr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-ndr.rst"
   testbed: "3n-skx"
+  add-links: False
 
 -
   type: "table"
@@ -1986,6 +1989,7 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-pdr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-pdr.rst"
   testbed: "3n-skx"
+  add-links: False
 
 # 2n-skx
 -
@@ -2027,6 +2031,7 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-ndr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-ndr.rst"
   testbed: "2n-skx"
+  add-links: False
 
 -
   type: "table"
@@ -2035,6 +2040,7 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-pdr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-pdr.rst"
   testbed: "2n-skx"
+  add-links: False
 
 # 2n-clx
 -
@@ -2076,6 +2082,7 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-ndr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-ndr.rst"
   testbed: "2n-clx"
+  add-links: False
 
 -
   type: "table"
@@ -2084,6 +2091,7 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-pdr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-pdr.rst"
   testbed: "2n-clx"
+  add-links: False
 
 -
   type: "table"
