@@ -20,6 +20,8 @@ function download_artifacts () {
 
     # Download or install VPP artifacts from packagecloud.io.
     #
+    # Arguments:
+    # - ${1} - Optional regexp the downloaded package names should match.
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # Variables set:
@@ -45,11 +47,11 @@ function download_artifacts () {
     fi
 
     if [ "${os_id}" == "ubuntu" ]; then
-        download_ubuntu_artifacts || die
+        download_ubuntu_artifacts "${1-}" || die
     elif [ "${os_id}" == "centos" ]; then
-        download_centos_artifacts || die
+        download_centos_artifacts "${1-}" || die
     elif [ "${os_id}" == "opensuse" ]; then
-        download_opensuse_artifacts || die
+        download_opensuse_artifacts "${1-}" || die
     else
         die "${os_id} is not yet supported."
     fi
@@ -59,6 +61,8 @@ function download_ubuntu_artifacts () {
 
     # Download or install Ubuntu VPP artifacts from packagecloud.io.
     #
+    # Arguments:
+    # - ${1} - Optional regexp the downloaded package names should match.
     # Variables read:
     # - REPO_URL - FD.io Packagecloud repository.
     # - VPP_VERSION - VPP version.
@@ -103,6 +107,10 @@ function download_ubuntu_artifacts () {
 
     set +x
     for package in ${packages}; do
+        if ! grep "${1-}" <<< "${package}" > "/dev/null"; then
+            echo "Skipping package ${package}"
+            continue
+        fi
         # Filter packages with given version
         pkg_info=$(apt-cache show -- ${package}) || {
             die "apt-cache show on ${package} failed."
@@ -134,6 +142,10 @@ function download_centos_artifacts () {
 
     # Download or install CentOS VPP artifacts from packagecloud.io.
     #
+    # TODO: Remove hardcoded package name list.
+    #
+    # Arguments:
+    # - ${1} - Optional regexp the downloaded package names should match.
     # Variables read:
     # - REPO_URL - FD.io Packagecloud repository.
     # - VPP_VERSION - VPP version.
@@ -169,6 +181,10 @@ function download_opensuse_artifacts () {
 
     # Download or install OpenSuSE VPP artifacts from packagecloud.io.
     #
+    # TODO: Remove hardcoded package name list.
+    #
+    # Arguments:
+    # - ${1} - Optional regexp the downloaded package names should match.
     # Variables read:
     # - REPO_URL - FD.io Packagecloud repository.
     # - VPP_VERSION - VPP version.

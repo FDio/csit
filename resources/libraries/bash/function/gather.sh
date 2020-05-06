@@ -154,7 +154,7 @@ function gather_vpp () {
                 }
             fi
             source "${BASH_FUNCTION_DIR}/artifacts.sh" || die "Source failed."
-            download_artifacts || die
+            download_artifacts '.*vpp.*' || die
             ;;
         "vpp-csit-"*)
             # Use locally built packages.
