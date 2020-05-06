@@ -225,11 +225,11 @@ class TestConfig:
                 for data in if_data:
                     if not founds[u"vxlan"] \
                             and data[u"interface_name"] == vxlan_subif_name:
-                        vxlan_subif_idx = data[u"sw_if_index"]
+                        vxlan_subif_idx = data.sw_if_index
                         founds[u"vxlan"] = True
                     elif not founds[u"vlan"] \
                             and data[u"interface_name"] == vlan_subif_name:
-                        vlan_idx = data[u"sw_if_index"]
+                        vlan_idx = data.sw_if_index
                         founds[u"vlan"] = True
                     if founds[u"vxlan"] and founds[u"vlan"]:
                         break
