@@ -155,10 +155,6 @@
         - 1   # NDRPDR sel
         - 2   # NDRPDR sel
 
-    plot-vpp-hdrh-lat-3n-skx:
-      csit-vpp-perf-verify-1908_2-3n-skx:
-        - 1   # NDRPDR sel
-
     # 2n-skx
 
     plot-vpp-throughput-lat-tsa-2n-skx:
@@ -174,10 +170,6 @@
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
 
-    plot-vpp-hdrh-lat-2n-skx:
-      csit-vpp-perf-verify-1908_2-2n-skx:
-        - 1   # NDRPDR sel
-
     # 2n-clx
 
     plot-vpp-throughput-lat-tsa-2n-clx:
@@ -186,10 +178,6 @@
         - 5  # NDRPDR sel
         - 6  # NDRPDR sel
         - 7  # NDRPDR sel
-        - 8  # NDRPDR sel
-
-    plot-vpp-hdrh-lat-2n-clx:
-      csit-vpp-perf-verify-1908_2-2n-clx:
         - 8  # NDRPDR sel
 
     ###########################################################################
@@ -209,9 +197,9 @@
       csit-vpp-perf-verify-1908_2-2n-clx:
         - 8  # NDRPDR sel
 
-    vpp-device-results-ubuntu:
-      csit-vpp-device-2001-ubuntu1804-1n-skx:
-        - 57
+#    vpp-device-results-ubuntu:
+#      csit-vpp-device-2001-ubuntu1804-1n-skx:
+#        - 57
 
 ###########################################################################
     # Tables (more than one data set)
@@ -290,6 +278,7 @@
         - 6  # NDRPDR sel
         - 7  # NDRPDR sel
         - 8  # NDRPDR sel
+        - 9  # NDRPDR sel
     vpp-performance-changes-2n-clx-cmp:
       csit-vpp-perf-verify-1908_2-2n-clx:
         - 4  # NDRPDR sel
@@ -1056,6 +1045,7 @@
       - 6  # NDRPDR sel
       - 7  # NDRPDR sel
       - 8  # NDRPDR sel
+      - 9  # NDRPDR sel
     csit-vpp-perf-verify-1908_2-2n-clx:
       - 4  # NDRPDR sel
       - 5  # NDRPDR sel
@@ -1063,8 +1053,8 @@
       - 7  # NDRPDR sel
       - 8  # NDRPDR sel
 
-    csit-vpp-device-2001-ubuntu1804-1n-skx:
-      - 57
+#    csit-vpp-device-2001-ubuntu1804-1n-skx:
+#      - 57
 
 - type: "output"
   output: "report"
@@ -1442,40 +1432,40 @@
   data: "vpp-perf-results-2n-clx"
   filter: "all"
 
-# Detailed Test Results - VPP Device Results - Ubuntu
-- type: "table"
-  title: "Detailed Test Results - VPP Device Results - Ubuntu"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_results_ubuntu"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| Status |preout| "
-      data: "data status"
-  data: "vpp-device-results-ubuntu"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "doc"
-  - "status"
-
-# Test configuration - VPP Device Test Configs - Ubuntu
-- type: "table"
-  title: "Test configuration - VPP Device Test Configs - Ubuntu"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_configuration_ubuntu"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-      data: "data conf-history"
-  data: "vpp-device-results-ubuntu"
-  filter: "all"
-  parameters:
-  - "parent"
-  - "name"
-  - "conf-history"
+## Detailed Test Results - VPP Device Results - Ubuntu
+#- type: "table"
+#  title: "Detailed Test Results - VPP Device Results - Ubuntu"
+#  algorithm: "table_merged_details"
+#  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_results_ubuntu"
+#  columns:
+#    - title: " |prein| Test Name |preout| "
+#      data: "data name"
+#    - title: " |prein| Status |preout| "
+#      data: "data status"
+#  data: "vpp-device-results-ubuntu"
+#  filter: "all"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "doc"
+#  - "status"
+#
+## Test configuration - VPP Device Test Configs - Ubuntu
+#- type: "table"
+#  title: "Test configuration - VPP Device Test Configs - Ubuntu"
+#  algorithm: "table_merged_details"
+#  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_configuration_ubuntu"
+#  columns:
+#    - title: " |prein| Test Name |preout| "
+#      data: "data name"
+#    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+#      data: "data conf-history"
+#  data: "vpp-device-results-ubuntu"
+#  filter: "all"
+#  parameters:
+#  - "parent"
+#  - "name"
+#  - "conf-history"
 
 ################################################################################
 ###                                F I L E S                                 ###
@@ -1613,25 +1603,25 @@
       - "vic1227"
       - "vic1385"
 
-# VPP Device Results - Ubuntu
-- type: "file"
-  title: "VPP Device Results - Ubuntu"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}"
-  dir-tables: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}"
-  data: "vpp-device-results-ubuntu"
-  filter: "all"
-  data-start-level: 4
-
-# VPP Device Configuration - Ubuntu
-- type: "file"
-  title: "VPP Device Configuration - Ubuntu"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}"
-  dir-tables: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}"
-  data: "vpp-device-results-ubuntu"
-  filter: "all"
-  data-start-level: 4
+## VPP Device Results - Ubuntu
+#- type: "file"
+#  title: "VPP Device Results - Ubuntu"
+#  algorithm: "file_test_results"
+#  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}"
+#  dir-tables: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}"
+#  data: "vpp-device-results-ubuntu"
+#  filter: "all"
+#  data-start-level: 4
+#
+## VPP Device Configuration - Ubuntu
+#- type: "file"
+#  title: "VPP Device Configuration - Ubuntu"
+#  algorithm: "file_test_results"
+#  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}"
+#  dir-tables: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}"
+#  data: "vpp-device-results-ubuntu"
+#  filter: "all"
+#  data-start-level: 4
 
 ################################################################################
 ###                                P L O T S                                 ###
