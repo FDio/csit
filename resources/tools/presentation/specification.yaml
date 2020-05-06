@@ -277,7 +277,7 @@
         - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 79  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -596,7 +596,7 @@
         - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 79  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -909,7 +909,7 @@
         - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 79  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-perf-changes-2n-clx-new1908_1:
       csit-vpp-perf-verify-1908_1-2n-clx:
@@ -995,7 +995,7 @@
         - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 79  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -1408,7 +1408,7 @@
         - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 79  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-compare-testbeds-skx-clx-ref:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -1584,7 +1584,7 @@
         - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 79  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-compare-topologies-cmp:
       csit-vpp-perf-verify-2001-2n-skx:
         - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -2462,7 +2462,7 @@
       - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 79  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 50  # MRR sel
       - 53  # MRR sel addition
 
