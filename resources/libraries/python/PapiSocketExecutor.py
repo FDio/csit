@@ -47,62 +47,27 @@ from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 __all__ = [u"PapiSocketExecutor"]
 
 
-# TODO: CSIT-1633: Switch libraries to attribute access and remove dictization.
-def dictize(obj):
-    """Make namedtuple-like object accessible as dict.
+def check_retval(obj, err_msg="Retval present and nonzero."):
+    """Check retval if exists, raise if nonzero.
 
-    If the object is namedtuple-like, its _asdict() form is returned,
-    but in the returned object __getitem__ method is wrapped
-    to dictize also any items returned.
-    If the object does not have _asdict, it will be returned without any change.
-    Integer keys still access the object as tuple.
-
-    A more useful version would be to keep obj mostly as a namedtuple,
-    just add getitem for string keys. Unfortunately, namedtuple inherits
-    from tuple, including its read-only __getitem__ attribute,
-    so we cannot monkey-patch it.
-
-    TODO: Create a proxy for named tuple to allow that.
-
-    :param obj: Arbitrary object to dictize.
-    :type obj: object
-    :returns: Dictized object.
-    :rtype: same as obj type or collections.OrderedDict
-    """
-    if not hasattr(obj, u"_asdict"):
-        return obj
-    ret = obj._asdict()
-    ret.__getitem__ = lambda self, key: dictize(ret.__getitem__(self, key))
-    return ret
-
-
-def dictize_and_check_retval(obj, err_msg="Retval present and nonzero."):
-    """Make namedtuple-like object accessible as dict, check retval if exists.
-
-    If the object contains "retval" field, raise when the value is non-zero.
+    If the object contains "retval" atribute, raise when the value is non-zero.
     Actually, two chained exceptions are raised,
     as it is not easy for err_msg to have placeholder for retval value.
 
-    See dictize() for what it means to dictize.
-
-    :param obj: Arbitrary object to dictize.
+    :param obj: Arbitrary object to check retval in.
     :param err_msg: The text for the raised exception.
     :type obj: object
     :type err_msg: str
-    :returns: Dictized object.
-    :rtype: same as obj type or collections.OrderedDict
-    :raises AssertionError: If retval field is present with nonzero.
+    :raises AssertionError: If retval field is present with nonzero value.
     """
-    ret = dictize(obj)
-    if u"retval" in ret.keys():
+    if hasattr(obj, u"retval"):
         # *_details messages do not contain retval.
-        retval = ret[u"retval"]
+        retval = obj.retval
         if retval != 0:
-            err = AssertionError(f"Retval nonzero in object {ret!r}")
+            err = AssertionError(f"Retval nonzero in object {obj!r}")
             # Lowering log level, some retval!=0 calls are expected.
             # TODO: Expose level argument so callers can decide?
             raise_from(AssertionError(err_msg), err, level=u"DEBUG")
-    return ret
 
 
 class PapiSocketExecutor:
@@ -423,8 +388,8 @@ class PapiSocketExecutor:
         subsequent commands, saving much time for large scale tests.
 
         If fast_send is zero, or fast_receive is false,
-        The replies are parsed into dict-like objects,
-        "retval" field (if present) is guaranteed to be zero on success.
+        The replies are parsed into papi-produced objects,
+        "retval" attribute (if present) is guaranteed to be zero on success.
         If fast_send is non-zero and fast_receive is false,
         replies are still processed by full PAPI parsing includig retval check,
         assuming each request results in exactly one reply.
@@ -455,9 +420,9 @@ class PapiSocketExecutor:
         :type err_msg: str
         :type fast_send: int
         :type fast_receive: bool
-        :returns: Papi responses parsed into a dict-like object,
-            with fields due to API (possibly including retval).
-        :rtype: list of dict
+        :returns: Papi responses parsed into a papi-produced objects,
+            with attributes as described by API (possibly including retval).
+        :rtype: list of named tuple
         :raises RuntimeError: If retval is nonzero, parsing or ssh error.
         """
         return self._execute(
@@ -467,8 +432,8 @@ class PapiSocketExecutor:
     def get_reply(self, err_msg=u"Failed to get reply."):
         """Get reply from VPP Python API.
 
-        The reply is parsed into dict-like object,
-        "retval" field is guaranteed to be zero on success.
+        The reply is parsed into papi-produced object,
+        "retval" attribute is guaranteed to be zero on success.
 
         TODO: Discuss exception types to raise, unify with inner methods.
 
@@ -486,7 +451,7 @@ class PapiSocketExecutor:
     def get_sw_if_index(self, err_msg=u"Failed to get reply."):
         """Get sw_if_index from reply from VPP Python API.
 
-        Frequently, the caller is only interested in sw_if_index field
+        Frequently, the caller is only interested in sw_if_index attribute
         of the reply, this wrapper makes such call sites shorter.
 
         TODO: Discuss exception types to raise, unify with inner methods.
@@ -498,12 +463,12 @@ class PapiSocketExecutor:
         :raises AssertionError: If retval is nonzero, parsing or ssh error.
         """
         reply = self.get_reply(err_msg=err_msg)
-        return reply[u"sw_if_index"]
+        return reply.sw_if_index
 
     def get_details(self, err_msg="Failed to get dump details."):
         """Get dump details from VPP Python API.
 
-        The details are parsed into dict-like objects.
+        The details are parsed into papi-produced objects.
         The number of details per single dump command can vary,
         and all association between details and dumps is lost,
         so if you care about the association (as opposed to
@@ -512,8 +477,8 @@ class PapiSocketExecutor:
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :type err_msg: str
-        :returns: Details, dict objects with fields due to API without "retval".
-        :rtype: list of dict
+        :returns: Details, objects with attributes due to API without "retval".
+        :rtype: list of obj
         """
         return self._execute(err_msg)
 
@@ -543,7 +508,7 @@ class PapiSocketExecutor:
             f"on host {node[u'host']}"
 
         with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
-            reply = papi_exec.add(cmd, **args).get_reply(err_msg)["reply"]
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg).reply
         if log:
             logger.info(
                 f"{cmd} ({node[u'host']} - {remote_vpp_socket}):\n"
@@ -603,9 +568,9 @@ class PapiSocketExecutor:
         :type err_msg: str
         :type fast_send: int
         :type fast_receive: bool
-        :returns: Papi responses parsed into a dict-like object,
-            with fields due to API (possibly including retval).
-        :rtype: NoneType or list of dict
+        :returns: Papi responses parsed into a papi-produced objects,
+            with attributes due to API (possibly including retval).
+        :rtype: NoneType or list of obj
         :raises RuntimeError: If the replies are not all correct.
         """
         local_list = self._api_command_list
@@ -630,9 +595,9 @@ class PapiSocketExecutor:
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :type local_list: list of dict
         :type err_msg: str
-        :returns: Papi responses parsed into a dict-like object,
-            with fields due to API (possibly including retval).
-        :rtype: list of dict
+        :returns: Papi responses parsed into a papi-produced objects,
+            with attributes due to API (possibly including retval).
+        :rtype: list of obj
         :raises RuntimeError: If the replies are not all correct.
         """
         vpp_instance = self.vpp_instance
@@ -659,8 +624,8 @@ class PapiSocketExecutor:
             for item in replies:
                 # Request CRC has been checked in add, here check reply CRC.
                 self.crc_checker.check_api_name(item.__class__.__name__)
-                dict_item = dictize_and_check_retval(item)
-                ret_list.append(dict_item)
+                check_retval(item)
+                ret_list.append(item)
         return ret_list
 
     class AsyncState:
@@ -739,9 +704,9 @@ class PapiSocketExecutor:
         :type err_msg: str
         :type fast_send: int
         :type fast_receive: bool
-        :returns: Papi responses parsed into a dict-like object,
-            with fields due to API (possibly including retval).
-        :rtype: list of dict
+        :returns: Papi responses parsed into a papi-produced objects,
+            with attributes due to API (possibly including retval).
+        :rtype: list of attr
         :raises RuntimeError: If the replies are not all correct.
         """
         # TODO: Add fast receive checking only if it does not affect speed.
@@ -846,12 +811,14 @@ class PapiSocketExecutor:
         state.receive_index += 1
         if response is None:
             raise RuntimeError(f"Timeout processing first reply.")
-        state.ret_list.append(dictize_and_check_retval(response))
+        check_retval(response)
+        state.ret_list.append(response)
         response = vpp_instance.read_blocking()
         state.receive_index += 1
         if response is None:
             raise RuntimeError(f"Timeout processing second reply.")
-        state.ret_list.append(dictize_and_check_retval(response))
+        check_retval(response)
+        state.ret_list.append(response)
         # Re-compute max_inflight.
         max_inflight = 256 * 256 // len(first_sent)
         logger.trace(
@@ -933,7 +900,8 @@ class PapiSocketExecutor:
                         f"Timeout index {state.receive_index} cmd {cmd!r}"
                     )
                 else:
-                    state.ret_list.append(dictize_and_check_retval(response))
+                    check_retval(response)
+                    state.ret_list.append(response)
             if err:
                 raise_from(RuntimeError(state.err_msg), err, f"INFO")
             state.receive_index += 1
@@ -978,7 +946,8 @@ class PapiSocketExecutor:
                         f"Timeout index {state.receive_index} cmd {cmd!r}"
                     )
                 else:
-                    state.ret_list.append(dictize_and_check_retval(response))
+                    check_retval(response)
+                    state.ret_list.append(response)
             if err:
                 raise_from(RuntimeError(state.err_msg), err, f"INFO")
             state.receive_index += 1
