@@ -152,6 +152,7 @@ class L3fwdTest:
         """
         command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
             f"/entry/patch_l3fwd.sh " \
-            f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}/{patch}"
+            f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
+            f"/entry/{patch}"
         message = f"Failed to patch l3fwd at node {node['host']}"
         exec_cmd_no_error(node, command, timeout=1800, message=message)
