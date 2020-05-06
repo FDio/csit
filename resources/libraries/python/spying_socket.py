@@ -85,8 +85,6 @@ class SpyingSocket:
         """
         return self.under_socket.close()
 
-    # TODO: Implement also .send so sending works also before 22699.
-
     def sendall(self, buffer):
         """Send all data from buffer to socket, remember (copy of) the buffer.
 
@@ -96,6 +94,22 @@ class SpyingSocket:
         if self.capture:
             self.sent += bytes(buffer)
         self.under_socket.sendall(buffer)
+
+    def send(self, buffer):
+        """Send (maybe not all) data from buffer to socket, remember data sent.
+
+        Older VPP builds are using send instead of sendall.
+
+        :param buffer: The data to send.
+        :type buffer: bytes or compatible
+        :returns: Number of bytes sent.
+        :rtype: int
+        """
+        buffer_copy = bytes(buffer)
+        ret = self.under_socket.send(buffer)
+        if self.capture:
+            self.sent += buffer_copy[:ret]
+        return ret
 
     def recv_into(self, buffer, nbytes=0):
         """Receive a chunk of data, store to buffer, return length.
