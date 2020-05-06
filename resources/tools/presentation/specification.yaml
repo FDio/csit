@@ -155,10 +155,6 @@
         - 1   # NDRPDR sel
         - 2   # NDRPDR sel
 
-    plot-vpp-hdrh-lat-3n-skx:
-      csit-vpp-perf-verify-1908_2-3n-skx:
-        - 1   # NDRPDR sel
-
     # 2n-skx
 
     plot-vpp-throughput-lat-tsa-2n-skx:
@@ -174,10 +170,6 @@
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
 
-    plot-vpp-hdrh-lat-2n-skx:
-      csit-vpp-perf-verify-1908_2-2n-skx:
-        - 1   # NDRPDR sel
-
     # 2n-clx
 
     plot-vpp-throughput-lat-tsa-2n-clx:
@@ -186,10 +178,6 @@
         - 5  # NDRPDR sel
         - 6  # NDRPDR sel
         - 7  # NDRPDR sel
-        - 8  # NDRPDR sel
-
-    plot-vpp-hdrh-lat-2n-clx:
-      csit-vpp-perf-verify-1908_2-2n-clx:
         - 8  # NDRPDR sel
 
     ###########################################################################
@@ -210,8 +198,8 @@
         - 8  # NDRPDR sel
 
     vpp-device-results-ubuntu:
-      csit-vpp-device-2001-ubuntu1804-1n-skx:
-        - 57
+      csit-vpp-device-1908_2-ubuntu1804-1n-skx:
+        - 23
 
 ###########################################################################
     # Tables (more than one data set)
@@ -290,6 +278,7 @@
         - 6  # NDRPDR sel
         - 7  # NDRPDR sel
         - 8  # NDRPDR sel
+        - 9  # NDRPDR sel
     vpp-performance-changes-2n-clx-cmp:
       csit-vpp-perf-verify-1908_2-2n-clx:
         - 4  # NDRPDR sel
@@ -1056,6 +1045,7 @@
       - 6  # NDRPDR sel
       - 7  # NDRPDR sel
       - 8  # NDRPDR sel
+      - 9  # NDRPDR sel
     csit-vpp-perf-verify-1908_2-2n-clx:
       - 4  # NDRPDR sel
       - 5  # NDRPDR sel
@@ -1063,8 +1053,8 @@
       - 7  # NDRPDR sel
       - 8  # NDRPDR sel
 
-    csit-vpp-device-2001-ubuntu1804-1n-skx:
-      - 57
+    csit-vpp-device-1908_2-ubuntu1804-1n-skx:
+      - 23
 
 - type: "output"
   output: "report"
