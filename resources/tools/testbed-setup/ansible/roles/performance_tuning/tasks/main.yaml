@@ -9,6 +9,11 @@
   tags:
     - install-dependencies
 
+- name: Performance Tuning - Distribution - release - machine optimizations
+  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
+  tags:
+    - machine-optimizations
+
 - name: Performance Tuning - Configure {{ ansible_machine }} Kernel Parameters
   lineinfile:
     path: "/etc/default/grub"
