@@ -183,7 +183,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         str_key = str(key)
         date = build_info[job_name][str_key][0]
         hover_str = (u"date: {date}<br>"
-                     u"value [Mpps]: {value:.3f}<br>"
+                     u"average [Mpps]: {value:.3f}<br>"
                      u"stdev [Mpps]: {stdev:.3f}<br>"
                      u"{sut}-ref: {build}<br>"
                      u"csit-ref: mrr-{period}-build-{build_nr}<br>"
@@ -216,8 +216,9 @@ def _generate_trending_traces(in_data, job_name, build_info,
     for key, value in zip(xaxis, data_y_pps):
         data_pd[key] = value
 
-    anomaly_classification, avgs_pps = classify_anomalies(data_pd)
+    anomaly_classification, avgs_pps, stdevs_pps = classify_anomalies(data_pd)
     avgs_mpps = [avg_pps / 1e6 for avg_pps in avgs_pps]
+    stdevs_mpps = [stdev_pps / 1e6 for stdev_pps in stdevs_pps]
 
     anomalies = OrderedDict()
     anomalies_colors = list()
@@ -259,6 +260,13 @@ def _generate_trending_traces(in_data, job_name, build_info,
     traces = [trace_samples, ]
 
     if show_trend_line:
+        trend_hover_text = list()
+        for idx in range(len(data_x)):
+            trend_hover_str = (
+                f"trend [Mpps]: {avgs_mpps[idx]:.3f}<br>"
+                f"stdev [Mpps]: {stdevs_mpps[idx]:.3f}"
+            )
+            trend_hover_text.append(trend_hover_str)
         trace_trend = plgo.Scatter(
             x=xaxis,
             y=avgs_mpps,
@@ -271,7 +279,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
             showlegend=False,
             legendgroup=name,
             name=f"{name}",
-            text=[f"trend [Mpps]: {avg:.3f}" for avg in avgs_mpps],
+            text=trend_hover_text,
             hoverinfo=u"text+name"
         )
         traces.append(trace_trend)

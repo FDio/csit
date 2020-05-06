@@ -262,7 +262,7 @@ def classify_anomalies(data):
     :param data: Full data set with unavailable samples replaced by nan.
     :type data: OrderedDict
     :returns: Classification and trend values
-    :rtype: 2-tuple, list of strings and list of floats
+    :rtype: 3-tuple, list of strings, list of floats and list of floats
     """
     # Nan means something went wrong.
     # Use 0.0 to cause that being reported as a severe regression.
@@ -273,13 +273,16 @@ def classify_anomalies(data):
     group_list.reverse()  # Just to use .pop() for FIFO.
     classification = []
     avgs = []
+    stdevs = []
     active_group = None
     values_left = 0
     avg = 0.0
+    stdev = 0.0
     for sample in data.values():
         if np.isnan(sample):
             classification.append(u"outlier")
             avgs.append(sample)
+            stdevs.append(sample)
             continue
         if values_left < 1 or active_group is None:
             values_left = 0
@@ -287,14 +290,17 @@ def classify_anomalies(data):
                 active_group = group_list.pop()
                 values_left = len(active_group.run_list)
             avg = active_group.stats.avg
+            stdev = active_group.stats.stdev
             classification.append(active_group.comment)
             avgs.append(avg)
+            stdevs.append(stdev)
             values_left -= 1
             continue
         classification.append(u"normal")
         avgs.append(avg)
+        stdevs.append(stdev)
         values_left -= 1
-    return classification, avgs
+    return classification, avgs, stdevs
 
 
 def convert_csv_to_pretty_txt(csv_file_name, txt_file_name, delimiter=u","):
