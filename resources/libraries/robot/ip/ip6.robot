@@ -309,7 +309,7 @@
 | | VPP Add IP Neighbor
 | | ... | ${dut} | ${dut_if2} | 2002:3::1 | ${TG_pf2_mac}[0]
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2002:1::2 | ${prefix}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 2002:1::2 | ${prefix}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address | ${dut1} | ${subif_index_1} | 2002:2::1
 | | ... | ${prefix}
