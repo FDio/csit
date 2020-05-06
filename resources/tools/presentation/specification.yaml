@@ -663,9 +663,10 @@
         - 85  # NDRPDR full
 
     vpp-perf-results-3n-skx:
-      # TODO: Replace
+      # TODO: Add data
       csit-vpp-perf-verify-2001-3n-skx:
-        - 69  # NDRPDR sel - new2001.0 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 87  # NDRPDR full - ip6-1
+        - 90  # NDRPDR full - memif
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2463,6 +2464,8 @@
       - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+      - 87  # NDRPDR full - ip6-1
+      - 90  # NDRPDR full - memif
       - 50  # MRR sel
       - 53  # MRR sel addition
 
