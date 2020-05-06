@@ -17,6 +17,7 @@
 from enum import IntEnum
 
 from robot.api import logger
+from namedlist import namedlist
 
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
@@ -47,12 +48,15 @@ class Memif:
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd).get_details()
 
-        for memif in details:
-            memif[u"hw_addr"] = str(memif[u"hw_addr"])
-            memif[u"role"] = memif[u"role"].value
-            memif[u"mode"] = memif[u"mode"].value
-            memif[u"flags"] = memif[u"flags"].value \
-                if hasattr(memif[u"flags"], u"value") else int(memif[u"flags"])
+        for index, memif in enumerate(details):
+            ret_init = namedlist(u"MemifDump", memif._fields, rename=True)
+            ret = ret_init(*memif)
+            ret.hw_addr = str(memif.hw_addr)
+            ret.role = memif.role.value
+            ret.mode = memif.mode.value
+            ret.flags = memif.flags.value \
+                if hasattr(memif.flags, u"value") else int(memif.flags)
+            details[index] = ret
 
         logger.debug(f"MEMIF details:\n{details}")
 
@@ -202,8 +206,8 @@ class Memif:
         details = Memif._memif_details(node)
 
         for memif in details:
-            if memif[u"sw_if_index"] == sw_if_index:
-                return memif[u"if_name"]
+            if memif.sw_if_index == sw_if_index:
+                return memif.if_name
         return None
 
     @staticmethod
@@ -220,6 +224,6 @@ class Memif:
         details = Memif._memif_details(node)
 
         for memif in details:
-            if memif[u"sw_if_index"] == sw_if_index:
-                return memif[u"hw_addr"]
+            if memif.sw_if_index == sw_if_index:
+                return memif.hw_addr
         return None
