@@ -1454,17 +1454,17 @@ class InputData:
             do_repeat -= 1
         if not success:
             logging.error(
-                 f"It is not possible to download the input data file from the "
-                 f"job {job}, build {build[u'build']}, or it is damaged. "
-                 f"Skipped."
+                f"It is not possible to download the input data file from the "
+                f"job {job}, build {build[u'build']}, or it is damaged. "
+                f"Skipped."
             )
         if success:
             logging.info(f"    Processing data from build {build[u'build']}")
             data = self._parse_tests(job, build)
             if data is None:
                 logging.error(
-                     f"Input data file from the job {job}, build "
-                     f"{build[u'build']} is damaged. Skipped."
+                    f"Input data file from the job {job}, build "
+                    f"{build[u'build']} is damaged. Skipped."
                 )
             else:
                 state = u"processed"
@@ -1592,7 +1592,7 @@ class InputData:
         self._cfg.add_build(job, build)
 
         logging.info(f"Processing {job}: {build_nr:2d}: {local_file}")
-        data = self._parse_tests(job, build, list())
+        data = self._parse_tests(job, build)
         if data is None:
             raise PresentationError(
                 f"Error occurred while parsing the file {local_file}"
