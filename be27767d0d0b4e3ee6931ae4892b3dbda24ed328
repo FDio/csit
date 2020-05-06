@@ -2,6 +2,69 @@
   "comments": [
     {
       "key": {
+        "uuid": "247d2d93_94c5db69",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-06T07:50:13Z",
+      "side": 1,
+      "message": "${True}",
+      "range": {
+        "startLine": 76,
+        "startChar": 61,
+        "endLine": 76,
+        "endChar": 75
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67079947_42cff8d1",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-06T07:50:13Z",
+      "side": 1,
+      "message": "${False}",
+      "range": {
+        "startLine": 76,
+        "startChar": 27,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2058ee45_bcc1aab5",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-06T07:50:13Z",
+      "side": 1,
+      "message": "Create (?) or similar:\n\n| Setup topology variables\n...\n| | ${variables}\u003d | Get Dictionary Keys | ${info}\n| | FOR | ${variable} | IN | @{variables}\n| | | ${value}\u003d | Get From Dictionary | ${info} | ${variable}\n| | | Set Suite Variable | ${${variable}} | ${value}\n| | END\n| | FOR | ${action} | IN | @{actions}\n| | | Run Keyword | Additional Suite setup Action For ${action}\n| | END\n\n\n| Setup suite topology interfaces\n...\n| | ${nic_model_list}\u003d | Create list | ${nic_name}\n| | \u0026{info}\u003d | Compute Circular Topology\n| | ... | ${nodes} | filter_list\u003d${nic_model_list} | nic_pfs\u003d${nic_pfs}\n| | ... | always_same_link\u003d${False} | topo_has_tg\u003d${True}\n| | Setup topology variables | @{actions}\n\n\n| Setup suite topology interfaces with no TG\n...\n| | ${nic_model_list}\u003d | Create list | ${nic_name}\n| | \u0026{info}\u003d | Compute Circular Topology\n| | ... | ${nodes} | filter_list\u003d${nic_model_list} | nic_pfs\u003d${nic_pfs}\n| | ... | always_same_link\u003d${True} | topo_has_tg\u003d${False}\n| | Setup topology variables | @{actions}",
+      "revId": "be27767d0d0b4e3ee6931ae4892b3dbda24ed328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a30003c_b558cf64",
         "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4tcpbase-ldpreload-iperf3-bps.robot",
         "patchSetId": 5
