@@ -866,7 +866,7 @@ def table_perf_trending_dash(table, input_data):
         if len(data_t) < 2:
             continue
 
-        classification_lst, avgs = classify_anomalies(data_t)
+        classification_lst, avgs, _ = classify_anomalies(data_t)
 
         win_size = min(len(data_t), table[u"window"])
         long_win_size = min(len(data_t), table[u"long-trend-window"])
@@ -903,8 +903,8 @@ def table_perf_trending_dash(table, input_data):
                  round(last_avg / 1e6, 2),
                  rel_change_last,
                  rel_change_long,
-                 classification_lst[-win_size:].count(u"regression"),
-                 classification_lst[-win_size:].count(u"progression")])
+                 classification_lst[-win_size+1:].count(u"regression"),
+                 classification_lst[-win_size+1:].count(u"progression")])
 
     tbl_lst.sort(key=lambda rel: rel[0])
 
@@ -1155,7 +1155,7 @@ def table_perf_trending_dash_html(table, input_data):
                 attrib=dict(align=u"left" if c_idx == 0 else u"center")
             )
             # Name:
-            if c_idx == 0:
+            if c_idx == 0 and table.get(u"add-links", True):
                 ref = ET.SubElement(
                     tdata,
                     u"a",
