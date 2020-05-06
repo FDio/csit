@@ -146,7 +146,7 @@ def generate_cpta(spec, data):
 
 
 def _generate_trending_traces(in_data, job_name, build_info,
-                              show_trend_line=True, name=u"", color=u""):
+                              name=u"", color=u""):
     """Generate the trending traces:
      - samples,
      - outliers, regress, progress
@@ -155,13 +155,11 @@ def _generate_trending_traces(in_data, job_name, build_info,
     :param in_data: Full data set.
     :param job_name: The name of job which generated the data.
     :param build_info: Information about the builds.
-    :param show_trend_line: Show moving median (trending plot).
     :param name: Name of the plot
     :param color: Name of the color for the plot.
     :type in_data: OrderedDict
     :type job_name: str
     :type build_info: dict
-    :type show_trend_line: bool
     :type name: str
     :type color: str
     :returns: Generated traces (list) and the evaluated result.
@@ -183,7 +181,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         str_key = str(key)
         date = build_info[job_name][str_key][0]
         hover_str = (u"date: {date}<br>"
-                     u"value [Mpps]: {value:.3f}<br>"
+                     u"average [Mpps]: {value:.3f}<br>"
                      u"stdev [Mpps]: {stdev:.3f}<br>"
                      u"{sut}-ref: {build}<br>"
                      u"csit-ref: mrr-{period}-build-{build_nr}<br>"
@@ -216,8 +214,9 @@ def _generate_trending_traces(in_data, job_name, build_info,
     for key, value in zip(xaxis, data_y_pps):
         data_pd[key] = value
 
-    anomaly_classification, avgs_pps = classify_anomalies(data_pd)
+    anomaly_classification, avgs_pps, stdevs_pps = classify_anomalies(data_pd)
     avgs_mpps = [avg_pps / 1e6 for avg_pps in avgs_pps]
+    stdevs_mpps = [stdev_pps / 1e6 for stdev_pps in stdevs_pps]
 
     anomalies = OrderedDict()
     anomalies_colors = list()
@@ -258,23 +257,30 @@ def _generate_trending_traces(in_data, job_name, build_info,
     )
     traces = [trace_samples, ]
 
-    if show_trend_line:
-        trace_trend = plgo.Scatter(
-            x=xaxis,
-            y=avgs_mpps,
-            mode=u"lines",
-            line={
-                u"shape": u"linear",
-                u"width": 1,
-                u"color": color,
-            },
-            showlegend=False,
-            legendgroup=name,
-            name=f"{name}",
-            text=[f"trend [Mpps]: {avg:.3f}" for avg in avgs_mpps],
-            hoverinfo=u"text+name"
+    trend_hover_text = list()
+    for idx in range(len(data_x)):
+        trend_hover_str = (
+            f"trend [Mpps]: {avgs_mpps[idx]:.3f}<br>"
+            f"stdev [Mpps]: {stdevs_mpps[idx]:.3f}"
         )
-        traces.append(trace_trend)
+        trend_hover_text.append(trend_hover_str)
+
+    trace_trend = plgo.Scatter(
+        x=xaxis,
+        y=avgs_mpps,
+        mode=u"lines",
+        line={
+            u"shape": u"linear",
+            u"width": 1,
+            u"color": color,
+        },
+        showlegend=False,
+        legendgroup=name,
+        name=f"{name}",
+        text=trend_hover_text,
+        hoverinfo=u"text+name"
+    )
+    traces.append(trace_trend)
 
     trace_anomalies = plgo.Scatter(
         x=list(anomalies.keys()),
@@ -354,8 +360,8 @@ def _generate_all_charts(spec, input_data):
 
         # Transform the data
         logging.info(
-             f"    Creating the data set for the {graph.get(u'type', u'')} "
-             f"{graph.get(u'title', u'')}."
+            f"    Creating the data set for the {graph.get(u'type', u'')} "
+            f"{graph.get(u'title', u'')}."
         )
 
         if graph.get(u"include", None):

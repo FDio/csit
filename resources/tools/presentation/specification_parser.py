@@ -535,7 +535,7 @@ class Specification:
                     except ValueError:
                         # defined as a range <start, build_type>
                         build_end = self._get_build_number(job, build_end)
-                    builds = [x for x in range(builds[u"start"], build_end + 1)]
+                    builds = list(range(builds[u"start"], build_end + 1))
                     if max_builds and max_builds < len(builds):
                         builds = builds[-max_builds:]
                     if reverse:
