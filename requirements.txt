@@ -27,6 +27,9 @@ robotframework==3.1.2
 scapy==2.4.3
 scp==0.13.2
 
+# CSIT PAPI convenience dependencies.
+namedlist==1.7
+
 # Bootstraping dependencies
 ansible==2.7.8
 

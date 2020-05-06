@@ -409,7 +409,7 @@ class L2Util:
         retval = details if bd_id == Constants.BITWISE_NON_ZERO else None
 
         for bridge_domain in details:
-            if bridge_domain[u"bd_id"] == bd_id:
+            if bridge_domain.bd_id == bd_id:
                 retval = bridge_domain
 
         return retval
@@ -481,7 +481,7 @@ class L2Util:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         for fib_item in details:
-            fib_item[u"mac"] = L2Util.bin_to_mac(fib_item[u"mac"])
+            fib_item.mac = L2Util.bin_to_mac(fib_item.mac)
 
         return details
 
@@ -499,11 +499,11 @@ class L2Util:
         :rtype: dict
         """
         bd_data = L2Util.vpp_get_bridge_domain_data(node)
-        bd_id = bd_data[bd_index-1][u"bd_id"]
+        bd_id = bd_data[bd_index-1].bd_id
 
         table = L2Util.get_l2_fib_table(node, bd_id)
 
         for entry in table:
-            if entry[u"mac"] == mac:
+            if entry.mac == mac:
                 return entry
-        return {}
+        return None

@@ -179,7 +179,7 @@ class IPUtil:
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        return reply[u"vrf_id"]
+        return reply.vrf_id
 
     @staticmethod
     def vpp_ip_source_check_setup(node, if_name):

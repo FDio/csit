@@ -233,8 +233,8 @@ class Classify:
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        return int(reply[u"new_table_index"]), int(reply[u"skip_n_vectors"]),\
-            int(reply[u"match_n_vectors"])
+        return int(reply.new_table_index), int(reply.skip_n_vectors),\
+            int(reply.match_n_vectors)
 
     @staticmethod
     def _classify_add_del_session(

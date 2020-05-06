@@ -189,8 +189,8 @@ class VPPUtil:
         cmd = u"show_version"
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd).get_reply()
-        logger.info(f"VPP version: {reply[u'version']}\n")
-        return f"{reply[u'version']}"
+        logger.info(f"VPP version: {reply.version}\n")
+        return f"{reply.version}"
 
     @staticmethod
     def show_vpp_version_on_all_duts(nodes):
@@ -221,15 +221,15 @@ class VPPUtil:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         for if_dump in details:
-            if_dump[u"l2_address"] = str(if_dump[u"l2_address"])
-            if_dump[u"b_dmac"] = str(if_dump[u"b_dmac"])
-            if_dump[u"b_smac"] = str(if_dump[u"b_smac"])
-            if_dump[u"flags"] = if_dump[u"flags"].value
-            if_dump[u"type"] = if_dump[u"type"].value
-            if_dump[u"link_duplex"] = if_dump[u"link_duplex"].value
-            if_dump[u"sub_if_flags"] = if_dump[u"sub_if_flags"].value \
-                if hasattr(if_dump[u"sub_if_flags"], u"value") \
-                else int(if_dump[u"sub_if_flags"])
+            if_dump.l2_address = str(if_dump.l2_address)
+            if_dump.b_dmac = str(if_dump.b_dmac)
+            if_dump.b_smac = str(if_dump.b_smac)
+            if_dump.flags = if_dump.flags.value
+            if_dump.type = if_dump.type.value
+            if_dump.link_duplex = if_dump.link_duplex.value
+            if_dump.sub_if_flags = if_dump.sub_if_flags.value \
+                if hasattr(if_dump.sub_if_flags, u"value") \
+                else int(if_dump.sub_if_flags)
         # TODO: return only base data
         logger.trace(f"Interface data of host {node[u'host']}:\n{details}")
 
@@ -346,7 +346,7 @@ class VPPUtil:
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd).get_reply()
 
-        threads_data = reply[u"thread_data"]
+        threads_data = reply.thread_data
         logger.trace(f"show threads:\n{threads_data}")
 
         return threads_data

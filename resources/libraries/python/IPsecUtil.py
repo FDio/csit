@@ -975,13 +975,7 @@ class IPsecUtil:
             replies = papi_exec.get_replies(
                 err_msg=err_msg, fast_send=fast, fast_receive=False
             )
-            ipsec_tunnels.extend(
-                [
-                    reply[u"sw_if_index"]
-                    for reply in replies
-                    if u"sw_if_index" in reply
-                ]
-            )
+            ipsec_tunnels.extend([reply.sw_if_index for reply in replies])
             # Configure unnumbered interfaces
             cmd = u"sw_interface_set_unnumbered"
             args = dict(
@@ -1119,13 +1113,7 @@ class IPsecUtil:
             replies = papi_exec.get_replies(
                 err_msg=err_msg, fast_send=fast, fast_receive=False
             )
-            ipsec_tunnels.extend(
-                [
-                    reply[u"sw_if_index"]
-                    for reply in replies
-                    if u"sw_if_index" in reply
-                ]
-            )
+            ipsec_tunnels.extend([reply.sw_if_index for reply in replies])
             if not existing_tunnels:
                 # Configure IP route
                 cmd = u"ip_route_add_del"

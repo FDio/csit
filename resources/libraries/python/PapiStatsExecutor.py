@@ -134,6 +134,9 @@ class PapiStatsExecutor:
             socket=Constants.SOCKSTAT_PATH):
         """Get VPP Stats from VPP Python API.
 
+        Contrary to PapiSocketExecutor, this does not return replies
+        as parsed by PAPI. Instead it returns dicts.
+
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :param timeout: Timeout in seconds.
         :param socket: Path to Stats socket to tunnel to.
