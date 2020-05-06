@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -240,7 +240,7 @@ def cleanup_node(node, results=None):
 class SetupFramework:
     """Setup suite run on topology nodes.
 
-    Many VAT/CLI based tests need the scripts at remote hosts before executing
+    Many CLI based tests need the scripts at remote hosts before executing
     them. This class packs the whole testing directory and copies it over
     to all nodes in topology under /tmp/
     """
