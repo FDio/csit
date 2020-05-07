@@ -782,6 +782,11 @@ function select_tags () {
                 ${tfd}/mrr-weekly-${NODENESS}-${FLAVOR}.md |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
+        *"report-iterative"* )
+            readarray -t test_tag_array <<< $(sed 's/ //g' \
+                ${tfd}/report-iter-${NODENESS}-${FLAVOR}.md |
+                eval ${sed_nics_sub_cmd}) || die
+            ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
