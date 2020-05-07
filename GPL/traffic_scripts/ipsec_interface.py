@@ -18,7 +18,7 @@
 import sys
 
 from ipaddress import ip_address
-from scapy.layers.inet import IP
+from scapy.layers.inet import IP, TCP
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NS
 from scapy.layers.ipsec import SecurityAssociation, ESP
 from scapy.layers.l2 import Ether
