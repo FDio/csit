@@ -1094,7 +1094,7 @@
   legend:
     - "Legend to Table"
     - "1904, 1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "Diff - difference between 1908.1 and 1908.2 VPP version."
 
 # VPP Performance Changes 3n-skx 2t1c ndr
 - type: "table"
@@ -1120,7 +1120,7 @@
   legend:
     - "Legend to Table"
     - "1904, 1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "Diff - difference between 1908.1 and 1908.2 VPP version."
 
 # VPP Performance Changes 2n-skx 2t1c pdr
 - type: "table"
@@ -1146,7 +1146,7 @@
   legend:
     - "Legend to Table"
     - "1904, 1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "Diff - difference between 1908.1 and 1908.2 VPP version."
 
 # VPP Performance Changes 2n-skx 2t1c ndr
 - type: "table"
@@ -1172,7 +1172,7 @@
   legend:
     - "Legend to Table"
     - "1904, 1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "Diff - difference between 1908.1 and 1908.2 VPP version."
 
 # VPP Performance Changes 2n-clx 2t1c pdr
 - type: "table"
@@ -1195,7 +1195,7 @@
   legend:
     - "Legend to Table"
     - "1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "Diff - difference between 1908.1 and 1908.2 VPP version."
 
 # VPP Performance Changes 2n-clx 2t1c ndr
 - type: "table"
@@ -1218,7 +1218,7 @@
   legend:
     - "Legend to Table"
     - "1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "Diff - difference between 1908.1 and 1908.2 VPP version."
 
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c ndr
 - type: "table"
