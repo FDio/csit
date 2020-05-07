@@ -17,7 +17,7 @@ This module exists to provide the l3fwd test for DPDK on topology nodes.
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DpdkUtil import DpdkUtil
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -155,4 +155,6 @@ class L3fwdTest:
             f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
             f"/entry/{patch}"
         message = f"Failed to patch l3fwd at node {node['host']}"
-        exec_cmd_no_error(node, command, timeout=1800, message=message)
+        ret_code, stdout, _ = exec_cmd(node, command, timeout=1800)
+        if ret_code != 0 and u"Skipping patch." not in stdout:
+            raise RuntimeError(message)
