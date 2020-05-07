@@ -55,10 +55,10 @@
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
-| ${osi_layer}= | L3
+| ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4-ip4src253
+| ${traffic_profile}= | trex-astf-2n3n-ethip4udp-253u1p
 
 *** Keywords ***
 | Local Template
