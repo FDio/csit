@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This module gets a traffic profile together with other parameters, reads
-the profile and sends the traffic. At the end, it measures the packet loss and
-latency.
+"""This module gets T-REX advanced stateful (astf) traffic profile together
+with other parameters, reads the profile and sends the traffic. At the end, it
+measures the packet loss and latency.
 """
 
 import argparse
@@ -26,7 +26,7 @@ import time
 sys.path.insert(
     0, u"/opt/trex-core-2.73/scripts/automation/trex_control_plane/interactive/"
 )
-from trex.stl.api import *
+from trex.astf.api import *
 
 
 def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
@@ -60,13 +60,13 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
 
 
 def simple_burst(
-        profile_file, duration, framesize, rate, warmup_time, port_0, port_1,
-        latency, async_start=False, traffic_directions=2, force=False):
+        profile_file, duration, framesize, mult, warmup_time, port_0, port_1,
+        latency, async_start=False, traffic_directions=2):
     """Send traffic and measure packet loss and latency.
 
     Procedure:
      - reads the given traffic profile with streams,
-     - connects to the T-rex client,
+     - connects to the T-rex ASTF client,
      - resets the ports,
      - removes all existing streams,
      - adds streams from the traffic profile to the ports,
@@ -82,25 +82,23 @@ def simple_burst(
     :param profile_file: A python module with T-rex traffic profile.
     :param framesize: Frame size.
     :param duration: Duration of traffic run in seconds (-1=infinite).
-    :param rate: Traffic rate [percentage, pps, bps].
+    :param mult: Multiplier of profile CPS.
     :param warmup_time: Traffic warm-up time in seconds, 0 = disable.
     :param port_0: Port 0 on the traffic generator.
     :param port_1: Port 1 on the traffic generator.
     :param latency: With latency stats.
     :param async_start: Start the traffic and exit.
     :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
-    :param force: Force start regardless of ports state.
     :type profile_file: str
     :type framesize: int or str
     :type duration: float
-    :type rate: str
+    :type mult: int
     :type warmup_time: float
     :type port_0: int
     :type port_1: int
     :type latency: bool
     :type async_start: bool
     :type traffic_directions: int
-    :type force: bool
     """
     client = None
     total_rcvd = 0
@@ -111,71 +109,44 @@ def simple_burst(
     lost_b = 0
     lat_a = u"-1/-1/-1/"
     lat_b = u"-1/-1/-1/"
+    lat_a_hist = u""
+    lat_b_hist = u""
+    l7_data = u""
 
-    # Read the profile:
+    # Read the profile.
     try:
+        # TODO: key-values pairs to the profile file
+        #  - ips ?
         print(f"### Profile file:\n{profile_file}")
-        profile = STLProfile.load(
-            profile_file, direction=0, port_id=0, framesize=framesize,
-            rate=rate
-        )
-        streams = profile.get_streams()
-    except STLError as err:
+        profile = ASTFProfile.load(profile_file, framesize=framesize)
+    except TRexError as err:
         print(f"Error while loading profile '{profile_file}' {err!r}")
         sys.exit(1)
 
     try:
-        # Create the client:
-        client = STLClient()
-        # Connect to server:
+        # Create the client.
+        client = ASTFClient()
+        # Connect to server
         client.connect()
-        # Prepare our ports (the machine has 0 <--> 1 with static route):
-        client.reset(ports=[port_0, port_1])
-        client.remove_all_streams(ports=[port_0, port_1])
+        # Acquire ports, stop the traffic, remove loaded traffic and clear
+        # stats.
+        client.reset()
+        # Load the profile.
+        client.load_profile(profile)
 
-        if u"macsrc" in profile_file:
-            client.set_port_attr(ports=[port_0, port_1], promiscuous=True)
-        if isinstance(framesize, int):
-            last_stream_a = int((len(streams) - 2 ) / 2)
-            client.add_streams(streams[0:last_stream_a], ports=[port_0])
-            if traffic_directions > 1:
-                last_stream_b = (last_stream_a * 2)
-                client.add_streams(
-                    streams[last_stream_a:last_stream_b], ports=[port_1])
-            print(last_stream_a, last_stream_b, streams)
-        elif isinstance(framesize, str):
-            client.add_streams(streams[0:3], ports=[port_0])
-            if traffic_directions > 1:
-                client.add_streams(streams[3:6], ports=[port_1])
-        if latency:
-            try:
-                if isinstance(framesize, int):
-                    client.add_streams(streams[last_stream_b], ports=[port_0])
-                    if traffic_directions > 1:
-                        client.add_streams(
-                            streams[last_stream_b + 1], ports=[port_1])
-                elif isinstance(framesize, str):
-                    latency = False
-            except STLError:
-                # Disable latency if NIC does not support requested stream type
-                print(u"##### FAILED to add latency streams #####")
-                latency = False
         ports = [port_0]
         if traffic_directions > 1:
             ports.append(port_1)
-        # Warm-up phase:
+
+        # Warm-up phase.
         if warmup_time > 0:
-            # Clear the stats before injecting:
+            # Clear the stats before injecting.
             client.clear_stats()
-
-            # Choose rate and start traffic:
-            client.start(
-                ports=ports, mult=rate, duration=warmup_time, force=force
-            )
-
-            # Block until done:
+            # Choose CPS and start traffic.
+            client.start(mult=mult, duration=warmup_time)
+            # Block until done.
             time_start = time.monotonic()
-            client.wait_on_traffic(ports=ports, timeout=warmup_time+30)
+            client.wait_on_traffic(timeout=warmup_time+30)
             time_stop = time.monotonic()
             approximated_duration = time_stop - time_start
 
@@ -183,12 +154,13 @@ def simple_burst(
                 for warning in client.get_warnings():
                     print(warning)
 
-            # Read the stats after the test:
+            # Read the stats after the test.
             stats = client.get_stats()
 
             print(u"##### Warmup statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
 
+            # TODO: check stats format
             lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
             if traffic_directions > 1:
                 lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
@@ -197,14 +169,19 @@ def simple_burst(
             if traffic_directions > 1:
                 print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
 
-        # Clear the stats before injecting:
+        # Clear the stats before injecting.
         client.clear_stats()
         lost_a = 0
         lost_b = 0
 
-        # Choose rate and start traffic:
-        client.start(ports=ports, mult=rate, duration=duration, force=force)
+        # Choose CPS and start traffic.
+        client.start(
+            mult=mult, duration=duration, nc=True,
+            latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
+        )
 
+        # Clear possible stats data from warm-up phase.
+        stats = dict()
         if async_start:
             # For async stop, we need to export the current snapshot.
             xsnap0 = client.ports[0].get_xstats().reference_stats
@@ -213,9 +190,12 @@ def simple_burst(
                 xsnap1 = client.ports[1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
-            # Block until done:
+            # Do not block until done.
             time_start = time.monotonic()
-            client.wait_on_traffic(ports=ports, timeout=duration+30)
+            while client.is_traffic_active(ports=ports):
+                # Sample the stats.
+                stats = client.get_stats(ports=ports)
+                time.sleep(1)
             time_stop = time.monotonic()
             approximated_duration = time_stop - time_start
 
@@ -223,31 +203,65 @@ def simple_burst(
                 for warning in client.get_warnings():
                     print(warning)
 
-            # Read the stats after the test
-            stats = client.get_stats()
-
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
 
+            # TODO: check stats format
             lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
             if traffic_directions > 1:
                 lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
 
             # Stats index is not a port number, but "pgid".
             if latency:
-                lat_obj = stats[u"latency"][0][u"latency"]
+                lat_obj = stats[u"latency"][0][u"hist"]
+                # TODO: Latency histogram is dictionary in astf mode,
+                #  needs additional processing
                 lat_a = fmt_latency(
-                    str(lat_obj[u"total_min"]), str(lat_obj[u"average"]),
-                    str(lat_obj[u"total_max"]), str(lat_obj[u"hdrh"]))
+                    str(lat_obj[u"min_usec"]), str(lat_obj[u"s_avg"]),
+                    str(lat_obj[u"max_usec"]), u"-")
+                lat_a_hist = str(lat_obj[u"histogram"])
                 if traffic_directions > 1:
-                    lat_obj = stats[u"latency"][1][u"latency"]
+                    lat_obj = stats[u"latency"][1][u"hist"]
                     lat_b = fmt_latency(
-                        str(lat_obj[u"total_min"]), str(lat_obj[u"average"]),
-                        str(lat_obj[u"total_max"]), str(lat_obj[u"hdrh"]))
+                        str(lat_obj[u"min_usec"]), str(lat_obj[u"s_avg"]),
+                        str(lat_obj[u"max_usec"]), u"-")
+                    lat_b_hist = str(lat_obj[u"histogram"])
 
             if traffic_directions > 1:
                 total_sent = stats[0][u"opackets"] + stats[1][u"opackets"]
                 total_rcvd = stats[0][u"ipackets"] + stats[1][u"ipackets"]
+                client_stats = stats[u"traffic"][u"client"]
+                server_stats = stats[u"traffic"][u"server"]
+                # Active and established flows UDP/TCP
+                c_act_flows = client_stats[u"m_active_flows"]
+                c_est_flows = client_stats[u"m_est_flows"]
+                l7_data = f"clientActiveFlows={c_act_flows}, "
+                l7_data += f"clientEstablishedFlows={c_est_flows}, "
+                # Zero counters are not sent
+                # Rx throttled packets due too many packets in NIC rx queue
+                c_rx_throttled = client_stats.get(u"err_rx_throttled", 0)
+                s_rx_throttled = server_stats.get(u"err_rx_throttled", 0)
+                if u"udp" in profile_file:
+                    # Client
+                    # Established connections
+                    c_udp_connects = client_stats.get(u"udps_connects", 0)
+                    l7_data += f"clientUdpConnects={c_udp_connects}, "
+                    # Server
+                    # Established connections
+                    s_udp_accepts = server_stats.get(u"udps_accepts", 0)
+                    l7_data += f"serverUdpAccepts={s_udp_accepts}, "
+                    # TODO: add sent and received packets on both sides?
+                elif u"tcp" in profile_file:
+                    # Client
+                    # Established connections
+                    c_tcp_connects = client_stats.get(u"tcps_connects", 0)
+                    l7_data += f"clientTcpConnects={c_tcp_connects}, "
+                    # Server
+                    s_tcp_accepts = server_stats.get(u"tcps_accepts", 0)
+                    l7_data += f"serverTcpAccepts={s_tcp_accepts}, "
+                    # TODO: add sent and received packets on both sides?
+                l7_data += f"clientRxThrottled={c_rx_throttled}, "
+                l7_data += f"serverRxThrottled={s_rx_throttled}, "
             else:
                 total_sent = stats[port_0][u"opackets"]
                 total_rcvd = stats[port_1][u"ipackets"]
@@ -260,25 +274,29 @@ def simple_burst(
             if traffic_directions > 1:
                 print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
 
-    except STLError as ex_error:
+    except TRexError as ex_error:
         print(ex_error, file=sys.stderr)
         sys.exit(1)
 
     finally:
-        if async_start:
-            if client:
+        if client:
+            if async_start:
                 client.disconnect(stop_traffic=False, release_ports=True)
-        else:
-            if client:
+            else:
+                client.clear_profile()
                 client.disconnect()
-            print(
-                f"rate={rate!r}, totalReceived={total_rcvd}, "
-                f"totalSent={total_sent}, frameLoss={lost_a + lost_b}, "
-                f"targetDuration={duration!r}, "
-                f"approximatedDuration={approximated_duration!r}, "
-                f"approximatedRate={approximated_rate}, "
-                f"latencyStream0(usec)={lat_a}, latencyStream1(usec)={lat_b}, "
-            )
+                print(
+                    f"rate={mult!r}, totalReceived={total_rcvd}, "
+                    f"totalSent={total_sent}, frameLoss={lost_a + lost_b}, "
+                    f"targetDuration={duration!r}, "
+                    f"approximatedDuration={approximated_duration!r}, "
+                    f"approximatedRate={approximated_rate}, "
+                    f"latencyStream0(usec)={lat_a}, "
+                    f"latencyStream1(usec)={lat_b}, "
+                    f"latencyHistStream0={lat_a_hist}, "
+                    f"latencyHistStream1={lat_b_hist}, "
+                    f"{l7_data}"
+                )
 
 
 def main():
@@ -301,8 +319,8 @@ def main():
         help=u"Size of a Frame without padding and IPG."
     )
     parser.add_argument(
-        u"-r", u"--rate", required=True,
-        help=u"Traffic rate with included units (pps)."
+        u"-m", u"--mult", required=True, type=int,
+        help=u"Multiplier of profile CPS."
     )
     parser.add_argument(
         u"-w", u"--warmup_time", type=float, default=5.0,
@@ -328,10 +346,6 @@ def main():
         u"--traffic_directions", type=int, default=2,
         help=u"Send bi- (2) or uni- (1) directional traffic."
     )
-    parser.add_argument(
-        u"--force", action=u"store_true", default=False,
-        help=u"Force start regardless of ports state."
-    )
 
     args = parser.parse_args()
 
@@ -342,9 +356,9 @@ def main():
 
     simple_burst(
         profile_file=args.profile, duration=args.duration, framesize=framesize,
-        rate=args.rate, warmup_time=args.warmup_time, port_0=args.port_0,
+        mult=args.mult, warmup_time=args.warmup_time, port_0=args.port_0,
         port_1=args.port_1, latency=args.latency, async_start=args.async_start,
-        traffic_directions=args.traffic_directions, force=args.force
+        traffic_directions=args.traffic_directions
     )
 
 
