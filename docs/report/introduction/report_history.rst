@@ -6,7 +6,7 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-| .19            | 1. Added data:                                             |
+| .20            | 1. Added data:                                             |
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -18,6 +18,8 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |      - all set selected for analysis and graphs            |
 |                |      - MRR tests                                           |
 |                |                                                            |
+|                |      - test sets: crypto, L2, IPv6, memif                  |
+|                |                                                            |
 |                |    - Hoststack 3n-hsw tests                                |
 |                |                                                            |
 |                |    - Reconfiguration Tests 2n-skx                          |
@@ -27,6 +29,8 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |  2. Added Root Cause Analysis for VPP performance tests    |
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
++----------------+------------------------------------------------------------+
+| .19            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .18            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
