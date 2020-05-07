@@ -1,6 +1,6 @@
 #!/bin/sh
 
-patch --ignore-whitespace l3fwd_lpm.c <<"_EOF"
+patch --ignore-whitespace --forward l3fwd_lpm.c <<"_EOF"
 44,45c44,45
 <       {RTE_IPV4(198, 18, 0, 0), 24, 0},
 <       {RTE_IPV4(198, 18, 1, 0), 24, 1},
