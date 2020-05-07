@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "77550f57_1a92036e",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-05-07T15:40:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15c27f5d_1781ea47",
+      "range": {
+        "startLine": 265,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 62
+      },
+      "revId": "658df49b11d7f2c3a3cffbce646381dffd06dfcc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "871928a5_e999801b",
         "filename": "resources/libraries/robot/shared/suite_setup.robot",
         "patchSetId": 10
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "42acc8e1_6be117ad",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-05-07T15:40:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "871928a5_e999801b",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "658df49b11d7f2c3a3cffbce646381dffd06dfcc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6d3d9a8_c347a92c",
         "filename": "resources/libraries/robot/shared/suite_setup.robot",
         "patchSetId": 10
@@ -68,6 +116,30 @@
       "revId": "658df49b11d7f2c3a3cffbce646381dffd06dfcc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cc37599_1170b508",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-05-07T15:40:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6d3d9a8_c347a92c",
+      "range": {
+        "startLine": 97,
+        "startChar": 59,
+        "endLine": 97,
+        "endChar": 64
+      },
+      "revId": "658df49b11d7f2c3a3cffbce646381dffd06dfcc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
