@@ -120,9 +120,9 @@ def simple_burst(
             rate=rate
         )
         streams = profile.get_streams()
-    except STLError as err:
-        print(f"Error while loading profile '{profile_file}' {err!r}")
-        sys.exit(1)
+    except STLError:
+        print(f"Error while loading profile '{profile_file}'!")
+        raise
 
     try:
         # Create the client:
@@ -168,8 +168,9 @@ def simple_burst(
             client.clear_stats()
 
             # Choose rate and start traffic:
-            client.start(ports=ports, mult=rate, duration=warmup_time,
-                         force=force)
+            client.start(
+                ports=ports, mult=rate, duration=warmup_time, force=force
+            )
 
             # Block until done:
             time_start = time.monotonic()
@@ -258,9 +259,9 @@ def simple_burst(
             if traffic_directions > 1:
                 print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
 
-    except STLError as ex_error:
-        print(ex_error, file=sys.stderr)
-        sys.exit(1)
+    except STLError:
+        print(u"T-Rex STL runtime error!", file=sys.stderr)
+        raise
 
     finally:
         if async_start:
@@ -270,12 +271,13 @@ def simple_burst(
             if client:
                 client.disconnect()
             print(
-                f"rate={rate!r}, totalReceived={total_rcvd}, "
-                f"totalSent={total_sent}, frameLoss={lost_a + lost_b}, "
-                f"targetDuration={duration!r}, "
-                f"approximatedDuration={approximated_duration!r}, "
-                f"approximatedRate={approximated_rate}, "
-                f"latencyStream0(usec)={lat_a}, latencyStream1(usec)={lat_b}, "
+                f"rate={rate!r}, total_received={total_rcvd}, "
+                f"total_sent={total_sent}, frame_loss={lost_a + lost_b}, "
+                f"target_duration={duration!r}, "
+                f"approximated_duration={approximated_duration!r}, "
+                f"approximated_rate={approximated_rate}, "
+                f"latency_stream_0(usec)={lat_a}, "
+                f"latency_stream_1(usec)={lat_b}, "
             )
 
 
@@ -300,7 +302,7 @@ def main():
     )
     parser.add_argument(
         u"-r", u"--rate", required=True,
-        help=u"Traffic rate with included units (%, pps)."
+        help=u"Traffic rate with included units (pps)."
     )
     parser.add_argument(
         u"-w", u"--warmup_time", type=float, default=5.0,
