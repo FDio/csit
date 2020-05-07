@@ -19,14 +19,14 @@
   tags:
     - check-cpu-frequency
 
-- name: Calibration - Check Kernel Version of "{{ kernel_version }}"
-  shell: "uname -r"
-  register: current_kernel_version
-  changed_when: false
-  failed_when: |
-    current_kernel_version.stdout not in kernel_version
-  tags:
-    - check-kernel-version
+#- name: Calibration - Check Kernel Version of "{{ kernel_version }}"
+#  shell: "uname -r"
+#  register: current_kernel_version
+#  changed_when: false
+#  failed_when: |
+#    current_kernel_version.stdout not in kernel_version
+#  tags:
+#    - check-kernel-version
 
 - name: Calibration - Check Kernel Parameters
   shell: "cat /proc/cmdline"

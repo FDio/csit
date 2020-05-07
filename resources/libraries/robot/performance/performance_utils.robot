@@ -18,7 +18,6 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
-| Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.Trace
 | Variables | resources/libraries/python/Constants.py
 |
