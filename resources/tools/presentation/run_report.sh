@@ -38,7 +38,11 @@ export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
+<<<<<<< HEAD   (d5fe67 Report: Add data)
     --week "18" \
+=======
+    --week "20" \
+>>>>>>> CHANGE (f4c460 Report: Configure report 2001.20)
     --logging INFO \
     --force
 

@@ -46,7 +46,11 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
+<<<<<<< HEAD   (d5fe67 Report: Add data)
 report_week = u'18'
+=======
+report_week = u'20'
+>>>>>>> CHANGE (f4c460 Report: Configure report 2001.20)
 project = u'FD.io CSIT-2001.{week}'.format(week=report_week)
 copyright = u'2020, FD.io'
 author = u'FD.io CSIT'

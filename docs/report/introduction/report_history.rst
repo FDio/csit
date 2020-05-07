@@ -6,7 +6,11 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+<<<<<<< HEAD   (d5fe67 Report: Add data)
 | .18            | 1. Added data:                                             |
+=======
+| .20            | 1. Added data:                                             |
+>>>>>>> CHANGE (f4c460 Report: Configure report 2001.20)
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -18,6 +22,8 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |      - all set selected for analysis and graphs            |
 |                |      - MRR tests                                           |
 |                |                                                            |
+|                |      - test sets: crypto, L2, IPv6, memif                  |
+|                |                                                            |
 |                |    - Hoststack 3n-hsw tests                                |
 |                |                                                            |
 |                |    - Reconfiguration Tests 2n-skx                          |
@@ -28,6 +34,13 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
+<<<<<<< HEAD   (d5fe67 Report: Add data)
+=======
+| .19            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .18            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+>>>>>>> CHANGE (f4c460 Report: Configure report 2001.20)
 | .17            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .16            | Skipped.                                                   |
