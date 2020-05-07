@@ -660,6 +660,7 @@ class TrafficGenerator(AbstractMeasurer):
         """
         subtype = check_subtype(self._node)
         if subtype == NodeSubTypeTG.TREX:
+            #TODO: switch stl/astf based on osi_layer
             self.trex_stl_start_remote_exec(
                 duration, rate, frame_size, traffic_profile, async_call,
                 latency, warmup_time, traffic_directions, tx_port, rx_port
