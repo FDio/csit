@@ -107,7 +107,7 @@
 | | ... | use_tuned_cfs=${False} | auto_scale=${False} | vnf=testpmd_io
 | | ${bidirectional_throughput}= | Find Throughput Using MLRsearch
 | | ${unidirectional_throughput}= | Evaluate | ${bidirectional_throughput} / 2.0
-| | Start Traffic on Background | ${unidirectional_throughput}pps
+| | Start Traffic on Background | ${unidirectional_throughput}
 | | And Initialize layer dot1q
 | | ... | count=${nf_total_chains} | vlan_per_chain=${False}
 | | ... | start=${nf_chains+1}
