@@ -31,7 +31,7 @@ virtualenv -p $(which python3) ${DIR[WORKING]}/env
 source ${DIR[WORKING]}/env/bin/activate
 
 # Install python dependencies:
-pip3 install -r requirements.txt
+pip3 install --upgrade --no-index -r requirements.txt
 
 export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 

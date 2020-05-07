@@ -32,7 +32,7 @@ virtualenv --python=$(which python3) ${WORKING_DIR}/env
 . ${WORKING_DIR}/env/bin/activate
 
 # Install CSIT requirements:
-pip3 install --upgrade -r ../../../requirements.txt
+pip3 install --upgrade --no-index -r ../../../requirements.txt
 
 export PYTHONPATH=`pwd`
 

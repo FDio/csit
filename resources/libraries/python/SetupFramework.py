@@ -126,7 +126,8 @@ def create_env_directory_at_node(node):
     )
     cmd = f"cd {con.REMOTE_FW_DIR} && rm -rf env && virtualenv " \
         f"-p $(which python3) --system-site-packages --never-download env " \
-        f"&& source env/bin/activate && pip3 install -r requirements.txt"
+        f"&& source env/bin/activate && pip3 install --upgrade --no-index " \
+        f"-r requirements.txt"
     exec_cmd_no_error(
         node, cmd, timeout=100, include_reason=True,
         message=f"Failed install at node {node[u'type']} host {node[u'host']}, "

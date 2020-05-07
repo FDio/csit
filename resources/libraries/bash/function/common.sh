@@ -125,7 +125,7 @@ function activate_virtualenv () {
     set +u
     source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
     set -u
-    pip3 install --upgrade -r "${req_path}" || {
+    pip3 install --upgrade --no-index -r "${req_path}" || {
         die "Requirements installation failed."
     }
     # Most CSIT Python scripts assume PYTHONPATH is set and exported.
