@@ -51,7 +51,7 @@
 | | ... | Additional teardown for tests which uses performance measurement.
 | |
 | | Run Keyword If Test Failed
-| | ... | Send traffic at specified rate | ${1.0} | 10000pps
+| | ... | Send traffic at specified rate | ${1.0} | 10000
 | | ... | ${frame_size} | ${traffic_profile} | trial_multiplicity=${1}
 | | ... | extended_debug=${True}
 
