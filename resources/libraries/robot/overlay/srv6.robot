@@ -268,7 +268,8 @@
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6} | ${TG_pf2_mac}[0]
 | | Run Keyword If | ${dut2_status}
 | | ... | VPP Add IP Neighbor
-| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut1_if2_ip6}| ${DUT1_${int}2_mac}[0]
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut1_if2_ip6}
+| | ... | ${DUT1_${int}2_mac}[0]
 | | ${sid1}= | Set Variable If
 | | ... | "${n}" == "1" | ${dut2_sid1}
 | | ... | "${n}" == "2" | ${dut2_sid1_1}
