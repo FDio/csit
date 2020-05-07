@@ -18,7 +18,6 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
-| Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.Trace
 | Variables | resources/libraries/python/Constants.py
 |
@@ -416,7 +415,7 @@
 | |
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${subsamples}=${1} | ${traffic_directions}=${2}
-| | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${pkt_trace}=${False}
+| | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${pkt_trace}=${True}
 | |
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${frame_size} | ${traffic_profile}
