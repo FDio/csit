@@ -19,29 +19,29 @@
   tags:
     - check-cpu-frequency
 
-- name: Calibration - Check Kernel Version of "{{ kernel_version }}"
-  shell: "uname -r"
-  register: current_kernel_version
-  changed_when: false
-  failed_when: |
-    current_kernel_version.stdout not in kernel_version
-  tags:
-    - check-kernel-version
+#- name: Calibration - Check Kernel Version of "{{ kernel_version }}"
+#  shell: "uname -r"
+#  register: current_kernel_version
+#  changed_when: false
+#  failed_when: |
+#    current_kernel_version.stdout not in kernel_version
+#  tags:
+#    - check-kernel-version
 
-- name: Calibration - Check Kernel Parameters
-  shell: "cat /proc/cmdline"
-  register: current_kernel_parameters
-  changed_when: false
-  failed_when: |
-    'isolcpus' not in current_kernel_parameters.stdout or
-    'nohz_full' not in current_kernel_parameters.stdout or
-    'rcu_nocbs' not in current_kernel_parameters.stdout or
-    'processor.max_cstate=1' not in current_kernel_parameters.stdout or
-    'nmi_watchdog=0' not in current_kernel_parameters.stdout or
-    'intel_iommu=on' not in current_kernel_parameters.stdout or
-    'nosoftlockup' not in current_kernel_parameters.stdout
-  tags:
-    - check-cmdline
+#- name: Calibration - Check Kernel Parameters
+#  shell: "cat /proc/cmdline"
+#  register: current_kernel_parameters
+#  changed_when: false
+#  failed_when: |
+#    'isolcpus' not in current_kernel_parameters.stdout or
+#    'nohz_full' not in current_kernel_parameters.stdout or
+#    'rcu_nocbs' not in current_kernel_parameters.stdout or
+#    'processor.max_cstate=1' not in current_kernel_parameters.stdout or
+#    'nmi_watchdog=0' not in current_kernel_parameters.stdout or
+#    'intel_iommu=on' not in current_kernel_parameters.stdout or
+#    'nosoftlockup' not in current_kernel_parameters.stdout
+#  tags:
+#    - check-cmdline
 
 - name: Calibration - Get Spectre Meltdown Checker
   get_url:
