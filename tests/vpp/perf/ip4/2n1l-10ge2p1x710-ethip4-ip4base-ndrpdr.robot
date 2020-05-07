@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST
 | ... | ethip4-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -55,10 +55,10 @@
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
-| ${osi_layer}= | L3
+| ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4-ip4src253
+| ${traffic_profile}= | trex-astf-2n3n-ethip4udp-253u1p
 
 *** Keywords ***
 | Local Template
@@ -83,7 +83,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv4 forwarding in circular topology
+| | And Initialize IPv4 forwarding in circular topology | 192.168.10.1 | 192.168.20.1
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

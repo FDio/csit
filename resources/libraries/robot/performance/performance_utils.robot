@@ -18,7 +18,6 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
-| Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.Trace
 | Variables | resources/libraries/python/Constants.py
 |
@@ -89,28 +88,28 @@
 | | ${ndr_per_stream}= | Evaluate | ${ndr_sum} / float(${traffic_directions})
 | | ${rate}= | Evaluate | 0.9 * ${pdr_per_stream}
 | | Measure and show latency at specified rate | Latency at 90% PDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${latency_duration} | ${rate} | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
 | | ${rate}= | Evaluate | 0.5 * ${pdr_per_stream}
 | | Measure and show latency at specified rate | Latency at 50% PDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${latency_duration} | ${rate} | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
 | | ${rate}= | Evaluate | 0.1 * ${pdr_per_stream}
 | | Measure and show latency at specified rate | Latency at 10% PDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${latency_duration} | ${rate} | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
 | | # Rate needs to be high enough for latency streams.
 | | ${rate}= | Set Variable | ${9500}
 | | Measure and show latency at specified rate | Latency at 0% PDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${latency_duration} | ${rate} | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
 | | # Finally, trials with runtime and other stats.
 | | # We expect NDR and PDR to have different-looking stats.
 | | Send traffic at specified rate
-| | ... | ${1.0} | ${pdr_per_stream}pps | ${framesize} | ${traffic_profile}
+| | ... | ${1.0} | ${pdr_per_stream} | ${framesize} | ${traffic_profile}
 | | ... | traffic_directions=${traffic_directions}
 | | Send traffic at specified rate
-| | ... | ${1.0} | ${ndr_per_stream}pps | ${framesize} | ${traffic_profile}
+| | ... | ${1.0} | ${ndr_per_stream} | ${framesize} | ${traffic_profile}
 | | ... | traffic_directions=${traffic_directions}
 
 | Find Throughput Using MLRsearch
@@ -242,7 +241,7 @@
 | |
 | | ... | *Arguments:*
 | | ... | - result - Result of bidirectional measurtement.
-| | ... |   Type: ReceiveRateMeasurement
+| | ... | Type: ReceiveRateMeasurement
 | |
 | | ... | *Example:*
 | |
@@ -364,7 +363,8 @@
 | | ... | *Arguments:*
 | | ... | - subsamples - How many trials in this measurement. Type: int
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
-| | ... | - fail_no_traffic - Whether to fail on zero receive count. Type: boolean
+| | ... | - fail_no_traffic - Whether to fail on zero receive count.
+| | ... | Type: boolean
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
 | | ... | Type: int
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
@@ -381,7 +381,7 @@
 | |
 | | ${results} | ${approximated_results} = | Send traffic at specified rate
 | | ... | ${trial_duration}
-| | ... | ${max_rate}pps | ${frame_size} | ${traffic_profile} | ${subsamples}
+| | ... | ${max_rate} | ${frame_size} | ${traffic_profile} | ${subsamples}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
@@ -394,11 +394,12 @@
 | | ... | Then send traffic at specified rate, possibly multiple trials.
 | | ... | Show various DUT stats, optionally also packet trace.
 | | ... | Return list of measured receive rates.
-| | ... | The rate argument should be TRex friendly, so it should include "pps".
 | |
 | | ... | *Arguments:*
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
-| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
+| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
+| | ... | Type: float
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer/string
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
@@ -411,12 +412,13 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Send traffic at specified rate \| \${1.0} \| 4.0mpps \| \${64} \
-| | ... | \| 3-node-IPv4 \| \${10} \| \${2} \| \${0} \| \${1} \| \${False} \|
+| | ... | \| Send traffic at specified rate \| \${1.0} \| ${4000000.0} \
+| | ... | \| \${64} \| 3-node-IPv4 \| \${10} \| \${2} \| \${0} \| \${1} \
+| | ... | \${False} \|
 | |
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${subsamples}=${1} | ${traffic_directions}=${2}
-| | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${pkt_trace}=${False}
+| | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${pkt_trace}=${True}
 | |
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${frame_size} | ${traffic_profile}
@@ -454,12 +456,13 @@
 | | [Documentation]
 | | ... | Send traffic at specified rate, single trial.
 | | ... | Extract latency information and append it to text message.
-| | ... | The rate argument should be TRex friendly, so it should include "pps".
 | |
 | | ... | *Arguments:*
 | | ... | - message_prefix - Preface to test message addition. Type: string
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
-| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
+| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
+| | ... | Type: float
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer/string
 | | ... | - traffic_profile - Name of module defining traffic for measurements.
 | | ... | Type: string
@@ -471,7 +474,7 @@
 | | ... | *Example:*
 | |
 | | ... | \| Measure and show latency at specified rate \| Latency at 90% NDR \
-| | ... | \| \${1.0} \| 4.0mpps \| \${64} \| 3-node-IPv4 \| \${2} \|
+| | ... | \| \${1.0} \| ${4000000.0} \| \${64} \| 3-node-IPv4 \| \${2} \|
 | |
 | | [Arguments] | ${message_prefix} | ${trial_duration} | ${rate}
 | | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}=${2}
@@ -494,7 +497,9 @@
 | |
 | | ... | *Arguments:*
 | | ... | - duration - Duration of traffic run [s]. Type: integer
-| | ... | - rate - Unidirectional rate for sending packets. Type: string
+| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
+| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
+| | ... | Type: float
 | | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer/string
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
@@ -506,7 +511,7 @@
 | | ... | *Example:*
 | |
 | | ... | \| Clear and show runtime counters with running traffic \| \${10} \
-| | ... | \| 4.0mpps \| \${64} \| 3-node-IPv4 \| \${2} \| \${0} \| \${1} \|
+| | ... | \| ${4000000.0} \| \${64} \| 3-node-IPv4 \| \${2} \| \${0} \| \${1} \|
 | |
 | | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
@@ -534,7 +539,9 @@
 | | ... | Type: string
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
 | | ... | *Arguments:*
-| | ... | - rate - Unidirectional rate for sending packets. Type: string
+| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
+| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
+| | ... | Type: float
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
 | | ... | Type: int
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
@@ -542,7 +549,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Start Traffic on Background \| 4.0mpps \| \${2} \| \${0} \
+| | ... | \| Start Traffic on Background \| ${4000000.0} \| \${2} \| \${0} \
 | | ... | \| \${1} \|
 | |
 | | [Arguments] | ${rate} | ${traffic_directions}=${2} | ${tx_port}=${0}

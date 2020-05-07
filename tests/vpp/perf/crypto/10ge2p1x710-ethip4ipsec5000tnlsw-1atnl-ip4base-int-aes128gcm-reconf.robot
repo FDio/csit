@@ -112,7 +112,7 @@
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | ${bidirectional_throughput}= | Find Throughput Using MLRsearch
 | | ${unidirectional_throughput}= | Evaluate | ${bidirectional_throughput} / 2.0
-| | Start Traffic on Background | ${unidirectional_throughput}pps
+| | Start Traffic on Background | ${unidirectional_throughput}
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2}[0]
 | | ... | ${DUT2_${int}1}[0] | ${n_total_tunnels} | ${encr_alg} | ${auth_alg}
