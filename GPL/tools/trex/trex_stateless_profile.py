@@ -168,8 +168,9 @@ def simple_burst(
             client.clear_stats()
 
             # Choose rate and start traffic:
-            client.start(ports=ports, mult=rate, duration=warmup_time,
-                         force=force)
+            client.start(
+                ports=ports, mult=rate, duration=warmup_time, force=force
+            )
 
             # Block until done:
             time_start = time.monotonic()
@@ -300,7 +301,7 @@ def main():
     )
     parser.add_argument(
         u"-r", u"--rate", required=True,
-        help=u"Traffic rate with included units (%, pps)."
+        help=u"Traffic rate with included units (pps)."
     )
     parser.add_argument(
         u"-w", u"--warmup_time", type=float, default=5.0,
