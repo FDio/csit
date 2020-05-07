@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15c27f5d_1781ea47",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-07T14:13:40Z",
+      "side": 1,
+      "message": "This is done imv. used in bonding tests already. so safe to remove todo",
+      "range": {
+        "startLine": 265,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 62
+      },
+      "revId": "658df49b11d7f2c3a3cffbce646381dffd06dfcc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "871928a5_e999801b",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-07T14:13:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "658df49b11d7f2c3a3cffbce646381dffd06dfcc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6d3d9a8_c347a92c",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-07T14:13:40Z",
+      "side": 1,
+      "message": "traffic",
+      "range": {
+        "startLine": 97,
+        "startChar": 59,
+        "endLine": 97,
+        "endChar": 64
+      },
+      "revId": "658df49b11d7f2c3a3cffbce646381dffd06dfcc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
