@@ -13,17 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This script uses T-REX stateless API to drive t-rex instance.
+"""This script uses T-Rex advanced stateful API to drive T-Rex instance.
 
 Requirements:
-- T-REX: https://github.com/cisco-system-traffic-generator/trex-core
- - compiled and running T-REX process (eg. ./t-rex-64 -i)
- - trex.stl.api library
-- Script must be executed on a node with T-REX instance
+- T-Rex: https://github.com/cisco-system-traffic-generator/trex-core
+ - compiled and running T-Rex process (eg. ./t-rex-64 -i)
+ - trex.astf.api library
+- Script must be executed on a node with T-Rex instance.
 
 Functionality:
-1. Verify the API functionality and get server information
-
+1. Verify the API functionality and get server information.
 """
 
 import sys
@@ -31,12 +30,12 @@ import sys
 sys.path.insert(
     0, u"/opt/trex-core-2.73/scripts/automation/trex_control_plane/interactive/"
 )
-from trex.stl.api import *
+from trex.astf.api import *
 
 
 def main():
     """Check server info and quit."""
-    client = STLClient()
+    client = ASTFClient()
     try:
         # connect to server
         client.connect()
