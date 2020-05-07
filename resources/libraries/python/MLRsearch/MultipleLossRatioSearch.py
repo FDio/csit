@@ -135,7 +135,7 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         :type measurer: AbstractMeasurer.AbstractMeasurer
         :type final_relative_width: float
         :type final_trial_duration: float
-        :type initial_trial_duration: int
+        :type initial_trial_duration: float
         :type number_of_intermediate_phases: int
         :type timeout: float
         :type doublings: int
