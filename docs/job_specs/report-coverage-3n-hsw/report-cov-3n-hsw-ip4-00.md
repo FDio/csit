@@ -1,0 +1,190 @@
+# 3n-hsw
+### tests 144
+### job hrs est. 18.3
+### job hrs real xx.x
+### test mins est. 7.6
+### test mins real x.x
+## ./container_memif
+## ./crypto
+## ./ip4
+### intel-vic1227
+#### dpdk-vfio-pci
+##### ethip4-ip4base
+1c AND 64b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 64b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 64b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4base
+1c AND 1518b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 1518b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 1518b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4base
+1c AND imix AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4base
+2c AND imix AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4base
+4c AND imix AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4base
+##### ethip4-ip4scale2m
+1c AND 64b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 64b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 64b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND 1518b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 1518b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 1518b AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND imix AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND imix AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND imix AND ndrpdr AND vic1227 AND drv_vfio_pci AND ethip4-ip4scale2m
+### intel-vic1385
+#### dpdk-vfio-pci
+##### ethip4-ip4base
+1c AND 64b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 64b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 64b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4base
+1c AND 1518b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 1518b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 1518b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4base
+1c AND imix AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4base
+2c AND imix AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4base
+4c AND imix AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4base
+##### ethip4-ip4scale2m
+1c AND 64b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 64b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 64b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND 1518b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 1518b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 1518b AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND imix AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND imix AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND imix AND ndrpdr AND vic1385 AND drv_vfio_pci AND ethip4-ip4scale2m
+### intel-x520-da2
+#### dpdk-vfio-pci
+##### ethip4-ip4base
+1c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+1c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+1c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+1c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+2c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+4c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base
+##### ethip4-ip4scale2m
+1c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4scale2m
+### intel-x710
+#### dpdk-vfio-pci
+##### ethip4-ip4base
+1c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+1c AND 1518b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 1518b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 1518b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+1c AND 9000b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 9000b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 9000b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+1c AND imix AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+2c AND imix AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+4c AND imix AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
+##### ethip4-ip4scale2m
+1c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND 1518b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 1518b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 1518b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND 9000b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 9000b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 9000b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND imix AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND imix AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND imix AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4scale2m
+### intel-xl710
+#### dpdk-vfio-pci
+##### ethip4-ip4base
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
+##### ethip4-ip4scale20k
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale20k
+##### ethip4-ip4scale200k
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
+##### ethip4-ip4scale2m
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+##### dot1q-ip4base
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
+## ./ip4_tunnels
+## ./ip6
+## ./ip6_tunnels
+## ./l2
+## ./lb
+## ./nfv_density/dcr_memif/chain
+## ./nfv_density/dcr_memif/chain_ipsec
+## ./nfv_density/dcr_memif/pipeline
+## ./nfv_density/vm_vhost/chain
+## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
+## ./srv6
+## ./tcp
+## ./vm_vhost
+## ./vts

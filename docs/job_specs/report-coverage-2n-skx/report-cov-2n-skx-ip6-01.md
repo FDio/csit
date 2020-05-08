@@ -1,0 +1,133 @@
+# 2n-skx
+### tests 96
+### job hrs est. 12.2
+### job hrs real xx.x
+### test mins est. 7.6
+### test mins real x.x
+## ./container_memif
+## ./crypto
+## ./ip4
+## ./ip4_tunnels
+## ./ip6
+### intel-x710
+#### avf
+##### ethip6-ip6scale2m
+1c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+2c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+4c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+1c AND 1518b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+2c AND 1518b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+4c AND 1518b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+1c AND 9000b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+2c AND 9000b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+4c AND 9000b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+1c AND imix AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+2c AND imix AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+4c AND imix AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
+#### dpdk-vfio-pci
+##### ethip6-ip6scale2m
+1c AND 78b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+2c AND 78b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+4c AND 78b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+1c AND 1518b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+2c AND 1518b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+4c AND 1518b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+1c AND 9000b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+2c AND 9000b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+4c AND 9000b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+1c AND imix AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+2c AND imix AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+4c AND imix AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6scale2m
+### intel-xxv710
+#### avf
+##### ethip6-ip6scale20k
+1c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+2c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+4c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale20k
+##### ethip6-ip6scale200k
+1c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+2c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+4c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale200k
+##### ethip6-ip6scale2m
+1c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+2c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+4c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
+#### dpdk-vfio-pci
+##### ethip6-ip6scale20k
+1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+2c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+4c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k
+##### ethip6-ip6scale200k
+1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+2c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+4c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
+##### ethip6-ip6scale2m
+1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+2c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+4c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
+## ./ip6_tunnels
+## ./l2
+## ./lb
+## ./nfv_density/dcr_memif/chain
+## ./nfv_density/dcr_memif/chain_ipsec
+## ./nfv_density/dcr_memif/pipeline
+## ./nfv_density/vm_vhost/chain
+## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
+## ./srv6
+## ./tcp
+## ./vm_vhost
+## ./vts
