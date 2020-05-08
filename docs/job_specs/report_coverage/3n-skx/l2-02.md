@@ -1,0 +1,182 @@
+# 3n-skx
+### tests 144
+### job hrs est. 18.3
+### job hrs real xx.x
+### test mins est. 7.6
+### test mins real x.x
+## ./container_memif
+## ./crypto
+## ./ip4
+## ./ip4_tunnels
+## ./ip6
+## ./ip6_tunnels
+## ./l2
+### intel-xxv710
+#### avf
+##### eth-l2bdbasemaclrn-iacl1sf-100flows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100flows
+##### eth-l2bdbasemaclrn-iacl1sf-10kflows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+##### eth-l2bdbasemaclrn-iacl1sf-100kflows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+##### eth-l2bdbasemaclrn-iacl1sl-100flows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100flows
+##### eth-l2bdbasemaclrn-iacl1sl-10kflows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+##### eth-l2bdbasemaclrn-iacl1sl-100kflows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+#### dpdk-vfio-pci
+##### eth-l2bdbasemaclrn-iacl1sf-100flows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100flows
+##### eth-l2bdbasemaclrn-iacl1sf-10kflows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-10kflows
+##### eth-l2bdbasemaclrn-iacl1sf-100kflows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sf-100kflows
+##### eth-l2bdbasemaclrn-iacl1sl-100flows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100flows
+##### eth-l2bdbasemaclrn-iacl1sl-10kflows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-10kflows
+##### eth-l2bdbasemaclrn-iacl1sl-100kflows
+1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-iacl1sl-100kflows
+## ./lb
+## ./nfv_density/dcr_memif/chain
+## ./nfv_density/dcr_memif/chain_ipsec
+## ./nfv_density/dcr_memif/pipeline
+## ./nfv_density/vm_vhost/chain
+## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
+## ./srv6
+## ./tcp
+## ./vm_vhost
+## ./vts
