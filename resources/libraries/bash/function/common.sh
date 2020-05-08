@@ -787,6 +787,15 @@ function select_tags () {
                 ${tfd}/report-iter-${NODENESS}-${FLAVOR}.md |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
+        *"report-coverage"* )
+            test_sets=(${TEST_TAG_STRING//:/ })
+            report_dir=report-coverage-${NODENESS}-${FLAVOR}
+            # Run only one test set per run
+            report_file=report-cov-${NODENESS}-${FLAVOR}-${test_sets[0]}.md
+            readarray -t test_tag_array <<< $(sed 's/ //g' \
+                ${tfd}/${report_dir}/${report_file} |
+                eval ${sed_nics_sub_cmd}) || die
+            ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
