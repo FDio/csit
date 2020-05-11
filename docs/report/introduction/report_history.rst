@@ -6,52 +6,7 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-<<<<<<< HEAD   (c842ea Report: Add data)
-<<<<<<< HEAD   (953d13 Report: Fix typo in specification.)
-<<<<<<< HEAD   (793b6b Report: Add data)
-<<<<<<< HEAD   (b95753 PAL: Fix table data model)
-<<<<<<< HEAD   (ede849 Report: Add pdf version)
-<<<<<<< HEAD   (35a360 Report: Add data)
-=======
-<<<<<<< HEAD   (ef4187 Report: Add pdf version)
->>>>>>> CHANGE (68013a Report: Configure report 2001.15)
-| .13            | 1. Added data:                                             |
-=======
-<<<<<<< HEAD   (ede849 Report: Add pdf version)
-<<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
-| .12            | 1. Added data:                                             |
-=======
-=======
-<<<<<<< HEAD   (9b9bbb PAL: Fix table data model)
->>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
-| .14            | 1. Added data:                                             |
-<<<<<<< HEAD   (b95753 PAL: Fix table data model)
->>>>>>> CHANGE (0ed80e Report: COnfigure reoirt 2001.14)
->>>>>>> CHANGE (bdfc93 Report: COnfigure reoirt 2001.14)
-=======
-| .15            | 1. Added data:                                             |
->>>>>>> CHANGE (8e601d Report: Configure report 2001.15)
->>>>>>> CHANGE (68013a Report: Configure report 2001.15)
-=======
-=======
-| .16            | 1. Added data:                                             |
->>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
->>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
-=======
-=======
-<<<<<<< HEAD   (d5fe67 Report: Add data)
->>>>>>> CHANGE (6df891 Report: Configure report 2001.20)
-| .18            | 1. Added data:                                             |
-<<<<<<< HEAD   (c842ea Report: Add data)
->>>>>>> CHANGE (dfd4a2 Report: Configure Report 2001.18)
-=======
-| .19            | 1. Added data:                                             |
->>>>>>> CHANGE (413f1d Report: Configure report 2001.19)
-=======
-=======
 | .20            | 1. Added data:                                             |
->>>>>>> CHANGE (f4c460 Report: Configure report 2001.20)
->>>>>>> CHANGE (6df891 Report: Configure report 2001.20)
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -63,84 +18,40 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |      - all set selected for analysis and graphs            |
 |                |      - MRR tests                                           |
 |                |                                                            |
-<<<<<<< HEAD   (b7d64a Report: Add data)
-<<<<<<< HEAD   (4279a5 Report: Comparison tables)
-=======
-<<<<<<< HEAD   (c842ea Report: Add data)
-<<<<<<< HEAD   (bd7b2e Report: Comparison tables)
->>>>>>> CHANGE (996e23 Report: Configure report 2001.20)
-=======
-=======
-|                |      - test sets: crypto, L2, IPv6, memif                  |
-|                |                                                            |
->>>>>>> CHANGE (6df891 Report: Configure report 2001.20)
 |                |    - Hoststack 3n-hsw tests                                |
 |                |                                                            |
 |                |    - Reconfiguration Tests 2n-skx                          |
 |                |                                                            |
 |                |    - Soak Tests 2n-skx                                     |
 |                |                                                            |
->>>>>>> CHANGE (b1af33 Report: Add 2n-skx Soak and Reconf tests)
 |                |  2. Added Root Cause Analysis for VPP performance tests    |
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
-<<<<<<< HEAD   (c842ea Report: Add data)
-<<<<<<< HEAD   (953d13 Report: Fix typo in specification.)
-<<<<<<< HEAD   (793b6b Report: Add data)
-<<<<<<< HEAD   (b95753 PAL: Fix table data model)
-<<<<<<< HEAD   (ede849 Report: Add pdf version)
-<<<<<<< HEAD   (35a360 Report: Add data)
-=======
-<<<<<<< HEAD   (ef4187 Report: Add pdf version)
-=======
-=======
-=======
-| .18            | Skipped.                                                   |
-+----------------+------------------------------------------------------------+
->>>>>>> CHANGE (413f1d Report: Configure report 2001.19)
-=======
-<<<<<<< HEAD   (d5fe67 Report: Add data)
-=======
 | .19            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .18            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
->>>>>>> CHANGE (f4c460 Report: Configure report 2001.20)
->>>>>>> CHANGE (6df891 Report: Configure report 2001.20)
 | .17            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .16            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .15            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
->>>>>>> CHANGE (dfd4a2 Report: Configure Report 2001.18)
 | .14            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .13            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
->>>>>>> CHANGE (8e601d Report: Configure report 2001.15)
->>>>>>> CHANGE (68013a Report: Configure report 2001.15)
 | .12            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
-=======
-<<<<<<< HEAD   (d4f9e9 CSIT-1597 API cleanup: acl)
-=======
-=======
-<<<<<<< HEAD   (9b9bbb PAL: Fix table data model)
-=======
 | .15            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .14            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
->>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
->>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
 | .13            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .12            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
->>>>>>> CHANGE (0ed80e Report: COnfigure reoirt 2001.14)
->>>>>>> CHANGE (bdfc93 Report: COnfigure reoirt 2001.14)
 | .11            | 1. Added Soak tests                                        |
 |                |                                                            |
 |                | 2. Added data:                                             |
