@@ -286,6 +286,32 @@
         start: 335
         end: "lastCompletedBuild"
 
+    plot-ndrpdr-comparison-2n-skx:
+      csit-vpp-perf-ndrpdr-weekly-master-2n-skx:
+        start: 76
+        end: "lastCompletedBuild"
+        max-builds: 15
+
+    plot-ndrpdr-comparison-3n-skx:
+      csit-vpp-perf-ndrpdr-weekly-master-3n-skx:
+        start: 76
+        end: "lastCompletedBuild"
+        max-builds: 15
+        skip:
+          - 87
+
+    plot-ndrpdr-comparison-2n-clx:
+      csit-vpp-perf-ndrpdr-weekly-master-2n-clx:
+        start: 21
+        end: "lastCompletedBuild"
+        max-builds: 15
+
+    plot-ndrpdr-comparison-3n-hsw:
+      csit-vpp-perf-ndrpdr-weekly-master-3n-hsw:
+        start: 76
+        end: "lastCompletedBuild"
+        max-builds: 15
+
     table-ndrpdr-comparison-2n-skx:
       csit-vpp-perf-ndrpdr-weekly-master-2n-skx:
         start: 76
@@ -882,7 +908,7 @@
   algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-ndr"
-  data: "table-ndrpdr-comparison-3n-hsw"
+  data: "plot-ndrpdr-comparison-3n-hsw"
   filter: "'NDRPDR' and '1T1C'"
   include-tests: "NDR"
   parameters:
@@ -898,7 +924,7 @@
   algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-pdr"
-  data: "table-ndrpdr-comparison-3n-hsw"
+  data: "plot-ndrpdr-comparison-3n-hsw"
   filter: "'NDRPDR' and '1T1C'"
   include-tests: "PDR"
   parameters:
@@ -933,7 +959,7 @@
   algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-ndr"
-  data: "table-ndrpdr-comparison-3n-skx"
+  data: "plot-ndrpdr-comparison-3n-skx"
   filter: "'NDRPDR' and '2T1C'"
   include-tests: "NDR"
   parameters:
@@ -949,7 +975,7 @@
   algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-pdr"
-  data: "table-ndrpdr-comparison-3n-skx"
+  data: "plot-ndrpdr-comparison-3n-skx"
   filter: "'NDRPDR' and '2T1C'"
   include-tests: "PDR"
   parameters:
@@ -984,7 +1010,7 @@
   algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-ndr"
-  data: "table-ndrpdr-comparison-2n-skx"
+  data: "plot-ndrpdr-comparison-2n-skx"
   filter: "'NDRPDR' and '2T1C'"
   include-tests: "NDR"
   parameters:
@@ -1000,7 +1026,7 @@
   algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-pdr"
-  data: "table-ndrpdr-comparison-2n-skx"
+  data: "plot-ndrpdr-comparison-2n-skx"
   filter: "'NDRPDR' and '2T1C'"
   include-tests: "PDR"
   parameters:
@@ -1035,7 +1061,7 @@
   algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-ndr"
-  data: "table-ndrpdr-comparison-2n-clx"
+  data: "plot-ndrpdr-comparison-2n-clx"
   filter: "'NDRPDR' and '2T1C'"
   include-tests: "NDR"
   parameters:
@@ -1051,7 +1077,7 @@
   algorithm: "table_perf_trending_dash"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-pdr"
-  data: "table-ndrpdr-comparison-2n-clx"
+  data: "plot-ndrpdr-comparison-2n-clx"
   filter: "'NDRPDR' and '2T1C'"
   include-tests: "PDR"
   parameters:
