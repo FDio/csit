@@ -6,11 +6,17 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+<<<<<<< HEAD   (6df891 Report: Configure report 2001.20)
 <<<<<<< HEAD   (d5fe67 Report: Add data)
 | .18            | 1. Added data:                                             |
 =======
+=======
+>>>>>>> CHANGE (7d224d Revert "Report: Configure report 2001.20")
 | .20            | 1. Added data:                                             |
+<<<<<<< HEAD   (6df891 Report: Configure report 2001.20)
 >>>>>>> CHANGE (f4c460 Report: Configure report 2001.20)
+=======
+>>>>>>> CHANGE (7d224d Revert "Report: Configure report 2001.20")
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -22,8 +28,11 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |      - all set selected for analysis and graphs            |
 |                |      - MRR tests                                           |
 |                |                                                            |
+<<<<<<< HEAD   (6df891 Report: Configure report 2001.20)
 |                |      - test sets: crypto, L2, IPv6, memif                  |
 |                |                                                            |
+=======
+>>>>>>> CHANGE (7d224d Revert "Report: Configure report 2001.20")
 |                |    - Hoststack 3n-hsw tests                                |
 |                |                                                            |
 |                |    - Reconfiguration Tests 2n-skx                          |
@@ -34,13 +43,19 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
+<<<<<<< HEAD   (6df891 Report: Configure report 2001.20)
 <<<<<<< HEAD   (d5fe67 Report: Add data)
 =======
+=======
+>>>>>>> CHANGE (7d224d Revert "Report: Configure report 2001.20")
 | .19            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .18            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
+<<<<<<< HEAD   (6df891 Report: Configure report 2001.20)
 >>>>>>> CHANGE (f4c460 Report: Configure report 2001.20)
+=======
+>>>>>>> CHANGE (7d224d Revert "Report: Configure report 2001.20")
 | .17            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .16            | Skipped.                                                   |
@@ -53,6 +68,17 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .12            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
+<<<<<<< HEAD   (6df891 Report: Configure report 2001.20)
+=======
+| .15            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .14            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .13            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+| .12            | Skipped.                                                   |
++----------------+------------------------------------------------------------+
+>>>>>>> CHANGE (7d224d Revert "Report: Configure report 2001.20")
 | .11            | 1. Added Soak tests                                        |
 |                |                                                            |
 |                | 2. Added data:                                             |
