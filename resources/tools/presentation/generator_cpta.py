@@ -146,7 +146,7 @@ def generate_cpta(spec, data):
 
 
 def _generate_trending_traces(in_data, job_name, build_info,
-                              name=u"", color=u""):
+                              name=u"", color=u"", incl_tests=u"MRR"):
     """Generate the trending traces:
      - samples,
      - outliers, regress, progress
@@ -157,14 +157,19 @@ def _generate_trending_traces(in_data, job_name, build_info,
     :param build_info: Information about the builds.
     :param name: Name of the plot
     :param color: Name of the color for the plot.
+    :param incl_tests: Included tests, accepted values: MRR, NDR, PDR
     :type in_data: OrderedDict
     :type job_name: str
     :type build_info: dict
     :type name: str
     :type color: str
+    :type incl_tests: str
     :returns: Generated traces (list) and the evaluated result.
     :rtype: tuple(traces, result)
     """
+
+    if incl_tests not in (u"MRR", u"NDR", u"PDR"):
+        return list(), None
 
     data_x = list(in_data.keys())
     data_y_pps = list()
@@ -181,29 +186,37 @@ def _generate_trending_traces(in_data, job_name, build_info,
         str_key = str(key)
         date = build_info[job_name][str_key][0]
         hover_str = (u"date: {date}<br>"
-                     u"average [Mpps]: {value:.3f}<br>"
-                     u"stdev [Mpps]: {stdev:.3f}<br>"
+                     u"{property} [Mpps]: {value:.3f}<br>"
+                     u"sdtev"
                      u"{sut}-ref: {build}<br>"
-                     u"csit-ref: mrr-{period}-build-{build_nr}<br>"
+                     u"csit-ref: {test}-{period}-build-{build_nr}<br>"
                      u"testbed: {testbed}")
+        if incl_tests == u"MRR":
+            hover_str = hover_str.replace(
+                u"stdev", f"stdev [Mpps]: {data_y_stdev[index]:.3f}<br>"
+            )
+        else:
+            hover_str = hover_str.replace(u"stdev", u"")
         if u"dpdk" in job_name:
             hover_text.append(hover_str.format(
                 date=date,
+                property=u"average" if incl_tests == u"MRR" else u"throughput",
                 value=data_y_mpps[index],
-                stdev=data_y_stdev[index],
                 sut=u"dpdk",
                 build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
+                test=incl_tests.lower(),
                 period=u"weekly",
                 build_nr=str_key,
                 testbed=build_info[job_name][str_key][2]))
         elif u"vpp" in job_name:
             hover_text.append(hover_str.format(
                 date=date,
+                property=u"average" if incl_tests == u"MRR" else u"throughput",
                 value=data_y_mpps[index],
-                stdev=data_y_stdev[index],
                 sut=u"vpp",
                 build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
-                period=u"daily",
+                test=incl_tests.lower(),
+                period=u"daily" if incl_tests == u"MRR" else u"weekly",
                 build_nr=str_key,
                 testbed=build_info[job_name][str_key][2]))
 
@@ -353,6 +366,8 @@ def _generate_all_charts(spec, input_data):
 
         logging.info(f"  Generating the chart {graph.get(u'title', u'')} ...")
 
+        incl_tests = graph.get(u"include-tests", u"MRR")
+
         job_name = list(graph[u"data"].keys())[0]
 
         csv_tbl = list()
@@ -367,13 +382,13 @@ def _generate_all_charts(spec, input_data):
         if graph.get(u"include", None):
             data = input_data.filter_tests_by_name(
                 graph,
-                params=[u"type", u"result", u"tags"],
+                params=[u"type", u"result", u"throughput", u"tags"],
                 continue_on_error=True
             )
         else:
             data = input_data.filter_data(
                 graph,
-                params=[u"type", u"result", u"tags"],
+                params=[u"type", u"result", u"throughput", u"tags"],
                 continue_on_error=True)
 
         if data is None or data.empty:
@@ -390,9 +405,20 @@ def _generate_all_charts(spec, input_data):
                     if chart_data.get(test_name, None) is None:
                         chart_data[test_name] = OrderedDict()
                     try:
+                        if incl_tests == u"MRR":
+                            rate = test[u"result"][u"receive-rate"]
+                            stdev = test[u"result"][u"receive-stdev"]
+                        elif incl_tests == u"NDR":
+                            rate = test[u"throughput"][u"NDR"][u"LOWER"]
+                            stdev = float(u"nan")
+                        elif incl_tests == u"PDR":
+                            rate = test[u"throughput"][u"PDR"][u"LOWER"]
+                            stdev = float(u"nan")
+                        else:
+                            continue
                         chart_data[test_name][int(index)] = {
-                            u"receive-rate": test[u"result"][u"receive-rate"],
-                            u"receive-stdev": test[u"result"][u"receive-stdev"]
+                            u"receive-rate": rate,
+                            u"receive-stdev": stdev
                         }
                         chart_tags[test_name] = test.get(u"tags", None)
                     except (KeyError, TypeError):
@@ -433,7 +459,9 @@ def _generate_all_charts(spec, input_data):
                                 build_info=build_info,
                                 name=u'-'.join(tst_name.split(u'.')[-1].
                                                split(u'-')[2:-1]),
-                                color=COLORS[index])
+                                color=COLORS[index],
+                                incl_tests=incl_tests
+                            )
                         except IndexError:
                             logging.error(f"Out of colors: index: "
                                           f"{index}, test: {tst_name}")
@@ -457,7 +485,9 @@ def _generate_all_charts(spec, input_data):
                         build_info=build_info,
                         name=u'-'.join(
                             tst_name.split(u'.')[-1].split(u'-')[2:-1]),
-                        color=COLORS[index])
+                        color=COLORS[index],
+                        incl_tests=incl_tests
+                    )
                 except IndexError:
                     logging.error(
                         f"Out of colors: index: {index}, test: {tst_name}"
