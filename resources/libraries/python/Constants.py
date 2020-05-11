@@ -229,7 +229,7 @@ class Constants(object):
     DUT1_UUID = get_str_from_env("DUT1_UUID", "")
 
     # Global "kill switch" for CRC checking during runtime.
-    FAIL_ON_CRC_MISMATCH = get_optimistic_bool_from_env("FAIL_ON_CRC_MISMATCH")
+    FAIL_ON_CRC_MISMATCH = False  # get_optimistic_bool_from_env("FAIL_ON_CRC_MISMATCH")
 
     # Mapping from NIC name to its bps limit.
     # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.
