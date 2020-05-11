@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ed5201f_e79882e6",
+        "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca2.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-11T13:34:21Z",
+      "side": 1,
+      "message": "Only 5 and above belong to RCA2.",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 23
+      },
+      "revId": "66834bf706281dd47692528ec40fcf8e7b0eb3f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf655851_69ebea28",
+        "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca2.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-11T13:34:21Z",
+      "side": 1,
+      "message": "Only 5 and above belong to RCA2.",
+      "range": {
+        "startLine": 9,
+        "startChar": 41,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "66834bf706281dd47692528ec40fcf8e7b0eb3f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
