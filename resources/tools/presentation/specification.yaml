@@ -10631,7 +10631,7 @@
            'NF_DENSITY' and
            'VHOST' and
            'VXLAN' and
-           'CHAIN' a
+           'CHAIN' and
            'IMIX' and
            '2T1C' and
            'NDRPDR'"
