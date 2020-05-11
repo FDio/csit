@@ -3537,14 +3537,14 @@
     - title: "RCA2"
       data: "rca/rca-3n-skx-2t1c-pdr-rca2.yaml"
   columns:
-    - title: "1908.0.pe"
+    - title: "1908.0-1"
       data-set: "vpp-perf-changes-3n-skx-old1908_0"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    - title: "1908.1.pe"
+    - title: "1908.1-1"
       data-set: "vpp-perf-changes-3n-skx-old1908_1"
-    - title: "1908.1.ce"
+    - title: "1908.1-2"
       data-set: "vpp-perf-changes-3n-skx-new1908_1"
-    - title: "2001.0.ce"
+    - title: "2001.0-1"
       data-set: "vpp-perf-changes-3n-skx-new2001_0"
   comparisons:
     - title: "Diff1"
@@ -3556,11 +3556,9 @@
       compare: 4
   legend:
     - "Legend to Table"
-    - "1908.0, 1908.1, 2001.0 - VPP versions tested."
-    - "pe - previous environment used for testing, per CSIT-1908 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
-    - "ce - current environment used for testing, per CSIT-2001 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
-    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1.ce vs. 1908.1.pe (if latter results not available, 1908.0.pe is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0.ce vs. 1908.1.ce."
+    - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
+    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-1 vs. 1908.1-2."
     - "RCA1 - root cause analysis reference for Diff1."
     - "RCA2 - root cause analysis reference for Diff2."
 
@@ -3577,14 +3575,14 @@
     - title: "RCA2"
       data: "rca/rca-3n-skx-2t1c-ndr-rca2.yaml"
   columns:
-    - title: "1908.0.pe"
+    - title: "1908.0-1"
       data-set: "vpp-perf-changes-3n-skx-old1908_0"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    - title: "1908.1.pe"
+    - title: "1908.1-1"
       data-set: "vpp-perf-changes-3n-skx-old1908_1"
-    - title: "1908.1.ce"
+    - title: "1908.1-2"
       data-set: "vpp-perf-changes-3n-skx-new1908_1"
-    - title: "2001.0.ce"
+    - title: "2001.0-1"
       data-set: "vpp-perf-changes-3n-skx-new2001_0"
   comparisons:
     - title: "Diff1"
@@ -3596,11 +3594,9 @@
       compare: 4
   legend:
     - "Legend to Table"
-    - "1908.0, 1908.1, 2001.0 - VPP versions tested."
-    - "pe - previous environment used for testing, per CSIT-1908 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
-    - "ce - current environment used for testing, per CSIT-2001 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
-    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1.ce vs. 1908.1.pe (if latter results not available, 1908.0.pe is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0.ce vs. 1908.1.ce."
+    - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
+    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-1 vs. 1908.1-2."
     - "RCA1 - root cause analysis reference for Diff1."
     - "RCA2 - root cause analysis reference for Diff2."
 
@@ -3725,14 +3721,14 @@
     - title: "RCA2"
       data: "rca/rca-2n-skx-2t1c-pdr-rca2.yaml"
   columns:
-    - title: "1908.0.pe"
+    - title: "1908.0-1"
       data-set: "vpp-perf-changes-2n-skx-old1908_0"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-    - title: "1908.1.pe"
+    - title: "1908.1-1"
       data-set: "vpp-perf-changes-2n-skx-old1908_1"
-    - title: "1908.1.ce"
+    - title: "1908.1-2"
       data-set: "vpp-perf-changes-2n-skx-new1908_1"
-    - title: "2001.0.ce"
+    - title: "2001.0-1"
       data-set: "vpp-perf-changes-2n-skx-new2001_0"
   comparisons:
     - title: "Diff1"
@@ -3744,11 +3740,9 @@
       compare: 4
   legend:
     - "Legend to Table"
-    - "1908.0, 1908.1, 2001.0 - VPP versions tested."
-    - "pe - previous environment used for testing, per CSIT-1908 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
-    - "ce - current environment used for testing, per CSIT-2001 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
-    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1.ce vs. 1908.1.pe (if latter results not available, 1908.0.pe is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0.ce vs. 1908.1.ce."
+    - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
+    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-1 vs. 1908.1-2."
     - "RCA1 - root cause analysis reference for Diff1."
     - "RCA2 - root cause analysis reference for Diff2."
 
@@ -3765,14 +3759,14 @@
     - title: "RCA2"
       data: "rca/rca-2n-skx-2t1c-ndr-rca2.yaml"
   columns:
-    - title: "1908.0.pe"
+    - title: "1908.0-1"
       data-set: "vpp-perf-changes-2n-skx-old1908_0"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-    - title: "1908.1.pe"
+    - title: "1908.1-1"
       data-set: "vpp-perf-changes-2n-skx-old1908_1"
-    - title: "1908.1.ce"
+    - title: "1908.1-2"
       data-set: "vpp-perf-changes-2n-skx-new1908_1"
-    - title: "2001.0.ce"
+    - title: "2001.0-1"
       data-set: "vpp-perf-changes-2n-skx-new2001_0"
   comparisons:
     - title: "Diff1"
@@ -3784,11 +3778,9 @@
       compare: 4
   legend:
     - "Legend to Table"
-    - "1908.0, 1908.1, 2001.0 - VPP versions tested."
-    - "pe - previous environment used for testing, per CSIT-1908 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
-    - "ce - current environment used for testing, per CSIT-2001 release, <pointer to BIOS, ucode, Linux, TRex versions and settings>."
-    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1.ce vs. 1908.1.pe (if latter results not available, 1908.0.pe is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0.ce vs. 1908.1.ce."
+    - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
+    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-1 vs. 1908.1-2."
     - "RCA1 - root cause analysis reference for Diff1."
     - "RCA2 - root cause analysis reference for Diff2."
 
