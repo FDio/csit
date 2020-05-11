@@ -353,6 +353,8 @@ def _generate_all_charts(spec, input_data):
 
         logging.info(f"  Generating the chart {graph.get(u'title', u'')} ...")
 
+        incl_tests = graph.get(u"include-tests", u"MRR")
+
         job_name = list(graph[u"data"].keys())[0]
 
         csv_tbl = list()
@@ -367,13 +369,13 @@ def _generate_all_charts(spec, input_data):
         if graph.get(u"include", None):
             data = input_data.filter_tests_by_name(
                 graph,
-                params=[u"type", u"result", u"tags"],
+                params=[u"type", u"result", u"throughput", u"tags"],
                 continue_on_error=True
             )
         else:
             data = input_data.filter_data(
                 graph,
-                params=[u"type", u"result", u"tags"],
+                params=[u"type", u"result", u"throughput", u"tags"],
                 continue_on_error=True)
 
         if data is None or data.empty:
@@ -390,9 +392,20 @@ def _generate_all_charts(spec, input_data):
                     if chart_data.get(test_name, None) is None:
                         chart_data[test_name] = OrderedDict()
                     try:
+                        if incl_tests == u"MRR":
+                            rate = test[u"result"][u"receive-rate"]
+                            stdev = test[u"result"][u"receive-stdev"]
+                        elif incl_tests == u"NDR":
+                            rate = test[u"throughput"][u"NDR"][u"LOWER"]
+                            stdev = float(u"nan")
+                        elif incl_tests == u"PDR":
+                            rate = test[u"throughput"][u"PDR"][u"LOWER"]
+                            stdev = float(u"nan")
+                        else:
+                            continue
                         chart_data[test_name][int(index)] = {
-                            u"receive-rate": test[u"result"][u"receive-rate"],
-                            u"receive-stdev": test[u"result"][u"receive-stdev"]
+                            u"receive-rate": rate,
+                            u"receive-stdev": stdev
                         }
                         chart_tags[test_name] = test.get(u"tags", None)
                     except (KeyError, TypeError):
