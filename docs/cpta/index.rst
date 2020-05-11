@@ -24,7 +24,7 @@ analysis and anomaly detection methodology.
 
 .. toctree::
     :maxdepth: 2
-    :caption: Trending Graphs
+    :caption: MRR Trending Graphs
 
     trending/l2
     trending/ip4
@@ -37,6 +37,19 @@ analysis and anomaly detection methodology.
     trending/vts
     trending/nf_service_density
     trending/dpdk
+
+.. toctree::
+    :maxdepth: 2
+    :caption: NDRPDR Trending Graphs
+
+    ndrpdr_trending/l2
+    ndrpdr_trending/ip4
+    ndrpdr_trending/ip6
+    ndrpdr_trending/srv6
+    ndrpdr_trending/ip4_tunnels
+    ndrpdr_trending/ip6_tunnels
+    ndrpdr_trending/vhost
+    ndrpdr_trending/container_memif
 
 .. toctree::
     :maxdepth: 2
