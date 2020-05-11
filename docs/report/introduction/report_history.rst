@@ -6,7 +6,6 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-<<<<<<< HEAD   (c842ea Report: Add data)
 <<<<<<< HEAD   (953d13 Report: Fix typo in specification.)
 <<<<<<< HEAD   (793b6b Report: Add data)
 <<<<<<< HEAD   (b95753 PAL: Fix table data model)
@@ -38,20 +37,11 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 >>>>>>> CHANGE (42a491 Report: Configure report 2001.16)
 >>>>>>> CHANGE (8f2816 Report: Configure report 2001.16)
 =======
-=======
-<<<<<<< HEAD   (d5fe67 Report: Add data)
->>>>>>> CHANGE (6df891 Report: Configure report 2001.20)
 | .18            | 1. Added data:                                             |
-<<<<<<< HEAD   (c842ea Report: Add data)
 >>>>>>> CHANGE (dfd4a2 Report: Configure Report 2001.18)
 =======
 | .19            | 1. Added data:                                             |
 >>>>>>> CHANGE (413f1d Report: Configure report 2001.19)
-=======
-=======
-| .20            | 1. Added data:                                             |
->>>>>>> CHANGE (f4c460 Report: Configure report 2001.20)
->>>>>>> CHANGE (6df891 Report: Configure report 2001.20)
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
 |                |                                                            |
@@ -63,13 +53,8 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |      - all set selected for analysis and graphs            |
 |                |      - MRR tests                                           |
 |                |                                                            |
-<<<<<<< HEAD   (c842ea Report: Add data)
 <<<<<<< HEAD   (bd7b2e Report: Comparison tables)
 =======
-=======
-|                |      - test sets: crypto, L2, IPv6, memif                  |
-|                |                                                            |
->>>>>>> CHANGE (6df891 Report: Configure report 2001.20)
 |                |    - Hoststack 3n-hsw tests                                |
 |                |                                                            |
 |                |    - Reconfiguration Tests 2n-skx                          |
@@ -81,7 +66,6 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |     2n-skx and 3n-skx.                                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
-<<<<<<< HEAD   (c842ea Report: Add data)
 <<<<<<< HEAD   (953d13 Report: Fix typo in specification.)
 <<<<<<< HEAD   (793b6b Report: Add data)
 <<<<<<< HEAD   (b95753 PAL: Fix table data model)
@@ -95,15 +79,6 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 | .18            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 >>>>>>> CHANGE (413f1d Report: Configure report 2001.19)
-=======
-<<<<<<< HEAD   (d5fe67 Report: Add data)
-=======
-| .19            | Skipped.                                                   |
-+----------------+------------------------------------------------------------+
-| .18            | Skipped.                                                   |
-+----------------+------------------------------------------------------------+
->>>>>>> CHANGE (f4c460 Report: Configure report 2001.20)
->>>>>>> CHANGE (6df891 Report: Configure report 2001.20)
 | .17            | Skipped.                                                   |
 +----------------+------------------------------------------------------------+
 | .16            | Skipped.                                                   |
