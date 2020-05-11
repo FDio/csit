@@ -4,7 +4,7 @@ Performance Data
 Performance test data used to generate the trending graphs is available
 in the CSV formats:
 
-**VPP**
+**VPP MRR**
 
     - 3n-hsw
 
@@ -34,7 +34,25 @@ in the CSV formats:
 
         - `CSV format <../_static/vpp/csit-vpp-perf-mrr-daily-master-2n-dnv-trending.csv>`_
 
-**DPDK**
+**VPP NDRPDR**
+
+    - 3n-hsw
+
+        - `CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-3n-hsw-trending.csv>`_
+
+    - 3n-skx
+
+        - `CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-3n-skx-trending.csv>`_
+
+    - 2n-skx
+
+        - `CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-2n-skx-trending.csv>`_
+
+    - 2n-clx
+
+        - `CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-2n-clx-trending.csv>`_
+
+**DPDK MRR**
 
     - 3n-hsw
 
