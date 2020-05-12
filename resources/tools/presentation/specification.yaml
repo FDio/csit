@@ -3557,12 +3557,12 @@
       reference: 3
       compare: 4
   legend:
-    - "Legend to Table"
-    - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
-    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-2 vs. 1908.1-2."
-    - "RCA1 - root cause analysis reference for Diff1."
-    - "RCA2 - root cause analysis reference for Diff2."
+    - 'Legend to Table:'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-01-29).'
+    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
+    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
+    - 'RCA1 - root cause analysis reference for Diff1.'
+    - 'RCA2 - root cause analysis reference for Diff2.'
 
 # VPP Root Cause Analysis 3n-skx-xxv710 2t1c ndr
 - type: "table"
@@ -3573,9 +3573,9 @@
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   rca:
     - title: "RCA1"
-      data: "rca/rca-3n-skx-2t1c-pdr-rca1.yaml"  # For now we'll use PDR RCAs
+      data: "rca/rca-3n-skx-2t1c-ndr-rca1.yaml"
     - title: "RCA2"
-      data: "rca/rca-3n-skx-2t1c-pdr-rca2.yaml"  # For now we'll use PDR RCAs
+      data: "rca/rca-3n-skx-2t1c-ndr-rca2.yaml"
   columns:
     - title: "1908.0-1"
       data-set: "vpp-perf-changes-3n-skx-old1908_0"
@@ -3595,12 +3595,12 @@
       reference: 3
       compare: 4
   legend:
-    - "Legend to Table"
-    - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
-    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-2 vs. 1908.1-2."
-    - "RCA1 - root cause analysis reference for Diff1."
-    - "RCA2 - root cause analysis reference for Diff2."
+    - 'Legend to Table:'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-01-29).'
+    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
+    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
+    - 'RCA1 - root cause analysis reference for Diff1.'
+    - 'RCA2 - root cause analysis reference for Diff2.'
 
 # VPP Performance Changes 3n-skx 2t1c pdr
 - type: "table"
@@ -3741,12 +3741,12 @@
       reference: 3
       compare: 4
   legend:
-    - "Legend to Table"
-    - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
-    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-2 vs. 1908.1-2."
-    - "RCA1 - root cause analysis reference for Diff1."
-    - "RCA2 - root cause analysis reference for Diff2."
+    - 'Legend to Table:'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-01-29).'
+    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
+    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
+    - 'RCA1 - root cause analysis reference for Diff1.'
+    - 'RCA2 - root cause analysis reference for Diff2.'
 
 # VPP Root Cause Analysis 2n-skx-xxv710 2t1c ndr
 - type: "table"
@@ -3757,9 +3757,9 @@
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   rca:
     - title: "RCA1"
-      data: "rca/rca-2n-skx-2t1c-pdr-rca1.yaml"  # For now we'll use PDR RCAs
+      data: "rca/rca-2n-skx-2t1c-ndr-rca1.yaml"
     - title: "RCA2"
-      data: "rca/rca-2n-skx-2t1c-pdr-rca2.yaml"  # For now we'll use PDR RCAs
+      data: "rca/rca-2n-skx-2t1c-ndr-rca2.yaml"
   columns:
     - title: "1908.0-1"
       data-set: "vpp-perf-changes-2n-skx-old1908_0"
@@ -3779,12 +3779,12 @@
       reference: 3
       compare: 4
   legend:
-    - "Legend to Table"
-    - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
-    - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-2 vs. 1908.1-2."
-    - "RCA1 - root cause analysis reference for Diff1."
-    - "RCA2 - root cause analysis reference for Diff2."
+    - 'Legend to Table:'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-01-29).'
+    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
+    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
+    - 'RCA1 - root cause analysis reference for Diff1.'
+    - 'RCA2 - root cause analysis reference for Diff2.'
 
 # VPP Performance Changes 2n-skx 2t1c pdr
 - type: "table"
