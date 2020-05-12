@@ -611,6 +611,8 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
             f'src="../..{out_file_name.replace(u"_build", u"")}_in.html">'
             f'</iframe>\n\n'
         )
+
+        # TODO: Use html (rst) list for legend and footnote
         if legend:
             rst_file.write(legend[1:].replace(u"\n", u" |br| "))
         if footnote:
@@ -667,8 +669,7 @@ def table_soak_vs_ndr(table, input_data):
             f"Percentage change calculated for mean values.\n"
             u"Stdev(Diff): "
             u"Standard deviation of percentage change calculated for mean "
-            u"values.\n"
-            u":END"
+            u"values."
         )
     except (AttributeError, KeyError) as err:
         logging.error(f"The model is invalid, missing parameter: {repr(err)}")
@@ -1756,8 +1757,6 @@ def table_comparison(table, input_data):
     with open(txt_file_name, u'a', encoding='utf-8') as txt_file:
         txt_file.write(legend)
         txt_file.write(footnote)
-        if legend or footnote:
-            txt_file.write(u"\n:END")
 
     # Generate html table:
     _tpc_generate_html_table(

@@ -670,6 +670,7 @@
         - 87  # NDRPDR full - ip6-1
         - 88  # NDRPDR full - ip6-2
         - 90  # NDRPDR full - memif
+        - 95  # NDRPDR full - l2-1
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2472,6 +2473,7 @@
       - 87  # NDRPDR full - ip6-1
       - 88  # NDRPDR full - ip6-2
       - 90  # NDRPDR full - memif
+      - 95  # NDRPDR full - l2-1
       - 50  # MRR sel
       - 53  # MRR sel addition
 
@@ -3544,7 +3546,7 @@
       data-set: "vpp-perf-changes-3n-skx-old1908_1"
     - title: "1908.1-2"
       data-set: "vpp-perf-changes-3n-skx-new1908_1"
-    - title: "2001.0-1"
+    - title: "2001.0-2"
       data-set: "vpp-perf-changes-3n-skx-new2001_0"
   comparisons:
     - title: "Diff1"
@@ -3558,7 +3560,7 @@
     - "Legend to Table"
     - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
     - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-1 vs. 1908.1-2."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-2 vs. 1908.1-2."
     - "RCA1 - root cause analysis reference for Diff1."
     - "RCA2 - root cause analysis reference for Diff2."
 
@@ -3582,7 +3584,7 @@
       data-set: "vpp-perf-changes-3n-skx-old1908_1"
     - title: "1908.1-2"
       data-set: "vpp-perf-changes-3n-skx-new1908_1"
-    - title: "2001.0-1"
+    - title: "2001.0-2"
       data-set: "vpp-perf-changes-3n-skx-new2001_0"
   comparisons:
     - title: "Diff1"
@@ -3596,7 +3598,7 @@
     - "Legend to Table"
     - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
     - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-1 vs. 1908.1-2."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-2 vs. 1908.1-2."
     - "RCA1 - root cause analysis reference for Diff1."
     - "RCA2 - root cause analysis reference for Diff2."
 
@@ -3728,7 +3730,7 @@
       data-set: "vpp-perf-changes-2n-skx-old1908_1"
     - title: "1908.1-2"
       data-set: "vpp-perf-changes-2n-skx-new1908_1"
-    - title: "2001.0-1"
+    - title: "2001.0-2"
       data-set: "vpp-perf-changes-2n-skx-new2001_0"
   comparisons:
     - title: "Diff1"
@@ -3742,7 +3744,7 @@
     - "Legend to Table"
     - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
     - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-1 vs. 1908.1-2."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-2 vs. 1908.1-2."
     - "RCA1 - root cause analysis reference for Diff1."
     - "RCA2 - root cause analysis reference for Diff2."
 
@@ -3766,7 +3768,7 @@
       data-set: "vpp-perf-changes-2n-skx-old1908_1"
     - title: "1908.1-2"
       data-set: "vpp-perf-changes-2n-skx-new1908_1"
-    - title: "2001.0-1"
+    - title: "2001.0-2"
       data-set: "vpp-perf-changes-2n-skx-new2001_0"
   comparisons:
     - title: "Diff1"
@@ -3780,7 +3782,7 @@
     - "Legend to Table"
     - "YYMM.MV-EV - tested VPP version (YY year, MM month, MV minor version) and CSIT test environment version (EV environment version), covered versions are 1908.0-1, 1908.1-1, 1908.1-2, 2001.0-2."
     - "Diff1 - difference between the previous and the current environment for the same VPP version, 1908.1-2 vs. 1908.1-1 (if latter results not available, 1908.0-1 is used)."
-    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-1 vs. 1908.1-2."
+    - "Diff2 - difference between the previous and the current VPP version in the current environment, 2001.0-2 vs. 1908.1-2."
     - "RCA1 - root cause analysis reference for Diff1."
     - "RCA2 - root cause analysis reference for Diff2."
 
