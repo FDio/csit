@@ -3558,7 +3558,7 @@
       compare: 4
   legend:
     - 'Legend to Table:'
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-01-29).'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
     - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
     - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
     - 'RCA1 - root cause analysis reference for Diff1.'
@@ -3596,7 +3596,7 @@
       compare: 4
   legend:
     - 'Legend to Table:'
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-01-29).'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
     - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
     - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
     - 'RCA1 - root cause analysis reference for Diff1.'
@@ -3742,7 +3742,7 @@
       compare: 4
   legend:
     - 'Legend to Table:'
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-01-29).'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
     - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
     - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
     - 'RCA1 - root cause analysis reference for Diff1.'
@@ -3780,7 +3780,7 @@
       compare: 4
   legend:
     - 'Legend to Table:'
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-01-29).'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
     - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
     - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
     - 'RCA1 - root cause analysis reference for Diff1.'
