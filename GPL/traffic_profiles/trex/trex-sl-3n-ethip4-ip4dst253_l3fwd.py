@@ -18,10 +18,10 @@ Stream profile:
  - Packet: ETH / IP /
  - Direction 0 --> 1:
    - Source IP address range:      20.20.20.2
-   - Destination IP address range: 1.1.1.2 - 1.1.1.254
+   - Destination IP address range: 198.18.0.2 - 198.18.0.254
  - Direction 1 --> 0:
    - Source IP address range:      10.10.10.2
-   - Destination IP address range: 2.1.1.2 - 2.1.1.254
+   - Destination IP address range: 198.18.1.2 - 198.18.1.254
 """
 
 from trex.stl.api import *
@@ -38,12 +38,12 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # IPs used in packet headers.
         self.p1_src_start_ip = u"20.20.20.2"
-        self.p1_dst_start_ip = u"1.1.1.2"
-        self.p1_dst_end_ip = u"1.1.1.254"
+        self.p1_dst_start_ip = u"198.18.0.2"
+        self.p1_dst_end_ip = u"198.18.0.254"
 
         self.p2_src_start_ip = u"10.10.10.2"
-        self.p2_dst_start_ip = u"2.1.1.2"
-        self.p2_dst_end_ip = u"2.1.1.254"
+        self.p2_dst_start_ip = u"198.18.1.2"
+        self.p2_dst_end_ip = u"198.18.1.254"
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
