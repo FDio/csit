@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3c424ec_2de6ceae",
+        "filename": "resources/tools/presentation/specification.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 3561,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-12T11:20:58Z",
+      "side": 1,
+      "message": "The environment used (including irqbalance settings) was not available this early. Either use less specific identifier (e.g. \"year 2020\"), or give the date we finalized the current Skylake environment.",
+      "range": {
+        "startLine": 3561,
+        "startChar": 160,
+        "endLine": 3561,
+        "endChar": 170
+      },
+      "revId": "5df001ac90da8fc12df8e79066210679a89dd5f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
