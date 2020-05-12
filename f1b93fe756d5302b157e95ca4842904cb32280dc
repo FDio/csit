@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcf1353e_5fb2c6bd",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 108
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-12T04:34:34Z",
+      "side": 1,
+      "message": "Still not clear why there is 2 enries and why i have to select which mode. I want simple for i in 10000. Applies everywhere. Remove selection if fast. This makes it complicated to troubleshoot",
+      "range": {
+        "startLine": 469,
+        "startChar": 27,
+        "endLine": 469,
+        "endChar": 29
+      },
+      "revId": "f1b93fe756d5302b157e95ca4842904cb32280dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e6edc3c_ccbce1f6",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 108
+      },
+      "lineNbr": 828,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-12T04:34:34Z",
+      "side": 1,
+      "message": "remove init and model it as dict like all other parameters we are using. No class data models, for just parameters.",
+      "range": {
+        "startLine": 827,
+        "startChar": 0,
+        "endLine": 828,
+        "endChar": 21
+      },
+      "revId": "f1b93fe756d5302b157e95ca4842904cb32280dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
