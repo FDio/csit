@@ -7,26 +7,32 @@ Changes in |csit-release|
 #. VPP PERFORMANCE TESTS
 
    - **Intel Xeon 2n-skx, 3n-skx testbeds**: VPP performance test data
-     is not included in this report version. This is due to the lower
-     performance and behaviour inconsistency of these systems
-     following the upgrade of processor microcode packages (skx ucode
-     0x2000064), done as part of updating Ubuntu 18.04 LTS kernel
-     version. Tested VPP and DPDK applications (L3fwd) are affected.
-     Skx test data will be added in subsequent maintenance report
-     version(s) once the issue is resolved. See
-     :ref:`vpp_known_issues`.
+     is now included in this report version. Due to substantial impact
+     of test environment changes (applied during the CSIT-2001
+     development cycle) on the performance of VPP software, a new
+     approach to performance comparison and progression/regression
+     root cause analysis (RCA) has been applied.
+
+     - CSIT test environment is now versioned, with ver. 1 associated
+       with CSIT rls1908 git branch as of 2019-08-21, and ver. 2
+       associated with CSIT rls2001 git branch as of 2020-01-29.
+
+     - To identify performance changes due to CSIT test environment
+       changes from ver. 1 to ver. 2, VPP v19.08.1 has been re-tested in
+       ver. 2 and compared against the past results obtained with
+       testing in ver. 1. Separate RCA1 analysis has been applied to
+       this part. See :ref:`vpp_compare_current_vs_previous_release` and
+       :ref:`vpp_known_issues`.
+
+     - To identify performance changes due to VPP code changes from
+       v19.08.1 to v20.01.0, the latter has been tested in CSIT
+       environment ver. 2 and compared against the former tested in CSIT
+       environment ver. 1. Separate RCA2 analysis has been applied to
+       this part. See :ref:`vpp_compare_current_vs_previous_release` and
+       :ref:`vpp_known_issues`.
 
    - **Intel Xeon 2n-clx testbeds**: VPP performance test data is now
-     included in this report, after resolving the issue of lower
-     performance and behaviour inconsistency of these systems due to
-     the Linux kernel driven upgrade of processor microcode packages
-     to 0x500002c. The resolution is to use latest SuperMicro BIOS 3.2
-     (for X11DPG-QT motherboards used) that upgrades processor
-     microcode to 0x500002c, AND NOT kernel provided ucode package as
-     it does put system into sub-optimal state. Subset of 2n-clx VPP
-     tests are failing due to clx system behaviour change:  i) all ip4
-     tests with xxv710 and avf driver and ii) some cx556a rdma tests.
-     See :ref:`vpp_known_issues`.
+     included in this report. See :ref:`vpp_known_issues`.
 
    - **Service density 2n-skx tests**: Added new NF density tests with
      IPsec encryption between DUTs.
@@ -162,4 +168,34 @@ List of known issues in |csit-release| for VPP performance tests:
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | 10 | `CSIT-1680                              | Some 2n-clx cx556a rdma tests are failing.                                                                |
 |    | <https://jira.fd.io/browse/CSIT-1680>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 11 | `CSIT-1699                              | Root Cause Analysis for CSIT-2001. Investigate high stdev of tests with VPP inside VM.                    |
+|    | <https://jira.fd.io/browse/CSIT-1699>`_ |                                                                                                           |
+|    +-----------------------------------------+                                                                                                           |
+|    | `CSIT-1704                              |                                                                                                           |
+|    | <https://jira.fd.io/browse/CSIT-1704>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 12 | `CSIT-1699                              | Root Cause Analysis for CSIT-2001. Identify cause of dot1q-l2xcbase progression.                          |
+|    | <https://jira.fd.io/browse/CSIT-1699>`_ |                                                                                                           |
+|    +-----------------------------------------+                                                                                                           |
+|    | `CSIT-1705                              |                                                                                                           |
+|    | <https://jira.fd.io/browse/CSIT-1705>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 13 | `CSIT-1699                              | Root Cause Analysis for CSIT-2001. Identify cause of avf-ip4scale regression.                             |
+|    | <https://jira.fd.io/browse/CSIT-1699>`_ |                                                                                                           |
+|    +-----------------------------------------+                                                                                                           |
+|    | `CSIT-1706                              |                                                                                                           |
+|    | <https://jira.fd.io/browse/CSIT-1706>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 14 | `CSIT-1699                              | Root Cause Analysis for CSIT-2001. Identify cause of progression in vhost-user tests with testpmd in VM.  |
+|    | <https://jira.fd.io/browse/CSIT-1699>`_ |                                                                                                           |
+|    +-----------------------------------------+                                                                                                           |
+|    | `CSIT-1707                              |                                                                                                           |
+|    | <https://jira.fd.io/browse/CSIT-1707>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 15 | `CSIT-1699                              | Root Cause Analysis for CSIT-2001. Identify cause for avf-ip4base regression.                             |
+|    | <https://jira.fd.io/browse/CSIT-1699>`_ |                                                                                                           |
+|    +-----------------------------------------+                                                                                                           |
+|    | `CSIT-1708                              |                                                                                                           |
+|    | <https://jira.fd.io/browse/CSIT-1708>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
