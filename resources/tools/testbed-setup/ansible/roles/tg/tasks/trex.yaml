@@ -27,15 +27,11 @@
   tags: install-trex
 
 - name: T-Rex Install - Compile Release I
-  command: './b configure; ./b build'
-  args:
-    chdir: '{{ trex.target_dir }}/trex-core-{{ trex.version }}/linux_dpdk/'
+  raw: 'cd {{ trex.target_dir }}/trex-core-{{ trex.version }}/linux_dpdk/; ./b configure; ./b build'
   when: trex_extracted
   tags: install-trex
 
 - name: T-Rex Install - Compile Release II
-  command: 'make; make install'
-  args:
-    chdir: '{{ trex.target_dir }}/trex-core-{{ trex.version }}/scripts/ko/src'
+  raw: 'cd {{ trex.target_dir }}/trex-core-{{ trex.version }}/scripts/ko/src; make; make install'
   when: trex_extracted
   tags: install-trex
