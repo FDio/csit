@@ -1,39 +1,40 @@
-64b-2t1c-eth-l2patch: 2
-64b-2t1c-eth-l2xcbase-eth-2memif-1dcr: 3
-64b-2t1c-eth-l2xcbase-eth-2memif-1lxc: 3
-64b-2t1c-avf-eth-l2patch: 2
-64b-2t1c-avf-eth-l2xcbase: 2
-64b-2t1c-eth-l2bdbasemaclrn-eth-2memif-1lxc: 3
+# TODO: Number only the real RCA2 causes.
+64b-2t1c-eth-l2patch: 5
+64b-2t1c-eth-l2xcbase-eth-2memif-1dcr: 11
+64b-2t1c-eth-l2xcbase-eth-2memif-1lxc: 11
+64b-2t1c-eth-l2bdbasemaclrn-eth-2memif-1lxc: 11
 64b-2t1c-dot1q-l2xcbase: 5
-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr: 3
-78b-2t1c-ethip6srhip6-ip6base-srv6proxy-masq: 2
-64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm: 4
-78b-2t1c-ethip6srhip6-ip6base-srv6proxy-stat: 2
-64b-2t1c-ethip4-ip4base-eth-2memif-1dcr: 3
-78b-2t1c-ethip6srhip6-ip6base-srv6proxy-dyn: 2
-64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm: 4
-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm: 4
-64b-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm: 4
-64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 4
-64b-2t1c-avf-dot1q-l2bdbasemaclrn: 1
-64b-2t1c-dot1q-ip4base: 1
-64b-2t1c-eth-l2bdbasemaclrn-oacl50sl-10kflows: 1
-64b-2t1c-ethip4-ip4scale2m: 1
-64b-2t1c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm: 1
-64b-2t1c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha: 1
-imix-2t1c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha: 1
-imix-2t1c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha: 1
-imix-2t1c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm: 1
-64b-2t1c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha: 1
-64b-2t1c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha: 1
-imix-2t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm: 1
-64b-2t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm: 1
-64b-2t1c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm: 1
-imix-2t1c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha: 1
-imix-2t1c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm: 1
-64b-2t1c-avf-ethip4-ip4base: 1
-64b-2t1c-avf-ethip4-ip4scale200k: 1
-64b-2t1c-avf-ethip4-ip4scale20k: 1
-64b-2t1c-avf-ethip4-ip4scale2m: 1
-64b-2t1c-ethip4udp-ip4base-nat44: 1
-footnote: "[1] Impact of Skx ucode upgrade from 0x2000043 to 0x2000065 in combination with SuperMicro motherboards/firmware and kernel updates, subject to the ongoing detailed RCA investigation with Intel NPG.\n[2] Applied fix of FVL NIC firmware 6.0.1 for increasing TRex Mpps rate from 27 Mpps to 37 Mpps, [CSIT-1503], [TRex-519].\n[3] Applied VPP PAPI fix to enable memif zero-copy, [CSIT-1592], [VPP-1764].\n[4] To-Be-Investigated, vhost-user avg PDR throughput rate has higher stdev than before.\n[5] To-Be-Investigated, dot1q-l2xc with DPDK FVL.\n"
+64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr: 11
+64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm: 9
+64b-2t1c-ethip4-ip4base-eth-2memif-1dcr: 11
+64b-2t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm: 12
+64b-2t1c-avf-ethip4-ip4base: 10
+64b-2t1c-avf-ethip4-ip4scale200k: 7
+64b-2t1c-avf-ethip4-ip4scale20k: 7
+64b-2t1c-avf-ethip4-ip4scale2m: 7
+64b-2t1c-ethip4udp-ip4base-nat44: 6
+# Multiline string, empty lines (or \n) are required, see https://yaml-multiline.info/
+footnote: "[5] OPEN, dot1q-l2xcbase progression, retro-inspection of
+    weekly ndrpdr tests points to ge-22805, automated bisect script does
+    not work due to frequent API changes, [CSIT-1699], [CSIT-1705].
+
+    [6] DONE, ip4base-nat44 regression, ge-23963
+    (https://gerrit.fd.io/r/c/vpp/+/23963#message-044278e6_752c3327).
+
+    [7] WIP, avf-ip4scale regression, CANDIDATE(S) before ge-22699,
+    [CSIT-1699], [CSIT-1706].
+
+    [8] OPEN, VPP vhost-user with VPP-inside-VM higher than before stdev
+    of PDR throughput, under investigation, [CSIT-1699], [CSIT-1704].
+
+    [9] WIP, vhost-user with testpmd-in-VM progression, CANDIDATE(S)
+    before 22277, [CSIT-1699], [CSIT-1707].
+
+    [10] WIP, avf-ip4base regression, CANDIDATE(S) range
+    ge-18361..ge-24505, [CSIT-1699], [CSIT-1708].
+
+    [11] DONE, memif regression, CANDIDATE(S) confirmed ge-23801.
+
+    [12] WIP, ipsec tnl sw scale regression, CANDIDATE(S) before
+    ge-23557, [CSIT-1699], [CSIT-xxxx].
+"

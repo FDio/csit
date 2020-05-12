@@ -3573,9 +3573,9 @@
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   rca:
     - title: "RCA1"
-      data: "rca/rca-3n-skx-2t1c-pdr-rca1.yaml"  # For now we'll use PDR RCAs
+      data: "rca/rca-3n-skx-2t1c-ndr-rca1.yaml"
     - title: "RCA2"
-      data: "rca/rca-3n-skx-2t1c-pdr-rca2.yaml"  # For now we'll use PDR RCAs
+      data: "rca/rca-3n-skx-2t1c-ndr-rca2.yaml"
   columns:
     - title: "1908.0-1"
       data-set: "vpp-perf-changes-3n-skx-old1908_0"
@@ -3757,9 +3757,9 @@
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   rca:
     - title: "RCA1"
-      data: "rca/rca-2n-skx-2t1c-pdr-rca1.yaml"  # For now we'll use PDR RCAs
+      data: "rca/rca-2n-skx-2t1c-ndr-rca1.yaml"
     - title: "RCA2"
-      data: "rca/rca-2n-skx-2t1c-pdr-rca2.yaml"  # For now we'll use PDR RCAs
+      data: "rca/rca-2n-skx-2t1c-ndr-rca2.yaml"
   columns:
     - title: "1908.0-1"
       data-set: "vpp-perf-changes-2n-skx-old1908_0"
