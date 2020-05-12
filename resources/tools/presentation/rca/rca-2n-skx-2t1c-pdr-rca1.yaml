@@ -9,7 +9,7 @@
 64b-2t1c-ethip4udp-ip4base-iacl50sf-10kflows: 1
 64b-2t1c-ethip4udp-ip4base-oacl50sl-10kflows: 1
 # Multiline string, empty lines (or \n) are required, see https://yaml-multiline.info/
-footnote: " [1] DONE, Impact of upgrades: i) Skx ucode from 0x2000043 to
+footnote: "[1] DONE, Impact of upgrades: i) Skx ucode from 0x2000043 to
     0x2000065, ii) Linux kernel from 4.15.0-60 to 4.15.0-72 and iii)
     SuperMicro motherboard BIOS from 3.0c to 3.2.
 
@@ -19,6 +19,7 @@ footnote: " [1] DONE, Impact of upgrades: i) Skx ucode from 0x2000043 to
     [3] DONE, Applied VPP PAPI fix to enable memif zero-copy,
     [CSIT-1592], [VPP-1764].
 
-    [4] OPEN, Higher than before stdev of PDR throughput for VPP
-    vhost-user with VPP-inside-VM, under investigation.
+    [4] OPEN, Higher than before StDev of PDR throughput for VPP
+    vhost-user with VPP-inside-VM, under investigation, [CSIT-1699],
+    [CSIT-1704].
 "
