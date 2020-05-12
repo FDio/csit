@@ -22,6 +22,30 @@
       "revId": "5df001ac90da8fc12df8e79066210679a89dd5f7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e38601d2_9b96dbeb",
+        "filename": "resources/tools/presentation/specification.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 3561,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-05-12T11:39:35Z",
+      "side": 1,
+      "message": "Changing to the right date for your patch with irqbalance for TRex:\n https://gerrit.fd.io/r/c/csit/+/26214 2020-03-27. See https://gerrit.fd.io/r/c/csit/+/27013.",
+      "parentUuid": "e3c424ec_2de6ceae",
+      "range": {
+        "startLine": 3561,
+        "startChar": 160,
+        "endLine": 3561,
+        "endChar": 170
+      },
+      "revId": "5df001ac90da8fc12df8e79066210679a89dd5f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
