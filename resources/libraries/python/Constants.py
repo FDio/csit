@@ -80,10 +80,20 @@ class Constants(object):
     DOCKER_SUT_IMAGE_UBUNTU_ARM = 'snergster/csit-arm-sut:latest'
 
     # TRex install version
-    TREX_INSTALL_VERSION = '2.54'
+    TREX_INSTALL_VERSION = u"2.73"
 
     # TRex install directory
-    TREX_INSTALL_DIR = '/opt/trex-core-2.54'
+
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.73"
+
+    # TRex limit memory.
+    TREX_LIMIT_MEMORY = 4096
+
+    # TRex number of cores
+    TREX_CORE_COUNT = 7
+
+    # TRex extra commandline arguments
+    TREX_EXTRA_CMDLINE = u""
 
     # Honeycomb directory location at topology nodes:
     REMOTE_HC_DIR = '/opt/honeycomb'
@@ -113,7 +123,10 @@ class Constants(object):
     SOCKSVR_PATH = "/run/vpp/api.sock"
 
     # Global "kill switch" for CRC checking during runtime.
-    CRC_MISMATCH_FAILS_TEST = True
+    CRC_MISMATCH_FAILS_TEST = False  # True
+    FAIL_ON_CRC_MISMATCH = False  # get_pessimistic_bool_from_env(
+#        u"FAIL_ON_CRC_MISMATCH"
+#    )
 
     # Mapping from NIC name to its bps limit.
     # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.
