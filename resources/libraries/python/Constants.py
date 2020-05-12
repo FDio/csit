@@ -80,7 +80,10 @@ class Constants(object):
     TREX_INSTALL_VERSION = '2.54'
 
     # TRex install directory
-    TREX_INSTALL_DIR = '/opt/trex-core-2.54'
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.73"
+
+    # TRex limit memory.
+    TREX_LIMIT_MEMORY = 4096
 
     # Honeycomb directory location at topology nodes:
     REMOTE_HC_DIR = '/opt/honeycomb'
@@ -105,6 +108,12 @@ class Constants(object):
 
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
+
+    # Global "kill switch" for CRC checking during runtime.
+    CRC_MISMATCH_FAILS_TEST = False  # True
+    FAIL_ON_CRC_MISMATCH = False  # get_pessimistic_bool_from_env(
+#        u"FAIL_ON_CRC_MISMATCH"
+#    )
 
     # Mapping from NIC name to its bps limit.
     # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.
