@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0049155a_bac1e2b4",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-12T11:26:58Z",
+      "side": 1,
+      "message": "Better than [1], but still misleading.\nIf I see correctly, rls2001 branch still does not contain the new irqbalance settings, as testbeds are set up using ansible in master only.\nCould be true for VM details and other environment setting which are applied for each run separately.\n\n[1] https://gerrit.fd.io/r/c/csit/+/27009/3/resources/tools/presentation/specification.yaml#3561",
+      "range": {
+        "startLine": 18,
+        "startChar": 36,
+        "endLine": 18,
+        "endChar": 63
+      },
+      "revId": "211b197da386dac342361427f40d5057540829ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
