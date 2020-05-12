@@ -185,7 +185,10 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"snergster/csit-arm-sut:latest"
 
     # TRex install directory
-    TREX_INSTALL_DIR = u"/opt/trex-core-2.61"
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.73"
+
+    # TRex limit memory.
+    TREX_LIMIT_MEMORY = 4096
 
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
@@ -214,9 +217,10 @@ class Constants:
     SOCKSTAT_PATH = u"/run/vpp/stats.sock"
 
     # Global "kill switch" for CRC checking during runtime.
-    FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
-        u"FAIL_ON_CRC_MISMATCH"
-    )
+    CRC_MISMATCH_FAILS_TEST = False  # True
+    FAIL_ON_CRC_MISMATCH = False  # get_pessimistic_bool_from_env(
+#        u"FAIL_ON_CRC_MISMATCH"
+#    )
 
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
