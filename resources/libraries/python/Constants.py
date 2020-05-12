@@ -188,16 +188,20 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"snergster/csit-arm-sut:latest"
 
     # TRex install directory
+
     TREX_INSTALL_DIR = u"/opt/trex-core-2.73"
 
+    # TRex install version
+    TREX_INSTALL_VERSION = u"2.73"
+
     # TRex limit memory.
-    TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 4096)
+    TREX_LIMIT_MEMORY = 4096
 
     # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 7)
+    TREX_CORE_COUNT = 7
 
     # TRex extra commandline arguments
-    TREX_EXTRA_CMDLINE = get_str_from_env(u"TREX_EXTRA_CMDLINE", u"")
+    TREX_EXTRA_CMDLINE = u""
 
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
@@ -230,9 +234,10 @@ class Constants:
     SOCKSTAT_PATH = u"/run/vpp/stats.sock"
 
     # Global "kill switch" for CRC checking during runtime.
-    FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
-        u"FAIL_ON_CRC_MISMATCH"
-    )
+    CRC_MISMATCH_FAILS_TEST = False  # True
+    FAIL_ON_CRC_MISMATCH = False  # get_pessimistic_bool_from_env(
+#        u"FAIL_ON_CRC_MISMATCH"
+#    )
 
     # Default IP4 prefix length (if not defined in topology file)
     DEFAULT_IP4_PREFIX_LENGTH = u"24"
