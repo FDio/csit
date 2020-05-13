@@ -1,5 +1,5 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
-# Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2020 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -116,16 +116,16 @@ function activate_virtualenv () {
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
     rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
-    pip3 install --upgrade virtualenv || {
+    pip3 install virtualenv==20.0.20 || {
         die "Virtualenv package install failed."
     }
-    virtualenv --python=$(which python3) "${env_dir}" || {
+    virtualenv --no-download --python=$(which python3) "${env_dir}" || {
         die "Virtualenv creation for $(which python3) failed."
     }
     set +u
     source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
     set -u
-    pip3 install --upgrade -r "${req_path}" || {
+    pip3 install -r "${req_path}" || {
         die "Requirements installation failed."
     }
     # Most CSIT Python scripts assume PYTHONPATH is set and exported.
