@@ -18,6 +18,8 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
+  notify:
+    - 'Restart Docker'
   when: >
     proxy_env is defined and
     proxy_env.http_proxy is defined
@@ -30,18 +32,11 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
-  when: >
-    proxy_env is defined and
-    proxy_env.https_proxy is defined
-  tags: install-docker
-
-- name: Docker - Reload systemd daemon and restart service
-  command: 'systemctl daemon-reload'
   notify:
     - 'Restart Docker'
   when: >
     proxy_env is defined and
-    proxy_env.http_proxy is defined
+    proxy_env.https_proxy is defined
   tags: install-docker
 
 - name: Docker - Set specific users to docker group

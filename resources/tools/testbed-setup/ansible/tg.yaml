@@ -6,10 +6,10 @@
   become: yes
   become_user: root
   roles:
+    - role: baremetal
+      tags: baremetal
     - role: common
       tags: common
-    - role: vexx_hosts
-      tags: vexx_hosts
     - role: tg
       tags: tg
     - role: iperf

@@ -1,5 +1,5 @@
 ---
-# file: roles/vexx_hosts/handlers/ipmi.yaml
+# file: roles/baremetal/handlers/ipmi.yaml
 
 - name: Boot from network
   ipmi_boot:

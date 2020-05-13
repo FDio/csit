@@ -1,5 +1,5 @@
 ---
-# file: roles/vexx_hosts/handlers/cimc.yaml
+# file: roles/baremeatal/handlers/cimc.yaml
 
 - name: Boot from network
   imc_rest:
