@@ -665,6 +665,7 @@
     vpp-perf-results-3n-skx:
       # TODO: Add data
       csit-vpp-perf-verify-2001-3n-skx:
+        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 82  # NDRPDR full - crypto-1
         - 85  # NDRPDR full - l2-2
         - 87  # NDRPDR full - ip6-1
