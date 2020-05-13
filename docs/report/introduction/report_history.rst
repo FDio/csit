@@ -18,6 +18,11 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |      - all set selected for analysis and graphs            |
 |                |      - MRR tests                                           |
 |                |                                                            |
+<<<<<<< HEAD   (81bb83 Report CSIT-2001: updated rls notes for VPP.)
+=======
+|                |      - test sets: crypto, L2, IPv6, memif, vhost, IPv4     |
+|                |                                                            |
+>>>>>>> CHANGE (b8396f Report: Add data, add pdf version)
 |                |    - Hoststack 3n-hsw tests                                |
 |                |                                                            |
 |                |    - Reconfiguration Tests 2n-skx                          |

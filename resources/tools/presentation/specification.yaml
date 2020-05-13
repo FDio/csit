@@ -671,6 +671,8 @@
         - 88  # NDRPDR full - ip6-2
         - 90  # NDRPDR full - memif
         - 95  # NDRPDR full - l2-1
+        - 96  # NDRPDR full - ip4-2
+        - 97  # NDRPDR full - vhost-1
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2474,6 +2476,8 @@
       - 88  # NDRPDR full - ip6-2
       - 90  # NDRPDR full - memif
       - 95  # NDRPDR full - l2-1
+      - 96  # NDRPDR full - ip4-2
+      - 97  # NDRPDR full - vhost-1
       - 50  # MRR sel
       - 53  # MRR sel addition
 
@@ -2936,8 +2940,8 @@
   format:
     html:
     - full
-#    pdf:
-#    - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
