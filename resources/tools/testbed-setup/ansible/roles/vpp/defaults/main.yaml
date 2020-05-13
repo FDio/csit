@@ -1,5 +1,5 @@
 ---
-# file: roles/sut/defaults/main.yaml
+# file: roles/vpp/defaults/main.yaml
 
 packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
 

@@ -1,5 +1,5 @@
 ---
-# file: roles/vexx_hosts/handlers/main.yaml
+# file: roles/baremetal/handlers/main.yaml
 
 - name: IPMI specific
   import_tasks: ipmi.yaml
