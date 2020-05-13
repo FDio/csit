@@ -18,7 +18,7 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |      - all set selected for analysis and graphs            |
 |                |      - MRR tests                                           |
 |                |                                                            |
-|                |      - test sets: crypto, L2, IPv6, memif                  |
+|                |      - test sets: crypto, L2, IPv6, memif, vhost, IPv4     |
 |                |                                                            |
 |                |    - Hoststack 3n-hsw tests                                |
 |                |                                                            |
