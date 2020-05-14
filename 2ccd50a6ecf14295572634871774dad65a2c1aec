@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab27b758_6525f840",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-05-14T07:15:42Z",
+      "side": 1,
+      "message": "majority of CSIT ...",
+      "range": {
+        "startLine": 7,
+        "startChar": 67,
+        "endLine": 8,
+        "endChar": 4
+      },
+      "revId": "2ccd50a6ecf14295572634871774dad65a2c1aec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "800b1c6b_151baa07",
+        "filename": "docs/report/introduction/test_environment_tg.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-05-14T07:15:42Z",
+      "side": 1,
+      "message": "T-Rex",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 6
+      },
+      "revId": "2ccd50a6ecf14295572634871774dad65a2c1aec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63a71d1a_a01cf999",
+        "filename": "docs/report/vpp_performance_tests/test_environment.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-05-14T07:15:42Z",
+      "side": 1,
+      "message": "List of plugins to enable ....",
+      "range": {
+        "startLine": 48,
+        "startChar": 28,
+        "endLine": 48,
+        "endChar": 49
+      },
+      "revId": "2ccd50a6ecf14295572634871774dad65a2c1aec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
