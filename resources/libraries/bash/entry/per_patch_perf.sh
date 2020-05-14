@@ -44,8 +44,8 @@ source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
-build_vpp_ubuntu_amd64 "CURRENT" || die
-set_aside_commit_build_artifacts || die
+build_vpp_ubuntu "CURRENT" || die
+set_aside_current_build_artifacts || die
 initialize_csit_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
@@ -57,7 +57,6 @@ generate_tests || die
 archive_tests || die
 reserve_and_cleanup_testbed || die
 select_tags || die
-compose_pybot_arguments || die
 # Support for interleaved measurements is kept for future.
 iterations=1 # 8
 for ((iter=0; iter<iterations; iter++)); do
