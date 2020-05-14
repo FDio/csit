@@ -68,6 +68,7 @@ hosted by LFN FD.io CSIT project.
 ### Summary List
 
 ```
+UPDATE HERE - increase the tx2 numbers
  #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #mcb
  1. 1-Node-VIRL        dev    hsw   ---   3    3    0    3    0    0    0    0    0    0    0
  2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0
@@ -93,6 +94,7 @@ ports connected back-to-back ([Server Types](#server-types)).
 Used for FD.io VPP_Device functional driver tests.
 
 ### 1-Node-ThunderX2 Arm Marvell (1n-tx2)
+UPDATE HERE
 
 Each 1-Node-ThunderX2 testbed includes one SUT (Server-Type-B9) with NIC
 ports connected back-to-back ([Server Types](#server-types)).
@@ -259,6 +261,7 @@ Name         | Comment
 10.30.50.58  | s25-t25-sut1
 10.30.50.59  | s26-t25-tg1
 10.30.50.69  | s27-t13-sut
+^^ UPDATE HERE when we know how - after lab folks assign ips for the new servers |
 n/a          | s20-t34-sut1
 n/a          | s21-t34-sut2
 10.30.51.29  | s22-t35-sut1 screen -r /dev/ttyUSB0
@@ -336,6 +339,7 @@ Name                      | Comment
 10.30.51.61               | s25-t25-sut1
 10.30.51.62               | s26-t25-tg1
 10.30.51.69               | s27-t13-sut1
+^^ UPDATE HERE when we know how - after lab folks assign ips for the new servers |
 10.30.51.70-10.30.51.105  | VIRL1 TO BE VERIFIED
 10.30.51.106-10.30.51.180 | VIRL2
 10.30.51.181-10.30.51.254 | VIRL3
@@ -552,6 +556,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
 12. Server-Type-B9: Purpose - ThunderX2 Arm Marvell SUT for FD.io VPP_Device functional tests.
+UPDATE HERE
     - Quantity: 1
     - Physical connectivity:
         - IPMI and host management ports.
@@ -726,6 +731,9 @@ connectivity and wiring across defined CSIT testbeds:
 #### 1-Node-Thunderx2 Servers (1n-tx2) WIP
 
 ```
+UPDATE HERE
+I believe we can leave testbed name
+And also leave the hostname and add s27-t13-sut2
 - SUT [Server-Type-B9]:
     - testbedname: testbed13.
     - hostname: s27-t13-sut1.
@@ -1405,6 +1413,7 @@ To be completed.
 #### 1-Node-Thunderx2 Wiring (1n-tx2) WIP
 
 ```
+UPDATE HERE
 - testbed13:
     - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
         - s27-t13-sut1-c1/p2 - s27-t13-sut1-c3/p1.
@@ -1729,6 +1738,7 @@ To be completed.
 
 ```
 1. Arm Cortex A-72 servers
+UPDATE HERE
     - 1 * ThunderX2
         - Chassis: Marvell ThunderX2
         - Processors: 2* ThunderX2 CN9975 ~ 112* ThunderX2.
@@ -1765,6 +1775,9 @@ To be completed.
 ```
 
 ### Network Interface Cards
+Let's not update the NICs, pluggables and cables - I don't know how this is tracked.
+
+Let's wait for review.
 
 ```
 1. 10GE NICs
