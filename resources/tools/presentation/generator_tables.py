@@ -1260,6 +1260,10 @@ def table_failed_tests(table, input_data):
     )
     data = input_data.filter_data(table, continue_on_error=True)
 
+    test_type = u"MRR"
+    if u"NDRPDR" in table.get(u"filter", list()):
+        test_type = u"NDRPDR"
+
     # Prepare the header of the tables
     header = [
         u"Test Case",
@@ -1323,15 +1327,14 @@ def table_failed_tests(table, input_data):
                 fails_last_csit = val[3]
         if fails_nr:
             max_fails = fails_nr if fails_nr > max_fails else max_fails
-            tbl_lst.append(
-                [
-                    tst_data[u"name"],
-                    fails_nr,
-                    fails_last_date,
-                    fails_last_vpp,
-                    f"mrr-daily-build-{fails_last_csit}"
-                ]
-            )
+            tbl_lst.append([
+                tst_data[u"name"],
+                fails_nr,
+                fails_last_date,
+                fails_last_vpp,
+                f"{u'mrr-daily' if test_type == u'MRR' else u'ndrpdr-weekly'}"
+                f"-build-{fails_last_csit}"
+            ])
 
     tbl_lst.sort(key=lambda rel: rel[2], reverse=True)
     tbl_sorted = list()
