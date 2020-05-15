@@ -133,6 +133,10 @@
           - "last-failed-tests-3n-tsh"
           - "last-failed-tests-2n-dnv"
           - "last-failed-tests-3n-dnv"
+          - "last-failed-tests-2n-skx-ndrpdr"
+          - "last-failed-tests-3n-skx-ndrpdr"
+          - "last-failed-tests-2n-clx-ndrpdr"
+          - "last-failed-tests-3n-hsw-ndrpdr"
         urls:
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-skx"
@@ -141,6 +145,10 @@
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-tsh"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-dnv"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-dnv"
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx"
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-3n-skx"
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx"
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-3n-hsw"
         url-details: "https://docs.fd.io/csit/master/trending/introduction/failures.html"
 
     configurations:
@@ -177,9 +185,6 @@
     table-last-failed-tests-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
         - "lastCompletedBuild"
-    table-last-failed-tests-nf-2n-skx:
-      csit-vpp-perf-mrr-weekly-master-2n-skx:
-        - "lastCompletedBuild"
     table-last-failed-tests-2n-clx:
       csit-vpp-perf-mrr-daily-master-2n-clx:
         - "lastCompletedBuild"
@@ -191,6 +196,18 @@
         - "lastCompletedBuild"
     table-last-failed-tests-2n-dnv:
       csit-vpp-perf-mrr-daily-master-2n-dnv:
+        - "lastCompletedBuild"
+    table-last-failed-tests-3n-hsw-ndrpdr:
+      csit-vpp-perf-ndrpdr-weekly-master-3n-hsw:
+        - "lastCompletedBuild"
+    table-last-failed-tests-3n-skx-ndrpdr:
+      csit-vpp-perf-ndrpdr-weekly-master-3n-skx:
+        - "lastCompletedBuild"
+    table-last-failed-tests-2n-skx-ndrpdr:
+      csit-vpp-perf-ndrpdr-weekly-master-2n-skx:
+        - "lastCompletedBuild"
+    table-last-failed-tests-2n-clx-ndrpdr:
+      csit-vpp-perf-ndrpdr-weekly-master-2n-clx:
         - "lastCompletedBuild"
 
     # 3n-hsw
@@ -740,6 +757,7 @@
 =======
 >>>>>>> CHANGE (e260db Trending: NDRPDR weekly comparison)
 
+    # 3n-dnv
     plot-performance-trending-vpp-3n-dnv:
       csit-vpp-perf-mrr-daily-master-3n-dnv:
 <<<<<<< HEAD   (f7dd81 Trending: Update graphs - dnv)
@@ -820,6 +838,7 @@
 =======
 >>>>>>> CHANGE (e260db Trending: NDRPDR weekly comparison)
 
+    # 2n-dnv
     plot-performance-trending-vpp-2n-dnv:
       csit-vpp-perf-mrr-daily-master-2n-dnv:
 <<<<<<< HEAD   (f7dd81 Trending: Update graphs - dnv)
@@ -887,6 +906,7 @@
 =======
 >>>>>>> CHANGE (1945eb PAL: Reverse download order for trending)
 
+    # NDRPDR
     plot-ndrpdr-comparison-2n-skx:
       csit-vpp-perf-ndrpdr-weekly-master-2n-skx:
         start: 76
@@ -1753,6 +1773,58 @@
     - "parent"
     - "status"
 
+-
+  type: "table"
+  title: "Last failed tests (last builds) 3n-hsw-ndrpdr"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-hsw-ndrpdr"
+  data: "table-last-failed-tests-3n-hsw-ndrpdr"
+  filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) 3n-skx-ndrpdr"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-skx-ndrpdr"
+  data: "table-last-failed-tests-3n-skx-ndrpdr"
+  filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) 2n-skx-ndrpdr"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-skx-ndrpdr"
+  data: "table-last-failed-tests-2n-skx-ndrpdr"
+  filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) 2n-clx-ndrpdr"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-clx-ndrpdr"
+  data: "table-last-failed-tests-2n-clx-ndrpdr"
+  filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
 # 3n-hsw
 -
   type: "table"
@@ -1763,9 +1835,9 @@
   data: "plot-performance-trending-all-3n-hsw"
   filter: "'MRR' and '1T1C' and not 'NIC_Intel-XXV710'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -1778,9 +1850,9 @@
   data: "plot-performance-trending-all-3n-hsw"
   filter: "'MRR' and '2T2C' and not 'NIC_Intel-XXV710'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -1793,9 +1865,9 @@
   data: "plot-performance-trending-all-3n-hsw"
   filter: "'MRR' and '4T4C' and not 'NIC_Intel-XXV710'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2027,7 +2099,7 @@
   testbed: "2n-clx"
   add-links: False
 
--
+#-
   type: "table"
   title: "Failed MRR tests 3n-hsw"
   algorithm: "table_failed_tests"
@@ -2036,9 +2108,9 @@
   data: "plot-performance-trending-all-3n-hsw"
   filter: "'MRR' and not 'NIC_Intel-XXV710'"
   parameters:
-  - "name"
-  - "parent"
-  - "status"
+    - "name"
+    - "parent"
+    - "status"
   window: 7  # days
 
 -
@@ -2047,6 +2119,28 @@
   algorithm: "table_failed_tests_html"
   input-file: "{DIR[STATIC,VPP]}/failed-tests-3n-hsw.csv"
   output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-hsw.rst"
+  testbed: "3n-hsw"
+
+-
+  type: "table"
+  title: "Failed NDRPDR tests 3n-hsw"
+  algorithm: "table_failed_tests"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-hsw-ndrpdr"
+  data: "plot-ndrpdr-comparison-3n-hsw"
+  filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+  window: 30  # days
+
+-
+  type: "table"
+  title: "HTML Failed NDRPDR tests 3n-hsw"
+  algorithm: "table_failed_tests_html"
+  input-file: "{DIR[STATIC,VPP]}/failed-tests-3n-hsw-ndrpdr.csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-hsw-ndrpdr.rst"
   testbed: "3n-hsw"
 
 ################################################################################
@@ -2060,9 +2154,9 @@
   data: "plot-performance-trending-all-3n-skx"
   filter: "'MRR' and '2T1C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2075,9 +2169,9 @@
   data: "plot-performance-trending-all-3n-skx"
   filter: "'MRR' and '4T2C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2090,9 +2184,9 @@
   data: "plot-performance-trending-all-3n-skx"
   filter: "'MRR' and '8T4C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2129,9 +2223,9 @@
   data: "plot-performance-trending-all-3n-skx"
   filter: "'MRR'"
   parameters:
-  - "name"
-  - "parent"
-  - "status"
+    - "name"
+    - "parent"
+    - "status"
   window: 7  # days
 
 -
@@ -2140,6 +2234,28 @@
   algorithm: "table_failed_tests_html"
   input-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx.csv"
   output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx.rst"
+  testbed: "3n-skx"
+
+-
+  type: "table"
+  title: "Failed NDRPDR tests 3n-skx"
+  algorithm: "table_failed_tests"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx-ndrpdr"
+  data: "plot-ndrpdr-comparison-3n-skx"
+  filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+  window: 30  # days
+
+-
+  type: "table"
+  title: "HTML Failed NDRPDR tests 3n-skx"
+  algorithm: "table_failed_tests_html"
+  input-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx-ndrpdr.csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx-ndrpdr.rst"
   testbed: "3n-skx"
 
 ################################################################################
@@ -2153,9 +2269,9 @@
   data: "plot-performance-trending-all-2n-skx"
   filter: "'MRR' and '2T1C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2168,9 +2284,9 @@
   data: "plot-performance-trending-all-2n-skx"
   filter: "'MRR' and '4T2C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2183,9 +2299,9 @@
   data: "plot-performance-trending-all-2n-skx"
   filter: "'MRR' and '8T4C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2222,9 +2338,9 @@
   data: "plot-performance-trending-all-2n-skx"
   filter: "'MRR'"
   parameters:
-  - "name"
-  - "parent"
-  - "status"
+    - "name"
+    - "parent"
+    - "status"
   window: 7  # days
 
 -
@@ -2233,6 +2349,28 @@
   algorithm: "table_failed_tests_html"
   input-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx.csv"
   output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx.rst"
+  testbed: "2n-skx"
+
+-
+  type: "table"
+  title: "Failed NDRPDR tests 2n-skx"
+  algorithm: "table_failed_tests"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx-ndrpdr"
+  data: "plot-ndrpdr-comparison-2n-skx"
+  filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+  window: 30  # days
+
+-
+  type: "table"
+  title: "HTML Failed NDRPDR tests 2n-skx"
+  algorithm: "table_failed_tests_html"
+  input-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx-ndrpdr.csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx-ndrpdr.rst"
   testbed: "2n-skx"
 
 ################################################################################
@@ -2246,9 +2384,9 @@
   data: "plot-performance-trending-vpp-2n-clx"
   filter: "'MRR' and '2T1C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2261,9 +2399,9 @@
   data: "plot-performance-trending-vpp-2n-clx"
   filter: "'MRR' and '4T2C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2276,9 +2414,9 @@
   data: "plot-performance-trending-vpp-2n-clx"
   filter: "'MRR' and '8T4C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2315,9 +2453,9 @@
   data: "plot-performance-trending-vpp-2n-clx"
   filter: "'MRR'"
   parameters:
-  - "name"
-  - "parent"
-  - "status"
+    - "name"
+    - "parent"
+    - "status"
   window: 7  # days
 
 -
@@ -2328,9 +2466,30 @@
   output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-clx.rst"
   testbed: "2n-clx"
 
+-
+  type: "table"
+  title: "Failed NDRPDR tests 2n-clx"
+  algorithm: "table_failed_tests"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-clx-ndrpdr"
+  data: "plot-ndrpdr-comparison-2n-clx"
+  filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+  window: 30  # days
 
-################################################################################
-# 3n-tsh
+-
+  type: "table"
+  title: "HTML Failed NDRPDR tests 2n-clx"
+  algorithm: "table_failed_tests_html"
+  input-file: "{DIR[STATIC,VPP]}/failed-tests-2n-clx-ndrpdr.csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-clx-ndrpdr.rst"
+  testbed: "2n-clx"
+
+#################################################################################
+## 3n-tsh
 -
   type: "table"
   title: "Performance trending dashboard 1t1c-3n-tsh"
@@ -2340,9 +2499,9 @@
   data: "plot-performance-trending-all-3n-tsh"
   filter: "'MRR' and '1T1C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2370,9 +2529,9 @@
   data: "plot-performance-trending-all-3n-tsh"
   filter: "'MRR' and '4T4C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2409,9 +2568,9 @@
   data: "plot-performance-trending-all-3n-tsh"
   filter: "'MRR'"
   parameters:
-  - "name"
-  - "parent"
-  - "status"
+    - "name"
+    - "parent"
+    - "status"
   window: 7  # days
 
 -
@@ -2433,9 +2592,9 @@
   data: "plot-performance-trending-vpp-3n-dnv"
   filter: "'MRR' and '1T1C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2448,9 +2607,9 @@
   data: "plot-performance-trending-vpp-3n-dnv"
   filter: "'MRR' and '2T2C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2463,9 +2622,9 @@
   data: "plot-performance-trending-vpp-3n-dnv"
   filter: "'MRR' and '4T4C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2502,9 +2661,9 @@
   data: "plot-performance-trending-vpp-3n-dnv"
   filter: "'MRR'"
   parameters:
-  - "name"
-  - "parent"
-  - "status"
+    - "name"
+    - "parent"
+    - "status"
   window: 7  # days
 
 -
@@ -2526,9 +2685,9 @@
   data: "plot-performance-trending-vpp-2n-dnv"
   filter: "'MRR' and '1T1C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2541,9 +2700,9 @@
   data: "plot-performance-trending-vpp-2n-dnv"
   filter: "'MRR' and '2T2C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2556,9 +2715,9 @@
   data: "plot-performance-trending-vpp-2n-dnv"
   filter: "'MRR' and '4T4C'"
   parameters:
-  - "name"
-  - "parent"
-  - "result"
+    - "name"
+    - "parent"
+    - "result"
   window: 14
   long-trend-window: 180
 
@@ -2595,9 +2754,9 @@
   data: "plot-performance-trending-vpp-2n-dnv"
   filter: "'MRR'"
   parameters:
-  - "name"
-  - "parent"
-  - "status"
+    - "name"
+    - "parent"
+    - "status"
   window: 7  # days
 
 -
