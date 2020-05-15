@@ -1177,7 +1177,7 @@
   testbed: "2n-clx"
   add-links: False
 
-#-
+-
   type: "table"
   title: "Failed MRR tests 3n-hsw"
   algorithm: "table_failed_tests"
@@ -1566,8 +1566,8 @@
   output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-clx-ndrpdr.rst"
   testbed: "2n-clx"
 
-#################################################################################
-## 3n-tsh
+################################################################################
+# 3n-tsh
 -
   type: "table"
   title: "Performance trending dashboard 1t1c-3n-tsh"
