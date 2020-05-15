@@ -107,6 +107,10 @@ COLORS = [
     u"MediumSeaGreen", u"SeaGreen", u"LightSlateGrey"
 ]
 
+COLORS6 = [u"#000000", u"#000075", u"#792e00", u"#6b009a", u"#009300",
+           u"#007aae", u"#e30041"]
+COLORS6.reverse()
+
 
 def generate_cpta(spec, data):
     """Generate all formats and versions of the Continuous Performance Trending
@@ -408,6 +412,7 @@ def _generate_all_charts(spec, input_data):
             for group in groups:
                 visible = list()
                 for tag in group:
+                    n_lines = len(chart_data.keys())
                     for tst_name, test_data in chart_data.items():
                         if not test_data:
                             logs.append(
@@ -424,7 +429,7 @@ def _generate_all_charts(spec, input_data):
                                 build_info=build_info,
                                 name=u'-'.join(tst_name.split(u'.')[-1].
                                                split(u'-')[2:-1]),
-                                color=COLORS[index])
+                                color=COLORS[index] if n_lines > 6 else COLORS6[index])
                         except IndexError:
                             logs.append(
                                 (u"ERROR", f"Out of colors: {message}")
@@ -439,6 +444,7 @@ def _generate_all_charts(spec, input_data):
                         break
                 visibility.append(visible)
         else:
+            n_lines = len(chart_data.keys())
             for tst_name, test_data in chart_data.items():
                 if not test_data:
                     logs.append(
@@ -453,7 +459,7 @@ def _generate_all_charts(spec, input_data):
                         build_info=build_info,
                         name=u'-'.join(
                             tst_name.split(u'.')[-1].split(u'-')[2:-1]),
-                        color=COLORS[index])
+                        color=COLORS[index] if n_lines > 6 else COLORS6[index])
                 except IndexError:
                     logs.append((u"ERROR", f"Out of colors: {message}"))
                     logging.error(f"Out of colors: {message}")
