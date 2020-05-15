@@ -14,6 +14,7 @@
 """VPP counters utilities library."""
 
 from pprint import pformat
+from prettytable import PrettyTable
 
 from robot.api import logger
 
@@ -112,8 +113,56 @@ class VppCounters:
                         f"stats runtime ({node[u'host']} - {socket}):\n"
                         f"{pformat(runtime_nz)}"
                     )
-        # Run also the CLI command, the above sometimes misses some info.
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show runtime")
+
+                # Post processing:
+                try:
+                    threads_nr = len(runtime_nz[0][u"clocks"])
+                except (IndexError, KeyError):
+                    return
+
+                table = PrettyTable()
+                table.field_names = [
+                    u"Thread", u"Name", u"Nr of Vectors", u"Nr of Packets",
+                    u"Suspends", u"Cycles per Packet", u"Average Vector Size"
+                ]
+                table.align = u"r"
+                table.align["Name"] = u"l"
+                table.sortby = u"Thread"
+
+                for item in runtime_nz:
+                    for idx in range(threads_nr):
+                        if item[u"vectors"][idx] > 0:
+                            clocks = \
+                                item[u"clocks"][idx] / item[u"vectors"][idx]
+                        elif item[u"calls"][idx] > 0:
+                            clocks = \
+                                item[u"clocks"][idx] / item[u"calls"][idx]
+                        elif item[u"suspends"][idx] > 0:
+                            clocks = \
+                                item[u"clocks"][idx] / item[u"suspends"][idx]
+                        else:
+                            clocks = 0.0
+
+                        if item[u"calls"][idx] > 0:
+                            vectors_call = \
+                                item[u"vectors"][idx] / item[u"calls"][idx]
+                        else:
+                            vectors_call = 0.0
+
+                        if int(item[u"calls"][idx]) + \
+                                int(item[u"vectors"][idx]) + \
+                                int(item[u"suspends"][idx]):
+                            table.add_row([
+                                idx,
+                                item[u"name"],
+                                item[u"calls"][idx],
+                                item[u"vectors"][idx],
+                                item[u"suspends"][idx],
+                                f"{clocks:.2f}",
+                                vectors_call
+                            ])
+
+                logger.debug(table)
 
     @staticmethod
     def vpp_show_runtime_on_all_duts(nodes):
