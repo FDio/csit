@@ -20,6 +20,7 @@
 
 import smtplib
 import logging
+import re
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -346,7 +347,18 @@ class Alerting:
             )
 
         text = u""
-        for idx, test_set in enumerate(alert.get(u"include", [])):
+        for idx, test_set in enumerate(alert.get(u"include", list())):
+            try:
+                test_set_short = re.search(
+                    re.compile(r'(\dn-(skx|clx|hsw|tsh|dnv)-.*)'),
+                    test_set
+                ).group(1)
+            except (AttributeError, IndexError):
+                logging.error(
+                    f"The test set {test_set} does not include information "
+                    f"about test bed. Using empty string instead."
+                )
+                test_set_short = u""
             build, version, passed, failed, failed_tests = \
                 self._get_compressed_failed_tests(alert, test_set)
             if build is None:
@@ -356,16 +368,15 @@ class Alerting:
                 if ret_code != 0:
                     build_nr = u''
                 text += (
-                    f"\n\nNo input data available for "
-                    f"{u'-'.join(test_set.split('-')[-2:])}. See CSIT build "
-                    f"{alert[u'urls'][idx]}/{build_nr} for more information.\n"
+                    f"\n\nNo input data available for {test_set_short}. "
+                    f"See CSIT build {alert[u'urls'][idx]}/{build_nr} for more "
+                    f"information.\n"
                 )
                 continue
             text += (
-                f"\n\n{test_set.split('-')[-2]}-{test_set.split('-')[-1]}, "
-                f"{failed} tests failed, "
-                f"{passed} tests passed, CSIT build: "
-                f"{alert[u'urls'][idx]}/{build}, VPP version: {version}\n\n"
+                f"\n\n{test_set_short}, {failed} tests failed, {passed} tests "
+                f"passed, CSIT build: {alert[u'urls'][idx]}/{build}, "
+                f"VPP version: {version}\n\n"
             )
 
             class MaxLens():
@@ -414,7 +425,7 @@ class Alerting:
                 )
 
             gression_hdr = (
-                f"\n\n{test_set.split(u'-')[-2]}-{test_set.split(u'-')[-1]}, "
+                f"\n\n{test_set_short}, "
                 f"CSIT build: {alert[u'urls'][idx]}/{build}, "
                 f"VPP version: {version}\n\n"
             )
