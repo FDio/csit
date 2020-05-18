@@ -674,6 +674,8 @@
         - 96  # NDRPDR full - ip4-2
         - 97  # NDRPDR full - vhost-1
         - 102 # NDRPDR full - crypto-2
+        - 104 # NDRPDR full - ip4tunnels-1
+        - 105 # NDRPDR full - ip4tunnels-2
         - 106 # NDRPDR full - ip4tunnels-3
         - 107 # NDRPDR full - ip6tunnels-1
         - 108 # NDRPDR full - ip4-1
@@ -2483,6 +2485,8 @@
       - 96  # NDRPDR full - ip4-2
       - 97  # NDRPDR full - vhost-1
       - 102 # NDRPDR full - crypto-2
+      - 104 # NDRPDR full - ip4tunnels-1
+      - 105 # NDRPDR full - ip4tunnels-2
       - 106 # NDRPDR full - ip4tunnels-3
       - 107 # NDRPDR full - ip6tunnels-1
       - 108 # NDRPDR full - ip4-1
