@@ -103,6 +103,9 @@
 .. raw:: html
 
     <a name="64b-1t1c-features-ixgbe"></a>
+    <a name="64b-1t1c-features-iacl50-ixgbe"></a>
+    <a name="64b-1t1c-features-oacl50-ixgbe"></a>
+    <a name="64b-1t1c-features-macip-iacl50-ixgbe"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -117,6 +120,9 @@
 .. raw:: html
 
     <a name="64b-2t2c-features-ixgbe"></a>
+    <a name="64b-2t2c-features-iacl50-ixgbe"></a>
+    <a name="64b-2t2c-features-oacl50-ixgbe"></a>
+    <a name="64b-2t2c-features-macip-iacl50-ixgbe"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -131,6 +137,9 @@
 .. raw:: html
 
     <a name="64b-4t4c-features-ixgbe"></a>
+    <a name="64b-4t4c-features-iacl50-ixgbe"></a>
+    <a name="64b-4t4c-features-oacl50-ixgbe"></a>
+    <a name="64b-4t4c-features-macip-iacl50-ixgbe"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,

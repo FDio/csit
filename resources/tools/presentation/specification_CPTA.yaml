@@ -126,13 +126,13 @@
         type: "failed-tests"
         way: "jenkins"
         include:
-          - "last-failed-tests-2n-skx"
-          - "last-failed-tests-3n-skx"
-          - "last-failed-tests-2n-clx"
-          - "last-failed-tests-3n-hsw"
-          - "last-failed-tests-3n-tsh"
-          - "last-failed-tests-2n-dnv"
-          - "last-failed-tests-3n-dnv"
+          - "last-failed-tests-2n-skx-mrr"
+          - "last-failed-tests-3n-skx-mrr"
+          - "last-failed-tests-2n-clx-mrr"
+          - "last-failed-tests-3n-hsw-mrr"
+          - "last-failed-tests-3n-tsh-mrr"
+          - "last-failed-tests-2n-dnv-mrr"
+          - "last-failed-tests-3n-dnv-mrr"
           - "last-failed-tests-2n-skx-ndrpdr"
           - "last-failed-tests-3n-skx-ndrpdr"
           - "last-failed-tests-2n-clx-ndrpdr"
@@ -765,7 +765,7 @@
   title: "Last failed tests (last builds) 3n-hsw"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-hsw"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-hsw-mrr"
   data: "table-last-failed-tests-3n-hsw"
   filter: "'MRR'"
   parameters:
@@ -778,7 +778,7 @@
   title: "Last failed tests (last builds) 3n-skx"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-skx"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-skx-mrr"
   data: "table-last-failed-tests-3n-skx"
   filter: "'MRR'"
   parameters:
@@ -791,7 +791,7 @@
   title: "Last failed tests (last builds) 2n-skx"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-skx"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-skx-mrr"
   data: "table-last-failed-tests-2n-skx"
   filter: "'MRR'"
   parameters:
@@ -804,7 +804,7 @@
   title: "Last failed tests (last builds) 2n-clx"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-clx"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-clx-mrr"
   data: "table-last-failed-tests-2n-clx"
   filter: "'MRR'"
   parameters:
@@ -817,7 +817,7 @@
   title: "Last failed tests (last builds) 3n-tsh"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-tsh"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-tsh-mrr"
   data: "table-last-failed-tests-3n-tsh"
   filter: "'MRR'"
   parameters:
@@ -830,7 +830,7 @@
   title: "Last failed tests (last builds) 3n-dnv"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-dnv"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-dnv-mrr"
   data: "table-last-failed-tests-3n-dnv"
   filter: "'MRR'"
   parameters:
@@ -843,7 +843,7 @@
   title: "Last failed tests (last builds) 2n-dnv"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-dnv"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-dnv-mrr"
   data: "table-last-failed-tests-2n-dnv"
   filter: "'MRR'"
   parameters:
@@ -1013,7 +1013,8 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-ndr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-ndr.rst"
   testbed: "3n-hsw"
-  add-links: False
+  test-type: "NDR"
+  add-links: True
 
 -
   type: "table"
@@ -1022,7 +1023,8 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-pdr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw-pdr.rst"
   testbed: "3n-hsw"
-  add-links: False
+  test-type: "PDR"
+  add-links: True
 
 # 3n-skx
 -
@@ -1064,7 +1066,8 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-ndr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-ndr.rst"
   testbed: "3n-skx"
-  add-links: False
+  test-type: "NDR"
+  add-links: True
 
 -
   type: "table"
@@ -1073,7 +1076,8 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-pdr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx-pdr.rst"
   testbed: "3n-skx"
-  add-links: False
+  test-type: "PDR"
+  add-links: True
 
 # 2n-skx
 -
@@ -1115,7 +1119,8 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-ndr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-ndr.rst"
   testbed: "2n-skx"
-  add-links: False
+  test-type: "NDR"
+  add-links: True
 
 -
   type: "table"
@@ -1124,7 +1129,8 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-pdr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx-pdr.rst"
   testbed: "2n-skx"
-  add-links: False
+  test-type: "PDR"
+  add-links: True
 
 # 2n-clx
 -
@@ -1166,7 +1172,8 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-ndr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-ndr.rst"
   testbed: "2n-clx"
-  add-links: False
+  test-type: "NDR"
+  add-links: True
 
 -
   type: "table"
@@ -1175,7 +1182,8 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-pdr.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-clx-pdr.rst"
   testbed: "2n-clx"
-  add-links: False
+  test-type: "PDR"
+  add-links: True
 
 -
   type: "table"
@@ -1220,8 +1228,9 @@
   input-file: "{DIR[STATIC,VPP]}/failed-tests-3n-hsw-ndrpdr.csv"
   output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-hsw-ndrpdr.rst"
   testbed: "3n-hsw"
+  test-type: "NDRPDR"
 
-################################################################################
+###############################################################################
 # 3n-skx
 -
   type: "table"
@@ -1335,6 +1344,7 @@
   input-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx-ndrpdr.csv"
   output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx-ndrpdr.rst"
   testbed: "3n-skx"
+  test-type: "NDRPDR"
 
 ################################################################################
 # 2n-skx
@@ -1450,6 +1460,7 @@
   input-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx-ndrpdr.csv"
   output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx-ndrpdr.rst"
   testbed: "2n-skx"
+  test-type: "NDRPDR"
 
 ################################################################################
 # 2n-clx
@@ -1565,6 +1576,7 @@
   input-file: "{DIR[STATIC,VPP]}/failed-tests-2n-clx-ndrpdr.csv"
   output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-clx-ndrpdr.rst"
   testbed: "2n-clx"
+  test-type: "NDRPDR"
 
 ################################################################################
 # 3n-tsh

@@ -102,6 +102,8 @@
 .. raw:: html
 
     <a name="64b-2t1c-features-rdma"></a>
+    <a name="64b-2t1c-features-iacl50-rdma"></a>
+    <a name="64b-2t1c-features-udp-rdma"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -116,6 +118,8 @@
 .. raw:: html
 
     <a name="64b-4t2c-features-rdma"></a>
+    <a name="64b-4t2c-features-iacl50-rdma"></a>
+    <a name="64b-4t2c-features-udp-rdma"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -131,6 +135,8 @@
 .. raw:: html
 
     <a name="64b-8t4c-features-rdma"></a>
+    <a name="64b-8t4c-features-iacl50-rdma"></a>
+    <a name="64b-8t4c-features-udp-rdma"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
