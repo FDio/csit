@@ -228,7 +228,7 @@ class InterfaceUtil:
             )
 
     @staticmethod
-    def set_interface_mtu(node, pf_pcis, mtu=9200):
+    def set_interface_mtu(node, pf_pcis, mtu=1400):
         """Set Ethernet MTU for specified interfaces.
 
         :param node: Topology node.
@@ -283,7 +283,7 @@ class InterfaceUtil:
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_set_interface_mtu(node, interface, mtu=9200):
+    def vpp_set_interface_mtu(node, interface, mtu=1400):
         """Set Ethernet MTU on interface.
 
         :param node: VPP node.
@@ -312,7 +312,7 @@ class InterfaceUtil:
             logger.debug(f"Setting MTU failed. Expected?\n{err}")
 
     @staticmethod
-    def vpp_set_interfaces_mtu_on_node(node, mtu=9200):
+    def vpp_set_interfaces_mtu_on_node(node, mtu=1400):
         """Set Ethernet MTU on all interfaces.
 
         :param node: VPP node.
@@ -324,7 +324,7 @@ class InterfaceUtil:
             InterfaceUtil.vpp_set_interface_mtu(node, interface, mtu)
 
     @staticmethod
-    def vpp_set_interfaces_mtu_on_all_duts(nodes, mtu=9200):
+    def vpp_set_interfaces_mtu_on_all_duts(nodes, mtu=1400):
         """Set Ethernet MTU on all interfaces on all DUTs.
 
         :param nodes: VPP nodes.
