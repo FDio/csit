@@ -1090,10 +1090,21 @@ def table_perf_trending_dash_html(table, input_data):
 
     _ = input_data
 
+    if table.get(u"test-type", u"MRR") == u"MRR":
+        lnk_dir = u"../trending/"
+    elif table.get(u"test-type", u"MRR") == u"NDRPDR":
+        lnk_dir = u"../ndrpdr_trending/"
+    else:
+        logging.error(
+            f"Test type {table.get(u'test-type', u'MRR')} is not defined. "
+            f"Skipping."
+        )
+        return
+
     if not table.get(u"testbed", None):
         logging.error(
             f"The testbed is not defined for the table "
-            f"{table.get(u'title', u'')}."
+            f"{table.get(u'title', u'')}. Skipping."
         )
         return
 
@@ -1161,7 +1172,7 @@ def table_perf_trending_dash_html(table, input_data):
                     tdata,
                     u"a",
                     attrib=dict(
-                        href=f"../trending/"
+                        href=f"{lnk_dir}"
                              f"{_generate_url(table.get(u'testbed', ''), item)}"
                     )
                 )
@@ -1365,10 +1376,21 @@ def table_failed_tests_html(table, input_data):
 
     _ = input_data
 
+    if table.get(u"test-type", u"MRR") == u"MRR":
+        lnk_dir = u"../trending/"
+    elif table.get(u"test-type", u"MRR") == u"NDRPDR":
+        lnk_dir = u"../ndrpdr_trending/"
+    else:
+        logging.error(
+            f"Test type {table.get(u'test-type', u'MRR')} is not defined. "
+            f"Skipping."
+        )
+        return
+
     if not table.get(u"testbed", None):
         logging.error(
             f"The testbed is not defined for the table "
-            f"{table.get(u'title', u'')}."
+            f"{table.get(u'title', u'')}. Skipping."
         )
         return
 
@@ -1413,12 +1435,12 @@ def table_failed_tests_html(table, input_data):
                 attrib=dict(align=u"left" if c_idx == 0 else u"center")
             )
             # Name:
-            if c_idx == 0:
+            if c_idx == 0 and table.get(u"add-links", True):
                 ref = ET.SubElement(
                     tdata,
                     u"a",
                     attrib=dict(
-                        href=f"../trending/"
+                        href=f"{lnk_dir}"
                              f"{_generate_url(table.get(u'testbed', ''), item)}"
                     )
                 )
