@@ -44,6 +44,18 @@ source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
+
+git checkout -b old
+# We want to remove 46023762d1da674ff73954f0d1523d450bfcf03c
+# 46023762d1da674ff73954f0d1523d450bfcf03c~ is df213385d391f21d99eaeaf066f0130a20f7ccde
+git reset --hard df213385d391f21d99eaeaf066f0130a20f7ccde
+git checkout -b new
+# Vpp confirmed to work after fix.
+git reset --hard ea93e48cf6e918937422638cb574964b88a146b6
+# Offline interactive rebase, remove first line in the list of picks.
+GIT_SEQUENCE_EDITOR='sed -i -e "1d"' git rebase -i old
+# We have the commit we want to test.
+
 build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
 initialize_csit_dirs || die
