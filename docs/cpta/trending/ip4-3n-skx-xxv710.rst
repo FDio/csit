@@ -106,6 +106,8 @@
 .. raw:: html
 
     <a name="64b-2t1c-features-avf"></a>
+    <a name="64b-2t1c-features-iacl50-avf"></a>
+    <a name="64b-2t1c-features-oacl50-avf"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -120,6 +122,8 @@
 .. raw:: html
 
     <a name="64b-4t2c-features-avf"></a>
+    <a name="64b-4t2c-features-iacl50-avf"></a>
+    <a name="64b-4t2c-features-oacl50-avf"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -134,6 +138,8 @@
 .. raw:: html
 
     <a name="64b-8t4c-features-avf"></a>
+    <a name="64b-8t4c-features-iacl50-avf"></a>
+    <a name="64b-8t4c-features-oacl50-avf"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
