@@ -1007,11 +1007,35 @@ def _generate_url(testbed, test_name):
     else:
         driver = u"dpdk"
 
-    if u"acl" in test_name or \
-            u"macip" in test_name or \
-            u"nat" in test_name or \
-            u"policer" in test_name or \
-            u"cop" in test_name:
+    if u"macip-iacl1s" in test_name:
+        bsf = u"features-macip-iacl1"
+    elif u"macip-iacl10s" in test_name:
+        bsf = u"features-macip-iacl01"
+    elif u"macip-iacl50s" in test_name:
+        bsf = u"features-macip-iacl50"
+    elif u"iacl1s" in test_name:
+        bsf = u"features-iacl1"
+    elif u"iacl10s" in test_name:
+        bsf = u"features-iacl10"
+    elif u"iacl50s" in test_name:
+        bsf = u"features-iacl50"
+    elif u"oacl1s" in test_name:
+        bsf = u"features-oacl1"
+    elif u"oacl10s" in test_name:
+        bsf = u"features-oacl10"
+    elif u"oacl50s" in test_name:
+        bsf = u"features-oacl50"
+    elif u"udpsrcscale" in test_name:
+        bsf = u"features-udp"
+    elif u"iacl" in test_name:
+        bsf = u"features"
+    elif u"policer" in test_name:
+        bsf = u"features"
+    elif u"cop" in test_name:
+        bsf = u"features"
+    elif u"nat" in test_name:
+        bsf = u"features"
+    elif u"macip" in test_name:
         bsf = u"features"
     elif u"scale" in test_name:
         bsf = u"scale"
@@ -1085,9 +1109,24 @@ def table_perf_trending_dash_html(table, input_data):
     if not table.get(u"testbed", None):
         logging.error(
             f"The testbed is not defined for the table "
-            f"{table.get(u'title', u'')}."
+            f"{table.get(u'title', u'')}. Skipping."
         )
         return
+
+    test_type = table.get(u"test-type", u"MRR")
+    if test_type not in (u"MRR", u"NDR", u"PDR"):
+        logging.error(
+            f"Test type {table.get(u'test-type', u'MRR')} is not defined. "
+            f"Skipping."
+        )
+        return
+
+    if test_type in (u"NDR", u"PDR"):
+        lnk_dir = u"../ndrpdr_trending/"
+        lnk_sufix = f"-{test_type.lower()}"
+    else:
+        lnk_dir = u"../trending/"
+        lnk_sufix = u""
 
     logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
 
@@ -1153,8 +1192,9 @@ def table_perf_trending_dash_html(table, input_data):
                     tdata,
                     u"a",
                     attrib=dict(
-                        href=f"../trending/"
+                        href=f"{lnk_dir}"
                              f"{_generate_url(table.get(u'testbed', ''), item)}"
+                             f"{lnk_sufix}"
                     )
                 )
                 ref.text = item
@@ -1360,9 +1400,24 @@ def table_failed_tests_html(table, input_data):
     if not table.get(u"testbed", None):
         logging.error(
             f"The testbed is not defined for the table "
-            f"{table.get(u'title', u'')}."
+            f"{table.get(u'title', u'')}. Skipping."
         )
         return
+
+    test_type = table.get(u"test-type", u"MRR")
+    if test_type not in (u"MRR", u"NDR", u"PDR", u"NDRPDR"):
+        logging.error(
+            f"Test type {table.get(u'test-type', u'MRR')} is not defined. "
+            f"Skipping."
+        )
+        return
+
+    if test_type in (u"NDRPDR", u"NDR", u"PDR"):
+        lnk_dir = u"../ndrpdr_trending/"
+        lnk_sufix = u"-pdr"
+    else:
+        lnk_dir = u"../trending/"
+        lnk_sufix = u""
 
     logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
 
@@ -1405,13 +1460,14 @@ def table_failed_tests_html(table, input_data):
                 attrib=dict(align=u"left" if c_idx == 0 else u"center")
             )
             # Name:
-            if c_idx == 0:
+            if c_idx == 0 and table.get(u"add-links", True):
                 ref = ET.SubElement(
                     tdata,
                     u"a",
                     attrib=dict(
-                        href=f"../trending/"
+                        href=f"{lnk_dir}"
                              f"{_generate_url(table.get(u'testbed', ''), item)}"
+                             f"{lnk_sufix}"
                     )
                 )
                 ref.text = item
