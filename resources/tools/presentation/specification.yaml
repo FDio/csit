@@ -1081,10 +1081,10 @@
     - title: "1904"
       data-set: "vpp-performance-changes-3n-skx-h1"
       tag: "NIC_Intel-X710"
-    - title: "1908.1"
+    - title: "1908.1-2"
       data-set: "vpp-performance-changes-3n-skx-ref"
       tag: "NIC_Intel-XXV710"
-    - title: "1908.2"
+    - title: "1908.2-2"
       data-set: "vpp-performance-changes-3n-skx-cmp"
       tag: "NIC_Intel-XXV710"
   comparisons:
@@ -1092,9 +1092,9 @@
       reference: 2
       compare: 3
   legend:
-    - "Legend to Table"
-    - "1904, 1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between 1908.1 and 1908.2 VPP version."
+    - "Legend to Table:"
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27).'
+    - "Diff - difference between 1908.1-2 and 1908.2-2 VPP version."
 
 # VPP Performance Changes 3n-skx 2t1c ndr
 - type: "table"
@@ -1107,10 +1107,10 @@
     - title: "1904"
       data-set: "vpp-performance-changes-3n-skx-h1"
       tag: "NIC_Intel-X710"
-    - title: "1908.1"
+    - title: "1908.1-2"
       data-set: "vpp-performance-changes-3n-skx-ref"
       tag: "NIC_Intel-XXV710"
-    - title: "1908.2"
+    - title: "1908.2-2"
       data-set: "vpp-performance-changes-3n-skx-cmp"
       tag: "NIC_Intel-XXV710"
   comparisons:
@@ -1118,9 +1118,9 @@
       reference: 2
       compare: 3
   legend:
-    - "Legend to Table"
-    - "1904, 1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between 1908.1 and 1908.2 VPP version."
+    - "Legend to Table:"
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27).'
+    - "Diff - difference between 1908.1-2 and 1908.2-2 VPP version."
 
 # VPP Performance Changes 2n-skx 2t1c pdr
 - type: "table"
@@ -1133,10 +1133,10 @@
     - title: "1904"
       data-set: "vpp-performance-changes-2n-skx-h1"
       tag: "NIC_Intel-X710"
-    - title: "1908.1"
+    - title: "1908.1-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
       tag: "NIC_Intel-XXV710"
-    - title: "1908.2"
+    - title: "1908.2-2"
       data-set: "vpp-performance-changes-2n-skx-cmp"
       tag: "NIC_Intel-XXV710"
   comparisons:
@@ -1144,9 +1144,9 @@
       reference: 2
       compare: 3
   legend:
-    - "Legend to Table"
-    - "1904, 1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between 1908.1 and 1908.2 VPP version."
+    - "Legend to Table:"
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27).'
+    - "Diff - difference between 1908.1-2 and 1908.2-2 VPP version."
 
 # VPP Performance Changes 2n-skx 2t1c ndr
 - type: "table"
@@ -1159,10 +1159,10 @@
     - title: "1904"
       data-set: "vpp-performance-changes-2n-skx-h1"
       tag: "NIC_Intel-X710"
-    - title: "1908.1"
+    - title: "1908.1-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
       tag: "NIC_Intel-XXV710"
-    - title: "1908.2"
+    - title: "1908.2-2"
       data-set: "vpp-performance-changes-2n-skx-cmp"
       tag: "NIC_Intel-XXV710"
   comparisons:
@@ -1170,9 +1170,9 @@
       reference: 2
       compare: 3
   legend:
-    - "Legend to Table"
-    - "1904, 1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between 1908.1 and 1908.2 VPP version."
+    - "Legend to Table:"
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27).'
+    - "Diff - difference between 1908.1-2 and 1908.2-2 VPP version."
 
 # VPP Performance Changes 2n-clx 2t1c pdr
 - type: "table"

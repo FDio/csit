@@ -667,8 +667,7 @@ def table_soak_vs_ndr(table, input_data):
             f"Percentage change calculated for mean values.\n"
             u"Stdev(Diff): "
             u"Standard deviation of percentage change calculated for mean "
-            u"values.\n"
-            u":END"
+            u"values."
         )
     except (AttributeError, KeyError) as err:
         logging.error(f"The model is invalid, missing parameter: {repr(err)}")
@@ -1756,8 +1755,6 @@ def table_comparison(table, input_data):
     with open(txt_file_name, u'a', encoding='utf-8') as txt_file:
         txt_file.write(legend)
         txt_file.write(footnote)
-        if legend or footnote:
-            txt_file.write(u"\n:END")
 
     # Generate html table:
     _tpc_generate_html_table(
