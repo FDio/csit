@@ -679,6 +679,9 @@
         - 106 # NDRPDR full - ip4tunnels-3
         - 107 # NDRPDR full - ip6tunnels-1
         - 108 # NDRPDR full - ip4-1
+        - 109 # NDRPDR full - crypto-3
+        - 110 # NDRPDR full - crypto-4
+        - 111 # NDRPDR full - ip4-2
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2490,6 +2493,9 @@
       - 106 # NDRPDR full - ip4tunnels-3
       - 107 # NDRPDR full - ip6tunnels-1
       - 108 # NDRPDR full - ip4-1
+      - 109 # NDRPDR full - crypto-3
+      - 110 # NDRPDR full - crypto-4
+      - 111 # NDRPDR full - ip4-2
       - 50  # MRR sel
       - 53  # MRR sel addition
 
