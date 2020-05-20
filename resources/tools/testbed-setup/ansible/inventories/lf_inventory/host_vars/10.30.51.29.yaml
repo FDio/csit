@@ -1,0 +1,27 @@
+---
+# file: host_vars/10.30.51.29.yaml
+
+hostname: "nomad6"
+inventory_cimc_hostname: "10.30.50.29"
+
+# User managmeent.
+users:
+  - username: localadmin
+    groups: [adm, sudo]
+    password: "$6$zpBUdQ4q$P2zKclumvCndWujgP/qQ8eMk3YZk7ESAom04Fqp26hJH2jWkMXEX..jqxzMdDLJKiDaDHIaSkQMVjHzd3cRLs1"
+    ssh_key: {}
+  - username: testuser
+    groups: [adm, sudo]
+    password: "$6$zpBUdQ4q$P2zKclumvCndWujgP/qQ8eMk3YZk7ESAom04Fqp26hJH2jWkMXEX..jqxzMdDLJKiDaDHIaSkQMVjHzd3cRLs1"
+    ssh_key: {}
+
+# Nomad settings.
+nomad_datacenter: "yul1"
+nomad_node_role: "client"
+nomad_node_class: "builder"
+nomad_options:
+  driver.raw_exec.enable: 1
+  docker.cleanup.image: false
+  docker.privileged.enabled: true
+  driver.whitelist: "docker,raw_exec,exec"
+nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]

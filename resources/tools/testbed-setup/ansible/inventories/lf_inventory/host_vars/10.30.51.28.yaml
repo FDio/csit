@@ -1,0 +1,19 @@
+---
+# file: host_vars/10.30.51.28.yaml
+
+hostname: "nomad5"
+inventory_cimc_hostname: '10.30.50.28'
+
+users:
+  - username: localadmin
+    groups: [adm, sudo]
+    password: "$6$zpBUdQ4q$P2zKclumvCndWujgP/qQ8eMk3YZk7ESAom04Fqp26hJH2jWkMXEX..jqxzMdDLJKiDaDHIaSkQMVjHzd3cRLs1"
+    ssh_key:
+      - "ssh-rsa AAAAA.... foo@machine"
+      - "ssh-rsa AAAAB.... foo2@machine"
+  - username: testuser
+    groups: [adm, sudo]
+    password: "$6$zpBUdQ4q$P2zKclumvCndWujgP/qQ8eMk3YZk7ESAom04Fqp26hJH2jWkMXEX..jqxzMdDLJKiDaDHIaSkQMVjHzd3cRLs1"
+    ssh_key:
+      - "ssh-rsa AAAAA.... foo@machine"
+      - "ssh-rsa AAAAB.... foo2@machine"
