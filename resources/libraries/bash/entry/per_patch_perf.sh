@@ -42,6 +42,18 @@ source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
+
+git checkout -b old
+# We want to remove 46023762d1da674ff73954f0d1523d450bfcf03c
+# 46023762d1da674ff73954f0d1523d450bfcf03c~ is df213385d391f21d99eaeaf066f0130a20f7ccde
+git reset --hard df213385d391f21d99eaeaf066f0130a20f7ccde
+git checkout -b new
+# The original history commit to test, according to manual bisect.
+git reset --hard 419d31f817af0436c699c0b565e2d6a058c487db
+# Offline interactive rebase, remove first line in the list of picks.
+GIT_SEQUENCE_EDITOR='sed -i -e "1d"' git rebase -i old
+# We have the commit we want to test.
+
 build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
 initialize_csit_dirs || die
