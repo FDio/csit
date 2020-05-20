@@ -1,31 +1,49 @@
 ---
 # file: roles/user_add/tasks/main.yaml
 
-- name: Add testuser account
+- name: Conf - Add User
   user:
-    name: "testuser"
+    append: "{{ item.append | default(omit) }}"
+    createhome: "{{ 'yes' if users_create_homedirs else 'no' }}"
+    generate_ssh_key: "{{ item.generate_ssh_key | default(omit) }}"
+    group: "{{ item.group | default(item.username) }}"
+    groups: "{{ item.groups | join(',') if 'groups' in item else '' }}"
+    name: "{{ item.username }}"
+    password: "{{ item.password if item.password is defined else '!' }}"
+    shell: "{{ item.shell if item.shell is defined else users_shell }}"
     state: present
-    shell: "/bin/bash"
-    password: "{{ user_pass }}"
+  with_items: "{{ users }}"
   tags:
-    - add-user
+    - user-add-conf
 
-- name: Allow password login
+#- name: Conf - SSH keys
+#  authorized_key:
+#    user: "{{ item.0.username }}"
+#    key: "{{ item.1 }}"
+#  with_subelements:
+#    - "{{ users }}"
+#    - ssh_key
+#    - skip_missing: yes
+#  tags:
+#    - user-add-conf
+
+- name: Conf - Allow Password Login
   lineinfile:
     dest: "/etc/ssh/sshd_config"
     regexp: "^PasswordAuthentication no"
     line: "PasswordAuthentication yes"
   notify:
-    - "Restart sshd"
+    - "Restart SSHd"
   tags:
-    - allow-password-login
+    - user-add-conf
 
-- name: Add visudo entry
+- name: Conf - Add Visudo Entry
   lineinfile:
     dest: "/etc/sudoers"
     state: present
-    line: "testuser ALL=(ALL) NOPASSWD: ALL"
+    line: "{{ item.username }} ALL=(ALL) NOPASSWD: ALL"
     validate: "visudo -cf %s"
+  with_items: "{{ users }}"
   tags:
-    - allow-sudo
+    - user-add-conf
 

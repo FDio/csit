@@ -1,0 +1,18 @@
+client {
+    enabled = {{ nomad_node_client | bool | lower }}
+    no_host_uuid = {{ nomad_no_host_uuid | bool | lower }}
+    node_class = "{{ nomad_node_class }}"
+
+    {% if nomad_servers -%}
+    servers = {{ nomad_servers }}
+    {% endif %}
+
+    {% if nomad_options -%}
+    options = {
+    {% for key, value in nomad_options.items() %}
+    "{{ key }}" = "{{ value }}"
+    {% endfor -%}
+    }
+    {% endif %}
+
+}

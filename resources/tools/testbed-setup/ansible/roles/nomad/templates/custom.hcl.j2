@@ -1,0 +1,5 @@
+{% if nomad_config_custom -%}
+{{ nomad_config_custom | to_nice_json }}
+{% else %}
+{}
+{% endif %}
