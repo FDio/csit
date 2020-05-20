@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6596298_30ff7417",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 139
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-20T15:05:13Z",
+      "side": 1,
+      "message": "Just to not forget, pkg-verify before merge. Must be as close to those upstreamed to packagecloud as possible.",
+      "range": {
+        "startLine": 87,
+        "startChar": 22,
+        "endLine": 87,
+        "endChar": 58
+      },
+      "revId": "46cb9c84fd5b02d8caca20fd5d17e305e2da6830",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
