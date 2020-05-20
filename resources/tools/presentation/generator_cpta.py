@@ -92,20 +92,33 @@ THEME_OVERRIDES = u"""/* override table width restrictions */
 }
 """
 
-COLORS = [
-    u"SkyBlue", u"Olive", u"Purple", u"Coral", u"Indigo", u"Pink",
-    u"Chocolate", u"Brown", u"Magenta", u"Cyan", u"Orange", u"Black",
-    u"Violet", u"Blue", u"Yellow", u"BurlyWood", u"CadetBlue", u"Crimson",
-    u"DarkBlue", u"DarkCyan", u"DarkGreen", u"Green", u"GoldenRod",
-    u"LightGreen", u"LightSeaGreen", u"LightSkyBlue", u"Maroon",
-    u"MediumSeaGreen", u"SeaGreen", u"LightSlateGrey",
-    u"SkyBlue", u"Olive", u"Purple", u"Coral", u"Indigo", u"Pink",
-    u"Chocolate", u"Brown", u"Magenta", u"Cyan", u"Orange", u"Black",
-    u"Violet", u"Blue", u"Yellow", u"BurlyWood", u"CadetBlue", u"Crimson",
-    u"DarkBlue", u"DarkCyan", u"DarkGreen", u"Green", u"GoldenRod",
-    u"LightGreen", u"LightSeaGreen", u"LightSkyBlue", u"Maroon",
-    u"MediumSeaGreen", u"SeaGreen", u"LightSlateGrey"
-]
+COLORS = (
+    u"#FD0DF7",
+    u"#0D5EFD",
+    u"#0DFD50",
+    u"#FDE10D",
+    u"#FD530D",
+    u"#AB0BE3",
+    u"#0B8DE3",
+    u"#0CE30B",
+    u"#E3B40B",
+    u"#E32B0B",
+    u"#7500FA",
+    u"#00D7FA",
+    u"#59FA00",
+    u"#FAAB00",
+    u"#FA0101",
+    u"#350BE3",
+    u"#0BE3C5",
+    u"#A2E30B",
+    u"#E3890B",
+    u"#E30B77",
+    u"#0D1FFD",
+    u"#0DFD97",
+    u"#FDF90D",
+    u"#FD750D",
+    u"#FD0DFD"
+)
 
 
 def generate_cpta(spec, data):
