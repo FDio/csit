@@ -937,6 +937,7 @@
         - 6  # NDRPDR sel
         - 7  # NDRPDR sel
         - 8  # NDRPDR sel
+        - 9  # NDRPDR sel
     vpp-perf-changes-2n-clx-new1908_2:
       csit-vpp-perf-verify-1908_2-2n-clx:
         - 4  # NDRPDR sel
@@ -2618,6 +2619,7 @@
       - 6  # NDRPDR sel
       - 7  # NDRPDR sel
       - 8  # NDRPDR sel
+      - 9  # NDRPDR sel
     csit-vpp-perf-verify-1908_2-2n-clx:
       - 4  # NDRPDR sel
       - 5  # NDRPDR sel
