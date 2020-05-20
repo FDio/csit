@@ -25,10 +25,10 @@ Changes in |csit-release|
        :ref:`vpp_known_issues`.
 
      - To identify performance changes due to VPP code changes from
-       v19.08.1 to v20.01.0, the latter has been tested in CSIT
-       environment ver. 2 and compared against the former tested in CSIT
-       environment ver. 1. Separate RCA2 analysis has been applied to
-       this part. See :ref:`vpp_compare_current_vs_previous_release` and
+       v19.08.1 to v20.01.0, both have been tested in CSIT environment
+       ver. 2 and compared against each other. Separate RCA2 analysis
+       has been applied to this part. See
+       :ref:`vpp_compare_current_vs_previous_release` and
        :ref:`vpp_known_issues`.
 
    - **Intel Xeon 2n-clx testbeds**: VPP performance test data is now
