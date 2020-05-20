@@ -1,0 +1,7 @@
+---
+# file roles/nomad/handlers/main.yaml
+
+- name: Restart Nomad
+  service:
+    name: "nomad"
+    state: "{{ nomad_restart_handler_state }}"
