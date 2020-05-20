@@ -32,12 +32,29 @@ from plotly.exceptions import PlotlyError
 from pal_utils import mean, stdev
 
 
-COLORS = [u"SkyBlue", u"Olive", u"Purple", u"Coral", u"Indigo", u"Pink",
-          u"Chocolate", u"Brown", u"Magenta", u"Cyan", u"Orange", u"Black",
-          u"Violet", u"Blue", u"Yellow", u"BurlyWood", u"CadetBlue", u"Crimson",
-          u"DarkBlue", u"DarkCyan", u"DarkGreen", u"Green", u"GoldenRod",
-          u"LightGreen", u"LightSeaGreen", u"LightSkyBlue", u"Maroon",
-          u"MediumSeaGreen", u"SeaGreen", u"LightSlateGrey"]
+COLORS = (
+    u"#FF54A6",
+    u"#DF43E8",
+    u"#BC57FF",
+    u"#6E43E8",
+    u"#5764FF",
+    u"#4687E8",
+    u"#5AD3FF",
+    u"#46E8DD",
+    u"#59FFB9",
+    u"#48E886",
+    u"#5BFF60",
+    u"#87E848",
+    u"#E4FF5C",
+    u"#E8D838",
+    u"#FFD94B",
+    u"#E8AC38",
+    u"#FFA64A",
+    u"#E8703C",
+    u"#FF634F",
+    u"#E83C63",
+    u"#FF4FE6"
+)
 
 REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)-')
 
