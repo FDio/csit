@@ -1,0 +1,8 @@
+---
+# file roles/nomad/handlers/main.yaml
+
+- name: Restart Nomad
+  systemd:
+    name: "nomad"
+    state: "{{ nomad_restart_handler_state }}"
+    daemon_reload: true

@@ -235,7 +235,7 @@ Name         | Comment
 10.30.50.25  | t3-sut1
 10.30.50.26  | t3-sut-2
 10.30.50.28  | t4-sut1
-10.30.50.29  | t4-sut2
+10.30.50.29  | s39-nomad
 10.30.50.30  | t4-sut3
 10.30.50.36  | s17-t33-sut1
 10.30.50.37  | s18-t33-sut2
@@ -307,7 +307,7 @@ Name                      | Comment
 10.30.51.25               | t3-sut1
 10.30.51.26               | t3-sut-2
 10.30.51.28               | t4-sut1
-10.30.51.29               | t4-sut2
+10.30.51.29               | s39-nomad
 10.30.51.29               | s22-t35-sut1 screen -r /dev/ttyUSB0, TO BE VERIFIED
 10.30.51.30               | t4-sut3
 10.30.51.30               | s23-t35-sut2 screen -r /dev/ttyUSB1, TO BE VERIFIED

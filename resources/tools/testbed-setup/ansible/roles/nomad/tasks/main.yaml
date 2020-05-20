@@ -1,0 +1,172 @@
+---
+# file: roles/nomad/tasks/main.yaml
+
+- name: Inst - Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+    update_cache: true
+  tags:
+    - nomad-inst-prerequisites
+
+- name: Conf - Add Nomad Group
+  group:
+    name: "{{ nomad_group }}"
+    state: "{{ nomad_group_state }}"
+  when:
+    - nomad_manage_group | bool
+  tags:
+    - nomad-conf-user
+
+- name: Conf - Add Nomad user
+  user:
+    name: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    groups: "{{ nomad_user_groups }}"
+    state: "{{ nomad_user_state }}"
+    system: true
+  when:
+    - nomad_manage_user | bool
+  tags:
+    - nomad-conf-user
+
+- name: Inst - Download Nomad
+  get_url:
+    url: "{{ nomad_zip_url }}"
+    dest: "{{ nomad_inst_dir }}/{{ nomad_pkg }}"
+  tags:
+    - nomad-inst-package
+
+- name: Inst - Unarchive Nomad
+  unarchive:
+    src: "{{ nomad_inst_dir }}/{{ nomad_pkg }}"
+    dest: "{{ nomad_inst_dir }}/"
+    creates: "{{ nomad_inst_dir }}/nomad"
+    remote_src: true
+  tags:
+    - nomad-inst-package
+
+- name: Inst - Nomad
+  copy:
+    src: "{{ nomad_inst_dir }}/nomad"
+    dest: "{{ nomad_bin_dir }}"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    force: true
+    mode: 0755
+    remote_src: true
+  tags:
+    - nomad-inst-package
+
+- name: Inst - Cleanup
+  file:
+    path: "{{ nomad_inst_dir }}/nomad"
+    state: "absent"
+  tags:
+    - nomad-inst-package
+
+- name: Conf - Create Directories "{{ nomad_data_dir }}"
+  file:
+    dest: "{{ nomad_data_dir }}"
+    state: directory
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+  tags:
+    - nomad-conf
+
+- name: Conf - Create Directories "{{ nomad_ssl_dir }}"
+  file:
+    dest: "{{ nomad_ssl_dir }}"
+    state: directory
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+  tags:
+    - nomad-conf
+
+- name: Conf - Create Config Directory
+  file:
+    dest: "{{ nomad_config_dir }}"
+    state: directory
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    mode: 0755
+  tags:
+    - nomad-conf
+
+- name: Conf - Base Configuration
+  template:
+    src: base.hcl.j2
+    dest: "{{ nomad_config_dir }}/base.hcl"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    mode: 0644
+  tags:
+    - nomad-conf
+
+- name: Conf - Server Configuration
+  template:
+    src: server.hcl.j2
+    dest: "{{ nomad_config_dir }}/server.hcl"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    mode: 0644
+  when:
+    - nomad_node_server | bool
+  tags:
+    - nomad-conf
+
+- name: Conf - Client Configuration
+  template:
+    src: client.hcl.j2
+    dest: "{{ nomad_config_dir }}/client.hcl"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    mode: 0644
+  when:
+    - nomad_node_client | bool
+  tags:
+    - nomad-conf
+
+- name: Conf - Custom Configuration
+  template:
+    src: custom.json.j2
+    dest: "{{ nomad_config_dir }}/custom.json"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    mode: 0644
+  when:
+    - nomad_config_custom is defined
+  tags:
+    - nomad-conf
+
+- name: Conf - Copy Certificates And Keys
+  copy:
+    content: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    mode: 0600
+  no_log: true
+  loop: "{{ nomad_certificates | flatten(levels=1) }}"
+  tags:
+    - nomad-conf
+
+- name: Conf - Nomad User To Docker Group
+  user:
+    name: "{{ nomad_user }}"
+    groups: "docker"
+    append: True
+  tags:
+    - nomad-conf
+
+- name: Conf - System.d Script
+  template:
+    src: "nomad_systemd.service.j2"
+    dest: "/lib/systemd/system/nomad.service"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  notify:
+    - "Restart Nomad"
+  tags:
+    - nomad-conf

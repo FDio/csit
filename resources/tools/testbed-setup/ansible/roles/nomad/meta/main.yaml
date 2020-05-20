@@ -1,0 +1,9 @@
+---
+# file: roles/nomad/meta/main.yaml
+
+# desc: Install nomad from stable branch and configure service.
+# inst: Nomad
+# conf: ?
+# info: 1.0 - added role
+
+dependencies: [ docker ]
