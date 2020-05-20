@@ -1,0 +1,25 @@
+---
+# file: roles/nomad/tasks/main.yaml
+
+- include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
+  tags:
+    - nomad-inst-dependencies
+
+- name: Conf - Add Nomad Group
+  group:
+    name: "{{ nomad_group }}"
+    state: "{{ nomad_group_state }}"
+  when:
+    - nomad_manage_group | bool
+  tags:
+    - nomad-conf-group
+
+- name: Add Nomad user
+  user:
+    name: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    system: yes
+  when:
+    - nomad_manage_user | bool
+  tags:
+    - nomad-conf-user

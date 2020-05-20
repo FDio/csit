@@ -1,0 +1,11 @@
+---
+# file: roles/docker/meta/main.yaml
+
+# desc: Install docker-ce from stable branch and configure service.
+# inst: docker-ce (stable)
+# conf: docker user, docker proxy
+# info: 1.0 - added role
+
+dependencies: []
+
+
