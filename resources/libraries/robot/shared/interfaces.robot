@@ -22,7 +22,7 @@
 | Set single interfaces in path up
 | | [Documentation]
 | | ... | *Set UP state on single physical VPP interfaces in path on all DUT
-| | ... | nodes and set maximal MTU.*
+| | ... | nodes and by default also set maximal MTU.*
 | |
 | | ... | *Arguments:*
 | | ... | - pf - NIC physical function (physical port).
@@ -32,20 +32,22 @@
 | |
 | | ... | \| Set single interfaces in path \| 1 \|
 | |
-| | [Arguments] | ${pf}=${1}
+| | [Arguments] | ${pf}=${1} | ${also_mtu}=${True}
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Set interfaces in path up on node on PF | ${dut} | ${pf}
+| | | Set interfaces in path up on node on PF | ${dut} | ${pf} | ${also_mtu}
 | | END
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${60}
 
 | Set interfaces in path up
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
-| | ... | maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on all DUT nodes
+| | ... | and by default set maximal MTU.*
+| |
+| | [Arguments] | ${also_mtu}=${True}
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Set interfaces in path up on node | ${dut}
+| | | Set interfaces in path up on node | ${dut} | ${also_mtu}
 | | END
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${60}
 
@@ -62,10 +64,10 @@
 | |
 | | ... | \| Set interfaces in path up on node \| DUT1 \|
 | |
-| | [Arguments] | ${dut}
+| | [Arguments] | ${dut} | ${also_mtu}=${True}
 | |
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
-| | | Set interfaces in path up on node on PF | ${dut} | ${pf}
+| | | Set interfaces in path up on node on PF | ${dut} | ${pf} | ${also_mtu}
 | | END
 
 | Set interfaces in path up on node on PF
@@ -83,14 +85,14 @@
 | |
 | | ... | \| Set interfaces in path up on node on PF \| DUT1 \| 1 \|
 | |
-| | [Arguments] | ${dut} | ${pf}
+| | [Arguments] | ${dut} | ${pf} | ${also_mtu}=${True}
 | |
 | | ${_chains} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | @{${dut}_${int}${pf}_1}
 | | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
 | | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
 | | | Set Interface State | ${nodes['${dut}']} | ${if} | up
-| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
+| | | Run Keyword If | ${also_mtu} | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
 | | END
 
 | Pre-initialize layer driver
@@ -182,13 +184,13 @@
 | |
 | | ... | \| Initialize layer driver \| vfio-pci \|
 | |
-| | [Arguments] | ${driver}
+| | [Arguments] | ${driver} | ${also_mtu}=${True}
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Initialize layer driver on node | ${dut} | ${driver}
 | | END
 | | Set Test Variable | ${int} | vf
-| | Set interfaces in path up
+| | Set interfaces in path up | ${also_mtu}
 
 | Initialize layer driver on node
 | | [Documentation]
