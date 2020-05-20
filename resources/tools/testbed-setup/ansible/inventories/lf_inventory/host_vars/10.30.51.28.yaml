@@ -1,0 +1,6 @@
+---
+# file: host_vars/10.30.51.28.yaml
+
+hostname: "nomad5"
+inventory_cimc_hostname: '10.30.50.28'
+cpu_microarchitecture: "haswell"

@@ -1,49 +1,70 @@
 ---
 # file: roles/docker/tasks/main.yaml
 
-- name: Docker - Install distribution - release - machine prerequisites
-  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-  tags: install-docker
+- include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
+  tags:
+    - docker-inst-dependencies
 
-- name: Docker - Create Service Directory
-  file:
-    path: '/etc/systemd/system/docker.service.d'
-    state: 'directory'
-  tags: install-docker
-
-- name: Docker - Setup HTTP Proxy
-  template:
-    src: 'templates/docker.service.proxy.http'
-    dest: '/etc/systemd/system/docker.service.d/http-proxy.conf'
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
+- name: Inst - Docker
+  package:
+    name: "{{ docker_package }}"
+    state: "{{ docker_package_state }}"
   notify:
-    - 'Restart Docker'
+    - "Restart Docker"
+  tags:
+    - docker-inst-package
+
+- name: Conf - Docker Service
+  service:
+    name: docker
+    state: "{{ docker_service_state }}"
+    enabled: "{{ docker_service_enabled }}"
+  tags:
+    - docker-conf-service
+
+- name: Conf - Docker Service Directory
+  file:
+    path: "/etc/systemd/system/docker.service.d"
+    state: "directory"
+  tags:
+    - docker-conf-service
+
+- name: Conf - Docker HTTP Proxy
+  template:
+    src: "templates/docker.service.proxy.http"
+    dest: "/etc/systemd/system/docker.service.d/http-proxy.conf"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  notify:
+    - "Restart Docker"
   when: >
     proxy_env is defined and
     proxy_env.http_proxy is defined
-  tags: install-docker
+  tags:
+    - docker-conf-service
 
-- name: Docker - Setup HTTPS Proxy
+- name: Conf - Docker HTTPS Proxy
   template:
-    src: 'templates/docker.service.proxy.https'
-    dest: '/etc/systemd/system/docker.service.d/https-proxy.conf'
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
+    src: "templates/docker.service.proxy.https"
+    dest: "/etc/systemd/system/docker.service.d/https-proxy.conf"
+    owner: "root"
+    group: "root"
+    mode: "0644"
   notify:
-    - 'Restart Docker'
+    - "Restart Docker"
   when: >
     proxy_env is defined and
     proxy_env.https_proxy is defined
-  tags: install-docker
+  tags:
+    - docker-conf-service
 
-- name: Docker - Set specific users to docker group
+- name: Conf - Users to Docker Group
   user:
-    name: '{{ item }}'
-    groups: 'docker'
+    name: "{{ item }}"
+    groups: "docker"
     append: True
-  with_items: '{{ docker_users }}'
+  loop: "{{ docker_users }}"
   when: docker_users
-  tags: install-docker
+  tags:
+    - docker-conf-user
