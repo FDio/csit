@@ -1,33 +1,27 @@
 ---
 # file: roles/docker/tasks/ubuntu_bionic.yaml
 
-- name: Docker repository - Dependencies
+- name: Inst - Dependencies
   apt:
     name:
-      - 'apt-transport-https'
-      - 'ca-certificates'
-      - 'software-properties-common'
-    state: 'present'
+      - "apt-transport-https"
+      - "ca-certificates"
+      - "gpg-agent"
+      - "software-properties-common"
+    state: "present"
     cache_valid_time: 3600
     install_recommends: False
-  tags: install-docker
+  tags: docker-inst-dependencies
 
-- name: Docker repository - Add an Apt signing key
+- name: Conf - Add APT Key
   apt_key:
-    url: 'https://download.docker.com/linux/ubuntu/gpg'
-    state: 'present'
-  tags: install-docker
+    url: "{{ docker_apt_key }}"
+    state: "{{ docker_apt_key_state }}"
+  tags: docker-conf-apt
 
-- name: Docker repository - Install APT repository
+- name: Conf - Install APT Repository
   apt_repository:
-    repo: '{{ docker_apt_repository }}'
-    state: '{{ docker_apt_repository_state }}'
+    repo: "{{ docker_apt_repository }}"
+    state: "{{ docker_apt_repository_state }}"
     update_cache: True
-  tags: install-docker
-
-- name: Install Docker
-  apt:
-    name: 'docker-{{ docker_edition }}={{ docker_apt_package }}'
-    state: '{{ docker_apt_package_state }}'
-    force: True
-  tags: install-docker
+  tags: docker-conf-apt

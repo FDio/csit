@@ -22,9 +22,10 @@
     line: "{{ grub_cmdline_linux[ansible_machine] | join() }}"
   notify:
     - "Update GRUB"
-    - "Reboot server"
   tags:
     - set-grub
+
+- meta: flush_handlers
 
 - name: Performance Tuning - Turbo Boost
   import_tasks: turbo_boost.yaml
@@ -160,6 +161,8 @@
     owner: "root"
     group: "root"
     mode: "0644"
+  notify:
+    - "Update GRUB"
   tags:
     - copy-irqbalance
 
