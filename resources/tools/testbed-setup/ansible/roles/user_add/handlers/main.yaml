@@ -1,10 +1,7 @@
 ---
 # file: roles/user_add/handlers/main.yaml
 
-- name: Restart sshd
+- name: Restart SSHd
   service:
     name: sshd
     state: restarted
-  tags:
-    - restart-sshd
-

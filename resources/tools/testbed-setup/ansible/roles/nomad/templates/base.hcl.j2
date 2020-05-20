@@ -1,0 +1,24 @@
+name = "{{ nomad_name }}"
+region = "{{ nomad_region }}"
+datacenter = "{{ nomad_datacenter }}"
+
+bind_addr = "{{ nomad_bind_addr }}"
+data_dir = "{{ nomad_data_dir }}"
+
+enable_syslog = {{ nomad_syslog_enable | bool | lower }}
+enable_debug = {{ nomad_enable_debug | bool | lower }}
+disable_update_check = {{ nomad_disable_update_check | bool | lower }}
+log_level = "{{ nomad_log_level }}"
+
+{% if ( nomad_ca_file ) and
+      ( nomad_cert_file ) and
+      ( nomad_key_file )
+%}
+tls {
+    http = {{ nomad_http | bool | lower }}
+    rpc = {{ nomad_rpc | bool | lower }}
+    ca_file = "{{ nomad_ca_file }}"
+    cert_file = "{{ nomad_cert_file }}"
+    key_file = "{{ nomad_key_file }}"
+}
+{% endif %}

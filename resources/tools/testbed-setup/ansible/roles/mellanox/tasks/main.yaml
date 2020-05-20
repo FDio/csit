@@ -51,3 +51,10 @@
   tags:
     - install-mellanox
 
+- name: Mellanox Install - FIX qemu-system removal
+  package:
+    name: "qemu-system"
+    state: latest
+    update_cache: true
+  tags:
+    - install-mellanox
