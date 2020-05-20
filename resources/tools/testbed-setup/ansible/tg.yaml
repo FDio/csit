@@ -12,6 +12,10 @@
       tags: common
     - role: tg
       tags: tg
+    - role: kernel
+      tags: kernel
+    - role: mellanox
+      tags: mellanox
     - role: iperf
       tags: iperf
     - role: trex
@@ -20,12 +24,8 @@
       tags: wrk
     - role: docker
       tags: docker
-    - role: mellanox
-      tags: mellanox
     - role: performance_tuning
       tags: performance_tuning
-    - role: kernel
-      tags: kernel
     - role: cleanup
       tags: cleanup
     - role: calibration

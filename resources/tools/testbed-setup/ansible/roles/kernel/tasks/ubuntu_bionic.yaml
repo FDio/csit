@@ -33,6 +33,8 @@
               apt_kernel_list, kernel_version, ansible_kernel) }}"
     state: absent
     purge: true
+  notify:
+    - "Reboot Server"
   tags: install-kernel
 
 - name: Kernel - Ensure Any Microcode Is Absent

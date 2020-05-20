@@ -1,0 +1,82 @@
+---
+# file: roles/nomad/tasks/main.yaml
+
+- include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
+  tags:
+    - nomad-inst-dependencies
+
+- name: Conf - Add Nomad user
+  user:
+    name: "{{ nomad_user }}"
+    group: "{{ nomad_user }}"
+    groups: "{{ nomad_user_groups }}"
+    state: "{{ nomad_user_state }}"
+  when:
+    - nomad_manage_user | bool
+  tags:
+    - nomad-conf-user
+
+- name: Conf - Create directories
+  file:
+    dest: "{{ nomad_data_dir }}"
+    state: directory
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+  tags:
+    - nomad-conf-dirs
+
+- name: Conf - Create config directory
+  file:
+    dest: "{{ nomad_config_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - nomad-conf-dirs
+
+- name: Conf - Base configuration
+  template:
+    src: base.hcl.j2
+    dest: "{{ nomad_config_dir }}/base.hcl"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart nomad
+
+- name: Conf - Server configuration
+  template:
+    src: server.hcl.j2
+    dest: "{{ nomad_config_dir }}/server.hcl"
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - _nomad_node_server | bool
+  notify:
+    - restart nomad
+
+- name: Conf - Client configuration
+  template:
+    src: client.hcl.j2
+    dest: "{{ nomad_config_dir }}/client.hcl"
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - _nomad_node_client | bool
+  notify:
+    - restart nomad
+
+- name: Conf - Custom configuration
+  template:
+    src: custom.json.j2
+    dest: "{{ nomad_config_dir }}/custom.json"
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - nomad_config_custom is defined
+  notify:
+    - restart nomad
