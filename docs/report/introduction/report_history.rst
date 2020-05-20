@@ -8,7 +8,8 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +================+============================================================+
 | .21            | 1. Added data:                                             |
 |                |                                                            |
-|                |      - test sets: IPv4 Tunnels, IPv6 Tunnels, crypto       |
+|                |      - test sets: IPv4, IPv4 Tunnels, IPv6 Tunnels,        |
+|                |        crypto, SRv6                                        |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .20            | 1. Added data:                                             |
