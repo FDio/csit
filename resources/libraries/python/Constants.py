@@ -124,6 +124,8 @@ class Constants:
     that works regardless of current working directory.
     """
 
+    EXPERIMENTAL_MTU = 2131
+
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = u"/tmp/openvpp-testing"
 

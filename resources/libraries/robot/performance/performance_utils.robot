@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | Collections
+| Library | resources.libraries.python.jumpavg.AvgStdevStats
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.InterfaceUtil
@@ -386,6 +387,8 @@
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
 | | ... | append=yes
+| | ${stats} = | For Runs | ${results}
+| | Set Test Message | ${\n}Stats: ${stats} | append=yes
 | | Run Keyword If | ${fail_no_traffic} | Fail if no traffic forwarded
 
 | Send traffic at specified rate
