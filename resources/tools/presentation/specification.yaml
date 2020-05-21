@@ -682,10 +682,21 @@
         - 109 # NDRPDR full - crypto-3
         - 110 # NDRPDR full - crypto-4
         - 111 # NDRPDR full - ip4-2
+        - 112 # NDRPDR full - ip4-4
+        - 113 # NDRPDR full - ip4-5
+        - 114 # NDRPDR full - ip4-6
         - 115 # NDRPDR full - ip4-7
         - 116 # NDRPDR full - ip4-8
         - 117 # NDRPDR full - ip4-9
         - 118 # NDRPDR full - srv6-1
+        - 119 # NDRPDR full - srv6-2
+        - 120 # NDRPDR full - l2-3
+        - 123 # NDRPDR full - l2-4
+        - 124 # NDRPDR full - l2-7
+        - 125 # NDRPDR full - vhost-2
+        - 128 # NDRPDR full - l2-8
+        - 129 # NDRPDR full - l2-9
+        - 131 # NDRPDR full - l2-11
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2501,10 +2512,21 @@
       - 109 # NDRPDR full - crypto-3
       - 110 # NDRPDR full - crypto-4
       - 111 # NDRPDR full - ip4-2
+      - 112 # NDRPDR full - ip4-4
+      - 113 # NDRPDR full - ip4-5
+      - 114 # NDRPDR full - ip4-6
       - 115 # NDRPDR full - ip4-7
       - 116 # NDRPDR full - ip4-8
       - 117 # NDRPDR full - ip4-9
       - 118 # NDRPDR full - srv6-1
+      - 119 # NDRPDR full - srv6-2
+      - 120 # NDRPDR full - l2-3
+      - 123 # NDRPDR full - l2-4
+      - 124 # NDRPDR full - l2-7
+      - 125 # NDRPDR full - vhost-2
+      - 128 # NDRPDR full - l2-8
+      - 129 # NDRPDR full - l2-9
+      - 131 # NDRPDR full - l2-11
       - 50  # MRR sel
       - 53  # MRR sel addition
 
@@ -2968,8 +2990,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
