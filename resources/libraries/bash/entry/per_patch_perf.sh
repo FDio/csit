@@ -56,8 +56,8 @@ git reset --hard 3edd1bbe6a03e939eeb3eabbce0d4bda995c7ec1
 GIT_SEQUENCE_EDITOR='sed -i -e "1d"' git rebase -i old
 # We have the commit we want to test.
 
-build_vpp_ubuntu_amd64 "CURRENT" || die
-set_aside_commit_build_artifacts || die
+build_vpp_ubuntu "CURRENT" || die
+set_aside_current_build_artifacts || die
 initialize_csit_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
@@ -69,7 +69,6 @@ generate_tests || die
 archive_tests || die
 reserve_and_cleanup_testbed || die
 select_tags || die
-compose_pybot_arguments || die
 # Support for interleaved measurements is kept for future.
 iterations=1 # 8
 for ((iter=0; iter<iterations; iter++)); do
