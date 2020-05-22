@@ -19,14 +19,14 @@ users:
 
 # Nomad settings.
 nomad_certificates:
-  - src: "{{ vault_s39_nomad_ca_file }}"
+  - src: "{{ vault_nomad_v1_ca_file }}"
     dest: "{{ nomad_ca_file }}"
-  - src: "{{ vault_s39_nomad_cert_file }}"
+  - src: "{{ vault_nomad_v1_cert_file }}"
     dest: "{{ nomad_cert_file }}"
-  - src: "{{ vault_s39_nomad_key_file }}"
+  - src: "{{ vault_nomad_v1_key_file }}"
     dest: "{{ nomad_key_file }}"
 nomad_datacenter: "yul1"
-nomad_name: "s39-nomad-{{ ansible_architecture }}"
+nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "client"
 nomad_node_class: "builder"
 nomad_options:
