@@ -6,3 +6,10 @@
     reboot_timeout: 3600
   tags:
     - reboot-server
+
+- name: AWS - Reload systemd-modules
+  systemd:
+    name: "systemd-modules-load"
+    state: "restarted"
+  tags:
+    - reload-systemd-modules

@@ -4,6 +4,11 @@ provider "azurerm" {
 
 # Variables
 
+variable "vpc_addr_space_a" {
+  type = string
+  default = "172.16.0.0/16"
+}
+
 variable "vpc_cidr_a" {
   type = string
   default = "172.16.0.0/24"
@@ -11,44 +16,42 @@ variable "vpc_cidr_a" {
 
 variable "vpc_cidr_b" {
   type = string
-  default = "192.168.10.0/24"
+  default = "172.16.10.0/24"
 }
 
 variable "vpc_cidr_c" {
   type = string
-  default = "200.0.0.0/24"
+  default = "172.16.200.0/24"
 }
 
 variable "vpc_cidr_d" {
   type = string
-  default = "192.168.20.0/24"
+  default = "172.16.20.0/24"
 }
 
 variable "trex_dummy_cidr_port_0" {
   type = string
-  default = "10.0.0.0/24"
+  default = "172.16.11.0/24"
 }
 
 variable "trex_dummy_cidr_port_1" {
   type = string
-  default = "20.0.0.0/24"
+  default = "172.16.21.0/24"
 }
 
 # Create resource group and resources
 
 resource "azurerm_resource_group" "CSIT" {
   name     = "CSIT"
-  location = "East US"
+  #location = "East US"
+  location = "UK South"
 }
 
 resource "azurerm_virtual_network" "CSIT" {
   name                = "CSIT-network"
   resource_group_name = azurerm_resource_group.CSIT.name
   location            = azurerm_resource_group.CSIT.location
-  address_space       = [ var.vpc_cidr_a,
-                          var.vpc_cidr_b,
-                          var.vpc_cidr_c,
-                          var.vpc_cidr_d ]
+  address_space       = [ var.vpc_addr_space_a ]
   depends_on          = [ azurerm_resource_group.CSIT ]
 }
 
@@ -239,21 +242,21 @@ resource "azurerm_route_table" "b" {
   disable_bgp_route_propagation = false
   route {
     name                    = "route-10"
-    address_prefix          = "10.0.0.0/24"
+    address_prefix          = var.trex_dummy_cidr_port_0
     next_hop_type           = "VirtualAppliance"
-    next_hop_in_ip_address  = "192.168.10.254"
+    next_hop_in_ip_address  = data.azurerm_network_interface.tg_if1.private_ip_address
   }
   route {
     name                    = "route-20"
-    address_prefix          = "20.0.0.0/24"
+    address_prefix          = var.trex_dummy_cidr_port_1
     next_hop_type           = "VirtualAppliance"
-    next_hop_in_ip_address  = "192.168.10.11"
+    next_hop_in_ip_address  = data.azurerm_network_interface.dut1_if1.private_ip_address
   }
   route {
     name                    = "tg2"
-    address_prefix          = "192.168.20.0/24"
+    address_prefix          = var.vpc_cidr_d
     next_hop_type           = "VirtualAppliance"
-    next_hop_in_ip_address  = "192.168.10.11"
+    next_hop_in_ip_address  = data.azurerm_network_interface.dut1_if1.private_ip_address
   }
 }
 
@@ -266,27 +269,33 @@ resource "azurerm_route_table" "c" {
   disable_bgp_route_propagation = false
   route {
     name                    = "route-10"
-    address_prefix          = "10.0.0.0/24"
+    address_prefix          = var.trex_dummy_cidr_port_0
     next_hop_type           = "VirtualAppliance"
-    next_hop_in_ip_address  = "200.0.0.101"
+    next_hop_in_ip_address  = data.azurerm_network_interface.dut1_if2.private_ip_address
+  }
+  route {
+    name                    = "route-100"
+    address_prefix          = "100.0.0.0/8"
+    next_hop_type           = "VirtualAppliance"
+    next_hop_in_ip_address  = data.azurerm_network_interface.dut1_if2.private_ip_address
   }
   route {
     name                    = "route-20"
-    address_prefix          = "20.0.0.0/24"
+    address_prefix          = var.trex_dummy_cidr_port_1
     next_hop_type           = "VirtualAppliance"
-    next_hop_in_ip_address  = "200.0.0.102"
+    next_hop_in_ip_address  = data.azurerm_network_interface.dut2_if1.private_ip_address
   }
   route {
     name                    = "tg1"
-    address_prefix          = "192.168.10.0/24"
+    address_prefix          = var.vpc_cidr_b
     next_hop_type           = "VirtualAppliance"
-    next_hop_in_ip_address  = "200.0.0.101"
+    next_hop_in_ip_address  = data.azurerm_network_interface.dut1_if2.private_ip_address
   }
   route {
     name                    = "tg2"
-    address_prefix          = "192.168.20.0/24"
+    address_prefix          = var.vpc_cidr_d
     next_hop_type           = "VirtualAppliance"
-    next_hop_in_ip_address  = "200.0.0.102"
+    next_hop_in_ip_address  = data.azurerm_network_interface.dut2_if1.private_ip_address
   }
 }
 
@@ -299,21 +308,21 @@ resource "azurerm_route_table" "d" {
   disable_bgp_route_propagation = false
   route {
     name                    = "route-10"
-    address_prefix          = "10.0.0.0/24"
+    address_prefix          = var.trex_dummy_cidr_port_0
     next_hop_type           = "VirtualAppliance"
-    next_hop_in_ip_address  = "192.168.20.11"
+    next_hop_in_ip_address  = data.azurerm_network_interface.dut2_if2.private_ip_address
   }
   route {
     name                    = "route-20"
-    address_prefix          = "20.0.0.0/24"
+    address_prefix          = var.trex_dummy_cidr_port_1
     next_hop_type           = "VirtualAppliance"
-    next_hop_in_ip_address  = "192.168.20.254"
+    next_hop_in_ip_address  = data.azurerm_network_interface.tg_if2.private_ip_address
   }
   route {
     name                    = "tg1"
-    address_prefix          = "192.168.10.0/24"
+    address_prefix          = var.vpc_cidr_b
     next_hop_type           = "VirtualAppliance"
-    next_hop_in_ip_address  = "192.168.20.11"
+    next_hop_in_ip_address  = data.azurerm_network_interface.dut2_if2.private_ip_address
   }
 }
 

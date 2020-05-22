@@ -46,7 +46,7 @@
     strip: 1
   loop: "{{ trex_version }}"
   when:
-    - azure is defined
+    - azure is defined and "{{ item }}" == "2.73"
   tags:
     - install-trex
 
