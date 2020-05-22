@@ -22,6 +22,30 @@
       "revId": "cf9fbdf9e597dbdcb89823a3151c5396eadea70c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f200f73d_12c75ecc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-22T11:28:06Z",
+      "side": 1,
+      "message": "23:27:20 if we do not count the initial time robot needs to compute test selection.",
+      "parentUuid": "75ef551a_99b5cd78",
+      "range": {
+        "startLine": 16,
+        "startChar": 69,
+        "endLine": 16,
+        "endChar": 74
+      },
+      "revId": "cf9fbdf9e597dbdcb89823a3151c5396eadea70c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
