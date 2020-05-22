@@ -96,6 +96,6 @@
 | | ... | ${dut_spi} | ${tg_src_ip} | ${tg_dst_ip}
 
 *** Test Cases ***
-| tc01-110B-ethip4ipsec1tptsw-ip4base-policy-aes-128-cbc-sha-512-256-dev
+| 110B-ethip4ipsec1tptsw-ip4base-policy-aes-128-cbc-sha-512-256-dev
 | | [Tags] | 110B
 | | frame_size=${110} | phy_cores=${0}

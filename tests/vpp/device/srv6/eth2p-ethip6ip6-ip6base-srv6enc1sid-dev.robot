@@ -98,6 +98,6 @@
 | | ... | ${dut1_sid1} | ${dut1_sid2} | ${dut2_sid2} | ${dut2_sid1}
 
 *** Test Cases ***
-| tc01-78B-ethip6ip6-ip6base-srv6enc1sid-dev
+| 78B-ethip6ip6-ip6base-srv6enc1sid-dev
 | | [Tags] | 78B
 | | frame_size=${78} | phy_cores=${0}

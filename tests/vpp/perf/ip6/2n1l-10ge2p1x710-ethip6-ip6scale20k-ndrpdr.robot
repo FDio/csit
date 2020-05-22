@@ -89,50 +89,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-78B-1c-ethip6-ip6scale20k-ndrpdr
+| 78B-1c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | 78B | 1C
 | | frame_size=${78} | phy_cores=${1}
 
-| tc02-78B-2c-ethip6-ip6scale20k-ndrpdr
+| 78B-2c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | 78B | 2C
 | | frame_size=${78} | phy_cores=${2}
 
-| tc03-78B-4c-ethip6-ip6scale20k-ndrpdr
+| 78B-4c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | 78B | 4C
 | | frame_size=${78} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip6-ip6scale20k-ndrpdr
+| 1518B-1c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip6-ip6scale20k-ndrpdr
+| 1518B-2c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip6-ip6scale20k-ndrpdr
+| 1518B-4c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip6-ip6scale20k-ndrpdr
+| 9000B-1c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip6-ip6scale20k-ndrpdr
+| 9000B-2c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip6-ip6scale20k-ndrpdr
+| 9000B-4c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip6-ip6scale20k-ndrpdr
+| IMIX-1c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip6-ip6scale20k-ndrpdr
+| IMIX-2c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip6-ip6scale20k-ndrpdr
+| IMIX-4c-ethip6-ip6scale20k-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}

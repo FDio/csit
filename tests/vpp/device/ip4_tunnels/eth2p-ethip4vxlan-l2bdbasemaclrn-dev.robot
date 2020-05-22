@@ -80,6 +80,6 @@
 | | ... | 172.17.0.2 | 172.16.0.1 | ${0} | 172.26.0.1 | 172.27.0.2 | ${0}
 
 *** Test Cases ***
-| tc01-114B-ethip4vxlan-l2bdbasemaclrn-dev
+| 114B-ethip4vxlan-l2bdbasemaclrn-dev
 | | [Tags] | 114B
 | | frame_size=${114} | phy_cores=${0}

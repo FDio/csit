@@ -89,6 +89,6 @@
 | | ... | ${src_rloc4} | ${dst_rloc4} | ${ot_mode}
 
 *** Test Cases ***
-| tc01-62B-ethip4lispgpe-ip6base-dev
+| 62B-ethip4lispgpe-ip6base-dev
 | | [Tags] | 62B
 | | frame_size=${62} | phy_cores=${0}

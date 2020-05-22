@@ -84,6 +84,6 @@
 | | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
 *** Test Cases ***
-| tc01-64B-ethipv4-ip4base-eth-2memif-1dcr-dev
+| 64B-ethipv4-ip4base-eth-2memif-1dcr-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

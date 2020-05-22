@@ -29,21 +29,18 @@ class Testcase:
             - cores_str - Number of physical cores to use, example: "2".
             - frame_num - Framesize as a number, example: "${74}".
             - frame_str - Framesize in upper case, example: "74B".
-            - tc_num - Start of testcase name, example: "tc04".
         :type template_string: str
         """
         self.template = Template(template_string)
 
-    def generate(self, num, frame_size, phy_cores):
+    def generate(self, frame_size, phy_cores):
         """Return string of test case code with placeholders filled.
 
         Fail if there are placeholders left unfilled.
         It is not required for all placeholders to be present in template.
 
-        :param num: Test case number. Example value: 4.
         :param frame_size: Imix string or numeric frame size. Example: 74.
         :param phy_cores: Number of physical cores to use. Example: 2.
-        :type num: int
         :type frame_size: str or int
         :type phy_cores: int or str
         :returns: Filled template, usable as test case code.
@@ -66,7 +63,6 @@ class Testcase:
             {
                 u"cores_num": f"${{{cores_num:d}}}",
                 u"cores_str": phy_cores,
-                u"tc_num": f"tc{num:02d}",
             }
         )
         return self.template.substitute(subst_dict)
@@ -84,7 +80,7 @@ class Testcase:
         :rtype: Testcase
         """
         template_string = f'''
-| ${{tc_num}}-${{frame_str}}-${{cores_str}}c-{suite_id}
+| ${{frame_str}}-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{frame_str}} | ${{cores_str}}C
 | | frame_size=${{frame_num}} | phy_cores=${{cores_num}}
 '''
@@ -105,13 +101,13 @@ class Testcase:
         # (TCP, QUIC, SCTP, ...) where DUT (not TG) decides frame size.
         if u"tcphttp" in suite_id:
             template_string = f'''
-| ${{tc_num}}-IMIX-${{cores_str}}c-{suite_id}
+| IMIX-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{cores_str}}C
 | | phy_cores=${{cores_num}}
 '''
         else:
             template_string = f'''
-| ${{tc_num}}-${{frame_str}}-${{cores_str}}c-{suite_id[:-4]}-{suite_id[-3:]}
+| ${{frame_str}}-${{cores_str}}c-{suite_id[:-4]}-{suite_id[-3:]}
 | | [Tags] | ${{cores_str}}C\n| | phy_cores=${{cores_num}}
 '''
         return cls(template_string)
