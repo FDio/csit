@@ -90,6 +90,6 @@
 | | ... | traffic_script=send_ip_check_headers
 
 *** Test Cases ***
-| tc01-64B-avf-dot1q-l2bdbasemaclrn-gbp-dev
+| 64B-avf-dot1q-l2bdbasemaclrn-gbp-dev
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${0}

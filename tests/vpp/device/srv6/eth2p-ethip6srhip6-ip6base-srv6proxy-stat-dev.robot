@@ -117,6 +117,6 @@
 | | ... | static_proxy=${True}
 
 *** Test Cases ***
-| tc01-78B-ethip6srhip6-ip6base-srv6proxy-stat-dev
+| 78B-ethip6srhip6-ip6base-srv6proxy-stat-dev
 | | [Tags] | 78B
 | | frame_size=${78} | phy_cores=${0}

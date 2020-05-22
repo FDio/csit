@@ -85,6 +85,6 @@
 | | ... | 10.10.10.2 | 20.20.20.2
 
 *** Test Cases ***
-| tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
+| 64B-ethip4-ip4base-ipolicemarkbase-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

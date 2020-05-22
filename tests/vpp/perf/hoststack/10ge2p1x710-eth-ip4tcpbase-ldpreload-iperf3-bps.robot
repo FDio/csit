@@ -60,6 +60,6 @@
 | | ... | Defered Failure From Hoststack Iperf3 Test Program
 
 *** Test Cases ***
-| tc01-1460B-1c-eth-ip4tcpbase-ldpreload-iperf3-bps
+| 1460B-1c-eth-ip4tcpbase-ldpreload-iperf3-bps
 | | [Tags] | 1C
 | | phy_cores=${1}

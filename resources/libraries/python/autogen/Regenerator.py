@@ -130,9 +130,7 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
     :type file_out: file
     :type tc_kwargs_list: dict
     """
-    # We bump tc number in any case, so that future enables/disables
-    # do not affect the numbering of other test cases.
-    for num, kwargs in enumerate(tc_kwargs_list, start=1):
+    for kwargs in tc_kwargs_list:
         # TODO: Is there a better way to disable some combinations?
         emit = True
         if kwargs[u"frame_size"] == 9000:
@@ -163,7 +161,7 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
             if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
                 emit = False
         if emit:
-            file_out.write(testcase.generate(num=num, **kwargs))
+            file_out.write(testcase.generate(**kwargs))
 
 
 def add_tcp_testcases(testcase, file_out, tc_kwargs_list):
@@ -176,8 +174,8 @@ def add_tcp_testcases(testcase, file_out, tc_kwargs_list):
     :type file_out: file
     :type tc_kwargs_list: dict
     """
-    for num, kwargs in enumerate(tc_kwargs_list, start=1):
-        file_out.write(testcase.generate(num=num, **kwargs))
+    for kwargs in tc_kwargs_list:
+        file_out.write(testcase.generate(**kwargs))
 
 
 def write_default_files(in_filename, in_prolog, kwargs_list):

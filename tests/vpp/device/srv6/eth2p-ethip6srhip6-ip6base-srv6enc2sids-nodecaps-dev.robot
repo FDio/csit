@@ -102,6 +102,6 @@
 | | ... | ${dut1_sid2_2} | ${dut2_sid1_2} | decap=${False}
 
 *** Test Cases ***
-| tc01-78B-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-dev
+| 78B-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-dev
 | | [Tags] | 78B
 | | frame_size=${78} | phy_cores=${0}

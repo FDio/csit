@@ -116,6 +116,6 @@
 | | ... | tg_dstsid3=${out_sid1_2} | dut_dstsid3=${out_sid2_2}
 
 *** Test Cases ***
-| tc01-78B-ethip6srhip6-ip6base-srv6proxy-masq-dev
+| 78B-ethip6srhip6-ip6base-srv6proxy-masq-dev
 | | [Tags] | 78B
 | | frame_size=${78} | phy_cores=${0}

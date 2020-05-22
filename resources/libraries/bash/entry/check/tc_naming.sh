@@ -31,9 +31,9 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 # Grep of interest: We want all tc01- prefixed (skip TC variations for now).
 # Currently script assumes all variations inside to be part of either
 # auto-generation or not checked at all (VIRL derivates).
-r_grep="tc01-"
+r_grep="([0-9]{2,4}B|IMIX)-"
 # Parse grep of interest (learn path, learn suite, learn testcase name).
-r_parse='(.*)\/(.*).robot.*(tc[[:digit:]]{2}-.*)'
+r_parse='(.*)\/(.*).robot.*(([0-9]{2,4}B|IMIX)-.*)'
 
 # CSIT Testcase naming convention rules.
 # https://wiki.fd.io/view/CSIT/csit-test-naming
@@ -48,7 +48,6 @@ r_parse='(.*)\/(.*).robot.*(tc[[:digit:]]{2}-.*)'
 # One caveat of this solution is that we cannot proceed to check full names now
 # as majority of Testcases does not meet naming criteria.
 s_testc_rules=(
-    'TC id'
     'packet size'
     'core combination'
     'NIC driver mode'
@@ -56,8 +55,7 @@ s_testc_rules=(
     'test type'
     )
 r_testc_rules=(
-    '^tc[[:digit:]]{2}-'
-    '([[:digit:]]{2,4}B|IMIX)-'
+    '^([[:digit:]]{2,4}B|IMIX)-'
     '([[:digit:]]+c-){0,1}'
     '(avf-|1lbvpplacp-|2lbvpplacp-){0,1}'
     '(eth|dot1q|dot1ad)'

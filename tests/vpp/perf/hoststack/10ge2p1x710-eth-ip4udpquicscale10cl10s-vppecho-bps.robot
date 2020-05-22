@@ -66,6 +66,6 @@
 | | ... | Defered Failure From Hoststack VPP Echo Test Program
 
 *** Test Cases ***
-| tc01-1280B-1c-eth-ip4udpquicscale10cl10s-vppecho-bps
+| 1280B-1c-eth-ip4udpquicscale10cl10s-vppecho-bps
 | | [Tags] | 1C
 | | phy_cores=${1}
