@@ -23,5 +23,5 @@
       tags: docker
     - role: cleanup
       tags: cleanup
-    - role: calibration
-      tags: calibration
+#    - role: calibration
+#      tags: calibration

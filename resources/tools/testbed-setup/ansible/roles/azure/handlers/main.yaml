@@ -7,7 +7,7 @@
   tags:
     - reboot-server
 
-- name: Reload systemd-modules
+- name: AZURE - Reload systemd-modules
   systemd:
     name: "systemd-modules-load"
     state: "restarted"

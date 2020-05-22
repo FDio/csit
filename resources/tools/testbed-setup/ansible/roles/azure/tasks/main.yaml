@@ -11,7 +11,7 @@
     - "ib_uverbs"
     - "mlx4_ib"
     - "mlx5_ib"
-  notify: "Reload systemd-modules"
+  notify: "AZURE - Reload systemd-modules"
   tags:
     - load-kernel-modules
 
@@ -24,3 +24,29 @@
     reload: "yes"
   tags:
     - set-sysctl
+
+- name: AZURE - Copy vpp kernel libs
+  copy:
+    src: "files/{{ item }}"
+    dest: "/usr/lib/"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  with_items:
+    - librte_pmd_mlx4_glue.so.18.02.0
+    - librte_pmd_mlx5_glue.so.19.08.0
+    - librte_pmd_mlx5_glue.so.20.02.0
+  tags:
+    - copy-vpp-kernel-libs
+
+- name: AZURE - prevent interface renaming
+  copy:
+    src: "files/10-dtap.link"
+    dest: "/etc/systemd/network/"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  notify:
+    - "Reboot server"
+  tags:
+    - prevent-interface-renaming
