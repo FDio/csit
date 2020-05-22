@@ -908,13 +908,14 @@ def table_perf_trending_dash(table, input_data):
                  classification_lst[-win_size+1:].count(u"progression")])
 
     tbl_lst.sort(key=lambda rel: rel[0])
+    tbl_lst.sort(key=lambda rel: rel[3])
+    tbl_lst.sort(key=lambda rel: rel[2])
 
     tbl_sorted = list()
     for nrr in range(table[u"window"], -1, -1):
         tbl_reg = [item for item in tbl_lst if item[4] == nrr]
         for nrp in range(table[u"window"], -1, -1):
             tbl_out = [item for item in tbl_reg if item[5] == nrp]
-            tbl_out.sort(key=lambda rel: rel[2])
             tbl_sorted.extend(tbl_out)
 
     file_name = f"{table[u'output-file']}{table[u'output-file-ext']}"
