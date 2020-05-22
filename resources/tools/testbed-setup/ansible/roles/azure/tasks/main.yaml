@@ -11,7 +11,7 @@
     - "ib_uverbs"
     - "mlx4_ib"
     - "mlx5_ib"
-  notify: "Reload systemd-modules"
+  notify: "Azure - Reload systemd-modules"
   tags:
     - load-kernel-modules
 
@@ -24,3 +24,15 @@
     reload: "yes"
   tags:
     - set-sysctl
+
+- name: Azure - prevent interface renaming
+  copy:
+    src: "files/10-dtap.link"
+    dest: "/etc/systemd/network/"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  notify:
+    - "Reboot server"
+  tags:
+    - prevent-interface-renaming

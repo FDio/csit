@@ -24,7 +24,7 @@
   register: current_kernel_version
   changed_when: false
   failed_when: |
-    kernel_version not in current_kernel_version.stdout
+    current_kernel_version.stdout not in kernel_version
   tags:
     - check-kernel-version
 

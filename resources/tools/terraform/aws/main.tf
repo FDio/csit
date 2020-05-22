@@ -194,6 +194,9 @@ resource "aws_instance" "tg" {
   key_name = aws_key_pair.CSIT.key_name
   associate_public_ip_address = true
   subnet_id = aws_subnet.mgmt.id
+  root_block_device {
+    volume_size = 50
+  }
   private_ip = var.tg_mgmt_ip
   vpc_security_group_ids = [aws_security_group.CSIT.id]
   depends_on = [aws_vpc.CSIT, aws_placement_group.CSIT]
@@ -209,6 +212,9 @@ resource "aws_instance" "dut1" {
   key_name = aws_key_pair.CSIT.key_name
   associate_public_ip_address = true
   subnet_id = aws_subnet.mgmt.id
+  root_block_device {
+    volume_size = 50
+  }
   private_ip = var.dut1_mgmt_ip
   vpc_security_group_ids = [aws_security_group.CSIT.id]
   depends_on = [aws_vpc.CSIT, aws_placement_group.CSIT]
@@ -224,6 +230,9 @@ resource "aws_instance" "dut2" {
   key_name = aws_key_pair.CSIT.key_name
   associate_public_ip_address = true
   subnet_id = aws_subnet.mgmt.id
+  root_block_device {
+    volume_size = 50
+  }
   private_ip = var.dut2_mgmt_ip
   vpc_security_group_ids = [aws_security_group.CSIT.id]
   depends_on = [aws_vpc.CSIT, aws_placement_group.CSIT]
