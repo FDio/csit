@@ -100,34 +100,34 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
+| 64B-1c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
+| 64B-2c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc04-1518B-1c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
+| 1518B-1c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
+| 1518B-2c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc07-9000B-1c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
+| 9000B-1c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
+| 9000B-2c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc10-IMIX-1c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
+| IMIX-1c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
+| IMIX-2c-eth-l2bd-4ch-32vh-16vm2t-vppip4-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
