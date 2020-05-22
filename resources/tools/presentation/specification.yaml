@@ -692,7 +692,7 @@
         - 119 # NDRPDR full - srv6-2
         - 120 # NDRPDR full - l2-3
         - 122 # NDRPDR full - l2-5
-        - 123 # NDRPDR full - l2-4
+        - 123 # NDRPDR full - l2-6
         - 124 # NDRPDR full - l2-7
         - 125 # NDRPDR full - vhost-2
         - 126 # NDRPDR full - vhost-3
@@ -701,6 +701,7 @@
         - 130 # NDRPDR full - l2-10
         - 131 # NDRPDR full - l2-11
         - 132 # NDRPDR full - vhost-4
+        - 133 # NDRPDR full - l2-4
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
@@ -2526,7 +2527,7 @@
       - 119 # NDRPDR full - srv6-2
       - 120 # NDRPDR full - l2-3
       - 122 # NDRPDR full - l2-5
-      - 123 # NDRPDR full - l2-4
+      - 123 # NDRPDR full - l2-6
       - 124 # NDRPDR full - l2-7
       - 125 # NDRPDR full - vhost-2
       - 126 # NDRPDR full - vhost-3
@@ -2535,6 +2536,7 @@
       - 130 # NDRPDR full - l2-10
       - 131 # NDRPDR full - l2-11
       - 132 # NDRPDR full - vhost-4
+      - 133 # NDRPDR full - l2-4
       - 50  # MRR sel
       - 53  # MRR sel addition
 
