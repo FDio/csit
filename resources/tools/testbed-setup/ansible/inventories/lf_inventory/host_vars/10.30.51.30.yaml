@@ -1,8 +1,8 @@
----
+u---
 # file: host_vars/10.30.51.30.yaml
 
 hostname: "s40-nomad"
-inventory_cimc_hostname: '10.30.50.30'
+inventory_cimc_hostname: "10.30.50.30"
 
 # User management.
 users:
@@ -19,15 +19,15 @@ users:
 
 # Nomad settings.
 nomad_certificates:
-  - src: "{{ vault_s40_nomad_ca_file }}"
+  - src: "{{ vault_nomad_v2_ca_file }}"
     dest: "{{ nomad_ca_file }}"
-  - src: "{{ vault_s40_nomad_cert_file }}"
+  - src: "{{ vault_nomad_v2_cert_file }}"
     dest: "{{ nomad_cert_file }}"
-  - src: "{{ vault_s40_nomad_key_file }}"
+  - src: "{{ vault_nomad_v2_key_file }}"
     dest: "{{ nomad_key_file }}"
 nomad_datacenter: "yul1"
 nomad_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
-nomad_name: "s40-nomad-{{ ansible_architecture }}"
+nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "both"
 nomad_node_class: "builder"
 nomad_options:
@@ -38,5 +38,3 @@ nomad_options:
   fingerprint.network.disallow_link_local: true
 nomad_retry_servers: [ "10.30.51.32", "10.30.51.33" ]
 nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
-
-

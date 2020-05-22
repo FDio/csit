@@ -1,8 +1,7 @@
 ---
-# file: host_vars/10.30.51.28.yaml
+# file: host_vars/10.30.51.13.yaml
 
-hostname: "s41-nomad"
-inventory_cimc_hostname: "10.30.50.28"
+hostname: "s44-nomad"
 
 # User management.
 users:
@@ -26,13 +25,14 @@ nomad_certificates:
   - src: "{{ vault_nomad_v2_key_file }}"
     dest: "{{ nomad_key_file }}"
 nomad_datacenter: "yul1"
+nomad_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
-nomad_node_role: "client"
+nomad_node_role: "server"
 nomad_node_class: "builder"
 nomad_options:
   driver.raw_exec.enable: 1
   docker.cleanup.image: false
   docker.privileged.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
-  fingerprint.network.disallow_link_local: true
-nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
+nomad_retry_servers: [ "10.30.51.32", "10.30.51.33", "10.30.51.14" ]
+nomad_servers: [ "10.30.51.13:4647" ]
