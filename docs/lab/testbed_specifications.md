@@ -234,9 +234,12 @@ Name         | Comment
 10.30.50.24  | t3-tg1
 10.30.50.25  | t3-sut1
 10.30.50.26  | t3-sut-2
-10.30.50.28  | t4-sut1
+10.30.50.28  | s41-nomad
 10.30.50.29  | s39-nomad
-10.30.50.30  | t4-sut3
+10.30.51.29  | s22-t35-sut1 screen -r /dev/ttyusb0
+10.30.50.30  | s40-nomad
+10.30.51.30  | s23-t35-sut2 screen -r /dev/ttyusb1
+10.30.51.30  | s24-t35-sut3 screen -r /dev/ttyusb2
 10.30.50.36  | s17-t33-sut1
 10.30.50.37  | s18-t33-sut2
 10.30.50.41  | s3-t21-sut1
@@ -259,16 +262,17 @@ Name         | Comment
 10.30.50.58  | s25-t25-sut1
 10.30.50.59  | s26-t25-tg1
 10.30.50.69  | s27-t13-sut
+10.30.50.255 | Broadcast
 n/a          | s20-t34-sut1
 n/a          | s21-t34-sut2
-10.30.51.29  | s22-t35-sut1 screen -r /dev/ttyUSB0
-10.30.51.30  | s23-t35-sut2 screen -r /dev/ttyUSB1
-10.30.51.30  | s24-t35-sut3 screen -r /dev/ttyUSB2
+10.30.55.0   | network
+10.30.55.1   | Router
 10.30.55.10  | s28-t26t35-tg1
 10.30.55.11  | s29-t26-sut1
 10.30.55.12  | s30-t35-sut1
 10.30.55.13  | s31-t35-sut2
-10.30.50.255 | Broadcast
+10.30.55.14  | server-type-c4-1
+10.30.55.15  | server-type-c4-2
 10.30.55.17  | s32-t14-sut1
 10.30.55.18  | s33-t27-sut1
 10.30.55.19  | s34-t27-tg1
@@ -276,6 +280,7 @@ n/a          | s21-t34-sut2
 10.30.55.21  | s36-t28-tg1
 10.30.55.22  | s37-t29-sut1
 10.30.55.23  | s38-t29-tg1
+10.30.55.255 | Broadcast
 
 ### Management VLAN IP Addresses
 
@@ -294,8 +299,8 @@ Name                      | Comment
 10.30.51.10               | s23-t35-sut2 (netgate-2)
 10.30.51.11               | s24-t35-sut3 (netgate-3)
 10.30.51.12               | softiron-1
-10.30.51.13               | softiron-2
-10.30.51.14               | softiron-3
+10.30.51.13               | nomad1arm
+10.30.51.14               | nomad2arm
 10.30.51.15               | LF Reserved
 10.30.51.16               | t1-tg1
 10.30.51.17               | t1-sut1
@@ -306,12 +311,11 @@ Name                      | Comment
 10.30.51.24               | t3-tg1
 10.30.51.25               | t3-sut1
 10.30.51.26               | t3-sut-2
-10.30.51.28               | t4-sut1
+10.30.51.28               | s41-nomad
 10.30.51.29               | s39-nomad
-10.30.51.29               | s22-t35-sut1 screen -r /dev/ttyUSB0, TO BE VERIFIED
-10.30.51.30               | t4-sut3
-10.30.51.30               | s23-t35-sut2 screen -r /dev/ttyUSB1, TO BE VERIFIED
-10.30.51.30               | s24-t35-sut3 screen -r /dev/ttyUSB2, TO BE VERIFIED
+10.30.51.30               | s40-nomad
+10.30.51.32               | nomad1
+10.30.51.33               | nomad2
 10.30.51.36               | s17-t33-sut1
 10.30.51.37               | s18-t33-sut2
 10.30.51.41               | s20-t34-sut1
@@ -336,14 +340,18 @@ Name                      | Comment
 10.30.51.61               | s25-t25-sut1
 10.30.51.62               | s26-t25-tg1
 10.30.51.69               | s27-t13-sut1
-10.30.51.70-10.30.51.105  | VIRL1 TO BE VERIFIED
-10.30.51.106-10.30.51.180 | VIRL2
-10.30.51.181-10.30.51.254 | VIRL3
+10.30.51.70-10.30.51.105  | FREE
+10.30.51.106-10.30.51.180 | FREE
+10.30.51.181-10.30.51.254 | FREE
 10.30.51.255              | Broadcast
+10.32.8.0                | network
+10.32.8.1                | Router
 10.32.8.10                | s28-t26t35-tg1
 10.32.8.11                | s29-t26-sut1
 10.32.8.12                | s30-t35-sut1
 10.32.8.13                | s31-t35-sut2
+10.32.8.14                | server-type-c4-1
+10.32.8.15                | server-type-c4-2
 10.32.8.17                | s32-t14-sut1
 10.32.8.18                | s33-t27-sut1
 10.32.8.19                | s34-t27-tg1
@@ -351,6 +359,7 @@ Name                      | Comment
 10.32.8.21                | s36-t28-tg1
 10.32.8.22                | s37-t29-sut1
 10.32.8.23                | s38-t29-tg1
+10.32.8.255              | Broadcast
 
 ## Server Specifications
 

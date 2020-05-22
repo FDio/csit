@@ -4,7 +4,7 @@ client {
     node_class = "{{ nomad_node_class }}"
 
     {% if nomad_servers -%}
-    servers = [ {{ nomad_servers }} ]
+    servers = [ {% for ip_port in nomad_servers -%} "{{ ip_port }}" {% if not loop.last %},{% endif %}{%- endfor -%} ]
     {% endif %}
 
     {% if nomad_options -%}

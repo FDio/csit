@@ -6,7 +6,6 @@
     append: "{{ item.append | default(omit) }}"
     createhome: "{{ 'yes' if users_create_homedirs else 'no' }}"
     generate_ssh_key: "{{ item.generate_ssh_key | default(omit) }}"
-    group: "{{ item.group | default(item.username) }}"
     groups: "{{ item.groups | join(',') if 'groups' in item else '' }}"
     name: "{{ item.username }}"
     password: "{{ item.password if item.password is defined else '!' }}"

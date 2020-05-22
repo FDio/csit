@@ -4,7 +4,7 @@
 hostname: "s40-nomad"
 inventory_cimc_hostname: '10.30.50.30'
 
-# User managmeent.
+# User management.
 users:
   - username: localadmin
     groups: [adm, sudo]
@@ -18,7 +18,15 @@ users:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgObJFDIMmPwQhhkjAynvlbwpM5yeSewyaE7vTLaFf4uFz4vmsE2hFf6B2xXHUGLVwoVfk91UeK7LOGrdDpoDDHzvPZXj5NmZI+WiWax5y2pQZNkcSZws0ENCeEc4hPwc4veJ1JmhokF4Bsmu14HyFMaFUhM8897jtJwsh+9fLA/no0iPGaQqEtRUQhkV+P4jCEPoY0qdRZAzVw/rY4EGAMhsJe3EJmyj63OfrrkG3+hvSLFo5pDxHQr3pZd/c6ukI7xMef48PosAvGCm3oxzb/Gu9PZIGuHLczY+tCnzCkY7MO7E+IWgjXrUAfYwSWz8XmFmA9LLe26DT5jkcK8hGQ== pmikus@cisco.com"
 
 # Nomad settings.
+nomad_certificates:
+  - src: "{{ vault_s40_nomad_ca_file }}"
+    dest: "{{ nomad_ca_file }}"
+  - src: "{{ vault_s40_nomad_cert_file }}"
+    dest: "{{ nomad_cert_file }}"
+  - src: "{{ vault_s40_nomad_key_file }}"
+    dest: "{{ nomad_key_file }}"
 nomad_datacenter: "yul1"
+nomad_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 nomad_name: "s40-nomad-{{ ansible_architecture }}"
 nomad_node_role: "both"
 nomad_node_class: "builder"
@@ -27,4 +35,8 @@ nomad_options:
   docker.cleanup.image: false
   docker.privileged.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
-nomad_servers: "\"10.30.51.32:4647\", \"10.30.51.33:4647\""
+  fingerprint.network.disallow_link_local: true
+nomad_retry_servers: [ "10.30.51.32", "10.30.51.33" ]
+nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
+
+

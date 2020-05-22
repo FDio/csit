@@ -1,4 +1,16 @@
 server {
-  enabled          = false
-  encrypt = "Y4T+5JGx1C3l2NFBBvkTWQ=="
+    enabled = {{ nomad_node_server | bool | lower }}
+
+    {% if nomad_node_server | bool -%}
+        bootstrap_expect = {{ nomad_bootstrap_expect }}
+    {%- endif %}
+
+    encrypt = "{{ nomad_encrypt }}"
+
+    {% if nomad_retry_join | bool -%}
+    server_join {
+        retry_join = [ {% for ip_port in nomad_retry_servers -%} "{{ ip_port }}" {% if not loop.last %},{% endif %}{%- endfor -%} ]
+    }
+    {%- endif %}
+
 }

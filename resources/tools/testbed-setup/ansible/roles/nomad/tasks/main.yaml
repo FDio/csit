@@ -127,6 +127,16 @@
   tags:
     - nomad-conf
 
+- name: Conf - TLS Configuration
+  template:
+    src: tls.hcl.j2
+    dest: "{{ nomad_config_dir }}/tls.hcl"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    mode: 0644
+  tags:
+    - nomad-conf
+
 - name: Conf - Custom Configuration
   template:
     src: custom.json.j2
@@ -158,7 +168,7 @@
     owner: "root"
     group: "root"
     mode: 0644
-  notify:
-    - "Restart Nomad"
+#  notify:
+#    - "Restart Nomad"
   tags:
     - nomad-conf
