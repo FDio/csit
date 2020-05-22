@@ -292,6 +292,14 @@ function compose_pybot_arguments () {
             EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}AND${tag}")
         fi
     done
+    EXPANDED_TESTS=()
+    for test in "${test_array[@]}"; do
+        if [[ "${test}" != "" && "${test}" != "#"* ]]; then
+            # Empty and comment lines are skipped.
+            # Other lines are normal tags, they are to be prefixed.
+            EXPANDED_TESTS+=("--test" "${test}")
+        fi
+    done
 }
 
 
@@ -641,7 +649,9 @@ function run_pybot () {
 
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
     all_options+=("--noncritical" "EXPECTED_FAILING")
-    all_options+=("${EXPANDED_TAGS[@]}")
+    all_options+=("${EXPANDED_TESTS[@]}")
+    all_options+=("--dryrun")
+    #all_options+=("${EXPANDED_TAGS[@]}")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
@@ -802,6 +812,10 @@ function select_tags () {
             fi
             ;;
     esac
+
+    readarray -t test_array <<< $(sed 's/ //g' \
+                ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.md |
+                eval ${sed_nics_sub_cmd}) || die
 
     # Blacklisting certain tags per topology.
     #
