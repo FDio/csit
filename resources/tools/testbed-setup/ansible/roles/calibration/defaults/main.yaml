@@ -19,12 +19,14 @@ packages_by_arch:
     - []
 
 # Kernel version to check.
-kernel_version: "{{ kernel_version_by_distro_by_arch[ansible_distribution | lower][ansible_machine] | join(' ') }}"
+kernel_version: "{{ kernel_version_by_distro_by_arch[ansible_distribution | lower][ansible_machine] }}"
 
 kernel_version_by_distro_by_arch:
   ubuntu:
     x86_64:
       - "4.15.0-72-generic"
+      - "5.3.0-1020-azure"
+      - "5.3.0-1017-aws"
     aarch64:
       - "4.15.0-54-generic"
 

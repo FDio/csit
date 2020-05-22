@@ -12,7 +12,7 @@ resource "azurerm_network_interface" "dut1_if2" {
         name                          = "dut1_if2"
         subnet_id                     = azurerm_subnet.c.id
         private_ip_address_allocation = "Static"
-        private_ip_address	      = "200.0.0.101"
+        private_ip_address	      = "172.16.200.101"
     }
 }
 
@@ -34,7 +34,7 @@ resource "azurerm_network_interface" "dut2_if1" {
         name                          = "dut2_if1"
         subnet_id                     = azurerm_subnet.c.id
         private_ip_address_allocation = "Static"
-        private_ip_address	      = "200.0.0.102"
+        private_ip_address	      = "172.16.200.102"
     }
 }
 
@@ -56,7 +56,7 @@ resource "azurerm_network_interface" "dut1_if1" {
         name                          = "dut1_if1"
         subnet_id                     = azurerm_subnet.b.id
         private_ip_address_allocation = "Static"
-        private_ip_address	      = "192.168.10.11"
+        private_ip_address	      = "172.16.10.11"
     }
 }
 
@@ -78,7 +78,7 @@ resource "azurerm_network_interface" "dut2_if2" {
         name                          = "dut2_if2"
         subnet_id                     = azurerm_subnet.d.id
         private_ip_address_allocation = "Static"
-        private_ip_address	      = "192.168.20.11"
+        private_ip_address	      = "172.16.20.11"
     }
 }
 
@@ -100,7 +100,7 @@ resource "azurerm_network_interface" "tg_if1" {
         name                          = "tg1"
         subnet_id                     = azurerm_subnet.b.id
         private_ip_address_allocation = "Static"
-        private_ip_address	      = "192.168.10.254"
+        private_ip_address	      = "172.16.10.250"
     }
 }
 
@@ -122,7 +122,7 @@ resource "azurerm_network_interface" "tg_if2" {
         name                          = "tg2"
         subnet_id                     = azurerm_subnet.d.id
         private_ip_address_allocation = "Static"
-        private_ip_address	      = "192.168.20.254"
+        private_ip_address	      = "172.16.20.250"
     }
 }
 
