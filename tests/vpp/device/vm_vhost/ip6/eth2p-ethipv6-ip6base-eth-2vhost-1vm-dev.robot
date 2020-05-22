@@ -91,6 +91,6 @@
 
 
 *** Test Cases ***
-| tc01-64B-ethipv6-ip6base-eth-2vhost-1vm-dev
+| 64B-ethipv6-ip6base-eth-2vhost-1vm-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

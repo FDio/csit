@@ -76,6 +76,6 @@
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 
 *** Test Cases ***
-| tc01-64B-ethip4-l2patch-dev
+| 64B-ethip4-l2patch-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

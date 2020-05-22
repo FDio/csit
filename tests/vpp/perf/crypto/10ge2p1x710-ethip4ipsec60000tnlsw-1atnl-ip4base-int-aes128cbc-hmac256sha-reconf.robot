@@ -120,38 +120,38 @@
 | | Display Reconfig Test Message | ${result}
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
+| 64B-1c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
+| 64B-2c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
+| 64B-4c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
+| 1518B-1c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
+| 1518B-2c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
+| 1518B-4c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
+| IMIX-1c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
+| IMIX-2c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
+| IMIX-4c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}

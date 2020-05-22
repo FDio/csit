@@ -88,6 +88,6 @@
 | | ... | ${src_rloc6} | ${dst_rloc6} | ${ot_mode}
 
 *** Test Cases ***
-| tc01-46B-ethip6lispgpe-ip4base-dev
+| 46B-ethip6lispgpe-ip4base-dev
 | | [Tags] | 46B
 | | frame_size=${46} | phy_cores=${0}

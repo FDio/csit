@@ -120,50 +120,50 @@
 | | Display Reconfig Test Message | ${result}
 
 *** Test Cases ***
-| tc01-118B-1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| 118B-1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | 118B | 1C
 | | frame_size=${118} | phy_cores=${1}
 
-| tc02-118B-2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| 118B-2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | 118B | 2C
 | | frame_size=${118} | phy_cores=${2}
 
-| tc03-118B-4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| 118B-4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | 118B | 4C
 | | frame_size=${118} | phy_cores=${4}
 
-| tc04-1518B-1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| 1518B-1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| 1518B-2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| 1518B-4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| 9000B-1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| 9000B-2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| 9000B-4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| IMIX-1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| IMIX-2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
+| IMIX-4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}

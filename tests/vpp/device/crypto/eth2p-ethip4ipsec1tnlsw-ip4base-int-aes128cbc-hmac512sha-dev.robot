@@ -96,6 +96,6 @@
 | | ... | ${tun_if1_ip4} | ${tun_if2_ip4}
 
 *** Test Cases ***
-| tc01-154B-ethip4ipsec1tnlsw-ip4base-int-aes-128-cbc-sha-512-256-dev
+| 154B-ethip4ipsec1tnlsw-ip4base-int-aes-128-cbc-sha-512-256-dev
 | | [Tags] | 154B
 | | frame_size=${154} | phy_cores=${0}

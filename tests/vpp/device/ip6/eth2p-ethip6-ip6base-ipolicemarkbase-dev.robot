@@ -82,6 +82,6 @@
 | | ... | 2001:1::2 | 2001:2::2
 
 *** Test Cases ***
-| tc01-78B-ethip6-ip6base-ipolicemarkbase-dev
+| 78B-ethip6-ip6base-ipolicemarkbase-dev
 | | [Tags] | 78B
 | | frame_size=${78} | phy_cores=${0}

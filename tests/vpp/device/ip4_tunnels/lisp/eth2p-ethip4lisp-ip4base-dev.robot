@@ -86,6 +86,6 @@
 | | ... | ${src_rloc4} | ${dst_rloc4}
 
 *** Test Cases ***
-| tc01-46B-ethip4lisp-ip4base-dev
+| 46B-ethip4lisp-ip4base-dev
 | | [Tags] | 46B
 | | frame_size=${46} | phy_cores=${0}

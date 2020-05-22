@@ -78,6 +78,6 @@
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 
 *** Test Cases ***
-| tc01-68B-avf-dot1qip4-l2bdbasemaclrn-dev
+| 68B-avf-dot1qip4-l2bdbasemaclrn-dev
 | | [Tags] | 68B
 | | frame_size=${68} | phy_cores=${0}

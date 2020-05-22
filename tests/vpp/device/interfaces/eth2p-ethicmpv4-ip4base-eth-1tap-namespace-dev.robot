@@ -105,6 +105,6 @@
 | | ... | ${tap1_NM_ip} | ${tg_ip_address}
 
 *** Test Cases ***
-| tc01-64B-ethicmpv4-ip4base-eth-1tap-namespace-dev
+| 64B-ethicmpv4-ip4base-eth-1tap-namespace-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}
