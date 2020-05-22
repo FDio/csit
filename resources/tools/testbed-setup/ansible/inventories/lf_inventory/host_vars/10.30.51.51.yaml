@@ -5,5 +5,24 @@ hostname: "s2-t12-sut1"
 grub:
   nr_hugepages: 65536
 
-inventory_ipmi_hostname: '10.30.50.48'
+inventory_ipmi_hostname: "10.30.50.48"
 cpu_microarchitecture: "skylake"
+
+# Nomad settings.
+nomad_certificates:
+  - src: "{{ vault_s2_t12_sut1_ca_file }}"
+    dest: "{{ nomad_ca_file }}"
+  - src: "{{ vault_s2_t12_sut1_cert_file }}"
+    dest: "{{ nomad_cert_file }}"
+  - src: "{{ vault_s2_t12_sut1_key_file }}"
+    dest: "{{ nomad_key_file }}"
+nomad_datacenter: "yul1"
+nomad_name: "s2-t12-sut1-{{ ansible_architecture }}"
+nomad_node_role: "client"
+nomad_node_class: "csit"
+nomad_options:
+  driver.raw_exec.enable: 1
+  docker.cleanup.image: false
+  docker.privileged.enabled: true
+  driver.whitelist: "docker,raw_exec,exec"
+nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
