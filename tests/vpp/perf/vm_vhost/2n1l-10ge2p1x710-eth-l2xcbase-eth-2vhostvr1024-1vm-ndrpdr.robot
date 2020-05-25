@@ -88,7 +88,7 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
+| | When Initialize layer driver | ${nic_driver} | also_mtu=${False}
 | | And Initialize layer interface
 | | And Initialize L2 xconnect with Vhost-User | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
