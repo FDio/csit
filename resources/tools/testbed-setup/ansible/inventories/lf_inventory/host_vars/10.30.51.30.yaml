@@ -1,4 +1,4 @@
-u---
+---
 # file: host_vars/10.30.51.30.yaml
 
 hostname: "s40-nomad"
