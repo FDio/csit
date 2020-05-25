@@ -710,6 +710,7 @@ function select_tags () {
     # Variables read:
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # - TEST_CODE - String affecting test selection, usually jenkins job name.
+    # - DUT - CSIT test/ subdirectory, set while processing tags.
     # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
     #   Can be unset.
     # - TOPOLOGIES_DIR - Path to existing directory with available tpologies.
@@ -769,22 +770,22 @@ function select_tags () {
         # Select specific performance tests based on jenkins job type variable.
         *"ndrpdr-weekly"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mlr-weekly-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"mrr-daily"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mrr-weekly-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"report-iterative"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/report-iter-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/report_iterative/${DUT}-${NODENESS}-${FLAVOR}.md |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"report-coverage"* )
