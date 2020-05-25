@@ -17,7 +17,7 @@ nomad_certificates:
   - src: "{{ vault_nomad_v1_key_file }}"
     dest: "{{ nomad_key_file }}"
 nomad_datacenter: "yul1"
-nomad_name: "s2-t12-sut1-{{ ansible_architecture }}"
+nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "client"
 nomad_node_class: "csit"
 nomad_options:

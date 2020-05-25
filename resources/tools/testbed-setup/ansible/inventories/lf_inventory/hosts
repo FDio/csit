@@ -56,3 +56,6 @@ all:
         10.30.51.14: #s45-nomad - arm
         10.32.8.14: #s46-nomad - skylake
         10.32.8.15: #s47-nomad - skylake
+        10.32.8.16: #s48-nomad - skylake
+        10.30.51.67: #s49-nomad - thunderx 88xx
+        10.30.51.68: #s50-nomad - thunderx 88xx
