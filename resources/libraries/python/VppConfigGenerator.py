@@ -369,6 +369,17 @@ class VppConfigGenerator:
         path = [u"dpdk", u"log-level"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_dpdk_vdev(self, count):
+        """Add DPDK netsvc device configuration.
+
+        :param count: Number of netsvc devices to add.
+        :type count: int
+        """
+        for i in range(count):
+            netsvcdev = f"vdev net_vdev_netvsc{str(i)},iface=eth{str(i+1)}"
+            path = [u"dpdk", netsvcdev]
+            self.add_config_item(self._nodeconfig, u"", path)
+
     def add_dpdk_no_pci(self):
         """Add DPDK no-pci."""
         path = [u"dpdk", u"no-pci"]
