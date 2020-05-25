@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ccf7f359_2eea2c33",
+        "filename": ".git_commit_template.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-05-25T12:08:08Z",
+      "side": 1,
+      "message": "Before this line add line:\n\u003cbody\u003e",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 39
+      },
+      "revId": "100521732ccc5225aaf038261d642c23d5bed96f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f919ac33_7450c563",
+        "filename": ".git_commit_template.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-05-25T12:08:08Z",
+      "side": 1,
+      "message": "Add some examples (PAL, Trending, Report, ....)",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 67
+      },
+      "revId": "100521732ccc5225aaf038261d642c23d5bed96f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "836db888_1598c484",
+        "filename": ".git_commit_template.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-05-25T12:08:08Z",
+      "side": 1,
+      "message": "Consider adding a short explanation for newbies.",
+      "range": {
+        "startLine": 37,
+        "startChar": 29,
+        "endLine": 37,
+        "endChar": 46
+      },
+      "revId": "100521732ccc5225aaf038261d642c23d5bed96f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
