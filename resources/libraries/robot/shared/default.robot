@@ -223,6 +223,65 @@
 | | Set Test Variable | ${rxd_count_int}
 | | Set Test Variable | ${txd_count_int}
 
+| Add DPDK pci devices to all DUTs
+| | [Documentation]
+| | ... | Add PCI devices to VPP configuration file.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | ${if1_pci}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ${if1_1_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | | ${if1_2_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2}
+| | | ${if2_pci}= | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ${if2_1_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | | ${if2_2_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_2}
+| | | @{pci_devs}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Create List | ${if1_pci}
+| | | ... | ELSE
+| | | ... | Create List | ${if1_1_pci} | ${if1_2_pci}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Append To List | ${pci_devs} | ${if2_pci}
+| | | ... | ELSE
+| | | ... | Append To List | ${pci_devs} | ${if2_1_pci} | ${if2_2_pci}
+| | | Run keyword | ${dut}.Add DPDK Dev | @{pci_devs}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if1_1_pci} | ${if1_1_pci}
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if1_2_pci} | ${if1_2_pci}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if2_pci} | ${if2_pci}
+| | | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if2_1_pci} | ${if2_1_pci}
+| | | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if2_2_pci} | ${if2_2_pci}
+| | END
+
+| Add DPDK no PCI to all DUTs
+| | [Documentation] | Add DPDK no-pci to VPP startup configuration to all DUTs.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK no PCI
+| | END
+
+| Add DPDK vdev to all DUTs
+| | [Documentation]
+| | ... | Add DPDK netsvcdev to VPP startup configuration to all DUTs.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK vdev | ${2}
+| | END
+
 | Add DPDK VLAN strip offload switch off between DUTs
 | | [Documentation]
 | | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP

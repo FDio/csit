@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -368,6 +368,17 @@ class VppConfigGenerator:
         """
         path = [u"dpdk", u"log-level"]
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_dpdk_vdev(self, count):
+        """Add DPDK netsvc device configuration.
+
+        :param count: Number of netsvc devices to add.
+        :type count: int
+        """
+        for i in range(count):
+            netsvcdev = f"vdev net_vdev_netvsc{str(i)},iface=eth{str(i+1)}"
+            path = [u"dpdk", netsvcdev]
+            self.add_config_item(self._nodeconfig, u"", path)
 
     def add_dpdk_no_pci(self):
         """Add DPDK no-pci."""

@@ -206,6 +206,9 @@ class Constants:
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
 
+    # Cloud Enviroment
+    CLOUD_ENVIRONMENT = get_str_from_env(u"CLOUD_ENVIRONMENT", u"")
+
     # Core dump directory
     CORE_DUMP_DIR = u"/tmp"
 
@@ -254,7 +257,8 @@ class Constants:
         u"Intel-XL710": 24500000000,
         u"Intel-XXV710": 24500000000,
         u"Mellanox-CX556A": 100000000000,
-        u"Amazon-Nitro-50G": 10000000000,
+        u"Amazon-Nitro-50G": 50000000000,
+        u"Azure-MLX-40G": 40000000000,
         u"virtual": 100000000,
     }
 
@@ -273,6 +277,7 @@ class Constants:
         # shows non-negligible duration stretching, depending on cores used.
         u"Mellanox-CX556A": 47000000,  # 148809523,
         u"Amazon-Nitro-50G": 1500000,
+        u"Azure-MLX-40G": 15000000,
         u"virtual": 14880952,
     }
 
@@ -286,6 +291,7 @@ class Constants:
         u"Intel-XL710": u"40ge2p1xl710",
         u"Intel-XXV710": u"25ge2p1xxv710",
         u"Amazon-Nitro-50G": u"50ge1p1ENA",
+        u"Azure-MLX-40G": u"40ge1pMLX",
         u"Mellanox-CX556A": u"100ge2p1cx556a",
     }
 
@@ -299,6 +305,7 @@ class Constants:
         u"Intel-XL710": [u"vfio-pci", u"avf"],
         u"Intel-XXV710": [u"vfio-pci", u"avf"],
         u"Amazon-Nitro-50G": [u"vfio-pci"],
+        u"Azure-MLX-40G": [u"vfio-pci"],
         u"Mellanox-CX556A": [u"rdma-core"],
     }
 
