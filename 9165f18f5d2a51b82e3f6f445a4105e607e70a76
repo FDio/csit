@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f6a3b16_98fc79a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-25T16:33:05Z",
+      "side": 1,
+      "message": "I have opened VPP-1878, after gathering some more data using reopened https://gerrit.fd.io/r/c/csit/+/26167",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 52
+      },
+      "revId": "9165f18f5d2a51b82e3f6f445a4105e607e70a76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
