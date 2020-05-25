@@ -80,7 +80,7 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply Startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
+| | When Initialize layer driver | ${nic_driver} | also_mtu=${False}
 | | And Initialize layer interface
 | | And Initialize L2 cross connect
 | | Then Find NDR and PDR intervals using optimized search
