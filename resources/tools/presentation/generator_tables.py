@@ -1949,17 +1949,25 @@ def table_weekly_comparison(table, in_data):
                 itm_lst.insert(1, round(item / 1e6, 1))
         itm_lst.extend(
             [
-                None if itm is None else round(itm, 1)
+                float(u"nan") if itm is None else round(itm, 1)
                 for itm in cmp_dict[tst_name]
             ]
         )
         tbl_lst.append(itm_lst)
 
+    print(tbl_lst)
+
     tbl_lst.sort(key=lambda rel: rel[0], reverse=False)
-    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+
+    print(tbl_lst)
+
+    tbl_lst.sort(key=lambda rel: rel[-1], reverse=False)
+
+    print(tbl_lst)
 
     # Generate csv table:
     csv_file = f"{table[u'output-file']}.csv"
+    logging.info(f"    Writing the file {csv_file}")
     with open(csv_file, u"wt", encoding='utf-8') as file_handler:
         for hdr in header:
             file_handler.write(u",".join(hdr) + u"\n")
@@ -1972,6 +1980,7 @@ def table_weekly_comparison(table, in_data):
             ) + u"\n")
 
     txt_file = f"{table[u'output-file']}.txt"
+    logging.info(f"    Writing the file {txt_file}")
     convert_csv_to_pretty_txt(csv_file, txt_file, delimiter=u",")
 
     # Reorganize header in txt table
