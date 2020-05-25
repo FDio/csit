@@ -94,14 +94,14 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize layer ip4vxlan
-| | ... | count=${nf_chains}
-| | And Initialize L2 bridge domains for multiple chains with Vhost-User
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | @{permit_list} = | Create List | 172.17.0.2/32 | 172.27.0.2/32
 | | Run Keyword If | '${acl_type}' != '${EMPTY}'
 | | ... | Configure ACLs on a single interface | ${dut1} | ${DUT1_${int}2_1}[0]
 | | ... | input | ${acl_type} | @{permit_list}
+| | And Initialize layer ip4vxlan
+| | ... | count=${nf_chains}
+| | And Initialize L2 bridge domains for multiple chains with Vhost-User
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${True}
