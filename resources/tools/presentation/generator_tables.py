@@ -1932,12 +1932,13 @@ def table_weekly_comparison(table, in_data):
             ref_data = tst_data.get(idx_ref, None)
             cmp_data = tst_data.get(idx_cmp, None)
             if ref_data is None or cmp_data is None:
-                cmp_dict[tst_name].append(float('nan'))
+                cmp_dict[tst_name].append(float(u'nan'))
             else:
                 cmp_dict[tst_name].append(
                     relative_change(ref_data, cmp_data)
                 )
 
+    tbl_lst_none = list()
     tbl_lst = list()
     for tst_name, tst_data in tbl_dict.items():
         itm_lst = [tst_data[u"name"], ]
@@ -1953,13 +1954,19 @@ def table_weekly_comparison(table, in_data):
                 for itm in cmp_dict[tst_name]
             ]
         )
-        tbl_lst.append(itm_lst)
+        if str(itm_lst[-1]) == u"nan" or itm_lst[-1] is None:
+            tbl_lst_none.append(itm_lst)
+        else:
+            tbl_lst.append(itm_lst)
 
+    tbl_lst_none.sort(key=lambda rel: rel[0], reverse=False)
     tbl_lst.sort(key=lambda rel: rel[0], reverse=False)
-    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+    tbl_lst.sort(key=lambda rel: rel[-1], reverse=False)
+    tbl_lst.extend(tbl_lst_none)
 
     # Generate csv table:
     csv_file = f"{table[u'output-file']}.csv"
+    logging.info(f"    Writing the file {csv_file}")
     with open(csv_file, u"wt", encoding='utf-8') as file_handler:
         for hdr in header:
             file_handler.write(u",".join(hdr) + u"\n")
@@ -1972,6 +1979,7 @@ def table_weekly_comparison(table, in_data):
             ) + u"\n")
 
     txt_file = f"{table[u'output-file']}.txt"
+    logging.info(f"    Writing the file {txt_file}")
     convert_csv_to_pretty_txt(csv_file, txt_file, delimiter=u",")
 
     # Reorganize header in txt table
