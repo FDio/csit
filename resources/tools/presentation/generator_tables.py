@@ -1949,14 +1949,14 @@ def table_weekly_comparison(table, in_data):
                 itm_lst.insert(1, round(item / 1e6, 1))
         itm_lst.extend(
             [
-                None if itm is None else round(itm, 1)
+                float(u"nan") if itm is None else round(itm, 1)
                 for itm in cmp_dict[tst_name]
             ]
         )
         tbl_lst.append(itm_lst)
 
     tbl_lst.sort(key=lambda rel: rel[0], reverse=False)
-    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+    tbl_lst.sort(key=lambda rel: rel[-1], reverse=False)
 
     # Generate csv table:
     csv_file = f"{table[u'output-file']}.csv"
