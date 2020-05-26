@@ -168,7 +168,7 @@
 | | ... | Find boundaries for troughput (of given target loss ratio)
 | | ... | using PLRsearch algorithm.
 | | ... | Display results as formatted test message.
-| | ... | Fail if computed lower bound is below minimal rate.
+| | ... | Fail if computed lower bound 110% of the minimal rate or less.
 | | ... | Input rates are understood as uni-directional,
 | | ... | reported result contains aggregate rates.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
@@ -201,8 +201,8 @@
 | | ... | traffic_directions=${traffic_directions}
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
-| | Should Not Be True | ${lower} < ${min_rate}
-| | ... | Lower bound ${lower} is below unidirectional minimum ${min_rate}.
+| | Should Not Be True | 1.1 * ${traffic_directions} * ${min_rate} > ${lower}
+| | ... | Lower bound ${lower} too small for unidirectional minimum ${min_rate}.
 
 | Display single bound
 | | [Documentation]
