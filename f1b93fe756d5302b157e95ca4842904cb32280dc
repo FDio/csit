@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2b7c10c8_76170bfb",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 108
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-26T16:14:01Z",
+      "side": 1,
+      "message": "\u003e for i in 10000\n\nCurrently, the worst case is \"for i in 1000000\".\nMy first reaction is that full for will take time, but I will measure how much it actually is.\n\nAlso, I will probably try to hide some logic in a function, to see how slow that would be.",
+      "parentUuid": "bcf1353e_5fb2c6bd",
+      "range": {
+        "startLine": 469,
+        "startChar": 27,
+        "endLine": 469,
+        "endChar": 29
+      },
+      "revId": "f1b93fe756d5302b157e95ca4842904cb32280dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e6edc3c_ccbce1f6",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 108
