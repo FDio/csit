@@ -60,7 +60,26 @@
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4udp-1u1p
+| ${traffic_profile}= | trex-sl-2n3n-ethip4udp-1u1p
+# IP addressing
+| ${tg_if1_ip4}= | 10.0.0.2
+| ${tg_if1_mask}= | 20
+| ${tg_if2_ip4}= | 12.0.0.2
+| ${tg_if2_mask}= | 20
+| ${dut1_if1_ip4}= | 10.0.0.1
+| ${dut1_if1_mask}= | 20
+| ${dut1_if2_ip4}= | 11.0.0.1
+| ${dut1_if2_mask}= | 20
+| ${dut2_if1_ip4}= | 11.0.0.2
+| ${dut2_if1_mask}= | 20
+| ${dut2_if2_ip4}= | 12.0.0.1
+| ${dut2_if2_mask}= | 20
+| ${inside_net}= | 192.168.0.0
+| ${inside_mask}= | 22
+| ${nat_net}= | 68.142.68.0
+| ${nat_mask}= | 32
+| ${dest_net}= | 20.0.0.0
+| ${dest_mask}= | 24
 
 *** Keywords ***
 | Local Template
