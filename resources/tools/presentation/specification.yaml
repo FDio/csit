@@ -193,394 +193,251 @@
     # 3n-hsw
 
     plot-vpp-throughput-lat-tsa-3n-hsw:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 21  # NDRPDR sel
-        - 22  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 24  # NDRPDR sel
-        - 25  # NDRPDR sel
-        - 29  # NDRPDR sel
-        - 30  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 32  # NDRPDR sel
-        - 34  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-hsw:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 22  # NDRPDR sel
 
     plot-vpp-nfv-3n-hsw-ndrpdr:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 21  # NDRPDR sel
-        - 22  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 24  # NDRPDR sel
-        - 25  # NDRPDR sel
-        - 29  # NDRPDR sel
-        - 30  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 32  # NDRPDR sel
-        - 34  # NDRPDR sel
 
     plot-vpp-nfv-3n-hsw-mrr:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 17  # MRR sel
 
-    plot-dpdk-throughput-latency-3n-hsw:
-      csit-dpdk-perf-verify-2001-3n-hsw:
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 22  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 24  # NDRPDR sel
-
     plot-vpp-hoststack-3n-hsw:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 103  # hoststack
-        - 104  # hoststack
-        - 105  # hoststack
-        - 106  # hoststack
-        - 107  # hoststack
-        - 108  # hoststack
-        - 109  # hoststack
-        - 110  # hoststack
-        - 111  # hoststack
-        - 112  # hoststack
+
+    plot-dpdk-throughput-latency-3n-hsw:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-hsw:
+      csit-dpdk-perf-verify-2001-3n-hsw:
+        - 4   # NDRPDR sel
+        - 24  # NDRPDR sel
 
     plot-dpdk-hdrh-lat-3n-hsw:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-hsw:
       csit-dpdk-perf-verify-2001-3n-hsw:
         - 16  # NDRPDR sel
 
     # 3n-skx
 
     plot-vpp-throughput-lat-tsa-3n-skx:
-      # TODO: Add the data
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-hdrh-lat-3n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-nfv-3n-skx-ndrpdr:
-      # TODO: Add data
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-nfv-3n-skx-mrr:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 50  # MRR sel
 
     plot-dpdk-throughput-latency-3n-skx:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-skx:
       csit-dpdk-perf-verify-2001-3n-skx:
         - 29  # NDRPDR sel xxv710
-        - 33  # NDRPDR sel xxv710
-        - 34  # NDRPDR sel xxv710
-        - 35  # NDRPDR sel xxv710
-        - 36  # NDRPDR sel xxv710
-        - 37  # NDRPDR sel xxv710
-        - 41  # NDRPDR sel xxv710
-        - 42  # NDRPDR sel xxv710
-        - 43  # NDRPDR sel xxv710
-        - 45  # NDRPDR sel xxv710
-        - 30  # NDRPDR sel x710
-        - 31  # NDRPDR sel x710
-        - 32  # NDRPDR sel x710
-        - 38  # NDRPDR sel x710
-        - 39  # NDRPDR sel x710
-        - 40  # NDRPDR sel x710
-        - 44  # NDRPDR sel x710
-        - 46  # NDRPDR sel x710
-        - 47  # NDRPDR sel x710
         - 48  # NDRPDR sel x710
 
     plot-dpdk-hdrh-lat-3n-skx:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-skx:
       csit-dpdk-perf-verify-2001-3n-skx:
         - 29  # NDRPDR sel xxv710
 
     # 2n-skx
 
     plot-vpp-throughput-lat-tsa-2n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     plot-vpp-hdrh-lat-2n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
-    plot-vpp-http-server-performance:
-      csit-vpp-perf-verify-2001-2n-clx:
-        - 80  # TCP
-        - 82  # TCP
-        - 83  # TCP
-        - 85  # TCP
-        - 86  # TCP
-        - 87  # TCP
-        - 88  # TCP
-        - 89  # TCP
-        - 90  # TCP
-        - 91  # TCP
-
     plot-vpp-soak-2n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 181  # Soak
         - 182  # Soak
 
     plot-vpp-nfv-2n-skx-ndrpdr:
-      # TODO: Replace the data
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 30  # NFV
         - 31  # NFV
 
     plot-vpp-nfv-2n-skx-mrr:
-      # TODO: Replace the data
-      # csit-vpp-perf-verify-2001-2n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 71  # NFV MRR
 
     plot-vpp-nfv-reconf-2n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 169  # Reconf
-        - 171  # Reconf
-        - 172  # Reconf
-        - 173  # Reconf
-        - 174  # Reconf
-        - 175  # Reconf
-        - 176  # Reconf
-        - 177  # Reconf
-        - 178  # Reconf
-        - 179  # Reconf
 
     plot-dpdk-throughput-latency-2n-skx:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
         - 35  # NDRPDR sel xxv710
-        - 36  # NDRPDR sel xxv710
-        - 37  # NDRPDR sel xxv710
-        - 41  # NDRPDR sel xxv710
-        - 42  # NDRPDR sel xxv710
-        - 43  # NDRPDR sel xxv710
-        - 46  # NDRPDR sel xxv710
-        - 47  # NDRPDR sel xxv710
-        - 52  # NDRPDR sel xxv710
-        - 53  # NDRPDR sel xxv710
-        - 38  # NDRPDR sel x710
-        - 39  # NDRPDR sel x710
-        - 40  # NDRPDR sel x710
-        - 44  # NDRPDR sel x710
-        - 45  # NDRPDR sel x710
-        - 48  # NDRPDR sel x710
-        - 49  # NDRPDR sel x710
-        - 50  # NDRPDR sel x710
-        - 51  # NDRPDR sel x710
         - 54  # NDRPDR sel x710
 
     plot-dpdk-hdrh-lat-2n-skx:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
         - 35  # NDRPDR sel xxv710
 
     # 2n-clx
 
     plot-vpp-throughput-lat-tsa-2n-clx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
-        - 29  # NDRPDR sel
-        - 32  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 43  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 45  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 49  # NDRPDR sel
 
     plot-vpp-hdrh-lat-2n-clx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
+
+    plot-vpp-http-server-performance:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 80  # TCP
 
     plot-vpp-nfv-2n-clx-ndrpdr:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
-        - 29  # NDRPDR sel
-        - 32  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 43  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 45  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 49  # NDRPDR sel
 
     plot-vpp-nfv-2n-clx-mrr:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 39  # MRR
 
     plot-vpp-nfv-reconf-2n-clx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 68  # Reconf
-        - 69  # Reconf
-        - 70  # Reconf
-        - 71  # Reconf
-        - 72  # Reconf
-        - 73  # Reconf
-        - 74  # Reconf
-        - 75  # Reconf
-        - 76  # Reconf
-        - 77  # Reconf
 
     plot-vpp-soak-2n-clx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 93  # Soak
         - 94  # Soak
 
     plot-dpdk-throughput-latency-2n-clx:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-clx:
       csit-dpdk-perf-verify-2001-2n-clx:
         - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 22  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 24  # NDRPDR sel
-        - 25  # NDRPDR sel
-        - 26  # NDRPDR sel
-        - 27  # NDRPDR sel
-        - 28  # NDRPDR sel
-        - 29  # NDRPDR sel
-        - 30  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 32  # NDRPDR sel
-        - 33  # NDRPDR sel
         - 34  # NDRPDR sel
 
-
     plot-dpdk-hdrh-lat-2n-clx:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-clx:
       csit-dpdk-perf-verify-2001-2n-clx:
         - 15  # NDRPDR sel
 
     # 3n-tsh
 
     plot-vpp-throughput-lat-tsa-3n-tsh:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
         - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 21  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-tsh:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
         - 10  # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-tsh:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-tsh:
       csit-dpdk-perf-verify-2001-3n-tsh:
         - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 18  # NDRPDR sel
 
     plot-dpdk-hdrh-lat-3n-tsh:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-tsh:
       csit-dpdk-perf-verify-2001-3n-tsh:
         - 3   # NDRPDR sel
 
     # 3n-dnv
 
     plot-vpp-throughput-lat-tsa-3n-dnv:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-dnv:
       csit-vpp-perf-verify-2001-3n-dnv:
         - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-dnv:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-dnv:
       csit-dpdk-perf-verify-2001-3n-dnv:
         - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 22  # NDRPDR sel
 
     # 2n-dnv
 
     plot-vpp-throughput-lat-tsa-2n-dnv:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-dnv:
       csit-vpp-perf-verify-2001-2n-dnv:
         - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 16  # NDRPDR sel
 
     plot-dpdk-throughput-latency-2n-dnv:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-dnv:
       csit-dpdk-perf-verify-2001-2n-dnv:
         - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
 
     ###########################################################################
     # Simple tables (only one data set):
@@ -588,35 +445,27 @@
     # NIC Comparisons
 
     vpp-nic-comparison-3n-skx:
-      # TODO: Add the data
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-nic-comparison-2n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-nic-comparison-3n-skx-mrr:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 50  # MRR sel
         - 53  # MRR sel addition
 
     vpp-nic-comparison-2n-skx-mrr:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
         - 128 # MRR sel addition
@@ -624,210 +473,140 @@
     # Results
 
     vpp-perf-results-3n-hsw:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
-        - 18  # NDRPDR full
-        - 20  # NDRPDR full
-        - 28  # NDRPDR full
-        - 35  # NDRPDR full
-        - 42  # NDRPDR full
-        - 46  # NDRPDR full
-        - 47  # NDRPDR full
-        - 48  # NDRPDR full
-        - 49  # NDRPDR full
-        - 50  # NDRPDR full
-        - 51  # NDRPDR full
-        - 52  # NDRPDR full
-        - 53  # NDRPDR full
-        - 54  # NDRPDR full
-        - 55  # NDRPDR full
-        - 56  # NDRPDR full
-        - 57  # NDRPDR full
-        - 58  # NDRPDR full
-        - 59  # NDRPDR full
-        - 61  # NDRPDR full
-        - 62  # NDRPDR full
-        - 63  # NDRPDR full
-        - 64  # NDRPDR full
-        - 65  # NDRPDR full
-        - 67  # NDRPDR full
-        - 70  # NDRPDR full
-        - 72  # NDRPDR full
-        - 73  # NDRPDR full
-        - 76  # NDRPDR full
-        - 77  # NDRPDR full
-        - 78  # NDRPDR full
-        - 79  # NDRPDR full
-        - 81  # NDRPDR full
-        - 82  # NDRPDR full
-        - 84  # NDRPDR full
-        - 85  # NDRPDR full
+        - 21  # NDRPDR sel
 
     vpp-perf-results-3n-skx:
-      # TODO: Add data
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
-        - 82  # NDRPDR full - crypto-1
-        - 85  # NDRPDR full - l2-2
-        - 87  # NDRPDR full - ip6-1
-        - 88  # NDRPDR full - ip6-2
-        - 90  # NDRPDR full - memif
-        - 95  # NDRPDR full - l2-1
-        - 96  # NDRPDR full - ip4-2
-        - 97  # NDRPDR full - vhost-1
-        - 102 # NDRPDR full - crypto-2
-        - 104 # NDRPDR full - ip4tunnels-1
-        - 105 # NDRPDR full - ip4tunnels-2
-        - 106 # NDRPDR full - ip4tunnels-3
-        - 107 # NDRPDR full - ip6tunnels-1
-        - 108 # NDRPDR full - ip4-1
-        - 109 # NDRPDR full - crypto-3
-        - 110 # NDRPDR full - crypto-4
-        - 111 # NDRPDR full - ip4-2
-        - 112 # NDRPDR full - ip4-4
-        - 113 # NDRPDR full - ip4-5
-        - 114 # NDRPDR full - ip4-6
-        - 115 # NDRPDR full - ip4-7
-        - 116 # NDRPDR full - ip4-8
-        - 117 # NDRPDR full - ip4-9
-        - 118 # NDRPDR full - srv6-1
-        - 119 # NDRPDR full - srv6-2
-        - 120 # NDRPDR full - l2-3
-        - 122 # NDRPDR full - l2-5
-        - 123 # NDRPDR full - l2-6
-        - 124 # NDRPDR full - l2-7
-        - 125 # NDRPDR full - vhost-2
-        - 126 # NDRPDR full - vhost-3
-        - 128 # NDRPDR full - l2-8
-        - 129 # NDRPDR full - l2-9
-        - 130 # NDRPDR full - l2-10
-        - 131 # NDRPDR full - l2-11
-        - 132 # NDRPDR full - vhost-4
-        - 133 # NDRPDR full - l2-4
+        - 69  # NDRPDR sel
 
     vpp-perf-results-2n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
-        - 155  # NDRPDR full - perf-full-2n-skx-ip4_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 156  # NDRPDR full - perf-full-2n-skx-ip4_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 157  # NDRPDR full - perf-full-2n-skx-ip4_III - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 158  # NDRPDR full - perf-full-2n-skx-ip4_V - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 159  # NDRPDR full - perf-full-2n-skx-ip4_VIII - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 160  # NDRPDR full - perf-full-2n-skx-ip4_IX - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 161  # NDRPDR full - perf-full-2n-skx-ip6_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 162  # NDRPDR full - perf-full-2n-skx-ip6_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 163  # NDRPDR full - perf-full-2n-skx-l2_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 164  # NDRPDR full - perf-full-2n-skx-l2_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 165  # NDRPDR full - perf-full-2n-skx-memif - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 166  # NDRPDR full - perf-full-2n-skx-vhost I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 167  # NDRPDR full - perf-full-2n-skx-vhost II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 168  # NDRPDR full - perf-full-2n-skx-vts - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 143  # NDRPDR sel
 
     vpp-perf-results-2n-clx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
-        - 53  # NDRPDR full
-        - 54  # NDRPDR full
-        - 55  # NDRPDR full
-        - 56  # NDRPDR full
-        - 57  # NDRPDR full
-        - 58  # NDRPDR full
-        - 59  # NDRPDR full
-        - 60  # NDRPDR full
-        - 61  # NDRPDR full
-        - 62  # NDRPDR full
-        - 63  # NDRPDR full
-        - 64  # NDRPDR full
-        - 65  # NDRPDR full
-        - 66  # NDRPDR full
-        - 67  # NDRPDR full
+        - 28  # NDRPDR sel
 
     vpp-perf-results-3n-tsh:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
         - 10  # NDRPDR sel
 
     vpp-perf-results-3n-dnv:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-dnv:
       csit-vpp-perf-verify-2001-3n-dnv:
-        - 19  # NDRPDR full
-        - 20  # NDRPDR full
-        - 21  # NDRPDR full
-        - 22  # NDRPDR full
-        - 23  # NDRPDR full
-        - 24  # NDRPDR full
-        - 25  # NDRPDR full
-        - 26  # NDRPDR full
-        - 37  # NDRPDR full
-        - 38  # NDRPDR full
-        - 39  # NDRPDR full
+        - 6   # NDRPDR sel
 
     vpp-perf-results-2n-dnv:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-dnv:
       csit-vpp-perf-verify-2001-2n-dnv:
-        - 21  # NDRPDR full
-        - 22  # NDRPDR full
-        - 25  # NDRPDR full
-        - 26  # NDRPDR full
-        - 27  # NDRPDR full
-        - 28  # NDRPDR full
+        - 4   # NDRPDR sel
 
     vpp-mrr-results-3n-hsw:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 17  # MRR sel
 
     vpp-mrr-results-3n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 50  # MRR sel
         - 53  # MRR sel addition
 
     vpp-mrr-results-2n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
         - 128 # MRR sel addition
 
     vpp-mrr-results-2n-clx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 39  # MRR
 
     vpp-mrr-results-3n-tsh:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
         - 9   # MRR sel
 
     vpp-mrr-results-3n-dnv:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-dnv:
       csit-vpp-perf-verify-2001-3n-dnv:
         - 11  # MRR sel
 
     vpp-mrr-results-2n-dnv:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-dnv:
       csit-vpp-perf-verify-2001-2n-dnv:
         - 12  # MRR sel
 
     vpp-device-results-ubuntu:
+    # TODO: Replace:
+    # csit-vpp-device-2005-ubuntu1804-1n-skx:
       csit-vpp-device-2001-ubuntu1804-1n-skx:
         - 57
 
     dpdk-perf-results-3n-hsw:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-hsw:
       csit-dpdk-perf-verify-2001-3n-hsw:
         - 25  # NDRPDR full
         - 26  # NDRPDR full
 
     dpdk-perf-results-3n-skx:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-skx:
       csit-dpdk-perf-verify-2001-3n-skx:
         - 29  # NDRPDR sel xxv710
         - 30  # NDRPDR sel x710
 
     dpdk-perf-results-2n-skx:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
         - 35  # NDRPDR sel xxv710
         - 38  # NDRPDR sel x710
 
     dpdk-perf-results-2n-clx:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-clx:
       csit-dpdk-perf-verify-2001-2n-clx:
         - 15  # NDRPDR sel
         - 34  # NDRPDR sel
 
     dpdk-perf-results-2n-dnv:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-dnv:
       csit-dpdk-perf-verify-2001-2n-dnv:
         - 16  # NDRPDR sel
 
     dpdk-perf-results-3n-dnv:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-dnv:
       csit-dpdk-perf-verify-2001-3n-dnv:
         - 12  # NDRPDR sel
 
     dpdk-perf-results-3n-tsh:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-tsh:
       csit-dpdk-perf-verify-2001-3n-tsh:
         - 3   # NDRPDR sel
 
@@ -836,145 +615,7 @@
 
     # Performance changes
 
-    vpp-perf-changes-2n-skx-old1908_0:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 27  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 34  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 35  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 36  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 42  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 43  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 44  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 45  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 46  # NDRPDR sel - old1908 - vpp build: 19.08-release
-    vpp-perf-changes-2n-skx-old1908_1:
-      csit-vpp-perf-verify-1908_1-2n-skx:
-        - 3   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 4   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 6   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 10  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 14  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 16  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 21  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 23  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 24  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 25  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-    vpp-perf-changes-2n-skx-new1908_1:
-      csit-vpp-perf-verify-1908_1-2n-skx:
-        - 39  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 40  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 41  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 43  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 44  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 45  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 46  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 47  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 48  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 49  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-    vpp-perf-changes-2n-skx-new1908_2:
-      csit-vpp-perf-verify-1908_2-2n-skx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-    vpp-perf-changes-2n-skx-new2001_0:
-      csit-vpp-perf-verify-2001-2n-skx:
-        - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-
-    vpp-perf-changes-3n-skx-old1908_0:
-      csit-vpp-perf-verify-1908-3n-skx:
-        - 14  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 16  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 19  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 20  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 22  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 23  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 24  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 25  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 29  # NDRPDR sel - old1908 - vpp build: 19.08-release
-    vpp-perf-changes-3n-skx-old1908_1:
-      csit-vpp-perf-verify-1908_1-3n-skx:
-        - 3   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 4   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 7   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 8   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 9   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 10  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 11  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 12  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 13  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-        - 14  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-    vpp-perf-changes-3n-skx-new1908_1:
-      csit-vpp-perf-verify-1908_1-3n-skx:
-        - 26  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 27  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 28  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 29  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 30  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 31  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 33  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 34  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 35  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-        - 36  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-    vpp-perf-changes-3n-skx-new1908_2:
-      csit-vpp-perf-verify-1908_2-3n-skx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-    vpp-perf-changes-3n-skx-new2001_0:
-      csit-vpp-perf-verify-2001-3n-skx:
-        - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-
-    vpp-perf-changes-2n-clx-new1908_1:
-      csit-vpp-perf-verify-1908_1-2n-clx:
-        - 5  # NDRPDR sel
-        - 6  # NDRPDR sel
-        - 7  # NDRPDR sel
-        - 8  # NDRPDR sel
-        - 9  # NDRPDR sel
-    vpp-perf-changes-2n-clx-new1908_2:
-      csit-vpp-perf-verify-1908_2-2n-clx:
-        - 4  # NDRPDR sel
-        - 5  # NDRPDR sel
-        - 6  # NDRPDR sel
-        - 7  # NDRPDR sel
-        - 8  # NDRPDR sel
-
     vpp-performance-changes-3n-hsw-h1:
-      csit-vpp-perf-verify-1904-3n-hsw:
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 24  # NDRPDR sel
-        - 25  # NDRPDR sel
-        - 26  # NDRPDR sel
-        - 29  # NDRPDR sel
-        - 30  # NDRPDR sel
-    vpp-performance-changes-3n-hsw-ref:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
@@ -986,7 +627,21 @@
         - 19  # NDRPDR sel
         - 20  # NDRPDR sel
         - 21  # NDRPDR sel
+    vpp-performance-changes-3n-hsw-ref:
+      csit-vpp-perf-verify-2001-3n-hsw:
+        - 21  # NDRPDR sel
+        - 22  # NDRPDR sel
+        - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
+        - 25  # NDRPDR sel
+        - 29  # NDRPDR sel
+        - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
+        - 32  # NDRPDR sel
+        - 34  # NDRPDR sel
     vpp-performance-changes-3n-hsw-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 21  # NDRPDR sel
         - 22  # NDRPDR sel
@@ -1000,31 +655,29 @@
         - 34  # NDRPDR sel
 
     vpp-performance-changes-3n-skx-h1:
-      csit-vpp-perf-verify-1904-3n-skx:
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 25  # NDRPDR sel
-    vpp-performance-changes-3n-skx-ref:
       csit-vpp-perf-verify-1908-3n-skx:
-        - 14  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 16  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 19  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 20  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 22  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 23  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 24  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 25  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 29  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 26  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 27  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 28  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 29  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 30  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 31  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 33  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 34  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 35  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 36  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+    vpp-performance-changes-3n-skx-ref:
+      csit-vpp-perf-verify-2001-3n-skx:
+        - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 72  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 76  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-performance-changes-3n-skx-cmp:
-      # TODO: Add the data
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -1035,30 +688,32 @@
         - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-performance-changes-2n-skx-h1:
-      csit-vpp-perf-verify-1904-2n-skx:
-        - 12  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 27  # NDRPDR sel
-        - 30  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 32  # NDRPDR sel
-    vpp-performance-changes-2n-skx-ref:
       csit-vpp-perf-verify-1908-2n-skx:
-        - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 27  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 34  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 35  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 36  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 42  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 43  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 44  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 45  # NDRPDR sel - old1908 - vpp build: 19.08-release
-        - 46  # NDRPDR sel - old1908 - vpp build: 19.08-release
+        - 39  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 40  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 41  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 43  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 44  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 45  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 46  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 47  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 48  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+        - 49  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
+    vpp-performance-changes-2n-skx-ref:
+      csit-vpp-perf-verify-2001-2n-skx:
+        - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 147  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 148  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 149  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 150  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 151  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
+        - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-performance-changes-2n-skx-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -1072,17 +727,51 @@
         - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-performance-changes-nfv-2n-skx-ref:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 22  # NFV
+      csit-vpp-perf-verify-2001-2n-skx:
+        - 30  # NFV
         - 31  # NFV
-        - 32  # NFV
     vpp-performance-changes-nfv-2n-skx-cmp:
-      # TODO: Add the data
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 30  # NFV
         - 31  # NFV
 
-    vpp-performance-changes-2n-dnv-ref:
+    vpp-performance-changes-2n-clx-h1:
+      csit-vpp-perf-verify-1908_1-2n-clx:
+        - 5  # NDRPDR sel
+        - 6  # NDRPDR sel
+        - 7  # NDRPDR sel
+        - 8  # NDRPDR sel
+        - 9  # NDRPDR sel
+    vpp-performance-changes-2n-clx-ref:
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 28  # NDRPDR sel
+        - 29  # NDRPDR sel
+        - 32  # NDRPDR sel
+        - 40  # NDRPDR sel
+        - 43  # NDRPDR sel
+        - 44  # NDRPDR sel
+        - 45  # NDRPDR sel
+        - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
+        - 49  # NDRPDR sel
+    vpp-performance-changes-2n-clx-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 28  # NDRPDR sel
+        - 29  # NDRPDR sel
+        - 32  # NDRPDR sel
+        - 40  # NDRPDR sel
+        - 43  # NDRPDR sel
+        - 44  # NDRPDR sel
+        - 45  # NDRPDR sel
+        - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
+        - 49  # NDRPDR sel
+
+    vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-1908-2n-dnv:
         - 1   # NDRPDR sel
         - 2   # NDRPDR sel
@@ -1094,7 +783,21 @@
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
+    vpp-performance-changes-2n-dnv-ref:
+      csit-vpp-perf-verify-2001-2n-dnv:
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 16  # NDRPDR sel
     vpp-performance-changes-2n-dnv-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-dnv:
       csit-vpp-perf-verify-2001-2n-dnv:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel
@@ -1107,7 +810,7 @@
         - 13  # NDRPDR sel
         - 16  # NDRPDR sel
 
-    vpp-performance-changes-3n-dnv-ref:
+    vpp-performance-changes-3n-dnv-h1:
       csit-vpp-perf-verify-1908-3n-dnv:
         - 6   # NDRPDR sel
         - 7   # NDRPDR sel
@@ -1119,7 +822,21 @@
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
+    vpp-performance-changes-3n-dnv-ref:
+      csit-vpp-perf-verify-2001-3n-dnv:
+        - 5   # NDRPDR sel
+        - 6   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 16  # NDRPDR sel
+        - 17  # NDRPDR sel
+        - 18  # NDRPDR sel
     vpp-performance-changes-3n-dnv-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-dnv:
       csit-vpp-perf-verify-2001-3n-dnv:
         - 5   # NDRPDR sel
         - 6   # NDRPDR sel
@@ -1132,7 +849,7 @@
         - 17  # NDRPDR sel
         - 18  # NDRPDR sel
 
-    vpp-performance-changes-3n-tsh-ref:
+    vpp-performance-changes-3n-tsh-h1:
       csit-vpp-perf-verify-1908-3n-tsh:
         - 7   # NDRPDR sel
         - 8   # NDRPDR sel
@@ -1144,7 +861,21 @@
         - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
+    vpp-performance-changes-3n-tsh-ref:
+      csit-vpp-perf-verify-2001-3n-tsh:
+        - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 7   # NDRPDR sel
+        - 8   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
+        - 21  # NDRPDR sel
     vpp-performance-changes-3n-tsh-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
@@ -1158,6 +889,8 @@
         - 21  # NDRPDR sel
 
     vpp-soak-vs-ndr-2n-skx-ref:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -1170,10 +903,14 @@
         - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-soak-vs-ndr-2n-skx-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 181  # Soak
         - 182  # Soak
     vpp-soak-vs-ndr-2n-skx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -1189,6 +926,8 @@
         - 182  # Soak
 
     vpp-soak-vs-ndr-2n-clx-ref:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
@@ -1201,10 +940,14 @@
         - 48  # NDRPDR sel
         - 49  # NDRPDR sel
     vpp-soak-vs-ndr-2n-clx-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 93  # SOAK
         - 94  # Soak
     vpp-soak-vs-ndr-2n-clx:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
@@ -1220,80 +963,91 @@
         - 94  # Soak
 
     vpp-performance-changes-3n-hsw-mrr-h1:
-      csit-vpp-perf-verify-1904-3n-hsw:
-        - 9   # MRR sel
-    vpp-performance-changes-3n-hsw-mrr-ref:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 39  # MRR sel
+    vpp-performance-changes-3n-hsw-mrr-ref:
+      csit-vpp-perf-verify-2001-3n-hsw:
+        - 17  # MRR sel
     vpp-performance-changes-3n-hsw-mrr-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 17  # MRR sel
 
     vpp-performance-changes-3n-skx-mrr-h1:
-      csit-vpp-perf-verify-1904-3n-skx:
-        - 7   # MRR sel
-    vpp-performance-changes-3n-skx-mrr-ref:
       csit-vpp-perf-verify-1908-3n-skx:
         - 36  # MRR sel
+    vpp-performance-changes-3n-skx-mrr-ref:
+      csit-vpp-perf-verify-2001-3n-skx:
+        - 50  # MRR sel
+        - 53  # MRR sel addition
     vpp-performance-changes-3n-skx-mrr-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 50  # MRR sel
         - 53  # MRR sel addition
 
     vpp-performance-changes-2n-skx-mrr-h1:
-      csit-vpp-perf-verify-1904-2n-skx:
-        - 11  # MRR sel
-    vpp-performance-changes-2n-skx-mrr-ref:
       csit-vpp-perf-verify-1908-2n-skx:
         - 69  # MRR sel
+    vpp-performance-changes-2n-skx-mrr-ref:
+      csit-vpp-perf-verify-2001-2n-skx:
+        - 101 # MRR sel
+        - 128 # MRR sel addition
     vpp-performance-changes-2n-skx-mrr-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
         - 128 # MRR sel addition
 
-    vpp-performance-changes-nfv-2n-skx-mrr-ref:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 71  # NFV MRR
-    vpp-performance-changes-nfv-2n-skx-mrr-cmp:
-      # TODO: Replace
-      # csit-vpp-perf-verify-2001-2n-skx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 71  # NFV MRR
+#    vpp-performance-changes-nfv-2n-skx-mrr-ref:
+#      csit-vpp-perf-verify-1908-2n-skx:
+#        - 71  # NFV MRR
+#    vpp-performance-changes-nfv-2n-skx-mrr-cmp:
+#      # TODO: Replace
+#      # csit-vpp-perf-verify-2001-2n-skx:
+#      csit-vpp-perf-verify-1908-2n-skx:
+#        - 71  # NFV MRR
 
-    vpp-performance-changes-2n-dnv-mrr-ref:
+    vpp-performance-changes-2n-dnv-mrr-h1:
       csit-vpp-perf-verify-1908-2n-dnv:
         - 11  # MRR sel
+    vpp-performance-changes-2n-dnv-mrr-ref:
+      csit-vpp-perf-verify-2001-2n-dnv:
+        - 12  # MRR sel
     vpp-performance-changes-2n-dnv-mrr-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-dnv:
       csit-vpp-perf-verify-2001-2n-dnv:
         - 12  # MRR sel
 
-    vpp-performance-changes-3n-dnv-mrr-ref:
+    vpp-performance-changes-3n-dnv-mrr-h1:
       csit-vpp-perf-verify-1908-3n-dnv:
         - 17  # MRR sel
+    vpp-performance-changes-3n-dnv-mrr-ref:
+      csit-vpp-perf-verify-2001-3n-dnv:
+        - 11  # MRR sel
     vpp-performance-changes-3n-dnv-mrr-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-dnv:
       csit-vpp-perf-verify-2001-3n-dnv:
         - 11  # MRR sel
 
-    vpp-performance-changes-3n-tsh-mrr-ref:
+    vpp-performance-changes-3n-tsh-mrr-h1:
       csit-vpp-perf-verify-1908-3n-tsh:
         - 17  # MRR sel
+    vpp-performance-changes-3n-tsh-mrr-ref:
+      csit-vpp-perf-verify-2001-3n-tsh:
+        - 9   # MRR sel
     vpp-performance-changes-3n-tsh-mrr-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-tsh:
       csit-vpp-perf-verify-2001-3n-tsh:
         - 9   # MRR sel
 
     dpdk-performance-changes-3n-hsw-h1:
-      csit-dpdk-perf-verify-1904-3n-hsw:
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-    dpdk-performance-changes-3n-hsw-ref:
       csit-dpdk-perf-verify-1908-3n-hsw:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -1305,7 +1059,31 @@
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
+    dpdk-performance-changes-3n-hsw-ref:
+      csit-dpdk-perf-verify-2001-3n-hsw:
+#        - 4   # NDRPDR sel
+#        - 5   # NDRPDR sel
+#        - 6   # NDRPDR sel
+#        - 7   # NDRPDR sel
+#        - 8   # NDRPDR sel
+#        - 9   # NDRPDR sel
+#        - 10  # NDRPDR sel
+#        - 11  # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 13  # NDRPDR sel
+        - 15  # NDRPDR sel
+        - 16  # NDRPDR sel
+        - 17  # NDRPDR sel
+        - 18  # NDRPDR sel
+        - 19  # NDRPDR sel
+        - 20  # NDRPDR sel
+        - 21  # NDRPDR sel
+        - 22  # NDRPDR sel
+        - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
     dpdk-performance-changes-3n-hsw-cmp:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-hsw:
       csit-dpdk-perf-verify-2001-3n-hsw:
 #        - 4   # NDRPDR sel
 #        - 5   # NDRPDR sel
@@ -1329,18 +1107,6 @@
         - 24  # NDRPDR sel
 
     dpdk-performance-changes-3n-skx-h1:
-      csit-dpdk-perf-verify-1904-3n-skx:
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-    dpdk-performance-changes-3n-skx-ref:
       csit-dpdk-perf-verify-1908-3n-skx:
         - 3   # NDRPDR sel
         - 4   # NDRPDR sel
@@ -1352,7 +1118,31 @@
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
+    dpdk-performance-changes-3n-skx-ref:
+      csit-dpdk-perf-verify-2001-3n-skx:
+        - 29  # NDRPDR sel xxv710
+        - 33  # NDRPDR sel xxv710
+        - 34  # NDRPDR sel xxv710
+        - 35  # NDRPDR sel xxv710
+        - 36  # NDRPDR sel xxv710
+        - 37  # NDRPDR sel xxv710
+        - 41  # NDRPDR sel xxv710
+        - 42  # NDRPDR sel xxv710
+        - 43  # NDRPDR sel xxv710
+        - 45  # NDRPDR sel xxv710
+        - 30  # NDRPDR sel x710
+        - 31  # NDRPDR sel x710
+        - 32  # NDRPDR sel x710
+        - 38  # NDRPDR sel x710
+        - 39  # NDRPDR sel x710
+        - 40  # NDRPDR sel x710
+        - 44  # NDRPDR sel x710
+        - 46  # NDRPDR sel x710
+        - 47  # NDRPDR sel x710
+        - 48  # NDRPDR sel x710
     dpdk-performance-changes-3n-skx-cmp:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-skx:
       csit-dpdk-perf-verify-2001-3n-skx:
         - 29  # NDRPDR sel xxv710
         - 33  # NDRPDR sel xxv710
@@ -1376,18 +1166,6 @@
         - 48  # NDRPDR sel x710
 
     dpdk-performance-changes-2n-skx-h1:
-      csit-dpdk-perf-verify-1904-2n-skx:
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-    dpdk-performance-changes-2n-skx-ref:
       csit-dpdk-perf-verify-1908-2n-skx:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -1399,7 +1177,31 @@
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
+    dpdk-performance-changes-2n-skx-ref:
+      csit-dpdk-perf-verify-2001-2n-skx:
+        - 35  # NDRPDR sel xxv710
+        - 36  # NDRPDR sel xxv710
+        - 37  # NDRPDR sel xxv710
+        - 41  # NDRPDR sel xxv710
+        - 42  # NDRPDR sel xxv710
+        - 43  # NDRPDR sel xxv710
+        - 46  # NDRPDR sel xxv710
+        - 47  # NDRPDR sel xxv710
+        - 52  # NDRPDR sel xxv710
+        - 53  # NDRPDR sel xxv710
+        - 38  # NDRPDR sel x710
+        - 39  # NDRPDR sel x710
+        - 40  # NDRPDR sel x710
+        - 44  # NDRPDR sel x710
+        - 45  # NDRPDR sel x710
+        - 48  # NDRPDR sel x710
+        - 49  # NDRPDR sel x710
+        - 50  # NDRPDR sel x710
+        - 51  # NDRPDR sel x710
+        - 54  # NDRPDR sel x710
     dpdk-performance-changes-2n-skx-cmp:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
         - 35  # NDRPDR sel xxv710
         - 36  # NDRPDR sel xxv710
@@ -1425,6 +1227,8 @@
     # Compare testbeds
 
     vpp-compare-testbeds-ref:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 21  # NDRPDR sel
         - 22  # NDRPDR sel
@@ -1437,7 +1241,8 @@
         - 32  # NDRPDR sel
         - 34  # NDRPDR sel
     vpp-compare-testbeds-cmp:
-      # TODO: Add the data
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -1448,6 +1253,8 @@
         - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-compare-testbeds-skx-clx-ref:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -1460,6 +1267,8 @@
         - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-compare-testbeds-skx-clx-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
@@ -1473,6 +1282,8 @@
         - 49  # NDRPDR sel
 
     vpp-compare-testbeds-hsw-clx-ref:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 21  # NDRPDR sel
         - 22  # NDRPDR sel
@@ -1485,6 +1296,8 @@
         - 32  # NDRPDR sel
         - 34  # NDRPDR sel
     vpp-compare-testbeds-hsw-clx-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
         - 29  # NDRPDR sel
@@ -1498,29 +1311,43 @@
         - 49  # NDRPDR sel
 
     vpp-compare-testbeds-mrr-ref:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 17  # MRR sel
     vpp-compare-testbeds-mrr-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 50  # MRR sel
         - 53  # MRR sel addition
 
     vpp-compare-testbeds-mrr-skx-clx-ref:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
         - 128 # MRR sel addition
     vpp-compare-testbeds-mrr-skx-clx-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 39  # MRR
 
     vpp-compare-testbeds-mrr-hsw-clx-ref:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-hsw:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 17  # MRR sel
     vpp-compare-testbeds-mrr-hsw-clx-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
         - 39  # MRR
 
     dpdk-compare-testbeds-ref:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-hsw:
       csit-dpdk-perf-verify-2001-3n-hsw:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel
@@ -1543,6 +1370,8 @@
         - 23  # NDRPDR sel
         - 24  # NDRPDR sel
     dpdk-compare-testbeds-cmp:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-skx:
       csit-dpdk-perf-verify-2001-3n-skx:
         - 29  # NDRPDR sel xxv710
         - 33  # NDRPDR sel xxv710
@@ -1566,6 +1395,8 @@
         - 48  # NDRPDR sel x710
 
     dpdk-compare-testbeds-skx-clx-ref:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
         - 35  # NDRPDR sel xxv710
         - 36  # NDRPDR sel xxv710
@@ -1588,6 +1419,8 @@
         - 51  # NDRPDR sel x710
         - 54  # NDRPDR sel x710
     dpdk-compare-testbeds-skx-clx-cmp:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-clx:
       csit-dpdk-perf-verify-2001-2n-clx:
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
@@ -1613,7 +1446,8 @@
     # Compare topologies
 
     vpp-compare-topologies-ref:
-      # TODO: Add the data
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -1623,6 +1457,8 @@
         - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
     vpp-compare-topologies-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
         - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -1636,15 +1472,21 @@
         - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
 
     vpp-compare-topologies-mrr-ref:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-3n-skx:
       csit-vpp-perf-verify-2001-3n-skx:
         - 50  # MRR sel
         - 53  # MRR sel addition
     vpp-compare-topologies-mrr-cmp:
+      # TODO: Replace:
+      # csit-vpp-perf-report-iterative-2005-2n-skx:
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
         - 128 # MRR sel addition
 
     dpdk-compare-topologies-ref:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-3n-skx:
       csit-dpdk-perf-verify-2001-3n-skx:
         - 29  # NDRPDR sel xxv710
         - 33  # NDRPDR sel xxv710
@@ -1667,6 +1509,8 @@
         - 47  # NDRPDR sel x710
         - 48  # NDRPDR sel x710
     dpdk-compare-topologies-cmp:
+      # TODO: Replace:
+      # csit-dpdk-perf-verify-2005-2n-skx:
       csit-dpdk-perf-verify-2001-2n-skx:
         - 35  # NDRPDR sel xxv710
         - 36  # NDRPDR sel xxv710
@@ -2341,18 +2185,6 @@
 
   builds:
 
-    csit-vpp-perf-verify-1904-3n-hsw:
-      - 9   # MRR sel
-      - 11  # NDRPDR sel
-      - 12  # NDRPDR sel
-      - 20  # NDRPDR sel
-      - 21  # NDRPDR sel
-      - 23  # NDRPDR sel
-      - 24  # NDRPDR sel
-      - 25  # NDRPDR sel
-      - 26  # NDRPDR sel
-      - 29  # NDRPDR sel
-      - 30  # NDRPDR sel
     csit-vpp-perf-verify-1908-3n-hsw:
       - 12  # NDRPDR sel
       - 13  # NDRPDR sel
@@ -2387,98 +2219,11 @@
       - 32  # NDRPDR sel
       - 34  # NDRPDR sel
       - 17  # MRR sel
-      - 18  # NDRPDR full
-      - 20  # NDRPDR full
-      - 28  # NDRPDR full
-      - 35  # NDRPDR full
-      - 42  # NDRPDR full
-      - 46  # NDRPDR full
-      - 47  # NDRPDR full
-      - 48  # NDRPDR full
-      - 49  # NDRPDR full
-      - 50  # NDRPDR full
-      - 51  # NDRPDR full
-      - 52  # NDRPDR full
-      - 53  # NDRPDR full
-      - 54  # NDRPDR full
-      - 55  # NDRPDR full
-      - 56  # NDRPDR full
-      - 57  # NDRPDR full
-      - 58  # NDRPDR full
-      - 59  # NDRPDR full
-      - 61  # NDRPDR full
-      - 62  # NDRPDR full
-      - 63  # NDRPDR full
-      - 64  # NDRPDR full
-      - 65  # NDRPDR full
-      - 67  # NDRPDR full
-      - 70  # NDRPDR full
-      - 72  # NDRPDR full
-      - 73  # NDRPDR full
-      - 76  # NDRPDR full
-      - 77  # NDRPDR full
-      - 78  # NDRPDR full
-      - 79  # NDRPDR full
-      - 81  # NDRPDR full
-      - 82  # NDRPDR full
-      - 84  # NDRPDR full
-      - 85  # NDRPDR full
-      - 103  # hoststack
-      - 104  # hoststack
-      - 105  # hoststack
-      - 106  # hoststack
-      - 107  # hoststack
-      - 108  # hoststack
-      - 109  # hoststack
-      - 110  # hoststack
-      - 111  # hoststack
-      - 112  # hoststack
+      - 103  # hoststack REMOVE
+    # TODO: Add data:
+    # csit-vpp-perf-report-iterative-2005-3n-hsw:
 
-    csit-vpp-perf-verify-1904-3n-skx:
-      - 7   # MRR sel
-      - 8   # NDRPDR sel
-      - 9   # NDRPDR sel
-      - 10  # NDRPDR sel
-      - 11  # NDRPDR sel
-      - 12  # NDRPDR sel
-      - 14  # NDRPDR sel
-      - 16  # NDRPDR sel
-      - 21  # NDRPDR sel
-      - 23  # NDRPDR sel
-      - 25  # NDRPDR sel
-    csit-vpp-perf-verify-1908-3n-skx:
-      - 14  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 16  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 19  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 20  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 22  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 23  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 24  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 25  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 29  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 52  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 53  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 55  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 61  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 62  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 63  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 64  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 65  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 66  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 67  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 36  # MRR sel - old1908 - vpp build: 19.08-release
     csit-vpp-perf-verify-1908_1-3n-skx:
-      - 3   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 4   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 7   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 8   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 9   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 10  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 11  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 12  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 13  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 14  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
       - 26  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 27  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 28  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
@@ -2489,9 +2234,6 @@
       - 34  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 35  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 36  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-    csit-vpp-perf-verify-1908_2-3n-skx:
-      - 1   # NDRPDR sel
-      - 2   # NDRPDR sel
     csit-vpp-perf-verify-2001-3n-skx:
       - 69  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 71  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -2500,91 +2242,12 @@
       - 77  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 78  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 80  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 82  # NDRPDR full - crypto-1
-      - 85  # NDRPDR full - l2-2
-      - 87  # NDRPDR full - ip6-1
-      - 88  # NDRPDR full - ip6-2
-      - 90  # NDRPDR full - memif
-      - 95  # NDRPDR full - l2-1
-      - 96  # NDRPDR full - ip4-2
-      - 97  # NDRPDR full - vhost-1
-      - 102 # NDRPDR full - crypto-2
-      - 104 # NDRPDR full - ip4tunnels-1
-      - 105 # NDRPDR full - ip4tunnels-2
-      - 106 # NDRPDR full - ip4tunnels-3
-      - 107 # NDRPDR full - ip6tunnels-1
-      - 108 # NDRPDR full - ip4-1
-      - 109 # NDRPDR full - crypto-3
-      - 110 # NDRPDR full - crypto-4
-      - 111 # NDRPDR full - ip4-2
-      - 112 # NDRPDR full - ip4-4
-      - 113 # NDRPDR full - ip4-5
-      - 114 # NDRPDR full - ip4-6
-      - 115 # NDRPDR full - ip4-7
-      - 116 # NDRPDR full - ip4-8
-      - 117 # NDRPDR full - ip4-9
-      - 118 # NDRPDR full - srv6-1
-      - 119 # NDRPDR full - srv6-2
-      - 120 # NDRPDR full - l2-3
-      - 122 # NDRPDR full - l2-5
-      - 123 # NDRPDR full - l2-6
-      - 124 # NDRPDR full - l2-7
-      - 125 # NDRPDR full - vhost-2
-      - 126 # NDRPDR full - vhost-3
-      - 128 # NDRPDR full - l2-8
-      - 129 # NDRPDR full - l2-9
-      - 130 # NDRPDR full - l2-10
-      - 131 # NDRPDR full - l2-11
-      - 132 # NDRPDR full - vhost-4
-      - 133 # NDRPDR full - l2-4
       - 50  # MRR sel
       - 53  # MRR sel addition
+    # TODO: Add data:
+    # csit-vpp-perf-report-iterative-2005-3n-skx:
 
-    csit-vpp-perf-verify-1904-2n-skx:
-      - 11  # MRR sel
-      - 12  # NDRPDR sel
-      - 14  # NDRPDR sel
-      - 16  # NDRPDR sel
-      - 17  # NDRPDR sel
-      - 18  # NDRPDR sel
-      - 21  # NDRPDR sel
-      - 27  # NDRPDR sel
-      - 30  # NDRPDR sel
-      - 31  # NDRPDR sel
-      - 32  # NDRPDR sel
-    csit-vpp-perf-verify-1908-2n-skx:
-      - 26  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 27  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 34  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 35  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 36  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 42  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 43  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 44  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 45  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 46  # NDRPDR sel - old1908 - vpp build: 19.08-release
-      - 88  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 89  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 91  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 92  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 93  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 94  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 95  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 96  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 97  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 98  # NDRPDR sel vhost - old1908 - vpp build: 19.08-release
-      - 69  # MRR sel - old1908 - vpp build: 19.08-release
     csit-vpp-perf-verify-1908_1-2n-skx:
-      - 3   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 4   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 6   # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 10  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 14  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 16  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 21  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 23  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 24  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
-      - 25  # NDRPDR sel - old1908.1 - vpp build: 19.08.1-release, old BIOS and ucode
       - 39  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 40  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 41  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
@@ -2595,17 +2258,6 @@
       - 47  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 48  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
       - 49  # NDRPDR sel - new1908.1 - vpp build: 19.08.1-release, new BIOS and ucode, irqbalance set
-    csit-vpp-perf-verify-1908_2-2n-skx:
-      - 1   # NDRPDR sel
-      - 2   # NDRPDR sel
-      - 3   # NDRPDR sel
-      - 4   # NDRPDR sel
-      - 5   # NDRPDR sel
-      - 6   # NDRPDR sel
-      - 7   # NDRPDR sel
-      - 8   # NDRPDR sel
-      - 9   # NDRPDR sel
-      - 10  # NDRPDR sel
     csit-vpp-perf-verify-2001-2n-skx:
       - 143  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 146  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
@@ -2617,34 +2269,13 @@
       - 152  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 153  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 154  # NDRPDR sel - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 155  # NDRPDR full - perf-full-2n-skx-ip4_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 156  # NDRPDR full - perf-full-2n-skx-ip4_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 157  # NDRPDR full - perf-full-2n-skx-ip4_III - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 158  # NDRPDR full - perf-full-2n-skx-ip4_V - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 159  # NDRPDR full - perf-full-2n-skx-ip4_VIII - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 160  # NDRPDR full - perf-full-2n-skx-ip4_IX - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 161  # NDRPDR full - perf-full-2n-skx-ip6_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 162  # NDRPDR full - perf-full-2n-skx-ip6_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 163  # NDRPDR full - perf-full-2n-skx-l2_I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 164  # NDRPDR full - perf-full-2n-skx-l2_II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 165  # NDRPDR full - perf-full-2n-skx-memif - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 166  # NDRPDR full - perf-full-2n-skx-vhost I - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 167  # NDRPDR full - perf-full-2n-skx-vhost II - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
-      - 168  # NDRPDR full - perf-full-2n-skx-vts - new2001.0 - vpp build: 20.01.0-release, new BIOS and ucode, irqbalance set
       - 101  # MRR sel - old
       - 128  # MRR sel addition - old
-      - 169  # Reconf
-      - 171  # Reconf
-      - 172  # Reconf
-      - 173  # Reconf
-      - 174  # Reconf
-      - 175  # Reconf
-      - 176  # Reconf
-      - 177  # Reconf
-      - 178  # Reconf
-      - 179  # Reconf
-      - 181  # Soak
-      - 182  # Soak
+      - 169  # Reconf REMOVE
+      - 181  # Soak REMOVE
+      - 182  # Soak REMOVE
+    # TODO: Add data:
+    # csit-vpp-perf-report-iterative-2005-2n-skx:
 
     csit-vpp-perf-verify-1908_1-2n-clx:
       - 5  # NDRPDR sel
@@ -2652,12 +2283,6 @@
       - 7  # NDRPDR sel
       - 8  # NDRPDR sel
       - 9  # NDRPDR sel
-    csit-vpp-perf-verify-1908_2-2n-clx:
-      - 4  # NDRPDR sel
-      - 5  # NDRPDR sel
-      - 6  # NDRPDR sel
-      - 7  # NDRPDR sel
-      - 8  # NDRPDR sel
     csit-vpp-perf-verify-2001-2n-clx:
       - 28  # NDRPDR sel
       - 29  # NDRPDR sel
@@ -2670,43 +2295,12 @@
       - 48  # NDRPDR sel
       - 49  # NDRPDR sel
       - 39  # MRR
-      - 53  # NDRPDR full
-      - 54  # NDRPDR full
-      - 55  # NDRPDR full
-      - 56  # NDRPDR full
-      - 57  # NDRPDR full
-      - 58  # NDRPDR full
-      - 59  # NDRPDR full
-      - 60  # NDRPDR full
-      - 61  # NDRPDR full
-      - 62  # NDRPDR full
-      - 63  # NDRPDR full
-      - 64  # NDRPDR full
-      - 65  # NDRPDR full
-      - 66  # NDRPDR full
-      - 67  # NDRPDR full
-      - 68  # Reconf
-      - 69  # Reconf
-      - 70  # Reconf
-      - 71  # Reconf
-      - 72  # Reconf
-      - 73  # Reconf
-      - 74  # Reconf
-      - 75  # Reconf
-      - 76  # Reconf
-      - 77  # Reconf
-      - 80  # TCP
-      - 82  # TCP
-      - 83  # TCP
-      - 85  # TCP
-      - 86  # TCP
-      - 87  # TCP
-      - 88  # TCP
-      - 89  # TCP
-      - 90  # TCP
-      - 91  # TCP
-      - 93  # Soak
-      - 94  # Soak
+      - 68  # Reconf REMOVE
+      - 80  # TCP REMOVE
+      - 93  # Soak REMOVE
+      - 94  # Soak REMOVE
+    # TODO: Add data:
+    # csit-vpp-perf-report-iterative-2005-2n-clx:
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
@@ -2732,6 +2326,8 @@
       - 15  # NDRPDR sel
       - 21  # NDRPDR sel
       - 9   # MRR sel
+    # TODO: Add data:
+    # csit-vpp-perf-report-iterative-2005-3n-tsh:
 
     csit-vpp-perf-verify-1908-3n-dnv:
       - 6   # NDRPDR sel
@@ -2757,17 +2353,8 @@
       - 17  # NDRPDR sel
       - 18  # NDRPDR sel
       - 11  # MRR sel
-      - 19  # NDRPDR full
-      - 20  # NDRPDR full
-      - 21  # NDRPDR full
-      - 22  # NDRPDR full
-      - 23  # NDRPDR full
-      - 24  # NDRPDR full
-      - 25  # NDRPDR full
-      - 26  # NDRPDR full
-      - 37  # NDRPDR full
-      - 38  # NDRPDR full
-      - 39  # NDRPDR full
+    # TODO: Add data:
+    # csit-vpp-perf-report-iterative-2005-3n-dnv:
 
     csit-vpp-perf-verify-1908-2n-dnv:
       - 1   # NDRPDR sel
@@ -2793,24 +2380,9 @@
       - 13  # NDRPDR sel
       - 16  # NDRPDR sel
       - 12  # MRR sel
-      - 21  # NDRPDR full
-      - 22  # NDRPDR full
-      - 25  # NDRPDR full
-      - 26  # NDRPDR full
-      - 27  # NDRPDR full
-      - 28  # NDRPDR full
+    # TODO: Add data:
+    # csit-vpp-perf-report-iterative-2005-2n-dnv:
 
-    csit-dpdk-perf-verify-1904-3n-hsw:
-      - 2   # NDRPDR sel
-      - 3   # NDRPDR sel
-      - 5   # NDRPDR sel
-      - 6   # NDRPDR sel
-      - 13  # NDRPDR sel
-      - 14  # NDRPDR sel
-      - 15  # NDRPDR sel
-      - 18  # NDRPDR sel
-      - 19  # NDRPDR sel
-      - 20  # NDRPDR sel
     csit-dpdk-perf-verify-1908-3n-hsw:
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
@@ -2843,20 +2415,9 @@
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
       - 24  # NDRPDR sel
-      - 25  # NDRPDR full
-      - 26  # NDRPDR full
+    # TODO: Add data:
+    # csit-dpdk-perf-verify-2005-3n-hsw:
 
-    csit-dpdk-perf-verify-1904-3n-skx:
-      - 2   # NDRPDR sel
-      - 3   # NDRPDR sel
-      - 4   # NDRPDR sel
-      - 5   # NDRPDR sel
-      - 6   # NDRPDR sel
-      - 7   # NDRPDR sel
-      - 11  # NDRPDR sel
-      - 12  # NDRPDR sel
-      - 13  # NDRPDR sel
-      - 14  # NDRPDR sel
     csit-dpdk-perf-verify-1908-3n-skx:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
@@ -2889,18 +2450,9 @@
       - 46  # NDRPDR sel x710
       - 47  # NDRPDR sel x710
       - 48  # NDRPDR sel x710
+    # TODO: Add data:
+    # csit-dpdk-perf-verify-2005-3n-skx:
 
-    csit-dpdk-perf-verify-1904-2n-skx:
-      - 2   # NDRPDR sel
-      - 3   # NDRPDR sel
-      - 4   # NDRPDR sel
-      - 5   # NDRPDR sel
-      - 7   # NDRPDR sel
-      - 8   # NDRPDR sel
-      - 9   # NDRPDR sel
-      - 10  # NDRPDR sel
-      - 11  # NDRPDR sel
-      - 12  # NDRPDR sel
     csit-dpdk-perf-verify-1908-2n-skx:
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
@@ -2933,6 +2485,8 @@
       - 50  # NDRPDR sel x710
       - 51  # NDRPDR sel x710
       - 54  # NDRPDR sel x710
+    # TODO: Add data:
+    # csit-dpdk-perf-verify-2005-2n-skx:
 
     csit-dpdk-perf-verify-2001-2n-clx:
       - 15  # NDRPDR sel
@@ -2955,6 +2509,8 @@
       - 32  # NDRPDR sel
       - 33  # NDRPDR sel
       - 34  # NDRPDR sel
+    # TODO: Add data:
+    # csit-dpdk-perf-verify-2005-2n-clx:
 
     csit-dpdk-perf-verify-2001-2n-dnv:
       - 9   # NDRPDR sel
@@ -2967,6 +2523,8 @@
       - 16  # NDRPDR sel
       - 17  # NDRPDR sel
       - 18  # NDRPDR sel
+    # TODO: Add data:
+    # csit-dpdk-perf-verify-2005-2n-dnv:
 
     csit-dpdk-perf-verify-2001-3n-dnv:
       - 12  # NDRPDR sel
@@ -2979,6 +2537,8 @@
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
       - 22  # NDRPDR sel
+    # TODO: Add data:
+    # csit-dpdk-perf-verify-2005-3n-dnv:
 
     csit-dpdk-perf-verify-2001-3n-tsh:
       - 3   # NDRPDR sel
@@ -2991,7 +2551,11 @@
       - 14  # NDRPDR sel
       - 15  # NDRPDR sel
       - 18  # NDRPDR sel
+    # TODO: Add data:
+    # csit-dpdk-perf-verify-2005-3n-tsh:
 
+    # TODO: Replace:
+    # csit-vpp-device-2005-ubuntu1804-1n-skx:
     csit-vpp-device-2001-ubuntu1804-1n-skx:
       - 57
 
@@ -3372,131 +2936,131 @@
 ################################################################################
 # VPP
 
-# VPP Performance changes 2n-skx-xxv710 2t1c ndr
-- type: "table"
-  title: "VPP Performance changes 2n-skx-xxv710 2t1c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-2n-skx-2t1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  columns:
-    - title: "1908.1"
-      data-set: "vpp-perf-changes-2n-skx-new1908_1"
-    - title: "1908.2"
-      data-set: "vpp-perf-changes-2n-skx-new1908_2"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - "Legend to Table:"
-    - "1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between the previous and the current VPP version."
-
-# VPP Performance changes 2n-skx-xxv710 2t1c pdr
-- type: "table"
-  title: "VPP Performance changes 2n-skx-xxv710 2t1c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-2n-skx-2t1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  columns:
-    - title: "1908.1"
-      data-set: "vpp-perf-changes-2n-skx-new1908_1"
-    - title: "1908.2"
-      data-set: "vpp-perf-changes-2n-skx-new1908_2"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - "Legend to Table:"
-    - "1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between the previous and the current VPP version."
-
-# VPP Performance changes 3n-skx-xxv710 2t1c ndr
-- type: "table"
-  title: "VPP Performance changes 3n-skx-xxv710 2t1c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-3n-skx-2t1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  columns:
-    - title: "1908.1"
-      data-set: "vpp-perf-changes-3n-skx-new1908_1"
-    - title: "1908.2"
-      data-set: "vpp-perf-changes-3n-skx-new1908_2"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - "Legend to Table:"
-    - "1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between the previous and the current VPP version."
-
-# VPP Performance changes 3n-skx-xxv710 2t1c pdr
-- type: "table"
-  title: "VPP Performance changes 3n-skx-xxv710 2t1c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-3n-skx-2t1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  columns:
-    - title: "1908.1"
-      data-set: "vpp-perf-changes-3n-skx-new1908_1"
-    - title: "1908.2"
-      data-set: "vpp-perf-changes-3n-skx-new1908_2"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - "Legend to Table:"
-    - "1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between the previous and the current VPP version."
-
-# VPP Performance changes 2n-clx-xxv710 2t1c ndr
-- type: "table"
-  title: "VPP Performance changes 2n-clx-xxv710 2t1c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-2n-clx-2t1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  columns:
-    - title: "1908.1"
-      data-set: "vpp-perf-changes-2n-clx-new1908_1"
-    - title: "1908.2"
-      data-set: "vpp-perf-changes-2n-clx-new1908_2"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - "Legend to Table:"
-    - "1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between the previous and the current VPP version."
-
-# VPP Performance changes 2n-clx-xxv710 2t1c pdr
-- type: "table"
-  title: "VPP Performance changes 2n-clx-xxv710 2t1c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-2n-clx-2t1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  columns:
-    - title: "1908.1"
-      data-set: "vpp-perf-changes-2n-clx-new1908_1"
-    - title: "1908.2"
-      data-set: "vpp-perf-changes-2n-clx-new1908_2"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - "Legend to Table:"
-    - "1908.1, 1908.2 - VPP versions tested."
-    - "Diff - difference between the previous and the current VPP version."
+## VPP Performance changes 2n-skx-xxv710 2t1c ndr
+#- type: "table"
+#  title: "VPP Performance changes 2n-skx-xxv710 2t1c ndr"
+#  algorithm: "table_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-2n-skx-2t1c-ndr"
+#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+#  columns:
+#    - title: "1908.1"
+#      data-set: "vpp-perf-changes-2n-skx-new1908_1"
+#    - title: "1908.2"
+#      data-set: "vpp-perf-changes-2n-skx-new1908_2"
+#  comparisons:
+#    - title: "Diff"
+#      reference: 1
+#      compare: 2
+#  legend:
+#    - "Legend to Table:"
+#    - "1908.1, 1908.2 - VPP versions tested."
+#    - "Diff - difference between the previous and the current VPP version."
+#
+## VPP Performance changes 2n-skx-xxv710 2t1c pdr
+#- type: "table"
+#  title: "VPP Performance changes 2n-skx-xxv710 2t1c pdr"
+#  algorithm: "table_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-2n-skx-2t1c-pdr"
+#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+#  columns:
+#    - title: "1908.1"
+#      data-set: "vpp-perf-changes-2n-skx-new1908_1"
+#    - title: "1908.2"
+#      data-set: "vpp-perf-changes-2n-skx-new1908_2"
+#  comparisons:
+#    - title: "Diff"
+#      reference: 1
+#      compare: 2
+#  legend:
+#    - "Legend to Table:"
+#    - "1908.1, 1908.2 - VPP versions tested."
+#    - "Diff - difference between the previous and the current VPP version."
+#
+## VPP Performance changes 3n-skx-xxv710 2t1c ndr
+#- type: "table"
+#  title: "VPP Performance changes 3n-skx-xxv710 2t1c ndr"
+#  algorithm: "table_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-3n-skx-2t1c-ndr"
+#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+#  columns:
+#    - title: "1908.1"
+#      data-set: "vpp-perf-changes-3n-skx-new1908_1"
+#    - title: "1908.2"
+#      data-set: "vpp-perf-changes-3n-skx-new1908_2"
+#  comparisons:
+#    - title: "Diff"
+#      reference: 1
+#      compare: 2
+#  legend:
+#    - "Legend to Table:"
+#    - "1908.1, 1908.2 - VPP versions tested."
+#    - "Diff - difference between the previous and the current VPP version."
+#
+## VPP Performance changes 3n-skx-xxv710 2t1c pdr
+#- type: "table"
+#  title: "VPP Performance changes 3n-skx-xxv710 2t1c pdr"
+#  algorithm: "table_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-3n-skx-2t1c-pdr"
+#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+#  columns:
+#    - title: "1908.1"
+#      data-set: "vpp-perf-changes-3n-skx-new1908_1"
+#    - title: "1908.2"
+#      data-set: "vpp-perf-changes-3n-skx-new1908_2"
+#  comparisons:
+#    - title: "Diff"
+#      reference: 1
+#      compare: 2
+#  legend:
+#    - "Legend to Table:"
+#    - "1908.1, 1908.2 - VPP versions tested."
+#    - "Diff - difference between the previous and the current VPP version."
+#
+## VPP Performance changes 2n-clx-xxv710 2t1c ndr
+#- type: "table"
+#  title: "VPP Performance changes 2n-clx-xxv710 2t1c ndr"
+#  algorithm: "table_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-2n-clx-2t1c-ndr"
+#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+#  columns:
+#    - title: "1908.1"
+#      data-set: "vpp-perf-changes-2n-clx-new1908_1"
+#    - title: "1908.2"
+#      data-set: "vpp-perf-changes-2n-clx-new1908_2"
+#  comparisons:
+#    - title: "Diff"
+#      reference: 1
+#      compare: 2
+#  legend:
+#    - "Legend to Table:"
+#    - "1908.1, 1908.2 - VPP versions tested."
+#    - "Diff - difference between the previous and the current VPP version."
+#
+## VPP Performance changes 2n-clx-xxv710 2t1c pdr
+#- type: "table"
+#  title: "VPP Performance changes 2n-clx-xxv710 2t1c pdr"
+#  algorithm: "table_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-changes-1908_2-2n-clx-2t1c-pdr"
+#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+#  columns:
+#    - title: "1908.1"
+#      data-set: "vpp-perf-changes-2n-clx-new1908_1"
+#    - title: "1908.2"
+#      data-set: "vpp-perf-changes-2n-clx-new1908_2"
+#  comparisons:
+#    - title: "Diff"
+#      reference: 1
+#      compare: 2
+#  legend:
+#    - "Legend to Table:"
+#    - "1908.1, 1908.2 - VPP versions tested."
+#    - "Diff - difference between the previous and the current VPP version."
 
 # VPP Performance Changes 3n-hsw 1t1c pdr
 - type: "table"
@@ -3506,11 +3070,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-hsw-ref"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff"
@@ -3518,8 +3082,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2008 VPP version."
 
 # VPP Performance Changes 3n-hsw 2t2c pdr
 - type: "table"
@@ -3529,11 +3093,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-hsw-ref"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff"
@@ -3541,8 +3105,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2008 VPP version."
 
 # VPP Performance Changes 3n-hsw 1t1c ndr
 - type: "table"
@@ -3552,11 +3116,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-hsw-ref"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff"
@@ -3564,8 +3128,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2008 VPP version."
 
 # VPP Performance Changes 3n-hsw 2t2c ndr
 - type: "table"
@@ -3575,11 +3139,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-hsw-ref"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff"
@@ -3587,84 +3151,84 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2008 VPP version."
 
-# VPP Root Cause Analysis 3n-skx-xxv710 2t1c pdr
-- type: "table"
-  title: "VPP Root Cause Analysis 3n-skx-xxv710 2t1c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-rca-3n-skx-2t1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  rca:
-    - title: "RCA1"
-      data: "rca/rca-3n-skx-2t1c-pdr-rca1.yaml"
-    - title: "RCA2"
-      data: "rca/rca-3n-skx-2t1c-pdr-rca2.yaml"
-  columns:
-    - title: "1908.0-1"
-      data-set: "vpp-perf-changes-3n-skx-old1908_0"
-      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    - title: "1908.1-1"
-      data-set: "vpp-perf-changes-3n-skx-old1908_1"
-    - title: "1908.1-2"
-      data-set: "vpp-perf-changes-3n-skx-new1908_1"
-    - title: "2001.0-2"
-      data-set: "vpp-perf-changes-3n-skx-new2001_0"
-  comparisons:
-    - title: "Diff1"
-      reference: 2
-      reference-alt: 1
-      compare: 3
-    - title: "Diff2"
-      reference: 3
-      compare: 4
-  legend:
-    - 'Legend to Table:'
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
-    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
-    - 'RCA1 - root cause analysis reference for Diff1.'
-    - 'RCA2 - root cause analysis reference for Diff2.'
-
-# VPP Root Cause Analysis 3n-skx-xxv710 2t1c ndr
-- type: "table"
-  title: "VPP Root Cause Analysis 3n-skx-xxv710 2t1c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-rca-3n-skx-2t1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  rca:
-    - title: "RCA1"
-      data: "rca/rca-3n-skx-2t1c-ndr-rca1.yaml"
-    - title: "RCA2"
-      data: "rca/rca-3n-skx-2t1c-ndr-rca2.yaml"
-  columns:
-    - title: "1908.0-1"
-      data-set: "vpp-perf-changes-3n-skx-old1908_0"
-      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-    - title: "1908.1-1"
-      data-set: "vpp-perf-changes-3n-skx-old1908_1"
-    - title: "1908.1-2"
-      data-set: "vpp-perf-changes-3n-skx-new1908_1"
-    - title: "2001.0-2"
-      data-set: "vpp-perf-changes-3n-skx-new2001_0"
-  comparisons:
-    - title: "Diff1"
-      reference: 2
-      reference-alt: 1
-      compare: 3
-    - title: "Diff2"
-      reference: 3
-      compare: 4
-  legend:
-    - 'Legend to Table:'
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
-    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
-    - 'RCA1 - root cause analysis reference for Diff1.'
-    - 'RCA2 - root cause analysis reference for Diff2.'
+## VPP Root Cause Analysis 3n-skx-xxv710 2t1c pdr
+#- type: "table"
+#  title: "VPP Root Cause Analysis 3n-skx-xxv710 2t1c pdr"
+#  algorithm: "table_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-rca-3n-skx-2t1c-pdr"
+#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-3n-skx-2t1c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-3n-skx-2t1c-pdr-rca2.yaml"
+#  columns:
+#    - title: "1908.0-1"
+#      data-set: "vpp-perf-changes-3n-skx-old1908_0"
+#      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
+#    - title: "1908.1-1"
+#      data-set: "vpp-perf-changes-3n-skx-old1908_1"
+#    - title: "1908.1-2"
+#      data-set: "vpp-perf-changes-3n-skx-new1908_1"
+#    - title: "2001.0-2"
+#      data-set: "vpp-perf-changes-3n-skx-new2001_0"
+#  comparisons:
+#    - title: "Diff1"
+#      reference: 2
+#      reference-alt: 1
+#      compare: 3
+#    - title: "Diff2"
+#      reference: 3
+#      compare: 4
+#  legend:
+#    - 'Legend to Table:'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
+#    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
+#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
+#    - 'RCA1 - root cause analysis reference for Diff1.'
+#    - 'RCA2 - root cause analysis reference for Diff2.'
+#
+## VPP Root Cause Analysis 3n-skx-xxv710 2t1c ndr
+#- type: "table"
+#  title: "VPP Root Cause Analysis 3n-skx-xxv710 2t1c ndr"
+#  algorithm: "table_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-rca-3n-skx-2t1c-ndr"
+#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-3n-skx-2t1c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-3n-skx-2t1c-ndr-rca2.yaml"
+#  columns:
+#    - title: "1908.0-1"
+#      data-set: "vpp-perf-changes-3n-skx-old1908_0"
+#      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
+#    - title: "1908.1-1"
+#      data-set: "vpp-perf-changes-3n-skx-old1908_1"
+#    - title: "1908.1-2"
+#      data-set: "vpp-perf-changes-3n-skx-new1908_1"
+#    - title: "2001.0-2"
+#      data-set: "vpp-perf-changes-3n-skx-new2001_0"
+#  comparisons:
+#    - title: "Diff1"
+#      reference: 2
+#      reference-alt: 1
+#      compare: 3
+#    - title: "Diff2"
+#      reference: 3
+#      compare: 4
+#  legend:
+#    - 'Legend to Table:'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
+#    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
+#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
+#    - 'RCA1 - root cause analysis reference for Diff1.'
+#    - 'RCA2 - root cause analysis reference for Diff2.'
 
 # VPP Performance Changes 3n-skx 2t1c pdr
 - type: "table"
@@ -3672,26 +3236,23 @@
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-pdr"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-skx-h1"
-      tag: "NIC_Intel-X710"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-set: "vpp-performance-changes-3n-skx-h1"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-      tag: "NIC_Intel-XXV710"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-skx-cmp"
-      tag: "NIC_Intel-XXV710"
   comparisons:
     - title: "Diff"
       reference: 2
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-skx 4t2c pdr
 - type: "table"
@@ -3699,26 +3260,23 @@
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-pdr"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-skx-h1"
-      tag: "NIC_Intel-X710"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-set: "vpp-performance-changes-3n-skx-h1"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-      tag: "NIC_Intel-XXV710"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-skx-cmp"
-      tag: "NIC_Intel-XXV710"
   comparisons:
     - title: "Diff"
       reference: 2
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-skx 2t1c ndr
 - type: "table"
@@ -3726,26 +3284,23 @@
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-ndr"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-skx-h1"
-      tag: "NIC_Intel-X710"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-set: "vpp-performance-changes-3n-skx-h1"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-      tag: "NIC_Intel-XXV710"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-skx-cmp"
-      tag: "NIC_Intel-XXV710"
   comparisons:
     - title: "Diff"
       reference: 2
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-skx 4t2c ndr
 - type: "table"
@@ -3753,102 +3308,99 @@
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-ndr"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-skx-h1"
-      tag: "NIC_Intel-X710"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-set: "vpp-performance-changes-3n-skx-h1"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-      tag: "NIC_Intel-XXV710"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-skx-cmp"
-      tag: "NIC_Intel-XXV710"
   comparisons:
     - title: "Diff"
       reference: 2
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
-# VPP Root Cause Analysis 2n-skx-xxv710 2t1c pdr
-- type: "table"
-  title: "VPP Root Cause Analysis 2n-skx-xxv710 2t1c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-rca-2n-skx-2t1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  rca:
-    - title: "RCA1"
-      data: "rca/rca-2n-skx-2t1c-pdr-rca1.yaml"
-    - title: "RCA2"
-      data: "rca/rca-2n-skx-2t1c-pdr-rca2.yaml"
-  columns:
-    - title: "1908.0-1"
-      data-set: "vpp-perf-changes-2n-skx-old1908_0"
-      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-    - title: "1908.1-1"
-      data-set: "vpp-perf-changes-2n-skx-old1908_1"
-    - title: "1908.1-2"
-      data-set: "vpp-perf-changes-2n-skx-new1908_1"
-    - title: "2001.0-2"
-      data-set: "vpp-perf-changes-2n-skx-new2001_0"
-  comparisons:
-    - title: "Diff1"
-      reference: 2
-      reference-alt: 1
-      compare: 3
-    - title: "Diff2"
-      reference: 3
-      compare: 4
-  legend:
-    - 'Legend to Table:'
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
-    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
-    - 'RCA1 - root cause analysis reference for Diff1.'
-    - 'RCA2 - root cause analysis reference for Diff2.'
-
-# VPP Root Cause Analysis 2n-skx-xxv710 2t1c ndr
-- type: "table"
-  title: "VPP Root Cause Analysis 2n-skx-xxv710 2t1c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-rca-2n-skx-2t1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-  rca:
-    - title: "RCA1"
-      data: "rca/rca-2n-skx-2t1c-ndr-rca1.yaml"
-    - title: "RCA2"
-      data: "rca/rca-2n-skx-2t1c-ndr-rca2.yaml"
-  columns:
-    - title: "1908.0-1"
-      data-set: "vpp-perf-changes-2n-skx-old1908_0"
-      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-    - title: "1908.1-1"
-      data-set: "vpp-perf-changes-2n-skx-old1908_1"
-    - title: "1908.1-2"
-      data-set: "vpp-perf-changes-2n-skx-new1908_1"
-    - title: "2001.0-2"
-      data-set: "vpp-perf-changes-2n-skx-new2001_0"
-  comparisons:
-    - title: "Diff1"
-      reference: 2
-      reference-alt: 1
-      compare: 3
-    - title: "Diff2"
-      reference: 3
-      compare: 4
-  legend:
-    - 'Legend to Table:'
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
-    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
-    - 'RCA1 - root cause analysis reference for Diff1.'
-    - 'RCA2 - root cause analysis reference for Diff2.'
+## VPP Root Cause Analysis 2n-skx-xxv710 2t1c pdr
+#- type: "table"
+#  title: "VPP Root Cause Analysis 2n-skx-xxv710 2t1c pdr"
+#  algorithm: "table_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-rca-2n-skx-2t1c-pdr"
+#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2n-skx-2t1c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2n-skx-2t1c-pdr-rca2.yaml"
+#  columns:
+#    - title: "1908.0-1"
+#      data-set: "vpp-perf-changes-2n-skx-old1908_0"
+#      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
+#    - title: "1908.1-1"
+#      data-set: "vpp-perf-changes-2n-skx-old1908_1"
+#    - title: "1908.1-2"
+#      data-set: "vpp-perf-changes-2n-skx-new1908_1"
+#    - title: "2001.0-2"
+#      data-set: "vpp-perf-changes-2n-skx-new2001_0"
+#  comparisons:
+#    - title: "Diff1"
+#      reference: 2
+#      reference-alt: 1
+#      compare: 3
+#    - title: "Diff2"
+#      reference: 3
+#      compare: 4
+#  legend:
+#    - 'Legend to Table:'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
+#    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
+#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
+#    - 'RCA1 - root cause analysis reference for Diff1.'
+#    - 'RCA2 - root cause analysis reference for Diff2.'
+#
+## VPP Root Cause Analysis 2n-skx-xxv710 2t1c ndr
+#- type: "table"
+#  title: "VPP Root Cause Analysis 2n-skx-xxv710 2t1c ndr"
+#  algorithm: "table_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-rca-2n-skx-2t1c-ndr"
+#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2n-skx-2t1c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2n-skx-2t1c-ndr-rca2.yaml"
+#  columns:
+#    - title: "1908.0-1"
+#      data-set: "vpp-perf-changes-2n-skx-old1908_0"
+#      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
+#    - title: "1908.1-1"
+#      data-set: "vpp-perf-changes-2n-skx-old1908_1"
+#    - title: "1908.1-2"
+#      data-set: "vpp-perf-changes-2n-skx-new1908_1"
+#    - title: "2001.0-2"
+#      data-set: "vpp-perf-changes-2n-skx-new2001_0"
+#  comparisons:
+#    - title: "Diff1"
+#      reference: 2
+#      reference-alt: 1
+#      compare: 3
+#    - title: "Diff2"
+#      reference: 3
+#      compare: 4
+#  legend:
+#    - 'Legend to Table:'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "1" for 2019-08-21, "2" for 2020-03-27).'
+#    - 'Diff1 - difference between environment versions "2" and "1" for the same VPP version, 1908.1-2 vs. 1908.1-1 (if data for the latter not present, 1908.0-1 is used).'
+#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2001.0-2 vs. 1908.1-2.'
+#    - 'RCA1 - root cause analysis reference for Diff1.'
+#    - 'RCA2 - root cause analysis reference for Diff2.'
 
 # VPP Performance Changes 2n-skx 2t1c pdr
 - type: "table"
@@ -3856,26 +3408,23 @@
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-2n-skx-h1"
-      tag: "NIC_Intel-X710"
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-set: "vpp-performance-changes-2n-skx-h1"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-      tag: "NIC_Intel-XXV710"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-skx-cmp"
-      tag: "NIC_Intel-XXV710"
   comparisons:
     - title: "Diff"
       reference: 2
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-skx 4t2c pdr
 - type: "table"
@@ -3883,26 +3432,23 @@
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-pdr"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-2n-skx-h1"
-      tag: "NIC_Intel-X710"
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-skx-ref"
-      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-3n-skx-vhost"
-      tag: "NIC_Intel-XXV710"
+      data-set: "vpp-performance-changes-2n-skx-h1"
+      data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-skx-cmp"
-      tag: "NIC_Intel-XXV710"
   comparisons:
     - title: "Diff"
       reference: 2
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-skx 2t1c ndr
 - type: "table"
@@ -3910,26 +3456,23 @@
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-ndr"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-2n-skx-h1"
-      tag: "NIC_Intel-X710"
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-set: "vpp-performance-changes-2n-skx-h1"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-      tag: "NIC_Intel-XXV710"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-skx-cmp"
-      tag: "NIC_Intel-XXV710"
   comparisons:
     - title: "Diff"
       reference: 2
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-skx 4t2c ndr
 - type: "table"
@@ -3937,26 +3480,23 @@
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-ndr"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-2n-skx-h1"
-      tag: "NIC_Intel-X710"
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-set: "vpp-performance-changes-2n-skx-h1"
       data-replacement: "replacement-1908-vpp-throughput-lat-tsa-2n-skx-vhost"
-      tag: "NIC_Intel-XXV710"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-skx-cmp"
-      tag: "NIC_Intel-XXV710"
   comparisons:
     - title: "Diff"
       reference: 2
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-dnv 1t1c pdr
 - type: "table"
@@ -3967,17 +3507,19 @@
   filter: "'1T1C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-dnv-ref"
+      data-set: "vpp-performance-changes-2n-dnv-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-dnv-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-dnv 2t2c pdr
 - type: "table"
@@ -3988,17 +3530,19 @@
   filter: "'2T2C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-dnv-ref"
+      data-set: "vpp-performance-changes-2n-dnv-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-dnv-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-dnv 1t1c ndr
 - type: "table"
@@ -4009,17 +3553,19 @@
   filter: "'1T1C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-dnv-ref"
+      data-set: "vpp-performance-changes-2n-dnv-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-dnv-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-dnv 2t2c ndr
 - type: "table"
@@ -4030,17 +3576,19 @@
   filter: "'2T2C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-dnv-ref"
+      data-set: "vpp-performance-changes-2n-dnv-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-dnv-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-dnv 1t1c pdr
 - type: "table"
@@ -4051,17 +3599,19 @@
   filter: "'1T1C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-dnv-ref"
+      data-set: "vpp-performance-changes-3n-dnv-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-dnv-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-dnv 2t2c pdr
 - type: "table"
@@ -4072,17 +3622,19 @@
   filter: "'2T2C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-dnv-ref"
+      data-set: "vpp-performance-changes-3n-dnv-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-dnv-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-dnv 1t1c ndr
 - type: "table"
@@ -4093,17 +3645,19 @@
   filter: "'1T1C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-dnv-ref"
+      data-set: "vpp-performance-changes-3n-dnv-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-dnv-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-dnv 2t2c ndr
 - type: "table"
@@ -4114,17 +3668,19 @@
   filter: "'2T2C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-dnv-ref"
+      data-set: "vpp-performance-changes-3n-dnv-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-dnv-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-tsh 1t1c pdr
 - type: "table"
@@ -4135,17 +3691,19 @@
   filter: "'1T1C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-tsh-ref"
+      data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-tsh 2t2c pdr
 - type: "table"
@@ -4156,17 +3714,19 @@
   filter: "'2T2C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-tsh-ref"
+      data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-tsh 1t1c ndr
 - type: "table"
@@ -4177,17 +3737,19 @@
   filter: "'1T1C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-tsh-ref"
+      data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-tsh 2t2c ndr
 - type: "table"
@@ -4198,17 +3760,19 @@
   filter: "'2T2C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-tsh-ref"
+      data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr
 - type: "table"
@@ -4570,11 +4134,11 @@
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
   comparisons:
     - title: "Diff"
@@ -4582,8 +4146,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-hsw 2t2c mrr
 - type: "table"
@@ -4593,11 +4157,11 @@
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
   comparisons:
     - title: "Diff"
@@ -4605,8 +4169,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-hsw 4t4c mrr
 - type: "table"
@@ -4616,11 +4180,11 @@
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T4C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
   comparisons:
     - title: "Diff"
@@ -4628,8 +4192,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-skx 2t1c mrr
 - type: "table"
@@ -4639,11 +4203,11 @@
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-skx-mrr-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-3n-skx-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-skx-mrr-cmp"
   comparisons:
     - title: "Diff"
@@ -4651,8 +4215,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-skx 4t2c mrr
 - type: "table"
@@ -4662,11 +4226,11 @@
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-skx-mrr-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-3n-skx-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-skx-mrr-cmp"
   comparisons:
     - title: "Diff"
@@ -4674,8 +4238,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-skx 8t4c mrr
 - type: "table"
@@ -4685,11 +4249,11 @@
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'8T4C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-3n-skx-mrr-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-3n-skx-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-skx-mrr-cmp"
   comparisons:
     - title: "Diff"
@@ -4697,8 +4261,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-skx 2t1c mrr
 - type: "table"
@@ -4708,11 +4272,11 @@
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-2n-skx-mrr-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-2n-skx-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-skx-mrr-cmp"
   comparisons:
     - title: "Diff"
@@ -4720,8 +4284,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-skx 4t2c mrr
 - type: "table"
@@ -4731,11 +4295,11 @@
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-2n-skx-mrr-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-2n-skx-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-skx-mrr-cmp"
   comparisons:
     - title: "Diff"
@@ -4743,8 +4307,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-skx 8t4c mrr
 - type: "table"
@@ -4754,11 +4318,11 @@
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'8T4C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1904"
-      data-set: "vpp-performance-changes-2n-skx-mrr-h1"
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-2n-skx-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-skx-mrr-cmp"
   comparisons:
     - title: "Diff"
@@ -4766,8 +4330,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-dnv 1t1c mrr
 - type: "table"
@@ -4778,17 +4342,19 @@
   filter: "'1T1C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-dnv 2t2c mrr
 - type: "table"
@@ -4799,17 +4365,19 @@
   filter: "'2T2C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-dnv 4t4c mrr
 - type: "table"
@@ -4820,17 +4388,19 @@
   filter: "'4T4C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-dnv 1t1c mrr
 - type: "table"
@@ -4841,17 +4411,19 @@
   filter: "'1T1C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-dnv 2t2c mrr
 - type: "table"
@@ -4862,17 +4434,19 @@
   filter: "'2T2C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-dnv 4t4c mrr
 - type: "table"
@@ -4883,17 +4457,19 @@
   filter: "'4T4C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-tsh 1t1c mrr
 - type: "table"
@@ -4904,17 +4480,19 @@
   filter: "'1T1C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-tsh-mrr-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-tsh 2t2c mrr
 - type: "table"
@@ -4925,17 +4503,19 @@
   filter: "'2T2C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-tsh-mrr-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 3n-tsh 4t4c mrr
 - type: "table"
@@ -4946,17 +4526,19 @@
   filter: "'4T4C'"
   columns:
     - title: "1908"
-      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-h1"
     - title: "2001"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+    - title: "2005"
       data-set: "vpp-performance-changes-3n-tsh-mrr-cmp"
   comparisons:
     - title: "Diff"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - "Legend to Table"
-    - "1908, 2001 - VPP versions tested."
-    - "Diff - difference between 1908 and 2001 VPP version."
+    - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr
 - type: "table"
@@ -5251,7 +4833,7 @@
       data: "data msg"
   data: "vpp-perf-results-3n-skx"
   filter: "all"
-  remove-ndr: True  # Temporary solution: remove NDR results from test message
+  remove-ndr: False
   parameters:
   - "name"
   - "parent"
@@ -5269,7 +4851,7 @@
       data: "data msg"
   data: "vpp-perf-results-2n-skx"
   filter: "all"
-  remove-ndr: True  # Temporary solution: remove NDR results from test message
+  remove-ndr: False
   parameters:
   - "name"
   - "parent"
@@ -5801,11 +5383,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-3n-hsw-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-3n-hsw-ref"
+      data-set: "dpdk-performance-changes-3n-hsw-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-3n-hsw-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff"
@@ -5813,8 +5395,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 3n-hsw 2t2c pdr
 - type: "table"
@@ -5824,11 +5406,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-3n-hsw-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-3n-hsw-ref"
+      data-set: "dpdk-performance-changes-3n-hsw-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-3n-hsw-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff"
@@ -5836,8 +5418,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 3n-hsw 1t1c pdr
 - type: "table"
@@ -5847,11 +5429,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-3n-hsw-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-3n-hsw-ref"
+      data-set: "dpdk-performance-changes-3n-hsw-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-3n-hsw-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff"
@@ -5859,8 +5441,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 3n-hsw 2t2c ndr
 - type: "table"
@@ -5870,11 +5452,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-3n-hsw-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-3n-hsw-ref"
+      data-set: "dpdk-performance-changes-3n-hsw-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-3n-hsw-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff"
@@ -5882,8 +5464,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 3n-skx 2t1c pdr
 - type: "table"
@@ -5893,11 +5475,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-3n-skx-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-3n-skx-ref"
+      data-set: "dpdk-performance-changes-3n-skx-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-3n-skx-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-3n-skx-cmp"
   comparisons:
     - title: "Diff"
@@ -5905,8 +5487,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 3n-skx 4t2c pdr
 - type: "table"
@@ -5916,11 +5498,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-3n-skx-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-3n-skx-ref"
+      data-set: "dpdk-performance-changes-3n-skx-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-3n-skx-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-3n-skx-cmp"
   comparisons:
     - title: "Diff"
@@ -5928,8 +5510,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 3n-skx 2t1c ndr
 - type: "table"
@@ -5939,11 +5521,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-3n-skx-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-3n-skx-ref"
+      data-set: "dpdk-performance-changes-3n-skx-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-3n-skx-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-3n-skx-cmp"
   comparisons:
     - title: "Diff"
@@ -5951,8 +5533,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 3n-skx 4t2c ndr
 - type: "table"
@@ -5962,11 +5544,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-3n-skx-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-3n-skx-ref"
+      data-set: "dpdk-performance-changes-3n-skx-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-3n-skx-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-3n-skx-cmp"
   comparisons:
     - title: "Diff"
@@ -5974,8 +5556,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 2n-skx 2t1c pdr
 - type: "table"
@@ -5985,11 +5567,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-2n-skx-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-2n-skx-ref"
+      data-set: "dpdk-performance-changes-2n-skx-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-2n-skx-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-2n-skx-cmp"
   comparisons:
     - title: "Diff"
@@ -5997,8 +5579,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 2n-skx 4t2c pdr
 - type: "table"
@@ -6008,11 +5590,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-2n-skx-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-2n-skx-ref"
+      data-set: "dpdk-performance-changes-2n-skx-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-2n-skx-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-2n-skx-cmp"
   comparisons:
     - title: "Diff"
@@ -6020,8 +5602,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 2n-skx 2t1c ndr
 - type: "table"
@@ -6031,11 +5613,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-2n-skx-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-2n-skx-ref"
+      data-set: "dpdk-performance-changes-2n-skx-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-2n-skx-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-2n-skx-cmp"
   comparisons:
     - title: "Diff"
@@ -6043,8 +5625,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Performance Changes 2n-skx 4t2c ndr
 - type: "table"
@@ -6054,11 +5636,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "1904"
-      data-set: "dpdk-performance-changes-2n-skx-h1"
     - title: "1908"
-      data-set: "dpdk-performance-changes-2n-skx-ref"
+      data-set: "dpdk-performance-changes-2n-skx-h1"
     - title: "2001"
+      data-set: "dpdk-performance-changes-2n-skx-ref"
+    - title: "2005"
       data-set: "dpdk-performance-changes-2n-skx-cmp"
   comparisons:
     - title: "Diff"
@@ -6066,8 +5648,8 @@
       compare: 3
   legend:
     - "Legend to Table"
-    - "1904, 1908, 2001 - DPDK versions tested."
-    - "Diff - difference between 1908 and 2001 DPDK version."
+    - "1908, 2001, 2005 - DPDK versions tested."
+    - "Diff - difference between 2001 and 2005 DPDK version."
 
 # DPDK Comparison Across Testbeds 3n-hsw to 3n-skx ndr
 - type: "table"
@@ -6224,7 +5806,7 @@
       data: "data msg"
   data: "dpdk-perf-results-3n-skx"
   filter: "all"
-  remove-ndr: True  # Temporary solution: remove NDR results from test message
+  remove-ndr: False
   parameters:
   - "name"
   - "parent"
@@ -6242,7 +5824,7 @@
       data: "data msg"
   data: "dpdk-perf-results-2n-skx"
   filter: "all"
-  remove-ndr: True  # Temporary solution: remove NDR results from test message
+  remove-ndr: False
   parameters:
   - "name"
   - "parent"
