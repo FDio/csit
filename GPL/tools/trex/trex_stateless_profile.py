@@ -116,7 +116,8 @@ def simple_burst(
     try:
         print(f"### Profile file:\n{profile_file}")
         profile = STLProfile.load(
-            profile_file, direction=0, port_id=0, framesize=framesize
+            profile_file, direction=0, port_id=0, framesize=framesize,
+            rate=rate
         )
         streams = profile.get_streams()
     except STLError as err:
@@ -135,9 +136,13 @@ def simple_burst(
         if u"macsrc" in profile_file:
             client.set_port_attr(ports=[port_0, port_1], promiscuous=True)
         if isinstance(framesize, int):
-            client.add_streams(streams[0], ports=[port_0])
+            last_stream_a = int((len(streams) - 2 ) / 2)
+            client.add_streams(streams[0:last_stream_a], ports=[port_0])
             if traffic_directions > 1:
-                client.add_streams(streams[1], ports=[port_1])
+                last_stream_b = (last_stream_a * 2)
+                client.add_streams(
+                    streams[last_stream_a:last_stream_b], ports=[port_1])
+            print(last_stream_a, last_stream_b, streams)
         elif isinstance(framesize, str):
             client.add_streams(streams[0:3], ports=[port_0])
             if traffic_directions > 1:
@@ -145,9 +150,10 @@ def simple_burst(
         if latency:
             try:
                 if isinstance(framesize, int):
-                    client.add_streams(streams[2], ports=[port_0])
+                    client.add_streams(streams[last_stream_b], ports=[port_0])
                     if traffic_directions > 1:
-                        client.add_streams(streams[3], ports=[port_1])
+                        client.add_streams(
+                            streams[last_stream_b + 1], ports=[port_1])
                 elif isinstance(framesize, str):
                     latency = False
             except STLError:
@@ -196,7 +202,7 @@ def simple_burst(
         lost_b = 0
 
         # Choose rate and start traffic:
-        client.start(ports=ports, mult=rate, duration=duration)
+        client.start(ports=ports, mult=rate, duration=duration, force=force)
 
         if async_start:
             # For async stop, we need to export the current snapshot.
