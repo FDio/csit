@@ -631,7 +631,7 @@ class IPUtil:
 
         fast = 0 if count < 3 else count
         with PapiSocketExecutor(node, do_async=True) as papi_exec:
-            for i in range(2 if fast else count):
+            for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, net_addr + i, prefix_len, **kwargs
                 )
