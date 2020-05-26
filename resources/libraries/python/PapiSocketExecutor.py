@@ -411,6 +411,58 @@ class PapiSocketExecutor:
         )
         return self
 
+    def fast_exec(self, generator, err_msg="Failed to get replies.",
+            how_many=0, need_replies=True):
+        """FIXME
+
+        Example of call site pattern (two blocks):
+
+        cmd = constant_command
+        args = initial_value
+        err_msg = my_error_message
+        def generator():
+            for i in range(count):
+                args[u"some_field"] = compute_some_value(i)
+                args[u"other_field"] = compute_other_value(i)
+                yield cmd, args
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            papi_exec.fast_exec(
+                generator=generator, err_msg=err_msg,
+                how_many=count, need_replies=False
+            )
+        cmd = unrelated_command
+        args = totally_different_structure
+        err_msg = alternative_error_message
+        def generator():
+            for i in range(count):
+                args[u"field0"] = compute0(i)
+                yield cmd, args
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            replies = papi_exec.fast_exec(
+                generator=generator, err_msg=err_msg,
+                how_many=count, need_replies=True
+            )
+
+        Comments:
+        In the example, args can have more fields, but only some depend on i.
+        The count needs to be passed as how_many, because fast sending
+        avoids generation of full list of commands.
+
+        """
+        # Either way, we only need at most 2 commands to add.
+        fast = min(how_many, 2)
+        iterator = generator.__iter__()
+        for _ in range(fast):
+            command, kwargs = iterator.__next__()
+            self.add(command, **kwargs)
+        if how_many <= 2:
+            # Slow sending is equivalent or required.
+            return self.get_replies(err_msg=err_msg, fast_send=0)
+        # Use fast sending.
+        return self.get_replies(
+            err_msg=err_msg, fast_send=how_many, fast_receive=need_replies
+        )
+
     def get_replies(
             self, err_msg="Failed to get replies.", fast_send=0,
             fast_receive=False):

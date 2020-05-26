@@ -629,15 +629,16 @@ class IPUtil:
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
 
-        fast = 0 if count < 3 else count
-        with PapiSocketExecutor(node, do_async=True) as papi_exec:
-            for i in range(2 if fast else count):
+        def generator():
+            for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, net_addr + i, prefix_len, **kwargs
                 )
-                papi_exec.add(cmd, **args)
-            papi_exec.get_replies(
-                err_msg=err_msg, fast_send=fast, fast_receive=True
+                yield cmd, args
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            papi_exec.fast_exec(
+                generator=generator, err_msg=err_msg,
+                how_many=count, need_replies=False
             )
 
     @staticmethod
