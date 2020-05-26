@@ -119,7 +119,6 @@ class TrafficStreamsBaseClass:
 
         # Frame size is defined as an integer, e.g. 64, 1518:
         if isinstance(self.framesize, int):
-
             # Create a base packet and pad it to size
             payload_len = max(0, self.framesize - len(base_pkt_a) - 4)  # No FCS
 
@@ -213,5 +212,6 @@ class TrafficStreamsBaseClass:
         :rtype: list
         """
         self.framesize = kwargs[u"framesize"]
+        self.rate = kwargs[u"rate"]
 
         return self.create_streams()
