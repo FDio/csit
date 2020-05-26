@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "492db6b3_0445798c",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 108
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-26T17:42:47Z",
+      "side": 1,
+      "message": "\u003e I will probably try to hide some logic in a function\n\nAn attempt [1] using generator passed as an argument to a class method.\nIt will take a while to finish and debug, but call sites will then look better.\n\n[1] https://gerrit.fd.io/r/c/csit/+/27277/2/resources/libraries/python/IPUtil.py",
+      "parentUuid": "2b7c10c8_76170bfb",
+      "range": {
+        "startLine": 469,
+        "startChar": 27,
+        "endLine": 469,
+        "endChar": 29
+      },
+      "revId": "f1b93fe756d5302b157e95ca4842904cb32280dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e6edc3c_ccbce1f6",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 108
