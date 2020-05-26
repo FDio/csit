@@ -46,7 +46,11 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
+<<<<<<< HEAD   (9fcbd2 FIX: add dpdk mrr_weekly and report_iterative job specs)
 report_week = u'20'
+=======
+report_week = u'23'
+>>>>>>> CHANGE (7248cf Report: configure report rls2005)
 project = u'FD.io CSIT-2001.{week}'.format(week=report_week)
 copyright = u'2020, FD.io'
 author = u'FD.io CSIT'

@@ -38,7 +38,11 @@ export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
+<<<<<<< HEAD   (9fcbd2 FIX: add dpdk mrr_weekly and report_iterative job specs)
     --week "20" \
+=======
+    --week "23" \
+>>>>>>> CHANGE (7248cf Report: configure report rls2005)
     --logging INFO \
     --force
 

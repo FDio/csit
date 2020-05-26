@@ -1,11 +1,12 @@
 Report History
 ==============
 
-FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
+FD.io CSIT-2005 Report history and per .[ww] revision changes are listed below.
 
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+<<<<<<< HEAD   (9fcbd2 FIX: add dpdk mrr_weekly and report_iterative job specs)
 | .20            | 1. Added data:                                             |
 |                |                                                            |
 |                |    - VPP performance tests 2n-skx                          |
@@ -121,6 +122,9 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .07            | Initial version                                            |
+=======
+| .23            | Initial version                                            |
+>>>>>>> CHANGE (7248cf Report: configure report rls2005)
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 
