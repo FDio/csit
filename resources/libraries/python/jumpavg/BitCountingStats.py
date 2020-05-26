@@ -121,9 +121,9 @@ class BitCountingStats(AvgStdevStats):
         :rtype: str
         """
         return (
-            f"size={self.size} avg={self.avg} stdev={self.stdev}"
-            f" bits={self.bits}"
-        )
+            "size={size} avg={avg} stdev={stdev}"
+            " bits={bits}"
+        ).format(size=self.size, avg=self.avg, stdev=self.stdev, bits=self.bits)
 
     def __repr__(self):
         """Return string executable as Python constructor call.
@@ -132,10 +132,10 @@ class BitCountingStats(AvgStdevStats):
         :rtype: str
         """
         return (
-            f"BitCountingStats(size={self.size!r},avg={self.avg!r}"
-            f",stdev={self.stdev!r},max_value={self.max_value!r}"
-            f",prev_avg={self.prev_avg!r})"
-        )
+            "BitCountingStats(size={size!r},avg={avg!r}"
+            ",stdev={stdev!r},max_value={mv!r}"
+            ",prev_avg={pa!r})"
+        ).format(size=self.size, avg=self.avg, stdev=self.stdev, mv=self.max_value, pa=self.prev_avg)
 
     @classmethod
     def for_runs(cls, runs, max_value=None, prev_avg=None):
