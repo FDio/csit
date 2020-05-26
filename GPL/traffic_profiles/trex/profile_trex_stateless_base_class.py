@@ -120,53 +120,125 @@ class TrafficStreamsBaseClass:
         # Frame size is defined as an integer, e.g. 64, 1518:
         if isinstance(self.framesize, int):
 
-            # Create a base packet and pad it to size
-            payload_len = max(0, self.framesize - len(base_pkt_a) - 4)  # No FCS
 
-            # Direction 0 --> 1
-            pkt_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1
-            )
-            # Direction 1 --> 0
-            pkt_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2
-            )
+            if isinstance(base_pkt_a, list) and isinstance(base_pkt_b, list):
+                stream1 = list()
+                stream2 = list()
 
-            # Packets for latency measurement:
-            # Direction 0 --> 1
-            pkt_lat_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1
-            )
-            # Direction 1 --> 0
-            pkt_lat_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2
-            )
+                inter_burst_gap = 10
+                burst_sec = 10
+                streams_per_second = 10
+                pps = 9000
 
-            # Create the streams:
-            # Direction 0 --> 1
-            stream1 = STLStream(packet=pkt_a, mode=STLTXCont(pps=9000))
-            # Direction 1 --> 0
-            # second traffic stream with a phase of 10ns (inter-stream gap)
-            stream2 = STLStream(packet=pkt_b, isg=10.0,
-                                mode=STLTXCont(pps=9000))
+                streams = len(base_pkt_a)
+                duty_cycle = burst_sec / (burst_sec + inter_burst_gap)
+                pps_per_stream = int(pps / (streams * duty_cycle))
+                pkts_per_burst = int(burst_sec * pps / (streams * duty_cycle))
 
-            # Streams for latency measurement:
-            # Direction 0 --> 1
-            lat_stream1 = STLStream(
-                packet=pkt_lat_a,
-                flow_stats=STLFlowLatencyStats(pg_id=0),
-                mode=STLTXCont(pps=9000)
-            )
-            # Direction 1 --> 0
-            # second traffic stream with a phase of 10ns (inter-stream gap)
-            lat_stream2 = STLStream(
-                packet=pkt_lat_b,
-                isg=10.0,
-                flow_stats=STLFlowLatencyStats(pg_id=1),
-                mode=STLTXCont(pps=9000)
-            )
+                m = STLTXMultiBurst(pps=pps_per_stream,
+                                    pkts_per_burst=pkts_per_burst,
+                                    ibg=inter_burst_gap * 1e6,
+                                    count=1000000)
 
-            return [stream1, stream2, lat_stream1, lat_stream2]
+                for i in range(len(base_pkt_a)):
+                    payload_len = max(0, self.framesize - len(base_pkt_a[i]) - 4)
+                    pkt_a = STLPktBuilder(
+                        pkt=base_pkt_a[i]/self._gen_payload(payload_len), vm=vm1)
+                    stream1.append(STLStream(isg=i*(1e6/streams_per_second),
+                                        packet=pkt_a,
+                                        mode=m))
+                for i in range(len(base_pkt_b)):
+                    payload_len = max(0, self.framesize - len(base_pkt_b[i]) - 4)
+                    pkt_b = STLPktBuilder(
+                        pkt=base_pkt_b[i]/self._gen_payload(payload_len), vm=vm2)
+                    stream2.append(STLStream(isg=i*(1e6/streams_per_second),
+                                        packet=pkt_b,
+                                        mode=m))
+                # Packets for latency measurement:
+                # Direction 0 --> 1
+                pkt_lat_a = STLPktBuilder(
+                    pkt=base_pkt_a[0] / self._gen_payload(payload_len), vm=vm1
+                )
+                # Direction 1 --> 0
+                pkt_lat_b = STLPktBuilder(
+                    pkt=base_pkt_b[0] / self._gen_payload(payload_len), vm=vm2
+                )
+                # Streams for latency measurement:
+                # Direction 0 --> 1
+                lat_stream1 = list()
+                lat_stream1.append(STLStream(
+                        packet=pkt_lat_a,
+                        flow_stats=STLFlowLatencyStats(pg_id=0),
+                        mode=STLTXCont(pps=9000)
+                    )
+                )
+                # Direction 1 --> 0
+                # second traffic stream with a phase of 10ns (inter-stream gap)
+                lat_stream2 = list()
+                lat_stream2.append(STLStream(
+                        packet=pkt_lat_b,
+                        isg=10.0,
+                        flow_stats=STLFlowLatencyStats(pg_id=1),
+                        mode=STLTXCont(pps=9000)
+                    )
+                )
+
+                streams = list()
+                streams.extend(stream1)
+                streams.extend(stream2)
+                streams.extend(lat_stream1)
+                streams.extend(lat_stream2)
+                return streams
+
+            else:
+
+                # Create a base packet and pad it to size
+                payload_len = max(0, self.framesize - len(base_pkt_a) - 4)  # No FCS
+
+                # Direction 0 --> 1
+                pkt_a = STLPktBuilder(
+                    pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1
+                )
+                # Direction 1 --> 0
+                pkt_b = STLPktBuilder(
+                    pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2
+                )
+
+                # Packets for latency measurement:
+                # Direction 0 --> 1
+                pkt_lat_a = STLPktBuilder(
+                    pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1
+                )
+                # Direction 1 --> 0
+                pkt_lat_b = STLPktBuilder(
+                    pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2
+                )
+
+                # Create the streams:
+                # Direction 0 --> 1
+                stream1 = STLStream(packet=pkt_a, mode=STLTXCont(pps=9000))
+                # Direction 1 --> 0
+                # second traffic stream with a phase of 10ns (inter-stream gap)
+                stream2 = STLStream(packet=pkt_b, isg=10.0,
+                                    mode=STLTXCont(pps=9000))
+
+                # Streams for latency measurement:
+                # Direction 0 --> 1
+                lat_stream1 = STLStream(
+                    packet=pkt_lat_a,
+                    flow_stats=STLFlowLatencyStats(pg_id=0),
+                    mode=STLTXCont(pps=9000)
+                )
+                # Direction 1 --> 0
+                # second traffic stream with a phase of 10ns (inter-stream gap)
+                lat_stream2 = STLStream(
+                    packet=pkt_lat_b,
+                    isg=10.0,
+                    flow_stats=STLFlowLatencyStats(pg_id=1),
+                    mode=STLTXCont(pps=9000)
+                )
+
+                return [stream1, stream2, lat_stream1, lat_stream2]
 
         # Frame size is defined as a string, e.g.IMIX_v4_1:
         elif isinstance(self.framesize, str):
