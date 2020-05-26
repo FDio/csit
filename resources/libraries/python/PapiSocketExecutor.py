@@ -733,10 +733,11 @@ class PapiSocketExecutor:
 
         # Sanity checks.
         if fast_send:
-            if len(local_list) != 2:
+            if len(local_list) < 2:
                 raise RuntimeError(
                     u"Fast sending requires exactly two commands."
                 )
+            local_list = local_list[:2]
             if local_list[0][u"api_name"] != local_list[1][u"api_name"]:
                 raise RuntimeError(
                     u"Fast sending requires two messages with the same command."
