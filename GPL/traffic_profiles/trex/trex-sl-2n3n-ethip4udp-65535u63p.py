@@ -17,15 +17,15 @@ Stream profile:
  - Two streams sent in directions 0 --> 1 and 1 --> 0 at the same time.
  - Packet: ETH / IP / UDP
  - Direction 0 --> 1:
-   - Source IP address range:      20.0.0.0 - 20.0.3.231
-   - Destination IP address range: 12.0.0.2
-   - Source UDP port range:        1024 - 1038
+   - Source IP address range:      192.168.0.0 - 192.168.255.255
+   - Destination IP address range: 20.0.0.0
+   - Source UDP port range:        1024 - 1086
    - Destination UDP port range:   1024
  - Direction 1 --> 0:
-   - Source IP address range:      12.0.0.2
-   - Destination IP address range: 200.0.0.0
+   - Source IP address range:      20.0.0.0
+   - Destination IP address range: 68.142.68.0 - 68.142.68.63
    - Source UDP port range:        1024
-   - Destination UDP port range:   1024 - 16023
+   - Destination UDP port range:   1024 - 65535
 """
 
 from trex.stl.api import *
@@ -41,30 +41,26 @@ class TrafficStreams(TrafficStreamsBaseClass):
         super(TrafficStreamsBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        #self.p1_src_start_ip = u"20.0.0.0"
-        #self.p1_src_end_ip = u"20.0.3.231"
-        #self.p1_dst_start_ip = u"12.0.0.2"
-
-        #self.p2_src_start_ip = u"12.0.0.2"
-        #self.p2_src_end_ip = u"12.0.0.2"
-        #self.p2_dst_start_ip = u"200.0.0.0"
-
         self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.3.231"
+        self.p1_src_end_ip = u"192.168.255.255"
         self.p1_dst_start_ip = u"20.0.0.0"
+        self.p1_dst_end_ip = u"20.0.0.0"
 
         self.p2_src_start_ip = u"20.0.0.0"
         self.p2_src_end_ip = u"20.0.0.0"
         self.p2_dst_start_ip = u"68.142.68.0"
+        self.p2_dst_end_ip = u"68.142.68.63"
 
         # UDP ports used in packet headers.
         self.p1_src_start_udp_port = 1024
-        self.p1_src_end_udp_port = 1038
+        self.p1_src_end_udp_port = 1086
         self.p1_dst_start_udp_port = 1024
+        self.p1_dst_end_udp_port = 1024
 
         self.p2_src_start_udp_port = 1024
+        self.p2_src_end_udp_port = 1024
         self.p2_dst_start_udp_port = 1024
-        self.p2_dst_end_udp_port = 16023
+        self.p2_dst_end_udp_port = 65535
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
@@ -103,45 +99,63 @@ class TrafficStreams(TrafficStreamsBaseClass):
         )
 
         # Direction 0 --> 1
-        vm1 = STLScVmRaw(
-            [
-                STLVmTupleGen(
-                    ip_min=self.p1_src_start_ip,
-                    ip_max=self.p1_src_end_ip,
-                    port_min=self.p1_src_start_udp_port,
-                    port_max=self.p1_src_end_udp_port,
-                    name=u"tuple"
-                ),
-                STLVmWrFlowVar(
-                    fv_name=u"tuple.ip",
-                    pkt_offset=u"IP.src"
-                ),
-                STLVmFixIpv4(offset=u"IP"),
-                STLVmWrFlowVar(
-                    fv_name=u"tuple.port",
-                    pkt_offset=u"UDP.sport"
-                )
-            ]
-        )
+        vm1 = STLVM()
+        vm1.var(name="sIP",
+                min_value=self.p1_src_start_ip,
+                max_value=self.p1_src_end_ip,
+                size=4,
+                op="inc",
+                next_var="sport")
+        vm1.var(name="sport",
+                min_value=self.p1_src_start_udp_port,
+                max_value=self.p1_src_end_udp_port,
+                size=2,
+                op="inc")
+        vm1.var(name="dIP",
+                min_value=self.p1_dst_start_ip,
+                max_value=self.p1_dst_end_ip,
+                size=4,
+                op="inc")
+        vm1.var(name="dport",
+                min_value=self.p1_dst_start_udp_port,
+                max_value=self.p1_dst_end_udp_port,
+                size=2,
+                op="inc")
+        vm1.write(fv_name="sIP", pkt_offset="IP.src")
+        vm1.write(fv_name="sport", pkt_offset="UDP.sport")
+        vm1.write(fv_name="dIP", pkt_offset="IP.dst")
+        vm1.write(fv_name="dport", pkt_offset="UDP.dport")
+        vm1.fix_chksum(offset='IP')
         # Direction 0 --> 1
-        vm2 = STLScVmRaw(
-            [
-                STLVmFlowVar(
-                    name=u"dport",
-                    min_value=self.p2_dst_start_udp_port,
-                    max_value=self.p2_dst_end_udp_port,
-                    size=2,
-                    op=u"inc"
-                ),
-                STLVmWrFlowVar(
-                    fv_name=u"dport",
-                    pkt_offset=u"UDP.dport"
-                )
-            ]
-        )
+        vm2 = STLVM()
+        vm2.var(name="sIP",
+                min_value=self.p2_src_start_ip,
+                max_value=self.p2_src_end_ip,
+                size=4,
+                op="inc",
+                next_var="sport")
+        vm2.var(name="sport",
+                min_value=self.p2_src_start_udp_port,
+                max_value=self.p2_src_end_udp_port,
+                size=2,
+                op="inc")
+        vm2.var(name="dIP",
+                min_value=self.p2_dst_start_ip,
+                max_value=self.p2_dst_end_ip,
+                size=4,
+                op="inc")
+        vm2.var(name="dport",
+                min_value=self.p2_dst_start_udp_port,
+                max_value=self.p2_dst_end_udp_port,
+                size=2,
+                op="inc")
+        vm2.write(fv_name="sIP", pkt_offset="IP.src")
+        vm2.write(fv_name="sport", pkt_offset="UDP.sport")
+        vm2.write(fv_name="dIP", pkt_offset="IP.dst")
+        vm2.write(fv_name="dport", pkt_offset="UDP.dport")
+        vm2.fix_chksum(offset='IP')
 
         return base_pkt_a, base_pkt_b, vm1, vm2
-
 
 def register():
     """Register this traffic profile to T-rex.
