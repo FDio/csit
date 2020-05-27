@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f007c126_35f4482b",
+        "filename": "resources/ip_profiles/trex/trex-sl-3n-ethip4-ip4dst1.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-27T12:36:57Z",
+      "side": 1,
+      "message": "TRex handling scripts (will) have GPL license and they are importing this, so this also needs to sit somewhere in GPL directory (so [0] will cover it).\n\n[0] https://gerrit.fd.io/r/c/csit/+/26668",
+      "range": {
+        "startLine": 2,
+        "startChar": 21,
+        "endLine": 2,
+        "endChar": 27
+      },
+      "revId": "ddc172f157445c545e26b6d7d78a3b016941453f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa3250c6_15cc6a70",
+        "filename": "resources/ip_profiles/trex/trex-sl-3n-ethip4udp-1u10p.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-27T12:36:57Z",
+      "side": 1,
+      "message": "It is not clear how the user will know which ip_profile to use for which test.\nWhy not just create separate traffic profile files\nand specify them in suites like this?\n\n  | ${traffic_profile}\u003d | trex-sl-3n-ethip4udp-1u15p${CLOUD_ENVIRONMENT}\n\nOr some other construct defined in Constants.py to unify capitalization and add dash if needed.\n\nDe-duplication will be done later in autogen.\nSpeaking about it, it would be simpler if -aws and -azure were defined as separate suites, with various IP values defined in suite\u0027s Variables table.\n\nAnd even if we decide we want to use only one suite file on all testbed types, it is still easier to pass only CLOUD_ENVIRONMENT to the TRex script, and do all IP tweaking in profile files based on the received value.",
+      "range": {
+        "startLine": 43,
+        "startChar": 20,
+        "endLine": 43,
+        "endChar": 46
+      },
+      "revId": "ddc172f157445c545e26b6d7d78a3b016941453f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15ea272d_e42249ea",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-27T12:36:57Z",
+      "side": 1,
+      "message": "It is not clear what is the usage. Is the user supposed to override the value using -v command-line argument when invoking robot in cloud?\n\nIt would be better if this Change also added a short .rst file somewhere into docs/ to answer such questions.",
+      "range": {
+        "startLine": 48,
+        "startChar": 42,
+        "endLine": 48,
+        "endChar": 55
+      },
+      "revId": "ddc172f157445c545e26b6d7d78a3b016941453f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72a9d7b9_6f7be413",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-27T12:36:57Z",
+      "side": 1,
+      "message": "Do not use old-style variables, use the new-style ones. In this case:\n${DUT1_${int}1}[0]",
+      "range": {
+        "startLine": 55,
+        "startChar": 36,
+        "endLine": 55,
+        "endChar": 47
+      },
+      "revId": "ddc172f157445c545e26b6d7d78a3b016941453f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
