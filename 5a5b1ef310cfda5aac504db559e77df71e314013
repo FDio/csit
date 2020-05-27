@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5bcd60bf_0c1f23df",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 117
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-27T17:46:58Z",
+      "side": 1,
+      "message": "Pylint says: E0102(function-redefined).\nBut re-using the same function name is the point of the call pattern (in the same way we re-use cmd, args and err_msg).\nCan we add comment directives for pylint to ignore this one,\nor should we start naming functions like gen_0, gen_1, gen_2 and so on (which creates possibilities for copypaste errors in line 549)?\nOr something else?",
+      "range": {
+        "startLine": 540,
+        "startChar": 12,
+        "endLine": 540,
+        "endChar": 24
+      },
+      "revId": "5a5b1ef310cfda5aac504db559e77df71e314013",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
