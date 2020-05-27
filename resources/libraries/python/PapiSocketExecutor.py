@@ -411,6 +411,113 @@ class PapiSocketExecutor:
         )
         return self
 
+    def connected_exec_fast(
+            self, command_name, args_generator,
+            err_msg="Failed to get replies.",
+            how_many=0, need_replies=True, history=True):
+        """FIXME
+
+        When compared to exec_fast,
+        this takes more horizontal space,
+        but is faster as reconnects are avoided.
+
+        Example of call site pattern (two blocks):
+
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            cmd = constant_command
+            args = initial_value
+            err_msg = my_error_message
+            def generator():
+                for i in range(count):
+                    args[u"some_field"] = compute_some_value(i)
+                    args[u"other_field"] = compute_other_value(i)
+                    yield cmd, args
+            papi_exec.connected_exec_fast(
+                command_name=cmd, args_generator=generator,
+                err_msg=err_msg, how_many=count, need_replies=False
+            )
+            cmd = unrelated_command
+            args = totally_different_structure
+            err_msg = alternative_error_message
+            def generator():
+                for i in range(count):
+                    args[u"field0"] = compute0(i)
+                    yield cmd, args
+            replies = papi_exec.connected_exec_fast(
+                command_name=cmd, args_generator=generator,
+                err_msg=err_msg, how_many=count, need_replies=True
+            )
+
+        Comments:
+        In the example, args can have more fields, but only some depend on i.
+        The count needs to be passed as how_many, because fast sending
+        avoids generation of full list of commands.
+
+        """
+        # Either way, we only need at most 2 commands to add.
+        fast = min(how_many, 2)
+        logger.trace(f"generator str {args_generator}")
+        logger.trace(f"generator repr {args_generator!r}")
+        for _ in range(fast):
+            kwargs = args_generator.__next__()
+            self.add(command_name, **kwargs, history=history)
+        if how_many <= 2:
+            # Slow sending is equivalent or required.
+            return self.get_replies(err_msg=err_msg, fast_send=0)
+        # Use fast sending.
+        return self.get_replies(
+            err_msg=err_msg, fast_send=how_many, fast_receive=need_replies
+        )
+
+    @classmethod
+    def exec_fast(
+            cls, node, command_name, args_generator,
+            err_msg="Failed to get replies.",
+            how_many=0, need_replies=True, history=True):
+        """FIXME
+
+        When compared to connected_exec_fast,
+        this saves space, but takes longed due to reconnects.
+
+        Example of call site pattern (two blocks):
+
+        cmd = constant_command
+        args = initial_value
+        err_msg = my_error_message
+        def generator():
+            for i in range(count):
+                args[u"some_field"] = compute_some_value(i)
+                args[u"other_field"] = compute_other_value(i)
+                yield args
+        PapiSocketExecutor.exec_fast(
+            node=node, command_name=cmd, args_generator=generator,
+            err_msg=err_msg, how_many=count, need_replies=False
+        )
+        cmd = unrelated_command
+        args = totally_different_structure
+        err_msg = alternative_error_message
+        def generator():
+            for i in range(count):
+                args[u"field0"] = compute0(i)
+                yield args
+        replies = PapiSocketExecutor.exec_fast(
+            node=node, command_name=cmd, args_generator=generator,
+            err_msg=err_msg, how_many=count, need_replies=True
+        )
+
+        Comments:
+        In the example, args can have more fields, but only some depend on i.
+        The count needs to be passed as how_many, because fast sending
+        avoids generation of full list of commands.
+
+        """
+        with cls(node, do_async=True) as papi_exec:
+            return papi_exec.connected_exec_fast(
+                command_name=command_name, args_generator=args_generator,
+                err_msg=err_msg, how_many=how_many, need_replies=need_replies,
+                history=history
+            )
+
     def get_replies(
             self, err_msg="Failed to get replies.", fast_send=0,
             fast_receive=False):
