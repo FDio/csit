@@ -350,9 +350,11 @@ function dpdk_testpmd () {
 
     for attempt in {1..60}; do
         echo "Checking if testpmd is alive, attempt nr ${attempt}"
-        if fgrep "Press enter to exit" screenlog.0; then
-            cat screenlog.0
-            exit 0
+         if fgrep "Press enter to exit" screenlog.0 && \
+            fgrep "Port 0: link state change event" screenlog.0 && \
+            fgrep "Port 1: link state change event" screenlog.0; then
+             cat screenlog.0
+             exit 0
         fi
         sleep 1
     done
