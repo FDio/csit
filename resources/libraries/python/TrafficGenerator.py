@@ -161,6 +161,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.traffic_profile = None
         self.warmup_time = None
         self.traffic_directions = None
+        self.negative_loss = None
         # Transient data needed for async measurements.
         self._xstats = (None, None)
         # TODO: Rename "xstats" to something opaque, so TRex is not privileged?
@@ -717,7 +718,7 @@ class TrafficGenerator(AbstractMeasurer):
 
     def set_rate_provider_defaults(
             self, frame_size, traffic_profile, warmup_time=0.0,
-            traffic_directions=2):
+            traffic_directions=2, negative_loss=True):
         """Store values accessed by measure().
 
         :param frame_size: Frame size identifier or value [B].
@@ -726,15 +727,18 @@ class TrafficGenerator(AbstractMeasurer):
         :param warmup_time: Traffic duration before measurement starts [s].
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
+        :param negative_loss: If false, negative loss is reported as zero loss.
         :type frame_size: str or int
         :type traffic_profile: str
         :type warmup_time: float
         :type traffic_directions: int
+        :type negative_loss: bool
         """
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
         self.traffic_directions = traffic_directions
+        self.negative_loss = negative_loss
 
     def get_measurement_result(self, duration=None, transmit_rate=None):
         """Return the result of last measurement as ReceiveRateMeasurement.
@@ -760,6 +764,8 @@ class TrafficGenerator(AbstractMeasurer):
             transmit_rate = self._rate * self.traffic_directions
         transmit_count = int(self.get_sent())
         loss_count = int(self.get_loss())
+        if loss_count < 0 and not self.negative_loss:
+            loss_count = 0
         measurement = ReceiveRateMeasurement(
             duration, transmit_rate, transmit_count, loss_count
         )
@@ -916,7 +922,8 @@ class OptimizedSearch:
             u"resources.libraries.python.TrafficGenerator"
         )
         tg_instance.set_rate_provider_defaults(
-            frame_size, traffic_profile, traffic_directions=traffic_directions)
+            frame_size, traffic_profile, traffic_directions=traffic_directions,
+            negative_loss=False)
         algorithm = PLRsearch(
             measurer=tg_instance, trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,

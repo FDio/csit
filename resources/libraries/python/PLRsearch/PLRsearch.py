@@ -57,6 +57,8 @@ class PLRsearch:
             trial_number_offset=0, timeout=1800.0, trace_enabled=False):
         """Store rate measurer and additional parameters.
 
+        The measurer must never report negative loss count.
+
         TODO: Copy AbstractMeasurer from MLRsearch.
 
         :param measurer: The measurer to call when searching.
