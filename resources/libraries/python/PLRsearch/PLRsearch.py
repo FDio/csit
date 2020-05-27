@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -633,7 +633,15 @@ class PLRsearch:
                 and number of samples used for this iteration.
             :rtype: _PartialResult
             """
-            pipe.send(None)
+            # If worker encountered an exception, we get it in the recv below,
+            # but send will report a broken pipe.
+            # EAFP says we should ignore the error (instead of polling first).
+            # https://devblogs.microsoft.com/python
+            #   /idiomatic-python-eafp-versus-lbyl/
+            try:
+                pipe.send(None)
+            except BrokenPipeError:
+                pass
             if not pipe.poll(10.0):
                 raise RuntimeError(f"Worker {name} did not finish!")
             result_or_traceback = pipe.recv()
