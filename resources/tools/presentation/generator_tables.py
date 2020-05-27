@@ -1644,7 +1644,9 @@ def table_comparison(table, input_data):
     for line in tbl_cmp_lst:
         row = [line[0], ]
         for idx, itm in enumerate(line[1:]):
-            if itm is None:
+            if itm is None or not isinstance(itm, dict) or\
+                    itm.get(u'mean', None) is None or \
+                    itm.get(u'stdev', None) is None:
                 row.append(u"NT")
                 row.append(u"NT")
             else:
