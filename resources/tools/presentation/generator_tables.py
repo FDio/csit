@@ -594,6 +594,7 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
         path = u"_tmp/src/vpp_performance_tests/comparisons/"
     else:
         path = u"_tmp/src/dpdk_performance_tests/comparisons/"
+    logging.info(f"    Writing the HTML file to {path}{file_name}.rst")
     with open(f"{path}{file_name}.rst", u"wt") as rst_file:
         rst_file.write(
             u"\n"
@@ -612,11 +613,18 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
             f'</iframe>\n\n'
         )
 
-        # TODO: Use html (rst) list for legend and footnote
         if legend:
-            rst_file.write(legend[1:].replace(u"\n", u" |br| "))
+            try:
+                itm_lst = legend[1:].split(u"\n")
+                rst_file.write(f"{itm_lst[0]}\n\n{u'- '.join(itm_lst[1:])}\n\n")
+            except IndexError as err:
+                logging.error(f"Legend cannot be written to html file\n{err}")
         if footnote:
-            rst_file.write(footnote.replace(u"\n", u" |br| ")[1:])
+            try:
+                itm_lst = footnote[1:].split(u"\n")
+                rst_file.write(f"{itm_lst[0]}\n\n{u'- '.join(itm_lst[1:])}\n\n")
+            except IndexError as err:
+                logging.error(f"Footnote cannot be written to html file\n{err}")
 
 
 def table_soak_vs_ndr(table, input_data):
@@ -1737,9 +1745,10 @@ def table_comparison(table, input_data):
         legend = u"\n" + u"\n".join(legend_lst) + u"\n"
 
     footnote = u""
-    for rca in rcas:
-        footnote += f"\n{rca[u'title']}:\n"
-        footnote += rca[u"data"].get(u"footnote", u"")
+    if rcas:
+        footnote += u"\nRCA:\n"
+        for rca in rcas:
+            footnote += rca[u"data"].get(u"footnote", u"")
 
     csv_file = f"{table[u'output-file']}-csv.csv"
     with open(csv_file, u"wt", encoding='utf-8') as file_handler:
@@ -1808,19 +1817,21 @@ def table_comparison(table, input_data):
     header.extend([rca[u"title"] for rca in rcas])
 
     # Generate csv tables:
-    csv_file = f"{table[u'output-file']}.csv"
-    with open(csv_file, u"wt", encoding='utf-8') as file_handler:
+    csv_file_name = f"{table[u'output-file']}.csv"
+    logging.info(f"    Writing the file {csv_file_name}")
+    with open(csv_file_name, u"wt", encoding='utf-8') as file_handler:
         file_handler.write(u";".join(header) + u"\n")
         for test in tbl_final:
             file_handler.write(u";".join([str(item) for item in test]) + u"\n")
 
     # Generate txt table:
     txt_file_name = f"{table[u'output-file']}.txt"
+    logging.info(f"    Writing the file {txt_file_name}")
     convert_csv_to_pretty_txt(csv_file, txt_file_name, delimiter=u";")
 
-    with open(txt_file_name, u'a', encoding='utf-8') as txt_file:
-        txt_file.write(legend)
-        txt_file.write(footnote)
+    with open(txt_file_name, u'a', encoding='utf-8') as file_handler:
+        file_handler.write(legend)
+        file_handler.write(footnote)
 
     # Generate html table:
     _tpc_generate_html_table(
