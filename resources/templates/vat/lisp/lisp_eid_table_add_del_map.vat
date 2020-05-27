@@ -1,1 +1,0 @@
-lisp_eid_table_add_del_map vni {vni} {bd_or_vrf}
