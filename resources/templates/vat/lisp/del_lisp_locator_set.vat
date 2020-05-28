@@ -1,1 +1,0 @@
-lisp_add_del_locator_set locator-set {lisp_name} del
