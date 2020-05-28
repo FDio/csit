@@ -6,6 +6,9 @@ FD.io CSIT-2001 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+| .22            | 1. Fixed links to some html comparison tables.             |
+|                |                                                            |
++----------------+------------------------------------------------------------+
 | .21            | 1. Added data:                                             |
 |                |                                                            |
 |                |      - test sets: IPv4, IPv4 Tunnels, IPv6 Tunnels,        |
