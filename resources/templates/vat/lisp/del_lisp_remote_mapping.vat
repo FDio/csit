@@ -1,1 +1,0 @@
-lisp_add_del_remote_mapping del vni {vni} eid {deid}/{deid_prefix} seid {seid}/{seid_prefix} rloc {rloc}
