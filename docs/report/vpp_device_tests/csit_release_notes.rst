@@ -11,9 +11,7 @@ Changes in |csit-release|
 
 #. TEST COVERAGE
 
-   - Increased test coverage: **Dot1q**, **IPsec**, **802.1ad VXLAN**,
-     **COP whitelist**, **COP blacklist**, **QoS Policer Metering**,
-     **iACL whitelist**, **AVF driver**, **TAP Interface**.
+   - Increased test coverage: **IPsec Interface**, **SRv6**.
    - Align vpp_device L2 Robot Keywords with performance L2 Robot Keywords.
 
 Known Issues
