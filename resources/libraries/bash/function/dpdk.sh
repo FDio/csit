@@ -206,7 +206,7 @@ function dpdk_kill () {
     fi
 
     # Remove hugepages
-    sudo rm -f /dev/hugepages/* || die "Removing hugepages failed!"
+    sudo rm -rf /dev/hugepages/* || die "Removing hugepages failed!"
 }
 
 
