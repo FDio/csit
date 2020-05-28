@@ -135,6 +135,8 @@ environment:
 | QoS Policer Metering  | Ingress packet rate metering and marking for |
 |                       | IPv4, IPv6.                                  |
 +-----------------------+----------------------------------------------+
+| SRv6                  | Segment routing over IPv6, base and proxy.   |
++-----------------------+----------------------------------------------+
 | Tap Interface         | Baseline Linux tap interface tests.          |
 +-----------------------+----------------------------------------------+
 | VLAN Tag              | L2 VLAN subinterfaces.                       |
