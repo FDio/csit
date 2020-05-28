@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "b5d58e52_3adf0d63",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 108
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-28T11:28:08Z",
+      "side": 1,
+      "message": "New pattern is implemented, using generator functions. See from patch set #121 on.",
+      "parentUuid": "eaa709f7_2d7502c7",
+      "range": {
+        "startLine": 469,
+        "startChar": 27,
+        "endLine": 469,
+        "endChar": 29
+      },
+      "revId": "f1b93fe756d5302b157e95ca4842904cb32280dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e6edc3c_ccbce1f6",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 108
@@ -117,6 +141,30 @@
       "revId": "f1b93fe756d5302b157e95ca4842904cb32280dc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0ae70a0_ab701178",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 108
+      },
+      "lineNbr": 828,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-05-28T11:28:08Z",
+      "side": 1,
+      "message": "Done (under protest).",
+      "parentUuid": "0e6edc3c_ccbce1f6",
+      "range": {
+        "startLine": 827,
+        "startChar": 0,
+        "endLine": 828,
+        "endChar": 21
+      },
+      "revId": "f1b93fe756d5302b157e95ca4842904cb32280dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
