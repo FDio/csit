@@ -109,7 +109,7 @@ function dpdk_compile () {
     sed -i "${sed_i40e}" "${sed_file}" || die "Patch failed"
 
     # Compile
-    make install T="${arch}"-"${machine}"-linuxapp-gcc -j || {
+    make install T="${arch}"-"${machine}"-linuxapp-gcc || {
         die "Failed to compile DPDK!"
     }
     popd || die "Popd failed"
