@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca881088_dd816883",
+        "filename": "GPL/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T16:00:28Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 119,
+        "startChar": 69,
+        "endLine": 119,
+        "endChar": 70
+      },
+      "revId": "75cf0b1cef7f567f79acfe691118abb49b231d44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3ee91e6_5bb20827",
+        "filename": "GPL/traffic_profiles/trex/profile_trex_stateless_base_class.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T16:00:28Z",
+      "side": 1,
+      "message": "no blank lines",
+      "revId": "75cf0b1cef7f567f79acfe691118abb49b231d44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b8ad275_b1933ed1",
+        "filename": "GPL/traffic_profiles/trex/profile_trex_stateless_base_class.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T16:00:28Z",
+      "side": 1,
+      "message": "okay this cannot stays like this. But i know how to fix.",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 78
+      },
+      "revId": "75cf0b1cef7f567f79acfe691118abb49b231d44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0045d672_756187ac",
+        "filename": "GPL/traffic_profiles/trex/profile_trex_stateless_base_class.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T16:00:28Z",
+      "side": 1,
+      "message": "wrong indentation and spacing (see below)",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 1
+      },
+      "revId": "75cf0b1cef7f567f79acfe691118abb49b231d44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdc5a79c_cd8e38dd",
+        "filename": "GPL/traffic_profiles/trex/profile_trex_stateless_base_class.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T16:00:28Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 8
+      },
+      "revId": "75cf0b1cef7f567f79acfe691118abb49b231d44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fce71ade_0dc912d1",
+        "filename": "GPL/traffic_profiles/trex/trex-sl-3n-ethip4-flowsim.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T16:00:28Z",
+      "side": 1,
+      "message": "file name should follow content...eg:\ntrex-sl-3n-ethip4-ethip4ip-XYuXYp-NNflNNstr10ibg10sps.py",
+      "revId": "75cf0b1cef7f567f79acfe691118abb49b231d44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d90e4a5a_9b8bfdaf",
+        "filename": "GPL/traffic_profiles/trex/trex-sl-3n-ethip4-flowsim.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T16:00:28Z",
+      "side": 1,
+      "message": "describe UDP.\ndescribe flows parameters.",
+      "revId": "75cf0b1cef7f567f79acfe691118abb49b231d44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d40c9144_0da2c78b",
+        "filename": "GPL/traffic_profiles/trex/trex-sl-3n-ethip4-flowsim.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T16:00:28Z",
+      "side": 1,
+      "message": "Move to init",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 27
+      },
+      "revId": "75cf0b1cef7f567f79acfe691118abb49b231d44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
