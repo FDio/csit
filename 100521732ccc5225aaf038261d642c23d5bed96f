@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "c2a8b22a_3ed58d17",
+        "filename": ".git_commit_template.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T09:36:03Z",
+      "side": 1,
+      "message": "put as optional",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 24
+      },
+      "revId": "100521732ccc5225aaf038261d642c23d5bed96f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a97d0bc4_b8f6bb2f",
         "filename": ".git_commit_template.txt",
         "patchSetId": 1
@@ -36,6 +59,30 @@
       "writtenOn": "2020-05-29T09:06:02Z",
       "side": 1,
       "message": "What type is it when I am adding data to the report?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 13
+      },
+      "revId": "100521732ccc5225aaf038261d642c23d5bed96f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22a2ad84_5ef4f1bd",
+        "filename": ".git_commit_template.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T09:36:03Z",
+      "side": 1,
+      "message": "Much more! what is infra? what is testcase?\nThis does not fit in the purpose. Instead of fixed list add user ability to describe and only check the syntax. Otherwise you will end up in only \"feature\"",
+      "parentUuid": "a97d0bc4_b8f6bb2f",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -71,6 +118,52 @@
     },
     {
       "key": {
+        "uuid": "4a781121_e6481dc0",
+        "filename": ".git_commit_template.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T09:36:03Z",
+      "side": 1,
+      "message": "What? what about acronyms, names, ...?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 1
+      },
+      "revId": "100521732ccc5225aaf038261d642c23d5bed96f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4e76b6a_f7c5c0bd",
+        "filename": ".git_commit_template.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T09:36:03Z",
+      "side": 1,
+      "message": "Do not end...",
+      "range": {
+        "startLine": 34,
+        "startChar": 5,
+        "endLine": 34,
+        "endChar": 9
+      },
+      "revId": "100521732ccc5225aaf038261d642c23d5bed96f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "836db888_1598c484",
         "filename": ".git_commit_template.txt",
         "patchSetId": 1
@@ -87,6 +180,29 @@
         "startChar": 29,
         "endLine": 37,
         "endChar": 46
+      },
+      "revId": "100521732ccc5225aaf038261d642c23d5bed96f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a185f10_161ed95c",
+        "filename": "resources/libraries/bash/entry/check/commit_message.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-05-29T09:36:03Z",
+      "side": 1,
+      "message": "do not enforce something you do not know how many values it can have.\nthere is so many areas of CSIT that are not covered by this.\nInstead do just REGEXP checking the syntax. \nOtherwise any user can add anything to this list to be safe",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 57
       },
       "revId": "100521732ccc5225aaf038261d642c23d5bed96f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
