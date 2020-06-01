@@ -73,6 +73,8 @@ function build_vpp_ubuntu_amd64 () {
     # Arguments:
     # - ${1} - String identifier for echo, can be unset.
     # Variables read:
+    # - MAKE_PARALLEL_FLAGS - Make flags when building VPP.
+    # - MAKE_PARALLEL_JOBS - Number of cores to use when building VPP.
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
     # Directories updated:
     # - ${VPP_DIR} - Whole subtree, many files (re)created by the build process.
@@ -82,6 +84,12 @@ function build_vpp_ubuntu_amd64 () {
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory command failed."
+    if [ -n "${MAKE_PARALLEL_FLAGS-}" ]; then
+        echo "Building with MAKE_PARALLEL_FLAGS=${MAKE_PARALLEL_FLAGS}"
+    elif [ -n "${MAKE_PARALLEL_JOBS-}" ]; then
+        echo "Building with MAKE_PARALLEL_JOBS=${MAKE_PARALLEL_JOBS}"
+    fi
+
     make UNATTENDED=y pkg-verify || die "VPP build using make pkg-verify failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
