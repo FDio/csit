@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23a8e845_25333b2e",
+        "filename": "GPL/tools/trex/trex_astf_assert.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-06-01T11:41:26Z",
+      "side": 1,
+      "message": "TRexError",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "db514992fbd66053cd7d28f19fbb2c936b2f75ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
