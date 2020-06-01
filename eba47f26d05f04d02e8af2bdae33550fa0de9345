@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f76cfdf7_94a92689",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-01T11:40:57Z",
+      "side": 1,
+      "message": "Limit line length to 80 characters.",
+      "range": {
+        "startLine": 22,
+        "startChar": 95,
+        "endLine": 22,
+        "endChar": 96
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b48f98f_0b04b3ac",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-01T11:40:57Z",
+      "side": 1,
+      "message": "Sounds like something that also should be listed as an item here.",
+      "range": {
+        "startLine": 30,
+        "startChar": 89,
+        "endLine": 30,
+        "endChar": 95
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "796bb137_d6f0791c",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-01T11:40:57Z",
+      "side": 1,
+      "message": "Also should be listed.",
+      "range": {
+        "startLine": 46,
+        "startChar": 402,
+        "endLine": 46,
+        "endChar": 408
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c917348a_014b0699",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-01T11:40:57Z",
+      "side": 1,
+      "message": "Ok for now, but we should provide feedback to the draft. This is (related but) NOT the same as RFC2544 Throughput.",
+      "range": {
+        "startLine": 77,
+        "startChar": 13,
+        "endLine": 77,
+        "endChar": 23
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25eb29d3_91e17217",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-01T11:40:57Z",
+      "side": 1,
+      "message": "Should we explicitly declare this mode makes the NAT not compliant with RFC5382 (req-1)?",
+      "range": {
+        "startLine": 91,
+        "startChar": 30,
+        "endLine": 91,
+        "endChar": 53
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86b0c507_1c53dac8",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-01T11:40:57Z",
+      "side": 1,
+      "message": "This satisfies req-1, but other requirements should also be checked.",
+      "range": {
+        "startLine": 121,
+        "startChar": 30,
+        "endLine": 121,
+        "endChar": 55
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
