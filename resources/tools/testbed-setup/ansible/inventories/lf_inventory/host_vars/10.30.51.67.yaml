@@ -1,10 +1,7 @@
----
+i---
 # file: host_vars/10.30.51.67.yaml
 
 hostname: "s49-nomad"
-vfs_data_file: "csit-initialize-vfs-tx2.sh"
-grub:
-  nr_hugepages: 57344
 cpu_microarchitecture: "thunderx2"
 
 # Nomad settings.
