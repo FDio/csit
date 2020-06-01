@@ -196,19 +196,30 @@
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
         - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
         - 5   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-hsw:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
         - 3   # NDRPDR sel
-        - 5   # NDRPDR sel
 
     plot-vpp-nfv-3n-hsw-ndrpdr:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
         - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
         - 5   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
 
     plot-vpp-nfv-3n-hsw-mrr:
       # TODO: Replace:
@@ -266,7 +277,6 @@
         - 50  # MRR sel
 
     plot-dpdk-throughput-latency-3n-skx:
-      # TODO: Add data:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel
@@ -276,6 +286,8 @@
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
 
     plot-dpdk-hdrh-lat-3n-skx:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
@@ -415,16 +427,14 @@
         - 10  # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-tsh:
-      # TODO: Replace:
-      # csit-dpdk-perf-report-iterative-2005-3n-tsh:
-      csit-dpdk-perf-verify-2001-3n-tsh:
-        - 3   # NDRPDR sel
+      # TODO: Add data:
+      csit-dpdk-perf-report-iterative-2005-3n-tsh:
+        - 5   # NDRPDR sel
 
     plot-dpdk-hdrh-lat-3n-tsh:
-      # TODO: Replace:
-      # csit-dpdk-perf-report-iterative-2005-3n-tsh:
-      csit-dpdk-perf-verify-2001-3n-tsh:
-        - 3   # NDRPDR sel
+      # TODO: Replace with better results:
+      csit-dpdk-perf-report-iterative-2005-3n-tsh:
+        - 5   # NDRPDR sel
 
     # 3n-dnv
 
@@ -435,13 +445,17 @@
         - 5   # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-dnv:
-      # TODO: Add data:
       csit-dpdk-perf-report-iterative-2005-3n-dnv:
         - 6   # NDRPDR sel
         - 7   # NDRPDR sel
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 16  # NDRPDR sel
 
     # 2n-dnv
 
@@ -452,7 +466,6 @@
         - 4   # NDRPDR sel
 
     plot-dpdk-throughput-latency-2n-dnv:
-      # TODO: Add data:
       csit-dpdk-perf-report-iterative-2005-2n-dnv:
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
@@ -461,6 +474,9 @@
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
+        - 16  # NDRPDR sel
+        - 17  # NDRPDR sel
 
     ###########################################################################
     # Simple tables (only one data set):
@@ -585,40 +601,33 @@
         - 35
 
     dpdk-perf-results-3n-hsw:
-      # TODO: Replace by FULL
       csit-dpdk-perf-report-iterative-2005-3n-hsw:
         - 5   # NDRPDR sel
 
     dpdk-perf-results-3n-skx:
-      # TODO: Replace by FULL
       csit-dpdk-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
 
     dpdk-perf-results-2n-skx:
-      # TODO: Replace by FULL
       csit-dpdk-perf-report-iterative-2005-2n-skx:
         - 1   # NDRPDR sel
 
     dpdk-perf-results-2n-clx:
-      # TODO: Replace by FULL
       csit-dpdk-perf-report-iterative-2005-2n-clx:
         - 1   # NDRPDR sel
 
     dpdk-perf-results-2n-dnv:
-      # TODO: Replace by FULL
       csit-dpdk-perf-report-iterative-2005-2n-dnv:
         - 8   # NDRPDR sel
 
     dpdk-perf-results-3n-dnv:
-      # TODO: Replace by FULL
       csit-dpdk-perf-report-iterative-2005-3n-dnv:
         - 6   # NDRPDR sel
 
     dpdk-perf-results-3n-tsh:
-      # TODO: Replace:
-      # csit-dpdk-perf-report-iterative-2005-3n-tsh:
-      csit-dpdk-perf-verify-2001-3n-tsh:
-        - 3   # NDRPDR sel
+      # TODO: Replace with better results:
+      csit-dpdk-perf-report-iterative-2005-3n-tsh:
+        - 5   # NDRPDR sel
 
 ###########################################################################
     # Tables (more than one data set)
@@ -653,7 +662,13 @@
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
         - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
         - 5   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
 
     vpp-performance-changes-3n-skx-h1:
       csit-vpp-perf-verify-1908-3n-skx:
@@ -1130,7 +1145,6 @@
         - 47  # NDRPDR sel x710
         - 48  # NDRPDR sel x710
     dpdk-performance-changes-3n-skx-cmp:
-      # TODO: Add data:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel
@@ -1140,6 +1154,8 @@
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
 
     dpdk-performance-changes-2n-skx-h1:
       csit-dpdk-perf-verify-1908-2n-skx:
@@ -1236,7 +1252,6 @@
         - 17  # NDRPDR sel
         - 18  # NDRPDR sel
     dpdk-performance-changes-2n-dnv-cmp:
-      # TODO: Add data:
       csit-dpdk-perf-report-iterative-2005-2n-dnv:
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
@@ -1245,6 +1260,9 @@
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
+        - 16  # NDRPDR sel
+        - 17  # NDRPDR sel
 
     dpdk-performance-changes-3n-dnv-ref:
       csit-dpdk-perf-verify-2001-3n-dnv:
@@ -1259,13 +1277,17 @@
         - 20  # NDRPDR sel
         - 22  # NDRPDR sel
     dpdk-performance-changes-3n-dnv-cmp:
-      # TODO: Add data:
       csit-dpdk-perf-report-iterative-2005-3n-dnv:
         - 6   # NDRPDR sel
         - 7   # NDRPDR sel
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 16  # NDRPDR sel
 
     dpdk-performance-changes-3n-tsh-ref:
       csit-dpdk-perf-verify-2001-3n-tsh:
@@ -1280,19 +1302,9 @@
         - 15  # NDRPDR sel
         - 18  # NDRPDR sel
     dpdk-performance-changes-3n-tsh-cmp:
-      # TODO: replace:
-      # csit-dpdk-perf-report-iterative-2005-3n-tsh:
-      csit-dpdk-perf-verify-2001-3n-tsh:
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
+      # TODO: Add data:
+      csit-dpdk-perf-report-iterative-2005-3n-tsh:
         - 5   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 18  # NDRPDR sel
 
     # Compare testbeds
 
@@ -1300,7 +1312,13 @@
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
         - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
         - 5   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
     vpp-compare-testbeds-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -1346,7 +1364,13 @@
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
         - 3   # NDRPDR sel
+        - 4   # NDRPDR sel
         - 5   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
     vpp-compare-testbeds-hsw-clx-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -1410,7 +1434,6 @@
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
     dpdk-compare-testbeds-cmp:
-      # TODO: Add data:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel
@@ -1420,6 +1443,8 @@
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
 
     dpdk-compare-testbeds-skx-clx-ref:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
@@ -1488,7 +1513,6 @@
         - 128 # MRR sel addition
 
     dpdk-compare-topologies-ref:
-      # TODO: Add data:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel
@@ -1498,6 +1522,8 @@
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
     dpdk-compare-topologies-cmp:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
         - 1   # NDRPDR sel
@@ -2201,7 +2227,13 @@
     # TODO: Add data:
     csit-vpp-perf-report-iterative-2005-3n-hsw:
       - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
       - 5   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+      - 14  # NDRPDR sel
 
     csit-vpp-perf-verify-1908_1-3n-skx:
       - 26  # NDRPDR sel - new1908.1
@@ -2439,7 +2471,6 @@
       - 46  # NDRPDR sel x710
       - 47  # NDRPDR sel x710
       - 48  # NDRPDR sel x710
-    # TODO: Add data:
     csit-dpdk-perf-report-iterative-2005-3n-skx:
       - 4   # NDRPDR sel
       - 5   # NDRPDR sel
@@ -2449,6 +2480,8 @@
       - 11  # NDRPDR sel
       - 12  # NDRPDR sel
       - 13  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 15  # NDRPDR sel
 
     csit-dpdk-perf-verify-1908-2n-skx:
       - 2   # NDRPDR sel
@@ -2538,7 +2571,6 @@
       - 16  # NDRPDR sel
       - 17  # NDRPDR sel
       - 18  # NDRPDR sel
-    # TODO: Add data:
     csit-dpdk-perf-report-iterative-2005-2n-dnv:
       - 8   # NDRPDR sel
       - 9   # NDRPDR sel
@@ -2547,6 +2579,9 @@
       - 12  # NDRPDR sel
       - 13  # NDRPDR sel
       - 14  # NDRPDR sel
+      - 15  # NDRPDR sel
+      - 16  # NDRPDR sel
+      - 17  # NDRPDR sel
 
     csit-dpdk-perf-verify-2001-3n-dnv:
       - 12  # NDRPDR sel
@@ -2559,13 +2594,17 @@
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
       - 22  # NDRPDR sel
-    # TODO: Add data:
     csit-dpdk-perf-report-iterative-2005-3n-dnv:
       - 6   # NDRPDR sel
       - 7   # NDRPDR sel
       - 8   # NDRPDR sel
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 16  # NDRPDR sel
 
     csit-dpdk-perf-verify-2001-3n-tsh:
       - 3   # NDRPDR sel
@@ -2579,7 +2618,8 @@
       - 15  # NDRPDR sel
       - 18  # NDRPDR sel
     # TODO: Add data:
-    # csit-dpdk-perf-report-iterative-2005-3n-tsh:
+    csit-dpdk-perf-report-iterative-2005-3n-tsh:
+      - 5   # NDRPDR sel
 
     csit-vpp-device-2005-ubuntu1804-1n-skx:
       - 35
