@@ -200,8 +200,6 @@
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
 
@@ -217,16 +215,12 @@
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
 
     plot-vpp-nfv-3n-hsw-mrr:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-3n-hsw:
-      csit-vpp-perf-verify-2001-3n-hsw:
-        - 17  # MRR sel
+      csit-vpp-perf-report-iterative-2005-3n-hsw:
+        - 13  # MRR
 
     plot-vpp-hoststack-3n-hsw:
       # TODO: Replace:
@@ -563,10 +557,8 @@
         - 3   # NDRPDR sel
 
     vpp-mrr-results-3n-hsw:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-3n-hsw:
-      csit-vpp-perf-verify-2001-3n-hsw:
-        - 17  # MRR sel
+      csit-vpp-perf-report-iterative-2005-3n-hsw:
+        - 13  # MRR
 
     vpp-mrr-results-3n-skx:
       # TODO: Replace:
@@ -595,10 +587,8 @@
         - 9   # MRR sel
 
     vpp-mrr-results-3n-dnv:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-3n-dnv:
-      csit-vpp-perf-verify-2001-3n-dnv:
-        - 11  # MRR sel
+      csit-vpp-perf-report-iterative-2005-3n-dnv:
+        - 8   # MRR
 
     vpp-mrr-results-2n-dnv:
       # TODO: Replace:
@@ -676,8 +666,6 @@
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
 
@@ -989,10 +977,8 @@
       csit-vpp-perf-verify-2001-3n-hsw:
         - 17  # MRR sel
     vpp-performance-changes-3n-hsw-mrr-cmp:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-3n-hsw:
-      csit-vpp-perf-verify-2001-3n-hsw:
-        - 17  # MRR sel
+      csit-vpp-perf-report-iterative-2005-3n-hsw:
+        - 13  # MRR
 
     vpp-performance-changes-3n-skx-mrr-h1:
       csit-vpp-perf-verify-1908-3n-skx:
@@ -1050,10 +1036,8 @@
       csit-vpp-perf-verify-2001-3n-dnv:
         - 11  # MRR sel
     vpp-performance-changes-3n-dnv-mrr-cmp:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-3n-dnv:
-      csit-vpp-perf-verify-2001-3n-dnv:
-        - 11  # MRR sel
+      csit-vpp-perf-report-iterative-2005-3n-dnv:
+        - 8   # MRR
 
     vpp-performance-changes-3n-tsh-mrr-h1:
       csit-vpp-perf-verify-1908-3n-tsh:
@@ -1320,8 +1304,6 @@
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
     vpp-compare-testbeds-cmp:
@@ -1373,8 +1355,6 @@
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
         - 15  # NDRPDR sel
         - 16  # NDRPDR sel
     vpp-compare-testbeds-hsw-clx-cmp:
@@ -1393,10 +1373,8 @@
         - 49  # NDRPDR sel
 
     vpp-compare-testbeds-mrr-ref:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-3n-hsw:
-      csit-vpp-perf-verify-2001-3n-hsw:
-        - 17  # MRR sel
+      csit-vpp-perf-report-iterative-2005-3n-hsw:
+        - 13  # MRR
     vpp-compare-testbeds-mrr-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -1417,10 +1395,8 @@
         - 39  # MRR
 
     vpp-compare-testbeds-mrr-hsw-clx-ref:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-3n-hsw:
-      csit-vpp-perf-verify-2001-3n-hsw:
-        - 17  # MRR sel
+      csit-vpp-perf-report-iterative-2005-3n-hsw:
+        - 13  # MRR
     vpp-compare-testbeds-mrr-hsw-clx-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -2237,10 +2213,9 @@
       - 10  # NDRPDR sel
       - 11  # NDRPDR sel
       - 12  # NDRPDR sel
-      - 13  # NDRPDR sel
-      - 14  # NDRPDR sel
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
+      - 13  # MRR
 
     csit-vpp-perf-verify-1908_1-3n-skx:
       - 26  # NDRPDR sel - new1908.1
@@ -2380,6 +2355,7 @@
       - 5   # NDRPDR sel
       - 6   # NDRPDR sel
       - 7   # NDRPDR sel
+      - 8   # MRR
 
     csit-vpp-perf-verify-1908-2n-dnv:
       - 1   # NDRPDR sel
