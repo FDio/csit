@@ -108,6 +108,12 @@ function dpdk_compile () {
 
     sed -i "${sed_i40e}" "${sed_file}" || die "Patch failed"
 
+    sed_build_fix='s/#include <\(rte_ethdev.*.h\)>/#include "\1"/g'
+    # can't put the filename in quotes so that shell expands it
+    sed -i "${sed_build_fix}" ./lib/librte_ethdev/rte_ethdev*.h || {
+        die "DPDK build patch failed"
+    }
+
     # Compile
     make install T="${arch}"-"${machine}"-linuxapp-gcc -j || {
         die "Failed to compile DPDK!"
