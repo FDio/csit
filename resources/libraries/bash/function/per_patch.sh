@@ -1,4 +1,5 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2020 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -73,6 +74,8 @@ function build_vpp_ubuntu_amd64 () {
     # Arguments:
     # - ${1} - String identifier for echo, can be unset.
     # Variables read:
+    # - MAKE_PARALLEL_FLAGS - Make flags when building VPP.
+    # - MAKE_PARALLEL_JOBS - Number of cores to use when building VPP.
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
     # Directories updated:
     # - ${VPP_DIR} - Whole subtree, many files (re)created by the build process.
@@ -82,6 +85,12 @@ function build_vpp_ubuntu_amd64 () {
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory command failed."
+    if [ -n "${MAKE_PARALLEL_FLAGS-}" ]; then
+        echo "Building VPP with ${MAKE_PARALLEL_FLAGS} cores."
+    elif [ -n "${MAKE_PARALLEL_JOBS-}" ]; then
+        echo "Building VPP with ${MAKE_PARALLEL_JOBS} cores."
+    fi
+
     make UNATTENDED=y pkg-verify || die "VPP build using make pkg-verify failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
