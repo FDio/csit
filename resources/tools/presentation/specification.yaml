@@ -900,22 +900,6 @@
       csit-vpp-perf-verify-2001-2n-skx:
         - 181  # Soak
         - 182  # Soak
-    vpp-soak-vs-ndr-2n-skx:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-skx:
-      csit-vpp-perf-verify-2001-2n-skx:
-        - 143  # NDRPDR sel - new2001.0
-        - 146  # NDRPDR sel - new2001.0
-        - 147  # NDRPDR sel - new2001.0
-        - 148  # NDRPDR sel - new2001.0
-        - 149  # NDRPDR sel - new2001.0
-        - 150  # NDRPDR sel - new2001.0
-        - 151  # NDRPDR sel - new2001.0
-        - 152  # NDRPDR sel - new2001.0
-        - 153  # NDRPDR sel - new2001.0
-        - 154  # NDRPDR sel - new2001.0
-        - 181  # Soak
-        - 182  # Soak
 
     vpp-soak-vs-ndr-2n-clx-ref:
       # TODO: Add data:
@@ -926,22 +910,6 @@
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2005-2n-clx:
       csit-vpp-perf-verify-2001-2n-clx:
-        - 93  # SOAK
-        - 94  # Soak
-    vpp-soak-vs-ndr-2n-clx:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-clx:
-      csit-vpp-perf-verify-2001-2n-clx:
-        - 28  # NDRPDR sel
-        - 29  # NDRPDR sel
-        - 32  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 43  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 45  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 49  # NDRPDR sel
         - 93  # SOAK
         - 94  # Soak
 
@@ -2596,40 +2564,44 @@
 # VPP Soak vs NDR - 2n-skx
 - type: "table"
   title: "VPP Soak vs NDR 2n-skx"
-  algorithm: "table_soak_vs_ndr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/soak-vs-ndr-2n-skx"
-  reference:
-    title: "NDR"
-    data: "vpp-soak-vs-ndr-2n-skx-ref"
-  compare:
-    title: "Soak"
-    data: "vpp-soak-vs-ndr-2n-skx-cmp"
-  data: "vpp-soak-vs-ndr-2n-skx"
-  include-tests: "NDR"
-  filter: "('NDRPDR' or 'SOAK') and not 'NF_DENSITY'"
-  parameters:
-    - "throughput"
-    - "name"
-    - "parent"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710' and ('NDRPDR' or 'SOAK') and not 'NF_DENSITY'"
+  columns:
+    - title: "NDR"
+      data-set: "vpp-soak-vs-ndr-2n-skx-ref"
+    - title: "Soak"
+      data-set: "vpp-soak-vs-ndr-2n-skx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "NDR and Soak - testing methods used."
+    - "Diff - difference between results of NDR and Soak tests."
 
 # VPP Soak vs NDR - 2n-clx
 - type: "table"
   title: "VPP Soak vs NDR 2n-clx"
-  algorithm: "table_soak_vs_ndr"
+  algorithm: "table_comparison"
   output-file: "{DIR[STATIC,VPP]}/soak-vs-ndr-2n-clx"
-  reference:
-    title: "NDR"
-    data: "vpp-soak-vs-ndr-2n-clx-ref"
-  compare:
-    title: "Soak"
-    data: "vpp-soak-vs-ndr-2n-clx-cmp"
-  data: "vpp-soak-vs-ndr-2n-clx"
-  include-tests: "NDR"
-  filter: "('NDRPDR' or 'SOAK') and not 'NF_DENSITY'"
-  parameters:
-    - "throughput"
-    - "name"
-    - "parent"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710' and ('NDRPDR' or 'SOAK') and not 'NF_DENSITY'"
+  columns:
+    - title: "NDR"
+      data-set: "vpp-soak-vs-ndr-2n-clx-ref"
+    - title: "Soak"
+      data-set: "vpp-soak-vs-ndr-2n-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table:"
+    - "NDR and Soak - testing methods used."
+    - "Diff - difference between results of NDR and Soak tests."
 
 ################################################################################
 
