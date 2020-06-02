@@ -156,6 +156,7 @@
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
 | | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
 | | | Run keyword | ${dut}.Add IP Heap Size | 4G
+| | | Run keyword | ${dut}.Add Graph Node Variant | ${GRAPH_NODE_VARIANT}
 | | END
 
 | Add worker threads to all DUTs
