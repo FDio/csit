@@ -919,9 +919,20 @@
 
     vpp-soak-vs-ndr-2n-clx-ref:
       # TODO: Add data:
-      csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 7   # NDRPDR sel
-        - 9   # NDRPDR sel
+      # csit-vpp-perf-report-iterative-2005-2n-clx:
+      #  - 7   # NDRPDR sel
+      #  - 9   # NDRPDR sel
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 28  # NDRPDR sel
+        - 29  # NDRPDR sel
+        - 32  # NDRPDR sel
+        - 40  # NDRPDR sel
+        - 43  # NDRPDR sel
+        - 44  # NDRPDR sel
+        - 45  # NDRPDR sel
+        - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
+        - 49  # NDRPDR sel
     vpp-soak-vs-ndr-2n-clx-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2005-2n-clx:
