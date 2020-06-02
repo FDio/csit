@@ -227,10 +227,17 @@
         - 13  # MRR
 
     plot-vpp-hoststack-3n-hsw:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-3n-hsw:
-      csit-vpp-perf-verify-2001-3n-hsw:
-        - 103  # hoststack
+      csit-vpp-perf-verify-2005-3n-hsw:
+        - 3   # hoststack
+        - 5   # hoststack
+        - 6   # hoststack
+        - 7   # hoststack
+        - 8   # hoststack
+        - 9   # hoststack
+        - 10  # hoststack
+        - 11  # hoststack
+        - 12  # hoststack
+        - 13  # hoststack
 
     plot-dpdk-throughput-latency-3n-hsw:
       csit-dpdk-perf-report-iterative-2005-3n-hsw:
@@ -254,16 +261,18 @@
     plot-vpp-throughput-lat-tsa-3n-skx:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 5   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel ??? all x710 failed
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 5   # NDRPDR sel
+        - 4   # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-ndrpdr:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 5   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel ??? all x710 failed
 
     plot-vpp-nfv-3n-skx-mrr:
       # TODO: Replace:
@@ -358,11 +367,11 @@
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 9   # NDRPDR sel
 
-    plot-vpp-http-server-performance:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-clx:
-      csit-vpp-perf-verify-2001-2n-clx:
-        - 80  # TCP
+#    plot-vpp-http-server-performance:
+#      # TODO: Replace:
+#      # csit-vpp-perf-report-iterative-2005-2n-clx:
+#      csit-vpp-perf-verify-2001-2n-clx:
+#        - 80  # TCP
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       # TODO: Add data:
@@ -433,7 +442,6 @@
     # 3n-dnv
 
     plot-vpp-throughput-lat-tsa-3n-dnv:
-      # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-dnv:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -443,6 +451,8 @@
         - 7   # NDRPDR sel
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-dnv:
       csit-dpdk-perf-report-iterative-2005-3n-dnv:
@@ -493,7 +503,8 @@
     vpp-nic-comparison-3n-skx:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 5   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel ??? all x710 failed
 
     vpp-nic-comparison-2n-skx:
       # TODO: Replace:
@@ -524,7 +535,7 @@
     vpp-perf-results-3n-skx:
       # TODO: Replace:
       csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 5   # NDRPDR sel
+        - 4   # NDRPDR sel
 
     vpp-perf-results-2n-skx:
       # TODO: Replace:
@@ -553,6 +564,9 @@
         - 1   # perf-full-2n-dnv-ip4_I
         - 2   # perf-full-2n-dnv-ip4_II
         - 3   # perf-full-2n-dnv-ip6_I
+        - 4   # perf-full-2n-dnv-ip6_II
+        - 5   # perf-full-2n-dnv-l2_I
+        - 6   # perf-full-2n-dnv-l2_II
 
     vpp-mrr-results-3n-hsw:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
@@ -691,7 +705,8 @@
     vpp-performance-changes-3n-skx-cmp:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 5   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel ??? all x710 failed
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -830,7 +845,6 @@
         - 17  # NDRPDR sel
         - 18  # NDRPDR sel
     vpp-performance-changes-3n-dnv-cmp:
-      # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-dnv:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -840,6 +854,8 @@
         - 7   # NDRPDR sel
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
 
     vpp-performance-changes-3n-tsh-h1:
       csit-vpp-perf-verify-1908-3n-tsh:
@@ -1295,7 +1311,8 @@
     vpp-compare-testbeds-cmp:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 5   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel ??? all x710 failed
 
     vpp-compare-testbeds-skx-clx-ref:
       # TODO: Replace:
@@ -1421,7 +1438,8 @@
     vpp-compare-topologies-ref:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 5   # NDRPDR sel
+        - 4   # NDRPDR sel
+        - 5   # NDRPDR sel ??? all x710 failed
     vpp-compare-topologies-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -1563,119 +1581,119 @@
       hoverlabel:
         namelength: -1
 
-    plot-cps:
-      titlefont:
-        size: 18
-      xaxis:
-        title: "<b>Test Cases [Index]</b>"
-        titlefont:
-          size: 16
-        autorange: True
-        fixedrange: False
-        gridcolor: "rgb(230, 230, 230)"
-        linecolor: "rgb(220, 220, 220)"
-        linewidth: 1
-        showgrid: True
-        showline: True
-        showticklabels: True
-        tickcolor: "rgb(220, 220, 220)"
-        tickmode: "linear"
-        tickfont:
-          size: 16
-        zeroline: False
-      yaxis:
-        title: "<b>Connections Per Second [cps]</b>"
-        titlefont:
-          size: 16
-        gridcolor: "rgb(230, 230, 230)"
-        hoverformat: ".4s"
-        linecolor: "rgb(220, 220, 220)"
-        linewidth: 1
-        rangemode: "tozero"
-        showgrid: True
-        showline: True
-        showticklabels: True
-        tickcolor: "rgb(220, 220, 220)"
-        tickformat: ".3s"
-        tickfont:
-          size: 16
-        zeroline: False
-      boxmode: "group"
-      boxgroupgap: 0.5
-      autosize: False
-      margin:
-        t: 50
-        b: 20
-        l: 80
-        r: 20
-      showlegend: True
-      legend:
-        orientation: "h"
-        font:
-          size: 16
-      width: 700
-      height: 800
-      paper_bgcolor: "#fff"
-      plot_bgcolor: "#fff"
-      hoverlabel:
-        namelength: -1
-
-    plot-rps:
-      titlefont:
-        size: 18
-      xaxis:
-        title: "<b>Test Cases [Index]</b>"
-        titlefont:
-          size: 16
-        autorange: True
-        fixedrange: False
-        gridcolor: "rgb(230, 230, 230)"
-        linecolor: "rgb(220, 220, 220)"
-        linewidth: 1
-        showgrid: True
-        showline: True
-        showticklabels: True
-        tickcolor: "rgb(220, 220, 220)"
-        tickmode: "linear"
-        tickfont:
-          size: 16
-        zeroline: False
-      yaxis:
-        title: "<b>Requests Per Second [rps]</b>"
-        titlefont:
-          size: 16
-        gridcolor: "rgb(230, 230, 230)"
-        hoverformat: ".4s"
-        linecolor: "rgb(220, 220, 220)"
-        linewidth: 1
-        rangemode: "tozero"
-        showgrid: True
-        showline: True
-        showticklabels: True
-        tickcolor: "rgb(230, 230, 230)"
-        tickformat: ".3s"
-        tickfont:
-          size: 16
-        zeroline: False
-      boxmode: "group"
-      boxgroupgap: 0.5
-      autosize: False
-      margin:
-        t: 50
-        b: 20
-        l: 80
-        r: 20
-      showlegend: True
-      legend:
-        orientation: "h"
-        font:
-          size: 16
-      width: 700
-      height: 800
-      paper_bgcolor: "#fff"
-      plot_bgcolor: "#fff"
-      hoverlabel:
-        namelength: -1
+#    plot-cps:
+#      titlefont:
+#        size: 18
+#      xaxis:
+#        title: "<b>Test Cases [Index]</b>"
+#        titlefont:
+#          size: 16
+#        autorange: True
+#        fixedrange: False
+#        gridcolor: "rgb(230, 230, 230)"
+#        linecolor: "rgb(220, 220, 220)"
+#        linewidth: 1
+#        showgrid: True
+#        showline: True
+#        showticklabels: True
+#        tickcolor: "rgb(220, 220, 220)"
+#        tickmode: "linear"
+#        tickfont:
+#          size: 16
+#        zeroline: False
+#      yaxis:
+#        title: "<b>Connections Per Second [cps]</b>"
+#        titlefont:
+#          size: 16
+#        gridcolor: "rgb(230, 230, 230)"
+#        hoverformat: ".4s"
+#        linecolor: "rgb(220, 220, 220)"
+#        linewidth: 1
+#        rangemode: "tozero"
+#        showgrid: True
+#        showline: True
+#        showticklabels: True
+#        tickcolor: "rgb(220, 220, 220)"
+#        tickformat: ".3s"
+#        tickfont:
+#          size: 16
+#        zeroline: False
+#      boxmode: "group"
+#      boxgroupgap: 0.5
+#      autosize: False
+#      margin:
+#        t: 50
+#        b: 20
+#        l: 80
+#        r: 20
+#      showlegend: True
+#      legend:
+#        orientation: "h"
+#        font:
+#          size: 16
+#      width: 700
+#      height: 800
+#      paper_bgcolor: "#fff"
+#      plot_bgcolor: "#fff"
+#      hoverlabel:
+#        namelength: -1
+#
+#    plot-rps:
+#      titlefont:
+#        size: 18
+#      xaxis:
+#        title: "<b>Test Cases [Index]</b>"
+#        titlefont:
+#          size: 16
+#        autorange: True
+#        fixedrange: False
+#        gridcolor: "rgb(230, 230, 230)"
+#        linecolor: "rgb(220, 220, 220)"
+#        linewidth: 1
+#        showgrid: True
+#        showline: True
+#        showticklabels: True
+#        tickcolor: "rgb(220, 220, 220)"
+#        tickmode: "linear"
+#        tickfont:
+#          size: 16
+#        zeroline: False
+#      yaxis:
+#        title: "<b>Requests Per Second [rps]</b>"
+#        titlefont:
+#          size: 16
+#        gridcolor: "rgb(230, 230, 230)"
+#        hoverformat: ".4s"
+#        linecolor: "rgb(220, 220, 220)"
+#        linewidth: 1
+#        rangemode: "tozero"
+#        showgrid: True
+#        showline: True
+#        showticklabels: True
+#        tickcolor: "rgb(230, 230, 230)"
+#        tickformat: ".3s"
+#        tickfont:
+#          size: 16
+#        zeroline: False
+#      boxmode: "group"
+#      boxgroupgap: 0.5
+#      autosize: False
+#      margin:
+#        t: 50
+#        b: 20
+#        l: 80
+#        r: 20
+#      showlegend: True
+#      legend:
+#        orientation: "h"
+#        font:
+#          size: 16
+#      width: 700
+#      height: 800
+#      paper_bgcolor: "#fff"
+#      plot_bgcolor: "#fff"
+#      hoverlabel:
+#        namelength: -1
 
     plot-hoststack:
       titlefont:
@@ -2161,7 +2179,6 @@
       - 32  # NDRPDR sel
       - 34  # NDRPDR sel
       - 17  # MRR sel
-      - 103  # hoststack REMOVE
     csit-vpp-perf-report-iterative-2005-3n-hsw:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
@@ -2174,6 +2191,17 @@
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 13  # MRR
+    csit-vpp-perf-verify-2005-3n-hsw:
+      - 3   # hoststack
+      - 5   # hoststack
+      - 6   # hoststack
+      - 7   # hoststack
+      - 8   # hoststack
+      - 9   # hoststack
+      - 10  # hoststack
+      - 11  # hoststack
+      - 12  # hoststack
+      - 13  # hoststack
     csit-vpp-perf-report-coverage-2005-3n-hsw:
       - 3   # perf-full-3n-hsw-crypto_III
 
@@ -2200,7 +2228,8 @@
       - 53  # MRR sel addition
     # TODO: Add data:
     csit-vpp-perf-report-iterative-2005-3n-skx:
-      - 5   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel ??? all x710 failed
 
     csit-vpp-perf-verify-1908_1-2n-skx:
       - 39  # NDRPDR sel - new1908.1
@@ -2251,7 +2280,6 @@
       - 49  # NDRPDR sel
       - 39  # MRR
       - 68  # Reconf REMOVE
-      - 80  # TCP REMOVE
       - 93  # Soak REMOVE
       - 94  # Soak REMOVE
     # TODO: Add data:
@@ -2320,6 +2348,8 @@
       - 7   # NDRPDR sel
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
       - 8   # MRR
 
     csit-vpp-perf-verify-1908-2n-dnv:
@@ -2362,6 +2392,9 @@
       - 1   # perf-full-2n-dnv-ip4_I
       - 2   # perf-full-2n-dnv-ip4_II
       - 3   # perf-full-2n-dnv-ip6_I
+      - 4   # perf-full-2n-dnv-ip6_II
+      - 5   # perf-full-2n-dnv-l2_I
+      - 6   # perf-full-2n-dnv-l2_II
 
     csit-dpdk-perf-verify-1908-3n-hsw:
       - 2   # NDRPDR sel
@@ -6685,46 +6718,46 @@
     title: "3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho"
     layout: "plot-hoststack"
 
-# Plots VPP HTTP Server Performance
-- type: "plot"
-  title: "VPP HTTP Server Performance"
-  algorithm: "plot_http_server_perf_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
-  data:
-    "plot-vpp-http-server-performance"
-  filter: "'HTTP' and 'TCP_CPS' and not '8T4C'"
-  parameters:
-  - "result"
-  - "name"
-  traces:
-    hoverinfo: "y+name"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "VPP HTTP Server Performance"
-    layout:
-      "plot-cps"
-
-- type: "plot"
-  title: "VPP HTTP Server Performance"
-  algorithm: "plot_http_server_perf_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
-  data:
-    "plot-vpp-http-server-performance"
-  filter: "'HTTP' and 'TCP_RPS' and not '8T4C'"
-  parameters:
-  - "result"
-  - "name"
-  traces:
-    hoverinfo: "y+name"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "VPP HTTP Server Performance"
-    layout:
-      "plot-rps"
+## Plots VPP HTTP Server Performance
+#- type: "plot"
+#  title: "VPP HTTP Server Performance"
+#  algorithm: "plot_http_server_perf_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
+#  data:
+#    "plot-vpp-http-server-performance"
+#  filter: "'HTTP' and 'TCP_CPS' and not '8T4C'"
+#  parameters:
+#  - "result"
+#  - "name"
+#  traces:
+#    hoverinfo: "y+name"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "VPP HTTP Server Performance"
+#    layout:
+#      "plot-cps"
+#
+#- type: "plot"
+#  title: "VPP HTTP Server Performance"
+#  algorithm: "plot_http_server_perf_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
+#  data:
+#    "plot-vpp-http-server-performance"
+#  filter: "'HTTP' and 'TCP_RPS' and not '8T4C'"
+#  parameters:
+#  - "result"
+#  - "name"
+#  traces:
+#    hoverinfo: "y+name"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "VPP HTTP Server Performance"
+#    layout:
+#      "plot-rps"
 
 ################################################################################
 
