@@ -109,6 +109,8 @@ nodes:
       passwd: admin
       port: 8183
       netconf_port: 2831
+    graph_node_variants:
+      default: icl
     interfaces:
       port1:
         # s3-t21-sut1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.

@@ -387,6 +387,15 @@ class VppConfigGenerator:
         path = [u"dpdk", u"uio-driver"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_graph_node_variants(self):
+        """Add graph node variants configuration.
+        """
+        graph_node_variants = Topology.get_graph_node_variants(self._node)
+        if graph_node_variants is not None:
+            for graph_node, march in graph_node_variants:
+                path = [u"node", graph_node, u"variant"]
+                self.add_config_item(self._nodeconfig, march, path)
+
     def add_cpu_main_core(self, value):
         """Add CPU main core configuration.
 

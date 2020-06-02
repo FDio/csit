@@ -547,6 +547,20 @@ class Topology:
             return None
 
     @staticmethod
+    def get_graph_node_variants(node):
+        """Return variants of the graph nodes.
+
+        :param node: Node to get graph node variants setting on.
+        :type node: dict
+        :returns: variants config of the graph nodes or None if not found.
+        :rtype: dict
+        """
+        try:
+            return node[u"graph_node_variants"].items()
+        except KeyError:
+            return None
+
+    @staticmethod
     def convert_interface_reference_to_key(node, interface):
         """Takes interface reference in any format
         (name, link name, interface key or sw_if_index)
