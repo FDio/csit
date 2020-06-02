@@ -524,6 +524,13 @@ function get_test_tag_string () {
         cmd=("grep" "-oP" '\S*'"${trigger}"'\S*\s\K.+$') || die "Unset trigger?"
         # On parsing error, TEST_TAG_STRING probably stays empty.
         TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}") || true
+        if [[ -n "${TEST_TAG_STRING-}" ]]; then
+            test_tag_array=(${TEST_TAG_STRING})
+            if [[ "${test_tag_array[0]}" == "avx512" ]]; then
+                export GRAPH_NODE_VARIANT="icl"
+                TEST_TAG_STRING="${test_tag_array[@]:1}" || true
+            fi
+        fi
     fi
 }
 

@@ -205,6 +205,17 @@ class VppConfigGenerator:
         path = [u"socksvr", u"socket-name"]
         self.add_config_item(self._nodeconfig, socket, path)
 
+    def add_graph_node_variant(self, variant=Constants.GRAPH_NODE_VARIANT):
+        """Add default graph node variant.
+
+        :param value: Graph node variant default value.
+        :type value: str
+        """
+        variant_list = [u"hsw", u"skx", u"icl"]
+        if variant != u"" and variant in variant_list:
+            path = [u"node", u"default", u"variant"]
+            self.add_config_item(self._nodeconfig, variant, path)
+
     def add_api_segment_gid(self, value=u"vpp"):
         """Add API-SEGMENT gid configuration.
 
