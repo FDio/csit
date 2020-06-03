@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bbde9c6d_3eb97d42",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-03T09:33:09Z",
+      "side": 1,
+      "message": "make this readable by topology information KW (NodePath) and pass it as parameter.",
+      "range": {
+        "startLine": 393,
+        "startChar": 0,
+        "endLine": 393,
+        "endChar": 74
+      },
+      "revId": "9ece6f8212b27d4c610726b44b239fb9c26732d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a3da24f_6f5e61d2",
+        "filename": "topologies/available/lf_2n_clx_testbed27.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-03T09:33:09Z",
+      "side": 1,
+      "message": "why icl? why not clx/skx? what are configuration options?\nthese are not ice lakes.",
+      "range": {
+        "startLine": 97,
+        "startChar": 15,
+        "endLine": 97,
+        "endChar": 18
+      },
+      "revId": "9ece6f8212b27d4c610726b44b239fb9c26732d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
