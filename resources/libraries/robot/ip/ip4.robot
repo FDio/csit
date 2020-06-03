@@ -583,7 +583,7 @@
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2_if2}
+| | ... | Set Variable | ${DUT2_${int}2}[0]
 | | ... | ELSE | Set Variable | ${subif_index_1}
 | | VPP Add IP Neighbor
 | | ... | ${dut} | ${dut_if2} | 3.3.3.1 | ${TG_pf2_mac}[0]
