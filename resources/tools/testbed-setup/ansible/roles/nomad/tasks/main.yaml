@@ -137,6 +137,16 @@
   tags:
     - nomad-conf
 
+- name: Conf - Telemetry Configuration
+  template:
+    src: telemetry.hcl.j2
+    dest: "{{ nomad_config_dir }}/telemetry.hcl"
+    owner: "{{ nomad_user }}"
+    group: "{{ nomad_group }}"
+    mode: 0644
+  tags:
+    - nomad-conf
+
 - name: Conf - Custom Configuration
   template:
     src: custom.json.j2
