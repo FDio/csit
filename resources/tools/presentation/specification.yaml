@@ -549,8 +549,8 @@
         - 10  # NDRPDR sel
 
     vpp-perf-results-3n-dnv:
-    csit-vpp-perf-report-coverage-2005-3n-dnv:
-      - 1   # perf-full-3n-dnv-crypto_I
+      csit-vpp-perf-report-coverage-2005-3n-dnv:
+        - 1   # perf-full-3n-dnv-crypto_I
 
     vpp-perf-results-2n-dnv:
       csit-vpp-perf-report-coverage-2005-2n-dnv:
