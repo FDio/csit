@@ -89,5 +89,15 @@ nomad_bootstrap_expect: 2
 nomad_encrypt: ""
 nomad_retry_join: true
 
+# Conf - telemetry.hcl
+nomad_disable_hostname: false
+nomad_collection_interval: 60s
+nomad_use_node_name: false
+nomad_publish_allocation_metrics: true
+nomad_publish_node_metrics: true
+nomad_backwards_compatible_metrics: false
+nomad_telemetry_provider_parameters:
+  prometheus_metrics: true
+
 # Conf - custom.hcl
 # empty

@@ -1,0 +1,20 @@
+telemetry {
+    # Telemetry provider parameters
+    {% for key, value in nomad_telemetry_provider_parameters.items() -%}
+    {% if value|bool -%}
+    {{ key }} = {{ value | bool | lower }}
+    {% elif value|string or value == "" -%}
+    {{ key }} = "{{ value }}"
+    {% else %}
+    {{ key }} = {{ value }}
+    {% endif -%}
+    {% endfor -%}
+
+    # Common parameters
+    disable_hostname = {{ nomad_disable_hostname | bool | lower }}
+    collection_interval = "{{ nomad_collection_interval }}"
+    use_node_name = {{ nomad_use_node_name | bool | lower }}
+    publish_allocation_metrics = {{ nomad_publish_allocation_metrics | bool | lower }}
+    publish_node_metrics = {{ nomad_publish_node_metrics | bool | lower }}
+    backwards_compatible_metrics = {{ nomad_backwards_compatible_metrics | bool | lower }}
+}
