@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "af98b5ce_0bdad143",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T18:04:02Z",
+      "side": 1,
+      "message": "Want to keep a short version here. Reader should refer to the rfc for more information.",
+      "parentUuid": "6b48f98f_0b04b3ac",
+      "range": {
+        "startLine": 30,
+        "startChar": 89,
+        "endLine": 30,
+        "endChar": 95
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "796bb137_d6f0791c",
         "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2020-06-01T11:40:57Z",
       "side": 1,
       "message": "Also should be listed.",
+      "range": {
+        "startLine": 46,
+        "startChar": 402,
+        "endLine": 46,
+        "endChar": 408
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "759db097_033ecacf",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T18:04:02Z",
+      "side": 1,
+      "message": "Want to keep a short version here. Reader should refer to the rfc for more information.",
+      "parentUuid": "796bb137_d6f0791c",
       "range": {
         "startLine": 46,
         "startChar": 402,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "542fd731_47c0eb13",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T18:04:02Z",
+      "side": 1,
+      "message": "This is about HTTP throughput, not related to RFC2544. \"Determine the throughput for HTTP transactions varying the HTTP response object size.\"",
+      "parentUuid": "c917348a_014b0699",
+      "range": {
+        "startLine": 77,
+        "startChar": 13,
+        "endLine": 77,
+        "endChar": 23
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25eb29d3_91e17217",
         "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
         "patchSetId": 2
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "9dae3b65_749c7b5f",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T18:04:02Z",
+      "side": 1,
+      "message": "No. This is the purpose of this note and checklist. Verify which requirements do apply and are tested, and which do not.",
+      "parentUuid": "25eb29d3_91e17217",
+      "range": {
+        "startLine": 91,
+        "startChar": 30,
+        "endLine": 91,
+        "endChar": 53
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "86b0c507_1c53dac8",
         "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
         "patchSetId": 2
@@ -128,6 +224,30 @@
       "writtenOn": "2020-06-01T11:40:57Z",
       "side": 1,
       "message": "This satisfies req-1, but other requirements should also be checked.",
+      "range": {
+        "startLine": 121,
+        "startChar": 30,
+        "endLine": 121,
+        "endChar": 55
+      },
+      "revId": "eba47f26d05f04d02e8af2bdae33550fa0de9345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "395a37a4_ad265378",
+        "filename": "docs/test_specs/csit-vpp-bench-spec-nat44.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T18:04:02Z",
+      "side": 1,
+      "message": "This is the purpose of this note and checklist. Verify which requirements do apply and are tested, and which do not.",
+      "parentUuid": "86b0c507_1c53dac8",
       "range": {
         "startLine": 121,
         "startChar": 30,
