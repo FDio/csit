@@ -375,10 +375,8 @@
         - 9   # NDRPDR sel
 
     plot-vpp-nfv-2n-clx-mrr:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-clx:
-      csit-vpp-perf-verify-2001-2n-clx:
-        - 39  # MRR
+      csit-vpp-perf-report-iterative-2005-2n-clx:
+        - 2   # MRR
 
     plot-vpp-nfv-reconf-2n-clx:
       # TODO: Replace:
@@ -522,10 +520,14 @@
     vpp-perf-results-3n-hsw:
       csit-vpp-perf-report-coverage-2005-3n-hsw:
         - 1   # perf-full-3n-dnv-crypto_I
+        - 7   # perf-full-3n-hsw-crypto_II
         - 3   # perf-full-3n-hsw-crypto_III
         - 4   # perf-full-3n-dnv-crypto_IV
         - 5   # perf-full-3n-hsw-ip4_I
         - 6   # perf-full-3n-hsw-ip4_II
+        - 8   # perf-full-3n-hsw-ip4_III
+        - 9   # perf-full-3n-hsw-ip4_IV
+        - 10  # perf-full-3n-hsw-ip4_V
 
     vpp-perf-results-3n-skx:
       # TODO: Replace:
@@ -551,6 +553,7 @@
     vpp-perf-results-3n-dnv:
       csit-vpp-perf-report-coverage-2005-3n-dnv:
         - 1   # perf-full-3n-dnv-crypto_I
+        - 5   # perf-full-3n-dnv-ip4_I
 
     vpp-perf-results-2n-dnv:
       csit-vpp-perf-report-coverage-2005-2n-dnv:
@@ -577,10 +580,8 @@
         - 128 # MRR sel addition
 
     vpp-mrr-results-2n-clx:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-clx:
-      csit-vpp-perf-verify-2001-2n-clx:
-        - 39  # MRR
+      csit-vpp-perf-report-iterative-2005-2n-clx:
+        - 2   # MRR
 
     vpp-mrr-results-3n-tsh:
       # TODO: Replace:
@@ -1331,19 +1332,15 @@
         - 101 # MRR sel
         - 128 # MRR sel addition
     vpp-compare-testbeds-mrr-skx-clx-cmp:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-clx:
-      csit-vpp-perf-verify-2001-2n-clx:
-        - 39  # MRR
+      csit-vpp-perf-report-iterative-2005-2n-clx:
+        - 2   # MRR
 
     vpp-compare-testbeds-mrr-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
         - 13  # MRR
     vpp-compare-testbeds-mrr-hsw-clx-cmp:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-clx:
-      csit-vpp-perf-verify-2001-2n-clx:
-        - 39  # MRR
+      csit-vpp-perf-report-iterative-2005-2n-clx:
+        - 2   # MRR
 
     dpdk-compare-testbeds-ref:
       csit-dpdk-perf-report-iterative-2005-3n-hsw:
@@ -2153,10 +2150,14 @@
       - 13  # hoststack
     csit-vpp-perf-report-coverage-2005-3n-hsw:
       - 1   # perf-full-3n-dnv-crypto_I
+      - 7   # perf-full-3n-hsw-crypto_II
       - 3   # perf-full-3n-hsw-crypto_III
       - 4   # perf-full-3n-dnv-crypto_IV
       - 5   # perf-full-3n-hsw-ip4_I
       - 6   # perf-full-3n-hsw-ip4_II
+      - 8   # perf-full-3n-hsw-ip4_III
+      - 9   # perf-full-3n-hsw-ip4_IV
+      - 10  # perf-full-3n-hsw-ip4_V
 
     csit-vpp-perf-verify-1908_1-3n-skx:
       - 26  # NDRPDR sel - new1908.1
@@ -2241,6 +2242,7 @@
     csit-vpp-perf-report-iterative-2005-2n-clx:
       - 7   # NDRPDR sel
       - 9   # NDRPDR sel
+      - 2   # MRR
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
@@ -2307,6 +2309,7 @@
       - 8   # MRR
     csit-vpp-perf-report-coverage-2005-3n-dnv:
       - 1   # perf-full-3n-dnv-crypto_I
+      - 5   # perf-full-3n-dnv-ip4_I
 
     csit-vpp-perf-verify-1908-2n-dnv:
       - 1   # NDRPDR sel
