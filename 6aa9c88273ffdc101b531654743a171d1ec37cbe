@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e4d24db_c7c99f49",
+        "filename": "GPL/traffic_profiles/trex/trex-slfs-ethip4udp200k-1u1000p-1000fl10bs10ibg10sps.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T17:55:13Z",
+      "side": 1,
+      "message": "These flows definitions should be passed by the calling function.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 3
+      },
+      "revId": "6aa9c88273ffdc101b531654743a171d1ec37cbe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "246edca3_39de17ea",
+        "filename": "GPL/traffic_profiles/trex/trex-slfs-ethip4udp200k-1u1000p-1000fl10bs10ibg10sps.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T17:55:13Z",
+      "side": 1,
+      "message": "Instead of hard coding those values here, they should be passed by the calling function.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 43
+      },
+      "revId": "6aa9c88273ffdc101b531654743a171d1ec37cbe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "154a9d04_0f6d7e35",
+        "filename": "GPL/traffic_profiles/trex/trex-slfs-ethip4udp200k-1u1000p-1000fl10bs10ibg10sps.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T17:55:13Z",
+      "side": 1,
+      "message": "Instead of hard coding those values here, they should be passed by the calling function.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 35
+      },
+      "revId": "6aa9c88273ffdc101b531654743a171d1ec37cbe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "106c0d4e_513477cb",
+        "filename": "GPL/traffic_profiles/trex/trex-slfs-ethip4udp200k-1u1000p-1000fl10bs10ibg10sps.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T17:55:13Z",
+      "side": 1,
+      "message": "UDP port range (min,max) should be parameterised as well.",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 53
+      },
+      "revId": "6aa9c88273ffdc101b531654743a171d1ec37cbe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2776989_65302ca7",
+        "filename": "GPL/traffic_profiles/trex/trex-slfs-ethip4udp200k-1u1000p-1000fl10bs10ibg10sps.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T17:55:13Z",
+      "side": 1,
+      "message": "If stream1 is creating the inside-to-outside state in the middle box, stream2 with flows outside-to-inside will only work once this state is created. Port numbers must be matching. If NAT-EI is involved, port numbers must be matching NAT-EI address+port bindings in the middle-box.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 29
+      },
+      "revId": "6aa9c88273ffdc101b531654743a171d1ec37cbe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0664ad5_0afce012",
+        "filename": "GPL/traffic_profiles/trex/trex-slfs-ethip4udp200k-1u1000p-1000fl10bs10ibg10sps.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T17:55:13Z",
+      "side": 1,
+      "message": "What is the time offset between stream2 and stream1? Stream1 is creating the inside-to-outside state in the middle box, so Stream2 with flows outside-to-inside will only work once this state is created.",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 38
+      },
+      "revId": "6aa9c88273ffdc101b531654743a171d1ec37cbe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ed94ba3_7cdca97d",
+        "filename": "GPL/traffic_profiles/trex/trex-slfs-ethip4udp200k-1u1000p-1000fl10bs10ibg10sps.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-06-04T17:55:13Z",
+      "side": 1,
+      "message": "Suggest to remove the latency streams for now, to avoid \"polluting\" the burst results. Can be added later.",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 13
+      },
+      "revId": "6aa9c88273ffdc101b531654743a171d1ec37cbe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
