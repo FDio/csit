@@ -376,7 +376,7 @@
 
     plot-vpp-nfv-2n-clx-mrr:
       csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 2   # MRR
+        - 12   # MRR
 
     plot-vpp-nfv-reconf-2n-clx:
       # TODO: Replace:
@@ -581,7 +581,7 @@
 
     vpp-mrr-results-2n-clx:
       csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 2   # MRR
+        - 12   # MRR
 
     vpp-mrr-results-3n-tsh:
       # TODO: Replace:
@@ -1333,14 +1333,14 @@
         - 128 # MRR sel addition
     vpp-compare-testbeds-mrr-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 2   # MRR
+        - 12   # MRR
 
     vpp-compare-testbeds-mrr-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
         - 13  # MRR
     vpp-compare-testbeds-mrr-hsw-clx-cmp:
       csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 2   # MRR
+        - 12   # MRR
 
     dpdk-compare-testbeds-ref:
       csit-dpdk-perf-report-iterative-2005-3n-hsw:
@@ -2242,7 +2242,7 @@
     csit-vpp-perf-report-iterative-2005-2n-clx:
       - 7   # NDRPDR sel
       - 9   # NDRPDR sel
-      - 2   # MRR
+      - 12   # MRR
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
