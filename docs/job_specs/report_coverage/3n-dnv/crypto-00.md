@@ -1,6 +1,6 @@
 # 3n-dnv
-### tests 144
-### job hrs est. 18.3
+### tests 108
+### job hrs est. 13.7
 ### job hrs real xx.x
 ### test mins est. 7.6
 ### test mins real x.x
@@ -14,7 +14,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac256sha
@@ -24,7 +23,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
@@ -34,7 +32,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes128gcm
@@ -44,7 +41,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-int-aes256gcm
@@ -54,7 +50,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac256sha
@@ -64,7 +59,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
@@ -74,7 +68,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128gcm
@@ -84,7 +77,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
@@ -94,7 +86,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac256sha
@@ -104,7 +95,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
@@ -114,7 +104,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
@@ -124,7 +113,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
@@ -134,7 +122,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac256sha
@@ -144,7 +131,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
@@ -154,7 +140,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes128gcm
@@ -164,7 +149,6 @@
 4c AND 64b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-int-aes256gcm
