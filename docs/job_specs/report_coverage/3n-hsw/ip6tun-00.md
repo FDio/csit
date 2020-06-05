@@ -1,6 +1,6 @@
 # 3n-hsw
-### tests 24
-### job hrs est. 3.1
+### tests 14
+### job hrs est. 1.8
 ### job hrs real xx.x
 ### test mins est. 7.6
 ### test mins real x.x
@@ -15,29 +15,19 @@
 ##### ethip6lispip4-ip6base
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
-4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
-2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
-4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
-4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 ##### ethip6lispip6-ip6base
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
-4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
-2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
-4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
-4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 ## ./l2
 ## ./lb
 ## ./nfv_density/dcr_memif/chain
