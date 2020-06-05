@@ -1,6 +1,6 @@
 # 2n-skx
-### tests 72
-### job hrs est. 9.2
+### tests 54
+### job hrs est. 6.8
 ### job hrs real xx.x
 ### test mins est. 7.6
 ### test mins real x.x
@@ -29,10 +29,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
@@ -42,10 +39,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
@@ -55,10 +49,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
@@ -69,10 +60,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
@@ -82,10 +70,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
@@ -95,10 +80,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
