@@ -1,6 +1,6 @@
 # 3n-hsw
-### tests 24
-### job hrs est. 3.1
+### tests 14
+### job hrs est. 1.8
 ### job hrs real xx.x
 ### test mins est. 7.6
 ### test mins real x.x
@@ -13,29 +13,19 @@
 ##### ethip4lispip4-ip4base
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
 1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
 2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
-4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
 1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
-2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
-4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
 1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
 2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
-4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip4-ip4base
 ##### ethip4lispip6-ip4base
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
 1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
 2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
-4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
 1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
-2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
-4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
 1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
 2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
-4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4lispip6-ip4base
 ## ./ip6
 ## ./ip6_tunnels
 ## ./l2
