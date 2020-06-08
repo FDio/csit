@@ -3,6 +3,10 @@ client {
     no_host_uuid = {{ nomad_no_host_uuid | bool | lower }}
     node_class = "{{ nomad_node_class }}"
 
+    {% if nomad_cpu_total_compute is defined -%}
+    cpu_total_compute = {{ nomad_cpu_total_compute }}
+    {% endif -%}
+
     {% if nomad_servers -%}
     servers = [ {% for ip_port in nomad_servers -%} "{{ ip_port }}" {% if not loop.last %},{% endif %}{%- endfor -%} ]
     {% endif %}

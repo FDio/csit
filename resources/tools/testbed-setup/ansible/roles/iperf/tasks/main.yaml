@@ -13,6 +13,7 @@
   get_url:
     url: "https://downloads.es.net/pub/iperf/iperf-{{ item }}.tar.gz"
     dest: "{{ iperf_target_dir }}/iperf-{{ item }}.tar.gz"
+    validate_certs: false
     mode: 0644
   loop: "{{ iperf_version }}"
   tags:
