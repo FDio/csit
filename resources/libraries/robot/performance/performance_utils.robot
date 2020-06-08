@@ -379,7 +379,7 @@
 | | ... | ${fail_no_traffic}=${True} | ${subsamples}=${PERF_TRIAL_MULTIPLICITY}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | |
-| | ${results} | ${approximated_results} = | Send traffic at specified rate
+| | ${results} = | Send traffic at specified rate
 | | ... | ${trial_duration}
 | | ... | ${max_rate}pps | ${frame_size} | ${traffic_profile} | ${subsamples}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
@@ -428,7 +428,6 @@
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | VPP enable elog traces on all DUTs | ${nodes}
 | | ${results} = | Create List
-| | ${approximated_results} = | Create List
 | | FOR | ${i} | IN RANGE | ${subsamples}
 | | | # The following line is skipping some default arguments,
 | | | # that is why subsequent arguments have to be named.
@@ -437,10 +436,8 @@
 | | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
 | | | ... | rx_port=${rx_port}
 | | | ${rx} = | Get Received
-| | | ${ar} = | Get Approximated Rate
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
-| | | Append To List | ${approximated_results} | ${ar}
 | | END
 | | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
 | | ... | ${nodes}
@@ -448,7 +445,7 @@
 | | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
-| | Return From Keyword | ${results} | ${approximated_results}
+| | Return From Keyword | ${results}
 
 | Measure and show latency at specified rate
 | | [Documentation]
