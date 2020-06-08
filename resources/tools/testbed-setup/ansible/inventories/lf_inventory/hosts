@@ -52,6 +52,8 @@ all:
         10.30.51.30: #s40-nomad - haswell
         10.30.51.32: #s42-nomad - ivy bridge
         10.30.51.33: #s43-nomad - ivy bridge
+        10.30.51.34: #s44-nomad - ivy bridge
+        10.30.51.35: #s45-nomad - ivy bridge
         10.32.8.14: #s46-nomad - skylake
         10.32.8.15: #s47-nomad - skylake
         10.32.8.16: #s48-nomad - skylake
