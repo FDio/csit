@@ -1,9 +1,8 @@
 ---
-# file: host_vars/10.30.51.66.yaml
+# file: host_vars/10.30.51.35.yaml
 
-hostname: "s51-nomad"
-inventory_ipmi_hostname: "10.30.50.66"
-cpu_microarchitecture: "thunderx2"
+hostname: "s45-nomad"
+inventory_cimc_hostname: "10.30.50.35"
 
 # User management.
 users:
@@ -20,20 +19,21 @@ users:
 
 # Nomad settings.
 nomad_certificates:
-  - src: "{{ vault_nomad_v1_ca_file }}"
+  - src: "{{ vault_nomad_v2_ca_file }}"
     dest: "{{ nomad_ca_file }}"
-  - src: "{{ vault_nomad_v1_cert_file }}"
+  - src: "{{ vault_nomad_v2_cert_file }}"
     dest: "{{ nomad_cert_file }}"
-  - src: "{{ vault_nomad_v1_key_file }}"
+  - src: "{{ vault_nomad_v2_key_file }}"
     dest: "{{ nomad_key_file }}"
 nomad_datacenter: "yul1"
+nomad_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "client"
 nomad_node_class: "builder"
 nomad_options:
-  driver.raw_exec.enable: 0
+  driver.raw_exec.enable: 1
   docker.cleanup.image: false
   docker.privileged.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
-nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
-nomad_cpu_total_compute: "40000"
+nomad_retry_servers: [ "10.30.51.32", "10.30.51.33" ]
+nomad_servers: [ "10.30.51.33:4647" ]
