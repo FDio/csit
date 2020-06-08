@@ -105,16 +105,15 @@ def simple_burst(
     client = None
     total_rcvd = 0
     total_sent = 0
-    approximated_duration = 0
-    approximated_rate = 0
     lost_a = 0
     lost_b = 0
+    stats = dict()
+    stats_sampling = 1
     lat_a = u"-1/-1/-1/"
     lat_b = u"-1/-1/-1/"
 
     # Read the profile:
     try:
-        print(f"### Profile file:\n{profile_file}")
         profile = STLProfile.load(
             profile_file, direction=0, port_id=0, framesize=framesize,
             rate=rate
@@ -157,7 +156,7 @@ def simple_burst(
                     latency = False
             except STLError:
                 # Disable latency if NIC does not support requested stream type
-                print(u"##### FAILED to add latency streams #####")
+                print(u"Failed to add latency streams!")
                 latency = False
         ports = [port_0]
         if traffic_directions > 1:
@@ -172,67 +171,81 @@ def simple_burst(
                 ports=ports, mult=rate, duration=warmup_time, force=force
             )
 
-            # Block until done:
-            time_start = time.monotonic()
-            client.wait_on_traffic(ports=ports, timeout=warmup_time+30)
-            time_stop = time.monotonic()
-            approximated_duration = time_stop - time_start
+            # Read the stats after the warmup duration (no sampling needed):
+            time.sleep(warmup_time)
+            stats[time.monotonic() - time_start] = client.get_stats()
 
             if client.get_warnings():
                 for warning in client.get_warnings():
                     print(warning)
 
-            # Read the stats after the test:
-            stats = client.get_stats()
-
-            print(u"##### Warmup statistics #####")
-            print(json.dumps(stats, indent=4, separators=(u",", u": ")))
-
+            client.reset(ports=ports)
+            print(u"##### Warmup Statistics #####")
+#            print(
+#                json.dumps(
+#                    stats,
+#                    indent=4,
+#                    separators=(u",", u": ")
+#                )
+#            )
+            stats = stats[sorted(stats.keys())[-1]]
             lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
             if traffic_directions > 1:
                 lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
 
-            print(f"\npackets lost from {port_0} --> {port_1}: {lost_a} pkts")
+            print(f"packets lost from {port_0} --> {port_1}: {lost_a} pkts")
             if traffic_directions > 1:
                 print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
 
-        # Clear the stats before injecting:
-        client.clear_stats()
         lost_a = 0
         lost_b = 0
+        stats = dict()
 
         # Choose rate and start traffic:
-        client.start(ports=ports, mult=rate, duration=duration, force=force)
+        client.start(ports=ports, mult=rate, duration=duration)
+        time_start = time.monotonic()
 
         if async_start:
-            # For async stop, we need to export the current snapshot.
-            xsnap0 = client.ports[0].get_xstats().reference_stats
+            # For async stop, we need to export the current snapshot:
+            xsnap0 = client.ports[port_0].get_xstats().reference_stats
             print(f"Xstats snapshot 0: {xsnap0!r}")
             if traffic_directions > 1:
-                xsnap1 = client.ports[1].get_xstats().reference_stats
+                xsnap1 = client.ports[port_1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
-            # Block until done:
-            time_start = time.monotonic()
-            client.wait_on_traffic(ports=ports, timeout=duration+30)
-            time_stop = time.monotonic()
-            approximated_duration = time_stop - time_start
+            # Do not block until done.
+            while client.is_traffic_active(ports=ports):
+                time.sleep(
+                    stats_sampling if stats_sampling < duration else duration
+                )
+                # Sample the stats.
+                stats[time.monotonic()-time_start] = client.get_stats(
+                    ports=ports
+                )
+            else:
+                # Read the stats after the test
+                stats[time.monotonic()-time_start] = client.get_stats(
+                    ports=ports
+                )
 
             if client.get_warnings():
                 for warning in client.get_warnings():
                     print(warning)
 
-            # Read the stats after the test
-            stats = client.get_stats()
-
+            client.reset(ports=ports)
             print(u"##### Statistics #####")
-            print(json.dumps(stats, indent=4, separators=(u",", u": ")))
-
+#            print(
+#                json.dumps(
+#                    stats,
+#                    indent=4,
+#                    separators=(u",", u": ")
+#                )
+#            )
+            stats = stats[sorted(stats.keys())[-1]]
             lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
             if traffic_directions > 1:
                 lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
 
-            # Stats index is not a port number, but "pgid".
             if latency:
                 lat_obj = stats[u"latency"][0][u"latency"]
                 lat_a = fmt_latency(
@@ -245,17 +258,15 @@ def simple_burst(
                         str(lat_obj[u"total_max"]), str(lat_obj[u"hdrh"]))
 
             if traffic_directions > 1:
-                total_sent = stats[0][u"opackets"] + stats[1][u"opackets"]
-                total_rcvd = stats[0][u"ipackets"] + stats[1][u"ipackets"]
+                total_sent = \
+                    stats[port_0][u"opackets"] + stats[port_1][u"opackets"]
+                total_rcvd = \
+                    stats[port_0][u"ipackets"] + stats[port_1][u"ipackets"]
             else:
                 total_sent = stats[port_0][u"opackets"]
                 total_rcvd = stats[port_1][u"ipackets"]
-            try:
-                approximated_rate = total_sent / approximated_duration
-            except ZeroDivisionError:
-                pass
 
-            print(f"\npackets lost from {port_0} --> {port_1}: {lost_a} pkts")
+            print(f"packets lost from {port_0} --> {port_1}: {lost_a} pkts")
             if traffic_directions > 1:
                 print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
 

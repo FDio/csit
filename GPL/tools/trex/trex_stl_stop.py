@@ -86,7 +86,7 @@ def main():
     tx_1, rx_1 = xstats1[u"tx_good_packets"], xstats1[u"rx_good_packets"]
     lost_a, lost_b = tx_0 - rx_1, tx_1 - rx_0
 
-    print(f"\npackets lost from 0 --> 1:   {lost_a} pkts")
+    print(f"packets lost from 0 --> 1:   {lost_a} pkts")
     print(f"packets lost from 1 --> 0:   {lost_b} pkts")
 
     total_rcvd, total_sent = rx_0 + rx_1, tx_0 + tx_1
