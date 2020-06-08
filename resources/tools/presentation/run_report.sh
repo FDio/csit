@@ -38,7 +38,7 @@ export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
-    --week "23" \
+    --week "24" \
     --logging INFO \
     --force
 

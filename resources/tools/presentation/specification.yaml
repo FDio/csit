@@ -528,6 +528,11 @@
         - 8   # perf-full-3n-hsw-ip4_III
         - 9   # perf-full-3n-hsw-ip4_IV
         - 10  # perf-full-3n-hsw-ip4_V
+        - 26  # perf-full-3n-hsw-ip4_VI
+        - 18  # perf-full-3n-hsw-ip4_VII
+        - 27  # perf-full-3n-hsw-ip4_VIII
+        - 28  # perf-full-3n-hsw-ip4_IX
+        - 29  # perf-full-3n-hsw-ip6_I
 
     vpp-perf-results-3n-skx:
       # TODO: Replace:
@@ -2158,6 +2163,11 @@
       - 8   # perf-full-3n-hsw-ip4_III
       - 9   # perf-full-3n-hsw-ip4_IV
       - 10  # perf-full-3n-hsw-ip4_V
+      - 26  # perf-full-3n-hsw-ip4_VI
+      - 18  # perf-full-3n-hsw-ip4_VII
+      - 27  # perf-full-3n-hsw-ip4_VIII
+      - 28  # perf-full-3n-hsw-ip4_IX
+      - 29  # perf-full-3n-hsw-ip6_I
 
     csit-vpp-perf-verify-1908_1-3n-skx:
       - 26  # NDRPDR sel - new1908.1
