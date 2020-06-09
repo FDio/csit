@@ -1,6 +1,6 @@
 # 3n-skx
-### tests 96
-### job hrs est. 12.2
+### tests 72
+### job hrs est. 9.2
 ### job hrs real xx.x
 ### test mins est. 7.6
 ### test mins real x.x
@@ -16,10 +16,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
@@ -29,10 +26,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
@@ -42,10 +36,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
@@ -55,10 +46,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
@@ -69,10 +57,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
@@ -82,10 +67,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale10l2bd10vlan10vxlan
@@ -95,10 +77,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
@@ -108,10 +87,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q--ethip4vxlan-l2bdscale1kl2bd1kvlan1kvxlan
