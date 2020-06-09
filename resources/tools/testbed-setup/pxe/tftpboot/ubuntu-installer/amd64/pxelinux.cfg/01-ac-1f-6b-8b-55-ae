@@ -1,0 +1,9 @@
+DEFAULT linux
+PROMPT 0
+MENU TITLE PXE DNSMASQ
+TIMEOUT 1
+
+LABEL linux
+        kernel linux
+        append initrd=initrd.gz ksdevice=bootif interface=eno1 hostname=s16-t32-tg1 netcfg/get_ipaddress=10.30.51.60 netcfg/get_gateway=10.30.51.1 text auto-install/enable=true priority=critical url=tftp://10.30.51.28/ubuntu-installer/amd64/raid.seed
+        ipappend 2

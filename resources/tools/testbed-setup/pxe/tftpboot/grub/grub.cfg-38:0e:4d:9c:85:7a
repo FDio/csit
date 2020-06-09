@@ -1,0 +1,4 @@
+menuentry "Install" {
+    linux    /ubuntu-installer/amd64/linux interface=38:0e:4d:9c:85:7a auto=true priority=critical url=tftp://10.30.51.28/ubuntu-installer/amd64/raid_uefi_nvme.seed --- console=ttyS0,115200n8 quiet
+    initrd   /ubuntu-installer/amd64/initrd.gz
+}

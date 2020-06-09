@@ -1,0 +1,4 @@
+menuentry "Install" {
+    linux    /ubuntu-installer/amd64/linux interface=3c:ec:ef:46:34:e8 auto=true priority=critical url=tftp://10.32.8.10/ubuntu-installer/amd64/no_raid.seed --- console=ttyS0,115200n8 quiet
+    initrd   /ubuntu-installer/amd64/initrd.gz
+}
