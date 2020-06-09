@@ -533,6 +533,9 @@
         - 27  # perf-full-3n-hsw-ip4_VIII
         - 28  # perf-full-3n-hsw-ip4_IX
         - 29  # perf-full-3n-hsw-ip6_I
+        - 35  # perf-full-3n-hsw-ip6_II
+        - 33  # perf-full-3n-hsw-l2_II
+        - 37  # perf-full-3n-hsw-l2_III
 
     vpp-perf-results-3n-skx:
       # TODO: Replace:
@@ -559,6 +562,7 @@
       csit-vpp-perf-report-coverage-2005-3n-dnv:
         - 1   # perf-full-3n-dnv-crypto_I
         - 5   # perf-full-3n-dnv-ip4_I
+        - 13  # perf-full-3n-dnv-ip4_II
 
     vpp-perf-results-2n-dnv:
       csit-vpp-perf-report-coverage-2005-2n-dnv:
@@ -2168,6 +2172,9 @@
       - 27  # perf-full-3n-hsw-ip4_VIII
       - 28  # perf-full-3n-hsw-ip4_IX
       - 29  # perf-full-3n-hsw-ip6_I
+      - 35  # perf-full-3n-hsw-ip6_II
+      - 33  # perf-full-3n-hsw-l2_II
+      - 37  # perf-full-3n-hsw-l2_III
 
     csit-vpp-perf-verify-1908_1-3n-skx:
       - 26  # NDRPDR sel - new1908.1
@@ -2320,6 +2327,7 @@
     csit-vpp-perf-report-coverage-2005-3n-dnv:
       - 1   # perf-full-3n-dnv-crypto_I
       - 5   # perf-full-3n-dnv-ip4_I
+      - 13  # perf-full-3n-dnv-ip4_II
 
     csit-vpp-perf-verify-1908-2n-dnv:
       - 1   # NDRPDR sel
