@@ -29,7 +29,7 @@ nomad_architecture_map:
   32-bit: "386"
   64-bit: "amd64"
 nomad_architecture: "{{ nomad_architecture_map[ansible_architecture] }}"
-nomad_version: "0.10.2"
+nomad_version: "0.12.0"
 nomad_pkg: "nomad_{{ nomad_version }}_linux_{{ nomad_architecture }}.zip"
 nomad_zip_url: "https://releases.hashicorp.com/nomad/{{ nomad_version }}/{{ nomad_pkg }}"
 
