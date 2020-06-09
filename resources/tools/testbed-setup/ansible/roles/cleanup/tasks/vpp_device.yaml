@@ -2,12 +2,12 @@
 # file: roles/cleanup/tasks/vpp_device.yaml
 
 - name: Reset vpp_device binary
-  template:
+  copy:
    src: 'files/reset_vppdevice.sh'
    dest: '/usr/local/bin'
    owner: 'root'
    group: 'root'
-   mode: '644'
+   mode: '744'
   tags: reset-sriov
 
 - name: Reset vpp_device
