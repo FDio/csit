@@ -1,0 +1,9 @@
+DEFAULT linux
+PROMPT 0
+MENU TITLE PXE DNSMASQ
+TIMEOUT 1
+
+LABEL linux
+        kernel linux
+        append initrd=initrd.gz ksdevice=bootif interface=enp9s0f0 hostname=s40-nomad netcfg/get_ipaddress=10.30.51.30 netcfg/get_gateway=10.30.51.1 text auto-install/enable=true priority=critical url=tftp://10.30.51.28/ubuntu-installer/amd64/no_raid.seed
+        ipappend 2
