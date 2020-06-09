@@ -1,0 +1,4 @@
+menuentry "Install" {
+    linux    /ubuntu-installer/arm64/linux interface=40:8d:5c:e7:b3:19 auto=true priority=critical url=tftp://10.30.51.28/ubuntu-installer/arm64/no_raid.seed --- console=ttyAMA0,115200n8 quiet
+    initrd   /ubuntu-installer/arm64/initrd.gz
+}
