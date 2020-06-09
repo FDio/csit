@@ -1,6 +1,6 @@
 # 3n-skx
-### tests 48
-### job hrs est. 6.1
+### tests 36
+### job hrs est. 4.6
 ### job hrs real xx.x
 ### test mins est. 7.6
 ### test mins real x.x
@@ -18,10 +18,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip4-ip6base
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip4-ip6base
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip4-ip6base
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip4-ip6base
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip4-ip6base
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip4-ip6base
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip4-ip6base
 1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip4-ip6base
 2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip4-ip6base
 4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip4-ip6base
@@ -31,10 +28,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip6-ip6base
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip6-ip6base
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip6-ip6base
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip6-ip6base
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip6-ip6base
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip6-ip6base
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip6-ip6base
 1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip6-ip6base
 2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip6-ip6base
 4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip6lispip6-ip6base
@@ -45,10 +39,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip4-ip6base
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip4-ip6base
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip4-ip6base
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip4-ip6base
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip4-ip6base
@@ -58,10 +49,7 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip6-ip6base
-4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 1c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip6-ip6base
-2c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip6-ip6base
-4c AND 9000b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip6-ip6base
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6lispip6-ip6base
