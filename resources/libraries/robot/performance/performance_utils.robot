@@ -408,6 +408,7 @@
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
 | | ... | - rx_port - RX port of TG, default 1. Type: integer
 | | ... | - pkt_trace - True to enable packet trace. Type: boolean
+| | ... | - warmup_time - Duration of warm-up period. Type: integer
 | |
 | | ... | *Example:*
 | |
@@ -417,23 +418,15 @@
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${subsamples}=${1} | ${traffic_directions}=${2}
 | | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${pkt_trace}=${False}
+| | ... | ${warmup_time}=${0}
 | |
-| | Clear and show runtime counters with running traffic | ${trial_duration}
-| | ... | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
-| | Run Keyword If | ${dut_stats}==${True}
-| | ... | Clear statistics on all DUTs | ${nodes}
-| | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
-| | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
-| | Run Keyword If | ${dut_stats}==${True}
-| | ... | VPP enable elog traces on all DUTs | ${nodes}
 | | ${results} = | Create List
 | | ${approximated_results} = | Create List
 | | FOR | ${i} | IN RANGE | ${subsamples}
 | | | # The following line is skipping some default arguments,
 | | | # that is why subsequent arguments have to be named.
 | | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
-| | | ... | ${traffic_profile} | warmup_time=${0}
+| | | ... | ${traffic_profile} | warmup_time=${warmup_time}
 | | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
 | | | ... | rx_port=${rx_port}
 | | | ${rx} = | Get Received
@@ -442,6 +435,15 @@
 | | | Append To List | ${results} | ${rr}
 | | | Append To List | ${approximated_results} | ${ar}
 | | END
+| | Run Keyword If | ${dut_stats}==${True}
+| | ... | Clear statistics on all DUTs | ${nodes}
+| | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
+| | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
+| | Run Keyword If | ${dut_stats}==${True}
+| | ... | VPP enable elog traces on all DUTs | ${nodes}
+| | Clear and show runtime counters with running traffic | ${trial_duration}
+| | ... | ${rate} | ${frame_size} | ${traffic_profile}
+| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
 | | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs
