@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24c29d6b_e1a03398",
+        "filename": "resources/libraries/robot/ip/nat.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-10T08:19:13Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 86
+      },
+      "revId": "7f46252fe1d6dcc8ddc6bef88f8d42d47eca25a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "339cb3eb_e2c9320e",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-ethip4udp-ip4base-udpsrcscale63-nat44-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-10T08:19:13Z",
+      "side": 1,
+      "message": "/24 and /32",
+      "range": {
+        "startLine": 36,
+        "startChar": 31,
+        "endLine": 36,
+        "endChar": 52
+      },
+      "revId": "7f46252fe1d6dcc8ddc6bef88f8d42d47eca25a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bb12147_eea6ee2c",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-ethip4udp-ip4base-udpsrcscale63-nat44-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-10T08:19:13Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 37,
+        "startChar": 32,
+        "endLine": 37,
+        "endChar": 33
+      },
+      "revId": "7f46252fe1d6dcc8ddc6bef88f8d42d47eca25a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80287cb3_082d7564",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4scale1024-udpsrcscale63-nat44-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-10T08:19:13Z",
+      "side": 1,
+      "message": "udp",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 46
+      },
+      "revId": "7f46252fe1d6dcc8ddc6bef88f8d42d47eca25a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
