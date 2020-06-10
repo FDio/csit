@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -146,3 +146,13 @@ class NATUtil:
             u"nat_det_map_dump"
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
+
+    @staticmethod
+    def show_nat44_deterministic_mappings(node):
+        """Run "show nat44 deterministic mappings" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show nat44 \
+            deterministic mappings")
