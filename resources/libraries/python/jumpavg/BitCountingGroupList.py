@@ -75,7 +75,7 @@ class BitCountingGroupList:
         :returns: Readable description.
         :rtype: str
         """
-        return u"group_list={self.group_list} bits={self.bits}"
+        return f"group_list={gl} bits={b}".format(gl=self.group_list, b=self.bits)
 
     def __repr__(self):
         """Return string executable as Python constructor call.
@@ -84,10 +84,10 @@ class BitCountingGroupList:
         :rtype: str
         """
         return (
-            f"BitCountingGroupList(group_list={self.group_list!r}"
-            f",bits_except_last={self.bits_except_last!r}"
-            f",max_value={self.max_value!r})"
-        )
+            u"BitCountingGroupList(group_list={gl!r}"
+            u",bits_except_last={bel!r}"
+            u",max_value={mv!r})"
+        ).format(gl=self.group_list, bel=self.bits_except_last, mv=self.max_value)
 
     def __getitem__(self, index):
         """Return the group at the index.

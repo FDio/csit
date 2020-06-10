@@ -81,7 +81,7 @@ class BitCountingGroup:
         :returns: Readable description.
         :rtype: str
         """
-        return f"stats={self.stats} bits={self.cached_bits}"
+        return u"stats={stats} bits={bits}".format(stats=self.stats, bits=self.cached_bits)
 
     def __repr__(self):
         """Return string executable as Python constructor call.
@@ -90,10 +90,10 @@ class BitCountingGroup:
         :rtype: str
         """
         return (
-            f"BitCountingGroup(run_list={self.run_list!r},stats={self.stats!r}"
-            f",bits={self.cached_bits!r},max_value={self.max_value!r}"
-            f",prev_avg={self.prev_avg!r},comment={self.comment!r})"
-        )
+            u"BitCountingGroup(run_list={rl!r},stats={s!r}"
+            u",bits={cb!r},max_value={mv!r}"
+            u",prev_avg={pa!r},comment={c!r})"
+        ).format(rl=self.run_list, s=self.stats, cb=self.cached_bits, mv=self.max_value, pa=self.prev_avg, c=self.comment)
 
     def __getitem__(self, index):
         """Return the run at the index.

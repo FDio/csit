@@ -49,7 +49,7 @@ class AvgStdevStats:
         :returns: Readable description.
         :rtype: str
         """
-        return f"size={self.size} avg={self.avg} stdev={self.stdev}"
+        return u"size={size} avg={avg} stdev={stdev}".format(size=self.size, avg=self.avg, stdev=self.stdev)
 
     def __repr__(self):
         """Return string executable as Python constructor call.
@@ -57,10 +57,7 @@ class AvgStdevStats:
         :returns: Executable constructor call.
         :rtype: str
         """
-        return (
-            f"AvgStdevStats(size={self.size!r},avg={self.avg!r}"
-            f",stdev={self.stdev!r})"
-        )
+        return u"AvgStdevStats(size={size!r},avg={avg!r},stdev={stdev!r})".format(size=self.size, avg=self.avg, stdev=self.stdev)
 
     @classmethod
     def for_runs(cls, runs):

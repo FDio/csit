@@ -120,9 +120,8 @@ class BitCountingStats(AvgStdevStats):
         :returns: Readable description.
         :rtype: str
         """
-        return (
-            f"size={self.size} avg={self.avg} stdev={self.stdev}"
-            f" bits={self.bits}"
+        return u"size={size} avg={avg} stdev={stdev} bits={bits}".format(
+            size=self.size, avg=self.avg, stdev=self.stdev, bits=self.bits
         )
 
     def __repr__(self):
@@ -132,10 +131,10 @@ class BitCountingStats(AvgStdevStats):
         :rtype: str
         """
         return (
-            f"BitCountingStats(size={self.size!r},avg={self.avg!r}"
-            f",stdev={self.stdev!r},max_value={self.max_value!r}"
-            f",prev_avg={self.prev_avg!r})"
-        )
+            u"BitCountingStats(size={size!r},avg={avg!r}"
+            u",stdev={stdev!r},max_value={mv!r}"
+            u",prev_avg={pa!r})"
+        ).format(size=self.size, avg=self.avg, stdev=self.stdev, mv=self.max_value, pa=self.prev_avg)
 
     @classmethod
     def for_runs(cls, runs, max_value=None, prev_avg=None):
