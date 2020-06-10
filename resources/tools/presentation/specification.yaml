@@ -356,6 +356,8 @@
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 7   # NDRPDR sel
         - 9   # NDRPDR sel
+        - 32  # NDRPDR sel ???
+        - 33  # NDRPDR sel ???
 
     plot-vpp-hdrh-lat-2n-clx:
       # TODO: Add data:
@@ -373,6 +375,8 @@
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 7   # NDRPDR sel
         - 9   # NDRPDR sel
+        - 32  # NDRPDR sel ???
+        - 33  # NDRPDR sel ???
 
     plot-vpp-nfv-2n-clx-mrr:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -534,8 +538,16 @@
         - 28  # perf-full-3n-hsw-ip4_IX
         - 29  # perf-full-3n-hsw-ip6_I
         - 35  # perf-full-3n-hsw-ip6_II
+        - 42  # perf-full-3n-hsw-l2_I
         - 33  # perf-full-3n-hsw-l2_II
         - 37  # perf-full-3n-hsw-l2_III
+        - 45  # perf-full-3n-hsw-l2_IV
+        - 43  # perf-full-3n-hsw-l2_V
+        - 40  # perf-full-3n-hsw-l2_VI
+        - 44  # perf-full-3n-hsw-l2_VII
+        - 50  # perf-full-3n-hsw-l2_IX
+        - 52  # perf-full-3n-hsw-l2_X
+        - 53  # perf-full-3n-hsw-l2_XI
 
     vpp-perf-results-3n-skx:
       # TODO: Replace:
@@ -561,8 +573,10 @@
     vpp-perf-results-3n-dnv:
       csit-vpp-perf-report-coverage-2005-3n-dnv:
         - 1   # perf-full-3n-dnv-crypto_I
+        - 15  # perf-full-3n-dnv-crypto_II
         - 5   # perf-full-3n-dnv-ip4_I
         - 13  # perf-full-3n-dnv-ip4_II
+        - 18  # perf-full-3n-dnv-ip6_II
 
     vpp-perf-results-2n-dnv:
       csit-vpp-perf-report-coverage-2005-2n-dnv:
@@ -770,6 +784,8 @@
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 7   # NDRPDR sel
         - 9   # NDRPDR sel
+        - 32  # NDRPDR sel ???
+        - 33  # NDRPDR sel ???
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-1908-2n-dnv:
@@ -1308,6 +1324,8 @@
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 7   # NDRPDR sel
         - 9   # NDRPDR sel
+        - 32  # NDRPDR sel ???
+        - 33  # NDRPDR sel ???
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
@@ -1326,6 +1344,8 @@
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 7   # NDRPDR sel
         - 9   # NDRPDR sel
+        - 32  # NDRPDR sel ???
+        - 33  # NDRPDR sel ???
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
@@ -2173,8 +2193,16 @@
       - 28  # perf-full-3n-hsw-ip4_IX
       - 29  # perf-full-3n-hsw-ip6_I
       - 35  # perf-full-3n-hsw-ip6_II
+      - 42  # perf-full-3n-hsw-l2_I
       - 33  # perf-full-3n-hsw-l2_II
       - 37  # perf-full-3n-hsw-l2_III
+      - 45  # perf-full-3n-hsw-l2_IV
+      - 43  # perf-full-3n-hsw-l2_V
+      - 40  # perf-full-3n-hsw-l2_VI
+      - 44  # perf-full-3n-hsw-l2_VII
+      - 50  # perf-full-3n-hsw-l2_IX
+      - 52  # perf-full-3n-hsw-l2_X
+      - 53  # perf-full-3n-hsw-l2_XI
 
     csit-vpp-perf-verify-1908_1-3n-skx:
       - 26  # NDRPDR sel - new1908.1
@@ -2259,6 +2287,8 @@
     csit-vpp-perf-report-iterative-2005-2n-clx:
       - 7   # NDRPDR sel
       - 9   # NDRPDR sel
+      - 32  # NDRPDR sel ???
+      - 33  # NDRPDR sel ???
       - 12   # MRR
 
     csit-vpp-perf-verify-1908-3n-tsh:
@@ -2326,8 +2356,10 @@
       - 8   # MRR
     csit-vpp-perf-report-coverage-2005-3n-dnv:
       - 1   # perf-full-3n-dnv-crypto_I
+      - 15  # perf-full-3n-dnv-crypto_II
       - 5   # perf-full-3n-dnv-ip4_I
       - 13  # perf-full-3n-dnv-ip4_II
+      - 18  # perf-full-3n-dnv-ip6_II
 
     csit-vpp-perf-verify-1908-2n-dnv:
       - 1   # NDRPDR sel
