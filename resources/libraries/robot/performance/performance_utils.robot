@@ -28,6 +28,7 @@
 *** Variables ***
 | ${trial_duration}= | ${PERF_TRIAL_DURATION}
 | ${trial_multiplicity}= | ${PERF_TRIAL_MULTIPLICITY}
+| ${process_latency} = | ${True}
 
 *** Keywords ***
 | Find NDR and PDR intervals using optimized search
@@ -436,27 +437,39 @@
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ... | ${pkt_trace}=${False}
 | |
-| | Clear and show runtime counters with running traffic | ${trial_duration}
-| | ... | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
+| | ${results} = | Create List
+| | FOR | ${i} | IN RANGE | ${trial_multiplicity}
+| | | # The following line is skipping some default arguments,
+| | | # that is why subsequent arguments have to be named.
+| | | Run Keyword If | ${dut_stats}==${True}
+| | | ... | Clear statistics on all DUTs | ${nodes}
+| | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
+| | | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
+| | | Run Keyword If | ${dut_stats}==${True}
+| | | ... | VPP clear runtime on all DUTs | ${nodes}
+| | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
+| | | ... | ${traffic_profile} | warmup_time=${0}
+| | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | | ... | rx_port=${rx_port} | latency=${process_latency}
+| | | Run Keyword If | ${dut_stats}==${True}
+| | | ... | VPP show runtime on all DUTs | ${nodes}
+| | | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
+| | | ... | ${nodes}
+| | | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs
+| | | ... | ${nodes}
+| | | ${rx} = | Get Received
+| | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
+| | | Append To List | ${results} | ${rr}
+| | END
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | Clear statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | VPP enable elog traces on all DUTs | ${nodes}
-| | ${results} = | Create List
-| | FOR | ${i} | IN RANGE | ${trial_multiplicity}
-| | | # The following line is skipping some default arguments,
-| | | # that is why subsequent arguments have to be named.
-| | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
-| | | ... | ${traffic_profile} | warmup_time=${0}
-| | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | | ... | rx_port=${rx_port}
-| | | ${rx} = | Get Received
-| | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
-| | | Append To List | ${results} | ${rr}
-| | END
+| | Clear and show runtime counters with running traffic | ${trial_duration}
+| | ... | ${rate} | ${frame_size} | ${traffic_profile}
+| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
 | | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs

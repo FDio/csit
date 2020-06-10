@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,7 +14,7 @@
 """Packet trace library."""
 
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
-from resources.libraries.python.topology import NodeType
+from resources.libraries.python.topology import NodeType, Topology
 
 
 class Trace:
@@ -46,3 +46,27 @@ class Trace:
             if node[u"type"] == NodeType.DUT:
                 PapiSocketExecutor.run_cli_cmd_on_all_sockets(
                     node, u"clear trace")
+
+    @staticmethod
+    def pcap_trace_on(node, filter, max, interface, file):
+        """Clear VPP packet trace.
+
+        :param node: Node where the pcap trace will be run.
+        :type node: dict
+        """
+        ifc_name = Topology.get_interface_name(node,interface )
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, f"pcap trace {filter} max {max} intfc {ifc_name} file {file}"
+        )
+
+    @staticmethod
+    def pcap_trace_off(node):
+        """Clear VPP packet trace.
+
+        :param node: Node where the pcap trace will be run.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, f"pcap trace off"
+        )
+
