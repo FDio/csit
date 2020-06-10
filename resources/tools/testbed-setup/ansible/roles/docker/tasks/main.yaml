@@ -9,8 +9,6 @@
   package:
     name: "{{ docker_package }}"
     state: "{{ docker_package_state }}"
-  notify:
-    - "Restart Docker"
   tags:
     - docker-inst-package
 
@@ -68,5 +66,3 @@
   when: docker_users
   tags:
     - docker-conf-user
-
-- meta: flush_handlers

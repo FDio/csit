@@ -58,13 +58,6 @@
   tags:
     - nomad-inst-package
 
-- name: Inst - Cleanup
-  file:
-    path: "{{ nomad_inst_dir }}/nomad"
-    state: "absent"
-  tags:
-    - nomad-inst-package
-
 - name: Conf - Create Directories "{{ nomad_data_dir }}"
   file:
     dest: "{{ nomad_data_dir }}"
