@@ -564,7 +564,8 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
         stdout, _ = exec_cmd_no_error(
-            self._node, command_line, timeout=float(duration) + 60,
+            self._node, command_line,
+            timeout=float(duration) + 60 + float(warmup_time),
             message=u"TRex stateless runtime error"
         )
 
