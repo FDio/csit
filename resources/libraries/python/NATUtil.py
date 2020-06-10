@@ -146,3 +146,13 @@ class NATUtil:
             u"nat_det_map_dump"
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
+
+    @staticmethod
+    def show_nat44_deterministic_mappings(node):
+        """Run "show nat44 deterministic mappings" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show nat44 \
+            deterministic mappings")
