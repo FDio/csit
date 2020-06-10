@@ -219,7 +219,7 @@ class Constants:
     PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
 
     # Duration of one trial in MRR test.
-    PERF_TRIAL_DURATION = get_float_from_env(u"PERF_TRIAL_DURATION", 1.0)
+    PERF_TRIAL_DURATION = 10
 
     # Duration of one latency-specific trial in NDRPDR test.
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
