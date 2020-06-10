@@ -570,17 +570,19 @@ function reserve_and_cleanup_testbed () {
 
     while true; do
         for topo in "${TOPOLOGIES[@]}"; do
-            set +e
-            scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
-            opts=("-t" "${topo}" "-r" "${BUILD_TAG:-Unknown}")
-            python3 "${scrpt}" "${opts[@]}"
-            result="$?"
-            set -e
+##            set +e
+##            scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
+##            opts=("-t" "${topo}" "-r" "${BUILD_TAG:-Unknown}")
+##            python3 "${scrpt}" "${opts[@]}"
+##            result="$?"
+##            set -e
+            result="0"
             if [[ "${result}" == "0" ]]; then
                 # Trap unreservation before cleanup check,
                 # so multiple jobs showing failed cleanup improve chances
                 # of humans to notice and fix.
-                WORKING_TOPOLOGY="${topo}"
+##                WORKING_TOPOLOGY="${topo}"
+                WORKING_TOPOLOGY="/w/workspace/csit-vpp-perf-verify-master-2n-skx/topologies/available/lf_2n_skx_testbed24.yaml"
                 echo "Reserved: ${WORKING_TOPOLOGY}"
                 trap "untrap_and_unreserve_testbed" EXIT || {
                     message="TRAP ATTEMPT AND UNRESERVE FAILED, FIX MANUALLY."
@@ -710,7 +712,6 @@ function select_tags () {
     # Variables read:
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # - TEST_CODE - String affecting test selection, usually jenkins job name.
-    # - DUT - CSIT test/ subdirectory, set while processing tags.
     # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
     #   Can be unset.
     # - TOPOLOGIES_DIR - Path to existing directory with available tpologies.
@@ -770,17 +771,17 @@ function select_tags () {
         # Select specific performance tests based on jenkins job type variable.
         *"ndrpdr-weekly"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/mlr-weekly-${NODENESS}-${FLAVOR}.md |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"mrr-daily"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/mrr-daily-${NODENESS}-${FLAVOR}.md |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/mrr-weekly-${NODENESS}-${FLAVOR}.md |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"report-iterative"* )
@@ -1065,9 +1066,9 @@ function untrap_and_unreserve_testbed () {
         warn "Testbed looks unreserved already. Trap removal failed before?"
     else
         ansible_playbook "cleanup" || true
-        python3 "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
-            die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
-        }
+##        python3 "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
+##            die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
+##        }
         WORKING_TOPOLOGY=""
         set -eu
     fi
