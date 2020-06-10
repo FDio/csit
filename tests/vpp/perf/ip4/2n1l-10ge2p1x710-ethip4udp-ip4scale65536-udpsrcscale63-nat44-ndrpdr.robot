@@ -102,6 +102,9 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize NAT44 in circular topology
+| | And Send traffic at specified rate | ${1} | ${max_rate}pps
+| | ... | ${frame_size} | ${traffic_profile} | ${1} | ${2}
+| | ... | ${0} | ${1} | warmup_time=${250}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
