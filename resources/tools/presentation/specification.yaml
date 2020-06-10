@@ -545,9 +545,13 @@
         - 43  # perf-full-3n-hsw-l2_V
         - 40  # perf-full-3n-hsw-l2_VI
         - 44  # perf-full-3n-hsw-l2_VII
+        - 51  # perf-full-3n-hsw-l2_VIII
         - 50  # perf-full-3n-hsw-l2_IX
         - 52  # perf-full-3n-hsw-l2_X
         - 53  # perf-full-3n-hsw-l2_XI
+        - 54  # perf-full-3n-hsw-memif
+        - 55  # perf-full-3n-hsw-ip4tunnels-I
+        - 57  # perf-full-3n-hsw-ip4tunnels-III
 
     vpp-perf-results-3n-skx:
       # TODO: Replace:
@@ -577,6 +581,7 @@
         - 5   # perf-full-3n-dnv-ip4_I
         - 13  # perf-full-3n-dnv-ip4_II
         - 18  # perf-full-3n-dnv-ip6_II
+        - 23  # perf-full-3n-dnv-ip4-tunnels_I
 
     vpp-perf-results-2n-dnv:
       csit-vpp-perf-report-coverage-2005-2n-dnv:
@@ -760,13 +765,6 @@
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 7   # NDRPDR sel
 
-    vpp-performance-changes-2n-clx-h1:
-      csit-vpp-perf-verify-1908_1-2n-clx:
-        - 5  # NDRPDR sel
-        - 6  # NDRPDR sel
-        - 7  # NDRPDR sel
-        - 8  # NDRPDR sel
-        - 9  # NDRPDR sel
     vpp-performance-changes-2n-clx-ref:
       csit-vpp-perf-verify-2001-2n-clx:
         - 28  # NDRPDR sel
@@ -1010,6 +1008,13 @@
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
         - 128 # MRR sel addition
+
+    vpp-performance-changes-2n-clx-mrr-ref:
+      csit-vpp-perf-verify-2001-2n-clx:
+        - 39  # MRR
+    vpp-performance-changes-2n-clx-mrr-cmp:
+      csit-vpp-perf-report-iterative-2005-2n-clx:
+        - 12   # MRR
 
 #    vpp-performance-changes-nfv-2n-skx-mrr-ref:
 #      csit-vpp-perf-verify-1908-2n-skx:
@@ -2200,9 +2205,13 @@
       - 43  # perf-full-3n-hsw-l2_V
       - 40  # perf-full-3n-hsw-l2_VI
       - 44  # perf-full-3n-hsw-l2_VII
+      - 51  # perf-full-3n-hsw-l2_VIII
       - 50  # perf-full-3n-hsw-l2_IX
       - 52  # perf-full-3n-hsw-l2_X
       - 53  # perf-full-3n-hsw-l2_XI
+      - 54  # perf-full-3n-hsw-memif
+      - 55  # perf-full-3n-hsw-ip4tunnels-I
+      - 57  # perf-full-3n-hsw-ip4tunnels-III
 
     csit-vpp-perf-verify-1908_1-3n-skx:
       - 26  # NDRPDR sel - new1908.1
@@ -2360,6 +2369,7 @@
       - 5   # perf-full-3n-dnv-ip4_I
       - 13  # perf-full-3n-dnv-ip4_II
       - 18  # perf-full-3n-dnv-ip6_II
+      - 23  # perf-full-3n-dnv-ip4-tunnels_I
 
     csit-vpp-perf-verify-1908-2n-dnv:
       - 1   # NDRPDR sel
@@ -3573,6 +3583,174 @@
     - "1908, 2001, 2005 - VPP versions tested."
     - "Diff - difference between 2001 and 2005 VPP version."
 
+# VPP Performance Changes 2n-clx-xxv710 2t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-xxv710 4t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 4t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-4t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-xxv710 2t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-xxv710 4t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-4t2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-x556 2t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-x556 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-x556-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-x556 4t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-x556 4t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-x556-4t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-x556 2t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-x556 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-x556-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-x556 4t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-x556 ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-x556-4t2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
 # VPP Performance Changes 2n-dnv 1t1c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-dnv 1t1c pdr"
@@ -4406,6 +4584,132 @@
   legend:
     - "Legend to Table"
     - "1908, 2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-xxv710 2t1c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 2t1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-2t1c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-xxv710 4t2c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 4t2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-4t2c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-xxv710 8t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 8t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-8t4c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C' and 'MRR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-clx-x556 2t1c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-clx-x556 2t1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-clx-x556-2t1c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'MRR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-clx-x556 4t2c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-clx-x556 4t2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-clx-x556-4t2c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'MRR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
+    - "Diff - difference between 2001 and 2005 VPP version."
+
+# VPP Performance Changes 2n-clx-clx-x556 8t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-clx-x556 8t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-clx-x556-8t4c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C' and 'MRR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2001"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+    - title: "2005"
+      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - "Legend to Table"
+    - "2001, 2005 - VPP versions tested."
     - "Diff - difference between 2001 and 2005 VPP version."
 
 # VPP Performance Changes 2n-dnv 1t1c mrr
