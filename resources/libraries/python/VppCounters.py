@@ -35,6 +35,9 @@ class VppCounters:
         :param node: Node to run command on.
         :type node: dict
         """
+        ### temporary
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show nat44 deterministic mappings")
+        ###
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show errors")
 
     @staticmethod
