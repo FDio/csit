@@ -84,6 +84,7 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If Test Failed
 | | | ... | Show NAT verbose | ${nodes['${dut}']}
+| | | Show NAT44 deterministic mappings | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For namespace
