@@ -142,7 +142,6 @@ def simple_burst(
                 last_stream_b = (last_stream_a * 2)
                 client.add_streams(
                     streams[last_stream_a:last_stream_b], ports=[port_1])
-            print(last_stream_a, last_stream_b, streams)
         elif isinstance(framesize, str):
             client.add_streams(streams[0:3], ports=[port_0])
             if traffic_directions > 1:
