@@ -25,6 +25,10 @@
 | Documentation
 | ... | Performance suite keywords - utilities to find and verify NDR and PDR.
 
+*** Variables ***
+| ${trial_duration}= | ${PERF_TRIAL_DURATION}
+| ${trial_multiplicity}= | ${PERF_TRIAL_MULTIPLICITY}
+
 *** Keywords ***
 | Find NDR and PDR intervals using optimized search
 | | [Documentation]
@@ -362,26 +366,32 @@
 | | ... | Type: float
 | |
 | | ... | *Arguments:*
-| | ... | - subsamples - How many trials in this measurement. Type: int
-| | ... | - trial_duration - Duration of single trial [s]. Type: float
-| | ... | - fail_no_traffic - Whether to fail on zero receive count. Type: boolean
+| | ... | - trial_duration - Duration of single trial [s].
+| | ... | Type: float
+| | ... | - fail_no_traffic - Whether to fail on zero receive count.
+| | ... | Type: boolean
+| | ... | - trial_multiplicity - How many trials in this measurement.
+| | ... | Type: int
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
 | | ... | Type: int
-| | ... | - tx_port - TX port of TG, default 0. Type: integer
-| | ... | - rx_port - RX port of TG, default 1. Type: integer
+| | ... | - tx_port - TX port of TG, default 0.
+| | ... | Type: integer
+| | ... | - rx_port - RX port of TG, default 1.
+| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Traffic should pass with maximum rate \| \${1} \| \${10.0} \
 | | ... | \| \${False} \| \${2} \| \${0} \| \${1} \|
 | |
-| | [Arguments] | ${trial_duration}=${PERF_TRIAL_DURATION}
-| | ... | ${fail_no_traffic}=${True} | ${subsamples}=${PERF_TRIAL_MULTIPLICITY}
+| | [Arguments] | ${trial_duration}=${trial_duration}
+| | ... | ${fail_no_traffic}=${True}
+| | ... | ${trial_multiplicity}=${trial_multiplicity}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | |
-| | ${results} | ${approximated_results} = | Send traffic at specified rate
-| | ... | ${trial_duration}
-| | ... | ${max_rate}pps | ${frame_size} | ${traffic_profile} | ${subsamples}
+| | ${results}= | Send traffic at specified rate
+| | ... | ${trial_duration} | ${max_rate}pps | ${frame_size}
+| | ... | ${traffic_profile} | ${trial_multiplicity}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
@@ -397,17 +407,24 @@
 | | ... | The rate argument should be TRex friendly, so it should include "pps".
 | |
 | | ... | *Arguments:*
-| | ... | - trial_duration - Duration of single trial [s]. Type: float
-| | ... | - rate - Rate for sending packets. Type: string
-| | ... | - frame_size - L2 Frame Size [B]. Type: integer/string
+| | ... | - trial_duration - Duration of single trial [s].
+| | ... | Type: float
+| | ... | - rate - Rate for sending packets.
+| | ... | Type: string
+| | ... | - frame_size - L2 Frame Size [B].
+| | ... | Type: integer/string
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
-| | ... | - subsamples - How many trials in this measurement. Type: int
+| | ... | - trial_multiplicity - How many trials in this measurement.
+| | ... | Type: int
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
 | | ... | Type: int
-| | ... | - tx_port - TX port of TG, default 0. Type: integer
-| | ... | - rx_port - RX port of TG, default 1. Type: integer
-| | ... | - pkt_trace - True to enable packet trace. Type: boolean
+| | ... | - tx_port - TX port of TG, default 0.
+| | ... | Type: integer
+| | ... | - rx_port - RX port of TG, default 1.
+| | ... | Type: integer
+| | ... | - pkt_trace - True to enable packet trace.
+| | ... | Type: boolean
 | |
 | | ... | *Example:*
 | |
@@ -415,40 +432,38 @@
 | | ... | \| 3-node-IPv4 \| \${10} \| \${2} \| \${0} \| \${1} \| \${False} \|
 | |
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
-| | ... | ${traffic_profile} | ${subsamples}=${1} | ${traffic_directions}=${2}
-| | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${pkt_trace}=${False}
+| | ... | ${traffic_profile} | ${trial_multiplicity}=${trial_multiplicity}
+| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
+| | ... | ${pkt_trace}=${False}
 | |
-| | Clear and show runtime counters with running traffic | ${trial_duration}
-| | ... | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
+| | ${results} = | Create List
+| | FOR | ${i} | IN RANGE | ${trial_multiplicity}
+| | | # The following line is skipping some default arguments,
+| | | # that is why subsequent arguments have to be named.
+| | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
+| | | ... | ${traffic_profile} | warmup_time=${warmup_time}
+| | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | | ... | rx_port=${rx_port}
+| | | ${rx} = | Get Received
+| | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
+| | | Append To List | ${results} | ${rr}
+| | END
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | Clear statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | VPP enable elog traces on all DUTs | ${nodes}
-| | ${results} = | Create List
-| | ${approximated_results} = | Create List
-| | FOR | ${i} | IN RANGE | ${subsamples}
-| | | # The following line is skipping some default arguments,
-| | | # that is why subsequent arguments have to be named.
-| | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
-| | | ... | ${traffic_profile} | warmup_time=${0}
-| | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | | ... | rx_port=${rx_port}
-| | | ${rx} = | Get Received
-| | | ${ar} = | Get Approximated Rate
-| | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
-| | | Append To List | ${results} | ${rr}
-| | | Append To List | ${approximated_results} | ${ar}
-| | END
+| | Clear and show runtime counters with running traffic | ${trial_duration}
+| | ... | ${rate} | ${frame_size} | ${traffic_profile}
+| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
 | | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs
 | | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
-| | Return From Keyword | ${results} | ${approximated_results}
+| | Return From Keyword | ${results}
 
 | Measure and show latency at specified rate
 | | [Documentation]
