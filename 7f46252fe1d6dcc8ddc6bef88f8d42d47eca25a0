@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "dcc4a6c4_5cd39c8b",
+        "filename": "GPL/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-10T10:57:56Z",
+      "side": 1,
+      "message": "I do not see why is this needed now (and was not needed before).",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 21
+      },
+      "revId": "7f46252fe1d6dcc8ddc6bef88f8d42d47eca25a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a040100b_2e553492",
+        "filename": "GPL/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-10T10:57:56Z",
+      "side": 1,
+      "message": "Does this mean the new traffic profiles have different number of streams than the existing ones?\nIn create_streams I still see 2 main (and 2 latency) streams for non-imix case.",
+      "range": {
+        "startLine": 139,
+        "startChar": 33,
+        "endLine": 139,
+        "endChar": 45
+      },
+      "revId": "7f46252fe1d6dcc8ddc6bef88f8d42d47eca25a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9af5e72_3adb567f",
+        "filename": "GPL/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-10T10:57:56Z",
+      "side": 1,
+      "message": "Does this mean the new profiles do not support IMIX?",
+      "range": {
+        "startLine": 147,
+        "startChar": 41,
+        "endLine": 147,
+        "endChar": 42
+      },
+      "revId": "7f46252fe1d6dcc8ddc6bef88f8d42d47eca25a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24c29d6b_e1a03398",
         "filename": "resources/libraries/robot/ip/nat.robot",
         "patchSetId": 14
@@ -64,6 +133,29 @@
         "startChar": 32,
         "endLine": 37,
         "endChar": 33
+      },
+      "revId": "7f46252fe1d6dcc8ddc6bef88f8d42d47eca25a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73049517_396644d2",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-ethip4udp-ip4base-udpsrcscale63-nat44-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-10T10:57:56Z",
+      "side": 1,
+      "message": "I like this better than the ip_profile stuff from https://gerrit.fd.io/r/c/csit/+/25764",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 15
       },
       "revId": "7f46252fe1d6dcc8ddc6bef88f8d42d47eca25a0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
