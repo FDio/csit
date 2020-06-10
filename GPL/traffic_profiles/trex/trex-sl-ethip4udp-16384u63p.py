@@ -115,7 +115,8 @@ class TrafficStreams(TrafficStreamsBaseClass):
                 min_value=self.p1_dst_start_ip,
                 max_value=self.p1_dst_end_ip,
                 size=4,
-                op="inc")
+                op="inc",
+                next_var="dport")
         vm1.var(name="dport",
                 min_value=self.p1_dst_start_udp_port,
                 max_value=self.p1_dst_end_udp_port,
