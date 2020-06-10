@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "620d957e_353d0fe8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-10T13:08:37Z",
+      "side": 1,
+      "message": "I do not think the ci-management side supports this.\nWe have support for test_set_id in coverage jobs, but that logic would look at something like:\n\n  2n-clx/nfv-density-00.md",
+      "range": {
+        "startLine": 10,
+        "startChar": 52,
+        "endLine": 10,
+        "endChar": 63
+      },
+      "revId": "5a2fe36437de40329a68cb1bd78e3626c34b5798",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
