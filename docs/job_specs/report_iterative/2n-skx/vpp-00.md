@@ -1,6 +1,6 @@
 # 2n-skx
-### tests 525
-### job hrs est. 66.5
+### tests 255
+### job hrs est. 32.3
 ### job hrs real xx.x
 ### test mins est. 7.6
 ### test mins real x.x
@@ -56,19 +56,11 @@
 1c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4scale2m-rnd
 2c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4scale2m-rnd
 4c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4scale2m-rnd
-##### dot1q-ip4base
-1c AND 64b AND ndrpdr AND x710 AND drv_avf AND dot1q-ip4base
-2c AND 64b AND ndrpdr AND x710 AND drv_avf AND dot1q-ip4base
-4c AND 64b AND ndrpdr AND x710 AND drv_avf AND dot1q-ip4base
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
 2c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
 4c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
-##### dot1q-ip4base
-1c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND dot1q-ip4base
-2c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND dot1q-ip4base
-4c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND dot1q-ip4base
 ### intel-xxv710
 #### avf
 ##### ethip4-ip4base
@@ -156,10 +148,6 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
-##### dot1q-ip4base
-1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-ip4base
-2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-ip4base
-4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-ip4base
 ##### ethip4udp-ip4base-nat44
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
 2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
@@ -176,19 +164,11 @@
 1c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
 2c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
 4c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
-##### dot1q-ip6base
-1c AND 78b AND ndrpdr AND x710 AND drv_avf AND dot1q-ip6base
-2c AND 78b AND ndrpdr AND x710 AND drv_avf AND dot1q-ip6base
-4c AND 78b AND ndrpdr AND x710 AND drv_avf AND dot1q-ip6base
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 78b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6base
 2c AND 78b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6base
 4c AND 78b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6base
-##### dot1q-ip4base
-1c AND 78b AND ndrpdr AND x710 AND drv_vfio_pci AND dot1q-ip6base
-2c AND 78b AND ndrpdr AND x710 AND drv_vfio_pci AND dot1q-ip6base
-4c AND 78b AND ndrpdr AND x710 AND drv_vfio_pci AND dot1q-ip6base
 ### intel-xxv710
 #### avf
 ##### ethip6-ip6base
@@ -207,10 +187,6 @@
 1c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
 2c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
 4c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
-##### dot1q-ip6base
-1c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-ip6base
-2c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-ip6base
-4c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-ip6base
 #### dpdk-vfio-pci
 ##### ethip6-ip6base
 1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6base
@@ -228,10 +204,6 @@
 1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
 2c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
 4c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
-##### dot1q-ip6base
-1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-ip6base
-2c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-ip6base
-4c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-ip6base
 ## ./ip6_tunnels
 ## ./l2
 ### intel-x710
@@ -244,10 +216,6 @@
 1c AND 64b AND ndrpdr AND x710 AND drv_avf AND eth-l2bdscale1mmaclrn
 2c AND 64b AND ndrpdr AND x710 AND drv_avf AND eth-l2bdscale1mmaclrn
 4c AND 64b AND ndrpdr AND x710 AND drv_avf AND eth-l2bdscale1mmaclrn
-##### dot1q-l2bdbasemaclrn
-1c AND 64b AND ndrpdr AND x710 AND drv_avf AND dot1q-l2bdbasemaclrn
-2c AND 64b AND ndrpdr AND x710 AND drv_avf AND dot1q-l2bdbasemaclrn
-4c AND 64b AND ndrpdr AND x710 AND drv_avf AND dot1q-l2bdbasemaclrn
 ##### eth-l2xcbase
 1c AND 64b AND ndrpdr AND x710 AND drv_avf AND eth-l2xcbase
 2c AND 64b AND ndrpdr AND x710 AND drv_avf AND eth-l2xcbase
@@ -265,10 +233,6 @@
 1c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 2c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 4c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
-##### dot1q-l2bdbasemaclrn
-1c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-2c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-4c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
 ##### eth-l2xcbase
 1c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND eth-l2xcbase
 2c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND eth-l2xcbase
@@ -332,334 +296,20 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
-##### dot1q-l2bdbasemaclrn
-1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-##### dot1q-l2bdbasemaclrn-gbp
-1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-gbp
-2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-gbp
-4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-gbp
 ##### eth-l2xcbase
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase
 2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase
-##### dot1q-l2xcbase
-1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase
-2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase
-4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase
 ##### eth-l2patch
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2patch
 2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2patch
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2patch
 ## ./lb
 ## ./nfv_density/dcr_memif/chain
-### intel-xxv710
-#### avf
-##### eth-l2bd-1ch-2mif-1dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-2mif-1dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-2mif-1dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-2mif-1dcr1t-vppip4
-##### eth-l2bd-1ch-4mif-2dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-4mif-2dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-4mif-2dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-4mif-2dcr1t-vppip4
-##### eth-l2bd-1ch-8mif-4dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-8mif-4dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-8mif-4dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-8mif-4dcr1t-vppip4
-##### eth-l2bd-1ch-12mif-6dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-12mif-6dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-12mif-6dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-12mif-6dcr1t-vppip4
-##### eth-l2bd-1ch-16mif-8dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-16mif-8dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-16mif-8dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-16mif-8dcr1t-vppip4
-##### eth-l2bd-1ch-20mif-10dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-20mif-10dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-20mif-10dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-20mif-10dcr1t-vppip4
-##### eth-l2bd-2ch-4mif-2dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-4mif-2dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-4mif-2dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-4mif-2dcr1t-vppip4
-##### eth-l2bd-2ch-8mif-4dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-8mif-4dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-8mif-4dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-8mif-4dcr1t-vppip4
-##### eth-l2bd-2ch-16mif-8dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-16mif-8dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-16mif-8dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-16mif-8dcr1t-vppip4
-##### eth-l2bd-2ch-24mif-12dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-24mif-12dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-24mif-12dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-24mif-12dcr1t-vppip4
-##### eth-l2bd-2ch-32mif-16dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-32mif-16dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-32mif-16dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-32mif-16dcr1t-vppip4
-##### eth-l2bd-2ch-40mif-20dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-40mif-20dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-40mif-20dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-40mif-20dcr1t-vppip4
-##### eth-l2bd-4ch-8mif-4dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-8mif-4dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-8mif-4dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-8mif-4dcr1t-vppip4
-##### eth-l2bd-4ch-16mif-8dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-16mif-8dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-16mif-8dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-16mif-8dcr1t-vppip4
-##### eth-l2bd-4ch-32mif-16dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-32mif-16dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-32mif-16dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-32mif-16dcr1t-vppip4
-##### eth-l2bd-4ch-48mif-24dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-48mif-24dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-48mif-24dcr1t-vppip4
-##### eth-l2bd-6ch-12mif-6dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-12mif-6dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-12mif-6dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-12mif-6dcr1t-vppip4
-##### eth-l2bd-6ch-24mif-12dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-24mif-12dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-24mif-12dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-24mif-12dcr1t-vppip4
-##### eth-l2bd-6ch-48mif-24dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-48mif-24dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-48mif-24dcr1t-vppip4
-##### eth-l2bd-8ch-16mif-8dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-16mif-8dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-16mif-8dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-16mif-8dcr1t-vppip4
-##### eth-l2bd-8ch-32mif-16dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-32mif-16dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-32mif-16dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-32mif-16dcr1t-vppip4
-##### eth-l2bd-10ch-20mif-10dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-20mif-10dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-20mif-10dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-20mif-10dcr1t-vppip4
-##### eth-l2bd-10ch-40mif-20dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-40mif-20dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-40mif-20dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-40mif-20dcr1t-vppip4
 ## ./nfv_density/dcr_memif/chain_ipsec
 ## ./nfv_density/dcr_memif/pipeline
-### intel-xxv710
-#### avf
-##### eth-l2bd-1pl-2mif-1dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-1dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-1dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-1dcr1t-vppip4
-##### eth-l2bd-1pl-2mif-2dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-2dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-2dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-2dcr1t-vppip4
-##### eth-l2bd-1pl-2mif-4dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-4dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-4dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-4dcr1t-vppip4
-##### eth-l2bd-1pl-2mif-6dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-6dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-6dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-6dcr1t-vppip4
-##### eth-l2bd-1pl-2mif-8dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-8dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-8dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-8dcr1t-vppip4
-##### eth-l2bd-1pl-2mif-10dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-10dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-10dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1pl-2mif-10dcr1t-vppip4
-##### eth-l2bd-2pl-4mif-2dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-2dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-2dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-2dcr1t-vppip4
-##### eth-l2bd-2pl-4mif-4dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-4dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-4dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-4dcr1t-vppip4
-##### eth-l2bd-2pl-4mif-8dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-8dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-8dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-8dcr1t-vppip4
-##### eth-l2bd-2pl-4mif-12dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-12dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-12dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-12dcr1t-vppip4
-##### eth-l2bd-2pl-4mif-16dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-16dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-16dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-16dcr1t-vppip4
-##### eth-l2bd-2pl-4mif-20dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-20dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-20dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-4mif-20dcr1t-vppip4
-##### eth-l2bd-2pl-8mif-4dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-8mif-4dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-8mif-4dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2pl-8mif-4dcr1t-vppip4
-##### eth-l2bd-4pl-8mif-8dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4pl-8mif-8dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4pl-8mif-8dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4pl-8mif-8dcr1t-vppip4
-##### eth-l2bd-4pl-8mif-16dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4pl-8mif-16dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4pl-8mif-16dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4pl-8mif-16dcr1t-vppip4
-##### eth-l2bd-4pl-8mif-24dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4pl-8mif-24dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4pl-8mif-24dcr1t-vppip4
-##### eth-l2bd-6pl-12mif-6dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6pl-12mif-6dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6pl-12mif-6dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6pl-12mif-6dcr1t-vppip4
-##### eth-l2bd-6pl-12mif-12dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6pl-12mif-12dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6pl-12mif-12dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6pl-12mif-12dcr1t-vppip4
-##### eth-l2bd-6pl-12mif-24dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6pl-12mif-24dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6pl-12mif-24dcr1t-vppip4
-##### eth-l2bd-8pl-16mif-8dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8pl-16mif-8dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8pl-16mif-8dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8pl-16mif-8dcr1t-vppip4
-##### eth-l2bd-8pl-16mif-16dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8pl-16mif-16dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8pl-16mif-16dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8pl-16mif-16dcr1t-vppip4
-##### eth-l2bd-10pl-20mif-10dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10pl-20mif-10dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10pl-20mif-10dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10pl-20mif-10dcr1t-vppip4
-##### eth-l2bd-10pl-20mif-20dcr1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10pl-20mif-20dcr1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10pl-20mif-20dcr1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10pl-20mif-20dcr1t-vppip4
 ## ./nfv_density/vm_vhost/chain
-### intel-xxv710
-#### avf
-##### eth-l2bd-1ch-2vh-1vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-2vh-1vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-2vh-1vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-2vh-1vm1t-vppip4
-##### eth-l2bd-1ch-4vh-2vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-4vh-2vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-4vh-2vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-4vh-2vm1t-vppip4
-##### eth-l2bd-1ch-8vh-4vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-8vh-4vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-8vh-4vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-8vh-4vm1t-vppip4
-##### eth-l2bd-1ch-12vh-6vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-12vh-6vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-12vh-6vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-12vh-6vm1t-vppip4
-##### eth-l2bd-1ch-16vh-8vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-16vh-8vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-16vh-8vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-16vh-8vm1t-vppip4
-##### eth-l2bd-1ch-20vh-10vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-20vh-10vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-20vh-10vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-1ch-20vh-10vm1t-vppip4
-##### eth-l2bd-2ch-4vh-2vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-4vh-2vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-4vh-2vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-4vh-2vm1t-vppip4
-##### eth-l2bd-2ch-8vh-4vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-8vh-4vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-8vh-4vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-8vh-4vm1t-vppip4
-##### eth-l2bd-2ch-16vh-8vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-16vh-8vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-16vh-8vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-16vh-8vm1t-vppip4
-##### eth-l2bd-2ch-24vh-12vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-24vh-12vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-24vh-12vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-24vh-12vm1t-vppip4
-##### eth-l2bd-2ch-32vh-16vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-32vh-16vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-32vh-16vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-32vh-16vm1t-vppip4
-##### eth-l2bd-2ch-40vh-20vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-40vh-20vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-40vh-20vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-2ch-40vh-20vm1t-vppip4
-##### eth-l2bd-4ch-8vh-4vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-8vh-4vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-8vh-4vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-8vh-4vm1t-vppip4
-##### eth-l2bd-4ch-16vh-8vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-16vh-8vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-16vh-8vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-16vh-8vm1t-vppip4
-##### eth-l2bd-4ch-32vh-16vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-32vh-16vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-32vh-16vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-32vh-16vm1t-vppip4
-##### eth-l2bd-4ch-48vh-24vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-48vh-24vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-4ch-48vh-24vm1t-vppip4
-##### eth-l2bd-6ch-12vh-6vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-12vh-6vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-12vh-6vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-12vh-6vm1t-vppip4
-##### eth-l2bd-6ch-24vh-12vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-24vh-12vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-24vh-12vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-24vh-12vm1t-vppip4
-##### eth-l2bd-6ch-48vh-24vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-48vh-24vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-6ch-48vh-24vm1t-vppip4
-##### eth-l2bd-8ch-16vh-8vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-16vh-8vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-16vh-8vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-16vh-8vm1t-vppip4
-##### eth-l2bd-8ch-32vh-16vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-32vh-16vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-32vh-16vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-8ch-32vh-16vm1t-vppip4
-##### eth-l2bd-10ch-20vh-10vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-20vh-10vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-20vh-10vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-20vh-10vm1t-vppip4
-##### eth-l2bd-10ch-40vh-20vm1t-vppip4
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-40vh-20vm1t-vppip4
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-40vh-20vm1t-vppip4
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bd-10ch-40vh-20vm1t-vppip4
 ## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
-### intel-xxv710
-#### avf
-##### dot1qip4vxlan-l2bd-1ch-2vh-1vm1t-testpmd
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-1ch-2vh-1vm1t-testpmd
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-1ch-2vh-1vm1t-testpmd
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-1ch-2vh-1vm1t-testpmd
-##### dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd
-##### dot1qip4vxlan-l2bd-4ch-8vh-4vm1t-testpmd
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-4ch-8vh-4vm1t-testpmd
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-4ch-8vh-4vm1t-testpmd
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-4ch-8vh-4vm1t-testpmd
-##### dot1qip4vxlan-l2bd-6ch-12vh-6vm1t-testpmd
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-6ch-12vh-6vm1t-testpmd
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-6ch-12vh-6vm1t-testpmd
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-6ch-12vh-6vm1t-testpmd
-##### dot1qip4vxlan-l2bd-8ch-16vh-8vm1t-testpmd
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-8ch-16vh-8vm1t-testpmd
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-8ch-16vh-8vm1t-testpmd
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-8ch-16vh-8vm1t-testpmd
-##### dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd
-1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd
-2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd
-4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd
 ## ./srv6
 ## ./tcp
 ## ./vm_vhost
@@ -722,14 +372,6 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
 2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
-##### dot1q-l2xcbase-eth-2vhostvr1024-1vm
-1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm
-2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm
-4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm
-##### dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
-1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
-2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
-4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
 ## ./vts
 ### intel-xxv710
 #### avf
@@ -745,16 +387,4 @@
 1c AND 114b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 2c AND 114b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 4c AND 114b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-#### dpdk-vfio-pci
-##### ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-1c AND 114b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-2c AND 114b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-4c AND 114b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-##### ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-1c AND 114b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-2c AND 114b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-4c AND 114b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-##### ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-1c AND 114b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-2c AND 114b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-4c AND 114b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
+
