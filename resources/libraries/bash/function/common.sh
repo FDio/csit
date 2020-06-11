@@ -784,8 +784,11 @@ function select_tags () {
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"report-iterative"* )
+            test_sets=(${TEST_TAG_STRING//:/ })
+            # Run only one test set per run
+            report_file=${test_sets[0]}.md
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/report_iterative/${DUT}-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"report-coverage"* )
