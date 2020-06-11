@@ -263,6 +263,7 @@
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
+        - 28  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -273,6 +274,7 @@
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
+        - 28  # NDRPDR sel
 
     plot-vpp-nfv-3n-skx-mrr:
       # TODO: Replace:
@@ -321,10 +323,8 @@
         - 7   # NDRPDR sel
 
     plot-vpp-nfv-2n-skx-mrr:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-skx:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 71  # NFV MRR
+      csit-vpp-perf-report-iterative-2005-2n-skx:
+        - 42  # MRR sel
 
     plot-vpp-nfv-reconf-2n-skx:
       # TODO: Replace:
@@ -502,6 +502,7 @@
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
+        - 28  # NDRPDR sel
 
     vpp-nic-comparison-2n-skx:
       # TODO: Add data:
@@ -513,11 +514,8 @@
         - 6   # MRR sel
 
     vpp-nic-comparison-2n-skx-mrr:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-skx:
-      csit-vpp-perf-verify-2001-2n-skx:
-        - 101 # MRR sel
-        - 128 # MRR sel addition
+      csit-vpp-perf-report-iterative-2005-2n-skx:
+        - 42  # MRR sel
 
     # Results
 
@@ -551,7 +549,14 @@
         - 53  # perf-full-3n-hsw-l2_XI
         - 54  # perf-full-3n-hsw-memif
         - 55  # perf-full-3n-hsw-ip4tunnels-I
+        - 56  # perf-full-3n-hsw-ip4tunnels-II
         - 57  # perf-full-3n-hsw-ip4tunnels-III
+        - 58  # perf-full-3n-hsw-ip6tunnels-I
+        - 59  # perf-full-3n-hsw-srv6-I
+        - 60  # perf-full-3n-hsw-srv6-II
+        - 61  # perf-full-3n-hsw-vhost-I
+        - 62  # perf-full-3n-hsw-vhost-II
+        - 63  # perf-full-3n-hsw-vhost-III
 
     vpp-perf-results-3n-skx:
       # TODO: Replace:
@@ -580,7 +585,10 @@
         - 15  # perf-full-3n-dnv-crypto_II
         - 5   # perf-full-3n-dnv-ip4_I
         - 13  # perf-full-3n-dnv-ip4_II
+        - 17  # perf-full-3n-dnv-ip6_I
         - 18  # perf-full-3n-dnv-ip6_II
+        - 21  # perf-full-3n-dnv-l2_I
+        - 22  # perf-full-3n-dnv-l2_II
         - 23  # perf-full-3n-dnv-ip4-tunnels_I
 
     vpp-perf-results-2n-dnv:
@@ -601,11 +609,8 @@
         - 6   # MRR sel
 
     vpp-mrr-results-2n-skx:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-skx:
-      csit-vpp-perf-verify-2001-2n-skx:
-        - 101 # MRR sel
-        - 128 # MRR sel addition
+      csit-vpp-perf-report-iterative-2005-2n-skx:
+        - 42  # MRR sel
 
     vpp-mrr-results-2n-clx:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -726,6 +731,7 @@
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
+        - 28  # NDRPDR sel
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -1003,11 +1009,8 @@
         - 101 # MRR sel
         - 128 # MRR sel addition
     vpp-performance-changes-2n-skx-mrr-cmp:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-skx:
-      csit-vpp-perf-verify-2001-2n-skx:
-        - 101 # MRR sel
-        - 128 # MRR sel addition
+      csit-vpp-perf-report-iterative-2005-2n-skx:
+        - 42  # MRR sel
 
     vpp-performance-changes-2n-clx-mrr-ref:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -1319,6 +1322,7 @@
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
+        - 28  # NDRPDR sel
 
     vpp-compare-testbeds-skx-clx-ref:
       # TODO: Add data:
@@ -1360,11 +1364,8 @@
         - 6   # MRR sel
 
     vpp-compare-testbeds-mrr-skx-clx-ref:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-skx:
-      csit-vpp-perf-verify-2001-2n-skx:
-        - 101 # MRR sel
-        - 128 # MRR sel addition
+      csit-vpp-perf-report-iterative-2005-2n-skx:
+        - 42  # MRR sel
     vpp-compare-testbeds-mrr-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 12   # MRR
@@ -1433,6 +1434,7 @@
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
+        - 28  # NDRPDR sel
     vpp-compare-topologies-cmp:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -1442,11 +1444,8 @@
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 6   # MRR sel
     vpp-compare-topologies-mrr-cmp:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2005-2n-skx:
-      csit-vpp-perf-verify-2001-2n-skx:
-        - 101 # MRR sel
-        - 128 # MRR sel addition
+      csit-vpp-perf-report-iterative-2005-2n-skx:
+        - 42  # MRR sel
 
     dpdk-compare-topologies-ref:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
@@ -2211,7 +2210,14 @@
       - 53  # perf-full-3n-hsw-l2_XI
       - 54  # perf-full-3n-hsw-memif
       - 55  # perf-full-3n-hsw-ip4tunnels-I
+      - 56  # perf-full-3n-hsw-ip4tunnels-II
       - 57  # perf-full-3n-hsw-ip4tunnels-III
+      - 58  # perf-full-3n-hsw-ip6tunnels-I
+      - 59  # perf-full-3n-hsw-srv6-I
+      - 60  # perf-full-3n-hsw-srv6-II
+      - 61  # perf-full-3n-hsw-vhost-I
+      - 62  # perf-full-3n-hsw-vhost-II
+      - 63  # perf-full-3n-hsw-vhost-III
 
     csit-vpp-perf-verify-1908_1-3n-skx:
       - 26  # NDRPDR sel - new1908.1
@@ -2238,6 +2244,7 @@
     csit-vpp-perf-report-iterative-2005-3n-skx:
       - 4   # NDRPDR sel
       - 5   # NDRPDR sel ??? all x710 failed
+      - 28  # NDRPDR sel
       - 6   # MRR sel
 
     csit-vpp-perf-verify-1908_1-2n-skx:
@@ -2270,6 +2277,7 @@
     # TODO: Add data:
     csit-vpp-perf-report-iterative-2005-2n-skx:
       - 7   # NDRPDR sel
+      - 42  # MRR sel
 
     csit-vpp-perf-verify-1908_1-2n-clx:
       - 5  # NDRPDR sel
@@ -2368,7 +2376,10 @@
       - 15  # perf-full-3n-dnv-crypto_II
       - 5   # perf-full-3n-dnv-ip4_I
       - 13  # perf-full-3n-dnv-ip4_II
+      - 17  # perf-full-3n-dnv-ip6_I
       - 18  # perf-full-3n-dnv-ip6_II
+      - 21  # perf-full-3n-dnv-l2_I
+      - 22  # perf-full-3n-dnv-l2_II
       - 23  # perf-full-3n-dnv-ip4-tunnels_I
 
     csit-vpp-perf-verify-1908-2n-dnv:
