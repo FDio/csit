@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -291,18 +291,12 @@ class PapiSocketExecutor(object):
             key_file.close()
         # Everything is ready, set the local socket address and connect.
         vpp_instance.transport.server_address = self._local_vpp_socket
-        # It seems we can get read error even if every preceding check passed.
-        # Single retry seems to help.
-        for _ in xrange(2):
-            try:
-                vpp_instance.connect_sync("csit_socket")
-            except (IOError, struct.error) as err:
-                logger.warn("Got initial connect error {err!r}".format(err=err))
-                vpp_instance.disconnect()
-            else:
-                break
-        else:
-            raise RuntimeError("Failed to connect to VPP over a socket.")
+        try:
+            vpp_instance.connect_sync(u"csit_socket")
+        except (IOError, struct.error) as err:
+            logger.warn(u"Got initial connect error {err!r}".format(err=err))
+            vpp_instance.disconnect()
+            raise RuntimeError(u"Failed to connect to VPP over a socket.")
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -311,9 +305,13 @@ class PapiSocketExecutor(object):
         Also remove the local sockets by deleting the temporary directory.
         Arguments related to possible exception are entirely ignored.
         """
-        self.vpp_instance.disconnect()
-        run(["ssh", "-S", self._ssh_control_socket, "-O", "exit", "0.0.0.0"],
-            check=False)
+        try:
+            self.vpp_instance.disconnect()
+        except self.vpp_instance.VPPApiError:
+            pass
+        run([
+            u"ssh", u"-S", self._ssh_control_socket, u"-O", u"exit", u"0.0.0.0"
+        ], check=False)
         shutil.rmtree(self._temp_dir)
 
     def add(self, csit_papi_command, history=True, **kwargs):
