@@ -1,9 +1,9 @@
 # 2n-dnv
 ### tests 24
-### job hrs est. 3.0
-### job hrs real xx.x
-### test mins est. 7.6
-### test mins real x.x
+### job hrs est. 2.3
+### job hrs real 2.3
+### test mins est. 5.78
+### test mins real 5.78
 ## ./container_memif
 ## ./crypto
 ## ./ip4
