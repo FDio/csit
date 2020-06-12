@@ -361,6 +361,7 @@
         - 9   # NDRPDR sel
         - 32  # NDRPDR sel ???
         - 33  # NDRPDR sel ???
+        - 39  # NDRPDR sel
         - 40  # NDRPDR sel
 
     plot-vpp-hdrh-lat-2n-clx:
@@ -382,6 +383,7 @@
         - 9   # NDRPDR sel
         - 32  # NDRPDR sel ???
         - 33  # NDRPDR sel ???
+        - 39  # NDRPDR sel
         - 40  # NDRPDR sel
 
     plot-vpp-nfv-2n-clx-mrr:
@@ -796,6 +798,7 @@
         - 9   # NDRPDR sel
         - 32  # NDRPDR sel ???
         - 33  # NDRPDR sel ???
+        - 39  # NDRPDR sel
         - 40  # NDRPDR sel
 
     vpp-performance-changes-2n-dnv-h1:
@@ -1334,6 +1337,7 @@
         - 9   # NDRPDR sel
         - 32  # NDRPDR sel ???
         - 33  # NDRPDR sel ???
+        - 39  # NDRPDR sel
         - 40  # NDRPDR sel
 
     vpp-compare-testbeds-hsw-clx-ref:
@@ -1356,6 +1360,7 @@
         - 9   # NDRPDR sel
         - 32  # NDRPDR sel ???
         - 33  # NDRPDR sel ???
+        - 39  # NDRPDR sel
         - 40  # NDRPDR sel
 
     vpp-compare-testbeds-mrr-ref:
@@ -2311,6 +2316,7 @@
       - 9   # NDRPDR sel
       - 32  # NDRPDR sel ???
       - 33  # NDRPDR sel ???
+      - 39  # NDRPDR sel
       - 40  # NDRPDR sel
       - 12   # MRR
 
