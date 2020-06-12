@@ -1,9 +1,9 @@
 # 3n-hsw
 ### tests 150
-### job hrs est. 19
-### job hrs real xx.x
-### test mins est. 7.6
-### test mins real x.x
+### job hrs est. 14.48
+### job hrs real 14.48
+### test mins est. 5.79
+### test mins real 5.79
 #
 # Tests with avf driver are not executed on 3n-hsw systems as it requires
 # enabling of SoftIOMMU thats quite difficult there.
