@@ -1,9 +1,9 @@
 # 2n-skx
-### tests 525
-### job hrs est. 24.5
-### job hrs real 24.9
-### test mins est. 2.8
-### test mins real 2.8
+### tests 474
+### job hrs est. 22.6
+### job hrs real 22.6
+### test mins est. 2.86
+### test mins real 2.86
 ## ./container_memif
 ### intel-xxv710
 #### avf
@@ -56,19 +56,11 @@
 1c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4scale2m-rnd
 2c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4scale2m-rnd
 4c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4scale2m-rnd
-##### dot1q-ip4base
-1c AND 64b AND mrr AND x710 AND drv_avf AND dot1q-ip4base
-2c AND 64b AND mrr AND x710 AND drv_avf AND dot1q-ip4base
-4c AND 64b AND mrr AND x710 AND drv_avf AND dot1q-ip4base
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 64b AND mrr AND x710 AND drv_vfio_pci AND ethip4-ip4base
 2c AND 64b AND mrr AND x710 AND drv_vfio_pci AND ethip4-ip4base
 4c AND 64b AND mrr AND x710 AND drv_vfio_pci AND ethip4-ip4base
-##### dot1q-ip4base
-1c AND 64b AND mrr AND x710 AND drv_vfio_pci AND dot1q-ip4base
-2c AND 64b AND mrr AND x710 AND drv_vfio_pci AND dot1q-ip4base
-4c AND 64b AND mrr AND x710 AND drv_vfio_pci AND dot1q-ip4base
 ### intel-xxv710
 #### avf
 ##### ethip4-ip4base
@@ -156,10 +148,6 @@
 1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
-##### dot1q-ip4base
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-ip4base
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-ip4base
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-ip4base
 ##### ethip4udp-ip4base-nat44
 1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
 2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
@@ -176,19 +164,11 @@
 1c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m
 2c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m
 4c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m
-##### dot1q-ip6base
-1c AND 78b AND mrr AND x710 AND drv_avf AND dot1q-ip6base
-2c AND 78b AND mrr AND x710 AND drv_avf AND dot1q-ip6base
-4c AND 78b AND mrr AND x710 AND drv_avf AND dot1q-ip6base
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 78b AND mrr AND x710 AND drv_vfio_pci AND ethip6-ip6base
 2c AND 78b AND mrr AND x710 AND drv_vfio_pci AND ethip6-ip6base
 4c AND 78b AND mrr AND x710 AND drv_vfio_pci AND ethip6-ip6base
-##### dot1q-ip4base
-1c AND 78b AND mrr AND x710 AND drv_vfio_pci AND dot1q-ip6base
-2c AND 78b AND mrr AND x710 AND drv_vfio_pci AND dot1q-ip6base
-4c AND 78b AND mrr AND x710 AND drv_vfio_pci AND dot1q-ip6base
 ### intel-xxv710
 #### avf
 ##### ethip6-ip6base
@@ -207,10 +187,6 @@
 1c AND 78b AND mrr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
 2c AND 78b AND mrr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
 4c AND 78b AND mrr AND xxv710 AND drv_avf AND ethip6-ip6scale2m
-##### dot1q-ip6base
-1c AND 78b AND mrr AND xxv710 AND drv_avf AND dot1q-ip6base
-2c AND 78b AND mrr AND xxv710 AND drv_avf AND dot1q-ip6base
-4c AND 78b AND mrr AND xxv710 AND drv_avf AND dot1q-ip6base
 #### dpdk-vfio-pci
 ##### ethip6-ip6base
 1c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6base
@@ -228,10 +204,6 @@
 1c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
 2c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
 4c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
-##### dot1q-ip6base
-1c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-ip6base
-2c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-ip6base
-4c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-ip6base
 ## ./ip6_tunnels
 ## ./l2
 ### intel-x710
@@ -244,10 +216,6 @@
 1c AND 64b AND mrr AND x710 AND drv_avf AND eth-l2bdscale1mmaclrn
 2c AND 64b AND mrr AND x710 AND drv_avf AND eth-l2bdscale1mmaclrn
 4c AND 64b AND mrr AND x710 AND drv_avf AND eth-l2bdscale1mmaclrn
-##### dot1q-l2bdbasemaclrn
-1c AND 64b AND mrr AND x710 AND drv_avf AND dot1q-l2bdbasemaclrn
-2c AND 64b AND mrr AND x710 AND drv_avf AND dot1q-l2bdbasemaclrn
-4c AND 64b AND mrr AND x710 AND drv_avf AND dot1q-l2bdbasemaclrn
 ##### eth-l2xcbase
 1c AND 64b AND mrr AND x710 AND drv_avf AND eth-l2xcbase
 2c AND 64b AND mrr AND x710 AND drv_avf AND eth-l2xcbase
@@ -265,10 +233,6 @@
 1c AND 64b AND mrr AND x710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 2c AND 64b AND mrr AND x710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 4c AND 64b AND mrr AND x710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
-##### dot1q-l2bdbasemaclrn
-1c AND 64b AND mrr AND x710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-2c AND 64b AND mrr AND x710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-4c AND 64b AND mrr AND x710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
 ##### eth-l2xcbase
 1c AND 64b AND mrr AND x710 AND drv_vfio_pci AND eth-l2xcbase
 2c AND 64b AND mrr AND x710 AND drv_vfio_pci AND eth-l2xcbase
@@ -332,22 +296,10 @@
 1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
-##### dot1q-l2bdbasemaclrn
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-##### dot1q-l2bdbasemaclrn-gbp
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-gbp
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-gbp
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-gbp
 ##### eth-l2xcbase
 1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase
 2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase
 4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase
-##### dot1q-l2xcbase
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase
 ##### eth-l2patch
 1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2patch
 2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2patch
@@ -722,14 +674,6 @@
 1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
 2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
 4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
-##### dot1q-l2xcbase-eth-2vhostvr1024-1vm
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm
-##### dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
 ## ./vts
 ### intel-xxv710
 #### avf
@@ -745,16 +689,3 @@
 1c AND 114b AND mrr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 2c AND 114b AND mrr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 4c AND 114b AND mrr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-#### dpdk-vfio-pci
-##### ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-1c AND 114b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-2c AND 114b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-4c AND 114b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm
-##### ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-1c AND 114b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-2c AND 114b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-4c AND 114b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm
-##### ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-1c AND 114b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-2c AND 114b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
-4c AND 114b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
