@@ -28,41 +28,31 @@
 
     </script>
 
-..
-    ## 3n-skx-x710
-    ### 64b-ip4routing-base-scale-[avf,dpdk]
-    10ge2p1x710-avf-ethip4-ip4base-ndrpdr
-    10ge2p1x710-avf-ethip4-ip4scale2m-ndrpdr
-    10ge2p1x710-dot1q-ip4base-ndrpdr
-    10ge2p1x710-ethip4-ip4base-ndrpdr
-    10ge2p1x710-ethip4-ip4scale2m-ndrpdr
-
 3n-skx-x710
 ~~~~~~~~~~~
 
 64b-ip4routing-base-scale-[avf,dpdk]
 ------------------------------------
 
-..
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-ip4routing-base-scale-[avf,dpdk]-ndr-tsa.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-ip4routing-base-scale-[avf,dpdk]-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-x710-64b-base_and_scale-ndr-tsa}
-                \label{fig:ip4-3n-skx-x710-64b-base_and_scale-ndr-tsa}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-x710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ip4-3n-skx-x710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 .. raw:: html
 

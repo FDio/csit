@@ -34,26 +34,25 @@
 64b-2t1c-link-bonding-vhost-base-avf-testpmd
 --------------------------------------------
 
-..
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-ndr}
-                \label{fig:3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-ndr}
+            \label{fig:3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 .. raw:: html
 
@@ -78,26 +77,25 @@
 64b-2t1c-link-bonding-vhost-base-avf-vpp
 ----------------------------------------
 
-..
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr}
-                \label{fig:3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr}
+            \label{fig:3n-skx-x710-64b-2t1c-link-bonding-vhost-base-avf-vpp-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 .. raw:: html
 
