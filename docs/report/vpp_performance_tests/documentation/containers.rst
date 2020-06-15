@@ -146,12 +146,12 @@ Docker
 
 Docker builds on top of Linux kernel containment features, and
 offers a high-level tool for wrapping the processes, maintaining and
-executing them in containers [docker]_. Currently it using *runc* a CLI tool for
-spawning and running containers according to the `OCI specification
-<https://www.opencontainers.org/>`_
+executing them in containers [docker]_. Currently it is using *runc*,
+a CLI tool for spawning and running containers according to the
+`OCI specification <https://www.opencontainers.org/>`_.
 
 A Docker container image is a lightweight, stand-alone, executable
-package of a piece of software that includes everything needed to run
+software package that includes everything needed to run
 it: code, runtime, system tools, system libraries, settings.
 
 CSIT uses Docker to manage the maintenance and execution of
@@ -178,11 +178,6 @@ datastore, etc. ContainerManager class acts as a Director and uses
 ContainerEngine class that encapsulate container control.
 
 Current CSIT implementation is illustrated using UML Class diagram:
-
-1. Acquire
-2. Build
-3. (Re-)Create
-4. Execute
 
 ::
 
@@ -225,13 +220,13 @@ Current CSIT implementation is illustrated using UML Class diagram:
                                                             |
                                                  +----------+---------+
                                                  |                    |
-                                          +------+-------+     +------+-------+
-                                          |     LXC      |     |    Docker    |
-                                          +--------------+     +--------------+
-                                          | (inherinted) |     | (inherinted) |
-                                          +------+-------+     +------+-------+
-                                                  |                   |
-                                                  +---------+---------+
+                                          +------+------+      +------+------+
+                                          |     LXC     |      |    Docker   |
+                                          +-------------+      +-------------+
+                                          | (inherited) |      | (inherited) |
+                                          +------+------+      +------+------+
+                                                 |                    |
+                                                 +----------+---------+
                                                             |
                                                             | constructs
                                                             |
@@ -323,38 +318,33 @@ variables and no methods except overriden ``__getattr__`` and ``__setattr__``.
 Instance variables are assigned to container dynamically during the
 ``construct_container(**kwargs)`` call and are passed down from the RF keyword.
 
-Usage example:
+Higher-level usage example:
 
 .. code-block:: robotframework
 
-  | Construct VNF containers on all DUTs
-  | | [Arguments] | ${technology} | ${image} | ${cpu_count}=${1} | ${count}=${1}
-  | | ...
-  | | ${group}= | Set Variable | VNF
-  | | ${skip_cpus}= | Evaluate | ${vpp_cpus}+${system_cpus}
+  | Start containers for test
+  | | [Arguments] | ${dut}=${None} | ${nf_chains}=${1} | ${nf_nodes}=${1}
+  | | ... | ${auto_scale}=${True} | ${pinning}=${True}
+  | |
+  | | Set Test Variable | @{container_groups} | @{EMPTY}
+  | | Set Test Variable | ${container_group} | CNF
+  | | Set Test Variable | ${nf_nodes}
   | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
-  | | ... | engine=${container_engine} | WITH NAME | ${group}
-  | | ${duts}= | Get Matches | ${nodes} | DUT*
-  | | :FOR | ${dut} | IN | @{duts}
-  | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
-  | | | ${mnt}= | Create List | /tmp:/mnt/host | /dev:/dev
-  | | | ${cpu_node}= | Get interfaces numa node | ${nodes['${dut}']}
-  | | | ... | ${dut1_if1} | ${dut1_if2}
-  | | | Run Keyword | ${group}.Construct containers
-  | | | ... | name=${dut}_${group} | node=${nodes['${dut}']} | mnt=${mnt}
-  | | | ... | image=${container_image} | cpu_count=${container_cpus}
-  | | | ... | cpu_skip=${skip_cpus} | cpuset_mems=${cpu_node}
-  | | | ... | cpu_shared=${False} | env=${env} | count=${container_count}
-  | | | ... | install_dkms=${container_install_dkms}
-  | | Append To List | ${container_groups} | ${group}
+  | | ... | engine=${container_engine} | WITH NAME | ${container_group}
+  | | Construct chains of containers
+  | | ... | dut=${dut} | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
+  | | ... | auto_scale=${auto_scale} | pinning=${pinning}
+  | | Acquire all '${container_group}' containers
+  | | Create all '${container_group}' containers
+  | | Configure VPP in all '${container_group}' containers
+  | | Start VPP in all '${container_group}' containers
+  | | Append To List | ${container_groups} | ${container_group}
+  | | Save VPP PIDs
 
-Mandatory parameters to create standalone container are: ``node``, ``name``,
-``image`` [imagevar]_, ``cpu_count``, ``cpu_skip``, ``cpuset_mems``,
-``cpu_shared``.
+For a lower-level usage example, see ``Construct container on DUT`` keyword.
 
-There is no parameters check functionality. Passing required arguments is in
-coder responsibility. All the above parameters are required to calculate the
-correct cpu placement. See documentation for the full reference.
+There is no parameters check functionality. (Figuring out and) passing
+the required arguments is a responsibility of the caller.
 
 Kubernetes
 ~~~~~~~~~~
