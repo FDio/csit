@@ -32,5 +32,6 @@ footnote: "[5] DONE, caused by setting MTU [VPP-1876], [CSIT-1705].
 
     [11] DONE, memif regression, CANDIDATE(S) confirmed ge-23801.
 
-    [12] WIP, ipsec tnl sw scale regression, CANDIDATE(S) ge-22878, [CSIT-1712].
+    [12] DONE, ipsec tnl sw scale regression, CANDIDATE(S) confirmed ge-22878,
+    [VPP-1911], [CSIT-1712].
 "
