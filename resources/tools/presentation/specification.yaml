@@ -7256,7 +7256,7 @@
 # Reconf tests 2n-skx
 
 - type: "plot"
-  title: "NFV Implied time lost: 2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  title: "NFV Effective Blocked Time: 2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
   algorithm: "plot_nf_reconf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf"
   data: "plot-vpp-nfv-reconf-2n-skx"
@@ -7272,7 +7272,7 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "NFV Implied time lost: 2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  title: "NFV Effective Blocked Time: 2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
   algorithm: "plot_nf_reconf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf"
   data: "plot-vpp-nfv-reconf-2n-skx"
@@ -7288,7 +7288,7 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "NFV Implied time lost: 2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  title: "NFV Effective Blocked Time: 2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
   algorithm: "plot_nf_reconf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf"
   data: "plot-vpp-nfv-reconf-2n-skx"
@@ -7308,7 +7308,7 @@
 # Reconf tests 2n-clx
 
 - type: "plot"
-  title: "NFV Implied time lost: 2n-clx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  title: "NFV Effective Blocked Time: 2n-clx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
   algorithm: "plot_nf_reconf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf"
   data: "plot-vpp-nfv-reconf-2n-clx"
@@ -7322,7 +7322,7 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "NFV Implied time lost: 2n-clx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  title: "NFV Effective Blocked Time: 2n-clx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
   algorithm: "plot_nf_reconf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf"
   data: "plot-vpp-nfv-reconf-2n-clx"
@@ -7336,7 +7336,7 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "NFV Implied time lost: 2n-clx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  title: "NFV Effective Blocked Time: 2n-clx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
   algorithm: "plot_nf_reconf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf"
   data: "plot-vpp-nfv-reconf-2n-clx"

@@ -300,7 +300,7 @@ def plot_nf_reconf_box_name(plot, input_data):
         # Create plot
         layout = deepcopy(plot[u"layout"])
         layout[u"title"] = f"<b>Time Lost:</b> {layout[u'title']}"
-        layout[u"yaxis"][u"title"] = u"<b>Implied Time Lost [s]</b>"
+        layout[u"yaxis"][u"title"] = u"<b>Effective Blocked Time [s]</b>"
         layout[u"legend"][u"font"][u"size"] = 14
         layout[u"yaxis"].pop(u"range")
         plpl = plgo.Figure(data=traces, layout=layout)
