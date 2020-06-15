@@ -1,9 +1,10 @@
 Overview
 ========
 
-VPP performance test results are reported for all three physical testbed
-types present in FD.io labs: 3-Node Xeon Haswell (3n-hsw), 3-Node Xeon
-Skylake (3n-skx), 2-Node Xeon Skylake (2n-skx) and installed NIC models.
+VPP performance test results are reported for a range of processors
+including Intel Xeon Haswell-SP (3n-hsw),
+Intel Xeon Skylake-SP (2n-skx and 3n-skx), Intel Xeon Cascade Lake-SP (2n-clx),
+Arm (3n-tsh), Intel Atom (2n-dnv and 3n-dnv).
 For description of physical testbeds used for VPP performance tests
 please refer to :ref:`tested_physical_topologies`.
 
@@ -260,13 +261,16 @@ topologies and configurations:
 
 - One-Way Packet Latency: measured at different offered packet loads:
 
-  - 100% of discovered NDR throughput.
-  - 100% of discovered PDR throughput.
+  - 90% of discovered PDR throughput.
+  - 50% of discovered PDR throughput.
+  - 10% of discovered PDR throughput.
+  - Minimal offered load.
 
 - Maximum Receive Rate (MRR): measure packet forwarding rate under the
   maximum load offered by traffic generator over a set trial duration,
   regardless of packet loss. Maximum load for specified Ethernet frame
-  size is set to the bi-directional link rate.
+  size is set to the bi-directional link rate, unless there is a known limitation
+  preventing Traffic Generator from achieving the line rate.
 
 |csit-release| includes following VPP data plane functionality
 performance tested across a range of NIC drivers and NIC models:
