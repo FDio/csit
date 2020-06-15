@@ -609,6 +609,9 @@
         - 3   # perf-full-2n-clx-ip4_III
         - 4   # perf-full-2n-clx-ip4_IV
         - 5   # perf-full-2n-clx-ip4_V
+        - 7   # perf-full-2n-clx-ip6_I
+        - 10  # perf-full-2n-clx-l2_II
+        - 11  # perf-full-2n-clx-memif
 
     vpp-perf-results-3n-tsh:
       # TODO: Add data:
@@ -2386,6 +2389,9 @@
       - 3   # perf-full-2n-clx-ip4_III
       - 4   # perf-full-2n-clx-ip4_IV
       - 5   # perf-full-2n-clx-ip4_V
+      - 7   # perf-full-2n-clx-ip6_I
+      - 10  # perf-full-2n-clx-l2_II
+      - 11  # perf-full-2n-clx-memif
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
