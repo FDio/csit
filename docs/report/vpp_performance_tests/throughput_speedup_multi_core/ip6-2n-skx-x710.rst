@@ -28,38 +28,31 @@
 
     </script>
 
-..
-    ## 2n-skx-x710
-    ### 78b-ip6routing-base-scale-dpdk
-    2n1l-10ge2p1x710-ethip6-ip6base-ndrpdr
-    2n1l-10ge2p1x710-ethip6-ip6scale2m-ndrpdr
-
 2n-skx-x710
 ~~~~~~~~~~~
 
 78b-ip6routing-base-scale-[avf,dpdk]
 ------------------------------------
 
-..
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-ndr-tsa.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-ndr-tsa}
-                \label{fig:2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-ndr-tsa}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-ndr-tsa}
+            \label{fig:2n-skx-x710-78b-ip6routing-base-scale-[avf,dpdk]-ndr-tsa}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 .. raw:: html
 

@@ -70,15 +70,16 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 2t1c NDR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-ndr.csv>`_
   - `CSV 4t2c NDR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-ndr.csv>`_
 
-  - `HTML 2t1c NFV Service Density NDR comparison <performance-changes-nfv-2n-skx-2t1c-ndr.html>`_
-  - `HTML 4t2c NFV Service Density NDR comparison <performance-changes-nfv-2n-skx-4t2c-ndr.html>`_
-  - `HTML 8t4c NFV Service Density NDR comparison <performance-changes-nfv-2n-skx-8t4c-ndr.html>`_
-  - `ASCII 2t1c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-2t1c-ndr.txt>`_
-  - `ASCII 4t2c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-ndr.txt>`_
-  - `ASCII 8t4c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-ndr.txt>`_
-  - `CSV 2t1c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-2t1c-ndr.csv>`_
-  - `CSV 4t2c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-ndr.csv>`_
-  - `CSV 8t4c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-ndr.csv>`_
+..
+      - `HTML 2t1c NFV Service Density NDR comparison <performance-changes-nfv-2n-skx-2t1c-ndr.html>`_
+      - `HTML 4t2c NFV Service Density NDR comparison <performance-changes-nfv-2n-skx-4t2c-ndr.html>`_
+      - `HTML 8t4c NFV Service Density NDR comparison <performance-changes-nfv-2n-skx-8t4c-ndr.html>`_
+      - `ASCII 2t1c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-2t1c-ndr.txt>`_
+      - `ASCII 4t2c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-ndr.txt>`_
+      - `ASCII 8t4c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-ndr.txt>`_
+      - `CSV 2t1c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-2t1c-ndr.csv>`_
+      - `CSV 4t2c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-4t2c-ndr.csv>`_
+      - `CSV 8t4c NFV Service Density NDR comparison <../../_static/vpp/performance-changes-nfv-2n-skx-8t4c-ndr.csv>`_
 
 PDR Comparison
 ``````````````
