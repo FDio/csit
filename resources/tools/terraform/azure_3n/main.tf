@@ -565,7 +565,7 @@ resource "null_resource" "deploy_topology" {
       hosts = ["local"]
       extra_vars = {
         ansible_python_interpreter = "/usr/bin/python3"
-        cloud_topology = "azure"
+        cloud_topology = "azure_3n"
         tg_if1_mac = data.azurerm_network_interface.tg_if1.mac_address
         tg_if2_mac = data.azurerm_network_interface.tg_if2.mac_address
         dut1_if1_mac = data.azurerm_network_interface.dut1_if1.mac_address

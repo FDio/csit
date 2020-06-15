@@ -49,14 +49,6 @@ variable "dut1_if1_ip" {
 }
 variable "dut1_if2_ip" {
   type = string
-  default = "200.0.0.101"
-}
-variable "dut2_if1_ip" {
-  type = string
-  default = "200.0.0.102"
-}
-variable "dut2_if2_ip" {
-  type = string
   default = "192.168.20.11"
 }
 variable "tg_mgmt_ip" {
@@ -67,15 +59,11 @@ variable "dut1_mgmt_ip" {
   type = string
   default = "192.168.0.11"
 }
-variable "dut2_mgmt_ip" {
-  type = string
-  default = "192.168.0.12"
-}
 
 # Instance Type
 variable "instance_type" {
   type = string
-  default = "c5n.9xlarge"
+  default = "c5n.2xlarge"
 }
 
 resource "aws_vpc" "CSIT" {
@@ -222,24 +210,6 @@ resource "aws_instance" "dut1" {
   source_dest_check = false
 }
 
-resource "aws_instance" "dut2" {
-  ami = data.aws_ami.ubuntu.id
-#  cpu_threads_per_core = 1
-#  cpu_core_count = 18
-  instance_type = var.instance_type
-  key_name = aws_key_pair.CSIT.key_name
-  associate_public_ip_address = true
-  subnet_id = aws_subnet.mgmt.id
-  root_block_device {
-    volume_size = 50
-  }
-  private_ip = var.dut2_mgmt_ip
-  vpc_security_group_ids = [aws_security_group.CSIT.id]
-  depends_on = [aws_vpc.CSIT, aws_placement_group.CSIT]
-  placement_group = aws_placement_group.CSIT.id
-  source_dest_check = false
-}
-
 resource "aws_route" "CSIT-igw" {
   route_table_id = aws_vpc.CSIT.main_route_table_id
   gateway_id = aws_internet_gateway.CSIT.id
@@ -256,7 +226,7 @@ resource "aws_route" "dummy-trex-port-1" {
   route_table_id = aws_vpc.CSIT.main_route_table_id
   network_interface_id = aws_instance.tg.primary_network_interface_id
   destination_cidr_block = var.trex_dummy_cidr_port_1
-  depends_on = [aws_vpc.CSIT, aws_instance.dut2]
+  depends_on = [aws_vpc.CSIT, aws_instance.dut1]
 }
 
 resource "null_resource" "deploy_tg" {
@@ -301,30 +271,9 @@ resource "null_resource" "deploy_dut1" {
     }
   }
 }
-resource "null_resource" "deploy_dut2" {
-  depends_on = [ aws_instance.dut2 ]
-  connection {
-    user = "ubuntu"
-    host = aws_instance.dut2.public_ip
-    private_key = file("~/.ssh/id_rsa")
-  }
-  provisioner "ansible" {
-    plays {
-      playbook {
-        file_path = "../../testbed-setup/ansible/site_aws.yaml"
-        force_handlers = true
-      }
-      hosts = ["sut"]
-      extra_vars = {
-        ansible_python_interpreter = "/usr/bin/python3"
-        aws = true
-      }
-    }
-  }
-}
 
 resource "null_resource" "deploy_topology" {
-  depends_on = [ aws_instance.tg, aws_instance.dut1, aws_instance.dut2 ]
+  depends_on = [ aws_instance.tg, aws_instance.dut1 ]
   provisioner "ansible" {
     plays {
       playbook {
@@ -333,16 +282,13 @@ resource "null_resource" "deploy_topology" {
       hosts = ["local"]
       extra_vars = {
         ansible_python_interpreter = "/usr/bin/python3"
-        cloud_topology = "aws"
+        cloud_topology = "aws_2n"
         tg_if1_mac = data.aws_network_interface.tg_if1.mac_address
         tg_if2_mac = data.aws_network_interface.tg_if2.mac_address
         dut1_if1_mac = data.aws_network_interface.dut1_if1.mac_address
         dut1_if2_mac = data.aws_network_interface.dut1_if2.mac_address
-        dut2_if1_mac = data.aws_network_interface.dut2_if1.mac_address
-        dut2_if2_mac = data.aws_network_interface.dut2_if2.mac_address
         tg_public_ip = aws_instance.tg.public_ip
         dut1_public_ip = aws_instance.dut1.public_ip
-        dut2_public_ip = aws_instance.dut2.public_ip
       }
     }
   }
@@ -356,6 +302,3 @@ output "dbg_dut1" {
   value = "DUT1 IP: ${aws_instance.dut1.public_ip}"
 }
 
-output "dbg_dut2" {
-  value = "DUT2 IP: ${aws_instance.dut2.public_ip}"
-}
