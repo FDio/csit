@@ -34,8 +34,8 @@ Soak Tests
 ==========
 
 Long duration (30 minutes per test) soak tests are executed
-using :ref:`plrsearch` algorithm. As the test take long time, only 10 test
-were executed, two runs each.
+using :ref:`plrsearch` algorithm. As the tests take long time,
+only 12 test cases were executed, two runs each.
 
 Additional information about graph data:
 
@@ -45,16 +45,11 @@ Additional information about graph data:
 
 #. **Y-axis Labels**: estimated lower bounds for critical rate value in [Mpps].
 
-#. **Graph Legend**: list of X-axis indices with CSIT test suites.
+#. **Graph Legend**: list of X-axis indices with CSIT test cases.
 
 #. **Hover Information**: in general lists minimum, first quartile, median,
-   third quartile, and maximum. If either type of outlier is present the
-   whisker on the appropriate side is taken to 1.5×IQR from the quartile
-   (the "inner fence") rather than the max or min, and individual outlying
-   data points are displayed as unfilled circles (for suspected outliers)
-   or filled circles (for outliers). (The "outer fence" is 3×IQR from the
-   quartile.)
-   When number of samples is low, some values are not displayed.
+   third quartile, and maximum. As only two samples are used,
+   minimum and maximum are not distinguished from quartiles.
 
 .. note::
 
