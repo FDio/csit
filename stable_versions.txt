@@ -1,0 +1,58 @@
+# The following is useful for bisecting.
+# First do manual bisect using given CSIT hash and VPP version,
+# Then start bisect job with logic rebased
+# on last commit that supports stable version less or equal than that.
+# Minus means commit that just changed the stable vpp, can contain errors.
+# Plus means commit just before such change, should have less errors for the previous version.
+# Equals means it is the same as the next minus (consecutive stable_vpp bumps).
+# Explanation mark is for plus candidates that look suspicious
+# e.g. API usage change without bumping stable_vpp.
+
+- 29aecfd3306a93590185c56d3db1f4d76c2d87df 20.05-rc0~29-ga273ce62d
++ eb2723bbf4f66cd9b658b220b91c800ad1beace4 refs/changes/37/24237/2
+- 34004e2a214ffe0cf71dc5ca191d0e54475dca02 20.05-rc0~14-gdb43bb6af
++ b693dedec9077ddb08f50ebefc9d84addcdc047a refs/changes/30/24230/2
+- b313ae4177b708afcd7f4cbb0289316b2d7fc9c8 20.01-rc0~1011-g854eb6e3f
++ 6c913634f0d70d64b2c88122bbe9eb911f29e417 refs/changes/99/24199/2
+- 739495ff2fd69dad35887b7f12735bd5880d8ee3 20.01-rc0~983-g78565f38e
++ 3cf899171fff41419c9966951f4cded62a479fb6 refs/changes/35/23835/2
+- 9d8845d77648b93293c4d622c2529e4e2f4dc25f 20.01-rc0~843-g38277e407
+= 476268f14a5e02fed3ea9cce87c815c87aad146c refs/changes/30/23830/2
+- 476268f14a5e02fed3ea9cce87c815c87aad146c 20.01-rc0~841-ga0bf06d74
+= 5c8fc7fe038d8f61708e3b1f20cf40482c019738 refs/changes/29/23829/2
+- 5c8fc7fe038d8f61708e3b1f20cf40482c019738 20.01-rc0~839-gb644eb54f
++ 6f9d853ce2951bbc08c2aa0c55b3aa3e5d843202 refs/changes/77/22277/7
+- cef423a9962f11fdcd2e3c3587f95f95c4e4382f 20.01-rc0~831-g5d4c99f27
++ 3f9fc8d2a471676e04d787f5da139705b13e229c refs/changes/06/21706/19
+- 46224ef45ad749e100c591a63c89dc59a94528aa 20.01-rc0~828-g5de4fb707
++ 53f3ee868ef4dbd2ab41a6fdf0a7255a370f9678 refs/changes/56/23656/6
+- 8fc9b28d7a0381981e2cb614b02783b8238f65f2 20.01-rc0~821-g39d69112f
++ f7e953e01896a70bef6da0845935da25cd3122f5 refs/changes/83/23383/2
+- f7fe40f296c0ed9d600dc219a24f5f4c4e98a7b4 20.01-rc0~638-gea93e48cf
++ 7de465c09018b1cf739a28992fe198ccd5f5699d refs/changes/57/22857/1
+- 431599c0dba2c7fb31630db9a5024a083ccf9013 20.01-rc0~453-g349cd1af7
++ fcc77752111a4fbe8caa341cf5249efbad305a2a refs/changes/19/22619/2
+- ddf4a20379ac8c9bf928d10286bc6bf61bff9dcc 20.01-rc0~375-g3ae9f5a90
++ a9a3a18b4477e79d18f2f585a15b04de87f94abb refs/changes/46/22546/2
+- b38e5bc9f01528a7633a3132d7d5c8e12d4cbf88 20.01-rc0~324-g66a332cf1
++ fde4045be8beb74a6353443dd525ecfa46f05184 refs/changes/53/22153/2
+- 947774b2117877bc1008466d077d20c107cda062 20.01-rc0~210-g5c29029ef
++ aafa2efa63b891e85ff13255691aae4909bc503c refs/changes/08/21508/9
+- f0d7edd544418e071b54e4c59729f1cd5eea240a 20.01-rc0~174-g3d1ef873d
++ ae62a4348f7de53cfb91a5ae25a10723d5f9b398 refs/changes/27/21427/9
+- 7232ab0e49554a653f3527df5a2ba055f804a4fb 20.01-rc0~163-g546f955b3
++ ccf72b55aa844f024ece29624ee2ad5ef32e19c3 refs/changes/48/21848/2
+- 34b6e0c1400ac5da26ec3589ed1d7b59bc8b24ad 20.01-rc0~159-gb736e75d5
++ 80fd7db87eb177b2369cd01716662c63a642a513 refs/changes/92/21492/12
+- 005cef5c7472d2dfba5dadf08372f34575bf7d03 20.01-rc0~143-ge5ff5a36d
++ b8ae239848d484cd0660fe406ae2c4a34c0551e0 refs/changes/34/21634/2
+- ce328d32df607fca0934d7b08e95dc4584d6a980 20.01-rc0~129-g5c89fbf28
++ 8beb22fb0a13ccc69281bb4a68b62a733d1f20e2 refs/changes/61/18361/22
+- 4ea7fa511accfba5d6e465ce3a7ed242a336cfae 20.01-rc0~68-g053204ab0
+! a46ab8cc305fe9d7e96d321ae8cd0ac7a6fc1e24 refs/changes/00/21100/2
++ 329e0acee1cf31c6524883e15560993af76f0fad refs/changes/00/21100/2
+- a4c6a63b84f537b3ae660eab7d2a96ffb7740514 20.01-rc0~3-g6595ff7f8
++ 181e882d5c939cc6620545e5fde411e46fd59559 refs/changes/15/21015/2
+- 38bbf1ef06bedfb4b9058afcf6685c77538818a6 19.08-rc0~806-g4f9446444
++ 5a20b28f033fea7ecd29c0dc47c2deed68c13503 refs/changes/84/20884/3
+- df08728da06aa8c097b91d8efec9c74694cbecc6 19.08-rc0~765-gd56550c2b
