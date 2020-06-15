@@ -4,6 +4,6 @@
 - name: Create topology file
   template:
     src: 'templates/topology_{{ cloud_topology }}.j2'
-    dest: '../../../../topologies/available/{{ cloud_topology }}_3n_skx_testbed.yaml'
+    dest: '../../../../topologies/available/{{ cloud_topology }}_testbed.yaml'
   tags:
     - create-topology-file
