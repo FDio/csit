@@ -6,13 +6,12 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **Intel Xeon 2n-skx, 3n-skx testbeds**: VPP performance test data
-     is now included in this report version. Due to substantial impact
-     of test environment changes (applied during the CSIT-2001
-     development cycle) on the performance of VPP software, a new
-     approach to performance comparison and progression/regression
-     root cause analysis (RCA) has been applied.
+   - CSIT test environment is now versioned, with ver. 1 associated
+     with CSIT rls1908 git branch as of 2019-08-21, and ver. 2
+     associated with CSIT rls2001 and master git branches as of
+     2020-03-27.
 
+<<<<<<< HEAD   (ab9a2d Report: Improve soak_tests/index.rst)
      - CSIT test environment is now versioned, with ver. 1 associated
        with CSIT rls1908 git branch as of 2019-08-21, and ver. 2
        associated with CSIT rls2001 git branch as of 2020-03-27.
@@ -64,50 +63,29 @@ Changes in |csit-release|
 
    - **Load Balancer tests**: Added VPP performance tests for Maglev,
      L3DSR (Direct Server Return), Layer 4 Load Balancing NAT Mode.
+=======
+   - To identify performance changes due to VPP code changes from
+     v20.01.0 to v20.05.0, both have been tested in CSIT environment
+     ver. 2 and compared against each other. All substantial
+     progressions has been marked up with RCA analysis. See
+     :ref:`vpp_compare_current_vs_previous_release` and
+     :ref:`vpp_known_issues`.
+>>>>>>> CHANGE (0074e9 report: updated rls notes for vpp performance section)
 
 #. TEST FRAMEWORK
 
-   - **CSIT Python3 support**: Full migration of CSIT from Python2.7 to
-     Python3.6. This change includes library migration, PIP dependency
-     upgrade, CSIT container images, infrastructure packages
-     ugrade/installation.
-
-   - **CSIT PAPI support**: Finished conversion of CSIT VAT L1 keywords
-     to PAPI L1 KWs in CSIT using VPP Python bindings (VPP PAPI).
-     Redesign of key components of PAPI Socket Executor and PAPI
-     history. Due to issues with PAPI performance, VAT is still used
-     in CSIT for all VPP scale tests. See known issues below.
-
-   - **Test Suite Generator**: Added capability to generate suites for
-     different drivers per NIC model including DPDK, AVF, RDMA.
-     Extended coverage for all tests.
+   - **CSIT PAPI support**: Due to issues with PAPI performance, VAT is
+     still used in CSIT for all VPP scale tests. See known issues below.
 
    - **General Code Housekeeping**: Ongoing RF keywords optimizations,
      removal of redundant RF keywords and aligning of suite/test
      setup/teardowns.
-
-#. TEST ENVIRONMENT
-
-   - **TRex Fortville NIC Performance**: Received FVL fix from Intel
-     resolving TRex low throughput issue. TRex per FVL NIC throughput
-     increased from ~27 Mpps to the nominal ~37 Mpps. For detail see
-     `CSIT-1503 <https://jira.fd.io/browse/CSIT-1503>`_ and `TRex-519
-     <https://trex-tgn.cisco.com/youtrack/issue/trex-519>`_].
-
-   - **New Intel Xeon Cascadelake Testbeds**: Added performance tests
-     for 2-Node-Cascadelake (2n-clx) testbeds with x710, xxv710 and
-     cx556a-edat NIC cards.
 
 #. PRESENTATION AND ANALYTICS LAYER
 
    - **Graphs layout improvements**: Improved performance graphs layout
      for better readibility and maintenance: test grouping, axis
      labels, descriptions, other informative decoration.
-
-   - **Latency graphs**: Min/Avg/Max group bar latency graphs are
-     replaced with packet latency percentile distributon at different
-     background packet loads based on TRex latency hdrhistogram
-     measurements.
 
 .. raw:: latex
 
