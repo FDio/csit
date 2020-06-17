@@ -562,6 +562,7 @@
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-report-coverage-2005-3n-skx:
+        - 10  # perf-full-3n-skx-crypto_I
         - 14  # perf-full-3n-skx-ip4_II
         - 7   # perf-full-3n-skx-ip4_III
 
@@ -573,6 +574,7 @@
     vpp-perf-results-2n-clx:
       # TODO: Add data:
       csit-vpp-perf-report-coverage-2005-2n-clx:
+        - 21  # perf-full-2n-clx-ip4_I
         - 2   # perf-full-2n-clx-ip4_II
         - 3   # perf-full-2n-clx-ip4_III
         - 4   # perf-full-2n-clx-ip4_IV
@@ -584,6 +586,7 @@
         - 11  # perf-full-2n-clx-memif
         - 12  # perf-full-2n-clx-loadbalancer
         - 13  # perf-full-2n-clx-vhost I
+        - 22  # perf-full-2n-clx-vhost II
         - 15  # perf-full-2n-clx-vts
 
     vpp-perf-results-3n-tsh:
@@ -2277,6 +2280,7 @@
       - 39  # NDRPDR sel
       - 6   # MRR sel
     csit-vpp-perf-report-coverage-2005-3n-skx:
+      - 10  # perf-full-3n-skx-crypto_I
       - 14  # perf-full-3n-skx-ip4_II
       - 7   # perf-full-3n-skx-ip4_III
 
@@ -2374,6 +2378,7 @@
       - 49  # Soak
     # TODO: Add data:
     csit-vpp-perf-report-coverage-2005-2n-clx:
+      - 21  # perf-full-2n-clx-ip4_I
       - 2   # perf-full-2n-clx-ip4_II
       - 3   # perf-full-2n-clx-ip4_III
       - 4   # perf-full-2n-clx-ip4_IV
@@ -2385,6 +2390,7 @@
       - 11  # perf-full-2n-clx-memif
       - 12  # perf-full-2n-clx-loadbalancer
       - 13  # perf-full-2n-clx-vhost I
+      - 22  # perf-full-2n-clx-vhost II
       - 15  # perf-full-2n-clx-vts
 
     csit-vpp-perf-verify-1908-3n-tsh:
@@ -11760,8 +11766,8 @@
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-memif-base-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
-    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-eth-l2xcbase-avf-eth-2memif-1dcr-ndrpdr"
-    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-eth-l2xcbase-avf-eth-2memif-1lxc-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-avf-eth-2memif-1dcr-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-avf-eth-2memif-1lxc-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
@@ -11778,7 +11784,7 @@
     - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-eth-2memif-1lxc-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
-    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Lxc-Ndrpdr.64B-avf-2t1c-avf-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr"
+    - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr"
     - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-2t1c-memif-base-avf-pdr"
@@ -12086,7 +12092,7 @@
   include:
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-avf-ethip4-ip4scale2m-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-avf-dot1q-ip4base-ndrpdr"
+#    - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-avf-dot1q-ip4base-ndrpdr"
 #    - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-ethip4-ip4base-ndrpdr"
 #    - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-ethip4-ip4scale2m-ndrpdr"
   layout:
@@ -12101,7 +12107,7 @@
   include:
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-avf-ethip4-ip4scale2m-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-avf-dot1q-ip4base-ndrpdr"
+#    - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-avf-dot1q-ip4base-ndrpdr"
 #    - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-ethip4-ip4base-ndrpdr"
 #    - "Tests.Vpp.Perf.Ip4.10Ge2P1X710-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-ethip4-ip4scale2m-ndrpdr"
   layout:
@@ -17882,7 +17888,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+#    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr"
     layout: "plot-throughput"
@@ -17898,7 +17904,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+#    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr"
     layout: "plot-throughput"

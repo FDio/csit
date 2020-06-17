@@ -34,25 +34,26 @@
 64b-2t1c-memif-base-dpdk
 ------------------------
 
-.. raw:: html
+..
+    .. raw:: html
 
-    <center>
-    <iframe id="25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr}
-            \label{fig:hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr}
+                \label{fig:hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
 .. raw:: html
 
