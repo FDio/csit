@@ -227,6 +227,7 @@
         - 36  # NDRPDR sel
         - 37  # NDRPDR sel
         - 38  # NDRPDR sel
+        - 39  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -296,7 +297,6 @@
         - 42  # MRR sel
 
     plot-vpp-nfv-reconf-2n-skx:
-      # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 48  # Reconf
         - 50  # Reconf
@@ -498,6 +498,7 @@
         - 36  # NDRPDR sel
         - 37  # NDRPDR sel
         - 38  # NDRPDR sel
+        - 39  # NDRPDR sel
 
     vpp-nic-comparison-2n-skx:
       # TODO: Add data:
@@ -560,9 +561,9 @@
         - 63  # perf-full-3n-hsw-vhost-III
 
     vpp-perf-results-3n-skx:
-      # TODO: Replace:
-      csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 36  # NDRPDR sel
+      csit-vpp-perf-report-coverage-2005-3n-skx:
+        - 14  # perf-full-3n-skx-ip4_II
+        - 7   # perf-full-3n-skx-ip4_III
 
     vpp-perf-results-2n-skx:
       # TODO: Replace:
@@ -578,6 +579,7 @@
         - 5   # perf-full-2n-clx-ip4_V
         - 6   # perf-full-2n-clx-ip4_VI
         - 7   # perf-full-2n-clx-ip6_I
+        - 16  # perf-full-2n-clx-ip6_II
         - 10  # perf-full-2n-clx-l2_II
         - 11  # perf-full-2n-clx-memif
         - 12  # perf-full-2n-clx-loadbalancer
@@ -745,6 +747,7 @@
         - 36  # NDRPDR sel
         - 37  # NDRPDR sel
         - 38  # NDRPDR sel
+        - 39  # NDRPDR sel
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1908_1-2n-skx:
@@ -1325,6 +1328,7 @@
         - 36  # NDRPDR sel
         - 37  # NDRPDR sel
         - 38  # NDRPDR sel
+        - 39  # NDRPDR sel
 
     vpp-compare-testbeds-skx-clx-ref:
       # TODO: Add data:
@@ -1458,6 +1462,7 @@
         - 36  # NDRPDR sel
         - 37  # NDRPDR sel
         - 38  # NDRPDR sel
+        - 39  # NDRPDR sel
     vpp-compare-topologies-cmp:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -2269,7 +2274,11 @@
       - 36  # NDRPDR sel
       - 37  # NDRPDR sel
       - 38  # NDRPDR sel
+      - 39  # NDRPDR sel
       - 6   # MRR sel
+    csit-vpp-perf-report-coverage-2005-3n-skx:
+      - 14  # perf-full-3n-skx-ip4_II
+      - 7   # perf-full-3n-skx-ip4_III
 
     csit-vpp-perf-verify-1908_1-2n-skx:
       - 39  # NDRPDR sel - new1908.1
@@ -2371,6 +2380,7 @@
       - 5   # perf-full-2n-clx-ip4_V
       - 6   # perf-full-2n-clx-ip4_VI
       - 7   # perf-full-2n-clx-ip6_I
+      - 16  # perf-full-2n-clx-ip6_II
       - 10  # perf-full-2n-clx-l2_II
       - 11  # perf-full-2n-clx-memif
       - 12  # perf-full-2n-clx-loadbalancer
