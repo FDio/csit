@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "63900e4f_264bb865",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-18T11:20:04Z",
+      "side": 1,
+      "message": "Yeah, I did not realize adding \"higher level\" to line 321 is not enough. I pasted a code to examplify line 187-191, but that does not belong to section started at line 313. Will replace the example in next patch.",
+      "parentUuid": "b508ce6a_a5e780b8",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 342,
+        "endChar": 19
+      },
+      "revId": "8a83516b624d2c9ff64b5b033c5ebd552f2cde3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88c5f000_83420c9b",
         "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2020-06-18T07:26:54Z",
       "side": 1,
       "message": "remove you personal style",
+      "range": {
+        "startLine": 346,
+        "startChar": 44,
+        "endLine": 346,
+        "endChar": 62
+      },
+      "revId": "8a83516b624d2c9ff64b5b033c5ebd552f2cde3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "034325ca_ba8427ab",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-18T11:20:04Z",
+      "side": 1,
+      "message": "Right. The code does not care about the \"figure out\" part, and humans need to do something like that in order to pass the arguments anyway, so we do not need to mention it here. Will remove in next patch.",
+      "parentUuid": "88c5f000_83420c9b",
       "range": {
         "startLine": 346,
         "startChar": 44,
