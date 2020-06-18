@@ -165,61 +165,75 @@ Implementation
 --------------
 
 CSIT container orchestration is implemented in CSIT Level-1 keyword
-Python libraries following the Builder design pattern. Builder design
-pattern separates the construction of a complex object from its
-representation, so that the same construction process can create
-different representations e.g. LXC, Docker, other.
+Python libraries. The original intent was to suport different orchestration
+mechanisms via the Builder design pattern.
 
-CSIT Robot Framework keywords are then responsible for higher level
-lifecycle control of of the named container groups. One can have
-multiple named groups, with 1..N containers in a group performing
-different role/functionality e.g. NFs, Switch, Kafka bus, ETCD
-datastore, etc. ContainerManager class acts as a Director and uses
-ContainerEngine class that encapsulate container control.
+But the final implementation ended up using a single universal representation
+for container data (see below), and there is no subdivision of steps
+for container construction.
+
+The two orchestration mechanisms are supported via two wrapper classes
+which implement mechanism-dependent operations, and their superclass
+which implements mechanism independent (parts of) operations.
+The implemented operations are usually just translated and forwarded
+to the orchestration service on operating system level
+(the classes act as proxies), but sometimes auxiliary CSIT structures
+are also updated.
+
+There is a manager class that specifies which mechanism wrapper is to be used,
+but it acts more like another wrapper exposing higher-level interfaces,
+and less like the Director class from the Builder pattern.
+
+Therefore, instead of the Builder pattern, the CSIT implementation
+can be classified as the Decorator pattern combined with the Facade pattern.
+(And of course the Proxy pattern, as expected.)
+
+CSIT Robot Framework keywords are then responsible for
+yet higher level interfaces, concerned with lifecycle control,
+applied to named groups of containers. One can have multiple named groups,
+with 1..N containers in a group performing different role/functionality
+e.g. NFs, Switch, Kafka bus, ETCD datastore, etc.
 
 Current CSIT implementation is illustrated using UML Class diagram:
-
-1. Acquire
-2. Build
-3. (Re-)Create
-4. Execute
 
 ::
 
  +-----------------------------------------------------------------------+
  |              RF Keywords (high level lifecycle control)               |
  +-----------------------------------------------------------------------+
- | Construct VNF containers on all DUTs                                  |
- | Acquire all '${group}' containers                                     |
- | Create all '${group}' containers                                      |
- | Install all '${group}' containers                                     |
- | Configure all '${group}' containers                                   |
+ | Start containers for test                                             |
+ | Restart VPP in all '${group}' containers                              |
+ | Verify VPP in all '${group}' containers                               |
  | Stop all '${group}' containers                                        |
  | Destroy all '${group}' containers                                     |
  +-----------------+-----------------------------------------------------+
                    |  1
                    |
                    |  1..N
- +-----------------v-----------------+        +--------------------------+
- |          ContainerManager         |        |  ContainerEngine         |
- +-----------------------------------+        +--------------------------+
- | __init()__                        |        | __init(node)__           |
- | construct_container()             |        | acquire(force)           |
- | construct_containers()            |        | create()                 |
- | acquire_all_containers()          |        | stop()                   |
- | create_all_containers()           | 1    1 | destroy()                |
- | execute_on_container()            <>-------| info()                   |
- | execute_on_all_containers()       |        | execute(command)         |
- | install_vpp_in_all_containers()   |        | system_info()            |
- | configure_vpp_in_all_containers() |        | install_supervisor()     |
- | stop_all_containers()             |        | install_vpp()            |
- | destroy_all_containers()          |        | restart_vpp()            |
- +-----------------------------------+        | create_vpp_exec_config() |
-                                              | create_vpp_startup_config|
-                                              | is_container_running()   |
-                                              | is_container_present()   |
-                                              | _configure_cgroup()      |
-                                              +-------------^------------+
+ +-----------------v---------------+      +-----------------------------------+
+ |          ContainerManager       |      |  ContainerEngine                  |
+ +---------------------------------+      +-----------------------------------+
+ | __init__                        |      | __init__                          |
+ | get_container_by_name           |      | initialize                        |
+ | construct_container             |      | acquire                           |
+ | construct_containers            |      | create                            |
+ | acquire_all_containers          |      | stop                              |
+ | create_all_containers           | 1  1 | destroy                           |
+ | execute_on_container            <>-----| info                              |
+ | execute_on_all_containers       |      | execute                           |
+ | configure_vpp_in_all_containers |      | system_info                       |
+ | start_vpp_in_all_containers     |      | start_vpp                         |
+ | restart_vpp_in_all_containers   |      | restart_vpp                       |
+ | verify_vpp_in_all_containers    |      | verify_vpp                        |
+ | stop_all_containers             |      | adjust_privileges                 |
+ | destroy_all_containers          |      | create_base_vpp_startup_config    |
+ +---------------------------------+      | create_vpp_startup_config         |
+                                          | create_vpp_startup_config_vswitch |
+                                          | create_vpp_startup_config_ipsec   |
+                                          | create_vpp_exec_config            |
+                                          | is_container_running              |
+                                          | is_container_present              |
+                                          +-----------------^-----------------+
                                                             |
                                                             |
                                                             |
@@ -242,7 +256,25 @@ Current CSIT implementation is illustrated using UML Class diagram:
                                                   | __setattr__(a, v) |
                                                   +-------------------+
 
-Sequentional diagram that illustrates the creation of a single container.
+Container Data Structure
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Container is represented in Python L1 library as a separate Class with instance
+variables and no methods except overriden ``__getattr__`` and ``__setattr__``.
+Instance variables are assigned to container dynamically during the
+``construct_container(**kwargs)`` call and are passed down from the RF keyword.
+
+There is no parameters check functionality. Passing the correct arguments
+is a responsibility of the caller.
+
+Despite the support for dynamic reconfiguration during runtime,
+typical container data stay functionally constant.
+Only derived data (such as SSH connections) carry mutable state.
+
+Examples
+~~~~~~~~
+
+Sequential diagram that illustrates the creation of a single container.
 
 ::
 
@@ -315,21 +347,7 @@ Sequentional diagram that illustrates the creation of a single container.
      |                               |                          |
      +                               +                          +
 
-Container Data Structure
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-Container is represented in Python L1 library as a separate Class with instance
-variables and no methods except overriden ``__getattr__`` and ``__setattr__``.
-Instance variables are assigned to container dynamically during the
-``construct_container(**kwargs)`` call and are passed down from the RF keyword.
-
-There is no parameters check functionality. Passing the correct arguments
-is a responsibility of the caller.
-
-Examples
-~~~~~~~~
-
-This section contains few examples, copypasted from the current CSIT code,
+Next, two examples follow, copypasted from the current CSIT code,
 but with non-code lines (comments, Documentation) removed for brevity.
 
 High-level example of multiple initialization steps via ContainerManager:

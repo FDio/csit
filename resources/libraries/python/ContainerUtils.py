@@ -108,12 +108,6 @@ class ContainerManager:
             self.engine.container = self.containers[container]
             self.engine.acquire()
 
-    def build_all_containers(self):
-        """Build all containers."""
-        for container in self.containers:
-            self.engine.container = self.containers[container]
-            self.engine.build()
-
     def create_all_containers(self):
         """Create all containers."""
         for container in self.containers:
@@ -511,10 +505,6 @@ class ContainerEngine:
         """
         raise NotImplementedError
 
-    def build(self):
-        """Build container (compile)."""
-        raise NotImplementedError
-
     def create(self):
         """Create/deploy container."""
         raise NotImplementedError
@@ -789,10 +779,6 @@ class LXC(ContainerEngine):
 
         self._configure_cgroup(u"lxc")
 
-    def build(self):
-        """Build container (compile)."""
-        raise NotImplementedError
-
     def create(self):
         """Create/deploy an application inside a container on system.
 
@@ -1010,10 +996,6 @@ class Docker(ContainerEngine):
 
         if self.container.cpuset_cpus:
             self._configure_cgroup(u"docker")
-
-    def build(self):
-        """Build container (compile)."""
-        raise NotImplementedError
 
     def create(self):
         """Create/deploy container.
