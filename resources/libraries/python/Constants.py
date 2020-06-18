@@ -233,9 +233,10 @@ class Constants:
     SOCKSTAT_PATH = u"/run/vpp/stats.sock"
 
     # Global "kill switch" for CRC checking during runtime.
-    FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
-        u"FAIL_ON_CRC_MISMATCH"
-    )
+    CRC_MISMATCH_FAILS_TEST = False  # True
+    FAIL_ON_CRC_MISMATCH = False  # get_pessimistic_bool_from_env(
+#        u"FAIL_ON_CRC_MISMATCH"
+#    )
 
     # Default IP4 prefix length (if not defined in topology file)
     DEFAULT_IP4_PREFIX_LENGTH = u"24"
