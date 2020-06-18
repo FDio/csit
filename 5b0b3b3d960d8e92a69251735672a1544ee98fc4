@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9734768f_778bd9a8",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-18T14:59:47Z",
+      "side": 1,
+      "message": "The main question is whether we even want to name specific software patterns. We could keep only the diagram, and leave the readers the freedom to classify it as they wish.",
+      "range": {
+        "startLine": 197,
+        "startChar": 49,
+        "endLine": 197,
+        "endChar": 66
+      },
+      "revId": "5b0b3b3d960d8e92a69251735672a1544ee98fc4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
