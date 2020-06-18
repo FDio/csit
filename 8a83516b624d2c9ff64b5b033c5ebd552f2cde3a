@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cacb3b52_763e620d",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-18T07:26:54Z",
+      "side": 1,
+      "message": "not a software.",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 9
+      },
+      "revId": "8a83516b624d2c9ff64b5b033c5ebd552f2cde3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b508ce6a_a5e780b8",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-18T07:26:54Z",
+      "side": 1,
+      "message": "this is incorrect. put back original Construct VNF",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 342,
+        "endChar": 19
+      },
+      "revId": "8a83516b624d2c9ff64b5b033c5ebd552f2cde3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88c5f000_83420c9b",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-18T07:26:54Z",
+      "side": 1,
+      "message": "remove you personal style",
+      "range": {
+        "startLine": 346,
+        "startChar": 44,
+        "endLine": 346,
+        "endChar": 62
+      },
+      "revId": "8a83516b624d2c9ff64b5b033c5ebd552f2cde3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
