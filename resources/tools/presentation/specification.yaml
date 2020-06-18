@@ -217,7 +217,6 @@
     # 3n-skx
 
     plot-vpp-throughput-lat-tsa-3n-skx:
-      # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
@@ -228,6 +227,7 @@
         - 37  # NDRPDR sel
         - 38  # NDRPDR sel
         - 39  # NDRPDR sel
+        - 41  # NDRPDR sel
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -488,7 +488,6 @@
     # NIC Comparisons
 
     vpp-nic-comparison-3n-skx:
-      # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
@@ -499,6 +498,7 @@
         - 37  # NDRPDR sel
         - 38  # NDRPDR sel
         - 39  # NDRPDR sel
+        - 41  # NDRPDR sel
 
     vpp-nic-comparison-2n-skx:
       # TODO: Add data:
@@ -567,12 +567,14 @@
         - 10  # perf-full-3n-skx-crypto_I
         - 14  # perf-full-3n-skx-ip4_II
         - 7   # perf-full-3n-skx-ip4_III
+        - 15  # perf-full-3n-skx-ip4_IV
         - 18  # perf-full-3n-skx-ip4_VII
 
     vpp-perf-results-2n-skx:
       # TODO: Add data:
       csit-vpp-perf-report-coverage-2005-2n-skx:
         - 3   # perf-full-2n-skx-ip4_II
+        - 5   # perf-full-2n-skx-ip4_V
         - 7   # perf-full-2n-skx-ip6_I
 
     vpp-perf-results-2n-clx:
@@ -742,7 +744,6 @@
         - 78  # NDRPDR sel - new2001.0
         - 80  # NDRPDR sel - new2001.0
     vpp-performance-changes-3n-skx-cmp:
-      # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
@@ -753,6 +754,7 @@
         - 37  # NDRPDR sel
         - 38  # NDRPDR sel
         - 39  # NDRPDR sel
+        - 41  # NDRPDR sel
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1908_1-2n-skx:
@@ -1327,7 +1329,6 @@
         - 18  # NDRPDR sel
         - 19  # NDRPDR sel
     vpp-compare-testbeds-cmp:
-      # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
@@ -1338,6 +1339,7 @@
         - 37  # NDRPDR sel
         - 38  # NDRPDR sel
         - 39  # NDRPDR sel
+        - 41  # NDRPDR sel
 
     vpp-compare-testbeds-skx-clx-ref:
       # TODO: Add data:
@@ -1463,7 +1465,6 @@
     # Compare topologies
 
     vpp-compare-topologies-ref:
-      # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 4   # NDRPDR sel
         - 5   # NDRPDR sel ??? all x710 failed
@@ -1474,6 +1475,7 @@
         - 37  # NDRPDR sel
         - 38  # NDRPDR sel
         - 39  # NDRPDR sel
+        - 41  # NDRPDR sel
     vpp-compare-topologies-cmp:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -2277,7 +2279,6 @@
       - 80  # NDRPDR sel - new2001.0
       - 50  # MRR sel
       - 53  # MRR sel addition
-    # TODO: Add data:
     csit-vpp-perf-report-iterative-2005-3n-skx:
       - 4   # NDRPDR sel
       - 5   # NDRPDR sel ??? all x710 failed
@@ -2288,11 +2289,13 @@
       - 37  # NDRPDR sel
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
+      - 41  # NDRPDR sel
       - 6   # MRR sel
     csit-vpp-perf-report-coverage-2005-3n-skx:
       - 10  # perf-full-3n-skx-crypto_I
       - 14  # perf-full-3n-skx-ip4_II
       - 7   # perf-full-3n-skx-ip4_III
+      - 15  # perf-full-3n-skx-ip4_IV
       - 18  # perf-full-3n-skx-ip4_VII
 
     csit-vpp-perf-verify-1908_1-2n-skx:
@@ -2345,6 +2348,7 @@
       - 54  # Soak
     csit-vpp-perf-report-coverage-2005-2n-skx:
       - 3   # perf-full-2n-skx-ip4_II
+      - 5   # perf-full-2n-skx-ip4_V
       - 7   # perf-full-2n-skx-ip6_I
 
     csit-vpp-perf-verify-1908_1-2n-clx:
