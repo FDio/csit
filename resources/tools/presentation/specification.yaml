@@ -360,7 +360,9 @@
         - 39  # NDRPDR sel
         - 40  # NDRPDR sel
         - 57  # 2n-clx nfv-density-00
+        - 58  # 2n-clx nfv-density-00
         - 59  # 2n-clx nfv-density-00
+        - 60  # 2n-clx nfv-density-00
 
     plot-vpp-nfv-2n-clx-mrr:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -570,6 +572,9 @@
         - 17  # perf-full-3n-skx-ip4_VI
         - 18  # perf-full-3n-skx-ip4_VII
         - 20  # perf-full-3n-skx-ip4_IX
+        - 24  # perf-full-3n-skx-ip6_I
+        - 22  # perf-full-3n-skx-ip4tunnels-II
+        - 23  # perf-full-3n-skx-ip4tunnels-III
         - 26  # perf-full-3n-skx-ip6tunnels-I
 
     vpp-perf-results-2n-skx:
@@ -585,7 +590,10 @@
         - 21  # perf-full-2n-skx-ip6_II
         - 9   # perf-full-2n-skx-l2_I
         - 22  # perf-full-2n-skx-l2_II
+        - 23  # perf-full-2n-skx-memif
         - 24  # perf-full-2n-skx-loadbalancer
+        - 25  # perf-full-2n-skx-vhost I
+        - 26  # perf-full-2n-skx-vhost II
         - 27  # perf-full-2n-skx-vts
 
     vpp-perf-results-2n-clx:
@@ -2313,6 +2321,9 @@
       - 17  # perf-full-3n-skx-ip4_VI
       - 18  # perf-full-3n-skx-ip4_VII
       - 20  # perf-full-3n-skx-ip4_IX
+      - 24  # perf-full-3n-skx-ip6_I
+      - 22  # perf-full-3n-skx-ip4tunnels-II
+      - 23  # perf-full-3n-skx-ip4tunnels-III
       - 26  # perf-full-3n-skx-ip6tunnels-I
 
     csit-vpp-perf-verify-1908_1-2n-skx:
@@ -2374,7 +2385,10 @@
       - 21  # perf-full-2n-skx-ip6_II
       - 9   # perf-full-2n-skx-l2_I
       - 22  # perf-full-2n-skx-l2_II
+      - 23  # perf-full-2n-skx-memif
       - 24  # perf-full-2n-skx-loadbalancer
+      - 25  # perf-full-2n-skx-vhost I
+      - 26  # perf-full-2n-skx-vhost II
       - 27  # perf-full-2n-skx-vts
 
     csit-vpp-perf-verify-1908_1-2n-clx:
@@ -2420,7 +2434,9 @@
       - 44  # Soak
       - 49  # Soak
       - 57  # 2n-clx nfv-density-00
+      - 58  # 2n-clx nfv-density-00
       - 59  # 2n-clx nfv-density-00
+      - 60  # 2n-clx nfv-density-00
     csit-vpp-perf-report-coverage-2005-2n-clx:
       - 21  # perf-full-2n-clx-ip4_I
       - 2   # perf-full-2n-clx-ip4_II
@@ -11124,8 +11140,8 @@
            'NF_DENSITY' and
            'VHOST' and
            'VXLAN' and
-           'CHAIN' and
            'IMIX' and
+           'CHAIN' and
            '2T1C' and
            'NDRPDR'"
   parameters:
