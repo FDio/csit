@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d713f0a1_abc02038",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-22T08:58:37Z",
+      "side": 1,
+      "message": "Throw an error if it is not.",
+      "range": {
+        "startLine": 215,
+        "startChar": 30,
+        "endLine": 215,
+        "endChar": 53
+      },
+      "revId": "cb98b2ac531de15a8b9aa51a4c5425829eb52666",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
