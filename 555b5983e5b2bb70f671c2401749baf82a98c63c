@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f2c16aa_dd8bad47",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-22T12:33:29Z",
+      "side": 1,
+      "message": "avoid wiktionary or urban dictionary.",
+      "range": {
+        "startLine": 332,
+        "startChar": 36,
+        "endLine": 332,
+        "endChar": 47
+      },
+      "revId": "555b5983e5b2bb70f671c2401749baf82a98c63c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2dbfc93_911f011b",
+        "filename": "docs/report/vpp_performance_tests/documentation/containers.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-22T12:33:29Z",
+      "side": 1,
+      "message": "remove. not needed. This document is high level doc for LCM. Not low level documentation. Use docs.fd.io for full documentation.",
+      "range": {
+        "startLine": 361,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 73
+      },
+      "revId": "555b5983e5b2bb70f671c2401749baf82a98c63c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
