@@ -213,8 +213,8 @@ function parse_results () {
         # Parsing succeeded, return early.
         return 0
     fi
-    # BMRR parsing failed. Attempt PDR.
-    pattern1='PDR_LOWER: .*, .*<'
+    # BMRR parsing failed. Attempt NDR.
+    pattern1='NDR_LOWER: .*, .*<'
     # Adapted from https://superuser.com/a/377084
     pattern2='(?<=: ).*(?= pps)'
     set +e
