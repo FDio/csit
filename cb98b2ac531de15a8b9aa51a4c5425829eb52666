@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ac4843c1_473c4708",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2020-06-24T08:26:39Z",
+      "side": 1,
+      "message": "Hi Vratko,\n\nTo use avx512 instead of \"icl\" is to avoid to make user confused, as you know, CSIT use hsw, skx, icl to represent different hardware platform.  actually graph node variant refer to different instruction set,such as SSE, AVX2, AVX512 on X86_64,  NEON on ARM. In current VPP\ncode, if set up graph node variant value to icl, it is really represent to run with avx512 code path.",
+      "parentUuid": "a54d2621_9b022681",
+      "range": {
+        "startLine": 529,
+        "startChar": 44,
+        "endLine": 529,
+        "endChar": 52
+      },
+      "revId": "cb98b2ac531de15a8b9aa51a4c5425829eb52666",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d713f0a1_abc02038",
         "filename": "resources/libraries/python/VppConfigGenerator.py",
         "patchSetId": 3
