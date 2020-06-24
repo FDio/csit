@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fb87e87_63ba8298",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 142
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-24T17:35:57Z",
+      "side": 1,
+      "message": "as per below: bisect job contains \"perf\" in its name.\nso no need to do it here",
+      "range": {
+        "startLine": 286,
+        "startChar": 21,
+        "endLine": 286,
+        "endChar": 27
+      },
+      "revId": "25db7ffc74dae0007f3c851d7c4606cb6bab817d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
