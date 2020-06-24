@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -294,17 +294,11 @@ class PapiSocketExecutor:
             key_file.close()
         # Everything is ready, set the local socket address and connect.
         vpp_instance.transport.server_address = self._local_vpp_socket
-        # It seems we can get read error even if every preceding check passed.
-        # Single retry seems to help.
-        for _ in range(2):
-            try:
-                vpp_instance.connect_sync(u"csit_socket")
-            except (IOError, struct.error) as err:
-                logger.warn(f"Got initial connect error {err!r}")
-                vpp_instance.disconnect()
-            else:
-                break
-        else:
+        try:
+            vpp_instance.connect_sync(u"csit_socket")
+        except (IOError, struct.error) as err:
+            logger.warn(f"Got initial connect error {err!r}")
+            vpp_instance.disconnect()
             raise RuntimeError(u"Failed to connect to VPP over a socket.")
         logger.trace(
             f"Establishing socket connection took {time.time()-time_enter}s"
@@ -317,7 +311,10 @@ class PapiSocketExecutor:
         Also remove the local sockets by deleting the temporary directory.
         Arguments related to possible exception are entirely ignored.
         """
-        self.vpp_instance.disconnect()
+        try:
+            self.vpp_instance.disconnect()
+        except self.vpp_instance.VPPApiError:
+            pass
         run([
             u"ssh", u"-S", self._ssh_control_socket, u"-O", u"exit", u"0.0.0.0"
         ], check=False)
