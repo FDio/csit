@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -48,23 +48,24 @@ function archive_parse_test_results () {
 
     # Arguments:
     # - ${1}: Directory to archive to. Required. Parent has to exist.
+    # - ${2} - Control word "fake" to fake data on failure. Optional.
     # Variables read:
     # - TARGET - Target directory.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
     # - archive_test_results - Archiving results.
-    # - parse_bmrr_results - See definition in this file.
+    # - parse_results - See definition in this file.
 
     set -exuo pipefail
 
     archive_test_results "$1" || die
-    parse_bmrr_results "${TARGET}" || {
+    parse_results "${TARGET}" "${2-}" || {
         die "The function should have died on error."
     }
 }
 
 
-function build_vpp_ubuntu_amd64 () {
+function build_vpp_ubuntu () {
 
     # This function is using make pkg-verify to build VPP with all dependencies
     # that is ARCH/OS aware. VPP repo is SSOT for building mechanics and CSIT
@@ -82,7 +83,10 @@ function build_vpp_ubuntu_amd64 () {
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory command failed."
-    make UNATTENDED=y pkg-verify || die "VPP build using make pkg-verify failed."
+    # TODO: Switch to pkg-verify once VOM compilation fits to memory.
+    make UNATTENDED=y install-dep install-ext-deps pkg-deb || {
+        die "VPP build failed."
+    }
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
@@ -100,7 +104,6 @@ function compare_test_results () {
     #   of parent build.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
-    # - parse_bmrr_results - See definition in this file.
     # Exit code:
     # - 0 - If the comparison utility sees no regression (nor data error).
     # - 1 - If the comparison utility sees a regression (or data error).
@@ -145,39 +148,106 @@ function download_builds () {
 
 function initialize_csit_dirs () {
 
-    # This could be in prepare_test, but download_builds also needs this.
+    # Create directories of form ${VPP_DIR}/csit_<arg>
+    # If the directory exists it is deleted before created anew.
     #
+    # Arguments:
+    # - ${n} - Name part of n-th directory to create.
     # Variables read:
     # - VPP_DIR - Path to WORKSPACE, parent of created directories.
     # Directories created:
-    # - csit_current - Holding test results of the patch under test (PUT).
-    # - csit_parent - Holding test results of parent of PUT.
+    # - csit_{part} - See the caller what it is used for.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "csit_current" "csit_parent" || {
-        die "Directory deletion failed."
-    }
-    mkdir -p "csit_current" "csit_parent" || {
-        die "Directory creation failed."
-    }
+    while true; do
+        if [[ ${#} < 1 ]]; then
+            # All directories created.
+            break
+        fi
+        name_part="${1}"
+        shift
+        dir_name="csit_${name_part}"
+        rm -rf "${dir_name}" || {
+            die "Directory deletion failed."
+        }
+        mkdir -p "${dir_name}" || {
+            die "Directory creation failed."
+        }
+    done
 }
 
 
-function parse_bmrr_results () {
+function main_bisect_loop () {
 
-    # Currently "parsing" is just two greps.
+    # Perform the iterative part of bisect entry script.
+    #
+    # The logic was deemed too complex to remain in the entry script.
+    #
+    # FIXME.
+
+    iteration=0
+    while true
+    do
+        if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
+            echo "Still bisecting..."
+        else
+            echo "Bisecting done."
+            break
+        fi
+        let iteration+=1
+        git clean -dffx "build"/ "build-root"/ || die
+        build_vpp_ubuntu "MIDDLE" || die
+        reserve_and_cleanup_testbed || die
+        select_build "build-root" || die
+        check_download_dir || die
+        run_and_parse "csit_middle/${iteration}" || die
+        untrap_and_unreserve_testbed || die
+        cp -f "csit_middle/${iteration}/results.txt" "csit_middle/results.txt" || die
+        set +e
+        python3 "${TOOLS_DIR}/integrated/compare_bisect.py"
+        bisect_rc="${?}"
+        set -e
+        if [[ "${bisect_rc}" == "3" ]]; then
+            adjective="new"
+            cp -f "csit_middle/results.txt" "csit_late/results.txt" || die
+        elif [[ "${bisect_rc}" == "0" ]]; then
+            adjective="old"
+            cp -f "csit_middle/results.txt" "csit_early/results.txt" || die
+        else
+            die "Unexpected return code ${bisect_rc}"
+        fi
+        git bisect "${adjective}" | tee "git.log" || die
+        git describe || die
+    done
+}
+
+
+function parse_results () {
+
+    # Currently "parsing" is just few greps.
     # TODO: Re-use PAL parsing code, make parsing more general and centralized.
+    #
+    # The current implementation attempts to parse for PDR,
+    # if parsing for BMRR fails.
+    #
+    # If the results are malformed or missing, the behavior is configurable.
+    # By default, die is called. But optionally fake results are constructed.
+    # Fake results are useful for bisection, as we do not want to die there.
+    # Bisection with mixed result finds the cause (or the fix) of the failure.
     #
     # Arguments:
     # - ${1} - Path to (existing) directory holding robot output.xml result.
+    # - ${2} - Control word "fake" to fake data on failure. Optional.
     # Files read:
     # - output.xml - From argument location.
     # Files updated:
     # - results.txt - (Re)created, in argument location.
+    # Variables read:
+    # - CSIT_PERF_TRIAL_MULTIPLICITY - To create fake results of this length.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
@@ -191,9 +261,71 @@ function parse_bmrr_results () {
     echo "TODO: Re-use parts of PAL when they support subsample test parsing."
     pattern='Maximum Receive Rate trial results in packets'
     pattern+=' per second: .*\]</status>'
-    grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}" || {
-        die "Some parsing grep command has failed."
-    }
+    set +e
+    grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}"
+    rc="${?}"
+    set -e
+    if [[ "${rc}" == "0" ]]; then
+        # Parsing succeeded, return early.
+        return 0
+    fi
+    # BMRR parsing failed. Attempt PDR.
+    pattern1='PDR_LOWER: .*, .*<'
+    # Adapted from https://superuser.com/a/377084
+    pattern2='(?<=: ).*(?= pps)'
+    set +e
+    grep "${pattern1}" "${in_file}" | grep -Po "${pattern2}" >> "${out_file}"
+    rc="${?}"
+    set -e
+    # Add brackets. https://www.shellhacks.com/sed-awk-add-end-beginning-line/
+    sed -i 's/.*/[&]/' "${out_file}"
+    if [[ "${rc}" == "0" ]]; then
+        # Parsing succeeded, return early.
+        return 0
+    fi
+    # PDR parsing failed.
+    if [[ "${2-}" != "fake" ]]; then
+        die "Malformed or missing test results."
+    fi
+    warn "Faking test results to allow bisect script locate the cause."
+    out_arr=("[")
+    for i in `seq "${CSIT_PERF_TRIAL_MULTIPLICITY:-1}"`; do
+        out_arr+=("2.0" ",")
+    done
+    # The Python part uses JSON parser, the last comma has to be removed.
+    # Requires Bash 4.3 https://stackoverflow.com/a/36978740
+    out_arr[-1]="]"
+    # TODO: Is it possible to avoid space separation by manipulating IFS?
+    echo "${out_arr[@]}" > "${out_file}"
+}
+
+
+function run_and_parse () {
+
+    # Run test and parse results (creating fake ones on failure).
+    # Retry few times if there was a failure in the test.
+    # Else leave fake results.
+
+    # Variables read:
+    # - TARGET - Directory to store parsed test results.
+    # Files rewritten:
+    # - ${TARGET}/results.txt - Stored parsed (or fake) results.
+    # Functions called:
+    # - run_pybot - see common.sh
+    # - copy_archives - see common.sh
+    # - archive_parse_test_results - see this file
+
+    set -exuo pipefail
+
+    for try in {1..5}; do
+        run_pybot || die
+        copy_archives || die
+        archive_parse_test_results "${1}" "fake" || die
+        results=$(<"${TARGET}/results.txt")
+        if [[ "[ 2.0 "* != "${results}" ]]; then
+            break
+        fi
+    done
 }
 
 
@@ -222,56 +354,37 @@ function select_build () {
 }
 
 
-function set_aside_commit_build_artifacts () {
+function set_aside_build_artifacts () {
 
-    # Function is copying VPP built artifacts from actual checkout commit for
-    # further use and clean git.
+    # Function used to save VPP .deb artifacts from currently finished build.
+    #
+    # After the artifacts are copied to the target directory,
+    # the main git tree is cleaned up to not interfere with next build.
+    #
+    # Arguments:
+    # - ${1} - String to derive the target directory name from. Required.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
     # Directories read:
     # - build-root - Existing directory with built VPP artifacts (also DPDK).
     # Directories updated:
     # - ${VPP_DIR} - A local git repository, parent commit gets checked out.
-    # - build_current - Old contents removed, content of build-root copied here.
+    # - build_${1} - Old contents removed, content of build-root copied here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "build_current" || die "Remove operation failed."
-    mkdir -p "build_current" || die "Directory creation failed."
-    mv "build-root"/*".deb" "build_current"/ || die "Move operation failed."
+    dir_name="build_${1}"
+    rm -rf "${dir_name}" || die "Remove operation failed."
+    mkdir -p "${dir_name}" || die "Directory creation failed."
+    mv "build-root"/*".deb" "${dir_name}"/ || die "Move operation failed."
     # The previous build could have left some incompatible leftovers,
     # e.g. DPDK artifacts of different version (in build/external).
     # Also, there usually is a copy of dpdk artifact in build-root.
     git clean -dffx "build"/ "build-root"/ || die "Git clean operation failed."
-    # Finally, check out the parent commit.
-    git checkout HEAD~ || die "Git checkout operation failed."
-    # Display any other leftovers.
-    git status || die "Git status operation failed."
-}
-
-
-function set_aside_parent_build_artifacts () {
-
-    # Function is copying VPP built artifacts from parent checkout commit for
-    # further use. Checkout to parent is not part of this function.
-    # Variables read:
-    # - VPP_DIR - Path to existing directory, parent of accessed directories.
-    # Directories read:
-    # - build-root - Existing directory with built VPP artifacts (also DPDK).
-    # Directories updated:
-    # - build_parent - Old directory removed, build-root debs moved here.
-    # Functions called:
-    # - die - Print to stderr and exit, defined in common.sh
-
-    set -exuo pipefail
-
-    cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "build_parent" || die "Remove failed."
-    mkdir -p "build_parent" || die "Directory creation operation failed."
-    mv "build-root"/*".deb" "build_parent"/ || die "Move operation failed."
+    git status || die
 }
 
 
