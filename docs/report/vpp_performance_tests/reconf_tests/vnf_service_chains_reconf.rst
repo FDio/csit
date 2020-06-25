@@ -43,22 +43,23 @@ Additional information about graph data:
 
    - wire encapsulation ``dot1qip4vlxan``,
    - VPP forwarding mode ``l2bd``,
-   - total number {Y} of service chains ``{Y}ch``,
-   - total number of chains being reconfigured ``1ach``,
-   - total number of vhost-user interfaces forwarding packets on VPP with {Y}
-     chains and {X} VMs per chain ``{2XY}vh`` (2 interfaces per {X} VMs per {Y}
-     chains),
-   - total number {XY} of VNF VMs forwarding packets ``{XY}vm`` and finally
+   - total number {Y} of initial service chains ``{Y}ch``,
+   - total number of additional chains being reconfigured ``1ach``,
+   - total number of initial vhost-user interfaces forwarding packets
+     on VPP with {Y} chains and {X} VMs per chain ``{2XY}vh``
+     (2 interfaces per {X} VMs per {Y} chains),
+   - total number {XY} of (both initial and final) VNF VMs forwarding packets
+     ``{XY}vm`` and finally
    - VNF workload in VM ``testpmd``.
 
 #. **X-axis Labels**: indices of individual test suites as listed in
    Graph Legend.
 
-#. **Y-axis Labels**: measured Implied time loss [s] values.
+#. **Y-axis Labels**: measured Effective Blocked Time [s] values.
 
 #. **Graph Legend**: lists X-axis indices with associated CSIT test
    suites executed to generate graphed test results and the average value
-   of measured packet loss.
+   of packet loss (measured in packets).
 
 #. **Hover Information**: lists minimum, first quartile, median,
    third quartile, and maximum. If either type of outlier is present the
