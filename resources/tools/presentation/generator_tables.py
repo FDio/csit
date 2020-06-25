@@ -1630,8 +1630,11 @@ def table_comparison(table, input_data):
             if add_to_tbl:
                 tbl_cmp_lst.append(new_row)
 
-    tbl_cmp_lst.sort(key=lambda rel: rel[0], reverse=False)
-    tbl_cmp_lst.sort(key=lambda rel: rel[-1][u'mean'], reverse=True)
+    try:
+        tbl_cmp_lst.sort(key=lambda rel: rel[0], reverse=False)
+        tbl_cmp_lst.sort(key=lambda rel: rel[-1][u'mean'], reverse=True)
+    except TypeError as err:
+        logging.warning(f"Empty data element in table\n{tbl_cmp_lst}\n{err}")
 
     rcas = list()
     rca_in = table.get(u"rca", None)
