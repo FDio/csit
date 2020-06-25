@@ -22,6 +22,30 @@
       "revId": "32d892cc4e74a14f0da8b477fc377e2f311d42e9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32240027_a98bc7ea",
+        "filename": "docs/report/vpp_performance_tests/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-25T12:39:02Z",
+      "side": 1,
+      "message": "After a quick look at docs/lab/testbed_specifications.md I decided it is not obvious enough to see which hardware is really used for perf tests.\nSetups marked as WIP are used (3n-tsh, 1n-tx2 for device), setups marked as VERIFY are not used (2n-ps1, 3n-rng).\n\nI was thinking about pointing to job template instantiation [0], but once again we would need to update the commit reference each release.\n\nSo I decided to simply remove the list. Reference at line 6 should give more info anyway.\n\n[0] https://github.com/FDio/ci-management/blob/478ab7e8f488f143d3d2a5f9b04e9e09cd131699/jjb/csit/csit-perf.yaml#L101-L140",
+      "parentUuid": "605dfb1a_f240852a",
+      "range": {
+        "startLine": 5,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "32d892cc4e74a14f0da8b477fc377e2f311d42e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
