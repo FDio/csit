@@ -757,9 +757,12 @@
         - 19  # NDRPDR sel
     vpp-performance-changes-3n-hsw-cmp-2:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
-        - 20  # NDRPDR sel env 2
-        - 21  # NDRPDR sel env 2
-        - 22  # NDRPDR sel env 2
+        - 20  # NDRPDR sel env 4
+        - 21  # NDRPDR sel env 4
+        - 22  # NDRPDR sel env 4
+        - 23  # NDRPDR sel env 4
+        - 24  # NDRPDR sel env 4
+        - 25  # NDRPDR sel env 4
 
     vpp-performance-changes-3n-skx-h1:
       csit-vpp-perf-verify-1908_1-3n-skx:
@@ -796,17 +799,8 @@
         - 41  # NDRPDR sel
     vpp-performance-changes-3n-skx-cmp-2:
       csit-vpp-perf-report-iterative-2005-3n-skx:
-        # TODO: Replace
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel ??? all x710 failed
-        - 33  # NDRPDR sel
-        - 28  # NDRPDR sel
-        - 34  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 37  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 39  # NDRPDR sel
-        - 41  # NDRPDR sel
+        # TODO: Add data
+        - 43  # NDRPDR sel env 4
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1908_1-2n-skx:
@@ -847,7 +841,8 @@
     vpp-performance-changes-2n-skx-cmp-2:
       csit-vpp-perf-report-iterative-2005-2n-skx:
         # TODO: Add data
-        - 88  # NDRPDR sel env 2
+        - 88  # NDRPDR sel env 4
+        - 89  # NDRPDR sel env 4
 
 #    vpp-performance-changes-nfv-2n-skx-ref:
 #      csit-vpp-perf-verify-2001-2n-skx:
@@ -886,8 +881,8 @@
         - 51  # NDRPDR sel
     vpp-performance-changes-2n-clx-cmp-2:
       csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 62  # NDRPDR sel env 2
-        - 63  # NDRPDR sel env 2
+        - 62  # NDRPDR sel env 4
+        - 63  # NDRPDR sel env 4
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-1908-2n-dnv:
@@ -996,13 +991,9 @@
         - 20  # NDRPDR sel
         - 14  # NDRPDR sel
     vpp-performance-changes-3n-tsh-cmp-2:
-      # TODO: replace:
+      # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
-        - 9   # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 14  # NDRPDR sel
+        - 23  # NDRPDR sel env 4
 
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -2279,9 +2270,12 @@
       - 16  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
-      - 20  # NDRPDR sel env 2
-      - 21  # NDRPDR sel env 2
-      - 22  # NDRPDR sel env 2
+      - 20  # NDRPDR sel env 4
+      - 21  # NDRPDR sel env 4
+      - 22  # NDRPDR sel env 4
+      - 23  # NDRPDR sel env 4
+      - 24  # NDRPDR sel env 4
+      - 25  # NDRPDR sel env 4
       - 13  # MRR
     csit-vpp-perf-verify-2005-3n-hsw:
       - 3   # hoststack
@@ -2364,6 +2358,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 43  # NDRPDR sel env 4
       - 6   # MRR sel
     csit-vpp-perf-report-coverage-2005-3n-skx:
       - 10  # perf-full-3n-skx-crypto_I
@@ -2427,7 +2422,8 @@
       - 75  # NDRPDR sel
       - 76  # NDRPDR sel
       - 73  # NDRPDR sel
-      - 88  # NDRPDR sel env 2
+      - 88  # NDRPDR sel env 4
+      - 89  # NDRPDR sel env 4
       - 42  # MRR sel
       - 48  # Reconf
       - 50  # Reconf
@@ -2488,8 +2484,8 @@
       - 43  # NDRPDR sel
       - 50  # NDRPDR sel
       - 51  # NDRPDR sel
-      - 62  # NDRPDR sel env 2
-      - 63  # NDRPDR sel env 2
+      - 62  # NDRPDR sel env 4
+      - 63  # NDRPDR sel env 4
       - 12  # MRR
       - 42  # Reconf
       - 45  # Reconf
@@ -2556,6 +2552,7 @@
       - 12  # NDRPDR sel
       - 20  # NDRPDR sel
       - 14  # NDRPDR sel
+      - 23  # NDRPDR sel env 4
       - 10  # MRR sel
 
     csit-vpp-perf-verify-1908-3n-dnv:
@@ -3266,9 +3263,9 @@
       data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff1"
@@ -3284,9 +3281,9 @@
 #      data: "rca/rca-2005-3n-hsw-1t1c-pdr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3302,9 +3299,9 @@
       data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff1"
@@ -3320,9 +3317,9 @@
 #      data: "rca/rca-2005-3n-hsw-2t2c-pdr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3338,9 +3335,9 @@
       data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff1"
@@ -3356,9 +3353,9 @@
 #      data: "rca/rca-2005-3n-hsw-1t1c-ndr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3374,9 +3371,9 @@
       data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
     - title: "Diff1"
@@ -3392,9 +3389,9 @@
 #      data: "rca/rca-2005-3n-hsw-2t2c-ndr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3410,9 +3407,9 @@
 #      data-set: "vpp-performance-changes-3n-skx-h1"
 #    - title: "2001.0-2"
 #      data-set: "vpp-performance-changes-3n-skx-ref"
-#    - title: "2005.0-2"
-#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
 #    - title: "2005.0-3"
+#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+#    - title: "2005.0-4"
 #      data-set: "vpp-performance-changes-3n-skx-cmp"
 #  comparisons:
 #    - title: "Diff1"
@@ -3428,9 +3425,9 @@
 ##      data: "rca/rca-2005-3n-skx-2t1c-pdr-rca2.yaml"
 #  legend:
 #    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-#    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 ##    - 'RCA1 - root cause analysis reference for Diff1.'
 ##    - 'RCA2 - root cause analysis reference for Diff2.'
 #
@@ -3446,9 +3443,9 @@
 #      data-set: "vpp-performance-changes-3n-skx-h1"
 #    - title: "2001.0-2"
 #      data-set: "vpp-performance-changes-3n-skx-ref"
-#    - title: "2005.0-2"
-#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
 #    - title: "2005.0-3"
+#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+#    - title: "2005.0-4"
 #      data-set: "vpp-performance-changes-3n-skx-cmp"
 #  comparisons:
 #    - title: "Diff1"
@@ -3464,9 +3461,9 @@
 ##      data: "rca/rca-2005-3n-skx-4t2c-pdr-rca2.yaml"
 #  legend:
 #    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-#    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 ##    - 'RCA1 - root cause analysis reference for Diff1.'
 ##    - 'RCA2 - root cause analysis reference for Diff2.'
 #
@@ -3482,9 +3479,9 @@
 #      data-set: "vpp-performance-changes-3n-skx-h1"
 #    - title: "2001.0-2"
 #      data-set: "vpp-performance-changes-3n-skx-ref"
-#    - title: "2005.0-2"
-#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
 #    - title: "2005.0-3"
+#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+#    - title: "2005.0-4"
 #      data-set: "vpp-performance-changes-3n-skx-cmp"
 #  comparisons:
 #    - title: "Diff1"
@@ -3500,9 +3497,9 @@
 ##      data: "rca/rca-2005-3n-skx-2t1c-ndr-rca2.yaml"
 #  legend:
 #    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-#    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 ##    - 'RCA1 - root cause analysis reference for Diff1.'
 ##    - 'RCA2 - root cause analysis reference for Diff2.'
 #
@@ -3518,9 +3515,9 @@
 #      data-set: "vpp-performance-changes-3n-skx-h1"
 #    - title: "2001.0-2"
 #      data-set: "vpp-performance-changes-3n-skx-ref"
-#    - title: "2005.0-2"
-#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
 #    - title: "2005.0-3"
+#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+#    - title: "2005.0-4"
 #      data-set: "vpp-performance-changes-3n-skx-cmp"
 #  comparisons:
 #    - title: "Diff1"
@@ -3536,9 +3533,9 @@
 ##      data: "rca/rca-2005-3n-skx-4t2c-ndr-rca2.yaml"
 #  legend:
 #    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-#    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 ##    - 'RCA1 - root cause analysis reference for Diff1.'
 ##    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3554,9 +3551,9 @@
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-2n-skx-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp"
   comparisons:
     - title: "Diff1"
@@ -3572,9 +3569,9 @@
 #      data: "rca/rca-2005-2n-skx-2t1c-pdr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3590,9 +3587,9 @@
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-2n-skx-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp"
   comparisons:
     - title: "Diff1"
@@ -3608,9 +3605,9 @@
 #      data: "rca/rca-2005-2n-skx-4t2c-pdr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3626,9 +3623,9 @@
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-2n-skx-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp"
   comparisons:
     - title: "Diff1"
@@ -3644,9 +3641,9 @@
 #      data: "rca/rca-2005-2n-skx-2t1c-ndr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3662,9 +3659,9 @@
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-2n-skx-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp"
   comparisons:
     - title: "Diff1"
@@ -3680,9 +3677,9 @@
 #      data: "rca/rca-2005-2n-skx-4t2c-ndr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3696,9 +3693,9 @@
   columns:
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-2n-clx-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
     - title: "Diff1"
@@ -3714,9 +3711,9 @@
 #      data: "rca/rca-2005-2n-clx-2t1c-pdr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3730,9 +3727,9 @@
   columns:
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-2n-clx-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
     - title: "Diff1"
@@ -3748,9 +3745,9 @@
 #      data: "rca/rca-2005-2n-clx-4t2c-pdr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3764,9 +3761,9 @@
   columns:
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-2n-clx-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
     - title: "Diff1"
@@ -3782,9 +3779,9 @@
 #      data: "rca/rca-2005-2n-clx-2t1c-ndr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3798,9 +3795,9 @@
   columns:
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-2"
-      data-set: "vpp-performance-changes-2n-clx-cmp-2"
     - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
     - title: "Diff1"
@@ -3816,9 +3813,9 @@
 #      data: "rca/rca-2005-2n-clx-4t2c-ndr-rca2.yaml"
   legend:
     - "Legend to Table"
-    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
@@ -3832,7 +3829,7 @@
   columns:
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-3"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
     - title: "Diff"
@@ -3853,7 +3850,7 @@
   columns:
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-3"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
     - title: "Diff"
@@ -3874,7 +3871,7 @@
   columns:
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-3"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
     - title: "Diff"
@@ -3895,7 +3892,7 @@
   columns:
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-3"
+    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
     - title: "Diff"
@@ -4102,9 +4099,9 @@
 #      data-set: "vpp-performance-changes-3n-tsh-h1"
 #    - title: "2001.0-2"
 #      data-set: "vpp-performance-changes-3n-tsh-ref"
-#    - title: "2005.0-2"
-#      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
 #    - title: "2005.0-3"
+#      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
+#    - title: "2005.0-4"
 #      data-set: "vpp-performance-changes-3n-tsh-cmp"
 #  comparisons:
 #    - title: "Diff1"
@@ -4120,9 +4117,9 @@
 ##      data: "rca/rca-2005-3n-tsh-1t1c-pdr-rca2.yaml"
 #  legend:
 #    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-#    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 ##    - 'RCA1 - root cause analysis reference for Diff1.'
 ##    - 'RCA2 - root cause analysis reference for Diff2.'
 #
@@ -4138,9 +4135,9 @@
 #      data-set: "vpp-performance-changes-3n-tsh-h1"
 #    - title: "2001.0-2"
 #      data-set: "vpp-performance-changes-3n-tsh-ref"
-#    - title: "2005.0-2"
-#      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
 #    - title: "2005.0-3"
+#      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
+#    - title: "2005.0-4"
 #      data-set: "vpp-performance-changes-3n-tsh-cmp"
 #  comparisons:
 #    - title: "Diff1"
@@ -4156,9 +4153,9 @@
 ##      data: "rca/rca-2005-3n-tsh-2t2c-pdr-rca2.yaml"
 #  legend:
 #    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-#    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 ##    - 'RCA1 - root cause analysis reference for Diff1.'
 ##    - 'RCA2 - root cause analysis reference for Diff2.'
 #
@@ -4174,9 +4171,9 @@
 #      data-set: "vpp-performance-changes-3n-tsh-h1"
 #    - title: "2001.0-2"
 #      data-set: "vpp-performance-changes-3n-tsh-ref"
-#    - title: "2005.0-2"
-#      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
 #    - title: "2005.0-3"
+#      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
+#    - title: "2005.0-4"
 #      data-set: "vpp-performance-changes-3n-tsh-cmp"
 #  comparisons:
 #    - title: "Diff1"
@@ -4192,9 +4189,9 @@
 ##      data: "rca/rca-2005-3n-tsh-1t1c-ndr-rca2.yaml"
 #  legend:
 #    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-#    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 ##    - 'RCA1 - root cause analysis reference for Diff1.'
 ##    - 'RCA2 - root cause analysis reference for Diff2.'
 #
@@ -4210,9 +4207,9 @@
 #      data-set: "vpp-performance-changes-3n-tsh-h1"
 #    - title: "2001.0-2"
 #      data-set: "vpp-performance-changes-3n-tsh-ref"
-#    - title: "2005.0-2"
-#      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
 #    - title: "2005.0-3"
+#      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
+#    - title: "2005.0-4"
 #      data-set: "vpp-performance-changes-3n-tsh-cmp"
 #  comparisons:
 #    - title: "Diff1"
@@ -4228,9 +4225,9 @@
 ##      data: "rca/rca-2005-3n-tsh-2t2c-ndr-rca2.yaml"
 #  legend:
 #    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-XX-XX).'
-#    - 'Diff1 - difference between environment versions "2" and "3" for the same VPP version, 2005.0-2 vs. 2005.0-3.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the current environment version "2", 2005.0-2 vs. 2001.0-2.'
+#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
 ##    - 'RCA1 - root cause analysis reference for Diff1.'
 ##    - 'RCA2 - root cause analysis reference for Diff2.'
 
