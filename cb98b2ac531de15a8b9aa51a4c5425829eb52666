@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6b744f51_0198b0d9",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 540
+      },
+      "writtenOn": "2020-06-25T05:44:51Z",
+      "side": 1,
+      "message": "Hi Yulong,\n\nVratko\u0027s point is - why not just keep CSIT consistent with VPP - call it \"ICL\"?\nWould be simpler.\n\nRay K",
+      "parentUuid": "ac4843c1_473c4708",
+      "range": {
+        "startLine": 529,
+        "startChar": 44,
+        "endLine": 529,
+        "endChar": 52
+      },
+      "revId": "cb98b2ac531de15a8b9aa51a4c5425829eb52666",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d713f0a1_abc02038",
         "filename": "resources/libraries/python/VppConfigGenerator.py",
         "patchSetId": 3
