@@ -771,6 +771,9 @@
         - 23  # NDRPDR sel env 4
         - 24  # NDRPDR sel env 4
         - 25  # NDRPDR sel env 4
+        - 26  # NDRPDR sel env 4
+        - 27  # NDRPDR sel env 4
+        - 28  # NDRPDR sel env 4
 
     vpp-performance-changes-3n-skx-h1:
       csit-vpp-perf-verify-1908_1-3n-skx:
@@ -808,6 +811,7 @@
     vpp-performance-changes-3n-skx-cmp-2:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         # TODO: Add data
+        - 42  # NDRPDR sel env 4
         - 43  # NDRPDR sel env 4
 
     vpp-performance-changes-2n-skx-h1:
@@ -851,6 +855,9 @@
         # TODO: Add data
         - 88  # NDRPDR sel env 4
         - 89  # NDRPDR sel env 4
+        - 90  # NDRPDR sel env 4
+        - 92  # NDRPDR sel env 4
+        - 93  # NDRPDR sel env 4
 
 #    vpp-performance-changes-nfv-2n-skx-ref:
 #      csit-vpp-perf-verify-2001-2n-skx:
@@ -2174,6 +2181,9 @@
       - 23  # NDRPDR sel env 4
       - 24  # NDRPDR sel env 4
       - 25  # NDRPDR sel env 4
+      - 26  # NDRPDR sel env 4
+      - 27  # NDRPDR sel env 4
+      - 28  # NDRPDR sel env 4
       - 13  # MRR
     csit-vpp-perf-verify-2005-3n-hsw:
       - 3   # hoststack
@@ -2256,6 +2266,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel env 4
       - 43  # NDRPDR sel env 4
       - 6   # MRR sel
     csit-vpp-perf-report-coverage-2005-3n-skx:
@@ -2328,6 +2339,9 @@
       - 73  # NDRPDR sel
       - 88  # NDRPDR sel env 4
       - 89  # NDRPDR sel env 4
+      - 90  # NDRPDR sel env 4
+      - 92  # NDRPDR sel env 4
+      - 93  # NDRPDR sel env 4
       - 42  # MRR sel
       - 48  # Reconf
       - 50  # Reconf
@@ -3172,16 +3186,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-hsw-1t1c-pdr-rca1.yaml"
@@ -3208,16 +3222,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-hsw-2t2c-pdr-rca1.yaml"
@@ -3244,16 +3258,17 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+    - title: "Diff1"
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-hsw-1t1c-ndr-rca1.yaml"
@@ -3280,16 +3295,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-hsw-2t2c-ndr-rca1.yaml"
@@ -3316,16 +3331,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-skx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-skx-2t1c-pdr-rca1.yaml"
@@ -3352,16 +3367,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-skx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-skx-4t2c-pdr-rca1.yaml"
@@ -3388,16 +3403,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-skx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-skx-2t1c-ndr-rca1.yaml"
@@ -3424,16 +3439,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-skx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-skx-4t2c-ndr-rca1.yaml"
@@ -3460,16 +3475,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-skx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-skx-2t1c-pdr-rca1.yaml"
@@ -3496,16 +3511,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-skx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-skx-4t2c-pdr-rca1.yaml"
@@ -3532,16 +3547,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-skx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-skx-2t1c-ndr-rca1.yaml"
@@ -3568,16 +3583,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-skx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-skx-4t2c-ndr-rca1.yaml"
@@ -3602,16 +3617,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-clx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 2
+      reference: 4
       compare: 3
     - title: "Diff2"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-2t1c-pdr-rca1.yaml"
@@ -3636,16 +3651,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-clx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 2
+      reference: 4
       compare: 3
     - title: "Diff2"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-4t2c-pdr-rca1.yaml"
@@ -3670,16 +3685,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-clx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 2
+      reference: 4
       compare: 3
     - title: "Diff2"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-2t1c-ndr-rca1.yaml"
@@ -3704,16 +3719,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-clx-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 2
+      reference: 4
       compare: 3
     - title: "Diff2"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-4t2c-ndr-rca1.yaml"
@@ -4008,16 +4023,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-tsh-1t1c-pdr-rca1.yaml"
@@ -4044,16 +4059,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-tsh-2t2c-pdr-rca1.yaml"
@@ -4080,16 +4095,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-tsh-1t1c-ndr-rca1.yaml"
@@ -4116,16 +4131,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-tsh-2t2c-ndr-rca1.yaml"
