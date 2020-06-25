@@ -3283,149 +3283,149 @@
 #    - 'RCA1 - root cause analysis reference for Diff1.'
 #    - 'RCA2 - root cause analysis reference for Diff2.'
 
-## VPP Performance Changes 3n-skx 2t1c pdr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-skx 2t1c pdr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-pdr"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "1908.1-2"
-#      data-set: "vpp-performance-changes-3n-skx-h1"
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-skx-ref"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
-#    - title: "2005.0-4"
-#      data-set: "vpp-performance-changes-3n-skx-cmp"
-#  comparisons:
-#    - title: "Diff1"
-#      reference: 3
-#      compare: 4
-#    - title: "Diff2"
-#      reference: 2
-#      compare: 3
-##  rca:
-##    - title: "RCA1"
-##      data: "rca/rca-2005-3n-skx-2t1c-pdr-rca1.yaml"
-##    - title: "RCA2"
-##      data: "rca/rca-2005-3n-skx-2t1c-pdr-rca2.yaml"
-#  legend:
-#    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
-##    - 'RCA1 - root cause analysis reference for Diff1.'
-##    - 'RCA2 - root cause analysis reference for Diff2.'
-#
-## VPP Performance Changes 3n-skx 4t2c pdr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-skx 4t2c pdr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-pdr"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "1908.1-2"
-#      data-set: "vpp-performance-changes-3n-skx-h1"
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-skx-ref"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
-#    - title: "2005.0-4"
-#      data-set: "vpp-performance-changes-3n-skx-cmp"
-#  comparisons:
-#    - title: "Diff1"
-#      reference: 3
-#      compare: 4
-#    - title: "Diff2"
-#      reference: 2
-#      compare: 3
-##  rca:
-##    - title: "RCA1"
-##      data: "rca/rca-2005-3n-skx-4t2c-pdr-rca1.yaml"
-##    - title: "RCA2"
-##      data: "rca/rca-2005-3n-skx-4t2c-pdr-rca2.yaml"
-#  legend:
-#    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
-##    - 'RCA1 - root cause analysis reference for Diff1.'
-##    - 'RCA2 - root cause analysis reference for Diff2.'
-#
-## VPP Performance Changes 3n-skx 2t1c ndr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-skx 2t1c ndr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-ndr"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "1908.1-2"
-#      data-set: "vpp-performance-changes-3n-skx-h1"
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-skx-ref"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
-#    - title: "2005.0-4"
-#      data-set: "vpp-performance-changes-3n-skx-cmp"
-#  comparisons:
-#    - title: "Diff1"
-#      reference: 3
-#      compare: 4
-#    - title: "Diff2"
-#      reference: 2
-#      compare: 3
-##  rca:
-##    - title: "RCA1"
-##      data: "rca/rca-2005-3n-skx-2t1c-ndr-rca1.yaml"
-##    - title: "RCA2"
-##      data: "rca/rca-2005-3n-skx-2t1c-ndr-rca2.yaml"
-#  legend:
-#    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
-##    - 'RCA1 - root cause analysis reference for Diff1.'
-##    - 'RCA2 - root cause analysis reference for Diff2.'
-#
-## VPP Performance Changes 3n-skx 4t2c ndr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-skx 4t2c ndr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-ndr"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "1908.1-2"
-#      data-set: "vpp-performance-changes-3n-skx-h1"
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-skx-ref"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-skx-cmp-2"
-#    - title: "2005.0-4"
-#      data-set: "vpp-performance-changes-3n-skx-cmp"
-#  comparisons:
-#    - title: "Diff1"
-#      reference: 3
-#      compare: 4
-#    - title: "Diff2"
-#      reference: 2
-#      compare: 3
-##  rca:
-##    - title: "RCA1"
-##      data: "rca/rca-2005-3n-skx-4t2c-ndr-rca1.yaml"
-##    - title: "RCA2"
-##      data: "rca/rca-2005-3n-skx-4t2c-ndr-rca2.yaml"
-#  legend:
-#    - "Legend to Table"
-#    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-#    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
-#    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
-##    - 'RCA1 - root cause analysis reference for Diff1.'
-##    - 'RCA2 - root cause analysis reference for Diff2.'
+# VPP Performance Changes 3n-skx 2t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+  comparisons:
+    - title: "Diff1"
+      reference: 3
+      compare: 4
+    - title: "Diff2"
+      reference: 2
+      compare: 3
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-skx-2t1c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-skx-2t1c-pdr-rca2.yaml"
+  legend:
+    - "Legend to Table"
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
+#    - 'RCA1 - root cause analysis reference for Diff1.'
+#    - 'RCA2 - root cause analysis reference for Diff2.'
+
+# VPP Performance Changes 3n-skx 4t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 4t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+  comparisons:
+    - title: "Diff1"
+      reference: 3
+      compare: 4
+    - title: "Diff2"
+      reference: 2
+      compare: 3
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-skx-4t2c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-skx-4t2c-pdr-rca2.yaml"
+  legend:
+    - "Legend to Table"
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
+#    - 'RCA1 - root cause analysis reference for Diff1.'
+#    - 'RCA2 - root cause analysis reference for Diff2.'
+
+# VPP Performance Changes 3n-skx 2t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+  comparisons:
+    - title: "Diff1"
+      reference: 3
+      compare: 4
+    - title: "Diff2"
+      reference: 2
+      compare: 3
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-skx-2t1c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-skx-2t1c-ndr-rca2.yaml"
+  legend:
+    - "Legend to Table"
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
+#    - 'RCA1 - root cause analysis reference for Diff1.'
+#    - 'RCA2 - root cause analysis reference for Diff2.'
+
+# VPP Performance Changes 3n-skx 4t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 4t2c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+  comparisons:
+    - title: "Diff1"
+      reference: 3
+      compare: 4
+    - title: "Diff2"
+      reference: 2
+      compare: 3
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-skx-4t2c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-skx-4t2c-ndr-rca2.yaml"
+  legend:
+    - "Legend to Table"
+    - 'YYMM.V-E - tested VPP version (YY year, MM month, V minor version) and CSIT test environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'Diff1 - difference between environment versions "3" and "4" for the same VPP version, 2005.0-3 relative to 2005.0-4. Version "3" was found to be incompatible with "2" due to different number of TRex workers used.'
+    - 'Diff2 - difference between the current and the previous VPP version in the compatible environment versions "2" and "4", 2005.0-4 relative to 2001.0-2.'
+#    - 'RCA1 - root cause analysis reference for Diff1.'
+#    - 'RCA2 - root cause analysis reference for Diff2.'
 
 # VPP Performance Changes 2n-skx 2t1c pdr
 - type: "table"
