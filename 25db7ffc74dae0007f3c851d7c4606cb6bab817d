@@ -22,6 +22,30 @@
       "revId": "25db7ffc74dae0007f3c851d7c4606cb6bab817d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdb2e58c_b5f7d594",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 142
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-25T08:30:07Z",
+      "side": 1,
+      "message": "\u003e bisect job contains \"perf\" in its name\n\nWhen testing I will make sure the final version of ci-man change is uploaded (I was experimenting with the log archiving macro), but currently I see [1] no \"perf\" in the bisect job.\n\nWhich reminds me, I think the script could support bisecting also for device tests (searching for breakages or fixes), in which case I would need to rewrite this part anyway.\n\n[1] https://gerrit.fd.io/r/c/ci-management/+/23815/23/jjb/vpp/vpp.yaml",
+      "parentUuid": "8fb87e87_63ba8298",
+      "range": {
+        "startLine": 286,
+        "startChar": 21,
+        "endLine": 286,
+        "endChar": 27
+      },
+      "revId": "25db7ffc74dae0007f3c851d7c4606cb6bab817d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
