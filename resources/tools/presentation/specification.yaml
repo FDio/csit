@@ -3172,16 +3172,16 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-ref"
     - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
-    - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 3
-      compare: 4
+      reference: 4
+      compare: 3
     - title: "Diff2"
       reference: 2
-      compare: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-hsw-1t1c-pdr-rca1.yaml"
