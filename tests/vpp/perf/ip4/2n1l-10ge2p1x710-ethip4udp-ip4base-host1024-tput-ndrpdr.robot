@@ -16,8 +16,8 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST | TEST_B2B | TEST_4M
-| ... | ethip4-ip4base-4128768cps-trexb2b-nopcap
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST | TEST_UDP
+| ... | ethip4udp-ip4base-host1024-tput
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -58,9 +58,9 @@
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-65536h
+| ${traffic_profile}= | trex-astf-ethip4udp-1024h-2data
 # Trial data overwrite
-| ${PERF_TRIAL_DURATION}= | ${1.1}
+| ${PERF_TRIAL_DURATION}= | ${20}
 | ${PERF_TRIAL_MULTIPLICITY}= | ${1}
 
 *** Keywords ***
@@ -84,57 +84,59 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
-#| | When Initialize layer driver | ${nic_driver}
-#| | And Initialize layer interface
-#| | And Initialize IPv4 forwarding in circular topology | 192.168.0.0 | 20.0.0.0
-| | Set Test Variable | \${max_rate} | ${4128768}
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
+| | And Initialize IPv4 forwarding in circular topology | 192.168.0.0 | 20.0.0.0
+| | Set Test Variable | \${max_rate} | ${16128}
+| | Pcap Trace On | ${dut1} | rx tx | ${500000000} | ${DUT1_${int}2}[0] | dut1_if2_ip4_rx-tx_1024h_udp-2data_10s_16128cps_200803.pcap
 | | Then Find NDR and PDR intervals using optimized search | latency=${False}
+| | Pcap Trace Off | ${dut1}
 
 *** Test Cases ***
-| 64B-1c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| 64B-1c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| 64B-2c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| 64B-4c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| 1518B-1c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| 1518B-2c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| 1518B-4c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| 9000B-1c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| 9000B-2c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| 9000B-4c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| IMIX-1c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| IMIX-2c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4-ip4base-4128768cps-trexb2b-nopcap-ndrpdr
+| IMIX-4c-ethip4udp-ip4base-host1024-tput-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
