@@ -101,6 +101,15 @@ class TrafficProfileBaseClass:
         ip_gen, templates, cap_list = self.define_profile()
 
         # In most cases you will not have to change the code below:
+        c_info = ASTFGlobalInfo()
+        c_info.tcp.keepinit = 300
+        c_info.tcp.keepidle = 300
+        c_info.tcp.keepintvl = 300
+
+        s_info = ASTFGlobalInfo()
+        s_info.tcp.keepinit = 300
+        s_info.tcp.keepidle = 300
+        s_info.tcp.keepintvl = 300
 
         # profile
         profile = ASTFProfile(
