@@ -177,7 +177,7 @@ def simple_burst(
 
         # Choose CPS and start traffic.
         client.start(
-            mult=mult, duration=duration, nc=False,
+            mult=mult, duration=duration, nc=True,
             latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
         )
         time_start = time.monotonic()
@@ -192,7 +192,9 @@ def simple_burst(
         else:
             # Do not block until done.
             while client.is_traffic_active(ports=ports):
-                time.sleep(stats_sampling)
+                time.sleep(
+                    stats_sampling if stats_sampling < duration else duration
+                )
                 # Sample the stats.
                 stats[time.monotonic()-time_start] = client.get_stats(
                     ports=ports
