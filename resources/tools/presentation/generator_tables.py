@@ -1602,7 +1602,6 @@ def table_comparison(table, input_data):
     if comparisons:
         for row in tbl_lst:
             new_row = deepcopy(row)
-            add_to_tbl = False
             for comp in comparisons:
                 ref_itm = row[int(comp[u"reference"])]
                 if ref_itm is None and \
@@ -1618,16 +1617,16 @@ def table_comparison(table, input_data):
                         ref_itm[u"mean"], cmp_itm[u"mean"],
                         ref_itm[u"stdev"], cmp_itm[u"stdev"]
                     )
-                    new_row.append(
-                        {
+                    if delta is None:
+                        break
+                    else:
+                        new_row.append({
                             u"mean": delta * 1e6,
                             u"stdev": d_stdev * 1e6
-                        }
-                    )
-                    add_to_tbl = True
+                        })
                 else:
-                    new_row.append(None)
-            if add_to_tbl:
+                    break
+            else:
                 tbl_cmp_lst.append(new_row)
 
     try:
