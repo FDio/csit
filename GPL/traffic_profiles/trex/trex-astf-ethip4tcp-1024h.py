@@ -27,7 +27,6 @@ Traffic profile: TODO: update !
 """
 
 from trex.astf.api import *
-
 from profile_trex_astf_base_class import TrafficProfileBaseClass
 
 
@@ -41,22 +40,33 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # IPs used in packet headers.
         self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.15.255"
+        self.p1_src_end_ip = u"192.168.3.255"
         self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.15.255"
+        self.p1_dst_end_ip = u"20.0.3.255"
 
+        self.headers_size = 58  # 14B l2 + 20B ipv4 + 24B tcp incl. 4B options
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
         This method MUST return:
 
-            return ip_gen, None, cap_list
+            return ip_gen, templates
 
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
-        # ip generator
+        # client commands
+        prog_c = ASTFProgram()
+        prog_c.connect()  # syn
+        prog_c.recv(0)  # fin-ack; 0B sent in tcp syn-ack packet
+
+        # server commands
+        prog_s = ASTFProgram()
+        prog_s.accept()  # syn-ack
+        prog_s.wait_for_peer_close()  # ack + fin-ack
+
+        # ip generators
         ip_gen_c = ASTFIPGenDist(
             ip_range=[self.p1_src_start_ip, self.p1_src_end_ip],
             distribution=u"seq"
@@ -71,16 +81,23 @@ class TrafficProfile(TrafficProfileBaseClass):
             dist_server=ip_gen_s
         )
 
-        # pcap list
-        cap_list = [
-            ASTFCapInfo(
-                file=f"{self.pcap_dir}/delay_10_http_get_0.pcap",
-                cps=1,
-                port=8080
-            )
-        ]
+        # server association
+        s_assoc = ASTFAssociation(rules=ASTFAssociationRule(port=8080))
 
-        return ip_gen, None, cap_list
+        # template
+        temp_c = ASTFTCPClientTemplate(
+            program=prog_c,
+            ip_gen=ip_gen,
+            limit=64512,  # TODO: set via input parameter
+            port=8080
+        )
+        temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)  # TODO: default association ?
+        template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
+
+        return ip_gen, template, None
+
+
+        # TODO: packet size ?
 
 
 def register():

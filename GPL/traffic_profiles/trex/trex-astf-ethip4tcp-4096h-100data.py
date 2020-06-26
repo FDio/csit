@@ -12,22 +12,21 @@
 # limitations under the License.
 
 """Traffic profile for T-rex advanced stateful (astf) traffic generator.
-
-Traffic profile: TODO: update !
- - Two streams sent in directions 0 --> 1 and 1 --> 0 at the same time.
- - Packet: ETH / IP /
+Traffic profile:
+ - Two streams sent in directions 0 --> 1 (client -> server, requests) and
+   1 --> 0 (server -> client, responses) at the same time.
+ - Packet: ETH / IP / TCP
  - Direction 0 --> 1:
-   - Destination MAC address: 52:54:00:00:nf_id:01
-   - Source IP address range:      10.10.10.1 - 10.10.10.254
-   - Destination IP address range: 20.20.20.1
+   - Source IP address range:      192.168.0.0 - 192.168.15.255
+   - Destination IP address range: 20.0.0.0 - 20.0.15.255
  - Direction 1 --> 0:
-   - Destination MAC address: 52:54:00:00:nf_id:02
-   - Source IP address range:      20.20.20.1 - 20.20.20.254
-   - Destination IP address range: 10.10.10.1
+   - Source IP address range:      destination IP address from packet received
+     on port 1
+   - Destination IP address range: source IP address from packet received
+     on port 1
 """
 
 from trex.astf.api import *
-
 from profile_trex_astf_base_class import TrafficProfileBaseClass
 
 
@@ -41,45 +40,55 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # IPs used in packet headers.
         self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.3.255"
+        self.p1_src_end_ip = u"192.168.15.255"
         self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.3.255"
+        self.p1_dst_end_ip = u"20.0.15.255"
 
-        self.udp_req = u"GET"
-        self.udp_res = u"ACK"
-        self.udp_fin = u"FIN"
-        self.udp_data = u""
+        self.headers_size = 66  # 14B l2 + 20B ipv4 + 32B tcp incl. 12B options
 
-        self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B udp
+        self.tcp_data = u""
+
+        self.ndata = 100  # TODO: set via input parameter
+        self.delay = 36000000  # delay 36s (36,000,000 usec)
+        self.limit = 258048
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
         This method MUST return:
 
-            return ip_gen, templates, None
+            return ip_gen, templates
 
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
+        if self.framesize == 64:
+            self.mss = 18
+            self.payload_size = (self.ndata * 6) + self.headers_size
+        if self.framesize == 1518:
+            self.mss = 1460
+            self.payload_size = (self.ndata * 1448) + self.headers_size
+
+        self.tcp_data += self._gen_padding(self.headers_size, self.payload_size)
         # client commands
-        self.udp_req += self._gen_padding(self.headers_size + len(self.udp_req))
-        self.udp_fin += self._gen_padding(self.headers_size + len(self.udp_fin))
-        prog_c = ASTFProgram(stream=False)
-        prog_c.send_msg(self.udp_req)  # size and fill not supported in v2.73
-        prog_c.recv_msg(2)
-        prog_c.send_msg(self.udp_fin)
-        prog_c.recv_msg(1)
+        prog_c = ASTFProgram()
+        prog_c.connect()  # syn
+
+        prog_c.delay(self.delay)
+
+        prog_c.send(self.tcp_data)
+
+        prog_c.delay(self.delay)
 
         # server commands
-        self.udp_res += self._gen_padding(self.headers_size + len(self.udp_res))
-        self.udp_data += self._gen_padding(self.headers_size, 1518)
-        prog_s = ASTFProgram(stream=False)
-        prog_s.recv_msg(1)
-        prog_s.send_msg(self.udp_res)
-        prog_s.send_msg(self.udp_data)
-        prog_s.recv_msg(1)
-        prog_s.send_msg(self.udp_res)
+        prog_s = ASTFProgram()
+        prog_s.accept()  # syn-ack
+
+        prog_s.delay(self.delay)
+
+        prog_s.send(self.tcp_data)
+
+        prog_s.wait_for_peer_close()  # ack + fin-ack
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
@@ -96,18 +105,28 @@ class TrafficProfile(TrafficProfileBaseClass):
             dist_server=ip_gen_s
         )
 
+        glob_info = ASTFGlobalInfoPerTemplate()
+        glob_info.tcp.mss = self.mss
+
         # server association
         s_assoc = ASTFAssociation(rules=ASTFAssociationRule(port=8080))
 
         # template
-        temp_c = ASTFTCPClientTemplate(program=prog_c, ip_gen=ip_gen, port=8080)
-        temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)  # TODO: default association ?
+        temp_c = ASTFTCPClientTemplate(
+            program=prog_c,
+            ip_gen=ip_gen,
+            limit=self.limit,  # TODO: set via input parameter
+            port=8080,
+            glob_info=glob_info
+        )
+        temp_s = ASTFTCPServerTemplate(
+            program=prog_s,
+            assoc=s_assoc,
+            glob_info=glob_info
+        )
         template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
 
         return ip_gen, template, None
-
-
-        # TODO: packet size ?
 
 
 def register():

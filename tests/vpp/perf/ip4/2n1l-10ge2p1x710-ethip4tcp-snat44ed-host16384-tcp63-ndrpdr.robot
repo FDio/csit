@@ -18,9 +18,9 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44
-| ... | NAT44_ENDPOINT_DEPENDENT | BASE | DRV_VFIO_PCI | TEST | TEST_NAT | TEST_NAT_1PCAP
+| ... | NAT44_ENDPOINT_DEPENDENT | BASE | DRV_VFIO_PCI | TEST | TEST_NAT | TEST_TCP_SYN
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4tcp-snat44ed-host4096-udp63-1pcap
+| ... | ethip4tcp-snat44ed-host16384-tcp63
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -71,19 +71,19 @@
 | ${dut1_if2_ip4}= | 12.0.0.1
 | ${dut1_if2_mask}= | ${24}
 | ${dest_net}= | 20.0.0.0
-| ${dest_mask}= | ${20}
+| ${dest_mask}= | ${18}
 # NAT settings
 | ${nat_mode}= | endpoint-dependent
-| ${max_translations_per_thread}= | 163840
+| ${max_translations_per_thread}= | 655360
 | ${in_net}= | 192.168.0.0
-| ${in_mask}= | ${20}
+| ${in_mask}= | ${18}
 | ${out_net}= | 68.142.68.0
-| ${out_net_end}= | 68.142.68.3
-| ${out_mask}= | ${30}
+| ${out_net_end}= | 68.142.68.15
+| ${out_mask}= | ${28}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4tcp-4096h-1pcap
+| ${traffic_profile}= | trex-astf-ethip4tcp-16384h
 # Trial data overwrite
-| ${PERF_TRIAL_DURATION}= | ${1.1}
+| ${PERF_TRIAL_DURATION}= | ${4}
 | ${PERF_TRIAL_MULTIPLICITY}= | ${1}
 
 *** Keywords ***
@@ -114,54 +114,54 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
-| | Set Test Variable | \${max_rate} | ${258048}
+| | Set Test Variable | \${max_rate} | ${1032192}
 | | Then Find NDR and PDR intervals using optimized search | latency=${False}
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc01-64B-1c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc02-64B-2c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc03-64B-4c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc04-1518B-1c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc05-1518B-2c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc06-1518B-4c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc07-9000B-1c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc08-9000B-2c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc09-9000B-4c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc10-IMIX-1c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc11-IMIX-2c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4tcp-snat44ed-host4096-udp63-1pcap-ndrpdr
+| tc12-IMIX-4c-ethip4tcp-snat44ed-host16384-tcp63-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
