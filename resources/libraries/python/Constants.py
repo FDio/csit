@@ -185,7 +185,7 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"snergster/csit-arm-sut:latest"
 
     # TRex install directory
-    TREX_INSTALL_DIR = u"/opt/trex-core-2.73"
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.82"
 
     # TODO: Find the right way how to use it in trex profiles
     # TRex pcap files directory
@@ -195,7 +195,7 @@ class Constants:
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 8192)
 
     # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 7)
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 1)
 
     # Trex force start regardless ports state
     TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")
