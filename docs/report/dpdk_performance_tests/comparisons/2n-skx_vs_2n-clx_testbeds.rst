@@ -1,5 +1,5 @@
-2n-Skx vs. 2n-Clx Testbeds
---------------------------
+2n-Skx vs 2n-Clx Testbeds
+-------------------------
 
 Relative comparison of |dpdk-release| Testpmd and L3fwd packet
 throughput (NDR, PDR and MRR) is calculated for the same tests executed
