@@ -901,7 +901,9 @@
         - 62  # NDRPDR sel env 4
         - 63  # NDRPDR sel env 4
         - 64  # NDRPDR sel env 4
+        - 65  # NDRPDR sel env 4
         - 66  # NDRPDR sel env 4
+        - 70  # NDRPDR sel env 4
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-1908-2n-dnv:
@@ -2408,7 +2410,9 @@
       - 62  # NDRPDR sel env 4
       - 63  # NDRPDR sel env 4
       - 64  # NDRPDR sel env 4
+      - 65  # NDRPDR sel env 4
       - 66  # NDRPDR sel env 4
+      - 70  # NDRPDR sel env 4
       - 12  # MRR
       - 42  # Reconf
       - 45  # Reconf
