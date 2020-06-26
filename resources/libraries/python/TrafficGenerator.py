@@ -688,7 +688,7 @@ class TrafficGenerator(AbstractMeasurer):
         stdout, _ = exec_cmd_no_error(
             self._node, command_line,
             timeout=int(duration) + 600 if u"tcp" in self.traffic_profile
-            else 60,
+            else timeout=int(duration) + 60,
             message=u"T-Rex ASTF runtime error!"
         )
 
