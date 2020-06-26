@@ -100,10 +100,22 @@ class TrafficProfileBaseClass:
         ip_gen, templates, cap_list = self.define_profile()
 
         # In most cases you will not have to change the code below:
+        c_info = ASTFGlobalInfo()
+        c_info.tcp.keepinit = 300
+        c_info.tcp.keepidle = 300
+        c_info.tcp.keepintvl = 300
+        c_info.tcp.mss = 18
+
+        s_info = ASTFGlobalInfo()
+        s_info.tcp.keepinit = 300
+        s_info.tcp.keepidle = 300
+        s_info.tcp.keepintvl = 300
+        s_info.tcp.mss = 18
 
         # profile
         profile = ASTFProfile(
-            default_ip_gen=ip_gen, templates=templates, cap_list=cap_list
+            default_ip_gen=ip_gen, default_c_glob_info=c_info,
+            default_s_glob_info=s_info, templates=templates, cap_list=cap_list
         )
 
         return profile
@@ -119,6 +131,6 @@ class TrafficProfileBaseClass:
         :rtype: trex.astf.trex_astf_profile.ASTFProfile
         """
         self.framesize = kwargs[u"framesize"]
-        self._pcap_dir = kwargs.get(u"pcap_dir",u"/opt/trex-core-2.73/scripts/avl")
+        self._pcap_dir = kwargs.get(u"pcap_dir",u"/opt/trex-core-2.82/scripts/avl")
 
         return self.create_profile()
