@@ -177,7 +177,7 @@ def simple_burst(
 
         # Choose CPS and start traffic.
         client.start(
-            mult=mult, duration=duration, nc=False,
+            mult=mult, duration=duration, nc=True,
             latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
         )
         time_start = time.monotonic()
@@ -190,13 +190,21 @@ def simple_burst(
                 xsnap1 = client.ports[port_1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
+            time.sleep(
+                stats_sampling if stats_sampling < duration else duration
+            )
             # Do not block until done.
             while client.is_traffic_active(ports=ports):
-                time.sleep(stats_sampling)
                 # Sample the stats.
                 stats[time.monotonic()-time_start] = client.get_stats(
                     ports=ports
                 )
+                test_time = time.monotonic() - time_start
+                if test_time < duration:
+                    time.sleep(
+                        stats_sampling if stats_sampling < duration - test_time
+                        else duration - test_time
+                    )
             else:
                 # Read the stats after the test
                 stats[time.monotonic()-time_start] = client.get_stats(
