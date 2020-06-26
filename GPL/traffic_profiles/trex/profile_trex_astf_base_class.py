@@ -119,6 +119,6 @@ class TrafficProfileBaseClass:
         :rtype: trex.astf.trex_astf_profile.ASTFProfile
         """
         self.framesize = kwargs[u"framesize"]
-        self._pcap_dir = kwargs.get(u"pcap_dir",u"/opt/trex-core-2.73/scripts/avl")
+        self._pcap_dir = kwargs.get(u"pcap_dir",u"/opt/trex-core-2.82/scripts/avl")
 
         return self.create_profile()
