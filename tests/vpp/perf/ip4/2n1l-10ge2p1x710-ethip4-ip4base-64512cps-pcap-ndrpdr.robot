@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST | TEST_UDP_SYN
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST | TEST_TCP_SYN
 | ... | ethip4-ip4base-64512cps-pcap
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -58,9 +58,9 @@
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-1024h
+| ${traffic_profile}= | trex-astf-ethip4tcp-1024h-1kdata
 # Trial data overwrite
-| ${PERF_TRIAL_DURATION}= | ${1.1}
+| ${PERF_TRIAL_DURATION}= | ${5}
 | ${PERF_TRIAL_MULTIPLICITY}= | ${1}
 
 *** Keywords ***
@@ -88,7 +88,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology | 192.168.0.0 | 20.0.0.0
 | | Set Test Variable | \${max_rate} | ${64512}
-| | Pcap Trace On | ${dut1} | rx | ${4000000} | ${DUT1_${int}1}[0] | dut1_if1_ip4_rx_8c_1024h_udp-syn_1.1s_64512cps_200717.pcap
+| | Pcap Trace On | ${dut1} | rx tx | ${70000000} | ${DUT1_${int}2}[0] | dut1_if2_ip4_rx-tx_8c_1024h_tcp-syn-1kdata_5s_64512cps_200728.pcap
 | | Then Find NDR and PDR intervals using optimized search | latency=${False}
 | | Pcap Trace Off | ${dut1}
 
