@@ -524,7 +524,9 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
         stdout, _ = exec_cmd_no_error(
-            self._node, command_line, timeout=int(duration) + 60,
+            self._node, command_line,
+            timeout=int(duration) + 600 if u"tcp" in self.traffic_profile
+            else 60,
             message=u"T-Rex ASTF runtime error!"
         )
 
