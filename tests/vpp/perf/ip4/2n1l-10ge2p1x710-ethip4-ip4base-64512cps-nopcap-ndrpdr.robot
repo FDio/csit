@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST | TEST_TCP
 | ... | ethip4-ip4base-64512cps-nopcap
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -58,7 +58,7 @@
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-1024h
+| ${traffic_profile}= | trex-astf-ethip4tcp-1024h
 # Trial data overwrite
 | ${PERF_TRIAL_DURATION}= | ${1.1}
 | ${PERF_TRIAL_MULTIPLICITY}= | ${1}
