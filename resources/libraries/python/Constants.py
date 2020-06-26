@@ -185,7 +185,7 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"snergster/csit-arm-sut:latest"
 
     # TRex install directory
-    TREX_INSTALL_DIR = u"/opt/trex-core-2.73"
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.82"
 
     # TODO: Find the right way how to use it in trex profiles
     # TRex pcap files directory
