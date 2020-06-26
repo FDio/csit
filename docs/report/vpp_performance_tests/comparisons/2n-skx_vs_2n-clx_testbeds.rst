@@ -1,5 +1,5 @@
-2n-Skx vs. 2n-Clx Testbeds
---------------------------
+2n-Skx vs 2n-Clx Testbeds
+-------------------------
 
 Relative comparison of |vpp-release| packet throughput (NDR, PDR and
 MRR) is calculated for the same tests executed on 2-Node Skylake (2n-

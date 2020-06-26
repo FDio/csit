@@ -1,8 +1,8 @@
 
 .. _dpdk_compare_current_vs_previous_release:
 
-Current vs. Previous Release
-----------------------------
+Current vs Previous Release
+---------------------------
 
 Relative comparison of DPDK Testpmd and L3fwd packet throughput (NDR,
 PDR and MRR) between |dpdk-release| and |dpdk-release-1| (measured for

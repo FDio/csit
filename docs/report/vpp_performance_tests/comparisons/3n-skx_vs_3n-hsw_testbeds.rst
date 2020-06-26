@@ -1,5 +1,5 @@
-3n-Skx vs. 3n-Hsw Testbeds
---------------------------
+3n-Skx vs 3n-Hsw Testbeds
+-------------------------
 
 Relative comparison of |vpp-release| packet throughput (NDR, PDR and
 MRR) is calculated for the same tests executed on 3-Node Skylake (3n-

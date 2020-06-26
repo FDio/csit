@@ -75,7 +75,7 @@ trending jobs enabling detection of performance anomalies (regressions,
 progressions) resulting from data plane code changes.
 
 MRR tests are also used for VPP per patch performance jobs verifying
-patch performance vs. parent. CSIT reports include MRR throughput
+patch performance vs parent. CSIT reports include MRR throughput
 comparisons between releases and test environments. Small frame sizes
 only (64b/78B, IMIX).
 

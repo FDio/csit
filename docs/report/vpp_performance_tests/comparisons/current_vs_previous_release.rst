@@ -1,8 +1,8 @@
 
 .. _vpp_compare_current_vs_previous_release:
 
-Current vs. Previous Release
-----------------------------
+Current vs Previous Release
+---------------------------
 
 Relative comparison of VPP packet throughput (NDR, PDR and MRR) between
 |vpp-release| and |vpp-release-1| (measured for |csit-release| and

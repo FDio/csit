@@ -1,8 +1,8 @@
 
 .. _dpdk_compare_topologies_3n-Skx_vs_2n-Skx:
 
-3n-Skx vs. 2n-Skx Testbeds
---------------------------
+3n-Skx vs 2n-Skx Testbeds
+-------------------------
 
 Relative comparison of |dpdk-release| Testpmd and L3fwd packet
 throughput (NDR, PDR and MRR) is calculated for the same tests executed
