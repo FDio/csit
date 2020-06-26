@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST | TEST_UDP_SYN
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST | TEST_TCP_SYN
 | ... | ethip4-ip4base-64512cps-nopcap
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -58,9 +58,9 @@
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-1024h
+| ${traffic_profile}= | trex-astf-ethip4tcp-1024h-1kdata
 # Trial data overwrite
-| ${PERF_TRIAL_DURATION}= | ${1.1}
+| ${PERF_TRIAL_DURATION}= | ${32}
 | ${PERF_TRIAL_MULTIPLICITY}= | ${1}
 
 *** Keywords ***
@@ -87,21 +87,21 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology | 192.168.0.0 | 20.0.0.0
-| | Set Test Variable | \${max_rate} | ${64512}
+| | Set Test Variable | \${max_rate} | ${16128}
 | | Then Find NDR and PDR intervals using optimized search | latency=${False}
 
 *** Test Cases ***
-| 64B-1c-ethip4-ip4base-64512cps-nopcap-ndrpdr
-| | [Tags] | 64B | 1C
-| | frame_size=${64} | phy_cores=${1}
+| 72B-1c-ethip4-ip4base-64512cps-nopcap-ndrpdr
+| | [Tags] | 72B | 1C
+| | frame_size=${72} | phy_cores=${1}
 
-| 64B-2c-ethip4-ip4base-64512cps-nopcap-ndrpdr
-| | [Tags] | 64B | 2C
-| | frame_size=${64} | phy_cores=${2}
+| 72B-2c-ethip4-ip4base-64512cps-nopcap-ndrpdr
+| | [Tags] | 72B | 2C
+| | frame_size=${72} | phy_cores=${2}
 
-| 64B-4c-ethip4-ip4base-64512cps-nopcap-ndrpdr
-| | [Tags] | 64B | 4C
-| | frame_size=${64} | phy_cores=${4}
+| 72B-4c-ethip4-ip4base-64512cps-nopcap-ndrpdr
+| | [Tags] | 72B | 4C
+| | frame_size=${72} | phy_cores=${4}
 
 | 1518B-1c-ethip4-ip4base-64512cps-nopcap-ndrpdr
 | | [Tags] | 1518B | 1C
