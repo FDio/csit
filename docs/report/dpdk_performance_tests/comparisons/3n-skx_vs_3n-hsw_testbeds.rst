@@ -1,5 +1,5 @@
-3n-Skx vs. 3n-Hsw Testbeds
---------------------------
+3n-Skx vs 3n-Hsw Testbeds
+-------------------------
 
 Relative comparison of |dpdk-release| Testpmd and L3fwd packet
 throughput (NDR, PDR and MRR) is calculated for the same tests executed

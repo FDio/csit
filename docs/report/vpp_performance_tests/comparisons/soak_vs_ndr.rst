@@ -1,7 +1,7 @@
 .. _`soak vs ndr comparison`:
 
-Soak Tests vs. NDR Tests
-------------------------
+Soak Tests vs NDR Tests
+-----------------------
 
 Relative comparison of |vpp-release| Soak PLRSearch vs. NDR packet throughput
 is calculated for the tests executed on 2-Node Skylake physical testbed types,
