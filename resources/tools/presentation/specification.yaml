@@ -774,6 +774,7 @@
         - 26  # NDRPDR sel env 4
         - 27  # NDRPDR sel env 4
         - 28  # NDRPDR sel env 4
+        - 29  # NDRPDR sel env 4
 
     vpp-performance-changes-3n-skx-h1:
       csit-vpp-perf-verify-1908_1-3n-skx:
@@ -2184,6 +2185,7 @@
       - 26  # NDRPDR sel env 4
       - 27  # NDRPDR sel env 4
       - 28  # NDRPDR sel env 4
+      - 29  # NDRPDR sel env 4
       - 13  # MRR
     csit-vpp-perf-verify-2005-3n-hsw:
       - 3   # hoststack
@@ -3622,11 +3624,11 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 4
-      compare: 3
+      reference: 3
+      compare: 2
     - title: "Diff2"
-      reference: 2
-      compare: 4
+      reference: 1
+      compare: 3
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-2t1c-pdr-rca1.yaml"
@@ -3656,11 +3658,11 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 4
-      compare: 3
+      reference: 3
+      compare: 2
     - title: "Diff2"
-      reference: 2
-      compare: 4
+      reference: 1
+      compare: 3
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-4t2c-pdr-rca1.yaml"
@@ -3690,11 +3692,11 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 4
-      compare: 3
+      reference: 3
+      compare: 2
     - title: "Diff2"
-      reference: 2
-      compare: 4
+      reference: 1
+      compare: 3
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-2t1c-ndr-rca1.yaml"
@@ -3724,11 +3726,11 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "Diff1"
-      reference: 4
-      compare: 3
+      reference: 3
+      compare: 2
     - title: "Diff2"
-      reference: 2
-      compare: 4
+      reference: 1
+      compare: 3
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-4t2c-ndr-rca1.yaml"
