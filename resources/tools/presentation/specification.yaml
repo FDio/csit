@@ -152,16 +152,26 @@
 
     plot-vpp-throughput-lat-tsa-3n-hsw:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
+#        - 3   # NDRPDR sel
+#        - 4   # NDRPDR sel
+#        - 5   # NDRPDR sel
+#        - 10  # NDRPDR sel
+#        - 11  # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 15  # NDRPDR sel
+#        - 16  # NDRPDR sel
+#        - 18  # NDRPDR sel
+#        - 19  # NDRPDR sel
+        - 20  # NDRPDR sel env 4
+        - 21  # NDRPDR sel env 4
+        - 22  # NDRPDR sel env 4
+        - 23  # NDRPDR sel env 4
+        - 24  # NDRPDR sel env 4
+        - 25  # NDRPDR sel env 4
+        - 26  # NDRPDR sel env 4
+        - 27  # NDRPDR sel env 4
+        - 28  # NDRPDR sel env 4
+        - 29  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-hsw:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
@@ -218,16 +228,21 @@
 
     plot-vpp-throughput-lat-tsa-3n-skx:
       csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel ??? all x710 failed
-        - 33  # NDRPDR sel
-        - 28  # NDRPDR sel
-        - 34  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 37  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 39  # NDRPDR sel
-        - 41  # NDRPDR sel
+#        - 4   # NDRPDR sel
+#        - 5   # NDRPDR sel ??? all x710 failed
+#        - 33  # NDRPDR sel
+#        - 28  # NDRPDR sel
+#        - 34  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 37  # NDRPDR sel
+#        - 38  # NDRPDR sel
+#        - 39  # NDRPDR sel
+#        - 41  # NDRPDR sel
+        - 42  # NDRPDR sel env 4
+        - 43  # NDRPDR sel env 4
+        - 44  # NDRPDR sel env 4
+        - 45  # NDRPDR sel env 4
+        - 47  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -267,16 +282,23 @@
 
     plot-vpp-throughput-lat-tsa-2n-skx:
       csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 43  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 65  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 55  # NDRPDR sel
-        - 67  # NDRPDR sel
-        - 75  # NDRPDR sel
-        - 76  # NDRPDR sel
-        - 73  # NDRPDR sel
+#        - 43  # NDRPDR sel
+#        - 38  # NDRPDR sel
+#        - 7   # NDRPDR sel
+#        - 65  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 55  # NDRPDR sel
+#        - 67  # NDRPDR sel
+#        - 75  # NDRPDR sel
+#        - 76  # NDRPDR sel
+#        - 73  # NDRPDR sel
+        - 88  # NDRPDR sel env 4
+        - 89  # NDRPDR sel env 4
+        - 90  # NDRPDR sel env 4
+        - 91  # NDRPDR sel env 4
+        - 92  # NDRPDR sel env 4
+        - 93  # NDRPDR sel env 4
+        - 94  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -334,16 +356,24 @@
 
     plot-vpp-throughput-lat-tsa-2n-clx:
       csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 7   # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 32  # NDRPDR sel ???
-        - 33  # NDRPDR sel ???
-        - 39  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 43  # NDRPDR sel
-        - 50  # NDRPDR sel
-        - 51  # NDRPDR sel
+#        - 7   # NDRPDR sel
+#        - 38  # NDRPDR sel
+#        - 9   # NDRPDR sel
+#        - 32  # NDRPDR sel ???
+#        - 33  # NDRPDR sel ???
+#        - 39  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 43  # NDRPDR sel
+#        - 50  # NDRPDR sel
+#        - 51  # NDRPDR sel
+        - 62  # NDRPDR sel env 4
+        - 63  # NDRPDR sel env 4
+        - 64  # NDRPDR sel env 4
+        - 65  # NDRPDR sel env 4
+        - 66  # NDRPDR sel env 4
+        - 68  # NDRPDR sel env 4
+        - 69  # NDRPDR sel env 4
+        - 70  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -411,12 +441,14 @@
     plot-vpp-throughput-lat-tsa-3n-tsh:
       # TODO: Add data:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
-        - 9   # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 21  # NDRPDR sel
+#        - 9   # NDRPDR sel
+#        - 11  # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 20  # NDRPDR sel
+#        - 14  # NDRPDR sel
+#        - 21  # NDRPDR sel
+        - 23  # NDRPDR sel env 4
+        - 25  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
