@@ -22,6 +22,29 @@
       "revId": "0211fa8009920473d185801ee52d34f41227f410",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8478834d_398edf50",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-06-29T15:55:44Z",
+      "side": 1,
+      "message": "The tox job contains a checker which looks at first 3 lines and fails if it sees \"Copyright\" line without the current year.\nIf you want to add a separate copyright line (Intel instead of Cisco), the usual workaround it to add two empty line and then the added copyright (and only the 2019 Cisco line).\n\nI can probably change the checker to stop checking after first correct line (still within first 3) so empty lines are not needed.",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "0211fa8009920473d185801ee52d34f41227f410",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
