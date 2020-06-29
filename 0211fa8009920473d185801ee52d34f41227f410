@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab40acda_f6d33830",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-06-29T06:39:18Z",
+      "side": 1,
+      "message": "and what about the others?\nwhere is HSW? SKX? Make a condition with if var in list; then",
+      "range": {
+        "startLine": 530,
+        "startChar": 43,
+        "endLine": 530,
+        "endChar": 46
+      },
+      "revId": "0211fa8009920473d185801ee52d34f41227f410",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
