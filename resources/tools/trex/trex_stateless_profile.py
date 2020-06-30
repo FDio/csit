@@ -191,8 +191,8 @@ def simple_burst(
         lost_b = 0
 
         # Choose rate and start traffic:
+        client.start(ports=ports, mult=rate, duration=duration, force=force)
         time_start = time.time()
-        client.start(ports=ports, mult=rate, duration=duration)
 
         if async_start:
             # For async stop, we need to export the current snapshot.
