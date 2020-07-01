@@ -1,9 +1,9 @@
 # 3n-tsh
 ### tests 24
-### job hrs est. 2.3
-### job hrs real xx.x
-### test mins est. 5.7
-### test mins real xx.x
+### job hrs est. 2.75
+### job hrs real 2.75
+### test mins est. 6.88
+### test mins real 6.88
 ### intel-x520-da2
 #### dpdk-vfio-pci
 ##### eth-l2xcbase-testpmd
