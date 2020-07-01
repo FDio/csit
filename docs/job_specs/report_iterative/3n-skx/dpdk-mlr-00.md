@@ -1,9 +1,9 @@
 # 3n-skx
 ### tests 36
-### job hrs est. 2.2
-### job hrs real xx.x
-### test mins est. 3.7
-### test mins real xx.x
+### job hrs est. 3
+### job hrs real 3
+### test mins est. 3.75
+### test mins real 3.75
 ### intel-x710
 #### dpdk-vfio-pci
 ##### eth-l2xcbase-testpmd
