@@ -1,9 +1,9 @@
 # 3n-tsh
 ### tests 6
 ### job hrs est. 0.2
-### job hrs real xx.x
+### job hrs real [No data available]
 ### test mins est. 1.6
-### test mins real xx.x
+### test mins real [No data available]
 ### intel-x520-da2
 #### dpdk-vfio-pci
 ##### eth-l2xcbase-testpmd

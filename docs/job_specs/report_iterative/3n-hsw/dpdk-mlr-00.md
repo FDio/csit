@@ -1,9 +1,9 @@
 # 3n-hsw
 ### tests 28
-### job hrs est. 1.7
-### job hrs real xx.x
-### test mins est. 3.7
-### test mins real xx.x
+### job hrs est. 1.75
+### job hrs real 1.75
+### test mins est. 3.75
+### test mins real 3.75
 ### intel-x710
 #### dpdk-vfio-pci
 ##### eth-l2xcbase-testpmd

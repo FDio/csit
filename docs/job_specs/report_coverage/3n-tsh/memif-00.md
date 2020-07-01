@@ -1,9 +1,9 @@
 # 3n-hsw
 ### tests 60
 ### job hrs est. 7.6
-### job hrs real xx.x
+### job hrs real [No data available]
 ### test mins est. 7.6
-### test mins real x.x
+### test mins real [No data available]
 ## ./container_memif
 ### intel-xl710
 #### dpdk-vfio-pci
