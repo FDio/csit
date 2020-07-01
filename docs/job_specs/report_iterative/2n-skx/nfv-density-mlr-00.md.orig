@@ -1,9 +1,17 @@
-# 2n-clx
+# 2n-skx
+<<<<<<< HEAD
 ### tests 84
-### job hrs est. 11.98
-### job hrs real 11.98
-### test mins est. 8.36
-### test mins real 8.36
+### job hrs est. 10.6
+### job hrs real xx.x
+### test mins est. 7.6
+### test mins real x.x
+=======
+### tests 219
+### job hrs est. 41.35
+### job hrs real 41.35
+### test mins est. 11.33
+### test mins real 11.33
+>>>>>>> e824f0d73... Doc: Update durations of test runs
 ## ./container_memif
 ## ./crypto
 ## ./ip4
