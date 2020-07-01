@@ -12,3 +12,6 @@
 
 - import_playbook: nomad.yaml
   tags: nomad
+
+- import_playbook: dev.yaml
+  tags: dev
