@@ -1,8 +1,8 @@
 # 3n-skx
 ### tests 88
-### job hrs est. 11.1
-### job hrs real xx.x
-### test mins est. 7.6
+### job hrs est. 9.5
+### job hrs real x.x
+### test mins est. 6.48
 ### test mins real x.x
 ## ./container_memif
 ## ./crypto

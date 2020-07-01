@@ -1,9 +1,9 @@
 # 2n-clx
 ### tests 48
-### job hrs est. 2.1
-### job hrs real xx.x
-### test mins est. 2.6
-### test mins real xx.x
+### job hrs est. 2.5
+### job hrs real 2.5
+### test mins est. 3.13
+### test mins real 3.13
 ### intel-x710
 #### dpdk-vfio-pci
 ##### eth-l2xcbase-testpmd
