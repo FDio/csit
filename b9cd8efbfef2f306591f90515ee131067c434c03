@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "029cdbbb_6ca76672",
+        "filename": "docs/job_specs/report_coverage/3n-hsw/crypto-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-01T14:56:54Z",
+      "side": 1,
+      "message": "Either it has been run and we have data, or it was not run and we should delete this file.",
+      "range": {
+        "startLine": 4,
+        "startChar": 17,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "b9cd8efbfef2f306591f90515ee131067c434c03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
