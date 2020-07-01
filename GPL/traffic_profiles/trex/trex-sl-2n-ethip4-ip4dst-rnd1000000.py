@@ -81,6 +81,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     min_value=self.p1_dst_start_ip,
                     max_value=self.p1_dst_end_ip,
                     size=4,
+                    seed=0x000,
                     limit=1000000
                 ),
                 STLVmWrFlowVar(
@@ -100,6 +101,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     min_value=self.p2_dst_start_ip,
                     max_value=self.p2_dst_end_ip,
                     size=4,
+                    seed=0x000,
                     limit=1000000
                 ),
                 STLVmWrFlowVar(
