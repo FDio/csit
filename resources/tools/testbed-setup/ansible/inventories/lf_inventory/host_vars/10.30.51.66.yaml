@@ -3,7 +3,7 @@
 
 hostname: "s51-nomad"
 inventory_ipmi_hostname: "10.30.50.66"
-cpu_microarchitecture: "thunderx2"
+cpu_microarchitecture: "thunderx"
 
 # User management.
 users:

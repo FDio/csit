@@ -246,6 +246,9 @@ Name         | Comment
 10.30.50.35  | s45-nomad (formerly nomad4)
 10.30.50.36  | s17-t33-sut1
 10.30.50.37  | s18-t33-sut2
+10.30.50.38  | fdio-marvell-dev
+10.30.50.39  | s53-nomad
+10.30.50.40  | s54-nomad
 10.30.50.41  | s3-t21-sut1
 10.30.50.42  | s4-t21-tg1
 10.30.50.43  | s11-t31-sut1
@@ -265,9 +268,10 @@ Name         | Comment
 10.30.50.57  | s16-t32-tg1
 10.30.50.58  | s25-t25-sut1
 10.30.50.59  | s26-t25-tg1
-10.30.50.66  | s51-nomad
+10.30.50.65  | s52-nomad
+10.30.50.66  | s51-nomad (out of order)
 10.30.50.67  | s49-nomad
-10.30.50.68  | s50-nomad
+10.30.50.68  | s50-nomad (out of order)
 10.30.50.69  | s27-t13-sut
 10.30.50.255 | Broadcast
 n/a          | s20-t34-sut1
@@ -328,6 +332,9 @@ Name                      | Comment
 10.30.51.35               | s45-nomad (formerly nomad4)
 10.30.51.36               | s17-t33-sut1
 10.30.51.37               | s18-t33-sut2
+10.30.51.38               | fdio-marvell-dev
+10.30.51.39               | s53-nomad
+10.30.51.40               | s54-nomad
 10.30.51.41               | s20-t34-sut1
 10.30.51.42               | s21-t34-sut2
 10.30.51.44               | s3-t21-sut1
@@ -349,9 +356,10 @@ Name                      | Comment
 10.30.51.60               | s16-t32-tg1
 10.30.51.61               | s25-t25-sut1
 10.30.51.62               | s26-t25-tg1
-10.30.51.66               | s51-nomad
+10.30.51.65               | s52-nomad
+10.30.51.66               | s51-nomad (out of order)
 10.30.51.67               | s49-nomad
-10.30.51.68               | s50-nomad
+10.30.51.68               | s50-nomad (out of order)
 10.30.51.69               | s27-t13-sut1
 10.30.51.70-10.30.51.105  | FREE
 10.30.51.106-10.30.51.180 | FREE
