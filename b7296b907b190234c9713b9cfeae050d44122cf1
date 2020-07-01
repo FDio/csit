@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11e7f196_cf475e27",
+        "filename": "resources/tools/testbed-setup/ansible/dev.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-01T11:32:30Z",
+      "side": 1,
+      "message": "dev",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "b7296b907b190234c9713b9cfeae050d44122cf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
