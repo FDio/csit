@@ -1,9 +1,9 @@
 # 2n-clx
 ### tests 351
-### job hrs est. 9.4
+### job hrs est. 44.5
 ### job hrs real xx.x
-### test mins est. 1.6
-### test mins real 1.6
+### test mins est. 7.6
+### test mins real x.x
 ## ./container_memif
 ### intel-xxv710
 #### avf
