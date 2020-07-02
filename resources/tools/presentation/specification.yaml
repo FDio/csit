@@ -851,6 +851,9 @@
         - 44  # NDRPDR sel env 4
         - 45  # NDRPDR sel env 4
         - 47  # NDRPDR sel env 4
+    vpp-performance-changes-3n-skx-cmp-2001.0-4:
+      csit-vpp-perf-report-iterative-2005-3n-skx:
+        - 50  # NDRPDR sel 2001.0-4
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1908_1-2n-skx:
@@ -897,6 +900,9 @@
         - 92  # NDRPDR sel env 4
         - 93  # NDRPDR sel env 4
         - 94  # NDRPDR sel env 4
+    vpp-performance-changes-2n-skx-cmp-2001.0-4:
+      csit-vpp-perf-report-iterative-2005-2n-skx:
+        - 100 # NDRPDR sel 2001.0-4
 
 #    vpp-performance-changes-nfv-2n-skx-ref:
 #      csit-vpp-perf-verify-2001-2n-skx:
@@ -944,6 +950,11 @@
         - 68  # NDRPDR sel env 4
         - 69  # NDRPDR sel env 4
         - 70  # NDRPDR sel env 4
+    vpp-performance-changes-2n-clx-cmp-2001.0-4:
+      csit-vpp-perf-report-iterative-2005-2n-clx:
+        - 73  # NDRPDR sel 2001.0-4
+        - 74  # NDRPDR sel 2001.0-4
+        - 75  # NDRPDR sel 2001.0-4
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-1908-2n-dnv:
@@ -1056,6 +1067,9 @@
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 23  # NDRPDR sel env 4
         - 25  # NDRPDR sel env 4
+    vpp-performance-changes-3n-tsh-cmp-2001.0-4:
+      csit-vpp-perf-report-iterative-2005-3n-tsh:
+        - 28  # NDRPDR sel 2001.0-4
 
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -2332,6 +2346,7 @@
       - 44  # NDRPDR sel env 4
       - 45  # NDRPDR sel env 4
       - 47  # NDRPDR sel env 4
+      - 50  # NDRPDR sel 2001.0-4
       - 6   # MRR sel
       - 49  # MRR sel env 4
     csit-vpp-perf-report-coverage-2005-3n-skx:
@@ -2409,6 +2424,7 @@
       - 92  # NDRPDR sel env 4
       - 93  # NDRPDR sel env 4
       - 94  # NDRPDR sel env 4
+      - 100 # NDRPDR sel 2001.0-4
       - 42  # MRR sel
       - 99  # MRR sel env 4
       - 48  # Reconf
@@ -2479,6 +2495,9 @@
       - 68  # NDRPDR sel env 4
       - 69  # NDRPDR sel env 4
       - 70  # NDRPDR sel env 4
+      - 73  # NDRPDR sel 2001.0-4
+      - 74  # NDRPDR sel 2001.0-4
+      - 75  # NDRPDR sel 2001.0-4
       - 12  # MRR
       - 72  # MRR env 4
       - 42  # Reconf
@@ -2549,6 +2568,7 @@
       - 21  # NDRPDR sel
       - 23  # NDRPDR sel env 4
       - 25  # NDRPDR sel env 4
+      - 28  # NDRPDR sel 2001.0-4
       - 10  # MRR sel
       - 27  # MRR sel env 4
 
@@ -3262,37 +3282,29 @@
       data-set: "vpp-performance-changes-3n-hsw-ref"
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp-2001.0-4"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-hsw-cmp"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp-2"
   comparisons:
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 4
-      compare: 5
-    - title: "2005.0-4 vs 2001.0-2"
-      reference: 2
-      compare: 5
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-3n-hsw-1t1c-pdr-rca1.yaml"
 #    - title: "RCA2"
 #      data: "rca/rca-2005-3n-hsw-1t1c-pdr-rca2.yaml"
-#    - title: "RCA3"
-#      data: "rca/rca-2005-3n-hsw-1t1c-pdr-rca3.yaml"
   legend:
     - 'Legend to Table:'
     - ''
     - '           Test Case: Test cases executed for: PDR throughput on 3n-hsw with xl710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
     - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 3n-hsw 2t2c pdr
 - type: "table"
@@ -3308,37 +3320,29 @@
       data-set: "vpp-performance-changes-3n-hsw-ref"
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp-2001.0-4"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-hsw-cmp"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp-2"
   comparisons:
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 4
-      compare: 5
-    - title: "2005.0-4 vs 2001.0-2"
-      reference: 2
-      compare: 5
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 4
 #  rca:
-#    - title: "RCA1"
-#      data: "rca/rca-2005-3n-hsw-2t2c-pdr-rca1.yaml"
 #    - title: "RCA2"
-#      data: "rca/rca-2005-3n-hsw-2t2c-pdr-rca2.yaml"
+#      data: "rca/rca-2005-3n-hsw-2t2c-pdr-rca1.yaml"
 #    - title: "RCA3"
-#      data: "rca/rca-2005-3n-hsw-2t2c-pdr-rca3.yaml"
+#      data: "rca/rca-2005-3n-hsw-2t2c-pdr-rca2.yaml"
   legend:
     - 'Legend to Table:'
     - ''
     - '           Test Case: Test cases executed for: PDR throughput on 3n-hsw with xl710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
     - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 3n-hsw 1t1c ndr
 - type: "table"
@@ -3354,37 +3358,29 @@
       data-set: "vpp-performance-changes-3n-hsw-ref"
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp-2001.0-4"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-hsw-cmp"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp-2"
   comparisons:
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 4
-      compare: 5
-    - title: "2005.0-4 vs 2001.0-2"
-      reference: 2
-      compare: 5
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
-#      data: "rca/rca-2005-3n-hsw-1t1c-ndr-rca1.yaml"
-#    - title: "RCA2"
 #      data: "rca/rca-2005-3n-hsw-1t1c-ndr-rca2.yaml"
-#    - title: "RCA3"
+#    - title: "RCA2"
 #      data: "rca/rca-2005-3n-hsw-1t1c-ndr-rca3.yaml"
   legend:
     - 'Legend to Table:'
     - ''
-    - '           Test Case: Test cases executed for: PDR throughput on 3n-hsw with xl710.'
+    - '           Test Case: Test cases executed for: NDR throughput on 3n-hsw with xl710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
     - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 3n-hsw 2t2c ndr
 - type: "table"
@@ -3400,19 +3396,198 @@
       data-set: "vpp-performance-changes-3n-hsw-ref"
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp-2001.0-4"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-hsw-cmp"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-hsw-cmp-2"
   comparisons:
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 4
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-hsw-2t2c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-hsw-2t2c-ndr-rca2.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: NDR throughput on 3n-hsw with xl710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-hsw 1t1c pdr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-hsw 1t1c pdr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-pdr-full"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-hsw-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
+  comparisons:
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-hsw-1t1c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-hsw-1t1c-pdr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-hsw-1t1c-pdr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: PDR throughput on 3n-hsw with xl710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-hsw 2t2c pdr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-hsw 2t2c pdr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-pdr-full"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-hsw-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-hsw-2t2c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-hsw-2t2c-pdr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-hsw-2t2c-pdr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: PDR throughput on 3n-hsw with xl710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-hsw 1t1c ndr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-hsw 1t1c ndr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-ndr-full"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-hsw-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-hsw-1t1c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-hsw-1t1c-ndr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-hsw-1t1c-ndr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: NDR throughput on 3n-hsw with xl710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-hsw 2t2c ndr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-hsw 2t2c ndr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-ndr-full"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-hsw-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-hsw-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-hsw-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-hsw-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 5
 #  rca:
 #    - title: "RCA1"
@@ -3424,13 +3599,14 @@
   legend:
     - 'Legend to Table:'
     - ''
-    - '           Test Case: Test cases executed for: PDR throughput on 3n-hsw with xl710.'
+    - '           Test Case: Test cases executed for: NDR throughput on 3n-hsw with xl710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
     - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
 #    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 3n-skx 2t1c pdr
 - type: "table"
@@ -3444,16 +3620,16 @@
       data-set: "vpp-performance-changes-3n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-skx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -3465,10 +3641,10 @@
     - ''
     - '           Test Case: Test cases executed for: PDR throughput on 3n-skx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 3n-skx 4t2c pdr
 - type: "table"
@@ -3482,16 +3658,16 @@
       data-set: "vpp-performance-changes-3n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-skx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -3503,10 +3679,10 @@
     - ''
     - '           Test Case: Test cases executed for: PDR throughput on 3n-skx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 3n-skx 2t1c ndr
 - type: "table"
@@ -3520,16 +3696,16 @@
       data-set: "vpp-performance-changes-3n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-skx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -3541,10 +3717,10 @@
     - ''
     - '           Test Case: Test cases executed for: NDR throughput on 3n-skx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 3n-skx 4t2c ndr
 - type: "table"
@@ -3558,16 +3734,16 @@
       data-set: "vpp-performance-changes-3n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-skx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -3579,10 +3755,198 @@
     - ''
     - '           Test Case: Test cases executed for: NDR throughput on 3n-skx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-skx 2t1c pdr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 2t1c pdr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-pdr-full"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-skx-2t1c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-skx-2t1c-pdr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-skx-2t1c-pdr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: PDR throughput on 3n-skx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
     - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
 #    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-skx 4t2c pdr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 4t2c pdr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-pdr-full"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-skx-4t2c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-skx-4t2c-pdr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-skx-4t2c-pdr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: PDR throughput on 3n-skx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-skx 2t1c ndr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 2t1c ndr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-ndr-full"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-skx-2t1c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-skx-2t1c-ndr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-skx-2t1c-ndr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: NDR throughput on 3n-skx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-skx 4t2c ndr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-skx 4t2c ndr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-ndr-full"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-skx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-skx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-skx-4t2c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-skx-4t2c-ndr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-skx-4t2c-ndr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: NDR throughput on 3n-skx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 2n-skx 2t1c pdr
 - type: "table"
@@ -3596,16 +3960,16 @@
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -3617,10 +3981,10 @@
     - ''
     - '           Test Case: Test cases executed for: PDR throughput on 2n-skx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 2n-skx 4t2c pdr
 - type: "table"
@@ -3634,16 +3998,16 @@
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -3655,10 +4019,10 @@
     - ''
     - '           Test Case: Test cases executed for: PDR throughput on 2n-skx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 2n-skx 2t1c ndr
 - type: "table"
@@ -3672,16 +4036,16 @@
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -3693,10 +4057,10 @@
     - ''
     - '           Test Case: Test cases executed for: NDR throughput on 2n-skx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 2n-skx 4t2c ndr
 - type: "table"
@@ -3710,16 +4074,16 @@
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-skx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -3731,10 +4095,198 @@
     - ''
     - '           Test Case: Test cases executed for: NDR throughput on 2n-skx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 2n-skx 2t1c pdr-full
+- type: "table"
+  title: "VPP Performance Changes 2n-skx 2t1c pdr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr-full"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-2n-skx-2t1c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-2n-skx-2t1c-pdr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-2n-skx-2t1c-pdr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: PDR throughput on 2n-skx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
     - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
 #    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 2n-skx 4t2c pdr-full
+- type: "table"
+  title: "VPP Performance Changes 2n-skx 4t2c pdr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-pdr-full"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-2n-skx-4t2c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-2n-skx-4t2c-pdr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-2n-skx-4t2c-pdr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: PDR throughput on 2n-skx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 2n-skx 2t1c ndr-full
+- type: "table"
+  title: "VPP Performance Changes 2n-skx 2t1c ndr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-ndr-full"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-2n-skx-2t1c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-2n-skx-2t1c-ndr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-2n-skx-2t1c-ndr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: NDR throughput on 2n-skx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 2n-skx 4t2c ndr-full
+- type: "table"
+  title: "VPP Performance Changes 2n-skx 4t2c ndr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-ndr-full"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-skx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-skx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-skx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-skx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-2n-skx-4t2c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-2n-skx-4t2c-ndr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-2n-skx-4t2c-ndr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: NDR throughput on 2n-skx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 2n-clx-xxv710 2t1c pdr
 - type: "table"
@@ -3744,19 +4296,21 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2001.0-2"
-      reference: 1
-      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-2t1c-pdr-rca1.yaml"
@@ -3767,10 +4321,10 @@
     - ''
     - '           Test Case: Test cases executed for: PDR throughput on 2n-clx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 2n-clx-xxv710 4t2c pdr
 - type: "table"
@@ -3780,19 +4334,21 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2001.0-2"
-      reference: 1
-      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-4t2c-pdr-rca1.yaml"
@@ -3803,10 +4359,10 @@
     - ''
     - '           Test Case: Test cases executed for: PDR throughput on 2n-clx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 2n-clx-xxv710 2t1c ndr
 - type: "table"
@@ -3816,19 +4372,21 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2001.0-2"
-      reference: 1
-      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-2t1c-ndr-rca1.yaml"
@@ -3839,10 +4397,10 @@
     - ''
     - '           Test Case: Test cases executed for: NDR throughput on 2n-clx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 2n-clx-xxv710 4t2c ndr
 - type: "table"
@@ -3852,19 +4410,21 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2001.0-2"
-      reference: 1
-      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-4t2c-ndr-rca1.yaml"
@@ -3875,10 +4435,198 @@
     - ''
     - '           Test Case: Test cases executed for: NDR throughput on 2n-clx with xxv710.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 2n-clx-xxv710 2t1c pdr-full
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 2t1c pdr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-2t1c-pdr-full"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-clx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-2n-clx-2t1c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-2n-clx-2t1c-pdr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-2n-clx-2t1c-pdr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: PDR throughput on 2n-clx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
     - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
 #    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 2n-clx-xxv710 4t2c pdr-full
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 4t2c pdr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-4t2c-pdr-full"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-clx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-2n-clx-4t2c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-2n-clx-4t2c-pdr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-2n-clx-4t2c-pdr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: PDR throughput on 2n-clx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 2n-clx-xxv710 2t1c ndr-full
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 2t1c ndr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-2t1c-ndr-full"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-clx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-2n-clx-2t1c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-2n-clx-2t1c-ndr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-2n-clx-2t1c-ndr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: NDR throughput on 2n-clx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 2n-clx-xxv710 4t2c ndr-full
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-xxv710 ndr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-xxv710-4t2c-ndr-full"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-2n-clx-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-clx-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-2n-clx-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-2n-clx-4t2c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-2n-clx-4t2c-ndr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-2n-clx-4t2c-ndr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: NDR throughput on 2n-clx with xxv710.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 2n-clx-x556 2t1c pdr
 - type: "table"
@@ -4160,16 +4908,16 @@
       data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-tsh-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -4181,10 +4929,10 @@
     - ''
     - '           Test Case: Test cases executed for: PDR throughput on 3n-tsh with x520.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 3n-tsh 2t2c pdr
 - type: "table"
@@ -4198,16 +4946,16 @@
       data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-tsh-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -4219,10 +4967,10 @@
     - ''
     - '           Test Case: Test cases executed for: PDR throughput on 3n-tsh with x520.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 3n-tsh 1t1c ndr
 - type: "table"
@@ -4236,16 +4984,16 @@
       data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-tsh-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -4257,10 +5005,10 @@
     - ''
     - '           Test Case: Test cases executed for: NDR throughput on 3n-tsh with x520.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
-    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
-#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Performance Changes 3n-tsh 2t2c ndr
 - type: "table"
@@ -4274,16 +5022,16 @@
       data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-ref"
-    - title: "2005.0-3"
-      data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2001.0-4"
     - title: "2005.0-4"
       data-set: "vpp-performance-changes-3n-tsh-cmp-2"
   comparisons:
-    - title: "2005.0-4 vs 2005.0-3"
-      reference: 3
-      compare: 4
-    - title: "2005.0-4 vs 2001.0-2"
+    - title: "2001.0-4 vs 2001.0-2"
       reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
       compare: 4
 #  rca:
 #    - title: "RCA1"
@@ -4295,10 +5043,198 @@
     - ''
     - '           Test Case: Test cases executed for: NDR throughput on 3n-tsh with x520.'
     - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-tsh 1t1c pdr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 1t1c pdr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-pdr-full"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-tsh-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-tsh-1t1c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-tsh-1t1c-pdr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-tsh-1t1c-pdr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: PDR throughput on 3n-tsh with x520.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
     - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
-    - '2005.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
 #    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
-#    - '                RCA2: root cause analysis reference for 2005.0-4 vs 2001.0-2.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-tsh 2t2c pdr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 2t2c pdr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-pdr-full"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-tsh-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-tsh-2t2c-pdr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-tsh-2t2c-pdr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-tsh-2t2c-pdr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: PDR throughput on 3n-tsh with x520.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-tsh 1t1c ndr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 1t1c ndr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-1t1c-ndr-full"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-tsh-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-tsh-1t1c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-tsh-1t1c-ndr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-tsh-1t1c-ndr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: NDR throughput on 3n-tsh with x520.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
+
+# VPP Performance Changes 3n-tsh 2t2c ndr-full
+- type: "table"
+  title: "VPP Performance Changes 3n-tsh 2t2c ndr-full"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-tsh-2t2c-ndr-full"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    - title: "1908.1-2"
+      data-set: "vpp-performance-changes-3n-tsh-h1"
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-tsh-ref"
+    - title: "2001.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2001.0-4"
+    - title: "2005.0-3"
+      data-set: "vpp-performance-changes-3n-tsh-cmp"
+    - title: "2005.0-4"
+      data-set: "vpp-performance-changes-3n-tsh-cmp-2"
+  comparisons:
+    - title: "2005.0-4 vs 2005.0-3"
+      reference: 4
+      compare: 5
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 2
+      compare: 3
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 3
+      compare: 5
+#  rca:
+#    - title: "RCA1"
+#      data: "rca/rca-2005-3n-tsh-2t2c-ndr-rca1.yaml"
+#    - title: "RCA2"
+#      data: "rca/rca-2005-3n-tsh-2t2c-ndr-rca2.yaml"
+#    - title: "RCA3"
+#      data: "rca/rca-2005-3n-tsh-2t2c-ndr-rca3.yaml"
+  legend:
+    - 'Legend to Table:'
+    - ''
+    - '           Test Case: Test cases executed for: NDR throughput on 3n-tsh with x520.'
+    - '            YYMM.V-E: [Mpps +- StDev] results for VPP version (YY year, MM month, V minor version) tested in CSIT environment version (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - '2005.0-4 vs 2005.0-3: [% +- StDev] Relative difference, latter is the base. Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
+    - '2001.0-4 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base.'
+    - '2005.0-4 vs 2001.0-4: [% +- StDev] Relative difference, latter is the base.'
+#    - '                RCA1: root cause analysis reference for 2005.0-4 vs 2005.0-3.'
+#    - '                RCA2: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
+#    - '                RCA3: root cause analysis reference for 2005.0-4 vs 2001.0-4.'
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr
 - type: "table"
