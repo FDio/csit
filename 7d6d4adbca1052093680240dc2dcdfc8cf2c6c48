@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5244b2a_f9cb3ad4",
+        "filename": "GPL/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-02T15:54:36Z",
+      "side": 1,
+      "message": "This is the final sample used for computing the total loss count, right?\nBefore this, insert client.stop and a sleep (for a moment, 0.1s or less) so in-flight packets can arrive. For the dict key, use the time at the stop.",
+      "range": {
+        "startLine": 222,
+        "startChar": 66,
+        "endLine": 222,
+        "endChar": 75
+      },
+      "revId": "7d6d4adbca1052093680240dc2dcdfc8cf2c6c48",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
