@@ -4296,8 +4296,6 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1908.1-2"
-      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2001.0-4"
@@ -4306,11 +4304,11 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "2001.0-4 vs 2001.0-2"
+      reference: 1
+      compare: 2
+    - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2001.0-4"
-      reference: 3
-      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-2t1c-pdr-rca1.yaml"
@@ -4334,8 +4332,6 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1908.1-2"
-      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2001.0-4"
@@ -4344,11 +4340,11 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "2001.0-4 vs 2001.0-2"
+      reference: 1
+      compare: 2
+    - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2001.0-4"
-      reference: 3
-      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-4t2c-pdr-rca1.yaml"
@@ -4372,8 +4368,6 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1908.1-2"
-      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2001.0-4"
@@ -4382,11 +4376,11 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "2001.0-4 vs 2001.0-2"
+      reference: 1
+      compare: 2
+    - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2001.0-4"
-      reference: 3
-      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-2t1c-ndr-rca1.yaml"
@@ -4410,8 +4404,6 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1908.1-2"
-      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2001.0-4"
@@ -4420,11 +4412,11 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "2001.0-4 vs 2001.0-2"
+      reference: 1
+      compare: 2
+    - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 3
-    - title: "2005.0-4 vs 2001.0-4"
-      reference: 3
-      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-4t2c-ndr-rca1.yaml"
@@ -4448,8 +4440,6 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1908.1-2"
-      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2001.0-4"
@@ -4460,14 +4450,14 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "2005.0-4 vs 2005.0-3"
-      reference: 4
-      compare: 5
-    - title: "2001.0-4 vs 2001.0-2"
-      reference: 2
-      compare: 3
-    - title: "2005.0-4 vs 2001.0-4"
       reference: 3
-      compare: 5
+      compare: 4
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 1
+      compare: 2
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 2
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-2t1c-pdr-rca1.yaml"
@@ -4495,8 +4485,6 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1908.1-2"
-      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2001.0-4"
@@ -4507,14 +4495,14 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "2005.0-4 vs 2005.0-3"
-      reference: 4
-      compare: 5
-    - title: "2001.0-4 vs 2001.0-2"
-      reference: 2
-      compare: 3
-    - title: "2005.0-4 vs 2001.0-4"
       reference: 3
-      compare: 5
+      compare: 4
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 1
+      compare: 2
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 2
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-4t2c-pdr-rca1.yaml"
@@ -4542,8 +4530,6 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1908.1-2"
-      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2001.0-4"
@@ -4554,14 +4540,14 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "2005.0-4 vs 2005.0-3"
-      reference: 4
-      compare: 5
-    - title: "2001.0-4 vs 2001.0-2"
-      reference: 2
-      compare: 3
-    - title: "2005.0-4 vs 2001.0-4"
       reference: 3
-      compare: 5
+      compare: 4
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 1
+      compare: 2
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 2
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-2t1c-ndr-rca1.yaml"
@@ -4589,8 +4575,6 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710' and not 'NF_DENSITY'"
   columns:
-    - title: "1908.1-2"
-      data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-ref"
     - title: "2001.0-4"
@@ -4601,14 +4585,14 @@
       data-set: "vpp-performance-changes-2n-clx-cmp-2"
   comparisons:
     - title: "2005.0-4 vs 2005.0-3"
-      reference: 4
-      compare: 5
-    - title: "2001.0-4 vs 2001.0-2"
-      reference: 2
-      compare: 3
-    - title: "2005.0-4 vs 2001.0-4"
       reference: 3
-      compare: 5
+      compare: 4
+    - title: "2001.0-4 vs 2001.0-2"
+      reference: 1
+      compare: 2
+    - title: "2005.0-4 vs 2001.0-4"
+      reference: 2
+      compare: 4
 #  rca:
 #    - title: "RCA1"
 #      data: "rca/rca-2005-2n-clx-4t2c-ndr-rca1.yaml"
