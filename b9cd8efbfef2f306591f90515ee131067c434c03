@@ -46,6 +46,30 @@
       "revId": "b9cd8efbfef2f306591f90515ee131067c434c03",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6e22f11_af618648",
+        "filename": "docs/job_specs/report_coverage/3n-hsw/crypto-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-02T15:17:11Z",
+      "side": 1,
+      "message": "Does that mean we were missing some test results without realizing it?",
+      "parentUuid": "f1f029e1_bca9db97",
+      "range": {
+        "startLine": 4,
+        "startChar": 17,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "b9cd8efbfef2f306591f90515ee131067c434c03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
