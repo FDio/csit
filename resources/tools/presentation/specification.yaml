@@ -905,6 +905,7 @@
     vpp-performance-changes-2n-skx-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 100 # NDRPDR sel 2001.0-4
+        - 101 # NDRPDR sel 2001.0-4
 
 #    vpp-performance-changes-nfv-2n-skx-ref:
 #      csit-vpp-perf-verify-2001-2n-skx:
@@ -2430,6 +2431,7 @@
       - 93  # NDRPDR sel env 4
       - 94  # NDRPDR sel env 4
       - 100 # NDRPDR sel 2001.0-4
+      - 101 # NDRPDR sel 2001.0-4
       - 42  # MRR sel
       - 99  # MRR sel env 4
       - 48  # Reconf
