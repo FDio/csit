@@ -70,6 +70,30 @@
       "revId": "b9cd8efbfef2f306591f90515ee131067c434c03",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c61b39e_1ba36a91",
+        "filename": "docs/job_specs/report_coverage/3n-hsw/crypto-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-07-03T05:21:16Z",
+      "side": 1,
+      "message": "It means, we aborted some runs when we wanted to immediately start re-testing in 2005-4 environment. And in some cases I did not entered real time because I do not have enough information to do it (test set was split, changed, ...).",
+      "parentUuid": "c6e22f11_af618648",
+      "range": {
+        "startLine": 4,
+        "startChar": 17,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "b9cd8efbfef2f306591f90515ee131067c434c03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
