@@ -812,6 +812,10 @@
         - 31  # NDRPDR sel 2001.0-4
         - 32  # NDRPDR sel 2001.0-4
         - 33  # NDRPDR sel 2001.0-4
+        - 34  # NDRPDR sel 2001.0-4
+        - 35  # NDRPDR sel 2001.0-4
+        - 36  # NDRPDR sel 2001.0-4
+        - 38  # NDRPDR sel 2001.0-4
 
     vpp-performance-changes-3n-skx-h1:
       csit-vpp-perf-verify-1908_1-3n-skx:
@@ -856,6 +860,9 @@
     vpp-performance-changes-3n-skx-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 50  # NDRPDR sel 2001.0-4
+        - 51  # NDRPDR sel 2001.0-4
+        - 52  # NDRPDR sel 2001.0-4
+        - 53  # NDRPDR sel 2001.0-4
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1908_1-2n-skx:
@@ -906,6 +913,10 @@
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 100 # NDRPDR sel 2001.0-4
         - 101 # NDRPDR sel 2001.0-4
+        - 102 # NDRPDR sel 2001.0-4
+        - 103 # NDRPDR sel 2001.0-4
+        - 104 # NDRPDR sel 2001.0-4
+        - 105 # NDRPDR sel 2001.0-4
 
 #    vpp-performance-changes-nfv-2n-skx-ref:
 #      csit-vpp-perf-verify-2001-2n-skx:
@@ -959,6 +970,10 @@
         - 74  # NDRPDR sel 2001.0-4
         - 75  # NDRPDR sel 2001.0-4
         - 76  # NDRPDR sel 2001.0-4
+        - 77  # NDRPDR sel 2001.0-4
+        - 78  # NDRPDR sel 2001.0-4
+        - 79  # NDRPDR sel 2001.0-4
+        - 80  # NDRPDR sel 2001.0-4
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-1908-2n-dnv:
@@ -1074,6 +1089,7 @@
     vpp-performance-changes-3n-tsh-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 28  # NDRPDR sel 2001.0-4
+        - 29  # NDRPDR sel 2001.0-4
 
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -2266,6 +2282,10 @@
       - 31  # NDRPDR sel 2001.0-4
       - 32  # NDRPDR sel 2001.0-4
       - 33  # NDRPDR sel 2001.0-4
+      - 34  # NDRPDR sel 2001.0-4
+      - 35  # NDRPDR sel 2001.0-4
+      - 36  # NDRPDR sel 2001.0-4
+      - 38  # NDRPDR sel 2001.0-4
     csit-vpp-perf-verify-2005-3n-hsw:
       - 3   # hoststack
       - 5   # hoststack
@@ -2353,6 +2373,9 @@
       - 45  # NDRPDR sel env 4
       - 47  # NDRPDR sel env 4
       - 50  # NDRPDR sel 2001.0-4
+      - 51  # NDRPDR sel 2001.0-4
+      - 52  # NDRPDR sel 2001.0-4
+      - 53  # NDRPDR sel 2001.0-4
       - 6   # MRR sel
       - 49  # MRR sel env 4
     csit-vpp-perf-report-coverage-2005-3n-skx:
@@ -2432,6 +2455,10 @@
       - 94  # NDRPDR sel env 4
       - 100 # NDRPDR sel 2001.0-4
       - 101 # NDRPDR sel 2001.0-4
+      - 102 # NDRPDR sel 2001.0-4
+      - 103 # NDRPDR sel 2001.0-4
+      - 104 # NDRPDR sel 2001.0-4
+      - 105 # NDRPDR sel 2001.0-4
       - 42  # MRR sel
       - 99  # MRR sel env 4
       - 48  # Reconf
@@ -2506,6 +2533,10 @@
       - 74  # NDRPDR sel 2001.0-4
       - 75  # NDRPDR sel 2001.0-4
       - 76  # NDRPDR sel 2001.0-4
+      - 77  # NDRPDR sel 2001.0-4
+      - 78  # NDRPDR sel 2001.0-4
+      - 79  # NDRPDR sel 2001.0-4
+      - 80  # NDRPDR sel 2001.0-4
       - 12  # MRR
       - 72  # MRR env 4
       - 42  # Reconf
@@ -2577,6 +2608,7 @@
       - 23  # NDRPDR sel env 4
       - 25  # NDRPDR sel env 4
       - 28  # NDRPDR sel 2001.0-4
+      - 29  # NDRPDR sel 2001.0-4
       - 10  # MRR sel
       - 27  # MRR sel env 4
 
