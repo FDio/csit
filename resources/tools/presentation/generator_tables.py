@@ -1657,6 +1657,8 @@ def table_comparison(table, input_data):
                                 f"and/or compare={col_cmp}. Skipping.")
                 comparisons.pop(idx)
                 continue
+    else:
+        comparisons = None
 
     tbl_cmp_lst = list()
     if comparisons:
