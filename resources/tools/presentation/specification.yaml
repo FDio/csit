@@ -863,6 +863,7 @@
         - 51  # NDRPDR sel 2001.0-4
         - 52  # NDRPDR sel 2001.0-4
         - 53  # NDRPDR sel 2001.0-4
+        - 54  # NDRPDR sel 2001.0-4
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1908_1-2n-skx:
@@ -1090,6 +1091,7 @@
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 28  # NDRPDR sel 2001.0-4
         - 29  # NDRPDR sel 2001.0-4
+        - 31  # NDRPDR sel 2001.0-4
 
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -2376,6 +2378,7 @@
       - 51  # NDRPDR sel 2001.0-4
       - 52  # NDRPDR sel 2001.0-4
       - 53  # NDRPDR sel 2001.0-4
+      - 54  # NDRPDR sel 2001.0-4
       - 6   # MRR sel
       - 49  # MRR sel env 4
     csit-vpp-perf-report-coverage-2005-3n-skx:
@@ -2609,6 +2612,7 @@
       - 25  # NDRPDR sel env 4
       - 28  # NDRPDR sel 2001.0-4
       - 29  # NDRPDR sel 2001.0-4
+      - 31  # NDRPDR sel 2001.0-4
       - 10  # MRR sel
       - 27  # MRR sel env 4
 
