@@ -1641,6 +1641,7 @@ def table_comparison(table, input_data):
         tbl_lst.append(row)
 
     comparisons = table.get(u"comparisons", None)
+    rcas = list()
     if comparisons and isinstance(comparisons, list):
         for idx, comp in enumerate(comparisons):
             try:
@@ -1650,13 +1651,32 @@ def table_comparison(table, input_data):
                 logging.warning(u"Comparison: No references defined! Skipping.")
                 comparisons.pop(idx)
                 continue
-            if not (0 < col_ref <= len(cols) and
-                    0 < col_cmp <= len(cols)) or \
-                    col_ref == col_cmp:
+            if not (0 < col_ref <= len(cols) and 0 < col_cmp <= len(cols) or
+                    col_ref == col_cmp):
                 logging.warning(f"Wrong values of reference={col_ref} "
                                 f"and/or compare={col_cmp}. Skipping.")
                 comparisons.pop(idx)
                 continue
+            rca_file_name = comp.get(u"rca-file", None)
+            if rca_file_name:
+                try:
+                    with open(rca_file_name, u"r") as file_handler:
+                        rcas.append(
+                            {
+                                u"title": f"RCA{idx + 1}",
+                                u"data": load(file_handler, Loader=FullLoader)
+                            }
+                        )
+                except (YAMLError, IOError) as err:
+                    logging.warning(
+                        f"The RCA file {rca_file_name} does not exist or "
+                        f"it is corrupted!"
+                    )
+                    logging.debug(repr(err))
+            else:
+                rcas.append(None)
+    else:
+        comparisons = None
 
     tbl_cmp_lst = list()
     if comparisons:
@@ -1695,24 +1715,24 @@ def table_comparison(table, input_data):
     except TypeError as err:
         logging.warning(f"Empty data element in table\n{tbl_cmp_lst}\n{err}")
 
-    rcas = list()
-    rca_in = table.get(u"rca", None)
-    if rca_in and isinstance(rca_in, list):
-        for idx, itm in enumerate(rca_in):
-            try:
-                with open(itm.get(u"data", u""), u"r") as rca_file:
-                    rcas.append(
-                        {
-                            u"title": itm.get(u"title", f"RCA{idx}"),
-                            u"data": load(rca_file, Loader=FullLoader)
-                        }
-                    )
-            except (YAMLError, IOError) as err:
-                logging.warning(
-                    f"The RCA file {itm.get(u'data', u'')} does not exist or "
-                    f"it is corrupted!"
-                )
-                logging.debug(repr(err))
+    # rcas = list()
+    # rca_in = table.get(u"rca", None)
+    # if rca_in and isinstance(rca_in, list):
+    #     for idx, itm in enumerate(rca_in):
+    #         try:
+    #             with open(itm.get(u"data", u""), u"r") as rca_file:
+    #                 rcas.append(
+    #                     {
+    #                         u"title": itm.get(u"title", f"RCA{idx}"),
+    #                         u"data": load(rca_file, Loader=FullLoader)
+    #                     }
+    #                 )
+    #         except (YAMLError, IOError) as err:
+    #             logging.warning(
+    #                 f"The RCA file {itm.get(u'data', u'')} does not exist or "
+    #                 f"it is corrupted!"
+    #             )
+    #             logging.debug(repr(err))
 
     tbl_for_csv = list()
     for line in tbl_cmp_lst:
