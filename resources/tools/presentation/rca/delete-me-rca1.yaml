@@ -1,0 +1,29 @@
+imix-1t1c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm: 1
+imix-1t1c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm: 2
+imix-1t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm: 34
+1518b-1t1c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm: 4
+64b-1t1c-ethip4udp-ip4base-oacl50sl-10kflows: 2
+78b-1t1c-ethip6-ip6scale200k: 5
+78b-1t1c-ethip6-ip6scale20k: 3
+78b-1t1c-ethip6-ip6scale2m: 7
+64b-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 11
+64b-1t1c-eth-l2bdbasemaclrn: 3
+64b-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4: 3
+64b-1t1c-eth-l2xcbase-eth-2memif-1dcr: 9
+64b-1t1c-ethip4-ip4base-eth-2memif-1dcr: 4
+64b-1t1c-eth-l2bdscale1mmaclrn: 1
+# Multiline string, empty lines (or \n) are required, see https://yaml-multiline.info/
+footnote: "[1] DONE, Impact of upgrades: i) Skx ucode from 0x2000043 to
+    0x2000065, ii) Linux kernel from 4.15.0-60 to 4.15.0-72 and iii)
+    SuperMicro motherboard BIOS from 3.0c to 3.2.
+
+    [2] DONE, Applied fix of FVL NIC firmware 6.0.1 for increasing TRex
+    Mpps rate from 27 Mpps to 37 Mpps, [CSIT-1503], [TRex-519].
+
+    [3] DONE, Applied VPP PAPI fix to enable memif zero-copy,
+    [CSIT-1592], [VPP-1764].
+
+    [4] OPEN, Higher than before StDev of PDR throughput for VPP
+    vhost-user with VPP-inside-VM, under investigation, [CSIT-1699],
+    [CSIT-1704].
+"
