@@ -199,20 +199,20 @@
 
     plot-dpdk-throughput-latency-3n-hsw:
       csit-dpdk-perf-report-iterative-2005-3n-hsw:
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
+        - 25  # NDRPDR iter
+        - 26  # NDRPDR iter
+        - 27  # NDRPDR iter
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
+        - 30  # NDRPDR iter
+        - 31  # NDRPDR iter
+        - 32  # NDRPDR iter
+        - 33  # NDRPDR iter
+        - 34  # NDRPDR iter
 
     plot-dpdk-hdrh-lat-3n-hsw:
       csit-dpdk-perf-report-iterative-2005-3n-hsw:
-        - 5   # NDRPDR sel
+        - 25  # NDRPDR iter
 
     # 3n-skx
 
@@ -242,20 +242,20 @@
 
     plot-dpdk-throughput-latency-3n-skx:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
+        - 30  # NDRPDR iter
+        - 31  # NDRPDR iter
+        - 32  # NDRPDR iter
+        - 33  # NDRPDR iter
+        - 34  # NDRPDR iter
+        - 35  # NDRPDR iter
+        - 36  # NDRPDR iter
+        - 37  # NDRPDR iter
 
     plot-dpdk-hdrh-lat-3n-skx:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
-        - 4   # NDRPDR sel
+        - 28  # NDRPDR iter
 
     # 2n-skx
 
@@ -305,20 +305,19 @@
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
+        - 20  # NDRPDR iter
+        - 22  # NDRPDR iter
+        - 23  # NDRPDR iter
+        - 24  # NDRPDR iter
+        - 25  # NDRPDR iter
+        - 26  # NDRPDR iter
+        - 27  # NDRPDR iter
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
 
     plot-dpdk-hdrh-lat-2n-skx:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
-        - 1   # NDRPDR sel
+        - 20  # NDRPDR iter
 
     # 2n-clx
 
@@ -379,20 +378,20 @@
 
     plot-dpdk-throughput-latency-2n-clx:
       csit-dpdk-perf-report-iterative-2005-2n-clx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
+        - 20  # NDRPDR iter
+        - 21  # NDRPDR iter
+        - 22  # NDRPDR iter
+        - 23  # NDRPDR iter
+        - 24  # NDRPDR iter
+        - 25  # NDRPDR iter
+        - 26  # NDRPDR iter
+        - 27  # NDRPDR iter
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
 
     plot-dpdk-hdrh-lat-2n-clx:
       csit-dpdk-perf-report-iterative-2005-2n-clx:
-        - 1   # NDRPDR sel
+        - 21  # NDRPDR iter
 
     # 3n-tsh
 
@@ -678,19 +677,19 @@
 
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-report-iterative-2005-3n-hsw:
-        - 5   # NDRPDR sel
+        - 25  # NDRPDR iter
 
     dpdk-perf-results-3n-skx:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
-        - 4   # NDRPDR sel
+        - 28  # NDRPDR iter
 
     dpdk-perf-results-2n-skx:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
-        - 1   # NDRPDR sel
+        - 20  # NDRPDR iter
 
     dpdk-perf-results-2n-clx:
       csit-dpdk-perf-report-iterative-2005-2n-clx:
-        - 1   # NDRPDR sel
+        - 21  # NDRPDR iter
 
     dpdk-perf-results-2n-dnv:
       csit-dpdk-perf-report-iterative-2005-2n-dnv:
@@ -1232,16 +1231,16 @@
         - 24  # NDRPDR sel
     dpdk-performance-changes-3n-hsw-cmp:
       csit-dpdk-perf-report-iterative-2005-3n-hsw:
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
+        - 25  # NDRPDR iter
+        - 26  # NDRPDR iter
+        - 27  # NDRPDR iter
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
+        - 30  # NDRPDR iter
+        - 31  # NDRPDR iter
+        - 32  # NDRPDR iter
+        - 33  # NDRPDR iter
+        - 34  # NDRPDR iter
 
     dpdk-performance-changes-3n-skx-h1:
       csit-dpdk-perf-verify-1908-3n-skx:
@@ -1279,16 +1278,16 @@
         - 48  # NDRPDR sel x710
     dpdk-performance-changes-3n-skx-cmp:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
+        - 30  # NDRPDR iter
+        - 31  # NDRPDR iter
+        - 32  # NDRPDR iter
+        - 33  # NDRPDR iter
+        - 34  # NDRPDR iter
+        - 35  # NDRPDR iter
+        - 36  # NDRPDR iter
+        - 37  # NDRPDR iter
 
     dpdk-performance-changes-2n-skx-h1:
       csit-dpdk-perf-verify-1908-2n-skx:
@@ -1326,16 +1325,15 @@
         - 54  # NDRPDR sel x710
     dpdk-performance-changes-2n-skx-cmp:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
+        - 20  # NDRPDR iter
+        - 22  # NDRPDR iter
+        - 23  # NDRPDR iter
+        - 24  # NDRPDR iter
+        - 25  # NDRPDR iter
+        - 26  # NDRPDR iter
+        - 27  # NDRPDR iter
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
 
     dpdk-performance-changes-2n-clx-ref:
       csit-dpdk-perf-verify-2001-2n-clx:
@@ -1361,16 +1359,16 @@
         - 34  # NDRPDR sel
     dpdk-performance-changes-2n-clx-cmp:
       csit-dpdk-perf-report-iterative-2005-2n-clx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
+        - 20  # NDRPDR iter
+        - 21  # NDRPDR iter
+        - 22  # NDRPDR iter
+        - 23  # NDRPDR iter
+        - 24  # NDRPDR iter
+        - 25  # NDRPDR iter
+        - 26  # NDRPDR iter
+        - 27  # NDRPDR iter
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
 
     dpdk-performance-changes-2n-dnv-ref:
       csit-dpdk-perf-verify-2001-2n-dnv:
@@ -1526,53 +1524,52 @@
 
     dpdk-compare-testbeds-ref:
       csit-dpdk-perf-report-iterative-2005-3n-hsw:
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
+        - 25  # NDRPDR iter
+        - 26  # NDRPDR iter
+        - 27  # NDRPDR iter
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
+        - 30  # NDRPDR iter
+        - 31  # NDRPDR iter
+        - 32  # NDRPDR iter
+        - 33  # NDRPDR iter
+        - 34  # NDRPDR iter
     dpdk-compare-testbeds-cmp:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
+        - 30  # NDRPDR iter
+        - 31  # NDRPDR iter
+        - 32  # NDRPDR iter
+        - 33  # NDRPDR iter
+        - 34  # NDRPDR iter
+        - 35  # NDRPDR iter
+        - 36  # NDRPDR iter
+        - 37  # NDRPDR iter
 
     dpdk-compare-testbeds-skx-clx-ref:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
+        - 20  # NDRPDR iter
+        - 22  # NDRPDR iter
+        - 23  # NDRPDR iter
+        - 24  # NDRPDR iter
+        - 25  # NDRPDR iter
+        - 26  # NDRPDR iter
+        - 27  # NDRPDR iter
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
     dpdk-compare-testbeds-skx-clx-cmp:
       csit-dpdk-perf-report-iterative-2005-2n-clx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
+        - 20  # NDRPDR iter
+        - 21  # NDRPDR iter
+        - 22  # NDRPDR iter
+        - 23  # NDRPDR iter
+        - 24  # NDRPDR iter
+        - 25  # NDRPDR iter
+        - 26  # NDRPDR iter
+        - 27  # NDRPDR iter
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
 
     # Compare topologies
 
@@ -1602,28 +1599,27 @@
 
     dpdk-compare-topologies-ref:
       csit-dpdk-perf-report-iterative-2005-3n-skx:
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
+        - 30  # NDRPDR iter
+        - 31  # NDRPDR iter
+        - 32  # NDRPDR iter
+        - 33  # NDRPDR iter
+        - 34  # NDRPDR iter
+        - 35  # NDRPDR iter
+        - 36  # NDRPDR iter
+        - 37  # NDRPDR iter
     dpdk-compare-topologies-cmp:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
-        - 1   # NDRPDR sel
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
+        - 20  # NDRPDR iter
+        - 22  # NDRPDR iter
+        - 23  # NDRPDR iter
+        - 24  # NDRPDR iter
+        - 25  # NDRPDR iter
+        - 26  # NDRPDR iter
+        - 27  # NDRPDR iter
+        - 28  # NDRPDR iter
+        - 29  # NDRPDR iter
 
   plot-layouts:
 
@@ -2668,16 +2664,16 @@
       - 23  # NDRPDR sel
       - 24  # NDRPDR sel
     csit-dpdk-perf-report-iterative-2005-3n-hsw:
-      - 5   # NDRPDR sel
-      - 6   # NDRPDR sel
-      - 7   # NDRPDR sel
-      - 8   # NDRPDR sel
-      - 9   # NDRPDR sel
-      - 10  # NDRPDR sel
-      - 11  # NDRPDR sel
-      - 12  # NDRPDR sel
-      - 13  # NDRPDR sel
-      - 14  # NDRPDR sel
+      - 25  # NDRPDR iter
+      - 26  # NDRPDR iter
+      - 27  # NDRPDR iter
+      - 28  # NDRPDR iter
+      - 29  # NDRPDR iter
+      - 30  # NDRPDR iter
+      - 31  # NDRPDR iter
+      - 32  # NDRPDR iter
+      - 33  # NDRPDR iter
+      - 34  # NDRPDR iter
 
     csit-dpdk-perf-verify-1908-3n-skx:
       - 3   # NDRPDR sel
@@ -2712,16 +2708,16 @@
       - 47  # NDRPDR sel x710
       - 48  # NDRPDR sel x710
     csit-dpdk-perf-report-iterative-2005-3n-skx:
-      - 4   # NDRPDR sel
-      - 5   # NDRPDR sel
-      - 6   # NDRPDR sel
-      - 7   # NDRPDR sel
-      - 8   # NDRPDR sel
-      - 11  # NDRPDR sel
-      - 12  # NDRPDR sel
-      - 13  # NDRPDR sel
-      - 14  # NDRPDR sel
-      - 15  # NDRPDR sel
+      - 28  # NDRPDR iter
+      - 29  # NDRPDR iter
+      - 30  # NDRPDR iter
+      - 31  # NDRPDR iter
+      - 32  # NDRPDR iter
+      - 33  # NDRPDR iter
+      - 34  # NDRPDR iter
+      - 35  # NDRPDR iter
+      - 36  # NDRPDR iter
+      - 37  # NDRPDR iter
 
     csit-dpdk-perf-verify-1908-2n-skx:
       - 2   # NDRPDR sel
@@ -2756,16 +2752,15 @@
       - 51  # NDRPDR sel x710
       - 54  # NDRPDR sel x710
     csit-dpdk-perf-report-iterative-2005-2n-skx:
-      - 1   # NDRPDR sel
-      - 2   # NDRPDR sel
-      - 3   # NDRPDR sel
-      - 4   # NDRPDR sel
-      - 5   # NDRPDR sel
-      - 6   # NDRPDR sel
-      - 7   # NDRPDR sel
-      - 8   # NDRPDR sel
-      - 9   # NDRPDR sel
-      - 10  # NDRPDR sel
+      - 20  # NDRPDR iter
+      - 22  # NDRPDR iter
+      - 23  # NDRPDR iter
+      - 24  # NDRPDR iter
+      - 25  # NDRPDR iter
+      - 26  # NDRPDR iter
+      - 27  # NDRPDR iter
+      - 28  # NDRPDR iter
+      - 29  # NDRPDR iter
 
     csit-dpdk-perf-verify-2001-2n-clx:
       - 15  # NDRPDR sel
@@ -2789,16 +2784,16 @@
       - 33  # NDRPDR sel
       - 34  # NDRPDR sel
     csit-dpdk-perf-report-iterative-2005-2n-clx:
-      - 1   # NDRPDR sel
-      - 2   # NDRPDR sel
-      - 3   # NDRPDR sel
-      - 4   # NDRPDR sel
-      - 5   # NDRPDR sel
-      - 6   # NDRPDR sel
-      - 7   # NDRPDR sel
-      - 8   # NDRPDR sel
-      - 9   # NDRPDR sel
-      - 10  # NDRPDR sel
+      - 20  # NDRPDR iter
+      - 21  # NDRPDR iter
+      - 22  # NDRPDR iter
+      - 23  # NDRPDR iter
+      - 24  # NDRPDR iter
+      - 25  # NDRPDR iter
+      - 26  # NDRPDR iter
+      - 27  # NDRPDR iter
+      - 28  # NDRPDR iter
+      - 29  # NDRPDR iter
 
     csit-dpdk-perf-verify-2001-2n-dnv:
       - 9   # NDRPDR sel
@@ -3260,11 +3255,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-pdr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-hsw with xl710.'
@@ -3293,11 +3288,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-pdr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-hsw with xl710.'
@@ -3326,11 +3321,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-ndr-rca3.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
@@ -3361,11 +3356,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-ndr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
@@ -3396,15 +3391,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-pdr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-pdr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-pdr-rca3.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-pdr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-hsw with xl710.'
@@ -3436,15 +3431,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-pdr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-pdr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-pdr-rca3.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-pdr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-hsw with xl710.'
@@ -3476,15 +3471,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-ndr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-ndr-rca3.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
@@ -3516,15 +3511,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-ndr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-ndr-rca3.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
@@ -3554,11 +3549,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-2t1c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-pdr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-skx-2t1c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-skx with xxv710.'
@@ -3587,11 +3582,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-4t2c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-pdr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-skx-4t2c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-skx with xxv710.'
@@ -3620,11 +3615,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-2t1c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-ndr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-skx-2t1c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-skx with xxv710.'
@@ -3653,11 +3648,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-4t2c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-ndr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-skx-4t2c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-skx with xxv710.'
@@ -3688,15 +3683,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-skx-2t1c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-pdr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-2t1c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-pdr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-skx-2t1c-pdr-rca3.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-pdr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-skx with xxv710.'
@@ -3728,15 +3723,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-skx-4t2c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-pdr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-4t2c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-pdr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-skx-4t2c-pdr-rca3.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-pdr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-skx with xxv710.'
@@ -3768,15 +3763,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-skx-2t1c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-ndr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-2t1c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-skx-2t1c-ndr-rca3.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-skx with xxv710.'
@@ -3808,15 +3803,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-skx-4t2c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-ndr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-4t2c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-skx-4t2c-ndr-rca3.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-skx with xxv710.'
@@ -3846,11 +3841,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-2t1c-pdr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-pdr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-2n-skx-2t1c-pdr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-skx with xxv710.'
@@ -3879,11 +3874,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-4t2c-pdr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-pdr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-2n-skx-4t2c-pdr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-skx with xxv710.'
@@ -3912,11 +3907,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-2t1c-ndr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-ndr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-2n-skx-2t1c-ndr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-skx with xxv710.'
@@ -3945,11 +3940,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-4t2c-ndr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-ndr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-2n-skx-4t2c-ndr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-skx with xxv710.'
@@ -3980,15 +3975,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-2n-skx-2t1c-pdr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-pdr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-2t1c-pdr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-pdr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-2n-skx-2t1c-pdr-rca3.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-pdr-rca3.yaml"
 
   legend:
     - ''
@@ -4021,15 +4016,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-2n-skx-4t2c-pdr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-pdr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-4t2c-pdr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-pdr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-2n-skx-4t2c-pdr-rca3.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-pdr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-skx with xxv710.'
@@ -4061,15 +4056,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-2n-skx-2t1c-ndr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-ndr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-2t1c-ndr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-2n-skx-2t1c-ndr-rca3.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-skx with xxv710.'
@@ -4101,15 +4096,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-2n-skx-4t2c-ndr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-ndr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-4t2c-ndr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-2n-skx-4t2c-ndr-rca3.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-skx with xxv710.'
@@ -4137,11 +4132,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 1
       compare: 2
-      rca-file: "rca/rca-2005-2n-clx-2t1c-pdr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-pdr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-clx-2t1c-pdr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with xxv710.'
@@ -4168,11 +4163,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 1
       compare: 2
-      rca-file: "rca/rca-2005-2n-clx-4t2c-pdr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-pdr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-clx-4t2c-pdr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with xxv710.'
@@ -4199,11 +4194,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 1
       compare: 2
-      rca-file: "rca/rca-2005-2n-clx-2t1c-ndr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-ndr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-clx-2t1c-ndr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with xxv710.'
@@ -4230,11 +4225,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 1
       compare: 2
-      rca-file: "rca/rca-2005-2n-clx-4t2c-ndr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-ndr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-clx-4t2c-ndr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with xxv710.'
@@ -4263,15 +4258,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-2n-clx-2t1c-pdr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-pdr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 1
       compare: 2
-      rca-file: "rca/rca-2005-2n-clx-2t1c-pdr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-pdr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 4
-      rca-file: "rca/rca-2005-2n-clx-2t1c-pdr-rca3.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-pdr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with xxv710.'
@@ -4301,15 +4296,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-2n-clx-4t2c-pdr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-pdr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 1
       compare: 2
-      rca-file: "rca/rca-2005-2n-clx-4t2c-pdr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-pdr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 4
-      rca-file: "rca/rca-2005-2n-clx-4t2c-pdr-rca3.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-pdr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with xxv710.'
@@ -4339,15 +4334,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-2n-clx-2t1c-ndr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-ndr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 1
       compare: 2
-      rca-file: "rca/rca-2005-2n-clx-2t1c-ndr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 4
-      rca-file: "rca/rca-2005-2n-clx-2t1c-ndr-rca3.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with xxv710.'
@@ -4377,15 +4372,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-2n-clx-4t2c-ndr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-ndr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 1
       compare: 2
-      rca-file: "rca/rca-2005-2n-clx-4t2c-ndr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 2
       compare: 4
-      rca-file: "rca/rca-2005-2n-clx-4t2c-ndr-rca3.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with xxv710.'
@@ -4711,11 +4706,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-pdr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-tsh with x520.'
@@ -4744,11 +4739,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-pdr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-tsh with x520.'
@@ -4777,11 +4772,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-ndr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-tsh with x520.'
@@ -4810,11 +4805,11 @@
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-ndr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-tsh with x520.'
@@ -4845,15 +4840,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-pdr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-pdr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-pdr-rca3.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-pdr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-tsh with x520.'
@@ -4885,15 +4880,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-pdr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-pdr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-pdr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-pdr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-pdr-rca3.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-pdr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-tsh with x520.'
@@ -4925,15 +4920,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-ndr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-ndr-rca3.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-tsh with x520.'
@@ -4965,15 +4960,15 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 4
       compare: 5
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-ndr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-ndr-rca1.yaml"
     - title: "2001.0-4 vs 2001.0-2"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-ndr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-ndr-rca2.yaml"
     - title: "2005.0-4 vs 2001.0-4"
       reference: 3
       compare: 5
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-ndr-rca3.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-ndr-rca3.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-tsh with x520.'
@@ -5355,11 +5350,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-mrr-rca1.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 2
       compare: 4
-      rca-file: "rca/rca-2005-3n-hsw-1t1c-mrr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-1t1c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
@@ -5388,11 +5383,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-mrr-rca1.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 2
       compare: 4
-      rca-file: "rca/rca-2005-3n-hsw-2t2c-mrr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-2t2c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
@@ -5421,11 +5416,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-hsw-4t4c-mrr-rca1.yaml"
+      rca-file: "rca/rca-3n-hsw-4t4c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 2
       compare: 4
-      rca-file: "rca/rca-2005-3n-hsw-4t4c-mrr-rca2.yaml"
+      rca-file: "rca/rca-3n-hsw-4t4c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
@@ -5452,11 +5447,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-2t1c-mrr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 1
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-2t1c-mrr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-2t1c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-skx with xxv710.'
@@ -5483,11 +5478,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-4t2c-mrr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 1
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-4t2c-mrr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-4t2c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-skx with xxv710.'
@@ -5514,11 +5509,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-8t4c-mrr-rca1.yaml"
+      rca-file: "rca/rca-3n-skx-8t4c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 1
       compare: 3
-      rca-file: "rca/rca-2005-3n-skx-8t4c-mrr-rca2.yaml"
+      rca-file: "rca/rca-3n-skx-8t4c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-skx with xxv710.'
@@ -5545,11 +5540,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-2t1c-mrr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 1
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-2t1c-mrr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-2t1c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-skx with xxv710.'
@@ -5576,11 +5571,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-4t2c-mrr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 1
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-4t2c-mrr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-4t2c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-skx with xxv710.'
@@ -5607,11 +5602,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-8t4c-mrr-rca1.yaml"
+      rca-file: "rca/rca-2n-skx-8t4c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 1
       compare: 3
-      rca-file: "rca/rca-2005-2n-skx-8t4c-mrr-rca2.yaml"
+      rca-file: "rca/rca-2n-skx-8t4c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-skx with xxv710.'
@@ -5638,11 +5633,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-clx-2t1c-mrr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 1
       compare: 3
-      rca-file: "rca/rca-2005-2n-clx-2t1c-mrr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-2t1c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with xxv710.'
@@ -5669,11 +5664,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-clx-4t2c-mrr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 1
       compare: 3
-      rca-file: "rca/rca-2005-2n-clx-4t2c-mrr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-4t2c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with xxv710.'
@@ -5700,11 +5695,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 2
       compare: 3
-      rca-file: "rca/rca-2005-2n-clx-8t4c-mrr-rca1.yaml"
+      rca-file: "rca/rca-2n-clx-8t4c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 1
       compare: 3
-      rca-file: "rca/rca-2005-2n-clx-8t4c-mrr-rca2.yaml"
+      rca-file: "rca/rca-2n-clx-8t4c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with xxv710.'
@@ -5946,11 +5941,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-mrr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 2
       compare: 4
-      rca-file: "rca/rca-2005-3n-tsh-1t1c-mrr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-1t1c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-tsh with x520.'
@@ -5979,11 +5974,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-mrr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 2
       compare: 4
-      rca-file: "rca/rca-2005-3n-tsh-2t2c-mrr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-2t2c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-tsh with x520.'
@@ -6012,11 +6007,11 @@
     - title: "2005.0-4 vs 2005.0-3"
       reference: 3
       compare: 4
-      rca-file: "rca/rca-2005-3n-tsh-4t4c-mrr-rca1.yaml"
+      rca-file: "rca/rca-3n-tsh-4t4c-mrr-rca1.yaml"
     - title: "2005.0-4 vs 2001.0-2"
       reference: 2
       compare: 4
-      rca-file: "rca/rca-2005-3n-tsh-4t4c-mrr-rca2.yaml"
+      rca-file: "rca/rca-3n-tsh-4t4c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-tsh with x520.'

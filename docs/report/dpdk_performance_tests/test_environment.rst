@@ -7,16 +7,6 @@
 
 .. include:: ../introduction/test_environment_intro.rst
 
-.. include:: ../introduction/test_environment_sut_calib_skx.rst
-
-.. include:: ../introduction/test_environment_sut_calib_clx.rst
-
-.. include:: ../introduction/test_environment_sut_calib_hsw.rst
-
-.. include:: ../introduction/test_environment_sut_calib_dnv.rst
-
-.. include:: ../introduction/test_environment_sut_calib_tsh.rst
-
 .. include:: ../introduction/test_environment_sut_conf_1.rst
 
 
@@ -58,3 +48,15 @@ Startup command template:
     l3fwd -v -l $$CORE_LIST -w $$INT1 -w $$INT2 --master-lcore 0 --in-memory -- --parse-ptype --eth-dest="0,${adj_mac0}" --eth-dest="1,${adj_mac1}" --config="${port_config}" [--enable-jumbo] -P -L -p 0x3
 
 .. include:: ../introduction/test_environment_tg.rst
+
+.. include:: ../introduction/test_environment_pre_test_server_calib.rst
+
+.. include:: ../introduction/test_environment_sut_calib_skx.rst
+
+.. include:: ../introduction/test_environment_sut_calib_clx.rst
+
+.. include:: ../introduction/test_environment_sut_calib_hsw.rst
+
+.. include:: ../introduction/test_environment_sut_calib_dnv.rst
+
+.. include:: ../introduction/test_environment_sut_calib_tsh.rst
