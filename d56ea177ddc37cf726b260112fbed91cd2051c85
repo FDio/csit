@@ -22,6 +22,30 @@
       "revId": "d56ea177ddc37cf726b260112fbed91cd2051c85",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91ff25cd_1a958c8f",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-07-09T09:33:44Z",
+      "side": 1,
+      "message": "This is not guessing, only these two variables affect the number of cores VPP uses for build:\nhttps://github.com/FDio/vpp/blob/master/build-root/Makefile#L655\n\nNow that I think about it, maybe we could change the message to say \"Building with ${MAKE_PARALLEL_JOBS/FLAGS} cores\" or something like that.",
+      "parentUuid": "525ecb08_a84cafe1",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 6
+      },
+      "revId": "d56ea177ddc37cf726b260112fbed91cd2051c85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
