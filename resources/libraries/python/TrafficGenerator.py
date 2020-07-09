@@ -348,7 +348,7 @@ class TrafficGenerator(AbstractMeasurer):
             cd_cmd = f"cd '{Constants.TREX_INSTALL_DIR}/scripts/'"
             trex_cmd = OptionString([u"nohup", u"./t-rex-64"])
             trex_cmd.add(u"-i")
-            trex_cmd.add(f"-c {Constants.TREX_CORE_COUNT}")
+            trex_cmd.add(f"-c 7")
             trex_cmd.add(u"--prefix $(hostname)")
             trex_cmd.add(u"--hdrh")
             trex_cmd.add_if(u"--astf", osi_layer == u"L7")
