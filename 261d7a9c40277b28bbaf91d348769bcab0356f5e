@@ -425,6 +425,30 @@
     },
     {
       "key": {
+        "uuid": "1ddda72c_882dfc14",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1741,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T09:13:36Z",
+      "side": 1,
+      "message": "That\u0027s a good idea!",
+      "parentUuid": "7b9bd11d_6a786dd5",
+      "range": {
+        "startLine": 1741,
+        "startChar": 0,
+        "endLine": 1741,
+        "endChar": 11
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d3e70701_40ff8dd9",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 1
@@ -460,6 +484,30 @@
       "side": 1,
       "message": "I can\u0027t doublecheck since the server is uncreachable, but from memory it\u0027s got 112 cores total (56 per socket).",
       "parentUuid": "d3e70701_40ff8dd9",
+      "range": {
+        "startLine": 1744,
+        "startChar": 22,
+        "endLine": 1744,
+        "endChar": 58
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7e66617_6b32b8e2",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T09:13:36Z",
+      "side": 1,
+      "message": "Ok, thx!",
+      "parentUuid": "dd0e878e_70307457",
       "range": {
         "startLine": 1744,
         "startChar": 22,
