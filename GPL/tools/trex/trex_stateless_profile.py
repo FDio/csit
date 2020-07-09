@@ -169,7 +169,7 @@ def simple_burst(
 
             # Choose rate and start traffic:
             client.start(ports=ports, mult=rate, duration=warmup_time,
-                         force=force)
+                         core_mask=STLClient.CORE_MASK_PIN, force=force)
 
             # Block until done:
             time_start = time.monotonic()
@@ -201,7 +201,8 @@ def simple_burst(
         lost_b = 0
 
         # Choose rate and start traffic:
-        client.start(ports=ports, mult=rate, duration=duration, force=force)
+        client.start(ports=ports, mult=rate, duration=duration,
+                     core_mask=STLClient.CORE_MASK_PIN, force=force)
 
         if async_start:
             # For async stop, we need to export the current snapshot.
