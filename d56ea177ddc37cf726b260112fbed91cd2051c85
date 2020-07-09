@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "525ecb08_a84cafe1",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-09T09:29:16Z",
+      "side": 1,
+      "message": "Would it be safe to print the whole env instead of guessing?",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 6
+      },
+      "revId": "d56ea177ddc37cf726b260112fbed91cd2051c85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
