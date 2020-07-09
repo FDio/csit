@@ -1,5 +1,5 @@
-Calibration Data - Skylake
---------------------------
+Skylake
+~~~~~~~
 
 Following sections include sample calibration data measured on
 s11-t31-sut1 server running in one of the Intel Xeon Skylake testbeds as
@@ -10,7 +10,7 @@ shows the same or similar values.
 
 
 Linux cmdline
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 ::
 
@@ -19,7 +19,7 @@ Linux cmdline
 
 
 Linux uname
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 ::
 
@@ -28,7 +28,7 @@ Linux uname
 
 
 System-level Core Jitter
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
@@ -72,7 +72,7 @@ System-level Core Jitter
 
 
 Memory Bandwidth
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 ::
 
@@ -129,7 +129,7 @@ Memory Bandwidth
 
 
 Memory Latency
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 ::
 
@@ -189,7 +189,7 @@ Memory Latency
 
 
 L1/L2/LLC Latency
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 ::
 

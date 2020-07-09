@@ -190,14 +190,14 @@
             \label{fig:hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-avf-eth-l2bdscale1mmaclrn}
     \end{figure}
 
-.. raw:: latex
-
-    \clearpage
-
-64b-2t1c-l2switching-features-avf
----------------------------------
-
 ..
+    .. raw:: latex
+
+        \clearpage
+
+    64b-2t1c-l2switching-features-avf
+    ---------------------------------
+
     .. raw:: html
 
         <center>
@@ -278,21 +278,21 @@
 
         \clearpage
 
-.. raw:: html
+    .. raw:: html
 
-    <center>
-    <iframe id="25ge2p1xxv710-64b-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="25ge2p1xxv710-64b-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows}
-            \label{fig:hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows}
+                \label{fig:hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-avf-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows}
+        \end{figure}
 
 .. raw:: latex
 
