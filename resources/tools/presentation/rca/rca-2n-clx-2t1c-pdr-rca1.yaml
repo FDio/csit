@@ -1,35 +1,22 @@
 # CSIT progressions.
-64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm: 6
 64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
-64b-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm: 6
 64b-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
 64b-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
-64b-2t1c-avf-eth-l2patch: 6
-64b-2t1c-avf-eth-l2xcbase: 6
 64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
 64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
-64b-2t1c-eth-l2xcbase: 6
-64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
 # CSIT regressions.
-64b-2t1c-avf-dot1q-ip4base: 6
-64b-2t1c-avf-dot1q-l2xcbase: 6
-64b-2t1c-avf-eth-l2bdscale1mmaclrn: 6
-64b-2t1c-avf-ethip4-ip4scale200k: 6
 64b-2t1c-avf-ethip4-ip4scale200k-rnd: 2
-64b-2t1c-avf-ethip4-ip4scale20k-rnd: 2
 64b-2t1c-avf-ethip4-ip4scale2m: 6
 64b-2t1c-avf-ethip4-ip4scale2m-rnd: 2
 64b-2t1c-avf-ethip4udp-ip4base-iacl50sf-10kflows: 1
 64b-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows: 1
-64b-2t1c-avf-ethip4udp-ip4base-nat44: 6
 64b-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows: 1
 64b-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows: 1
+64b-2t1c-avf-dot1q-l2xcbase: 3
+64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr: 6
 64b-2t1c-ethip4-ip4scale200k-rnd: 2
 64b-2t1c-ethip4-ip4scale2m: 6
 64b-2t1c-ethip4-ip4scale2m-rnd: 2
-78b-2t1c-avf-ethip6-ip6scale20k: 6
-78b-2t1c-avf-ethip6-ip6base: 6
 
 # Multiline string, empty lines (or \n) are required,
 # see https://yaml-multiline.info/
@@ -41,6 +28,10 @@ footnote: "[1] DONE Regression in ACL tests. The cause is the CSIT part of
     [2] DONE Regression in tests using random flows.
     The cause is Gerrit 26456, unpinning random seed, needed to make TRex workers
     generate different sequences of packets. [CSIT-1731]
+
+    [3] DONE Regression in base dot1q-l2xcbase suites. The cause is Gerrit 25363,
+    which unified dot1q handling across various tests.
+    Previously, this one suite was different (only handling dot1q on one port).
 
     [5] OPEN Progression in performance of tests running VPP (l2xc) inside VM.
     Due to relatively high stdev of results, bisecting has not found a cause yet.
