@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36c15d81_ee92407e",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T07:53:42Z",
+      "side": 1,
+      "message": "Before we change the number of testbeds of 1-Node-Thunderx2 to 2, the sum of original numbers in this column is 25, not equal to 22. Is it wrong or any other consideration here?",
+      "range": {
+        "startLine": 87,
+        "startChar": 41,
+        "endLine": 87,
+        "endChar": 43
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8423fe57_63eb9470",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T07:53:42Z",
+      "side": 1,
+      "message": "As we discussed in the previous meeting, we can replace the server type here with a new one, like Server-Type-C5",
+      "range": {
+        "startLine": 99,
+        "startChar": 48,
+        "endLine": 99,
+        "endChar": 62
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc0fe5d5_8d459d76",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T07:53:42Z",
+      "side": 1,
+      "message": "Is it wrong here? VPP_Device functional tests for both X86_64 and aarch64 should be 1-node topologies, right?",
+      "range": {
+        "startLine": 503,
+        "startChar": 10,
+        "endLine": 503,
+        "endChar": 64
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfd3c223_2051d650",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T07:53:42Z",
+      "side": 1,
+      "message": "As mentioned above, we plan to create a new server type for 1n-tx2 VPP_Device functional tests. We can keep this server type here and maybe use this server for perf tests in future. But do we need to change the description of purposes here so that this server type won\u0027t have conflicts with the new defined server type for 1n-tx2? What do you think?",
+      "range": {
+        "startLine": 558,
+        "startChar": 30,
+        "endLine": 558,
+        "endChar": 94
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32738e83_b2307552",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T07:53:42Z",
+      "side": 1,
+      "message": "I am not sure about the corresponding slot number of the 2 intel NICs for the incoming thx2 servers. But I just refer to the local thx2 server with the same PCIe addresses and get the temporary value. Will it be a problem that we record the exact PCIe slot number later once the new servers are set up and we have access to these servers?",
+      "range": {
+        "startLine": 575,
+        "startChar": 19,
+        "endLine": 575,
+        "endChar": 24
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2fab407_9678c7a6",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T07:53:42Z",
+      "side": 1,
+      "message": "1n-skx has two testbeds with totally different testbed name and hostname. From my perspective, we need to delete the Server-Type-B9 here and add two SUT with new defined server type. Following the practice of 1n-skx, the testbed name should be different(such as testbed36 \u0026 testbed37, not testbed13 \u0026 testbed14 because testbed14 has been used) and it also applies for hostname(such as s55-t36-sut1 \u0026 s56-t37-sut1, not s27-t13-sut2 as you say). What do you think?",
+      "range": {
+        "startLine": 734,
+        "startChar": 0,
+        "endLine": 736,
+        "endChar": 48
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "327e0497_4c161500",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1339,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T07:53:42Z",
+      "side": 1,
+      "message": "Why 3n-mcbin topology here?",
+      "range": {
+        "startLine": 1339,
+        "startChar": 2,
+        "endLine": 1339,
+        "endChar": 29
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "122ad857_ae814769",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T07:53:42Z",
+      "side": 1,
+      "message": "As mentioned above, we need to create two testbeds here to record the details of wiring for respective testbed. What do you think?",
+      "range": {
+        "startLine": 1416,
+        "startChar": 0,
+        "endLine": 1416,
+        "endChar": 11
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a47577d_3e4f50f7",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1741,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T07:53:42Z",
+      "side": 1,
+      "message": "I am wondering the new thx2 servers have the same CPU with the one in FD.io lab but different size of RAM memory and Disks, should we add another item here?",
+      "range": {
+        "startLine": 1741,
+        "startChar": 0,
+        "endLine": 1741,
+        "endChar": 11
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3e70701_40ff8dd9",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-07-09T07:53:42Z",
+      "side": 1,
+      "message": "Does this mean 2 tx2 CN9975 sockets with total 112 CPUs?",
+      "range": {
+        "startLine": 1744,
+        "startChar": 22,
+        "endLine": 1744,
+        "endChar": 58
+      },
+      "revId": "261d7a9c40277b28bbaf91d348769bcab0356f5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
