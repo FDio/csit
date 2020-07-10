@@ -2,19 +2,18 @@
 64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
 64b-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
 64b-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
-64b-2t1c-avf-eth-l2xcbase: 4
 64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
-64b-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
 64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
-64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
 # CSIT regressions.
-64b-2t1c-avf-dot1q-l2xcbase: 3
 64b-2t1c-avf-ethip4-ip4scale200k-rnd: 2
+64b-2t1c-avf-ethip4-ip4scale2m: 7
 64b-2t1c-avf-ethip4-ip4scale2m-rnd: 2
 64b-2t1c-avf-ethip4udp-ip4base-iacl50sf-10kflows: 1
 64b-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows: 1
 64b-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows: 1
 64b-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows: 1
+64b-2t1c-avf-dot1q-l2xcbase: 3
+64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr: 7
 64b-2t1c-ethip4-ip4scale200k-rnd: 2
 64b-2t1c-ethip4-ip4scale2m: 7
 64b-2t1c-ethip4-ip4scale2m-rnd: 2
@@ -35,8 +34,6 @@ footnote: "
     which unified dot1q handling across various tests.
     Previously, this one suite was different (only handling dot1q on one port).
 
-    [4] OPEN Progression in one test. Bisect not started yet. [CSIT-1740]
-
     [5] OPEN Progression in performance of tests running VPP (l2xc) inside VM.
     Due to relatively high stdev of results, bisecting has not found a cause yet.
     [CSIT-1738]
@@ -44,13 +41,11 @@ footnote: "
     [7] POSTPONED Possible anomaly, but stdev of results is high.
     Currently, the performance differences are considered to probably be just noise.
 
-    [8] OPEN Regressions in some tests with VPP in VM and using l2xcbase as vswitch.
-    The results have surprisingly small stdev, more investigation needed.
-    [CSIT-1741]
-
     [9] OPEN Progression in ip6 scale tests. Multiple candidate changes may have
     affect code efficiency, but they have also caused the tests to fail
     for a period of time. [CSIT-1735]
+
+    [10] OPEN Progression in ip6 base tests with dot1q. [CSIT-1746]
 
     [11] OPEN Progression in memif tests, mainly in avf-eth-l2xcbase-eth-2memif-1dcr.
     Not sure whether all memif tests are affected, nor what the cause is.
