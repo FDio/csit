@@ -46,6 +46,30 @@
       "revId": "d56ea177ddc37cf726b260112fbed91cd2051c85",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "914fbf83_c4758fd3",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-10T14:37:14Z",
+      "side": 1,
+      "message": "I like distinguishing _FLAGS from _JOBS for now.\nJenkins run can show env values, so this is more a convenience, or a debug (to confirm the value was really forwarded and not lost when calling from a parent script).\n\n\u003e print the whole env instead\n\nThat sounds like a security violation. Some jobs set environment variables with special names to store passwords and other sensitive stuff. The aforementioned \"Jenkins run can show env values\" knows not to show them. I know from [1] an example of such a secure variable. Its name starts with SECURE_, but I am not sure that is sufficient.\n\n[1] https://gerrit.fd.io/r/c/ci-management/+/27414",
+      "parentUuid": "91ff25cd_1a958c8f",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 6
+      },
+      "revId": "d56ea177ddc37cf726b260112fbed91cd2051c85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
