@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d558d59b_0b04c19b",
+        "filename": "resources/tools/presentation/rca/rca-2n-clx-2t1c-pdr-rca2.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-07-10T05:42:03Z",
+      "side": 1,
+      "message": "Remove from this file.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 84
+      },
+      "revId": "b8a5f42e4ca64bfdd624552a2a8b284982189cfe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4210adad_4275091d",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca2.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-07-10T05:42:03Z",
+      "side": 1,
+      "message": "Remove from this file.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 84
+      },
+      "revId": "b8a5f42e4ca64bfdd624552a2a8b284982189cfe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2620868_000bb994",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca2.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-07-10T05:42:03Z",
+      "side": 1,
+      "message": "Remove from this file.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 84
+      },
+      "revId": "b8a5f42e4ca64bfdd624552a2a8b284982189cfe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04796f5e_02de9262",
+        "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca2.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-07-10T05:42:03Z",
+      "side": 1,
+      "message": "It would be better to place it to *rca1 file.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 71
+      },
+      "revId": "b8a5f42e4ca64bfdd624552a2a8b284982189cfe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
