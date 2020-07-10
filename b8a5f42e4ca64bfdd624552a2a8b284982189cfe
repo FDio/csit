@@ -71,6 +71,52 @@
     },
     {
       "key": {
+        "uuid": "7055c61f_b53be7a1",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca2.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-10T10:36:05Z",
+      "side": 1,
+      "message": "But the comparison is done for 2005.0-4 vs. 2001.0-4 (and not 2001.0-2, as listed here).",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 15
+      },
+      "revId": "b8a5f42e4ca64bfdd624552a2a8b284982189cfe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00318343_cdb12f56",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca2.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-10T10:36:05Z",
+      "side": 1,
+      "message": "But the comparison is done for 2005.0-4 vs. 2001.0-4 (and not 2001.0-2, as listed here).",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 15
+      },
+      "revId": "b8a5f42e4ca64bfdd624552a2a8b284982189cfe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "04796f5e_02de9262",
         "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca2.yaml",
         "patchSetId": 7
