@@ -91,6 +91,30 @@
       "revId": "b8a5f42e4ca64bfdd624552a2a8b284982189cfe",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b2dc1f3_9f9b1e8b",
+        "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca2.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-10T10:12:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04796f5e_02de9262",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 71
+      },
+      "revId": "b8a5f42e4ca64bfdd624552a2a8b284982189cfe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
