@@ -54,13 +54,12 @@ footnote: "
     [12] OPEN Progression in some l2bdscale tests. [CSIT-1745]
 
     [13] DONE Stateless ACL test have the same performance in 2005.0-4 as in
-    2001.0-2, the difference shown here is just a consequence of API change
-    having a performance impact when VPP version does not match CSIT version.
+    2001.0-2. The difference shown here is inflated by an API change, see [1].
     [CSIT-1739]
 
-    [14] DONE Statefull ACL test have better performance in 2005.0-4 as in
-    2001.0-2, but the difference shown here is inflated due to API change
-    having a performance impact when VPP version does not match CSIT version.
+    [14] DONE Stateful ACL test have better performance in 2005.0-4 as in
+    2001.0-2. The VPP part of API change, Gerrit 26184, made VPP faster.
+    The difference shown here is further inflated by the API change, see [1].
     [CSIT-1739]
 
     [15] OPEN Progression in nat44 test (not scale ones). [CSIT-1747]
