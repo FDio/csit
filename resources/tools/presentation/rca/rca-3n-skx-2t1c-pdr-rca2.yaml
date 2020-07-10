@@ -20,5 +20,3 @@ imix-2t1c-avf-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha: 16
 # VPP regressions.
 64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 8
 64b-2t1c-avf-ethip4-ip4scale2m: 7
-
-# Footnotes are in RCA1 file.

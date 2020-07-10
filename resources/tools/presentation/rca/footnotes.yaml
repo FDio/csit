@@ -1,0 +1,58 @@
+1: "DONE Regression in ACL tests. The cause is the CSIT part of
+    an API change, Gerrit 26112. Instead of failing, the misconfigured VPP
+    passes the test, albeit with reduced performance. [CSIT-1739]
+"
+2: "DONE Regression in tests using random flows.
+    The cause is Gerrit 26456, unpinning random seed, needed to make TRex workers
+    generate different sequences of packets. [CSIT-1731]
+"
+3: "DONE Regression in base dot1q-l2xcbase suites. The cause is Gerrit 25363,
+    which unified dot1q handling across various tests.
+    Previously, this one suite was different (only handling dot1q on one port).
+"
+4: "OPEN Progression in one test. Bisect not started yet. [CSIT-1740]
+"
+5: "OPEN Progression in performance of tests running VPP (l2xc) inside VM.
+    Due to relatively high stdev of results, bisecting has not found a cause yet.
+    [CSIT-1738]
+"
+6: "OPEN Regression in CSIT, one specific test showing too small stdev
+    to be considered noise. Tentatively marking also other ipsec anomalies
+    with this, although their stdev are high enough to be explained
+    as maybe just noise. [CSIT-1742]
+"
+7: "POSTPONED Possible anomaly, but stdev of results is high.
+    Currently, the performance differences are considered to probably be just noise.
+"
+8: "OPEN Regressions in some tests with VPP in VM and using l2xcbase as vswitch.
+    The results have surprisingly small stdev, more investigation needed.
+    [CSIT-1741]
+"
+9: "OPEN Progression in ip6 scale tests. Multiple candidate changes may have
+    affect code efficiency, but they have also caused the tests to fail
+    for a period of time. [CSIT-1735]
+"
+10:"OPEN Progression in ip6 base tests with dot1q. [CSIT-1746]
+"
+11:"OPEN Progression in memif tests, mainly in avf-eth-l2xcbase-eth-2memif-1dcr.
+    Not sure whether all memif tests are affected, nor what the cause is.
+    [CSIT-1744]
+"
+12:"OPEN Progression in some l2bdscale tests. [CSIT-1745]
+"
+13:"DONE Stateless ACL test have the same performance in 2005.0-4 as in
+    2001.0-2, the difference shown here is just a consequence of API change
+    having a performance impact when VPP version does not match CSIT version.
+    [CSIT-1739]
+"
+14:"DONE Statefull ACL test have better performance in 2005.0-4 as in
+    2001.0-2, but the difference shown here is inflated due to API change
+    having a performance impact when VPP version does not match CSIT version.
+    [CSIT-1739]
+"
+15:"OPEN Progression in nat44 test (not scale ones). [CSIT-1747]
+"
+16:"OPEN Progression in IPsec tests, only for aes128cbc-hmac512sha. [CSIT-1748]
+"
+17:"OPEN Progression in some vhost tests (dpdk in VM). [CSIT-1749]
+"
