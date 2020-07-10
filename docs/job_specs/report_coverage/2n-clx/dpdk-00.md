@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (f35cc9 RCA 2005: Update RCA files.)
 # 2n-clx
 ### tests 48
 ### job hrs est. 2.1
@@ -60,3 +61,6 @@
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-l3fwd
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-l3fwd
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-l3fwd
+=======
+../../report_iterative/2n-clx/dpdk-mlr-00.md
+>>>>>>> CHANGE (bc4288 Docs: job-specs: dpdk and nfv-density test sets)
