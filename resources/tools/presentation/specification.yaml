@@ -306,6 +306,7 @@
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
         - 20  # NDRPDR iter
+        - 21  # NDRPDR iter
         - 22  # NDRPDR iter
         - 23  # NDRPDR iter
         - 24  # NDRPDR iter
@@ -1326,6 +1327,7 @@
     dpdk-performance-changes-2n-skx-cmp:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
         - 20  # NDRPDR iter
+        - 21  # NDRPDR iter
         - 22  # NDRPDR iter
         - 23  # NDRPDR iter
         - 24  # NDRPDR iter
@@ -1550,6 +1552,7 @@
     dpdk-compare-testbeds-skx-clx-ref:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
         - 20  # NDRPDR iter
+        - 21  # NDRPDR iter
         - 22  # NDRPDR iter
         - 23  # NDRPDR iter
         - 24  # NDRPDR iter
@@ -1612,6 +1615,7 @@
     dpdk-compare-topologies-cmp:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
         - 20  # NDRPDR iter
+        - 21  # NDRPDR iter
         - 22  # NDRPDR iter
         - 23  # NDRPDR iter
         - 24  # NDRPDR iter
@@ -2753,6 +2757,7 @@
       - 54  # NDRPDR sel x710
     csit-dpdk-perf-report-iterative-2005-2n-skx:
       - 20  # NDRPDR iter
+      - 21  # NDRPDR iter
       - 22  # NDRPDR iter
       - 23  # NDRPDR iter
       - 24  # NDRPDR iter
