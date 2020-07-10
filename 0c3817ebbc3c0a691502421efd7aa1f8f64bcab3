@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2230bc7_985a17a4",
+        "filename": "docs/job_specs/report_coverage/2n-clx/dpdk-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-10T08:28:48Z",
+      "side": 1,
+      "message": "This is better, but I still do not understand why is there an overlap between iterative and coverage tests. If there already are 10 runs for iterative, why does PAL need 11th run (of the same test) for coverage?\n\nI think we should update docs/job_specs/perf_tests_job_specs.md to explain how does PAL consume the job results.",
+      "revId": "0c3817ebbc3c0a691502421efd7aa1f8f64bcab3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
