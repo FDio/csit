@@ -16,6 +16,24 @@
       "revId": "0c3817ebbc3c0a691502421efd7aa1f8f64bcab3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "303137c0_a9536569",
+        "filename": "docs/job_specs/report_coverage/2n-clx/dpdk-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-07-10T09:19:53Z",
+      "side": 1,
+      "message": "You are right, coverage test sets can be without tests which are defined in iterative test sets. This can be done as a next step.",
+      "parentUuid": "d2230bc7_985a17a4",
+      "revId": "0c3817ebbc3c0a691502421efd7aa1f8f64bcab3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
