@@ -43,8 +43,8 @@ footnote: "
     The cause is Gerrit 26456, unpinning random seed, needed to make TRex workers
     generate different sequences of packets. [CSIT-1731]
 
-    [5] OPEN Progression in performance of tests running VPP (l2xc) inside VM.
-    Due to relatively high stdev of results, bisecting has not found a cause yet.
+    [5] DONE Progression in performance of tests running VPP (l2xc) inside VM.
+    Consequence of a fix making worker placement deterministic, Gerrit 25309.
     [CSIT-1738]
 
     [7] POSTPONED Possible anomaly, but stdev of results is high.

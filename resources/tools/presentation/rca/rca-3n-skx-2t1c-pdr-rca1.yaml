@@ -23,8 +23,8 @@ imix-2t1c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm: 6
 footnote: "
     [4] OPEN Progression in one test. Bisect not started yet. [CSIT-1740]
 
-    [5] OPEN Progression in performance of tests running VPP (l2xc) inside VM.
-    Due to relatively high stdev of results, bisecting has not found a cause yet.
+    [5] DONE Progression in performance of tests running VPP (l2xc) inside VM.
+    Consequence of a fix making worker placement deterministic, Gerrit 25309.
     [CSIT-1738]
 
     [6] OPEN Regression in CSIT, one specific test showing too small stdev

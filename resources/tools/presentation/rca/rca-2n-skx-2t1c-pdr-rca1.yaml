@@ -37,8 +37,8 @@ footnote: "
 
     [4] OPEN Progression in one test. Bisect not started yet. [CSIT-1740]
 
-    [5] OPEN Progression in performance of tests running VPP (l2xc) inside VM.
-    Due to relatively high stdev of results, bisecting has not found a cause yet.
+    [5] DONE Progression in performance of tests running VPP (l2xc) inside VM.
+    Consequence of a fix making worker placement deterministic, Gerrit 25309.
     [CSIT-1738]
 
     [7] POSTPONED Possible anomaly, but stdev of results is high.
