@@ -1,25 +1,80 @@
-64b-2t1c-avf-dot1q-ip4base: 1
-64b-2t1c-avf-dot1q-l2bdbasemaclrn-gbp: 1
-64b-2t1c-avf-eth-l2patch: 2
-64b-2t1c-avf-eth-l2xcbase: 2
-64b-2t1c-avf-ethip4-ip4base: 1
-64b-2t1c-eth-l2patch: 2
-64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 4
-64b-2t1c-ethip4-ip4base: 1
-64b-2t1c-ethip4udp-ip4base-iacl50sf-10kflows: 1
-64b-2t1c-ethip4udp-ip4base-oacl50sl-10kflows: 1
-# Multiline string, empty lines (or \n) are required, see https://yaml-multiline.info/
-footnote: "[1] DONE, Impact of upgrades: i) Skx ucode from 0x2000043 to
-    0x2000065, ii) Linux kernel from 4.15.0-60 to 4.15.0-72 and iii)
-    SuperMicro motherboard BIOS from 3.0c to 3.2.
+# CSIT progressions.
+64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm: 7
+64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm: 7
+64b-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-eth-l2patch: 7
+64b-2t1c-avf-eth-l2xcbase: 7
+64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-eth-l2xcbase: 7
+64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
+# CSIT regressions.
+64b-2t1c-avf-dot1q-ip4base: 7
+64b-2t1c-avf-dot1q-l2xcbase: 7
+64b-2t1c-avf-eth-l2bdscale1mmaclrn: 7
+64b-2t1c-avf-ethip4-ip4scale200k: 7
+64b-2t1c-avf-ethip4-ip4scale200k-rnd: 2
+64b-2t1c-avf-ethip4-ip4scale20k-rnd: 2
+64b-2t1c-avf-ethip4-ip4scale2m: 7
+64b-2t1c-avf-ethip4-ip4scale2m-rnd: 2
+64b-2t1c-avf-ethip4udp-ip4base-iacl50sf-10kflows: 1
+64b-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows: 1
+64b-2t1c-avf-ethip4udp-ip4base-nat44: 7
+64b-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows: 1
+64b-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows: 1
+64b-2t1c-ethip4-ip4scale200k-rnd: 2
+64b-2t1c-ethip4-ip4scale2m: 7
+64b-2t1c-ethip4-ip4scale2m-rnd: 2
+78b-2t1c-avf-ethip6-ip6scale20k: 7
+78b-2t1c-avf-ethip6-ip6base: 7
 
-    [2] DONE, Applied fix of FVL NIC firmware 6.0.1 for increasing TRex
-    Mpps rate from 27 Mpps to 37 Mpps, [CSIT-1503], [TRex-519].
+# Multiline string, empty lines (or \n) are required,
+# see https://yaml-multiline.info/
 
-    [3] DONE, Applied VPP PAPI fix to enable memif zero-copy,
-    [CSIT-1592], [VPP-1764].
+footnote: "
+    [1] DONE Regression in ACL tests. The cause is the CSIT part of
+    an API change, Gerrit 26112. Instead of failing, the misconfigured VPP
+    passes the test, albeit with reduced performance. [CSIT-1739]
 
-    [4] OPEN, Higher than before StDev of PDR throughput for VPP
-    vhost-user with VPP-inside-VM, under investigation, [CSIT-1699],
-    [CSIT-1704].
+    [2] DONE Regression in tests using random flows.
+    The cause is Gerrit 26456, unpinning random seed, needed to make TRex workers
+    generate different sequences of packets. [CSIT-1731]
+
+    [5] OPEN Progression in performance of tests running VPP (l2xc) inside VM.
+    Due to relatively high stdev of results, bisecting has not found a cause yet.
+    [CSIT-1738]
+
+    [7] POSTPONED Possible anomaly, but stdev of results is high.
+    Currently, the performance differences are considered to probably be just noise.
+
+    [8] OPEN Regressions in some tests with VPP in VM and using l2xcbase as vswitch.
+    The results have surprisingly small stdev, more investigation needed.
+    [CSIT-1741]
+
+    [9] OPEN Progression in ip6 scale tests. Multiple candidate changes may have
+    affect code efficiency, but they have also caused the tests to fail
+    for a period of time. [CSIT-1735]
+
+    [11] OPEN Progression in memif tests, mainly in avf-eth-l2xcbase-eth-2memif-1dcr.
+    Not sure whether all memif tests are affected, nor what the cause is.
+    [CSIT-1744]
+
+    [12] OPEN Progression in some l2bdscale tests. [CSIT-1745]
+
+    [13] DONE Stateless ACL test have the same performance in 2005.0-4 as in
+    2001.0-2, the difference shown here is just a consequence of API change
+    having a performance impact when VPP version does not match CSIT version.
+    [CSIT-1739]
+
+    [14] DONE Statefull ACL test have better performance in 2005.0-4 as in
+    2001.0-2, but the difference shown here is inflated due to API change
+    having a performance impact when VPP version does not match CSIT version.
+    [CSIT-1739]
+
+    [15] OPEN Progression in nat44 test (not scale ones). [CSIT-1747]
+
+    [17] OPEN Progression in some vhost tests (dpdk in VM). [CSIT-1749]
 "
