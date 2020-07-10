@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f79ba7b6_148e080b",
+        "filename": "docs/report/vpp_performance_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-10T08:36:36Z",
+      "side": 1,
+      "message": "Single k.\nShould we also mention setup for containers and VMs, and apps running inside them?",
+      "range": {
+        "startLine": 56,
+        "startChar": 15,
+        "endLine": 56,
+        "endChar": 17
+      },
+      "revId": "450f08958746674e0d0d926131e60cffa8b93b86",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6d086670_c979a5c4",
         "filename": "docs/report/vpp_performance_tests/test_environment.rst",
         "patchSetId": 1
