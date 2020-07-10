@@ -21,10 +21,11 @@ imix-2t1c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm: 6
 # see https://yaml-multiline.info/
 
 footnote: "
-    [4] OPEN Progression in one test. Bisect not started yet. [CSIT-1740]
+    [4] DONE Progression in high performance tests, caused by
+    TRex setting improvement, Gerrit 26445. [CSIT-1740]
 
-    [5] OPEN Progression in performance of tests running VPP (l2xc) inside VM.
-    Due to relatively high stdev of results, bisecting has not found a cause yet.
+    [5] DONE Progression in performance of tests running VPP (l2xc) inside VM.
+    Consequence of a fix making worker placement deterministic, Gerrit 25309.
     [CSIT-1738]
 
     [6] OPEN Regression in CSIT, one specific test showing too small stdev
@@ -35,8 +36,9 @@ footnote: "
     [7] POSTPONED Possible anomaly, but stdev of results is high.
     Currently, the performance differences are considered to probably be just noise.
 
-    [8] OPEN Regressions in some tests with VPP in VM and using l2xcbase as vswitch.
-    The results have surprisingly small stdev, more investigation needed.
+    [8] DONE Regressions in some tests with VPP in VM.
+    Tests using l2xcbase as vswitch have small enough stdev for bisect.
+    The switch to clang-9 compiler, Gerrit 26744, has been identified as the cause.
     [CSIT-1741]
 
     [9] OPEN Progression in ip6 scale tests. Multiple candidate changes may have
