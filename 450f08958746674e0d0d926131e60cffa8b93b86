@@ -2,6 +2,109 @@
   "comments": [
     {
       "key": {
+        "uuid": "f5d288e0_94b52856",
+        "filename": "docs/report/vpp_performance_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-10T09:22:57Z",
+      "side": 1,
+      "message": "Any additional hardware firmware (QAT)\nBIOS settings\nPhysical setup and description (pci slot information), hw revisions, pci placements",
+      "revId": "450f08958746674e0d0d926131e60cffa8b93b86",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df4df4db_f01fb5ec",
+        "filename": "docs/report/vpp_performance_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-10T09:22:57Z",
+      "side": 1,
+      "message": "what about packages version, drivers version?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "450f08958746674e0d0d926131e60cffa8b93b86",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b3e87c8_8a0383a0",
+        "filename": "docs/report/vpp_performance_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-10T09:22:57Z",
+      "side": 1,
+      "message": "this is too shallow. describe everything that has impact on performance like sysctl, irq, pinning, processes running, and many more",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "450f08958746674e0d0d926131e60cffa8b93b86",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cc3081e_28414789",
+        "filename": "docs/report/vpp_performance_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-10T09:22:57Z",
+      "side": 1,
+      "message": "compilation settings, startup settings, running settings, is compilation dependent on previous settings in stack like kernel, packages version?",
+      "revId": "450f08958746674e0d0d926131e60cffa8b93b86",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88404509_57b6e40a",
+        "filename": "docs/report/vpp_performance_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-10T09:22:57Z",
+      "side": 1,
+      "message": "are the ansible scripts covering all moving parts? what about the settings of OS that is runtime dependent? what about settings not covered by ansible?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 32
+      },
+      "revId": "450f08958746674e0d0d926131e60cffa8b93b86",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f79ba7b6_148e080b",
         "filename": "docs/report/vpp_performance_tests/test_environment.rst",
         "patchSetId": 1
@@ -19,6 +122,47 @@
         "endLine": 56,
         "endChar": 17
       },
+      "revId": "450f08958746674e0d0d926131e60cffa8b93b86",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "786d8cf0_6ab3a47a",
+        "filename": "docs/report/vpp_performance_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-10T09:22:57Z",
+      "side": 1,
+      "message": "all above applies recursively.",
+      "parentUuid": "f79ba7b6_148e080b",
+      "range": {
+        "startLine": 56,
+        "startChar": 15,
+        "endLine": 56,
+        "endChar": 17
+      },
+      "revId": "450f08958746674e0d0d926131e60cffa8b93b86",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f047c978_93f98a7f",
+        "filename": "docs/report/vpp_performance_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-10T09:22:57Z",
+      "side": 1,
+      "message": "VPP section?\n  compilation of vpp, architecture optimization, clang optimization?",
       "revId": "450f08958746674e0d0d926131e60cffa8b93b86",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
