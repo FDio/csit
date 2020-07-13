@@ -834,7 +834,7 @@ latency in a box chart):
 
 The structure of the section "Plot" is as follows (example of a plot showing
 VPP HTTP server performance in a box chart with pre-defined data
-"plot-vpp-httlp-server-performance" set and  plot layout "plot-cps"):
+"plot-vpp-http-server-performance" set and  plot layout "plot-cps"):
 
 ::
 

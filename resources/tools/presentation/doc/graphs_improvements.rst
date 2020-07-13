@@ -21,7 +21,6 @@ rst2html5 tool:
 - `Speedup Multi-core`_
 - `Packet Throughput`_
 - `Packet Latency`_
-- `HTTP-TCP Performance`_
 
 **New graphs to be added**
 
@@ -55,7 +54,6 @@ Priorities
     release.
 
 - `Packet Latency`_
-- `HTTP-TCP Performance`_
 
 Modifications of existing graphs
 --------------------------------
@@ -193,51 +191,6 @@ The statistical data are displayed as hover information.
 - x-axis label: "Direction", bottom, centered
 - y-axis: integers, starting with 0, dynamic range, linear, font size 16, left
 - y-axis label: "Packet Latency min/avg/max [uSec]", middle, left
-- legend: "Indexed Test Cases [idx]", bottom, left, font size 16
-
-.. _HTTP-TCP Performance:
-
-HTTP/TCP Performance
-````````````````````
-
-The "HTTP/TCP Performance" graph will display the measured data using
-statistical box graph separately for "Connections per second" and "Requests per
-second". Each data point is constructed from 10 samples. The statistical data
-are displayed as hover information.
-
-.. image:: pic/graph-http-cps.svg
-    :width: 800 px
-    :scale: 50 %
-    :align: center
-    :alt: Graph "HTTP/TCP Performance" not found.
-
-.. image:: pic/graph-http-rps.svg
-    :width: 800 px
-    :scale: 50 %
-    :align: center
-    :alt: Graph "HTTP/TCP Performance" not found.
-
-**Description:**
-
-*Data displayed:*
-
-- requests / connections per second, the same tests configured for 1, 2 and
-  4 cores (3 data points in each graph)
-- x-axis: indexed test cases
-- y-axis: requests/connections per second, linear scale, beginning with 0
-- hover information: statistical data (min, lower fence, q1, median, q3,
-  higher fence, max), test case name
-
-*Layout:*
-
-- plot type: statistical box (plotly.graph_objs.Box)
-- data series format: box
-- title: "VPP HTTP Server Performance", top, centered, font size 18
-- x-axis: integers, font size 16, bottom
-- x-axis label: "Indices of Test Cases [Index]", bottom, centered, font size 16
-- y-axis: floats, starting with 0, dynamic range, linear, font size 16, left
-- y-axis label: "Connections per second [cps]", "Requests per second [rps]",
-  top, left
 - legend: "Indexed Test Cases [idx]", bottom, left, font size 16
 
 New graphs to be added
