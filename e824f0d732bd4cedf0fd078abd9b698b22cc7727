@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8f812ca_35237f6a",
+        "filename": "docs/job_specs/report_iterative/2n-dnv/dpdk-mlr-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-13T08:50:00Z",
+      "side": 1,
+      "message": "1.25",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "e824f0d732bd4cedf0fd078abd9b698b22cc7727",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07760353_c7cb4356",
+        "filename": "docs/job_specs/report_iterative/2n-skx/dpdk-mlr-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-13T08:50:00Z",
+      "side": 1,
+      "message": "2.48",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "e824f0d732bd4cedf0fd078abd9b698b22cc7727",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46fecc05_478965dd",
+        "filename": "docs/job_specs/report_iterative/3n-dnv/dpdk-mlr-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-13T08:50:00Z",
+      "side": 1,
+      "message": "1.72",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "e824f0d732bd4cedf0fd078abd9b698b22cc7727",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5851870_c7510b71",
+        "filename": "docs/job_specs/report_iterative/3n-hsw/dpdk-mlr-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-13T08:50:00Z",
+      "side": 1,
+      "message": "3",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "e824f0d732bd4cedf0fd078abd9b698b22cc7727",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0208df6_f516431b",
+        "filename": "docs/job_specs/report_iterative/3n-hsw/vpp-mlr-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-13T08:50:00Z",
+      "side": 1,
+      "message": "Duplicate, remove.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 13
+      },
+      "revId": "e824f0d732bd4cedf0fd078abd9b698b22cc7727",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab71f111_a098a179",
+        "filename": "docs/job_specs/report_iterative/3n-skx/dpdk-mlr-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-13T08:50:00Z",
+      "side": 1,
+      "message": "3.18",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "e824f0d732bd4cedf0fd078abd9b698b22cc7727",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
