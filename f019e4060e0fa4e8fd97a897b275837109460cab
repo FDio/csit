@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43ab8af9_1cbac4bc",
+        "filename": "docs/report/introduction/test_environment_intro.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-13T12:39:10Z",
+      "side": 1,
+      "message": "to track",
+      "range": {
+        "startLine": 7,
+        "startChar": 53,
+        "endLine": 7,
+        "endChar": 71
+      },
+      "revId": "f019e4060e0fa4e8fd97a897b275837109460cab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f3f862c_4fc2cce4",
+        "filename": "docs/report/introduction/test_environment_intro.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-13T12:39:10Z",
+      "side": 1,
+      "message": "Created [0] so the info is updated for version 4.\n\n[0] https://gerrit.fd.io/r/c/csit/+/27876",
+      "range": {
+        "startLine": 38,
+        "startChar": 85,
+        "endLine": 38,
+        "endChar": 101
+      },
+      "revId": "f019e4060e0fa4e8fd97a897b275837109460cab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
