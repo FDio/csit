@@ -1,5 +1,5 @@
 Spectre and Meltdown Checks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Following section displays the output of a running shell script to tell if
 system is vulnerable against the several speculative execution CVEs that were
