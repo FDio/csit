@@ -280,15 +280,12 @@
 
     plot-vpp-nfv-2n-skx-ndrpdr:
       csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 43  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 78  # nf-density-sel
-        - 83  # nf-density-sel
+        - 113 # nf-density-sel env 4
+        - 114 # nf-density-sel env 4
 
     plot-vpp-nfv-2n-skx-mrr:
       csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 42  # MRR sel
+        - 115 # nf-density-sel env 4
 
     plot-vpp-nfv-reconf-2n-skx:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -300,6 +297,8 @@
         - 111 # Reconf env 4
         - 112 # Reconf env 4
         - 118 # Reconf env 4
+        - 120 # Reconf env 4
+        - 121 # Reconf env 4
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
@@ -337,20 +336,17 @@
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 7   # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 39  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 57  # 2n-clx nfv-density-00
-        - 58  # 2n-clx nfv-density-00
-        - 59  # 2n-clx nfv-density-00
-        - 60  # 2n-clx nfv-density-00
-        - 61  # 2n-clx nfv-density-00
+        - 91  # nfv-density-00 env 4
+        - 92  # nfv-density-00 env 4
+        - 93  # nfv-density-00 env 4
+        - 97  # nfv-density-00 env 4
+        - 98  # nfv-density-00 env 4
+        - 99  # nfv-density-00 env 4
+        - 100 # nfv-density-00 env 4
 
     plot-vpp-nfv-2n-clx-mrr:
       csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 12   # MRR
+        - 96  # MRR
 
     plot-vpp-nfv-reconf-2n-clx:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -394,6 +390,7 @@
         - 23  # NDRPDR sel env 4
         - 25  # NDRPDR sel env 4
         - 33  # NDRPDR sel env 4
+        - 34  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
@@ -533,6 +530,7 @@
         - 105 # srv6-01
         - 106 # vhost-00
         - 107 # vhost-01
+        - 109 # vhost-02
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -1028,6 +1026,7 @@
         - 23  # NDRPDR sel env 4
         - 25  # NDRPDR sel env 4
         - 33  # NDRPDR sel env 4
+        - 34  # NDRPDR sel env 4
     vpp-performance-changes-3n-tsh-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 28  # NDRPDR sel 2001.0-4
@@ -2256,6 +2255,7 @@
       - 105 # srv6-01
       - 106 # vhost-00
       - 107 # vhost-01
+      - 109 # vhost-02
 
     csit-vpp-perf-verify-1908_1-3n-skx:
       - 26  # NDRPDR sel - new1908.1
@@ -2392,10 +2392,13 @@
       - 111 # Reconf env 4
       - 112 # Reconf env 4
       - 118 # Reconf env 4
+      - 120 # Reconf env 4
+      - 121 # Reconf env 4
       - 49  # Soak
       - 54  # Soak
-      - 78  # nf-density-sel
-      - 83  # nf-density-sel
+      - 113 # nf-density-sel env 4
+      - 114 # nf-density-sel env 4
+      - 115 # MRR nf-density-sel env 4
 #    csit-vpp-perf-report-coverage-2005-2n-skx:
 #      - 11  # perf-full-2n-skx-ip4_I
 #      - 3   # perf-full-2n-skx-ip4_II
@@ -2472,11 +2475,14 @@
       - 90  # Reconf env 4
       - 44  # Soak
       - 49  # Soak
-      - 57  # 2n-clx nfv-density-00
-      - 58  # 2n-clx nfv-density-00
-      - 59  # 2n-clx nfv-density-00
-      - 60  # 2n-clx nfv-density-00
-      - 61  # 2n-clx nfv-density-00
+      - 91  # nfv-density-00 env 4
+      - 92  # nfv-density-00 env 4
+      - 93  # nfv-density-00 env 4
+      - 97  # nfv-density-00 env 4
+      - 98  # nfv-density-00 env 4
+      - 99  # nfv-density-00 env 4
+      - 100 # nfv-density-00 env 4
+      - 96  # MRR nfv-density-00 env 4
 #    csit-vpp-perf-report-coverage-2005-2n-clx:
 #      - 21  # perf-full-2n-clx-ip4_I
 #      - 2   # perf-full-2n-clx-ip4_II
@@ -2528,6 +2534,7 @@
       - 23  # NDRPDR sel env 4
       - 25  # NDRPDR sel env 4
       - 33  # NDRPDR sel env 4
+      - 34  # NDRPDR sel env 4
       - 28  # NDRPDR sel 2001.0-4
       - 29  # NDRPDR sel 2001.0-4
       - 31  # NDRPDR sel 2001.0-4
