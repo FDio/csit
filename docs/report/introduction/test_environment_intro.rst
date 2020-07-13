@@ -4,40 +4,66 @@ Test Environment
 Environment Versioning
 ----------------------
 
-In order to determine any benchmark anomalies (progressions,
-regressions) between releases of a specific data-plane DUT application
-(e.g. VPP, DPDK), the DUT needs to be tested in the same test
-environment, to avoid test environment changes impacting the results and
-clouding the picture.
+CSIT test environment versioning has been introduced to track
+modifications of the test environment.
 
-In order to enable test system evolution, a mirror scheme is required to
-determine benchmarking anomalies between releases of specific test
-system like CSIT. This is achieved by testing the same DUT application
-version between releases of CSIT test system.
+Any benchmark anomalies (progressions, regressions) between releases of
+a DUT application (e.g. VPP, DPDK), are determined by testing it in the
+same test environment, to avoid test environment changes clouding the
+picture.
+
+A mirror approach is introduced to determine benchmarking anomalies due
+to the test environment change. This is achieved by testing the same DUT
+application version between releases of CSIT test system. This works
+under the assumption that the behaviour of the DUT is deterministic
+under the test conditions.
 
 CSIT test environment versioning scheme ensures integrity of all the
 test system components, including their HW revisions, compiled SW code
 versions and SW source code, within a specific CSIT version. Components
 included in the CSIT environment versioning include:
 
-- Server hosts hardware firmware and BIOS (motherboard, processsor,
-  NIC(s), accelerator card(s)).
-- Server host Linux operating system versions.
-- Server host Linux configuration.
-- TRex Traffic Generator version, drivers and configuration.
-- CSIT framework code.
+- **HW** Server hardware firmware and BIOS (motherboard, processsor,
+  NIC(s), accelerator card(s)), tracked in CSIT branch in
+  :file:`./docs/lab/<server_platform_name>_hw_bios_cfg.md`, e.g. `Xeon
+  Skylake servers
+  <https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md#n556>`_.
+- **Linux** Server Linux OS version and configuration, tracked in CSIT
+  Reports in `SUT Settings
+  <https://docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_
+  and `Pre-Test Server Calibration
+  <https://docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#pre-test-server-calibration>`_.
+- **TRex** TRex Traffic Generator version, drivers and configuration
+  tracked in `TG Settings
+  <https://docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_.
+- **CSIT** CSIT framework code tracked in CSIT release branches.
 
 Following is the list of CSIT versions to date:
 
-- Ver. 1 associated with CSIT rls1908 git branch as of 2019-08-21.
-- Ver. 2 associated with CSIT rls2001 git branch as of 2020-03-27.
-- Ver. 3 interim associated with master branch as of 2020-xx-xx.
-- Ver. 4 associated with CSIT rls2005 git branch as of 2020-06-24.
+- Ver. 1 associated with CSIT rls1908 branch (`HW
+  <https://git.fd.io/csit/tree/docs/lab?h=rls1908>`_, `Linux
+  <https://docs.fd.io/csit/rls1908/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+  `TRex
+  <https://docs.fd.io/csit/rls1908/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  `CSIT <https://git.fd.io/csit/tree/?h=rls1908>`_).
+- Ver. 2 associated with CSIT rls2001 branch (`HW
+  <https://git.fd.io/csit/tree/docs/lab?h=rls2001>`_, `Linux
+  <https://docs.fd.io/csit/rls2001/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+  `TRex
+  <https://docs.fd.io/csit/rls2001/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  `CSIT <https://git.fd.io/csit/tree/?h=rls2001>`_).
+- Ver. 4 associated with CSIT rls2005 branch (`HW
+  <https://git.fd.io/csit/tree/docs/lab?h=rls2005>`_, `Linux
+  <https://docs.fd.io/csit/rls2005/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+  `TRex
+  <https://docs.fd.io/csit/rls2005/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  `CSIT <https://git.fd.io/csit/tree/?h=rls2005>`_).
 
-To identify performance changes due to VPP code changes from v20.01.0 to
-v20.05.0, both have been tested in CSIT environment ver. 4 and compared
-against each other. All substantial progressions has been marked up with
-RCA analysis. See Current vs Previous Release and Known Issues.
+To identify performance changes due to VPP code development from
+v20.01.0 to v20.05.0, both have been tested in CSIT environment ver. 4
+and compared against each other. All substantial progressions and
+regressions have been marked up with RCA analysis.
+:ref:`vpp_throughput_comparisons` and :ref:`vpp_known_issues`.
 
 CSIT environment ver. 4 has been evaluated against the ver. 2 by
 benchmarking VPP v20.01.0 in both environment versions.
