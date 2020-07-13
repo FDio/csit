@@ -19,9 +19,7 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficGenerator
-| Library | resources.tools.wrk.wrk
 | Variables | resources/libraries/python/Constants.py
-| Resource | resources/libraries/robot/wrk/wrk_utils.robot
 |
 | Documentation | Suite setup keywords.
 *** Keywords ***
@@ -200,33 +198,3 @@
 | | Configure crypto device on all DUTs | ${crypto_type} | numvfs=${numvfs}
 | | ... | force_init=${True}
 | | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
-
-| Additional Suite Setup Action For wrk
-| | [Documentation]
-| | ... | Additional Setup for suites which uses WRK TG.
-| |
-| | Verify Program Installed | ${tg} | wrk
-| | Iface update numa node | ${tg}
-# Make sure TRex is stopped
-| | ${running}= | Is TRex running | ${tg}
-| | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
-| | ${curr_driver}= | Get PCI dev driver | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-| | Run keyword if | '${curr_driver}'!='${None}'
-| | ... | PCI Driver Unbind | ${tg} |
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-# Bind tg_if1 to driver specified in the topology
-| | ${driver}= | Get Variable Value | ${tg['interfaces']['${tg_if1}']['driver']}
-| | PCI Driver Bind | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']} | ${driver}
-# Set IP on tg_if1
-| | ${intf_name}= | Get Linux interface name | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-| | FOR | ${ip_addr} | IN | @{wrk_ip_addrs}
-| | | ${ip_addr_on_intf}= | Linux interface has IP | ${tg} | ${intf_name}
-| | | ... | ${ip_addr} | ${wrk_ip_prefix}
-| | | Run Keyword If | ${ip_addr_on_intf}==${False} | Set Linux interface IP
-| | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${wrk_ip_prefix}
-| | END
-| | Set Linux interface up | ${tg} | ${intf_name}
-| | Check wrk | ${tg}

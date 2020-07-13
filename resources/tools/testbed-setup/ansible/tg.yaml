@@ -20,8 +20,6 @@
       tags: iperf
     - role: trex
       tags: trex
-    - role: wrk
-      tags: wrk
     - role: docker
       tags: docker
     - role: performance_tuning
