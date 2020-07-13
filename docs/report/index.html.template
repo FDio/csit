@@ -20,6 +20,7 @@ CSIT-2005
     vpp_performance_tests/packet_throughput_graphs/index
     vpp_performance_tests/throughput_speedup_multi_core/index
     vpp_performance_tests/packet_latency/index
+    vpp_performance_tests/reconf_tests/index
     vpp_performance_tests/hoststack_testing/index
     vpp_performance_tests/comparisons/index
     vpp_performance_tests/throughput_trending
@@ -28,7 +29,6 @@ CSIT-2005
 
 ..
     vpp_performance_tests/soak_tests/index
-    vpp_performance_tests/reconf_tests/index
     vpp_performance_tests/nf_service_density/index
 
 .. toctree::

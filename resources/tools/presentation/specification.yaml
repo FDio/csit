@@ -292,16 +292,14 @@
 
     plot-vpp-nfv-reconf-2n-skx:
       csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 48  # Reconf
-        - 50  # Reconf
-        - 51  # Reconf
-        - 52  # Reconf
-        - 53  # Reconf
-        - 60  # Reconf
-        - 70  # Reconf
-        - 71  # Reconf
-        - 63  # Reconf
-        - 66  # Reconf
+        - 106 # Reconf env 4
+        - 107 # Reconf env 4
+        - 108 # Reconf env 4
+        - 109 # Reconf env 4
+        - 110 # Reconf env 4
+        - 111 # Reconf env 4
+        - 112 # Reconf env 4
+        - 118 # Reconf env 4
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-report-iterative-2005-2n-skx:
@@ -361,16 +359,16 @@
 
     plot-vpp-nfv-reconf-2n-clx:
       csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 42  # Reconf
-        - 45  # Reconf
-        - 46  # Reconf
-        - 47  # Reconf
-        - 48  # Reconf
-        - 52  # Reconf
-        - 53  # Reconf
-        - 54  # Reconf
-        - 55  # Reconf
-        - 56  # Reconf
+        - 81  # Reconf env 4
+        - 82  # Reconf env 4
+        - 83  # Reconf env 4
+        - 84  # Reconf env 4
+        - 85  # Reconf env 4
+        - 86  # Reconf env 4
+        - 87  # Reconf env 4
+        - 88  # Reconf env 4
+        - 89  # Reconf env 4
+        - 90  # Reconf env 4
 
     plot-vpp-soak-2n-clx:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -2391,16 +2389,14 @@
       - 105 # NDRPDR sel 2001.0-4
       - 42  # MRR sel
       - 99  # MRR sel env 4
-      - 48  # Reconf
-      - 50  # Reconf
-      - 51  # Reconf
-      - 52  # Reconf
-      - 53  # Reconf
-      - 60  # Reconf
-      - 70  # Reconf
-      - 71  # Reconf
-      - 63  # Reconf
-      - 66  # Reconf
+      - 106 # Reconf env 4
+      - 107 # Reconf env 4
+      - 108 # Reconf env 4
+      - 109 # Reconf env 4
+      - 110 # Reconf env 4
+      - 111 # Reconf env 4
+      - 112 # Reconf env 4
+      - 118 # Reconf env 4
       - 49  # Soak
       - 54  # Soak
       - 78  # nf-density-sel
@@ -2469,16 +2465,16 @@
       - 80  # NDRPDR sel 2001.0-4
       - 12  # MRR
       - 72  # MRR env 4
-      - 42  # Reconf
-      - 45  # Reconf
-      - 46  # Reconf
-      - 47  # Reconf
-      - 48  # Reconf
-      - 52  # Reconf
-      - 53  # Reconf
-      - 54  # Reconf
-      - 55  # Reconf
-      - 56  # Reconf
+      - 81  # Reconf env 4
+      - 82  # Reconf env 4
+      - 83  # Reconf env 4
+      - 84  # Reconf env 4
+      - 85  # Reconf env 4
+      - 86  # Reconf env 4
+      - 87  # Reconf env 4
+      - 88  # Reconf env 4
+      - 89  # Reconf env 4
+      - 90  # Reconf env 4
       - 44  # Soak
       - 49  # Soak
       - 57  # 2n-clx nfv-density-00
