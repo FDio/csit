@@ -23,7 +23,7 @@ TG Startup Configuration
 
   $ sudo -E -S sh -c 'cat << EOF > /etc/trex_cfg.yaml
   - version: 2
-    c: 15
+    c: 7
     limit_memory: 8192
     interfaces: ["${pci1}","${pci2}"]
     port_info:
@@ -32,11 +32,11 @@ TG Startup Configuration
       - dest_mac: [${dest_mac2}]
         src_mac: [${src_mac2}]
     platform :
-      master_thread_id: 0
-      latency_thread_id: 16
-      dual_if:
-          - socket: 0
-            threads: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+        master_thread_id: 0
+        latency_thread_id: 8
+        dual_if:
+            - socket: 0
+              threads: [1, 2, 3, 4, 5, 6, 7]
   EOF'
 
 TG Startup Command
@@ -44,9 +44,9 @@ TG Startup Command
 
 ::
 
-  $ sh -c 'cd <t-rex-install-dir>/scripts/ && \
-    sudo nohup ./t-rex-64 -i --prefix $(hostname) --hdrh --no-scapy-server \
-    > /tmp/trex.log 2>&1 &' > /dev/null
+  $ sudo -E -S sh -c "cd '<t-rex-install-dir>/scripts/' && \
+    nohup ./t-rex-64 -i --prefix $(hostname) --hdrh --no-scapy-server \
+    --mbuf-factor 32 > /tmp/trex.log 2>&1 &" > /dev/null
 
 TG API Driver
 ~~~~~~~~~~~~~
