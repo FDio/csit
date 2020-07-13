@@ -400,6 +400,7 @@
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 23  # NDRPDR sel env 4
         - 25  # NDRPDR sel env 4
+        - 33  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
@@ -503,45 +504,42 @@
     # Results
 
     vpp-perf-results-3n-hsw:
-      csit-vpp-perf-report-iterative-2005-3n-hsw:
-        - 29  # NDRPDR sel env 4
-#      csit-vpp-perf-report-coverage-2005-3n-hsw:
-#        - 1   # perf-full-3n-dnv-crypto_I
-#        - 7   # perf-full-3n-hsw-crypto_II
-#        - 3   # perf-full-3n-hsw-crypto_III
-#        - 4   # perf-full-3n-dnv-crypto_IV
-#        - 5   # perf-full-3n-hsw-ip4_I
-#        - 6   # perf-full-3n-hsw-ip4_II
-#        - 8   # perf-full-3n-hsw-ip4_III
-#        - 9   # perf-full-3n-hsw-ip4_IV
-#        - 10  # perf-full-3n-hsw-ip4_V
-#        - 26  # perf-full-3n-hsw-ip4_VI
-#        - 18  # perf-full-3n-hsw-ip4_VII
-#        - 27  # perf-full-3n-hsw-ip4_VIII
-#        - 28  # perf-full-3n-hsw-ip4_IX
-#        - 29  # perf-full-3n-hsw-ip6_I
-#        - 35  # perf-full-3n-hsw-ip6_II
-#        - 42  # perf-full-3n-hsw-l2_I
-#        - 33  # perf-full-3n-hsw-l2_II
-#        - 37  # perf-full-3n-hsw-l2_III
-#        - 45  # perf-full-3n-hsw-l2_IV
-#        - 43  # perf-full-3n-hsw-l2_V
-#        - 40  # perf-full-3n-hsw-l2_VI
-#        - 44  # perf-full-3n-hsw-l2_VII
-#        - 51  # perf-full-3n-hsw-l2_VIII
-#        - 50  # perf-full-3n-hsw-l2_IX
-#        - 52  # perf-full-3n-hsw-l2_X
-#        - 53  # perf-full-3n-hsw-l2_XI
-#        - 54  # perf-full-3n-hsw-memif
-#        - 55  # perf-full-3n-hsw-ip4tunnels-I
-#        - 56  # perf-full-3n-hsw-ip4tunnels-II
-#        - 57  # perf-full-3n-hsw-ip4tunnels-III
-#        - 58  # perf-full-3n-hsw-ip6tunnels-I
-#        - 59  # perf-full-3n-hsw-srv6-I
-#        - 60  # perf-full-3n-hsw-srv6-II
-#        - 61  # perf-full-3n-hsw-vhost-I
-#        - 62  # perf-full-3n-hsw-vhost-II
-#        - 63  # perf-full-3n-hsw-vhost-III
+      csit-vpp-perf-report-coverage-2005-3n-hsw:
+        - 74  # crypto-00
+        - 75  # crypto-01
+        - 76  # crypto-02
+        - 77  # crypto-03
+        - 78  # ip4-00
+        - 79  # ip4-01
+        - 80  # ip4-02
+        - 81  # ip4-03
+        - 73  # ip4-04
+        - 82  # ip4-05
+        - 83  # ip4-06
+        - 84  # ip4-07
+        - 85  # ip4-08
+        - 86  # ip4tun-00
+        - 87  # ip4tun-01
+        - 88  # ip4tun-02
+        - 89  # ip6-00
+        - 90  # ip6-01
+        - 91  # ip6tun-00
+        - 92  # l2-00
+        - 93  # l2-01
+        - 94  # l2-02
+        - 95  # l2-03
+        - 96  # l2-04
+        - 97  # l2-05
+        - 98  # l2-06
+        - 99  # l2-07
+        - 100 # l2-08
+        - 101 # l2-09
+        - 102 # l2-10
+        - 103 # memif-00
+        - 104 # srv6-00
+        - 105 # srv6-01
+        - 106 # vhost-00
+        - 107 # vhost-01
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -1036,6 +1034,7 @@
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 23  # NDRPDR sel env 4
         - 25  # NDRPDR sel env 4
+        - 33  # NDRPDR sel env 4
     vpp-performance-changes-3n-tsh-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 28  # NDRPDR sel 2001.0-4
@@ -2229,42 +2228,41 @@
       - 12  # hoststack
       - 13  # hoststack
     csit-vpp-perf-report-coverage-2005-3n-hsw:
-#      - 1   # perf-full-3n-dnv-crypto_I
-#      - 7   # perf-full-3n-hsw-crypto_II
-#      - 3   # perf-full-3n-hsw-crypto_III
-#      - 4   # perf-full-3n-dnv-crypto_IV
-#      - 5   # perf-full-3n-hsw-ip4_I
-#      - 6   # perf-full-3n-hsw-ip4_II
-#      - 8   # perf-full-3n-hsw-ip4_III
-#      - 9   # perf-full-3n-hsw-ip4_IV
-#      - 10  # perf-full-3n-hsw-ip4_V
-#      - 26  # perf-full-3n-hsw-ip4_VI
-#      - 18  # perf-full-3n-hsw-ip4_VII
-#      - 27  # perf-full-3n-hsw-ip4_VIII
-#      - 28  # perf-full-3n-hsw-ip4_IX
-#      - 29  # perf-full-3n-hsw-ip6_I
-#      - 35  # perf-full-3n-hsw-ip6_II
-#      - 42  # perf-full-3n-hsw-l2_I
-#      - 33  # perf-full-3n-hsw-l2_II
-#      - 37  # perf-full-3n-hsw-l2_III
-#      - 45  # perf-full-3n-hsw-l2_IV
-#      - 43  # perf-full-3n-hsw-l2_V
-#      - 40  # perf-full-3n-hsw-l2_VI
-#      - 44  # perf-full-3n-hsw-l2_VII
-#      - 51  # perf-full-3n-hsw-l2_VIII
-#      - 50  # perf-full-3n-hsw-l2_IX
-#      - 52  # perf-full-3n-hsw-l2_X
-#      - 53  # perf-full-3n-hsw-l2_XI
-#      - 54  # perf-full-3n-hsw-memif
-#      - 55  # perf-full-3n-hsw-ip4tunnels-I
-#      - 56  # perf-full-3n-hsw-ip4tunnels-II
-#      - 57  # perf-full-3n-hsw-ip4tunnels-III
-#      - 58  # perf-full-3n-hsw-ip6tunnels-I
-#      - 59  # perf-full-3n-hsw-srv6-I
-#      - 60  # perf-full-3n-hsw-srv6-II
-#      - 61  # perf-full-3n-hsw-vhost-I
-#      - 62  # perf-full-3n-hsw-vhost-II
-#      - 63  # perf-full-3n-hsw-vhost-III
+      - 74  # crypto-00
+      - 75  # crypto-01
+      - 76  # crypto-02
+      - 77  # crypto-03
+      - 78  # ip4-00
+      - 79  # ip4-01
+      - 80  # ip4-02
+      - 81  # ip4-03
+      - 73  # ip4-04
+      - 82  # ip4-05
+      - 83  # ip4-06
+      - 84  # ip4-07
+      - 85  # ip4-08
+      - 86  # ip4tun-00
+      - 87  # ip4tun-01
+      - 88  # ip4tun-02
+      - 89  # ip6-00
+      - 90  # ip6-01
+      - 91  # ip6tun-00
+      - 92  # l2-00
+      - 93  # l2-01
+      - 94  # l2-02
+      - 95  # l2-03
+      - 96  # l2-04
+      - 97  # l2-05
+      - 98  # l2-06
+      - 99  # l2-07
+      - 100 # l2-08
+      - 101 # l2-09
+      - 102 # l2-10
+      - 103 # memif-00
+      - 104 # srv6-00
+      - 105 # srv6-01
+      - 106 # vhost-00
+      - 107 # vhost-01
 
     csit-vpp-perf-verify-1908_1-3n-skx:
       - 26  # NDRPDR sel - new1908.1
@@ -2538,6 +2536,7 @@
       - 21  # NDRPDR sel
       - 23  # NDRPDR sel env 4
       - 25  # NDRPDR sel env 4
+      - 33  # NDRPDR sel env 4
       - 28  # NDRPDR sel 2001.0-4
       - 29  # NDRPDR sel 2001.0-4
       - 31  # NDRPDR sel 2001.0-4
