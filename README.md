@@ -131,12 +131,10 @@ resources
 │   │   ├── testbed-setup           # Physical testbed setup scripts
 │   │   ├── topology                # Helper scripts for topology manipulation
 │   │   ├── trex                    # TRex driver
-│   │   ├── vagrant                 # VPP device vagrant environment
-│   │   └── wrk                     # WRK driver
+│   │   └── vagrant                 # VPP device vagrant environment
 │   ├── topology_schemas
 │   ├── traffic_profiles            # Performance tests traffic profiles
-│   │   ├── trex
-│   │   └── wrk
+│   │   └── trex
 │   └── traffic_scripts             # Functional tests traffic profiles
 │       ├── dhcp
 │       └── lisp
