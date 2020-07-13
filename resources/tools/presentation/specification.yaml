@@ -335,11 +335,6 @@
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 70  # NDRPDR sel env 4
 
-#    plot-vpp-http-server-performance:
-#      # csit-vpp-perf-report-iterative-2005-2n-clx:
-#      csit-vpp-perf-verify-2001-2n-clx:
-#        - 80  # TCP
-
     plot-vpp-nfv-2n-clx-ndrpdr:
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 7   # NDRPDR sel
@@ -8129,47 +8124,6 @@
   layout:
     title: "3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho"
     layout: "plot-hoststack"
-
-## Plots VPP HTTP Server Performance
-#- type: "plot"
-#  title: "VPP HTTP Server Performance"
-#  algorithm: "plot_http_server_perf_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
-#  data:
-#    "plot-vpp-http-server-performance"
-#  filter: "'HTTP' and 'TCP_CPS' and not '8T4C'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  traces:
-#    hoverinfo: "y+name"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "VPP HTTP Server Performance"
-#    layout:
-#      "plot-cps"
-#
-#- type: "plot"
-#  title: "VPP HTTP Server Performance"
-#  algorithm: "plot_http_server_perf_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
-#  data:
-#    "plot-vpp-http-server-performance"
-#  filter: "'HTTP' and 'TCP_RPS' and not '8T4C'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  traces:
-#    hoverinfo: "y+name"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "VPP HTTP Server Performance"
-#    layout:
-#      "plot-rps"
 
 ################################################################################
 
