@@ -1,6 +1,8 @@
 Test Environment
 ================
 
+.. _test_environment_versioning:
+
 Environment Versioning
 ----------------------
 
@@ -62,7 +64,7 @@ Following is the list of CSIT versions to date:
 To identify performance changes due to VPP code development from
 v20.01.0 to v20.05.0, both have been tested in CSIT environment ver. 4
 and compared against each other. All substantial progressions and
-regressions have been marked up with RCA analysis.
+regressions have been marked up with RCA analysis. See
 :ref:`vpp_throughput_comparisons` and :ref:`vpp_known_issues`.
 
 CSIT environment ver. 4 has been evaluated against the ver. 2 by
