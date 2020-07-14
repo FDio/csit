@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -40,6 +40,16 @@ nodes:
         pci_address: "0000:00:09.0"
         link: link2
         model: Intel-X553
+      port6:
+        mac_address: "08:00:27:35:66:0a"
+        pci_address: "0000:00:0a.0"
+        link: link3
+        model: Intel-E810CQ
+      port7:
+        mac_address: "08:00:27:46:77:0b"
+        pci_address: "0000:00:0b.0"
+        link: link4
+        model: Intel-E810CQ
   DUT1:
     type: DUT
     host: 10.0.0.1
@@ -59,3 +69,13 @@ nodes:
         pci_address: "0000:00:09.0"
         link: link2
         model: Intel-X553
+      port6:
+        mac_address: "08:00:27:ae:0a:2b"
+        pci_address: "0000:00:0a.0"
+        link: link3
+        model: Intel-E810CQ
+      port7:
+        mac_address: "08:00:27:f3:0b:f0"
+        pci_address: "0000:00:0b.0"
+        link: link4
+        model: Intel-E810CQ
