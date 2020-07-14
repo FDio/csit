@@ -34,12 +34,12 @@ nodes:
         mac_address: "08:00:27:35:59:04"
         pci_address: "0000:00:08.0"
         link: link1
-        model: Intel-X553
+        model: Intel-E810CQ
       port5:
         mac_address: "08:00:27:46:2b:4c"
         pci_address: "0000:00:09.0"
         link: link2
-        model: Intel-X553
+        model: Intel-E810CQ
   DUT1:
     type: DUT
     host: 10.0.0.1
@@ -53,9 +53,9 @@ nodes:
         mac_address: "08:00:27:ae:29:2b"
         pci_address: "0000:00:08.0"
         link: link1
-        model: Intel-X553
+        model: Intel-E810CQ
       port3:
         mac_address: "08:00:27:f3:be:f0"
         pci_address: "0000:00:09.0"
         link: link2
-        model: Intel-X553
+        model: Intel-E810CQ
