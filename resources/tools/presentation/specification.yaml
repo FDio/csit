@@ -3251,7 +3251,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3284,7 +3284,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3317,7 +3317,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3350,7 +3350,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3509,7 +3509,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24)..'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Compares CSIT environments "4" to "3". "3" was discarded as it substantially changed TRex behaviour due to higher number of TRex workers used.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
@@ -3543,7 +3543,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3576,7 +3576,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3609,7 +3609,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3642,7 +3642,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3835,7 +3835,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3868,7 +3868,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3901,7 +3901,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -3934,7 +3934,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -4126,7 +4126,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -4157,7 +4157,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -4188,7 +4188,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -4219,7 +4219,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -4395,7 +4395,7 @@
 #  legend:
 #    - ''
 #    - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with x556.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
 #    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
 #    - '2005.0-3 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
 ##    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
@@ -4419,7 +4419,7 @@
 #  legend:
 #    - ''
 #    - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with x556.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
 #    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
 #    - '2005.0-3 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
 ##    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
@@ -4443,7 +4443,7 @@
 #  legend:
 #    - ''
 #    - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with x556.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
 #    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
 #    - '2005.0-3 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
 ##    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
@@ -4467,7 +4467,7 @@
 #  legend:
 #    - ''
 #    - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with x556.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
 #    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
 #    - '2005.0-3 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
 ##    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
@@ -4493,7 +4493,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -4518,7 +4518,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -4543,7 +4543,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -4568,7 +4568,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -4593,7 +4593,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -4618,7 +4618,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -4643,7 +4643,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -4668,7 +4668,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -4700,7 +4700,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-tsh with x520.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -4733,7 +4733,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-tsh with x520.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -4766,7 +4766,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-tsh with x520.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -4799,7 +4799,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-tsh with x520.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2001.0-4 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
     - '2005.0-4 vs 2001.0-4: Compares VPP code current vs previous in the current CSIT environment.'
@@ -5344,7 +5344,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5377,7 +5377,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5410,7 +5410,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5441,7 +5441,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5472,7 +5472,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5503,7 +5503,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5534,7 +5534,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5565,7 +5565,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5596,7 +5596,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-skx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5627,7 +5627,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5658,7 +5658,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5689,7 +5689,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with xxv710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5778,7 +5778,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -5803,7 +5803,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -5828,7 +5828,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -5853,7 +5853,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -5878,7 +5878,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -5903,7 +5903,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-dnv with x553.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-3 vs 2001.0-2: Compares CSIT environment current vs previous with previous VPP code.'
 
@@ -5935,7 +5935,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-tsh with x520.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -5968,7 +5968,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-tsh with x520.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
@@ -6001,7 +6001,7 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-tsh with x520.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for 2020-03-27, "3" for 2020-06-11, "4" for 2020-06-24).'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2005.0-4 vs 2005.0-3: Environment version "3" was found to be incompatible with "2" due to higher number of TRex workers used.'
     - '2005.0-4 vs 2001.0-2: Used as a reference to compare benchmark results of VPP current release v20.05.0 vs previous release v20.01.0.'
