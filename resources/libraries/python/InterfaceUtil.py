@@ -1569,9 +1569,9 @@ class InterfaceUtil:
         pf_mac_addr = Topology.get_interface_mac(node, ifc_key).split(":")
         uio_driver = Topology.get_uio_driver(node)
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
-        if kernel_driver not in (u"i40e", u"i40evf"):
+        if kernel_driver not in (u"ice", u"iavf", u"i40e", u"i40evf"):
             raise RuntimeError(
-                f"AVF needs i40e-compatible driver, not {kernel_driver} "
+                f"AVF needs ice or i40e compatible driver, not {kernel_driver}"
                 f"at node {node[u'host']} ifc {ifc_key}"
             )
         current_driver = DUTSetup.get_pci_dev_driver(
