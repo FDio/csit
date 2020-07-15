@@ -282,6 +282,7 @@
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 113 # nf-density-sel env 4
         - 114 # nf-density-sel env 4
+        - 124 # nf-density-sel env 4
 
     plot-vpp-nfv-2n-skx-mrr:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -391,10 +392,11 @@
         - 25  # NDRPDR sel env 4
         - 33  # NDRPDR sel env 4
         - 34  # NDRPDR sel env 4
+        - 35  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
-        - 25  # NDRPDR sel env 4
+        - 35  # NDRPDR sel env 4
 
     plot-dpdk-throughput-latency-3n-tsh:
       csit-dpdk-perf-report-iterative-2005-3n-tsh:
@@ -533,84 +535,61 @@
         - 109 # vhost-02
 
     vpp-perf-results-3n-skx:
-      csit-vpp-perf-report-iterative-2005-3n-skx:
-        - 47  # NDRPDR sel env 4
-#      csit-vpp-perf-report-coverage-2005-3n-skx:
-#        - 10  # perf-full-3n-skx-crypto_I
-#        - 11  # perf-full-3n-skx-crypto_II
-#        - 12  # perf-full-3n-skx-crypto_III
-#        - 5   # perf-full-3n-skx-ip4_I
-#        - 14  # perf-full-3n-skx-ip4_II
-#        - 7   # perf-full-3n-skx-ip4_III
-#        - 15  # perf-full-3n-skx-ip4_IV
-#        - 16  # perf-full-3n-skx-ip4_V
-#        - 17  # perf-full-3n-skx-ip4_VI
-#        - 18  # perf-full-3n-skx-ip4_VII
-#        - 19  # perf-full-3n-skx-ip4_VIII
-#        - 20  # perf-full-3n-skx-ip4_IX
-#        - 24  # perf-full-3n-skx-ip6_I
-#        - 25  # perf-full-3n-skx-ip6_II
-#        - 21  # perf-full-3n-skx-ip4tunnels-I
-#        - 22  # perf-full-3n-skx-ip4tunnels-II
-#        - 23  # perf-full-3n-skx-ip4tunnels-III
-#        - 26  # perf-full-3n-skx-ip6tunnels-I
-#        - 28  # perf-full-3n-skx-l2_II
-#        - 29  # perf-full-3n-skx-l2_III
-#        - 30  # perf-full-3n-skx-l2_IV
-#        - 32  # perf-full-3n-skx-l2_VI
-#        - 33  # perf-full-3n-skx-l2_VII
-#        - 34  # perf-full-3n-skx-l2_VIII
-#        - 35  # perf-full-3n-skx-l2_IX
-#        - 36  # perf-full-3n-skx-l2_X
-#        - 37  # perf-full-3n-skx-l2_XI
-#        - 38  # perf-full-3n-skx-memif
-#        - 39  # perf-full-3n-skx-srv6-I
-#        - 40  # perf-full-3n-skx-srv6-II
-#        - 43  # perf-full-3n-skx-vhost-III
+      csit-vpp-perf-report-coverage-2005-3n-skx:
+        - 45  # crypto-00
+        - 46  # crypto-01
+        - 47  # crypto-02
+        - 51  # ip4-01
+        - 52  # ip4-02
+        - 53  # ip4-03
+        - 54  # ip4-04
+        - 55  # ip4-05
+        - 56  # ip4-06
+        - 57  # ip4-07
+        - 58  # ip4-08
+        - 59  # ip4tun-00
+        - 60  # ip4tun-01
+        - 61  # ip4tun-02
+        - 62  # ip6-00
+        - 63  # ip6-01
+        - 64  # ip6tun-00
+        - 65  # l2-00
+        - 66  # l2-01
+        - 67  # l2-02
+        - 68  # l2-03
+        - 71  # l2-06
+        - 72  # l2-07
+        - 73  # l2-08
+        - 75  # l2-10
+        - 81  # vhost-02
 
     vpp-perf-results-2n-skx:
-      csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 94  # NDRPDR sel env 4
-#      csit-vpp-perf-report-coverage-2005-2n-skx:
-#        - 11  # perf-full-2n-skx-ip4_I
-#        - 3   # perf-full-2n-skx-ip4_II
-#        - 18  # perf-full-2n-skx-ip4_III
-#        - 19  # perf-full-2n-skx-ip4_IV
-#        - 5   # perf-full-2n-skx-ip4_V
-#        - 20  # perf-full-2n-skx-ip4_VI
-#        - 7   # perf-full-2n-skx-ip6_I
-#        - 21  # perf-full-2n-skx-ip6_II
-#        - 9   # perf-full-2n-skx-l2_I
-#        - 22  # perf-full-2n-skx-l2_II
-#        - 23  # perf-full-2n-skx-memif
-#        - 24  # perf-full-2n-skx-loadbalancer
-#        - 25  # perf-full-2n-skx-vhost I
-#        - 26  # perf-full-2n-skx-vhost II
-#        - 27  # perf-full-2n-skx-vts
+      csit-vpp-perf-report-coverage-2005-2n-skx:
+        - 28  # ip4-00
+        - 29  # ip4-01
+        - 30  # ip4-02
+        - 31  # ip4-03
+        - 35  # ip6-01
+        - 37  # l2-01
+        - 39  # memif-00
+        - 41  # vhost-01
+        - 42  # vts-00
 
     vpp-perf-results-2n-clx:
-      csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 62  # NDRPDR sel env 4
-#      csit-vpp-perf-report-coverage-2005-2n-clx:
-#        - 21  # perf-full-2n-clx-ip4_I
-#        - 2   # perf-full-2n-clx-ip4_II
-#        - 3   # perf-full-2n-clx-ip4_III
-#        - 4   # perf-full-2n-clx-ip4_IV
-#        - 5   # perf-full-2n-clx-ip4_V
-#        - 6   # perf-full-2n-clx-ip4_VI
-#        - 7   # perf-full-2n-clx-ip6_I
-#        - 16  # perf-full-2n-clx-ip6_II
-#        - 23  # perf-full-2n-clx-l2_I
-#        - 10  # perf-full-2n-clx-l2_II
-#        - 11  # perf-full-2n-clx-memif
-#        - 12  # perf-full-2n-clx-loadbalancer
-#        - 13  # perf-full-2n-clx-vhost I
-#        - 22  # perf-full-2n-clx-vhost II
-#        - 15  # perf-full-2n-clx-vts
+      csit-vpp-perf-report-coverage-2005-2n-clx:
+        - 24  # ip4-00
+        - 25  # ip4-01
+        - 26  # ip4-02
+        - 27  # ip4-03
+        - 28  # ip4-04
+        - 29  # ip4-05
+        - 31  # l2-00
+        - 32  # vhost-00
+        - 33  # vhost-01
 
     vpp-perf-results-3n-tsh:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
-        - 25  # NDRPDR sel env 4
+        - 35  # NDRPDR sel env 4
 
     vpp-perf-results-3n-dnv:
       csit-vpp-perf-report-coverage-2005-3n-dnv:
@@ -1027,6 +1006,7 @@
         - 25  # NDRPDR sel env 4
         - 33  # NDRPDR sel env 4
         - 34  # NDRPDR sel env 4
+        - 35  # NDRPDR sel env 4
     vpp-performance-changes-3n-tsh-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 28  # NDRPDR sel 2001.0-4
@@ -2291,38 +2271,33 @@
       - 54  # NDRPDR sel 2001.0-4
       - 6   # MRR sel
       - 49  # MRR sel env 4
-#    csit-vpp-perf-report-coverage-2005-3n-skx:
-#      - 10  # perf-full-3n-skx-crypto_I
-#      - 11  # perf-full-3n-skx-crypto_II
-#      - 12  # perf-full-3n-skx-crypto_III
-#      - 5   # perf-full-3n-skx-ip4_I
-#      - 14  # perf-full-3n-skx-ip4_II
-#      - 7   # perf-full-3n-skx-ip4_III
-#      - 15  # perf-full-3n-skx-ip4_IV
-#      - 16  # perf-full-3n-skx-ip4_V
-#      - 17  # perf-full-3n-skx-ip4_VI
-#      - 18  # perf-full-3n-skx-ip4_VII
-#      - 19  # perf-full-3n-skx-ip4_VIII
-#      - 20  # perf-full-3n-skx-ip4_IX
-#      - 24  # perf-full-3n-skx-ip6_I
-#      - 25  # perf-full-3n-skx-ip6_II
-#      - 21  # perf-full-3n-skx-ip4tunnels-I
-#      - 22  # perf-full-3n-skx-ip4tunnels-II
-#      - 23  # perf-full-3n-skx-ip4tunnels-III
-#      - 26  # perf-full-3n-skx-ip6tunnels-I
-#      - 28  # perf-full-3n-skx-l2_II
-#      - 29  # perf-full-3n-skx-l2_III
-#      - 30  # perf-full-3n-skx-l2_IV
-#      - 32  # perf-full-3n-skx-l2_VI
-#      - 33  # perf-full-3n-skx-l2_VII
-#      - 34  # perf-full-3n-skx-l2_VIII
-#      - 35  # perf-full-3n-skx-l2_IX
-#      - 36  # perf-full-3n-skx-l2_X
-#      - 37  # perf-full-3n-skx-l2_XI
-#      - 38  # perf-full-3n-skx-memif
-#      - 39  # perf-full-3n-skx-srv6-I
-#      - 40  # perf-full-3n-skx-srv6-II
-#      - 43  # perf-full-3n-skx-vhost-III
+    csit-vpp-perf-report-coverage-2005-3n-skx:
+      - 45  # crypto-00
+      - 46  # crypto-01
+      - 47  # crypto-02
+      - 51  # ip4-01
+      - 52  # ip4-02
+      - 53  # ip4-03
+      - 54  # ip4-04
+      - 55  # ip4-05
+      - 56  # ip4-06
+      - 57  # ip4-07
+      - 58  # ip4-08
+      - 59  # ip4tun-00
+      - 60  # ip4tun-01
+      - 61  # ip4tun-02
+      - 62  # ip6-00
+      - 63  # ip6-01
+      - 64  # ip6tun-00
+      - 65  # l2-00
+      - 66  # l2-01
+      - 67  # l2-02
+      - 68  # l2-03
+      - 71  # l2-06
+      - 72  # l2-07
+      - 73  # l2-08
+      - 75  # l2-10
+      - 81  # vhost-02
 
     csit-vpp-perf-verify-1908_1-2n-skx:
       - 39  # NDRPDR sel - new1908.1
@@ -2388,23 +2363,18 @@
       - 123 # Soak
       - 113 # nf-density-sel env 4
       - 114 # nf-density-sel env 4
+      - 124 # nf-density-sel env 4
       - 115 # MRR nf-density-sel env 4
-#    csit-vpp-perf-report-coverage-2005-2n-skx:
-#      - 11  # perf-full-2n-skx-ip4_I
-#      - 3   # perf-full-2n-skx-ip4_II
-#      - 18  # perf-full-2n-skx-ip4_III
-#      - 19  # perf-full-2n-skx-ip4_IV
-#      - 5   # perf-full-2n-skx-ip4_V
-#      - 20  # perf-full-2n-skx-ip4_VI
-#      - 7   # perf-full-2n-skx-ip6_I
-#      - 21  # perf-full-2n-skx-ip6_II
-#      - 9   # perf-full-2n-skx-l2_I
-#      - 22  # perf-full-2n-skx-l2_II
-#      - 23  # perf-full-2n-skx-memif
-#      - 24  # perf-full-2n-skx-loadbalancer
-#      - 25  # perf-full-2n-skx-vhost I
-#      - 26  # perf-full-2n-skx-vhost II
-#      - 27  # perf-full-2n-skx-vts
+    csit-vpp-perf-report-coverage-2005-2n-skx:
+      - 28  # ip4-00
+      - 29  # ip4-01
+      - 30  # ip4-02
+      - 31  # ip4-03
+      - 35  # ip6-01
+      - 37  # l2-01
+      - 39  # memif-00
+      - 41  # vhost-01
+      - 42  # vts-00
 
     csit-vpp-perf-verify-1908_1-2n-clx:
       - 5  # NDRPDR sel
@@ -2473,22 +2443,16 @@
       - 99  # nfv-density-00 env 4
       - 100 # nfv-density-00 env 4
       - 96  # MRR nfv-density-00 env 4
-#    csit-vpp-perf-report-coverage-2005-2n-clx:
-#      - 21  # perf-full-2n-clx-ip4_I
-#      - 2   # perf-full-2n-clx-ip4_II
-#      - 3   # perf-full-2n-clx-ip4_III
-#      - 4   # perf-full-2n-clx-ip4_IV
-#      - 5   # perf-full-2n-clx-ip4_V
-#      - 6   # perf-full-2n-clx-ip4_VI
-#      - 7   # perf-full-2n-clx-ip6_I
-#      - 16  # perf-full-2n-clx-ip6_II
-#      - 23  # perf-full-2n-clx-l2_I
-#      - 10  # perf-full-2n-clx-l2_II
-#      - 11  # perf-full-2n-clx-memif
-#      - 12  # perf-full-2n-clx-loadbalancer
-#      - 13  # perf-full-2n-clx-vhost I
-#      - 22  # perf-full-2n-clx-vhost II
-#      - 15  # perf-full-2n-clx-vts
+    csit-vpp-perf-report-coverage-2005-2n-clx:
+      - 24  # ip4-00
+      - 25  # ip4-01
+      - 26  # ip4-02
+      - 27  # ip4-03
+      - 28  # ip4-04
+      - 29  # ip4-05
+      - 31  # l2-00
+      - 32  # vhost-00
+      - 33  # vhost-01
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
@@ -2525,6 +2489,7 @@
       - 25  # NDRPDR sel env 4
       - 33  # NDRPDR sel env 4
       - 34  # NDRPDR sel env 4
+      - 35  # NDRPDR sel env 4
       - 28  # NDRPDR sel 2001.0-4
       - 29  # NDRPDR sel 2001.0-4
       - 31  # NDRPDR sel 2001.0-4
