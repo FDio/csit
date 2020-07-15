@@ -364,6 +364,7 @@
     plot-vpp-soak-2n-clx:
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 101 # Soak
+        - 102 # Soak
 
     plot-dpdk-throughput-latency-2n-clx:
       csit-dpdk-perf-report-iterative-2005-2n-clx:
@@ -1070,6 +1071,7 @@
     vpp-soak-vs-ndr-2n-clx-cmp:
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 101 # Soak
+        - 102 # Soak
     vpp-soak-vs-ndr-2n-clx:
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 62  # NDRPDR sel env 4
@@ -1081,6 +1083,7 @@
         - 69  # NDRPDR sel env 4
         - 70  # NDRPDR sel env 4
         - 101 # Soak
+        - 102 # Soak
 
     vpp-performance-changes-3n-hsw-mrr-h1:
       csit-vpp-perf-verify-1908-3n-hsw:
@@ -2461,6 +2464,7 @@
       - 89  # Reconf env 4
       - 90  # Reconf env 4
       - 101 # Soak
+      - 102 # Soak
       - 91  # nfv-density-00 env 4
       - 92  # nfv-density-00 env 4
       - 93  # nfv-density-00 env 4
@@ -2851,8 +2855,8 @@
   format:
     html:
     - full
-#    pdf:
-#    - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
