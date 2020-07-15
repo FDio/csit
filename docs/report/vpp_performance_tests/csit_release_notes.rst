@@ -66,7 +66,7 @@ List of known issues in |csit-release| for VPP performance tests:
 |  6 | `CSIT-1593                              | IPv4 AVF 9000B packet tests are failing on 3n-skx while passing on 2n-skx.                                |
 |    | <https://jira.fd.io/browse/CSIT-1593>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1679                              | All 2n-clx VPP ip4 tests with xxv710 and avf driver are failing.                                          |
+|  7 | `CSIT-1679                              | 2n-clx VPP ip4 tests with xxv710 and avf driver are sporadically failing.                                 |
 |    | <https://jira.fd.io/browse/CSIT-1679>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
