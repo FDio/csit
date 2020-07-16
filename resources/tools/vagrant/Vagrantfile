@@ -72,7 +72,7 @@ Vagrant.configure("2") do |config|
         bionic.vm.provider "virtualbox" do |vb|
             vb.name = "vppdevice-bionic"
             vb.gui = false
-            vb.memory = "4096"
+            vb.memory = "8192"
             vb.cpus = "4"
             vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
             vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
@@ -94,7 +94,7 @@ Vagrant.configure("2") do |config|
         centos8.vm.provider "virtualbox" do |vb|
             vb.name = "vppdevice-centos8"
             vb.gui = false
-            vb.memory = "4096"
+            vb.memory = "8192"
             vb.cpus = "4"
             vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
             vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
