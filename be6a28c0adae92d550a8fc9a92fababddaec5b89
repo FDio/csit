@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bdd5d0f_1f921a72",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-16T08:41:16Z",
+      "side": 1,
+      "message": "\"Building VPP with -j 4 cores.\"\n\nThat does not read right. Patch set 1 looked better.\nPerhaps add single quotes around the value.",
+      "range": {
+        "startLine": 89,
+        "startChar": 13,
+        "endLine": 89,
+        "endChar": 62
+      },
+      "revId": "be6a28c0adae92d550a8fc9a92fababddaec5b89",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
