@@ -8,19 +8,19 @@ FD.io CSIT-2005 Report history and per .[ww] revision changes are listed below.
 +================+============================================================+
 | .30            | 1. Added data:                                             |
 |                |                                                            |
-|                | - VPP coverage                                             |
+|                |    - VPP coverage                                          |
 |                |                                                            |
-|                |   - 2n-clx                                                 |
-|                |   - 2n-skx                                                 |
-|                |   - 3n-skx                                                 |
+|                |      - 2n-clx                                              |
+|                |      - 2n-skx                                              |
+|                |      - 3n-skx                                              |
 |                |                                                            |
-|                | - VPP iterative                                            |
+|                |    - VPP iterative                                         |
 |                |                                                            |
-|                |   - 3n-tsh                                                 |
+|                |      - 3n-tsh                                              |
 |                |                                                            |
-|                | - VPP NF density                                           |
+|                |    - VPP NF density                                        |
 |                |                                                            |
-|                |   - 2n-skx                                                 |
+|                |      - 2n-skx                                              |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .29            | Initial version                                            |
