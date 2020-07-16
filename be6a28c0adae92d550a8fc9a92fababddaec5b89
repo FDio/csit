@@ -22,6 +22,30 @@
       "revId": "be6a28c0adae92d550a8fc9a92fababddaec5b89",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca479c71_e3a801b6",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-07-16T10:19:50Z",
+      "side": 1,
+      "message": "I wanted to add some meaning to the sentence. Building with MAKE_PARALLEL_FLAGS\u003d${MAKE_PARALLEL_FLAGS} doesn\u0027t say what the variable does.\n\nAdding the quotes would improve the message, but maybe we could do even better. I don\u0027t know how yet, I\u0027m going to think a bit more about this.",
+      "parentUuid": "4bdd5d0f_1f921a72",
+      "range": {
+        "startLine": 89,
+        "startChar": 13,
+        "endLine": 89,
+        "endChar": 62
+      },
+      "revId": "be6a28c0adae92d550a8fc9a92fababddaec5b89",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
