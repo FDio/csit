@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -45,11 +45,6 @@ common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
-set_aside_commit_build_artifacts || die
-build_vpp_ubuntu_amd64 "PARENT" || die
-set_aside_parent_build_artifacts || die
-## Replace previous 4 lines with this to speed up testing.
-#download_builds "REPLACE_WITH_URL" || die
 initialize_csit_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
@@ -62,6 +57,7 @@ archive_tests || die
 reserve_and_cleanup_testbed || die
 select_tags || die
 compose_pybot_arguments || die
+<<<<<<< HEAD
 # Support for interleaved measurements is kept for future.
 iterations=1 # 8
 for ((iter=0; iter<iterations; iter++)); do
@@ -86,5 +82,10 @@ for ((iter=0; iter<iterations; iter++)); do
     archive_parse_test_results "csit_parent/${iter}" || die
     die_on_pybot_error || die
 done
+=======
+select_build "build-root" || die
+check_download_dir || die
+run_pybot || die
+copy_archives || die
+>>>>>>> DO_NOT_MERGE Workarounds for manual CSIT bisect
 untrap_and_unreserve_testbed || die
-compare_test_results  # The error code becomes this script's error code.
