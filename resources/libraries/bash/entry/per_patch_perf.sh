@@ -48,6 +48,28 @@ build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
 build_vpp_ubuntu_amd64 "PARENT" || die
 set_aside_parent_build_artifacts || die
+
+
+## git checkout -b old
+## # For the upcoming rebase, we need (22531) commit older than bisect lower bound.
+## git reset --hard df213385d391f21d99eaeaf066f0130a20f7ccde
+## git checkout -b new -t old
+## # The following (22878) us first breakage, so its parent
+## # is the upper bound (before altering the history).
+## git reset --hard 12989b538881f9681f078cf1485c51df1251877a~
+## git status
+## # We want to remove the following Gerrit changes (by their commit hashes):
+## # 22565: 46023762
+## # And we want to squash the second into the first:
+## # 22982: 67a6dcbc4 (line 194 after 22531)
+## # 23288: 4d11b6cec (line 263 after 22531)
+## # The offline editing magic, see https://stackoverflow.com/a/12395024
+## # For inserting a line see https://fabianlee.org/2018/10/28/linux-using-sed-to-insert-lines-before-or-after-a-match/
+## GIT_SEQUENCE_EDITOR='sed -i "/4d11b6cec\|46023762/d" "$1" && sed -i "/^pick 67a6dcbc4.*/a fixup 4d11b6cec" "$1"' git rebase -i old
+
+git status
+
+
 initialize_csit_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
@@ -66,7 +88,7 @@ for ((iter=0; iter<iterations; iter++)); do
     if ((iter)); then
         # Function reserve_and_cleanup_testbed has already cleaned it once,
         # but we need to clean it explicitly on subsequent iterations.
-        ansible_hosts "cleanup" || die
+        ansible_hosts "cleanup" || ansible_playbook || die
     fi
     # Testing current first. Good for early failures or for API changes.
     select_build "build_current" || die
@@ -76,7 +98,7 @@ for ((iter=0; iter<iterations; iter++)); do
     archive_parse_test_results "csit_current/${iter}" || die
     die_on_pybot_error || die
     # TODO: Use less heavy way to avoid apt remove failures.
-    ansible_hosts "cleanup" || die
+    ansible_hosts "cleanup" || ansible_playbook "cleanup" || die
     select_build "build_parent" || die
     check_download_dir || die
     run_pybot || die
