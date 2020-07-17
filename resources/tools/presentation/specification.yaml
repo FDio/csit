@@ -393,6 +393,7 @@
         - 33  # NDRPDR sel env 4
         - 34  # NDRPDR sel env 4
         - 35  # NDRPDR sel env 4
+        - 36  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
@@ -557,10 +558,13 @@
         - 66  # l2-01
         - 67  # l2-02
         - 68  # l2-03
+        - 69  # l2-04
         - 71  # l2-06
         - 72  # l2-07
         - 73  # l2-08
         - 75  # l2-10
+        - 76  # memif-00
+        - 78  # srv6-01
         - 81  # vhost-02
 
     vpp-perf-results-2n-skx:
@@ -569,11 +573,15 @@
         - 29  # ip4-01
         - 30  # ip4-02
         - 31  # ip4-03
+        - 32  # ip4-04
         - 33  # ip4-05
         - 34  # ip6-00
         - 35  # ip6-01
+        - 36  # l2-00
         - 37  # l2-01
+        - 38  # lb-00
         - 39  # memif-00
+        - 40  # vhost-00
         - 41  # vhost-01
         - 42  # vts-00
 
@@ -585,6 +593,7 @@
         - 27  # ip4-03
         - 28  # ip4-04
         - 29  # ip4-05
+        - 34  # ip6-00
         - 31  # l2-00
         - 32  # vhost-00
         - 33  # vhost-01
@@ -1009,6 +1018,7 @@
         - 33  # NDRPDR sel env 4
         - 34  # NDRPDR sel env 4
         - 35  # NDRPDR sel env 4
+        - 36  # NDRPDR sel env 4
     vpp-performance-changes-3n-tsh-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 28  # NDRPDR sel 2001.0-4
@@ -2295,10 +2305,13 @@
       - 66  # l2-01
       - 67  # l2-02
       - 68  # l2-03
+      - 69  # l2-04
       - 71  # l2-06
       - 72  # l2-07
       - 73  # l2-08
       - 75  # l2-10
+      - 76  # memif-00
+      - 78  # srv6-01
       - 81  # vhost-02
 
     csit-vpp-perf-verify-1908_1-2n-skx:
@@ -2372,11 +2385,15 @@
       - 29  # ip4-01
       - 30  # ip4-02
       - 31  # ip4-03
+      - 32  # ip4-04
       - 33  # ip4-05
       - 34  # ip6-00
       - 35  # ip6-01
+      - 36  # l2-00
       - 37  # l2-01
+      - 38  # lb-00
       - 39  # memif-00
+      - 40  # vhost-00
       - 41  # vhost-01
       - 42  # vts-00
 
@@ -2454,6 +2471,7 @@
       - 27  # ip4-03
       - 28  # ip4-04
       - 29  # ip4-05
+      - 34  # ip6-00
       - 31  # l2-00
       - 32  # vhost-00
       - 33  # vhost-01
@@ -2494,6 +2512,7 @@
       - 33  # NDRPDR sel env 4
       - 34  # NDRPDR sel env 4
       - 35  # NDRPDR sel env 4
+      - 36  # NDRPDR sel env 4
       - 28  # NDRPDR sel 2001.0-4
       - 29  # NDRPDR sel 2001.0-4
       - 31  # NDRPDR sel 2001.0-4
