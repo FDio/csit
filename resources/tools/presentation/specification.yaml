@@ -268,6 +268,9 @@
         - 92  # NDRPDR sel env 4
         - 93  # NDRPDR sel env 4
         - 94  # NDRPDR sel env 4
+        - 125 # NDRPDR sel env 4
+        - 126 # NDRPDR sel env 4
+        - 127 # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -283,6 +286,11 @@
         - 113 # nf-density-sel env 4
         - 114 # nf-density-sel env 4
         - 124 # nf-density-sel env 4
+        - 128 # nf-density-sel env 4
+        - 129 # nf-density-sel env 4
+        - 131 # nf-density-sel env 4
+        - 132 # nf-density-sel env 4
+        - 135 # nf-density-sel env 4
 
     plot-vpp-nfv-2n-skx-mrr:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -330,6 +338,8 @@
         - 68  # NDRPDR sel env 4
         - 69  # NDRPDR sel env 4
         - 70  # NDRPDR sel env 4
+        - 103 # NDRPDR sel env 4
+        - 104 # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -344,6 +354,9 @@
         - 98  # nfv-density-00 env 4
         - 99  # nfv-density-00 env 4
         - 100 # nfv-density-00 env 4
+        - 105 # nfv-density-00 env 4
+        - 106 # nfv-density-00 env 4
+        - 108 # nfv-density-00 env 4
 
     plot-vpp-nfv-2n-clx-mrr:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -394,6 +407,7 @@
         - 34  # NDRPDR sel env 4
         - 35  # NDRPDR sel env 4
         - 36  # NDRPDR sel env 4
+        - 37  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
@@ -485,6 +499,9 @@
         - 92  # NDRPDR sel env 4
         - 93  # NDRPDR sel env 4
         - 94  # NDRPDR sel env 4
+        - 125 # NDRPDR sel env 4
+        - 126 # NDRPDR sel env 4
+        - 127 # NDRPDR sel env 4
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -540,6 +557,8 @@
         - 45  # crypto-00
         - 46  # crypto-01
         - 47  # crypto-02
+        - 83  # crypto-03
+        - 50  # ip4-00
         - 51  # ip4-01
         - 52  # ip4-02
         - 53  # ip4-03
@@ -559,13 +578,19 @@
         - 67  # l2-02
         - 68  # l2-03
         - 69  # l2-04
+        - 84  # l2-05
         - 71  # l2-06
         - 72  # l2-07
         - 73  # l2-08
+        - 85  # l2-09
         - 75  # l2-10
         - 76  # memif-00
+        - 77  # srv6-00
         - 78  # srv6-01
+        - 88  # vhost-00
+        - 89  # vhost-01
         - 81  # vhost-02
+        - 83  # vhost-03
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-report-coverage-2005-2n-skx:
@@ -594,9 +619,14 @@
         - 28  # ip4-04
         - 29  # ip4-05
         - 34  # ip6-00
+        - 36  # ip6-01
         - 31  # l2-00
+        - 41  # l2-01
+        - 39  # lb-00
+        - 37  # memif-00
         - 32  # vhost-00
         - 33  # vhost-01
+        - 40  # vts-00
 
     vpp-perf-results-3n-tsh:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
@@ -839,6 +869,9 @@
         - 92  # NDRPDR sel env 4
         - 93  # NDRPDR sel env 4
         - 94  # NDRPDR sel env 4
+        - 125 # NDRPDR sel env 4
+        - 126 # NDRPDR sel env 4
+        - 127 # NDRPDR sel env 4
     vpp-performance-changes-2n-skx-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 100 # NDRPDR sel 2001.0-4
@@ -894,6 +927,8 @@
         - 68  # NDRPDR sel env 4
         - 69  # NDRPDR sel env 4
         - 70  # NDRPDR sel env 4
+        - 103 # NDRPDR sel env 4
+        - 104 # NDRPDR sel env 4
     vpp-performance-changes-2n-clx-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 73  # NDRPDR sel 2001.0-4
@@ -1019,6 +1054,7 @@
         - 34  # NDRPDR sel env 4
         - 35  # NDRPDR sel env 4
         - 36  # NDRPDR sel env 4
+        - 37  # NDRPDR sel env 4
     vpp-performance-changes-3n-tsh-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 28  # NDRPDR sel 2001.0-4
@@ -1034,6 +1070,9 @@
         - 92  # NDRPDR sel env 4
         - 93  # NDRPDR sel env 4
         - 94  # NDRPDR sel env 4
+        - 125 # NDRPDR sel env 4
+        - 126 # NDRPDR sel env 4
+        - 127 # NDRPDR sel env 4
     vpp-soak-vs-ndr-2n-skx-cmp:
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 122 # Soak
@@ -1047,6 +1086,9 @@
         - 92  # NDRPDR sel env 4
         - 93  # NDRPDR sel env 4
         - 94  # NDRPDR sel env 4
+        - 125 # NDRPDR sel env 4
+        - 126 # NDRPDR sel env 4
+        - 127 # NDRPDR sel env 4
         - 122 # Soak
         - 123 # Soak
 
@@ -1060,6 +1102,8 @@
         - 68  # NDRPDR sel env 4
         - 69  # NDRPDR sel env 4
         - 70  # NDRPDR sel env 4
+        - 103 # NDRPDR sel env 4
+        - 104 # NDRPDR sel env 4
     vpp-soak-vs-ndr-2n-clx-cmp:
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 101 # Soak
@@ -1074,6 +1118,8 @@
         - 68  # NDRPDR sel env 4
         - 69  # NDRPDR sel env 4
         - 70  # NDRPDR sel env 4
+        - 103 # NDRPDR sel env 4
+        - 104 # NDRPDR sel env 4
         - 101 # Soak
         - 102 # Soak
 
@@ -1442,6 +1488,9 @@
         - 92  # NDRPDR sel env 4
         - 93  # NDRPDR sel env 4
         - 94  # NDRPDR sel env 4
+        - 125 # NDRPDR sel env 4
+        - 126 # NDRPDR sel env 4
+        - 127 # NDRPDR sel env 4
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 62  # NDRPDR sel env 4
@@ -1452,6 +1501,8 @@
         - 68  # NDRPDR sel env 4
         - 69  # NDRPDR sel env 4
         - 70  # NDRPDR sel env 4
+        - 103 # NDRPDR sel env 4
+        - 104 # NDRPDR sel env 4
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
@@ -1475,6 +1526,8 @@
         - 68  # NDRPDR sel env 4
         - 69  # NDRPDR sel env 4
         - 70  # NDRPDR sel env 4
+        - 103 # NDRPDR sel env 4
+        - 104 # NDRPDR sel env 4
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
@@ -1565,6 +1618,9 @@
         - 92  # NDRPDR sel env 4
         - 93  # NDRPDR sel env 4
         - 94  # NDRPDR sel env 4
+        - 125 # NDRPDR sel env 4
+        - 126 # NDRPDR sel env 4
+        - 127 # NDRPDR sel env 4
 
     vpp-compare-topologies-mrr-ref:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -2287,6 +2343,8 @@
       - 45  # crypto-00
       - 46  # crypto-01
       - 47  # crypto-02
+      - 83  # crypto-03
+      - 50  # ip4-00
       - 51  # ip4-01
       - 52  # ip4-02
       - 53  # ip4-03
@@ -2306,13 +2364,19 @@
       - 67  # l2-02
       - 68  # l2-03
       - 69  # l2-04
+      - 84  # l2-05
       - 71  # l2-06
       - 72  # l2-07
       - 73  # l2-08
+      - 85  # l2-09
       - 75  # l2-10
       - 76  # memif-00
+      - 77  # srv6-00
       - 78  # srv6-01
+      - 88  # vhost-00
+      - 89  # vhost-01
       - 81  # vhost-02
+      - 83  # vhost-03
 
     csit-vpp-perf-verify-1908_1-2n-skx:
       - 39  # NDRPDR sel - new1908.1
@@ -2356,6 +2420,9 @@
       - 92  # NDRPDR sel env 4
       - 93  # NDRPDR sel env 4
       - 94  # NDRPDR sel env 4
+      - 125 # NDRPDR sel env 4
+      - 126 # NDRPDR sel env 4
+      - 127 # NDRPDR sel env 4
       - 100 # NDRPDR sel 2001.0-4
       - 101 # NDRPDR sel 2001.0-4
       - 102 # NDRPDR sel 2001.0-4
@@ -2379,6 +2446,11 @@
       - 113 # nf-density-sel env 4
       - 114 # nf-density-sel env 4
       - 124 # nf-density-sel env 4
+      - 128 # nf-density-sel env 4
+      - 129 # nf-density-sel env 4
+      - 131 # nf-density-sel env 4
+      - 132 # nf-density-sel env 4
+      - 135 # nf-density-sel env 4
       - 115 # MRR nf-density-sel env 4
     csit-vpp-perf-report-coverage-2005-2n-skx:
       - 28  # ip4-00
@@ -2434,6 +2506,8 @@
       - 68  # NDRPDR sel env 4
       - 69  # NDRPDR sel env 4
       - 70  # NDRPDR sel env 4
+      - 103 # NDRPDR sel env 4
+      - 104 # NDRPDR sel env 4
       - 73  # NDRPDR sel 2001.0-4
       - 74  # NDRPDR sel 2001.0-4
       - 75  # NDRPDR sel 2001.0-4
@@ -2463,6 +2537,9 @@
       - 98  # nfv-density-00 env 4
       - 99  # nfv-density-00 env 4
       - 100 # nfv-density-00 env 4
+      - 105 # nfv-density-00 env 4
+      - 106 # nfv-density-00 env 4
+      - 108 # nfv-density-00 env 4
       - 96  # MRR nfv-density-00 env 4
     csit-vpp-perf-report-coverage-2005-2n-clx:
       - 24  # ip4-00
@@ -2472,9 +2549,14 @@
       - 28  # ip4-04
       - 29  # ip4-05
       - 34  # ip6-00
+      - 36  # ip6-01
       - 31  # l2-00
+      - 41  # l2-01
+      - 39  # lb-00
+      - 37  # memif-00
       - 32  # vhost-00
       - 33  # vhost-01
+      - 40  # vts-00
 
     csit-vpp-perf-verify-1908-3n-tsh:
       - 7   # NDRPDR sel
@@ -2513,6 +2595,7 @@
       - 34  # NDRPDR sel env 4
       - 35  # NDRPDR sel env 4
       - 36  # NDRPDR sel env 4
+      - 37  # NDRPDR sel env 4
       - 28  # NDRPDR sel 2001.0-4
       - 29  # NDRPDR sel 2001.0-4
       - 31  # NDRPDR sel 2001.0-4
