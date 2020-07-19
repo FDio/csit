@@ -16,10 +16,13 @@ FD.io CSIT-2005 Report history and per .[ww] revision changes are listed below.
 |                |                                                            |
 |                |    - VPP iterative                                         |
 |                |                                                            |
+|                |      - 2n-clx                                              |
+|                |      - 2n-skx                                              |
 |                |      - 3n-tsh                                              |
 |                |                                                            |
 |                |    - VPP NF density                                        |
 |                |                                                            |
+|                |      - 2n-clx                                              |
 |                |      - 2n-skx                                              |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
