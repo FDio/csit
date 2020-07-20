@@ -81,7 +81,9 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     min_value=self.p1_dst_start_ip,
                     max_value=self.p1_dst_end_ip,
                     size=4,
-                    limit=10000
+                    seed=1,
+                    # Cycle length. TRex does not allow any higher value.
+                    limit=(2**24 - 1)
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"dst",
@@ -101,7 +103,10 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     min_value=self.p2_dst_start_ip,
                     max_value=self.p2_dst_end_ip,
                     size=4,
-                    limit=10000
+                    # Using a different seed to be extra sure
+                    # nothing useful gets cached.
+                    seed=2,
+                    limit=(2**24 - 1)
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"dst",
