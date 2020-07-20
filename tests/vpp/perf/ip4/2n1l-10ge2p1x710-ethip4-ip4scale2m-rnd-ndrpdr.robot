@@ -43,7 +43,7 @@
 | ... | contains 2 randomized L3 flow-groups (flow-group per direction, 1M\
 | ... | flows per flow-group) with all packets containing Ethernet header,\
 | ... | IPv4 header with IP protocol=61 and static payload. MAC addresses are\
-| ... | matching MAC addresses of the TG node interfaces.\
+| ... | matching MAC addresses of the TG node interfaces.
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 
@@ -60,7 +60,7 @@
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${1000000}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4-ip4dst-rnd${rts_per_flow}
+| ${traffic_profile}= | trex-sl-ethip4-ip4dst-rnd${rts_per_flow}
 
 *** Keywords ***
 | Local Template
