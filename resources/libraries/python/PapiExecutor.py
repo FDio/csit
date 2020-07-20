@@ -461,7 +461,7 @@ class PapiSocketExecutor:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)["reply"]
         if log:
             logger.info(
-                f"{cmd} ({node[u'host']} - {remote_vpp_socket}):\n"
+                f"{cli_cmd} ({node[u'host']} - {remote_vpp_socket}):\n"
                 f"{reply.strip()}"
             )
         return reply
