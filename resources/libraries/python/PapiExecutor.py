@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -461,7 +461,7 @@ class PapiSocketExecutor:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)["reply"]
         if log:
             logger.info(
-                f"{cmd} ({node[u'host']} - {remote_vpp_socket}):\n"
+                f"{cli_cmd} ({node[u'host']} - {remote_vpp_socket}):\n"
                 f"{reply.strip()}"
             )
         return reply
