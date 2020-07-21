@@ -81,6 +81,8 @@
 | ${nat_mask}= | 24
 | ${dest_net}= | 20.0.0.0
 | ${dest_mask}= | 24
+| ${trial_multiplicity}= | ${15}
+| ${trial_duration}= | ${16}
 
 *** Keywords ***
 | Local Template
