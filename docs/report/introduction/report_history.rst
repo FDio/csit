@@ -9,16 +9,20 @@ FD.io CSIT-2005 Report history and per .[ww] revision changes are listed below.
 | .30            | 1. Added data:                                             |
 |                |                                                            |
 |                |    - VPP coverage                                          |
+|                |                                                            |
 |                |      - 2n-clx                                              |
 |                |      - 2n-skx                                              |
 |                |      - 3n-skx                                              |
 |                |                                                            |
 |                |    - VPP iterative                                         |
+|                |                                                            |
 |                |      - 2n-clx                                              |
 |                |      - 2n-skx                                              |
+|                |      - 3n-skx                                              |
 |                |      - 3n-tsh                                              |
 |                |                                                            |
 |                |    - VPP NF density                                        |
+|                |                                                            |
 |                |      - 2n-clx                                              |
 |                |      - 2n-skx                                              |
 |                |                                                            |
