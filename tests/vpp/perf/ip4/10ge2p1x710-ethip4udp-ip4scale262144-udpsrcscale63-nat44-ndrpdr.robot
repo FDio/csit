@@ -81,6 +81,8 @@
 | ${nat_mask}= | 24
 | ${dest_net}= | 20.0.0.0
 | ${dest_mask}= | 24
+| ${trial_multiplicity}= | ${15}
+| ${trial_duration}= | ${16}
 
 *** Keywords ***
 | Local Template
@@ -112,15 +114,18 @@
 *** Test Cases ***
 | 64B-1c-ethip4udp-ip4scale262144-udpsrcscale63-nat44-ndrpdr
 | | [Tags] | 64B | 1C
-| | frame_size=${64} | phy_cores=${1}
+| | frame_size=${64} | phy_cores=${1} | trial_multiplicity=${240}
+| | trial_duration=${1}
 
 | 64B-2c-ethip4udp-ip4scale262144-udpsrcscale63-nat44-ndrpdr
 | | [Tags] | 64B | 2C
-| | frame_size=${64} | phy_cores=${2}
+| | frame_size=${64} | phy_cores=${2} | trial_multiplicity=${240}
+| | trial_duration=${1}
 
 | 64B-4c-ethip4udp-ip4scale262144-udpsrcscale63-nat44-ndrpdr
 | | [Tags] | 64B | 4C
-| | frame_size=${64} | phy_cores=${4}
+| | frame_size=${64} | phy_cores=${4} | trial_multiplicity=${240}
+| | trial_duration=${1}
 
 | 1518B-1c-ethip4udp-ip4scale262144-udpsrcscale63-nat44-ndrpdr
 | | [Tags] | 1518B | 1C
