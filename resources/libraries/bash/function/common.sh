@@ -119,8 +119,8 @@ function activate_virtualenv () {
     pip3 install virtualenv==20.0.20 || {
         die "Virtualenv package install failed."
     }
-    virtualenv --no-download --python=$(which python3) "${env_dir}" || {
-        die "Virtualenv creation for $(which python3) failed."
+    virtualenv --no-download --python=python3.6 "${env_dir}" || {
+        die "Virtualenv creation for python3.6 failed."
     }
     set +u
     source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
