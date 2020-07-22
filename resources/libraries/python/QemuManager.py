@@ -56,15 +56,12 @@ class QemuManager:
         nf_dtcr = kwargs[u"nf_dtcr"] \
             if isinstance(kwargs[u"nf_dtcr"], int) else 2
 
-        img = Constants.QEMU_VM_KERNEL
-
         for nf_chain in range(1, nf_chains + 1):
             for nf_node in range(1, nf_nodes + 1):
                 qemu_id = (nf_chain - 1) * nf_nodes + nf_node
                 name = f"{node}_{qemu_id}"
-                sock1 = f"/run/vpp/sock-{qemu_id}-1"
-                sock2 = f"/run/vpp/sock-{qemu_id}-2"
                 idx1 = (nf_chain - 1) * nf_nodes * 2 + nf_node * 2 - 1
+
                 vif1_mac = Topology.get_interface_mac(
                     self.nodes[node], f"vhost{idx1}"
                 ) if kwargs[u"vnf"] == u"testpmd_mac" \
@@ -83,27 +80,15 @@ class QemuManager:
                     vs_dtc=vs_dtc, nf_dtc=nf_dtc, nf_dtcr=nf_dtcr
                 )
 
-                self.machines[name] = QemuUtils(
-                    node=self.nodes[node], qemu_id=qemu_id,
-                    smp=len(self.machines_affinity[name]), mem=4096,
-                    vnf=kwargs[u"vnf"], img=img
-                )
-                self.machines[name].configure_kernelvm_vnf(
-                    mac1=f"52:54:00:00:{qemu_id:02x}:01",
-                    mac2=f"52:54:00:00:{qemu_id:02x}:02",
-                    vif1_mac=vif1_mac, vif2_mac=vif2_mac, queues=queues,
-                    jumbo_frames=kwargs[u"jumbo"]
-                )
-                self.machines[name].qemu_add_vhost_user_if(
-                    sock1, jumbo_frames=kwargs[u"jumbo"], queues=queues,
-                    queue_size=kwargs[u"perf_qemu_qsz"],
-                    csum=kwargs[u"enable_csum"], gso=kwargs[u"enable_gso"]
-                )
-                self.machines[name].qemu_add_vhost_user_if(
-                    sock2, jumbo_frames=kwargs[u"jumbo"], queues=queues,
-                    queue_size=kwargs[u"perf_qemu_qsz"],
-                    csum=kwargs[u"enable_csum"], gso=kwargs[u"enable_gso"]
-                )
+                try:
+                    getattr(self, f'_c_{kwargs["vnf"]}')(
+                        qemu_id=qemu_id, name=name, queues=queues, **kwargs
+                    )
+                except AttributeError:
+                    self._c_default(
+                        qemu_id=qemu_id, name=name, queues=queues,
+                        vif1_mac=vif1_mac, vif2_mac=vif2_mac, **kwargs
+                    )
 
     def construct_vms_on_all_nodes(self, **kwargs):
         """Construct 1..Mx1..N VMs(s) with specified name on all nodes.
@@ -124,7 +109,9 @@ class QemuManager:
         """
         for machine, machine_affinity in \
                 zip(self.machines.values(), self.machines_affinity.values()):
-            machine.qemu_start()
+            index = list(self.machines.values()).index(machine)
+            name = list(self.machines.keys())[index]
+            self.nodes[name] = machine.qemu_start()
             if pinning:
                 machine.qemu_set_affinity(*machine_affinity)
 
@@ -134,8 +121,58 @@ class QemuManager:
         :param force: Force kill all Qemu instances by pkill qemu if True.
         :type force: bool
         """
+        for node in list(self.nodes.values()):
+            if node["type"] == NodeType.VM:
+                try:
+                    self.nodes.popitem(node)
+                except TypeError:
+                    pass
         for machine in self.machines.values():
             if force:
                 machine.qemu_kill_all()
             else:
                 machine.qemu_kill()
+
+    def _c_default(self, **kwargs):
+        """Instantiate one VM with default configuration.
+
+        :param kwargs: Named parameters.
+        :type kwargs: dict
+        """
+        qemu_id = kwargs[u"qemu_id"]
+        name = kwargs[u"name"]
+
+        self.machines[name] = QemuUtils(
+            node=self.nodes[kwargs[u"node"]],
+            qemu_id=qemu_id,
+            smp=len(self.machines_affinity[name]),
+            mem=4096,
+            vnf=kwargs[u"vnf"],
+            img=Constants.QEMU_VM_KERNEL
+        )
+        self.machines[name].add_default_params()
+        self.machines[name].add_kernelvm_params()
+        self.machines[name].configure_kernelvm_vnf(
+            mac1=f"52:54:00:00:{qemu_id:02x}:01",
+            mac2=f"52:54:00:00:{qemu_id:02x}:02",
+            vif1_mac=kwargs[u"vif1_mac"],
+            vif2_mac=kwargs[u"vif2_mac"],
+            queues=kwargs[u"queues"],
+            jumbo_frames=kwargs[u"jumbo"]
+        )
+        self.machines[name].add_vhost_user_if(
+            f"/run/vpp/sock-{qemu_id}-1",
+            jumbo_frames=kwargs[u"jumbo"],
+            queues=kwargs[u"queues"],
+            queue_size=kwargs[u"perf_qemu_qsz"],
+            csum=kwargs[u"enable_csum"],
+            gso=kwargs[u"enable_gso"]
+        )
+        self.machines[name].add_vhost_user_if(
+            f"/run/vpp/sock-{qemu_id}-2",
+            jumbo_frames=kwargs[u"jumbo"],
+            queues=kwargs[u"queues"],
+            queue_size=kwargs[u"perf_qemu_qsz"],
+            csum=kwargs[u"enable_csum"],
+            gso=kwargs[u"enable_gso"]
+        )
