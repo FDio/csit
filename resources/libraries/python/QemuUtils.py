@@ -28,7 +28,6 @@ from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
-from resources.libraries.python.VPPUtil import VPPUtil
 
 __all__ = [u"QemuUtils"]
 
@@ -95,9 +94,9 @@ class QemuUtils:
         self._opt[u"vnf"] = vnf
         # Temporary files.
         self._temp = dict()
+        self._temp[u"log"] = f"/tmp/serial_{qemu_id}.log"
         self._temp[u"pidfile"] = f"/run/qemu_{qemu_id}.pid"
         if img == Constants.QEMU_VM_IMAGE:
-            self._opt[u"vm_type"] = u"nestedvm"
             self._temp[u"qmp"] = f"/run/qmp_{qemu_id}.sock"
             self._temp[u"qga"] = f"/run/qga_{qemu_id}.sock"
         elif img == Constants.QEMU_VM_KERNEL:
@@ -105,8 +104,6 @@ class QemuUtils:
                 node, f"ls -1 {Constants.QEMU_VM_KERNEL}* | tail -1",
                 message=u"Qemu Kernel VM image not found!"
             )
-            self._opt[u"vm_type"] = u"kernelvm"
-            self._temp[u"log"] = f"/tmp/serial_{qemu_id}.log"
             self._temp[u"ini"] = f"/etc/vm_init_{qemu_id}.conf"
             self._opt[u"initrd"], _ = exec_cmd_no_error(
                 node, f"ls -1 {Constants.QEMU_VM_KERNEL_INITRD}* | tail -1",
@@ -116,17 +113,6 @@ class QemuUtils:
             raise RuntimeError(f"QEMU: Unknown VM image option: {img}")
         # Computed parameters for QEMU command line.
         self._params = OptionString(prefix=u"-")
-        self.add_params()
-
-    def add_params(self):
-        """Set QEMU command line parameters."""
-        self.add_default_params()
-        if self._opt.get(u"vm_type", u"") == u"nestedvm":
-            self.add_nestedvm_params()
-        elif self._opt.get(u"vm_type", u"") == u"kernelvm":
-            self.add_kernelvm_params()
-        else:
-            raise RuntimeError(u"QEMU: Unsupported VM type!")
 
     def add_default_params(self):
         """Set default QEMU command line parameters."""
@@ -136,9 +122,7 @@ class QemuUtils:
             u"name", f"vnf{self._opt.get(u'qemu_id')},debug-threads=on"
         )
         self._params.add(u"no-user-config")
-        self._params.add_with_value(u"monitor", u"none")
-        self._params.add_with_value(u"display", u"none")
-        self._params.add_with_value(u"vga", u"none")
+        self._params.add(u"nographic")
         self._params.add(u"enable-kvm")
         self._params.add_with_value(u"pidfile", self._temp.get(u"pidfile"))
         self._params.add_with_value(u"cpu", u"host")
@@ -156,32 +140,59 @@ class QemuUtils:
         self._params.add_with_value(u"numa", u"node,memdev=mem")
         self._params.add_with_value(u"balloon", u"none")
 
-    def add_nestedvm_params(self):
-        """Set NestedVM QEMU parameters."""
+    def add_net_user(self):
+        """Set managment port forwarding."""
         self._params.add_with_value(
-            u"net",
-            f"nic,macaddr=52:54:00:00:{self._opt.get(u'qemu_id'):02x}:ff"
+            u"netdev", f"user,id=mgmt,net=192.168.76.0/24,"
+            f"hostfwd=tcp::{self._vm_info[u'port']}-:22"
         )
         self._params.add_with_value(
-            u"net", f"user,hostfwd=tcp::{self._vm_info[u'port']}-:22"
+            u"device", f"virtio-net,netdev=mgmt"
         )
-        locking = u",file.locking=off"
-        self._params.add_with_value(
-            u"drive", f"file={self._opt.get(u'img')},"
-            f"format=raw,cache=none,if=virtio{locking}"
-        )
-        self._params.add_with_value(
-            u"qmp", f"unix:{self._temp.get(u'qmp')},server,nowait"
-        )
-        self._params.add_with_value(
-            u"chardev", f"socket,host=127.0.0.1,"
-            f"port={self._vm_info[u'serial']},id=gnc0,server,nowait")
-        self._params.add_with_value(u"device", u"isa-serial,chardev=gnc0")
+
+    def add_qmp_qga(self):
+        """Set QMP, QGA management."""
         self._params.add_with_value(
             u"chardev", f"socket,path={self._temp.get(u'qga')},"
             f"server,nowait,id=qga0"
         )
         self._params.add_with_value(u"device", u"isa-serial,chardev=qga0")
+        self._params.add_with_value(
+            u"qmp", f"unix:{self._temp.get(u'qmp')},server,nowait"
+        )
+
+    def add_serial(self):
+        """Set serial to file redirect."""
+        self._params.add_with_value(
+            u"chardev", f"socket,host=127.0.0.1,"
+            f"port={self._vm_info[u'serial']},id=gnc0,server,nowait")
+        self._params.add_with_value(u"device", u"isa-serial,chardev=gnc0")
+        self._params.add_with_value(
+            u"serial", f"file:{self._temp.get(u'log')}"
+        )
+
+    def add_drive_cdrom(self, drive_file):
+        """Set CD-ROM drive.
+
+        :param drive_file: Path to drive image.
+        :type drive_file: str
+        """
+        self._params.add_with_value(
+            u"drive", f"file={drive_file},media=cdrom"
+        )
+
+    def add_drive(self, drive_file, drive_format):
+        """Set drive with custom format.
+
+        :param drive_file: Path to drive image.
+        :param drive_format: Drive image format.
+        :type drive_file: str
+        :type drive_format: str
+        """
+        self._params.add_with_value(
+            u"drive", f"file={drive_file},format={drive_format},"
+            u"cache=none,if=virtio,file.locking=off"
+        )
 
     def add_kernelvm_params(self):
         """Set KernelVM QEMU parameters."""
@@ -202,6 +213,62 @@ class QemuUtils:
             f"tsc=reliable hugepages=256 "
             f"init={self._temp.get(u'ini')} fastboot'"
         )
+
+    def add_vhost_user_if(
+            self, socket, server=True, jumbo_frames=False, queue_size=None,
+            queues=1, csum=False, gso=False):
+        """Add Vhost-user interface.
+
+        :param socket: Path of the unix socket.
+        :param server: If True the socket shall be a listening socket.
+        :param jumbo_frames: Set True if jumbo frames are used in the test.
+        :param queue_size: Vring queue size.
+        :param queues: Number of queues.
+        :param csum: Checksum offloading.
+        :param gso: Generic segmentation offloading.
+        :type socket: str
+        :type server: bool
+        :type jumbo_frames: bool
+        :type queue_size: int
+        :type queues: int
+        :type csum: bool
+        :type gso: bool
+        """
+        self._vhost_id += 1
+        self._params.add_with_value(
+            u"chardev", f"socket,id=char{self._vhost_id},"
+            f"path={socket}{u',server' if server is True else u''}"
+        )
+        self._params.add_with_value(
+            u"netdev", f"vhost-user,id=vhost{self._vhost_id},"
+            f"chardev=char{self._vhost_id},queues={queues}"
+        )
+        mac = f"52:54:00:00:{self._opt.get(u'qemu_id'):02x}:" \
+            f"{self._vhost_id:02x}"
+        queue_size = f"rx_queue_size={queue_size},tx_queue_size={queue_size}" \
+            if queue_size else u""
+        self._params.add_with_value(
+            u"device", f"virtio-net-pci,netdev=vhost{self._vhost_id},mac={mac},"
+            f"addr={self._vhost_id+5}.0,mq=on,vectors={2 * queues + 2},"
+            f"csum={u'on' if csum else u'off'},gso={u'on' if gso else u'off'},"
+            f"guest_tso4=off,guest_tso6=off,guest_ecn=off,"
+            f"{queue_size}"
+        )
+
+        # Add interface MAC and socket to the node dict.
+        if_data = {u"mac_address": mac, u"socket": socket}
+        if_name = f"vhost{self._vhost_id}"
+        self._vm_info[u"interfaces"][if_name] = if_data
+        # Add socket to temporary file list.
+        self._temp[if_name] = socket
+
+    def add_vfio_pci_if(self, pci):
+        """Add VFIO PCI interface.
+
+        :param pci: PCI address of interface.
+        :type pci: str
+        """
+        self._params.add_with_value(u"device", f"vfio-pci,host={pci}")
 
     def create_kernelvm_config_vpp(self, **kwargs):
         """Create QEMU VPP config files.
@@ -224,11 +291,19 @@ class QemuUtils:
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_exec(running)
         vpp_config.add_socksvr()
+        vpp_config.add_buffers_per_numa(107520)
         vpp_config.add_cpu_main_core(u"0")
         if self._opt.get(u"smp") > 1:
             vpp_config.add_cpu_corelist_workers(f"1-{self._opt.get(u'smp')-1}")
         vpp_config.add_plugin(u"disable", u"default")
-        if "virtio" not in self._opt.get(u'vnf'):
+        vpp_config.add_plugin(u"enable", u"ping_plugin.so")
+        if "ipsec" in self._opt.get(u'vnf'):
+            vpp_config.add_plugin(u"enable", u"crypto_native_plugin.so")
+            vpp_config.add_plugin(u"enable", u"crypto_ipsecmb_plugin.so")
+            vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
+        if "2vfpt" in self._opt.get(u'vnf'):
+            vpp_config.add_plugin(u"enable", u"avf_plugin.so")
+        if "vhost" in self._opt.get(u'vnf'):
             vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
             vpp_config.add_dpdk_dev(u"0000:00:06.0", u"0000:00:07.0")
             vpp_config.add_dpdk_dev_default_rxq(kwargs[u"queues"])
@@ -401,54 +476,6 @@ class QemuUtils:
             self.qemu_kill_all()
             raise
 
-    def qemu_add_vhost_user_if(
-            self, socket, server=True, jumbo_frames=False, queue_size=None,
-            queues=1, csum=False, gso=False):
-        """Add Vhost-user interface.
-
-        :param socket: Path of the unix socket.
-        :param server: If True the socket shall be a listening socket.
-        :param jumbo_frames: Set True if jumbo frames are used in the test.
-        :param queue_size: Vring queue size.
-        :param queues: Number of queues.
-        :param csum: Checksum offloading.
-        :param gso: Generic segmentation offloading.
-        :type socket: str
-        :type server: bool
-        :type jumbo_frames: bool
-        :type queue_size: int
-        :type queues: int
-        :type csum: bool
-        :type gso: bool
-        """
-        self._vhost_id += 1
-        self._params.add_with_value(
-            u"chardev", f"socket,id=char{self._vhost_id},"
-            f"path={socket}{u',server' if server is True else u''}"
-        )
-        self._params.add_with_value(
-            u"netdev", f"vhost-user,id=vhost{self._vhost_id},"
-            f"chardev=char{self._vhost_id},queues={queues}"
-        )
-        mac = f"52:54:00:00:{self._opt.get(u'qemu_id'):02x}:" \
-            f"{self._vhost_id:02x}"
-        queue_size = f"rx_queue_size={queue_size},tx_queue_size={queue_size}" \
-            if queue_size else u""
-        self._params.add_with_value(
-            u"device", f"virtio-net-pci,netdev=vhost{self._vhost_id},mac={mac},"
-            f"addr={self._vhost_id+5}.0,mq=on,vectors={2 * queues + 2},"
-            f"csum={u'on' if csum else u'off'},gso={u'on' if gso else u'off'},"
-            f"guest_tso4=off,guest_tso6=off,guest_ecn=off,"
-            f"{queue_size}"
-        )
-
-        # Add interface MAC and socket to the node dict.
-        if_data = {u"mac_address": mac, u"socket": socket}
-        if_name = f"vhost{self._vhost_id}"
-        self._vm_info[u"interfaces"][if_name] = if_data
-        # Add socket to temporary file list.
-        self._temp[if_name] = socket
-
     def _qemu_qmp_exec(self, cmd):
         """Execute QMP command.
 
@@ -507,16 +534,40 @@ class QemuUtils:
         return json.loads(stdout.split(u"\n", 1)[0]) if stdout else dict()
 
     def _wait_until_vm_boot(self):
-        """Wait until QEMU with NestedVM is booted."""
-        if self._opt.get(u"vm_type") == u"nestedvm":
-            self._wait_until_nestedvm_boot()
-            self._update_vm_interfaces()
-        elif self._opt.get(u"vm_type") == u"kernelvm":
-            self._wait_until_kernelvm_boot()
-        else:
-            raise RuntimeError(u"QEMU: Unsupported VM type!")
+        """Wait until QEMU VM is booted."""
+        try:
+            getattr(self, f'_wait_{self._opt["vnf"]}')()
+        except AttributeError:
+            self._wait_default()
 
-    def _wait_until_nestedvm_boot(self, retries=12):
+    def _wait_default(self, retries=60):
+        """Wait until QEMU with VPP is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        for _ in range(retries):
+            command = f"tail -1 {self._temp.get(u'log')}"
+            stdout = None
+            try:
+                stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
+                sleep(1)
+            except RuntimeError:
+                pass
+            if "vpp " in stdout and "built by" in stdout:
+                break
+            if u"Press enter to exit" in stdout:
+                break
+            if u"reboot: Power down" in stdout:
+                raise RuntimeError(
+                    f"QEMU: NF failed to run on {self._node[u'host']}!"
+                )
+        else:
+            raise RuntimeError(
+                f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
+            )
+
+    def _wait_nestedvm(self, retries=12):
         """Wait until QEMU with NestedVM is booted.
 
         First try to flush qga until there is output.
@@ -559,33 +610,6 @@ class QemuUtils:
                 # If there is an unexpected output from QGA guest-info, try
                 # again until timeout.
                 logger.trace(f"QGA guest-ping unexpected output {out}")
-        else:
-            raise RuntimeError(
-                f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
-            )
-
-    def _wait_until_kernelvm_boot(self, retries=60):
-        """Wait until QEMU KernelVM is booted.
-
-        :param retries: Number of retries.
-        :type retries: int
-        """
-        vpp_ver = VPPUtil.vpp_show_version(self._node)
-
-        for _ in range(retries):
-            command = f"tail -1 {self._temp.get(u'log')}"
-            stdout = None
-            try:
-                stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
-                sleep(1)
-            except RuntimeError:
-                pass
-            if vpp_ver in stdout or u"Press enter to exit" in stdout:
-                break
-            if u"reboot: Power down" in stdout:
-                raise RuntimeError(
-                    f"QEMU: NF failed to run on {self._node[u'host']}!"
-                )
         else:
             raise RuntimeError(
                 f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
