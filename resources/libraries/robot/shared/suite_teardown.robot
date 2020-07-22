@@ -17,6 +17,8 @@
 | Library | resources.libraries.python.DPDK.DPDKTools
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.DUTSetup
+| Library | resources.libraries.python.vsap.NginxUtil
+| Resource | resources/libraries/robot/vsap/ab_utils.robot
 |
 | Documentation | Suite teardown keywords.
 
@@ -58,3 +60,21 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Kill Program | ${nodes['${dut}']} | iperf3
 | | | Kill Program | ${nodes['${dut}']} | vpp_echo
+
+| Additional Suite Tear Down Action For ab
+| | [Documentation]
+| | ... | Additional teardown for suites which uses ab.
+| |
+| | ${intf_name}= | Get Linux interface name | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | FOR | ${ip_addr} | IN | @{ab_ip_addrs}
+| | | ${ip_addr_on_intf}= | Linux Interface Has IP | ${tg} | ${intf_name}
+| | | ... | ${ip_addr} | ${ab_ip_prefix}
+| | | Run Keyword If | ${ip_addr_on_intf}==${True} | Delete Linux Interface IP
+| | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${ab_ip_prefix}
+| | END
+| | Run Keyword And Ignore Error | PCI Driver Unbind
+| | ... | ${tg} | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | Run Keyword And Ignore Error | PCI Driver Unbind
+| | ... | ${tg} | ${tg['interfaces']['${tg_if2}']['pci_address']}
+| | Kill Nginx | ${dut1}
