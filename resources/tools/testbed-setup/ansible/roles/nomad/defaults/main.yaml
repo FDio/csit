@@ -10,6 +10,7 @@ packages_base:
   - "git"
   - "libcgroup1"
   - "unzip"
+  - "htop"
 packages_by_distro:
   ubuntu:
     - []
