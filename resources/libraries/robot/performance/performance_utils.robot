@@ -78,7 +78,7 @@
 | | ... | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
 | |
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${90000} | ${max_rate}
+| | ... | ${traffic_profile} | ${9000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
@@ -93,20 +93,18 @@
 | | ${ndr_per_stream}= | Evaluate | ${ndr_sum} / float(${traffic_directions})
 | | ${rate}= | Evaluate | 0.9 * ${pdr_per_stream}
 | | Measure and show latency at specified rate | Latency at 90% PDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${latency_duration} | ${rate} | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
 | | ${rate}= | Evaluate | 0.5 * ${pdr_per_stream}
 | | Measure and show latency at specified rate | Latency at 50% PDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${latency_duration} | ${rate} | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
 | | ${rate}= | Evaluate | 0.1 * ${pdr_per_stream}
 | | Measure and show latency at specified rate | Latency at 10% PDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${latency_duration} | ${rate} | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
-| | # Rate needs to be high enough for latency streams.
-| | ${rate}= | Set Variable | ${9500}
 | | Measure and show latency at specified rate | Latency at 0% PDR:
-| | ... | ${latency_duration} | ${rate}pps | ${framesize}
+| | ... | ${latency_duration} | ${0} | ${framesize}
 | | ... | ${traffic_profile} | ${traffic_directions}
 | | # Finally, trials with runtime and other stats.
 | | # We expect NDR and PDR to have different-looking stats.
@@ -469,12 +467,13 @@
 | | [Documentation]
 | | ... | Send traffic at specified rate, single trial.
 | | ... | Extract latency information and append it to text message.
-| | ... | The rate argument should be TRex friendly, so it should include "pps".
+| | ... | The rate argument is int, so should not include "pps".
+| | ... | If the given rate is too low, a safe value is used instead.
 | |
 | | ... | *Arguments:*
 | | ... | - message_prefix - Preface to test message addition. Type: string
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
-| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - rate - Rate for sending packets, in pps. Type: int
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer/string
 | | ... | - traffic_profile - Name of module defining traffic for measurements.
 | | ... | Type: string
@@ -482,19 +481,23 @@
 | | ... | Type: int
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
 | | ... | - rx_port - RX port of TG, default 1. Type: integer
+| | ... | - safe_rate - To apply if rate is below this, as latency pps is fixed.
+| | ... | In pps, type int.
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Measure and show latency at specified rate \| Latency at 90% NDR \
-| | ... | \| \${1.0} \| 4.0mpps \| \${64} \| 3-node-IPv4 \| \${2} \|
+| | ... | \| \${1.0} \| ${10000000} \| \${64} \| 3-node-IPv4 \| \${2} \
+| | ... | \| \${0} \| \${1} \| ${9500} \|
 | |
 | | [Arguments] | ${message_prefix} | ${trial_duration} | ${rate}
 | | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}=${2}
-| | ... | ${tx_port}=${0} | ${rx_port}=${1}
+| | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${safe_rate}=${9000}
 | |
+| | ${real_rate} = | Evaluate | max(${rate}, ${safe_rate})
 | | # The following line is skipping some default arguments,
 | | # that is why subsequent arguments have to be named.
-| | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
+| | Send traffic on tg | ${trial_duration} | ${real_rate} | ${frame_size}
 | | ... | ${traffic_profile} | warmup_time=${0}
 | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
 | | ... | rx_port=${rx_port}
