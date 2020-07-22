@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "ddba5d24_cf00e05f",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-22T12:44:06Z",
+      "side": 1,
+      "message": "Add such cleanup steps (also) to resources/tools/testbed-setup/ansible/roles/cleanup\nthat way if a VSAP test fails without proper cleaup (we have seen some strange failures over the years), the next run will make sure anything left from that failed run is stopped and removed before starting its tests.",
+      "range": {
+        "startLine": 101,
+        "startChar": 40,
+        "endLine": 101,
+        "endChar": 56
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1507556_9bde5b2b",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-22T12:44:06Z",
+      "side": 1,
+      "message": "This assumes some bootstrap script has prepared the packages. That piece of logic is missing, so we cannot test whether the installation works.",
+      "range": {
+        "startLine": 130,
+        "startChar": 52,
+        "endLine": 130,
+        "endChar": 70
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bc16f354_5e090800",
         "filename": "resources/libraries/python/vsap/ab.py",
         "patchSetId": 1
