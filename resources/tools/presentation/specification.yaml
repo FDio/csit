@@ -224,6 +224,7 @@
         - 45  # NDRPDR sel env 4
         - 47  # NDRPDR sel env 4
         - 55  # NDRPDR sel env 4
+        - 56  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -293,6 +294,7 @@
         - 132 # nf-density-sel env 4
         - 135 # nf-density-sel env 4
         - 136 # nf-density-sel env 4
+        - 139 # nf-density-sel env 4
 
     plot-vpp-nfv-2n-skx-mrr:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -410,6 +412,7 @@
         - 35  # NDRPDR sel env 4
         - 36  # NDRPDR sel env 4
         - 37  # NDRPDR sel env 4
+        - 38  # NDRPDR sel env 4
         - 40  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-tsh:
@@ -493,6 +496,7 @@
         - 45  # NDRPDR sel env 4
         - 47  # NDRPDR sel env 4
         - 55  # NDRPDR sel env 4
+        - 56  # NDRPDR sel env 4
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -821,6 +825,7 @@
         - 45  # NDRPDR sel env 4
         - 47  # NDRPDR sel env 4
         - 55  # NDRPDR sel env 4
+        - 56  # NDRPDR sel env 4
     vpp-performance-changes-3n-skx-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 50  # NDRPDR sel 2001.0-4
@@ -1060,6 +1065,7 @@
         - 35  # NDRPDR sel env 4
         - 36  # NDRPDR sel env 4
         - 37  # NDRPDR sel env 4
+        - 38  # NDRPDR sel env 4
         - 40  # NDRPDR sel env 4
     vpp-performance-changes-3n-tsh-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
@@ -1485,6 +1491,7 @@
         - 45  # NDRPDR sel env 4
         - 47  # NDRPDR sel env 4
         - 55  # NDRPDR sel env 4
+        - 56  # NDRPDR sel env 4
 
     vpp-compare-testbeds-skx-clx-ref:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -1617,6 +1624,7 @@
         - 45  # NDRPDR sel env 4
         - 47  # NDRPDR sel env 4
         - 55  # NDRPDR sel env 4
+        - 56  # NDRPDR sel env 4
     vpp-compare-topologies-cmp:
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 88  # NDRPDR sel env 4
@@ -2341,6 +2349,7 @@
       - 45  # NDRPDR sel env 4
       - 47  # NDRPDR sel env 4
       - 55  # NDRPDR sel env 4
+      - 56  # NDRPDR sel env 4
       - 50  # NDRPDR sel 2001.0-4
       - 51  # NDRPDR sel 2001.0-4
       - 52  # NDRPDR sel 2001.0-4
@@ -2461,6 +2470,7 @@
       - 132 # nf-density-sel env 4
       - 135 # nf-density-sel env 4
       - 136 # nf-density-sel env 4
+      - 139 # nf-density-sel env 4
       - 115 # MRR nf-density-sel env 4
     csit-vpp-perf-report-coverage-2005-2n-skx:
       - 28  # ip4-00
@@ -2606,6 +2616,7 @@
       - 35  # NDRPDR sel env 4
       - 36  # NDRPDR sel env 4
       - 37  # NDRPDR sel env 4
+      - 38  # NDRPDR sel env 4
       - 40  # NDRPDR sel env 4
       - 28  # NDRPDR sel 2001.0-4
       - 29  # NDRPDR sel 2001.0-4
