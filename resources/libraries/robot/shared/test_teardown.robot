@@ -24,7 +24,7 @@
 *** Keywords ***
 | Tear down test
 | | [Documentation]
-| | ... | Common test teardown for tests.
+| | ... | Common test teardown for VPP tests.
 | |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional teardown action. Type: list
@@ -45,6 +45,22 @@
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
+
+| Tear down test raw
+| | [Documentation]
+| | ... | Common test teardown for raw tests.
+| |
+| | ... | *Arguments:*
+| | ... | - ${actions} - Additional teardown action. Type: list
+| |
+| | [Arguments] | @{actions}
+| |
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
+| | FOR | ${action} | IN | @{actions}
+| | | Run Keyword | Additional Test Tear Down Action For ${action}
+| | END
+| | Clean Sockets On All Nodes | ${nodes}
+
 
 | Additional Test Tear Down Action For performance
 | | [Documentation]
@@ -74,6 +90,14 @@
 | | ... | Additional teardown for tests which uses vhost(s) and VM(s).
 | |
 | | Show VPP vhost on all DUTs | ${nodes}
+| | ${vnf_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Keyword Should Exist | vnf_manager.Kill All VMs
+| | Run Keyword If | '${vnf_status}' == 'PASS' | vnf_manager.Kill All VMs
+
+| Additional Test Tear Down Action For vhost-pt
+| | [Documentation]
+| | ... | Additional teardown for tests which uses pci-passtrough and VM(s).
+| |
 | | ${vnf_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Keyword Should Exist | vnf_manager.Kill All VMs
 | | Run Keyword If | '${vnf_status}' == 'PASS' | vnf_manager.Kill All VMs
