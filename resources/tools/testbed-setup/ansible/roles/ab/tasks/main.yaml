@@ -1,0 +1,9 @@
+---
+# file: roles/ab/tasks/main.yaml
+
+- name: Install Apache ab tools
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: present
+    update_cache: true
+  tags: install-ab
