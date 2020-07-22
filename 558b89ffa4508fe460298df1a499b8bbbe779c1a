@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a353f46f_69be0ed9",
+        "filename": "docs/job_specs/report_coverage/3n-hsw/crypto-02.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-22T11:52:38Z",
+      "side": 1,
+      "message": "Still missing?\n\nApplies to multiple other files too.",
+      "range": {
+        "startLine": 4,
+        "startChar": 17,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "558b89ffa4508fe460298df1a499b8bbbe779c1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
