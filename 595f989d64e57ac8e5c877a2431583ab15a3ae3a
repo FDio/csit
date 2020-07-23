@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ac191f8a_942b633c",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-23T10:23:28Z",
+      "side": 1,
+      "message": "via https://gerrit.fd.io/r/c/csit/+/28049",
+      "parentUuid": "3b643f9c_c11823a2",
+      "range": {
+        "startLine": 101,
+        "startChar": 40,
+        "endLine": 101,
+        "endChar": 56
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1507556_9bde5b2b",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Yes.\nI added this part of the work in artifacts.sh and gather.sh.\nI\u0027m going to submit a new patch.",
       "parentUuid": "c1507556_9bde5b2b",
+      "range": {
+        "startLine": 130,
+        "startChar": 52,
+        "endLine": 130,
+        "endChar": 70
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e87efd9_34045be1",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-23T10:23:28Z",
+      "side": 1,
+      "message": "via https://gerrit.fd.io/r/c/csit/+/28048",
+      "parentUuid": "c12dcad3_ce37baba",
       "range": {
         "startLine": 130,
         "startChar": 52,
