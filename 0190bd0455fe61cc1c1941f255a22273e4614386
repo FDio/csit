@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "564dcd55_a715bf14",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-23T12:12:41Z",
+      "side": 1,
+      "message": "If it is used by another function, it should be in caps.\nIf not, it does not have to be listed here.\n\nhttps://github.com/FDio/csit/blob/master/docs/bash_code_style.rst#variables",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 12
+      },
+      "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a754dda0_ef52c92d",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-23T12:12:41Z",
+      "side": 1,
+      "message": "This is already set here [0]. I recommend to edit that to upper case, so the value is officially available here.\n\nAh, now I see the VPP downloading functions below also duplicate the computation. Oh well, we can de-duplicate in a separate change.\n\n[0] https://github.com/FDio/csit/blob/b9457dab3abab7b16f5766c93de6d4d3ca0d03c2/resources/libraries/bash/function/common.sh#L687",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 9
+      },
+      "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbfaa662_f010ac00",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-23T12:12:41Z",
+      "side": 1,
+      "message": "See how the file VPP_REPO_URL is used (the value inside depends on branch). Create VSAP_REPO_URL and use it analogously.",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07ebebe0_9294c2ac",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-23T12:12:41Z",
+      "side": 1,
+      "message": "The content looks identical to lines 190-207. Maybe call this \"pre_download_ubuntu\" and call it from line 190?",
+      "range": {
+        "startLine": 51,
+        "startChar": 9,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2847479_d2f56c50",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-23T12:12:41Z",
+      "side": 1,
+      "message": "Also this content is almost identical to lines 209-250.\nMaybe call this \"download_ubuntu_artifacts\", rename line 178 to \"download_vpp_ubuntu_artifacts\" and at line 209 pass \"vpp\" as pkg_key, call this, and then set VPP_VERSION to PKG_VERSION.\n\nIn other words, currently there is too much duplication of similar code.",
+      "range": {
+        "startLine": 79,
+        "startChar": 9,
+        "endLine": 79,
+        "endChar": 29
+      },
+      "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e395ee92_7e91d5fe",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-23T12:12:41Z",
+      "side": 1,
+      "message": "Latest or stable? I assume the logic will be similar to VPP. Latest version for trending jobs, but stable version for csit verify jobs. See how do we handle file VPP_STABLE_VER_UBUNTU_BIONIC.",
+      "range": {
+        "startLine": 90,
+        "startChar": 29,
+        "endLine": 90,
+        "endChar": 30
+      },
+      "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
