@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "21f87238_b81fe980",
+        "filename": "resources/libraries/bash/entry/run_nginx.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-23T19:41:38Z",
+      "side": 1,
+      "message": "call it nginx_util.sh \nrun_nginx.sh kill is sort of non intuitive",
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ddba5d24_cf00e05f",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 1
@@ -261,6 +278,29 @@
       "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96e8ae35_18f6918d",
+        "filename": "resources/libraries/python/vsap/ab.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-23T19:41:38Z",
+      "side": 1,
+      "message": "exec_cmd() without SSH()",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 24
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     },
     {
       "key": {
