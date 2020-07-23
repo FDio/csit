@@ -52,6 +52,8 @@ class VppCounters:
     def vpp_show_runtime(node, log_zeros=False):
         """Run "show runtime" CLI command.
 
+        Also show some more telemetry.
+
         :param node: Node to run command on.
         :param log_zeros: Log also items with zero values.
         :type node: dict
@@ -114,6 +116,11 @@ class VppCounters:
                     )
         # Run also the CLI command, the above sometimes misses some info.
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show runtime")
+        # More telemetry.
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show err")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show threads")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show buffers")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show pci")
 
     @staticmethod
     def vpp_show_runtime_on_all_duts(nodes):
