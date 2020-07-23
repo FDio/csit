@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "c809a0f3_ab15e9e6",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-23T11:25:53Z",
+      "side": 1,
+      "message": "\u003e is NGINX part of (product of) custom build?\n\nThere will be a vpp-hoststack-using nginx, part of bigger package as prepared [1] by VSAP project, installed at line 130.\nThis line is probably just an extra cleanup to make sure nothing interferes with line 130.\n\n\u003e also i prefer to run nginx as a container. And just destroy it.\n\nThat is not practical when the build varies between runs. At least for other hoststack tests we are launching apps [2] directly on DUT.\n\n[1] https://packagecloud.io/fdio/2005/packages/ubuntu/bionic/vsap-vcl_1.0-ubuntu18.04_amd64.deb?page\u003d5\n[2] https://github.com/FDio/csit/blob/2a35fc8cc4d840ccc616401e9af230aa50a7bb57/resources/libraries/python/HoststackUtil.py#L168",
+      "parentUuid": "86821b36_9fe00ac5",
+      "range": {
+        "startLine": 101,
+        "startChar": 40,
+        "endLine": 101,
+        "endChar": 56
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1507556_9bde5b2b",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 1
