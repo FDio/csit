@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "6010aa47_1123519c",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-23T19:20:49Z",
+      "side": 1,
+      "message": "i do not see nginx to be built and shipped as nginx.deb\nthe question is not if it will be used, but if it must be reinstalled everyt time. I preffer to not do heavy and frequent install reinstall by utilizing hard drives. I prefer to have something easily run and destroy to not interfere and save the time/bw/disk. so to me -1",
+      "parentUuid": "c809a0f3_ab15e9e6",
+      "range": {
+        "startLine": 101,
+        "startChar": 40,
+        "endLine": 101,
+        "endChar": 56
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1507556_9bde5b2b",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 1
