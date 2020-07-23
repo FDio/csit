@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "233c7a40_860442a7",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-23T10:59:24Z",
+      "side": 1,
+      "message": "is NGINX part of (product of) custom build? If not why we need to do this?",
+      "parentUuid": "ac191f8a_942b633c",
+      "range": {
+        "startLine": 101,
+        "startChar": 40,
+        "endLine": 101,
+        "endChar": 56
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1507556_9bde5b2b",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 1
