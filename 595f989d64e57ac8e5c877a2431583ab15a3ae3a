@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3b643f9c_c11823a2",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-23T10:02:38Z",
+      "side": 1,
+      "message": "ok. I will add it and submit a new patch.",
+      "parentUuid": "ddba5d24_cf00e05f",
+      "range": {
+        "startLine": 101,
+        "startChar": 40,
+        "endLine": 101,
+        "endChar": 56
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1507556_9bde5b2b",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c12dcad3_ce37baba",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-23T10:02:38Z",
+      "side": 1,
+      "message": "Yes.\nI added this part of the work in artifacts.sh and gather.sh.\nI\u0027m going to submit a new patch.",
+      "parentUuid": "c1507556_9bde5b2b",
+      "range": {
+        "startLine": 130,
+        "startChar": 52,
+        "endLine": 130,
+        "endChar": 70
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc16f354_5e090800",
         "filename": "resources/libraries/python/vsap/ab.py",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1238015b_77d19a16",
+        "filename": "resources/libraries/python/vsap/ab.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-23T10:02:38Z",
+      "side": 1,
+      "message": "ok,I will remove it.",
+      "parentUuid": "bc16f354_5e090800",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 18
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
