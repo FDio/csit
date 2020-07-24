@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "62f9cb76_2beb9634",
+        "filename": "docs/testing_in_vagrant.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2255
+      },
+      "writtenOn": "2020-07-24T14:55:10Z",
+      "side": 1,
+      "message": "Yes, I will test it.",
+      "parentUuid": "3c6290e9_35bfa693",
+      "range": {
+        "startLine": 21,
+        "startChar": 58,
+        "endLine": 21,
+        "endChar": 70
+      },
+      "revId": "ff5ba162999b064425ee33674e001b61690fc241",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "74c4f73a_ae3ac594",
         "filename": "docs/testing_in_vagrant.rst",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-07-24T11:46:23Z",
       "side": 1,
       "message": "The previous commands can be run from anywhere, but this command has to be run with {csit_repo}/resources/tools/vagrant/ as the working directory.",
+      "range": {
+        "startLine": 46,
+        "startChar": 6,
+        "endLine": 46,
+        "endChar": 16
+      },
+      "revId": "ff5ba162999b064425ee33674e001b61690fc241",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "631ee97e_9604063c",
+        "filename": "docs/testing_in_vagrant.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2255
+      },
+      "writtenOn": "2020-07-24T14:55:10Z",
+      "side": 1,
+      "message": "I will add cd command example using proper path with simple description.",
+      "parentUuid": "74c4f73a_ae3ac594",
       "range": {
         "startLine": 46,
         "startChar": 6,
