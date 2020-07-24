@@ -438,12 +438,9 @@
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
-| | Run Keyword If | ${dut_stats}==${True}
-| | ... | Clear statistics on all DUTs | ${nodes}
-| | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
-| | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
-| | Run Keyword If | ${dut_stats}==${True}
-| | ... | VPP enable elog traces on all DUTs | ${nodes}
+| | FOR | ${action} | IN | @{pre_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${results} = | Create List
 | | FOR | ${i} | IN RANGE | ${trial_multiplicity}
 | | | # The following line is skipping some default arguments,
@@ -456,12 +453,9 @@
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
 | | END
-| | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
-| | ... | ${nodes}
-| | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs
-| | ... | ${nodes}
-| | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
-| | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
+| | FOR | ${action} | IN | @{post_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | Return From Keyword | ${results}
 
 | Measure and show latency at specified rate
@@ -535,11 +529,13 @@
 | | ... | warmup_time=${0} | async_call=${True} | latency=${False}
 | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
 | | ... | rx_port=${rx_port}
-| | Run Keyword If | ${dut_stats}==${True}
-| | ... | VPP clear runtime on all DUTs | ${nodes}
+| | FOR | ${action} | IN | @{pre_run_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | Sleep | ${duration}
-| | Run Keyword If | ${dut_stats}==${True}
-| | ... | VPP show runtime on all DUTs | ${nodes}
+| | FOR | ${action} | IN | @{post_run_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | Stop traffic on tg
 
 | Start Traffic on Background
@@ -587,3 +583,47 @@
 | |
 | | ${result}= | Stop traffic on tg
 | | Return From Keyword | ${result}
+
+| Additional Statistics Action For vpp-stats
+| | [Documentation]
+| | ... | Additional Statistics Action for VPP statistics.
+| |
+| | Clear VPP statistics on all DUTs | ${nodes}
+
+| Additional Statistics Action For vpp-run-clear
+| | [Documentation]
+| | ... | Additional Statistics Action for VPP clear runninr.
+| |
+| | VPP clear runtime on all DUTs | ${nodes}
+
+| Additional Statistics Action For vpp-run-show
+| | [Documentation]
+| | ... | Additional Statistics Action for VPP show running.
+| |
+| | VPP show runtime on all DUTs | ${nodes}
+
+| Additional Statistics Action For vpp-trace-enable
+| | [Documentation]
+| | ... | Additional Statistics Action for enable VPP packet trace.
+| |
+| | Run Keyword If | ${pkt_trace}==${True}
+| | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
+
+| Additional Statistics Action For vpp-trace-show
+| | [Documentation]
+| | ... | Additional Statistics Action for show VPP packet trace.
+| |
+| | Run Keyword If | ${pkt_trace}==${True}
+| | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
+
+| Additional Statistics Action For vpp-elog-enable
+| | [Documentation]
+| | ... | Additional Statistics Action for enable VPP elog trace.
+| |
+| | VPP Enable Elog Traces On All DUTs | ${nodes}
+
+| Additional Statistics Action For vpp-elog-show
+| | [Documentation]
+| | ... | Additional Statistics Action for show VPP elog trace.
+| |
+| | Show event logger on all DUTs | ${nodes}
