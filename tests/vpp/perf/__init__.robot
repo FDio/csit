@@ -38,9 +38,19 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | |
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - dut_stats - Switch to enable DUT statistics.
-| | ... | - packages_dir - Directory with VPP binary packages.
+| | ... | - pre_stats - Statistics actions before traffic.
+| | ... | - post_stats - Statistics actions after traffic.
+| | ... | - pre_run_stats - Statistics actions during traffic before timer.
+| | ... | - post_run_stats - Statistics actions during traffic after timer.
+| | ... | - packages_dir - Path to directory where VPP packages are stored.
 | |
-| | Set Global Variable | ${dut_stats} | ${True}
+| | ${pre_stats}= | Create List | vpp-stats | vpp-trace-enable | vpp-elog-enable
+| | ${post_stats}= | Create List | vpp-stats | vpp-trace-show | vpp-elog-show
+| | ${pre_run_stats}= | Create List | vpp-run-clear
+| | ${post_run_stats}= | Create List | vpp-run-show
+| | Set Global Variable | ${pre_stats}
+| | Set Global Variable | ${post_stats}
+| | Set Global Variable | ${pre_run_stats}
+| | Set Global Variable | ${post_run_stats}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
 | | Set Global Variable | ${nodes}
