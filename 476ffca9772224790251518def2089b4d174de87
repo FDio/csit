@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9819693e_b3a903c4",
+        "filename": "resources/libraries/bash/entry/nginx_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "If it\u0027s wrong, the test execution fails.",
+      "parentUuid": "815239c6_a70e9959",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 70
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a63d907_9deb0048",
         "filename": "resources/libraries/bash/entry/nginx_utils.sh",
         "patchSetId": 3
@@ -39,6 +63,24 @@
       "revId": "476ffca9772224790251518def2089b4d174de87",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8cae314_a09e81a3",
+        "filename": "resources/libraries/bash/entry/nginx_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "Same as above.\nIn addition, the same script is done once during vSAP Build Verify, and if an error is reported, the DEB package will not be uploaded to packagecloud.io",
+      "parentUuid": "9a63d907_9deb0048",
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "c53708a0_37f86c83",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "524e012b_5ddffd1c",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 9
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f35e5bc5_96f9356a",
         "filename": "resources/libraries/python/vsap/abfork.py",
         "patchSetId": 3
@@ -85,6 +151,30 @@
       "revId": "476ffca9772224790251518def2089b4d174de87",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0656d1d_2f4554d9",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "f35e5bc5_96f9356a",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "189dcb67_03f7751d",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "35c060ce_5483c4af",
+      "range": {
+        "startLine": 153,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 6
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72078db2_f0e1947c",
         "filename": "resources/libraries/python/vsap/abfork.py",
         "patchSetId": 3
@@ -131,6 +245,30 @@
       "revId": "476ffca9772224790251518def2089b4d174de87",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc34ef6a_95ffe821",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "72078db2_f0e1947c",
+      "range": {
+        "startLine": 154,
+        "startChar": 3,
+        "endLine": 154,
+        "endChar": 12
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "460165a6_74ef4bbe",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "8f765307_4e943f3f",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 20
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4e48c5e_692e3446",
         "filename": "resources/libraries/python/vsap/abfork.py",
         "patchSetId": 3
@@ -177,6 +339,30 @@
       "revId": "476ffca9772224790251518def2089b4d174de87",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0897ff01_ce2aeee1",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "d4e48c5e_692e3446",
+      "range": {
+        "startLine": 157,
+        "startChar": 7,
+        "endLine": 157,
+        "endChar": 8
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -203,6 +389,30 @@
     },
     {
       "key": {
+        "uuid": "b47ac278_61b5ce80",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "2946a31b_83ff8011",
+      "range": {
+        "startLine": 216,
+        "startChar": 8,
+        "endLine": 216,
+        "endChar": 23
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "06a45078_4d2c020d",
         "filename": "resources/libraries/robot/vsap/ab_utils.robot",
         "patchSetId": 3
@@ -223,6 +433,30 @@
       "revId": "476ffca9772224790251518def2089b4d174de87",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11311ba4_a390c4f3",
+        "filename": "resources/libraries/robot/vsap/ab_utils.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "06a45078_4d2c020d",
+      "range": {
+        "startLine": 37,
+        "startChar": 28,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {

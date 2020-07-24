@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2ca8a133_d04a3f0a",
+        "filename": "resources/libraries/bash/entry/run_nginx.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "21f87238_b81fe980",
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ddba5d24_cf00e05f",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 1
@@ -210,6 +228,30 @@
     },
     {
       "key": {
+        "uuid": "2340da9e_2fce3a6d",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "Nginx is a small piece of software.\nThe uninstallation and installation of nginx is very fast.\nIn addition, I refer to the installation of VPP, uninstall before installation, I think this is more reasonable.\n\nOf course nginx is part of Vsap.deb. However, if you uninstall vsap.deb, you can only uninstall VSAP nginx, not nginx installed by others. They are different and may be in different directories",
+      "parentUuid": "baf62af0_8a53380f",
+      "range": {
+        "startLine": 101,
+        "startChar": 40,
+        "endLine": 101,
+        "endChar": 56
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1507556_9bde5b2b",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 1
@@ -301,6 +343,30 @@
       "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7678414_ed557202",
+        "filename": "resources/libraries/python/vsap/ab.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:07Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "96e8ae35_18f6918d",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 24
+      },
+      "revId": "595f989d64e57ac8e5c877a2431583ab15a3ae3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
