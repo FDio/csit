@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "815239c6_a70e9959",
+        "filename": "resources/libraries/bash/entry/nginx_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "if fails?",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 70
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a63d907_9deb0048",
+        "filename": "resources/libraries/bash/entry/nginx_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "if fails?\n\napplies everywhere",
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "524e012b_5ddffd1c",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 9
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f35e5bc5_96f9356a",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "i think:\n# inline comments",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35c060ce_5483c4af",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "wrong name of variable",
+      "range": {
+        "startLine": 153,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 6
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72078db2_f0e1947c",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "wrong indent",
+      "range": {
+        "startLine": 154,
+        "startChar": 3,
+        "endLine": 154,
+        "endChar": 12
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f765307_4e943f3f",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "no need of brackets",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 20
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4e48c5e_692e3446",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "spaces around \u003d",
+      "range": {
+        "startLine": 157,
+        "startChar": 7,
+        "endLine": 157,
+        "endChar": 8
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2946a31b_83ff8011",
+        "filename": "resources/libraries/python/vsap/abfork.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "wrong indent",
+      "range": {
+        "startLine": 216,
+        "startChar": 8,
+        "endLine": 216,
+        "endChar": 23
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06a45078_4d2c020d",
+        "filename": "resources/libraries/robot/vsap/ab_utils.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "\\|",
+      "range": {
+        "startLine": 37,
+        "startChar": 28,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6f921b6_a4143f6a",
+        "filename": "resources/libraries/robot/vsap/vsap_utils.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T08:02:57Z",
+      "side": 1,
+      "message": "i would use pf or better ${DUT1_${int}1}[0] for full future compatibility",
+      "range": {
+        "startLine": 49,
+        "startChar": 47,
+        "endLine": 49,
+        "endChar": 55
+      },
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
