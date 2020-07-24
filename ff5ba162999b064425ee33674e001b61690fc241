@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74c4f73a_ae3ac594",
+        "filename": "docs/testing_in_vagrant.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-24T11:46:23Z",
+      "side": 1,
+      "message": "The previous commands can be run from anywhere, but this command has to be run with {csit_repo}/resources/tools/vagrant/ as the working directory.",
+      "range": {
+        "startLine": 46,
+        "startChar": 6,
+        "endLine": 46,
+        "endChar": 16
+      },
+      "revId": "ff5ba162999b064425ee33674e001b61690fc241",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
