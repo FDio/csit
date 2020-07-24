@@ -22,6 +22,30 @@
       "revId": "b49290d52a6e882f941900a68ca980f10c1c67c1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d13ad27_d6e80a37",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T13:25:54Z",
+      "side": 1,
+      "message": "code yes ...but what about the order:\n\nvpp-show-run\nvpp-show-stats\nvpp-clear-run\nvpp-clear-stats\n\nvs\n\nvpp-run-clear\nvpp-run-show\nvpp-stats-clear\nvpp-stats-show\n\n\ni do not have any preference. I can do {verb}-{object}-{app} (clear-stats-vpp).",
+      "parentUuid": "743dc555_1f7d16a4",
+      "range": {
+        "startLine": 587,
+        "startChar": 35,
+        "endLine": 587,
+        "endChar": 44
+      },
+      "revId": "b49290d52a6e882f941900a68ca980f10c1c67c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
