@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec0de1ca_d476198c",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-24T12:14:39Z",
+      "side": 1,
+      "message": "If a variable is set in one function and read in other function, it should be all caps and documented.",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 15
+      },
+      "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cbde1e9_22f3108a",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-24T12:14:39Z",
+      "side": 1,
+      "message": "If a variable is set in one function and read in other function, it should be all caps and documented.",
+      "range": {
+        "startLine": 94,
+        "startChar": 51,
+        "endLine": 94,
+        "endChar": 69
+      },
+      "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7ba964b_c75e9d2e",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-24T12:14:39Z",
+      "side": 1,
+      "message": "This is called with VPP_VERSION, but this is calling download_ubuntu which expects PKG_VERSION,\nEither perform translation here, or edit the callers to set PKG_VERSION. Either way, document which variables are read by (whole subtree rooted at) this.",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 34
+      },
+      "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc93173b_83a11ddf",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-24T12:14:39Z",
+      "side": 1,
+      "message": "No conditions at this point.",
+      "range": {
+        "startLine": 185,
+        "startChar": 16,
+        "endLine": 185,
+        "endChar": 29
+      },
+      "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff1ed90b_541e7852",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-24T12:14:39Z",
+      "side": 1,
+      "message": "Stable versions are known and probably not the most recent. You should set PKG_VERSION here. See line 184.",
+      "range": {
+        "startLine": 90,
+        "startChar": 30,
+        "endLine": 90,
+        "endChar": 36
+      },
+      "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
