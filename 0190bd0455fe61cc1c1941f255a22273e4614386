@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "bed6e870_ba85fca5",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:34Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "cbfaa662_f010ac00",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07ebebe0_9294c2ac",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 2
@@ -91,6 +115,30 @@
       "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ebc1b41_984f8053",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:34Z",
+      "side": 1,
+      "message": "Ok, I will integrate the code.",
+      "parentUuid": "07ebebe0_9294c2ac",
+      "range": {
+        "startLine": 51,
+        "startChar": 9,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "d7d71847_b2da9534",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:34Z",
+      "side": 1,
+      "message": "Ok, I will integrate the code.",
+      "parentUuid": "d2847479_d2f56c50",
+      "range": {
+        "startLine": 79,
+        "startChar": 9,
+        "endLine": 79,
+        "endChar": 29
+      },
+      "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e395ee92_7e91d5fe",
         "filename": "resources/libraries/bash/function/gather.sh",
         "patchSetId": 2
@@ -137,6 +209,30 @@
       "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13267dae_a644a3e0",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T11:59:34Z",
+      "side": 1,
+      "message": "stable. \nVSAP temporarily only tracks VPP v20.05, so I will only create VSAP_REPO_URL.\nI will add a description of stable.",
+      "parentUuid": "e395ee92_7e91d5fe",
+      "range": {
+        "startLine": 90,
+        "startChar": 29,
+        "endLine": 90,
+        "endChar": 30
+      },
+      "revId": "0190bd0455fe61cc1c1941f255a22273e4614386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
