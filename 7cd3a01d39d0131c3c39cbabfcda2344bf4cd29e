@@ -22,6 +22,30 @@
       "revId": "7cd3a01d39d0131c3c39cbabfcda2344bf4cd29e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25ad65b2_921fa870",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 144
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-24T16:16:17Z",
+      "side": 1,
+      "message": "Done, chained as parent of this.\nTesting is still needed.",
+      "parentUuid": "dbf6a84b_53c0022b",
+      "range": {
+        "startLine": 288,
+        "startChar": 7,
+        "endLine": 288,
+        "endChar": 29
+      },
+      "revId": "7cd3a01d39d0131c3c39cbabfcda2344bf4cd29e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
