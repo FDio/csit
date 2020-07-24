@@ -34,9 +34,19 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | |
 | | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - pre_stats - Statistics actions before traffic.
+| | ... | - post_stats - Statistics actions after traffic.
+| | ... | - pre_run_stats - Statistics actions during traffic before timer.
+| | ... | - post_run_stats - Statistics actions during traffic after timer.
 | | ... | - pkt_trace - Switch to enable packet trace for test
-| | ... | - dut_stats - Switch to enable DUT statistics
 | |
+| | ${pre_stats}= | Create List | ${EMPTY}
+| | ${post_stats}= | Create List | ${EMPTY}
+| | ${pre_run_stats}= | Create List | ${EMPTY}
+| | ${post_run_stats}= | Create List | ${EMPTY}
+| | Set Global Variable | ${pre_stats}
+| | Set Global Variable | ${post_stats}
+| | Set Global Variable | ${pre_run_stats}
+| | Set Global Variable | ${post_run_stats}
 | | Set Global Variable | ${pkt_trace} | ${False}
-| | Set Global Variable | ${dut_stats} | ${False}
 | | Set Global Variable | ${nodes}
