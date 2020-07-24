@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3c6290e9_35bfa693",
+        "filename": "docs/testing_in_vagrant.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-24T12:32:25Z",
+      "side": 1,
+      "message": "As part of cleanup can you bump to latest and test if works with 6.1.12 and vagrant 2.2.9?",
+      "range": {
+        "startLine": 21,
+        "startChar": 58,
+        "endLine": 21,
+        "endChar": 70
+      },
+      "revId": "ff5ba162999b064425ee33674e001b61690fc241",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "74c4f73a_ae3ac594",
         "filename": "docs/testing_in_vagrant.rst",
         "patchSetId": 1
