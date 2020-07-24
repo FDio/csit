@@ -225,6 +225,7 @@
         - 47  # NDRPDR sel env 4
         - 55  # NDRPDR sel env 4
         - 56  # NDRPDR sel env 4
+        - 57  # NDRPDR sel env 4
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -498,6 +499,7 @@
         - 47  # NDRPDR sel env 4
         - 55  # NDRPDR sel env 4
         - 56  # NDRPDR sel env 4
+        - 57  # NDRPDR sel env 4
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -827,6 +829,7 @@
         - 47  # NDRPDR sel env 4
         - 55  # NDRPDR sel env 4
         - 56  # NDRPDR sel env 4
+        - 57  # NDRPDR sel env 4
     vpp-performance-changes-3n-skx-cmp-2001.0-4:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 50  # NDRPDR sel 2001.0-4
@@ -1494,6 +1497,7 @@
         - 47  # NDRPDR sel env 4
         - 55  # NDRPDR sel env 4
         - 56  # NDRPDR sel env 4
+        - 57  # NDRPDR sel env 4
 
     vpp-compare-testbeds-skx-clx-ref:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -1627,6 +1631,7 @@
         - 47  # NDRPDR sel env 4
         - 55  # NDRPDR sel env 4
         - 56  # NDRPDR sel env 4
+        - 57  # NDRPDR sel env 4
     vpp-compare-topologies-cmp:
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 88  # NDRPDR sel env 4
@@ -2352,6 +2357,7 @@
       - 47  # NDRPDR sel env 4
       - 55  # NDRPDR sel env 4
       - 56  # NDRPDR sel env 4
+      - 57  # NDRPDR sel env 4
       - 50  # NDRPDR sel 2001.0-4
       - 51  # NDRPDR sel 2001.0-4
       - 52  # NDRPDR sel 2001.0-4
