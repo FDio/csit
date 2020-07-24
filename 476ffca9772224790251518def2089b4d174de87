@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "bd07753b_d51c35dd",
+        "filename": "resources/libraries/bash/entry/nginx_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-24T12:01:52Z",
+      "side": 1,
+      "message": "That will be executed in the \"vsap verify\" job of ci-management.",
+      "parentUuid": "f8cae314_a09e81a3",
+      "revId": "476ffca9772224790251518def2089b4d174de87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "524e012b_5ddffd1c",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 3
