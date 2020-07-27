@@ -35,6 +35,13 @@ class NATConfigFlags(IntEnum):
     NAT_IS_STATIC = 0x40
     NAT_IS_EXT_HOST_VALID = 0x80
 
+class NATParams:
+    """This class contains NAT configuration parameters"""
+
+    def __init__(self, **kwargs):
+        for k in kwargs.keys():
+            if k in ["node", "ip_in", "ip_out", "int_in", "int_out", "subnet_in", "subnet_out"]:
+                self.__setattr__(k, kwargs[k])
 
 class NATUtil:
     """This class defines the methods to set NAT."""
@@ -80,7 +87,8 @@ class NATUtil:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
     @staticmethod
-    def set_nat44_deterministic(node, ip_in, subnet_in, ip_out, subnet_out):
+    def set_nat44_deterministic(
+            node, ip_in, subnet_in, ip_out, subnet_out, is_add=True):
         """Set deterministic behaviour of NAT44.
 
         :param node: DUT node.
@@ -98,7 +106,7 @@ class NATUtil:
         err_msg = f"Failed to set deterministic behaviour of NAT " \
             f"on host {node[u'host']}"
         args_in = dict(
-            is_add=True,
+            is_add=is_add,
             in_addr=inet_pton(AF_INET, str(ip_in)),
             in_plen=int(subnet_in),
             out_addr=inet_pton(AF_INET, str(ip_out)),

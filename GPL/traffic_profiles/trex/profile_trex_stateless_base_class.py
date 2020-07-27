@@ -213,5 +213,5 @@ class TrafficStreamsBaseClass:
         """
         self.framesize = kwargs[u"framesize"]
         self.rate = kwargs[u"rate"]
-
+        self.cps_rate = kwargs[u"cps_rate"]
         return self.create_streams()

@@ -67,7 +67,7 @@ class TGDropRateSearchImpl(DropRateSearch):
 
     def measure_loss(
             self, rate, frame_size, loss_acceptance, loss_acceptance_type,
-            traffic_profile, skip_warmup=False):
+            traffic_profile, skip_warmup=False, latency=True, cps_rate=None):
         """Runs the traffic and evaluate the measured results.
 
         :param rate: Offered traffic load.
@@ -77,12 +77,16 @@ class TGDropRateSearchImpl(DropRateSearch):
         :param traffic_profile: Module name as a traffic profile identifier.
             See GPL/traffic_profiles/trex for implemented modules.
         :param skip_warmup: Start TRex without warmup traffic if true.
+        :param latency: Process latencey sterams.
+        :param cps_rate: CPS rate for flowsim profiles.
         :type rate: float
         :type frame_size: str
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
         :type traffic_profile: str
         :type skip_warmup: bool
+        :type latency: bool
+        :type cps_rate: int
         :returns: Drop threshold exceeded? (True/False)
         :rtype: bool
         :raises NotImplementedError: If TG is not supported.
@@ -99,16 +103,19 @@ class TGDropRateSearchImpl(DropRateSearch):
             if skip_warmup:
                 tg_instance.trex_stl_start_remote_exec(
                     self.get_duration(), unit_rate, frame_size, traffic_profile,
-                    warmup_time=0.0
+                    warmup_time=0.0, latency=latency, cps_rate=cps_rate
                 )
             else:
                 tg_instance.trex_stl_start_remote_exec(
-                    self.get_duration(), unit_rate, frame_size, traffic_profile
+                    self.get_duration(), unit_rate, frame_size, traffic_profile,
+                    latency=latency, cps_rate=cps_rate
                 )
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
             if self.loss_acceptance_type_is_percentage():
                 loss = (float(loss) / float(sent)) * 100
+            if self.loss_acceptance_type_is_frames_10():
+                loss = tg_instance.get_loss_10()
             logger.trace(
                 f"comparing: {loss} < {loss_acceptance} {loss_acceptance_type}"
             )
@@ -148,6 +155,8 @@ class TrafficGenerator(AbstractMeasurer):
         # Result holding fields, to be removed.
         self._result = None
         self._loss = None
+        self._loss_01 = None
+        self._loss_10 = None
         self._sent = None
         self._latency = None
         self._received = None
@@ -182,6 +191,22 @@ class TrafficGenerator(AbstractMeasurer):
         :rtype: str
         """
         return self._loss
+
+    def get_loss_01(self):
+        """Return number of lost packets.
+
+        :returns: Number of lost packets.
+        :rtype: str
+        """
+        return self._loss_01
+
+    def get_loss_10(self):
+        """Return number of lost packets.
+
+        :returns: Number of lost packets.
+        :rtype: str
+        """
+        return self._loss_10
 
     def get_sent(self):
         """Return number of sent packets.
@@ -479,6 +504,10 @@ class TrafficGenerator(AbstractMeasurer):
         self._latency = list()
         self._latency.append(self._result.split(u", ")[7].split(u"=", 1)[1])
         self._latency.append(self._result.split(u", ")[8].split(u"=", 1)[1])
+        if self._result.split(u", ")[9].split(u"=", 1)[1]:
+            self._loss_01 = self._result.split(u", ")[9].split(u"=", 1)[1]
+        if self._result.split(u", ")[10].split(u"=", 1)[1]:
+            self._loss_10 = self._result.split(u", ")[10].split(u"=", 1)[1]
 
     def trex_stl_stop_remote_exec(self, node):
         """Execute script on remote node over ssh to stop running traffic.
@@ -506,7 +535,7 @@ class TrafficGenerator(AbstractMeasurer):
     def trex_stl_start_remote_exec(
             self, duration, rate, frame_size, traffic_profile, async_call=False,
             latency=True, warmup_time=5.0, traffic_directions=2, tx_port=0,
-            rx_port=1):
+            rx_port=1, cps_rate=None):
         """Execute script on remote node over ssh to start traffic.
 
         In sync mode, measurement results are stored internally.
@@ -526,6 +555,7 @@ class TrafficGenerator(AbstractMeasurer):
             Default: 0
         :param rx_port: Traffic generator receive port for first flow.
             Default: 1
+        :param cps_rate: CPS rate for flowsim profiles.
         :type duration: float
         :type rate: str
         :type frame_size: str
@@ -536,6 +566,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type traffic_directions: int
         :type tx_port: int
         :type rx_port: int
+        :type cps_rate: int
         :raises RuntimeError: In case of TG driver issue.
         """
         # No need to check subtype, we know it is TREX.
@@ -560,6 +591,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_with_value(u"port_0", p_0)
         command_line.add_with_value(u"port_1", p_1)
         command_line.add_with_value(u"traffic_directions", traffic_directions)
+        command_line.add_with_value_if(u"cps_rate", cps_rate, cps_rate)
         command_line.add_if(u"async_start", async_call)
         command_line.add_if(u"latency", latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)

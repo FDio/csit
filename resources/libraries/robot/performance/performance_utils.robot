@@ -208,6 +208,41 @@
 | | Should Not Be True | 1.1 * ${traffic_directions} * ${min_rate} > ${lower}
 | | ... | Lower bound ${lower} too small for unidirectional minimum ${min_rate}.
 
+| Find CPS using binary search with flowsim
+| | [Documentation]
+| | ... | Find cps by using RFC2544 binary search with non drop rate.
+| |
+| | ... | *Arguments:*
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - binary_min - Lower boundary of search [cps]. Type: float
+| | ... | - binary_max - Upper boundary of search [cps]. Type: float
+| | ... | - traffic_profile - Traffic profile. Type: string
+| | ... | - max_rate - Upper limit of search [pps]. Type: float
+| | ... | - threshold - Threshold to stop search [cps]. Type: integer
+| |
+| | ... | *Example:*
+| | ...
+| | ... | \| Find CPS using binary search with flowsim \| 64 \| 6000000 \
+| | ... | \| 12000000 \| trex-slfs-ethip4udp-1024u63p-64fl \| 100000 \
+| | ... | \| 14880952 \| 50000 \|
+| |
+| | [Arguments] | ${binary_min} | ${binary_max} | ${threshold}
+| |
+#| | ${nat_params_instance}= | Get library instance | NATParams | all=True
+| |
+| | Set Duration | ${trial_duration}
+| | Set Search Rate Boundaries | ${max_rate} | ${0}
+| | Set Search Frame Size | ${frame_size}
+| | Set Search Rate Type pps
+| | Set Binary Convergence Threshold | ${threshold}
+| | ${results} = | Create List
+| | FOR | ${i} | IN RANGE | ${trial_multiplicity}
+| | | Binary Search with flowsim | ${binary_min} | ${binary_max}
+| | | ... | ${traffic_profile} | ${max_rate} | ${natparams}
+| | | ${rate_per_stream} | ${lat}= | Verify Search Result
+| | | Append To List | ${results} | ${rate_per_stream}
+| | Display result of CPS search with flowsim | ${results}
+
 | Display single bound
 | | [Documentation]
 | | ... | Display one bound of NDR+PDR search,
@@ -325,6 +360,22 @@
 | | Display single bound | PLRsearch lower bound | ${lower} | ${frame_size}
 | | Display single bound | PLRsearch upper bound | ${upper} | ${frame_size}
 | | Return From Keyword | ${lower} | ${upper}
+
+| Display result of CPS search with flowsim
+| | [Documentation]
+| | ... | Display result of CPS search in connection per seconds.
+| |
+| | ... | *Arguments:*
+| | ... | - cps_rate - Measured cps rate [cps]. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| |
+| | ... | *Example:*
+| | ...
+| | ... | \| Display result of CPS search \| 4400000 \| 64
+| |
+| | [Arguments] | ${cps_rate}
+| |
+| | Set Test Message | CPS_RATE trials: ${cps_rate} cps.
 
 | Check NDRPDR interval validity
 | | [Documentation]
