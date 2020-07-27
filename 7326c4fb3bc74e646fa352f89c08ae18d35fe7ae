@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2d5aaac1_1912a2a7",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-27T08:29:14Z",
+      "side": 1,
+      "message": "ok. I will modify it like this.",
+      "parentUuid": "78d91d52_67bce27f",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 16
+      },
+      "revId": "7326c4fb3bc74e646fa352f89c08ae18d35fe7ae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a76e6333_9b16c860",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "7326c4fb3bc74e646fa352f89c08ae18d35fe7ae",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "831fd245_ee4c1f8c",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-27T08:29:14Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "a76e6333_9b16c860",
+      "range": {
+        "startLine": 58,
+        "startChar": 9,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "7326c4fb3bc74e646fa352f89c08ae18d35fe7ae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1dff67ca_f4c492ff",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-27T08:29:14Z",
+      "side": 1,
+      "message": "download_ubuntu_packages, it\u0027s ok.",
+      "parentUuid": "be5da4e2_b8e8cb2f",
+      "range": {
+        "startLine": 86,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 25
+      },
+      "revId": "7326c4fb3bc74e646fa352f89c08ae18d35fe7ae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e99e6c0_9613f1a9",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "7326c4fb3bc74e646fa352f89c08ae18d35fe7ae",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "228356cd_f1ca7aa3",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-27T08:29:14Z",
+      "side": 1,
+      "message": "It\u0027s already a public function and VSAP should be removed.",
+      "parentUuid": "4e99e6c0_9613f1a9",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 38
+      },
+      "revId": "7326c4fb3bc74e646fa352f89c08ae18d35fe7ae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
