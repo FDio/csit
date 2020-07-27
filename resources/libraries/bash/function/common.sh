@@ -277,6 +277,9 @@ function compose_pybot_arguments () {
         *"device"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.device")
             ;;
+        *"vpp-csit"*)
+            # These jobs can handle both device and perf tests.
+            PYBOT_ARGS+=("--suite" "tests.${DUT}")
         *"perf"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
             ;;
@@ -888,19 +891,13 @@ function select_tags () {
 
     TAGS=()
 
-    # We will prefix with perftest to prevent running other tests
-    # (e.g. Functional).
-    prefix="perftestAND"
-    set +x
-    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
-        # Automatic prefixing for VPP jobs to limit the NIC used and
-        # traffic evaluation to MRR.
-        if [[ "${TEST_TAG_STRING-}" == *"nic_"* ]]; then
-            prefix="${prefix}mrrAND"
-        else
-            prefix="${prefix}mrrAND${default_nic}AND"
-        fi
+    # Automatic limiting of NIC used if not specified.
+    if [[ "${TEST_TAG_STRING-}" == *"nic_"* ]]; then
+        prefix=""
+    else
+        prefix="${default_nic}AND"
     fi
+    set +x
     for tag in "${test_tag_array[@]}"; do
         if [[ "${tag}" == "!"* ]]; then
             # Exclude tags are not prefixed.
