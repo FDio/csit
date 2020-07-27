@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c2fffb95_b1cc0e46",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-27T05:01:53Z",
+      "side": 1,
+      "message": "Ok, I will follow this rule to check and modify the defined variables and update the documentation.",
+      "parentUuid": "ec0de1ca_d476198c",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 15
+      },
+      "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9cbde1e9_22f3108a",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca48b681_c348a45f",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-27T05:01:53Z",
+      "side": 1,
+      "message": "APT_FDIO_REPO_FILE is defined and documented in pre_download_ubuntu",
+      "parentUuid": "9cbde1e9_22f3108a",
+      "range": {
+        "startLine": 94,
+        "startChar": 51,
+        "endLine": 94,
+        "endChar": 69
+      },
+      "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "261dbb9b_fc29e8e7",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-27T05:01:53Z",
+      "side": 1,
+      "message": "PKG_VERSION is defined and used only in function download_ubuntu, so it should not be caps and documented. I changed it in download_ubuntu according to this rule.",
+      "parentUuid": "c7ba964b_c75e9d2e",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 34
+      },
+      "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc93173b_83a11ddf",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cad217c_9c11b534",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-27T05:01:53Z",
+      "side": 1,
+      "message": "I remove \"conditionally\".",
+      "parentUuid": "dc93173b_83a11ddf",
+      "range": {
+        "startLine": 185,
+        "startChar": 16,
+        "endLine": 185,
+        "endChar": 29
+      },
+      "revId": "32dda8353ac9e5ebd2e2682c86ee86981cad0310",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
