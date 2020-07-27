@@ -22,6 +22,30 @@
       "revId": "824c587dd46aef7f2eaca81e000f4962906869db",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16d7e97b_29cf15ec",
+        "filename": "resources/tools/testbed-setup/ansible/roles/cleanup/tasks/sut.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-27T08:29:25Z",
+      "side": 1,
+      "message": "I should not have uninstalled someone else\u0027s Nginx installation here, I removed this part of the code.",
+      "parentUuid": "bb738b2f_0da7a13b",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 26
+      },
+      "revId": "824c587dd46aef7f2eaca81e000f4962906869db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
