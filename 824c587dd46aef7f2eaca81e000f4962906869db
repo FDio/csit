@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb738b2f_0da7a13b",
+        "filename": "resources/tools/testbed-setup/ansible/roles/cleanup/tasks/sut.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-27T07:42:07Z",
+      "side": 1,
+      "message": "is NGINX installed via nginx.deb?",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 26
+      },
+      "revId": "824c587dd46aef7f2eaca81e000f4962906869db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
