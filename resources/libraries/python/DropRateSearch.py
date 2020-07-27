@@ -15,7 +15,7 @@
 
 from abc import ABCMeta, abstractmethod
 from enum import Enum, unique
-
+from .NATUtil import NATUtil
 
 @unique
 class SearchDirection(Enum):
@@ -45,7 +45,8 @@ class LossAcceptanceType(Enum):
     """Type of the loss acceptance criteria."""
     FRAMES = 1
     PERCENTAGE = 2
-
+    FRAMES_01 = 3
+    FRAMES_10 =4
 
 @unique
 class SearchResultType(Enum):
@@ -102,7 +103,7 @@ class DropRateSearch(metaclass=ABCMeta):
     @abstractmethod
     def measure_loss(
             self, rate, frame_size, loss_acceptance, loss_acceptance_type,
-            traffic_profile, skip_warmup=False):
+            traffic_profile, skip_warmup=False, cps_rate=None):
         """Send traffic from TG and measure count of dropped frames.
 
         :param rate: Offered traffic load.
@@ -111,12 +112,14 @@ class DropRateSearch(metaclass=ABCMeta):
         :param loss_acceptance_type: Type of permitted loss.
         :param traffic_profile: Module name to use for traffic generation.
         :param skip_warmup: Start TRex without warmup traffic if true.
+        :param cps_rate: CPS rate for flowsim profiles.
         :type rate: float
         :type frame_size: str
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
         :type traffic_profile: str
         :type skip_warmup: bool
+        :type cps_rate: int
         :returns: Drop threshold exceeded? (True/False)
         :rtype: bool
         """
@@ -131,7 +134,7 @@ class DropRateSearch(metaclass=ABCMeta):
         :returns: nothing
         :raises ValueError: If min rate is lower than 0 or higher than max rate.
         """
-        if float(min_rate) <= 0:
+        if float(min_rate) < 0:
             msg = u"min_rate must be higher than 0"
         elif float(min_rate) > float(max_rate):
             msg = u"min_rate must be lower than max_rate"
@@ -176,6 +179,20 @@ class DropRateSearch(metaclass=ABCMeta):
         """
         self._loss_acceptance_type = LossAcceptanceType.FRAMES
 
+    def set_loss_acceptance_type_frames_01(self):
+        """Set loss acceptance threshold type to frames lost 0-->1.
+
+        :returns: nothing
+        """
+        self._loss_acceptance_type = LossAcceptanceType.FRAMES_01
+
+    def set_loss_acceptance_type_frames_10(self):
+        """Set loss acceptance threshold type to frames lost 1-->0.
+
+        :returns: nothing
+        """
+        self._loss_acceptance_type = LossAcceptanceType.FRAMES_10
+
     def loss_acceptance_type_is_percentage(self):
         """Return true if loss acceptance threshold type is percentage,
            false otherwise.
@@ -184,6 +201,24 @@ class DropRateSearch(metaclass=ABCMeta):
         :rtype: boolean
         """
         return self._loss_acceptance_type == LossAcceptanceType.PERCENTAGE
+
+    def loss_acceptance_type_is_frames_01(self):
+        """Return true if loss acceptance threshold type is frames lost 0-->1,
+           false otherwise.
+
+        :returns: True if loss acceptance threshold type is percentage.
+        :rtype: boolean
+        """
+        return self._loss_acceptance_type == LossAcceptanceType.FRAMES_01
+
+    def loss_acceptance_type_is_frames_10(self):
+        """Return true if loss acceptance threshold type is frames lost 1-->0,
+           false otherwise.
+
+        :returns: True if loss acceptance threshold type is percentage.
+        :rtype: boolean
+        """
+        return self._loss_acceptance_type == LossAcceptanceType.FRAMES_10
 
     def set_search_linear_step(self, step_rate):
         """Set step size for linear search.
@@ -500,6 +535,77 @@ class DropRateSearch(metaclass=ABCMeta):
         else:
             self._search_result_rate = rate
             self.binary_search(rate, b_max, traffic_profile, True, True)
+
+    def binary_search_with_flowsim(
+            self, b_min, b_max, traffic_profile, rate, nat_params,
+            skip_max_rate=False, skip_warmup=True):
+        """Binary search of rate with loss below acceptance criteria.
+
+        :param b_min: Min range rate.
+        :param b_max: Max range rate.
+        :param traffic_profile: Module name to use for traffic generation.
+        :param skip_max_rate: Start with max rate first
+        :param skip_warmup: Start TRex without warmup traffic if true.
+        :type b_min: float
+        :type b_max: float
+        :type traffic_profile: str
+        :type skip_max_rate: bool
+        :type skip_warmup: bool
+        :returns: Final CPS rate.
+        :raises ValueError: If input values are not valid.
+        """
+        if not self._rate_min <= float(b_min) <= self._rate_max:
+            raise ValueError(u"Min rate is not in min,max range")
+        if not self._rate_min <= float(b_max) <= self._rate_max:
+            raise ValueError(u"Max rate is not in min,max range")
+        if float(b_max) < float(b_min):
+            raise ValueError(u"Min rate is greater than max rate")
+
+        # set los acceptance type to frames lost 1-->0.
+        self._loss_acceptance_type = LossAcceptanceType.FRAMES_10
+
+        # rate is half of interval + start of interval if not using max rate
+        cps_rate = ((float(b_max) - float(b_min)) / 2) + float(b_min) \
+            if skip_max_rate else float(b_max)
+
+        # rate diff with previous run
+        cps_rate_diff = abs(self._last_binary_rate - cps_rate)
+
+        # convergence criterium
+        if float(cps_rate_diff) < float(self._binary_convergence_threshold):
+            self._search_result = SearchResults.SUCCESS \
+                if self._search_result_rate else SearchResults.FAILURE
+            return f"CPS Rate: {self._search_result_rate}"
+
+        cps_name = int(cps_rate)
+        self._last_binary_rate = cps_rate
+        b_traffic_profile = f"{traffic_profile}-{cps_name}kfps"
+
+        NATUtil.set_nat44_deterministic(
+            nat_params['node'], nat_params['ip_in'], nat_params['subnet_in'],
+            nat_params['ip_out'], nat_params['subnet_out'], is_add=False)
+        NATUtil.set_nat44_deterministic(
+            nat_params['node'], nat_params['ip_in'], nat_params['subnet_in'],
+            nat_params['ip_out'], nat_params['subnet_out'], is_add=True)
+        res = []
+        for dummy in range(self._max_attempts):
+            res.append(self.measure_loss(
+                rate, self._frame_size, self._loss_acceptance,
+                self._loss_acceptance_type, traffic_profile,
+                skip_warmup=skip_warmup, cps_rate=int(cps_rate)
+            ))
+
+        res = self._get_res_based_on_search_type(res)
+
+        # loss occurred and it was above acceptance criteria
+        if not res:
+            self.binary_search_with_flowsim(b_min, cps_rate, \
+                traffic_profile, rate, nat_params, True, True)
+        # there was no loss / loss below acceptance criteria
+        else:
+            self._search_result_rate = cps_rate
+            self.binary_search_with_flowsim(cps_rate, b_max, \
+                traffic_profile, rate, nat_params, True, True)
 
     def combined_search(self, start_rate, traffic_profile):
         """Combined search of rate with loss below acceptance criteria.

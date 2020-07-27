@@ -55,6 +55,11 @@
 | |
 | | [Arguments] | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
 | |
+#| | Import Library | resources.libraries.python.NATUtil.NATParams
+#| | ... | node=${node} | ip_in=${ip_in} | ip_out=${ip_out} | subnet_in=${subnet_in}
+#| | ... | subnet_out=${subnet_out} | WITH NAME | NATParams
+| | Set Test Variable | &{natparams} | node=${node} | ip_in=${ip_in}
+| | ... | subnet_in=${subnet_in} | ip_out=${ip_out} | subnet_out=${subnet_out}
 | | Set NAT44 deterministic | ${node} | ${ip_in} | ${subnet_in} | ${ip_out}
 | | ... | ${subnet_out}
 
