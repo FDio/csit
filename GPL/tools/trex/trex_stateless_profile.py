@@ -61,7 +61,8 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
 
 def simple_burst(
         profile_file, duration, framesize, rate, warmup_time, port_0, port_1,
-        latency, async_start=False, traffic_directions=2, force=False):
+        latency, cps_rate=8064, async_start=False, traffic_directions=2,
+        force=False):
     """Send traffic and measure packet loss and latency.
 
     Procedure:
@@ -87,6 +88,7 @@ def simple_burst(
     :param port_0: Port 0 on the traffic generator.
     :param port_1: Port 1 on the traffic generator.
     :param latency: With latency stats.
+    :param cps_rate: CPS rate for flowsim profiles.
     :param async_start: Start the traffic and exit.
     :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
     :param force: Force start regardless of ports state.
@@ -97,6 +99,7 @@ def simple_burst(
     :type warmup_time: float
     :type port_0: int
     :type port_1: int
+    :type cps_rate: int
     :type latency: bool
     :type async_start: bool
     :type traffic_directions: int
@@ -117,7 +120,7 @@ def simple_burst(
         print(f"### Profile file:\n{profile_file}")
         profile = STLProfile.load(
             profile_file, direction=0, port_id=0, framesize=framesize,
-            rate=rate
+            rate=rate, cps_rate=cps_rate
         )
         streams = profile.get_streams()
     except STLError as err:
@@ -276,6 +279,7 @@ def simple_burst(
                 f"approximatedDuration={approximated_duration!r}, "
                 f"approximatedRate={approximated_rate}, "
                 f"latencyStream0(usec)={lat_a}, latencyStream1(usec)={lat_b}, "
+                f"lost_01={lost_a}, lost_10={lost_b}, "
             )
 
 
@@ -315,6 +319,10 @@ def main():
         help=u"Port 1 on the traffic generator."
     )
     parser.add_argument(
+        u"--cps_rate", type=int, default=None,
+        help=u"CPS rate for flowsim profile."
+    )
+    parser.add_argument(
         u"--async_start", action=u"store_true", default=False,
         help=u"Non-blocking call of the script."
     )
@@ -341,8 +349,9 @@ def main():
     simple_burst(
         profile_file=args.profile, duration=args.duration, framesize=framesize,
         rate=args.rate, warmup_time=args.warmup_time, port_0=args.port_0,
-        port_1=args.port_1, latency=args.latency, async_start=args.async_start,
-        traffic_directions=args.traffic_directions, force=args.force
+        port_1=args.port_1, cps_rate=args.cps_rate, latency=args.latency,
+        async_start=args.async_start, traffic_directions=args.traffic_directions,
+        force=args.force
     )
 
 
