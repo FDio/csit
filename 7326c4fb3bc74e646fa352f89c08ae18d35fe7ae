@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78d91d52_67bce27f",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-27T07:40:49Z",
+      "side": 1,
+      "message": "avoid static definition. read from REPO_FILE else fail",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 16
+      },
+      "revId": "7326c4fb3bc74e646fa352f89c08ae18d35fe7ae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a76e6333_9b16c860",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-27T07:40:49Z",
+      "side": 1,
+      "message": "download_ubuntu_repo_file()",
+      "range": {
+        "startLine": 58,
+        "startChar": 9,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "7326c4fb3bc74e646fa352f89c08ae18d35fe7ae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be5da4e2_b8e8cb2f",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-27T07:40:49Z",
+      "side": 1,
+      "message": "download_ubuntu_packages?",
+      "range": {
+        "startLine": 86,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 25
+      },
+      "revId": "7326c4fb3bc74e646fa352f89c08ae18d35fe7ae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e99e6c0_9613f1a9",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-27T07:40:49Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 38
+      },
+      "revId": "7326c4fb3bc74e646fa352f89c08ae18d35fe7ae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
