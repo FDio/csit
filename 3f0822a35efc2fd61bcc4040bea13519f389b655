@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2bed5ec9_c2dddd76",
+        "filename": "resources/libraries/python/PLRsearch/PLRsearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-28T16:07:29Z",
+      "side": 1,
+      "message": "i rather prefer to quote original documentation rather stackoverflow but good for noe.",
+      "revId": "3f0822a35efc2fd61bcc4040bea13519f389b655",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
