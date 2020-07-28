@@ -788,11 +788,13 @@ class TrafficGenerator(AbstractMeasurer):
             or if subtype is not specified.
         :raises NotImplementedError: If TG is not supported.
         """
+        logger.trace(u"measurer starts")
         duration = float(duration)
         transmit_rate = float(transmit_rate)
         # TG needs target Tr per stream, but reports aggregate Tx and Dx.
         unit_rate_int = transmit_rate / float(self.traffic_directions)
         unit_rate_str = str(unit_rate_int) + u"pps"
+        logger.trace(u"values ready, starting traffic")
         self.send_traffic_on_tg(
             duration, unit_rate_str, self.frame_size, self.traffic_profile,
             warmup_time=self.warmup_time, latency=True,
