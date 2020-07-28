@@ -531,14 +531,18 @@ class PLRsearch:
         )
         # Preparation phase.
         dimension = 2
+        logging.trace(u"dimension set")
         stretch_focus_tracker, erf_focus_tracker = focus_trackers
+        logging.trace(u"trackers unpacked")
         if stretch_focus_tracker is None:
             stretch_focus_tracker = stat_trackers.VectorStatTracker(dimension)
             stretch_focus_tracker.unit_reset()
         if erf_focus_tracker is None:
             erf_focus_tracker = stat_trackers.VectorStatTracker(dimension)
             erf_focus_tracker.unit_reset()
+        logging.trace(u"trackers reset")
         old_trackers = stretch_focus_tracker.copy(), erf_focus_tracker.copy()
+        logging.trace(u"trackers copied")
 
         def start_computing(fitting_function, focus_tracker):
             """Just a block of code to be used for each fitting function.
@@ -599,24 +603,34 @@ class PLRsearch:
                 )
                 return value, logweight
 
+            logging.trace(u"value func created")
             dilled_function = dill.dumps(value_logweight_func)
+            logging.trace(u"func dilled")
             boss_pipe_end, worker_pipe_end = multiprocessing.Pipe()
+            logging.trace(u"pipe created")
             boss_pipe_end.send(
                 (dimension, dilled_function, focus_tracker, max_samples)
             )
+            logging.trace(u"function put to pipe")
             worker = multiprocessing.Process(
                 target=Integrator.try_estimate_nd,
                 args=(worker_pipe_end, 10.0, self.trace_enabled)
             )
+            logging.trace(u"worker created")
             worker.daemon = True
             worker.start()
+            logging.trace(u"worker started")
             return boss_pipe_end
 
+        logging.trace(u"computing func created")
         erf_pipe = start_computing(self.lfit_erf, erf_focus_tracker)
+        logging.trace(u"erf computing started")
         stretch_pipe = start_computing(self.lfit_stretch, stretch_focus_tracker)
+        logging.trace(u"strech computing started")
 
         # Measurement phase.
         measurement = self.measurer.measure(trial_duration, transmit_rate)
+        logging.trace(u"measurement done")
 
         # Processing phase.
         def stop_computing(name, pipe):
