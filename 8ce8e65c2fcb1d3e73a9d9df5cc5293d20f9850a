@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "633cd480_45beb570",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-28T08:39:23Z",
+      "side": 1,
+      "message": "tabs -\u003e spaces please",
+      "revId": "8ce8e65c2fcb1d3e73a9d9df5cc5293d20f9850a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
