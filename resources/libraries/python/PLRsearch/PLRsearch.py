@@ -601,15 +601,17 @@ class PLRsearch:
 
             dilled_function = dill.dumps(value_logweight_func)
             boss_pipe_end, worker_pipe_end = multiprocessing.Pipe()
-            boss_pipe_end.send(
-                (dimension, dilled_function, focus_tracker, max_samples)
-            )
+            # Do not send yet, run the worker first to avoid a deadlock.
+            # See https://stackoverflow.com/a/15716500
             worker = multiprocessing.Process(
                 target=Integrator.try_estimate_nd,
                 args=(worker_pipe_end, 10.0, self.trace_enabled)
             )
             worker.daemon = True
             worker.start()
+            boss_pipe_end.send(
+                (dimension, dilled_function, focus_tracker, max_samples)
+            )
             return boss_pipe_end
 
         erf_pipe = start_computing(self.lfit_erf, erf_focus_tracker)

@@ -657,8 +657,15 @@ function run_pybot () {
     all_options+=("${EXPANDED_TAGS[@]}")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
+
+    # Setup a soft termination [0] mechanism to avoid hard timeouts.
+    # [0] http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#using-signals
+    # The goal is to get correct logs and archiving when something (soak) gets stuck.
+    # Currently inflexible, time is set per whole robot, not per test.
     set +e
-    robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
+    # Currently the soft termination is set to happen in 60 minutes.
+    # In case TERM does not help, in additional 10 minutes KILL will be sent.
+    timeout -k 10m -s TERM 60m robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
     PYBOT_EXIT_STATUS="$?"
     set -e
 
