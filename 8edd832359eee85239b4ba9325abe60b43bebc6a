@@ -46,6 +46,30 @@
       "revId": "8edd832359eee85239b4ba9325abe60b43bebc6a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68f3bc3b_5e6f6526",
+        "filename": "resources/tools/testbed-setup/ansible/roles/cleanup/tasks/sut.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T08:39:22Z",
+      "side": 1,
+      "message": "\u003e ab is not a service, it is just an application\n\nSo are vpp_echo, iperf3, testpmd and l3fwd. We are killing them because if somehow they remain active after a previous test (e.g. when Jenkins job is forcefully aborted), they would affect the next test.",
+      "parentUuid": "b4094151_50c2f254",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "8edd832359eee85239b4ba9325abe60b43bebc6a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
