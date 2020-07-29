@@ -1,6 +1,7 @@
 SRv6 Routing
 ============
 
-.. toctree::
+..
+    .. toctree::
 
-    srv6-3n-hsw-x520
+        srv6-3n-hsw-x520
