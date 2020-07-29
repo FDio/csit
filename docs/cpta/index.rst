@@ -47,9 +47,9 @@ analysis and anomaly detection methodology.
     ndrpdr_trending/ip6
     ndrpdr_trending/srv6
     ndrpdr_trending/ip4_tunnels
-    ndrpdr_trending/ip6_tunnels
     ndrpdr_trending/vhost
     ndrpdr_trending/container_memif
+    ndrpdr_trending/ipsec
 
 .. toctree::
     :maxdepth: 2
