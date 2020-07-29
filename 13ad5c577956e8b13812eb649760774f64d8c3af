@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "903b7d8f_512506f0",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:07:01Z",
+      "side": 1,
+      "message": "We can read from an env var in Constants.py if we want to give users global control over the value (outside teardown of failed tests).",
+      "range": {
+        "startLine": 436,
+        "startChar": 23,
+        "endLine": 436,
+        "endChar": 31
+      },
+      "revId": "13ad5c577956e8b13812eb649760774f64d8c3af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b2bd31c_0b41efe4",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:07:01Z",
+      "side": 1,
+      "message": "Set Test Variable is enough here.",
+      "range": {
+        "startLine": 441,
+        "startChar": 4,
+        "endLine": 441,
+        "endChar": 23
+      },
+      "revId": "13ad5c577956e8b13812eb649760774f64d8c3af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eb75b48_877f7887",
+        "filename": "tests/dpdk/perf/__init__.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:07:01Z",
+      "side": 1,
+      "message": "If this is set only internally, within \"Send traffic at specified rate\" keyword, it does not need to be a global variable.",
+      "range": {
+        "startLine": 51,
+        "startChar": 26,
+        "endLine": 51,
+        "endChar": 38
+      },
+      "revId": "13ad5c577956e8b13812eb649760774f64d8c3af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
