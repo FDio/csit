@@ -16,6 +16,24 @@
       "revId": "3f0822a35efc2fd61bcc4040bea13519f389b655",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "497717a4_50ccdead",
+        "filename": "resources/libraries/python/PLRsearch/PLRsearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T11:04:38Z",
+      "side": 1,
+      "message": "Improved in https://gerrit.fd.io/r/c/csit/+/28101",
+      "parentUuid": "2bed5ec9_c2dddd76",
+      "revId": "3f0822a35efc2fd61bcc4040bea13519f389b655",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
