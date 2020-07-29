@@ -28,9 +28,10 @@ footnote: "
     Gerrit 25309. Make VPP in VM worker placement deterministic.
     [CSIT-1738]
 
-    [6] OPEN Regression in CSIT, one specific test showing too small
-    stdev to be considered noise. Tentatively marking also other ipsec anomalies
-    with this, albeit they show higher stdev. [CSIT-1742]
+    [6] DONE Apparent regression in CSIT is caused by VPP renaming
+    the most performant IPsec plugin, thus the current CSIT version used with
+    the previous VPP version measures the less performant VPP IPsec plugin.
+    [CSIT-1742]
 
     [7] POSTPONED Possible anomaly, but stdev of results is high.
     Performance differences considered to probably be just noise.
@@ -45,12 +46,15 @@ footnote: "
     [10] OPEN Progression in ip6 base tests with dot1q. [CSIT-1746]
 
     [11] OPEN Progression in memif tests, mainly in
-    avf-eth-l2xcbase-eth-2memif-1dcr. [CSIT-1744]
+    avf-eth-l2xcbase-eth-2memif-1dcr. Two progression candidates found:
+    Gerrit 24053 and Gerrit 26744. Performance results are not consistent enough
+    to separate the two from other possible causes. [CSIT-1744]
 
     [12] OPEN Progression in some l2bdscale tests. [CSIT-1745]
 
-    [16] OPEN Progression in IPsec tests, only for aes128cbc-hmac512sha.
-    [CSIT-1748]
+    [16] OPEN Apparent progression in IPsec tests, only for aes128cbc-hmac512sha.
+    Considering [6], the positive difference is not large enough,
+    so there was probably a VPP regression. [CSIT-1748]
 
     [17] OPEN Progression in some vhost tests (dpdk in VM). [CSIT-1749]
 "
