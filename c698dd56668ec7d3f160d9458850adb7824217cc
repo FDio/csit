@@ -1,0 +1,326 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81cfbd62_8037baca",
+        "filename": "resources/tools/presentation/rca/rca-2n-clx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "found",
+      "range": {
+        "startLine": 50,
+        "startChar": 65,
+        "endLine": 50,
+        "endChar": 75
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a1205da_be176995",
+        "filename": "resources/tools/presentation/rca/rca-2n-clx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "This does not add anything concrete to identifying progressions, and seems to be immaterial to end result. Suggest to remove it.",
+      "range": {
+        "startLine": 51,
+        "startChar": 35,
+        "endLine": 53,
+        "endChar": 52
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07b5273d_82a349eb",
+        "filename": "resources/tools/presentation/rca/rca-2n-clx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 7
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3a0fc6c_a1b3946b",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "Apparent",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 20
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b60356b0_f5c1958f",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "found",
+      "range": {
+        "startLine": 61,
+        "startChar": 65,
+        "endLine": 61,
+        "endChar": 75
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cdfba11_c7dfacbf",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "This does not add anything concrete to identifying progressions, and seems to be immaterial to end result. Suggest to remove it.",
+      "range": {
+        "startLine": 62,
+        "startChar": 35,
+        "endLine": 64,
+        "endChar": 52
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "410ec628_1271144a",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 7
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60da1efe_a17d7b58",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "Apparent",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41769eb9_f22c69ad",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "found",
+      "range": {
+        "startLine": 56,
+        "startChar": 65,
+        "endLine": 56,
+        "endChar": 75
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fc99669_62253075",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "This does not add anything concrete to identifying progressions, and seems to be immaterial to end result. Suggest to remove it.",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4003007_3ed65e4a",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 7
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e985838_9eda0ac0",
+        "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "and current CSIT version used with previous VPP version measures the less performant VPP IPsec plugin.",
+      "range": {
+        "startLine": 32,
+        "startChar": 38,
+        "endLine": 33,
+        "endChar": 47
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f4460f6_5e590301",
+        "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "found",
+      "range": {
+        "startLine": 48,
+        "startChar": 65,
+        "endLine": 48,
+        "endChar": 75
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7791dc9_b4a77ab9",
+        "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-07-29T12:13:42Z",
+      "side": 1,
+      "message": "This does not add anything concrete to identifying progressions, and seems to be immaterial to end result. Suggest to remove it.",
+      "range": {
+        "startLine": 49,
+        "startChar": 35,
+        "endLine": 51,
+        "endChar": 52
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
