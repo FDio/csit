@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b29655a4_e6323909",
+        "filename": "resources/tools/presentation/rca/rca-2n-clx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81cfbd62_8037baca",
+      "range": {
+        "startLine": 50,
+        "startChar": 65,
+        "endLine": 50,
+        "endChar": 75
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a1205da_be176995",
         "filename": "resources/tools/presentation/rca/rca-2n-clx-2t1c-pdr-rca1.yaml",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39e71854_95916f88",
+        "filename": "resources/tools/presentation/rca/rca-2n-clx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Replaced by a shorter, more vague sentence, hinting at why this task is still not closed.",
+      "parentUuid": "9a1205da_be176995",
+      "range": {
+        "startLine": 51,
+        "startChar": 35,
+        "endLine": 53,
+        "endChar": 52
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "651dcc87_2b924e41",
+        "filename": "resources/tools/presentation/rca/rca-2n-clx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07b5273d_82a349eb",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 7
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3a0fc6c_a1b3946b",
         "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca1.yaml",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c3539f6_efc60f44",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3a0fc6c_a1b3946b",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 20
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "a0d00c13_83110a06",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b60356b0_f5c1958f",
+      "range": {
+        "startLine": 61,
+        "startChar": 65,
+        "endLine": 61,
+        "endChar": 75
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7cdfba11_c7dfacbf",
         "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca1.yaml",
         "patchSetId": 1
@@ -137,6 +257,30 @@
       "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46ad110b_4f5fbd1e",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Replaced by a shorter, more vague sentence, hinting at why this task is still not closed.",
+      "parentUuid": "7cdfba11_c7dfacbf",
+      "range": {
+        "startLine": 62,
+        "startChar": 35,
+        "endLine": 64,
+        "endChar": 52
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "57285b62_fde0ba61",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-ndr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "410ec628_1271144a",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 7
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60da1efe_a17d7b58",
         "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca1.yaml",
         "patchSetId": 1
@@ -183,6 +351,30 @@
       "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e8cd5f1_0999192b",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60da1efe_a17d7b58",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "6a73db02_83d94fe9",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41769eb9_f22c69ad",
+      "range": {
+        "startLine": 56,
+        "startChar": 65,
+        "endLine": 56,
+        "endChar": 75
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9fc99669_62253075",
         "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca1.yaml",
         "patchSetId": 1
@@ -229,6 +445,30 @@
       "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71ad9835_c3002826",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Replaced by a shorter, more vague sentence, hinting at why this task is still not closed.",
+      "parentUuid": "9fc99669_62253075",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "969a02f5_14aa81fa",
+        "filename": "resources/tools/presentation/rca/rca-2n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4003007_3ed65e4a",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 7
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e985838_9eda0ac0",
         "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca1.yaml",
         "patchSetId": 1
@@ -275,6 +539,30 @@
       "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b789906f_0b3c335b",
+        "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e985838_9eda0ac0",
+      "range": {
+        "startLine": 32,
+        "startChar": 38,
+        "endLine": 33,
+        "endChar": 47
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "71ec07ab_c543d1a5",
+        "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f4460f6_5e590301",
+      "range": {
+        "startLine": 48,
+        "startChar": 65,
+        "endLine": 48,
+        "endChar": 75
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7791dc9_b4a77ab9",
         "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca1.yaml",
         "patchSetId": 1
@@ -321,6 +633,30 @@
       "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d6bb875_522d6c14",
+        "filename": "resources/tools/presentation/rca/rca-3n-skx-2t1c-pdr-rca1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-29T12:37:39Z",
+      "side": 1,
+      "message": "Replaced by a shorter, more vague sentence, hinting at why this task is still not closed.",
+      "parentUuid": "b7791dc9_b4a77ab9",
+      "range": {
+        "startLine": 49,
+        "startChar": 35,
+        "endLine": 51,
+        "endChar": 52
+      },
+      "revId": "c698dd56668ec7d3f160d9458850adb7824217cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
