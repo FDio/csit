@@ -22,6 +22,30 @@
       "revId": "8edd832359eee85239b4ba9325abe60b43bebc6a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4094151_50c2f254",
+        "filename": "resources/tools/testbed-setup/ansible/roles/cleanup/tasks/sut.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-29T01:25:01Z",
+      "side": 1,
+      "message": "ab is not a service, it is just an application, it exits when it is used up, and does not reside in memory.\nSo no need to kill ab.",
+      "parentUuid": "60a6c281_cf1b70a6",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "8edd832359eee85239b4ba9325abe60b43bebc6a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
