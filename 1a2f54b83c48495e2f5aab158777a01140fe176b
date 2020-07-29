@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5391b0e_d208134f",
+        "filename": "topologies/available/2n_hw_testbed1.yaml.example",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-29T08:16:49Z",
+      "side": 1,
+      "message": "now x553 is not blacklisted. Please add as additional.",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 27
+      },
+      "revId": "1a2f54b83c48495e2f5aab158777a01140fe176b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
