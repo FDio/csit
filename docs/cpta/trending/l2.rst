@@ -3,6 +3,9 @@ L2 Ethernet Switching
 
 .. toctree::
 
+    l2-2n-clx-xxv710
+    l2-2n-clx-x710
+    l2-2n-clx-cx556a
     l2-2n-skx-xxv710
     l2-2n-skx-x710
     l2-3n-skx-xxv710
@@ -11,6 +14,3 @@ L2 Ethernet Switching
     l2-3n-tsh-x520
     l2-2n-dnv-x553
     l2-3n-dnv-x553
-    l2-2n-clx-xxv710
-    l2-2n-clx-x710
-    l2-2n-clx-cx556a
