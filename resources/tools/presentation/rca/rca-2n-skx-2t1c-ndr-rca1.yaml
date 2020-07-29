@@ -35,7 +35,7 @@
 # see https://yaml-multiline.info/
 
 footnote: "
-    [1] DONE Regression in ACL tests due to Gerrit 26112. With CSIT
+    [1] DONE Aparent regression in ACL tests due to Gerrit 26112. With CSIT
     using changed VPP API, instead of failing, misconfigured VPP passes
     the test, albeit with reduced performance. [CSIT-1739]
 
@@ -58,18 +58,20 @@ footnote: "
     bihash may have improved code efficiency. [CSIT-1735]
 
     [11] OPEN Progression in memif tests, mainly in
-    avf-eth-l2xcbase-eth-2memif-1dcr. [CSIT-1744]
+    avf-eth-l2xcbase-eth-2memif-1dcr. Two progression candidates found:
+    Gerrit 24053 and Gerrit 26744. Performance results are not consistent enough
+    to separate the two from other possible causes. [CSIT-1744]
 
     [12] OPEN Progression in some l2bdscale tests. [CSIT-1745]
 
-    [13] DONE Stateless ACL test have the same performance in 2005.0-4
+    [13] DONE Stateless ACL tests have the same performance in 2005.0-4
     as in 2001.0-2. The difference shown here is inflated by an API
     change, see [1]. [CSIT-1739]
 
-    [14] DONE Stateful ACL test have better performance in 2005.0-4 as
-    in 2001.0-2. The VPP part of API change, Gerrit 26184, made VPP
-    faster. The difference shown here is further inflated by the API
-    change, see [1]. [CSIT-1739]
+    [14] DONE Stateful ACL tests have better performance in 2005.0-4 as
+    in 2001.0-2. The CSIT part of API change, Gerrit 26112, has fixed
+    an earlier CSIT regression in the same tests. The difference shown here
+    is further inflated by the API mismatch, see [1]. [CSIT-1739]
 
     [15] OPEN Progression in nat44 test (not scale ones). [CSIT-1747]
 
