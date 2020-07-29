@@ -29,7 +29,7 @@ nomad_datacenter: "yul1"
 nomad_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "both"
-nomad_node_class: "s5ci"
+nomad_node_class: "builder"
 nomad_options:
   driver.raw_exec.enable: 1
   docker.cleanup.image: true
