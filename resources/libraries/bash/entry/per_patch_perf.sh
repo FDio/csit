@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -45,11 +45,6 @@ common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
-set_aside_commit_build_artifacts || die
-build_vpp_ubuntu_amd64 "PARENT" || die
-set_aside_parent_build_artifacts || die
-## Replace previous 4 lines with this to speed up testing.
-#download_builds "REPLACE_WITH_URL" || die
 initialize_csit_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
@@ -58,33 +53,12 @@ select_topology || die
 select_arch_os || die
 activate_virtualenv "${VPP_DIR}" || die
 generate_tests || die
-archive_tests || die
 reserve_and_cleanup_testbed || die
 select_tags || die
 compose_pybot_arguments || die
-# Support for interleaved measurements is kept for future.
-iterations=1 # 8
-for ((iter=0; iter<iterations; iter++)); do
-    if ((iter)); then
-        # Function reserve_and_cleanup_testbed has already cleaned it once,
-        # but we need to clean it explicitly on subsequent iterations.
-        ansible_playbook "cleanup" || die
-    fi
-    # Testing current first. Good for early failures or for API changes.
-    select_build "build_current" || die
-    check_download_dir || die
-    run_pybot || die
-    copy_archives || die
-    archive_parse_test_results "csit_current/${iter}" || die
-    die_on_pybot_error || die
-    # TODO: Use less heavy way to avoid apt remove failures.
-    ansible_playbook "cleanup" || die
-    select_build "build_parent" || die
-    check_download_dir || die
-    run_pybot || die
-    copy_archives || die
-    archive_parse_test_results "csit_parent/${iter}" || die
-    die_on_pybot_error || die
-done
+select_build "build-root" || die
+check_download_dir || die
+run_pybot || die
+copy_archives || die
+archive_parse_test_results "csit_current/0" || die
 untrap_and_unreserve_testbed || die
-compare_test_results  # The error code becomes this script's error code.
