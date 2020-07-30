@@ -2,6 +2,69 @@
   "comments": [
     {
       "key": {
+        "uuid": "b8359cd7_cb7b420c",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "An updated duration (subtracting time already passed) should be used here.\nBut maybe ok for the first Change, depending on how sensitive are the results to sub-second duration mismatch.",
+      "range": {
+        "startLine": 196,
+        "startChar": 55,
+        "endLine": 196,
+        "endChar": 63
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afae1608_f1dd5172",
+        "filename": "GPL/tools/trex/trex_astf_server_info.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "Delete, trex_astf_assert.py  is better.",
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9874ef6f_e19fff6e",
+        "filename": "GPL/traffic_profiles/trex/profile_trex_astf_base_class.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "str(choices(ascii_letters, k\u003drequired_length - current_length))",
+      "range": {
+        "startLine": 79,
+        "startChar": 15,
+        "endLine": 79,
+        "endChar": 22
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21c16620_a39f5505",
         "filename": "GPL/traffic_profiles/trex/profile_trex_astf_base_class.py",
         "patchSetId": 35
@@ -25,6 +88,29 @@
     },
     {
       "key": {
+        "uuid": "d2fb0d62_886a9918",
+        "filename": "GPL/traffic_profiles/trex/trex-astf-ethip4udp-1024h.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "missing space",
+      "range": {
+        "startLine": 98,
+        "startChar": 53,
+        "endLine": 98,
+        "endChar": 55
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13537fb1_2303b243",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 35
@@ -41,6 +127,52 @@
         "startChar": 0,
         "endLine": 592,
         "endChar": 22
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5195b44_a3836941",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 35
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "Remove.",
+      "range": {
+        "startLine": 592,
+        "startChar": 12,
+        "endLine": 592,
+        "endChar": 22
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55e78b1c_6b0b2173",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "Too many fields. Add a TODO to move into fewer structured fields.",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 13
       },
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -140,6 +272,75 @@
     },
     {
       "key": {
+        "uuid": "c98d3909_f372bd6d",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "Could _astf_ and _stl_ be merged into a single function with some ifs inside?\nCode duplication is quite large now.",
+      "range": {
+        "startLine": 534,
+        "startChar": 12,
+        "endLine": 534,
+        "endChar": 18
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0972332c_41f51034",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "Why this long?",
+      "range": {
+        "startLine": 597,
+        "startChar": 36,
+        "endLine": 597,
+        "endChar": 39
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ed50037_228d1b9f",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "Later we can move this deeper.",
+      "range": {
+        "startLine": 791,
+        "startChar": 41,
+        "endLine": 791,
+        "endChar": 50
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "137bea00_b1831ac7",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 35
@@ -163,6 +364,29 @@
     },
     {
       "key": {
+        "uuid": "a5cf28f1_52192be8",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 35
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "I hope this does not affect existing ip4 tests.",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 59
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d671465_0a9f3de6",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 35
@@ -174,6 +398,30 @@
       "writtenOn": "2020-07-30T13:01:16Z",
       "side": 1,
       "message": "remove T-Rex specific comments when calling abstracted class. From this file it is TG and rate is universal parameter for controlling rate. In iperf it is different mean (Maros\u0027s patch)",
+      "range": {
+        "startLine": 410,
+        "startChar": 19,
+        "endLine": 411,
+        "endChar": 71
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8958f557_6006e165",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 35
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 1,
+      "message": "+1. Either recalculate needed values from pps, or add new keywords if pps does not describe the traffic.",
+      "parentUuid": "9d671465_0a9f3de6",
       "range": {
         "startLine": 410,
         "startChar": 19,

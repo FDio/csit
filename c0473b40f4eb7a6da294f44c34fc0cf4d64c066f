@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "62fff6de_058fcc97",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T13:22:32Z",
+      "side": 0,
+      "message": "This is still useful for stateless tests. Put a dummy value in other tests.",
+      "range": {
+        "startLine": 210,
+        "startChar": 8,
+        "endLine": 210,
+        "endChar": 29
+      },
+      "revId": "c0473b40f4eb7a6da294f44c34fc0cf4d64c066f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "009f286a_ec424f85",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 35
