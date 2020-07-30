@@ -137,9 +137,9 @@ def simple_burst(
             client.set_port_attr(ports=[port_0, port_1], promiscuous=True)
         if isinstance(framesize, int):
             last_stream_a = int((len(streams) - 2 ) / 2)
+            last_stream_b = (last_stream_a * 2)
             client.add_streams(streams[0:last_stream_a], ports=[port_0])
             if traffic_directions > 1:
-                last_stream_b = (last_stream_a * 2)
                 client.add_streams(
                     streams[last_stream_a:last_stream_b], ports=[port_1])
         elif isinstance(framesize, str):
