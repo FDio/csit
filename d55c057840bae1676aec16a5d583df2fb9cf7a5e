@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c11bb8d9_3fe394c7",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T11:44:08Z",
+      "side": 1,
+      "message": "if ${pkt_trace} is set to True in the current scope.",
+      "range": {
+        "startLine": 614,
+        "startChar": 66,
+        "endLine": 614,
+        "endChar": 67
+      },
+      "revId": "d55c057840bae1676aec16a5d583df2fb9cf7a5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
