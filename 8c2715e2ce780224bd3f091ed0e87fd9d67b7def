@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21c16620_a39f5505",
+        "filename": "GPL/traffic_profiles/trex/profile_trex_astf_base_class.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:01:16Z",
+      "side": 1,
+      "message": "penalty",
+      "range": {
+        "startLine": 128,
+        "startChar": 80,
+        "endLine": 128,
+        "endChar": 83
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13537fb1_2303b243",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 35
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:01:16Z",
+      "side": 1,
+      "message": "????",
+      "range": {
+        "startLine": 592,
+        "startChar": 0,
+        "endLine": 592,
+        "endChar": 22
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b85e6973_b8e46a53",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:01:16Z",
+      "side": 1,
+      "message": "i think this can be written in some setattr loop, we just need to change output line from CaP to _",
+      "range": {
+        "startLine": 453,
+        "startChar": 0,
+        "endLine": 466,
+        "endChar": 71
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac179287_f1bca11e",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:01:16Z",
+      "side": 1,
+      "message": "capitalize",
+      "range": {
+        "startLine": 469,
+        "startChar": 25,
+        "endLine": 469,
+        "endChar": 30
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae9cfa11_698a19bf",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:01:16Z",
+      "side": 1,
+      "message": "capital",
+      "range": {
+        "startLine": 488,
+        "startChar": 28,
+        "endLine": 488,
+        "endChar": 33
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "539ef99b_f3161dea",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:01:16Z",
+      "side": 1,
+      "message": "the only weird thing is we are calling it: STL, stateless, or evn SL",
+      "range": {
+        "startLine": 493,
+        "startChar": 25,
+        "endLine": 493,
+        "endChar": 29
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "137bea00_b1831ac7",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:01:16Z",
+      "side": 1,
+      "message": "same comment here. THis is i think abstracted class, so leave just \"multiplier of transmit rate\"",
+      "range": {
+        "startLine": 912,
+        "startChar": 67,
+        "endLine": 913,
+        "endChar": 65
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d671465_0a9f3de6",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 35
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:01:16Z",
+      "side": 1,
+      "message": "remove T-Rex specific comments when calling abstracted class. From this file it is TG and rate is universal parameter for controlling rate. In iperf it is different mean (Maros\u0027s patch)",
+      "range": {
+        "startLine": 410,
+        "startChar": 19,
+        "endLine": 411,
+        "endChar": 71
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46de9bf1_dccbf59c",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-ndrpdr.robot",
+        "patchSetId": 35
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:01:16Z",
+      "side": 1,
+      "message": "bad idea",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 55
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

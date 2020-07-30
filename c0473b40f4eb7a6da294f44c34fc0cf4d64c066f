@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "009f286a_ec424f85",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:01:16Z",
+      "side": 0,
+      "message": "from now on it is. so i think you need to detect type. and initialize other values",
+      "range": {
+        "startLine": 464,
+        "startChar": 8,
+        "endLine": 464,
+        "endChar": 49
+      },
+      "revId": "c0473b40f4eb7a6da294f44c34fc0cf4d64c066f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
