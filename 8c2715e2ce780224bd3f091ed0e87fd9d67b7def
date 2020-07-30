@@ -526,6 +526,30 @@
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09c5a9bb_46bf6b41",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-ndrpdr.robot",
+        "patchSetId": 35
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:36:55Z",
+      "side": 1,
+      "message": "That was for debugging so we now. but feel free to run and see, but astf is not stl, so there is different packet structure and evaluation on trex",
+      "parentUuid": "c07ec637_dad8256c",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 55
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
