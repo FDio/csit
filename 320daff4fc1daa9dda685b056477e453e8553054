@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56c836bf_3e36830b",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T14:56:00Z",
+      "side": 1,
+      "message": "Do you want to use this action in any test?",
+      "range": {
+        "startLine": 640,
+        "startChar": 35,
+        "endLine": 640,
+        "endChar": 49
+      },
+      "revId": "320daff4fc1daa9dda685b056477e453e8553054",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aafa9c0_bd84e677",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T14:56:00Z",
+      "side": 1,
+      "message": "Do we want to use 1.0 here (and set multiplicity to 1) to save time on failing tests?",
+      "range": {
+        "startLine": 54,
+        "startChar": 43,
+        "endLine": 54,
+        "endChar": 65
+      },
+      "revId": "320daff4fc1daa9dda685b056477e453e8553054",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
