@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e23e905_c29ae908",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T10:17:29Z",
+      "side": 1,
+      "message": "It is hard for me to find documentation explaining what happens here, in relation to line 31.\nAre there two variables (at different scopes, three if counting the argument), or does this overwrite the line 31 value?\nLet me trigger a run with two failing tests to see what happens.",
+      "range": {
+        "startLine": 442,
+        "startChar": 24,
+        "endLine": 442,
+        "endChar": 36
+      },
+      "revId": "11110f264723d3c3b779bb22b9cd7d2c6a469a84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
