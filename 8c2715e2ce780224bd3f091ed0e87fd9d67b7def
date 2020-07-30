@@ -295,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "9bd7a52b_ae4983a2",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:29:23Z",
+      "side": 1,
+      "message": "With Maciek\u0027s \"every testcase must have unique code, and also i am afraid for consistency of other code, not yet to merge. i think it will be subject to refactor of the whole class.",
+      "parentUuid": "c98d3909_f372bd6d",
+      "range": {
+        "startLine": 534,
+        "startChar": 12,
+        "endLine": 534,
+        "endChar": 18
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0972332c_41f51034",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 35
@@ -375,6 +399,30 @@
       "writtenOn": "2020-07-30T13:22:32Z",
       "side": 1,
       "message": "I hope this does not affect existing ip4 tests.",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 59
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b53b33e3_a1b8f399",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 35
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-30T13:29:23Z",
+      "side": 1,
+      "message": "it will...put it into your early_2009_rca file so you will not need to investigate",
+      "parentUuid": "a5cf28f1_52192be8",
       "range": {
         "startLine": 84,
         "startChar": 57,
