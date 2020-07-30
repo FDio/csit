@@ -70,6 +70,30 @@
       "revId": "8edd832359eee85239b4ba9325abe60b43bebc6a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dca6cb4f_91acd1bf",
+        "filename": "resources/tools/testbed-setup/ansible/roles/cleanup/tasks/sut.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-07-30T02:10:37Z",
+      "side": 1,
+      "message": "vpp_echo, iperf3, testpmd and l3fwd. They are all on the DUT end, which may affect the service of DUT.\nab is on the TG end, which is exactly the same as wrk.\nSo it doesn\u0027t need to kill.\nWhat is your opinion? If needed, I will add it to tg.yaml.",
+      "parentUuid": "68f3bc3b_5e6f6526",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "8edd832359eee85239b4ba9325abe60b43bebc6a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
