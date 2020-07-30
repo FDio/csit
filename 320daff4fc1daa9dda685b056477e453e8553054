@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5d212f29_3bdbcce7",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T15:35:47Z",
+      "side": 1,
+      "message": "\u003e only when extended debug is on\n\nThat is handled by line 644 (as opposed to just line 645).\nWhat I am saying is you can add bash-perf-stat here [4] (or wherever it fits).\n\n[4] https://github.com/FDio/csit/blob/5ba372e3b5066b87e345e5f3b1bb7074e95530d0/tests/vpp/perf/__init__.robot#L54",
+      "parentUuid": "484ca94a_57bb1f3a",
+      "range": {
+        "startLine": 640,
+        "startChar": 35,
+        "endLine": 640,
+        "endChar": 49
+      },
+      "revId": "320daff4fc1daa9dda685b056477e453e8553054",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aafa9c0_bd84e677",
         "filename": "resources/libraries/robot/shared/test_teardown.robot",
         "patchSetId": 12
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "by default duration is 1 no?",
       "parentUuid": "3aafa9c0_bd84e677",
+      "range": {
+        "startLine": 54,
+        "startChar": 43,
+        "endLine": 54,
+        "endChar": 65
+      },
+      "revId": "320daff4fc1daa9dda685b056477e453e8553054",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "815c6af6_6781c821",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-30T15:35:47Z",
+      "side": 1,
+      "message": "Duration is 1.0 for csit-vpp jobs (and future bisect), but 10.0 for vpp per-patch.\nNo job uses multiplicity\u003d\u003d1.",
+      "parentUuid": "767dc508_5ed15ac6",
       "range": {
         "startLine": 54,
         "startChar": 43,
