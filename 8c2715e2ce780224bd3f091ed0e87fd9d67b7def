@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6d0b5829_fd92a0ab",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b8359cd7_cb7b420c",
+      "range": {
+        "startLine": 196,
+        "startChar": 55,
+        "endLine": 196,
+        "endChar": 63
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "afae1608_f1dd5172",
         "filename": "GPL/tools/trex/trex_astf_server_info.py",
         "patchSetId": 35
@@ -39,6 +63,24 @@
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba4e2273_08a4823a",
+        "filename": "GPL/tools/trex/trex_astf_server_info.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afae1608_f1dd5172",
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "65b02962_d64c46ba",
+        "filename": "GPL/traffic_profiles/trex/profile_trex_astf_base_class.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9874ef6f_e19fff6e",
+      "range": {
+        "startLine": 79,
+        "startChar": 15,
+        "endLine": 79,
+        "endChar": 22
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21c16620_a39f5505",
         "filename": "GPL/traffic_profiles/trex/profile_trex_astf_base_class.py",
         "patchSetId": 35
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "a28a8522_2ae87f1f",
+        "filename": "GPL/traffic_profiles/trex/profile_trex_astf_base_class.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21c16620_a39f5505",
+      "range": {
+        "startLine": 128,
+        "startChar": 80,
+        "endLine": 128,
+        "endChar": 83
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2fb0d62_886a9918",
         "filename": "GPL/traffic_profiles/trex/trex-astf-ethip4udp-1024h.py",
         "patchSetId": 35
@@ -108,6 +198,30 @@
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c216247_5c4839ad",
+        "filename": "GPL/traffic_profiles/trex/trex-astf-ethip4udp-1024h.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2fb0d62_886a9918",
+      "range": {
+        "startLine": 98,
+        "startChar": 53,
+        "endLine": 98,
+        "endChar": 55
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +271,54 @@
     },
     {
       "key": {
+        "uuid": "087e9f06_0000f094",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 35
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13537fb1_2303b243",
+      "range": {
+        "startLine": 592,
+        "startChar": 0,
+        "endLine": 592,
+        "endChar": 22
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "276a99bb_5bd397b2",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 35
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5195b44_a3836941",
+      "range": {
+        "startLine": 592,
+        "startChar": 12,
+        "endLine": 592,
+        "endChar": 22
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55e78b1c_6b0b2173",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 35
@@ -177,6 +339,30 @@
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e81adf2b_6c5717fa",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55e78b1c_6b0b2173",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 13
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -203,6 +389,30 @@
     },
     {
       "key": {
+        "uuid": "dbab93ba_ac9be144",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b85e6973_b8e46a53",
+      "range": {
+        "startLine": 453,
+        "startChar": 0,
+        "endLine": 466,
+        "endChar": 71
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac179287_f1bca11e",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 35
@@ -223,6 +433,30 @@
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c425912c_313b150f",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac179287_f1bca11e",
+      "range": {
+        "startLine": 469,
+        "startChar": 25,
+        "endLine": 469,
+        "endChar": 30
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -249,6 +483,30 @@
     },
     {
       "key": {
+        "uuid": "6098b0bf_45e719a1",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae9cfa11_698a19bf",
+      "range": {
+        "startLine": 488,
+        "startChar": 28,
+        "endLine": 488,
+        "endChar": 33
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "539ef99b_f3161dea",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 35
@@ -269,6 +527,30 @@
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a26dc79_513b491a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "539ef99b_f3161dea",
+      "range": {
+        "startLine": 493,
+        "startChar": 25,
+        "endLine": 493,
+        "endChar": 29
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -319,6 +601,30 @@
     },
     {
       "key": {
+        "uuid": "2872685d_cf057c2c",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9bd7a52b_ae4983a2",
+      "range": {
+        "startLine": 534,
+        "startChar": 12,
+        "endLine": 534,
+        "endChar": 18
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0972332c_41f51034",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 35
@@ -339,6 +645,30 @@
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ed584c6_4107fb91",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Because of duration stretching in case of tcp throughput tests - being under development; value will be updated after finalizing these tests.",
+      "parentUuid": "0972332c_41f51034",
+      "range": {
+        "startLine": 597,
+        "startChar": 36,
+        "endLine": 597,
+        "endChar": 39
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -365,6 +695,30 @@
     },
     {
       "key": {
+        "uuid": "3dab7f88_5a7c3d15",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3ed50037_228d1b9f",
+      "range": {
+        "startLine": 791,
+        "startChar": 41,
+        "endLine": 791,
+        "endChar": 50
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "137bea00_b1831ac7",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 35
@@ -385,6 +739,30 @@
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb7a2f81_f44cf302",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "137bea00_b1831ac7",
+      "range": {
+        "startLine": 912,
+        "startChar": 67,
+        "endLine": 913,
+        "endChar": 65
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -435,6 +813,30 @@
     },
     {
       "key": {
+        "uuid": "b48997ab_0dc86e67",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 35
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b53b33e3_a1b8f399",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 59
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d671465_0a9f3de6",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 35
@@ -479,6 +881,30 @@
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39055575_247c0f00",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 35
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Done\nre new KW - it will be part of next patch with implementation of routines for CPS measurement and throughput measurement for udp/tcp flows.",
+      "parentUuid": "8958f557_6006e165",
+      "range": {
+        "startLine": 410,
+        "startChar": 19,
+        "endLine": 411,
+        "endChar": 71
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -550,6 +976,30 @@
       "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60f687e6_db06ebef",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-ndrpdr.robot",
+        "patchSetId": 35
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-30T19:58:40Z",
+      "side": 1,
+      "message": "Sorry, it was used for some tests in the very beginning phase of t-rex astf implementation and I forgot to revert it.... Anyway, it was caught by triggered perf tests [0] and fixed meantime ;)\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-skx/1631/archives/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k9-k1-k1-k1",
+      "parentUuid": "09c5a9bb_46bf6b41",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 55
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
