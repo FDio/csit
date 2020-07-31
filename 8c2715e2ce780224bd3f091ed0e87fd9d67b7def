@@ -625,6 +625,30 @@
     },
     {
       "key": {
+        "uuid": "e5d7d147_9eaf9261",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-31T11:39:19Z",
+      "side": 1,
+      "message": "\u003e Maciek\n\nI do not get it. _parse_traffic_results (patch set 40) is an example of a single function handling both modes.\nIt is similar to how we started with specific 2n and 3n keywords, and then merged them together (sometimes creating CSIT-caused anomalies in trending as a consequence).\n\nIf we can de-duplicate the code right at the start, we should do it.",
+      "parentUuid": "2872685d_cf057c2c",
+      "range": {
+        "startLine": 534,
+        "startChar": 12,
+        "endLine": 534,
+        "endChar": 18
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0972332c_41f51034",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 35
@@ -825,6 +849,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "b53b33e3_a1b8f399",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 59
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "380c9677_9adcb29a",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 35
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-31T11:39:19Z",
+      "side": 1,
+      "message": "If I see correctly, the arguments are set only in device tests (not in perf), so this is probably ok.",
+      "parentUuid": "b48997ab_0dc86e67",
       "range": {
         "startLine": 84,
         "startChar": 57,

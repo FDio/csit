@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3e2baea_4f7d6f82",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-31T11:39:19Z",
+      "side": 1,
+      "message": "This should be done in 27848, not here, as it affects performance of unrelated tests.",
+      "range": {
+        "startLine": 194,
+        "startChar": 59,
+        "endLine": 194,
+        "endChar": 60
+      },
+      "revId": "8a23d414c811a267d111e8a5da0464545d63e2a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fa471bb_ce6ac37b",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 983,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-31T11:39:19Z",
+      "side": 1,
+      "message": "After thinking about it, I disagree.\nFor example, output of NDRPDR tests are values for NDR and PDR, which we want in pps (bidirectional), not in \"multiplier\".\nEach profile knows how many packets per connection it sends, so it should compute its multiplier from pps rate given by the calling search algorithm.",
+      "range": {
+        "startLine": 983,
+        "startChar": 30,
+        "endLine": 983,
+        "endChar": 64
+      },
+      "revId": "8a23d414c811a267d111e8a5da0464545d63e2a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
