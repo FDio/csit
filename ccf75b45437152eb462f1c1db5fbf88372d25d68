@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb469db8_2c2e48f4",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-31T07:49:56Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 21
+      },
+      "revId": "ccf75b45437152eb462f1c1db5fbf88372d25d68",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
