@@ -649,6 +649,30 @@
     },
     {
       "key": {
+        "uuid": "616ab7f2_500c5b0a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-31T12:34:11Z",
+      "side": 1,
+      "message": "Well, it is doable but would require additional time and porbalz pzlint can start complain that there is too much locals/statements/...",
+      "parentUuid": "e5d7d147_9eaf9261",
+      "range": {
+        "startLine": 534,
+        "startChar": 12,
+        "endLine": 534,
+        "endChar": 18
+      },
+      "revId": "8c2715e2ce780224bd3f091ed0e87fd9d67b7def",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0972332c_41f51034",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 35

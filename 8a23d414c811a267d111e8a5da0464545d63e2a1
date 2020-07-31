@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b7d4a85e_7103be95",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-31T12:34:11Z",
+      "side": 1,
+      "message": "Well, we need this for UDP/TCP tests with T-Rex ASTF. But I can revert it in this commit and use new setting in nat44-ed commit so we have more time for discussion.",
+      "parentUuid": "e3e2baea_4f7d6f82",
+      "range": {
+        "startLine": 194,
+        "startChar": 59,
+        "endLine": 194,
+        "endChar": 60
+      },
+      "revId": "8a23d414c811a267d111e8a5da0464545d63e2a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9fa471bb_ce6ac37b",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 40
@@ -59,6 +83,30 @@
       "writtenOn": "2020-07-31T12:34:00Z",
       "side": 1,
       "message": "Target aggregate transmit rate [pps] for STL, [cps, calls-per-second] for ASTF.",
+      "range": {
+        "startLine": 983,
+        "startChar": 30,
+        "endLine": 983,
+        "endChar": 64
+      },
+      "revId": "8a23d414c811a267d111e8a5da0464545d63e2a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e27ecd61_4ade20eb",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 983,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-07-31T12:34:11Z",
+      "side": 1,
+      "message": "OK, will use Target aggregate transmit rate [pps] / CPS.",
+      "parentUuid": "9fa471bb_ce6ac37b",
       "range": {
         "startLine": 983,
         "startChar": 30,
