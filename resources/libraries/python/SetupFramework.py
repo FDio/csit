@@ -278,7 +278,7 @@ class SetupFramework:
 
         logger.info(f"Results: {results}")
 
-        delete_local_tarball(tarball)
+        #delete_local_tarball(tarball)
         if all(results):
             logger.console(u"All nodes are ready.")
             for node in nodes.values():

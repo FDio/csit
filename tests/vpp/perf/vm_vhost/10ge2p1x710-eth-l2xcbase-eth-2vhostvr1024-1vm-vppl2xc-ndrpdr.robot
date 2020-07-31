@@ -52,7 +52,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | Intel-X710
+| ${nic_name}= | Intel-XXV710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
