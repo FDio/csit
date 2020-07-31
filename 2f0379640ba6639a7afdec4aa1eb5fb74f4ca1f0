@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ee9768a_6cf81436",
+        "filename": "resources/tools/testbed-setup/ansible/roles/cleanup/tasks/sut.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-31T08:27:28Z",
+      "side": 1,
+      "message": "no *",
+      "range": {
+        "startLine": 71,
+        "startChar": 26,
+        "endLine": 71,
+        "endChar": 27
+      },
+      "revId": "2f0379640ba6639a7afdec4aa1eb5fb74f4ca1f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
