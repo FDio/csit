@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "5ed1691a_d7499051",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-31T05:27:02Z",
+      "side": 1,
+      "message": "Technically good idea to put everywhere as it is protected by env var.",
+      "parentUuid": "5d212f29_3bdbcce7",
+      "range": {
+        "startLine": 640,
+        "startChar": 35,
+        "endLine": 640,
+        "endChar": 49
+      },
+      "revId": "320daff4fc1daa9dda685b056477e453e8553054",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aafa9c0_bd84e677",
         "filename": "resources/libraries/robot/shared/test_teardown.robot",
         "patchSetId": 12
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Duration is 1.0 for csit-vpp jobs (and future bisect), but 10.0 for vpp per-patch.\nNo job uses multiplicity\u003d\u003d1.",
       "parentUuid": "767dc508_5ed15ac6",
+      "range": {
+        "startLine": 54,
+        "startChar": 43,
+        "endLine": 54,
+        "endChar": 65
+      },
+      "revId": "320daff4fc1daa9dda685b056477e453e8553054",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7aa77b9c_afae54bd",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-07-31T05:27:02Z",
+      "side": 1,
+      "message": "Technically this is only for failed TC so does not take much. But maybe you are right to make that just 1.0. This KW is execute always no matter of result of tests. Which is good only to see if there is configuration error and what is happening in lower load.",
+      "parentUuid": "815c6af6_6781c821",
       "range": {
         "startLine": 54,
         "startChar": 43,
