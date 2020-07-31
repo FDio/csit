@@ -54,7 +54,9 @@
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
 | | ... | enable_gso=${False}
-| | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
+| | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
+| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
+| | Set Test Variable | ${cpu_alloc_str}
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
@@ -100,7 +102,9 @@
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
 | | ... | enable_gso=${False}
-| | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
+| | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
+| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
+| | Set Test Variable | ${cpu_alloc_str}
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
@@ -142,4 +146,6 @@
 | | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
 | | ... | enable_gso=${False}
 | | ... | if1=${DUT1_${int}1}[0] | if2=${DUT1_${int}2}[0]
-| | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
+| | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
+| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
+| | Set Test Variable | ${cpu_alloc_str}
