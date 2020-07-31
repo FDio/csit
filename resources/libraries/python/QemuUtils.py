@@ -291,7 +291,11 @@ class QemuUtils:
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_exec(running)
         vpp_config.add_socksvr()
+        vpp_config.add_statseg_per_node_counters(value=u"on")
         vpp_config.add_buffers_per_numa(107520)
+        vpp_config.add_heapsize(u"1G")
+        vpp_config.add_ip_heap_size(u"1G")
+        vpp_config.add_statseg_size(u"1G")
         vpp_config.add_cpu_main_core(u"0")
         if self._opt.get(u"smp") > 1:
             vpp_config.add_cpu_corelist_workers(f"1-{self._opt.get(u'smp')-1}")
@@ -614,6 +618,69 @@ class QemuUtils:
             raise RuntimeError(
                 f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
             )
+
+    def _wait_csr_ip4base_plen24(self, retries=600):
+        """Wait until QEMU with csr_ip4base_plen24 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        # First condition
+        grep = u"protocol on Interface GigabitEthernet1, changed state to up"
+        cmd = f"fgrep '{grep}' {self._temp.get(u'log')}"
+        message = f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
+        exec_cmd_no_error(
+            self._node,  cmd=cmd, sudo=True, message=message, retries=retries,
+            include_reason=True
+        )
+        # Second condition
+        grep = u"%DHCP-6-ADDRESS_ASSIGN: Interface GigabitEthernet1"
+        cmd = f"fgrep '{grep}' {self._temp.get(u'log')}"
+        message = f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
+        exec_cmd_no_error(
+            self._node,  cmd=cmd, sudo=True, message=message, retries=retries,
+            include_reason=True
+        )
+
+    def _wait_csr_ip4scale2k_plen30(self, retries=600):
+        """Wait until QEMU with csr_ip4scale2k_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ip4scale20k_plen30(self, retries=600):
+        """Wait until QEMU with csr_ip4scale20k_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ip4scale200k_plen30(self, retries=600):
+        """Wait until QEMU with csr_ip4scale200k_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4ipsec1tnl_plen30(self, retries=600):
+        """Wait until QEMU with csr_ethip4ipsec1tnl_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4ipsec40tnl_plen30(self, retries=600):
+        """Wait until QEMU with csr_ethip4ipsec40tnl_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
 
     def _update_vm_interfaces(self):
         """Update interface names in VM node dict."""
