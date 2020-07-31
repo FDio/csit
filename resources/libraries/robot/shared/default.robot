@@ -24,6 +24,7 @@
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.CoreDumpUtil
 | Library | resources.libraries.python.Cop
+| Library | resources.libraries.python.CsrCounters
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
