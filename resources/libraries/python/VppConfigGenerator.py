@@ -502,7 +502,6 @@ class VppConfigGenerator:
 
     def add_nat(self, value=u"deterministic"):
         """Add NAT mode configuration.
-
         :param value: NAT mode.
         :type value: str
         """
