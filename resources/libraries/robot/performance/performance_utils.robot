@@ -669,6 +669,36 @@
 | |
 | | Show Event Logger On All DUTs | ${nodes}
 
+| Additional Statistics Action For csr-clear-stats
+| | [Documentation]
+| | ... | Additional Statistics Action for clear CSR statistics.
+| |
+| | Clear CSR Statistics on all DUTs | ${nodes}
+
+| Additional Statistics Action For csr-show-stats
+| | [Documentation]
+| | ... | Additional Statistics Action for show CSR statistics.
+| |
+| | Show CSR Statistics on all DUTs | ${nodes}
+
+| Additional Statistics Action For csr-show-nat-stats
+| | [Documentation]
+| | ... | Additional Statistics Action for show CSR NAT statistics.
+| |
+| | Show CSR NAT Statistics on all DUTs | ${nodes}
+
+| Additional Statistics Action For csr-clear-runtime
+| | [Documentation]
+| | ... | Additional Statistics Action for clear CSR runtime.
+| |
+| | Clear CSR Runtime on all DUTs | ${nodes}
+
+| Additional Statistics Action For csr-show-runtime
+| | [Documentation]
+| | ... | Additional Statistics Action for show CSR runtime.
+| |
+| | Show CSR Runtime on all DUTs | ${nodes}
+
 | Additional Statistics Action For bash-perf-stat
 | | [Documentation]
 | | ... | Additional Statistics Action for bash command "perf stat".
