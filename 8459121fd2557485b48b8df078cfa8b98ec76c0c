@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e41c4cd_aef9e7ab",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-07-31T08:36:32Z",
+      "side": 1,
+      "message": "| trial_multiplicity\u003d${1} |",
+      "range": {
+        "startLine": 55,
+        "startChar": 45,
+        "endLine": 55,
+        "endChar": 46
+      },
+      "revId": "8459121fd2557485b48b8df078cfa8b98ec76c0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
