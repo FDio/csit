@@ -499,7 +499,7 @@
 | | Send traffic on tg | ${trial_duration} | ${real_rate} | ${frame_size}
 | | ... | ${traffic_profile} | warmup_time=${0}
 | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | ... | rx_port=${rx_port} | latency=${True}
+| | ... | rx_port=${rx_port}
 | | ${latency} = | Get Latency Int
 | | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
 
@@ -641,6 +641,24 @@
 | | ... | Additional Statistics Action for show VPP elog trace.
 | |
 | | Show Event Logger On All DUTs | ${nodes}
+
+| Additional Statistics Action For csr-clear-stats
+| | [Documentation]
+| | ... | Additional Statistics Action for clear CSR statistics.
+| |
+| | Clear CSR Statistics on all DUTs | ${nodes}
+
+| Additional Statistics Action For csr-clear-runtime
+| | [Documentation]
+| | ... | Additional Statistics Action for clear CSR runtime.
+| |
+| | Clear CSR Runtime on all DUTs | ${nodes}
+
+| Additional Statistics Action For csr-show-runtime
+| | [Documentation]
+| | ... | Additional Statistics Action for show CSR runtime.
+| |
+| | Show CSR Runtime on all DUTs | ${nodes}
 
 | Additional Statistics Action For bash-perf-stat
 | | [Documentation]
