@@ -24,6 +24,7 @@
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.CoreDumpUtil
 | Library | resources.libraries.python.Cop
+| Library | resources.libraries.python.CsrCounters
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
@@ -156,7 +157,6 @@
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
 | | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
 | | | Run keyword | ${dut}.Add IP Heap Size | 4G
-| | | Run keyword | ${dut}.Add Graph Node Variant | ${GRAPH_NODE_VARIANT}
 | | END
 
 | Add worker threads to all DUTs
@@ -217,6 +217,7 @@
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | END
+| | Set Test Variable | ${cpu_wt}
 | | Set Test Variable | ${smt_used}
 | | Set Test Variable | ${thr_count_int}
 | | Set Test Variable | ${cpu_count_int}

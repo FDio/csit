@@ -440,7 +440,6 @@
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
-| | Set Test Variable | ${extended_debug}
 | | FOR | ${action} | IN | @{pre_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
@@ -591,13 +590,13 @@
 | | [Documentation]
 | | ... | Additional Statistics Action for clear VPP statistics.
 | |
-| | Clear Statistics On All DUTs | ${nodes}
+| | Clear VPP Statistics On All DUTs | ${nodes}
 
 | Additional Statistics Action For vpp-show-stats
 | | [Documentation]
 | | ... | Additional Statistics Action for show VPP statistics.
 | |
-| | Show Statistics On All DUTs | ${nodes}
+| | Show VPP Statistics On All DUTs | ${nodes}
 
 | Additional Statistics Action For vpp-clear-runtime
 | | [Documentation]
@@ -636,6 +635,24 @@
 | | ... | Additional Statistics Action for show VPP elog trace.
 | |
 | | Show Event Logger On All DUTs | ${nodes}
+
+| Additional Statistics Action For csr-clear-stats
+| | [Documentation]
+| | ... | Additional Statistics Action for clear CSR statistics.
+| |
+| | Clear CSR Statistics on all DUTs | ${nodes}
+
+| Additional Statistics Action For csr-clear-runtime
+| | [Documentation]
+| | ... | Additional Statistics Action for clear CSR runtime.
+| |
+| | Clear CSR Runtime on all DUTs | ${nodes}
+
+| Additional Statistics Action For csr-show-runtime
+| | [Documentation]
+| | ... | Additional Statistics Action for show CSR runtime.
+| |
+| | Show CSR Runtime on all DUTs | ${nodes}
 
 | Additional Statistics Action For bash-perf-stat
 | | [Documentation]
