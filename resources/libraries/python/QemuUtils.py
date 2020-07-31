@@ -56,7 +56,7 @@ class QemuUtils:
         :type vnf: str
         :type img: str
         """
-        self._vhost_id = 0
+        self._nic_id = 0
         self._node = node
         self._arch = Topology.get_node_arch(self._node)
         self._opt = dict()
@@ -237,22 +237,22 @@ class QemuUtils:
         :type csum: bool
         :type gso: bool
         """
-        self._vhost_id += 1
+        self._nic_id += 1
         self._params.add_with_value(
-            u"chardev", f"socket,id=char{self._vhost_id},"
+            u"chardev", f"socket,id=char{self._nic_id},"
             f"path={socket}{u',server' if server is True else u''}"
         )
         self._params.add_with_value(
-            u"netdev", f"vhost-user,id=vhost{self._vhost_id},"
-            f"chardev=char{self._vhost_id},queues={queues}"
+            u"netdev", f"vhost-user,id=vhost{self._nic_id},"
+            f"chardev=char{self._nic_id},queues={queues}"
         )
         mac = f"52:54:00:00:{self._opt.get(u'qemu_id'):02x}:" \
-            f"{self._vhost_id:02x}"
+            f"{self._nic_id:02x}"
         queue_size = f"rx_queue_size={queue_size},tx_queue_size={queue_size}" \
             if queue_size else u""
         self._params.add_with_value(
-            u"device", f"virtio-net-pci,netdev=vhost{self._vhost_id},mac={mac},"
-            f"addr={self._vhost_id+5}.0,mq=on,vectors={2 * queues + 2},"
+            u"device", f"virtio-net-pci,netdev=vhost{self._nic_id},mac={mac},"
+            f"addr={self._nic_id+5}.0,mq=on,vectors={2 * queues + 2},"
             f"csum={u'on' if csum else u'off'},gso={u'on' if gso else u'off'},"
             f"guest_tso4=off,guest_tso6=off,guest_ecn=off,"
             f"{queue_size}"
@@ -260,7 +260,7 @@ class QemuUtils:
 
         # Add interface MAC and socket to the node dict.
         if_data = {u"mac_address": mac, u"socket": socket}
-        if_name = f"vhost{self._vhost_id}"
+        if_name = f"vhost{self._nic_id}"
         self._vm_info[u"interfaces"][if_name] = if_data
         # Add socket to temporary file list.
         self._temp[if_name] = socket
@@ -271,7 +271,10 @@ class QemuUtils:
         :param pci: PCI address of interface.
         :type pci: str
         """
-        self._params.add_with_value(u"device", f"vfio-pci,host={pci}")
+        self._nic_id += 1
+        self._params.add_with_value(
+            u"device", f"vfio-pci,host={pci},addr={self._nic_id+5}.0"
+        )
 
     def create_kernelvm_config_vpp(self, **kwargs):
         """Create QEMU VPP config files.
@@ -320,7 +323,7 @@ class QemuUtils:
             vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
         if "nat" in self._opt.get(u'vnf'):
             vpp_config.add_nat(value=u"endpoint-dependent")
-            vpp_config.add_nat_max_translations_per_thread(value=655360)
+            #vpp_config.add_nat_max_translations_per_thread(value=655360)
             vpp_config.add_plugin(u"enable", u"nat_plugin.so")
         vpp_config.write_config(startup)
 
@@ -391,6 +394,40 @@ class QemuUtils:
 
         self._opt[u"vnf_bin"] = f"{self._testpmd_path}/{testpmd_cmd}"
 
+    def create_kernelvm_config_csr(self, **kwargs):
+        """Create QEMU CSR config files.
+
+        :param kwargs: Key-value pairs to replace content of CSR configuration
+            file.
+        :type kwargs: dict
+        """
+        startup = u"/tmp/iosxe_config.txt"
+        running = f"/tmp/{self._opt.get(u'vnf')}.iso"
+
+        self._temp[u"startup"] = startup
+        self._temp[u"running"] = running
+
+        template = f"{Constants.RESOURCES_TPL_CSR}/" \
+            f"{self._opt.get(u'vnf')}_{kwargs[u'name']}.cfg"
+        exec_cmd_no_error(
+            self._node, f"rm -f {startup} {running}", sudo=True
+        )
+        exec_cmd_no_error(
+            self._node,
+            f"qemu-img create -f qcow2 /var/lib/vm/csr_empty.qcow2 8G",
+            sudo=True
+        )
+
+        with open(template, u"rt") as src_file:
+            src = Template(src_file.read())
+            exec_cmd_no_error(
+                self._node, f"echo '{src.safe_substitute(**kwargs)}' | "
+                f"sudo tee {startup}"
+            )
+            exec_cmd_no_error(
+                self._node, f"mkisofs -l -o {running} {startup}"
+            )
+
     def create_kernelvm_init(self, **kwargs):
         """Create QEMU init script.
 
@@ -424,6 +461,8 @@ class QemuUtils:
         elif u"testpmd_mac" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_testpmd_mac(**kwargs)
             self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
+        elif u"csr" in self._opt.get(u"vnf"):
+            self.create_kernelvm_config_csr(**kwargs)
         else:
             raise RuntimeError(u"QEMU: Unsupported VNF!")
 
@@ -627,6 +666,101 @@ class QemuUtils:
             raise RuntimeError(
                 f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
             )
+
+    def _wait_csr_ip4base_plen24(self, retries=600):
+        """Wait until QEMU with csr_ip4base_plen24 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        # First condition
+        grep = u"protocol on Interface GigabitEthernet1, changed state to up"
+        cmd = f"fgrep '{grep}' {self._temp.get(u'log')}"
+        message = f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
+        exec_cmd_no_error(
+            self._node,  cmd=cmd, sudo=True, message=message, retries=retries,
+            include_reason=True
+        )
+        # Second condition
+        grep = u"%DHCP-6-ADDRESS_ASSIGN: Interface GigabitEthernet1"
+        cmd = f"fgrep '{grep}' {self._temp.get(u'log')}"
+        message = f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
+        exec_cmd_no_error(
+            self._node,  cmd=cmd, sudo=True, message=message, retries=retries,
+            include_reason=True
+        )
+
+    def _wait_csr_ip4scale2k_plen30(self, retries=600):
+        """Wait until QEMU with csr_ip4scale2k_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ip4scale20k_plen30(self, retries=600):
+        """Wait until QEMU with csr_ip4scale20k_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ip4scale200k_plen30(self, retries=600):
+        """Wait until QEMU with csr_ip4scale200k_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4ipsec1tnl_plen30(self, retries=600):
+        """Wait until QEMU with csr_ethip4ipsec1tnl_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4ipsec40tnl_plen30(self, retries=600):
+        """Wait until QEMU with csr_ethip4ipsec40tnl_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4_nat44ed_h1024_p63_s64512(self, retries=600):
+        """Wait until QEMU with csr_ethip4_nat44ed_h1024_p63_s64512 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4_nat44ed_h4096_p63_s258048(self, retries=600):
+        """Wait until QEMU with csr_ethip4_nat44ed_h4096_p63_s258048 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4_nat44ed_h16384_p63_s1032192(self, retries=600):
+        """Wait until QEMU with csr_ethip4_nat44ed_h16384_p63_s1032192 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4ipsec1tnl_nat44ed_s64512(self, retries=600):
+        """Wait until QEMU with csr_ethip4ipsec1tnl_nat44ed_s64512 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
 
     def _update_vm_interfaces(self):
         """Update interface names in VM node dict."""
