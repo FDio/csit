@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d6701c2_ef48803d",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-07-31T13:45:39Z",
+      "side": 1,
+      "message": "message not defined at this point.  It is best practice to NOT define a variable for error messages to pass the same message in multiple invocations of exec_cmd*.  Please define error messages in the call itself and make them unique so a simple search of the code base will find the command which failed.\n\nAdd appropriately descriptive error string definition here.",
+      "range": {
+        "startLine": 99,
+        "startChar": 56,
+        "endLine": 99,
+        "endChar": 63
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a956976d_541d4f41",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-07-31T13:45:39Z",
+      "side": 1,
+      "message": "restore edit from patch 7 (i.e. add spaces before/after \u0027|\u0027)\n\ne.g. line 124",
+      "range": {
+        "startLine": 102,
+        "startChar": 53,
+        "endLine": 102,
+        "endChar": 54
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13e2998a_4a68818c",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-07-31T13:45:39Z",
+      "side": 1,
+      "message": "Same comment.  Plus in this case this string is overwritten in line 111, so it is never used.\nMove this string into the function call on line 121 and remove definition of the variable \u0027message\u0027.",
+      "range": {
+        "startLine": 106,
+        "startChar": 20,
+        "endLine": 106,
+        "endChar": 53
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c1ec569_2c59fd03",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-07-31T13:45:39Z",
+      "side": 1,
+      "message": "Define a constant for the bash/entry script directory in .../resources/libraries/python/Constants.py and use it here.\n\nRemove line 108.",
+      "range": {
+        "startLine": 109,
+        "startChar": 33,
+        "endLine": 109,
+        "endChar": 70
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5b110ac_b6235f97",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-07-31T13:45:39Z",
+      "side": 1,
+      "message": "Expand this message to specify what path was not exported.  The message is too generic to be useful.\n\nPer previous comments, do not use a \u0027variable\u0027 here, but include this in the call to exec_cmd() in line 112 which is currently missing.",
+      "range": {
+        "startLine": 111,
+        "startChar": 32,
+        "endLine": 111,
+        "endChar": 50
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "847a6c1b_1a2387b4",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-07-31T13:45:39Z",
+      "side": 1,
+      "message": "Do not use \u0027message\u0027 variable here.  Move string from line 106 here and make it more descriptive (e.g. f\"Installation of VSAP debian packages from {pkg_dir} failed\"",
+      "range": {
+        "startLine": 121,
+        "startChar": 56,
+        "endLine": 121,
+        "endChar": 63
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
