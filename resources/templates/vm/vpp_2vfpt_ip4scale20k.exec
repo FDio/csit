@@ -1,0 +1,17 @@
+create interface avf 0000:00:03.0 num-rx-queues $queues
+create interface avf 0000:00:04.0 num-rx-queues $queues
+
+set interface ip address avf-0/0/3/0 $ip1
+set interface state avf-0/0/3/0 up
+
+set interface ip address avf-0/0/4/0 $ip2
+set interface state avf-0/0/4/0 up
+
+ip route add $route1 count 10000 via $nexthop1 $routeif1
+ip route add $route2 count 10000 via $nexthop2 $routeif2
+
+set ip neighbor static $arpif1 $arpip1 $arpmac1
+
+show logging
+
+show version
