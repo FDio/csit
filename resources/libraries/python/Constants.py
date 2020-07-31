@@ -142,6 +142,9 @@ class Constants:
     # KernelVM templates location
     RESOURCES_TPL_VM = u"resources/templates/vm"
 
+    # CSR VM templates location
+    RESOURCES_TPL_CSR = u"resources/templates/csr"
+
     # Container templates location
     RESOURCES_TPL_CONTAINER = u"resources/templates/container"
 
@@ -215,7 +218,7 @@ class Constants:
     CORE_DUMP_DIR = u"/tmp"
 
     # Perf stat events (comma separated).
-    PERF_STAT_EVENTS = u"L1-icache-load-misses"
+    PERF_STAT_EVENTS = u""
 
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
@@ -266,7 +269,6 @@ class Constants:
         u"Intel-X710": 10000000000,
         u"Intel-XL710": 24500000000,
         u"Intel-XXV710": 24500000000,
-        u"Intel-E810CQ": 100000000000,
         u"Mellanox-CX556A": 100000000000,
         u"Amazon-Nitro-50G": 10000000000,
         u"virtual": 100000000,
@@ -281,7 +283,6 @@ class Constants:
         u"Intel-X710": 14880952,
         u"Intel-XL710": 18750000,
         u"Intel-XXV710": 18750000,
-        u"Intel-E810CQ": 58500000,
         u"Mellanox-CX556A": 60000000, # 148809523,
         u"Amazon-Nitro-50G": 1500000,
         u"virtual": 14880952,
@@ -296,7 +297,6 @@ class Constants:
         u"Intel-X710": u"10ge2p1x710",
         u"Intel-XL710": u"40ge2p1xl710",
         u"Intel-XXV710": u"25ge2p1xxv710",
-        u"Intel-E810CQ": u"100ge2p1e810cq",
         u"Amazon-Nitro-50G": u"50ge1p1ENA",
         u"Mellanox-CX556A": u"100ge2p1cx556a",
     }
@@ -310,7 +310,6 @@ class Constants:
         u"Intel-X710": [u"vfio-pci", u"avf"],
         u"Intel-XL710": [u"vfio-pci", u"avf"],
         u"Intel-XXV710": [u"vfio-pci", u"avf"],
-        u"Intel-E810CQ": [u"vfio-pci", u"avf"],
         u"Amazon-Nitro-50G": [u"vfio-pci"],
         u"Mellanox-CX556A": [u"rdma-core"],
     }
@@ -352,7 +351,6 @@ class Constants:
         u"Intel-X710": [u"vfio-pci"],
         u"Intel-XL710": [u"vfio-pci"],
         u"Intel-XXV710": [u"vfio-pci"],
-        u"Intel-E810CQ": [u"vfio-pci"],
         u"Amazon-Nitro-50G": [u"vfio-pci"],
         u"Mellanox-CX556A": [u"mlx5_core"],
     }
