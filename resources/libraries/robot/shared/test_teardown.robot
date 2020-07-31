@@ -24,7 +24,7 @@
 *** Keywords ***
 | Tear down test
 | | [Documentation]
-| | ... | Common test teardown for VPP tests.
+| | ... | Common test teardown for tests.
 | |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional teardown action. Type: list
@@ -48,7 +48,7 @@
 
 | Tear down test raw
 | | [Documentation]
-| | ... | Common test teardown for raw tests.
+| | ... | Common test teardown for CSR tests.
 | |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional teardown action. Type: list
@@ -61,15 +61,13 @@
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
 
-
 | Additional Test Tear Down Action For performance
 | | [Documentation]
 | | ... | Additional teardown for tests which uses performance measurement.
 | |
 | | Run Keyword If Test Failed
-| | ... | Send traffic at specified rate | ${1.0} | 10000pps
-| | ... | ${frame_size} | ${traffic_profile} | trial_multiplicity=${1}
-| | ... | extended_debug=${True}
+| | ... | Send traffic at specified rate | ${PERF_TRIAL_DURATION} | 10000pps
+| | ... | ${frame_size} | ${traffic_profile} | extended_debug=${True}
 
 | Additional Test Tear Down Action For packet_trace
 | | [Documentation]

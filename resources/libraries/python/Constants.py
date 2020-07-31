@@ -148,6 +148,9 @@ class Constants:
     # VPP Communications Library templates location
     RESOURCES_TPL_VCL = u"resources/templates/vcl"
 
+    # HTTP Server www root directory
+    RESOURCES_TP_WRK_WWW = u"resources/traffic_profiles/wrk/www"
+
     # VPP Communications Library LD_PRELOAD library
     VCL_LDPRELOAD_LIBRARY = u"/usr/lib/x86_64-linux-gnu/libvcl_ldpreload.so"
 
@@ -173,7 +176,7 @@ class Constants:
     QEMU_VM_KERNEL_INITRD = u"/opt/boot/initrd.img"
 
     # QEMU VM nested image path
-    QEMU_VM_IMAGE = u"/var/lib/vm/vhost-nested.img"
+    QEMU_VM_IMAGE = u"/var/lib/vm/csr_license.iso"
 
     # QEMU VM DPDK path
     QEMU_VM_DPDK = u"/opt/dpdk-20.02"
@@ -191,7 +194,7 @@ class Constants:
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 8192)
 
     # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 7)
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 8)
 
     # Trex force start regardles ports state
     TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")
@@ -200,10 +203,6 @@ class Constants:
     TREX_EXTRA_CMDLINE = get_str_from_env(
         u"TREX_EXTRA_CMDLINE", u"--mbuf-factor 32")
 
-    # graph node variant value
-    GRAPH_NODE_VARIANT = get_str_from_env(
-        u"GRAPH_NODE_VARIANT", u"")
-
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
 
@@ -211,7 +210,7 @@ class Constants:
     CORE_DUMP_DIR = u"/tmp"
 
     # Perf stat events (comma separated).
-    PERF_STAT_EVENTS = u"machine_clears.smc"
+    PERF_STAT_EVENTS = u"L1-icache-load-misses"
 
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
@@ -229,9 +228,7 @@ class Constants:
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
         u"PERF_TRIAL_LATENCY_DURATION", 5.0)
 
-    # Extended debug (incl. vpp packet trace, linux perf stat, ...).
-    # Full list is available as suite variable (__init__.robot) or is
-    # override by test.
+    # Extended debug (inlc. vpp packet trace, linux perf stat, ...)
     EXTENDED_DEBUG = get_pessimistic_bool_from_env(u"EXTENDED_DEBUG")
 
     # UUID string of DUT1 /tmp volume created outside of the
@@ -268,6 +265,8 @@ class Constants:
     }
 
     # Mapping from NIC name to its pps limit.
+    # The values are unidirectional, assuming the test
+    # uses two ports on the same NIC.
     NIC_NAME_TO_PPS_LIMIT = {
         u"Cisco-VIC-1227": 14880952,
         u"Cisco-VIC-1385": 18750000,
@@ -275,8 +274,10 @@ class Constants:
         u"Intel-X553": 14880952,
         u"Intel-X710": 14880952,
         u"Intel-XL710": 18750000,
-        u"Intel-XXV710": 18750000,
-        u"Mellanox-CX556A": 60000000, # 148809523,
+        u"Intel-XXV710": 5000000,
+        # The Mellanox card is able to do more, but the current TRex version
+        # shows non-negligible duration stretching, depending on cores used.
+        u"Mellanox-CX556A": 47000000,  # 148809523,
         u"Amazon-Nitro-50G": 1500000,
         u"virtual": 14880952,
     }
