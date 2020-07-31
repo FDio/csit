@@ -24,6 +24,7 @@
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.CoreDumpUtil
 | Library | resources.libraries.python.Cop
+| Library | resources.libraries.python.CsrCounters
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
@@ -69,6 +70,9 @@
 | Resource | resources/libraries/robot/shared/test_setup.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/shared/vm.robot
+
+*** Variables ***
+| ${cpu_alloc_str}= | ${0}
 
 *** Keywords ***
 | Configure crypto device on all DUTs
@@ -203,7 +207,7 @@
 | | | ... | ELSE | Set variable | ${thr_count_int}
 | | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/2)
+| | | ... | ELSE | Evaluate | int(${thr_count_int})
 | | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
@@ -217,12 +221,15 @@
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | END
+| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_main}
+| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
 | | Set Test Variable | ${smt_used}
-| | Set Test Variable | ${thr_count_int}
+| | Set Test Variable | ${cpu_alloc_str}
 | | Set Test Variable | ${cpu_count_int}
-| | Set Test Variable | ${rxq_count_int}
+| | Set Test Variable | ${thr_count_int}
 | | Set Test Variable | ${rxd_count_int}
 | | Set Test Variable | ${txd_count_int}
+| | Set Test Variable | ${rxq_count_int}
 
 | Add DPDK VLAN strip offload switch off between DUTs
 | | [Documentation]
