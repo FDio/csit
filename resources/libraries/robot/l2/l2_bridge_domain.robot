@@ -100,6 +100,7 @@
 | | ... | - dut - DUT node. Type: string
 | | ... | - nf_chain - NF chain. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - virtio_feature_mask - Enabled Virtio feature flags. Type: integer
 | |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
@@ -112,6 +113,7 @@
 | | ... | \| 1 \| 1 \|
 | |
 | | [Arguments] | ${dut} | ${nf_chain}=${1} | ${nf_nodes}=${1}
+| | ... | ${virtio_feature_mask}=${0}
 | |
 | | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
 | | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
@@ -127,6 +129,7 @@
 | | | ... | ${nodes['${dut}']}
 | | | ... | /var/run/vpp/sock-${qemu_id}-1 | /var/run/vpp/sock-${qemu_id}-2
 | | | ... | ${dut}-vhost-${qemu_id}-if1 | ${dut}-vhost-${qemu_id}-if2
+| | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | | ${bd_id1}= | Evaluate | ${qemu_id} + (${nf_chain} - 1)
 | | | ${bd_id2}= | Evaluate | ${bd_id1} + 1
 | | | Add interface to bridge domain
@@ -145,16 +148,19 @@
 | | ... | *Arguments:*
 | | ... | - nf_chain - NF chain. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - virtio_feature_mask - Enabled Virtio feature flags. Type: integer
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Initialize L2 bridge domains with Vhost-User \| 1 \| 1 \|
 | |
 | | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1}
+| | ... | ${virtio_feature_mask}=${0}
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 bridge domains with Vhost-User on node
 | | | ... | ${dut} | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+| | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | END
 
 | Initialize L2 bridge domains for multiple chains with Vhost-User

@@ -316,6 +316,8 @@
 | | ... | - nf_nodes - Number of guest VMs. Type: integer
 | | ... | - testpmd_mac - Switch for testpmd_mac test configuration.
 | | ... | Type: boolean
+| | ... | - virtio_feature_mask - Enabled Virtio feature flags (Optional).
+| | ... | Type: integer
 | |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
@@ -328,6 +330,7 @@
 | | ... | topology \| 1 \|
 | |
 | | [Arguments] | ${nf_nodes}=${1} | ${testpmd_mac}=${FALSE}
+| | ... | ${virtio_feature_mask}=${0}
 | |
 | | Set interfaces in path up
 | | ${fib_table_1}= | Set Variable | ${101}
@@ -356,6 +359,7 @@
 | | | Configure vhost interfaces | ${dut1}
 | | | ... | /var/run/vpp/sock-${number}-1 | /var/run/vpp/sock-${number}-2
 | | | ... | dut1-vhost-${number}-if1 | dut1-vhost-${number}-if2
+| | | ... | ${virtio_feature_mask}=${virtio_feature_mask}
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
 | | | Add Fib Table | ${dut1} | ${fib_table_1}
@@ -596,7 +600,7 @@
 | | ... | VPP Interface Set IP Address | ${dut2} | ${subif_index_2}
 | | ... | 2.2.2.2 | 30
 | | VPP Interface Set IP Address
-| | ...  | ${dut} | ${dut_if2} | 3.3.3.2 | 30
+| | ... | ${dut} | ${dut_if2} | 3.3.3.2 | 30
 | | Vpp Route Add | ${dut1} | ${tg_if1_net} | 30 | gateway=1.1.1.1
 | | ... | interface=${DUT1_${int}1}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'

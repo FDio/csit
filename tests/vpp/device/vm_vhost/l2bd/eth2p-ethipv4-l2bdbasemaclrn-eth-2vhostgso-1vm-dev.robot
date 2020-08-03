@@ -18,7 +18,7 @@
 | ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | VHOST | 1VM
 | ... | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethipv4-l2bdbasemaclrn-eth-2vhost-1vm
+| ... | ethipv4-l2bdbasemaclrn-eth-2vhostgso-1vm
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
@@ -56,7 +56,7 @@
 | ${nf_nodes}= | ${1}
 | ${nf_dtc} | ${1}
 | ${nf_dtcr} | ${1}
-| ${enable_gso}= | False
+| ${enable_gso}= | True
 
 *** Keywords ***
 | Local Template

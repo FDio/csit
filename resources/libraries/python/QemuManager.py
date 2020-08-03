@@ -19,6 +19,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.QemuUtils import QemuUtils
 from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.Virtio import Virtio, VirtioFeaturesFlags
 
 __all__ = [u"QemuManager"]
 
@@ -55,6 +56,11 @@ class QemuManager:
             else kwargs[u"nf_dtc"]
         nf_dtcr = kwargs[u"nf_dtcr"] \
             if isinstance(kwargs[u"nf_dtcr"], int) else 2
+        virtio_feature_mask = int(kwargs[u"virtio_feature_mask"])
+        enable_gso = Virtio.is_virtio_feature_enabled(
+            virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_GSO)
+        enable_csum = Virtio.is_virtio_feature_enabled(
+            virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_CSUM)
 
         img = Constants.QEMU_VM_KERNEL
 
@@ -97,12 +103,12 @@ class QemuManager:
                 self.machines[name].qemu_add_vhost_user_if(
                     sock1, jumbo_frames=kwargs[u"jumbo"], queues=queues,
                     queue_size=kwargs[u"perf_qemu_qsz"],
-                    csum=kwargs[u"enable_csum"], gso=kwargs[u"enable_gso"]
+                    csum=enable_csum, gso=enable_gso
                 )
                 self.machines[name].qemu_add_vhost_user_if(
                     sock2, jumbo_frames=kwargs[u"jumbo"], queues=queues,
                     queue_size=kwargs[u"perf_qemu_qsz"],
-                    csum=kwargs[u"enable_csum"], gso=kwargs[u"enable_gso"]
+                    csum=enable_csum, gso=enable_gso
                 )
 
     def construct_vms_on_all_nodes(self, **kwargs):
