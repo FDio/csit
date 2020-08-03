@@ -155,6 +155,9 @@ class QemuUtils:
         self._params.add_with_value(u"m", f"{self._opt.get(u'mem')}M")
         self._params.add_with_value(u"numa", u"node,memdev=mem")
         self._params.add_with_value(u"balloon", u"none")
+        self._params.add_with_value(
+            u"net", f"user,hostfwd=tcp::7777-:22"
+        )
 
     def add_nestedvm_params(self):
         """Set NestedVM QEMU parameters."""
@@ -642,6 +645,7 @@ class QemuUtils:
 
     def qemu_kill(self):
         """Kill qemu process."""
+        exec_cmd(self._node, f"ssh localhost -p 7777 'sudo vppctl show interface' ")
         exec_cmd(
             self._node, f"chmod +r {self._temp.get(u'pidfile')}", sudo=True
         )
