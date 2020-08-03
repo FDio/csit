@@ -68,6 +68,7 @@
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
+| ${enable_gso}= | ${False}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src254
 
@@ -92,14 +93,15 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
+| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
-| | ... | ${bd_id1} | ${bd_id2}
+| | ... | ${bd_id1} | ${bd_id2} | virtio_feature_mask=${None}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_chains} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${True}
-| | ... | vnf=vppl2xc_2vhostvr1024
+| | ... | vnf=vppl2xc_2vhostvr1024 | virtio_feature_mask=${virtio_feature_mask}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
