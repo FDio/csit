@@ -27,6 +27,7 @@ from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.VhostUser import Virtio, VirtioFeaturesFlags
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
 __all__ = [u"QemuUtils"]
@@ -219,7 +220,7 @@ class QemuUtils:
 
     def add_vhost_user_if(
             self, socket, server=True, jumbo_frames=False, queue_size=None,
-            queues=1, csum=False, gso=False):
+            queues=1, virtio_feature_mask=None):
         """Add Vhost-user interface.
 
         :param socket: Path of the unix socket.
@@ -227,15 +228,13 @@ class QemuUtils:
         :param jumbo_frames: Set True if jumbo frames are used in the test.
         :param queue_size: Vring queue size.
         :param queues: Number of queues.
-        :param csum: Checksum offloading.
-        :param gso: Generic segmentation offloading.
+        :param virtio_feature_mask: Mask of virtio features to be enabled.
         :type socket: str
         :type server: bool
         :type jumbo_frames: bool
         :type queue_size: int
         :type queues: int
-        :type csum: bool
-        :type gso: bool
+        :type virtio_feature_mask: int
         """
         self._nic_id += 1
         self._params.add_with_value(
@@ -250,6 +249,14 @@ class QemuUtils:
             f"{self._nic_id:02x}"
         queue_size = f"rx_queue_size={queue_size},tx_queue_size={queue_size}" \
             if queue_size else u""
+        if virtio_feature_mask is None:
+            gso = False
+            csum = False
+        else:
+            gso = Virtio.is_feature_enabled(
+                virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_GSO)
+            csum = Virtio.is_feature_enabled(
+                virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_CSUM)
         self._params.add_with_value(
             u"device", f"virtio-net-pci,netdev=vhost{self._nic_id},mac={mac},"
             f"addr={self._nic_id+5}.0,mq=on,vectors={2 * queues + 2},"
