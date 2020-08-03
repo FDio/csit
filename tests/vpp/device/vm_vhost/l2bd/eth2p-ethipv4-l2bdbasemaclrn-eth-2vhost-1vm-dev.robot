@@ -56,6 +56,7 @@
 | ${nf_nodes}= | ${1}
 | ${nf_dtc} | ${1}
 | ${nf_dtcr} | ${1}
+| ${enable_gso}= | False
 
 *** Keywords ***
 | Local Template
@@ -79,13 +80,16 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | And Set Virtio feature mask | enable_gso=${enable_gso}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | ... | count=${nf_chains}
 | | And Initialize L2 bridge domains with Vhost-User | nf_nodes=${nf_nodes}
+| | ... | enable_gso=${enable_gso}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | ... | vnf=vppl2xc_2vhostvr1024 | pinning=${False}
+| | ... | enable_gso=${enable_gso}
 | | Then Send IPv4 bidirectionally and verify received packets | ${tg}
 | | ... | ${TG_pf1}[0] | ${TG_pf2}[0]
 

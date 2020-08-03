@@ -596,7 +596,7 @@
 | | ... | VPP Interface Set IP Address | ${dut2} | ${subif_index_2}
 | | ... | 2.2.2.2 | 30
 | | VPP Interface Set IP Address
-| | ...  | ${dut} | ${dut_if2} | 3.3.3.2 | 30
+| | ... | ${dut} | ${dut_if2} | 3.3.3.2 | 30
 | | Vpp Route Add | ${dut1} | ${tg_if1_net} | 30 | gateway=1.1.1.1
 | | ... | interface=${DUT1_${int}1}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'

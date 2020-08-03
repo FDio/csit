@@ -17,7 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP4FWD | BASE | VHOST | 1VM | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethipv4-ip4base-eth-2vhost-1vm
+| ... | ethipv4-ip4base-eth-2vhostgso-1vm
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
@@ -55,7 +55,7 @@
 | ${nf_dtcr} | ${1}
 | ${tg_if1_ip}= | 10.10.10.2
 | ${tg_if2_ip}= | 20.20.20.2
-| ${enable_gso}= | False
+| ${enable_gso}= | True
 
 *** Keywords ***
 | Local Template

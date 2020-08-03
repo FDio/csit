@@ -15,6 +15,7 @@
 | Documentation | Keywords related to vm lifecycle management
 ...
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.Virtio
 
 *** Keywords ***
 | Configure chains of NFs connected via vhost-user
@@ -53,7 +54,7 @@
 | | ... | tg_pf1_mac=${TG_pf1_mac}[0] | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
-| | ... | enable_gso=${False}
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
@@ -99,7 +100,26 @@
 | | ... | tg_pf1_mac=${TG_pf1_mac}[0] | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
-| | ... | enable_gso=${False}
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
+
+| Set Virtio feature mask
+| | [Documentation]
+| | ... | Sets up virtio feature mask used in test for configuring virtio interface.
+| | ... | Not provided arguments are disabled by default.
+| |
+| | ... | *Arguments:*
+| | ... | - enable_gso - Generic segmentation offloading (Optional).
+| | ... | Type: boolean
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set virtio featrue flags \| gso=${True} \|
+| |
+| | [Arguments] | ${enable_gso}=${False}
+| |
+| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
+| | Set Test Variable | ${virtio_feature_mask}
+
