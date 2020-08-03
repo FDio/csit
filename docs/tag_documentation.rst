@@ -527,6 +527,10 @@ Interface Tags
 
     All test cases which use physical interface(s).
 
+.. topic:: GSO
+
+    All test cases which uses Generic Segmentation Offload.
+
 .. topic:: VHOST
 
     All test cases which uses VHOST.
