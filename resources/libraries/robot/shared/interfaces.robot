@@ -661,8 +661,8 @@
 | | ... | Type: string
 | | ... | - ${is_server} - Server side of connection (Optional).
 | | ... | Type: boolean
-| | ... | - ${enable_gso} - Generic segmentation offloading (Optional).
-| | ... | Type: boolean
+| | ... | - ${virtio_feature_mask} - Enabled Virtio feature flags (Optional).
+| | ... | Type: integer
 | |
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - ${${vhost_if1}} - First Vhost-User interface.
@@ -675,14 +675,14 @@
 | |
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vhost_if1}=vhost_if1
 | | ... | ${vhost_if2}=vhost_if2 | ${is_server}=${False}
-| | ... | ${enable_gso}=${False}
+| | ... | ${virtio_feature_mask}=${None}
 | |
 | | ${vhost_1}= | Vpp Create Vhost User Interface
 | | ... | ${dut_node} | ${sock1} | is_server=${is_server}
-| | ... | enable_gso=${enable_gso}
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | ${vhost_2}= | Vpp Create Vhost User Interface
 | | ... | ${dut_node} | ${sock2} | is_server=${is_server}
-| | ... | enable_gso=${enable_gso}
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | ${vhost_1_key}= | Get Interface By SW Index | ${dut_node} | ${vhost_1}
 | | ${vhost_2_key}= | Get Interface By SW Index | ${dut_node} | ${vhost_2}
 | | ${vhost_1_mac}= | Get Interface MAC | ${dut_node} | ${vhost_1_key}
