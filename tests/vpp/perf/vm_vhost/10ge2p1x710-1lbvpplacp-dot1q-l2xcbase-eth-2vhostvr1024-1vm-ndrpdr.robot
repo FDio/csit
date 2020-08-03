@@ -70,6 +70,7 @@
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
+| ${enable_gso}= | ${False}
 # Link bonding config
 | ${bond_mode}= | lacp
 | ${lb_mode}= | l34
@@ -98,13 +99,16 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
+| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | ... | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=testpmd_io
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

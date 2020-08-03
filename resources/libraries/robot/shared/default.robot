@@ -38,6 +38,7 @@
 | Library | resources.libraries.python.TGSetup
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.Trace
+| Library | resources.libraries.python.VhostUser.Virtio
 | Library | resources.libraries.python.VppCounters
 | Library | resources.libraries.python.VPPUtil
 |

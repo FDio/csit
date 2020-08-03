@@ -175,6 +175,8 @@
 | |
 | | ... | *Arguments:*
 | | ... | - nf_nodes - Number of guest VMs. Type: integer
+| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
+| | ... | Type: integer
 | |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
@@ -186,7 +188,7 @@
 | | ... | \| IPv6 forwarding with Vhost-User initialized in a 2-node circular\
 | | ... | topology \| 1 \|
 | |
-| | [Arguments] | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_nodes}=${1} | ${virtio_feature_mask}=${None}
 | |
 | | Vpp All Ra Suppress Link Layer | ${nodes}
 | | Set interfaces in path up
@@ -221,6 +223,7 @@
 | | | Configure vhost interfaces | ${dut1}
 | | | ... | /var/run/vpp/sock-${number}-1 | /var/run/vpp/sock-${number}-2
 | | | ... | dut1-vhost-${number}-if1 | dut1-vhost-${number}-if2
+| | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
 | | | Add Fib Table | ${dut1} | ${fib_table_1} | ipv6=${True}
