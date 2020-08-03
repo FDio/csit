@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,6 +13,8 @@
 
 """Vhost-user interfaces library."""
 
+from enum import IntEnum
+
 from robot.api import logger
 
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
@@ -20,28 +22,53 @@ from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 
 
+class VirtioFeaturesFlags(IntEnum):
+    """Virtio Features Flags."""
+    VIRTIO_NET_F_API_CSUM = 0
+    VIRTIO_NET_F_API_GUEST_CSUM = 1
+    VIRTIO_NET_F_API_GSO = 6
+    VIRTIO_NET_F_API_GUEST_TSO4 = 7
+    VIRTIO_NET_F_API_GUEST_TSO6 = 8
+    VIRTIO_NET_F_API_GUEST_UFO = 10
+    VIRTIO_NET_F_API_HOST_TSO4 = 11
+    VIRTIO_NET_F_API_HOST_TSO6 = 12
+    VIRTIO_NET_F_API_HOST_UFO = 14
+    VIRTIO_NET_F_API_MRG_RXBUF = 15
+    VIRTIO_NET_F_API_CTRL_VQ = 17
+    VIRTIO_NET_F_API_GUEST_ANNOUNCE = 21
+    VIRTIO_NET_F_API_MQ = 22
+    VIRTIO_F_API_ANY_LAYOUT = 27
+    VIRTIO_F_API_INDIRECT_DESC = 28
+
+
 class VhostUser:
     """Vhost-user interfaces L1 library."""
 
     @staticmethod
     def vpp_create_vhost_user_interface(
-            node, socket, is_server=False, enable_gso=False):
+            node, socket, is_server=False, virtio_feature_mask=None):
         """Create Vhost-user interface on VPP node.
 
         :param node: Node to create Vhost-user interface on.
         :param socket: Vhost-user interface socket path.
         :param is_server: Server side of connection. Default: False
-        :param enable_gso: Generic segmentation offloading. Default: False
+        :param virtio_feature_mask: Mask of virtio features to be enabled.
         :type node: dict
         :type socket: str
         :type is_server: bool
-        :type enable_gso: bool
+        :type virtio_feature_mask: int
         :returns: SW interface index.
         :rtype: int
         """
         cmd = u"create_vhost_user_if"
         err_msg = f"Failed to create Vhost-user interface " \
             f"on host {node[u'host']}"
+        if virtio_feature_mask is None:
+            enable_gso = False
+        else:
+            enable_gso = VirtioFeatureMask.is_feature_enabled(
+                virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_GSO
+            )
         args = dict(
             is_server=bool(is_server),
             sock_filename=str(socket),
@@ -123,3 +150,42 @@ class VhostUser:
 
         logger.debug(f"Vhost-user details:\n{details}")
         return details
+
+
+class VirtioFeatureMask:
+    """Virtio features utilities"""
+
+    @staticmethod
+    def create_virtio_feature_mask(**kwargs):
+        """Create virtio feature mask with feature bits set according to kwargs.
+        :param kwargs: Key-value pairs of feature names and it's state
+        :type kwargs: dict
+        """
+        virtio_feature_mask = 0
+
+        if u"all" in kwargs and kwargs[u"all"] is True:
+            for virtio_feature_flag in VirtioFeaturesFlags:
+                virtio_feature_mask |= 1 << virtio_feature_flag.value
+        else:
+            for feature_name, enabled in kwargs.items():
+                virtio_feature_name = \
+                    u"VIRTIO_NET_F_API_" + feature_name.upper()
+                if virtio_feature_name not in VirtioFeaturesFlags.__members__:
+                    raise ValueError(u"Unsupported virtio feature flag name")
+                if enabled:
+                    virtio_feature_mask |= \
+                        1 << VirtioFeaturesFlags[virtio_feature_name].value
+
+        return virtio_feature_mask
+
+    @staticmethod
+    def is_feature_enabled(virtio_feature_mask, virtio_feature_flag):
+        """Checks if concrete virtio feature is enabled within
+         virtio_feature_mask
+        :param virtio_feature_mask: Mask of enabled virtio features
+        :param virtio_feature_flag: Checked virtio feature
+        :type virtio_feature_mask: int
+        :type virtio_feature_flag: VirtioFeaturesFlags
+        """
+        feature_flag_bit = 1 << virtio_feature_flag.value
+        return (virtio_feature_mask & feature_flag_bit) > 0
