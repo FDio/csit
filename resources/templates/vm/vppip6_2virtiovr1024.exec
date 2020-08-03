@@ -12,6 +12,10 @@ set interface ip address virtio-0/0/7/0 1:2::1/64
 ip route add 2001:1::/64 via 1:1::2 virtio-0/0/6/0 up
 ip route add 2001:2::/64 via 1:2::2 virtio-0/0/7/0 up
 
+show vhost-user
+
+show virtio pci
+
 show logging
 
 show version

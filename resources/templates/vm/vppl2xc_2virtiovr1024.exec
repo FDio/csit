@@ -9,6 +9,10 @@ set interface state virtio-0/0/7/0 up
 set interface l2 xconnect virtio-0/0/6/0 virtio-0/0/7/0
 set interface l2 xconnect virtio-0/0/7/0 virtio-0/0/6/0
 
+show vhost-user
+
+show virtio pci
+
 show logging
 
 show version
