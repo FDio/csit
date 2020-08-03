@@ -46,6 +46,30 @@
       "revId": "2f0379640ba6639a7afdec4aa1eb5fb74f4ca1f0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e56f7ab7_56d56502",
+        "filename": "resources/tools/testbed-setup/ansible/roles/cleanup/tasks/sut.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-03T08:43:55Z",
+      "side": 1,
+      "message": "You used patch set 9 when creating a Sandbox job [1] this week.\nPredictably, the one run you started has broken testbed 21.\n\n[1] https://jenkins.fd.io/sandbox/job/csit-vsap-perf-weekly-master-ldp-2n-clx/configure",
+      "parentUuid": "b1b2cc99_e8be8add",
+      "range": {
+        "startLine": 71,
+        "startChar": 26,
+        "endLine": 71,
+        "endChar": 27
+      },
+      "revId": "2f0379640ba6639a7afdec4aa1eb5fb74f4ca1f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
