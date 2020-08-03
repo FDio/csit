@@ -165,14 +165,12 @@ class QemuManager:
             jumbo_frames=kwargs[u"jumbo"],
             queues=kwargs[u"queues"],
             queue_size=kwargs[u"perf_qemu_qsz"],
-            csum=kwargs[u"enable_csum"],
-            gso=kwargs[u"enable_gso"]
+            virtio_feature_mask=kwargs[u"virtio_feature_mask"]
         )
         self.machines[name].add_vhost_user_if(
             f"/run/vpp/sock-{qemu_id}-2",
             jumbo_frames=kwargs[u"jumbo"],
             queues=kwargs[u"queues"],
             queue_size=kwargs[u"perf_qemu_qsz"],
-            csum=kwargs[u"enable_csum"],
-            gso=kwargs[u"enable_gso"]
+            virtio_feature_mask=kwargs[u"virtio_feature_mask"]
         )
