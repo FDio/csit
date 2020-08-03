@@ -10,3 +10,5 @@ ip route add 2001:2::/64 via 1:2::2 GigabitEthernet0/7/0
 show logging
 
 show version
+
+show vhost-user

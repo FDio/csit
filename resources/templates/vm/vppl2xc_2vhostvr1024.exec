@@ -7,3 +7,5 @@ set interface l2 xconnect GigabitEthernet0/7/0 GigabitEthernet0/6/0
 show logging
 
 show version
+
+show vhost-user

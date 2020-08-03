@@ -202,6 +202,8 @@ class L2Util:
         )
 
         with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add("show_version").get_reply(err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod

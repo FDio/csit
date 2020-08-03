@@ -15,3 +15,7 @@ ip route add 2001:2::/64 via 1:2::2 virtio-0/0/7/0 up
 show logging
 
 show version
+
+show vhost-user
+
+show virtio pci
