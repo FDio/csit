@@ -56,7 +56,7 @@
 | ${nf_nodes}= | ${1}
 | ${nf_dtc} | ${1}
 | ${nf_dtcr} | ${1}
-| ${enable_gso}= | False
+| ${enable_gso}= | True
 
 *** Keywords ***
 | Local Template

@@ -316,6 +316,8 @@
 | | ... | - nf_nodes - Number of guest VMs. Type: integer
 | | ... | - testpmd_mac - Switch for testpmd_mac test configuration.
 | | ... | Type: boolean
+| | ... | - enable_gso - Generic segmentation offloading (Optional).
+| | ... | Type: boolean
 | |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
@@ -328,6 +330,7 @@
 | | ... | topology \| 1 \|
 | |
 | | [Arguments] | ${nf_nodes}=${1} | ${testpmd_mac}=${FALSE}
+| | ... | ${enable_gso}=${False}
 | |
 | | Set interfaces in path up
 | | ${fib_table_1}= | Set Variable | ${101}
@@ -356,6 +359,7 @@
 | | | Configure vhost interfaces | ${dut1}
 | | | ... | /var/run/vpp/sock-${number}-1 | /var/run/vpp/sock-${number}-2
 | | | ... | dut1-vhost-${number}-if1 | dut1-vhost-${number}-if2
+| | | ... | enable_gso=${enable_gso}
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
 | | | Add Fib Table | ${dut1} | ${fib_table_1}
