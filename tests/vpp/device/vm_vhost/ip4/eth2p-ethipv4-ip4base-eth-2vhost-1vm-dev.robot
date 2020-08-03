@@ -55,12 +55,13 @@
 | ${nf_dtcr} | ${1}
 | ${tg_if1_ip}= | 10.10.10.2
 | ${tg_if2_ip}= | 20.20.20.2
+| ${enable_gso}= | ${False}
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
 | | ... | Test uses two VRFs to route IPv4 traffic through two vhost-user \
-| | ... | nterfaces. Both interfaces are configured with IP addresses from \
+| | ... | interfaces. Both interfaces are configured with IP addresses from \
 | | ... | the same network. The VM is running VPP IPv4 forwarding to pass \
 | | ... | packet from one vhost-user interface to the other one.
 | |
@@ -77,13 +78,15 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding with vhost in 2-node circular topology
-| | ... | nf_nodes=${nf_nodes}
+| | ... | nf_nodes=${nf_nodes} | virtio_feature_mask=${virtio_feature_mask}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | ... | vnf=vppip4noarp_2vhostvr1024 | pinning=${False}
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Then Send packet and verify headers
 | | ... | ${tg} | ${tg_if1_ip} | ${tg_if2_ip}
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
