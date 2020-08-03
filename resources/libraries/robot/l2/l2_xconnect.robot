@@ -108,6 +108,8 @@
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
 | | ... | - nf_nodes - VM count. Type: integer
+| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
+| | ... | Type: integer
 | |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
@@ -118,7 +120,7 @@
 | |
 | | ... | \| Initialize L2 xconnect with Vhost-User on node \| DUT1 \| 1 \|
 | |
-| | [Arguments] | ${dut} | ${nf_nodes}=${1}
+| | [Arguments] | ${dut} | ${nf_nodes}=${1} | ${virtio_feature_mask}=${None}
 | |
 | | FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${sock1}= | Set Variable | /run/vpp/sock-${number}-1
@@ -127,6 +129,7 @@
 | | | Configure vhost interfaces | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
 | | | ... | ${dut}-vhost-${number}-if2
+| | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | | ${dut_xconnect_if1}= | Set Variable If | ${number}==1
 | | | ... | ${${dut}_${int}1}[0]
 | | | ... | ${${dut}-vhost-${prev_index}-if2}
@@ -145,16 +148,18 @@
 | |
 | | ... | *Arguments:*
 | | ... | - nf_nodes - VM count. Type: integer
+| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
+| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Initialize L2 xconnect with Vhost-User \| 1 \|
 | |
-| | [Arguments] | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_nodes}=${1} | ${virtio_feature_mask}=${None}
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 xconnect with Vhost-User on node | ${dut}
-| | | ... | nf_nodes=${nf_nodes}
+| | | ... | nf_nodes=${nf_nodes} | virtio_feature_mask=${virtio_feature_mask}
 | | END
 
 | Initialize L2 xconnect with Vhost-User and VLAN in circular topology
@@ -166,13 +171,15 @@
 | | ... | *Arguments:*
 | | ... | - subid - ID of the sub-interface to be created. Type: string
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
+| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
 | | ... | \| L2 xconnect with Vhost-User and VLAN initialized in a 3-node\
 | | ... | circular topology \| 10 \| pop-1 \|
 | |
-| | [Arguments] | ${subid} | ${tag_rewrite}
+| | [Arguments] | ${subid} | ${tag_rewrite} | ${virtio_feature_mask}=${None}
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
@@ -193,6 +200,7 @@
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
 | | Configure vhost interfaces
 | | ... | ${dut1} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Configure L2XC
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${vhost_if1}
 | | Configure L2XC
@@ -200,6 +208,7 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure vhost interfaces
 | | ... | ${dut2} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -219,6 +228,8 @@
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
 | | ... | - bond_mode - Link bonding mode. Type: string
 | | ... | - lb_mode - Load balance mode. Type: string
+| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
+| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
@@ -226,6 +237,7 @@
 | | ... | bonding in 3-node circular topology \| 10 \| pop-1 \| xor \| l34 \|
 | |
 | | [Arguments] | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
+| | ... | ${virtio_feature_mask}=${None}
 | |
 | | Set interfaces in path up
 | | ${dut1_eth_bond_if1}= | VPP Create Bond Interface
@@ -257,12 +269,14 @@
 | | ... | ${dut2} | ${subif_index_2} | ${tag_rewrite}
 | | Configure vhost interfaces
 | | ... | ${dut1} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Configure L2XC
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${vhost_if1}
 | | Configure L2XC
 | | ... | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | | Configure vhost interfaces
 | | ... | ${dut2} | /run/vpp/sock-1-1 | /run/vpp/sock-1-2
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Configure L2XC
 | | ... | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC
