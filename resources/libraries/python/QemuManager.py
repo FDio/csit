@@ -144,6 +144,8 @@ class QemuManager:
         """
         qemu_id = kwargs[u"qemu_id"]
         name = kwargs[u"name"]
+        virtio_feature_mask = kwargs[u"virtio_feature_mask"] \
+            if u"virtio_feature_mask" in kwargs else None
 
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
@@ -168,16 +170,14 @@ class QemuManager:
             jumbo_frames=kwargs[u"jumbo"],
             queues=kwargs[u"queues"],
             queue_size=kwargs[u"perf_qemu_qsz"],
-            csum=kwargs[u"enable_csum"],
-            gso=kwargs[u"enable_gso"]
+            virtio_feature_mask=virtio_feature_mask
         )
         self.machines[name].add_vhost_user_if(
             f"/run/vpp/sock-{qemu_id}-2",
             jumbo_frames=kwargs[u"jumbo"],
             queues=kwargs[u"queues"],
             queue_size=kwargs[u"perf_qemu_qsz"],
-            csum=kwargs[u"enable_csum"],
-            gso=kwargs[u"enable_gso"]
+            virtio_feature_mask=virtio_feature_mask
         )
 
     def _c_vpp_2vfpt_ip4base_plen24(self, **kwargs):

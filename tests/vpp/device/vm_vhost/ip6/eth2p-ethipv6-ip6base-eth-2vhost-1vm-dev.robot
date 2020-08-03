@@ -55,6 +55,7 @@
 | ${nf_dtcr} | ${1}
 | ${tg_if1_ip}= | 2001:1::2
 | ${tg_if2_ip}= | 2001:2::2
+| ${enable_gso}= | ${False}
 
 *** Keywords ***
 | Local Template
@@ -77,13 +78,15 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv6 forwarding with vhost in 2-node circular topology
-| | ... | nf_nodes=${nf_nodes}
+| | ... | nf_nodes=${nf_nodes} | virtio_feature_mask=${virtio_feature_mask}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | ... | vnf=vppip6_2vhostvr1024 | pinning=${False}
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Then Send packet and verify headers
 | | ... | ${tg} | ${tg_if1_ip} | ${tg_if2_ip}
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
