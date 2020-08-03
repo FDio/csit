@@ -70,6 +70,30 @@
       "revId": "2f0379640ba6639a7afdec4aa1eb5fb74f4ca1f0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "241a4947_11ee38a0",
+        "filename": "resources/tools/testbed-setup/ansible/roles/cleanup/tasks/sut.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-03T14:09:18Z",
+      "side": 1,
+      "message": "Looking for a second time, I see this change was not applied at all in the run. So not sure what happened to TB21.",
+      "parentUuid": "e56f7ab7_56d56502",
+      "range": {
+        "startLine": 71,
+        "startChar": 26,
+        "endLine": 71,
+        "endChar": 27
+      },
+      "revId": "2f0379640ba6639a7afdec4aa1eb5fb74f4ca1f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
