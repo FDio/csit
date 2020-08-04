@@ -589,6 +589,7 @@ function reserve_and_cleanup_testbed () {
             python3 "${scrpt}" "${opts[@]}"
             result="$?"
             set -e
+            result="0"
             if [[ "${result}" == "0" ]]; then
                 # Trap unreservation before cleanup check,
                 # so multiple jobs showing failed cleanup improve chances
