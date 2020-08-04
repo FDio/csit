@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4e501a0c_f4cb0a9a",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-08-04T11:18:47Z",
+      "side": 1,
+      "message": "Use string directly instead of defining variables.",
+      "parentUuid": "7d6701c2_ef48803d",
+      "range": {
+        "startLine": 99,
+        "startChar": 56,
+        "endLine": 99,
+        "endChar": 63
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a956976d_541d4f41",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58521426_c8d78ab0",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-08-04T11:18:47Z",
+      "side": 1,
+      "message": "Add spaces.",
+      "parentUuid": "a956976d_541d4f41",
+      "range": {
+        "startLine": 102,
+        "startChar": 53,
+        "endLine": 102,
+        "endChar": 54
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "00dc3431_3d0ef725",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-08-04T11:18:47Z",
+      "side": 1,
+      "message": "ok.\nUse string directly instead of defining variables.",
+      "parentUuid": "13e2998a_4a68818c",
+      "range": {
+        "startLine": 106,
+        "startChar": 20,
+        "endLine": 106,
+        "endChar": 53
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c1ec569_2c59fd03",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 8
@@ -91,6 +163,30 @@
       "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9a28638_38d4124d",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-08-04T11:18:47Z",
+      "side": 1,
+      "message": "Add RESOURCES_LIB_ENTRY in Constants.py.",
+      "parentUuid": "4c1ec569_2c59fd03",
+      "range": {
+        "startLine": 109,
+        "startChar": 33,
+        "endLine": 109,
+        "endChar": 70
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "156438df_399402c6",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-08-04T11:18:47Z",
+      "side": 1,
+      "message": "Change the error message.",
+      "parentUuid": "a5b110ac_b6235f97",
+      "range": {
+        "startLine": 111,
+        "startChar": 32,
+        "endLine": 111,
+        "endChar": 50
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "847a6c1b_1a2387b4",
         "filename": "resources/libraries/python/vsap/VSAPUtil.py",
         "patchSetId": 8
@@ -137,6 +257,30 @@
       "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72a1e0af_c81c31a7",
+        "filename": "resources/libraries/python/vsap/VSAPUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 2028
+      },
+      "writtenOn": "2020-08-04T11:18:47Z",
+      "side": 1,
+      "message": "Use string directly instead of defining variables.",
+      "parentUuid": "847a6c1b_1a2387b4",
+      "range": {
+        "startLine": 121,
+        "startChar": 56,
+        "endLine": 121,
+        "endChar": 63
+      },
+      "revId": "a1de5e23073345cd8a2d446639d5b1ec929e0399",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
