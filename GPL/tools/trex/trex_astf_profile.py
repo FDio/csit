@@ -174,6 +174,8 @@ def simple_burst(
         lost_a = 0
         lost_b = 0
         stats = dict()
+        traff_stats = dict()
+        traff_stats_sum = dict()
 
         # Choose CPS and start traffic.
         client.start(
@@ -181,6 +183,11 @@ def simple_burst(
             latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
         )
         time_start = time.monotonic()
+        # t-rex starts the packet flow with delay
+        # while not client.is_traffic_active(ports=ports):
+        #     time.sleep(0.001)
+        # else:
+        #     trex_start_time = time.monotonic() - time_start
 
         if async_start:
             # For async stop, we need to export the current snapshot.
@@ -192,12 +199,14 @@ def simple_burst(
         else:
             # Do not block until done.
             while client.is_traffic_active(ports=ports):
-                time.sleep(
-                    stats_sampling if stats_sampling < duration else duration
-                )
                 # Sample the stats.
                 stats[time.monotonic()-time_start] = client.get_stats(
                     ports=ports
+                )
+                traff_stats[time.monotonic()-time_start] = client.get_traffic_stats()
+                traff_stats_sum[time.monotonic() - time_start] = client.get_traffic_stats(is_sum=True)
+                time.sleep(
+                    stats_sampling if stats_sampling < duration else duration
                 )
             else:
                 # Read the stats after the test
@@ -213,6 +222,11 @@ def simple_burst(
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
+
+            print(u"##### traffic stats #####")
+            print(json.dumps(traff_stats, indent=4, separators=(u",", u": ")))
+            print(u"##### traffic stats sum#####")
+            print(json.dumps(traff_stats_sum, indent=4, separators=(u",", u": ")))
 
             approximated_duration = list(sorted(stats.keys()))[-1]
             stats = stats[sorted(stats.keys())[-1]]
