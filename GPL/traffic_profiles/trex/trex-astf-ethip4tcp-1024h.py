@@ -16,7 +16,7 @@
 Traffic profile:
  - Two streams sent in directions 0 --> 1 (client -> server, requests) and
    1 --> 0 (server -> client, responses) at the same time.
- - Packet: ETH / IP / UDP
+ - Packet: ETH / IP / TCP
  - Direction 0 --> 1:
    - Source IP address range:      192.168.0.0 - 192.168.3.255
    - Destination IP address range: 20.0.0.0 - 20.0.3.255
@@ -28,7 +28,6 @@ Traffic profile:
 """
 
 from trex.astf.api import *
-
 from profile_trex_astf_base_class import TrafficProfileBaseClass
 
 
@@ -46,49 +45,38 @@ class TrafficProfile(TrafficProfileBaseClass):
         self.p1_dst_start_ip = u"20.0.0.0"
         self.p1_dst_end_ip = u"20.0.3.255"
 
-        # UDP messages
-        self.udp_req = u"GET"
-        self.udp_res = u"ACK"
+        # Headers length; not used in this profile, just for the record of
+        # header length for TCP packet with 0B payload
+        self.headers_size = 58  # 14B l2 + 20B ipv4 + 24B tcp incl. 4B options
 
-        # Headers length
-        self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B udp
-
-        # Required UDP keepalive value for T-Rex
-        self.udp_keepalive = 2000  # 2s (2,000 msec)
+        # Delay for keeping tcp sessions active
+        self.delay = 2000000  # delay 2s (2,000,000 usec)
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
         This method MUST return:
+
             return ip_gen, templates, None
 
-        :returns: IP generator and profile templates ASTFProfile().
+        :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
-        self.udp_req += self._gen_padding(self.headers_size + len(self.udp_req))
-        self.udp_res += self._gen_padding(self.headers_size + len(self.udp_res))
-
         # client commands
-        prog_c = ASTFProgram(stream=False)
-        # set the keepalive timer for UDP flows to not close udp session
-        # immediately after packet exchange
-        prog_c.set_keepalive_msg(self.udp_keepalive)
-        # send REQ message
-        prog_c.send_msg(self.udp_req)
-        # receive RES message
-        prog_c.recv_msg(1)
-        prog_c.delay(self.udp_keepalive * 1000)  # delay is defined in usec
+        prog_c = ASTFProgram()
+        # send syn
+        prog_c.connect()
+        # receive syn-ack (0B sent in tcp syn-ack packet) and send ack
+        prog_c.recv(0)
+        # wait defined time, then send fin-ack
+        prog_c.delay(self.delay)
 
         # server commands
-        prog_s = ASTFProgram(stream=False)
-        # set the keepalive timer for UDP flows to not close udp session
-        # immediately after packet exchange
-        prog_c.set_keepalive_msg(self.udp_keepalive)
-        # receive REQ message
-        prog_s.recv_msg(1)
-        # send RES message
-        prog_s.send_msg(self.udp_res)
-        prog_s.delay(self.udp_keepalive * 1000)  # delay is defined in usec
+        prog_s = ASTFProgram()
+        # receive syn, send syn-ack
+        prog_s.accept()
+        # receive fin-ack, send ack + fin-ack
+        prog_s.wait_for_peer_close()
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
@@ -112,7 +100,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         temp_c = ASTFTCPClientTemplate(
             program=prog_c,
             ip_gen=ip_gen,
-            limit=64512,  # TODO: set via input parameter ?
+            limit=64512,  # TODO: set via input parameter
             port=8080
         )
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
