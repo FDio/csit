@@ -61,7 +61,7 @@
 | ${traffic_profile}= | trex-astf-ethip4udp-1024h
 | ${cps}= | ${64512}
 # Trial data overwrite
-| ${trial_duration}= | ${1.1}
+| ${trial_duration}= | ${1.0}
 | ${trial_multiplicity}= | ${1}
 
 *** Keywords ***
