@@ -181,6 +181,8 @@ def simple_burst(
             latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
         )
         time_start = time.monotonic()
+        # t-rex starts the packet flow in 10msec
+        time.sleep(0.015)
 
         if async_start:
             # For async stop, we need to export the current snapshot.
@@ -192,12 +194,12 @@ def simple_burst(
         else:
             # Do not block until done.
             while client.is_traffic_active(ports=ports):
-                time.sleep(
-                    stats_sampling if stats_sampling < duration else duration
-                )
                 # Sample the stats.
                 stats[time.monotonic()-time_start] = client.get_stats(
                     ports=ports
+                )
+                time.sleep(
+                    stats_sampling if stats_sampling < duration else duration
                 )
             else:
                 # Read the stats after the test
