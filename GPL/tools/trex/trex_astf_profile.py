@@ -181,6 +181,17 @@ def simple_burst(
             latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
         )
         time_start = time.monotonic()
+        # t-rex starts the packet flow with delay
+        stats[time.monotonic()-time_start] = client.get_stats(ports=[port_0])
+        while stats[sorted(stats.keys())[-1]][port_0][u"opackets"] == 0:
+            stats.clear()
+            time.sleep(0.001)
+            stats[time.monotonic() - time_start] = \
+                client.get_stats(ports=[port_0])
+        else:
+            trex_start_time = list(sorted(stats.keys()))[-1]
+            time_start += trex_start_time
+            stats.clear()
 
         if async_start:
             # For async stop, we need to export the current snapshot.
@@ -190,20 +201,21 @@ def simple_burst(
                 xsnap1 = client.ports[port_1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
+            time.sleep(
+                stats_sampling if stats_sampling < duration else duration
+            )
             # Do not block until done.
             while client.is_traffic_active(ports=ports):
+                # Sample the stats.
+                stats[time.monotonic()-time_start] = \
+                    client.get_stats(ports=ports)
                 time.sleep(
                     stats_sampling if stats_sampling < duration else duration
                 )
-                # Sample the stats.
-                stats[time.monotonic()-time_start] = client.get_stats(
-                    ports=ports
-                )
             else:
                 # Read the stats after the test
-                stats[time.monotonic()-time_start] = client.get_stats(
-                    ports=ports
-                )
+                stats[time.monotonic()-time_start] = \
+                    client.get_stats(ports=ports)
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -313,6 +325,7 @@ def simple_burst(
                 client.clear_profile()
                 client.disconnect()
                 print(
+                    f"trex_start_time={trex_start_time}, "
                     f"cps={mult!r}, total_received={total_rcvd}, "
                     f"total_sent={total_sent}, frame_loss={lost_a + lost_b}, "
                     f"approximated_duration={approximated_duration}, "
