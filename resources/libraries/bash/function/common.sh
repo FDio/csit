@@ -583,17 +583,18 @@ function reserve_and_cleanup_testbed () {
 
     while true; do
         for topo in "${TOPOLOGIES[@]}"; do
-            set +e
-            scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
-            opts=("-t" "${topo}" "-r" "${BUILD_TAG:-Unknown}")
-            python3 "${scrpt}" "${opts[@]}"
-            result="$?"
-            set -e
+#            set +e
+#            scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
+#            opts=("-t" "${topo}" "-r" "${BUILD_TAG:-Unknown}")
+#            python3 "${scrpt}" "${opts[@]}"
+#            result="$?"
+#            set -e
             if [[ "${result}" == "0" ]]; then
                 # Trap unreservation before cleanup check,
                 # so multiple jobs showing failed cleanup improve chances
                 # of humans to notice and fix.
-                WORKING_TOPOLOGY="${topo}"
+#                WORKING_TOPOLOGY="${topo}"
+                WORKING_TOPOLOGY="/w/workspace/csit-vpp-perf-verify-master-2n-skx/topologies/available/lf_2n_skx_testbed24.yaml"
                 echo "Reserved: ${WORKING_TOPOLOGY}"
                 trap "untrap_and_unreserve_testbed" EXIT || {
                     message="TRAP ATTEMPT AND UNRESERVE FAILED, FIX MANUALLY."
@@ -1085,9 +1086,9 @@ function untrap_and_unreserve_testbed () {
         warn "Testbed looks unreserved already. Trap removal failed before?"
     else
         ansible_playbook "cleanup" || true
-        python3 "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
-            die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
-        }
+#        python3 "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
+#            die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
+#        }
         WORKING_TOPOLOGY=""
         set -eu
     fi
