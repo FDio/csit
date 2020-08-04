@@ -192,12 +192,12 @@ def simple_burst(
         else:
             # Do not block until done.
             while client.is_traffic_active(ports=ports):
-                time.sleep(
-                    stats_sampling if stats_sampling < duration else duration
-                )
                 # Sample the stats.
                 stats[time.monotonic()-time_start] = client.get_stats(
                     ports=ports
+                )
+                time.sleep(
+                    stats_sampling if stats_sampling < duration else duration
                 )
             else:
                 # Read the stats after the test
