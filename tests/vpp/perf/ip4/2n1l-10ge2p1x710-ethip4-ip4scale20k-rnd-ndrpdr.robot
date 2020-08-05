@@ -16,8 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_20k | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | IP4_RND
+| ... | PLEN_32 | IP4_RND | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4-ip4scale20k-rnd
 |
 | Suite Setup | Setup suite topology interfaces | performance
