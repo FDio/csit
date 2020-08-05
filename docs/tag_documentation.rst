@@ -98,6 +98,14 @@ Scaling Tags
 
     2x1,000,000 entries in single fib table
 
+.. topic:: PLEN_30
+
+    Prefix length 30, each fib entry matches four destination IPv4 addresses.
+
+.. topic:: PLEN_32
+
+    Prefix length 32, each fib entry matches a single destination IPv4 address.
+
 .. topic:: L2BD_1
 
     Test with 1 L2 bridge domain.
