@@ -98,10 +98,13 @@
 | Initialize IPv4 forwarding with scaling in circular topology
 | | [Documentation]
 | | ... | Custom setup of IPv4 topology with scalability of ip routes on all
-| | ... | DUT nodes in 2-node / 3-node circular topology
+| | ... | DUT nodes in 2-node / 3-node circular topology.
+| | ... | Prefix length and number of routes are configurable.
 | |
 | | ... | *Arguments:*
 | | ... | - count - IP route count. Type: integer
+| | ... | - prefix_length - Length of destination prefix per one route.
+| | ... | Default: 32.
 | |
 | | ... | *Return:*
 | | ... | - No value returned
@@ -109,9 +112,9 @@
 | | ... | *Example:*
 | |
 | | ... | \| Initialize IPv4 forwarding with scaling in 3-node circular \
-| | ... | topology \| 100000 \|
+| | ... | topology \| \${100000} \| \${30} \|
 | |
-| | [Arguments] | ${count}
+| | [Arguments] | ${count} | ${prefix_length}=${32}
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
@@ -143,16 +146,16 @@
 | | ... | VPP Interface Set IP Address | ${dut2} | ${DUT2_${int}1}[0] | 2.2.2.2
 | | ... | 30
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 3.3.3.2 | 30
-| | Vpp Route Add | ${dut1} | 10.0.0.0 | 32 | gateway=1.1.1.1
-| | ... | interface=${DUT1_${int}1}[0] | count=${count}
+| | Vpp Route Add | ${dut1} | 10.0.0.0 | ${prefix_length}
+| | ... | gateway=1.1.1.1 | interface=${DUT1_${int}1}[0] | count=${count}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 32 | gateway=2.2.2.2
-| | ... | interface=${DUT1_${int}2}[0] | count=${count}
+| | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | ${prefix_length}
+| | ... | gateway=2.2.2.2 | interface=${DUT1_${int}2}[0] | count=${count}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | 32 | gateway=2.2.2.1
-| | ... | interface=${DUT2_${int}1}[0] | count=${count}
-| | Vpp Route Add | ${dut} | 20.0.0.0 | 32 | gateway=3.3.3.1
-| | ... | interface=${dut_if2} | count=${count}
+| | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | ${prefix_length}
+| | ... | gateway=2.2.2.1 | interface=${DUT2_${int}1}[0] | count=${count}
+| | Vpp Route Add | ${dut} | 20.0.0.0 | ${prefix_length}
+| | ... | gateway=3.3.3.1 | interface=${dut_if2} | count=${count}
 
 | Initialize IPv4 routing with memif pairs
 | | [Documentation]
