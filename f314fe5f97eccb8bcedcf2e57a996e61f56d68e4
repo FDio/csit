@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27877dde_d07f335b",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-ethip4-ip4scale20k-plen30-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-05T14:51:01Z",
+      "side": 1,
+      "message": "you need to have trex-sl-ethip4-ip4dst${dsts_per_flow}-plen30",
+      "revId": "f314fe5f97eccb8bcedcf2e57a996e61f56d68e4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
