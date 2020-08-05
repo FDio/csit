@@ -10,6 +10,7 @@
    1. [2-Node-Denverton Atom Intel (2n-dnv)](#2-node-denverton-atom-intel-2n-dnv)
    1. [2-Node-IxiaPS1L47 Ixia PSOne L47 (2n-ps1)](#2-node-ixiaps1l47-ixia-psone-l47-2n-ps1)
    1. [2-Node-Cascadelake Xeon Intel (2n-clx)](#2-node-cascadelake-xeon-intel-2n-clx)
+   1. [2-Node-Zen2 EPYC AMD (2n-zn2)](#2-node-zen2-epyc-amd-2n-zn)
    1. [3-Node-Haswell Xeon Intel (3n-skx)](#3-node-haswell-xeon-intel-3n-skx)
    1. [3-Node-Skylake Xeon Intel (3n-skx)](#3-node-skylake-xeon-intel-3n-skx)
    1. [3-Node-TaiShan Arm Huawei (3n-tsh)](#3-node-taishan-arm-huawei-3n-tsh)
@@ -27,11 +28,12 @@
    1. [Per Testbed Server Allocation and Naming](#per-testbed-server-allocation-and-naming)
       1. [1-Node-Skylake Servers (1n-skx) PROD](#1-node-skylake-servers-1n-skx-prod)
       1. [1-Node-Thunderx2 Servers (1n-tx2) WIP](#1-node-thunderx2-servers-1n-tx2-wip)
-      1. [1-Node-Cascadelake Servers (1n-clx) SETUP](#1-node-cascadelake-servers-1n-clx-setup)
+      1. [1-Node-Cascadelake Servers (1n-clx) PROD](#1-node-cascadelake-servers-1n-clx-prod)
       1. [2-Node-Skylake Servers (2n-skx) PROD](#2-node-skylake-servers-2n-skx-prod)
       1. [2-Node-Denverton Servers (2n-dnv) TODO](#2-node-denverton-servers-2n-dnv-todo)
       1. [2-Node-IxiaPS1L47 Servers (2n-ps1) VERIFY](#2-node-ixiaps1l47-servers-2n-ps1-verify)
       1. [2-Node-Cascadelake Servers (2n-clx) SETUP](#2-node-cascadelake-servers-2n-clx-setup)
+      1. [2-Node-Zen2 Servers (2n-zn2) SETUP](#2-node-zen2-servers-2n-zn2-setup])
       1. [3-Node-Haswell Servers (3n-hsw) PROD](#3-node-haswell-servers-3n-hsw-prod)
       1. [3-Node-Skylake Servers (3n-skx) PROD](#3-node-skylake-servers-3n-skx-prod)
       1. [3-Node-Rangeley Servers (3n-rng) VERIFY](#3-node-rangeley-servers-3n-rng-verify)
@@ -44,7 +46,8 @@
       1. [2-Node-Skylake Wiring (2n-skx) PROD](#2-node-skylake-wiring-2n-skx-prod)
       1. [2-Node-Denverton Wiring (2n-dnv) TODO](#2-node-denverton-wiring-2n-dnv-todo)
       1. [2-Node-IxiaPS1L47 Wiring (2n-ps1) VERIFY](#2-node-ixiaps1l47-wiring-2n-ps1-verify)
-      1. [2-Node-Cascadelake Wiring (2n-clx) SETUP](#2-node-cascadelake-wiring-2n-clx-setup)
+      1. [2-Node-Cascadelake Wiring (2n-clx) PROD](#2-node-cascadelake-wiring-2n-clx-prod)
+      1. [2-Node-Zen2 Wiring (2n-zen2) SETUP](#2-node-zen2-wiring-2n-zen2-setup])
       1. [3-Node-Haswell Wiring (3n-hsw) PROD](#3-node-haswell-wiring-3n-hsw-prod)
       1. [3-Node-Skylake Wiring (3n-skx) PROD](#3-node-skylake-wiring-3n-skx-prod)
       1. [3-Node-Rangeley Wiring (3n-rng) TODO](#3-node-rangeley-wiring-3n-rng-todo)
@@ -68,22 +71,23 @@ hosted by LFN FD.io CSIT project.
 ### Summary List
 
 ```
- #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #mcb
- 1. 1-Node-VIRL        dev    hsw   ---   3    3    0    3    0    0    0    0    0    0    0
- 2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0
- 3. 1-Node-Thunderx2   dev    tx2   na    1    1    0    0    0    0    0    0    1    0    0
- 4. 1-Node-Cascadelake dev    clx   lcx   1    1    0    0    0    0    0    0    0    0    0
- 5. 2-Node-Skylake     perf   skx   skx   4    4    4    0    8    0    0    0    0    0    0
- 6. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    1    0    0    0
- 7. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0
- 8. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    0
- 9. 3-Node-Haswell     perf   hsw   hsw   3    6    3    9    0    0    0    0    0    0    0
-10. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0
-11. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0
-12. 3-Node-Taishan     perf   tsh   skx   1    2    1    0    .5   0    0    0    0    2    0
-13. 3-Node-Mcbin       perf   mcb   skx   1    2    1    0    .5   0    0    0    0    0    2
-14. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0
-                                 Totals: 22   35   18   12   19    1    2    3    1    2    2
+ #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #mcb #clx #zn2
+ 1. 1-Node-VIRL        dev    hsw   ---   3    3    0    3    0    0    0    0    0    0    0    0    0
+ 2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0    0    0
+ 3. 1-Node-Thunderx2   dev    tx2   na    1    1    0    0    0    0    0    0    1    0    0    0    0
+ 4. 1-Node-Cascadelake dev    clx   lcx   1    1    0    0    0    0    0    0    0    0    0    1    0
+ 5. 2-Node-Skylake     perf   skx   skx   4    4    4    0    8    0    0    0    0    0    0    0    0
+ 6. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    1    0    0    0    0    0
+ 7. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0    0    0
+ 8. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    0    6    0
+ 9. 3-Node-Haswell     perf   hsw   hsw   3    6    3    9    0    0    0    0    0    0    0    0    0
+10. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0    0
+11. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0    0
+12. 3-Node-Taishan     perf   tsh   skx   1    2    1    0    .5   0    0    0    0    2    0    0    0
+13. 3-Node-Mcbin       perf   mcb   skx   1    2    1    0    .5   0    0    0    0    0    2    0    0
+14. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0    0    0
+15. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    0    2
+                                 Totals: 22   35   18   12   19    1    2    3    1    2    2    7    2
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -130,6 +134,13 @@ Used for FD.io TCP/IP and HTTP performance tests.
 
 Each 2-Node-Cascadelake testbed includes one SUT (Server-Type-C2) and
 one TG (Server-Type-C3) connected in a 2-node circular topology
+([Server Types](#server-types)).
+Used for FD.io performance tests.
+
+### 2-Node-Zen2 EPYC AMD (2n-zn2)
+
+Each 2-Node-Zen2 testbed includes one SUT (Server-Type-XX) and
+one TG (Server-Type-XX) connected in a 2-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
@@ -292,6 +303,8 @@ n/a          | s21-t34-sut2
 10.30.55.21  | s36-t28-tg1
 10.30.55.22  | s37-t29-sut1
 10.30.55.23  | s38-t29-tg1
+(?).(?).(?).(?) | s60-t210-sut1
+(?).(?).(?).(?) | s61-t210-tg1
 10.30.55.255 | Broadcast
 
 ### Management VLAN IP Addresses
@@ -381,6 +394,8 @@ Name                      | Comment
 10.32.8.21                | s36-t28-tg1
 10.32.8.22                | s37-t29-sut1
 10.32.8.23                | s38-t29-tg1
+(?).(?).(?).(?) | s60-t210-sut1
+(?).(?).(?).(?) | s61-t210-tg1
 10.32.8.255               | Broadcast
 
 ## Server Specifications
@@ -613,7 +628,6 @@ FD.io CSIT lab contains following server types:
         - 2x 10Gb Intel x553 fiber ports
         - 2x 10Gb Intel x553 copper ports
         - 4x 1GB Intel I350 ports
-
 14. Server-Type-C1: Purpose - Cascadelake Xeon SUT for FD.io VPP_Device functional tests.
     - Quantity: 1.
     - Physical connectivity:
@@ -634,7 +648,6 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-
 15. Server-Type-C2: Purpose - Cascadelake Xeon SUT for FD.io performance testing.
     - Quantity: 3
     - Physical connectivity:
@@ -677,7 +690,6 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-
 17. Server-Type-C4: Purpose - Cascadelake Xeon Backend hosts for FD.io builds and data processing.
     - Quantity: 3.
     - Physical connectivity:
@@ -694,6 +706,36 @@ FD.io CSIT lab contains following server types:
             - no cards.
         - Numa1:
             - no cards.
+15. Server-Type-D1: Purpose - Zen2 EPYC SUT for FD.io performance testing.
+    - Quantity: 1.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro AS-1114S-WTRT
+        - Processors: 1* AMD EPYC 7532 2.4 GHz.
+        - RAM Memory: 8* 32GB DDR4-2933.
+        - Disks: 1(?)* 1TB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe3.0 lanes)
+            - PCIe Slot(?) ??:??.xx: x710-4p10GE Intel.
+            - PCIe Slot(?) ??:??.xx: xxv710-DA2-2p25GE Intel.
+            - PCIe Slot(?) ??:??.xx: mcx556a-edat ConnectX5-2p100GE Mellanox.
+16. Server-Type-D2: Purpose - Zen2 EPYC TG for FD.io performance testing.
+    - Quantity: 1.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro AS-1114S-WTRT
+        - Processors: 1* AMD EPYC 7532 2.4 GHz.
+        - RAM Memory: 8* 32GB DDR4-2933.
+        - Disks: 1(?)* 1TB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe3.0 lanes)
+            - PCIe Slot(?) ??:??.xx: x710-4p10GE Intel.
+            - PCIe Slot(?) ??:??.xx: xxv710-DA2 2p25GE Intel.
+            - PCIe Slot(?) ??:??.xx: mcx556a-edat ConnectX5-2p100GE Mellanox.
 ```
 
 ### Naming Convention
@@ -771,7 +813,7 @@ connectivity and wiring across defined CSIT testbeds:
         - s27-t13-sut1-c6/p2 - 40GE-port2 XL710-QDA2-2p40GE.
 ```
 
-#### 1-Node-Cascadelake Servers (1n-clx) SETUP
+#### 1-Node-Cascadelake Servers (1n-clx) PROD
 
 ```
 - SUT [Server-Type-C1]:
@@ -1038,6 +1080,39 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s38-t29-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
         - s38-t29-tg1-c9/p1 - FUTURE 100GE-port1 ConnectX5-2p100GE.
         - s38-t29-tg1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
+```
+
+#### 2-Node-Zen2 Servers (2n-zn2) SETUP
+
+```
+- SUT [Server-Type-D1]:
+    - testbedname: testbed210.
+    - hostname: s60-t210-sut1.
+    - IPMI IP: (?).(?).(?).(?)
+    - Host IP: (?).(?).(?).(?)
+    - portnames:
+        - s60-t210-sut1-c1/p1 - 10GE-port1 x710-4p10GE.
+        - s60-t210-sut1-c1/p2 - 10GE-port2 x710-4p10GE.
+        - s60-t210-sut1-c1/p3 - 10GE-port3 x710-4p10GE.
+        - s60-t210-sut1-c1/p4 - 10GE-port4 x710-4p10GE.
+        - s60-t210-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s60-t210-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s60-t210-sut1-c3/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s60-t210-sut1-c3/p2 - 100GE-port2 ConnectX5-2p100GE.
+- TG [Server-Type-D2]:
+    - testbedname: testbed210.
+    - hostname: s61-t210-tg1.
+    - IPMI IP: (?).(?).(?).(?)
+    - Host IP: (?).(?).(?).(?)
+    - portnames:
+        - s61-t210-tg1-c1/p1 - 10GE-port1 x710-4p10GE.
+        - s61-t210-tg1-c1/p2 - 10GE-port2 x710-4p10GE.
+        - s61-t210-tg1-c1/p3 - 10GE-port3 x710-4p10GE.
+        - s61-t210-tg1-c1/p4 - 10GE-port4 x710-4p10GE.
+        - s61-t210-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s61-t210-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s61-t210-tg1-c3/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s61-t210-tg1-c3/p2 - 100GE-port2 ConnectX5-2p100GE.
 ```
 
 #### 3-Node-Haswell Servers (3n-hsw) PROD
@@ -1530,7 +1605,7 @@ To be completed.
         - t25-tg1-p4 to t25-sut1-c2/p4.
 ```
 
-#### 2-Node-Cascadelake Wiring (2n-clx) SETUP
+#### 2-Node-Cascadelake Wiring (2n-clx) PROD
 
 ```
 - testbed27:
@@ -1572,6 +1647,24 @@ To be completed.
     - FUTURE ring4 100GE-ports ConnectX5-2p100GE on SUT:
         - s38-t29-tg1-c9/p1 to s37-t29-sut1-c9/p1.
         - s37-t29-sut1-c9/p2 to s38-t29-tg1-c9/p2.
+```
+
+#### 2-Node-Zen2 Wiring (2n-zen2) SETUP
+
+```
+- testbed210:
+    - ring1 10GE-ports x710-4p10GE on SUT:
+        - s61-t210-tg1-c1/p1 to s60-t210-sut1-c1/p1.
+        - s60-t210-sut1-c1/p2 to s61-t210-tg1-c1/p2.
+    - ring2 10GE-ports x710-4p10GE on SUT:
+        - s61-t210-tg1-c1/p3 to s60-t210-sut1-c1/p3.
+        - s60-t210-sut1-c1/p4 to s61-t210-tg1-c1/p4.
+    - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
+        - s61-t210-tg1-c2/p1 to s60-t210-sut1-c2/p1.
+        - s60-t210-sut1-c2/p2 to s61-t210-tg1-c2/p2.
+    - ring4 100GE-ports ConnectX5-2p100GE on SUT:
+        - s61-t210-tg1-c4/p1 to s60-t210-sut1-c4/p1.
+        - s60-t210-sut1-c4/p2 to s61-t210-tg1-c4/p2.
 ```
 
 #### 3-Node-Haswell Wiring (3n-hsw) PROD
