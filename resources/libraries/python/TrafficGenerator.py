@@ -465,9 +465,9 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             # Last line from console output
             line = stdout.splitlines()[-1]
-            results = line.split(",")
-            if results[-1] == u" ":
-                results.remove(u" ")
+            results = line.split(u",")
+            if results[-1] in (u" ", u""):
+                results.pop(-1)
             self._result = dict()
             for result in results:
                 key, value = result.split(u"=", maxsplit=1)
@@ -667,6 +667,7 @@ class TrafficGenerator(AbstractMeasurer):
             self._loss = None
             self._latency = None
             xstats = [None, None]
+            self._l7_data = dict()
             self._l7_data[u"client"] = dict()
             self._l7_data[u"client"][u"active_flows"] = None
             self._l7_data[u"client"][u"established_flows"] = None
@@ -974,7 +975,7 @@ class TrafficGenerator(AbstractMeasurer):
         measurement.latency = self.get_latency_int()
         return measurement
 
-    def measure(self, duration, transmit_rate):
+    def measure(self, duration, transmit_rate, latency=True):
         """Run trial measurement, parse and return aggregate results.
 
         Aggregate means sum over traffic directions.
@@ -982,8 +983,10 @@ class TrafficGenerator(AbstractMeasurer):
         :param duration: Trial duration [s].
         :param transmit_rate: Target aggregate transmit rate [pps] / Connections
         per second (CPS) for UDP/TCP flows.
+        :param latency: True if latency measurement enabled else False.
         :type duration: float
         :type transmit_rate: float
+        :type latency: bool
         :returns: Structure containing the result of the measurement.
         :rtype: ReceiveRateMeasurement
         :raises RuntimeError: If TG is not set or if node is not TG
@@ -995,7 +998,7 @@ class TrafficGenerator(AbstractMeasurer):
         unit_rate_int = transmit_rate / float(self.traffic_directions)
         self.send_traffic_on_tg(
             duration, unit_rate_int, self.frame_size, self.traffic_profile,
-            warmup_time=self.warmup_time, latency=True,
+            warmup_time=self.warmup_time, latency=latency,
             traffic_directions=self.traffic_directions
         )
         return self.get_measurement_result(duration, transmit_rate)
@@ -1082,7 +1085,7 @@ class OptimizedSearch:
             frame_size, traffic_profile, minimum_transmit_rate,
             maximum_transmit_rate, plr_target=1e-7, tdpt=0.1,
             initial_count=50, timeout=1800.0, trace_enabled=False,
-            traffic_directions=2):
+            traffic_directions=2, latency=True):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
         :param frame_size: Frame size identifier or value [B].
@@ -1104,6 +1107,8 @@ class OptimizedSearch:
         :param trace_enabled: True if trace enabled else False.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
+        :param latency: True if latency measurement enabled else False.
+            Default: True
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1113,6 +1118,7 @@ class OptimizedSearch:
         :type timeout: float
         :type trace_enabled: bool
         :type traffic_directions: int
+        :type latency: bool
         :returns: Average and stdev of estimated aggregate rate giving PLR.
         :rtype: 2-tuple of float
         """
