@@ -911,6 +911,13 @@ function select_tags () {
             warn "The following tag expression hints at bad trigger: ${tag}"
             warn "Possible cause: Multiple triggers in a single comment."
             die "Aborting to avoid triggering too many tests."
+        elif [[ "${tag}" == *"OR"* ]]; then
+            # If OR had higher precedence than AND, it would be useful here.
+            # Some people think it does, thus triggering way too much tests.
+            set -x
+            warn "The following tag expression hints at bad trigger: ${tag}"
+            warn "Operator OR has lower precedence than AND. Use space instead."
+            die "Aborting to avoid triggering too many tests."
         elif [[ "${tag}" != "" && "${tag}" != "#"* ]]; then
             # Empty and comment lines are skipped.
             # Other lines are normal tags, they are to be prefixed.
