@@ -466,9 +466,9 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             # Last line from console output
             line = stdout.splitlines()[-1]
-            results = line.split(",")
-            if results[-1] == u" ":
-                results.remove(u" ")
+            results = line.split(u",")
+            if results[-1] in (u" ", u""):
+                results.pop(-1)
             self._result = dict()
             for result in results:
                 key, value = result.split(u"=", maxsplit=1)
@@ -490,22 +490,48 @@ class TrafficGenerator(AbstractMeasurer):
                     self._result.get(u"client_active_flows")
                 self._l7_data[u"client"][u"established_flows"] = \
                     self._result.get(u"client_established_flows")
+                self._l7_data[u"client"][u"err_rx_throttled"] = \
+                    self._result.get(u"client_err_rx_throttled")
+                self._l7_data[u"client"][u"err_c_nf_throttled"] = \
+                    self._result.get(u"client_err_nf_throttled")
+                self._l7_data[u"client"][u"err_flow_overflow"] = \
+                    self._result.get(u"client_err_flow_overflow")
                 self._l7_data[u"server"] = dict()
                 self._l7_data[u"server"][u"active_flows"] = \
                     self._result.get(u"server_active_flows")
                 self._l7_data[u"server"][u"established_flows"] = \
                     self._result.get(u"server_established_flows")
+                self._l7_data[u"server"][u"err_rx_throttled"] = \
+                    self._result.get(u"client_err_rx_throttled")
                 if u"udp" in self.traffic_profile:
                     self._l7_data[u"client"][u"udp"] = dict()
                     self._l7_data[u"client"][u"udp"][u"established_flows"] = \
                         self._result.get(u"client_udp_connects")
                     self._l7_data[u"client"][u"udp"][u"closed_flows"] = \
                         self._result.get(u"client_udp_closed")
+                    self._l7_data[u"client"][u"udp"][u"tx_bytes"] = \
+                        self._result.get(u"client_udp_tx_bytes")
+                    self._l7_data[u"client"][u"udp"][u"rx_bytes"] = \
+                        self._result.get(u"client_udp_rx_bytes")
+                    self._l7_data[u"client"][u"udp"][u"tx_packets"] = \
+                        self._result.get(u"client_udp_tx_packets")
+                    self._l7_data[u"client"][u"udp"][u"rx_packets"] = \
+                        self._result.get(u"client_udp_rx_packets")
+                    self._l7_data[u"client"][u"udp"][u"keep_drops"] = \
+                        self._result.get(u"client_udp_keep_drops")
                     self._l7_data[u"server"][u"udp"] = dict()
                     self._l7_data[u"server"][u"udp"][u"accepted_flows"] = \
                         self._result.get(u"server_udp_accepts")
                     self._l7_data[u"server"][u"udp"][u"closed_flows"] = \
                         self._result.get(u"server_udp_closed")
+                    self._l7_data[u"server"][u"udp"][u"tx_bytes"] = \
+                        self._result.get(u"server_udp_tx_bytes")
+                    self._l7_data[u"server"][u"udp"][u"rx_bytes"] = \
+                        self._result.get(u"server_udp_rx_bytes")
+                    self._l7_data[u"server"][u"udp"][u"tx_packets"] = \
+                        self._result.get(u"server_udp_tx_packets")
+                    self._l7_data[u"server"][u"udp"][u"rx_packets"] = \
+                        self._result.get(u"server_udp_rx_packets")
                 elif u"tcp" in self.traffic_profile:
                     self._l7_data[u"client"][u"tcp"] = dict()
                     self._l7_data[u"client"][u"tcp"][u"initiated_flows"] = \
@@ -514,6 +540,10 @@ class TrafficGenerator(AbstractMeasurer):
                         self._result.get(u"client_tcp_connects")
                     self._l7_data[u"client"][u"tcp"][u"closed_flows"] = \
                         self._result.get(u"client_tcp_closed")
+                    self._l7_data[u"client"][u"tcp"][u"tx_bytes"] = \
+                        self._result.get(u"client_tcp_tx_bytes")
+                    self._l7_data[u"client"][u"tcp"][u"rx_bytes"] = \
+                        self._result.get(u"client_tcp_rx_bytes")
                     self._l7_data[u"server"][u"tcp"] = dict()
                     self._l7_data[u"server"][u"tcp"][u"accepted_flows"] = \
                         self._result.get(u"server_tcp_accepts")
@@ -521,6 +551,10 @@ class TrafficGenerator(AbstractMeasurer):
                         self._result.get(u"server_tcp_connects")
                     self._l7_data[u"server"][u"tcp"][u"closed_flows"] = \
                         self._result.get(u"server_tcp_closed")
+                    self._l7_data[u"server"][u"tcp"][u"tx_bytes"] = \
+                        self._result.get(u"server_tcp_tx_bytes")
+                    self._l7_data[u"server"][u"tcp"][u"rx_bytes"] = \
+                        self._result.get(u"server_tcp_rx_bytes")
 
     def trex_astf_stop_remote_exec(self, node):
         """Execute T-Rex ASTF script on remote node over ssh to stop running
@@ -668,6 +702,7 @@ class TrafficGenerator(AbstractMeasurer):
             self._loss = None
             self._latency = None
             xstats = [None, None]
+            self._l7_data = dict()
             self._l7_data[u"client"] = dict()
             self._l7_data[u"client"][u"active_flows"] = None
             self._l7_data[u"client"][u"established_flows"] = None
@@ -849,12 +884,11 @@ class TrafficGenerator(AbstractMeasurer):
         """
         subtype = check_subtype(self._node)
         if subtype == NodeSubTypeTG.TREX:
-            self.set_rate_provider_defaults(
-                frame_size, traffic_profile,
-                traffic_directions=traffic_directions)
+            if self.traffic_profile != str(traffic_profile):
+                self.traffic_profile = str(traffic_profile)
             if u"trex-astf" in self.traffic_profile:
                 self.trex_astf_start_remote_exec(
-                    duration, int(rate), frame_size, traffic_profile,
+                    duration, int(rate), frame_size, self.traffic_profile,
                     async_call, latency, warmup_time, traffic_directions,
                     tx_port, rx_port
                 )
@@ -862,7 +896,7 @@ class TrafficGenerator(AbstractMeasurer):
             elif u"trex-sl" in self.traffic_profile:
                 unit_rate_str = str(rate) + u"pps"
                 self.trex_stl_start_remote_exec(
-                    duration, unit_rate_str, frame_size, traffic_profile,
+                    duration, unit_rate_str, frame_size, self.traffic_profile,
                     async_call, latency, warmup_time, traffic_directions,
                     tx_port, rx_port
                 )
@@ -999,8 +1033,12 @@ class TrafficGenerator(AbstractMeasurer):
         # TG needs target Tr per stream, but reports aggregate Tx and Dx.
         unit_rate_int = transmit_rate / float(self.traffic_directions)
         self.send_traffic_on_tg(
-            duration, unit_rate_int, self.frame_size, self.traffic_profile,
-            warmup_time=self.warmup_time, latency=self.use_latency,
+            duration,
+            unit_rate_int,
+            self.frame_size,
+            self.traffic_profile,
+            warmup_time=self.warmup_time,
+            latency=self.use_latency,
             traffic_directions=self.traffic_directions
         )
         return self.get_measurement_result(duration, transmit_rate)
@@ -1019,7 +1057,7 @@ class OptimizedSearch:
             maximum_transmit_rate, packet_loss_ratio=0.005,
             final_relative_width=0.005, final_trial_duration=30.0,
             initial_trial_duration=1.0, number_of_intermediate_phases=2,
-            timeout=720.0, doublings=1, traffic_directions=2):
+            timeout=720.0, doublings=1, traffic_directions=2, latency=False):
         """Setup initialized TG, perform optimized search, return intervals.
 
         :param frame_size: Frame size identifier or value [B].
@@ -1044,6 +1082,8 @@ class OptimizedSearch:
             less stable tests might get better overal duration with 2 or more.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
+        :param latency: Whether to measure latency during the trial.
+            Default: False.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1056,6 +1096,7 @@ class OptimizedSearch:
         :type timeout: float
         :type doublings: int
         :type traffic_directions: int
+        :type latency: bool
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: NdrPdrResult
@@ -1069,7 +1110,11 @@ class OptimizedSearch:
             u"resources.libraries.python.TrafficGenerator"
         )
         tg_instance.set_rate_provider_defaults(
-            frame_size, traffic_profile, traffic_directions=traffic_directions)
+            frame_size,
+            traffic_profile,
+            traffic_directions=traffic_directions,
+            latency=latency
+        )
         algorithm = MultipleLossRatioSearch(
             measurer=tg_instance, final_trial_duration=final_trial_duration,
             final_relative_width=final_relative_width,
@@ -1130,8 +1175,12 @@ class OptimizedSearch:
             u"resources.libraries.python.TrafficGenerator"
         )
         tg_instance.set_rate_provider_defaults(
-            frame_size, traffic_profile, traffic_directions=traffic_directions,
-            negative_loss=False, latency=latency)
+            frame_size,
+            traffic_profile,
+            traffic_directions=traffic_directions,
+            negative_loss=False,
+            latency=latency
+        )
         algorithm = PLRsearch(
             measurer=tg_instance, trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
