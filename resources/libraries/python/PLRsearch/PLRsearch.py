@@ -54,7 +54,8 @@ class PLRsearch:
 
     def __init__(
             self, measurer, trial_duration_per_trial, packet_loss_ratio_target,
-            trial_number_offset=0, timeout=1800.0, trace_enabled=False):
+            trial_number_offset=0, timeout=1800.0, trace_enabled=False,
+            latency=True):
         """Store rate measurer and additional parameters.
 
         The measurer must never report negative loss count.
@@ -71,11 +72,13 @@ class PLRsearch:
             Use this to ensure first iterations have enough time to compute
             reasonable estimates for later trials to use.
         :param timeout: The search ends if it lasts more than this many seconds.
+        :param latency: True if latency measurement enabled else False.
         :type measurer: MLRsearch.AbstractMeasurer
         :type trial_duration_per_trial: float
         :type packet_loss_ratio_target: float
         :type trial_number_offset: int
         :type timeout: float
+        :type latency: bool
         """
         self.measurer = measurer
         self.trial_duration_per_trial = float(trial_duration_per_trial)
@@ -83,6 +86,7 @@ class PLRsearch:
         self.trial_number_offset = int(trial_number_offset)
         self.timeout = float(timeout)
         self.trace_enabled = bool(trace_enabled)
+        self.latency = bool(latency)
 
     def search(self, min_rate, max_rate):
         """Perform the search, return average and stdev for throughput estimate.
