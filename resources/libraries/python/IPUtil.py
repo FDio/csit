@@ -629,10 +629,14 @@ class IPUtil:
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
 
+        step = 1
+        max_plen = 128 if net_addr.version == 6 else 32
+        for _ in range(prefix_len, 32):
+            step *= 2
         def gen_f():
             for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
-                    node, net_addr + i, prefix_len, **kwargs
+                    node, net_addr + i * step, prefix_len, **kwargs
                 )
                 yield args
 

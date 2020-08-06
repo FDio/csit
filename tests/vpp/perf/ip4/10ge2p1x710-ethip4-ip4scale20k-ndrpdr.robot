@@ -16,7 +16,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_20K | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | PLEN_32 | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4-ip4scale20k
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -59,7 +59,7 @@
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${10000}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${rts_per_flow}
+| ${traffic_profile}= | trex-sl-ethip4-ip4dst${rts_per_flow}
 
 *** Keywords ***
 | Local Template
