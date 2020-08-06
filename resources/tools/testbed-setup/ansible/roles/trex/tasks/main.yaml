@@ -69,7 +69,7 @@
     - install-trex
 
 - name: T-Rex - Compile Release III
-  command: "make"
+  command: "make -j 16"
   args:
       chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
   loop: "{{ trex_version }}"
