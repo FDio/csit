@@ -67,7 +67,7 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # client commands
         prog_c = ASTFProgram(stream=False)
-        prog_c.send_msg(self.udp_req)  # size and fill not supported in v2.73
+        prog_c.send_msg(self.udp_req)
         prog_c.recv_msg(1)
 
         # server commands
