@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63a5eb60_d23ea756",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-06T11:38:27Z",
+      "side": 1,
+      "message": "i was using rx tx drop",
+      "range": {
+        "startLine": 13,
+        "startChar": 30,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "revId": "3105521830d10dddca8585161af197ea13742210",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53f3275c_79c8db9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-06T11:38:27Z",
+      "side": 1,
+      "message": "can it be enabled on multiple interfaces? or in a loop?",
+      "range": {
+        "startLine": 13,
+        "startChar": 52,
+        "endLine": 13,
+        "endChar": 70
+      },
+      "revId": "3105521830d10dddca8585161af197ea13742210",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
