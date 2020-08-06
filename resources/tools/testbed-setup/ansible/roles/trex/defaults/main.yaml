@@ -30,3 +30,4 @@ trex_url: "https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 trex_version:
   - "2.54"
   - "2.73"
+  - "2.82"
