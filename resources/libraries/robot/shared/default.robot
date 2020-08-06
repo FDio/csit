@@ -77,10 +77,10 @@
 | | ... | try to initialize/disable.
 | |
 | | ... | *Arguments:*
-| | ... | - crypto_type - Crypto device type - HW_DH895xcc or HW_C3xxx.
-| | ... | Type: string, default value: HW_DH895xcc
-| | ... | - numvfs - Number of VFs to initialize, 0 - disable the VFs
-| | ... | Type: integer, default value: ${32}
+| | ... | - crypto_type - Crypto device type - HW_DH895xcc or HW_C3xxx; default
+| | ... | value: HW_DH895xcc. Type: string
+| | ... | - numvfs - Number of VFs to initialize, 0 - disable the VFs; default
+| | ... | value: ${32} Type: integer
 | | ... | - force_init - Force to initialize. Type: boolean
 | |
 | | ... | *Example:*
@@ -127,7 +127,7 @@
 | | [Arguments] | ${dutx} | ${dut_keys}
 | |
 | | FOR | ${key} | IN | @{dut_keys}
-| | | ${found_key} | ${value}= | Run Keyword and Ignore Error
+| | | ${found_key} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Dictionaries Should Be Equal | ${nodes['${key}']} | ${dutx}
 | | | Run Keyword If | '${found_key}' == 'PASS' | EXIT FOR LOOP
 | | END
@@ -142,21 +142,21 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
-| | | Run keyword | ${dut}.Set Node |  ${nodes['${dut}']} | node_key=${dut}
-| | | Run keyword | ${dut}.Add Unix Log
-| | | Run keyword | ${dut}.Add Unix CLI Listen
-| | | Run keyword | ${dut}.Add Unix Nodaemon
-| | | Run keyword | ${dut}.Add Unix Coredump
-| | | Run keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
-| | | Run keyword | ${dut}.Add Heapsize | 4G
-| | | Run keyword | ${dut}.Add Statseg size | 4G
-| | | Run keyword | ${dut}.Add Statseg Per Node Counters | on
-| | | Run keyword | ${dut}.Add Plugin | disable | default
-| | | Run keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
-| | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
-| | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
-| | | Run keyword | ${dut}.Add IP Heap Size | 4G
-| | | Run keyword | ${dut}.Add Graph Node Variant | ${GRAPH_NODE_VARIANT}
+| | | Run Keyword | ${dut}.Set Node | ${nodes['${dut}']} | node_key=${dut}
+| | | Run Keyword | ${dut}.Add Unix Log
+| | | Run Keyword | ${dut}.Add Unix CLI Listen
+| | | Run Keyword | ${dut}.Add Unix Nodaemon
+| | | Run Keyword | ${dut}.Add Unix Coredump
+| | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
+| | | Run Keyword | ${dut}.Add Heapsize | 4G
+| | | Run Keyword | ${dut}.Add Statseg size | 4G
+| | | Run Keyword | ${dut}.Add Statseg Per Node Counters | on
+| | | Run Keyword | ${dut}.Add Plugin | disable | default
+| | | Run Keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
+| | | Run Keyword | ${dut}.Add IP6 Hash Buckets | 2000000
+| | | Run Keyword | ${dut}.Add IP6 Heap Size | 4G
+| | | Run Keyword | ${dut}.Add IP Heap Size | 4G
+| | | Run Keyword | ${dut}.Add Graph Node Variant | ${GRAPH_NODE_VARIANT}
 | | END
 
 | Add worker threads to all DUTs
@@ -194,26 +194,26 @@
 | | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${CPU_CNT_MAIN}
 | | | ${skip_cnt}= | Evaluate | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN}
-| | | ${cpu_wt}= | Run keyword if | ${cpu_count_int} > 0 |
+| | | ${cpu_wt}= | Run Keyword If | ${cpu_count_int} > 0 |
 | | | ... | Cpu list per node str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${cpu_count_int}
 | | | ... | smt_used=${smt_used}
-| | | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | | ${thr_count_int}= | Run Keyword If | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_count_int}= | Run keyword if | ${rx_queues}
+| | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
 | | | ... | ELSE | Evaluate | int(${thr_count_int}/2)
-| | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
+| | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
 | | | Run Keyword | ${dut}.Add CPU Main Core | ${cpu_main}
-| | | Run keyword if | ${cpu_count_int} > 0
+| | | Run Keyword If | ${cpu_count_int} > 0
 | | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
-| | | Run keyword if | ${smt_used}
-| | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${215040} | ELSE
-| | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${107520}
-| | | Run keyword if | ${thr_count_int} > 1
+| | | Run Keyword If | ${smt_used}
+| | | ... | Run Keyword | ${dut}.Add Buffers Per Numa | ${215040} | ELSE
+| | | ... | Run Keyword | ${dut}.Add Buffers Per Numa | ${107520}
+| | | Run Keyword If | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | END
@@ -245,15 +245,44 @@
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | |
+| | ... | *Arguments:*
+| | ... | - nat_mode - NAT mode; default value: deterministic. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Add NAT to all DUTs \| nat_mode=endpoint-dependent \|
+| |
+| | [Arguments] | ${nat_mode}=deterministic
+| |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add NAT
+| | | Run Keyword | ${dut}.Add NAT | value=${nat_mode}
+| | END
+
+| Add NAT max translations per thread to all DUTs
+| | [Documentation] | Add NAT maximum number of translations per thread
+| | ... | configuration.
+| |
+| | ... | *Arguments:*
+| | ... | - max_translations_per_thread - NAT maximum number of translations per
+| | ... | thread. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Add NAT translation memory to all DUTs \
+| | ... | \| max_translations_per_thread=2048 \|
+| |
+| | [Arguments] | ${max_translations_per_thread}=1024
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword | ${dut}.Add NAT max translations per thread
+| | | ... | value=${max_translations_per_thread}
 | | END
 
 | Write startup configuration on all VPP DUTs
 | | [Documentation] | Write VPP startup configuration without restarting VPP.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Write Config
+| | | Run Keyword | ${dut}.Write Config
 | | END
 
 | Apply startup configuration on all VPP DUTs
@@ -270,12 +299,12 @@
 | | [Arguments] | ${with_trace}=${False}
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Apply Config
+| | | Run Keyword | ${dut}.Apply Config
 | | END
 | | Save VPP PIDs
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
-| | Run keyword If | ${with_trace} | VPP Enable Traces On All Duts | ${nodes}
+| | Run Keyword If | ${with_trace} | VPP Enable Traces On All Duts | ${nodes}
 
 | Apply startup configuration on VPP DUT
 | | [Documentation] | Write VPP startup configuration and restart VPP DUT.
@@ -286,13 +315,13 @@
 | |
 | | [Arguments] | ${dut} | ${with_trace}=${False}
 | |
-| | Run keyword | ${dut}.Apply Config
+| | Run Keyword | ${dut}.Apply Config
 | | Save VPP PIDs on DUT | ${dut}
 | | Enable Coredump Limit VPP on DUT | ${nodes['${dut}']}
 | | ${dutnode}= | Copy Dictionary | ${nodes}
 | | Keep In Dictionary | ${dutnode} | ${dut}
 | | Update All Interface Data On All Nodes | ${dutnode} | skip_tg=${True}
-| | Run keyword If | ${with_trace} | VPP Enable Traces On Dut
+| | Run Keyword If | ${with_trace} | VPP Enable Traces On Dut
 | | ... | ${nodes['${dut}']}
 
 | Save VPP PIDs
@@ -335,7 +364,7 @@
 | | ${err_msg}= | Catenate | ${SUITE NAME} - ${TEST NAME}
 | | ... | \nThe VPP PIDs are not equal!\nTest Setup VPP PIDs:
 | | ... | ${setup_vpp_pids}\nTest Teardown VPP PIDs: ${teardown_vpp_pids}
-| | ${rc} | ${msg}= | Run keyword and ignore error
+| | ${rc} | ${msg}= | Run Keyword And Ignore Error
 | | ... | Dictionaries Should Be Equal
 | | ... | ${setup_vpp_pids} | ${teardown_vpp_pids}
 | | Run Keyword And Return If | '${rc}'=='FAIL' | Log | ${err_msg}

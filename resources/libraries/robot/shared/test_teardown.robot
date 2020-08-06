@@ -110,6 +110,17 @@
 | | | ... | Show NAT verbose | ${nodes['${dut}']}
 | | END
 
+| Additional Test Tear Down Action For nat-ed
+| | [Documentation]
+| | ... | Additional teardown for tests which uses NAT feature.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Show NAT Config | ${nodes['${dut}']}
+| | | Show NAT44 Summary | ${nodes['${dut}']}
+| | | Show NAT Base Data | ${nodes['${dut}']}
+| | | Vpp Get Ip Table Summary | ${nodes['${dut}']}
+| | END
+
 | Additional Test Tear Down Action For namespace
 | | [Documentation]
 | | ... | Additional teardown for tests which uses namespace.
