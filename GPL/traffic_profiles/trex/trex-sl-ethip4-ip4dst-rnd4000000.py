@@ -39,11 +39,11 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # IPs used in packet headers.
         self.p1_src_start_ip = u"10.0.0.1"
         self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.61.8.255"
+        self.p1_dst_end_ip = u"20.0.0.3"
 
         self.p2_src_start_ip = u"20.0.0.1"
         self.p2_dst_start_ip = u"10.0.0.0"
-        self.p2_dst_end_ip = u"10.61.8.255"
+        self.p2_dst_end_ip = u"10.0.0.3"
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
