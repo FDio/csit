@@ -24,7 +24,7 @@ import sys
 import time
 
 sys.path.insert(
-    0, u"/opt/trex-core-2.73/scripts/automation/trex_control_plane/interactive/"
+    0, u"/opt/trex-core-2.82/scripts/automation/trex_control_plane/interactive/"
 )
 from trex.stl.api import *
 
@@ -169,7 +169,8 @@ def simple_burst(
 
             # Choose rate and start traffic:
             client.start(
-                ports=ports, mult=rate, duration=warmup_time, force=force
+                ports=ports, mult=rate, duration=warmup_time, force=force,
+                core_mask=STLClient.CORE_MASK_PIN
             )
 
             # Block until done:
@@ -202,7 +203,10 @@ def simple_burst(
         lost_b = 0
 
         # Choose rate and start traffic:
-        client.start(ports=ports, mult=rate, duration=duration, force=force)
+        client.start(
+            ports=ports, mult=rate, duration=duration, force=force,
+            core_mask=STLClient.CORE_MASK_PIN
+        )
 
         if async_start:
             # For async stop, we need to export the current snapshot.
