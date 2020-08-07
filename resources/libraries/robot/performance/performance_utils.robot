@@ -81,6 +81,7 @@
 | | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${720.0}
 | | ... | ${doublings}=${2} | ${traffic_directions}=${2}
 | | ... | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
+| | ... | ${latency}=${True} | ${skip_clear_and_show}=${False}
 | |
 | | # Latency measurements will need more than 9000 pps.
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
@@ -163,6 +164,7 @@
 | | ... | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${1} | ${timeout}=${720.0}
 | | ... | ${doublings}=${2} | ${traffic_directions}=${2}
+| | ... | ${latency}=${True} | ${skip_clear_and_show}=${False}
 | |
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${traffic_profile} | ${10000} | ${max_rate}
@@ -205,6 +207,7 @@
 | |
 | | [Arguments] | ${packet_loss_ratio}=${1e-7} | ${timeout}=${1800.0}
 | | ... | ${traffic_directions}=${2}
+| | ... | ${latency}=${True} | ${skip_clear_and_show}=${False}
 | |
 | | ${min_rate} = | Set Variable | ${10000}
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
