@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "d4d4c90f_fb68ad13",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 128
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-07T08:48:18Z",
+      "side": 1,
+      "message": "Do not edit here, will be edited in a separate change.",
+      "range": {
+        "startLine": 198,
+        "startChar": 59,
+        "endLine": 198,
+        "endChar": 60
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08a37ad9_d6eee59c",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 128
@@ -71,6 +94,121 @@
     },
     {
       "key": {
+        "uuid": "9a7784e2_f6db776e",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-07T08:48:18Z",
+      "side": 1,
+      "message": "nat_mode",
+      "range": {
+        "startLine": 253,
+        "startChar": 36,
+        "endLine": 253,
+        "endChar": 41
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b668a3d_6dd3e895",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-07T08:48:18Z",
+      "side": 1,
+      "message": "max_translations_per_thread\u003d2048 (or just 2048)",
+      "range": {
+        "startLine": 271,
+        "startChar": 55,
+        "endLine": 271,
+        "endChar": 65
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c5e885d_21f42af8",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-h1024-p63-s64512-ndrpdr.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-07T08:48:18Z",
+      "side": 1,
+      "message": "Line 91 says /22.",
+      "range": {
+        "startLine": 35,
+        "startChar": 36,
+        "endLine": 35,
+        "endChar": 39
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e74aa3fa_162abe37",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-h1024-p63-s64512-ndrpdr.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-07T08:48:18Z",
+      "side": 1,
+      "message": "If astf profiles need more time, add it by editing their launcher.\nDo not override what the job wants.",
+      "range": {
+        "startLine": 64,
+        "startChar": 26,
+        "endLine": 64,
+        "endChar": 28
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2855e269_ea5edb5c",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-h16384-p63-s1032192-ndrpdr.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-07T08:48:18Z",
+      "side": 1,
+      "message": "Line 91 says /18.\nAnd so on for other suites.",
+      "range": {
+        "startLine": 35,
+        "startChar": 36,
+        "endLine": 35,
+        "endChar": 39
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "81a635b7_f4eed7c0",
         "filename": "topologies/available/lf_2n_skx_testbed24.yaml",
         "patchSetId": 128
@@ -82,6 +220,30 @@
       "writtenOn": "2020-08-07T08:44:51Z",
       "side": 1,
       "message": "do everywhere.",
+      "range": {
+        "startLine": 74,
+        "startChar": 26,
+        "endLine": 74,
+        "endChar": 29
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea90eb07_9a003f42",
+        "filename": "topologies/available/lf_2n_skx_testbed24.yaml",
+        "patchSetId": 128
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-07T08:48:18Z",
+      "side": 1,
+      "message": "Is this a separate NIC \"type\" that needs to be added to Constants.py so that autogen supports it?",
+      "parentUuid": "81a635b7_f4eed7c0",
       "range": {
         "startLine": 74,
         "startChar": 26,
