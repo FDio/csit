@@ -68,6 +68,29 @@
       "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81a635b7_f4eed7c0",
+        "filename": "topologies/available/lf_2n_skx_testbed24.yaml",
+        "patchSetId": 128
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-07T08:44:51Z",
+      "side": 1,
+      "message": "do everywhere.",
+      "range": {
+        "startLine": 74,
+        "startChar": 26,
+        "endLine": 74,
+        "endChar": 29
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
