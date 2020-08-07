@@ -202,6 +202,7 @@ def simple_burst(
         lost_b = 0
 
         # Choose rate and start traffic:
+        time_start = time.monotonic()
         client.start(ports=ports, mult=rate, duration=duration, force=force)
 
         if async_start:
@@ -213,9 +214,9 @@ def simple_burst(
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
             # Block until done:
-            time_start = time.monotonic()
-            client.wait_on_traffic(ports=ports, timeout=duration+30)
+            time.sleep(duration)
             time_stop = time.monotonic()
+            client.stop()
             approximated_duration = time_stop - time_start
 
             if client.get_warnings():
@@ -224,6 +225,7 @@ def simple_burst(
 
             # Read the stats after the test
             stats = client.get_stats()
+            client.reset()
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
