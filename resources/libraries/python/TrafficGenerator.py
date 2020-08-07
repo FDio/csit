@@ -469,7 +469,9 @@ class TrafficGenerator(AbstractMeasurer):
             if results[-1] in (u" ", u""):
                 results.pop(-1)
             self._result = dict()
+            logger.trace(f"results {results!r}")
             for result in results:
+                logger.trace(f"result {result!r}")
                 key, value = result.split(u"=", maxsplit=1)
                 self._result[key.strip()] = value
             logger.info(f"TrafficGen results:\n{self._result}")
@@ -647,7 +649,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_with_value(u"port_1", p_1)
         command_line.add_with_value(u"traffic_directions", traffic_directions)
         command_line.add_if(u"async_start", async_call)
-        command_line.add_if(u"latency", latency)
+        #command_line.add_if(u"latency", latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
         stdout, _ = exec_cmd_no_error(
@@ -765,7 +767,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_with_value(u"port_1", p_1)
         command_line.add_with_value(u"traffic_directions", traffic_directions)
         command_line.add_if(u"async_start", async_call)
-        command_line.add_if(u"latency", latency)
+        #command_line.add_if(u"latency", latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
         stdout, _ = exec_cmd_no_error(
