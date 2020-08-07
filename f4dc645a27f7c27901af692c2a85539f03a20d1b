@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5619005_47d67a68",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-07T08:28:32Z",
+      "side": 1,
+      "message": "Use the actions here. Not condition. If you need empty list do the empty list or rework. you have post_stats list",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 49
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
