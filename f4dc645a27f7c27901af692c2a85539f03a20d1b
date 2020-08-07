@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "dcf765cf_b5d0bbc2",
+        "filename": "GPL/tools/trex/trex_astf_stop.py",
+        "patchSetId": 128
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-07T08:39:33Z",
+      "side": 1,
+      "message": "and why you do not call extra client.get_stats() just for printing? Xstats are for DPDK, if you need more for debug, get also not reliable get_stats(). But the results are trashed anyway",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 2
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08a37ad9_d6eee59c",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 128
