@@ -347,6 +347,30 @@
       "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aeab278e_d134bc88",
+        "filename": "topologies/available/lf_2n_skx_testbed24.yaml",
+        "patchSetId": 128
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-07T10:35:27Z",
+      "side": 1,
+      "message": "Oh, we need a different name to distinguish from port3 and port9.\nBut still, the usual 2n suites (and jobs) would be failing as there are no DUTs on the path.\nUntil we have a suite with tag 1_NODE_SINGLE_LINK_TOPO, autogen support is not really needed.",
+      "parentUuid": "cad7c3c6_413856cb",
+      "range": {
+        "startLine": 74,
+        "startChar": 26,
+        "endLine": 74,
+        "endChar": 29
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
