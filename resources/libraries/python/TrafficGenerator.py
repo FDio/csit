@@ -167,6 +167,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.warmup_time = None
         self.traffic_directions = None
         self.negative_loss = None
+        self.use_latency = None
         # Transient data needed for async measurements.
         self._xstats = (None, None)
         # TODO: Rename "xstats" to something opaque, so T-Rex is not privileged?
@@ -706,7 +707,7 @@ class TrafficGenerator(AbstractMeasurer):
 
     def trex_stl_start_remote_exec(
             self, duration, rate, frame_size, traffic_profile, async_call=False,
-            latency=True, warmup_time=5.0, traffic_directions=2, tx_port=0,
+            latency=False, warmup_time=5.0, traffic_directions=2, tx_port=0,
             rx_port=1):
         """Execute T-Rex STL script on remote node over ssh to start running
         traffic.
@@ -798,7 +799,7 @@ class TrafficGenerator(AbstractMeasurer):
 
     def send_traffic_on_tg(
             self, duration, rate, frame_size, traffic_profile, warmup_time=5,
-            async_call=False, latency=True, traffic_directions=2, tx_port=0,
+            async_call=False, latency=False, traffic_directions=2, tx_port=0,
             rx_port=1):
         """Send traffic from all configured interfaces on TG.
 
@@ -920,7 +921,7 @@ class TrafficGenerator(AbstractMeasurer):
 
     def set_rate_provider_defaults(
             self, frame_size, traffic_profile, warmup_time=0.0,
-            traffic_directions=2, negative_loss=True):
+            traffic_directions=2, negative_loss=True, latency=False):
         """Store values accessed by measure().
 
         :param frame_size: Frame size identifier or value [B].
@@ -930,17 +931,21 @@ class TrafficGenerator(AbstractMeasurer):
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
         :param negative_loss: If false, negative loss is reported as zero loss.
+        :param latency: Whether to measure latency during the trial.
+            Default: False.
         :type frame_size: str or int
         :type traffic_profile: str
         :type warmup_time: float
         :type traffic_directions: int
         :type negative_loss: bool
+        :type latency: bool
         """
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
         self.traffic_directions = traffic_directions
         self.negative_loss = negative_loss
+        self.use_latency = latency
 
     def get_measurement_result(self, duration=None, transmit_rate=None):
         """Return the result of last measurement as ReceiveRateMeasurement.
@@ -995,7 +1000,7 @@ class TrafficGenerator(AbstractMeasurer):
         unit_rate_int = transmit_rate / float(self.traffic_directions)
         self.send_traffic_on_tg(
             duration, unit_rate_int, self.frame_size, self.traffic_profile,
-            warmup_time=self.warmup_time, latency=True,
+            warmup_time=self.warmup_time, latency=self.use_latency,
             traffic_directions=self.traffic_directions
         )
         return self.get_measurement_result(duration, transmit_rate)
@@ -1082,7 +1087,7 @@ class OptimizedSearch:
             frame_size, traffic_profile, minimum_transmit_rate,
             maximum_transmit_rate, plr_target=1e-7, tdpt=0.1,
             initial_count=50, timeout=1800.0, trace_enabled=False,
-            traffic_directions=2):
+            traffic_directions=2, latency=False):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
         :param frame_size: Frame size identifier or value [B].
@@ -1104,6 +1109,8 @@ class OptimizedSearch:
         :param trace_enabled: True if trace enabled else False.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
+        :param latency: Whether to measure latency during the trial.
+            Default: False.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1113,6 +1120,7 @@ class OptimizedSearch:
         :type timeout: float
         :type trace_enabled: bool
         :type traffic_directions: int
+        :type latency: bool
         :returns: Average and stdev of estimated aggregate rate giving PLR.
         :rtype: 2-tuple of float
         """
@@ -1123,7 +1131,7 @@ class OptimizedSearch:
         )
         tg_instance.set_rate_provider_defaults(
             frame_size, traffic_profile, traffic_directions=traffic_directions,
-            negative_loss=False)
+            negative_loss=False, latency=latency)
         algorithm = PLRsearch(
             measurer=tg_instance, trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
