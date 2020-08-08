@@ -37,49 +37,6 @@
 | | ... | ${node['interfaces']['${int_out}']['name']}
 | | Set NAT44 Interfaces | ${node} | ${int_in_name} | ${int_out_name}
 
-| Configure deterministic mode for NAT44
-| | [Documentation] | Set deterministic behaviour of NAT44.
-| |
-| | ... | *Arguments:*
-| | ... | - node - DUT node to set deterministic mode for NAT44 on.
-| | ... | Type: dictionary
-| | ... | - ip_in - Inside IP. Type: string
-| | ... | - subnet_in - Inside IP subnet. Type: string
-| | ... | - ip_out - Outside IP. Type: string
-| | ... | - subnet_out - Outside IP subnet. Type: string
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Configure deterministic mode for NAT44 \| ${nodes['DUT1']} \
-| | ... | \| 100.0.0.0 \| 12 \| 12.1.1.0 \| 24 \|
-| |
-| | [Arguments] | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
-| |
-| | Set NAT44 deterministic | ${node} | ${ip_in} | ${subnet_in} | ${ip_out}
-| | ... | ${subnet_out}
-
-| Show NAT verbose
-| | [Documentation] | Get the NAT settings on the node.
-| |
-| | ... | *Arguments:*
-| | ... | - node - DUT node to show NAT. Type: dictionary
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Show NAT verbose \| ${nodes['DUT1']} \|
-| |
-| | [Arguments] | ${node}
-| |
-| | Show NAT | ${node}
-
-| Initialize NAT44 deterministic mode in circular topology
-| | [Documentation] | Initialization of NAT44 deterministic mode on DUT1
-| |
-| | Configure inside and outside interfaces
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
-| | Configure deterministic mode for NAT44
-| | ... | ${dut1} | ${in_net} | ${in_mask} | ${out_net} | ${out_mask}
-
 | Initialize NAT44 endpoint-dependent mode in circular topology
 | | [Documentation] | Initialization of NAT44 endpoint-dependent mode on DUT1
 | |
@@ -150,3 +107,86 @@
 | | ... | Vpp Route Add
 | | ... | ${dut2} | ${out_net} | ${out_mask} | gateway=${dut1_if2_ip4}
 | | ... | interface=${DUT2_${int}1}[0]
+
+# DET44 - NAT44 deterministic
+| Enable DET44 plugin on DUT
+| | [Documentation] | Enable DET44 plugin on DUT.
+| |
+| | ... | *Arguments:*
+| | ... | - node - DUT node to enablr DET44 on.
+| | ... | Type: dictionary
+| | ... | - inside_vrf - Inside VRF ID; default value: 0.
+| | ... | Type: string or integer
+| | ... | - outside_vrf - Outside VRF ID; default value: 0.
+| | ... | Type: string or integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Enable DET44 plugin on all DUTs \|
+| |
+| | [Arguments] | ${node} | ${inside_vrf}=${0} | ${outside_vrf}=${0}
+| |
+| | Enable DET44 Plugin
+| | ... | ${node} | inside_vrf=${inside_vrf} | outside_vrf=${outside_vrf}
+
+| Configure DET44 interfaces
+| | [Documentation] | Configure inside and outside interfaces for DET44.
+| |
+| | ... | *Arguments:*
+| | ... | - node - DUT node to set DET44 interfaces on. Type: dictionary
+| | ... | - int_in - Inside interface key. Type: string
+| | ... | - int_out - Outside interface key. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Configure DET44 interfaces \| ${nodes['DUT1']} \| port5 \| port6 \|
+| |
+| | [Arguments] | ${node} | ${int_in} | ${int_out}
+| |
+| | Set DET44 Interface | ${dut1} | ${int_in} | is_inside=${True}
+| | Set DET44 Interface | ${dut1} | ${int_out} | is_inside=${False}
+
+| Configure deterministic mode for NAT44
+| | [Documentation] | Set deterministic behaviour of NAT44 (DET44).
+| |
+| | ... | *Arguments:*
+| | ... | - node - DUT node to set deterministic mode for NAT44 on.
+| | ... | Type: dictionary
+| | ... | - ip_in - Inside IP. Type: string
+| | ... | - subnet_in - Inside IP subnet. Type: string
+| | ... | - ip_out - Outside IP. Type: string
+| | ... | - subnet_out - Outside IP subnet. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Configure deterministic mode for NAT44 \| ${nodes['DUT1']} \
+| | ... | \| 100.0.0.0 \| 12 \| 12.1.1.0 \| 24 \|
+| |
+| | [Arguments] | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
+| |
+| | Set DET44 Mapping
+| | ... | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
+
+| Initialize NAT44 deterministic mode in circular topology
+| | [Documentation] | Initialization of NAT44 deterministic mode (DET44)
+| | ... | on DUT1.
+| |
+| | Enable DET44 plugin on DUT | ${dut1}
+| | Configure DET44 interfaces
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
+| | Configure deterministic mode for NAT44
+| | ... | ${dut1} | ${in_net} | ${in_mask} | ${out_net} | ${out_mask}
+
+| Show DET44 verbose
+| | [Documentation] | Get DET44 settings on the node.
+| |
+| | ... | *Arguments:*
+| | ... | - node - DUT node to show NAT. Type: dictionary
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Show DET44 verbose \| ${nodes['DUT1']} \|
+| |
+| | [Arguments] | ${node}
+| |
+| | Show DET44 | ${node}

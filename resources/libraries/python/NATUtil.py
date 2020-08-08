@@ -21,6 +21,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.topology import Topology
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
@@ -55,7 +56,7 @@ class NATUtil:
         """Set inside and outside interfaces for NAT44.
 
         :param node: DUT node.
-        :param interface: Inside interface.
+        :param interface: NAT44 interface.
         :param flag: Interface NAT configuration flag name.
         :type node: dict
         :type interface: str
@@ -87,35 +88,6 @@ class NATUtil:
         """
         NATUtil.set_nat44_interface(node, int_in, u"NAT_IS_INSIDE")
         NATUtil.set_nat44_interface(node, int_out, u"NAT_IS_OUTSIDE")
-
-    @staticmethod
-    def set_nat44_deterministic(node, ip_in, subnet_in, ip_out, subnet_out):
-        """Set deterministic behaviour of NAT44.
-
-        :param node: DUT node.
-        :param ip_in: Inside IP.
-        :param subnet_in: Inside IP subnet.
-        :param ip_out: Outside IP.
-        :param subnet_out: Outside IP subnet.
-        :type node: dict
-        :type ip_in: str
-        :type subnet_in: str or int
-        :type ip_out: str
-        :type subnet_out: str or int
-        """
-        cmd = u"nat_det_add_del_map"
-        err_msg = f"Failed to set deterministic behaviour of NAT " \
-            f"on host {node[u'host']}"
-        args_in = dict(
-            is_add=True,
-            in_addr=IPv4Address(str(ip_in)).packed,
-            in_plen=int(subnet_in),
-            out_addr=IPv4Address(str(ip_out)).packed,
-            out_plen=int(subnet_out)
-        )
-
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
     @staticmethod
     def set_nat44_address_range(
@@ -186,14 +158,6 @@ class NATUtil:
         :param node: DUT node.
         :type node: dict
         """
-        cmd = u"nat_show_config"
-        err_msg = f"Failed to get NAT base data on host {node[u'host']}"
-
-        with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add(cmd).get_reply(err_msg)
-
-        logger.debug(f"NAT Configuration:\n{pformat(reply)}")
-
         cmds = [
             u"nat_worker_dump",
             u"nat44_interface_addr_dump",
@@ -215,16 +179,104 @@ class NATUtil:
         :param node: DUT node.
         :type node: dict
         """
-        cmd = u"nat_show_config"
-        err_msg = f"Failed to get NAT user data on host {node[u'host']}"
-
-        with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add(cmd).get_reply(err_msg)
-
-        logger.debug(f"NAT Configuration:\n{pformat(reply)}")
-
         cmds = [
             u"nat44_user_dump",
             u"nat44_user_session_dump",
+        ]
+        PapiSocketExecutor.dump_and_log(node, cmds)
+
+    # DET44 PAPI calls
+    # DET44 means deterministic mode of NAT
+    @staticmethod
+    def enable_det44_plugin(node, inside_vrf=0, outside_vrf=0):
+        """Enable DET44 plugin.
+
+        :param node: DUT node.
+        :param inside_vrf: Inside VRF ID.
+        :param outside_vrf: Outside VRF ID.
+        :type node: dict
+        :type inside_vrf: str or int
+        :type outside_vrf: str or int
+        """
+        cmd = u"det44_plugin_enable_disable"
+        err_msg = f"Failed to enable DET44 plugin on the host {node[u'host']}!"
+        args_in = dict(
+            enable=True,
+            inside_vrf=int(inside_vrf),
+            outside_vrf=int(outside_vrf)
+        )
+
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args_in).get_reply(err_msg)
+
+    @staticmethod
+    def set_det44_interface(node, if_key, is_inside):
+        """Enable DET44 feature on the interface.
+
+        :param node: DUT node.
+        :param if_key: Interface key from topology file of interface
+            to enable DET44 feature on.
+        :param is_inside: True if interface is inside, False if outside.
+        :type node: dict
+        :type if_key: str
+        :type is_inside: bool
+        """
+        cmd = u"det44_interface_add_dell_feature"
+        err_msg = f"Failed to enable DET44 feature on the interface {if_key} " \
+            f"on the host {node[u'host']}!"
+        args_in = dict(
+            is_add=True,
+            is_inside=is_inside,
+            sw_if_index=Topology.get_interface_sw_index(node, if_key)
+        )
+
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args_in).get_reply(err_msg)
+
+    @staticmethod
+    def set_det44_mapping(node, ip_in, subnet_in, ip_out, subnet_out):
+        """Set DET44 mapping.
+
+        :param node: DUT node.
+        :param ip_in: Inside IP.
+        :param subnet_in: Inside IP subnet.
+        :param ip_out: Outside IP.
+        :param subnet_out: Outside IP subnet.
+        :type node: dict
+        :type ip_in: str
+        :type subnet_in: str or int
+        :type ip_out: str
+        :type subnet_out: str or int
+        """
+        cmd = u"det44_add_del_map"
+        err_msg = f"Failed to set DET44 mapping on the host {node[u'host']}!"
+        args_in = dict(
+            is_add=True,
+            in_addr=IPv4Address(str(ip_in)).packed,
+            in_plen=int(subnet_in),
+            out_addr=IPv4Address(str(ip_out)).packed,
+            out_plen=int(subnet_out)
+        )
+
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args_in).get_reply(err_msg)
+
+    @staticmethod
+    def show_det44(node):
+        """Show DET44 data.
+
+        Used data sources:
+
+            det44_interface_dump
+            det44_map_dump
+            det44_session_dump
+
+        :param node: DUT node.
+        :type node: dict
+        """
+        cmds = [
+            u"det44_interface_dump",
+            u"det44_map_dump",
+            u"det44_session_dump",
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
