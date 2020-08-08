@@ -77,6 +77,17 @@
     create_vhost_user_if_reply: '0x5383d31f'  # dev
     create_vlan_subif: '0xaf34ac8b'  # dev
     create_vlan_subif_reply: '0x5383d31f'  # dev
+    det44_add_del_map: '0x1150a190'  # perf
+    det44_interface_add_del_feature: '0xdc17a836'  # perf
+    det44_interface_add_del_feature_reply: '0xe8d4e804'  # perf
+    det44_interface_details: '0xad91dc83'  # perf teardown
+    det44_interface_dump: '0x51077d14'  # perf teardown
+    det44_map_details: '0x51077d14'  # perf teardown
+    det44_map_dump: '0x51077d14'  # perf teardown
+    det44_add_del_map_reply: '0xe8d4e804'  # perf teardown
+    det44_plugin_enable_disable: '0xfc4b5d73'  # perf
+    det44_plugin_enable_disable_reply: '0xe8d4e804'  # perf
+    det44_session_dump: '0xe45a3af7'  # perf teardown
     # dhcp_proxy_dump / details # honeycomb
     gbp_bridge_domain_add: '0x8454bfdf'  # dev
     gbp_bridge_domain_add_reply: '0xe8d4e804'  # dev
@@ -191,8 +202,6 @@
     nat44_user_dump: '0x51077d14'  # perf teardown
     nat44_user_session_details: '0x1965fd69'  # perf teardown
     nat44_user_session_dump: '0xe1899c98'  # perf teardown
-    nat_det_add_del_map: '0x112fde05'  # perf
-    nat_det_add_del_map_reply: '0xe8d4e804'  # perf
     nat_show_config: '0x51077d14'  # perf teardown
     nat_show_config_reply: '0x7903ef06'  # perf teardown
     nat_worker_details: '0x84bf06fc'  # perf teardown
