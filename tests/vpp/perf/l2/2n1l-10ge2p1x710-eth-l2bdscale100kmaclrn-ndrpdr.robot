@@ -62,7 +62,7 @@
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4-macsrc50kdst50k
+| ${traffic_profile}= | trex-stl-2n-ethip4-macsrc50kdst50k
 
 *** Keywords ***
 | Local Template

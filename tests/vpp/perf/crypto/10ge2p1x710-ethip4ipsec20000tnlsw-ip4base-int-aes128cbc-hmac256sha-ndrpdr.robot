@@ -75,7 +75,7 @@
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${20000}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
+| ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
 | Local Template

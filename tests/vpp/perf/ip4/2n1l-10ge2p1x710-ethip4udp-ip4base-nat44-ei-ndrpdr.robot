@@ -79,7 +79,7 @@
 | ${out_net}= | 200.0.0.0
 | ${out_mask}= | ${32}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4udp-1u1p
+| ${traffic_profile}= | trex-stl-2n-ethip4udp-1u1p
 
 *** Keywords ***
 | Local Template

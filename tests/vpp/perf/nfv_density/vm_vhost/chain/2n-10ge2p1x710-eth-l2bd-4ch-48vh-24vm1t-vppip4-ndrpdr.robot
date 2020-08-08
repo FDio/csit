@@ -66,7 +66,7 @@
 | ${nf_chains}= | ${4}
 | ${nf_nodes}= | ${6}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-4c6n
+| ${traffic_profile}= | trex-stl-2n3n-ethip4-ip4src254-4c6n
 
 *** Keywords ***
 | Local Template

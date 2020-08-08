@@ -69,7 +69,7 @@
 | ${nf_nodes}= | ${1}
 # Traffic profile:
 | ${traffic_profile}=
-| ... | trex-sl-ethip4vxlan-ip4src${nf_chains}udpsrcrnd
+| ... | trex-stl-ethip4vxlan-ip4src${nf_chains}udpsrcrnd
 | ${acl_type}= | permit+reflect
 
 *** Keywords ***

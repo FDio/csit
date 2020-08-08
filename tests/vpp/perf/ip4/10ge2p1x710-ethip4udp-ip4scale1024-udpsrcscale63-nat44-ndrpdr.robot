@@ -61,7 +61,7 @@
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-ethip4udp-1024u63p
+| ${traffic_profile}= | trex-stl-ethip4udp-1024u63p
 # IP addressing
 | ${tg_if1_ip4}= | 10.0.0.2
 | ${tg_if1_mask}= | 20

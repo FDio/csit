@@ -69,7 +69,7 @@
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-dot1qip4asym-ip4src254
+| ${traffic_profile}= | trex-stl-2n-dot1qip4asym-ip4src254
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain

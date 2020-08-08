@@ -61,7 +61,7 @@
 | ${eir}= | ${150}
 | ${dscp}= | AF22
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4-ip4src253
+| ${traffic_profile}= | trex-stl-2n-ethip4-ip4src253
 
 *** Keywords ***
 | Local Template

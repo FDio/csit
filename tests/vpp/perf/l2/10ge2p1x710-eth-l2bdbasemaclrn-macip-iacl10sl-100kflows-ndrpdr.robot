@@ -77,7 +77,7 @@
 | ${tg_stream1_subnet}= | 10.0.0.0/15
 | ${tg_stream2_subnet}= | 20.0.0.0/15
 # traffic profile
-| ${traffic_profile}= | trex-sl-3n-ethip4-macsrc100kip4src100k
+| ${traffic_profile}= | trex-stl-3n-ethip4-macsrc100kip4src100k
 
 *** Keywords ***
 | Local Template

@@ -91,7 +91,7 @@
 | ${prefix}= | ${64}
 | ${mem_prefix}= | ${128}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip6-ip6src253
+| ${traffic_profile}= | trex-stl-3n-ethip6-ip6src253
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain
