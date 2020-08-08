@@ -101,13 +101,14 @@
 | | ... | Keyword Should Exist | vnf_manager.Kill All VMs
 | | Run Keyword If | '${vnf_status}' == 'PASS' | vnf_manager.Kill All VMs
 
-| Additional Test Tear Down Action For nat
+| Additional Test Tear Down Action For det44
 | | [Documentation]
-| | ... | Additional teardown for tests which uses NAT feature.
+| | ... | Additional teardown for tests which uses DET44 feature.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If Test Failed
-| | | ... | Show NAT verbose | ${nodes['${dut}']}
+#| | | Run Keyword If Test Failed
+#| | | ... | Show DET44 verbose | ${nodes['${dut}']}
+| | | Show DET44 verbose | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For nat-ed
