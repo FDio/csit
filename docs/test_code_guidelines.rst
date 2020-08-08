@@ -107,7 +107,7 @@ RobotFramework test case files and resource files
     to make assigning variables slightly more explicit::
 
         *** Variables ***
-        | ${traffic_profile}= | trex-sl-2n-ethip4-ip4src254
+        | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src254
 
   + Common test case specific settings of the test environment SHALL be done
     in Test Setup keyword defined in the Setting table.

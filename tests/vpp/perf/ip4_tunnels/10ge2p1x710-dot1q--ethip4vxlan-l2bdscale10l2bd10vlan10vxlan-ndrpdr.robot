@@ -61,7 +61,7 @@
 | ${osi_layer}= | L2
 | ${overhead}= | ${50}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-dot1qip4-vlan10ip4src254ip4dst254
+| ${traffic_profile}= | trex-stl-3n-dot1qip4-vlan10ip4src254ip4dst254
 # Number of VXLAN tunnels
 | ${vxlan_count}= | ${10}
 

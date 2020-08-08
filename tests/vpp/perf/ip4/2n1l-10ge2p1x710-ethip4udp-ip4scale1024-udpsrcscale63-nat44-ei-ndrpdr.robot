@@ -76,7 +76,7 @@
 | ${out_net}= | 68.142.68.0
 | ${out_mask}= | ${32}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-ethip4udp-1024u63p
+| ${traffic_profile}= | trex-stl-ethip4udp-1024u63p
 
 *** Keywords ***
 | Local Template

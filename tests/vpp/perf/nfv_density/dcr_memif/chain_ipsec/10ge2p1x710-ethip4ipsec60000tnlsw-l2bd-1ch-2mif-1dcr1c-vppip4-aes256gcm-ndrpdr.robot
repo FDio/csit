@@ -73,7 +73,7 @@
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}-${n_instances}cnf
+| ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}-${n_instances}cnf
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_ipsec

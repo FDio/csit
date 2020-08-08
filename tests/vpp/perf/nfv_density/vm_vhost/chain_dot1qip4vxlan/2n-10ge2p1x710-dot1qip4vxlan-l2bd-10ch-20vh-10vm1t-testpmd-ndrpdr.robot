@@ -70,7 +70,7 @@
 | ${nf_nodes}= | ${1}
 # Traffic profile:
 | ${traffic_profile}=
-| ... | trex-sl-dot1qip4vxlan-ip4src${nf_chains}udpsrcrnd
+| ... | trex-stl-dot1qip4vxlan-ip4src${nf_chains}udpsrcrnd
 
 *** Keywords ***
 | Local Template

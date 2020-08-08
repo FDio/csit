@@ -77,7 +77,7 @@
 | ${dut_lo_ip4}= | 192.168.4.4
 | ${ip4_plen}= | ${24}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
+| ${traffic_profile}= | trex-stl-3n-ethip4-ip4src253
 
 *** Keywords ***
 | Local Template

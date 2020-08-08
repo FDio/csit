@@ -60,7 +60,7 @@
 | ${osi_layer}= | L2
 | ${overhead}= | ${50}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-stl-3n-ethip4-ip4src254
 
 *** Keywords ***
 | Local Template

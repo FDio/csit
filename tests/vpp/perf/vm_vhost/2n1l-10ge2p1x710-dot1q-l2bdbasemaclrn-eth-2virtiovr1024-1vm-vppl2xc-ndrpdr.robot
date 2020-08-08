@@ -71,7 +71,7 @@
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-dot1qip4asym-ip4src254
+| ${traffic_profile}= | trex-stl-2n-dot1qip4asym-ip4src254
 
 *** Keywords ***
 | Local Template

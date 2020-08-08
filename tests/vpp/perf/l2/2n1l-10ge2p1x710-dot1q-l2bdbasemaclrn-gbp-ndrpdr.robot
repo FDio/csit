@@ -68,7 +68,7 @@
 | ${osi_layer}= | L2
 | ${overhead}= | ${4}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-dot1qip4-vlan1ip4src254ip4dst254-bvi
+| ${traffic_profile}= | trex-stl-dot1qip4-vlan1ip4src254ip4dst254-bvi
 
 *** Keywords ***
 | Local template
