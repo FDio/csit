@@ -556,3 +556,56 @@
 | | ... | --dir0_dstsid3 ${tg_dstsid3} | --dir1_dstsid3 ${dut_dstsid3}
 | | ... | --static_proxy ${static_proxy}
 | | Run Traffic Script On Node | srv6_encap.py | ${node} | ${args}
+
+| Send TCP or UDP packet and verify network address translations
+| | [Documentation] | Send TCP or UDP packet from TG-if1 to TG-if2 and response\
+| | ... | response in opposite direction via DUT with configured NAT. Check\
+| | ... | packet headers on both sides.
+| |
+| | ... | *Arguments:*
+| |
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ... | TG(if1)->(if1)DUT(if2)->TG(if2)
+| |
+| | ... | - tg_node - Node where to run traffic script. Type: dictionary
+| | ... | - tx_interface - TG Interface 1. Type: string
+| | ... | - rx_interface - TG Interface 2. Type: string
+| | ... | - tx_dst_mac - Destination MAC for TX interface / DUT interface 1 MAC.
+| | ... | Type: string
+| | ... | - rx_src_mac - Source MAC for RX interface / DUT interface 2 MAC.
+| | ... | Type: string
+| | ... | - src_ip_in - Internal source IP address. Type: string
+| | ... | - src_ip_out - External source IP address. Type: string
+| | ... | - dst_ip - Destination IP address. Type: string
+| | ... | - protocol - TCP or UDP protocol. Type: string
+| | ... | - src_port_in - Internal source TCP/UDP port. Type: string or integer
+| | ... | - src_port_out - External source TCP/UDP port; default value: unknown.
+| | ... | Type: string or integer
+| | ... | - dst_port - Destination TCP/UDP port. Type: string or integer
+| |
+| | ... | *Return:*
+| | ... | - No value returned
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Send TCP or UDP packet and verify network address translations \
+| | ... | \| ${nodes['TG']} \| port1 \| port2 \| 08:00:27:cc:4f:54 \
+| | ... | \| 08:00:27:c9:6a:d5 \| 192.168.0.0 \| 68.142.68.0 \| 20.0.0.0 \
+| | ... | \| TCP \| 1024 \| 8080 \|
+| |
+| | [Arguments] | ${tg_node} | ${tx_interface} | ${rx_interface} | ${tx_dst_mac}
+| | ... | ${rx_src_mac} | ${src_ip_in} | ${src_ip_out} | ${dst_ip}
+| | ... | ${protocol} | ${src_port_in} | ${dst_port} | ${src_port_out}=unknown
+| |
+| | ${tx_src_mac}= | Get Interface Mac | ${tg_node} | ${tx_interface}
+| | ${tx_if_name}= | Get Interface Name | ${tg_node} | ${tx_interface}
+| | ${rx_dst_mac}= | Get Interface Mac | ${tg_node} | ${rx_interface}
+| | ${rx_if_name}= | Get Interface Name | ${tg_node} | ${rx_interface}
+| | ${args}= | Catenate | --rx_if ${rx_if_name} | --tx_if ${tx_if_name}
+| | ... | --tx_src_mac ${tx_src_mac} | --tx_dst_mac ${tx_dst_mac}
+| | ... | --rx_src_mac ${rx_src_mac} | --rx_dst_mac ${rx_dst_mac}
+| | ... | --src_ip_in ${src_ip_in} | --src_ip_out ${src_ip_out}
+| | ... | --dst_ip ${dst_ip} | --protocol ${protocol}
+| | ... | --src_port_in ${src_port_in} | --src_port_out ${src_port_out}
+| | ... | --dst_port ${dst_port}
+| | Run Traffic Script On Node | nat.py | ${tg_node} | ${args}
