@@ -61,7 +61,7 @@
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4-ip4src254
+| ${traffic_profile}= | trex-stl-2n-ethip4-ip4src254
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain

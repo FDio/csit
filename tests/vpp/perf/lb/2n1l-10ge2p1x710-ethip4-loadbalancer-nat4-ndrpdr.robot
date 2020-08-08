@@ -58,7 +58,7 @@
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4udp-lb
+| ${traffic_profile}= | trex-stl-2n-ethip4udp-lb
 
 *** Keywords ***
 | Local Template

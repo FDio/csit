@@ -66,7 +66,7 @@
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${8}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-1c8n
+| ${traffic_profile}= | trex-stl-2n3n-ethip4-ip4src254-1c8n
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_ip4

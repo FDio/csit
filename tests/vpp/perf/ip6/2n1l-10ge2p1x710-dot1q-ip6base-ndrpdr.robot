@@ -65,7 +65,7 @@
 | ${tg_if1_net}= | 2001:1::0
 | ${tg_if2_net}= | 2001:2::0
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-dot1qip6asym-ip6src253
+| ${traffic_profile}= | trex-stl-2n-dot1qip6asym-ip6src253
 
 *** Keywords ***
 | Local Template

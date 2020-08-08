@@ -615,7 +615,7 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             if u"trex-astf" in self.traffic_profile:
                 self.trex_astf_stop_remote_exec(self._node)
-            elif u"trex-sl" in self.traffic_profile:
+            elif u"trex-stl" in self.traffic_profile:
                 self.trex_stl_stop_remote_exec(self._node)
             else:
                 raise ValueError(u"Unsupported T-Rex traffic profile!")
@@ -892,8 +892,7 @@ class TrafficGenerator(AbstractMeasurer):
                     async_call, latency, warmup_time, traffic_directions,
                     tx_port, rx_port
                 )
-            # TODO: rename all t-rex stateless profiles to use 'trex-stl'
-            elif u"trex-sl" in self.traffic_profile:
+            elif u"trex-stl" in self.traffic_profile:
                 unit_rate_str = str(rate) + u"pps"
                 self.trex_stl_start_remote_exec(
                     duration, unit_rate_str, frame_size, self.traffic_profile,
