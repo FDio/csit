@@ -111,10 +111,6 @@
 1c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sl-10kflows
 2c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sl-10kflows
 4c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sl-10kflows
-##### ethip4udp-ip4base-nat44
-1c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
-2c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
-4c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
 ## ./ip4_tunnels
 ### intel-x520-da2
 #### dpdk-vfio-pci

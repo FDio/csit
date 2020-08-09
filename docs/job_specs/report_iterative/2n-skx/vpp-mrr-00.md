@@ -111,10 +111,10 @@
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-ip4base-oacl50sl-10kflows
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-ip4base-oacl50sl-10kflows
 4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-ip4base-oacl50sl-10kflows
-##### ethip4udp-ip4base-nat44
-1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-ip4base-nat44
-2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-ip4base-nat44
-4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-ip4base-nat44
+##### ethip4udp-snat44det-h1-p1-s1
+1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1-p1-s1
+2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1-p1-s1
+4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1-p1-s1
 ##### ethip4udp-snat44det-h1024-p63-s64512
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1024-p63-s64512
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1024-p63-s64512
@@ -148,10 +148,10 @@
 1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
-##### ethip4udp-ip4base-nat44
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
+##### ethip4udp-snat44det-h1-p1-s1
+1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4udp-snat44det-h1-p1-s1
+2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4udp-snat44det-h1-p1-s1
+4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4udp-snat44det-h1-p1-s1
 ## ./ip4_tunnels
 ## ./ip6
 ### intel-x710
