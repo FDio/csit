@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0a2f1b8_3b3953c4",
+        "filename": "GPL/traffic_profiles/trex/trex-astf-ethip4udp-262144h.py",
+        "patchSetId": 131
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-10T13:17:59Z",
+      "side": 1,
+      "message": "Not needed, it prevents trials with larger durations.\nIt limits the number of flows generated (active flows, which means total transactions, not a number of flows open at a time).\n\nhttps://trex-tgn.cisco.com/trex/doc/cp_astf_docs/api/profile_code.html#astftcpclienttemplate-class",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 18
+      },
+      "revId": "17ecc30e073524cb6af110ce7e446e741f9a64fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
