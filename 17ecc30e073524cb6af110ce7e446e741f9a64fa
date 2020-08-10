@@ -22,6 +22,52 @@
       "revId": "17ecc30e073524cb6af110ce7e446e741f9a64fa",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6575393_70cdc375",
+        "filename": "resources/libraries/python/NATUtil.py",
+        "patchSetId": 131
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-10T14:31:35Z",
+      "side": 1,
+      "message": "is this nat global or nat44?",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 23
+      },
+      "revId": "17ecc30e073524cb6af110ce7e446e741f9a64fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a7ba108_22351997",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 131
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-10T14:31:35Z",
+      "side": 1,
+      "message": "make sure you check all tests that will be affected. Still not clear to me how this affects basic tests.",
+      "range": {
+        "startLine": 44,
+        "startChar": 30,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "17ecc30e073524cb6af110ce7e446e741f9a64fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
