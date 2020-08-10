@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "eacf16c4_92b070cb",
+        "filename": "GPL/tools/trex/trex_astf_stop.py",
+        "patchSetId": 128
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Removed. Will be handled when needed for some tests.",
+      "parentUuid": "dcf765cf_b5d0bbc2",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 2
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4d4c90f_fb68ad13",
         "filename": "resources/libraries/python/Constants.py",
         "patchSetId": 128
@@ -45,6 +69,30 @@
       "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed9a1d31_4593a51c",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 128
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4d4c90f_fb68ad13",
+      "range": {
+        "startLine": 198,
+        "startChar": 59,
+        "endLine": 198,
+        "endChar": 60
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "29958d49_3d4e5b4f",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08a37ad9_d6eee59c",
+      "range": {
+        "startLine": 457,
+        "startChar": 0,
+        "endLine": 465,
+        "endChar": 50
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5619005_47d67a68",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 128
@@ -91,6 +163,30 @@
       "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdca454c_3071954b",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5619005_47d67a68",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 49
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "5a6244cb_a8abb4e9",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a7784e2_f6db776e",
+      "range": {
+        "startLine": 253,
+        "startChar": 36,
+        "endLine": 253,
+        "endChar": 41
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b668a3d_6dd3e895",
         "filename": "resources/libraries/robot/shared/default.robot",
         "patchSetId": 128
@@ -137,6 +257,30 @@
       "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0c87edf_9928289a",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b668a3d_6dd3e895",
+      "range": {
+        "startLine": 271,
+        "startChar": 55,
+        "endLine": 271,
+        "endChar": 65
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "75742908_ba815596",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-h1024-p63-s64512-ndrpdr.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c5e885d_21f42af8",
+      "range": {
+        "startLine": 35,
+        "startChar": 36,
+        "endLine": 35,
+        "endChar": 39
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e74aa3fa_162abe37",
         "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-h1024-p63-s64512-ndrpdr.robot",
         "patchSetId": 128
@@ -174,6 +342,30 @@
       "writtenOn": "2020-08-07T08:48:18Z",
       "side": 1,
       "message": "If astf profiles need more time, add it by editing their launcher.\nDo not override what the job wants.",
+      "range": {
+        "startLine": 64,
+        "startChar": 26,
+        "endLine": 64,
+        "endChar": 28
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0db0ad2_7405db14",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-h1024-p63-s64512-ndrpdr.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "It\u0027s not a question of astf profile but test type. There will be introduced new test type (CPS test) but meantime we are using MRR tests to get required traffic data.",
+      "parentUuid": "e74aa3fa_162abe37",
       "range": {
         "startLine": 64,
         "startChar": 26,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "a5211337_efc20373",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-h1024-p63-s64512-ndrpdr.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d4b4a16_4c958c65",
+      "range": {
+        "startLine": 94,
+        "startChar": 10,
+        "endLine": 94,
+        "endChar": 27
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2855e269_ea5edb5c",
         "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-h16384-p63-s1032192-ndrpdr.robot",
         "patchSetId": 128
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "dbcd29ed_80030969",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-h16384-p63-s1032192-ndrpdr.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2855e269_ea5edb5c",
+      "range": {
+        "startLine": 35,
+        "startChar": 36,
+        "endLine": 35,
+        "endChar": 39
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75ea5d98_c5aa9de5",
         "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-nat44-ei-ndrpdr.robot",
         "patchSetId": 128
@@ -243,6 +483,30 @@
       "writtenOn": "2020-08-07T10:46:08Z",
       "side": 1,
       "message": "If this is a replacement for the existing nat44 test, we need to update job specs (to stop trying to run the old one) and PAL (to recognize the new results as a continuation of the old ones).",
+      "range": {
+        "startLine": 23,
+        "startChar": 31,
+        "endLine": 23,
+        "endChar": 34
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4965774_9ad33b88",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-nat44-ei-ndrpdr.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Yes, you are right. Will ping Tibor to update PAL.",
+      "parentUuid": "75ea5d98_c5aa9de5",
       "range": {
         "startLine": 23,
         "startChar": 31,
@@ -326,6 +590,30 @@
     },
     {
       "key": {
+        "uuid": "5ad5504e_cc2db5bf",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-snat44ed-h4096-p63-s258048-cps-ndrpdr.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94edcbeb_3db84888",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 45
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93e726f5_1a2ad0d0",
         "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-snat44ed-h65536-p63-s4128768-cps-ndrpdr.robot",
         "patchSetId": 128
@@ -346,6 +634,30 @@
       "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a446fcfc_a4e66524",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-snat44ed-h65536-p63-s4128768-cps-ndrpdr.robot",
+        "patchSetId": 128
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93e726f5_1a2ad0d0",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 56
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -441,6 +753,30 @@
       "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43c5672a_f7743d0a",
+        "filename": "topologies/available/lf_2n_skx_testbed24.yaml",
+        "patchSetId": 128
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-10T11:09:34Z",
+      "side": 1,
+      "message": "Removed as it is out of the scope of this patch. It will be included in separate patch that will introduce new type of tests (T-Rex back-to-back testing without any DUT inlcuded).",
+      "parentUuid": "aeab278e_d134bc88",
+      "range": {
+        "startLine": 74,
+        "startChar": 26,
+        "endLine": 74,
+        "endChar": 29
+      },
+      "revId": "f4dc645a27f7c27901af692c2a85539f03a20d1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
