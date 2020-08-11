@@ -167,6 +167,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.warmup_time = None
         self.traffic_directions = None
         self.negative_loss = None
+        self.resetter = None
         # Transient data needed for async measurements.
         self._xstats = (None, None)
         # TODO: Rename "xstats" to something opaque, so T-Rex is not privileged?
@@ -920,7 +921,7 @@ class TrafficGenerator(AbstractMeasurer):
 
     def set_rate_provider_defaults(
             self, frame_size, traffic_profile, warmup_time=0.0,
-            traffic_directions=2, negative_loss=True):
+            traffic_directions=2, negative_loss=True, resetter=None):
         """Store values accessed by measure().
 
         :param frame_size: Frame size identifier or value [B].
@@ -930,17 +931,20 @@ class TrafficGenerator(AbstractMeasurer):
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
         :param negative_loss: If false, negative loss is reported as zero loss.
+        :param resetter: Callable to reset DUT state for repeated trials.
         :type frame_size: str or int
         :type traffic_profile: str
         :type warmup_time: float
         :type traffic_directions: int
         :type negative_loss: bool
+        :type resetter: Optional[Callable[[], None]]
         """
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
         self.traffic_directions = traffic_directions
         self.negative_loss = negative_loss
+        self.resetter = resetter
 
     def get_measurement_result(self, duration=None, transmit_rate=None):
         """Return the result of last measurement as ReceiveRateMeasurement.
@@ -977,6 +981,7 @@ class TrafficGenerator(AbstractMeasurer):
     def measure(self, duration, transmit_rate):
         """Run trial measurement, parse and return aggregate results.
 
+        Optionally, call resetter before performing the trial.
         Aggregate means sum over traffic directions.
 
         :param duration: Trial duration [s].
@@ -993,6 +998,8 @@ class TrafficGenerator(AbstractMeasurer):
         duration = float(duration)
         # TG needs target Tr per stream, but reports aggregate Tx and Dx.
         unit_rate_int = transmit_rate / float(self.traffic_directions)
+        if self.resetter:
+            self.resetter()
         self.send_traffic_on_tg(
             duration, unit_rate_int, self.frame_size, self.traffic_profile,
             warmup_time=self.warmup_time, latency=True,
