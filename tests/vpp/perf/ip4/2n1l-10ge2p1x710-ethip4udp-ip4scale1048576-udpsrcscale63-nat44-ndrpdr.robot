@@ -101,8 +101,10 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize NAT44 in circular topology
+| | ${resetter} = | And Initialize NAT44 in circular topology
+| | Set Test Variable | \${resetter}
 | | Then Find NDR and PDR intervals using optimized search
+| | ... | resetter=${resetter}
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-ip4scale1048576-udpsrcscale63-nat44-ndrpdr
