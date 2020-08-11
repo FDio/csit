@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "12a23490_2e63c5a0",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-11T15:34:24Z",
+      "side": 1,
+      "message": "Current UDP code AFAICT includes only client request and server ack sequence as a complete UDP transaction, hence no delay there :). If we decide it is more appropriate to have a a separate connect, hold, close phases for UDP, we can add the delay, similar to TCP.",
+      "parentUuid": "c1940e82_17b4f754",
+      "range": {
+        "startLine": 66,
+        "startChar": 58,
+        "endLine": 66,
+        "endChar": 63
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5af5eca_af6c4f64",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7e1f188_572600cc",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-11T15:34:24Z",
+      "side": 1,
+      "message": "Added now for TCP and UDP.",
+      "parentUuid": "d5af5eca_af6c4f64",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 17
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8cc64b92_22366ccc",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-11T15:34:24Z",
+      "side": 1,
+      "message": "I do see \"--duration\" parameter used in ASTF call, e.g. https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-skx/1783/archives/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k10-k1-k6-k1-k1",
+      "parentUuid": "aaf3f118_66e3258b",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 10
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87b74d0b_5592ac7f",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2020-08-11T14:03:26Z",
       "side": 1,
       "message": "What is an action counter? There is a difference between various telemetry counters (useful for debugging and presentation of secondary data, think latency) and primary trial results (attempted transaction count, failed transaction count, sustain duration estimate) which affect search behavior.\n\nBoth transaction counts will probably be computed by some formulas from \"action counters\" (the final ones, read after duration), but it is not clear what the formulas are. Perhaps these?\nattempted_transaction_count \u003d clinet_udps_connects\nfailed_transaction_count \u003d client_udps_connects -  client_udps_closed",
+      "range": {
+        "startLine": 139,
+        "startChar": 5,
+        "endLine": 139,
+        "endChar": 19
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4e61e4d_0407e0d1",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-11T15:34:24Z",
+      "side": 1,
+      "message": "\"action counter\" means action needs to be taken, IOW counters must be processed. \n\nOtherwise good comments, added more description in the spec.",
+      "parentUuid": "87b74d0b_5592ac7f",
       "range": {
         "startLine": 139,
         "startChar": 5,
@@ -197,6 +293,30 @@
       "writtenOn": "2020-08-11T14:03:26Z",
       "side": 1,
       "message": "The same, but I expect the formulas can be more complicated.\n\nattempted_transaction_count \u003d client_tcps_connattempt\nfailed_transaction_count \u003d client_tcps_connattempt - server_tcps_connects",
+      "range": {
+        "startLine": 279,
+        "startChar": 5,
+        "endLine": 279,
+        "endChar": 19
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "307de73c_68bb24f7",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-11T15:34:24Z",
+      "side": 1,
+      "message": "Added these and more formulas to get us started.",
+      "parentUuid": "e49d5952_5668534f",
       "range": {
         "startLine": 279,
         "startChar": 5,
