@@ -183,6 +183,8 @@
     nat_show_config_reply: '0x7903ef06'  # perf teardown
     # 6x^ tc01-64B-1c-ethip4udp-ip4base-nat44-mrr
     # ^ nat44NOTscaleNOTsrc_user_1
+    nat_worker_dump: '0x51077d14'  # perf teardown
+    # ?^ new ASTF suite? FIXME
     nsim_configure: '0x16ed400f'  # perf
     nsim_configure_reply: '0xe8d4e804'  # perf
     nsim_output_feature_enable_disable: '0x3865946c'  # perf

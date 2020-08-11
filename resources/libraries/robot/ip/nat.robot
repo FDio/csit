@@ -40,6 +40,10 @@
 | Configure deterministic mode for NAT44
 | | [Documentation] | Set deterministic behaviour of NAT44.
 | |
+| | ... | This keyword also sets a test variable \${resetter}
+| | ... | to hold a callable which resets VPP state.
+| | ... | Keywords performing search will call it to get consistent trials.
+| |
 | | ... | *Arguments:*
 | | ... | - node - DUT node to set deterministic mode for NAT44 on.
 | | ... | Type: dictionary
@@ -55,8 +59,9 @@
 | |
 | | [Arguments] | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
 | |
-| | Set NAT44 deterministic | ${node} | ${ip_in} | ${subnet_in} | ${ip_out}
-| | ... | ${subnet_out}
+| | ${resetter} = | Set NAT44 deterministic | ${node} | ${ip_in} | ${subnet_in}
+| | ... | ${ip_out} | ${subnet_out}
+| | Set Test Variable | \${resetter}
 
 | Show NAT verbose
 | | [Documentation] | Get the NAT settings on the node.
@@ -80,6 +85,10 @@
 | | ... | - set ARP
 | | ... | - create routes
 | | ... | - set NAT44 - only on DUT1
+| |
+| | ... | This keyword also (indirectly) sets a test variable \${resetter}
+| | ... | to hold a callable which resets VPP state.
+| | ... | Keywords performing search will call it to get consistent trials.
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
@@ -154,4 +163,3 @@
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
 | | Configure deterministic mode for NAT44
 | | ... | ${dut1} | ${inside_net} | ${inside_mask} | ${nat_net} | ${nat_mask}
-

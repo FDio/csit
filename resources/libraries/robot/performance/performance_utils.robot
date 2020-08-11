@@ -32,6 +32,20 @@
 | ${extended_debug}= | ${EXTENDED_DEBUG}
 
 *** Keywords ***
+| Call Resetter
+| | [Documentation]
+| | ... | Check for a presence of test variable \${resetter}.
+| | ... | If it exists (and is not None), call it (as a Python callable).
+| | ... | This is usually used to reset any state on DUT before next trial.
+| |
+| | ... | TODO: Move to a more reusable library.
+| |
+| | ${resetter} = | Get Variable Value | \${resetter} | ${None}
+| | # See http://robotframework.org/robotframework/3.1.2/libraries/BuiltIn.html
+| | # #Evaluating%20expressions for $variable (without braces) syntax.
+| | # Parens are there to perform the call.
+| | Run Keyword If | ${resetter} | Evaluate | $resetter()
+
 | Find NDR and PDR intervals using optimized search
 | | [Documentation]
 | | ... | Find boundaries for RFC2544 compatible NDR and PDR values
@@ -46,6 +60,7 @@
 | | ... | Currently, the min_rate value is hardcoded to 90kpps,
 | | ... | allowing measurement at 10% of the discovered rate
 | | ... | without breaking latency streams.
+| | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
@@ -79,6 +94,7 @@
 | | ... | ${doublings}=${2} | ${traffic_directions}=${2}
 | | ... | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
 | |
+| | ${resetter} = | Get Variable Value | \${resetter} | ${None}
 | | # Latency measurements will need more than 9000 pps.
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${traffic_profile} | ${9001} | ${max_rate}
@@ -86,6 +102,7 @@
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
+| | ... | resetter=${resetter}
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
@@ -124,6 +141,7 @@
 | | ... | aggregate throughput using MLRsearch algorithm.
 | | ... | Input rates are understood as uni-directional.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
+| | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
@@ -158,12 +176,14 @@
 | | ... | ${number_of_intermediate_phases}=${1} | ${timeout}=${720.0}
 | | ... | ${doublings}=${2} | ${traffic_directions}=${2}
 | |
+| | ${resetter} = | Get Variable Value | \${resetter} | ${None}
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${traffic_profile} | ${10000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
+| | ... | resetter=${resetter}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Return From Keyword | ${result.pdr_interval.measured_low.target_tr}
@@ -177,6 +197,7 @@
 | | ... | Input rates are understood as uni-directional,
 | | ... | reported result contains aggregate rates.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
+| | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
@@ -200,10 +221,11 @@
 | | ... | ${traffic_directions}=${2}
 | |
 | | ${min_rate} = | Set Variable | ${10000}
+| | ${resetter} = | Get Variable Value | \${resetter} | ${None}
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
 | | ... | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${packet_loss_ratio} | timeout=${timeout}
-| | ... | traffic_directions=${traffic_directions}
+| | ... | traffic_directions=${traffic_directions} | resetter=${resetter}
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Should Not Be True | 1.1 * ${traffic_directions} * ${min_rate} > ${lower}
@@ -358,6 +380,7 @@
 | Traffic should pass with maximum rate
 | | [Documentation]
 | | ... | Send traffic at maximum rate.
+| | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
@@ -406,6 +429,7 @@
 | | ... | Then send traffic at specified rate, possibly multiple trials.
 | | ... | Show various DUT stats, optionally also packet trace.
 | | ... | Return list of measured receive rates.
+| | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Arguments:*
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
@@ -445,6 +469,7 @@
 | | END
 | | ${results} = | Create List
 | | FOR | ${i} | IN RANGE | ${trial_multiplicity}
+| | | Call Resetter
 | | | # The following line is skipping some default arguments,
 | | | # that is why subsequent arguments have to be named.
 | | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
@@ -466,6 +491,7 @@
 | | ... | Extract latency information and append it to text message.
 | | ... | The rate argument is int, so should not include "pps".
 | | ... | If the given rate is too low, a safe value is used instead.
+| | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Arguments:*
 | | ... | - message_prefix - Preface to test message addition. Type: string
@@ -493,6 +519,7 @@
 | | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}=${2}
 | | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${safe_rate}=${9001}
 | |
+| | Call Resetter
 | | ${real_rate} = | Evaluate | max(${rate}, ${safe_rate})
 | | # The following line is skipping some default arguments,
 | | # that is why subsequent arguments have to be named.
@@ -508,6 +535,8 @@
 | | ... | Start traffic at specified rate then clear runtime counters on all
 | | ... | DUTs. Wait for specified amount of time and capture runtime counters
 | | ... | on all DUTs. Finally stop traffic
+| |
+| | ... | TODO: Support resetter if this is not the first trial-ish action?
 | |
 | | ... | *Arguments:*
 | | ... | - duration - Duration of traffic run [s]. Type: integer
@@ -571,6 +600,7 @@
 | | [Arguments] | ${rate} | ${traffic_directions}=${2} | ${tx_port}=${0}
 | | ... | ${rx_port}=${1}
 | |
+| | # TODO: Call Resetter?
 | | # Duration of -1 means we will stop traffic manually.
 | | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | warmup_time=${0} | async_call=${True} | latency=${False}
