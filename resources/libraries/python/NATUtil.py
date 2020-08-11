@@ -83,6 +83,10 @@ class NATUtil:
     def set_nat44_deterministic(node, ip_in, subnet_in, ip_out, subnet_out):
         """Set deterministic behaviour of NAT44.
 
+        The return value is a callable (zero argument Python function)
+        which can be used to reset NAT state, so repeated trial measurements
+        hit the same slow path.
+
         :param node: DUT node.
         :param ip_in: Inside IP.
         :param subnet_in: Inside IP subnet.
@@ -93,6 +97,8 @@ class NATUtil:
         :type subnet_in: str or int
         :type ip_out: str
         :type subnet_out: str or int
+        :returns: Resetter of the NAT state.
+        :rtype: Callable[[], None]
         """
         cmd = u"nat_det_add_del_map"
         err_msg = f"Failed to set deterministic behaviour of NAT " \
@@ -107,6 +113,18 @@ class NATUtil:
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
+
+        # A closure, accessing the variables above.
+        def reset():
+            """Delete and re-add the deterministic NAT setting."""
+            with PapiSocketExecutor(node) as papi_exec:
+                args_in[u"is_add"] = False
+                papi_exec.add(cmd, **args_in)
+                args_in[u"is_add"] = True
+                papi_exec.add(cmd, **args_in)
+                papi_exec.get_replies(err_msg)
+
+        return reset
 
     @staticmethod
     def show_nat(node):

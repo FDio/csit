@@ -50,6 +50,9 @@
 | | [Documentation]
 | | ... | Additional teardown for tests which uses performance measurement.
 | |
+| | ... | TODO: Document what test variables are required or optional.
+| |
+| | ${resetter} = | Get Variable Value | \${resetter} | ${None}
 | | Run Keyword If Test Failed
 | | ... | Send traffic at specified rate | ${1.0} | 10000
 | | ... | ${frame_size} | ${traffic_profile} | trial_multiplicity=${1}

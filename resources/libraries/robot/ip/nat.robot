@@ -48,6 +48,10 @@
 | | ... | - ip_out - Outside IP. Type: string
 | | ... | - subnet_out - Outside IP subnet. Type: string
 | |
+| | ... | The return value is a callable (zero argument Python function)
+| | ... | which can be used to reset NAT state, so repeated trial measurements
+| | ... | hit the same slow path.
+| |
 | | ... | *Example:*
 | |
 | | ... | \| Configure deterministic mode for NAT44 \| ${nodes['DUT1']} \
@@ -55,8 +59,9 @@
 | |
 | | [Arguments] | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
 | |
-| | Set NAT44 deterministic | ${node} | ${ip_in} | ${subnet_in} | ${ip_out}
-| | ... | ${subnet_out}
+| | ${resetter} = | Set NAT44 deterministic | ${node} | ${ip_in} | ${subnet_in}
+| | ... | ${ip_out} | ${subnet_out}
+| | Return From Keyword | ${resetter}
 
 | Show NAT verbose
 | | [Documentation] | Get the NAT settings on the node.
@@ -80,6 +85,10 @@
 | | ... | - set ARP
 | | ... | - create routes
 | | ... | - set NAT44 - only on DUT1
+| |
+| | ... | The return value is a callable (zero argument Python function)
+| | ... | which can be used to reset NAT state, so repeated trial measurements
+| | ... | hit the same slow path.
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
@@ -152,6 +161,6 @@
 | |
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
-| | Configure deterministic mode for NAT44
+| | ${resetter} = | Configure deterministic mode for NAT44
 | | ... | ${dut1} | ${inside_net} | ${inside_mask} | ${nat_net} | ${nat_mask}
-
+| | Return From Keyword | ${resetter}
