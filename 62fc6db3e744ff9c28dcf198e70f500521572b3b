@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3bb193f_d95e4b29",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-11T15:56:47Z",
+      "side": 1,
+      "message": "Does this work? I believe close has to be last.\n\nhttps://trex-tgn.cisco.com/trex/doc/cp_astf_docs/api/profile_code.html#trex.astf.trex_astf_profile.ASTFProgram.wait_for_peer_close",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 10
+      },
+      "revId": "62fc6db3e744ff9c28dcf198e70f500521572b3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33f89540_f964fb40",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-11T15:56:47Z",
+      "side": 1,
+      "message": "If it does not affect lines 157-158, it is ss, not pp.",
+      "range": {
+        "startLine": 151,
+        "startChar": 2,
+        "endLine": 151,
+        "endChar": 13
+      },
+      "revId": "62fc6db3e744ff9c28dcf198e70f500521572b3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

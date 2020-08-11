@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "25f04812_59548e58",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-11T15:56:47Z",
+      "side": 1,
+      "message": "Oh, that is not a duration of the complete trial. It [0] is a duration limit for the active period (when new transactions are being opened). After that, our TRex driver waits [1] until nothing is active (no transaction open).\n\nThis type of delay is there for continuous traffic (no transaction count limit). With limit, the traffic may end sooner, so this parameter will be there only to avoid big duration stretching.\n\n[0] https://trex-tgn.cisco.com/trex/doc/cp_astf_docs/api/profile_code.html#trex.astf.trex_astf_profile.ASTFProgram.wait_for_peer_close\n[1] https://github.com/FDio/csit/blob/38ba3408ef77161b61cd4be702d0c6e8fc36f8e5/GPL/tools/trex/trex_astf_profile.py#L194",
+      "parentUuid": "8cc64b92_22366ccc",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 10
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87b74d0b_5592ac7f",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 1
