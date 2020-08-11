@@ -362,6 +362,35 @@ Ignored errors:
 
 ## CPS Methodology
 
+### Trial measurement
+
+The ordinary L2 tests are generating continuous traffic
+with constant offered load. It can be understood
+as a continuous stream of transactions (run at target tps multiplier),
+where transaction attempt is TG sending a packet,
+and transaction success is TG receiving a packet on the other side.
+Search algorithms are free to choose their desired trial duration
+based on a trade-off between precision and time.
+Profile multiplier becomes the target offered load, expressed in pps.
+The expected delay between transaction start and end is small,
+within tolerance TRex already applies when stopping
+(or waiting for) traffic.
+
+In CPS tests, the situation is different. As the traffic is changing DUT state,
+We need to configure enough memory on DUT to accept the end state.
+And as memory amount influences cache performance, we expect
+longer traffic to require smaller multipliers to prevent failures.
+Together that means the amount of transactions is now a property of test,
+and search algorithms should not change it
+(at least not in trials that affect the end result).
+On the other hand, delay between transaction start and end
+depends on specific ASTF program, some include explicit delays.
+Those delays can be quite large, and in the worst case
+(TRex overload or duration stretching due to NIC pps limit)
+not large enough to separate different phases of ASTF programs.
+
+
+
 ### CPS-MRR
 
 ### CPS-NDRPDR
