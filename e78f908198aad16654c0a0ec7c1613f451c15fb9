@@ -213,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "2abaace4_9e19aff9",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-11T15:38:42Z",
+      "side": 1,
+      "message": "Fixed already.",
+      "parentUuid": "bb9ddfed_dec3e61c",
+      "range": {
+        "startLine": 167,
+        "startChar": 28,
+        "endLine": 167,
+        "endChar": 32
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48188f72_fa6ce88f",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 1
@@ -224,6 +248,30 @@
       "writtenOn": "2020-08-11T14:55:14Z",
       "side": 1,
       "message": "Counter can report the number of TSO packets (with NICs that support that) so this number could be significantly smaller that the real number of packets.",
+      "range": {
+        "startLine": 261,
+        "startChar": 12,
+        "endLine": 261,
+        "endChar": 40
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3afccf95_8a8bf53e",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-11T15:38:42Z",
+      "side": 1,
+      "message": "Good point, but we can still use in the calculation, matching against tcps_rcvpack, per formula in updated text.",
+      "parentUuid": "48188f72_fa6ce88f",
       "range": {
         "startLine": 261,
         "startChar": 12,
