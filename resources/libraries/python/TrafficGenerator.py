@@ -293,7 +293,7 @@ class TrafficGenerator(AbstractMeasurer):
             master_thread_id, latency_thread_id, socket, threads = \
                 CpuUtils.get_affinity_trex(
                     self._node, tg_if1, tg_if2,
-                    tg_dtc=Constants.TREX_CORE_COUNT)
+                    tg_dtc=7)
 
             if osi_layer in (u"L2", u"L3"):
                 dst_mac0 = f"0x{if1_adj_addr.replace(u':', u',0x')}"
