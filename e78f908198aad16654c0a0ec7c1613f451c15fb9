@@ -94,6 +94,98 @@
     },
     {
       "key": {
+        "uuid": "bb9ddfed_dec3e61c",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-11T14:55:14Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be ---- ignore error?",
+      "range": {
+        "startLine": 167,
+        "startChar": 28,
+        "endLine": 167,
+        "endChar": 32
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48188f72_fa6ce88f",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-11T14:55:14Z",
+      "side": 1,
+      "message": "Counter can report the number of TSO packets (with NICs that support that) so this number could be significantly smaller that the real number of packets.",
+      "range": {
+        "startLine": 261,
+        "startChar": 12,
+        "endLine": 261,
+        "endChar": 40
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7243a7e7_e4e9540c",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-11T14:55:14Z",
+      "side": 1,
+      "message": "TSO packets can be reported.",
+      "range": {
+        "startLine": 272,
+        "startChar": 12,
+        "endLine": 272,
+        "endChar": 39
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d168c70e_6b903250",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-11T14:55:14Z",
+      "side": 1,
+      "message": "Counter can report the number of LSO packets (with NICs that support that) so this number could be significantly smaller that the real number of packets.",
+      "range": {
+        "startLine": 274,
+        "startChar": 12,
+        "endLine": 274,
+        "endChar": 41
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e49d5952_5668534f",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 1
