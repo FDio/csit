@@ -45,6 +45,30 @@
       "revId": "62fc6db3e744ff9c28dcf198e70f500521572b3b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9674510a_12a2cdde",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-11T16:19:38Z",
+      "side": 1,
+      "message": "They should be aligned. For CPS tests, packet loss indicates control packets are getting lost and should be part of PASS/FAIL criteria.",
+      "parentUuid": "33f89540_f964fb40",
+      "range": {
+        "startLine": 151,
+        "startChar": 2,
+        "endLine": 151,
+        "endChar": 13
+      },
+      "revId": "62fc6db3e744ff9c28dcf198e70f500521572b3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
