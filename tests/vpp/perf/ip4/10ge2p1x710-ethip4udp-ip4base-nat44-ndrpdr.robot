@@ -24,7 +24,7 @@
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance | nat
+| Test Teardown | Tear down test | nat | performance
 |
 | Test Template | Local Template
 |
