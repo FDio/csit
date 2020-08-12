@@ -257,6 +257,30 @@
     },
     {
       "key": {
+        "uuid": "3420a02e_fa04688a",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T11:55:20Z",
+      "side": 1,
+      "message": "Ok, so we have freedom to choose which parameters are considered primary, and which can be computed when needed.\nL2 frame size is a good primary parameter, mainly because autogen already supports it.\nI do not have clear preference between overall data size and number of data packets (both per client).",
+      "parentUuid": "ae37dbff_70fe6a89",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 28
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3b845d18_7e15d76e",
         "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
         "patchSetId": 1
@@ -327,6 +351,30 @@
     },
     {
       "key": {
+        "uuid": "b3d5f6ed_aa43f62e",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T11:55:20Z",
+      "side": 1,
+      "message": "In line 106, fin-ack is already sent. Line 101 is the delay after the last data packet.",
+      "parentUuid": "a5746f22_ffe287bf",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 10
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4a39e68e_309bb2ac",
         "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
         "patchSetId": 1
@@ -362,6 +410,30 @@
       "side": 1,
       "message": "Maybe we could try to set delays between connect (ramp up) phase and data_send (sustain) phase and between data_send and close (ramp down) phase via input parameters to TRex astf profiles. These variables would be clearly configured in test case so we could use it also for timing of client.get_stats() (in case of TRex) calls.",
       "parentUuid": "4a39e68e_309bb2ac",
+      "range": {
+        "startLine": 133,
+        "startChar": 2,
+        "endLine": 133,
+        "endChar": 60
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc25e0a6_555f9a82",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T11:55:20Z",
+      "side": 1,
+      "message": "\u003e via input parameters to TRex astf profiles.\n\nYes, that could be useful if we find hardcoded values are not flexible enough.\n\n\u003e These variables would be clearly configured in test case\n\nNot sure that is enough. Maybe the optimal values depend on TPS parameter, and search algorithms would work faster if they can tweak it between trials.",
+      "parentUuid": "8070eaff_d24a39f7",
       "range": {
         "startLine": 133,
         "startChar": 2,
