@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57e56570_d72fb2ab",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "We could keep TPS for the input parameter, and CPS for one of the (derived) outputs.\n(connections_attempted - connections_failed) / connection_phase_duration",
+      "range": {
+        "startLine": 32,
+        "startChar": 33,
+        "endLine": 32,
+        "endChar": 53
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27b53289_368431d3",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "Transfer? To distinguish from other phases.",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 13
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ee5c5cb_c25b133c",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "governed\nBut it is governed also by DUT behavior (packet drops and latency) and the resulting rate is not entirely constant, it can vary around the equilibrium value. So maybe mention we are looking for the average over the transfer phase duration?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 6
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53a98a1d_98c41132",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "Note that (contrary to UDP) TPS does not directly translate to offered load. With smaller TPS, number of concurrent transfers is lower, but TCP will keep increasing window until packet loss happens. With higher TPS, goodput per transfer will be lower, but transfers will simply take more time to finish, with equilibrium packet rate basically the same.",
+      "range": {
+        "startLine": 53,
+        "startChar": 21,
+        "endLine": 53,
+        "endChar": 32
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c8dcb16_3e2fe7ef",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "How much detail we describe here? We could mention the two streams are independent, and continuous (not waiting for acks).",
+      "range": {
+        "startLine": 58,
+        "startChar": 5,
+        "endLine": 58,
+        "endChar": 6
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe28ca75_f564af30",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "I do not expect this will happen (unless the data amount is very small).",
+      "range": {
+        "startLine": 63,
+        "startChar": 37,
+        "endLine": 63,
+        "endChar": 53
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "487d865c_c7ac2b9a",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "Instead of packet loss ratio, we could base the search on other criteria, for example ratio of completed transactions after a hard time limit.",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 6
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "563b166f_c9ade056",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "For TCP, I expected to see MSS and size of data to transfer. I do not think we can limit number of packets directly, especially when retransmit happens.\nFor UDP we still need packet size, and having that it will be simpler to define data size (so most CSIT code can handle both UDP and TCP).\nAnd do not call it multiplier, that is TRex word for TPS input parameter.",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 28
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b845d18_7e15d76e",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "This still reads too close to \"maximum number of concurrent active sessions\".\nMaybe call this \"total number of sessions\"?",
+      "range": {
+        "startLine": 75,
+        "startChar": 22,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e444c0b_801bd1a8",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "Once again, probably not possible to define within ASTF program.",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 10
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a39e68e_309bb2ac",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "It is better to say the transaction has three phases, but TRex is not aware of them. We need delays between phases to parse results for the phase we are interested in. Multiplier governs the rate transactions are opened, the rate at different phases depends on how long it took for a specific transaction to get there (retransmits, duration stretching).",
+      "range": {
+        "startLine": 133,
+        "startChar": 2,
+        "endLine": 133,
+        "endChar": 60
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41146013_ae210270",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T08:34:34Z",
+      "side": 1,
+      "message": "For TCP (or even for UDP with multiple data packets) this will be more.",
+      "range": {
+        "startLine": 142,
+        "startChar": 13,
+        "endLine": 142,
+        "endChar": 14
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
