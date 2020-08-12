@@ -75,6 +75,7 @@
 | ${nat_mask}= | 28
 | ${dest_net}= | 20.0.0.0
 | ${dest_mask}= | 24
+| ${n_transactions}= | ${16384}
 
 *** Keywords ***
 | Local Template
