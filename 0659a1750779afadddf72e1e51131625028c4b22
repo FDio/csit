@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "d766dc21_d49fabdb",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-12T10:28:19Z",
+      "side": 1,
+      "message": "TPPS",
+      "range": {
+        "startLine": 39,
+        "startChar": 20,
+        "endLine": 39,
+        "endChar": 23
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ee5c5cb_c25b133c",
         "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
         "patchSetId": 1
@@ -163,6 +186,30 @@
     },
     {
       "key": {
+        "uuid": "41a001fc_a9aeed1a",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-12T10:28:19Z",
+      "side": 1,
+      "message": "Based on [0] the throughput is the average L2 throughput within the sustaining (sustain) period as well as average packets per second within the same period.\n\n[0] https://tools.ietf.org/html/draft-ietf-bmwg-ngfw-performance-03#section-6.1",
+      "parentUuid": "487d865c_c7ac2b9a",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 6
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "563b166f_c9ade056",
         "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
         "patchSetId": 1
@@ -174,6 +221,30 @@
       "writtenOn": "2020-08-12T08:34:34Z",
       "side": 1,
       "message": "For TCP, I expected to see MSS and size of data to transfer. I do not think we can limit number of packets directly, especially when retransmit happens.\nFor UDP we still need packet size, and having that it will be simpler to define data size (so most CSIT code can handle both UDP and TCP).\nAnd do not call it multiplier, that is TRex word for TPS input parameter.",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 28
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae37dbff_70fe6a89",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-12T10:28:19Z",
+      "side": 1,
+      "message": "MSS and size of the data to transfer is calculated from defined L2 frame size and client_data_pkt_multiplier - see [1]\n\n[1] https://gerrit.fd.io/r/c/csit/+/27808/93/GPL/traffic_profiles/trex/trex-astf-ethip4tcp-1024h-100data.py#66",
+      "parentUuid": "563b166f_c9ade056",
       "range": {
         "startLine": 71,
         "startChar": 2,
@@ -232,6 +303,30 @@
     },
     {
       "key": {
+        "uuid": "a5746f22_ffe287bf",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-12T10:28:19Z",
+      "side": 1,
+      "message": "The delay at the end of the client ASTF program works - without this delay the client ASTF program would send (implicitly) the fin-ack packet immediately after receiving the last byte of the last packet.",
+      "parentUuid": "4e444c0b_801bd1a8",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 10
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4a39e68e_309bb2ac",
         "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
         "patchSetId": 1
@@ -243,6 +338,30 @@
       "writtenOn": "2020-08-12T08:34:34Z",
       "side": 1,
       "message": "It is better to say the transaction has three phases, but TRex is not aware of them. We need delays between phases to parse results for the phase we are interested in. Multiplier governs the rate transactions are opened, the rate at different phases depends on how long it took for a specific transaction to get there (retransmits, duration stretching).",
+      "range": {
+        "startLine": 133,
+        "startChar": 2,
+        "endLine": 133,
+        "endChar": 60
+      },
+      "revId": "0659a1750779afadddf72e1e51131625028c4b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8070eaff_d24a39f7",
+        "filename": "docs/test_specs/csit-nat44ed-tpps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-12T10:28:19Z",
+      "side": 1,
+      "message": "Maybe we could try to set delays between connect (ramp up) phase and data_send (sustain) phase and between data_send and close (ramp down) phase via input parameters to TRex astf profiles. These variables would be clearly configured in test case so we could use it also for timing of client.get_stats() (in case of TRex) calls.",
+      "parentUuid": "4a39e68e_309bb2ac",
       "range": {
         "startLine": 133,
         "startChar": 2,
