@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "37ddc4e7_4ea6b6f5",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-12T08:46:09Z",
+      "side": 1,
+      "message": "I think it is secondary counter for results as it indicates if the traffic flow is still in sustain phase (number of established transactions is equal to udps_accepts of server side) or traffic flow has already reached ramp down phase (number of established transactions is less then udps_accepts of server side).",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 2
+      },
+      "revId": "62fc6db3e744ff9c28dcf198e70f500521572b3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "33f89540_f964fb40",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 2
@@ -60,6 +83,30 @@
       "side": 1,
       "message": "They should be aligned. For CPS tests, packet loss indicates control packets are getting lost and should be part of PASS/FAIL criteria.",
       "parentUuid": "33f89540_f964fb40",
+      "range": {
+        "startLine": 151,
+        "startChar": 2,
+        "endLine": 151,
+        "endChar": 13
+      },
+      "revId": "62fc6db3e744ff9c28dcf198e70f500521572b3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f79a877f_eec7f8ae",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-12T08:46:09Z",
+      "side": 1,
+      "message": "Any packet loss or re-transmission of control packet should result in lower number of udps_accepts per second so packet loss should be only information for debugging purposes in case of CPS measurement.",
+      "parentUuid": "9674510a_12a2cdde",
       "range": {
         "startLine": 151,
         "startChar": 2,
