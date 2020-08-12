@@ -215,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "40f8b33f_b536d6cb",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-12T11:34:44Z",
+      "side": 1,
+      "message": "If it has to be kept in sync, it means it is not a direct input for ASTF program. It is input for the current TRex driver script, because in stateless tests we assume the traffic is continuous and duration can be set arbitrarily.\n\nPart of new code for ASTF search will be computing the duration needed from other inputs.",
+      "parentUuid": "9e76f7e0_1be4b54b",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 10
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87b74d0b_5592ac7f",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 1
