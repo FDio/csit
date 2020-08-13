@@ -92,6 +92,10 @@ class NATUtil:
     def set_nat44_deterministic(node, ip_in, subnet_in, ip_out, subnet_out):
         """Set deterministic behaviour of NAT44.
 
+        The return value is a callable (zero argument Python function)
+        which can be used to reset NAT state, so repeated trial measurements
+        hit the same slow path.
+
         :param node: DUT node.
         :param ip_in: Inside IP.
         :param subnet_in: Inside IP subnet.
@@ -102,6 +106,8 @@ class NATUtil:
         :type subnet_in: str or int
         :type ip_out: str
         :type subnet_out: str or int
+        :returns: Resetter of the NAT state.
+        :rtype: Callable[[], None]
         """
         cmd = u"nat_det_add_del_map"
         err_msg = f"Failed to set deterministic behaviour of NAT " \
@@ -117,11 +123,29 @@ class NATUtil:
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
+        # A closure, accessing the variables above.
+        def resetter():
+            """Delete and re-add the deterministic NAT setting."""
+            logger.trace(u"Resetter starts.")
+            with PapiSocketExecutor(node) as papi_exec:
+                args_in[u"is_add"] = False
+                papi_exec.add(cmd, **args_in)
+                args_in[u"is_add"] = True
+                papi_exec.add(cmd, **args_in)
+                papi_exec.get_replies(err_msg)
+            logger.trace(u"Resetter ends.")
+
+        return resetter
+
     @staticmethod
     def set_nat44_address_range(
             node, start_ip, end_ip, vrf_id=Constants.BITWISE_NON_ZERO,
             flag=u"NAT_IS_NONE"):
         """Set NAT44 address range.
+
+        The return value is a callable (zero argument Python function)
+        which can be used to reset NAT state, so repeated trial measurements
+        hit the same slow path.
 
         :param node: DUT node.
         :param start_ip: IP range start.
@@ -133,6 +157,8 @@ class NATUtil:
         :type end_ip: str
         :type vrf_id: int
         :type flag: str
+        :returns: Resetter of the NAT state.
+        :rtype: Callable[[], None]
         """
         cmd = u"nat44_add_del_address_range"
         err_msg = f"Failed to set NAT44 address range on host {node[u'host']}"
@@ -146,6 +172,20 @@ class NATUtil:
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
+
+        # A closure, accessing the variables above.
+        def resetter():
+            """Delete and re-add the NAT range setting."""
+            logger.trace(u"Resetter starts.")
+            with PapiSocketExecutor(node) as papi_exec:
+                args_in[u"is_add"] = False
+                papi_exec.add(cmd, **args_in)
+                args_in[u"is_add"] = True
+                papi_exec.add(cmd, **args_in)
+                papi_exec.get_replies(err_msg)
+            logger.trace(u"Resetter ends.")
+
+        return resetter
 
     @staticmethod
     def show_nat_config(node):

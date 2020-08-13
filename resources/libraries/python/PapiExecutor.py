@@ -526,6 +526,7 @@ class PapiSocketExecutor:
             api_name = command[u"api_name"]
             papi_fn = getattr(vpp_instance.api, api_name)
             try:
+                logger.trace(f"starting executing PAPI command: {command!r}")
                 try:
                     reply = papi_fn(**command[u"api_args"])
                 except (IOError, struct.error) as err:
@@ -537,6 +538,7 @@ class PapiSocketExecutor:
                     self.vpp_instance.connect_sync(u"csit_socket")
                     logger.trace(u"Reconnected.")
                     reply = papi_fn(**command[u"api_args"])
+                logger.trace(f"done executing PAPI command: {command!r}")
             except (AttributeError, IOError, struct.error) as err:
                 raise AssertionError(err_msg) from err
             # *_dump commands return list of objects, convert, ordinary reply.
