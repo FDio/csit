@@ -212,9 +212,9 @@
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:200::2 | ${TG_pf2_mac}[0]
 | | Vpp Route Add | ${dut1} | 2001:1::0 | 64 | gateway=2001:100::2
-| | ... | interface=${dut1_if1} | vrf=${fib_table_1}
+| | ... | interface=${DUT1_${int}1}[0] | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:200::2
-| | ... | interface=${dut1_if2} | vrf=${fib_table_2}
+| | ... | interface=${DUT1_${int}2}[0] | vrf=${fib_table_2}
 | | FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
