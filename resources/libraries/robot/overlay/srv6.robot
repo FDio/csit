@@ -428,15 +428,15 @@
 | | ... | VPP Add IP Neighbor | ${dut2}
 | | ... | ${dut2-memif-1-if1} | ${dut2_nh} | ${dut2-memif-1-if2_mac}
 | | Vpp Route Add | ${dut1} | ${dut2_sid1} | ${sid_prefix}
-| | ... | gateway=${dut2_if1_ip6} | interface=${dut1_if2}
+| | ... | gateway=${dut2_if1_ip6} | interface=${DUT1_${int}2}[0]
 | | Vpp Route Add | ${dut1} | ${out_sid2_1} | ${sid_prefix}
-| | ... | gateway=${tg_if1_ip6_subnet}2 | interface=${dut1_if1}
+| | ... | gateway=${tg_if1_ip6_subnet}2 | interface=${DUT1_${int}1}[0]
 | | Run Keyword If | ${dut2_status}
 | | ... | Vpp Route Add | ${dut2} | ${dut1_sid2} | ${sid_prefix}
-| | ... | gateway=${dut1_if2_ip6} | interface=${dut2_if1}
+| | ... | gateway=${dut1_if2_ip6} | interface=${DUT2_${int}1}[0]
 | | Run Keyword If | ${dut2_status}
 | | ... | Vpp Route Add | ${dut2} | ${out_sid1_1} | ${sid_prefix}
-| | ... | gateway=${tg_if2_ip6_subnet}2 | interface=${dut2_if2}
+| | ... | gateway=${tg_if2_ip6_subnet}2 | interface=${DUT2_${int}2}[0]
 # Configure SRv6 for direction0 on DUT1
 | | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
 | | @{sid_list_dir0}= | Create List | ${dut2_sid1} | ${out_sid1_1}
