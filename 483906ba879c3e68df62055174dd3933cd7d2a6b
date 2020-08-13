@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27e7f315_596f7a2a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-13T11:59:50Z",
+      "side": 1,
+      "message": "Do not change the signature of measure() method. Add new arguments to set_rate_provider_defaults (and maybe use them in get_measurement_result) instead.",
+      "range": {
+        "startLine": 978,
+        "startChar": 45,
+        "endLine": 978,
+        "endChar": 59
+      },
+      "revId": "483906ba879c3e68df62055174dd3933cd7d2a6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
