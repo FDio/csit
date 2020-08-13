@@ -1124,6 +1124,10 @@ class ExecutionChecker(ResultVisitor):
                 self._data[u"tests"][self._test_id] = test_result
                 return
 
+        logging.info(self._test_id)
+        logging.info(test_result)
+        logging.info(u"-------------------------------------------------------")
+
         self._data[u"tests"][self._test_id] = test_result
 
     def end_test(self, test):

@@ -460,6 +460,7 @@ def _generate_all_charts(spec, input_data):
                     for tst_name, test_data in chart_data.items():
                         logging.info(tst_name)
                         logging.info(tst_data)
+                        logging.info(chart_tags[tst_name])
                         logging.info(u"---------------------------------------")
                         if not test_data:
                             logging.warning(f"No data for the test {tst_name}")
