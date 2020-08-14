@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0240eb08_998e1d37",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-ethip4udp-ip4scale1024-udpsrcscale63-nat44-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-14T11:40:01Z",
+      "side": 1,
+      "message": "Definition from TrafficGenerator.py:\n    :param n_transactions: Number of transactions to perform, 0 for unlimited.\n\nBut \"1024\" here is number of hosts. Number of transactions should be equal to the number of sessions, this case it is 1024 hosts * 63 ports per host \u003d\u003e 64512. Or?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 30
+      },
+      "revId": "d6c376e10401b7eab985d54029f3af4600bb93e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
