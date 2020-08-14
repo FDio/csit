@@ -12,6 +12,11 @@ echo vfio-pci > /sys/bus/pci/devices/0000:00:06.0/driver_override
 echo vfio-pci > /sys/bus/pci/devices/0000:00:07.0/driver_override
 echo 0000:00:06.0 > /sys/bus/pci/drivers/vfio-pci/bind
 echo 0000:00:07.0 > /sys/bus/pci/drivers/vfio-pci/bind
+ls -al /sys/bus/pci/devices/0000\:00\:*/driver
+ls -al /sys/bus/pci/devices/
+ls -al /sys/kernel/iommu_groups/*
+ls -al /sys/kernel/iommu_groups/*/devices/*
+lspci
 mkdir -p /var/run/vpp
 ${vnf_bin}
 poweroff -f

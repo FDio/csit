@@ -19,4 +19,6 @@ ip route add 20.0.0.0/8 via 1.1.2.2
 
 show logging
 
+show pci 
+
 show version
