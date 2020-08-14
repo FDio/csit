@@ -15,10 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | VHOST | 1VM
-| ... | DRV_VFIO_PCI
+| ... | NIC_Virtual | ETH | IP4FWD | BASE | VHOST | 1VM | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethipv4-l2bdbasemaclrn-eth-2vhost-1vm
+| ... | ethipv4-ip4base-eth-2vhostgso-1vm
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
@@ -26,21 +25,19 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *L2 bridge-domain test cases with vhost user interface*
+| Documentation | *IPv4 routing test cases with vhost user interface*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
 | ... | VM and single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with two L2 \
-| ... | bridge-domains (L2BD) switching combined with MAC learning enabled. \
-| ... | Qemu Guest is connected to VPP via vhost-user interfaces. Guest is \
-| ... | configured with VPP l2 cross-connect interconnecting vhost-user \
-| ... | interfaces.
-| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61 are \
-| ... | sent in both directions by TG on links to DUT1 via VM; on receive TG \
-| ... | verifies packets for correctness and their IPv4 src-addr, dst-addr \
-| ... | and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC792
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing on both links.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
+| ... | two static IPv4 /24 route entries. Qemu Guest is connected to VPP via \
+| ... | vhost-user interfaces. Guest is running VPP ip4 interconnecting \
+| ... | vhost-user interfaces.
+| ... | *[Ver] TG verification:* Test IPv4 packet with IP protocol=61 is sent \
+| ... | in one direction by TG on links to DUT1; on receive TG verifies packet \
+| ... | for correctness and their IPv4 src-addr, dst-addr and MAC addresses.
+| ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
@@ -56,16 +53,17 @@
 | ${nf_nodes}= | ${1}
 | ${nf_dtc} | ${1}
 | ${nf_dtcr} | ${1}
-| ${enable_gso}= | ${false}
+| ${tg_if1_ip}= | 10.10.10.2
+| ${tg_if2_ip}= | 20.20.20.2
+| ${enable_gso}= | ${true}
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv4. [Cfg] On DUT1 configure \
-| | ... | two L2BDs with MAC learning, each with vhost-user i/f to local \
-| | ... | VM and i/f to TG; configure VPP in VM to loop pkts back betwen its \
-| | ... | two virtio i/fs. [Ver] Make TG verify IPv4 packets are switched \
-| | ... | thru DUT1 and VM in both directions and are correct on receive.
+| | ... | Test uses two VRFs to route IPv4 traffic through two vhost-user \
+| | ... | nterfaces. Both interfaces are configured with IP addresses from \
+| | ... | the same network. The VM is running VPP IPv4 forwarding to pass \
+| | ... | packet from one vhost-user interface to the other one.
 | |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
@@ -82,18 +80,19 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | ... | count=${nf_chains}
 | | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
-| | And Initialize L2 bridge domains with Vhost-User | nf_nodes=${nf_nodes}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
+| | And Initialize IPv4 forwarding with vhost in 2-node circular topology
+| | ... | nf_nodes=${nf_nodes} | virtio_feature_mask=${virtio_feature_mask}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
-| | ... | vnf=vppl2xc_2vhostvr1024 | pinning=${False}
+| | ... | vnf=vppip4noarp_2vhostvr1024 | pinning=${False}
 | | ... | virtio_feature_mask=${virtio_feature_mask}
-| | Then Send IPv4 bidirectionally and verify received packets | ${tg}
-| | ... | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | Then Send packet and verify headers
+| | ... | ${tg} | ${tg_if1_ip} | ${tg_if2_ip}
+| | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
+| | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
 *** Test Cases ***
-| 64B-ethipv4-l2bdbasemaclrn-eth-2vhost-1vm-dev
+| 64B-ethip4-ip4base-eth-2vhost-1vm-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

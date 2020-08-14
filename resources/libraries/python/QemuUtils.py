@@ -508,6 +508,11 @@ class QemuUtils:
 
     def _wait_until_vm_boot(self):
         """Wait until QEMU with NestedVM is booted."""
+
+        command = f"cat {self._temp.get(u'log')}"
+        stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
+        logger.warn(stdout)
+
         if self._opt.get(u"vm_type") == u"nestedvm":
             self._wait_until_nestedvm_boot()
             self._update_vm_interfaces()
