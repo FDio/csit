@@ -101,6 +101,7 @@
 | | ... | ${latency}=${True}
 | |
 | | ${resetter} = | Get Variable Value | \${resetter} | ${None}
+| | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
 | | # Latency measurements will need more than 9000 pps.
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${traffic_profile} | ${9001} | ${max_rate}
@@ -108,7 +109,7 @@
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
-| | ... | resetter=${resetter}
+| | ... | resetter=${resetter} | n_transactions=${n_transactions}
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
@@ -186,13 +187,14 @@
 | | ... | ${doublings}=${2} | ${traffic_directions}=${2}
 | |
 | | ${resetter} = | Get Variable Value | \${resetter} | ${None}
+| | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${traffic_profile} | ${10000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
-| | ... | resetter=${resetter}
+| | ... | resetter=${resetter} | n_transactions=${n_transactions}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Return From Keyword | ${result.pdr_interval.measured_low.target_tr}
@@ -232,13 +234,14 @@
 | | [Arguments] | ${packet_loss_ratio}=${1e-7} | ${timeout}=${1800.0}
 | | ... | ${traffic_directions}=${2} | ${latency}=${True}
 | |
-| | ${min_rate} = | Set Variable | ${10000}
+| | ${min_rate} = | Set Variable | ${9001}
 | | ${resetter} = | Get Variable Value | \${resetter} | ${None}
+| | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
 | | ... | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${packet_loss_ratio} | timeout=${timeout}
 | | ... | traffic_directions=${traffic_directions} | latency=${latency}
-| | ... | resetter=${resetter}
+| | ... | resetter=${resetter} | n_transactions=${n_transactions}
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Should Not Be True | 1.1 * ${traffic_directions} * ${min_rate} > ${lower}
@@ -475,6 +478,7 @@
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ... | ${extended_debug}=${extended_debug} | ${latency}=${True}
 | |
+| | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
 | | Set Test Variable | ${extended_debug}
 | | # Following setting of test variables is needed as
 | | # "Clear and show runtime counters with running traffic" has been moved to
@@ -495,6 +499,7 @@
 | | | ... | ${traffic_profile} | warmup_time=${0}
 | | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
 | | | ... | rx_port=${rx_port} | latency=${latency}
+| | | ... | n_transactions=${n_transactions}
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
@@ -540,12 +545,13 @@
 | |
 | | Call Resetter
 | | ${real_rate} = | Evaluate | max(${rate}, ${safe_rate})
+| | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
 | | # The following line is skipping some default arguments,
 | | # that is why subsequent arguments have to be named.
 | | Send traffic on tg | ${trial_duration} | ${real_rate} | ${frame_size}
 | | ... | ${traffic_profile} | warmup_time=${0}
 | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | ... | rx_port=${rx_port}
+| | ... | rx_port=${rx_port} | n_transactions=${n_transactions}
 | | ${latency} = | Get Latency Int
 | | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
 
