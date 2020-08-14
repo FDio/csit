@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,6 +18,7 @@ from robot.api import logger
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.Virtio import Virtio, VirtioFeaturesFlags
 
 
 class VhostUser:
@@ -25,23 +26,26 @@ class VhostUser:
 
     @staticmethod
     def vpp_create_vhost_user_interface(
-            node, socket, is_server=False, enable_gso=False):
+            node, socket, virtio_feature_mask=None, is_server=False):
         """Create Vhost-user interface on VPP node.
 
         :param node: Node to create Vhost-user interface on.
         :param socket: Vhost-user interface socket path.
         :param is_server: Server side of connection. Default: False
-        :param enable_gso: Generic segmentation offloading. Default: False
         :type node: dict
         :type socket: str
         :type is_server: bool
-        :type enable_gso: bool
         :returns: SW interface index.
         :rtype: int
         """
         cmd = u"create_vhost_user_if"
         err_msg = f"Failed to create Vhost-user interface " \
             f"on host {node[u'host']}"
+        if virtio_feature_mask is None:
+            enable_gso = False
+        else:
+            enable_gso = Virtio.is_virtio_feature_enabled(virtio_feature_mask,
+                     VirtioFeaturesFlags.VIRTIO_NET_F_API_GSO)
         args = dict(
             is_server=bool(is_server),
             sock_filename=str(socket),
