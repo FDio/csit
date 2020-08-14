@@ -679,6 +679,9 @@ class QemuUtils:
 
     def qemu_kill(self):
         """Kill qemu process."""
+        command = f"cat {self._temp.get(u'log')}"
+        stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
+        logger.warn(stdout)
         exec_cmd(
             self._node, f"chmod +r {self._temp.get(u'pidfile')}", sudo=True
         )
@@ -693,6 +696,9 @@ class QemuUtils:
 
     def qemu_kill_all(self):
         """Kill all qemu processes on DUT node if specified."""
+        command = f"cat {self._temp.get(u'log')}"
+        stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
+        logger.warn(stdout)
         exec_cmd(self._node, u"pkill -SIGKILL qemu", sudo=True)
 
         for value in self._temp.values():

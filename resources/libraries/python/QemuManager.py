@@ -19,6 +19,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.QemuUtils import QemuUtils
 from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.Virtio import Virtio, VirtioFeaturesFlags
 
 __all__ = [u"QemuManager"]
 
@@ -55,6 +56,11 @@ class QemuManager:
             else kwargs[u"nf_dtc"]
         nf_dtcr = kwargs[u"nf_dtcr"] \
             if isinstance(kwargs[u"nf_dtcr"], int) else 2
+        virtio_feature_mask = int(kwargs[u"virtio_feature_mask"])
+        enable_gso = Virtio.is_virtio_feature_enabled(
+            virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_GSO)
+        enable_csum = Virtio.is_virtio_feature_enabled(
+            virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_CSUM)
 
         for nf_chain in range(1, nf_chains + 1):
             for nf_node in range(1, nf_nodes + 1):
