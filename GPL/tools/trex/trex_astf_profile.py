@@ -15,7 +15,7 @@
 
 """This module gets T-Rex advanced stateful (astf) traffic profile together
 with other parameters, reads the profile and sends the traffic. At the end, it
-measures the packet loss and latency.
+parses for various counters.
 """
 
 import argparse
@@ -60,8 +60,9 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
 
 
 def simple_burst(
-        profile_file, duration, framesize, mult, warmup_time, port_0, port_1,
-        latency, async_start=False, traffic_directions=2):
+        profile_file, duration, framesize, multiplier, warmup_time, port_0, port_1,
+        latency, async_start=False, traffic_directions=2, n_transactions=0,
+        delays=0.0, stretch_tolerance=1.3):
     """Send traffic and measure packet loss and latency.
 
     Procedure:
@@ -79,26 +80,52 @@ def simple_burst(
      - reads and displays the statistics and
      - disconnects from the client.
 
+    Duration details:
+    As in stateless mode, duration parameter governs for how long
+    the new flows will be started. But there is also n_transaction argument,
+    which limits how many transactions will be started in total.
+    As each transaction can take considerable time (sometimes due to
+    explicit delays in the profile), the real time a trial needs to finish
+    can be computed here. For now, in that case the duration argument
+    is ignored, assuming it comes from ASTF-unaware search algorithm.
+    The overall time a transaction needs is given in parameter delays,
+    it includes both explicit delays and implicit time it takes
+    to transfer data (or whatever the transaction does).
+    As sometimes TRex can be overwhelmed, stretch_tolerance is used
+    to award more time. But if traffic has not stopped by this time,
+    it is stopped explicitly, counters reflect the state before the stop.
+
+    This is a base version, approximated_duration is based on sampled results.
+    TODO: Increase precision in cases limit_duration is hit.
+    TODO: Support tests which focus only on some transaction phases,
+    e.g. TCP tests ignoring init and teardown separated by delays.
+
     :param profile_file: A python module with T-rex traffic profile.
-    :param duration: Duration of traffic run in seconds (-1=infinite).
+    :param duration: Duration of transaction creation phase [s] (-1=infinite).
     :param framesize: Frame size.
-    :param mult: Multiplier of profile CPS.
+    :param multiplier: Multiplier of profile CPS.
     :param warmup_time: Traffic warm-up time in seconds, 0 = disable.
     :param port_0: Port 0 on the traffic generator.
     :param port_1: Port 1 on the traffic generator.
     :param latency: With latency stats.
     :param async_start: Start the traffic and exit.
     :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
+    :param n_transactions: Number of transactions to perform, 0 for unlimited.
+    :param delays: Expected time for transaction to finish.
+    :param stretch_tolerance: Allow this times the computed duration.
     :type profile_file: str
     :type duration: float
     :type framesize: int or str
-    :type mult: int
+    :type multiplier: int
     :type warmup_time: float
     :type port_0: int
     :type port_1: int
     :type latency: bool
     :type async_start: bool
     :type traffic_directions: int
+    :type n_transactions: int
+    :type delays: float
+    :type stretch_tolerance: float
     """
     client = None
     total_rcvd = 0
@@ -144,7 +171,7 @@ def simple_burst(
             # Clear the stats before injecting.
             client.clear_stats()
             # Choose CPS and start traffic.
-            client.start(mult=mult, duration=warmup_time)
+            client.start(mult=multiplier, duration=warmup_time)
             time_start = time.monotonic()
 
             # Read the stats after the warmup duration (no sampling needed).
@@ -170,6 +197,15 @@ def simple_burst(
             if traffic_directions > 1:
                 print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
 
+        # Duration logic.
+        if n_transactions:
+            opening_duration = n_transactions / multiplier + 1.0
+            limit_duration = opening_duration + delays
+            limit_duration *= stretch_tolerance
+        else:
+            opening_duration = duration + 1.0
+            limit_duration = opening_duration * stretch_tolerance
+
         # Clear the stats before injecting.
         lost_a = 0
         lost_b = 0
@@ -177,8 +213,9 @@ def simple_burst(
 
         # Choose CPS and start traffic.
         client.start(
-            mult=mult, duration=duration, nc=True,
-            latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
+            mult=multiplier, duration=opening_duration, nc=True,
+            latency_pps=multiplier if latency else 0,
+            client_mask=2**len(ports)-1
         )
         time_start = time.monotonic()
 
@@ -190,20 +227,25 @@ def simple_burst(
                 xsnap1 = client.ports[port_1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
+            time_stop = time_start + limit_duration
+            time_sample = time_start + stats_sampling
             # Do not block until done.
             while client.is_traffic_active(ports=ports):
-                time.sleep(
-                    stats_sampling if stats_sampling < duration else duration
-                )
-                # Sample the stats.
-                stats[time.monotonic()-time_start] = client.get_stats(
-                    ports=ports
-                )
-            else:
-                # Read the stats after the test
-                stats[time.monotonic()-time_start] = client.get_stats(
-                    ports=ports
-                )
+                time.sleep(0.1)
+                time_now = time.monotonic()
+                if time_sample >= time_now:
+                    # Sample the stats.
+                    stats[time_now - time_start] = client.get_stats(
+                        ports=ports
+                    )
+                    time_sample += stats_sampling
+                if time_now >= time_stop:
+                    # Hard stop, no waiting for transactions.
+                    break  # to client.reset()
+            # Read the stats after the test
+            stats[time.monotonic()-time_start] = client.get_stats(
+                ports=ports
+            )
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -249,50 +291,50 @@ def simple_burst(
                 # Client
                 c_act_flows = client_stats[u"m_active_flows"]
                 c_est_flows = client_stats[u"m_est_flows"]
-                l7_data = f"client_active_flows={c_act_flows}, "
-                l7_data += f"client_established_flows={c_est_flows}, "
+                l7_data = f"client_active_flows={c_act_flows}; "
+                l7_data += f"client_established_flows={c_est_flows}; "
                 # Server
                 s_act_flows = server_stats[u"m_active_flows"]
                 s_est_flows = server_stats[u"m_est_flows"]
-                l7_data += f"server_active_flows={s_act_flows}, "
-                l7_data += f"server_established_flows={s_est_flows}, "
+                l7_data += f"server_active_flows={s_act_flows}; "
+                l7_data += f"server_established_flows={s_est_flows}; "
                 # Some zero counters are not sent
                 if u"udp" in profile_file:
                     # Client
                     # Established connections
                     c_udp_connects = client_stats.get(u"udps_connects", 0)
-                    l7_data += f"client_udp_connects={c_udp_connects}, "
+                    l7_data += f"client_udp_connects={c_udp_connects}; "
                     # Closed connections
                     c_udp_closed = client_stats.get(u"udps_closed", 0)
-                    l7_data += f"client_udp_closed={c_udp_closed}, "
+                    l7_data += f"client_udp_closed={c_udp_closed}; "
                     # Server
                     # Accepted connections
                     s_udp_accepts = server_stats.get(u"udps_accepts", 0)
-                    l7_data += f"server_udp_accepts={s_udp_accepts}, "
+                    l7_data += f"server_udp_accepts={s_udp_accepts}; "
                     # Closed connections
                     s_udp_closed = server_stats.get(u"udps_closed", 0)
-                    l7_data += f"server_udp_closed={s_udp_closed}, "
+                    l7_data += f"server_udp_closed={s_udp_closed}; "
                 elif u"tcp" in profile_file:
                     # Client
                     # Initiated connections
                     c_tcp_connatt = client_stats.get(u"tcps_connattempt", 0)
-                    l7_data += f"client_tcp_connect_inits={c_tcp_connatt}, "
+                    l7_data += f"client_tcp_connect_inits={c_tcp_connatt}; "
                     # Established connections
                     c_tcp_connects = client_stats.get(u"tcps_connects", 0)
-                    l7_data += f"client_tcp_connects={c_tcp_connects}, "
+                    l7_data += f"client_tcp_connects={c_tcp_connects}; "
                     # Closed connections
                     c_tcp_closed = client_stats.get(u"tcps_closed", 0)
-                    l7_data += f"client_tcp_closed={c_tcp_closed}, "
+                    l7_data += f"client_tcp_closed={c_tcp_closed}; "
                     # Server
                     # Accepted connections
                     s_tcp_accepts = server_stats.get(u"tcps_accepts", 0)
-                    l7_data += f"server_tcp_accepts={s_tcp_accepts}, "
+                    l7_data += f"server_tcp_accepts={s_tcp_accepts}; "
                     # Established connections
                     s_tcp_connects = server_stats.get(u"tcps_connects", 0)
-                    l7_data += f"server_tcp_connects={s_tcp_connects}, "
+                    l7_data += f"server_tcp_connects={s_tcp_connects}; "
                     # Closed connections
                     s_tcp_closed = server_stats.get(u"tcps_closed", 0)
-                    l7_data += f"server_tcp_closed={s_tcp_closed}, "
+                    l7_data += f"server_tcp_closed={s_tcp_closed}; "
             else:
                 total_sent = stats[port_0][u"opackets"]
                 total_rcvd = stats[port_1][u"ipackets"]
@@ -313,13 +355,13 @@ def simple_burst(
                 client.clear_profile()
                 client.disconnect()
                 print(
-                    f"cps={mult!r}, total_received={total_rcvd}, "
-                    f"total_sent={total_sent}, frame_loss={lost_a + lost_b}, "
-                    f"approximated_duration={approximated_duration}, "
-                    f"latency_stream_0(usec)={lat_a}, "
-                    f"latency_stream_1(usec)={lat_b}, "
-                    f"latency_hist_stream_0={lat_a_hist}, "
-                    f"latency_hist_stream_1={lat_b_hist}, "
+                    f"cps={multiplier!r}; total_received={total_rcvd}; "
+                    f"total_sent={total_sent}; frame_loss={lost_a + lost_b}; "
+                    f"approximated_duration={approximated_duration}; "
+                    f"latency_stream_0(usec)={lat_a}; "
+                    f"latency_stream_1(usec)={lat_b}; "
+                    f"latency_hist_stream_0={lat_a_hist}; "
+                    f"latency_hist_stream_1={lat_b_hist}; "
                     f"{l7_data}"
                 )
 
@@ -344,7 +386,7 @@ def main():
         help=u"Size of a Frame without padding and IPG."
     )
     parser.add_argument(
-        u"-m", u"--mult", required=True, type=int,
+        u"-m", u"--multiplier", required=True, type=int,
         help=u"Multiplier of profile CPS."
     )
     parser.add_argument(
@@ -371,6 +413,18 @@ def main():
         u"--traffic_directions", type=int, default=2,
         help=u"Send bi- (2) or uni- (1) directional traffic."
     )
+    parser.add_argument(
+        u"--n_transactions", type=int, default=None,
+        help=u"Assume the profile stops opening transactions after this many."
+    )
+    parser.add_argument(
+        u"--delays", type=float, default=0.0,
+        help=u"Assume each transaction takes this many seconds to pass."
+    )
+    parser.add_argument(
+        u"--stretch_tolerance", type=float, default=1.3,
+        help=u"Wait this times more before aborting traffic."
+    )
 
     args = parser.parse_args()
 
@@ -381,9 +435,12 @@ def main():
 
     simple_burst(
         profile_file=args.profile, duration=args.duration, framesize=framesize,
-        mult=args.mult, warmup_time=args.warmup_time, port_0=args.port_0,
-        port_1=args.port_1, latency=args.latency, async_start=args.async_start,
-        traffic_directions=args.traffic_directions
+        multiplier=args.multiplier, warmup_time=args.warmup_time,
+        port_0=args.port_0, port_1=args.port_1, latency=args.latency,
+        async_start=args.async_start,
+        traffic_directions=args.traffic_directions,
+        n_transactions=args.n_transactions, delays=args.delays,
+        stretch_tolerance=args.stretch_tolerance
     )
 
 

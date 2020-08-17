@@ -622,9 +622,7 @@ class PLRsearch:
         stretch_pipe = start_computing(self.lfit_stretch, stretch_focus_tracker)
 
         # Measurement phase.
-        measurement = self.measurer.measure(
-            trial_duration, transmit_rate, self.latency
-        )
+        measurement = self.measurer.measure(trial_duration, transmit_rate)
 
         # Processing phase.
         def stop_computing(name, pipe):
