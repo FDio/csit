@@ -568,7 +568,7 @@ class PLRsearch:
                 trial_result_list cannot be an explicit argument
                 of the current function.
                 This is also why we have to define this closure
-                at each invocation of the ancestor function anew.
+                at each invocation olf the ancestor function anew.
 
                 The dimensional spread parameter is the (dimensional) mrr
                 raised to the power of x_spread scaled to interval (0, 1).
@@ -622,9 +622,7 @@ class PLRsearch:
         stretch_pipe = start_computing(self.lfit_stretch, stretch_focus_tracker)
 
         # Measurement phase.
-        measurement = self.measurer.measure(
-            trial_duration, transmit_rate, self.latency
-        )
+        measurement = self.measurer.measure(trial_duration, transmit_rate)
 
         # Processing phase.
         def stop_computing(name, pipe):
