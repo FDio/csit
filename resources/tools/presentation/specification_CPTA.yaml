@@ -6421,26 +6421,26 @@
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
       layout: "plot-cpta"
 
-    - title: "2n-clx-xxv710-64b-2t1c-l2-base-scale-dpdk-ndr"
-      output-file-name: "2n-clx-xxv710-64b-2t1c-l2-base-scale-dpdk-ndr"
+    - title: "2n-clx-xxv710-64b-2t1c-l2-base-scale-avf-ndr"
+      output-file-name: "2n-clx-xxv710-64b-2t1c-l2-base-scale-avf-ndr"
       data: "plot-ndrpdr-comparison-2n-clx"
       include-tests: "NDR"
       include:
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale10kmaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale100kmaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale1mmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale1mmaclrn-ndrpdr"
       layout: "plot-cpta"
 
-    - title: "2n-clx-xxv710-64b-2t1c-l2-base-scale-dpdk-pdr"
-      output-file-name: "2n-clx-xxv710-64b-2t1c-l2-base-scale-dpdk-pdr"
+    - title: "2n-clx-xxv710-64b-2t1c-l2-base-scale-avf-pdr"
+      output-file-name: "2n-clx-xxv710-64b-2t1c-l2-base-scale-avf-pdr"
       data: "plot-ndrpdr-comparison-2n-clx"
       include-tests: "PDR"
       include:
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale10kmaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale100kmaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale1mmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdscale1mmaclrn-ndrpdr"
       layout: "plot-cpta"
 
     - title: "2n-clx-xxv710-64b-2t1c-l2-base-scale-dpdk-ndr"
@@ -6568,9 +6568,9 @@
       data: "plot-ndrpdr-comparison-2n-clx"
       include-tests: "NDR"
       include:
-        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
       layout: "plot-cpta"
 
     - title: "2n-clx-xxv710-114b-2t1c-vts-l2switching-base-avf-pdr"
@@ -6578,9 +6578,9 @@
       data: "plot-ndrpdr-comparison-2n-clx"
       include-tests: "PDR"
       include:
-        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
-        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
-        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-2t1c-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
       layout: "plot-cpta"
 
 # 2n-skx memif
@@ -6787,6 +6787,28 @@
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
         - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-78b-2t1c-ip6-base-scale-avf-ndr"
+      output-file-name: "2n-skx-xxv710-78b-2t1c-ip6-base-scale-avf-ndr"
+      data: "plot-ndrpdr-comparison-2n-skx"
+      include-tests: "NDR"
+      include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale200k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-78b-2t1c-ip6-base-scale-avf-pdr"
+      output-file-name: "2n-skx-xxv710-78b-2t1c-ip6-base-scale-avf-pdr"
+      data: "plot-ndrpdr-comparison-2n-skx"
+      include-tests: "PDR"
+      include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale200k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-78b-2t1c-ip6-base-scale-dpdk-ndr"
@@ -7135,8 +7157,8 @@
         - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518b-2t1c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
       layout: "plot-cpta"
 
-    - title: "3n-skx-xxv710-imix-2t1c-ipsec-base-scale-sw-ndr"
-      output-file-name: "3n-skx-xxv710-imix-2t1c-ipsec-base-scale-sw-ndr"
+    - title: "3n-skx-xxv710-imix-2t1c-ipsec-base-scale-sw-dpdk-ndr"
+      output-file-name: "3n-skx-xxv710-imix-2t1c-ipsec-base-scale-sw-dpdk-ndr"
       data: "plot-ndrpdr-comparison-3n-skx"
       include-tests: "NDR"
       include:
@@ -7144,8 +7166,8 @@
         - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-2t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
       layout: "plot-cpta"
 
-    - title: "3n-skx-xxv710-1518b-2t1c-ipsec-base-scale-sw-ndr"
-      output-file-name: "3n-skx-xxv710-1518b-2t1c-ipsec-base-scale-sw-ndr"
+    - title: "3n-skx-xxv710-1518b-2t1c-ipsec-base-scale-sw-dpdk-ndr"
+      output-file-name: "3n-skx-xxv710-1518b-2t1c-ipsec-base-scale-sw-dpdk-ndr"
       data: "plot-ndrpdr-comparison-3n-skx"
       include-tests: "NDR"
       include:
@@ -7153,8 +7175,8 @@
         - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518b-2t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
       layout: "plot-cpta"
 
-    - title: "3n-skx-xxv710-imix-2t1c-ipsec-base-scale-sw-pdr"
-      output-file-name: "3n-skx-xxv710-imix-2t1c-ipsec-base-scale-sw-pdr"
+    - title: "3n-skx-xxv710-imix-2t1c-ipsec-base-scale-sw-dpdk-pdr"
+      output-file-name: "3n-skx-xxv710-imix-2t1c-ipsec-base-scale-sw-dpdk-pdr"
       data: "plot-ndrpdr-comparison-3n-skx"
       include-tests: "PDR"
       include:
@@ -7162,8 +7184,8 @@
         - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-2t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
       layout: "plot-cpta"
 
-    - title: "3n-skx-xxv710-1518b-2t1c-ipsec-base-scale-sw-pdr"
-      output-file-name: "3n-skx-xxv710-1518b-2t1c-ipsec-base-scale-sw-pdr"
+    - title: "3n-skx-xxv710-1518b-2t1c-ipsec-base-scale-sw-dpdk-pdr"
+      output-file-name: "3n-skx-xxv710-1518b-2t1c-ipsec-base-scale-sw-dpdk-pdr"
       data: "plot-ndrpdr-comparison-3n-skx"
       include-tests: "PDR"
       include:
