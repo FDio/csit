@@ -14,7 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | CPS
 | ... | NIC_Intel-XXV710 | ETH | IP4FWD | BASE | IP4BASE
 | ... | DRV_VFIO_PCI | UDP_SYN
 | ... | PPT | 1VM | NF_VPP | RXQ_SIZE_0 | TXQ_SIZE_0
@@ -23,7 +23,7 @@
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-#| Test Teardown | Tear down test raw | performance | vhost-pt
+| Test Teardown | Tear down test raw | performance | vhost-pt
 |
 | Test Template | Local Template
 |
@@ -59,7 +59,7 @@
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 1
-| ${osi_layer}= | L3
+| ${osi_layer}= | L7
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
@@ -69,12 +69,16 @@
 | ${nat_mode}= | endpoint-dependent
 | ${max_translations_per_thread}= | 81920
 | ${in_net}= | 192.168.0.0
-| ${in_mask}= | ${16}
+| ${in_mask}= | ${22}
 | ${out_net}= | 68.142.68.0
 | ${out_net_end}= | 68.142.68.0
 | ${out_mask}= | ${32}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-ethip4udp-1024h
+| ${traffic_profile}= | trex-astf-ethip4udp-1024h
+| ${cps}= | ${64512}
+# Trial data overwrite
+| ${trial_duration}= | ${1.1}
+| ${trial_multiplicity}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -100,54 +104,54 @@
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${True}
 | | ... | vnf=vpp_2vfpt_ethip4_nat44ed_h1024_p63_s64512
-| | Then Traffic should pass with maximum rate
-| | ... | latency=${False} | traffic_directions=${1}
+| | Set Test Variable | \${max_rate} | ${cps}
+| | Then Traffic should pass with maximum rate | latency=${False}
 
 *** Test Cases ***
-| 64B-1c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
+| 64B-1c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
-| | [Tags] | 64B | 2C | THIS
+| 64B-2c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
+| | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
+| 64B-4c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
+| 1518B-1c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
+| 1518B-2c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
+| 1518B-4c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-#| 9000B-1c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
+#| 9000B-1c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
 #| | [Tags] | 9000B | 1C
 #| | frame_size=${9000} | phy_cores=${1}
 
-#| 9000B-2c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
+#| 9000B-2c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
 #| | [Tags] | 9000B | 2C
 #| | frame_size=${9000} | phy_cores=${2}
 
-#| 9000B-4c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
+#| 9000B-4c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
 #| | [Tags] | 9000B | 4C
 #| | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
-| | [Tags] | IMIX | 1C
-| | frame_size=IMIX_v4_1 | phy_cores=${1}
+#| IMIX-1c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
+#| | [Tags] | IMIX | 1C
+#| | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
-| | [Tags] | IMIX | 2C
-| | frame_size=IMIX_v4_1 | phy_cores=${2}
+#| IMIX-2c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
+#| | [Tags] | IMIX | 2C
+#| | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-mrr
-| | [Tags] | IMIX | 4C
-| | frame_size=IMIX_v4_1 | phy_cores=${4}
+#| IMIX-4c-ethip4-nat44ed-h1024-p63-s64512-eth-2pt-1vm-cps
+#| | [Tags] | IMIX | 4C
+#| | frame_size=IMIX_v4_1 | phy_cores=${4}

@@ -499,7 +499,7 @@
 | | Send traffic on tg | ${trial_duration} | ${real_rate} | ${frame_size}
 | | ... | ${traffic_profile} | warmup_time=${0}
 | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | ... | rx_port=${rx_port} | latency=${True}
+| | ... | rx_port=${rx_port}
 | | ${latency} = | Get Latency Int
 | | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
 

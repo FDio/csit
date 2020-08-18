@@ -143,7 +143,7 @@ class QemuUtils:
     def add_net_user(self):
         """Set managment port forwarding."""
         self._params.add_with_value(
-            u"netdev", f"user,id=mgmt,net=192.168.76.0/24,"
+            u"netdev", f"user,id=mgmt,net=172.16.255.0/24,"
             f"hostfwd=tcp::{self._vm_info[u'port']}-:22"
         )
         self._params.add_with_value(
@@ -171,14 +171,17 @@ class QemuUtils:
             u"serial", f"file:{self._temp.get(u'log')}"
         )
 
-    def add_drive_cdrom(self, drive_file):
+    def add_drive_cdrom(self, drive_file, index=None):
         """Set CD-ROM drive.
 
         :param drive_file: Path to drive image.
+        :param index: Drive index.
         :type drive_file: str
+        :type index: int
         """
+        index=f"index={index}," if index else u""
         self._params.add_with_value(
-            u"drive", f"file={drive_file},media=cdrom"
+            u"drive", f"file={drive_file},{index}media=cdrom"
         )
 
     def add_drive(self, drive_file, drive_format):
@@ -301,10 +304,6 @@ class QemuUtils:
             vpp_config.add_cpu_corelist_workers(f"1-{self._opt.get(u'smp')-1}")
         vpp_config.add_plugin(u"disable", u"default")
         vpp_config.add_plugin(u"enable", u"ping_plugin.so")
-        if "ipsec" in self._opt.get(u'vnf'):
-            vpp_config.add_plugin(u"enable", u"crypto_native_plugin.so")
-            vpp_config.add_plugin(u"enable", u"crypto_ipsecmb_plugin.so")
-            vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
         if "2vfpt" in self._opt.get(u'vnf'):
             vpp_config.add_plugin(u"enable", u"avf_plugin.so")
         if "vhost" in self._opt.get(u'vnf'):
@@ -315,6 +314,14 @@ class QemuUtils:
             if not kwargs[u"jumbo_frames"]:
                 vpp_config.add_dpdk_no_multi_seg()
                 vpp_config.add_dpdk_no_tx_checksum_offload()
+        if "ipsec" in self._opt.get(u'vnf'):
+            vpp_config.add_plugin(u"enable", u"crypto_native_plugin.so")
+            vpp_config.add_plugin(u"enable", u"crypto_ipsecmb_plugin.so")
+            vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
+        if "nat" in self._opt.get(u'vnf'):
+            vpp_config.add_nat(value=u"endpoint-dependent")
+            vpp_config.add_nat_max_translations_per_thread(value=655360)
+            vpp_config.add_plugin(u"enable", u"nat_plugin.so")
         vpp_config.write_config(startup)
 
         # Create VPP running configuration.
@@ -384,6 +391,40 @@ class QemuUtils:
 
         self._opt[u"vnf_bin"] = f"{self._testpmd_path}/{testpmd_cmd}"
 
+    def create_kernelvm_config_csr(self, **kwargs):
+        """Create QEMU CSR config files.
+
+        :param kwargs: Key-value pairs to replace content of CSR configuration
+            file.
+        :type kwargs: dict
+        """
+        startup = u"/tmp/iosxe_config.txt"
+        running = f"/tmp/{self._opt.get(u'vnf')}.iso"
+
+        self._temp[u"startup"] = startup
+        self._temp[u"running"] = running
+
+        template = f"{Constants.RESOURCES_TPL_CSR}/" \
+            f"{self._opt.get(u'vnf')}_{kwargs[u'name']}.cfg"
+        exec_cmd_no_error(
+            self._node, f"rm -f {startup} {running}", sudo=True
+        )
+        exec_cmd_no_error(
+            self._node,
+            f"qemu-img create -f qcow2 /var/lib/vm/csr_empty.qcow2 8G",
+            sudo=True
+        )
+
+        with open(template, u"rt") as src_file:
+            src = Template(src_file.read())
+            exec_cmd_no_error(
+                self._node, f"echo '{src.safe_substitute(**kwargs)}' | "
+                f"sudo tee {startup}"
+            )
+            exec_cmd_no_error(
+                self._node, f"mkisofs -l -o {running} {startup}"
+            )
+
     def create_kernelvm_init(self, **kwargs):
         """Create QEMU init script.
 
@@ -410,13 +451,17 @@ class QemuUtils:
         """
         if u"vpp" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_vpp(**kwargs)
+            self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
         elif u"testpmd_io" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_testpmd_io(**kwargs)
+            self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
         elif u"testpmd_mac" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_testpmd_mac(**kwargs)
+            self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
+        elif u"csr" in self._opt.get(u"vnf"):
+            self.create_kernelvm_config_csr(**kwargs)
         else:
             raise RuntimeError(u"QEMU: Unsupported VNF!")
-        self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
 
     def get_qemu_pids(self):
         """Get QEMU CPU pids.
@@ -676,6 +721,30 @@ class QemuUtils:
 
     def _wait_csr_ethip4ipsec40tnl_plen30(self, retries=600):
         """Wait until QEMU with csr_ethip4ipsec40tnl_plen30 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4_nat44ed_h1024_p63_s64512(self, retries=600):
+        """Wait until QEMU with csr_ethip4_nat44ed_h1024_p63_s64512 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4_nat44ed_h4096_p63_s258048(self, retries=600):
+        """Wait until QEMU with csr_ethip4_nat44ed_h4096_p63_s258048 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        self._wait_csr_ip4base_plen24(retries=retries)
+
+    def _wait_csr_ethip4_nat44ed_h16384_p63_s1032192(self, retries=600):
+        """Wait until QEMU with csr_ethip4_nat44ed_h16384_p63_s1032192 is booted.
 
         :param retries: Number of retries.
         :type retries: int
