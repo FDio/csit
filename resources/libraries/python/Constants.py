@@ -173,7 +173,7 @@ class Constants:
     QEMU_VM_KERNEL_INITRD = u"/opt/boot/initrd.img"
 
     # QEMU VM nested image path
-    QEMU_VM_IMAGE = u"/var/lib/vm/vhost-nested.img"
+    QEMU_VM_IMAGE = u"/var/lib/vm/image.iso"
 
     # QEMU VM DPDK path
     QEMU_VM_DPDK = u"/opt/dpdk-20.02"
@@ -211,7 +211,7 @@ class Constants:
     CORE_DUMP_DIR = u"/tmp"
 
     # Perf stat events (comma separated).
-    PERF_STAT_EVENTS = u"machine_clears.smc"
+    PERF_STAT_EVENTS = u"L1-icache-load-misses"
 
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
