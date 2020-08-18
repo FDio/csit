@@ -22,6 +22,30 @@
       "revId": "bb673b96f6fce8e99610ca0aea5fee45b6dbaa79",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e34d60c_5e477f4a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-08-18T08:41:47Z",
+      "side": 1,
+      "message": "It\u0027s needed as by default the value of self.traffic_profile is None and set_rate_provider_defaults() method is not use in case of MRR tests so we need to set traffic profile here.",
+      "parentUuid": "226f747b_b0f78eba",
+      "range": {
+        "startLine": 869,
+        "startChar": 0,
+        "endLine": 870,
+        "endChar": 59
+      },
+      "revId": "bb673b96f6fce8e99610ca0aea5fee45b6dbaa79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
