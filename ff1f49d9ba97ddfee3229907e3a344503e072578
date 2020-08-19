@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1afbe3fc_e1d7738d",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-19T10:22:34Z",
+      "side": 1,
+      "message": "... but is this really needed? You can simply do the self._result.get attempt for every field, regardless of profile type. That way yo do not need to store the profile name.\nMaybe even line 486 is not needed.",
+      "range": {
+        "startLine": 506,
+        "startChar": 16,
+        "endLine": 506,
+        "endChar": 25
+      },
+      "revId": "ff1f49d9ba97ddfee3229907e3a344503e072578",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

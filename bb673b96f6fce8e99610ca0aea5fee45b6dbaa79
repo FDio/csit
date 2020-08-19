@@ -46,6 +46,30 @@
       "revId": "bb673b96f6fce8e99610ca0aea5fee45b6dbaa79",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16737a43_5831110e",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-19T10:22:34Z",
+      "side": 1,
+      "message": "The typical use is for separate start/stop (as in reconf tests). Here (at start) we are storing the profile name, because the parsing of results (at stop) depends on it...",
+      "parentUuid": "9e34d60c_5e477f4a",
+      "range": {
+        "startLine": 869,
+        "startChar": 0,
+        "endLine": 870,
+        "endChar": 59
+      },
+      "revId": "bb673b96f6fce8e99610ca0aea5fee45b6dbaa79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
