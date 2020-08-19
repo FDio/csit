@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f02f0a6e_b43535f3",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "Delay only for TCP. Text fixed in latest patchset 5.",
+      "parentUuid": "12a23490_2e63c5a0",
+      "range": {
+        "startLine": 66,
+        "startChar": 58,
+        "endLine": 66,
+        "endChar": 63
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5af5eca_af6c4f64",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 1
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "d7e1f188_572600cc",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 17
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff50b155_2c12426c",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "Removed 2nd delay to match the code.",
+      "parentUuid": "ae8b17a1_e09b9003",
       "range": {
         "startLine": 67,
         "startChar": 12,
@@ -239,6 +287,30 @@
     },
     {
       "key": {
+        "uuid": "11e06405_842ba976",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "Updated the definition of trial_duration to reflect our discussion and addressing this comment.",
+      "parentUuid": "40f8b33f_b536d6cb",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 10
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87b74d0b_5592ac7f",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 1
@@ -298,6 +370,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "f4e61e4d_0407e0d1",
+      "range": {
+        "startLine": 139,
+        "startChar": 5,
+        "endLine": 139,
+        "endChar": 19
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7de7c53d_4afca1d9",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "Simplified list of counters and descriptions.",
+      "parentUuid": "b1259648_395a9341",
       "range": {
         "startLine": 139,
         "startChar": 5,
@@ -381,6 +477,30 @@
     },
     {
       "key": {
+        "uuid": "cdd15126_b93f30b4",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "See latest text. We need to watch this error.",
+      "parentUuid": "7f253ed8_1dbeb071",
+      "range": {
+        "startLine": 167,
+        "startChar": 28,
+        "endLine": 167,
+        "endChar": 32
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48188f72_fa6ce88f",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 1
@@ -452,6 +572,30 @@
     },
     {
       "key": {
+        "uuid": "74c0d7d6_c7b85d14",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "Not considering this counter at all for TCP CPS.",
+      "parentUuid": "194632c7_de814ee1",
+      "range": {
+        "startLine": 261,
+        "startChar": 12,
+        "endLine": 261,
+        "endChar": 40
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7243a7e7_e4e9540c",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 1
@@ -472,6 +616,30 @@
       "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cbdc027_b0b6b1d6",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "Not considering this counter at all for TCP CPS.",
+      "parentUuid": "7243a7e7_e4e9540c",
+      "range": {
+        "startLine": 272,
+        "startChar": 12,
+        "endLine": 272,
+        "endChar": 39
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -510,6 +678,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "d168c70e_6b903250",
+      "range": {
+        "startLine": 274,
+        "startChar": 12,
+        "endLine": 274,
+        "endChar": 41
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e14629a0_7537b787",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "Not considering this counter at all for TCP CPS.",
+      "parentUuid": "7f8cbdc7_21f0997c",
       "range": {
         "startLine": 274,
         "startChar": 12,
@@ -581,6 +773,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "307de73c_68bb24f7",
+      "range": {
+        "startLine": 279,
+        "startChar": 5,
+        "endLine": 279,
+        "endChar": 19
+      },
+      "revId": "e78f908198aad16654c0a0ec7c1613f451c15fb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26be5cc4_bed9181a",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "Simplified list of counters, descriptions and formulas.",
+      "parentUuid": "0e7e105f_1497d35a",
       "range": {
         "startLine": 279,
         "startChar": 5,

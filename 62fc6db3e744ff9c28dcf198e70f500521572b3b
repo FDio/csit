@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "2e812295_68c892f6",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "See updated specification and CPS-MRR, CPS-PDR and CPS-NDR test results to be reported. The latter two include m_est_flows.",
+      "parentUuid": "37ddc4e7_4ea6b6f5",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 2
+      },
+      "revId": "62fc6db3e744ff9c28dcf198e70f500521572b3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "33f89540_f964fb40",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 2
@@ -116,6 +140,30 @@
       "revId": "62fc6db3e744ff9c28dcf198e70f500521572b3b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26174ec1_1071032b",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-08-19T18:21:54Z",
+      "side": 1,
+      "message": "Addressed by updated formulas and test criteria.",
+      "parentUuid": "f79a877f_eec7f8ae",
+      "range": {
+        "startLine": 151,
+        "startChar": 2,
+        "endLine": 151,
+        "endChar": 13
+      },
+      "revId": "62fc6db3e744ff9c28dcf198e70f500521572b3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
