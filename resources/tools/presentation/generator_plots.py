@@ -179,9 +179,16 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                         f"Percentile: 0.0%<br>"
                         f"Latency: 0.0uSec"
                     ]
-                    decoded = hdrh.histogram.HdrHistogram.decode(
-                        test[u"latency"][graph][direction][u"hdrh"]
-                    )
+                    try:
+                        decoded = hdrh.histogram.HdrHistogram.decode(
+                            test[u"latency"][graph][direction][u"hdrh"]
+                        )
+                    except hdrh.codec.HdrLengthException:
+                        logging.warning(
+                            f"No data for direction {(u'W-E', u'E-W')[idx % 2]}"
+                        )
+                        continue
+
                     for item in decoded.get_recorded_iterator():
                         percentile = item.percentile_level_iterated_to
                         if percentile > 99.9:
@@ -204,7 +211,7 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                             showlegend=bool(idx),
                             line=dict(
                                 color=COLORS[color],
-                                dash=u"solid" if idx % 2 else u"dash"
+                                dash=u"dash" if idx % 2 else u"solid"
                             ),
                             hovertext=hovertext,
                             hoverinfo=u"text"
@@ -356,7 +363,8 @@ def plot_perf_box_name(plot, input_data):
         f"{plot.get(u'title', u'')}."
     )
     data = input_data.filter_tests_by_name(
-        plot, params=[u"throughput", u"result", u"parent", u"tags", u"type"])
+        plot,
+        params=[u"throughput", u"gbps", u"result", u"parent", u"tags", u"type"])
     if data is None:
         logging.error(u"No data.")
         return
@@ -370,20 +378,33 @@ def plot_perf_box_name(plot, input_data):
                 if y_vals.get(test[u"parent"], None) is None:
                     y_vals[test[u"parent"]] = list()
                 try:
-                    if (test[u"type"] in (u"NDRPDR", ) and
-                            u"-pdr" in plot.get(u"title", u"").lower()):
-                        y_vals[test[u"parent"]].\
-                            append(test[u"throughput"][u"PDR"][u"LOWER"])
+                    if test[u"type"] in (u"NDRPDR", ):
                         test_type = u"NDRPDR"
-                    elif (test[u"type"] in (u"NDRPDR", ) and
-                          u"-ndr" in plot.get(u"title", u"").lower()):
-                        y_vals[test[u"parent"]]. \
-                            append(test[u"throughput"][u"NDR"][u"LOWER"])
-                        test_type = u"NDRPDR"
+                        plot_title = plot.get(u"title", u"").lower()
+
+                        if u"-pdr" in plot_title:
+                            ttype = u"PDR"
+                        elif u"-ndr" in plot_title:
+                            ttype = u"NDR"
+                        else:
+                            continue
+
+                        if u"-gbps" in plot_title:
+                            value = u"gbps"
+                            multiplier = 1e6
+                        else:
+                            value = u"throughput"
+                            multiplier = 1.0
+
+                        y_vals[test[u"parent"]].append(
+                            test[value][ttype][u"LOWER"] * multiplier
+                        )
+
                     elif test[u"type"] in (u"SOAK", ):
                         y_vals[test[u"parent"]].\
                             append(test[u"throughput"][u"LOWER"])
                         test_type = u"SOAK"
+
                     elif test[u"type"] in (u"HOSTSTACK", ):
                         if u"LDPRELOAD" in test[u"tags"]:
                             y_vals[test[u"parent"]].append(
@@ -398,8 +419,10 @@ def plot_perf_box_name(plot, input_data):
                                  2)
                             )
                         test_type = u"HOSTSTACK"
+
                     else:
                         continue
+
                 except (KeyError, TypeError):
                     y_vals[test[u"parent"]].append(None)
 
@@ -491,10 +514,14 @@ def plot_tsa_name(plot, input_data):
         f"    Creating data set for the {plot.get(u'type', u'')} {plot_title}."
     )
     data = input_data.filter_tests_by_name(
-        plot, params=[u"throughput", u"parent", u"tags", u"type"])
+        plot,
+        params=[u"throughput", u"gbps", u"parent", u"tags", u"type"]
+    )
     if data is None:
         logging.error(u"No data.")
         return
+
+    plot_title = plot_title.lower()
 
     y_vals = OrderedDict()
     for job in data:
@@ -510,22 +537,29 @@ def plot_tsa_name(plot, input_data):
                     if test[u"type"] not in (u"NDRPDR",):
                         continue
 
-                    if u"-pdr" in plot_title.lower():
+                    if u"-pdr" in plot_title:
                         ttype = u"PDR"
-                    elif u"-ndr" in plot_title.lower():
+                    elif u"-ndr" in plot_title:
                         ttype = u"NDR"
                     else:
                         continue
 
+                    if u"-gbps" in plot_title:
+                        value = u"gbps"
+                        multiplier = 1e6
+                    else:
+                        value = u"throughput"
+                        multiplier = 1.0
+
                     if u"1C" in test[u"tags"]:
                         y_vals[test[u"parent"]][u"1"]. \
-                            append(test[u"throughput"][ttype][u"LOWER"])
+                            append(test[value][ttype][u"LOWER"] * multiplier)
                     elif u"2C" in test[u"tags"]:
                         y_vals[test[u"parent"]][u"2"]. \
-                            append(test[u"throughput"][ttype][u"LOWER"])
+                            append(test[value][ttype][u"LOWER"] * multiplier)
                     elif u"4C" in test[u"tags"]:
                         y_vals[test[u"parent"]][u"4"]. \
-                            append(test[u"throughput"][ttype][u"LOWER"])
+                            append(test[value][ttype][u"LOWER"] * multiplier)
                 except (KeyError, TypeError):
                     pass
 
@@ -636,103 +670,104 @@ def plot_tsa_name(plot, input_data):
     x_vals = [1, 2, 4]
 
     # Limits:
-    try:
-        threshold = 1.1 * max(y_max)  # 10%
-    except ValueError as err:
-        logging.error(err)
-        return
-    nic_limit /= 1e6
-    traces.append(plgo.Scatter(
-        x=x_vals,
-        y=[nic_limit, ] * len(x_vals),
-        name=f"NIC: {nic_limit:.2f}Mpps",
-        showlegend=False,
-        mode=u"lines",
-        line=dict(
-            dash=u"dot",
-            color=COLORS[-1],
-            width=1),
-        hoverinfo=u"none"
-    ))
-    annotations.append(dict(
-        x=1,
-        y=nic_limit,
-        xref=u"x",
-        yref=u"y",
-        xanchor=u"left",
-        yanchor=u"bottom",
-        text=f"NIC: {nic_limit:.2f}Mpps",
-        font=dict(
-            size=14,
-            color=COLORS[-1],
-        ),
-        align=u"left",
-        showarrow=False
-    ))
-    y_max.append(nic_limit)
-
-    lnk_limit /= 1e6
-    if lnk_limit < threshold:
+    if u"-gbps" not in plot_title:
+        try:
+            threshold = 1.1 * max(y_max)  # 10%
+        except ValueError as err:
+            logging.error(err)
+            return
+        nic_limit /= 1e6
         traces.append(plgo.Scatter(
             x=x_vals,
-            y=[lnk_limit, ] * len(x_vals),
-            name=f"Link: {lnk_limit:.2f}Mpps",
+            y=[nic_limit, ] * len(x_vals),
+            name=f"NIC: {nic_limit:.2f}Mpps",
             showlegend=False,
             mode=u"lines",
             line=dict(
                 dash=u"dot",
-                color=COLORS[-2],
+                color=COLORS[-1],
                 width=1),
             hoverinfo=u"none"
         ))
         annotations.append(dict(
             x=1,
-            y=lnk_limit,
+            y=nic_limit,
             xref=u"x",
             yref=u"y",
             xanchor=u"left",
             yanchor=u"bottom",
-            text=f"Link: {lnk_limit:.2f}Mpps",
+            text=f"NIC: {nic_limit:.2f}Mpps",
             font=dict(
                 size=14,
-                color=COLORS[-2],
+                color=COLORS[-1],
             ),
             align=u"left",
             showarrow=False
         ))
-        y_max.append(lnk_limit)
+        y_max.append(nic_limit)
 
-    pci_limit /= 1e6
-    if (pci_limit < threshold and
-            (pci_limit < lnk_limit * 0.95 or lnk_limit > lnk_limit * 1.05)):
-        traces.append(plgo.Scatter(
-            x=x_vals,
-            y=[pci_limit, ] * len(x_vals),
-            name=f"PCIe: {pci_limit:.2f}Mpps",
-            showlegend=False,
-            mode=u"lines",
-            line=dict(
-                dash=u"dot",
-                color=COLORS[-3],
-                width=1),
-            hoverinfo=u"none"
-        ))
-        annotations.append(dict(
-            x=1,
-            y=pci_limit,
-            xref=u"x",
-            yref=u"y",
-            xanchor=u"left",
-            yanchor=u"bottom",
-            text=f"PCIe: {pci_limit:.2f}Mpps",
-            font=dict(
-                size=14,
-                color=COLORS[-3],
-            ),
-            align=u"left",
-            showarrow=False
-        ))
-        y_max.append(pci_limit)
+        lnk_limit /= 1e6
+        if lnk_limit < threshold:
+            traces.append(plgo.Scatter(
+                x=x_vals,
+                y=[lnk_limit, ] * len(x_vals),
+                name=f"Link: {lnk_limit:.2f}Mpps",
+                showlegend=False,
+                mode=u"lines",
+                line=dict(
+                    dash=u"dot",
+                    color=COLORS[-2],
+                    width=1),
+                hoverinfo=u"none"
+            ))
+            annotations.append(dict(
+                x=1,
+                y=lnk_limit,
+                xref=u"x",
+                yref=u"y",
+                xanchor=u"left",
+                yanchor=u"bottom",
+                text=f"Link: {lnk_limit:.2f}Mpps",
+                font=dict(
+                    size=14,
+                    color=COLORS[-2],
+                ),
+                align=u"left",
+                showarrow=False
+            ))
+            y_max.append(lnk_limit)
+
+        pci_limit /= 1e6
+        if (pci_limit < threshold and
+                (pci_limit < lnk_limit * 0.95 or lnk_limit > lnk_limit * 1.05)):
+            traces.append(plgo.Scatter(
+                x=x_vals,
+                y=[pci_limit, ] * len(x_vals),
+                name=f"PCIe: {pci_limit:.2f}Mpps",
+                showlegend=False,
+                mode=u"lines",
+                line=dict(
+                    dash=u"dot",
+                    color=COLORS[-3],
+                    width=1),
+                hoverinfo=u"none"
+            ))
+            annotations.append(dict(
+                x=1,
+                y=pci_limit,
+                xref=u"x",
+                yref=u"y",
+                xanchor=u"left",
+                yanchor=u"bottom",
+                text=f"PCIe: {pci_limit:.2f}Mpps",
+                font=dict(
+                    size=14,
+                    color=COLORS[-3],
+                ),
+                align=u"left",
+                showarrow=False
+            ))
+            y_max.append(pci_limit)
 
     # Perfect and measured:
     cidx = 0
