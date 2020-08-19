@@ -46,6 +46,30 @@
       "revId": "1a2f54b83c48495e2f5aab158777a01140fe176b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8a41a24_ce1a2679",
+        "filename": "topologies/available/2n_hw_testbed1.yaml.example",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2020-08-19T12:17:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8df667a_74d388f5",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 27
+      },
+      "revId": "1a2f54b83c48495e2f5aab158777a01140fe176b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
