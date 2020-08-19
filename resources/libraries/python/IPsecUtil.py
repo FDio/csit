@@ -264,6 +264,25 @@ class IPsecUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
+    def vpp_ipsec_set_async_mode(node, async_enable=1):
+        """Set IPsec async mode on|off.
+
+        :param node: VPP node to set IPsec async mode.
+        :param async_enable: Async mode on or off.
+        :type node: dict
+        :type async_enable: int
+        :raises RuntimeError: If failed to set IPsec async mode or if no API
+            reply received.
+        """
+        cmd = u"ipsec_set_async_mode"
+        err_msg = f"Failed to set IPsec async mode on host {node[u'host']}"
+        args = dict(
+            async_enable=async_enable
+        )
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
     def vpp_ipsec_add_sad_entry(
             node, sad_id, spi, crypto_alg, crypto_key, integ_alg=None,
             integ_key=u"", tunnel_src=None, tunnel_dst=None):
