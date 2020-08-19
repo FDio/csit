@@ -216,6 +216,12 @@ class ExecutionChecker(ResultVisitor):
         r'PDR_LOWER:\s(\d+.\d+).*\n.*\n'
         r'PDR_UPPER:\s(\d+.\d+)'
     )
+    REGEX_NDRPDR_GBPS = re.compile(
+        r'NDR_LOWER:.*,\s(\d+.\d+).*\n.*\n'
+        r'NDR_UPPER:.*,\s(\d+.\d+).*\n'
+        r'PDR_LOWER:.*,\s(\d+.\d+).*\n.*\n'
+        r'PDR_UPPER:.*,\s(\d+.\d+)'
+    )
     REGEX_PERF_MSG_INFO = re.compile(
         r'NDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*\n'
         r'PDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*\n'
@@ -713,6 +719,35 @@ class ExecutionChecker(ResultVisitor):
 
         return throughput, status
 
+    def _get_ndrpdr_throughput_gbps(self, msg):
+        """Get NDR_LOWER, NDR_UPPER, PDR_LOWER and PDR_UPPER in Gbps from the
+        test message.
+
+        :param msg: The test message to be parsed.
+        :type msg: str
+        :returns: Parsed data as a dict and the status (PASS/FAIL).
+        :rtype: tuple(dict, str)
+        """
+
+        gbps = {
+            u"NDR": {u"LOWER": -1.0, u"UPPER": -1.0},
+            u"PDR": {u"LOWER": -1.0, u"UPPER": -1.0}
+        }
+        status = u"FAIL"
+        groups = re.search(self.REGEX_NDRPDR_GBPS, msg)
+
+        if groups is not None:
+            try:
+                gbps[u"NDR"][u"LOWER"] = float(groups.group(1))
+                gbps[u"NDR"][u"UPPER"] = float(groups.group(2))
+                gbps[u"PDR"][u"LOWER"] = float(groups.group(3))
+                gbps[u"PDR"][u"UPPER"] = float(groups.group(4))
+                status = u"PASS"
+            except (IndexError, ValueError):
+                pass
+
+        return gbps, status
+
     def _get_plr_throughput(self, msg):
         """Get PLRsearch lower bound and PLRsearch upper bound from the test
         message.
@@ -1071,6 +1106,8 @@ class ExecutionChecker(ResultVisitor):
                 test_result[u"type"] = u"NDRPDR"
                 test_result[u"throughput"], test_result[u"status"] = \
                     self._get_ndrpdr_throughput(test.message)
+                test_result[u"gbps"], test_result[u"status"] = \
+                    self._get_ndrpdr_throughput_gbps(test.message)
                 test_result[u"latency"], test_result[u"status"] = \
                     self._get_ndrpdr_latency(test.message)
             elif u"SOAK" in tags:
@@ -1095,8 +1132,9 @@ class ExecutionChecker(ResultVisitor):
                 groups = re.search(self.REGEX_BMRR, test.message)
                 if groups is not None:
                     items_str = groups.group(1)
-                    items_float = [float(item.strip()) for item
-                                   in items_str.split(",")]
+                    items_float = [
+                        float(item.strip()) for item in items_str.split(",")
+                    ]
                     # Use whole list in CSIT-1180.
                     stats = jumpavg.AvgStdevStats.for_runs(items_float)
                     test_result[u"result"][u"receive-rate"] = stats.avg
