@@ -84,10 +84,13 @@
 | ${out_mask}= | ${32}
 # Traffic profile:
 | ${traffic_profile}= | trex-astf-ethip4udp-1024h
-| ${cps}= | ${64512}
-# Trial data overwrite
-| ${trial_duration}= | ${1.1}
-| ${trial_multiplicity}= | ${1}
+#| ${cps}= | ${64512}
+## Trial data overwrite
+#| ${trial_duration}= | ${1.1}
+#| ${trial_multiplicity}= | ${1}
+| ${n_hosts}= | ${1024}
+| ${n_ports}= | ${63}
+| ${n_transactions}= | ${${n_hosts} * ${n_ports}}
 
 *** Keywords ***
 | Local Template
@@ -106,7 +109,7 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Set Test Variable | \${max_rate} | ${cps}
+#| | Set Test Variable | \${max_rate} | ${cps}
 | | ${pre_stats}= | Create List
 | | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
 | | ... | vpp-clear-runtime
@@ -116,7 +119,8 @@
 | | ... | vpp-show-runtime
 | | Set Test Variable | ${post_stats}
 | |
-| | Given Set Jumbo
+| | Given Set Max Rate And Jumbo
+#| | Given Set Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Add NAT to all DUTs | nat_mode=${nat_mode}
