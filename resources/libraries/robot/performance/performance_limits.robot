@@ -88,11 +88,15 @@
 | | ... | are communicated as test (or broader scope) variables,
 | | ... | instead of explicit arguments and return values.
 | |
+| | ... | If this keyword detects the test is interested in (unidirectional)
+| | ... | transactons per second maximal rate (tps), that is returned (not pps).
+| |
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - nic_name - Name of bottleneck NIC. Type: string
 | | ... | - overhead - Overhead in bytes; default value: 0. Type: integer
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
 | | ... | string
+| | ... | - packets_per_transaction - Pps-tps conversion. Optional, default 1.
 | |
 | | ... | *Test variables set:*
 | | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
@@ -119,6 +123,8 @@
 | | ${rate} = | Evaluate | ${bps_limit} / ((${avg_swo} + 20.0) * 8)
 | | ${max_rate} = | Set Variable If | ${rate} > ${pps_limit}
 | | ... | ${pps_limit} | ${rate}
+| | ${ppt} = | Get Variable Value | \${packets_per_transaction} | ${1}
+| | ${max_rate} = | Evaluate | $max_rate / $ppt
 | | Set Test Variable | \${max_rate}
 | | Set Jumbo
 
