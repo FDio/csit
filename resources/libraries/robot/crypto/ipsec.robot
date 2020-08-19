@@ -223,3 +223,11 @@
 | | Vpp Route Add
 | | ... | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
 | | ... | interface=${DUT1_${int}1}[0]
+
+| Enable IPSec Async Mode
+| | [Documentation]
+| | ... | set IPsec async mode on for all DUT nodes.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | VPP Ipsec Set Async Mode | ${nodes['${dut}']}
+| | END

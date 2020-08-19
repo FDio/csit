@@ -134,6 +134,8 @@
     ipsec_spd_entry_add_del_reply: '0x9ffac24b'  # dev
     ipsec_tunnel_if_add_del: '0x2b135e68'  # perf
     ipsec_tunnel_if_add_del_reply: '0x5383d31f'  # perf
+    ipsec_set_async_mode: '0xa6465f7c'  #perf
+    ipsec_set_async_mode_reply: '0xe8d4e804'  #perf
     # ^^ tc01-64B-1c-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-mrr
     # ^ See select_backend.
     # l2_fib_table_dump / details # honeycomb
