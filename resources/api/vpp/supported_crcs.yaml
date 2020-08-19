@@ -191,6 +191,7 @@
     nat44_user_dump: '0x51077d14'  # perf teardown
     nat44_user_session_details: '0x1965fd69'  # perf teardown
     nat44_user_session_dump: '0xe1899c98'  # perf teardown
+    # FIXME: Which test to run to verify nat44-* messages.
     nat_det_add_del_map: '0x112fde05'  # perf
     nat_det_add_del_map_reply: '0xe8d4e804'  # perf
     nat_show_config: '0x51077d14'  # perf teardown
