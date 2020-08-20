@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af57dd43_aa64a97d",
+        "filename": "docs/job_specs/report_iterative/3n-dnv/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-08-20T07:45:33Z",
+      "side": 1,
+      "message": "Is it based on real data from a run? Otherwise both should be 6*216/60\u003d21.6",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 19
+      },
+      "revId": "a79c3df32444399fb3a0ef08f23ba51d55d3590d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2b4b3bf_965a4221",
+        "filename": "docs/job_specs/report_iterative/3n-dnv/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-08-20T07:45:33Z",
+      "side": 1,
+      "message": "should be 10.08",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "a79c3df32444399fb3a0ef08f23ba51d55d3590d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
