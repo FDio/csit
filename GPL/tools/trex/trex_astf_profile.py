@@ -15,7 +15,7 @@
 
 """This module gets T-Rex advanced stateful (astf) traffic profile together
 with other parameters, reads the profile and sends the traffic. At the end, it
-measures the packet loss and latency.
+parses for various counters.
 """
 
 import argparse
@@ -60,7 +60,7 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
 
 
 def simple_burst(
-        profile_file, duration, framesize, mult, warmup_time, port_0, port_1,
+        profile_file, duration, framesize, multiplier, port_0, port_1,
         latency, async_start=False, traffic_directions=2):
     """Send traffic and measure packet loss and latency.
 
@@ -70,8 +70,6 @@ def simple_burst(
      - resets the ports,
      - removes all existing streams,
      - adds streams from the traffic profile to the ports,
-     - if the warm-up time is more than 0, sends the warm-up traffic, reads the
-       statistics,
      - clears the statistics from the client,
      - starts the traffic,
      - waits for the defined time (or runs forever if async mode is defined),
@@ -79,11 +77,21 @@ def simple_burst(
      - reads and displays the statistics and
      - disconnects from the client.
 
+    Duration details:
+    As in stateless mode, duration parameter governs for how long
+    the new flows will be started. But if traffic has not stopped by this time,
+    it is stopped explicitly, counters reflect the state before the stop.
+
+    This is a base version, approximated_duration is based on sampled results.
+    TODO: Increase precision in cases limit_duration is hit.
+    TODO: Support tests which focus only on some transaction phases,
+    e.g. TCP tests ignoring init and teardown separated by delays.
+
     :param profile_file: A python module with T-rex traffic profile.
-    :param duration: Duration of traffic run in seconds (-1=infinite).
+    :param duration: Duration of transaction creation phase [s] (-1=infinite).
+        It is expected the value is large enough for n_transactions to start.
     :param framesize: Frame size.
-    :param mult: Multiplier of profile CPS.
-    :param warmup_time: Traffic warm-up time in seconds, 0 = disable.
+    :param multiplier: Multiplier of profile CPS.
     :param port_0: Port 0 on the traffic generator.
     :param port_1: Port 1 on the traffic generator.
     :param latency: With latency stats.
@@ -92,8 +100,7 @@ def simple_burst(
     :type profile_file: str
     :type duration: float
     :type framesize: int or str
-    :type mult: int
-    :type warmup_time: float
+    :type multiplier: int
     :type port_0: int
     :type port_1: int
     :type latency: bool
@@ -111,7 +118,8 @@ def simple_burst(
     lat_b_hist = u""
     l7_data = u""
     stats = dict()
-    stats_sampling = 1.0
+    activity_check_delay = 0.01
+    stats_sample_delay = 0.1
     approximated_duration = 0
 
     # Read the profile.
@@ -139,37 +147,6 @@ def simple_burst(
         if traffic_directions > 1:
             ports.append(port_1)
 
-        # Warm-up phase.
-        if warmup_time > 0:
-            # Clear the stats before injecting.
-            client.clear_stats()
-            # Choose CPS and start traffic.
-            client.start(mult=mult, duration=warmup_time)
-            time_start = time.monotonic()
-
-            # Read the stats after the warmup duration (no sampling needed).
-            time.sleep(warmup_time)
-            stats[time.monotonic()-time_start] = client.get_stats()
-
-            if client.get_warnings():
-                for warning in client.get_warnings():
-                    print(warning)
-
-            client.reset()
-
-            print(u"##### Warmup Statistics #####")
-            print(json.dumps(stats, indent=4, separators=(u",", u": ")))
-
-            # TODO: check stats format
-            stats = stats[sorted(stats.keys())[-1]]
-            lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
-            if traffic_directions > 1:
-                lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
-
-            print(f"packets lost from {port_0} --> {port_1}: {lost_a} pkts")
-            if traffic_directions > 1:
-                print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
-
         # Clear the stats before injecting.
         lost_a = 0
         lost_b = 0
@@ -177,21 +154,23 @@ def simple_burst(
 
         # Choose CPS and start traffic.
         client.start(
-            mult=mult, duration=duration, nc=True,
-            latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
+            mult=multiplier, duration=duration, nc=True,
+            latency_pps=multiplier if latency else 0,
+            client_mask=2**len(ports)-1
         )
         time_start = time.monotonic()
+        # TODO: What is a good timeout for TRex to start traffic?
+        time_stop = time_start + duration
         # t-rex starts the packet flow with the delay
-        stats[time.monotonic()-time_start] = client.get_stats(ports=[port_0])
-        while stats[sorted(stats.keys())[-1]][port_0][u"opackets"] == 0:
-            stats.clear()
+        new_stat = client.get_stats(ports=[port_0])
+        while new_stat[port_0][u"opackets"] == 0:
             time.sleep(0.001)
-            stats[time.monotonic() - time_start] = \
-                client.get_stats(ports=[port_0])
-        else:
-            trex_start_time = list(sorted(stats.keys()))[-1]
-            time_start += trex_start_time
-            stats.clear()
+            new_stat = client.get_stats(ports=[port_0])
+            if time.monotonic() > time_stop:
+                raise RuntimeError(u"No opackets within duration.")
+        trex_start_time = time.monotonic() - time_start
+        time_start += trex_start_time
+        o_prev, i_prev = 0.0, 0.0  # new stat is unidir and not reported.
 
         if async_start:
             # For async stop, we need to export the current snapshot.
@@ -201,21 +180,33 @@ def simple_burst(
                 xsnap1 = client.ports[port_1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
-            time.sleep(
-                stats_sampling if stats_sampling < duration else duration
-            )
+            time_stop = time_start + duration
+            time_sample = time_start + stats_sample_delay
             # Do not block until done.
             while client.is_traffic_active(ports=ports):
-                # Sample the stats.
-                stats[time.monotonic()-time_start] = \
-                    client.get_stats(ports=ports)
-                time.sleep(
-                    stats_sampling if stats_sampling < duration else duration
-                )
-            else:
-                # Read the stats after the test
-                stats[time.monotonic()-time_start] = \
-                    client.get_stats(ports=ports)
+                time.sleep(activity_check_delay)
+                time_now = time.monotonic()
+                if time_now >= time_sample:
+                    # Sample the stats.
+                    new_stat = client.get_stats(ports=ports)
+                    o_new = new_stat[port_0][u"opackets"]
+                    i_new = new_stat[port_1][u"ipackets"]
+                    if traffic_directions > 1:
+                        o_new += new_stat[port_1][u"opackets"]
+                        i_new += new_stat[port_0][u"ipackets"]
+                    o_diff, i_diff = o_new - o_prev, i_new - i_prev
+                    time_curr = time_now - time_start
+                    print(f"time {time_curr} o_diff {o_diff} i_diff {i_diff}")
+                    o_prev, i_prev = o_new, i_new
+                    time_sample += stats_sample_delay
+                if time_now >= time_stop:
+                    print(f"Time is up, aborting traffic.")
+                    # Hard stop, no waiting for transactions.
+                    break  # to client.reset()
+            # Read the stats after the traffic stopped (or time up).
+            stats[time.monotonic()-time_start] = client.get_stats(
+                ports=ports
+            )
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -263,106 +254,100 @@ def simple_burst(
                 c_act_flows = client_stats[u"m_active_flows"]
                 c_est_flows = client_stats[u"m_est_flows"]
                 c_traffic_duration = client_stats.get(u"m_traffic_duration", 0)
-                l7_data = f"client_active_flows={c_act_flows}, "
-                l7_data += f"client_established_flows={c_est_flows}, "
-                l7_data += f"client_traffic_duration={c_traffic_duration}, "
+                l7_data = f"client_active_flows={c_act_flows}; "
+                l7_data += f"client_established_flows={c_est_flows}; "
+                l7_data += f"client_traffic_duration={c_traffic_duration}; "
                 # Possible errors
                 # Too many packets in NIC rx queue
                 c_err_rx_throttled = client_stats.get(u"err_rx_throttled", 0)
-                l7_data += f"client_err_rx_throttled={c_err_rx_throttled}, "
+                l7_data += f"client_err_rx_throttled={c_err_rx_throttled}; "
                 # Number of client side flows that were not opened
                 # due to flow-table overflow
                 c_err_nf_throttled = client_stats.get(u"err_c_nf_throttled", 0)
-                l7_data += f"client_err_nf_throttled={c_err_nf_throttled}, "
+                l7_data += f"client_err_nf_throttled={c_err_nf_throttled}; "
                 # Too many flows
                 c_err_flow_overflow = client_stats.get(u"err_flow_overflow", 0)
-                l7_data += f"client_err_flow_overflow={c_err_flow_overflow}, "
+                l7_data += f"client_err_flow_overflow={c_err_flow_overflow}; "
                 # Server
                 s_act_flows = server_stats[u"m_active_flows"]
                 s_est_flows = server_stats[u"m_est_flows"]
                 s_traffic_duration = server_stats.get(u"m_traffic_duration", 0)
-                l7_data += f"server_active_flows={s_act_flows}, "
-                l7_data += f"server_established_flows={s_est_flows}, "
-                l7_data += f"server_traffic_duration={s_traffic_duration}, "
+                l7_data += f"server_active_flows={s_act_flows}; "
+                l7_data += f"server_established_flows={s_est_flows}; "
+                l7_data += f"server_traffic_duration={s_traffic_duration}; "
                 # Possible errors
                 # Too many packets in NIC rx queue
                 s_err_rx_throttled = server_stats.get(u"err_rx_throttled", 0)
-                l7_data += f"client_err_rx_throttled={s_err_rx_throttled}, "
+                l7_data += f"client_err_rx_throttled={s_err_rx_throttled}; "
                 if u"udp" in profile_file:
                     # Client
                     # Established connections
                     c_udp_connects = client_stats.get(u"udps_connects", 0)
-                    l7_data += f"client_udp_connects={c_udp_connects}, "
+                    l7_data += f"client_udp_connects={c_udp_connects}; "
                     # Closed connections
                     c_udp_closed = client_stats.get(u"udps_closed", 0)
-                    l7_data += f"client_udp_closed={c_udp_closed}, "
+                    l7_data += f"client_udp_closed={c_udp_closed}; "
                     # Sent bytes
                     c_udp_sndbyte = client_stats.get(u"udps_sndbyte", 0)
-                    l7_data += f"client_udp_tx_bytes={c_udp_sndbyte}, "
+                    l7_data += f"client_udp_tx_bytes={c_udp_sndbyte}; "
                     # Sent packets
                     c_udp_sndpkt = client_stats.get(u"udps_sndpkt", 0)
-                    l7_data += f"client_udp_tx_packets={c_udp_sndpkt}, "
+                    l7_data += f"client_udp_tx_packets={c_udp_sndpkt}; "
                     # Received bytes
                     c_udp_rcvbyte = client_stats.get(u"udps_rcvbyte", 0)
-                    l7_data += f"client_udp_rx_bytes={c_udp_rcvbyte}, "
+                    l7_data += f"client_udp_rx_bytes={c_udp_rcvbyte}; "
                     # Received packets
                     c_udp_rcvpkt = client_stats.get(u"udps_rcvpkt", 0)
-                    l7_data += f"client_udp_rx_packets={c_udp_rcvpkt}, "
+                    l7_data += f"client_udp_rx_packets={c_udp_rcvpkt}; "
                     # Keep alive drops
                     c_udp_keepdrops = client_stats.get(u"udps_keepdrops", 0)
-                    l7_data += f"client_udp_keep_drops={c_udp_keepdrops}, "
+                    l7_data += f"client_udp_keep_drops={c_udp_keepdrops}; "
                     # Server
                     # Accepted connections
                     s_udp_accepts = server_stats.get(u"udps_accepts", 0)
-                    l7_data += f"server_udp_accepts={s_udp_accepts}, "
+                    l7_data += f"server_udp_accepts={s_udp_accepts}; "
                     # Closed connections
                     s_udp_closed = server_stats.get(u"udps_closed", 0)
-                    l7_data += f"server_udp_closed={s_udp_closed}, "
-                    # Sent bytes
+                    l7_data += f"server_udp_closed={s_udp_closed}; "
+                    # Send bytes
                     s_udp_sndbyte = server_stats.get(u"udps_sndbyte", 0)
-                    l7_data += f"server_udp_tx_bytes={s_udp_sndbyte}, "
-                    # Sent packets
-                    s_udp_sndpkt = server_stats.get(u"udps_sndpkt", 0)
-                    l7_data += f"server_udp_tx_packets={s_udp_sndpkt}, "
+                    l7_data += f"server_udp_tx_bytes={s_udp_sndbyte}; "
                     # Received bytes
                     s_udp_rcvbyte = server_stats.get(u"udps_rcvbyte", 0)
-                    l7_data += f"server_udp_rx_bytes={s_udp_rcvbyte}, "
-                    # Received packets
-                    s_udp_rcvpkt = server_stats.get(u"udps_rcvpkt", 0)
-                    l7_data += f"server_udp_rx_packets={s_udp_rcvpkt}, "
+                    l7_data += f"server_udp_rx_bytes={s_udp_rcvbyte}; "
                 elif u"tcp" in profile_file:
                     # Client
                     # Initiated connections
                     c_tcp_connatt = client_stats.get(u"tcps_connattempt", 0)
-                    l7_data += f"client_tcp_connect_inits={c_tcp_connatt}, "
+                    l7_data += f"client_tcp_connect_inits={c_tcp_connatt}; "
                     # Established connections
                     c_tcp_connects = client_stats.get(u"tcps_connects", 0)
-                    l7_data += f"client_tcp_connects={c_tcp_connects}, "
+                    l7_data += f"client_tcp_connects={c_tcp_connects}; "
                     # Closed connections
                     c_tcp_closed = client_stats.get(u"tcps_closed", 0)
-                    l7_data += f"client_tcp_closed={c_tcp_closed}, "
+                    l7_data += f"client_tcp_closed={c_tcp_closed}; "
                     # Send bytes
                     c_tcp_sndbyte = client_stats.get(u"tcps_sndbyte", 0)
-                    l7_data += f"client_tcp_tx_bytes={c_tcp_sndbyte}, "
+                    l7_data += f"client_tcp_tx_bytes={c_tcp_sndbyte}; "
                     # Received bytes
                     c_tcp_rcvbyte = client_stats.get(u"tcps_rcvbyte", 0)
-                    l7_data += f"client_tcp_rx_bytes={c_tcp_rcvbyte}, "
+                    l7_data += f"client_tcp_rx_bytes={c_tcp_rcvbyte}; "
                     # Server
                     # Accepted connections
                     s_tcp_accepts = server_stats.get(u"tcps_accepts", 0)
-                    l7_data += f"server_tcp_accepts={s_tcp_accepts}, "
+                    l7_data += f"server_tcp_accepts={s_tcp_accepts}; "
                     # Established connections
                     s_tcp_connects = server_stats.get(u"tcps_connects", 0)
-                    l7_data += f"server_tcp_connects={s_tcp_connects}, "
+                    l7_data += f"server_tcp_connects={s_tcp_connects}; "
                     # Closed connections
                     s_tcp_closed = server_stats.get(u"tcps_closed", 0)
-                    l7_data += f"server_tcp_closed={s_tcp_closed}, "
+                    l7_data += f"server_tcp_closed={s_tcp_closed}; "
                     # Sent bytes
                     s_tcp_sndbyte = server_stats.get(u"tcps_sndbyte", 0)
-                    l7_data += f"server_tcp_tx_bytes={s_tcp_sndbyte}, "
+                    l7_data += f"server_tcp_tx_bytes={s_tcp_sndbyte}; "
                     # Received bytes
                     s_tcp_rcvbyte = server_stats.get(u"tcps_rcvbyte", 0)
-                    l7_data += f"server_tcp_rx_bytes={s_tcp_rcvbyte}, "
+                    l7_data += f"server_tcp_rx_bytes={s_tcp_rcvbyte}; "
             else:
                 total_sent = stats[port_0][u"opackets"]
                 total_rcvd = stats[port_1][u"ipackets"]
@@ -383,14 +368,14 @@ def simple_burst(
                 client.clear_profile()
                 client.disconnect()
                 print(
-                    f"trex_start_time={trex_start_time}, "
-                    f"cps={mult!r}, total_received={total_rcvd}, "
-                    f"total_sent={total_sent}, frame_loss={lost_a + lost_b}, "
-                    f"approximated_duration={approximated_duration}, "
-                    f"latency_stream_0(usec)={lat_a}, "
-                    f"latency_stream_1(usec)={lat_b}, "
-                    f"latency_hist_stream_0={lat_a_hist}, "
-                    f"latency_hist_stream_1={lat_b_hist}, "
+                    f"trex_start_time={trex_start_time}; "
+                    f"multiplier={multiplier!r}; total_received={total_rcvd}; "
+                    f"total_sent={total_sent}; frame_loss={lost_a + lost_b}; "
+                    f"approximated_duration={approximated_duration}; "
+                    f"latency_stream_0(usec)={lat_a}; "
+                    f"latency_stream_1(usec)={lat_b}; "
+                    f"latency_hist_stream_0={lat_a_hist}; "
+                    f"latency_hist_stream_1={lat_b_hist}; "
                     f"{l7_data}"
                 )
 
@@ -415,12 +400,8 @@ def main():
         help=u"Size of a Frame without padding and IPG."
     )
     parser.add_argument(
-        u"-m", u"--mult", required=True, type=int,
+        u"-m", u"--multiplier", required=True, type=int,
         help=u"Multiplier of profile CPS."
-    )
-    parser.add_argument(
-        u"-w", u"--warmup_time", type=float, default=5.0,
-        help=u"Traffic warm-up time in seconds, 0 = disable."
     )
     parser.add_argument(
         u"--port_0", required=True, type=int,
@@ -452,8 +433,8 @@ def main():
 
     simple_burst(
         profile_file=args.profile, duration=args.duration, framesize=framesize,
-        mult=args.mult, warmup_time=args.warmup_time, port_0=args.port_0,
-        port_1=args.port_1, latency=args.latency, async_start=args.async_start,
+        multiplier=args.multiplier, port_0=args.port_0, port_1=args.port_1,
+        latency=args.latency, async_start=args.async_start,
         traffic_directions=args.traffic_directions
     )
 
