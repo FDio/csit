@@ -78,8 +78,6 @@ class TrafficProfile(TrafficProfileBaseClass):
         # receive RES message
         prog_c.recv_msg(1)
 
-        prog_c.delay(self.udp_keepalive * 1000)  # delay is defined in usec
-
         # server commands
         prog_s = ASTFProgram(stream=False)
         # set the keepalive timer for UDP flows to not close udp session
@@ -89,8 +87,6 @@ class TrafficProfile(TrafficProfileBaseClass):
         prog_s.recv_msg(1)
         # send RES message
         prog_s.send_msg(self.udp_res)
-
-        prog_s.delay(self.udp_keepalive * 1000)  # delay is defined in usec
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
