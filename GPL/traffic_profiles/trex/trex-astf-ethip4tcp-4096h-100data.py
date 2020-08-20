@@ -31,7 +31,36 @@ from profile_trex_astf_base_class import TrafficProfileBaseClass
 
 
 class TrafficProfile(TrafficProfileBaseClass):
-    """Traffic profile."""
+    """Traffic profile.
+
+    TCP traffic with data is transferred as several "payloads"
+    in both directions. The payload in client->server direction is called
+    "request" and the payload in server->client direction is called "response".
+    In this profile, the data transfer is symmetric and both directions
+    are independent (neither side is waiting for other side's payload).
+    There are multiple payload being transferred, but the next payload
+    starts transferring only after the previous payload has been acked,
+    and after inter-payload delay. That delay acts as a poor man's rate limiter,
+    chosing small enough payload size will prevent the TCP trasfer rate
+    from increasing too much.
+
+    The address ranges are hardcoded.
+    The number of clients-server pairs (self.limit) is also hardcoded,
+    as it has to fit the ranges.
+
+    This template uses the default value cps=1, it is expected
+    the profile launcher script changes it via multiplier.
+
+    Other parameters are configurable via kwargs, they affect the single
+    client-server pair:
+    - framesize [B] - Target size for data frame, mss value is comuted from that.
+        Note that is the payload size is not divisible by the packet's data size,
+        the last packet will be smaller, which is fine.
+    - payload_size [B] - How big a chunk of data to transfer before waiting for acks.
+    - n_payloads [1] - How many chunks of data to transfer per client.
+    - payload_delay [us] - How long to wait between payloads.
+    - phase delay [us] - How long to wait after connect and before close.
+    """
 
     def __init__(self, **kwargs):
         """Initialization and setting of profile parameters."""
@@ -44,13 +73,18 @@ class TrafficProfile(TrafficProfileBaseClass):
         self.p1_dst_start_ip = u"20.0.0.0"
         self.p1_dst_end_ip = u"20.0.15.255"
 
-        self.headers_size = 66  # 14B l2 + 20B ipv4 + 32B tcp incl. 12B options
-
-        self.tcp_data = u""
-
-        self.ndata = 100  # TODO: set via input parameter
-        self.delay = 36000000  # delay 36s (36,000,000 usec)
         self.limit = 258048
+
+        self.framesize = kwargs.get(u"framesize")
+        self.payload_size = kwargs.get(u"payload_size")
+        self.n_payloads = kwargs.get(u"n_payloads")
+        self.payload_delay = kwargs.get(u"payload_delay")
+        self.phase_delay = kwargs.get(u"phase_delay")
+
+        if self.framesize == 64:
+            self.mss = 18
+        if self.framesize == 1518:
+            self.mss = 1460
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
@@ -62,32 +96,36 @@ class TrafficProfile(TrafficProfileBaseClass):
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
-        if self.framesize == 64:
-            self.mss = 18
-            self.payload_size = (self.ndata * 6) + self.headers_size
-        if self.framesize == 1518:
-            self.mss = 1460
-            self.payload_size = (self.ndata * 1448) + self.headers_size
+        # TODO: Does the header size affect any of this?
+        tcp_data += self._gen_padding(0, self.payload_size)
 
-        self.tcp_data += self._gen_padding(self.headers_size, self.payload_size)
         # client commands
         prog_c = ASTFProgram()
         prog_c.connect()  # syn
 
-        prog_c.delay(self.delay)
+        prog_c.delay(self.phase_delay)
 
-        prog_c.send(self.tcp_data)
+        prog_c.set_var(u"var1", self.n_payloads)
+        prog_c.set_label(u"a:")
+        prog_c.send(tcp_data)
+        prog_c.delay(self.payload_delay)
+        prog_c.jmp_nz(u"var1", u"a:")
 
-        prog_c.delay(self.delay)
+        prog_c.delay(self.phase_delay)
 
         # server commands
         prog_s = ASTFProgram()
         prog_s.accept()  # syn-ack
 
-        prog_s.delay(self.delay)
+        prog_s.delay(self.phase_delay)
 
-        prog_s.send(self.tcp_data)
+        prog_s.set_var(u"var1", self.n_payloads)
+        prog_s.set_label(u"a:")
+        prog_s.send(tcp_data)
+        prog_s.delay(self.payload_delay)
+        prog_s.jmp_nz(u"var1", u"a:")
 
+        # No need for phase delay as we are waiting anyway.
         prog_s.wait_for_peer_close()  # ack + fin-ack
 
         # ip generators
