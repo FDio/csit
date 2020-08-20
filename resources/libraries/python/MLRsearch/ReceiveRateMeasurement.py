@@ -39,6 +39,10 @@ class ReceiveRateMeasurement:
         self.loss_rate = loss_count / self.duration
         self.receive_rate = self.receive_count / self.duration
         self.loss_fraction = float(self.loss_count) / self.transmit_count
+        self.receive_fraction = float(self.receive_count) / self.transmit_count
+        # If the traffic generator is unreliable and sends less packets,
+        # the absolute receive rate might be too low for next target.
+        self.relative_receive_rate = self.target_tr * self.receive_fraction
         # TODO: Do we want to store also the real time (duration + overhead)?
 
     def __str__(self):

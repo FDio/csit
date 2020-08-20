@@ -168,6 +168,11 @@ class TrafficGenerator(AbstractMeasurer):
         self.traffic_directions = None
         self.negative_loss = None
         self.use_latency = None
+        self.resetter = None
+        self.n_transactions = None
+        self.delays = None
+        self.stretch_tolerance = None
+        self.sleep_till_duration = None
         # Transient data needed for async measurements.
         self._xstats = (None, None)
         # TODO: Rename "xstats" to something opaque, so T-Rex is not privileged?
@@ -466,7 +471,7 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             # Last line from console output
             line = stdout.splitlines()[-1]
-            results = line.split(u",")
+            results = line.split(u";")
             if results[-1] in (u" ", u""):
                 results.pop(-1)
             self._result = dict()
@@ -623,39 +628,70 @@ class TrafficGenerator(AbstractMeasurer):
         return self.get_measurement_result()
 
     def trex_astf_start_remote_exec(
-            self, duration, mult, frame_size, traffic_profile, async_call=False,
-            latency=True, warmup_time=5.0, traffic_directions=2, tx_port=0,
-            rx_port=1):
+            self, duration, multiplier, frame_size, traffic_profile,
+            async_call=False, use_latency=False, warmup_time=5.0,
+            traffic_directions=2, tx_port=0, rx_port=1, n_transactions=0,
+            delays=0.0, stretch_tolerance=1.3):
         """Execute T-Rex ASTF script on remote node over ssh to start running
         traffic.
 
         In sync mode, measurement results are stored internally.
         In async mode, initial data including xstats are stored internally.
 
+        Warmup time is not supported, as ASTF profiles typically
+        need a DUT state reset before each trial.
+
+        This method contains the logic to compute duration as maximum time
+        if n_transactions is nonzero.
+        TODO: Find a better place for such a "measurement adapter".
+
+        There is n_transaction argument, which limits how many transactions
+        will be started in total. As each transaction can take considerable
+        time (sometimes due to explicit delays in the profile), the real time
+        a trial needs to finish can be computed here. For now, in that case
+        the duration argument is ignored, assuming it comes from ASTF-unaware
+        search algorithm. The overall time a transaction needs is given
+        in parameter delays, it includes both explicit delays and implicit time
+        it takes to transfer data (or whatever the transaction does).
+        As sometimes TRex can be overwhelmed, stretch_tolerance is used
+        to award more time.
+
+        If n_transactions is zero, duration is not recomputed.
+        In any case, the duration is increased by 1.0 s at the end,
+        allowing for small duration stretching and other overheads.
+        It is assumed the subsequent result parsing gets the real duration
+        if the traffic stops sooner.
+
         :param duration: Time expresed in seconds for how long to send traffic.
-        :param mult: Traffic rate expressed with units (pps, %)
+        :param multiplier: Traffic rate expressed with units (pps, %)
         :param frame_size: L2 frame size to send (without padding and IPG).
         :param traffic_profile: Module name as a traffic profile identifier.
             See GPL/traffic_profiles/trex for implemented modules.
         :param async_call: If enabled then don't wait for all incoming traffic.
-        :param latency: With latency measurement.
-        :param warmup_time: Warmup time period.
+        :param use_latency: Whether to measure latency during the trial.
+            Default: False.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
         :param tx_port: Traffic generator transmit port for first flow.
             Default: 0
         :param rx_port: Traffic generator receive port for first flow.
             Default: 1
+        :param n_transactions: Number of transactions to perform.
+            0 (default) means unlimited.
+        :param delays: Total expected time to close transaction.
+        :param stretch_tolerance: Allow this times the computed duration.
         :type duration: float
-        :type mult: int
+        :type multiplier: int
         :type frame_size: str
         :type traffic_profile: str
         :type async_call: bool
-        :type latency: bool
-        :type warmup_time: float
+        :type use_latency: bool
         :type traffic_directions: int
         :type tx_port: int
         :type rx_port: int
+        :type n_transactions: int
+        :type delays: float
+        :type stretch_tolerance: float
         :raises RuntimeError: In case of T-Rex driver issue.
         """
         self.check_mode(TrexMode.ASTF)
@@ -663,8 +699,13 @@ class TrafficGenerator(AbstractMeasurer):
             else (tx_port, rx_port)
         if not isinstance(duration, (float, int)):
             duration = float(duration)
-        if not isinstance(warmup_time, (float, int)):
-            warmup_time = float(warmup_time)
+
+        # Duration logic.
+        logger.trace(f"input duration: {duration!r}")
+        if n_transactions:
+            duration = n_transactions / multiplier + delays
+            duration *= stretch_tolerance
+        duration = duration + 1.0
 
         command_line = OptionString().add(u"python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
@@ -676,19 +717,16 @@ class TrafficGenerator(AbstractMeasurer):
         )
         command_line.add_with_value(u"duration", f"{duration!r}")
         command_line.add_with_value(u"frame_size", frame_size)
-        command_line.add_with_value(u"mult", int(mult))
-        command_line.add_with_value(u"warmup_time", f"{warmup_time!r}")
+        command_line.add_with_value(u"multiplier", int(multiplier))
         command_line.add_with_value(u"port_0", p_0)
         command_line.add_with_value(u"port_1", p_1)
         command_line.add_with_value(u"traffic_directions", traffic_directions)
         command_line.add_if(u"async_start", async_call)
-        command_line.add_if(u"latency", latency)
+        command_line.add_if(u"latency", use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
         stdout, _ = exec_cmd_no_error(
-            self._node, command_line,
-            timeout=int(duration) + 600 if u"tcp" in self.traffic_profile
-            else 60,
+            self._node, command_line, timeout=duration + 60,
             message=u"T-Rex ASTF runtime error!"
         )
 
@@ -696,7 +734,7 @@ class TrafficGenerator(AbstractMeasurer):
         if async_call:
             # no result
             self._start_time = time.time()
-            self._rate = float(mult)
+            self._rate = float(multiplier)
             self._received = None
             self._sent = None
             self._loss = None
@@ -742,7 +780,7 @@ class TrafficGenerator(AbstractMeasurer):
 
     def trex_stl_start_remote_exec(
             self, duration, rate, frame_size, traffic_profile, async_call=False,
-            latency=False, warmup_time=5.0, traffic_directions=2, tx_port=0,
+            use_latency=False, warmup_time=5.0, traffic_directions=2, tx_port=0,
             rx_port=1):
         """Execute T-Rex STL script on remote node over ssh to start running
         traffic.
@@ -756,7 +794,8 @@ class TrafficGenerator(AbstractMeasurer):
         :param traffic_profile: Module name as a traffic profile identifier.
             See GPL/traffic_profiles/trex for implemented modules.
         :param async_call: If enabled then don't wait for all incoming traffic.
-        :param latency: With latency measurement.
+        :param use_latency: Whether to measure latency during the trial.
+            Default: False.
         :param warmup_time: Warmup time period.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
@@ -769,7 +808,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type frame_size: str
         :type traffic_profile: str
         :type async_call: bool
-        :type latency: bool
+        :type use_latency: bool
         :type warmup_time: float
         :type traffic_directions: int
         :type tx_port: int
@@ -800,7 +839,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_with_value(u"port_1", p_1)
         command_line.add_with_value(u"traffic_directions", traffic_directions)
         command_line.add_if(u"async_start", async_call)
-        command_line.add_if(u"latency", latency)
+        command_line.add_if(u"latency", use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
         stdout, _ = exec_cmd_no_error(
@@ -834,8 +873,9 @@ class TrafficGenerator(AbstractMeasurer):
 
     def send_traffic_on_tg(
             self, duration, rate, frame_size, traffic_profile, warmup_time=5,
-            async_call=False, latency=False, traffic_directions=2, tx_port=0,
-            rx_port=1):
+            async_call=False, use_latency=False, traffic_directions=2,
+            tx_port=0, rx_port=1, n_transactions=0, delays=0.0,
+            stretch_tolerance=1.3):
         """Send traffic from all configured interfaces on TG.
 
         In async mode, xstats is stored internally,
@@ -861,43 +901,63 @@ class TrafficGenerator(AbstractMeasurer):
             See GPL/traffic_profiles/trex for implemented modules.
         :param warmup_time: Warmup phase in seconds.
         :param async_call: Async mode.
-        :param latency: With latency measurement.
+        :param use_latency: Whether to measure latency during the trial.
+            Default: False.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
         :param tx_port: Traffic generator transmit port for first flow.
             Default: 0
         :param rx_port: Traffic generator receive port for first flow.
             Default: 1
+        :param n_transactions: Number of transactions to perform.
+            0 (default) means unlimited.
+        :param delays: Total expected time to close transaction.
+        :param stretch_tolerance: Allow this times the computed duration.
         :type duration: float
         :type rate: float
         :type frame_size: str
         :type traffic_profile: str
         :type warmup_time: float
         :type async_call: bool
-        :type latency: bool
+        :type use_latency: bool
         :type traffic_directions: int
         :type tx_port: int
         :type rx_port: int
+        :type n_transactions: int
+        :type delays: float
+        :type stretch_tolerance: float
         :returns: TG results.
         :rtype: str
         :raises ValueError: If TG traffic profile is not supported.
         """
         subtype = check_subtype(self._node)
         if subtype == NodeSubTypeTG.TREX:
+            # Remember traffic profile, later parsing depends on it.
             if self.traffic_profile != str(traffic_profile):
                 self.traffic_profile = str(traffic_profile)
+            # TODO: Select a boundary between traffic profile
+            #       as an argument and as an instance field.
             if u"trex-astf" in self.traffic_profile:
+                if args.warmup_time:
+                    raise RuntimeError(
+                        u"Warmup is not supported. Issue a separate trial"
+                        u" and ignore its results to mimic the warmup"
+                        u" functionality. Note that a typical ASTF profile"
+                        u" changes DUT state, so you may need to reset"
+                        u" the DUT state between the warmup and a real trial."
+                    )
                 self.trex_astf_start_remote_exec(
                     duration, int(rate), frame_size, self.traffic_profile,
-                    async_call, latency, warmup_time, traffic_directions,
-                    tx_port, rx_port
+                    async_call, use_latency, traffic_directions, tx_port,
+                    rx_port, n_transactions, delays, stretch_tolerance
                 )
             # TODO: rename all t-rex stateless profiles to use 'trex-stl'
             elif u"trex-sl" in self.traffic_profile:
                 unit_rate_str = str(rate) + u"pps"
+                # TODO: Suport n_transactions et al?
                 self.trex_stl_start_remote_exec(
                     duration, unit_rate_str, frame_size, self.traffic_profile,
-                    async_call, latency, warmup_time, traffic_directions,
+                    async_call, use_latency, warmup_time, traffic_directions,
                     tx_port, rx_port
                 )
             else:
@@ -955,7 +1015,9 @@ class TrafficGenerator(AbstractMeasurer):
 
     def set_rate_provider_defaults(
             self, frame_size, traffic_profile, warmup_time=0.0,
-            traffic_directions=2, negative_loss=True, latency=False):
+            traffic_directions=2, negative_loss=True, use_latency=False,
+            resetter=None, n_transactions=0, delays=0.0, stretch_tolerance=1.3,
+            sleep_till_duration=False):
         """Store values accessed by measure().
 
         :param frame_size: Frame size identifier or value [B].
@@ -965,21 +1027,83 @@ class TrafficGenerator(AbstractMeasurer):
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
         :param negative_loss: If false, negative loss is reported as zero loss.
-        :param latency: Whether to measure latency during the trial.
+        :param use_latency: Whether to measure latency during the trial.
             Default: False.
+        :param resetter: Callable to reset DUT state for repeated trials.
+        :param n_transactions: Number of transactions to perform.
+            0 (default) means unlimited.
+        :param delays: Total expected time to close transaction.
+        :param stretch_tolerance: Allow this times the computed duration.
+        :param sleep_till_duration: If true and measurement returned faster,
+            sleep until it matches duration. Needed for PLRsearch.
         :type frame_size: str or int
         :type traffic_profile: str
         :type warmup_time: float
         :type traffic_directions: int
         :type negative_loss: bool
-        :type latency: bool
+        :type use_latency: bool
+        :type resetter: Optional[Callable[[], None]]
+        :type n_transactions: int
+        :type delays: float
+        :type stretch_tolerance: float
+        :type sleep_till_duration: bool
         """
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
         self.traffic_directions = traffic_directions
         self.negative_loss = negative_loss
-        self.use_latency = latency
+        self.use_latency = use_latency
+        self.resetter = resetter
+        self.traffic_directions = int(traffic_directions)
+        self.negative_loss = bool(negative_loss)
+        self.n_transactions = int(n_transactions)
+        self.delays = float(delays)
+        self.stretch_tolerance = float(stretch_tolerance)
+        self.sleep_till_duration = bool(sleep_till_duration)
+
+    def measure(self, duration, transmit_rate):
+        """Run trial measurement, parse and return aggregate results.
+
+        Aggregate means sum over traffic directions.
+
+        :param duration: Trial duration [s].
+        :param transmit_rate: Target aggregate transmit rate [pps] / Connections
+        per second (CPS) for UDP/TCP flows.
+        :type duration: float
+        :type transmit_rate: float
+        :returns: Structure containing the result of the measurement.
+        :rtype: ReceiveRateMeasurement
+        :raises RuntimeError: If TG is not set or if node is not TG
+            or if subtype is not specified.
+        :raises NotImplementedError: If TG is not supported.
+        """
+        duration = float(duration)
+        time_start = time.monotonic()
+        time_stop = time_start + duration
+        if self.resetter:
+            self.resetter()
+        # TG needs target Tr per stream, but reports aggregate Tx and Dx.
+        unit_rate_int = transmit_rate / float(self.traffic_directions)
+        self.send_traffic_on_tg(
+            duration,
+            unit_rate_int,
+            self.frame_size,
+            self.traffic_profile,
+            warmup_time=self.warmup_time,
+            use_latency=self.use_latency,
+            traffic_directions=self.traffic_directions,
+            n_transactions=self.n_transactions,
+            delays=self.delays,
+            stretch_tolerance=self.stretch_tolerance,
+        )
+        result = self.get_measurement_result(duration, transmit_rate)
+        # In ASTF, computation needs the specified time.
+        if self.sleep_till_duration:
+            sleeptime = time.monotonic() - time_stop
+            if sleeptime > 0.0:
+                time.sleep(sleeptime)
+        return result
 
     def get_measurement_result(self, duration=None, transmit_rate=None):
         """Return the result of last measurement as ReceiveRateMeasurement.
@@ -1013,36 +1137,6 @@ class TrafficGenerator(AbstractMeasurer):
         measurement.latency = self.get_latency_int()
         return measurement
 
-    def measure(self, duration, transmit_rate):
-        """Run trial measurement, parse and return aggregate results.
-
-        Aggregate means sum over traffic directions.
-
-        :param duration: Trial duration [s].
-        :param transmit_rate: Target aggregate transmit rate [pps] / Connections
-        per second (CPS) for UDP/TCP flows.
-        :type duration: float
-        :type transmit_rate: float
-        :returns: Structure containing the result of the measurement.
-        :rtype: ReceiveRateMeasurement
-        :raises RuntimeError: If TG is not set or if node is not TG
-            or if subtype is not specified.
-        :raises NotImplementedError: If TG is not supported.
-        """
-        duration = float(duration)
-        # TG needs target Tr per stream, but reports aggregate Tx and Dx.
-        unit_rate_int = transmit_rate / float(self.traffic_directions)
-        self.send_traffic_on_tg(
-            duration,
-            unit_rate_int,
-            self.frame_size,
-            self.traffic_profile,
-            warmup_time=self.warmup_time,
-            latency=self.use_latency,
-            traffic_directions=self.traffic_directions
-        )
-        return self.get_measurement_result(duration, transmit_rate)
-
 
 class OptimizedSearch:
     """Class to be imported as Robot Library, containing search keywords.
@@ -1057,8 +1151,13 @@ class OptimizedSearch:
             maximum_transmit_rate, packet_loss_ratio=0.005,
             final_relative_width=0.005, final_trial_duration=30.0,
             initial_trial_duration=1.0, number_of_intermediate_phases=2,
-            timeout=720.0, doublings=1, traffic_directions=2, latency=False):
+            timeout=720.0, doublings=1, traffic_directions=2, use_latency=False,
+            resetter=None, n_transactions=0, delays=0.0, stretch_tolerance=1.3):
         """Setup initialized TG, perform optimized search, return intervals.
+
+        If n_transactions is nonzero, all trial durations are set to 1.0
+        (as they do not affect the real trial duration) and zero
+        intermediate phases are used.
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
@@ -1082,8 +1181,13 @@ class OptimizedSearch:
             less stable tests might get better overal duration with 2 or more.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
-        :param latency: Whether to measure latency during the trial.
+        :param use_latency: Whether to measure latency during the trial.
             Default: False.
+        :param resetter: Callable to reset DUT state for repeated trials.
+        :param n_transactions: Number of transactions to perform.
+            0 (default) means unlimited.
+        :param delays: Total expected time to close transaction.
+        :param stretch_tolerance: Allow this times the computed duration.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1096,7 +1200,11 @@ class OptimizedSearch:
         :type timeout: float
         :type doublings: int
         :type traffic_directions: int
-        :type latency: bool
+        :type use_latency: bool
+        :type resetter: Optional[Callable[[], None]]
+        :type n_transactions: int
+        :type delays: float
+        :type stretch_tolerance: float
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: NdrPdrResult
@@ -1109,11 +1217,20 @@ class OptimizedSearch:
         tg_instance = BuiltIn().get_library_instance(
             u"resources.libraries.python.TrafficGenerator"
         )
+        if n_transactions:
+            initial_trial_duration=1.0
+            final_trial_duration=1.0
+            number_of_intermediate_phases=0
         tg_instance.set_rate_provider_defaults(
             frame_size,
             traffic_profile,
             traffic_directions=traffic_directions,
-            latency=latency
+            use_latency=use_latency,
+            resetter=resetter,
+            n_transactions=n_transactions,
+            delays=delays,
+            stretch_tolerance=stretch_tolerance,
+            sleep_till_duration=False,
         )
         algorithm = MultipleLossRatioSearch(
             measurer=tg_instance, final_trial_duration=final_trial_duration,
@@ -1132,7 +1249,8 @@ class OptimizedSearch:
             frame_size, traffic_profile, minimum_transmit_rate,
             maximum_transmit_rate, plr_target=1e-7, tdpt=0.1,
             initial_count=50, timeout=1800.0, trace_enabled=False,
-            traffic_directions=2, latency=False):
+            traffic_directions=2, use_latency=False, resetter=None,
+            n_transactions=0, delays=0.0, stretch_tolerance=1.3):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
         :param frame_size: Frame size identifier or value [B].
@@ -1154,8 +1272,13 @@ class OptimizedSearch:
         :param trace_enabled: True if trace enabled else False.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
-        :param latency: Whether to measure latency during the trial.
+        :param use_latency: Whether to measure latency during the trial.
             Default: False.
+        :param resetter: Callable to reset DUT state for repeated trials.
+        :param n_transactions: Number of transactions to perform.
+            0 (default) means unlimited.
+        :param delays: Total expected time to close transaction.
+        :param stretch_tolerance: Allow this times the computed duration.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1165,7 +1288,11 @@ class OptimizedSearch:
         :type timeout: float
         :type trace_enabled: bool
         :type traffic_directions: int
-        :type latency: bool
+        :type use_latency: bool
+        :type resetter: Optional[Callable[[], None]]
+        :type n_transactions: int
+        :type delays: float
+        :type stretch_tolerance: float
         :returns: Average and stdev of estimated aggregate rate giving PLR.
         :rtype: 2-tuple of float
         """
@@ -1179,7 +1306,12 @@ class OptimizedSearch:
             traffic_profile,
             traffic_directions=traffic_directions,
             negative_loss=False,
-            latency=latency
+            use_latency=use_latency,
+            resetter=resetter,
+            n_transactions=n_transactions,
+            delays=delays,
+            stretch_tolerance=stretch_tolerance,
+            sleep_till_duration=True,
         )
         algorithm = PLRsearch(
             measurer=tg_instance, trial_duration_per_trial=tdpt,
