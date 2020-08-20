@@ -23,7 +23,7 @@
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance | nat
+| Test Teardown | Tear down test | nat | performance
 |
 | Test Template | Local Template
 |
@@ -75,8 +75,12 @@
 | ${in_mask}= | ${14}
 | ${out_net}= | 68.142.68.0
 | ${out_mask}= | ${24}
+# Scale settings
+| ${n_hosts}= | ${262144}
+| ${n_ports}= | ${63}
+| ${n_transactions}= | ${${n_hosts} * ${n_ports}}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-ethip4udp-262144u63p
+| ${traffic_profile}= | trex-sl-ethip4udp-${n_hosts}u${n_ports}p
 
 *** Keywords ***
 | Local Template
