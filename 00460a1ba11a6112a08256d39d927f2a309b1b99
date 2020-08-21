@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95848070_cb7594b9",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-21T17:02:06Z",
+      "side": 1,
+      "message": "Delete this block, or uncomment it and delete line 111.",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 1
+      },
+      "revId": "00460a1ba11a6112a08256d39d927f2a309b1b99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
