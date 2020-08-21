@@ -35,13 +35,21 @@ class PerfUtil:
         :type duration: int
         """
         cpu = cpu_list if cpu_list else u"0-$(($(nproc) - 1))"
-        command = (
-            u"perf stat"
-            f" --cpu {cpu} --no-aggr"
-            f" --event '{{{Constants.PERF_STAT_EVENTS}}}'"
-            f" --interval-print 1000 "
-            f" -- sleep {int(duration)}"
-        )
+        if Constants.PERF_STAT_EVENTS:
+            command = (
+                u"perf stat"
+                f" --cpu {cpu} --no-aggr"
+                f" --event '{{{Constants.PERF_STAT_EVENTS}}}'"
+                f" --interval-print 1000 "
+                f" -- sleep {int(duration)}"
+            )
+        else:
+            command = (
+                u"perf stat"
+                f" --cpu {cpu} --no-aggr"
+                f" --interval-print 1000 "
+                f" -- sleep {int(duration)}"
+            )
         exec_cmd(node, command, sudo=True)
 
     @staticmethod

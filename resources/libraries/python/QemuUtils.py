@@ -56,7 +56,7 @@ class QemuUtils:
         :type vnf: str
         :type img: str
         """
-        self._vhost_id = 0
+        self._nic_id = 0
         self._node = node
         self._arch = Topology.get_node_arch(self._node)
         self._opt = dict()
@@ -237,22 +237,22 @@ class QemuUtils:
         :type csum: bool
         :type gso: bool
         """
-        self._vhost_id += 1
+        self._nic_id += 1
         self._params.add_with_value(
-            u"chardev", f"socket,id=char{self._vhost_id},"
+            u"chardev", f"socket,id=char{self._nic_id},"
             f"path={socket}{u',server' if server is True else u''}"
         )
         self._params.add_with_value(
-            u"netdev", f"vhost-user,id=vhost{self._vhost_id},"
-            f"chardev=char{self._vhost_id},queues={queues}"
+            u"netdev", f"vhost-user,id=vhost{self._nic_id},"
+            f"chardev=char{self._nic_id},queues={queues}"
         )
         mac = f"52:54:00:00:{self._opt.get(u'qemu_id'):02x}:" \
-            f"{self._vhost_id:02x}"
+            f"{self._nic_id:02x}"
         queue_size = f"rx_queue_size={queue_size},tx_queue_size={queue_size}" \
             if queue_size else u""
         self._params.add_with_value(
-            u"device", f"virtio-net-pci,netdev=vhost{self._vhost_id},mac={mac},"
-            f"addr={self._vhost_id+5}.0,mq=on,vectors={2 * queues + 2},"
+            u"device", f"virtio-net-pci,netdev=vhost{self._nic_id},mac={mac},"
+            f"addr={self._nic_id+5}.0,mq=on,vectors={2 * queues + 2},"
             f"csum={u'on' if csum else u'off'},gso={u'on' if gso else u'off'},"
             f"guest_tso4=off,guest_tso6=off,guest_ecn=off,"
             f"{queue_size}"
@@ -260,7 +260,7 @@ class QemuUtils:
 
         # Add interface MAC and socket to the node dict.
         if_data = {u"mac_address": mac, u"socket": socket}
-        if_name = f"vhost{self._vhost_id}"
+        if_name = f"vhost{self._nic_id}"
         self._vm_info[u"interfaces"][if_name] = if_data
         # Add socket to temporary file list.
         self._temp[if_name] = socket
@@ -271,7 +271,10 @@ class QemuUtils:
         :param pci: PCI address of interface.
         :type pci: str
         """
-        self._params.add_with_value(u"device", f"vfio-pci,host={pci}")
+        self._nic_id += 1
+        self._params.add_with_value(
+            u"device", f"vfio-pci,host={pci},addr={self._nic_id+5}.0"
+        )
 
     def create_kernelvm_config_vpp(self, **kwargs):
         """Create QEMU VPP config files.
