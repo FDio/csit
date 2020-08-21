@@ -257,6 +257,7 @@
 | | Set Test Message | ${\n}${text}: ${rate_total} pps, | append=yes
 | | Set Test Message | ${bandwidth_total} Gbps (initial) | append=yes
 | | Return From Keyword If | not """${latency}"""
+| | Return From Keyword If | """-1/-1/-1""" in """${latency}"""
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
 
