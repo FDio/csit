@@ -275,13 +275,13 @@ def simple_burst(
             if client:
                 client.disconnect()
             print(
-                f"rate={rate!r}, total_received={total_rcvd}, "
-                f"total_sent={total_sent}, frame_loss={lost_a + lost_b}, "
-                f"target_duration={duration!r}, "
-                f"approximated_duration={approximated_duration!r}, "
-                f"approximated_rate={approximated_rate}, "
-                f"latency_stream_0(usec)={lat_a}, "
-                f"latency_stream_1(usec)={lat_b}, "
+                f"rate={rate!r}; total_received={total_rcvd}; "
+                f"total_sent={total_sent}; frame_loss={lost_a + lost_b}; "
+                f"target_duration={duration!r}; "
+                f"approximated_duration={approximated_duration!r}; "
+                f"approximated_rate={approximated_rate}; "
+                f"latency_stream_0(usec)={lat_a}; "
+                f"latency_stream_1(usec)={lat_b}; "
             )
 
 
