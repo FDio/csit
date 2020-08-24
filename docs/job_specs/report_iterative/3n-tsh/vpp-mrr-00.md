@@ -115,10 +115,10 @@
 1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
 2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
 4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4base-nat44
-##### ethip4udp-ip4scale1000-udpsrcscale15-nat44
-1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4scale1000-udpsrcscale15-nat44
-2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4scale1000-udpsrcscale15-nat44
-4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4udp-ip4scale1000-udpsrcscale15-nat44
+##### ethip4udp-snat44det-h1024-p63-s64512
+1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4udp-snat44det-h1024-p63-s64512
+2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4udp-snat44det-h1024-p63-s64512
+4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4udp-snat44det-h1024-p63-s64512
 ## ./ip4_tunnels
 ### intel-x520-da2
 #### dpdk-vfio-pci
