@@ -133,10 +133,6 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-nat44
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-nat44
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-nat44
-##### ethip4udp-ip4scale1000-udpsrcscale15-nat44
-1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4scale1000-udpsrcscale15-nat44
-2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4scale1000-udpsrcscale15-nat44
-4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4scale1000-udpsrcscale15-nat44
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base
@@ -224,10 +220,6 @@
 1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4udp-ip4base-nat44
 2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4udp-ip4base-nat44
 4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4udp-ip4base-nat44
-##### ethip4udp-ip4scale1000-udpsrcscale15-nat44
-1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4udp-ip4scale1000-udpsrcscale15-nat44
-2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4udp-ip4scale1000-udpsrcscale15-nat44
-4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4udp-ip4scale1000-udpsrcscale15-nat44
 ## ./ip4_tunnels
 ## ./ip6
 ### intel-x710
