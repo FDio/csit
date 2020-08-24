@@ -22,6 +22,30 @@
       "revId": "6ec2d3a75435da59650449cb683a695bd7a0beeb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8973d65_c71328f1",
+        "filename": "docs/job_specs/report_iterative/3n-tsh/vpp-mlr-00.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-08-24T12:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d97bef30_9c6fcd77",
+      "range": {
+        "startLine": 118,
+        "startChar": 6,
+        "endLine": 118,
+        "endChar": 42
+      },
+      "revId": "6ec2d3a75435da59650449cb683a695bd7a0beeb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
