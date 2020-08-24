@@ -682,6 +682,13 @@ class QemuUtils:
 
     def qemu_kill(self):
         """Kill qemu process."""
+        command = f"cat {self._temp.get(u'log')}"
+        stdout = None
+        try:
+            stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
+        except RuntimeError:
+            pass
+        logger.warn(stdout)
         exec_cmd(
             self._node, f"chmod +r {self._temp.get(u'pidfile')}", sudo=True
         )
