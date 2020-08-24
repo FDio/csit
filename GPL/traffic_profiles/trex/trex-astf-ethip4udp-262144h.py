@@ -70,27 +70,23 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # client commands
         prog_c = ASTFProgram(stream=False)
-        # set the keepalive timer for UDP flows to not close udp session
-        # immediately after packet exchange
-        prog_c.set_keepalive_msg(self.udp_keepalive)
+#        # set the keepalive timer for UDP flows to not close udp session
+#        # immediately after packet exchange
+#        prog_c.set_keepalive_msg(self.udp_keepalive)
         # send REQ message
         prog_c.send_msg(self.udp_req)
         # receive RES message
         prog_c.recv_msg(1)
 
-        prog_c.delay(self.udp_keepalive * 1000)  # delay is defined in usec
-
         # server commands
         prog_s = ASTFProgram(stream=False)
-        # set the keepalive timer for UDP flows to not close udp session
-        # immediately after packet exchange
-        prog_c.set_keepalive_msg(self.udp_keepalive)
+#        # set the keepalive timer for UDP flows to not close udp session
+#        # immediately after packet exchange
+#        prog_c.set_keepalive_msg(self.udp_keepalive)
         # receive REQ message
         prog_s.recv_msg(1)
         # send RES message
         prog_s.send_msg(self.udp_res)
-
-        prog_s.delay(self.udp_keepalive * 1000)  # delay is defined in usec
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
