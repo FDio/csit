@@ -75,8 +75,13 @@
 | ${in_mask}= | ${14}
 | ${out_net}= | 68.142.68.0
 | ${out_mask}= | ${24}
+# Scale settings
+| ${n_hosts}= | ${262144}
+| ${n_ports}= | ${63}
+# Do not set n_transactions, this tests uses continuous traffic.
+#| ${n_transactions}= | ${${n_hosts} * ${n_ports}}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-ethip4udp-262144u63p
+| ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
 
 *** Keywords ***
 | Local Template

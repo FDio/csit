@@ -64,11 +64,15 @@
 | Additional Test Tear Down Action For performance
 | | [Documentation]
 | | ... | Additional teardown for tests which uses performance measurement.
+| | ... | Optionally, call \${resetter} (if defined) to reset DUT state.
 | |
+| | ... | TODO: Document what test variables are required or optional.
+| |
+| | Call Resetter
 | | Run Keyword If Test Failed
 | | ... | Send traffic at specified rate | ${1.0} | 10000
 | | ... | ${frame_size} | ${traffic_profile} | trial_multiplicity=${1}
-| | ... | extended_debug=${True}
+| | ... | extended_debug=${True} | duration_limit=${1.0}
 
 | Additional Test Tear Down Action For packet_trace
 | | [Documentation]
