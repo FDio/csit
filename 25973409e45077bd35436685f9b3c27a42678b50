@@ -22,6 +22,30 @@
       "revId": "25973409e45077bd35436685f9b3c27a42678b50",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8abfd777_96ad927b",
+        "filename": "docs/job_specs/report_coverage/3n-hsw/ip4-08.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-08-24T12:03:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dc56b43_925dd93e",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 34
+      },
+      "revId": "25973409e45077bd35436685f9b3c27a42678b50",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
