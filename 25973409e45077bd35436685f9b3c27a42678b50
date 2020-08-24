@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2dc56b43_925dd93e",
+        "filename": "docs/job_specs/report_coverage/3n-hsw/ip4-08.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-24T11:22:29Z",
+      "side": 1,
+      "message": "ethip4udp-ip4base-nat44 is the only NAT 3node test remaining after https://gerrit.fd.io/r/c/csit/+/28529",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 34
+      },
+      "revId": "25973409e45077bd35436685f9b3c27a42678b50",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
