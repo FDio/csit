@@ -9,6 +9,7 @@ packages_base:
   - "dkms"
   - "iperf3"
   - "linux-tools-common"
+  - "ninja-build"
   - "qemu-system"
   - "socat"
   - "unzip"

@@ -41,8 +41,8 @@
 | | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
 | | | ... | ${${dut}_pf1}[0] | ${${dut}_pf2}[0]
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
-| | | ${cpus}= | Cpu Range Per Node Str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${1} | cpu_cnt=${dp_cores} | smt_used=${smt_used}
+| | | ${cpus}= | Cpu List Per Node Str | ${nodes['${dut}']} | ${numa}
+| | | ... | skip_cnt=${1} | cpu_cnt=${cpu_count_int} | smt_used=${smt_used}
 | | | ${thr_count_int}= | Run keyword if | ${smt_used} |
 | | | ... | Evaluate | int(${cpu_count_int}*2) | ELSE | Set variable
 | | | ... | ${thr_count_int}
