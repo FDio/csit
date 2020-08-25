@@ -45,7 +45,7 @@
 | | ... | - packages_dir - Path to directory where VPP packages are stored.
 | |
 | | ${pre_stats}= | Create List
-| | ... | vpp-clear-show-runtime-with-traffic | vpp-clear-stats
+| | ... | clear-show-runtime-with-traffic | vpp-clear-stats
 | | ... | vpp-enable-packettrace | vpp-enable-elog
 | | ${post_stats}= | Create List
 | | ... | vpp-show-stats | vpp-show-packettrace | vpp-show-elog

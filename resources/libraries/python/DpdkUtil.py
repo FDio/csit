@@ -42,10 +42,6 @@ class DpdkUtil:
         options.add_with_value_from_dict(
             u"w", u"eal_pci_whitelist1", kwargs
         )
-        # Set master core.
-        options.add_with_value(
-            u"-master-lcore", u"0"
-        )
         # Load an external driver. Multiple -d options are allowed.
         options.add_with_value_if_from_dict(
             u"d", u"/usr/lib/librte_pmd_virtio.so", u"eal_driver", kwargs, True
