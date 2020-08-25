@@ -1,7 +1,7 @@
 # 3n-tsh
-### tests 204
-### job hrs est. 38.18
-### job hrs real 38.18
+### tests 201
+### job hrs est. 37.62
+### job hrs real 37.62
 ### test mins est. 11.23
 ### test mins real 11.23
 ## ./container_memif
