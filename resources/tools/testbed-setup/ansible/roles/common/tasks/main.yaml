@@ -83,6 +83,13 @@
   tags:
     - install-pip
 
+- name: Install Meson (repository version is too old)
+  pip:
+    name:
+      - "meson"
+  tags:
+    - install-meson
+
 - name: Set sudoers admin
   lineinfile:
     path: "/etc/sudoers"
