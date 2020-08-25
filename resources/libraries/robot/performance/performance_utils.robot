@@ -676,7 +676,7 @@
 | | Run Keyword If | ${extended_debug}==${True}
 | | ... | Perf Stat On All DUTs | ${nodes}
 
-| Additional Statistics Action For vpp-clear-show-runtime-with-traffic
+| Additional Statistics Action For clear-show-runtime-with-traffic
 | | [Documentation]
 | | ... | Additional Statistics Action for clear and show runtime counters with
 | | ... | running traffic.
@@ -684,3 +684,9 @@
 | | Clear and show runtime counters with running traffic
 | | ... | ${trial_duration} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
+
+| Additional Statistics Action For noop
+| | [Documentation]
+| | ... | Additional Statistics Action for no operation.
+| |
+| | No operation
