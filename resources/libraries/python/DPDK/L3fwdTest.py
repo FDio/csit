@@ -68,7 +68,7 @@ class L3fwdTest:
 
             if jumbo_frames:
                 l3fwd_args = DpdkUtil.get_l3fwd_args(
-                    eal_corelist=f"0,{lcores_list}",
+                    eal_corelist=f"1,{lcores_list}",
                     eal_driver=False,
                     eal_pci_whitelist0=if_pci0,
                     eal_pci_whitelist1=if_pci1,
@@ -82,7 +82,7 @@ class L3fwdTest:
                 )
             else:
                 l3fwd_args = DpdkUtil.get_l3fwd_args(
-                    eal_corelist=f"0,{lcores_list}",
+                    eal_corelist=f"1,{lcores_list}",
                     eal_driver=False,
                     eal_pci_whitelist0=if_pci0,
                     eal_pci_whitelist1=if_pci1,

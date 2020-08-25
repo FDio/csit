@@ -40,10 +40,10 @@
 | | ... | - post_run_stats - Statistics actions during traffic after timer.
 | |
 | | ${pre_stats}= | Create List
-| | ... | vpp-clear-show-runtime-with-traffic
-| | ${post_stats}= | Create List | ${EMPTY}
-| | ${pre_run_stats}= | Create List | ${EMPTY}
-| | ${post_run_stats}= | Create List | ${EMPTY}
+| | ... | clear-show-runtime-with-traffic
+| | ${post_stats}= | Create List | noop
+| | ${pre_run_stats}= | Create List | noop
+| | ${post_run_stats}= | Create List | noop
 | | Set Global Variable | ${pre_stats}
 | | Set Global Variable | ${post_stats}
 | | Set Global Variable | ${pre_run_stats}

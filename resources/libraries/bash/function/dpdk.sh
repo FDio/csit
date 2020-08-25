@@ -84,54 +84,22 @@ function dpdk_compile () {
 
     set -exuo pipefail
 
-    arch=$(uname -m) || {
-        die "Get CPU architecture failed."
-    }
-
-    # DPDK prefers "arm64" to "aarch64" and does not allow arm64 native target.
-    if [ ${arch} == "aarch64" ]; then
-        arch="arm64"
-        machine="armv8a"
-    else
-        machine="native"
-    fi
-
-    # Patch settings.
-    sed_mlx="s/^CONFIG_RTE_LIBRTE_MLX5_PMD=n/CONFIG_RTE_LIBRTE_MLX5_PMD=y/g"
-    sed_i40e="s/^CONFIG_RTE_LIBRTE_I40E_16BYTE_RX_DESC=n/CONFIG_RTE_LIBRTE_I40E_16BYTE_RX_DESC=y/g"
-    sed_file="./config/common_base"
-
     pushd "${DPDK_DIR}" || die "Pushd failed"
-    if ( lsmod || die ) | fgrep mlx; then
-        sed -i "${sed_mlx}" "${sed_file}" || die
-    fi
-
-    sed -i "${sed_i40e}" "${sed_file}" || die "Patch failed"
-
-    sed_build_fix='s/#include <\(rte_ethdev.*.h\)>/#include "\1"/g'
-    # can't put the filename in quotes so that shell expands it
-    sed -i "${sed_build_fix}" ./lib/librte_ethdev/rte_ethdev*.h || {
-        die "DPDK build patch failed"
-    }
-
-    # Compile
-    make install T="${arch}"-"${machine}"-linuxapp-gcc -j || {
-        die "Failed to compile DPDK!"
-    }
-    popd || die "Popd failed"
-
-    # Compile the l3fwd.
-    export RTE_SDK="${DPDK_DIR}/"
-    export RTE_TARGET="${arch}-${machine}-linuxapp-gcc"
-    # Patch settings.
+    # Patch L3FWD.
     sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128/#define RTE_TEST_RX_DESC_DEFAULT 1024/g"
     sed_txd="s/^#define RTE_TEST_TX_DESC_DEFAULT 512/#define RTE_TEST_TX_DESC_DEFAULT 1024/g"
     sed_file="./main.c"
-    pushd "${RTE_SDK}"/examples/l3fwd || die "Pushd failed"
+    pushd examples/l3fwd || die "Pushd failed"
     sed -i "${sed_rxd}" "${sed_file}" || die "Patch failed"
     sed -i "${sed_txd}" "${sed_file}" || die "Patch failed"
-    make clean || die "Failed to compile l3fwd"
-    make -j || die "Failed to compile l3fwd"
+    popd || die "Popd failed"
+
+    # Compile using Meson and Ninja.
+    meson -Dexamples=l3fwd -DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y build || {
+        die "Failed to compile DPDK!"
+    }
+    pushd build || die "Pushd failed"
+    ninja || die "Failed to compile DPDK!"
     popd || die "Popd failed"
 }
 
@@ -228,31 +196,19 @@ function dpdk_l3fwd_compile () {
 
     set -exuo pipefail
 
-    arch=$(uname -m) || {
-        die "Get CPU architecture failed."
-    }
-
-    # DPDK prefers "arm64" to "aarch64" and does not allow arm64 native target.
-    if [ ${arch} == "aarch64" ]; then
-        arch="arm64"
-        machine="armv8a"
-    else
-        machine="native"
-    fi
-
-    # Compile the l3fwd.
-    export RTE_SDK="${DPDK_DIR}/"
-    export RTE_TARGET="${arch}-${machine}-linuxapp-gcc"
-    # Patch settings.
+    pushd "${DPDK_DIR}" || die "Pushd failed"
+    # Patch L3FWD.
     sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128/#define RTE_TEST_RX_DESC_DEFAULT 2048/g"
     sed_txd="s/^#define RTE_TEST_TX_DESC_DEFAULT 512/#define RTE_TEST_TX_DESC_DEFAULT 2048/g"
     sed_file="./main.c"
-    pushd "${RTE_SDK}"/examples/l3fwd || die "Pushd failed"
+    pushd examples/l3fwd || die "Pushd failed"
     sed -i "${sed_rxd}" "${sed_file}" || die "Patch failed"
     sed -i "${sed_txd}" "${sed_file}" || die "Patch failed"
     chmod +x ${1} && source ${1} || die "Patch failed"
-    make clean || die "Failed to compile l3fwd"
-    make -j || die "Failed to compile l3fwd"
+    popd || die "Popd failed"
+
+    pushd build || die "Pushd failed"
+    ninja || die "Failed to compile DPDK!"
     popd || die "Popd failed"
 }
 
@@ -268,20 +224,8 @@ function dpdk_l3fwd () {
 
     set -exuo pipefail
 
-    arch=$(uname -m) || {
-        die "Get CPU architecture failed."
-    }
-
-    # DPDK prefers "arm64" to "aarch64" and does not allow arm64 native target.
-    if [ ${arch} == "aarch64" ]; then
-        arch="arm64"
-        machine="armv8a"
-    else
-        machine="native"
-    fi
-
     rm -f screenlog.0 || true
-    binary="${DPDK_DIR}/examples/l3fwd/build/app/l3fwd"
+    binary="${DPDK_DIR}/build/examples/dpdk-l3fwd"
 
     sudo sh -c "screen -dmSL DPDK-test ${binary} ${@}" || {
         die "Failed to start l3fwd"
@@ -335,20 +279,8 @@ function dpdk_testpmd () {
 
     set -exuo pipefail
 
-    arch=$(uname -m) || {
-        die "Get CPU architecture failed."
-    }
-
-    # DPDK prefers "arm64" to "aarch64" and does not allow arm64 native target.
-    if [ ${arch} == "aarch64" ]; then
-        arch="arm64"
-        machine="armv8a"
-    else
-        machine="native"
-    fi
-
     rm -f screenlog.0 || true
-    binary="${DPDK_DIR}/${arch}-${machine}-linuxapp-gcc/app/testpmd"
+    binary="${DPDK_DIR}/build/app/dpdk-testpmd"
 
     sudo sh -c "screen -dmSL DPDK-test ${binary} ${@}" || {
         die "Failed to start testpmd"

@@ -58,7 +58,7 @@ class TestpmdTest:
 
             pmd_max_pkt_len = u"9200" if jumbo_frames else u"1518"
             testpmd_args = DpdkUtil.get_testpmd_args(
-                eal_corelist=f"0,{lcores_list}",
+                eal_corelist=f"1,{lcores_list}",
                 eal_driver=False,
                 eal_pci_whitelist0=if_pci0,
                 eal_pci_whitelist1=if_pci1,
