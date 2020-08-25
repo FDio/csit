@@ -12122,7 +12122,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf-ndr"
     layout: "plot-throughput"
@@ -12138,7 +12138,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf-pdr"
     layout: "plot-throughput"
@@ -12302,7 +12302,7 @@
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf-ndr"
     layout: "plot-throughput"
@@ -12318,7 +12318,7 @@
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-2t1c-features-ip4routing-base-avf-pdr"
     layout: "plot-throughput"
@@ -12396,7 +12396,7 @@
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-1t1c-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-1t1c-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "3n-tsh-x520-64b-1t1c-features-ip4routing-base-ixgbe-ndr"
     layout: "plot-throughput"
@@ -12412,7 +12412,7 @@
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-1t1c-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-1t1c-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "3n-tsh-x520-64b-1t1c-features-ip4routing-base-ixgbe-pdr"
     layout: "plot-throughput"
@@ -14850,7 +14850,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-features-ip4routing-base-avf-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -14866,7 +14866,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-features-ip4routing-base-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -15030,7 +15030,7 @@
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-features-ip4routing-base-avf-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -15046,7 +15046,7 @@
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-features-ip4routing-base-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -16436,7 +16436,7 @@
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "3n-tsh-x520-64b-features-ip4routing-base-ixgbe-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -16452,7 +16452,7 @@
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "3n-tsh-x520-64b-features-ip4routing-base-ixgbe-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -17886,7 +17886,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-features-ip4routing-base-avf-ndr"
     layout: "plot-throughput"
@@ -17902,7 +17902,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-features-ip4routing-base-avf-pdr"
     layout: "plot-throughput"
@@ -18006,7 +18006,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
-#    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-rdma-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-ndr"
     layout: "plot-throughput"
@@ -18022,7 +18022,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
-#    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-rdma-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-2t1c-rdma-ethip4-features-pdr"
     layout: "plot-throughput"
@@ -18838,7 +18838,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-features-ip4routing-base-avf-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -18854,7 +18854,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-features-ip4routing-base-avf-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -18958,7 +18958,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-rdma-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-ethip4-features-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -18974,7 +18974,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Scale1000-Udpsrcscale15-Nat44-Ndrpdr.64B-.t.c-rdma-ethip4udp-ip4scale1000-udpsrcscale15-nat44-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-rdma-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-ethip4-features-pdr"
     layout: "plot-throughput-speedup-analysis"
