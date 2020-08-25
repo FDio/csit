@@ -82,12 +82,14 @@
 | ${out_net}= | 68.142.68.0
 | ${out_net_end}= | 68.142.68.15
 | ${out_mask}= | ${28}
+# Scale settings:
+| ${n_hosts}= | ${16384}
+| ${n_ports}= | ${63}
+| ${n_transactions}= | ${${n_hosts} * ${n_ports}}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-16384h
-| ${cps}= | ${1032192}
-# Trial data overwrite
-| ${trial_duration}= | ${1.1}
-| ${trial_multiplicity}= | ${1}
+| ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h
+| ${transaction_is}= | udp_cps
+| ${disable_latency}= | ${True}
 
 *** Keywords ***
 | Local Template
@@ -116,7 +118,7 @@
 | | ... | vpp-show-runtime
 | | Set Test Variable | ${post_stats}
 | |
-| | Given Set Jumbo
+| | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Add NAT to all DUTs | nat_mode=${nat_mode}
@@ -127,7 +129,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
-| | Then Find NDR and PDR intervals using optimized search | latency=${False}
+| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-snat44ed-h16384-p63-s1032192-cps-ndrpdr
