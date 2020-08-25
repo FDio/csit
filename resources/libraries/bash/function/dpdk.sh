@@ -115,9 +115,12 @@ function dpdk_compile () {
     }
 
     # Compile
-    make install T="${arch}"-"${machine}"-linuxapp-gcc -j || {
+    meson -Dexamples=testpmd,l3fwd build || {
         die "Failed to compile DPDK!"
     }
+#    make install T="${arch}"-"${machine}"-linuxapp-gcc -j || {
+#        die "Failed to compile DPDK!"
+#    }
     popd || die "Popd failed"
 
     # Compile the l3fwd.
