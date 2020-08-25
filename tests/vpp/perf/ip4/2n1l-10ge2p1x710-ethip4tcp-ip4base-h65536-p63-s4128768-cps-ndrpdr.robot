@@ -57,12 +57,15 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
+# Scale settings:
+| ${n_hosts}= | ${65536}
+| ${n_ports}= | ${63}
+| ${n_transactions}= | ${${n_hosts} * ${n_ports}}
+| ${packets_per_transaction}= | ${3}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4tcp-65536h
-| ${cps}= | ${4128768}
-# Trial data overwrite
-| ${trial_duration}= | ${1.1}
-| ${trial_multiplicity}= | ${1}
+| ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h
+| ${transaction_is}= | tcp_cps
+| ${disable_latency}= | ${True}
 
 *** Keywords ***
 | Local Template
@@ -90,7 +93,7 @@
 | | ... | vpp-show-runtime
 | | Set Test Variable | ${post_stats}
 | |
-| | Given Set Jumbo
+| | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
@@ -98,7 +101,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
 | | ... | 192.168.0.0 | 20.0.0.0 | ${16}
-| | Then Find NDR and PDR intervals using optimized search | latency=${False}
+| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4tcp-ip4base-h65536-p63-s4128768-ndrpdr
