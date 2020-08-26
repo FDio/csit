@@ -17,7 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI | UDP_SYN
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4udp-ip4base-h65536-p63-s4128768
+| ... | ethip4udp-ip4base-h65536-p63-s4128768-cps
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -57,12 +57,14 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
+# Scale settings:
+| ${n_hosts}= | ${65536}
+| ${n_ports}= | ${63}
+| ${n_transactions}= | ${${n_hosts} * ${n_ports}}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-65536h
-| ${cps}= | ${4128768}
-# Trial data overwrite
-| ${trial_duration}= | ${1.1}
-| ${trial_multiplicity}= | ${1}
+| ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h
+| ${transaction_is}= | udp_cps
+| ${disable_latency}= | ${True}
 
 *** Keywords ***
 | Local Template
@@ -80,7 +82,6 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Set Test Variable | \${max_rate} | ${cps}
 | | ${pre_stats}= | Create List
 | | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
 | | ... | vpp-clear-runtime
@@ -90,7 +91,7 @@
 | | ... | vpp-show-runtime
 | | Set Test Variable | ${post_stats}
 | |
-| | Given Set Jumbo
+| | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
@@ -98,7 +99,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
 | | ... | 192.168.0.0 | 20.0.0.0 | ${16}
-| | Then Find NDR and PDR intervals using optimized search | latency=${False}
+| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-ip4base-h65536-p63-s4128768-ndrpdr
