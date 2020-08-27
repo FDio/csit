@@ -12,14 +12,13 @@
 # limitations under the License.
 
 """Traffic profile for T-rex advanced stateful (astf) traffic generator.
-
 Traffic profile:
  - Two streams sent in directions 0 --> 1 (client -> server, requests) and
    1 --> 0 (server -> client, responses) at the same time.
- - Packet: ETH / IP / TCP
+ - Packet: ETH / IP / UDP
  - Direction 0 --> 1:
-   - Source IP address range:      192.168.0.0 - 192.168.63.255
-   - Destination IP address range: 20.0.0.0 - 20.0.63.255
+   - Source IP address range:      192.168.0.0 - 192.168.3.255
+   - Destination IP address range: 20.0.0.0 - 20.0.3.255
  - Direction 1 --> 0:
    - Source IP address range:      destination IP address from packet received
      on port 1
@@ -34,49 +33,79 @@ from profile_trex_astf_base_class import TrafficProfileBaseClass
 class TrafficProfile(TrafficProfileBaseClass):
     """Traffic profile."""
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         """Initialization and setting of profile parameters."""
 
         super(TrafficProfileBaseClass, self).__init__()
 
         # IPs used in packet headers.
         self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.63.255"
+        self.p1_src_end_ip = u"192.168.0.7"
         self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.63.255"
+        self.p1_dst_end_ip = u"20.0.0.7"
 
-        # Headers length; not used in this profile, just for the record of
-        # header length for TCP packet with 0B payload
-        self.headers_size = 58  # 14B l2 + 20B ipv4 + 24B tcp incl. 4B options
+        self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B UDP
 
-        # Delay for keeping tcp sessions active
-        self.delay = 2000000  # delay 2s (2,000,000 usec)
+        self.udp_data = u""
+
+        self.ndata = 32  # TODO: set via input parameter
+        self.nburst = 153984
+        self.delay = 12000000  # delay 12s (12,000,000 usec)
+        self.u_delay = 64  #inter packet delay 125usec
+        self.limit = 8
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
         This method MUST return:
 
-            return ip_gen, templates, None
+            return ip_gen, templates
 
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
+        if self.framesize == 64:
+            self.udp_data += self._gen_padding(self.headers_size, 72)
+        if self.framesize == 1518:
+            self.udp_data += self._gen_padding(self.headers_size, 1514)
+
         # client commands
-        prog_c = ASTFProgram()
-        # send syn
-        prog_c.connect()
-        # receive syn-ack (0B sent in tcp syn-ack packet) and send ack
-        prog_c.recv(0)
-        # wait defined time, then send fin-ack
+        prog_c = ASTFProgram(stream=False)
+        prog_c.set_keepalive_msg(20000)
+        prog_c.send_msg(self.udp_data)
+
+        prog_c.delay(self.delay)
+
+        prog_c.set_var(u"var11", self.nburst)
+        prog_c.set_label(u"a1:")
+        prog_c.set_var(u"var1", self.ndata)
+        prog_c.set_label(u"a:")
+        prog_c.send_msg(self.udp_data)
+        #prog_c.delay(self.u_delay)
+        prog_c.jmp_nz(u"var1", u"a:")
+        prog_c.delay(self.u_delay)
+        prog_c.jmp_nz(u"var11", u"a1:")
+
         prog_c.delay(self.delay)
 
         # server commands
-        prog_s = ASTFProgram()
-        # receive syn, send syn-ack
-        prog_s.accept()
-        # receive fin-ack, send ack + fin-ack
-        prog_s.wait_for_peer_close()
+        prog_s = ASTFProgram(stream=False)
+        prog_s.set_keepalive_msg(20000)
+        prog_s.send_msg(self.udp_data)
+
+        prog_s.delay(self.delay)
+
+        prog_s.set_var(u"var21", self.nburst)
+        prog_s.set_label(u"b1:")
+        prog_s.set_var(u"var2", self.ndata)
+        prog_s.set_label(u"b:")
+        prog_s.send_msg(self.udp_data)
+        #prog_s.delay(self.u_delay)
+        prog_s.jmp_nz(u"var2", u"b:")
+        prog_s.delay(self.u_delay)
+        prog_s.jmp_nz(u"var21", u"b1:")
+
+        prog_s.delay(self.delay)
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
@@ -100,7 +129,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         temp_c = ASTFTCPClientTemplate(
             program=prog_c,
             ip_gen=ip_gen,
-            limit=1032192,  # TODO: set via input parameter
+            limit=self.limit,
             port=8080
         )
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
