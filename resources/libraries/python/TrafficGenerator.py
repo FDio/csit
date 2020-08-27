@@ -1072,6 +1072,16 @@ class TrafficGenerator(AbstractMeasurer):
             # We do not care whether TG is slow, it should have attempted all.
             attempt_count = self.n_transactions
             fail_count = attempt_count - pass_count
+        elif self.transaction_is == u"udp_pps":
+            if not self.n_transactions:
+                raise RuntimeError(u"Add support for no-limit udp_pps.")
+            # The same as "packet" for now.
+            attempt_count = int(self.get_sent())
+            fail_count = int(self.get_loss())
+#            pass_count = self._l7_data[u"server"][u"tcp"][u"closed_flows"]
+#            # We do not care whether TG is slow, it should have attempted all.
+#            attempt_count = self.n_transactions
+#            fail_count = attempt_count - pass_count
         else:
             raise RuntimeError(f"Unknown parsing {self.transaction_is!r}")
         if fail_count < 0 and not self.negative_loss:
