@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad43001f_5823a965",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-08-27T08:24:22Z",
+      "side": 1,
+      "message": "We should pass this in CFLAGS. I tinkered around and this command seems to work:\nCFLAGS\u003d-DRTE_LIBRTE_I40E_16BYTE_RX_DESC\u003dy meson -Dexamples\u003dl3fwd build\n\nMeson configure says this after that command:\nCompiler options:\n  Option      Current Value                        Possible Values                            Description                             \n  ------      -------------                        ---------------                            -----------                             \n  c_args      [-DRTE_LIBRTE_I40E_16BYTE_RX_DESC\u003dy]                                            Extra arguments passed to the C compiler\n\nThis will pass the RTE_LIBRTE_I40E_16BYTE_RX_DESC var to the compiler, which should override #undef RTE_LIBRTE_I40E_16BYTE_RX_DESC defined in config/rte_config.h.",
+      "range": {
+        "startLine": 98,
+        "startChar": 27,
+        "endLine": 98,
+        "endChar": 61
+      },
+      "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff154210_0d8776ad",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-08-27T08:24:22Z",
+      "side": 1,
+      "message": "Is there an advantage in using pushd and popd instead of just doing \"ninja -C build\"?",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 29
+      },
+      "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9caf230_383c13b1",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-08-27T08:24:22Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 212,
+        "endChar": 29
+      },
+      "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d38c65f1_1e54fb51",
+        "filename": "resources/tools/testbed-setup/ansible/roles/common/tasks/main.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-08-27T08:24:22Z",
+      "side": 1,
+      "message": "DPDK pins the meson version to 0.47.1 in their CI: http://git.dpdk.org/dpdk/tree/.ci/linux-setup.sh#n4\n\nDo we want to do the same?",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 15
+      },
+      "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
