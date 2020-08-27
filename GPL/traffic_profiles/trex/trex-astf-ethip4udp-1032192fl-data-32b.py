@@ -71,7 +71,7 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # client commands
         prog_c = ASTFProgram(stream=False)
-        prog_c.set_keepalive_msg(20000)
+        prog_c.set_keepalive_msg(60000)
         prog_c.send_msg(self.udp_data)
 
         prog_c.delay(self.delay)
@@ -90,7 +90,7 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # server commands
         prog_s = ASTFProgram(stream=False)
-        prog_s.set_keepalive_msg(20000)
+        prog_s.set_keepalive_msg(60000)
         prog_s.send_msg(self.udp_data)
 
         prog_s.delay(self.delay)
