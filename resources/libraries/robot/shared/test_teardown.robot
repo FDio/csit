@@ -34,10 +34,6 @@
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show PAPI History On All DUTs | ${nodes}
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If Test Failed
-| | | ... | Pcap Trace Off | ${nodes['${dut}']}
-| | | Run Keyword If Test Failed
-| | | ... | Show NAT44 Summary | ${nodes['${dut}']}
 | | Run Keyword If Test Failed
 | | ... | Show Statistics On All DUTs | ${nodes}
 | | Run Keyword If Test Failed
