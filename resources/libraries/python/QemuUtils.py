@@ -323,12 +323,12 @@ class QemuUtils:
             vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
         if "nat" in self._opt.get(u'vnf'):
             vpp_config.add_nat(value=u"endpoint-dependent")
-            vpp_config.add_nat_max_translations_per_thread(value=655360)
+            #vpp_config.add_nat_max_translations_per_thread(value=655360)
             vpp_config.add_plugin(u"enable", u"nat_plugin.so")
         vpp_config.write_config(startup)
 
         # Create VPP running configuration.
-        template = f"{Constants.RESOURCES_TPL_VM}/{self._opt.get(u'vnf')}.exec"
+        template = f"{Constants.RESOURCES_TPL}/vm/{self._opt.get(u'vnf')}.exec"
         exec_cmd_no_error(self._node, f"rm -f {running}", sudo=True)
 
         with open(template, u"rt") as src_file:
@@ -400,7 +400,7 @@ class QemuUtils:
         :param kwargs: Key-value pairs to replace content of init startup file.
         :type kwargs: dict
         """
-        template = f"{Constants.RESOURCES_TPL_VM}/init.sh"
+        template = f"{Constants.RESOURCES_TPL}/vm/init.sh"
         init = self._temp.get(u"ini")
         exec_cmd_no_error(self._node, f"rm -f {init}", sudo=True)
 

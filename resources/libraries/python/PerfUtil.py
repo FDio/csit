@@ -14,6 +14,7 @@
 """Linux perf utility."""
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd
 from resources.libraries.python.topology import NodeType
 
@@ -28,29 +29,42 @@ class PerfUtil:
         """Get perf stat read for duration.
 
         :param node: Node in the topology.
-        :param cpu_list: CPU List.
+        :param cpu_list: CPU List as a string separated by comma.
         :param duration: Measure time in seconds.
         :type node: dict
         :type cpu_list: str
         :type duration: int
         """
-        cpu = cpu_list if cpu_list else u"0-$(($(nproc) - 1))"
-        if Constants.PERF_STAT_EVENTS:
-            command = (
-                u"perf stat"
-                f" --cpu {cpu} --no-aggr"
-                f" --event '{{{Constants.PERF_STAT_EVENTS}}}'"
-                f" --interval-print 1000 "
-                f" -- sleep {int(duration)}"
-            )
-        else:
-            command = (
-                u"perf stat"
-                f" --cpu {cpu} --no-aggr"
-                f" --interval-print 1000 "
-                f" -- sleep {int(duration)}"
-            )
-        exec_cmd(node, command, sudo=True)
+        if cpu_list:
+            cpu_list = list(dict.fromkeys(cpu_list.split(u",")))
+            cpu_list = ",".join(str(cpu) for cpu in cpu_list)
+
+        cmd_opts = OptionString(prefix=u"--")
+        cmd_opts.add(u"no-aggr")
+        cmd_opts.add_with_value_if(
+            u"cpu", cpu_list, cpu_list
+        )
+        cmd_opts.add_if(
+            u"all-cpus", not(cpu_list)
+        )
+        cmd_opts.add_with_value_if(
+            u"event", f"'{{{Constants.PERF_STAT_EVENTS}}}'",
+            Constants.PERF_STAT_EVENTS
+        )
+        cmd_opts.add_with_value(
+            u"interval-print", 1000
+        )
+        cmd_opts.add_with_value(
+            u"field-separator", u"';'"
+        )
+
+        cmd_base = OptionString()
+        cmd_base.add(f"perf stat")
+        cmd_base.extend(cmd_opts)
+        cmd_base.add(u"--")
+        cmd_base.add_with_value(u"sleep", int(duration))
+
+        exec_cmd(node, cmd_base, sudo=True)
 
     @staticmethod
     def perf_stat_on_all_duts(nodes, cpu_list=None, duration=1):
