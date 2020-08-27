@@ -163,6 +163,30 @@
       "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97d30dbf_673e64f8",
+        "filename": "resources/tools/testbed-setup/ansible/roles/common/tasks/main.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-27T08:47:06Z",
+      "side": 1,
+      "message": "I\u0027ll fix version, but i want to avoid redoing in future. Lets see how frequently they will be moving it.",
+      "parentUuid": "d38c65f1_1e54fb51",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 15
+      },
+      "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
