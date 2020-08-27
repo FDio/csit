@@ -187,6 +187,30 @@
       "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9da399a7_be0c66fe",
+        "filename": "resources/tools/testbed-setup/ansible/roles/common/tasks/main.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-08-27T08:58:14Z",
+      "side": 1,
+      "message": "They introduces meson Travis builds on 25.3.2019, then pinned the version to 0.47.1 on 9.1.2020 and that\u0027s it, so I don\u0027t think they\u0027ll be changing it very frequently.",
+      "parentUuid": "97d30dbf_673e64f8",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 15
+      },
+      "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
