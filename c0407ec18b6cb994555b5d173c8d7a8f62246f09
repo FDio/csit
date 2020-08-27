@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "93a5f9e3_a6ebc70b",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-27T08:45:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad43001f_5823a965",
+      "range": {
+        "startLine": 98,
+        "startChar": 27,
+        "endLine": 98,
+        "endChar": 61
+      },
+      "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff154210_0d8776ad",
         "filename": "resources/libraries/bash/function/dpdk.sh",
         "patchSetId": 13
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "eb97c02d_f657c963",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-27T08:45:56Z",
+      "side": 1,
+      "message": "make sense",
+      "parentUuid": "ff154210_0d8776ad",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 29
+      },
+      "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9caf230_383c13b1",
         "filename": "resources/libraries/bash/function/dpdk.sh",
         "patchSetId": 13
@@ -59,6 +107,30 @@
       "writtenOn": "2020-08-27T08:24:22Z",
       "side": 1,
       "message": "Same comment as above.",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 212,
+        "endChar": 29
+      },
+      "revId": "c0407ec18b6cb994555b5d173c8d7a8f62246f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fba3bd8_54df804f",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-27T08:45:56Z",
+      "side": 1,
+      "message": "make sense",
+      "parentUuid": "f9caf230_383c13b1",
       "range": {
         "startLine": 209,
         "startChar": 0,
