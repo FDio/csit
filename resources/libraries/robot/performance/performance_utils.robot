@@ -287,7 +287,9 @@
 | | [Arguments] | ${text} | ${rate_total} | ${frame_size} | ${latency}=${EMPTY}
 | |
 | | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
-| | Run Keyword And Return If | """${transaction_is}""" == """packet"""
+| | ${rate_total} = | Set Variable If | "${transaction_is}" == "udp_pps"
+| | ... | ${${rate_total}*${packets_per_transaction}} | ${rate_total}
+| | Run Keyword And Return If | "${transaction_is}" in ("packet", "udp_pps")
 | | ... | Display single pps bound | ${text} | ${rate_total} | ${frame_size}
 | | ... | ${latency}
 | | Run Keyword And Return If | """_cps""" in """${transaction_is}"""
@@ -511,7 +513,7 @@
 | | ... | ${traffic_profile} | ${trial_multiplicity}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | ... | use_latency=${use_latency}
-| | ${unit} = | Set Variable If | """${transaction_is}""" == """packet"""
+| | ${unit} = | Set Variable If | "${transaction_is}" in ("packet", "upd_pps")
 | | ... | packets per second | estimated connections per second
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in ${unit}: ${results}
@@ -591,7 +593,12 @@
 | | | # Relative receive rate gives bad results at big duration stretching,
 | | | # but profile driver should have stopped the measurement soon enough.
 | | | # For extreme cases (CPS MRR) this gives the more reasonable estimate.
-| | | Append To List | ${results} | ${result.relative_receive_rate}
+| | | # For UDP_PPS, the output unit does not match input unit,
+| | | # and it is easier to convert here than in the parent keyword.
+| | | ${receive_rate} = | Set Variable If | "${transaction_is}" == "udp_pps"
+| | | ... | ${${result.relative_receive_rate}*${packets_per_transaction}}
+| | | ... | ${result.relative_receive_rate}
+| | | Append To List | ${results} | ${receive_rate}
 | | END
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
