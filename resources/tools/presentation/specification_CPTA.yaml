@@ -133,6 +133,10 @@
           - "last-failed-tests-3n-tsh-mrr"
           - "last-failed-tests-2n-dnv-mrr"
           - "last-failed-tests-3n-dnv-mrr"
+          - "last-failed-tests-dpdk-2n-skx-mrr"
+          - "last-failed-tests-dpdk-3n-skx-mrr"
+          - "last-failed-tests-dpdk-2n-clx-mrr"
+          - "last-failed-tests-dpdk-3n-hsw-mrr"
           - "last-failed-tests-2n-skx-ndrpdr"
           - "last-failed-tests-3n-skx-ndrpdr"
           - "last-failed-tests-2n-clx-ndrpdr"
@@ -145,6 +149,10 @@
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-tsh"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-dnv"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-dnv"
+          - "https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-2n-skx"
+          - "https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-3n-skx"
+          - "https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-2n-clx"
+          - "https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-3n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx"
@@ -208,6 +216,18 @@
         - "lastCompletedBuild"
     table-last-failed-tests-2n-clx-ndrpdr:
       csit-vpp-perf-ndrpdr-weekly-master-2n-clx:
+        - "lastCompletedBuild"
+    table-last-failed-tests-dpdk-3n-hsw:
+      csit-dpdk-perf-mrr-weekly-master:
+        - "lastCompletedBuild"
+    table-last-failed-tests-dpdk-3n-skx:
+      csit-dpdk-perf-mrr-weekly-master-3n-skx:
+        - "lastCompletedBuild"
+    table-last-failed-tests-dpdk-2n-skx:
+      csit-dpdk-perf-mrr-weekly-master-2n-skx:
+        - "lastCompletedBuild"
+    table-last-failed-tests-dpdk-2n-clx:
+      csit-dpdk-perf-mrr-weekly-master-2n-clx:
         - "lastCompletedBuild"
 
     # 3n-hsw
@@ -943,6 +963,58 @@
   output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-clx-ndrpdr"
   data: "table-last-failed-tests-2n-clx-ndrpdr"
   filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) DPDK 3n-hsw"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-dpdk-3n-hsw-mrr"
+  data: "table-last-failed-tests-dpdk-3n-hsw"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) DPDK 3n-skx"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-dpdk-3n-skx-mrr"
+  data: "table-last-failed-tests-dpdk-3n-skx"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) DPDK 2n-skx"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-dpdk-2n-skx-mrr"
+  data: "table-last-failed-tests-dpdk-2n-skx"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) DPDK 2n-clx"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-dpdk-2n-clx-mrr"
+  data: "table-last-failed-tests-dpdk-2n-clx"
+  filter: "'MRR'"
   parameters:
     - "name"
     - "parent"
