@@ -95,6 +95,7 @@
 | |
 | | ${resetter} = | Get Variable Value | \${resetter} | ${None}
 | | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
+| | ${delays} = | Get Variable Value | \${delays} | ${0.0}
 | | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
 | | ${disable_latency} = | Get Variable Value | \${disable_latency} | ${False}
 | | ${use_latency} = | Set Variable If | ${disable_latency}
@@ -107,7 +108,8 @@
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
 | | ... | use_latency=${use_latency} | resetter=${resetter}
-| | ... | n_transactions=${n_transactions} | transaction_is=${transaction_is}
+| | ... | n_transactions=${n_transactions} | delays=${delays}
+| | ... | transaction_is=${transaction_is}
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
@@ -195,6 +197,7 @@
 | |
 | | ${resetter} = | Get Variable Value | \${resetter} | ${None}
 | | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
+| | ${delays} = | Get Variable Value | \${delays} | ${0.0}
 | | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${traffic_profile} | ${10000} | ${max_rate}
@@ -203,7 +206,8 @@
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
 | | ... | use_latency=${use_latency} | resetter=${resetter}
-| | ... | n_transactions=${n_transactions} | transaction_is=${transaction_is}
+| | ... | n_transactions=${n_transactions} | delays=${delays}
+| | ... | transaction_is=${transaction_is}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Return From Keyword | ${result.pdr_interval.measured_low.target_tr}
@@ -246,13 +250,14 @@
 | | ${min_rate} = | Set Variable | ${9001}
 | | ${resetter} = | Get Variable Value | \${resetter} | ${None}
 | | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
+| | ${delays} = | Get Variable Value | \${delays} | ${0.0}
 | | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
 | | ... | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${packet_loss_ratio} | timeout=${timeout}
 | | ... | traffic_directions=${traffic_directions} | use_latency=${use_latency}
 | | ... | resetter=${resetter} | n_transactions=${n_transactions}
-| | ... | transaction_is=${transaction_is}
+| | ... | delays=${delays} | transaction_is=${transaction_is}
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Should Not Be True | 1.1 * ${traffic_directions} * ${min_rate} > ${lower}
@@ -287,7 +292,9 @@
 | | [Arguments] | ${text} | ${rate_total} | ${frame_size} | ${latency}=${EMPTY}
 | |
 | | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
-| | Run Keyword And Return If | """${transaction_is}""" == """packet"""
+| | ${rate_total} = | Set Variable If | "${transaction_is}" == "udp_pps"
+| | ... | ${${rate_total}*${packets_per_transaction}} | ${rate_total}
+| | Run Keyword And Return If | "${transaction_is}" in ("packet", "udp_pps")
 | | ... | Display single pps bound | ${text} | ${rate_total} | ${frame_size}
 | | ... | ${latency}
 | | Run Keyword And Return If | """_cps""" in """${transaction_is}"""
@@ -511,7 +518,7 @@
 | | ... | ${traffic_profile} | ${trial_multiplicity}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | ... | use_latency=${use_latency}
-| | ${unit} = | Set Variable If | """${transaction_is}""" == """packet"""
+| | ${unit} = | Set Variable If | "${transaction_is}" in ("packet", "upd_pps")
 | | ... | packets per second | estimated connections per second
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in ${unit}: ${results}
@@ -559,6 +566,9 @@
 | | ... | ${duration_limit}=${0.0}
 | |
 | | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
+| | ${delays} = | Get Variable Value | \${delays} | ${0.0}
+| | ${packets_per_transaction} = | Get Variable Value
+| | ... | \${packets_per_transaction} | ${1}
 | | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
 | | Set Test Variable | ${extended_debug}
 | | # Following setting of test variables is needed as
@@ -580,8 +590,8 @@
 | | | ... | ${traffic_profile} | warmup_time=${0}
 | | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
 | | | ... | rx_port=${rx_port} | use_latency=${use_latency}
-| | | ... | n_transactions=${n_transactions} | transaction_is=${transaction_is}
-| | | ... | duration_limit=${duration_limit}
+| | | ... | n_transactions=${n_transactions} | delays=${delays}
+| | | ... | transaction_is=${transaction_is} | duration_limit=${duration_limit}
 | | | ${result}= | Get Measurement Result
 | | | # Approximated rate is good if duration is good.
 | | | # But for small scale CPS MRR tests, the traffic is way shorter than 1s,
@@ -591,7 +601,14 @@
 | | | # Relative receive rate gives bad results at big duration stretching,
 | | | # but profile driver should have stopped the measurement soon enough.
 | | | # For extreme cases (CPS MRR) this gives the more reasonable estimate.
-| | | Append To List | ${results} | ${result.relative_receive_rate}
+| | | # For UDP_PPS, the output unit does not match input unit,
+| | | # and it is easier to convert here than in the parent keyword.
+| | | ${receive_rate} = | Set Variable  | ${result.relative_receive_rate}
+| | | ${converted_receive_rate} = | Evaluate
+| | | ... | ${receive_rate} * ${packets_per_transaction}
+| | | ${receive_rate} = | Set Variable If | "${transaction_is}" == "udp_pps"
+| | | ... | ${converted_receive_rate} | ${receive_rate}
+| | | Append To List | ${results} | ${receive_rate}
 | | END
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}

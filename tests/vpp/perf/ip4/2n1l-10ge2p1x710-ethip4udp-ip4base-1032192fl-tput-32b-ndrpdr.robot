@@ -57,11 +57,16 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
+# Scale settings:
+| ${n_hosts}= | ${16384}
+| ${n_ports}= | ${63}
+| ${n_transactions}= | ${${n_hosts} * ${n_ports}}
+| ${packets_per_transaction}= | ${33}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-1032192fl-data-32b
-# Trial data overwrite
-| ${PERF_TRIAL_DURATION}= | ${34}
-| ${PERF_TRIAL_MULTIPLICITY}= | ${1}
+| ${traffic_profile}= | trex-astf-ethip4udp-${n_transactions}fl-data-32b
+| ${transaction_is}= | udp_pps
+| ${delays}= | ${12.0}
+| ${disable_latency}= | ${True}
 
 *** Keywords ***
 | Local Template
@@ -88,10 +93,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
 | | ... | 192.168.0.0 | 20.0.0.0 | ${18}
-| | Set Test Variable | \${max_rate} | ${100000}
-#| | Pcap Trace On | ${dut1} | rx tx | ${500000000} | ${DUT1_${int}2}[0] | dut1_if2_ip4_rx-tx_1024h_udp-2data_10s_16128cps_200803.pcap
-| | Then Find NDR and PDR intervals using optimized search | latency=${False}
-#| | Pcap Trace Off | ${dut1}
+| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-ip4base-1032192fl-tput-32b-ndrpdr
