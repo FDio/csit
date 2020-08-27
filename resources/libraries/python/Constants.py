@@ -139,8 +139,8 @@ class Constants:
     # Kubernetes templates location
     RESOURCES_TPL_K8S = u"resources/templates/kubernetes"
 
-    # KernelVM templates location
-    RESOURCES_TPL_VM = u"resources/templates/vm"
+    # Templates location
+    RESOURCES_TPL = u"resources/templates"
 
     # Container templates location
     RESOURCES_TPL_CONTAINER = u"resources/templates/container"
@@ -215,7 +215,10 @@ class Constants:
     CORE_DUMP_DIR = u"/tmp"
 
     # Perf stat events (comma separated).
-    PERF_STAT_EVENTS = u"L1-icache-load-misses"
+    PERF_STAT_EVENTS = get_str_from_env(
+        u"PERF_STAT_EVENTS",
+        u"cpu-clock,context-switches,cpu-migrations,page-faults,"
+        u"cycles,instructions,branches,branch-misses,L1-icache-load-misses")
 
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
