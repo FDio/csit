@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f14cad3_cf6ae2ad",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 85
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-27T10:20:18Z",
+      "side": 1,
+      "message": "This function expects a duration argument, but for ASTF the correct value is computed (so different than ${trial duration}).\nWhen not given, it uses the total duration with all the Python overhead, so even worse than the approximated duration.\nRelative receive rate is independent of duration, so ok for now.",
+      "range": {
+        "startLine": 585,
+        "startChar": 35,
+        "endLine": 585,
+        "endChar": 41
+      },
+      "revId": "0d6afae7156676a54b02290284e5f9037f302a3e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
