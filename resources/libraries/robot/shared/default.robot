@@ -70,6 +70,9 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/shared/vm.robot
 
+*** Variables ***
+| ${cpu_alloc_str}= | ${0}
+
 *** Keywords ***
 | Configure crypto device on all DUTs
 | | [Documentation] | Verify if Crypto QAT device virtual functions are
@@ -217,12 +220,15 @@
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | END
+| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_main}
+| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
 | | Set Test Variable | ${smt_used}
-| | Set Test Variable | ${thr_count_int}
+| | Set Test Variable | ${cpu_alloc_str}
 | | Set Test Variable | ${cpu_count_int}
-| | Set Test Variable | ${rxq_count_int}
+| | Set Test Variable | ${thr_count_int}
 | | Set Test Variable | ${rxd_count_int}
 | | Set Test Variable | ${txd_count_int}
+| | Set Test Variable | ${rxq_count_int}
 
 | Add DPDK VLAN strip offload switch off between DUTs
 | | [Documentation]

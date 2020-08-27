@@ -674,7 +674,7 @@
 | | ... | Additional Statistics Action for bash command "perf stat".
 | |
 | | Run Keyword If | ${extended_debug}==${True}
-| | ... | Perf Stat On All DUTs | ${nodes}
+| | ... | Perf Stat On All DUTs | ${nodes} | cpu_list=${cpu_alloc_str}
 
 | Additional Statistics Action For clear-show-runtime-with-traffic
 | | [Documentation]

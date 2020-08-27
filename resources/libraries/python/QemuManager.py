@@ -107,6 +107,7 @@ class QemuManager:
         :param pinning: If True, then do also QEMU process pinning.
         :type pinning: bool
         """
+        cpus = []
         for machine, machine_affinity in \
                 zip(self.machines.values(), self.machines_affinity.values()):
             index = list(self.machines.values()).index(machine)
@@ -114,6 +115,8 @@ class QemuManager:
             self.nodes[name] = machine.qemu_start()
             if pinning:
                 machine.qemu_set_affinity(*machine_affinity)
+                cpus.extend(machine_affinity)
+        return ",".join(str(cpu) for cpu in cpus)
 
     def kill_all_vms(self, force=False):
         """Kill all added VMs in manager.
@@ -175,4 +178,244 @@ class QemuManager:
             queue_size=kwargs[u"perf_qemu_qsz"],
             csum=kwargs[u"enable_csum"],
             gso=kwargs[u"enable_gso"]
+        )
+
+    def _c_vpp_2vfpt_ip4base_plen24(self, **kwargs):
+        """Instantiate one VM with vpp_2vfpt_ip4base_plen24 configuration.
+
+        :param kwargs: Named parameters.
+        :type kwargs: dict
+        """
+        qemu_id = kwargs[u"qemu_id"]
+        name = kwargs[u"name"]
+
+        self.machines[name] = QemuUtils(
+            node=self.nodes[kwargs[u"node"]],
+            qemu_id=qemu_id,
+            smp=len(self.machines_affinity[name]),
+            mem=4096,
+            vnf=kwargs[u"vnf"],
+            img=Constants.QEMU_VM_KERNEL
+        )
+        self.machines[name].add_default_params()
+        self.machines[name].add_kernelvm_params()
+        if u"DUT1" in name:
+            self.machines[name].configure_kernelvm_vnf(
+                ip1=u"2.2.2.1/30",
+                ip2=u"1.1.1.2/30",
+                route1=u"20.0.0.0/24",
+                routeif1=u"avf-0/0/6/0",
+                nexthop1=u"2.2.2.2",
+                route2=u"10.0.0.0/24",
+                routeif2=u"avf-0/0/7/0",
+                nexthop2=u"1.1.1.1",
+                arpmac1=u"3c:fd:fe:d1:5c:d8",
+                arpip1=u"1.1.1.1",
+                arpif1=u"avf-0/0/7/0",
+                queues=kwargs[u"queues"],
+                jumbo_frames=kwargs[u"jumbo"]
+            )
+        else:
+            self.machines[name].configure_kernelvm_vnf(
+                ip1=u"3.3.3.2/30",
+                ip2=u"2.2.2.2/30",
+                route1=u"10.0.0.0/24",
+                routeif1=u"avf-0/0/7/0",
+                nexthop1=u"2.2.2.1",
+                route2=u"20.0.0.0/24",
+                routeif2=u"avf-0/0/6/0",
+                nexthop2=u"3.3.3.1",
+                arpmac1=u"3c:fd:fe:d1:5c:d9",
+                arpip1=u"3.3.3.1",
+                arpif1=u"avf-0/0/6/0",
+                queues=kwargs[u"queues"],
+                jumbo_frames=kwargs[u"jumbo"]
+            )
+        self.machines[name].add_vfio_pci_if(
+            pci=Topology.get_interface_pci_addr(
+                self.nodes[kwargs[u"node"]], kwargs[u"if2"])
+        )
+        self.machines[name].add_vfio_pci_if(
+            pci=Topology.get_interface_pci_addr(
+                self.nodes[kwargs[u"node"]], kwargs[u"if1"])
+        )
+
+    def _c_vpp_2vfpt_ip4scale2k_plen30(self, **kwargs):
+        """Instantiate one VM with vpp_2vfpt_ip4scale2k_plen30 configuration.
+
+        :param kwargs: Named parameters.
+        :type kwargs: dict
+        """
+        qemu_id = kwargs[u"qemu_id"]
+        name = kwargs[u"name"]
+
+        self.machines[name] = QemuUtils(
+            node=self.nodes[kwargs[u"node"]],
+            qemu_id=qemu_id,
+            smp=len(self.machines_affinity[name]),
+            mem=4096,
+            vnf=kwargs[u"vnf"],
+            img=Constants.QEMU_VM_KERNEL
+        )
+        self.machines[name].add_default_params()
+        self.machines[name].add_kernelvm_params()
+        if u"DUT1" in name:
+            self.machines[name].configure_kernelvm_vnf(
+                ip1=u"2.2.2.1/30",
+                ip2=u"1.1.1.2/30",
+                route1=u"20.0.0.0/30",
+                routeif1=u"avf-0/0/6/0",
+                nexthop1=u"2.2.2.2",
+                route2=u"10.0.0.0/30",
+                routeif2=u"avf-0/0/7/0",
+                nexthop2=u"1.1.1.1",
+                arpmac1=u"3c:fd:fe:d1:5c:d8",
+                arpip1=u"1.1.1.1",
+                arpif1=u"avf-0/0/7/0",
+                queues=kwargs[u"queues"],
+                jumbo_frames=kwargs[u"jumbo"]
+            )
+        else:
+            self.machines[name].configure_kernelvm_vnf(
+                ip1=u"3.3.3.2/30",
+                ip2=u"2.2.2.2/30",
+                route1=u"10.0.0.0/30",
+                routeif1=u"avf-0/0/7/0",
+                nexthop1=u"2.2.2.1",
+                route2=u"20.0.0.0/30",
+                routeif2=u"avf-0/0/6/0",
+                nexthop2=u"3.3.3.1",
+                arpmac1=u"3c:fd:fe:d1:5c:d9",
+                arpip1=u"3.3.3.1",
+                arpif1=u"avf-0/0/6/0",
+                queues=kwargs[u"queues"],
+                jumbo_frames=kwargs[u"jumbo"]
+            )
+        self.machines[name].add_vfio_pci_if(
+            pci=Topology.get_interface_pci_addr(
+                self.nodes[kwargs[u"node"]], kwargs[u"if2"])
+        )
+        self.machines[name].add_vfio_pci_if(
+            pci=Topology.get_interface_pci_addr(
+                self.nodes[kwargs[u"node"]], kwargs[u"if1"])
+        )
+
+    def _c_vpp_2vfpt_ip4scale20k_plen30(self, **kwargs):
+        """Instantiate one VM with vpp_2vfpt_ip4scale20k_plen30 configuration.
+
+        :param kwargs: Named parameters.
+        :type kwargs: dict
+        """
+        qemu_id = kwargs[u"qemu_id"]
+        name = kwargs[u"name"]
+
+        self.machines[name] = QemuUtils(
+            node=self.nodes[kwargs[u"node"]],
+            qemu_id=qemu_id,
+            smp=len(self.machines_affinity[name]),
+            mem=4096,
+            vnf=kwargs[u"vnf"],
+            img=Constants.QEMU_VM_KERNEL
+        )
+        self.machines[name].add_default_params()
+        self.machines[name].add_kernelvm_params()
+        if u"DUT1" in name:
+            self.machines[name].configure_kernelvm_vnf(
+                ip1=u"2.2.2.1/30",
+                ip2=u"1.1.1.2/30",
+                route1=u"20.0.0.0/30",
+                routeif1=u"avf-0/0/6/0",
+                nexthop1=u"2.2.2.2",
+                route2=u"10.0.0.0/30",
+                routeif2=u"avf-0/0/7/0",
+                nexthop2=u"1.1.1.1",
+                arpmac1=u"3c:fd:fe:d1:5c:d8",
+                arpip1=u"1.1.1.1",
+                arpif1=u"avf-0/0/7/0",
+                queues=kwargs[u"queues"],
+                jumbo_frames=kwargs[u"jumbo"]
+            )
+        else:
+            self.machines[name].configure_kernelvm_vnf(
+                ip1=u"3.3.3.2/30",
+                ip2=u"2.2.2.2/30",
+                route1=u"10.0.0.0/30",
+                routeif1=u"avf-0/0/7/0",
+                nexthop1=u"2.2.2.1",
+                route2=u"20.0.0.0/30",
+                routeif2=u"avf-0/0/6/0",
+                nexthop2=u"3.3.3.1",
+                arpmac1=u"3c:fd:fe:d1:5c:d9",
+                arpip1=u"3.3.3.1",
+                arpif1=u"avf-0/0/6/0",
+                queues=kwargs[u"queues"],
+                jumbo_frames=kwargs[u"jumbo"]
+            )
+        self.machines[name].add_vfio_pci_if(
+            pci=Topology.get_interface_pci_addr(
+                self.nodes[kwargs[u"node"]], kwargs[u"if2"])
+        )
+        self.machines[name].add_vfio_pci_if(
+            pci=Topology.get_interface_pci_addr(
+                self.nodes[kwargs[u"node"]], kwargs[u"if1"])
+        )
+
+    def _c_vpp_2vfpt_ip4scale200k_plen30(self, **kwargs):
+        """Instantiate one VM with vpp_2vfpt_ip4scale200k_plen30 configuration.
+
+        :param kwargs: Named parameters.
+        :type kwargs: dict
+        """
+        qemu_id = kwargs[u"qemu_id"]
+        name = kwargs[u"name"]
+
+        self.machines[name] = QemuUtils(
+            node=self.nodes[kwargs[u"node"]],
+            qemu_id=qemu_id,
+            smp=len(self.machines_affinity[name]),
+            mem=4096,
+            vnf=kwargs[u"vnf"],
+            img=Constants.QEMU_VM_KERNEL
+        )
+        self.machines[name].add_default_params()
+        self.machines[name].add_kernelvm_params()
+        if u"DUT1" in name:
+            self.machines[name].configure_kernelvm_vnf(
+                ip1=u"2.2.2.1/30",
+                ip2=u"1.1.1.2/30",
+                route1=u"20.0.0.0/30",
+                routeif1=u"avf-0/0/6/0",
+                nexthop1=u"2.2.2.2",
+                route2=u"10.0.0.0/30",
+                routeif2=u"avf-0/0/7/0",
+                nexthop2=u"1.1.1.1",
+                arpmac1=u"3c:fd:fe:d1:5c:d8",
+                arpip1=u"1.1.1.1",
+                arpif1=u"avf-0/0/7/0",
+                queues=kwargs[u"queues"],
+                jumbo_frames=kwargs[u"jumbo"]
+            )
+        else:
+            self.machines[name].configure_kernelvm_vnf(
+                ip1=u"3.3.3.2/30",
+                ip2=u"2.2.2.2/30",
+                route1=u"10.0.0.0/30",
+                routeif1=u"avf-0/0/7/0",
+                nexthop1=u"2.2.2.1",
+                route2=u"20.0.0.0/30",
+                routeif2=u"avf-0/0/6/0",
+                nexthop2=u"3.3.3.1",
+                arpmac1=u"3c:fd:fe:d1:5c:d9",
+                arpip1=u"3.3.3.1",
+                arpif1=u"avf-0/0/6/0",
+                queues=kwargs[u"queues"],
+                jumbo_frames=kwargs[u"jumbo"]
+            )
+        self.machines[name].add_vfio_pci_if(
+            pci=Topology.get_interface_pci_addr(
+                self.nodes[kwargs[u"node"]], kwargs[u"if2"])
+        )
+        self.machines[name].add_vfio_pci_if(
+            pci=Topology.get_interface_pci_addr(
+                self.nodes[kwargs[u"node"]], kwargs[u"if1"])
         )
