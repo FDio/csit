@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e15e6b3_d93f51c1",
+        "filename": "resources/tools/vagrant/ansible/roles/csit/defaults/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-28T09:58:37Z",
+      "side": 1,
+      "message": "no trailing spaces",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 4
+      },
+      "revId": "fd58bada82a6aa1e72d05975220e11521573e020",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "659f0d1c_ae31eb10",
+        "filename": "resources/tools/vagrant/ansible/roles/csit/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-28T09:58:37Z",
+      "side": 1,
+      "message": "no trailing space",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 13
+      },
+      "revId": "fd58bada82a6aa1e72d05975220e11521573e020",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e21d74b_86065e6c",
+        "filename": "resources/tools/vagrant/ansible/roles/csit/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-28T09:58:37Z",
+      "side": 1,
+      "message": "put into \u0027\u0027",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 31
+      },
+      "revId": "fd58bada82a6aa1e72d05975220e11521573e020",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40e677d6_bebd53b6",
+        "filename": "resources/tools/vagrant/ansible/roles/csit/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-28T09:58:37Z",
+      "side": 1,
+      "message": "i do not think this is needed to be root, ansible is automatically doing become\n? see other commands",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 19
+      },
+      "revId": "fd58bada82a6aa1e72d05975220e11521573e020",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "802a288e_b4894d4b",
+        "filename": "resources/tools/vagrant/ansible/roles/csit/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-28T09:58:37Z",
+      "side": 1,
+      "message": "if the get-docker is not working for centos then the whole installation form their script does not make sense.\nRework Ubuntu also to repo way of installing.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 44
+      },
+      "revId": "fd58bada82a6aa1e72d05975220e11521573e020",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
