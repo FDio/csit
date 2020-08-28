@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ef1dbd3_9e473710",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 17
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-08-28T13:13:35Z",
+      "side": 1,
+      "message": "CFLAGS are not used here. The variable either needs to be exported or specified on the same command line as the meson command:\nCFLAGS\u003d\"${CFLAGS}\" meson ...",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 5
+      },
+      "revId": "cc6fb55d2b1f4659b2926d65a1073b3e8f1e965e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
