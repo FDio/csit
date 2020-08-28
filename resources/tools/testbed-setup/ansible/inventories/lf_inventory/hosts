@@ -60,9 +60,9 @@ all:
         10.30.51.39: #s53-nomad - thunderx 88xx
         10.30.51.40: #s54-nomad - thunderx 88xx
         10.30.51.65: #s52-nomad - thunderx 88xx
-        #10.30.51.66: #s51-nomad - thunderx 88xx
+        10.30.51.66: #s51-nomad - thunderx 88xx
         10.30.51.67: #s49-nomad - thunderx 88xx
-        #10.30.51.68: #s50-nomad - thunderx 88xx
+        10.30.51.68: #s50-nomad - thunderx 88xx
     dev:
       hosts:
         10.30.51.38: #fdio-marvell-dev - thunderx 88xx
