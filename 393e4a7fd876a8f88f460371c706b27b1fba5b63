@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "177bca17_5ece3dff",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 89
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-28T14:51:06Z",
+      "side": 1,
+      "message": "Yeah, here we go again. Too much unstructured state. Let me think about how to divide it into useful chunks. I am thinking input versus output. Probably next week.",
+      "parentUuid": "d331f16e_7a43302b",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 34
+      },
+      "revId": "393e4a7fd876a8f88f460371c706b27b1fba5b63",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "00fc8339_9b0ad05c",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 89
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6ce184b7_dcd5f3b3",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 89
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-28T14:51:06Z",
+      "side": 1,
+      "message": "They are different. Disable latency is specific for ndrpdr which has a specialized latnency runs. Use latency affects generic trials in the middle of the search.\nBasically, ndrpdr has three options:\n1. Measure lat5encu both during search and in separate trials (old behavior).\n2. Measure latency only in separate trial, but not in the middle of the search (new behavior after [0]).\n3. Do not measure latency, neither in search nor in separate trials (new default for ASTF).\n(Note that latency within search but not in separate trials does not make much sense, hence this line.)\n\nI was thionking about it, and I do not see a good single place to explain that. Mayve rename the variables to bee more distinct?\n${latency_in_search}, ${latency_separate_trials}?\n\n[0] https://gerrit.fd.io/r/c/csit/+/28038",
+      "parentUuid": "00fc8339_9b0ad05c",
+      "range": {
+        "startLine": 100,
+        "startChar": 43,
+        "endLine": 100,
+        "endChar": 58
+      },
+      "revId": "393e4a7fd876a8f88f460371c706b27b1fba5b63",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dcc3def4_e9e427c3",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 89
@@ -59,6 +107,30 @@
       "writtenOn": "2020-08-28T11:16:20Z",
       "side": 1,
       "message": "there must be a way to globally turn off from testcase",
+      "range": {
+        "startLine": 635,
+        "startChar": 4,
+        "endLine": 635,
+        "endChar": 17
+      },
+      "revId": "393e4a7fd876a8f88f460371c706b27b1fba5b63",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "231991d6_528881b0",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 89
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-28T14:51:06Z",
+      "side": 1,
+      "message": "Show me a patch which introduces a warmup (to open sessions) and I will add a reset bypass.\nIn general, some parts of DUT state will need a warm-up, other parts will need a reset. Seeing an interpretation of the other part will help me find the best approach to support both.",
+      "parentUuid": "dcc3def4_e9e427c3",
       "range": {
         "startLine": 635,
         "startChar": 4,
