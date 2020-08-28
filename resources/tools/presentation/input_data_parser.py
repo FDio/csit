@@ -530,8 +530,8 @@ class ExecutionChecker(ResultVisitor):
         """
 
         if msg.message.count(u"return STDOUT Version:") or \
-            msg.message.count(u"VPP Version:") or \
-            msg.message.count(u"VPP version:"):
+                msg.message.count(u"VPP Version:") or \
+                msg.message.count(u"VPP version:"):
             self._version = str(re.search(self.REGEX_VERSION_VPP, msg.message).
                                 group(2))
             self._data[u"metadata"][u"version"] = self._version
@@ -1232,9 +1232,6 @@ class ExecutionChecker(ResultVisitor):
                 test_kw.name.count(u"Show Runtime Counters On All Duts"):
             self._msg_type = u"test-show-runtime"
             self._sh_run_counter += 1
-        elif test_kw.name.count(u"Install Dpdk Test On All Duts") and \
-                not self._version:
-            self._msg_type = u"dpdk-version"
         else:
             return
         test_kw.messages.visit(self)
@@ -1271,6 +1268,9 @@ class ExecutionChecker(ResultVisitor):
         if setup_kw.name.count(u"Show Vpp Version On All Duts") \
                 and not self._version:
             self._msg_type = u"vpp-version"
+        elif setup_kw.name.count(u"Install Dpdk Framework On All Duts") and \
+                not self._version:
+            self._msg_type = u"dpdk-version"
         elif setup_kw.name.count(u"Set Global Variable") \
                 and not self._timestamp:
             self._msg_type = u"timestamp"
