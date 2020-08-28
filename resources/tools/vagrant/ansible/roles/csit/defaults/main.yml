@@ -21,6 +21,7 @@ csit_packages_by_distro:
     - 'gcc'
     - 'gcc-c++'
     - 'gdb'
+    - 'git'
     - 'glibc-devel'
     - 'libpcap-devel'
     - 'libtool'
@@ -35,3 +36,4 @@ csit_packages_by_distro:
   ubuntu:
     - 'build-essential'
     - 'libpcap-dev'
+    

@@ -1,30 +1,54 @@
 ---
 # file: csit/tasks/main.yml
 
-# TODO: Temporarily disabling due to Centos8 not having netplan.
-#       Finding better solution via udev requires some work and testing.
-#- name: Upload config to rename network interfaces
-#  copy:
-#    src: 'files/99-vppdevice.yaml'
-#    dest: '/etc/netplan/99-vppdevice.yaml'
-#    owner: 'root'
-#    group: 'root'
-#    mode: 0644
-#- name: Apply network config changes
-#  command: '/usr/sbin/netplan apply'
-
-- name: Centos8 install epel repositories
+# CentOS 8 specific
+- name: CentOS - Install epel repositories
   dnf:
     name:
       - 'epel-release'
   when:
     - ansible_distribution|lower == 'centos'
 
-- name: Centos8 enable epel repositories
-  command: 'dnf config-manager --set-enabled PowerTools'
+- name: CentOS - Enable PowerTools
+  command: > 
+      dnf config-manager
+      --set-enabled PowerTools
   when:
     - ansible_distribution|lower == 'centos'
 
+# NOTE: containerd.io >1.2.0-3 requirement disabled by RH
+#       Unable to install current docker version as of now
+#       Using docker-ce-3:18.09.1-3.el7
+- name: CentOS - Add docker-ce repo
+  command: >
+      dnf config-manager
+      --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+  when:
+    - ansible_distribution|lower == 'centos'
+
+- name: CentOS - Install docker-ce
+  dnf:
+    name:
+      - 'docker-ce-3:18.09.1-3.el7'
+  when:
+    - ansible_distribution|lower == 'centos'
+
+# Ubuntu specific
+- name: Ubuntu - Download docker-ce installer
+  get_url:
+    url: https://get.docker.com
+    dest: /tmp/get-docker.sh
+    mode: 666
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+
+- name: Ubuntu - Install docker-ce
+  become_user: root
+  command: sh /tmp/get-docker.sh
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+
+# General
 - name: Install required system tools and packages
   package:
     name: "{{ csit_packages | join(',') }}"
@@ -38,11 +62,6 @@
     state: 'present'
     sysctl_file: '/etc/sysctl.d/90-csit.conf'
     reload: 'yes'
-
-- name: Install docker-ce
-  command: |
-      curl -fsSL https://get.docker.com -o get-docker.sh &&
-      sudo sh get-docker.sh
 
 - name: "Add user for running tests: {{ csit.test_user.name }}"
   user:
@@ -90,12 +109,6 @@
     dest: '{{ csit.home }}'
     accept_hostkey: yes
     version: '{{ csit.repository.version }}'
-
-- name: Install and update pip and virtualenv
-  pip:
-    name:
-      - 'virtualenv'
-    state: 'latest'
 
 - name: Prepare python virtual environmant for CSIT
   become_user: vagrant

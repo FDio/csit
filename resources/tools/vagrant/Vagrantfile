@@ -85,9 +85,9 @@ Vagrant.configure("2") do |config|
 
     config.vm.define "centos8", autostart: false do |centos8|
         # Base box definition, currently using
-        #  Unofficial Centos8 (as currently there is no offical build)
-        centos8.vm.box = "geerlingguy/centos8"
-        centos8.vm.box_version = "1.0.2"
+        #  Official CentOS8 v1905.1
+        centos8.vm.box = "centos/8"
+        centos8.vm.box_version = "1905.1"
         centos8.vm.box_check_update = false
 
         # Virtualbox machine configuration
