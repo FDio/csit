@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "82c2f4a5_41ebe040",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 89
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-28T14:53:32Z",
+      "side": 1,
+      "message": "Added a TODO for now. The whole class is ripe for refactor.\nI will resurrect [1] when I have some time to spare.\n\n[1] https://gerrit.fd.io/r/c/csit/+/22221",
+      "parentUuid": "177bca17_5ece3dff",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 34
+      },
+      "revId": "393e4a7fd876a8f88f460371c706b27b1fba5b63",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "00fc8339_9b0ad05c",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 89
