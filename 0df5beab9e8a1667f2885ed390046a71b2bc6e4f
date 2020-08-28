@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c904141_1ba0e84d",
+        "filename": "resources/tools/presentation/input_data_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-08-28T13:42:11Z",
+      "side": 1,
+      "message": "What is a difference?\nDid you mean u\"DPDK version:\"?",
+      "range": {
+        "startLine": 534,
+        "startChar": 34,
+        "endLine": 534,
+        "endChar": 49
+      },
+      "revId": "0df5beab9e8a1667f2885ed390046a71b2bc6e4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
