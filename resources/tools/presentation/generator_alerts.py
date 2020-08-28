@@ -350,7 +350,7 @@ class Alerting:
         for idx, test_set in enumerate(alert.get(u"include", list())):
             try:
                 test_set_short = re.search(
-                    re.compile(r'(\dn-(skx|clx|hsw|tsh|dnv)-.*)'),
+                    re.compile(r'((vpp|dpdk)-\dn-(skx|clx|hsw|tsh|dnv)-.*)'),
                     test_set
                 ).group(1)
             except (AttributeError, IndexError):
