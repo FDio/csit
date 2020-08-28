@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d331f16e_7a43302b",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 89
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-28T11:16:20Z",
+      "side": 1,
+      "message": "we should put this into dicts for pylint",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 34
+      },
+      "revId": "393e4a7fd876a8f88f460371c706b27b1fba5b63",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00fc8339_9b0ad05c",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 89
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-28T11:16:20Z",
+      "side": 1,
+      "message": "you have :\nuse_latency\ndisable_latency\n\n... unify, just use latency or measure_latency, if you want global default move it to line 30 as all others to have it consistent",
+      "range": {
+        "startLine": 100,
+        "startChar": 43,
+        "endLine": 100,
+        "endChar": 58
+      },
+      "revId": "393e4a7fd876a8f88f460371c706b27b1fba5b63",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcc3def4_e9e427c3",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 89
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-08-28T11:16:20Z",
+      "side": 1,
+      "message": "there must be a way to globally turn off from testcase",
+      "range": {
+        "startLine": 635,
+        "startChar": 4,
+        "endLine": 635,
+        "endChar": 17
+      },
+      "revId": "393e4a7fd876a8f88f460371c706b27b1fba5b63",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
