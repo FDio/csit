@@ -126,21 +126,21 @@
         type: "failed-tests"
         way: "jenkins"
         include:
-          - "last-failed-tests-2n-skx-mrr"
-          - "last-failed-tests-3n-skx-mrr"
-          - "last-failed-tests-2n-clx-mrr"
-          - "last-failed-tests-3n-hsw-mrr"
-          - "last-failed-tests-3n-tsh-mrr"
-          - "last-failed-tests-2n-dnv-mrr"
-          - "last-failed-tests-3n-dnv-mrr"
+          - "last-failed-tests-vpp-2n-skx-mrr"
+          - "last-failed-tests-vpp-3n-skx-mrr"
+          - "last-failed-tests-vpp-2n-clx-mrr"
+          - "last-failed-tests-vpp-3n-hsw-mrr"
+          - "last-failed-tests-vpp-3n-tsh-mrr"
+          - "last-failed-tests-vpp-2n-dnv-mrr"
+          - "last-failed-tests-vpp-3n-dnv-mrr"
           - "last-failed-tests-dpdk-2n-skx-mrr"
           - "last-failed-tests-dpdk-3n-skx-mrr"
           - "last-failed-tests-dpdk-2n-clx-mrr"
           - "last-failed-tests-dpdk-3n-hsw-mrr"
-          - "last-failed-tests-2n-skx-ndrpdr"
-          - "last-failed-tests-3n-skx-ndrpdr"
-          - "last-failed-tests-2n-clx-ndrpdr"
-          - "last-failed-tests-3n-hsw-ndrpdr"
+          - "last-failed-tests-vpp-2n-skx-ndrpdr"
+          - "last-failed-tests-vpp-3n-skx-ndrpdr"
+          - "last-failed-tests-vpp-2n-clx-ndrpdr"
+          - "last-failed-tests-vpp-3n-hsw-ndrpdr"
         urls:
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-skx"
@@ -827,10 +827,10 @@
 # Compressed failed tests (last build)
 -
   type: "table"
-  title: "Last failed tests (last builds) 3n-hsw"
+  title: "Last failed tests (last builds) VPP 3n-hsw"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-hsw-mrr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-hsw-mrr"
   data: "table-last-failed-tests-3n-hsw"
   filter: "'MRR'"
   parameters:
@@ -840,10 +840,10 @@
 
 -
   type: "table"
-  title: "Last failed tests (last builds) 3n-skx"
+  title: "Last failed tests (last builds) VPP 3n-skx"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-skx-mrr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-skx-mrr"
   data: "table-last-failed-tests-3n-skx"
   filter: "'MRR'"
   parameters:
@@ -853,10 +853,10 @@
 
 -
   type: "table"
-  title: "Last failed tests (last builds) 2n-skx"
+  title: "Last failed tests (last builds) VPP 2n-skx"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-skx-mrr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-skx-mrr"
   data: "table-last-failed-tests-2n-skx"
   filter: "'MRR'"
   parameters:
@@ -866,10 +866,10 @@
 
 -
   type: "table"
-  title: "Last failed tests (last builds) 2n-clx"
+  title: "Last failed tests (last builds) VPP 2n-clx"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-clx-mrr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-clx-mrr"
   data: "table-last-failed-tests-2n-clx"
   filter: "'MRR'"
   parameters:
@@ -879,10 +879,10 @@
 
 -
   type: "table"
-  title: "Last failed tests (last builds) 3n-tsh"
+  title: "Last failed tests (last builds) VPP 3n-tsh"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-tsh-mrr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-tsh-mrr"
   data: "table-last-failed-tests-3n-tsh"
   filter: "'MRR'"
   parameters:
@@ -892,10 +892,10 @@
 
 -
   type: "table"
-  title: "Last failed tests (last builds) 3n-dnv"
+  title: "Last failed tests (last builds) VPP 3n-dnv"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-dnv-mrr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-dnv-mrr"
   data: "table-last-failed-tests-3n-dnv"
   filter: "'MRR'"
   parameters:
@@ -905,10 +905,10 @@
 
 -
   type: "table"
-  title: "Last failed tests (last builds) 2n-dnv"
+  title: "Last failed tests (last builds) VPP 2n-dnv"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-dnv-mrr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-dnv-mrr"
   data: "table-last-failed-tests-2n-dnv"
   filter: "'MRR'"
   parameters:
@@ -918,10 +918,10 @@
 
 -
   type: "table"
-  title: "Last failed tests (last builds) 3n-hsw-ndrpdr"
+  title: "Last failed tests (last builds) VPP 3n-hsw-ndrpdr"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-hsw-ndrpdr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-hsw-ndrpdr"
   data: "table-last-failed-tests-3n-hsw-ndrpdr"
   filter: "'NDRPDR'"
   parameters:
@@ -931,10 +931,10 @@
 
 -
   type: "table"
-  title: "Last failed tests (last builds) 3n-skx-ndrpdr"
+  title: "Last failed tests (last builds) VPP 3n-skx-ndrpdr"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-skx-ndrpdr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-skx-ndrpdr"
   data: "table-last-failed-tests-3n-skx-ndrpdr"
   filter: "'NDRPDR'"
   parameters:
@@ -944,10 +944,10 @@
 
 -
   type: "table"
-  title: "Last failed tests (last builds) 2n-skx-ndrpdr"
+  title: "Last failed tests (last builds) VPP 2n-skx-ndrpdr"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-skx-ndrpdr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-skx-ndrpdr"
   data: "table-last-failed-tests-2n-skx-ndrpdr"
   filter: "'NDRPDR'"
   parameters:
@@ -957,10 +957,10 @@
 
 -
   type: "table"
-  title: "Last failed tests (last builds) 2n-clx-ndrpdr"
+  title: "Last failed tests (last builds) VPP 2n-clx-ndrpdr"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-clx-ndrpdr"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-clx-ndrpdr"
   data: "table-last-failed-tests-2n-clx-ndrpdr"
   filter: "'NDRPDR'"
   parameters:
