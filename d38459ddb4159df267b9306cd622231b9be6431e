@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f90016e2_b5e0313d",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 19
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-09-02T13:36:40Z",
+      "side": 1,
+      "message": "This actually produces build errors, we didn\u0027t account for end of a list ([\u0027RTE_MAX_LCORE\u0027, 32]]).\n\nLet\u0027s use this, it\u0027ll just change all RTE_MAX_LCORE values to nproc --all:\nsed \"s/\u0027RTE_MAX_LCORE\u0027, [0-9]*/\u0027RTE_MAX_LCORE\u0027, $(nproc --all)/\" -i config/arm/meson.build",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 52
+      },
+      "revId": "d38459ddb4159df267b9306cd622231b9be6431e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49871ce8_82ab80e2",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 19
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-09-02T13:36:40Z",
+      "side": 1,
+      "message": "We no longer need this with the above sed.",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 44
+      },
+      "revId": "d38459ddb4159df267b9306cd622231b9be6431e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
