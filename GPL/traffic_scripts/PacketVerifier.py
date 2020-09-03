@@ -314,10 +314,11 @@ def create_gratuitous_arp_request(src_mac, src_ip):
 
 
 def auto_pad(packet):
-    """Pads zeroes at the end of the packet if the total len < 60 bytes."""
-    # padded = str(packet)
-    if len(packet) < 60:
-        packet[Raw].load += (b"\0" * (60 - len(packet)))
+    """Pads zeroes at the end of the packet if the total packet length is less
+    then 64 bytes in case of IPv4 or 78 bytes in case of IPv6.
+    """
+    min_len = 78 if packet.haslayer(IPv6) else 64
+    packet[Raw].load += (b"\0" * (min_len - len(packet)))
     return packet
 
 
