@@ -2860,7 +2860,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-mrr.64B-2t1c-avf-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1-p1-s1-mrr.64B-2t1c-avf-ethip4udp-snat44det-h1-p1-s1-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
@@ -2872,7 +2872,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-4t2c-avf-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-4t2c-avf-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-4t2c-avf-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-mrr.64B-4t2c-avf-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1-p1-s1-mrr.64B-4t2c-avf-ethip4udp-snat44det-h1-p1-s1-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-4t2c-avf-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
@@ -2884,7 +2884,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-8t4c-avf-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-8t4c-avf-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-8t4c-avf-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-mrr.64B-8t4c-avf-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1-p1-s1-mrr.64B-8t4c-avf-ethip4udp-snat44det-h1-p1-s1-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-8t4c-avf-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
@@ -2956,7 +2956,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Mrr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Mrr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Mrr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Mrr.64B-2t1c-rdma-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1-p1-s1-Mrr.64B-2t1c-rdma-ethip4udp-snat44det-h1-p1-s1-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-2t1c-rdma-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
@@ -2968,7 +2968,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Mrr.64B-4t2c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Mrr.64B-4t2c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Mrr.64B-4t2c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Mrr.64B-4t2c-rdma-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1-p1-s1-Mrr.64B-4t2c-rdma-ethip4udp-snat44det-h1-p1-s1-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-4t2c-rdma-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
@@ -2980,7 +2980,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Mrr.64B-8t4c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Mrr.64B-8t4c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Mrr.64B-8t4c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Mrr.64B-8t4c-rdma-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1-p1-s1-Mrr.64B-8t4c-rdma-ethip4udp-snat44det-h1-p1-s1-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-8t4c-rdma-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
@@ -3175,7 +3175,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-mrr.64B-2t1c-avf-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1-p1-s1-mrr.64B-2t1c-avf-ethip4udp-snat44det-h1-p1-s1-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
@@ -3187,7 +3187,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-4t2c-avf-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-4t2c-avf-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-4t2c-avf-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-mrr.64B-4t2c-avf-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1-p1-s1-mrr.64B-4t2c-avf-ethip4udp-snat44det-h1-p1-s1-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-4t2c-avf-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
@@ -3199,7 +3199,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-mrr.64B-8t4c-avf-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-mrr.64B-8t4c-avf-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-mrr.64B-8t4c-avf-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-mrr.64B-8t4c-avf-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1-p1-s1-mrr.64B-8t4c-avf-ethip4udp-snat44det-h1-p1-s1-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-8t4c-avf-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
@@ -3208,7 +3208,7 @@
       data: "plot-performance-trending-vpp-2n-skx"
       include:
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-mrr.64B-2t1c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Nat44-mrr.64B-2t1c-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-ethip4udp-snat44det-h1-p1-s1-mrr.64B-2t1c-ethip4udp-snat44det-h1-p1-s1-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-4t2c-features-ip4routing-base-dpdk"
@@ -3216,7 +3216,7 @@
       data: "plot-performance-trending-vpp-2n-skx"
       include:
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-mrr.64B-4t2c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Nat44-mrr.64B-4t2c-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-ethip4udp-snat44det-h1-p1-s1-mrr.64B-4t2c-ethip4udp-snat44det-h1-p1-s1-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-8t4c-features-ip4routing-base-dpdk"
@@ -3224,7 +3224,7 @@
       data: "plot-performance-trending-vpp-2n-skx"
       include:
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-mrr.64B-8t4c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Nat44-mrr.64B-8t4c-ethip4udp-ip4base-nat44-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-ethip4udp-snat44det-h1-p1-s1-mrr.64B-8t4c-ethip4udp-snat44det-h1-p1-s1-mrr"
       layout: "plot-cpta"
 
     - title: "3n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe"
@@ -3409,8 +3409,6 @@
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Mrr.64B-1t1c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Mrr.64B-1t1c-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Mrr.64B-1t1c-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Mrr.64B-1t1c-ethip4udp-ip4base-nat44-mrr"
-#        - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-1t1c-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
     - title: "3n-tsh-x520-64b-2t2c-ip4routing-features-ixgbe"
@@ -3421,8 +3419,6 @@
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Mrr.64B-2t2c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Mrr.64B-2t2c-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Mrr.64B-2t2c-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Mrr.64B-2t2c-ethip4udp-ip4base-nat44-mrr"
-#        - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-2t2c-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
     - title: "3n-tsh-x520-64b-4t4c-ip4routing-features-ixgbe"
@@ -3433,8 +3429,6 @@
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Mrr.64B-4t4c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Mrr.64B-4t4c-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Mrr.64B-4t4c-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Mrr.64B-4t4c-ethip4udp-ip4base-nat44-mrr"
-#        - "Tests.Vpp.Perf.Ip4.10Ge2P1X520-ethip4udp-snat44det-h1024-p63-s64512-Mrr.64B-4t4c-ethip4udp-snat44det-h1024-p63-s64512-mrr"
       layout: "plot-cpta"
 
     - title: "3n-dnv-x553-64b-1t1c-ip4tunnel-base-scale-ixgbe"
@@ -6136,7 +6130,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1-p1-s1-Ndrpdr.64B-2t1c-rdma-ethip4udp-snat44det-h1-p1-s1-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-rdma-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
       layout: "plot-cpta"
 
@@ -6171,7 +6165,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-rdma-ethip4udp-ip4base-nat44-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1-p1-s1-Ndrpdr.64B-2t1c-rdma-ethip4udp-snat44det-h1-p1-s1-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-rdma-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
       layout: "plot-cpta"
 
@@ -6206,7 +6200,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1-p1-s1-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1-p1-s1-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
       layout: "plot-cpta"
 
@@ -6241,7 +6235,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1-p1-s1-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1-p1-s1-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
       layout: "plot-cpta"
 
@@ -6272,7 +6266,7 @@
       include-tests: "NDR"
       include:
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-ethip4-ip4base-ndrpdr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-ip4base-nat44-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-ethip4udp-snat44det-h1-p1-s1-Ndrpdr.64B-2t1c-ip4base-nat44-ndrpdr"
       layout: "plot-cpta"
 
     - title: "2n-clx-xxv710-64b-2t1c-ip4-base-scale-dpdk-pdr"
@@ -6302,7 +6296,7 @@
       include-tests: "PDR"
       include:
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-ethip4-ip4base-ndrpdr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-ip4base-nat44-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-ethip4udp-snat44det-h1-p1-s1-Ndrpdr.64B-2t1c-ip4base-nat44-ndrpdr"
       layout: "plot-cpta"
 
 # 2n-clx ip6
@@ -6756,7 +6750,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1-p1-s1-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1-p1-s1-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
       layout: "plot-cpta"
 
@@ -6791,7 +6785,7 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-avf-ethip4udp-ip4base-nat44-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1-p1-s1-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1-p1-s1-ndrpdr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-ethip4udp-snat44det-h1024-p63-s64512-Ndrpdr.64B-2t1c-avf-ethip4udp-snat44det-h1024-p63-s64512-ndrpdr"
       layout: "plot-cpta"
 
@@ -6801,7 +6795,7 @@
       include-tests: "NDR"
       include:
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-ethip4-ip4base-ndrpdr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-ethip4udp-ip4base-nat44-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-ethip4udp-snat44det-h1-p1-s1-Ndrpdr.64B-2t1c-ethip4udp-snat44det-h1-p1-s1-ndrpdr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-2t1c-ip4-scale-dpdk-ndr"
@@ -6823,7 +6817,7 @@
       include-tests: "PDR"
       include:
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-ethip4-ip4base-ndrpdr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-ethip4udp-ip4base-nat44-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-ethip4udp-snat44det-h1-p1-s1-Ndrpdr.64B-2t1c-ethip4udp-snat44det-h1-p1-s1-ndrpdr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-2t1c-ip4-scale-dpdk-pdr"
