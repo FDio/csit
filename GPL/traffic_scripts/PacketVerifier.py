@@ -71,7 +71,7 @@ from scapy.all import ETH_P_IP, ETH_P_IPV6, ETH_P_ALL, ETH_P_ARP
 from scapy.config import conf
 from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether, ARP
-from scapy.packet import Raw
+from scapy.packet import Raw, Padding
 
 # Enable libpcap's L2listen
 conf.use_pcap = True
@@ -314,10 +314,14 @@ def create_gratuitous_arp_request(src_mac, src_ip):
 
 
 def auto_pad(packet):
-    """Pads zeroes at the end of the packet if the total len < 60 bytes."""
-    # padded = str(packet)
-    if len(packet) < 60:
-        packet[Raw].load += (b"\0" * (60 - len(packet)))
+    """Pads zeroes at the end of the packet if the total packet length is less
+    then 64 bytes in case of IPv4 or 78 bytes in case of IPv6.
+    """
+    min_len = 78 if packet.haslayer(IPv6) else 64
+    pad_layer = Raw if packet.haslayer(Raw) \
+        else Padding if packet.haslayer(Padding) else None
+    if pad_layer:
+        packet[pad_layer].load += (b"\0" * (min_len - len(packet)))
     return packet
 
 
