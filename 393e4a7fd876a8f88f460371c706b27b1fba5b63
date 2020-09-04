@@ -164,6 +164,30 @@
       "revId": "393e4a7fd876a8f88f460371c706b27b1fba5b63",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d55cc3ff_c9c4b54f",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 89
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-04T05:53:44Z",
+      "side": 1,
+      "message": "-1 for the whole patch until implemented. You already have the code in repo, so do not use such excuse. For STL NAT this cannot be reset.",
+      "parentUuid": "231991d6_528881b0",
+      "range": {
+        "startLine": 635,
+        "startChar": 4,
+        "endLine": 635,
+        "endChar": 17
+      },
+      "revId": "393e4a7fd876a8f88f460371c706b27b1fba5b63",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
