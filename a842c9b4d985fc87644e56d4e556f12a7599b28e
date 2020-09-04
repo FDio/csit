@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a62081a_3ba488d8",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1476,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-09-04T06:16:56Z",
+      "side": 1,
+      "message": "These should both be p2.",
+      "range": {
+        "startLine": 1476,
+        "startChar": 10,
+        "endLine": 1476,
+        "endChar": 49
+      },
+      "revId": "a842c9b4d985fc87644e56d4e556f12a7599b28e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
