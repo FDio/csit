@@ -22,6 +22,30 @@
       "revId": "e01a273f90840064ab65043d155ee6137f6f0fa9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a33174f_2028f06a",
+        "filename": "resources/libraries/robot/shared/traffic.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-07T11:40:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f2ef3b8_163c8dfb",
+      "range": {
+        "startLine": 561,
+        "startChar": 71,
+        "endLine": 561,
+        "endChar": 79
+      },
+      "revId": "e01a273f90840064ab65043d155ee6137f6f0fa9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
