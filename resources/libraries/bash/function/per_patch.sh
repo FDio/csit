@@ -82,7 +82,8 @@ function build_vpp_ubuntu_amd64 () {
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory command failed."
-    make UNATTENDED=y pkg-verify || die "VPP build using make pkg-verify failed."
+    #make UNATTENDED=y pkg-verify || die
+    make UNATTENDED=y install-ext-deps install-dep pkg-deb || die
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
@@ -191,9 +192,42 @@ function parse_bmrr_results () {
     echo "TODO: Re-use parts of PAL when they support subsample test parsing."
     pattern='Maximum Receive Rate trial results in packets'
     pattern+=' per second: .*\]</status>'
-    grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}" || {
-        die "Some parsing grep command has failed."
-    }
+    set +e
+    grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}"
+    rc="${?}"
+    set -e
+    if [[ "${rc}" == "0" ]]; then
+        # Parsing succeeded, return early.
+        return 0
+    fi
+    # BMRR parsing failed. Attempt PDR.
+    pattern1='PDR_LOWER: .*, .*<'
+    # Adapted from https://superuser.com/a/377084
+    pattern2='(?<=: ).*(?= pps)'
+    set +e
+    grep "${pattern1}" "${in_file}" | grep -Po "${pattern2}" >> "${out_file}"
+    rc="${?}"
+    set -e
+    # Add brackets. https://www.shellhacks.com/sed-awk-add-end-beginning-line/
+    sed -i 's/.*/[&]/' "${out_file}"
+    if [[ "${rc}" == "0" ]]; then
+        # Parsing succeeded, return early.
+        return 0
+    fi
+    # PDR parsing failed.
+    if [[ "${2-}" != "fake" ]]; then
+        die "Malformed or missing test results."
+    fi
+    warn "Faking test results to allow bisect script locate the cause."
+    out_arr=("[")
+    for i in `seq "${CSIT_PERF_TRIAL_MULTIPLICITY:-1}"`; do
+        out_arr+=("2.0" ",")
+    done
+    # The Python part uses JSON parser, the last comma has to be removed.
+    # Requires Bash 4.3 https://stackoverflow.com/a/36978740
+    out_arr[-1]="]"
+    # TODO: Is it possible to avoid space separation by manipulating IFS?
+    echo "${out_arr[@]}" > "${out_file}"
 }
 
 
