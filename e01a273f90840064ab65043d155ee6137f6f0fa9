@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f2ef3b8_163c8dfb",
+        "filename": "resources/libraries/robot/shared/traffic.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-09-07T11:31:26Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 561,
+        "startChar": 71,
+        "endLine": 561,
+        "endChar": 79
+      },
+      "revId": "e01a273f90840064ab65043d155ee6137f6f0fa9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
