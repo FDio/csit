@@ -30,6 +30,11 @@
 | ${trial_duration}= | ${PERF_TRIAL_DURATION}
 | ${trial_multiplicity}= | ${PERF_TRIAL_MULTIPLICITY}
 | ${extended_debug}= | ${EXTENDED_DEBUG}
+| # Variable holding trial duration extension [s] used in pre_stats action
+| # clear-show-runtime-with-traffic. By default it is set to 0 but some
+| # tests (e.g. NAT) needs this duration extension in ramp up phase (e.g. to
+| # create all required nat sessions).
+| ${pre_stats_duration_ext}= | ${0}
 
 *** Keywords ***
 | Find NDR and PDR intervals using optimized search
@@ -681,9 +686,20 @@
 | | ... | Additional Statistics Action for clear and show runtime counters with
 | | ... | running traffic.
 | |
+| | ${trial_duration}= | Evaluate
+| | ... | ${trial_duration} + ${pre_stats_duration_ext}
+| | ${rate}= | Get Variable Value | ${pre_stats_rate} | ${rate}
 | | Clear and show runtime counters with running traffic
-| | ... | ${trial_duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
+| | ... | ${trial_duration} | ${rate}
+| | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}
+| | ... | ${tx_port} | ${rx_port}
+
+| Additional Statistics Action For vpp-det44-verify-sessions
+| | [Documentation]
+| | ... | Additional Statistics Action to verify that all required DET44
+| | ... | sessions are established.
+| |
+| | Verify DET44 sessions number | ${nodes['DUT1']} | ${n_sessions}
 
 | Additional Statistics Action For noop
 | | [Documentation]

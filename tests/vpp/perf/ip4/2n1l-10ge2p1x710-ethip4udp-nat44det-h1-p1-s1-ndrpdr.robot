@@ -78,7 +78,11 @@
 | ${in_mask}= | ${32}
 | ${out_net}= | 200.0.0.0
 | ${out_mask}= | ${32}
-# Traffic profile:
+# Scale settings
+| ${n_hosts}= | ${1}
+| ${n_ports}= | ${1}
+| ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n-ethip4udp-1u1p
 
 *** Keywords ***
@@ -98,6 +102,13 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
+| |
+| | ${pre_stats}= | Create List
+| | ... | clear-show-runtime-with-traffic | vpp-det44-verify-sessions
+| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
+| | Set Test Variable | ${pre_stats}
+| | # Reduce the rate for pre_stat action
+| | Set Test Variable | ${pre_stats_rate} | ${500000}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
