@@ -186,7 +186,7 @@ class NATUtil:
         PapiSocketExecutor.dump_and_log(node, cmds)
 
     # DET44 PAPI calls
-    # DET44 means deterministic mode of NAT
+    # DET44 means deterministic mode of NAT44
     @staticmethod
     def enable_det44_plugin(node, inside_vrf=0, outside_vrf=0):
         """Enable DET44 plugin.
@@ -260,6 +260,38 @@ class NATUtil:
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
+
+    @staticmethod
+    def get_det44_mapping(node):
+        """Get DET44 mapping data.
+
+        :param node: DUT node.
+        :type node: dict
+        :returns: Dictionary of DET44 mapping data.
+        :rtype: dict
+        """
+        cmd = u"det44_map_dump"
+        err_msg = f"Failed to get DET44 mapping data on the host " \
+            f"{node[u'host']}!"
+        args_in = dict()
+        with PapiSocketExecutor(node) as papi_exec:
+            details = papi_exec.add(cmd, **args_in).get_reply(err_msg)
+
+        return details
+
+    @staticmethod
+    def get_det44_sessions_number(node):
+        """Get number of established DET44 sessions from actual DET44 mapping
+        data.
+
+        :param node: DUT node.
+        :type node: dict
+        :returns: Number of established DET44 sessions.
+        :rtype: int
+        """
+        det44_data = NATUtil.get_det44_mapping(node)
+
+        return det44_data.get(u"ses_num", 0)
 
     @staticmethod
     def show_det44(node):
