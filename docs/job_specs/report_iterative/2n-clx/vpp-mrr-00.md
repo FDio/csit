@@ -1,7 +1,7 @@
 # 2n-clx
-### tests 351
-### job hrs est. 12
-### job hrs real 12
+### tests 363
+### job hrs est. 10
+### job hrs real 10
 ### test mins est. 1.65
 ### test mins real 1.65
 ## ./container_memif
@@ -133,10 +133,26 @@
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1-p1-s1
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1-p1-s1
 4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1-p1-s1
+##### ethip4udp-snat44det-h1-p63-s63
+1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1-p63-s63
+2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1-p63-s63
+4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1-p63-s63
 ##### ethip4udp-snat44det-h1024-p63-s64512
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1024-p63-s64512
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1024-p63-s64512
 4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h1024-p63-s64512
+##### ethip4udp-snat44det-h16384-p63-s1032192
+1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h16384-p63-s1032192
+2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h16384-p63-s1032192
+4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h16384-p63-s1032192
+##### ethip4udp-snat44det-h65536-p63-s4128758
+1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h65536-p63-s4128758
+2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h65536-p63-s4128758
+4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h65536-p63-s4128758
+##### ethip4udp-snat44det-h262144-p63-s16515072
+1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h262144-p63-s16515072
+2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h262144-p63-s16515072
+4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4udp-snat44det-h262144-p63-s16515072
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base
