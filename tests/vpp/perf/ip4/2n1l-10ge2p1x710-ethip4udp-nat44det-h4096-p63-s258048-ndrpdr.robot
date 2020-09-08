@@ -18,7 +18,7 @@
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | NAT44_DETERMINISTIC
 | ... | SRC_USER_4096 | SCALE | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4udp-snat44det-h4096-p63-s258048
+| ... | ethip4udp-nat44det-h4096-p63-s258048
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -58,7 +58,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
-# IP addresing
+# IP settings
 | ${tg_if1_ip4}= | 10.0.0.2
 | ${tg_if1_mask}= | ${20}
 | ${tg_if2_ip4}= | 12.0.0.2
@@ -72,10 +72,14 @@
 # NAT settings
 | ${nat_mode}= | deterministic
 | ${in_net}= | 192.168.0.0
-| ${in_mask}= | ${30}
+| ${in_mask}= | ${20}
 | ${out_net}= | 68.142.68.0
-| ${out_mask}= | ${32}
-# Traffic profile:
+| ${out_mask}= | ${30}
+# Scale settings
+| ${n_hosts}= | ${4096}
+| ${n_ports}= | ${63}
+| ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-4096u63p
 
 *** Keywords ***
@@ -96,6 +100,15 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
+| | ${pre_stats}= | Create List
+| | ... | clear-show-runtime-with-traffic | vpp-det44-verify-sessions
+| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
+| | Set Test Variable | ${pre_stats}
+| | # Trial duration extension for pre_stat action
+#| | Set Test Variable | ${pre_stats_duration_ext} | ${0.1}
+| | # Reduce the rate for pre_stat action
+| | Set Test Variable | ${pre_stats_rate} | ${500000}
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
@@ -107,50 +120,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| 64B-1c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| 64B-2c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| 64B-4c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| 1518B-1c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| 1518B-2c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| 1518B-4c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| 9000B-1c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| 9000B-2c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| 9000B-4c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| IMIX-1c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| IMIX-2c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4udp-snat44det-h4096-p63-s258048-ndrpdr
+| IMIX-4c-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}

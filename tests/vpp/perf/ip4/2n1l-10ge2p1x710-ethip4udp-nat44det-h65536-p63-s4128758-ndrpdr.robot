@@ -16,9 +16,9 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | NAT44_DETERMINISTIC
-| ... | SRC_USER_16384 | SCALE | DRV_VFIO_PCI
+| ... | SRC_USER_65536 | SCALE | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4udp-snat44det-h16384-p63-s1032192
+| ... | ethip4udp-nat44det-h65536-p63-s4128758
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -33,7 +33,7 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and\
-| ... | two static IPv4 /18 and IPv4 /24 route entries.\
+| ... | two static IPv4 /16 and IPv4 /24 route entries.\
 | ... | DUT1 is tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
@@ -72,11 +72,15 @@
 # NAT settings
 | ${nat_mode}= | deterministic
 | ${in_net}= | 192.168.0.0
-| ${in_mask}= | ${18}
+| ${in_mask}= | ${16}
 | ${out_net}= | 68.142.68.0
-| ${out_mask}= | ${28}
-# Traffic profile:
-| ${traffic_profile}= | trex-stl-ethip4udp-16384u63p
+| ${out_mask}= | ${26}
+# Scale settings
+| ${n_hosts}= | ${65536}
+| ${n_ports}= | ${63}
+| ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Traffic profile
+| ${traffic_profile}= | trex-stl-ethip4udp-65536u63p
 
 *** Keywords ***
 | Local Template
@@ -96,6 +100,15 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
+| | ${pre_stats}= | Create List
+| | ... | clear-show-runtime-with-traffic | vpp-det44-verify-sessions
+| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
+| | Set Test Variable | ${pre_stats}
+| | # Trial duration extension for pre_stat action
+| | Set Test Variable | ${pre_stats_duration_ext} | ${22.5}
+| | # Reduce the rate for pre_stat action
+| | Set Test Variable | ${pre_stats_rate} | ${200000}
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
@@ -107,50 +120,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| 64B-1c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| 64B-2c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| 64B-4c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| 1518B-1c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| 1518B-2c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| 1518B-4c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| 9000B-1c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| 9000B-2c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| 9000B-4c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| IMIX-1c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| IMIX-2c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4udp-snat44det-h16384-p63-s1032192-ndrpdr
+| IMIX-4c-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
