@@ -58,7 +58,8 @@
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-4096h
+#| ${traffic_profile}= | trex-astf-ethip4udp-4096h
+| ${traffic_profile}= | trex-astf-ethip4udp-1024h
 | ${cps}= | ${258048}
 # Trial data overwrite
 | ${trial_duration}= | ${1.1}
