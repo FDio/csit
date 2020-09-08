@@ -126,9 +126,9 @@ class NATUtil:
         :param node: DUT node.
         :type node: dict
         """
-        cmd = u"nat_show_config"
         err_msg = f"Failed to get NAT configuration on host {node[u'host']}"
 
+        cmd = u"nat_show_config_3"
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd).get_reply(err_msg)
 
