@@ -49,10 +49,13 @@
 | | ... | vpp-enable-packettrace | vpp-enable-elog
 | | ${post_stats}= | Create List
 | | ... | vpp-show-stats | vpp-show-packettrace | vpp-show-elog
+| | # TODO: revert before review
 | | ${pre_run_stats}= | Create List
-| | ... | vpp-clear-runtime
+| | ... | vpp-clear-stats | vpp-clear-runtime
+| | # TODO: revert before review
 | | ${post_run_stats}= | Create List
-| | ... | vpp-show-runtime | bash-perf-stat
+| | ... | vpp-show-stats | vpp-show-runtime | bash-perf-stat
+| |
 | | Set Global Variable | ${pre_stats}
 | | Set Global Variable | ${post_stats}
 | | Set Global Variable | ${pre_run_stats}
