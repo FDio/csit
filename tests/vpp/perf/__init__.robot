@@ -53,9 +53,16 @@
 | | ... | vpp-clear-runtime
 | | ${post_run_stats}= | Create List
 | | ... | vpp-show-runtime | bash-perf-stat
+| |
 | | Set Global Variable | ${pre_stats}
 | | Set Global Variable | ${post_stats}
 | | Set Global Variable | ${pre_run_stats}
 | | Set Global Variable | ${post_run_stats}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
 | | Set Global Variable | ${nodes}
+| |
+| | # Variable holding trial duration extension [s] used in pre_stats action
+| | # clear-show-runtime-with-traffic. By default it is set to 0 but some
+| | # tests (e.g. NAT) needs this duration extension in ramp up phase (e.g. to
+| | # create all required nat sessions).
+| | Set Global Variable | ${pre_stats_duration_ext} | ${0}
