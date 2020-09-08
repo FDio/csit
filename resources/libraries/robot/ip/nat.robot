@@ -190,3 +190,20 @@
 | | [Arguments] | ${node}
 | |
 | | Show DET44 | ${node}
+
+| Verify DET44 sessions number
+| | [Documentation] | Verify that all required DET44 sessions are established.
+| |
+| | ... | *Arguments:*
+| | ... | - node - DUT node. Type: dictionary
+| | ... | - exp_n_sessions - Expected number of DET44 sessions. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Verify DET44 sessions number \| ${nodes['DUT1']} \| ${64512} \|
+| |
+| | [Arguments] | ${node} | ${exp_n_sessions}
+| |
+| | ${det44_sessions}= | Get DET44 Sessions Number | ${node}
+| | Should Be Equal As Integers | ${det44_sessions} | ${exp_n_sessions}
+| | ... | Not all DET44 sessions have been established
