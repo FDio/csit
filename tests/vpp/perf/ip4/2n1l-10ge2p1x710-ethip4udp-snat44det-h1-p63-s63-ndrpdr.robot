@@ -72,10 +72,13 @@
 # NAT settings
 | ${nat_mode}= | deterministic
 | ${in_net}= | 192.168.0.0
-| ${in_mask}= | ${22}
+| ${in_mask}= | ${32}
 | ${out_net}= | 68.142.68.0
 | ${out_mask}= | ${32}
-# Traffic profile:
+# Scale settings
+| ${n_hosts}= | ${1}
+| ${n_ports}= | ${63}
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-1u63p
 
 *** Keywords ***

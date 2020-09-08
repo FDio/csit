@@ -78,7 +78,11 @@
 | ${in_mask}= | ${32}
 | ${out_net}= | 200.0.0.0
 | ${out_mask}= | ${32}
-# Traffic profile:
+# Scale settings
+| ${n_hosts}= | ${1}
+| ${n_ports}= | ${1}
+| ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n-ethip4udp-1u1p
 
 *** Keywords ***
