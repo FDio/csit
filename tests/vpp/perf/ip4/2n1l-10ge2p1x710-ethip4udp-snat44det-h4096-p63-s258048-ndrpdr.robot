@@ -77,6 +77,7 @@
 | ${out_mask}= | ${32}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4udp-4096u63p
+#| ${traffic_profile}= | trex-stl-ethip4udp-1024u63p
 
 *** Keywords ***
 | Local Template
