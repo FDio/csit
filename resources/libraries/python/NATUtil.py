@@ -126,11 +126,18 @@ class NATUtil:
         :param node: DUT node.
         :type node: dict
         """
-        cmd = u"nat_show_config"
         err_msg = f"Failed to get NAT configuration on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add(cmd).get_reply(err_msg)
+        # The newer message.
+        cmd = u"nat_show_config_2"
+        try:
+            with PapiSocketExecutor(node) as papi_exec:
+                reply = papi_exec.add(cmd).get_reply(err_msg)
+        except AttributeError:
+            # Probably an old VPP build, try the older message.
+            cmd = u"nat_show_config"
+            with PapiSocketExecutor(node) as papi_exec:
+                reply = papi_exec.add(cmd).get_reply(err_msg)
 
         logger.debug(f"NAT Configuration:\n{pformat(reply)}")
 
