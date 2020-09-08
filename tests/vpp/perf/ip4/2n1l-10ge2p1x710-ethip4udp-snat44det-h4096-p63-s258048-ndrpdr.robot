@@ -58,7 +58,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
-# IP addresing
+# IP settings
 | ${tg_if1_ip4}= | 10.0.0.2
 | ${tg_if1_mask}= | ${20}
 | ${tg_if2_ip4}= | 12.0.0.2
@@ -72,10 +72,14 @@
 # NAT settings
 | ${nat_mode}= | deterministic
 | ${in_net}= | 192.168.0.0
-| ${in_mask}= | ${30}
+| ${in_mask}= | ${20}
 | ${out_net}= | 68.142.68.0
-| ${out_mask}= | ${32}
-# Traffic profile:
+| ${out_mask}= | ${30}
+# Scale settings
+| ${n_hosts}= | ${4096}
+| ${n_ports}= | ${63}
+| ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-4096u63p
 
 *** Keywords ***
@@ -95,6 +99,13 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
+| |
+| | ${pre_stats}= | Create List
+| | ... | clear-show-runtime-with-traffic | vpp-det44-verify-sessions
+| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
+| | Set Test Variable | ${pre_stats}
+| | # Trial duration extension for pre_stat action
+| | Set Test Variable | ${pre_stats_duration_ext} | ${0.5}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
