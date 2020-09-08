@@ -682,8 +682,16 @@
 | | ... | running traffic.
 | |
 | | Clear and show runtime counters with running traffic
-| | ... | ${trial_duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
+| | ... | ${${trial_duration} + ${pre_stats_duration_ext}} | ${rate}
+| | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}
+| | ... | ${tx_port} | ${rx_port}
+
+| Additional Statistics Action For vpp-det44-verify-sessions
+| | [Documentation]
+| | ... | Additional Statistics Action to verify that all required DET44
+| | ... | sessions are established.
+| |
+| | Verify DET44 sessions number | ${nodes['DUT1']} | ${n_sessions}
 
 | Additional Statistics Action For noop
 | | [Documentation]

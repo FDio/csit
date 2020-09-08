@@ -75,7 +75,13 @@
 | ${in_mask}= | ${18}
 | ${out_net}= | 68.142.68.0
 | ${out_mask}= | ${28}
-# Traffic profile:
+# Scale settings
+| ${n_hosts}= | ${16384}
+| ${n_ports}= | ${63}
+| ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Trial duration extension for pre_stat action
+| ${pre_stats_duration_ext}= | ${0.5}
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-16384u63p
 
 *** Keywords ***

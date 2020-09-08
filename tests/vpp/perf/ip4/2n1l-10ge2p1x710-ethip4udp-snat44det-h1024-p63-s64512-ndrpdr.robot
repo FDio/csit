@@ -75,7 +75,10 @@
 | ${in_mask}= | ${22}
 | ${out_net}= | 68.142.68.0
 | ${out_mask}= | ${32}
-# Traffic profile:
+# Scale settings
+| ${n_hosts}= | ${1024}
+| ${n_ports}= | ${63}
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-1024u63p
 
 *** Keywords ***
