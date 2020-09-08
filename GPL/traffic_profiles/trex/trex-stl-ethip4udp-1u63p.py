@@ -25,7 +25,7 @@ Stream profile:
    - Source IP address range:      20.0.0.0
    - Destination IP address range: 68.142.68.0
    - Source UDP port range:        1024
-   - Destination UDP port range:   1024 - 16017
+   - Destination UDP port range:   1024 - 1086
 """
 
 from trex.stl.api import *
@@ -60,7 +60,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
         self.p2_src_start_udp_port = 1024
         self.p2_src_end_udp_port = 1024
         self.p2_dst_start_udp_port = 1024
-        self.p2_dst_end_udp_port = 16017
+        self.p2_dst_end_udp_port = 1086
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
