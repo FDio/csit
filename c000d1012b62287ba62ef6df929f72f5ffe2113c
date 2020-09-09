@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "cfc7fc87_cc2e4d2f",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-09T15:22:09Z",
+      "side": 1,
+      "message": "We want to separate tests which use QAT from those which do not use it. If a test is \"smart\", it means we want to control it by selecting which testbeds it can run on. So we will have two suites, one to be run with, QAT one without. Results will be tracked separately and we can compare them. Even if the suites are otherwise identical (except for name and tags), we still need them separate so we can track via name (and testbed restrictions depending on that name) whether QAT has been used.",
+      "parentUuid": "d1fc3715_963e37f4",
+      "revId": "c000d1012b62287ba62ef6df929f72f5ffe2113c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f2b00e28_accef05c",
         "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
         "patchSetId": 4
