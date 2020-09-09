@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e888dd1_ecfedf52",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-09T12:59:27Z",
+      "side": 1,
+      "message": "As these tests are related to usage of QAT HW (line 59), please, change \u0027ethip4ipsec1000tnlasync-\u0027 to \u0027ethip4ipsec1000tnlhwasync-\u0027\n\n- valid for all test files in this commit",
+      "revId": "c000d1012b62287ba62ef6df929f72f5ffe2113c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2b00e28_accef05c",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-09T12:59:27Z",
+      "side": 1,
+      "message": "Add IPSECHW tag as based on line 59 QAT HW is required for these tests.\n\n- valid for all test files in this commit",
+      "range": {
+        "startLine": 20,
+        "startChar": 17,
+        "endLine": 20,
+        "endChar": 35
+      },
+      "revId": "c000d1012b62287ba62ef6df929f72f5ffe2113c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8412bee6_45279b76",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-09T12:59:27Z",
+      "side": 1,
+      "message": "There should be used higher level keyword like \"Enable IPsec Async mode\" containing these two calls here.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 42
+      },
+      "revId": "c000d1012b62287ba62ef6df929f72f5ffe2113c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
