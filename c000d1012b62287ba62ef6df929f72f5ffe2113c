@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5ee3f8d3_0f54f5cc",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2020-09-09T13:55:21Z",
+      "side": 1,
+      "message": "Hi Jan,\n\nAsync in IPSEC implementaion already have the meaning to use other QAT hardware instead of CPU only to do crypto work, so I think it is better that do not to add redundant \"hw\" keyword, do you agree ?",
+      "parentUuid": "2e888dd1_ecfedf52",
+      "revId": "c000d1012b62287ba62ef6df929f72f5ffe2113c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f2b00e28_accef05c",
         "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
         "patchSetId": 4
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "8bd0d6d0_7decc3f9",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2020-09-09T13:55:21Z",
+      "side": 1,
+      "message": "Hi Jan,\n\nSame as your above comment\u0027s reply,  IPSECASYNC can represent IPSECHW.",
+      "parentUuid": "f2b00e28_accef05c",
+      "range": {
+        "startLine": 20,
+        "startChar": 17,
+        "endLine": 20,
+        "endChar": 35
+      },
+      "revId": "c000d1012b62287ba62ef6df929f72f5ffe2113c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8412bee6_45279b76",
         "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
         "patchSetId": 4
@@ -53,6 +95,30 @@
       "writtenOn": "2020-09-09T12:59:27Z",
       "side": 1,
       "message": "There should be used higher level keyword like \"Enable IPsec Async mode\" containing these two calls here.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 42
+      },
+      "revId": "c000d1012b62287ba62ef6df929f72f5ffe2113c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8a52dc9_f42bbecf",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2020-09-09T13:55:21Z",
+      "side": 1,
+      "message": "Hi Jan,\n\nI will change to use higher level keyword and upload new patchset.",
+      "parentUuid": "8412bee6_45279b76",
       "range": {
         "startLine": 108,
         "startChar": 0,
