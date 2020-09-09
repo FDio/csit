@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d1fc3715_963e37f4",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1849
+      },
+      "writtenOn": "2020-09-09T14:34:48Z",
+      "side": 1,
+      "message": "Hi Yulong, Async mode now supports at least 2 engines, DPDK cryptodev engine and crypto-sw-scheduler engine. crypto-sw-scheduler engine is now the default engine for usability reason.",
+      "parentUuid": "5ee3f8d3_0f54f5cc",
+      "revId": "c000d1012b62287ba62ef6df929f72f5ffe2113c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f2b00e28_accef05c",
         "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
         "patchSetId": 4
