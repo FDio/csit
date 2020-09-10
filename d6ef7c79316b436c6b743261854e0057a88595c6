@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a0f5458_d609932d",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-10T12:38:44Z",
+      "side": 1,
+      "message": "Capital",
+      "range": {
+        "startLine": 268,
+        "startChar": 11,
+        "endLine": 268,
+        "endChar": 12
+      },
+      "revId": "d6ef7c79316b436c6b743261854e0057a88595c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6609cf14_a59aace0",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-10T12:38:44Z",
+      "side": 1,
+      "message": "Dot at the end.",
+      "range": {
+        "startLine": 271,
+        "startChar": 46,
+        "endLine": 271,
+        "endChar": 49
+      },
+      "revId": "d6ef7c79316b436c6b743261854e0057a88595c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef355a31_a7c3f922",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-10T12:38:44Z",
+      "side": 1,
+      "message": "Capital",
+      "range": {
+        "startLine": 271,
+        "startChar": 29,
+        "endLine": 271,
+        "endChar": 30
+      },
+      "revId": "d6ef7c79316b436c6b743261854e0057a88595c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "454295c9_a9f6c44c",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-10T12:38:44Z",
+      "side": 1,
+      "message": "Please, add \u0027on all VPP DUTs\u0027 at the end:\nEnable IPSec Async Mode on all VPP DUTs",
+      "range": {
+        "startLine": 227,
+        "startChar": 2,
+        "endLine": 227,
+        "endChar": 25
+      },
+      "revId": "d6ef7c79316b436c6b743261854e0057a88595c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5de3f02d_f48c293b",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-10T12:38:44Z",
+      "side": 1,
+      "message": "Capital",
+      "range": {
+        "startLine": 229,
+        "startChar": 10,
+        "endLine": 229,
+        "endChar": 11
+      },
+      "revId": "d6ef7c79316b436c6b743261854e0057a88595c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
