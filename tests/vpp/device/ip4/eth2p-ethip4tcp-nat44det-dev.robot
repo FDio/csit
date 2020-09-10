@@ -18,9 +18,9 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP4FWD | FEATURE | NAT44 | NAT44_DETERMINISTIC
-| ... | BASE | UDP | DRV_VFIO_PCI
+| ... | BASE | TCP | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4udp-snat44det-dev
+| ... | ethip4tcp-nat44det-dev
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
@@ -32,15 +32,15 @@
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP for IPv4 routing.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-TCP for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and
 | ... | one static IPv4 /${dest_mask} route entries.
 | ... | DUT1 is tested with ${nic_name}.\
-| ... | *[Ver] TG verification:* Eth-IPv4-UDP packet is sent from TG to DUT1 in\
+| ... | *[Ver] TG verification:* Eth-IPv4-TCP packet is sent from TG to DUT1 in\
 | ... | one direction. Packet is received and verified for correctness on TG.\
-| ... | Then Eth-IPv4-UDP packet is sent from TG in opposite direction. Packet\
+| ... | Then Eth-IPv4-TCP packet is sent from TG in opposite direction. Packet\
 | ... | is received and verified for correctness on TG.
-| ... | *[Ref] Applicable standard specifications:* RFC791, RFC768, RFC3022,
+| ... | *[Ref] Applicable standard specifications:* RFC791, RFC793, RFC3022,
 | ... | RFC4787.
 
 *** Variables ***
@@ -65,7 +65,7 @@
 | ${dest_net}= | 30.0.0.0
 | ${dest_mask}= | ${24}
 # proto layer settings
-| ${protocol}= | UDP
+| ${protocol}= | TCP
 | ${src_port_in}= | 1024
 | ${dst_port}= | 8080
 # NAT settings
@@ -106,6 +106,6 @@
 | | ... | ${protocol} | ${src_port_in} | ${dst_port}
 
 *** Test Cases ***
-| 64B-ethip4udp-snat44det-dev
+| 64B-ethip4tcp-nat44det-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

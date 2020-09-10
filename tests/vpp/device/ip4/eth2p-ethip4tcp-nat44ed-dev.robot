@@ -20,7 +20,7 @@
 | ... | NIC_Virtual | ETH | IP4FWD | FEATURE | NAT44 | NAT44_ENDPOINT_DEPENDENT
 | ... | BASE | TCP | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4tcp-snat44ed-dev
+| ... | ethip4tcp-nat44ed-dev
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
@@ -112,6 +112,6 @@
 | | ... | ${protocol} | ${src_port_in} | ${dst_port}
 
 *** Test Cases ***
-| 64B-ethip4tcp-snat44ed-dev
+| 64B-ethip4tcp-nat44ed-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}
