@@ -44,7 +44,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | lisp_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
