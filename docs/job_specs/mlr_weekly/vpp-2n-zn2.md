@@ -1,4 +1,6 @@
-# 2n-clx
+<<<<<<< HEAD   (e06e58 Framework: AVF)
+=======
+# 2n-zn2
 ### tests 363
 ### job hrs est. 35
 ### job hrs real 35
@@ -542,3 +544,4 @@
 2c AND 114b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 4c AND 114b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm
 
+>>>>>>> CHANGE (a0362e Fix: use nat44 not snat44)
