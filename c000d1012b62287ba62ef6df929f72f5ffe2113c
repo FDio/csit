@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "13779c75_f455c072",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2020-09-10T14:05:54Z",
+      "side": 1,
+      "message": "Hi Jan，\n\nHere bring confusion, not sure my understanding is correct, I think that crypto-sw-scheduler that mentioned by Fan Zhang is a scheduler, it is wrapper of software crypto_native engine, there already have so many *tnlsw* test cases in CSIT to test software crypto_native engine, I think that it is no sense to test it again with async mode. I will invite Fan Zhang to explain more about it.",
+      "parentUuid": "431f64cb_b84a1168",
+      "revId": "c000d1012b62287ba62ef6df929f72f5ffe2113c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f2b00e28_accef05c",
         "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
         "patchSetId": 4
