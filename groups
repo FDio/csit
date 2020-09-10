@@ -4,4 +4,3 @@
 1b0d08159b442fd162f25583dd2ec2868f8a6531                             	GitHub Replication
 5f1d5b090e9673e9b0a9001993eb14a05e6b69ac                             	saml/fdio-gerrit-csit-committers
 global:Registered-Users                                              	Registered Users
-ldap:cn=fdio-gerrit-csit-committers,ou=Groups,dc=freestandards,dc=org	ldap/fdio-gerrit-csit-committers
