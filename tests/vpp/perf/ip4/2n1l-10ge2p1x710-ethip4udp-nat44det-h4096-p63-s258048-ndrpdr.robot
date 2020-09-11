@@ -103,7 +103,7 @@
 | |
 | | Set Test Variable | \${frame_size}
 | | ${pre_measure_actions}= | Create List
-| | ... | ramp-up | vpp-det44-verify-sessions
+| | ... | ramp-up | vpp-nat44-verify-udp-sessions
 | | Set Test Variable | ${pre_measure_actions}
 | |
 | | Given Set Max Rate And Jumbo
