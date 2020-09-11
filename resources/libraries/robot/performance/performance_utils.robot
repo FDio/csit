@@ -22,16 +22,117 @@
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.Trace
 | Variables | resources/libraries/python/Constants.py
+| Resource | resources/libraries/robot/performance/performance_actions.robot
+| Resource | resources/libraries/robot/performance/performance_display.robot
+| Resource | resources/libraries/robot/performance/performance_vars.robot
 |
 | Documentation
 | ... | Performance suite keywords - utilities to find and verify NDR and PDR.
-
-*** Variables ***
-| ${trial_duration}= | ${PERF_TRIAL_DURATION}
-| ${trial_multiplicity}= | ${PERF_TRIAL_MULTIPLICITY}
-| ${extended_debug}= | ${EXTENDED_DEBUG}
+| ... | See performance_vars.robot for values accessed via there.
 
 *** Keywords ***
+| Clear and show runtime counters with running traffic
+| | [Documentation]
+| | ... | Start traffic at specified rate then clear runtime counters on all
+| | ... | DUTs. Wait for specified amount of time and capture runtime counters
+| | ... | on all DUTs. Finally stop traffic
+| |
+| | ... | TODO: Support resetter if this is not the first trial-ish action?
+| |
+| | ... | *Test variables read:*
+| | ... | - runtime_duration - Duration of traffic period [s]. Type: float
+| | ... | - runtime_rate - Rate [pps] for sending packets in case of
+| | ... | T-Rex stateless mode, or multiplier of profile CPS in case of
+| | ... | T-Rex astf mode. Type: float
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Clear and show runtime counters with running traffic \|
+| |
+| | ${transaction_duration} = | Get Transaction Duration
+| | ${transaction_scale} = | Get Transaction Scale
+| | ${traffic_directions} = | Get Traffic Directions
+| | ${transaction_directions} = | Get Transaction Directions
+| | ${transaction_type} = | Get Transaction Type
+| | ${use_latency} = | Get Use Latency
+| | # Duration of -1 means we will stop traffic manually.
+| | Send traffic on tg
+| | ... | duration=${1-}
+| | ... | rate=${runtime_rate}
+| | ... | frame_size=${frame_size}
+| | ... | traffic_profile=${traffic_profile}
+| | ... | warmup_time=${0}
+| | ... | async_call=${True}
+| | ... | use_latency=${use_latency}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | tx_port=${0}
+| | ... | rx_port=${1}
+| | ... | transaction_scale=${transaction_scale}
+| | ... | transaction_duration=${transaction_duration}
+| | ... | transaction_type=${transaction_type}
+| | ... | duration_limit=${0.0}
+| | FOR | ${action} | IN | @{pre_run_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Sleep | ${runtime_duration}
+| | FOR | ${action} | IN | @{post_run_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Stop traffic on tg
+
+| Find critical load using PLRsearch
+| | [Documentation]
+| | ... | Find boundaries for troughput (of hardcoded target loss ratio)
+| | ... | using PLRsearch algorithm.
+| | ... | Display results as formatted test message.
+| | ... | Fail if computed lower bound is 110% of the minimal rate or less.
+| | ... | Input rates are understood as uni-directional,
+| | ... | reported result contains aggregate rates.
+| | ... | Currently, the min_rate value is hardcoded to match test teardowns.
+| | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
+| |
+| | ... | *Test (or broader scope) variables read:*
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+| | ... | string
+| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
+| | ... | Type: float
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Find critical load using PLR search \|
+| |
+| | # Get values via performance_vars.
+| | ${transaction_duration} = | Get Transaction Duration
+| | ${min_rate} = | Get Min Rate
+| | ${transaction_scale} = | Get Transaction Scale
+| | ${resetter} = | Get Resetter
+| | ${traffic_directions} = | Get Traffic Directions
+| | ${transaction_directions} = | Get Transaction Directions
+| | ${transaction_type} = | Get Transaction Type
+| | ${use_latency} = | Get Use Latency
+| | ${average} | ${stdev} = | Perform soak search
+| | ... | frame_size=${frame_size}
+| | ... | traffic_profile=${traffic_profile}
+| | ... | minimum_transmit_rate=${min_rate}
+| | ... | maximum_transmit_rate=${max_rate}
+| | ... | plr_target=${1e-7}
+| | ... | tdpt=${0.1}
+| | ... | initial_count=${50}
+| | ... | timeout=${1800.0}
+| | ... | trace_enabled=${False}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | use_latency=${use_latency}
+| | ... | resetter=${resetter}
+| | ... | transaction_scale=${transaction_scale}
+| | ... | transaction_duration=${transaction_duration}
+| | ... | transaction_type=${transaction_type}
+| | ${lower} | ${upper} = | Display result of soak search
+| | ... | ${average} | ${stdev}
+| | Should Not Be True | 1.1*${transaction_directions}*${min_rate} > ${lower}
+| | ... | Lower bound ${lower} too small for unidirectional minimum ${min_rate}.
+
 | Find NDR and PDR intervals using optimized search
 | | [Documentation]
 | | ... | Find boundaries for RFC2544 compatible NDR and PDR values
@@ -57,94 +158,81 @@
 | | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
 | | ... | Type: float
 | | ... | - resetter - Callable to reset DUT state before each trial.
-| | ... | - n_transactions - Number of ASTF transaction (zero if unlimited).
-| | ... | - transaction_is - String identifier to determine how to count
+| | ... | - transaction_scale - Number of ASTF transaction (zero if unlimited).
+| | ... | - transaction_type - String identifier to determine how to count
 | | ... | transactions. Default is "packet".
 | | ... | - disable_latency - If true, skip anything related to latency.
-| | ... | Useful if n_transactions is high and TPS is low. Default: false.
-| |
-| | ... | *Arguments:*
-| | ... | - packet_loss_ratio - Accepted loss during search. Type: float
-| | ... | - final_relative_width - Maximal width multiple of upper. Type: float
-| | ... | - final_trial_duration - Duration of final trials [s]. Type: float
-| | ... | - initial_trial_duration - Duration of initial trials [s]. Type: float
-| | ... | - intermediate phases - Number of intermediate phases [1].
-| | ... | Type: integer
-| | ... | - timeout - Fail if search duration is longer [s]. Type: float
-| | ... | - doublings - How many doublings to do when expanding [1].
-| | ... | Type: integer
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: integer
-| | ... | - latency_duration - Duration for latency-specific trials. Type: float
-| | ... | - use_latency - Use latency stream in search; default value: False.
-| | ... | Type: boolean
+| | ... | Useful if transaction_scale is high and TPS is low. Default: false.
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Find NDR and PDR intervals using optimized search \| \${0.005} \
-| | ... | \| \${0.005} \| \${30.0} \| \${1.0} \| \${2} \| \${600.0} \| \${2} \
-| | ... | \| \${2} \| ${5.0} \| ${True} \|
+| | ... | \| Find NDR and PDR intervals using optimized search \|
 | |
-| | [Arguments] | ${packet_loss_ratio}=${0.005}
-| | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
-| | ... | ${initial_trial_duration}=${1.0}
-| | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${720.0}
-| | ... | ${doublings}=${2} | ${traffic_directions}=${2}
-| | ... | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
-| | ... | ${use_latency}=${False}
-| |
-| | ${resetter} = | Get Variable Value | \${resetter} | ${None}
-| | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
-| | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
-| | ${disable_latency} = | Get Variable Value | \${disable_latency} | ${False}
-| | ${use_latency} = | Set Variable If | ${disable_latency}
-| | ... | ${False} | ${use_latency}
-| | # Latency measurements will need more than 9000 pps.
-| | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${9001} | ${max_rate}
-| | ... | ${packet_loss_ratio} | ${final_relative_width}
-| | ... | ${final_trial_duration} | ${initial_trial_duration}
-| | ... | ${number_of_intermediate_phases} | timeout=${timeout}
-| | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
-| | ... | use_latency=${use_latency} | resetter=${resetter}
-| | ... | n_transactions=${n_transactions} | transaction_is=${transaction_is}
+| | # Get values via performance_vars.
+| | ${transaction_duration} = | Get Transaction Duration
+| | ${disable_latency} = | Get Disable Latency
+| | ${min_rate} = | Get Min Rate
+| | ${transaction_scale} = | Get Transaction Scale
+| | # \${packet_loss_ratio} is used twice so it is worth a variable.
+| | ${packet_loss_ratio} = | Get Packet Loss Ratio
+| | ${resetter} = | Get Resetter
+| | ${traffic_directions} = | Get Traffic Directions
+| | ${transaction_directions} = | Get Transaction Directions
+| | ${transaction_type} = | Get Transaction Type
+| | ${use_latency} = | Get Use Latency
+| | ${result} = | Perform optimized ndrpdr search
+| | ... | frame_size=${frame_size}
+| | ... | traffic_profile=${traffic_profile}
+| | ... | minimum_transmit_rate=${min_rate}
+| | ... | maximum_transmit_rate=${max_rate}
+| | ... | packet_loss_ratio=${packet_loss_ratio}
+| | ... | final_relative_width=${0.005}
+| | ... | final_trial_duration=${30.0}
+| | ... | initial_trial_duration=${1.0}
+| | ... | number_of_intermediate_phases=${2}
+| | ... | timeout=${720}
+| | ... | doublings=${2}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | transaction_directions=${transaction_directions}
+| | ... | use_latency=${use_latency}
+| | ... | resetter=${resetter}
+| | ... | transaction_scale=${transaction_scale}
+| | ... | transaction_type=${transaction_type}
+| | ... | transaction_duration=${transaction_duration}
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result.ndr_interval}
-| | ${pdr_sum}= | Set Variable | ${result.pdr_interval.measured_low.target_tr}
-| | ${pdr_per_stream}= | Evaluate | ${pdr_sum} / float(${traffic_directions})
-| | ${ndr_sum}= | Set Variable | ${result.ndr_interval.measured_low.target_tr}
-| | ${ndr_per_stream}= | Evaluate | ${ndr_sum} / float(${traffic_directions})
+| | ${pdr_sum} = | Set Variable | ${result.pdr_interval.measured_low.target_tr}
+| | ${pdr_per_dir} = | Evaluate | ${pdr_sum} / float(${transaction_directions})
+| | ${ndr_sum} = | Set Variable | ${result.ndr_interval.measured_low.target_tr}
+| | ${ndr_per_dir} = | Evaluate | ${ndr_sum} / float(${transaction_directions})
 | | # We expect NDR and PDR to have different-looking stats.
 | | Send traffic at specified rate
-| | ... | ${1.0} | ${pdr_per_stream} | ${framesize} | ${traffic_profile}
-| | ... | traffic_directions=${traffic_directions} | use_latency=${use_latency}
+| | ... | duration=${1.0}
+| | ... | rate=${pdr_per_dir}
+| | ... | trial_multiplicity=${1}
+| | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
-| | Send traffic at specified rate
-| | ... | ${1.0} | ${ndr_per_stream} | ${framesize} | ${traffic_profile}
-| | ... | traffic_directions=${traffic_directions} | use_latency=${use_latency}
+| | Run Keyword If | $ndr_per_dir != $pdr_per_dir
+| | ... | Send traffic at specified rate
+| | ... | duration=${1.0}
+| | ... | rate=${ndr_per_dir}
+| | ... | trial_multiplicity=${1}
+| | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
 | | Return From Keyword If | ${disable_latency}
-| | ${rate}= | Evaluate | 0.9 * ${pdr_per_stream}
-| | Measure and show latency at specified rate | Latency at 90% PDR:
-| | ... | ${latency_duration} | ${rate} | ${framesize}
-| | ... | ${traffic_profile} | ${traffic_directions}
-| | ${rate}= | Evaluate | 0.5 * ${pdr_per_stream}
-| | Measure and show latency at specified rate | Latency at 50% PDR:
-| | ... | ${latency_duration} | ${rate} | ${framesize}
-| | ... | ${traffic_profile} | ${traffic_directions}
-| | ${rate}= | Evaluate | 0.1 * ${pdr_per_stream}
-| | Measure and show latency at specified rate | Latency at 10% PDR:
-| | ... | ${latency_duration} | ${rate} | ${framesize}
-| | ... | ${traffic_profile} | ${traffic_directions}
-| | Measure and show latency at specified rate | Latency at 0% PDR:
-| | ... | ${latency_duration} | ${0} | ${framesize}
-| | ... | ${traffic_profile} | ${traffic_directions}
+| | ${rate} = | Evaluate | 0.9 * ${pdr_per_dir}
+| | Measure and show latency at specified rate | Latency at 90% PDR: | ${rate}
+| | ${rate} = | Evaluate | 0.5 * ${pdr_per_dir}
+| | Measure and show latency at specified rate | Latency at 50% PDR: | ${rate}
+| | ${rate} = | Evaluate | 0.1 * ${pdr_per_dir}
+| | Measure and show latency at specified rate | Latency at 10% PDR: | ${rate}
+| | Measure and show latency at specified rate | Latency at 0% PDR: | ${0.0}
 
 | Find Throughput Using MLRsearch
 | | [Documentation]
-| | ... | Find and return lower bound PDR (zero PLR by default)
+| | ... | Find and return lower bound NDR (zero PLR)
 | | ... | aggregate throughput using MLRsearch algorithm.
 | | ... | Input rates are understood as uni-directional.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
@@ -158,365 +246,95 @@
 | | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
 | | ... | Type: float
 | | ... | - resetter - Callable to reset DUT state before each trial.
-| | ... | - n_transactions - Number of ASTF transaction (zero if unlimited).
-| | ... | - transaction_is - String identifier to determine how to count
+| | ... | - transaction_scale - Number of ASTF transaction (zero if unlimited).
+| | ... | - transaction_type - String identifier to determine how to count
 | | ... | transactions. Default is "packet".
-| |
-| | ... | *Arguments:*
-| | ... | - packet_loss_ratio - Accepted loss during search. Type: float
-| | ... | - final_relative_width - Maximal width multiple of upper. Type: float
-| | ... | - final_trial_duration - Duration of final trials [s]. Type: float
-| | ... | - initial_trial_duration - Duration of initial trials [s]. Type: float
-| | ... | - intermediate phases - Number of intermediate phases [1].
-| | ... | Type: integer
-| | ... | - timeout - Fail if search duration is longer [s]. Type: float
-| | ... | - doublings - How many doublings to do when expanding [1].
-| | ... | Type: integer
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: integer
-| | ... | - use_latency - Use latency stream in search; default value: False.
-| | ... | Type: boolean
 | |
 | | ... | *Returns:*
 | | ... | - Lower bound for bi-directional throughput at given PLR. Type: float
 | |
 | | ... | *Example:*
 | |
-| | ... | \| \${throughpt}= \| Find Throughput Using MLRsearch \| \${0} \
-| | ... | \| \${0.001} \| \${10.0}\| \${1.0} \| \${1} \| \${720.0} \| \${2} \
-| | ... | \| \${2} \| ${True} \|
+| | ... | \| \${throughpt}= \| Find Throughput Using MLRsearch \|
 | |
-| | [Arguments] | ${packet_loss_ratio}=${0.0}
-| | ... | ${final_relative_width}=${0.001} | ${final_trial_duration}=${10.0}
-| | ... | ${initial_trial_duration}=${1.0}
-| | ... | ${number_of_intermediate_phases}=${1} | ${timeout}=${720.0}
-| | ... | ${doublings}=${2} | ${traffic_directions}=${2}
-| | ... | ${use_latency}=${False}
-| |
-| | ${resetter} = | Get Variable Value | \${resetter} | ${None}
-| | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
-| | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
-| | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${10000} | ${max_rate}
-| | ... | ${packet_loss_ratio} | ${final_relative_width}
-| | ... | ${final_trial_duration} | ${initial_trial_duration}
-| | ... | ${number_of_intermediate_phases} | timeout=${timeout}
-| | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
-| | ... | use_latency=${use_latency} | resetter=${resetter}
-| | ... | n_transactions=${n_transactions} | transaction_is=${transaction_is}
+| | ${transaction_duration} = | Get Transaction Duration
+| | ${min_rate} = | Get Min Rate
+| | ${transaction_scale} = | Get Transaction Scale
+| | ${resetter} = | Get Resetter
+| | ${traffic_directions} = | Get Traffic Directions
+| | ${transaction_directions} = | Get Transaction Directions
+| | ${transaction_type} = | Get Transaction Type
+| | ${use_latency} = | Get Use Latency
+| | ${result} = | Perform optimized ndrpdr search
+| | ... | frame_size=${frame_size}
+| | ... | traffic_profile=${traffic_profile}
+| | ... | minimum_transmit_rate=${min_rate}
+| | ... | maximum_transmit_rate=${max_rate}
+| | ... | packet_loss_ratio=${0.0}
+| | ... | final_relative_width=${0.001}
+| | ... | final_trial_duration=${10.0}
+| | ... | initial_trial_duration=${1.0}
+| | ... | number_of_intermediate_phases=${1}
+| | ... | timeout=${720}
+| | ... | doublings=${2}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | transaction_directions=${transaction_directions}
+| | ... | use_latency=${use_latency}
+| | ... | resetter=${resetter}
+| | ... | transaction_scale=${transaction_scale}
+| | ... | transaction_type=${transaction_type}
+| | ... | transaction_duration=${transaction_duration}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
-| | ... | ${packet_loss_ratio}
+| | ... | ${0.0}
 | | Return From Keyword | ${result.pdr_interval.measured_low.target_tr}
 
-| Find critical load using PLRsearch
+| Measure and show latency at specified rate
 | | [Documentation]
-| | ... | Find boundaries for troughput (of given target loss ratio)
-| | ... | using PLRsearch algorithm.
-| | ... | Display results as formatted test message.
-| | ... | Fail if computed lower bound 110% of the minimal rate or less.
-| | ... | Input rates are understood as uni-directional,
-| | ... | reported result contains aggregate rates.
-| | ... | Currently, the min_rate value is hardcoded to match test teardowns.
+| | ... | Send traffic at specified rate, single trial.
+| | ... | Extract latency information and append it to text message.
+| | ... | The rate argument is int, so should not include "pps".
+| | ... | If the given rate is too low, a safe value is used instead.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
-| | ... | *Test (or broader scope) variables read:*
-| | ... | - traffic_profile - Name of module defining traffc for measurements.
-| | ... | Type: string
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
-| | ... | string
-| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
+| | ... | *Arguments:*
+| | ... | - message_prefix - Preface to test message addition. Type: string
+| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
+| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
 | | ... | Type: float
 | |
-| | ... | *Arguments:*
-| | ... | - packet_loss_ratio - Accepted loss during search. Type: float
-| | ... | - timeout - Stop when search duration is longer [s]. Type: float
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: integer
-| | ... | - use_latency - Use latency stream in search; default value: False.
-| | ... | Type: boolean
-| |
 | | ... | *Example:*
 | |
-| | ... | \| Find critical load using PLR search \| \${1e-7} \| \${120} \
-| | ... | \| \${2} \| ${True} \|
+| | ... | \| Measure and show latency at specified rate \| Latency at 90% NDR \
+| | ... | \| ${10000000} \|
 | |
-| | [Arguments] | ${packet_loss_ratio}=${1e-7} | ${timeout}=${1800.0}
-| | ... | ${traffic_directions}=${2} | ${use_latency}=${False}
+| | [Arguments] | ${message_prefix} | ${rate}
 | |
-| | ${min_rate} = | Set Variable | ${9001}
-| | ${resetter} = | Get Variable Value | \${resetter} | ${None}
-| | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
-| | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
-| | ${average} | ${stdev} = | Perform soak search | ${frame_size}
-| | ... | ${traffic_profile} | ${min_rate} | ${max_rate}
-| | ... | ${packet_loss_ratio} | timeout=${timeout}
-| | ... | traffic_directions=${traffic_directions} | use_latency=${use_latency}
-| | ... | resetter=${resetter} | n_transactions=${n_transactions}
-| | ... | transaction_is=${transaction_is}
-| | ${lower} | ${upper} = | Display result of soak search
-| | ... | ${average} | ${stdev}
-| | Should Not Be True | 1.1 * ${traffic_directions} * ${min_rate} > ${lower}
-| | ... | Lower bound ${lower} too small for unidirectional minimum ${min_rate}.
-
-| Display single bound
-| | [Documentation]
-| | ... | Display one bound of NDR+PDR search,
-| | ... | aggregate in units given by trasaction type, e.g. by default
-| | ... | in packet per seconds and Gbps total bandwidth
-| | ... | (for initial packet size).
-| | ... | Througput is calculated as:
-| | ... | Sum of measured rates over streams
-| | ... | Bandwidth is calculated as:
-| | ... | (Throughput * (L2 Frame Size + IPG) * 8)
-| | ... | If the latency string is present, it is displayed as well.
-| |
-| | ... | *Test (or broader scope) variables read:*
-| | ... | - transaction_is - String identifier to determine how to count
-| | ... | transactions. Default is "packet".
-| | ... | *Arguments:*
-| | ... | - text - Flavor text describing which bound is this. Type: string
-| | ... | - rate_total - Total (not per stream) measured Tr [pps]. Type: float
-| | ... | - frame_size - L2 Frame Size [B]. Type: integer
-| | ... | - latency - Latency data to display if non-empty. Type: string
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Display single bound \| NDR lower bound \| \${12345.67} \
-| | ... | \| \${64} \| latency=\${EMPTY} \|
-| |
-| | [Arguments] | ${text} | ${rate_total} | ${frame_size} | ${latency}=${EMPTY}
-| |
-| | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
-| | Run Keyword And Return If | """${transaction_is}""" == """packet"""
-| | ... | Display single pps bound | ${text} | ${rate_total} | ${frame_size}
-| | ... | ${latency}
-| | Run Keyword And Return If | """_cps""" in """${transaction_is}"""
-| | ... | Display single cps bound | ${text} | ${rate_total} | ${latency}
-| | Fail | Unknown transaction type: ${transaction_is}
-
-| Display single cps bound
-| | [Documentation]
-| | ... | Display one bound of NDR+PDR search for CPS tests.
-| | ... | The bounds are expressed as connections per second, the input
-| | ... | parameter for profile driver.
-| | ... | If the latency string is present, it is displayed as well.
-| |
-| | ... | *Arguments:*
-| | ... | - text - Flavor text describing which bound is this. Type: string
-| | ... | - rate_total - Total (not per stream) measured Tr [pps]. Type: float
-| | ... | - latency - Latency data to display if non-empty. Type: string
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Display single cps bound \| NDR lower bound \| \${12345.67} \
-| | ... | \| latency=\${EMPTY} \|
-| |
-| | [Arguments] | ${text} | ${rate_total} | ${latency}=${EMPTY}
-| |
-| | Set Test Message | ${\n}${text}: ${rate_total} CPS | append=yes
-| | Return From Keyword If | not """${latency}"""
-| | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
-| | ... | append=yes
-
-| Display single pps bound
-| | [Documentation]
-| | ... | Display one pps bound of NDR+PDR search,
-| | ... | aggregate in packet per seconds and Gbps total bandwidth
-| | ... | (for initial packet size).
-| | ... | Througput is calculated as:
-| | ... | Sum of measured rates over streams
-| | ... | Bandwidth is calculated as:
-| | ... | (Throughput * (L2 Frame Size + IPG) * 8)
-| | ... | If the latency string is present, it is displayed as well.
-| |
-| | ... | *Arguments:*
-| | ... | - text - Flavor text describing which bound is this. Type: string
-| | ... | - rate_total - Total (not per stream) measured Tr [pps]. Type: float
-| | ... | - frame_size - L2 Frame Size [B]. Type: integer
-| | ... | - latency - Latency data to display if non-empty. Type: string
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Display single pps bound \| NDR lower bound \| \${12345.67} \
-| | ... | \| \${64} \| latency=\${EMPTY} \|
-| |
-| | [Arguments] | ${text} | ${rate_total} | ${frame_size} | ${latency}=${EMPTY}
-| |
-| | ${bandwidth_total} = | Evaluate | ${rate_total} * (${frame_size}+20)*8 / 1e9
-| | Set Test Message | ${\n}${text}: ${rate_total} pps, | append=yes
-| | Set Test Message | ${bandwidth_total} Gbps (initial) | append=yes
-| | Return From Keyword If | not """${latency}"""
-| | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
-| | ... | append=yes
-
-| Display Reconfig Test Message
-| | [Documentation]
-| | ... | Display the number of packets lost (bidirectionally)
-| | ... | due to reconfiguration under traffic.
-| |
-| | ... | *Arguments:*
-| | ... | - result - Result of bidirectional measurtement.
-| | ... | Type: ReceiveRateMeasurement
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Display Reconfig Test Message \| \${result} \|
-| |
-| | [Arguments] | ${result}
-| |
-| | Set Test Message | Packets lost due to reconfig: ${result.loss_count}
-| | ${time_lost} = | Evaluate | ${result.loss_count} / ${result.target_tr}
-| | Set Test Message | ${\n}Implied time lost: ${time_lost} | append=yes
-
-| Display result of NDRPDR search
-| | [Documentation]
-| | ... | Display result of NDR+PDR search, both quantities, both bounds,
-| | ... | aggregate in units given by trasaction type, e.g. by default
-| | ... | in packet per seconds and Gbps total bandwidth
-| | ... | (for initial packet size).
-| | ... | Througput is calculated as:
-| | ... | Sum of measured rate over streams
-| | ... | Bandwidth is calculated as:
-| | ... | (Throughput * (L2 Frame Size + IPG) * 8)
-| | ... | If the results contain latency data, display them for lower bounds.
-| |
-| | ... | *Test (or broader scope) variables read:*
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
-| | ... | string
-| | ... | - transaction_is - String identifier to determine how to count
-| | ... | transactions. Default is "packet".
-| | ... | *Arguments:*
-| | ... | - result - Measured result data per stream [pps]. Type: NdrPdrResult
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Display result of NDRPDR search \| \${result} \|
-| |
-| | [Arguments] | ${result}
-| |
-| | ${frame_size} = | Get Average Frame Size | ${frame_size}
-| | Display single bound | NDR_LOWER
-| | ... | ${result.ndr_interval.measured_low.target_tr} | ${frame_size}
-| | ... | ${result.ndr_interval.measured_low.latency}
-| | Display single bound | NDR_UPPER
-| | ... | ${result.ndr_interval.measured_high.target_tr} | ${frame_size}
-| | Display single bound | PDR_LOWER
-| | ... | ${result.pdr_interval.measured_low.target_tr} | ${frame_size}
-| | ... | ${result.pdr_interval.measured_low.latency}
-| | Display single bound | PDR_UPPER
-| | ... | ${result.pdr_interval.measured_high.target_tr} | ${frame_size}
-
-| Display result of soak search
-| | [Documentation]
-| | ... | Display result of soak search, avg+-stdev, as upper/lower bounds.
-| | ... | See Display single bound for units used.
-| |
-| | ... | *Test (or broader scope) variables read:*
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
-| | ... | string
-| | ... | - transaction_is - String identifier to determine how to count
-| | ... | transactions. Default is "packet".
-| | ... | *Arguments:*
-| | ... | - avg - Estimated average critical load [pps]. Type: float
-| | ... | - stdev - Standard deviation of critical load [pps]. Type: float
-| |
-| | ... | *Returns:*
-| | ... | - Lower and upper bound of critical load [pps]. Type: 2-tuple of float
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Display result of soak search \| \${100000} \| \${100} \|
-| |
-| | [Arguments] | ${avg} | ${stdev}
-| |
-| | ${frame_size} = | Get Average Frame Size | ${frame_size}
-| | ${avg} = | Convert To Number | ${avg}
-| | ${stdev} = | Convert To Number | ${stdev}
-| | ${lower} = | Evaluate | ${avg} - ${stdev}
-| | ${upper} = | Evaluate | ${avg} + ${stdev}
-| | Display single bound | PLRsearch lower bound | ${lower} | ${frame_size}
-| | Display single bound | PLRsearch upper bound | ${upper} | ${frame_size}
-| | Return From Keyword | ${lower} | ${upper}
-
-| Check NDRPDR interval validity
-| | [Documentation]
-| | ... | Extract loss ratio of lower bound of the interval.
-| | ... | Fail if it does not reach the allowed value.
-| |
-| | ... | *Arguments:*
-| | ... | - interval - Measured interval. Type: ReceiveRateInterval
-| | ... | - packet_loss_ratio - Accepted loss (0.0 for NDR). Type: float
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Check NDRPDR interval validity \| \${result.pdr_interval} \
-| | ... | \| \${0.005} \|
-| |
-| | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
-| |
-| | ${lower_bound} = | Set Variable | ${interval.measured_low}
-| | ${lower_bound_lf} = | Set Variable | ${lower_bound.loss_fraction}
-| | Return From Keyword If | ${lower_bound_lf} <= ${packet_loss_ratio}
-| | ${message}= | Catenate | SEPARATOR=${SPACE}
-| | ... | Minimal rate loss fraction ${lower_bound_lf}
-| | ... | does not reach target ${packet_loss_ratio}.
-| | ${message_zero} = | Set Variable | Zero packets forwarded!
-| | ${message_other} = | Set Variable | ${lower_bound.loss_count} packets lost.
-| | ${message} = | Set Variable If | ${lower_bound_lf} >= 1.0
-| | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
-| | Fail | ${message}
-
-| Traffic should pass with maximum rate
-| | [Documentation]
-| | ... | Send traffic at maximum rate.
-| | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
-| |
-| | ... | *Test (or broader scope) variables read:*
-| | ... | - traffic_profile - Name of module defining traffic for measurements.
-| | ... | Type: string
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
-| | ... | string
-| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
-| | ... | Type: float
-| | ... | - transaction_is - String identifier to determine how to count
-| | ... | transactions. Default is "packet".
-| |
-| | ... | *Arguments:*
-| | ... | - trial_duration - Duration of single trial [s]. Type: float
-| | ... | - fail_no_traffic - Whether to fail on zero receive count;
-| | ... | default value: True. Type: boolean
-| | ... | - trial_multiplicity - How many trials in this measurement.
-| | ... | Type: integer
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic;
-| | ... | default value: 2. Type: integer
-| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
-| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
-| | ... | - use_latency - Use latency stream in search; default value: False.
-| | ... | Type: boolean
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Traffic should pass with maximum rate \| \${1} \| \${False} \
-| | ... | \| \${10.0} \| \${2} \| \${0} \| \${1} \| \${True} \|
-| |
-| | [Arguments] | ${trial_duration}=${trial_duration}
-| | ... | ${fail_no_traffic}=${True}
-| | ... | ${trial_multiplicity}=${trial_multiplicity}
-| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
-| | ... | ${use_latency}=${False}
-| |
-| | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
-| | ${results}= | Send traffic at specified rate
-| | ... | ${trial_duration} | ${max_rate} | ${frame_size}
-| | ... | ${traffic_profile} | ${trial_multiplicity}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
-| | ... | use_latency=${use_latency}
-| | ${unit} = | Set Variable If | """${transaction_is}""" == """packet"""
-| | ... | packets per second | estimated connections per second
-| | Set Test Message | ${\n}Maximum Receive Rate trial results
-| | Set Test Message | in ${unit}: ${results}
-| | ... | append=yes
-| | Run Keyword If | ${fail_no_traffic} | Fail if no traffic forwarded
+| | ${transaction_duration} = | Get Transaction Duration
+| | ${min_rate} = | Get Min Rate
+| | ${transaction_scale} = | Get Transaction Scale
+| | ${traffic_directions} = | Get Traffic Directions
+| | ${transaction_directions} = | Get Transaction Directions
+| | ${transaction_type} = | Get Transaction Type
+| | Call Resetter
+| | ${real_rate} = | Evaluate | max($rate, $min_rate)
+| | Send traffic on tg
+| | ... | duration=${PERF_TRIAL_LATENCY_DURATION}
+| | ... | rate=${real_rate}
+| | ... | frame_size=${frame_size}
+| | ... | traffic_profile=${traffic_profile}
+| | ... | warmup_time=${0.0}
+| | ... | async_call=${False}
+| | ... | use_latency=${True}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | transaction_directions=${transaction_directions}
+| | ... | tx_port=${0}
+| | ... | rx_port=${1}
+| | ... | transaction_scale=${transaction_scale}
+| | ... | transaction_duration=${transaction_duration}
+| | ... | transaction_type=${transaction_type}
+| | ... | duration_limit=${PERF_TRIAL_LATENCY_DURATION}
+| | ${latency} = | Get Latency Int
+| | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
 
 | Send traffic at specified rate
 | | [Documentation]
@@ -530,58 +348,57 @@
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
 | | ... | - rate - Target aggregate transmit rate [pps] / Connections per second
 | | ... | (CPS) for UDP/TCP flows. Type: float
-| | ... | - frame_size - L2 Frame Size [B]. Type: integer or string
-| | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
 | | ... | - trial_multiplicity - How many trials in this measurement.
-| | ... | Type: integer
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: integer
-| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
-| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
-| | ... | - extended_debug - True to enable extended debug.
 | | ... | Type: boolean
 | | ... | - use_latency - Use latency stream in search; default value: False.
 | | ... | Type: boolean
 | | ... | - duration_limit - Hard limit for trial duration, overriding duration
-| | ... | computed from n_transactions. Default 0.0 means no limit.
+| | ... | computed from transaction_scale. Default 0.0 means no limit.
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Send traffic at specified rate \| \${1.0} \| ${4000000.0} \
-| | ... | \| \${64} \| 3-node-IPv4 \| \${10} \| \${2} \| \${0} \| \${1} \
-| | ... | \| ${False} \| ${True} \| ${1.0} \|
+| | ... | \| \${10} \| ${False} \| ${1.0} \|
 | |
-| | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
-| | ... | ${traffic_profile} | ${trial_multiplicity}=${trial_multiplicity}
-| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
-| | ... | ${extended_debug}=${extended_debug} | ${use_latency}=${False}
-| | ... | ${duration_limit}=${0.0}
+| | [Arguments] | ${trial_duration} | ${rate} | ${trial_multiplicity}
+| | ... | ${use_latency}=${False} | ${duration_limit}=${0.0}
 | |
-| | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
-| | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
-| | Set Test Variable | ${extended_debug}
+| | ${transaction_duration} = | Get Transaction Duration
+| | ${transaction_scale} = | Get Transaction Scale
+| | ${traffic_directions} = | Get Traffic Directions
+| | ${transaction_directions} = | Get Transaction Directions
+| | ${transaction_type} = | Get Transaction Type
+| |
 | | # Following setting of test variables is needed as
 | | # "Clear and show runtime counters with running traffic" has been moved to
 | | # pre_stats actions.
-| | Set Test Variable | ${rate}
-| | Set Test Variable | ${traffic_directions}
-| | Set Test Variable | ${tx_port}
-| | Set Test Variable | ${rx_port}
+| | Set Test Variable | \${runtime_rate} | ${rate}
+| | # Separate change increases duration where needed.
+| | Set Test Variable | \${runtime_duration} | ${1.0}
+| |
 | | FOR | ${action} | IN | @{pre_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | ${results} = | Create List
 | | FOR | ${i} | IN RANGE | ${trial_multiplicity}
 | | | Call Resetter
-| | | # The following line is skipping some default arguments,
-| | | # that is why subsequent arguments have to be named.
-| | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
-| | | ... | ${traffic_profile} | warmup_time=${0}
-| | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | | ... | rx_port=${rx_port} | use_latency=${use_latency}
-| | | ... | n_transactions=${n_transactions} | transaction_is=${transaction_is}
-| | | ... | duration_limit=${duration_limit}
+| | | Send traffic on tg
+| | | ... | duration=${trial_duration}
+| | | ... | rate=${rate}
+| | | ... | frame_size=${frame_size}
+| | | ... | traffic_profile=${traffic_profile}
+| | | ... | warmup_time=${0}
+| | | ... | async_call=${False}
+| | | ... | use_latency=${use_latency}
+| | | ... | traffic_directions=${traffic_directions}
+| | | ... | transaction_directions=${transaction_directions}
+| | | ... | tx_port=${0}
+| | | ... | rx_port=${1}
+| | | ... | transaction_scale=${transaction_scale}
+| | | ... | transaction_duration=${transaction_duration}
+| | | ... | transaction_type=${transaction_type}
+| | | ... | duration_limit=0.0
 | | | ${result}= | Get Measurement Result
 | | | # Approximated rate is good if duration is good.
 | | | # But for small scale CPS MRR tests, the traffic is way shorter than 1s,
@@ -598,101 +415,6 @@
 | | END
 | | Return From Keyword | ${results}
 
-| Measure and show latency at specified rate
-| | [Documentation]
-| | ... | Send traffic at specified rate, single trial.
-| | ... | Extract latency information and append it to text message.
-| | ... | The rate argument is int, so should not include "pps".
-| | ... | If the given rate is too low, a safe value is used instead.
-| | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
-| |
-| | ... | *Arguments:*
-| | ... | - message_prefix - Preface to test message addition. Type: string
-| | ... | - trial_duration - Duration of single trial [s]. Type: float
-| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
-| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
-| | ... | Type: float
-| | ... | - frame_size - L2 Frame Size [B]. Type: integer or string
-| | ... | - traffic_profile - Name of module defining traffic for measurements.
-| | ... | Type: string
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: integer
-| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
-| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
-| | ... | - safe_rate - To apply if rate is below this, as latency pps is fixed.
-| | ... | In pps. Type: integer.
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Measure and show latency at specified rate \| Latency at 90% NDR \
-| | ... | \| \${1.0} \| ${10000000} \| \${64} \| 3-node-IPv4 \| \${2} \
-| | ... | \| \${0} \| \${1} \| ${9500} \|
-| |
-| | [Arguments] | ${message_prefix} | ${trial_duration} | ${rate}
-| | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}=${2}
-| | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${safe_rate}=${9001}
-| |
-| | Call Resetter
-| | ${real_rate} = | Evaluate | max(${rate}, ${safe_rate})
-| | ${n_transactions} = | Get Variable Value | \${n_transactions} | ${0}
-| | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
-| | # The following line is skipping some default arguments,
-| | # that is why subsequent arguments have to be named.
-| | Send traffic on tg | ${trial_duration} | ${real_rate} | ${frame_size}
-| | ... | ${traffic_profile} | warmup_time=${0}
-| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | ... | rx_port=${rx_port} | use_latency=${True}
-| | ... | n_transactions=${n_transactions} | transaction_is=${transaction_is}
-| | ${latency} = | Get Latency Int
-| | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
-
-| Clear and show runtime counters with running traffic
-| | [Documentation]
-| | ... | Start traffic at specified rate then clear runtime counters on all
-| | ... | DUTs. Wait for specified amount of time and capture runtime counters
-| | ... | on all DUTs. Finally stop traffic
-| |
-| | ... | TODO: Support resetter if this is not the first trial-ish action?
-| |
-| | ... | *Arguments:*
-| | ... | - duration - Duration of traffic run [s]. Type: integer
-| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
-| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
-| | ... | Type: float
-| | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer or string
-| | ... | - traffic_profile - Name of module defining traffc for measurements.
-| | ... | Type: string
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: integer
-| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
-| | ... | - rx_port - RX port of TG, default value: 1. Type: integer
-| | ... | - use_latency - Use latency stream in search; default value: False.
-| | ... | Type: boolean
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Clear and show runtime counters with running traffic \| \${10} \
-| | ... | \| ${4000000.0} \| \${64} \| 3-node-IPv4 \| \${2} \| \${0} \| \${1}
-| | ... | \| %{True} \|
-| |
-| | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
-| | ... | ${use_latency}=${False}
-| |
-| | # Duration of -1 means we will stop traffic manually.
-| | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | warmup_time=${0} | async_call=${True} | use_latency=${use_latency}
-| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | ... | rx_port=${rx_port}
-| | FOR | ${action} | IN | @{pre_run_stats}
-| | | Run Keyword | Additional Statistics Action For ${action}
-| | END
-| | Sleep | ${duration}
-| | FOR | ${action} | IN | @{post_run_stats}
-| | | Run Keyword | Additional Statistics Action For ${action}
-| | END
-| | Stop traffic on tg
-
 | Start Traffic on Background
 | | [Documentation]
 | | ... | Start traffic at specified rate then return control to Robot.
@@ -708,28 +430,38 @@
 | | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
 | | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
 | | ... | Type: float
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: integer
-| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
-| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
-| | ... | - use_latency - Use latency stream in search; default value: False.
-| | ... | Type: boolean
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Start Traffic on Background \| ${4000000.0} \| \${2} \| \${0} \
-| | ... | \| \${1} \| ${True} \|
+| | ... | \| Start Traffic on Background \| ${4000000.0} \|
 | |
-| | [Arguments] | ${rate} | ${traffic_directions}=${2} | ${tx_port}=${0}
-| | ... | ${rx_port}=${1} | ${use_latency}=${False}
+| | [Arguments] | ${rate}
 | |
-| | # TODO: Call Resetter?
+| | ${transaction_duration} = | Get Transaction Duration
+| | ${transaction_scale} = | Get Transaction Scale
+| | ${traffic_directions} = | Get Traffic Directions
+| | ${transaction_directions} = | Get Transaction Directions
+| | ${transaction_type} = | Get Transaction Type
+| | ${use_latency} = | Get Use Latency
+| | Call Resetter
 | | # Duration of -1 means we will stop traffic manually.
-| | ${transaction_is} = | Get Variable Value | \${transaction_is} | packet
-| | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | warmup_time=${0} | async_call=${True} | use_latency=${use_latency}
-| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | ... | rx_port=${rx_port} | transaction_is=${transaction_is}
+| | Send traffic on tg
+| | ... | duration=${1-}
+| | ... | rate=${rate}
+| | ... | frame_size=${frame_size}
+| | ... | traffic_profile=${traffic_profile}
+| | ... | warmup_time=${0.0}
+| | ... | async_call=${True}
+| | ... | use_latency=${use_latency}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | transaction_directions=${transaction_directions}
+| | ... | transaction_type=${transaction_type}
+| | ... | tx_port=${0}
+| | ... | rx_port=${1}
+| | ... | transaction_scale=${transaction_scale}
+| | ... | transaction_duration=${transaction_duration}
+| | ... | transaction_type=${transaction_type}
+| | ... | duration_limit=${0.0}
 
 | Stop Running Traffic
 | | [Documentation]
@@ -746,74 +478,38 @@
 | | ${result}= | Stop traffic on tg
 | | Return From Keyword | ${result}
 
-| Additional Statistics Action For vpp-clear-stats
+| Traffic should pass with maximum rate
 | | [Documentation]
-| | ... | Additional Statistics Action for clear VPP statistics.
+| | ... | Send traffic at maximum rate.
+| | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
-| | Clear Statistics On All DUTs | ${nodes}
-
-| Additional Statistics Action For vpp-show-stats
-| | [Documentation]
-| | ... | Additional Statistics Action for show VPP statistics.
+| | ... | *Test (or broader scope) variables read:*
+| | ... | - traffic_profile - Name of module defining traffic for measurements.
+| | ... | Type: string
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+| | ... | string
+| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
+| | ... | Type: float
+| | ... | - transaction_type - String identifier to determine how to count
+| | ... | transactions. Default is "packet".
 | |
-| | Show Statistics On All DUTs | ${nodes}
-
-| Additional Statistics Action For vpp-clear-runtime
-| | [Documentation]
-| | ... | Additional Statistics Action for clear VPP runtime.
+| | ... | *Example:*
 | |
-| | VPP Clear Runtime On All DUTs | ${nodes}
-
-| Additional Statistics Action For vpp-show-runtime
-| | [Documentation]
-| | ... | Additional Statistics Action for show VPP runtime.
+| | ... | \| Traffic should pass with maximum rate \|
 | |
-| | VPP Show Runtime On All DUTs | ${nodes}
-
-| Additional Statistics Action For vpp-enable-packettrace
-| | [Documentation]
-| | ... | Additional Statistics Action for enable VPP packet trace.
-| |
-| | Run Keyword If | ${extended_debug}==${True}
-| | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
-
-| Additional Statistics Action For vpp-show-packettrace
-| | [Documentation]
-| | ... | Additional Statistics Action for show VPP packet trace.
-| |
-| | Run Keyword If | ${extended_debug}==${True}
-| | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
-
-| Additional Statistics Action For vpp-enable-elog
-| | [Documentation]
-| | ... | Additional Statistics Action for enable VPP elog trace.
-| |
-| | VPP Enable Elog Traces On All DUTs | ${nodes}
-
-| Additional Statistics Action For vpp-show-elog
-| | [Documentation]
-| | ... | Additional Statistics Action for show VPP elog trace.
-| |
-| | Show Event Logger On All DUTs | ${nodes}
-
-| Additional Statistics Action For bash-perf-stat
-| | [Documentation]
-| | ... | Additional Statistics Action for bash command "perf stat".
-| |
-| | Run Keyword If | ${extended_debug}==${True}
-| | ... | Perf Stat On All DUTs | ${nodes} | cpu_list=${cpu_alloc_str}
-
-| Additional Statistics Action For clear-show-runtime-with-traffic
-| | [Documentation]
-| | ... | Additional Statistics Action for clear and show runtime counters with
-| | ... | running traffic.
-| |
-| | Clear and show runtime counters with running traffic
-| | ... | ${trial_duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
-
-| Additional Statistics Action For noop
-| | [Documentation]
-| | ... | Additional Statistics Action for no operation.
-| |
-| | No operation
+| | ${transaction_type} = | Get Transaction Type
+| | ${trial_duration} = | Get Mrr Trial Duration
+| | ${trial_multiplicity} = | Get Mrr Trial Multiplicity
+| | ${use_latency} = | Get Use Latency
+| | ${results} = | Send traffic at specified rate
+| | ... | trial_duration=${trial_duration}
+| | ... | rate=${max_rate}
+| | ... | trial_multiplicity=${trial_multiplicity}
+| | ... | use_latency=${use_latency}
+| | ... | duration_limit=${0.0}
+| | ${unit} = | Set Variable If | """${transaction_type}""" == """packet"""
+| | ... | packets per second | estimated connections per second
+| | Set Test Message | ${\n}Maximum Receive Rate trial results
+| | Set Test Message | in ${unit}: ${results}
+| | ... | append=yes
+| | Run Keyword If | ${fail_no_traffic} | Fail if no traffic forwarded

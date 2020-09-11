@@ -87,7 +87,7 @@ def simple_burst(
 
     :param profile_file: A python module with T-rex traffic profile.
     :param duration: Duration of transaction creation phase [s] (-1=infinite).
-        It is expected the value is large enough for n_transactions to start.
+        It is expected the value is large enough for transaction scale to start.
     :param framesize: Frame size.
     :param multiplier: Multiplier of profile CPS.
     :param port_0: Port 0 on the traffic generator.
