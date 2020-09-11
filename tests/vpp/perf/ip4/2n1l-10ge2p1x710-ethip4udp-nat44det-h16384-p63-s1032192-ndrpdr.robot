@@ -79,6 +79,9 @@
 | ${n_hosts}= | ${16384}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Ramp-up settings
+| ${ramp_up_rate}= | ${400000}
+| ${ramp_up_duration}= | ${5.1}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-16384u63p
 
@@ -99,15 +102,10 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| |
 | | ${pre_stats}= | Create List
-| | ... | clear-show-runtime-with-traffic | vpp-det44-verify-sessions
+| | ... | ramp-up | vpp-det44-verify-sessions | clear-show-runtime-with-traffic
 | | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
 | | Set Test Variable | ${pre_stats}
-| | # Trial duration extension for pre_stat action
-| | Set Test Variable | ${pre_stats_duration_ext} | ${2.1}
-| | # Reduce the rate for pre_stat action
-| | Set Test Variable | ${pre_stats_rate} | ${400000}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}

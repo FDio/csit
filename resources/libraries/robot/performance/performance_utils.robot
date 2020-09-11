@@ -30,11 +30,6 @@
 | ${trial_duration}= | ${PERF_TRIAL_DURATION}
 | ${trial_multiplicity}= | ${PERF_TRIAL_MULTIPLICITY}
 | ${extended_debug}= | ${EXTENDED_DEBUG}
-| # Variable holding trial duration extension [s] used in pre_stats action
-| # clear-show-runtime-with-traffic. By default it is set to 0 but some
-| # tests (e.g. NAT) needs this duration extension in ramp up phase (e.g. to
-| # create all required nat sessions).
-| ${pre_stats_duration_ext}= | ${0}
 
 *** Keywords ***
 | Find NDR and PDR intervals using optimized search
@@ -575,6 +570,37 @@
 | | END
 | | Stop traffic on tg
 
+| Send ramp-up traffic
+| | [Documentation]
+| | ... | Start ramp-up traffic at specified rate. Stop traffic after defined
+| | ... | duration.
+| |
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
+| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
+| | ... | Type: float
+| | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer or string
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG, default value: 1. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Clear and show runtime counters with running traffic \| \${10} \
+| | ... | \| ${4000000.0} \| \${64} \| 3-node-IPv4 \| \${2} \| \${0} \| \${1} \|
+| |
+| | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
+| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
+| |
+| | Send traffic on tg | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
+| | ... | warmup_time=${0} | async_call=${True} | latency=${False}
+| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | ... | rx_port=${rx_port}
+
 | Start Traffic on Background
 | | [Documentation]
 | | ... | Start traffic at specified rate then return control to Robot.
@@ -686,11 +712,18 @@
 | | ... | Additional Statistics Action for clear and show runtime counters with
 | | ... | running traffic.
 | |
-| | ${trial_duration}= | Evaluate
-| | ... | ${trial_duration} + ${pre_stats_duration_ext}
-| | ${rate}= | Get Variable Value | ${pre_stats_rate} | ${rate}
 | | Clear and show runtime counters with running traffic
 | | ... | ${trial_duration} | ${rate}
+| | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}
+| | ... | ${tx_port} | ${rx_port}
+
+| Additional Statistics Action For ramp-up
+| | [Documentation]
+| | ... | Additional Statistics Action for ramp-up phase to create all required
+| | ... | entries (FIB, NAT,...).
+| |
+| | Send ramp-up traffic
+| | ... | ${ramp_up_duration} | ${ramp_up_rate}
 | | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}
 | | ... | ${tx_port} | ${rx_port}
 
