@@ -191,6 +191,12 @@
 | |
 | | Show DET44 | ${node}
 
+| Verify DET44 sessions number on DUT1 node
+| | [Documentation] | Verify that all required DET44 sessions are established on
+| | ... | DUT1 node.
+| |
+| | Verify DET44 sessions number | ${nodes['DUT1']} | ${n_sessions}
+
 | Verify DET44 sessions number
 | | [Documentation] | Verify that all required DET44 sessions are established.
 | |
