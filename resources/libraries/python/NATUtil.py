@@ -141,7 +141,7 @@ class NATUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show nat44 summary")
+        return PapiSocketExecutor.run_cli_cmd(node, u"show nat44 summary")
 
     @staticmethod
     def show_nat_base_data(node):
@@ -184,6 +184,28 @@ class NATUtil:
             u"nat44_user_session_dump",
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
+
+    @staticmethod
+    def get_nat44_sessions_number(node, proto):
+        """Get number of established NAT44 sessions from actual NAT44 mapping
+        data.
+
+        :param node: DUT node.
+        :param proto: Required protocol - TCP/UDP/ICMP.
+        :type node: dict
+        :type proto: str
+        :returns: Number of established NAT44 sessions.
+        :rtype: int
+        :raises ValueError: If not supported protocol.
+        """
+        if proto in [u"UDP", u"TCP", u"ICMP"]:
+            nat44_data = dict()
+            for line in NATUtil.show_nat44_summary(node).splitlines():
+                k, v = line.split(u":") if u":" in line else (line, None)
+                nat44_data[k] = v.strip()
+            return nat44_data.get(f"total {proto.lower()} sessions", 0)
+        else:
+            raise ValueError(f"Unsupported protocol: {proto}!")
 
     # DET44 PAPI calls
     # DET44 means deterministic mode of NAT44
