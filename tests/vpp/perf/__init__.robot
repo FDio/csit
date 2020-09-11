@@ -53,9 +53,15 @@
 | | ... | vpp-clear-runtime
 | | ${post_run_stats}= | Create List
 | | ... | vpp-show-runtime | bash-perf-stat
+| | ${pre_measure_actions}= | Create List
+| | ... | noop
+| | ${post_measure_actions}= | Create List
+| | ... | noop
 | | Set Global Variable | ${pre_stats}
 | | Set Global Variable | ${post_stats}
 | | Set Global Variable | ${pre_run_stats}
 | | Set Global Variable | ${post_run_stats}
+| | Set Global Variable | ${pre_measure_actions}
+| | Set Global Variable | ${post_measure_actions}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
 | | Set Global Variable | ${nodes}
