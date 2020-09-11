@@ -85,11 +85,11 @@
 # Scale settings:
 | ${n_hosts}= | ${1024}
 | ${n_ports}= | ${63}
-| ${n_transactions}= | ${${n_hosts} * ${n_ports}}
-| ${packets_per_transaction}= | ${3}
+| ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
+| ${packets_per_transaction_and_direction}= | ${3}
 # Traffic profile:
 | ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h
-| ${transaction_is}= | tcp_cps
+| ${transaction_type}= | tcp_cps
 | ${disable_latency}= | ${True}
 
 *** Keywords ***
