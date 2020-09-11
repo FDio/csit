@@ -88,6 +88,8 @@
 # Trial data overwrite
 | ${trial_duration}= | ${1.1}
 | ${trial_multiplicity}= | ${1}
+# Main heap size multiplicator
+| ${heap_size_mult}= | ${2}
 
 *** Keywords ***
 | Local Template

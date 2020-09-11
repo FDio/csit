@@ -81,6 +81,8 @@
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-262144u63p
+# Main heap size multiplicator
+| ${heap_size_mult}= | ${3}
 
 *** Keywords ***
 | Local Template
