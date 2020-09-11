@@ -185,6 +185,22 @@ class NATUtil:
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
 
+    @staticmethod
+    def compute_max_translations_per_thread(sessions, threads):
+        """Compute value of max_translation_per_thread NAT44 parameter based on
+        total number of worker threads.
+
+        :param sessions: Required number of NAT44 sessions.
+        :param threads: Number of worker threads.
+        :type sessions: int
+        :type threads: int
+        :returns: Value of max_translation_per_thread NAT44 parameter.
+        :rtype: int
+        """
+        from math import log2, modf
+        rest, mult = modf(log2(sessions/(10*threads)))
+        return 2 ** (int(mult) + (1 if rest else 0)) * 10
+
     # DET44 PAPI calls
     # DET44 means deterministic mode of NAT44
     @staticmethod
