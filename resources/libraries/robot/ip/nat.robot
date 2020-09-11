@@ -108,6 +108,38 @@
 | | ... | ${dut2} | ${out_net} | ${out_mask} | gateway=${dut1_if2_ip4}
 | | ... | interface=${DUT2_${int}1}[0]
 
+| Verify NAT44 TCP sessions number on DUT1 node
+| | [Documentation] | Verify that all required NAT44 TCP sessions are
+| | ... | established on DUT1 node.
+| |
+| | Verify NAT44 sessions number | ${nodes['DUT1']} | ${n_sessions} | TCP
+
+| Verify NAT44 UDP sessions number on DUT1 node
+| | [Documentation] | Verify that all required NAT44 UDP sessions are
+| | ... | established on DUT1 node.
+| |
+| | Verify NAT44 sessions number | ${nodes['DUT1']} | ${n_sessions} | UDP
+
+| Verify NAT44 sessions number
+| | [Documentation] | Verify that all required NAT44 sessions of required
+| | ... | protocol are established.
+| |
+| | ... | *Arguments:*
+| | ... | - node - DUT node. Type: dictionary
+| | ... | - exp_n_sessions - Expected number of NAT44 sessions. Type: integer
+| | ... | - proto - Required protocol. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Verify NAT44 sessions number \| ${nodes['DUT1']} \| ${64512} \
+| | ... | \| UDP \|
+| |
+| | [Arguments] | ${node} | ${exp_n_sessions} | ${proto}
+| |
+| | ${nat44_sessions}= | Get NAT44 Sessions Number | ${node} | ${proto}
+| | Should Be Equal As Integers | ${nat44_sessions} | ${exp_n_sessions}
+| | ... | Not all NAT44 ${proto} sessions have been established
+
 # DET44 - NAT44 deterministic
 | Enable DET44 plugin on DUT
 | | [Documentation] | Enable DET44 plugin on DUT.
