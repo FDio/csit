@@ -80,6 +80,13 @@
 | ${out_net}= | 68.142.68.0
 | ${out_net_end}= | 68.142.68.63
 | ${out_mask}= | ${26}
+# Scale settings
+| ${n_hosts}= | ${65536}
+| ${n_ports}= | ${63}
+| ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Ramp-up settings
+| ${ramp_up_rate}= | ${200000}
+| ${ramp_up_duration}= | ${23.5}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4udp-65536u63p-udir
 
@@ -100,6 +107,9 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
+| | ${pre_measure_actions}= | Create List
+| | ... | ramp-up | vpp-nat44-verify-udp-sessions
+| | Set Test Variable | ${pre_measure_actions}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
