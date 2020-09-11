@@ -30,6 +30,10 @@
 | ${trial_duration}= | ${PERF_TRIAL_DURATION}
 | ${trial_multiplicity}= | ${PERF_TRIAL_MULTIPLICITY}
 | ${extended_debug}= | ${EXTENDED_DEBUG}
+| # Variable holding multiplicator of main heap size. By default it is set to 1
+| # that means the main heap size will be set to 2G. Some tests may require more
+| # memory for IP FIB (e.g. nat44det tests with 4M or 16M sessions).
+| ${heap_size_mult}= | ${1}
 | # Variable holding trial duration extension [s] used in pre_stats action
 | # clear-show-runtime-with-traffic. By default it is set to 0 but some
 | # tests (e.g. NAT) needs this duration extension in ramp up phase (e.g. to

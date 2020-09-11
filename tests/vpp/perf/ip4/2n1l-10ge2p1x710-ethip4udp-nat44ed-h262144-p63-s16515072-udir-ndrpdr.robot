@@ -82,6 +82,8 @@
 | ${out_mask}= | ${24}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4udp-262144u63p-udir
+# Main heap size multiplicator
+| ${heap_size_mult}= | ${3}
 
 *** Keywords ***
 | Local Template
