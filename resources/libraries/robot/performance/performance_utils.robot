@@ -595,7 +595,7 @@
 | | ... | \| Send ramp-up traffic \| \${10} \| ${400000.0} \| ${64} \
 | | ... | \| ${2} \| ${0} \| ${1} \|
 | |
-| | [Arguments] | ${duration}=${ramp_up_rate} | ${rate}=${ramp_up_duration}
+| | [Arguments] | ${duration}=${ramp_up_duration} | ${rate}=${ramp_up_rate}
 | | ... | ${frame_size}=${frame_size} | ${traffic_profile}=${traffic_profile}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | |
