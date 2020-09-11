@@ -734,6 +734,20 @@
 | |
 | | Verify DET44 sessions number | ${nodes['DUT1']} | ${n_sessions}
 
+| Additional Statistics Action For vpp-nat44-verify-tcp-sessions
+| | [Documentation]
+| | ... | Additional Statistics Action to verify that all required NAT44
+| | ... | sessions are established.
+| |
+| | Verify NAT44 sessions number | ${nodes['DUT1']} | ${n_sessions} | TCP
+
+| Additional Statistics Action For vpp-nat44-verify-udp-sessions
+| | [Documentation]
+| | ... | Additional Statistics Action to verify that all required NAT44
+| | ... | sessions are established.
+| |
+| | Verify NAT44 sessions number | ${nodes['DUT1']} | ${n_sessions} | UDP
+
 | Additional Statistics Action For noop
 | | [Documentation]
 | | ... | Additional Statistics Action for no operation.
