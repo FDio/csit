@@ -79,6 +79,9 @@
 | ${n_hosts}= | ${262144}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Ramp-up settings
+| ${ramp_up_rate}= | ${200000}
+| ${ramp_up_duration}= | ${82.8}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-262144u63p
 # Main heap size multiplicator
@@ -102,15 +105,6 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | ${pre_stats}= | Create List
-| | ... | clear-show-runtime-with-traffic | vpp-det44-verify-sessions
-| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
-| | Set Test Variable | ${pre_stats}
-| | # Trial duration extension for pre_stat action
-| | Set Test Variable | ${pre_stats_duration_ext} | ${80.1}
-| | # Reduce the rate for pre_stat action
-| | Set Test Variable | ${pre_stats_rate} | ${200000}
-| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
@@ -119,7 +113,9 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 deterministic mode in circular topology
-| | Then Find NDR and PDR intervals using optimized search
+| | Then Send ramp-up traffic
+| | And Verify DET44 sessions number on DUT1 node
+| | And Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr
