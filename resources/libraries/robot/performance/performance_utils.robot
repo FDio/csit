@@ -30,11 +30,6 @@
 | ${trial_duration}= | ${PERF_TRIAL_DURATION}
 | ${trial_multiplicity}= | ${PERF_TRIAL_MULTIPLICITY}
 | ${extended_debug}= | ${EXTENDED_DEBUG}
-| # Variable holding trial duration extension [s] used in pre_stats action
-| # clear-show-runtime-with-traffic. By default it is set to 0 but some
-| # tests (e.g. NAT) needs this duration extension in ramp up phase (e.g. to
-| # create all required nat sessions).
-| ${pre_stats_duration_ext}= | ${0}
 
 *** Keywords ***
 | Find NDR and PDR intervals using optimized search
@@ -72,6 +67,8 @@
 | | ... | Type: integer
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
 | | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
 | | ... | - latency_duration - Duration for latency-specific trials. Type: float
 | | ... | - latency - False to disable latency measurement; default value: True.
 | | ... | Type: boolean
@@ -80,16 +77,24 @@
 | |
 | | ... | \| Find NDR and PDR intervals using optimized search \| \${0.005} \
 | | ... | \| \${0.005} \| \${30.0} \| \${1.0} \| \${2} \| \${600.0} \| \${2} \
-| | ... | \| \${2} \| ${5.0} \|
+| | ... | \| \${2} \| \${0} \| \${1} \| ${5.0} \|
 | |
 | | [Arguments] | ${packet_loss_ratio}=${0.005}
 | | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
 | | ... | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${720.0}
-| | ... | ${doublings}=${2} | ${traffic_directions}=${2}
-| | ... | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
+| | ... | ${doublings}=${2} | ${traffic_directions}=${2} | ${tx_port}=${0}
+| | ... | ${rx_port}=${1} | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
 | | ... | ${latency}=${True}
 | |
+| | # Following setting of test variables is needed for some pre_measure_actions.
+| | Set Test Variable | ${traffic_directions}
+| | Set Test Variable | ${tx_port}
+| | Set Test Variable | ${rx_port}
+| |
+| | FOR | ${action} | IN | @{pre_measure_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | # Latency measurements will need more than 9000 pps.
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${traffic_profile} | ${9001} | ${max_rate}
@@ -98,6 +103,9 @@
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
 | | ... | latency=${latency}
+| | FOR | ${action} | IN | @{post_measure_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
@@ -161,6 +169,8 @@
 | | ... | Type: integer
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
 | | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
 | | ... | - latency - True to enable latency measurement; default value: False.
 | | ... | Type: boolean
 | |
@@ -177,8 +187,17 @@
 | | ... | ${final_relative_width}=${0.001} | ${final_trial_duration}=${10.0}
 | | ... | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${1} | ${timeout}=${720.0}
-| | ... | ${doublings}=${2} | ${traffic_directions}=${2} | ${latency}=${False}
+| | ... | ${doublings}=${2} | ${traffic_directions}=${2} | ${tx_port}=${0}
+| | ... | ${rx_port}=${1} | ${latency}=${False}
 | |
+| | # Following setting of test variables is needed for some pre_measure_actions.
+| | Set Test Variable | ${traffic_directions}
+| | Set Test Variable | ${tx_port}
+| | Set Test Variable | ${rx_port}
+| |
+| | FOR | ${action} | IN | @{pre_measure_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${traffic_profile} | ${10000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
@@ -186,6 +205,9 @@
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
 | | ... | latency=${latency}
+| | FOR | ${action} | IN | @{post_measure_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Return From Keyword | ${result.pdr_interval.measured_low.target_tr}
@@ -213,6 +235,8 @@
 | | ... | - timeout - Stop when search duration is longer [s]. Type: float
 | | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
 | | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
 | | ... | - latency - True to enable latency measurement; default value: False.
 | | ... | Type: boolean
 | |
@@ -222,13 +246,25 @@
 | | ... | \| \${2} \|
 | |
 | | [Arguments] | ${packet_loss_ratio}=${1e-7} | ${timeout}=${1800.0}
-| | ... | ${traffic_directions}=${2} | ${latency}=${False}
+| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
+| | ... | ${latency}=${False}
 | |
+| | # Following setting of test variables is needed for some pre_measure_actions.
+| | Set Test Variable | ${traffic_directions}
+| | Set Test Variable | ${tx_port}
+| | Set Test Variable | ${rx_port}
+| |
+| | FOR | ${action} | IN | @{pre_measure_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${min_rate} = | Set Variable | ${10000}
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
 | | ... | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${packet_loss_ratio} | timeout=${timeout}
 | | ... | traffic_directions=${traffic_directions} | latency=${latency}
+| | FOR | ${action} | IN | @{post_measure_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Should Not Be True | 1.1 * ${traffic_directions} * ${min_rate} > ${lower}
@@ -418,10 +454,21 @@
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ... | ${latency}=${False}
 | |
+| | # Following setting of test variables is needed for some pre_measure_actions.
+| | Set Test Variable | ${traffic_directions}
+| | Set Test Variable | ${tx_port}
+| | Set Test Variable | ${rx_port}
+| |
+| | FOR | ${action} | IN | @{pre_measure_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${results}= | Send traffic at specified rate
 | | ... | ${trial_duration} | ${max_rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${trial_multiplicity}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port} | latency=${latency}
+| | FOR | ${action} | IN | @{post_measure_actions}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
 | | ... | append=yes
@@ -464,13 +511,9 @@
 | | ... | ${extended_debug}=${extended_debug} | ${latency}=${False}
 | |
 | | Set Test Variable | ${extended_debug}
-| | # Following setting of test variables is needed as
-| | # "Clear and show runtime counters with running traffic" has been moved to
-| | # pre_stats actions.
+| | # Following setting of test variables is needed for some pre_stats actions.
 | | Set Test Variable | ${rate}
-| | Set Test Variable | ${traffic_directions}
-| | Set Test Variable | ${tx_port}
-| | Set Test Variable | ${rx_port}
+| |
 | | FOR | ${action} | IN | @{pre_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
@@ -478,10 +521,10 @@
 | | FOR | ${i} | IN RANGE | ${trial_multiplicity}
 | | | # The following line is skipping some default arguments,
 | | | # that is why subsequent arguments have to be named.
-| | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
-| | | ... | ${traffic_profile} | warmup_time=${0}
-| | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | | ... | rx_port=${rx_port} | latency=${latency}
+| | | Send traffic on tg
+| | | ... | ${trial_duration} | ${rate} | ${frame_size} | ${traffic_profile}
+| | | ... | warmup_time=${0} | traffic_directions=${traffic_directions}
+| | | ... | tx_port=${tx_port} | rx_port=${rx_port} | latency=${latency}
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
@@ -574,6 +617,36 @@
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | Stop traffic on tg
+
+| Send ramp-up traffic
+| | [Documentation]
+| | ... | Start ramp-up traffic at specified rate for defined duration.
+| |
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
+| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
+| | ... | Type: float
+| | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer or string
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG, default value: 1. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Clear and show runtime counters with running traffic \| \${10} \
+| | ... | \| ${4000000.0} \| \${64} \| 3-node-IPv4 \| \${2} \| \${0} \| \${1} \|
+| |
+| | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
+| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
+| |
+| | Send traffic on tg
+| | ... | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
+| | ... | warmup_time=${0} | traffic_directions=${traffic_directions}
+| | ... | tx_port=${tx_port} | rx_port=${rx_port} | latency=${False}
 
 | Start Traffic on Background
 | | [Documentation]
@@ -686,11 +759,18 @@
 | | ... | Additional Statistics Action for clear and show runtime counters with
 | | ... | running traffic.
 | |
-| | ${trial_duration}= | Evaluate
-| | ... | ${trial_duration} + ${pre_stats_duration_ext}
-| | ${rate}= | Get Variable Value | ${pre_stats_rate} | ${rate}
 | | Clear and show runtime counters with running traffic
 | | ... | ${trial_duration} | ${rate}
+| | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}
+| | ... | ${tx_port} | ${rx_port}
+
+| Additional Statistics Action For ramp-up
+| | [Documentation]
+| | ... | Additional Statistics Action for ramp-up phase to create all required
+| | ... | entries (FIB, NAT,...).
+| |
+| | Send ramp-up traffic
+| | ... | ${ramp_up_duration} | ${ramp_up_rate}
 | | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}
 | | ... | ${tx_port} | ${rx_port}
 
