@@ -80,6 +80,9 @@
 | ${out_net}= | 68.142.68.0
 | ${out_net_end}= | 68.142.68.255
 | ${out_mask}= | ${24}
+# Ramp-up settings
+| ${ramp_up_rate}= | ${200000}
+| ${ramp_up_duration}= | ${82.5}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4udp-262144u63p-udir
 
@@ -100,6 +103,10 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
+| | ${pre_stats}= | Create List
+| | ... | ramp-up | vpp-nat44-verify-sessions | clear-show-runtime-with-traffic
+| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
+| | Set Test Variable | ${pre_stats}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
