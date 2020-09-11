@@ -74,12 +74,15 @@
 | ${dest_mask}= | ${8}
 # NAT settings
 | ${nat_mode}= | endpoint-dependent
-| ${max_translations_per_thread}= | 16515072
 | ${in_net}= | 192.168.0.0
 | ${in_mask}= | ${8}
 | ${out_net}= | 68.142.68.0
 | ${out_net_end}= | 68.142.68.255
 | ${out_mask}= | ${24}
+# Scale settings
+| ${n_hosts}= | ${262144}
+| ${n_ports}= | ${63}
+| ${n_sessions}= | ${${n_hosts} * ${n_ports}}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4udp-262144u63p-udir
 
@@ -105,6 +108,8 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Add NAT to all DUTs | nat_mode=${nat_mode}
+| | ${max_translations_per_thread}= | Compute Max Translations Per Thread
+| | ... | ${n_sessions} | ${thr_count_int}
 | | And Add NAT max translations per thread to all DUTs
 | | ... | ${max_translations_per_thread}
 | | And Apply startup configuration on all VPP DUTs
