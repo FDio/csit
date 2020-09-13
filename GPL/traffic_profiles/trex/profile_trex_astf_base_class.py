@@ -68,8 +68,6 @@ class TrafficProfileBaseClass:
         :returns: The generated padding.
         :rtype: str
         """
-        # TODO: Add support for IMIX frame size;
-        #  use random.randrange(0, len(self.STREAM_TABLE[self.framesize])) ?
         if not required_length:
             required_length = self.framesize
 
