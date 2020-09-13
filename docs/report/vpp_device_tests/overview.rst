@@ -132,6 +132,10 @@ environment:
 +-----------------------+----------------------------------------------+
 | Memif Interface       | Baseline VPP memif interface tests.          |
 +-----------------------+----------------------------------------------+
+| NAT44                 | Network Address and Port Translation         |
+|                       | deterministic mode and endpoint-dependent    |
+|                       | mode tests for IPv4.                         |
++-----------------------+----------------------------------------------+
 | QoS Policer Metering  | Ingress packet rate metering and marking for |
 |                       | IPv4, IPv6.                                  |
 +-----------------------+----------------------------------------------+
