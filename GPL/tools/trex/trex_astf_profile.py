@@ -156,6 +156,8 @@ def simple_burst(
                     print(warning)
 
             client.reset()
+            # Load the profile as client.reset() removes loaded profile(s).
+            client.load_profile(profile)
 
             print(u"##### Warmup Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
@@ -221,10 +223,10 @@ def simple_burst(
                 for warning in client.get_warnings():
                     print(warning)
 
-            client.reset()
-
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
+
+            client.reset()
 
             approximated_duration = list(sorted(stats.keys()))[-1]
             stats = stats[sorted(stats.keys())[-1]]
@@ -380,6 +382,7 @@ def simple_burst(
             if async_start:
                 client.disconnect(stop_traffic=False, release_ports=True)
             else:
+                client.acquire(force=True)
                 client.clear_profile()
                 client.disconnect()
                 print(

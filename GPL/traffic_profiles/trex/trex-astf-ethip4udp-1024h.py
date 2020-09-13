@@ -65,33 +65,6 @@ class TrafficProfile(TrafficProfileBaseClass):
         :returns: IP generator and profile templates ASTFProfile().
         :rtype: tuple
         """
-        self.udp_req += self._gen_padding(self.headers_size + len(self.udp_req))
-        self.udp_res += self._gen_padding(self.headers_size + len(self.udp_res))
-
-        # client commands
-        prog_c = ASTFProgram(stream=False)
-        # set the keepalive timer for UDP flows to not close udp session
-        # immediately after packet exchange
-        prog_c.set_keepalive_msg(self.udp_keepalive)
-        # send REQ message
-        prog_c.send_msg(self.udp_req)
-        # receive RES message
-        prog_c.recv_msg(1)
-
-        prog_c.delay(self.udp_keepalive * 1000)  # delay is defined in usec
-
-        # server commands
-        prog_s = ASTFProgram(stream=False)
-        # set the keepalive timer for UDP flows to not close udp session
-        # immediately after packet exchange
-        prog_c.set_keepalive_msg(self.udp_keepalive)
-        # receive REQ message
-        prog_s.recv_msg(1)
-        # send RES message
-        prog_s.send_msg(self.udp_res)
-
-        prog_s.delay(self.udp_keepalive * 1000)  # delay is defined in usec
-
         # ip generators
         ip_gen_c = ASTFIPGenDist(
             ip_range=[self.p1_src_start_ip, self.p1_src_end_ip],
@@ -107,20 +80,73 @@ class TrafficProfile(TrafficProfileBaseClass):
             dist_server=ip_gen_s
         )
 
-        # server association
-        s_assoc = ASTFAssociation(rules=ASTFAssociationRule(port=8080))
+        # templates
+        templates = list()
+        streams = list()
 
-        # template
-        temp_c = ASTFTCPClientTemplate(
-            program=prog_c,
-            ip_gen=ip_gen,
-            limit=64512,  # TODO: set via input parameter ?
-            port=8080
-        )
-        temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
-        template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
+        # Frame size is defined as an integer, e.g. 64, 1518:
+        if isinstance(self.framesize, int):
+            streams.append({u"size": self.framesize, u"cps": 1})
+        # Frame size is defined as a string, e.g.IMIX_v4_1:
+        elif isinstance(self.framesize, str):
+            for stream in self.STREAM_TABLE[self.framesize]:
+                streams.append(
+                    {u"size": stream[u"size"], u"cps": stream[u"pps"]}
+                )
 
-        return ip_gen, template, None
+        # destination port
+        dport = 8080
+        for stream in streams:
+            self.udp_req += self._gen_padding(
+                self.headers_size + len(self.udp_req), stream[u"size"]
+            )
+            self.udp_res += self._gen_padding(
+                self.headers_size + len(self.udp_res), stream[u"size"]
+            )
+
+            # client commands
+            prog_c = ASTFProgram(stream=False)
+            # set the keepalive timer for UDP flows to not close udp session
+            # immediately after packet exchange
+            prog_c.set_keepalive_msg(self.udp_keepalive)
+            # send REQ message
+            prog_c.send_msg(self.udp_req)
+            # receive RES message
+            prog_c.recv_msg(1)
+            prog_c.delay(self.udp_keepalive * 1000)  # delay is defined in usec
+
+            # server commands
+            prog_s = ASTFProgram(stream=False)
+            # set the keepalive timer for UDP flows to not close udp session
+            # immediately after packet exchange
+            prog_c.set_keepalive_msg(self.udp_keepalive)
+            # receive REQ message
+            prog_s.recv_msg(1)
+            # send RES message
+            prog_s.send_msg(self.udp_res)
+            prog_s.delay(self.udp_keepalive * 1000)  # delay is defined in usec
+
+            # server association
+            s_assoc = ASTFAssociation(
+                rules=ASTFAssociationRule(port=dport + streams.index(stream))
+            )
+
+            # template
+            temp_c = ASTFTCPClientTemplate(
+                program=prog_c,
+                ip_gen=ip_gen,
+                port=dport + streams.index(stream),
+                cps=stream[u"cps"],
+                limit=64512 - 64512 // len(streams) * (len(streams) - 1)
+                if streams.index(stream) == len(streams) - 1
+                else 64512 // len(streams),  # TODO: set via input parameter ?
+            )
+            temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
+            templates.append(
+                ASTFTemplate(client_template=temp_c, server_template=temp_s)
+            )
+
+        return ip_gen, templates, None
 
 
 def register():
