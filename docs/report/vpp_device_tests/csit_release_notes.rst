@@ -7,12 +7,11 @@ Changes in |csit-release|
 #. TEST FRAMEWORK
 
    - **Bug fixes**.
-   - **ARM platform compatibility**.
 
 #. TEST COVERAGE
 
-   - Increased test coverage: **IPsec Interface**, **SRv6**.
-   - Align vpp_device L2 Robot Keywords with performance L2 Robot Keywords.
+   - Increased test coverage: **NAT44-DET**, **NAT44-ED**.
+   - Aligned vpp_device NAT Robot Keywords with performance NAT Robot Keywords.
 
 Known Issues
 ------------
