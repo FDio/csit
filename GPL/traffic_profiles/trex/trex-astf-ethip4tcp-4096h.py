@@ -68,6 +68,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         prog_c.connect()
         # receive syn-ack (0B sent in tcp syn-ack packet) and send ack
         prog_c.recv(0)
+        # send fin-ack
 
         # server commands
         prog_s = ASTFProgram()
