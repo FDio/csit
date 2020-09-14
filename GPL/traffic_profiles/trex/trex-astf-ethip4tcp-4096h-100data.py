@@ -12,22 +12,18 @@
 # limitations under the License.
 
 """Traffic profile for T-rex advanced stateful (astf) traffic generator.
-
 Traffic profile:
  - Two streams sent in directions 0 --> 1 (client -> server, requests) and
    1 --> 0 (server -> client, responses) at the same time.
  - Packet: ETH / IP / TCP
  - Direction 0 --> 1:
-   - Source IP address range:      192.168.0.0 - 192.168.3.255
-   - Destination IP address range: 20.0.0.0 - 20.0.3.255
+   - Source IP address range:      192.168.0.0 - 192.168.15.255
+   - Destination IP address range: 20.0.0.0 - 20.0.15.255
  - Direction 1 --> 0:
    - Source IP address range:      destination IP address from packet received
      on port 1
    - Destination IP address range: source IP address from packet received
      on port 1
-
-This is a profile for CPS tests, it only sets up and tears down TCP session.
-No delays, no data transfer.
 """
 
 from trex.astf.api import *
@@ -44,38 +40,55 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # IPs used in packet headers.
         self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.3.255"
+        self.p1_src_end_ip = u"192.168.15.255"
         self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.3.255"
+        self.p1_dst_end_ip = u"20.0.15.255"
 
-        # Headers length; not used in this profile, just for the record of
-        # header length for TCP packet with 0B payload
-        self.headers_size = 58  # 14B l2 + 20B ipv4 + 24B tcp incl. 4B options
+        self.headers_size = 66  # 14B l2 + 20B ipv4 + 32B tcp incl. 12B options
+
+        self.tcp_data = u""
+
+        self.ndata = 100  # TODO: set via input parameter
+        self.delay = 36000000  # delay 36s (36,000,000 usec)
+        self.limit = 258048
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
         This method MUST return:
 
-            return ip_gen, templates, None
+            return ip_gen, templates
 
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
+        if self.framesize == 64:
+            self.mss = 18
+            self.payload_size = (self.ndata * 6) + self.headers_size
+        if self.framesize == 1518:
+            self.mss = 1460
+            self.payload_size = (self.ndata * 1448) + self.headers_size
+
+        self.tcp_data += self._gen_padding(self.headers_size, self.payload_size)
         # client commands
         prog_c = ASTFProgram()
-        # send syn
-        prog_c.connect()
-        # receive syn-ack (0B sent in tcp syn-ack packet) and send ack
-        prog_c.recv(0)
-        # send fin-ack
+        prog_c.connect()  # syn
+
+        prog_c.delay(self.delay)
+
+        prog_c.send(self.tcp_data)
+
+        prog_c.delay(self.delay)
 
         # server commands
         prog_s = ASTFProgram()
-        # receive syn, send syn-ack
-        prog_s.accept()
-        # receive fin-ack, send ack + fin-ack
-        prog_s.wait_for_peer_close()
+        prog_s.accept()  # syn-ack
+
+        prog_s.delay(self.delay)
+
+        prog_s.send(self.tcp_data)
+
+        prog_s.wait_for_peer_close()  # ack + fin-ack
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
@@ -92,6 +105,9 @@ class TrafficProfile(TrafficProfileBaseClass):
             dist_server=ip_gen_s
         )
 
+        glob_info = ASTFGlobalInfoPerTemplate()
+        glob_info.tcp.mss = self.mss
+
         # server association
         s_assoc = ASTFAssociation(rules=ASTFAssociationRule(port=8080))
 
@@ -99,10 +115,15 @@ class TrafficProfile(TrafficProfileBaseClass):
         temp_c = ASTFTCPClientTemplate(
             program=prog_c,
             ip_gen=ip_gen,
-            limit=64512,  # TODO: set via input parameter
-            port=8080
+            limit=self.limit,  # TODO: set via input parameter
+            port=8080,
+            glob_info=glob_info
         )
-        temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
+        temp_s = ASTFTCPServerTemplate(
+            program=prog_s,
+            assoc=s_assoc,
+            glob_info=glob_info
+        )
         template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
 
         return ip_gen, template, None
