@@ -10,13 +10,34 @@ Changes in |csit-release|
      :ref:`test_environment_versioning`.
 
    - To identify performance changes due to VPP code changes from
-     v20.01.0 to v20.05.0, both have been tested in CSIT environment
-     ver. 4 and compared against each other. All substantial
+     v20.05.0 to v20.09.0, both have been tested in CSIT environment
+     ver. 5 and compared against each other. All substantial
      progressions has been marked up with RCA analysis. See
      :ref:`vpp_compare_current_vs_previous_release` and
      :ref:`vpp_known_issues`.
 
+   - **NAT44 tests**: Adapted existing and added new tests.
+
+     - Refactored NAT44 deterministic mode (nat44det) tests to use separate
+       det44 plugin and to use the same numbers of users and ports per user as
+       used in new NAT44 endpoint-dependent mode tests.
+
+     - Added new NAT44 endpoint-depended mode uni-directional (nat44ed-udir)
+       tests that measure packet throughput in one direction with usage of TRex
+       in stateless mode.
+
+     - Added new NAT44 endpoint-dependent mode CPS tests that measure
+       connections per second with usage of TRex in stateful mode.
+       TODO: hide this item and add later with tests
+
+   - **IPSec async mode tests**: Added VPP performance tests for async crypto
+     engine.
+
+  - **AMD 2n-zn2 testbed**: TODO - hide, to be added later with tests data.
+
 #. TEST FRAMEWORK
+
+   - **TRex ASTF**: Added capability to run TRex in advanced stateful mode.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, VAT is
      still used in CSIT for all VPP scale tests. See known issues below.
@@ -25,10 +46,12 @@ Changes in |csit-release|
      removal of redundant RF keywords and aligning of suite/test
      setup/teardowns.
 
-#. PRESENTATION AND ANALYTICS LAYER
+   - **Intel E810CQ 100G NIC**: Added configuration for Intel E810CQ 100G NIC.
+
+#. PRESENTATION AND ANALYTICS LAYER - to be updated by Tibor
 
    - **Graphs layout improvements**: Improved performance graphs layout
-     for better readibility and maintenance: test grouping, axis
+     for better readability and maintenance: test grouping, axis
      labels, descriptions, other informative decoration.
 
 .. raw:: latex
@@ -40,7 +63,7 @@ Changes in |csit-release|
 Known Issues
 ------------
 
-List of known issues in |csit-release| for VPP performance tests:
+List of known issues in |csit-release| for VPP performance tests: TODO: check
 
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | #  | JiraID                                  | Issue Description                                                                                         |

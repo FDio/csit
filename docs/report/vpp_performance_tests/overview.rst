@@ -269,6 +269,8 @@ topologies and configurations:
   size is set to the bi-directional link rate, unless there is a known
   limitation preventing Traffic Generator from achieving the line rate.
 
+ - Connections per second (CPS): TODO
+
 |csit-release| includes following VPP data plane functionality
 performance tested across a range of NIC drivers and NIC models:
 
@@ -331,9 +333,10 @@ performance tested across a range of NIC drivers and NIC models:
 | Memif                 | with different VPP forwarding modes incl.    |
 |                       | L2XC, L2BD.                                  |
 +-----------------------+----------------------------------------------+
-| NAT                   | (Source) Network Address Translation tests   |
-|                       | with varying number of users and ports per   |
-|                       | user.                                        |
+| NAT                   | (Source) Network Address Translation         |
+|                       | deterministic mode and endpoint-dependent    |
+|                       | mode tests with varying number of users and  |
+|                       | ports per user.                              |
 +-----------------------+----------------------------------------------+
 | QoS Policer           | Ingress packet rate measuring, marking and   |
 |                       | limiting (IPv4).                             |
