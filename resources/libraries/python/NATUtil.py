@@ -354,3 +354,12 @@ class NATUtil:
             u"det44_session_dump",
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
+
+    @staticmethod
+    def show_det44_timeouts(node):
+        """Show timeout values for DET44 sessions.
+
+        :param node: DUT node.
+        :type node: dict
+        """
+        PapiSocketExecutor.dump_and_log(node, [u"det44_get_timeouts"])
