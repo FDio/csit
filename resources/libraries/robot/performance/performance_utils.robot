@@ -85,14 +85,13 @@
 | | ... | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
 | | ... | ${latency}=${True}
 | |
-| | # Latency measurements will need more than 9000 pps.
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${9001} | ${max_rate}
+| | ... | ${traffic_profile} | ${9000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
-| | ... | latency=${latency}
+| | ... | latency=${False}
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
