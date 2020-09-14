@@ -6,14 +6,7 @@ Changes in |csit-release|
 
 #. DPDK PERFORMANCE TESTS
 
-   - Refactor of CSIT initialization helper scripts for DPDK testpmd
-     and l3fwd. Removing obsolete parameters from DPDK testpmd and l3fwd
-     command line.
-
-   - Fixed 9000B L2 packet size tests not passing for all NICs.
-
-   - Fixed DPDK compilation and test initialization of Mellanox NICs using
-     CONFIG_RTE_LIBRTE_MLX5_PMD=y in compile configuration.
+   - Fixed DPDK compilation on ARM systems.
 
 #. DPDK RELEASE VERSION CHANGE
 
@@ -29,6 +22,9 @@ List of known issues in |csit-release| for DPDK performance tests:
 +----+------------------------------------------+----------------------------------------------------------------------------------------------------------+
 | #  | JiraID                                   | Issue Description                                                                                        |
 +====+==========================================+==========================================================================================================+
-| 1  | `CSIT-1701                               | DPDK L3fwd tests with 9000B L2 packet size are not passing with Mellanox NICs.                           |
-|    | <https://jira.fd.io/browse/CSIT-1701>`_  | L3fwd application does not accept parameter for increasing -mbuf-size in same way DPDK testpmd does.     |
-+----+------------------------------------------+----------------------------------------------------------------------------------------------------------+
+|  1 | `CSIT-1761                              | Denverton systems in FD.io CSIT lab (2n-dnv and 3n-dnv) reports dpdk compilation error very often.        |
+|    | <https://jira.fd.io/browse/CSIT-1761>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  2 | `CSIT-1762                              | TRex reports link DOWN in case of dpdk testpmd tests on FD.io CSIT Denverton systems (2n-dnv and 3n-dnv). |
+|    | <https://jira.fd.io/browse/CSIT-1762>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
