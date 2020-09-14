@@ -10,13 +10,34 @@ Changes in |csit-release|
      :ref:`test_environment_versioning`.
 
    - To identify performance changes due to VPP code changes from
-     v20.01.0 to v20.05.0, both have been tested in CSIT environment
-     ver. 4 and compared against each other. All substantial
+     v20.05.0 to v20.09.0, both have been tested in CSIT environment
+     ver. 5 and compared against each other. All substantial
      progressions has been marked up with RCA analysis. See
      :ref:`vpp_compare_current_vs_previous_release` and
      :ref:`vpp_known_issues`.
 
+   - **NAT44 tests**: Adapted existing and added new tests.
+
+     - Refactored NAT44 deterministic mode (nat44det) tests to use separate
+       det44 plugin and to use the same numbers of users and ports per user as
+       used in new NAT44 endpoint-dependent mode tests.
+
+     - Added new NAT44 endpoint-depended mode uni-directional (nat44ed-udir)
+       tests that measure packet throughput in one direction with usage of TRex
+       in stateless mode.
+
+     - Added new NAT44 endpoint-dependent mode CPS tests that measure
+       connections per second with usage of TRex in stateful mode.
+       TODO: hide this item and add later with tests
+
+   - **IPSec async mode tests**: Added VPP performance tests for async crypto
+     engine.
+
+  - **AMD 2n-zn2 testbed**: TODO - hide, to be added later with tests data.
+
 #. TEST FRAMEWORK
+
+   - **TRex ASTF**: Added capability to run TRex in advanced stateful mode.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, VAT is
      still used in CSIT for all VPP scale tests. See known issues below.
@@ -25,10 +46,12 @@ Changes in |csit-release|
      removal of redundant RF keywords and aligning of suite/test
      setup/teardowns.
 
-#. PRESENTATION AND ANALYTICS LAYER
+   - **Intel E810CQ 100G NIC**: Added configuration for Intel E810CQ 100G NIC.
+
+#. PRESENTATION AND ANALYTICS LAYER - to be updated by Tibor
 
    - **Graphs layout improvements**: Improved performance graphs layout
-     for better readibility and maintenance: test grouping, axis
+     for better readability and maintenance: test grouping, axis
      labels, descriptions, other informative decoration.
 
 .. raw:: latex
@@ -40,7 +63,7 @@ Changes in |csit-release|
 Known Issues
 ------------
 
-List of known issues in |csit-release| for VPP performance tests:
+List of known issues in |csit-release| for VPP performance tests: TODO: check
 
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | #  | JiraID                                  | Issue Description                                                                                         |
@@ -54,20 +77,27 @@ List of known issues in |csit-release| for VPP performance tests:
 |  3 | `VPP-1677                               | 9000B ip4 nat44: VPP crash + coredump.                                                                    |
 |    | <https://jira.fd.io/browse/VPP-1677>`_  | VPP crashes very often in case that NAT44 is configured and it has to process IP4 jumbo frames (9000B).   |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1591                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
-|    | <https://jira.fd.io/browse/CSIT-1499>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                      |
-|    +-----------------------------------------+                                                                                                           |
-|    | `VPP-1763                               |                                                                                                           |
-|    | <https://jira.fd.io/browse/VPP-1763>`_  |                                                                                                           |
+|  4 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
+|    | <https://jira.fd.io/browse/CSIT-1671>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                      |
+|    +-----------------------------------------+ The usual PAPI library spends too much time parsing arguments, so even with async processing (hundreds of |
+|    | `VPP-1763                               | commands in flight over socket), the VPP configuration for large scale tests (millions of messages) takes |
+|    | <https://jira.fd.io/browse/VPP-1763>`_  | too long.                                                                                                 |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  5 | `VPP-1675                               | IPv4 IPSEC 9000B packet tests are failing as no packet is forwarded.                                      |
 |    | <https://jira.fd.io/browse/VPP-1675>`_  | Reason: chained buffers are not supported.                                                                |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  6 | `CSIT-1593                              | IPv4 AVF 9000B packet tests are failing on 3n-skx while passing on 2n-skx.                                |
-|    | <https://jira.fd.io/browse/CSIT-1593>`_ |                                                                                                           |
+|    | <https://jira.fd.io/browse/CSIT-1593>`_ | TODO: check when report-coverage tests finished for 3n-skx                                                |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1679                              | 2n-clx VPP ip4 tests with xxv710 and avf driver are sporadically failing.                                 |
-|    | <https://jira.fd.io/browse/CSIT-1679>`_ |                                                                                                           |
+|  7 | `VPP-1934                               | [i40e] Interfaces are not brought up from carrier-down.                                                   |
+|    | <https://jira.fd.io/browse/VPP-1934 >`_ | In case of i40e -based interface (e.g Intel x700 series NIC) is bind to kernel driver (i40e) and is in    |
+|    |                                         | state "no-carrier" (<NO-CARRIER,BROADCAST,MULTICAST,UP>) because previously it was disabled via           |
+|    |                                         | "I40E_AQ_PHY_LINK_ENABLED" call, then VPP during initialization of AVF interface is not re-enabling       |
+|    |                                         | interface link via i40e driver to up.                                                                     |
+|    |                                         | CSIT implemented `workaround for AVF interface <https://gerrit.fd.io/r/c/csit/+/29086>`_ until fixed.     |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  8 | `CSIT-1760                              | All Mellanox / rdma driver tests failing on LF testbed28.                                                 |
+|    | <https://jira.fd.io/browse/CSIT-1760>`_ | All Mellanox / rdma driver tests are failing on LF testbed28 while successfully run on other LF testbeds. |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Root Cause Analysis for Performance Changes
