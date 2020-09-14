@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bff69c33_075ebe5b",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-14T14:54:08Z",
+      "side": 1,
+      "message": "remove before merge. If you need in specific test. move to dedicated action. Also no more FOR DUT in DUTS rather do \"Show ... on all duts | ${nodes}\"",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 48
+      },
+      "revId": "b29e54f14f58aeb2e4cc0cb975aa11aa98783ee8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
