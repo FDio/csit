@@ -10,13 +10,35 @@ Changes in |csit-release|
      :ref:`test_environment_versioning`.
 
    - To identify performance changes due to VPP code changes from
-     v20.01.0 to v20.05.0, both have been tested in CSIT environment
-     ver. 4 and compared against each other. All substantial
+     v20.05.0 to v20.09.0, both have been tested in CSIT environment
+     ver. 5 and compared against each other. All substantial
      progressions has been marked up with RCA analysis. See
      :ref:`vpp_compare_current_vs_previous_release` and
      :ref:`vpp_known_issues`.
 
+   - **NAT44 tests**: Adapted existing and added new tests.
+
+     - Refactored NAT44 deterministic mode (nat44det) tests to use separate
+       det44 vpp plugin and to use the same scheme of inside and outside
+       addresses and ports, as used in new NAT44 endpoint-dependent mode tests.
+
+     - Added new NAT44 endpoint-depended mode uni-directional (nat44ed-udir)
+       tests that measure packet throughput in one direction with usage of TRex
+       in stateless mode.
+
+     - Added new NAT44 endpoint-dependent mode CPS tests that measure
+       connections per second with usage of TRex in stateful mode.
+       NOTE: CPS measurement data will be added in two weeks.
+
+   - **IPSec async mode tests**: Added VPP performance tests for async crypto
+     engine.
+
+   - **AMD 2n-zn2 testbed**: New physical testbed type installed in FD.io CSIT,
+     VPP performance data will be added in upcoming weeks.
+
 #. TEST FRAMEWORK
+
+   - **TRex ASTF**: Added capability to run TRex in advanced stateful mode.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, VAT is
      still used in CSIT for all VPP scale tests. See known issues below.
@@ -24,6 +46,9 @@ Changes in |csit-release|
    - **General Code Housekeeping**: Ongoing RF keywords optimizations,
      removal of redundant RF keywords and aligning of suite/test
      setup/teardowns.
+
+   - **Intel E810CQ 100G NIC**: Added configuration for Intel E810CQ 100G NIC.
+     No tests run for this NIC as it is not present in FD.io CSIT lab yet.
 
 #. PRESENTATION AND ANALYTICS LAYER
 
@@ -40,7 +65,7 @@ Changes in |csit-release|
 Known Issues
 ------------
 
-List of known issues in |csit-release| for VPP performance tests:
+List of known issues in |csit-release| for VPP performance tests: TODO: check
 
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | #  | JiraID                                  | Issue Description                                                                                         |
@@ -51,23 +76,27 @@ List of known issues in |csit-release| for VPP performance tests:
 |  2 | `VPP-662                                | 9000B packets not supported by NICs VIC1227 and VIC1387.                                                  |
 |    | <https://jira.fd.io/browse/VPP-662>`_   |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  3 | `VPP-1677                               | 9000B ip4 nat44: VPP crash + coredump.                                                                    |
-|    | <https://jira.fd.io/browse/VPP-1677>`_  | VPP crashes very often in case that NAT44 is configured and it has to process IP4 jumbo frames (9000B).   |
+|  3 | `CSIT-1763                              | Adapt ramp-up phase of nat44 tests for different frame sizes.                                             |
+|    | <https://jira.fd.io/browse/CSIT-1763>`_ | Currently ramp-up phase rate and duration values are correctly set for tests with 64B frame size.         |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1591                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
-|    | <https://jira.fd.io/browse/CSIT-1499>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                      |
-|    +-----------------------------------------+                                                                                                           |
-|    | `VPP-1763                               |                                                                                                           |
-|    | <https://jira.fd.io/browse/VPP-1763>`_  |                                                                                                           |
+|  4 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
+|    | <https://jira.fd.io/browse/CSIT-1671>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                      |
+|    +-----------------------------------------+ The usual PAPI library spends too much time parsing arguments, so even with async processing (hundreds of |
+|    | `VPP-1763                               | commands in flight over socket), the VPP configuration for large scale tests (millions of messages) takes |
+|    | <https://jira.fd.io/browse/VPP-1763>`_  | too long.                                                                                                 |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  5 | `VPP-1675                               | IPv4 IPSEC 9000B packet tests are failing as no packet is forwarded.                                      |
 |    | <https://jira.fd.io/browse/VPP-1675>`_  | Reason: chained buffers are not supported.                                                                |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1593                              | IPv4 AVF 9000B packet tests are failing on 3n-skx while passing on 2n-skx.                                |
-|    | <https://jira.fd.io/browse/CSIT-1593>`_ |                                                                                                           |
+|  6 | `VPP-1934                               | [i40e] Interfaces are not brought up from carrier-down.                                                   |
+|    | <https://jira.fd.io/browse/VPP-1934 >`_ | In case of i40e -based interface (e.g Intel x700 series NIC) is bound to kernel driver (i40e) and is in   |
+|    |                                         | state "no-carrier" (<NO-CARRIER,BROADCAST,MULTICAST,UP>) because previously it was disabled via           |
+|    |                                         | "I40E_AQ_PHY_LINK_ENABLED" call, then VPP during initialization of AVF interface is not re-enabling       |
+|    |                                         | interface link via i40e driver to up.                                                                     |
+|    |                                         | CSIT implemented `workaround for AVF interface <https://gerrit.fd.io/r/c/csit/+/29086>`_ until fixed.     |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1679                              | 2n-clx VPP ip4 tests with xxv710 and avf driver are sporadically failing.                                 |
-|    | <https://jira.fd.io/browse/CSIT-1679>`_ |                                                                                                           |
+|  7 | `CSIT-1760                              | All Mellanox / rdma driver tests are failing on LF testbed28 while successfully run on other LF testbeds. |
+|    | <https://jira.fd.io/browse/CSIT-1760>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Root Cause Analysis for Performance Changes
@@ -78,42 +107,6 @@ List of RCAs in |csit-release| for VPP performance changes:
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | #  | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|  1 | `CSIT-1731                              | Confirm the cause for ip4scale -rnd regressions.                                                          |
-|    | <https://jira.fd.io/browse/CSIT-1731>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  2 | `CSIT-1735                              | Identify cause of ethip6-ip6scale2m progression.                                                          |
-|    | <https://jira.fd.io/browse/CSIT-1735>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  3 | `CSIT-1738                              | Identify cause for vppl2xc CSIT progressions.                                                             |
-|    | <https://jira.fd.io/browse/CSIT-1738>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1739                              | Identify cause of ACL regressions.                                                                        |
-|    | <https://jira.fd.io/browse/CSIT-1739>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1740                              | Identify cause for avf-eth-l2xcbase CSIT progression.                                                     |
-|    | <https://jira.fd.io/browse/CSIT-1740>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1741                              | Identify cause for vppl2xc VPP regressions.                                                               |
-|    | <https://jira.fd.io/browse/CSIT-1741>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1742                              | Identify cause of ipsec CSIT regression.                                                                  |
-|    | <https://jira.fd.io/browse/CSIT-1742>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  8 | `CSIT-1744                              | Identify cause of memif VPP progression.                                                                  |
-|    | <https://jira.fd.io/browse/CSIT-1744>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  9 | `CSIT-1745                              | Verify cause of l2bdscale10kmaclrn VPP progression.                                                       |
-|    | <https://jira.fd.io/browse/CSIT-1745>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 10 | `CSIT-1746                              | Identify cause for avf-dot1q-ip6base VPP progression.                                                     |
-|    | <https://jira.fd.io/browse/CSIT-1746>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 11 | `CSIT-1747                              | Identify cause of ip4base-nat44 VPP progression.                                                          |
-|    | <https://jira.fd.io/browse/CSIT-1747>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 12 | `CSIT-1748                              | Identify cause of aes128cbc-hmac512sha VPP progression.                                                   |
-|    | <https://jira.fd.io/browse/CSIT-1748>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 13 | `CSIT-1749                              | Identify cause for l2bdbasemaclrn VPP progression in tests with dpdk app in VM.                           |
-|    | <https://jira.fd.io/browse/CSIT-1749>`_ |                                                                                                           |
+|  1 |                                         |                                                                                                           |
+|    |                                         |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+

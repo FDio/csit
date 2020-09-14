@@ -269,6 +269,10 @@ topologies and configurations:
   size is set to the bi-directional link rate, unless there is a known
   limitation preventing Traffic Generator from achieving the line rate.
 
+.. todo::
+
+   - Connections per second (CPS): TODO
+
 |csit-release| includes following VPP data plane functionality
 performance tested across a range of NIC drivers and NIC models:
 
@@ -291,6 +295,10 @@ performance tested across a range of NIC drivers and NIC models:
 +-----------------------+----------------------------------------------+
 | IPv6 Scale            | IPv6 routing with 20k, 200k and 2M FIB       |
 |                       | entries.                                     |
++-----------------------+----------------------------------------------+
+| IPSecAsyncHW          | IPSec encryption with AES-GCM, CBC-SHA-256   |
+|                       | ciphers in async mode, in combination with   |
+|                       | IPv4 routing. Intel QAT HW acceleration.     |
 +-----------------------+----------------------------------------------+
 | IPSecHW               | IPSec encryption with AES-GCM, CBC-SHA-256   |
 |                       | ciphers, in combination with IPv4 routing.   |
@@ -331,9 +339,10 @@ performance tested across a range of NIC drivers and NIC models:
 | Memif                 | with different VPP forwarding modes incl.    |
 |                       | L2XC, L2BD.                                  |
 +-----------------------+----------------------------------------------+
-| NAT                   | (Source) Network Address Translation tests   |
-|                       | with varying number of users and ports per   |
-|                       | user.                                        |
+| NAT44                 | (Source) Network Address Translation         |
+|                       | deterministic mode and endpoint-dependent    |
+|                       | mode tests with varying number of users and  |
+|                       | ports per user for IPv4.                     |
 +-----------------------+----------------------------------------------+
 | QoS Policer           | Ingress packet rate measuring, marking and   |
 |                       | limiting (IPv4).                             |
