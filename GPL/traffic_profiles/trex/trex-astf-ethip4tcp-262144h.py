@@ -37,7 +37,7 @@ from profile_trex_astf_base_class import TrafficProfileBaseClass
 class TrafficProfile(TrafficProfileBaseClass):
     """Traffic profile."""
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         """Initialization and setting of profile parameters."""
 
         super(TrafficProfileBaseClass, self).__init__()
@@ -68,6 +68,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         prog_c.connect()
         # receive syn-ack (0B sent in tcp syn-ack packet) and send ack
         prog_c.recv(0)
+        # send fin-ack
 
         # server commands
         prog_s = ASTFProgram()
