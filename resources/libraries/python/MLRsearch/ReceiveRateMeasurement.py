@@ -14,6 +14,9 @@
 """Module defining ReceiveRateMeasurement class."""
 
 
+import logging
+
+
 class ReceiveRateMeasurement:
     """Structure defining the result of single Rr measurement."""
 
@@ -62,6 +65,7 @@ class ReceiveRateMeasurement:
         # If the traffic generator is unreliable and sends less packets,
         # the absolute receive rate might be too low for next target.
         self.relative_receive_rate = self.target_tr * self.receive_fraction
+        logging.debug(f"transmit_count {transmit_count} receive_count {receive_count} loss_count {loss_count} receive_fraction {receive_fraction} target_tr {target_tr} relative_receive_rate {relative_receive_rate}")
         if approximated_duration:
             self.approximated_duration = approximated_duration
         else:
