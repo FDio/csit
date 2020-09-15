@@ -89,7 +89,7 @@
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p-udir
 # Main heap size multiplicator
-| ${heap_size_mult}= | ${3}
+| ${heap_size_mult}= | ${7}
 
 *** Keywords ***
 | Local Template
