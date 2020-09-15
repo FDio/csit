@@ -152,7 +152,7 @@
 | | | Run Keyword | ${dut}.Add Unix Coredump
 | | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
 | | | Run Keyword | ${dut}.Add Main Heap Size | ${${heap_size_mult}*${2}}G
-| | | Run Keyword | ${dut}.Add Main Heap Page Size | 2M
+| | | Run Keyword | ${dut}.Add Main Heap Page Size | 1G
 | | | Run Keyword | ${dut}.Add Statseg Size | 2G
 | | | Run Keyword | ${dut}.Add Statseg Page Size | 2M
 | | | Run Keyword | ${dut}.Add Statseg Per Node Counters | on
