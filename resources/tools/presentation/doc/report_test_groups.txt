@@ -28,7 +28,6 @@ Sub-chapters titles:
 2n1l-25ge2p1xxv710-avf-eth-l2xcbase-ndrpdr
 2n1l-25ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-ndrpdr
 2n1l-25ge2p1xxv710-avf-eth-l2bdbasemaclrn-ndrpdr
-2n1l-25ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr
 
 ### 64b-?t?c-l2switching-base-i40e
 2n1l-25ge2p1xxv710-eth-l2patch-ndrpdr

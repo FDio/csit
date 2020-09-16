@@ -79,7 +79,6 @@ will be on the Trending web page.
     2n1l-25ge2p1xxv710-avf-eth-l2xcbase-mrr
     2n1l-25ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-mrr
     2n1l-25ge2p1xxv710-avf-eth-l2bdbasemaclrn-mrr
-    2n1l-25ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-gbp-mrr
 
 #### 64b-?t?c-l2switching-base-i40e
     2n1l-25ge2p1xxv710-eth-l2patch-mrr
@@ -224,7 +223,6 @@ will be on the Trending web page.
     2n1l-25ge2p1xxv710-avf-eth-l2xcbase-mrr
     2n1l-25ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-mrr
     2n1l-25ge2p1xxv710-avf-eth-l2bdbasemaclrn-mrr
-    2n1l-25ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-gbp-mrr
 
 #### 64b-?t?c-l2switching-base-i40e
     2n1l-25ge2p1xxv710-eth-l2patch-mrr
