@@ -784,17 +784,17 @@ function select_tags () {
         *"ndrpdr-weekly"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
                 ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd}) || die
+                eval ${sed_nics_sub_cmd} || echo "perftest") || die
             ;;
         *"mrr-daily"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
                 ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd}) || die
+                eval ${sed_nics_sub_cmd} || echo "perftest") || die
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
                 ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd}) || die
+                eval ${sed_nics_sub_cmd} || echo "perftest") || die
             ;;
         *"report-iterative"* )
             test_sets=(${TEST_TAG_STRING//:/ })
@@ -802,7 +802,7 @@ function select_tags () {
             report_file=${test_sets[0]}.md
             readarray -t test_tag_array <<< $(sed 's/ //g' \
                 ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} |
-                eval ${sed_nics_sub_cmd}) || die
+                eval ${sed_nics_sub_cmd} || echo "perftest") || die
             ;;
         *"report-coverage"* )
             test_sets=(${TEST_TAG_STRING//:/ })
@@ -810,7 +810,7 @@ function select_tags () {
             report_file=${test_sets[0]}.md
             readarray -t test_tag_array <<< $(sed 's/ //g' \
                 ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} |
-                eval ${sed_nics_sub_cmd}) || die
+                eval ${sed_nics_sub_cmd} || echo "perftest") || die
             ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
