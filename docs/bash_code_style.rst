@@ -126,6 +126,11 @@ Safety
       if any ancestor call is done with logical or,
       for example in "func || code=$?" construct.
 
+    + The exact behavior depends on Bash version.
+      A simplest surprise is "echo $(false)" not exiting.
+
+    + "$(false)" also does not exit if used as a here string.
+
   + As there is no reliable method of error detection, and there are two
     largely independent unreliable methods, the best what we can do
     is to apply both. So, code SHOULD explicitly
