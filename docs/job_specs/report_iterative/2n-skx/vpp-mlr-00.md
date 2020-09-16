@@ -1,5 +1,5 @@
 # 2n-skx
-### tests 255
+### tests 249
 ### job hrs est. 24.5
 ### job hrs real 24.5
 ### test mins est. 5.76
@@ -263,10 +263,6 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn
-##### dot1q-l2bdbasemaclrn-gbp
-1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn-gbp
-2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn-gbp
-4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn-gbp
 ##### eth-l2xcbase
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2xcbase
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2xcbase
