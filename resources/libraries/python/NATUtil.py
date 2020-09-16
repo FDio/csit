@@ -27,7 +27,7 @@ from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
 class NatConfigFlags(IntEnum):
-    """Common NAT plugin APIs"""
+    """NAT plugin configuration flags"""
     NAT_IS_NONE = 0x00
     NAT_IS_TWICE_NAT = 0x01
     NAT_IS_SELF_TWICE_NAT = 0x02
@@ -37,6 +37,15 @@ class NatConfigFlags(IntEnum):
     NAT_IS_INSIDE = 0x20
     NAT_IS_STATIC = 0x40
     NAT_IS_EXT_HOST_VALID = 0x80
+
+
+class Nat44ConfigFlags(IntEnum):
+    """NAT44 configuration flags"""
+    NAT44_IS_ENDPOINT_INDEPENDENT = 0x00
+    NAT44_IS_ENDPOINT_DEPENDENT = 0x01
+    NAT44_IS_STATIC_MAPPING_ONLY = 0x02
+    NAT44_IS_CONNECTION_TRACKING = 0x04
+    NAT44_IS_OUT2IN_DPO = 0x08
 
 
 class NatAddrPortAllocAlg(IntEnum):
@@ -51,6 +60,60 @@ class NATUtil:
 
     def __init__(self):
         pass
+
+    @staticmethod
+    def enable_nat44_plugin(
+            node, inside_vrf=0, outside_vrf=0, users=0, user_memory=0,
+            sessions=0, session_memory=0, user_sessions=0, mode=u""):
+        """Enable NAT44 plugin.
+
+        :param node: DUT node.
+        :param inside_vrf: Inside VRF ID.
+        :param outside_vrf: Outside VRF ID.
+        :param users: Maximum number of users. Used only in endpoint-independent
+            mode.
+        :param user_memory: User memory size - overwrite auto calculated hash
+            allocation parameter if non-zero.
+        :param sessions: Maximum number of sessions.
+        :param session_memory: Session memory size - overwrite auto calculated
+            hash allocation parameter if non-zero.
+        :param user_sessions: Maximum number of sessions per user. Used only in
+            endpoint-independent mode.
+        :param mode: NAT44 mode. Valid values:
+            - endpoint-independent
+            - endpoint-dependent
+            - static-mapping-only
+            - connection-tracking
+            - out2in-dpo
+        :type node: dict
+        :type inside_vrf: str or int
+        :type outside_vrf: str or int
+        :type users: str or int
+        :type user_memory: str or int
+        :type sessions: str or int
+        :type session_memory: str or int
+        :type user_sessions: str or int
+        :type mode: str
+        """
+        cmd = u"nat44_plugin_enable_disable"
+        err_msg = f"Failed to enable NAT44 plugin on the host {node[u'host']}!"
+        args_in = dict(
+            enable=True,
+            inside_vrf=int(inside_vrf),
+            outside_vrf=int(outside_vrf),
+            users=int(users),
+            user_memory=int(user_memory),
+            sessions=int(sessions),
+            session_memory=int(session_memory),
+            user_sessions=int(user_sessions),
+            flags=getattr(
+                Nat44ConfigFlags,
+                f"NAT44_IS_{mode.replace(u'-', u'_').upper()}"
+            ).value
+        )
+
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
     @staticmethod
     def set_nat44_interface(node, interface, flag):
@@ -200,6 +263,9 @@ class NATUtil:
         :returns: Value of max_translations_per_thread NAT44 parameter.
         :rtype: int
         """
+        # vpp-device tests have not dedicated physical core so
+        # ${thr_count_int} == 0 but we need to use one thread
+        threads = 1 if not int(threads) else int(threads)
         rest, mult = modf(log2(sessions/(10*threads)))
         return 2 ** (int(mult) + (1 if rest else 0)) * 10
 

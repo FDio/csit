@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | UDP_SYN
-| ... | NAT44_ENDPOINT_DEPENDENT | BASE | DRV_VFIO_PCI
+| ... | NAT44_ENDPOINT_DEPENDENT | BASE | DRV_VFIO_PCI | TEST
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udp-nat44ed-h65536-p63-s4128768-udir
 |
@@ -112,11 +112,6 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | And Add NAT to all DUTs | nat_mode=${nat_mode}
-| | ${max_translations_per_thread}= | Compute Max Translations Per Thread
-| | ... | ${n_sessions} | ${thr_count_int}
-| | And Add NAT max translations per thread to all DUTs
-| | ... | ${max_translations_per_thread}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
