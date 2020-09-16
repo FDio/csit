@@ -783,17 +783,20 @@ function select_tags () {
         # Select specific performance tests based on jenkins job type variable.
         *"ndrpdr-weekly"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md ||
+                echo "perftest" |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"mrr-daily"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md ||
+                echo "perftest" |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md ||
+                echo "perftest" |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"report-iterative"* )
@@ -801,7 +804,8 @@ function select_tags () {
             # Run only one test set per run
             report_file=${test_sets[0]}.md
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} |
+                ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} ||
+                echo "perftest" |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         *"report-coverage"* )
@@ -809,7 +813,8 @@ function select_tags () {
             # Run only one test set per run
             report_file=${test_sets[0]}.md
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} |
+                ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} ||
+                echo "perftest" |
                 eval ${sed_nics_sub_cmd}) || die
             ;;
         * )
