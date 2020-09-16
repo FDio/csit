@@ -800,6 +800,7 @@ function select_tags () {
     sed_nics_sub_cmd+=" | sed -e s/ANDxl710/ANDnic_intel-xl710/"
     sed_nics_sub_cmd+=" | sed -e s/ANDx520-da2/ANDnic_intel-x520-da2/"
     sed_nics_sub_cmd+=" | sed -e s/ANDx553/ANDnic_intel-x553/"
+    sed_nics_sub_cmd+=" | sed -e s/ANDe810cq/ANDnic_intel-e810cq/"
     sed_nics_sub_cmd+=" | sed -e s/ANDcx556a/ANDnic_mellanox-cx556a/"
     sed_nics_sub_cmd+=" | sed -e s/ANDvic1227/ANDnic_cisco-vic-1227/"
     sed_nics_sub_cmd+=" | sed -e s/ANDvic1385/ANDnic_cisco-vic-1385/"
