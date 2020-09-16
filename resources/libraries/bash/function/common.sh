@@ -275,7 +275,7 @@ function compose_pybot_arguments () {
 
     case "${TEST_CODE}" in
         *"device"*)
-            PYBOT_ARGS+=("--suite" "tests.${DUT}.device")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.device.stats")
             ;;
         *"perf"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
