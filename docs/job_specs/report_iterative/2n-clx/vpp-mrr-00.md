@@ -457,10 +457,6 @@
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn
 4c AND 64b AND mrr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn
-##### dot1q-l2bdbasemaclrn-gbp
-1c AND 64b AND mrr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn-gbp
-2c AND 64b AND mrr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn-gbp
-4c AND 64b AND mrr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn-gbp
 ##### eth-l2xcbase
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND eth-l2xcbase
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND eth-l2xcbase
@@ -520,11 +516,6 @@
 1c AND 64b AND mrr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn
 2c AND 64b AND mrr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn
 4c AND 64b AND mrr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn
-##### dot1q-l2bdbasemaclrn-gbp
-1c AND 64b AND mrr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn-gbp
-2c AND 64b AND mrr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn-gbp
-4c AND 64b AND mrr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn-gbp
-##### eth-l2xcbase
 1c AND 64b AND mrr AND cx556a AND drv_rdma_core AND eth-l2xcbase
 2c AND 64b AND mrr AND cx556a AND drv_rdma_core AND eth-l2xcbase
 4c AND 64b AND mrr AND cx556a AND drv_rdma_core AND eth-l2xcbase
