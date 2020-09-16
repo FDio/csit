@@ -1,5 +1,5 @@
 # 2n-zn2
-### tests 363
+### tests 357
 ### job hrs est. 35
 ### job hrs real 35
 ### test mins est. 5.78
@@ -361,10 +361,6 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn
-##### dot1q-l2bdbasemaclrn-gbp
-1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn-gbp
-2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn-gbp
-4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND dot1q-l2bdbasemaclrn-gbp
 ##### eth-l2xcbase
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2xcbase
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2xcbase
@@ -424,10 +420,6 @@
 1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn
 2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn
 4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn
-##### dot1q-l2bdbasemaclrn-gbp
-1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn-gbp
-2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn-gbp
-4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND dot1q-l2bdbasemaclrn-gbp
 ##### eth-l2xcbase
 1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND eth-l2xcbase
 2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND eth-l2xcbase
