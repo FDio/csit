@@ -71,7 +71,7 @@
 | ${dst_port}= | 8080
 # NAT settings
 | ${nat_mode}= | endpoint-dependent
-| ${max_translations_per_thread}= | 81920
+| ${n_sessions}= | ${64512}
 | ${in_net}= | 192.168.0.0
 | ${in_mask}= | ${22}
 | ${out_net}= | 68.142.68.0
@@ -98,9 +98,6 @@
 | | Given Set Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | And Add NAT to all DUTs | nat_mode=${nat_mode}
-| | And Add NAT max translations per thread to all DUTs
-| | ... | ${max_translations_per_thread}
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
