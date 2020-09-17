@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "c7ccf5a4_8101aa8a",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-17T13:49:56Z",
+      "side": 1,
+      "message": "i think fixed in PS2",
+      "parentUuid": "0ad8d58c_5da1485d",
+      "range": {
+        "startLine": 787,
+        "startChar": 32,
+        "endLine": 787,
+        "endChar": 33
+      },
+      "revId": "a4853fb92c6f01221063f24002c1cdf7dee7cc59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7187e551_1c0c620f",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 2
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "I prefer to die immediatelly, rather than relying on another check.\n\n\u003e $(subshell) does not accept pipefail\n\nHave you tried this?\n\n  $(sed -exuo pipefail; the_rest)",
       "parentUuid": "db45b8e2_7e7058bb",
+      "range": {
+        "startLine": 793,
+        "startChar": 16,
+        "endLine": 793,
+        "endChar": 31
+      },
+      "revId": "a4853fb92c6f01221063f24002c1cdf7dee7cc59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e8b7a51_3525c0ed",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-17T13:49:56Z",
+      "side": 1,
+      "message": "yes it does not work. the problem is subshell the outer assignment is not evaluating inner error",
+      "parentUuid": "fc0fa692_c200b067",
       "range": {
         "startLine": 793,
         "startChar": 16,
