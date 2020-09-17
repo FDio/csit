@@ -655,6 +655,14 @@ function run_pybot () {
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
     all_options+=("--noncritical" "EXPECTED_FAILING")
     all_options+=("${EXPANDED_TAGS[@]}")
+    if [[ "${all_options}" != *"--suite tests.vpp.device"* ]];
+        # Devicetest is the only job allowed to have no tag restriction.
+        if [[ "${all_options}" != *"--include"* ]]; then
+            warn "No tags selected, bailing out"
+            PYBOT_EXIT_STATUS=4
+            return
+        fi
+    fi
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
@@ -782,35 +790,35 @@ function select_tags () {
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
         *"ndrpdr-weekly"* )
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd}) || die
+            readarray -t test_tag_array <<< $({ sed 's/ //g' \
+                ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md || die; } |
+                eval ${sed_nics_sub_cmd} || die) || die
             ;;
         *"mrr-daily"* )
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd}) || die
+            readarray -t test_tag_array <<< $({ sed 's/ //g' \
+                ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md || die; } |
+                eval ${sed_nics_sub_cmd} || die) || die
             ;;
         *"mrr-weekly"* )
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd}) || die
+            readarray -t test_tag_array <<< $({ sed 's/ //g' \
+                ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md || die; } |
+                eval ${sed_nics_sub_cmd} || die) || die
             ;;
         *"report-iterative"* )
             test_sets=(${TEST_TAG_STRING//:/ })
             # Run only one test set per run
-            report_file=${test_sets[0]}.md
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} |
-                eval ${sed_nics_sub_cmd}) || die
+            report_dirfile="${NODENESS}-${FLAVOR}/${test_sets[0]}.md"
+            readarray -t test_tag_array <<< $({ sed 's/ //g' \
+                ${tfd}/report_iterative/${report_dirfile} || die; } |
+                eval ${sed_nics_sub_cmd} || die) || die
             ;;
         *"report-coverage"* )
             test_sets=(${TEST_TAG_STRING//:/ })
             # Run only one test set per run
-            report_file=${test_sets[0]}.md
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} |
-                eval ${sed_nics_sub_cmd}) || die
+            report_dirfile="${NODENESS}-${FLAVOR}/${test_sets[0]}.md"
+            readarray -t test_tag_array <<< $({ sed 's/ //g' \
+                ${tfd}/report_coverage/${report_dirfile} || die; } |
+                eval ${sed_nics_sub_cmd} || die) || die
             ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
@@ -823,7 +831,7 @@ function select_tags () {
                                 "!dot1q" "!drv_avf")
             else
                 # If trigger contains tags, split them into array.
-                test_tag_array=(${TEST_TAG_STRING//:/ })
+                test_tag_array=(${TEST_TAG_STRING//:/ }) || die
             fi
             ;;
     esac
