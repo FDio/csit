@@ -16,6 +16,7 @@ all:
         10.32.8.19: #s34-t27-tg1 - cascadelake
         10.32.8.21: #s36-t28-tg1 - cascadelake
         10.32.8.23: #s38-t29-tg1 - cascadelake
+        10.32.8.25: #s61-t210-tg1 - epyc
     sut:
       hosts:
         10.30.51.17: #t1-sut1 - haswell
@@ -40,6 +41,7 @@ all:
         10.32.8.18: #s33-t27-sut1 - cascadelake
         10.32.8.20: #s35-t28-sut1 - cascadelake
         10.32.8.22: #s37-t29-sut1 - cascadelake
+        10.32.8.24: #s60-t210-sut1 - epyc
     vpp_device:
       hosts:
         10.30.51.50: #s1-t11-sut1 - skylake

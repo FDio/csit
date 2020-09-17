@@ -1,0 +1,17 @@
+---
+# file: host_vars/10.32.8.25.yaml
+
+hostname: "s61-t210-tg1"
+grub:
+  isolcpus: "1-63"
+  nohz_full: "1-63"
+  rcu_nocbs: "1-63"
+sysctl:
+  kernel:
+    watchdog_cpumask: "0"
+  vm:
+    nr_hugepages: 8192
+    max_map_count: 20000
+
+inventory_ipmi_hostname: "10.30.55.25"
+cpu_microarchitecture: "epyc"
