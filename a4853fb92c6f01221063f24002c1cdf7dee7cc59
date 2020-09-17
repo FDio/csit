@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c4acc42_ec8c911e",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-17T10:39:50Z",
+      "side": 1,
+      "message": "Pipe binds tighter than or.",
+      "range": {
+        "startLine": 787,
+        "startChar": 32,
+        "endLine": 787,
+        "endChar": 33
+      },
+      "revId": "a4853fb92c6f01221063f24002c1cdf7dee7cc59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7187e551_1c0c620f",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-17T10:39:50Z",
+      "side": 1,
+      "message": "So when we fail to read from file, we trigger every test with \"perftest\" tag?",
+      "range": {
+        "startLine": 793,
+        "startChar": 16,
+        "endLine": 793,
+        "endChar": 31
+      },
+      "revId": "a4853fb92c6f01221063f24002c1cdf7dee7cc59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
