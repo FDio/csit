@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0ad8d58c_5da1485d",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-17T13:10:40Z",
+      "side": 1,
+      "message": "If sed passes (file at L786 exists), neither L787 (expected) not L788 (bad) is executed with this patch.",
+      "parentUuid": "2ce77b3d_0abc07f0",
+      "range": {
+        "startLine": 787,
+        "startChar": 32,
+        "endLine": 787,
+        "endChar": 33
+      },
+      "revId": "a4853fb92c6f01221063f24002c1cdf7dee7cc59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7187e551_1c0c620f",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Should be stopped by L913. The biggest problem is that $(subshell) does not accept pipefail.",
       "parentUuid": "7187e551_1c0c620f",
+      "range": {
+        "startLine": 793,
+        "startChar": 16,
+        "endLine": 793,
+        "endChar": 31
+      },
+      "revId": "a4853fb92c6f01221063f24002c1cdf7dee7cc59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc0fa692_c200b067",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-17T13:10:40Z",
+      "side": 1,
+      "message": "I prefer to die immediatelly, rather than relying on another check.\n\n\u003e $(subshell) does not accept pipefail\n\nHave you tried this?\n\n  $(sed -exuo pipefail; the_rest)",
+      "parentUuid": "db45b8e2_7e7058bb",
       "range": {
         "startLine": 793,
         "startChar": 16,
