@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6efbeee9_78d8641c",
+        "filename": "docs/job_specs/report_coverage/2n-clx/l2-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-17T13:46:50Z",
+      "side": 1,
+      "message": "The point of estimates is to update them before we see the real durations.\n\n171 * 3.1 / 60 \u003d 8.83",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "50ea4739c3543e517b7dbee0898c933364379621",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
