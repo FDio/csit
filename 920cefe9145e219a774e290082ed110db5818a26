@@ -117,6 +117,30 @@
       "revId": "920cefe9145e219a774e290082ed110db5818a26",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e812f0d1_4b3e3fb4",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 828,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-17T12:45:01Z",
+      "side": 1,
+      "message": "After checking locally, I think \"set -u\" is reliable enough here (for my version of Bash), so removed the die in the next patch.",
+      "parentUuid": "cf73c822_5cbb774f",
+      "range": {
+        "startLine": 828,
+        "startChar": 53,
+        "endLine": 828,
+        "endChar": 59
+      },
+      "revId": "920cefe9145e219a774e290082ed110db5818a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
