@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2ce77b3d_0abc07f0",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-17T11:00:32Z",
+      "side": 1,
+      "message": "in this case the point is to read file or put default. Was working in my test env, but i may be wrong?",
+      "parentUuid": "0c4acc42_ec8c911e",
+      "range": {
+        "startLine": 787,
+        "startChar": 32,
+        "endLine": 787,
+        "endChar": 33
+      },
+      "revId": "a4853fb92c6f01221063f24002c1cdf7dee7cc59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7187e551_1c0c620f",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-17T10:39:50Z",
       "side": 1,
       "message": "So when we fail to read from file, we trigger every test with \"perftest\" tag?",
+      "range": {
+        "startLine": 793,
+        "startChar": 16,
+        "endLine": 793,
+        "endChar": 31
+      },
+      "revId": "a4853fb92c6f01221063f24002c1cdf7dee7cc59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db45b8e2_7e7058bb",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-17T11:00:32Z",
+      "side": 1,
+      "message": "Should be stopped by L913. The biggest problem is that $(subshell) does not accept pipefail.",
+      "parentUuid": "7187e551_1c0c620f",
       "range": {
         "startLine": 793,
         "startChar": 16,
