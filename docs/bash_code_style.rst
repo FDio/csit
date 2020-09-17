@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2019 Cisco and/or its affiliates.
+   Copyright (c) 2020 Cisco and/or its affiliates.
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at:
@@ -125,6 +125,11 @@ Safety
     + Another example: "set -e" in your function has no effect
       if any ancestor call is done with logical or,
       for example in "func || code=$?" construct.
+
+    + The exact behavior depends on Bash version.
+      A simplest surprise is "echo $(false)" not exiting.
+
+    + "$(false)" also does not exit if used as a here string.
 
   + As there is no reliable method of error detection, and there are two
     largely independent unreliable methods, the best what we can do
