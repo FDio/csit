@@ -4370,7 +4370,6 @@
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-mrr.64B-2t1c-avf-dot1q-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-gbp-mrr"
       layout: "plot-cpta"
 
     - title: "2n-clx-xxv710-64b-4t2c-l2switching-base-avf"
@@ -4382,7 +4381,6 @@
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-mrr.64B-4t2c-avf-dot1q-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-4t2c-avf-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-4t2c-avf-dot1q-l2bdbasemaclrn-gbp-mrr"
       layout: "plot-cpta"
 
     - title: "2n-clx-xxv710-64b-8t4c-l2switching-base-avf"
@@ -4394,7 +4392,6 @@
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-mrr.64B-8t4c-avf-dot1q-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-8t4c-avf-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-8t4c-avf-dot1q-l2bdbasemaclrn-gbp-mrr"
       layout: "plot-cpta"
 
     - title: "2n-clx-xxv710-64b-2t1c-l2switching-base-dpdk"
@@ -4490,7 +4487,6 @@
       include:
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Mrr.64B-2t1c-rdma-dot1q-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Mrr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-gbp-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Mrr.64B-2t1c-rdma-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Mrr.64B-2t1c-rdma-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Mrr.64B-2t1c-rdma-eth-l2bdbasemaclrn-mrr"
@@ -4502,7 +4498,6 @@
       include:
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Mrr.64B-4t2c-rdma-dot1q-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Mrr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-4t2c-rdma-dot1q-l2bdbasemaclrn-gbp-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Mrr.64B-4t2c-rdma-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Mrr.64B-4t2c-rdma-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Mrr.64B-4t2c-rdma-eth-l2bdbasemaclrn-mrr"
@@ -4514,7 +4509,6 @@
       include:
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Mrr.64B-8t4c-rdma-dot1q-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Mrr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-gbp-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Mrr.64B-8t4c-rdma-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Mrr.64B-8t4c-rdma-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Mrr.64B-8t4c-rdma-eth-l2bdbasemaclrn-mrr"
@@ -4652,7 +4646,6 @@
       include:
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Mrr.64B-2t1c-avf-dot1q-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-gbp-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Patch-mrr.64B-2t1c-avf-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-mrr.64B-2t1c-avf-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-2t1c-avf-eth-l2bdbasemaclrn-mrr"
@@ -4664,7 +4657,6 @@
       include:
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Mrr.64B-4t2c-avf-dot1q-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-4t2c-avf-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-4t2c-avf-dot1q-l2bdbasemaclrn-gbp-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Patch-mrr.64B-4t2c-avf-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-mrr.64B-4t2c-avf-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-4t2c-avf-eth-l2bdbasemaclrn-mrr"
@@ -4676,7 +4668,6 @@
       include:
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Mrr.64B-8t4c-avf-dot1q-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-mrr.64B-8t4c-avf-dot1q-l2bdbasemaclrn-mrr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Mrr.64B-8t4c-avf-dot1q-l2bdbasemaclrn-gbp-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Patch-mrr.64B-8t4c-avf-eth-l2patch-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-mrr.64B-8t4c-avf-eth-l2xcbase-mrr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-mrr.64B-8t4c-avf-eth-l2bdbasemaclrn-mrr"
@@ -6462,7 +6453,6 @@
       include:
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-2t1c-rdma-eth-l2patch-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
@@ -6486,7 +6476,6 @@
       include:
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-rdma-dot1q-l2xcbase-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-rdma-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Patch-Ndrpdr.64B-2t1c-rdma-eth-l2patch-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Ndrpdr.64B-2t1c-rdma-eth-l2xcbase-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-rdma-eth-l2bdbasemaclrn-ndrpdr"
@@ -6530,7 +6519,6 @@
       include:
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-avf-dot1q-l2xcbase-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-2t1c-avf-eth-l2patch-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
@@ -6543,7 +6531,6 @@
       include:
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-avf-dot1q-l2xcbase-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Patch-Ndrpdr.64B-2t1c-avf-eth-l2patch-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
@@ -7017,7 +7004,6 @@
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-avf-dot1q-l2xcbase-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-2t1c-l2-base-scale-avf-ndr"
@@ -7062,7 +7048,6 @@
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Xcbase-Ndrpdr.64B-2t1c-avf-dot1q-l2xcbase-ndrpdr"
         - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-ndrpdr"
-        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-Gbp-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-2t1c-l2-base-scale-avf-pdr"
