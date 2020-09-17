@@ -22,6 +22,30 @@
       "revId": "50ea4739c3543e517b7dbee0898c933364379621",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "426f4b8c_facf3954",
+        "filename": "docs/job_specs/report_coverage/2n-clx/l2-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-17T13:51:36Z",
+      "side": 1,
+      "message": "estimates are changing base on code changes. Per TC constant is foobar. 3.1 is not true anymore.",
+      "parentUuid": "6efbeee9_78d8641c",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "50ea4739c3543e517b7dbee0898c933364379621",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
