@@ -419,13 +419,22 @@ class VppConfigGenerator:
         path = [u"cpu", u"corelist-workers"]
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_heapsize(self, value):
-        """Add Heapsize configuration.
+    def add_main_heap_size(self, value):
+        """Add Main Heap Size configuration.
 
-        :param value: Amount of heapsize.
+        :param value: Amount of heap.
         :type value: str
         """
-        path = [u"heapsize"]
+        path = [u"memory", u"main-heap-size"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_main_heap_page_size(self, value):
+        """Add Main Heap Page Size configuration.
+
+        :param value: Heap page size.
+        :type value: str
+        """
+        path = [u"memory", u"main-heap-page-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_api_trace(self):
@@ -451,22 +460,22 @@ class VppConfigGenerator:
         path = [u"ip6", u"heap-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_ip_heap_size(self, value):
-        """Add IP heap-size configuration.
-
-        :param value: IP Heapsize amount.
-        :type value: str
-        """
-        path = [u"ip", u"heap-size"]
-        self.add_config_item(self._nodeconfig, value, path)
-
     def add_statseg_size(self, value):
-        """Add stats segment heap size configuration.
+        """Add Stats Heap Size configuration.
 
         :param value: Stats heapsize amount.
         :type value: str
         """
         path = [u"statseg", u"size"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_statseg_page_size(self, value):
+        """Add Stats Heap Page Size configuration.
+
+        :param value: Stats heapsize amount.
+        :type value: str
+        """
+        path = [u"statseg", u"page-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_statseg_per_node_counters(self, value):
