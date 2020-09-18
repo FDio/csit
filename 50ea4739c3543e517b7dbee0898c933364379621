@@ -46,6 +46,30 @@
       "revId": "50ea4739c3543e517b7dbee0898c933364379621",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da3996a5_6c5ba029",
+        "filename": "docs/job_specs/report_coverage/2n-clx/l2-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-18T14:06:26Z",
+      "side": 1,
+      "message": "\u003e Per TC constant is foobar.\n\nThat particular type of foobar is called \"the estimate\" in this case. We know it will be off (comapred to real), but we have nothing better.\n\nBy the way, we should have a helpful tox checker that makes sure the values are consistent and gives an output as a .diff file, so it can be applied, similarly to what autogen checker does.\n\nIn this case: The checker should compute the number of tests and update \"tests\" value. There should be only one \"test mins\" value. If \"job hrs real\" value is edited (and \"tests\" not), the checker should compute and update \"test mins\" value. If \"tests\" value is edited (but not \"job hrs real\" nor \"test mins\"), the checker should compute and update \"job hrs est\" value. And so on.",
+      "parentUuid": "426f4b8c_facf3954",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "50ea4739c3543e517b7dbee0898c933364379621",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
