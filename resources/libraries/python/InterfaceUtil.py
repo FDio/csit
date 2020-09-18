@@ -1547,6 +1547,25 @@ class InterfaceUtil:
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
+    def set_linux_interface_state(
+            node, interface, namespace=None, state=u"up"):
+        """Set operational state for interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param namespace: Execute command in namespace. Optional
+        :param state: Up/Down.
+        :type node: dict
+        :type interface: str
+        :type namespace: str
+        :type state: str
+        """
+        ns_str = f"ip netns exec {namespace}" if namespace else u""
+
+        cmd = f"{ns_str} ip link set dev {interface} {state}"
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
     def init_avf_interface(node, ifc_key, numvfs=1, osi_layer=u"L2"):
         """Init PCI device by creating VIFs and bind them to vfio-pci for AVF
         driver testing on DUT.
@@ -1609,6 +1628,9 @@ class InterfaceUtil:
                 )
             InterfaceUtil.set_linux_interface_mac(
                 node, pf_dev, vf_mac_addr, vf_id=vf_id
+            )
+            InterfaceUtil.set_linux_interface_state(
+                node, pf_dev, state=u"up"
             )
 
             DUTSetup.pci_vf_driver_unbind(node, pf_pci_addr, vf_id)
