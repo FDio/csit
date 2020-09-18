@@ -372,14 +372,6 @@ def plot_perf_box_name(plot, input_data):
     # Prepare the data for the plot
     plot_title = plot.get(u"title", u"").lower()
 
-    if u"-pdr" in plot_title:
-        ttype = u"PDR"
-    elif u"-ndr" in plot_title:
-        ttype = u"NDR"
-    else:
-        raise RuntimeError(u"Wrong title. No information about test type. Add"
-                           u"'-ndr' or '-pdr' to the test title.")
-
     if u"-gbps" in plot_title:
         value = u"gbps"
         multiplier = 1e6
@@ -396,6 +388,16 @@ def plot_perf_box_name(plot, input_data):
                 try:
                     if test[u"type"] in (u"NDRPDR", ):
                         test_type = u"NDRPDR"
+
+                        if u"-pdr" in plot_title:
+                            ttype = u"PDR"
+                        elif u"-ndr" in plot_title:
+                            ttype = u"NDR"
+                        else:
+                            raise RuntimeError(
+                                u"Wrong title. No information about test type. "
+                                u"Add '-ndr' or '-pdr' to the test title."
+                            )
 
                         y_vals[test[u"parent"]].append(
                             test[value][ttype][u"LOWER"] * multiplier
