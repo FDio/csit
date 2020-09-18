@@ -60,8 +60,17 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
 
 
 def simple_burst(
-        profile_file, duration, framesize, multiplier, port_0, port_1,
-        latency, async_start=False, traffic_directions=2):
+        profile_file,
+        duration_strict,
+        duration_max,
+        framesize,
+        multiplier,
+        port_0,
+        port_1,
+        latency,
+        async_start=False,
+        traffic_directions=2,
+    ):
     """Send traffic and measure packet loss and latency.
 
     Procedure:
@@ -78,16 +87,37 @@ def simple_burst(
      - disconnects from the client.
 
     Duration details:
-    As in stateless mode, duration parameter governs for how long
-    the new flows will be started. But if traffic has not stopped by this time,
-    it is stopped explicitly, counters reflect the state before the stop.
+    Similar to stateless mode, duration parameters govern for how long
+    the new flows will be started. But if traffic has not stopped
+    by the final time, the traffic is stopped explicitly,
+    counters reflect the state just after the stop.
 
     TODO: Support tests which focus only on some transaction phases,
     e.g. TCP tests ignoring init and teardown separated by delays.
+    Currently, approximated time measures the whole traffic duration.
 
     :param profile_file: A python module with T-rex traffic profile.
-    :param duration: Duration of transaction creation phase [s] (-1=infinite).
-        It is expected the value is large enough for transaction scale to start.
+    :param duration_strict: Expected duration for all transactions to start,
+        assuming no duration stretching happens. This includes later start
+        of later transactions (according to TPS multiplier),
+        but it does not include duration of each transaction.
+        This is needed, because TRex does not stop the traffic before this time
+        (even if all transactions are passed), so if any overhead is included
+        here, the approximated duration will be longer, thus leading
+        to unrealistic aproximated rate.
+    :param duration_max: Total duration, with any additional time we expect
+        TRex may need to finish the traffic, including duration
+        of each transaction and any additional time tolerated for
+        (small) duration stretching.
+        Traffic is forcefully stopped after this max duration.
+        If max duration is too large, duration stretching
+        (or other inefficiency such as TCP retransmits) is toleratied too much,
+        leading to too small losses.
+        If max duration is too small, there will be losses
+        even in situations where TRex did not have enough real time
+        to send the traffic.
+        Max duration can be smaller than strict duration,
+        e.g. to compensate for delays in the Python code.
     :param framesize: Frame size.
     :param multiplier: Multiplier of profile CPS.
     :param port_0: Port 0 on the traffic generator.
@@ -96,7 +126,8 @@ def simple_burst(
     :param async_start: Start the traffic and exit.
     :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
     :type profile_file: str
-    :type duration: float
+    :type duration_strict: float
+    :type duration_max: float
     :type framesize: int or str
     :type multiplier: int
     :type port_0: int
@@ -152,26 +183,26 @@ def simple_burst(
 
         # Choose CPS and start traffic.
         client.start(
-            mult=multiplier, duration=duration, nc=True,
+            mult=multiplier, duration=duration_strict, nc=True,
             latency_pps=int(multiplier) if latency else 0,
             client_mask=2**len(ports)-1
         )
         time_start = time.monotonic()
-        # TODO: What is a good timeout for TRex to start traffic?
-        time_stop = time_start + (duration if duration > 0 else 1.0)
-        # t-rex starts the packet flow with the delay
-        new_stat = client.get_stats(ports=[port_0])
-        while new_stat[port_0][u"opackets"] == 0:
-            time.sleep(0.001)
-            new_stat = client.get_stats(ports=[port_0])
-            if time.monotonic() > time_stop:
-                print(f"No packets transmitted within duration {duration!r}")
-                print(u"Optimistically attempting to measure anyway.")
-                # Rather report zero pass count than fail at start of a search.
-                break
-        trex_start_time = time.monotonic() - time_start
-        print(f"Startig took {trex_start_time} seconds.")
-        time_start += trex_start_time
+#        # TODO: What is a good timeout for TRex to start traffic?
+#        time_stop = time_start + max(duration_strict, 1.0)
+#        # t-rex starts the packet flow with the delay
+#        new_stat = client.get_stats(ports=[port_0])
+#        while new_stat[port_0][u"opackets"] == 0:
+#            time.sleep(0.001)
+#            new_stat = client.get_stats(ports=[port_0])
+#            if time.monotonic() > time_stop:
+#                print(f"No packets transmitted within {duration_strict!r} s.")
+#                print(u"Optimistically attempting to measure anyway.")
+#                # Rather report zero pass count than fail at start of a search.
+#                break
+#        trex_start_time = time.monotonic() - time_start
+#        print(f"Startig took {trex_start_time} seconds.")
+#        time_start += trex_start_time
         o_prev, i_prev = 0, 0  # new stat is unidir and not reported.
 
         if async_start:
@@ -182,7 +213,7 @@ def simple_burst(
                 xsnap1 = client.ports[port_1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
-            time_stop = time_start + duration
+            time_stop = time_start + max(duration_max, 1.0)
             time_sample = time_start + stats_sample_delay
             # Do not block until done.
             while client.is_traffic_active(ports=ports):
@@ -204,6 +235,7 @@ def simple_burst(
                 if time_now >= time_stop:
                     print(f"Time is up, aborting traffic.")
                     break
+            print(f"Main traffic took {time.monotonic() - time_start} seconds.")
             # Stats are not synchronized while traffic is flowing.
             # For exmple, if ipackets is read later than opackets,
             # it can result in apparently negative loss.
@@ -216,7 +248,7 @@ def simple_burst(
             client.stop_latency()
             client.remove_rx_queue(client.get_all_ports())
             # Now we can wait for the real traffic stop.
-            client.stop (block=True)
+            client.stop(block=True)
             duration_stop = time.monotonic() - time_stopping_starts
             print(f"Stopping took {duration_stop} seconds.")
 
@@ -416,8 +448,12 @@ def main():
         help=u"Python traffic profile."
     )
     parser.add_argument(
-        u"-d", u"--duration", required=True, type=float,
-        help=u"Duration of traffic run."
+        u"--duration_strict", required=True, type=float,
+        help=u"Duration of expected traffic run."
+    )
+    parser.add_argument(
+        u"--duration_max", required=True, type=float,
+        help=u"Total time allowed with transaction time, duration stretching."
     )
     parser.add_argument(
         u"-s", u"--frame_size", required=True,
@@ -456,10 +492,16 @@ def main():
         framesize = args.frame_size
 
     simple_burst(
-        profile_file=args.profile, duration=args.duration, framesize=framesize,
-        multiplier=args.multiplier, port_0=args.port_0, port_1=args.port_1,
-        latency=args.latency, async_start=args.async_start,
-        traffic_directions=args.traffic_directions
+        profile_file=args.profile,
+        duration_strict=args.duration_strict,
+        duration_max=args.duration_max,
+        framesize=framesize,
+        multiplier=args.multiplier,
+        port_0=args.port_0,
+        port_1=args.port_1,
+        latency=args.latency,
+        async_start=args.async_start,
+        traffic_directions=args.traffic_directions,
     )
 
 
