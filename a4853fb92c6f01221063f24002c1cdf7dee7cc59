@@ -189,6 +189,30 @@
       "revId": "a4853fb92c6f01221063f24002c1cdf7dee7cc59",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5c727a1_ef72cac7",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-18T16:31:42Z",
+      "side": 1,
+      "message": "Oh, finally I get it. The subshell, even if it evaluates the inner error, is isolated from the main shell. That means \"die\" in the subshell exits only the subshell, while the parent shell needs to check for return code and explicitly die again.",
+      "parentUuid": "8e8b7a51_3525c0ed",
+      "range": {
+        "startLine": 793,
+        "startChar": 16,
+        "endLine": 793,
+        "endChar": 31
+      },
+      "revId": "a4853fb92c6f01221063f24002c1cdf7dee7cc59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
