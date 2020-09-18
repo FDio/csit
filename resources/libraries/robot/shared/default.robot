@@ -151,14 +151,13 @@
 | | | Run Keyword | ${dut}.Add Unix Nodaemon
 | | | Run Keyword | ${dut}.Add Unix Coredump
 | | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
-| | | Run Keyword | ${dut}.Add Heapsize | 4G
-| | | Run Keyword | ${dut}.Add Statseg size | 4G
+| | | Run Keyword | ${dut}.Add Main Heap Size | 2G
+| | | Run Keyword | ${dut}.Add Main Heap Page Size | 1G
+| | | Run Keyword | ${dut}.Add Statseg Size | 2G
+| | | Run Keyword | ${dut}.Add Statseg Page Size | 1G
 | | | Run Keyword | ${dut}.Add Statseg Per Node Counters | on
 | | | Run Keyword | ${dut}.Add Plugin | disable | default
 | | | Run Keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
-| | | Run Keyword | ${dut}.Add IP6 Hash Buckets | 2000000
-| | | Run Keyword | ${dut}.Add IP6 Heap Size | 4G
-| | | Run Keyword | ${dut}.Add IP Heap Size | 4G
 | | | Run Keyword | ${dut}.Add Graph Node Variant | ${GRAPH_NODE_VARIANT}
 | | END
 
