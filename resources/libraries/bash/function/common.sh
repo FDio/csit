@@ -655,6 +655,15 @@ function run_pybot () {
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
     all_options+=("--noncritical" "EXPECTED_FAILING")
     all_options+=("${EXPANDED_TAGS[@]}")
+    if [[ "${all_options[@]}" != *"--suite tests.vpp.device"* ]]; then
+        # Devicetest is the only job allowed to have no tag restriction.
+        if [[ "${all_options[@]}" != *"--include"* ]]; then
+            warn "No tags selected, bailing out"
+            PYBOT_EXIT_STATUS=4
+            return
+        fi
+        # TODO: Check for user tags (as opposed to 2_NODE_SINGLE_LINK_TOPO).
+    fi
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
@@ -781,36 +790,43 @@ function select_tags () {
     tfd="${JOB_SPECS_DIR}"
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
+        # As explained in bash style guide, error checking in here strings
+        # is not feasible, and we want to avoid storing long texts
+        # to variables (it pollutes the "set -x" output).
+        # Therefore test_tag_array may end up empty, for example
+        # if the job spec dir does not contain the filename specified.
+        # As empty tag list is valid for some jobs (devicetest verify),
+        # we perform check for missing --include later, in run_pybot.
         *"ndrpdr-weekly"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
                 ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd}) || die
+                eval ${sed_nics_sub_cmd})
             ;;
         *"mrr-daily"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
                 ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd}) || die
+                eval ${sed_nics_sub_cmd})
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array <<< $(sed 's/ //g' \
                 ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd}) || die
+                eval ${sed_nics_sub_cmd})
             ;;
         *"report-iterative"* )
             test_sets=(${TEST_TAG_STRING//:/ })
             # Run only one test set per run
-            report_file=${test_sets[0]}.md
+            report_dirfile="${NODENESS}-${FLAVOR}/${test_sets[0]}.md"
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} |
-                eval ${sed_nics_sub_cmd}) || die
+                ${tfd}/report_iterative/${report_dirfile} |
+                eval ${sed_nics_sub_cmd})
             ;;
         *"report-coverage"* )
             test_sets=(${TEST_TAG_STRING//:/ })
             # Run only one test set per run
-            report_file=${test_sets[0]}.md
+            report_dirfile="${NODENESS}-${FLAVOR}/${test_sets[0]}.md"
             readarray -t test_tag_array <<< $(sed 's/ //g' \
-                ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} |
-                eval ${sed_nics_sub_cmd}) || die
+                ${tfd}/report_coverage/${report_dirfile} |
+                eval ${sed_nics_sub_cmd})
             ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
