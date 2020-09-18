@@ -297,11 +297,7 @@ class QemuUtils:
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_exec(running)
         vpp_config.add_socksvr()
-        vpp_config.add_statseg_per_node_counters(value=u"on")
         vpp_config.add_buffers_per_numa(107520)
-        vpp_config.add_heapsize(u"1G")
-        vpp_config.add_ip_heap_size(u"1G")
-        vpp_config.add_statseg_size(u"1G")
         vpp_config.add_cpu_main_core(u"0")
         if self._opt.get(u"smp") > 1:
             vpp_config.add_cpu_corelist_workers(f"1-{self._opt.get(u'smp')-1}")
@@ -323,8 +319,12 @@ class QemuUtils:
             vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
         if "nat" in self._opt.get(u'vnf'):
             vpp_config.add_nat(value=u"endpoint-dependent")
-            #vpp_config.add_nat_max_translations_per_thread(value=655360)
             vpp_config.add_plugin(u"enable", u"nat_plugin.so")
+        vpp_config.add_main_heap_size(u"1G")
+        vpp_config.add_main_heap_page_size(u"2M")
+        vpp_config.add_statseg_size(u"1G")
+        vpp_config.add_statseg_page_size(u"2M")
+        vpp_config.add_statseg_per_node_counters(u"on")
         vpp_config.write_config(startup)
 
         # Create VPP running configuration.
