@@ -617,7 +617,6 @@ class ContainerEngine:
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec(u"/tmp/running.exec")
         vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
-        vpp_config.add_statseg_per_node_counters(value=u"on")
         if cpuset_cpus:
             # We will pop the first core from the list to be a main core
             vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
@@ -627,9 +626,11 @@ class ContainerEngine:
         vpp_config.add_buffers_per_numa(215040)
         vpp_config.add_plugin(u"disable", u"default")
         vpp_config.add_plugin(u"enable", u"memif_plugin.so")
-        vpp_config.add_heapsize(u"4G")
-        vpp_config.add_ip_heap_size(u"4G")
-        vpp_config.add_statseg_size(u"4G")
+        vpp_config.add_main_heap_size(u"2G")
+        vpp_config.add_main_heap_page_size(u"2M")
+        vpp_config.add_statseg_size(u"2G")
+        vpp_config.add_statseg_page_size(u"2M")
+        vpp_config.add_statseg_per_node_counters(u"on")
 
         return vpp_config
 
