@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b5b35163_ef37e44a",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-21T13:25:17Z",
+      "side": 1,
+      "message": "It is for special tests where we need to reduce the rate in the ramp up phase, e.g. NAT44-DET tests where we need to create all required nat sessions before mrr measurement.",
+      "parentUuid": "c3bf22f5_fd5cd912",
+      "range": {
+        "startLine": 686,
+        "startChar": 0,
+        "endLine": 686,
+        "endChar": 63
+      },
+      "revId": "ab3e084d7eec52950e760918f157b12bc0f1e327",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0713b71b_33167d86",
         "filename": "tests/vpp/perf/__init__.robot",
         "patchSetId": 22
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-14T14:17:42Z",
       "side": 1,
       "message": "move to test not here, this is global for every test case. we do not want that for every testcase. it takes too much time.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 60
+      },
+      "revId": "ab3e084d7eec52950e760918f157b12bc0f1e327",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7197b0ce_fd2182d1",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-21T13:25:17Z",
+      "side": 1,
+      "message": "It is used there for debugging purposes during the development (wip) phase. Will be removed/reverted before moving to review state.",
+      "parentUuid": "0713b71b_33167d86",
       "range": {
         "startLine": 53,
         "startChar": 0,
@@ -68,6 +116,30 @@
       "revId": "ab3e084d7eec52950e760918f157b12bc0f1e327",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "830e5e46_b6588587",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-09-21T13:25:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad18b175_d4c30fd8",
+      "range": {
+        "startLine": 67,
+        "startChar": 40,
+        "endLine": 68,
+        "endChar": 58
+      },
+      "revId": "ab3e084d7eec52950e760918f157b12bc0f1e327",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
