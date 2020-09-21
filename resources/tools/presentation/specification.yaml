@@ -483,131 +483,32 @@
     vpp-perf-results-3n-hsw:
       # TODO: Replace:
       # csit-vpp-perf-report-coverage-2009-3n-hsw:
-      csit-vpp-perf-report-coverage-2005-3n-hsw:
-        - 74  # crypto-00
-        - 75  # crypto-01
-        - 76  # crypto-02
-        - 77  # crypto-03
-        - 78  # ip4-00
-        - 79  # ip4-01
-        - 80  # ip4-02
-        - 81  # ip4-03
-        - 73  # ip4-04
-        - 82  # ip4-05
-        - 83  # ip4-06
-        - 84  # ip4-07
-        - 85  # ip4-08
-        - 86  # ip4tun-00
-        - 87  # ip4tun-01
-        - 88  # ip4tun-02
-        - 89  # ip6-00
-        - 90  # ip6-01
-        - 91  # ip6tun-00
-        - 92  # l2-00
-        - 93  # l2-01
-        - 94  # l2-02
-        - 95  # l2-03
-        - 96  # l2-04
-        - 97  # l2-05
-        - 98  # l2-06
-        - 99  # l2-07
-        - 100 # l2-08
-        - 101 # l2-09
-        - 102 # l2-10
-        - 103 # memif-00
-        - 104 # srv6-00
-        - 105 # srv6-01
-        - 106 # vhost-00
-        - 107 # vhost-01
-        - 109 # vhost-02
+      csit-vpp-perf-report-iterative-2009-3n-hsw:
+        - 3  # RC1 NDRPDR sel env5
 
     vpp-perf-results-3n-skx:
       # TODO: Replace:
       # csit-vpp-perf-report-coverage-2009-3n-skx:
-      csit-vpp-perf-report-coverage-2005-3n-skx:
-        - 45  # crypto-00
-        - 46  # crypto-01
-        - 47  # crypto-02
-        - 83  # crypto-03
-        - 50  # ip4-00
-        - 51  # ip4-01
-        - 52  # ip4-02
-        - 53  # ip4-03
-        - 54  # ip4-04
-        - 55  # ip4-05
-        - 56  # ip4-06
-        - 57  # ip4-07
-        - 58  # ip4-08
-        - 59  # ip4tun-00
-        - 60  # ip4tun-01
-        - 61  # ip4tun-02
-        - 62  # ip6-00
-        - 63  # ip6-01
-        - 64  # ip6tun-00
-        - 65  # l2-00
-        - 66  # l2-01
-        - 67  # l2-02
-        - 68  # l2-03
-        - 69  # l2-04
-        - 84  # l2-05
-        - 71  # l2-06
-        - 72  # l2-07
-        - 73  # l2-08
-        - 85  # l2-09
-        - 75  # l2-10
-        - 76  # memif-00
-        - 77  # srv6-00
-        - 78  # srv6-01
-        - 88  # vhost-00
-        - 89  # vhost-01
-        - 81  # vhost-02
-        - 83  # vhost-03
+      csit-vpp-perf-report-iterative-2009-3n-skx:
+        - 3  # RC1 NDRPDR sel env5
 
     vpp-perf-results-2n-skx:
       # TODO: Replace:
       # csit-vpp-perf-report-coverage-2009-2n-skx:
-      csit-vpp-perf-report-coverage-2005-2n-skx:
-        - 28  # ip4-00
-        - 29  # ip4-01
-        - 30  # ip4-02
-        - 31  # ip4-03
-        - 32  # ip4-04
-        - 33  # ip4-05
-        - 34  # ip6-00
-        - 35  # ip6-01
-        - 36  # l2-00
-        - 37  # l2-01
-        - 38  # lb-00
-        - 39  # memif-00
-        - 40  # vhost-00
-        - 41  # vhost-01
-        - 42  # vts-00
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 3  # RC1 NDRPDR sel env5
 
     vpp-perf-results-2n-clx:
       # TODO: Replace:
       # csit-vpp-perf-report-coverage-2009-2n-clx:
-      csit-vpp-perf-report-coverage-2005-2n-clx:
-        - 24  # ip4-00
-        - 25  # ip4-01
-        - 26  # ip4-02
-        - 27  # ip4-03
-        - 28  # ip4-04
-        - 29  # ip4-05
-        - 34  # ip6-00
-        - 36  # ip6-01
-        - 31  # l2-00
-        - 41  # l2-01
-        - 39  # lb-00
-        - 37  # memif-00
-        - 32  # vhost-00
-        - 33  # vhost-01
-        - 40  # vts-00
+      csit-vpp-perf-report-iterative-2009-2n-clx:
+        - 3  # RC1 NDRPDR sel env5
 
     vpp-perf-results-3n-tsh:
       # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-3n-tsh:
-      csit-vpp-perf-report-iterative-2005-3n-tsh:
-        - 35  # NDRPDR sel env 4
+      # csit-vpp-perf-report-coverage-2009-3n-tsh:
+      csit-vpp-perf-report-iterative-2009-3n-tsh:
+        - 3  # RC1 NDRPDR sel env5
 
     vpp-perf-results-3n-dnv:
       # TODO: Replace:
@@ -2035,43 +1936,6 @@
       - 11  # hoststack
       - 12  # hoststack
       - 13  # hoststack
-    csit-vpp-perf-report-coverage-2005-3n-hsw:
-      - 74  # crypto-00
-      - 75  # crypto-01
-      - 76  # crypto-02
-      - 77  # crypto-03
-      - 78  # ip4-00
-      - 79  # ip4-01
-      - 80  # ip4-02
-      - 81  # ip4-03
-      - 73  # ip4-04
-      - 82  # ip4-05
-      - 83  # ip4-06
-      - 84  # ip4-07
-      - 85  # ip4-08
-      - 86  # ip4tun-00
-      - 87  # ip4tun-01
-      - 88  # ip4tun-02
-      - 89  # ip6-00
-      - 90  # ip6-01
-      - 91  # ip6tun-00
-      - 92  # l2-00
-      - 93  # l2-01
-      - 94  # l2-02
-      - 95  # l2-03
-      - 96  # l2-04
-      - 97  # l2-05
-      - 98  # l2-06
-      - 99  # l2-07
-      - 100 # l2-08
-      - 101 # l2-09
-      - 102 # l2-10
-      - 103 # memif-00
-      - 104 # srv6-00
-      - 105 # srv6-01
-      - 106 # vhost-00
-      - 107 # vhost-01
-      - 109 # vhost-02
     # TODO: Add:
     csit-vpp-perf-report-iterative-2009-3n-hsw:
       - 3  # RC1 NDRPDR sel env5
@@ -2107,44 +1971,6 @@
       - 53  # NDRPDR sel 2001.0-4
       - 54  # NDRPDR sel 2001.0-4
       - 49  # MRR sel env 4
-    csit-vpp-perf-report-coverage-2005-3n-skx:
-      - 45  # crypto-00
-      - 46  # crypto-01
-      - 47  # crypto-02
-      - 83  # crypto-03
-      - 50  # ip4-00
-      - 51  # ip4-01
-      - 52  # ip4-02
-      - 53  # ip4-03
-      - 54  # ip4-04
-      - 55  # ip4-05
-      - 56  # ip4-06
-      - 57  # ip4-07
-      - 58  # ip4-08
-      - 59  # ip4tun-00
-      - 60  # ip4tun-01
-      - 61  # ip4tun-02
-      - 62  # ip6-00
-      - 63  # ip6-01
-      - 64  # ip6tun-00
-      - 65  # l2-00
-      - 66  # l2-01
-      - 67  # l2-02
-      - 68  # l2-03
-      - 69  # l2-04
-      - 84  # l2-05
-      - 71  # l2-06
-      - 72  # l2-07
-      - 73  # l2-08
-      - 85  # l2-09
-      - 75  # l2-10
-      - 76  # memif-00
-      - 77  # srv6-00
-      - 78  # srv6-01
-      - 88  # vhost-00
-      - 89  # vhost-01
-      - 81  # vhost-02
-      - 83  # vhost-03
     # TODO: Add:
     csit-vpp-perf-report-iterative-2009-3n-skx:
       - 3  # RC1 NDRPDR sel env5
@@ -2195,22 +2021,6 @@
       - 136 # nf-density-sel env 4
       - 139 # nf-density-sel env 4
       - 115 # MRR nf-density-sel env 4
-    csit-vpp-perf-report-coverage-2005-2n-skx:
-      - 28  # ip4-00
-      - 29  # ip4-01
-      - 30  # ip4-02
-      - 31  # ip4-03
-      - 32  # ip4-04
-      - 33  # ip4-05
-      - 34  # ip6-00
-      - 35  # ip6-01
-      - 36  # l2-00
-      - 37  # l2-01
-      - 38  # lb-00
-      - 39  # memif-00
-      - 40  # vhost-00
-      - 41  # vhost-01
-      - 42  # vts-00
     # TODO: Add:
     csit-vpp-perf-report-iterative-2009-2n-skx:
       - 3  # RC1 NDRPDR sel env5
@@ -2262,22 +2072,6 @@
       - 106 # nfv-density-00 env 4
       - 108 # nfv-density-00 env 4
       - 96  # MRR nfv-density-00 env 4
-    csit-vpp-perf-report-coverage-2005-2n-clx:
-      - 24  # ip4-00
-      - 25  # ip4-01
-      - 26  # ip4-02
-      - 27  # ip4-03
-      - 28  # ip4-04
-      - 29  # ip4-05
-      - 34  # ip6-00
-      - 36  # ip6-01
-      - 31  # l2-00
-      - 41  # l2-01
-      - 39  # lb-00
-      - 37  # memif-00
-      - 32  # vhost-00
-      - 33  # vhost-01
-      - 40  # vts-00
     # TODO: Add:
     csit-vpp-perf-report-iterative-2009-2n-clx:
       - 3  # RC1 NDRPDR sel env5
