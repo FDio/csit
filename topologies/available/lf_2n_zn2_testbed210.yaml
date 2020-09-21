@@ -1,0 +1,155 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/2_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 2-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "10.32.8.25"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port1:
+        # s61-t210-tg1-c1/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "0c:42:a1:70:b0:6a"
+        pci_address: "0000:01:00.0"
+        ip4_address: "172.16.10.2"
+        driver: mlx5_core
+        link: link1
+        model: Mellanox-CX556A
+      port2:
+        # s61-t210-tg1-c1/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "0c:42:a1:70:b0:6b"
+        pci_address: "0000:01:00.1"
+        ip4_address: "172.16.20.1"
+        driver: mlx5_core
+        link: link2
+        model: Mellanox-CX556A
+      port3:
+        # s61-t210-tg1-c2/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
+        mac_address: "40:a6:b7:02:89:dc"
+        pci_address: "0000:41:00.0"
+        ip4_address: "172.16.30.2"
+        driver: i40e
+        link: link3
+        model: Intel-XXV710
+      port4:
+        # s61-t210-tg1-c2/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
+        mac_address: "40:a6:b7:02:89:dd"
+        pci_address: "0000:41:00.1"
+        ip4_address: "172.16.40.2"
+        driver: i40e
+        link: link4
+        model: Intel-XXV710
+      port5:
+        # s61-t210-tg1-c3/p1 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "80:61:5f:01:5a:72"
+        pci_address: "0000:81:00.0"
+        ip4_address: "172.16.50.2"
+        driver: i40e
+        link: link5
+        model: Intel-X710
+      port6:
+        # s61-t210-tg1-c3/p2 - 10GE port2 on Intel NIC x710 4p10GE.
+        mac_address: "80:61:5f:01:5a:73"
+        pci_address: "0000:81:00.1"
+        ip4_address: "172.16.60.2"
+        driver: i40e
+        link: link6
+        model: Intel-X710
+      port7:
+        # s61-t210-tg1-c3/p3 - 10GE port3 on Intel NIC x710 4p10GE.
+        mac_address: "80:61:5f:01:5a:74"
+        pci_address: "0000:81:00.2"
+        ip4_address: "172.16.70.2"
+        driver: i40e
+        link: link7
+        model: Intel-X710
+      port8:
+        # s61-t210-tg1-c3/p4 - 10GE port4 on Intel NIC x710 4p10GE.
+        mac_address: "80:61:5f:01:5a:75"
+        pci_address: "0000:81:00.3"
+        ip4_address: "172.16.80.2"
+        driver: i40e
+        link: link8
+        model: Intel-X710
+  DUT1:
+    type: DUT
+    host: "10.32.8.24"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    uio_driver: vfio-pci
+    interfaces:
+      port1:
+        # s60-t210-sut1-c1/p1 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "80:61:5f:03:dd:a6"
+        pci_address: "0000:01:00.0"
+        ip4_address: "172.16.50.1"
+        driver: i40e
+        link: link5
+        model: Intel-X710
+      port2:
+        # s60-t210-sut1-c1/p2 - 10GE port2 on Intel NIC x710 4p10GE.
+        mac_address: "80:61:5f:03:dd:a7"
+        pci_address: "0000:01:00.1"
+        ip4_address: "172.16.60.1"
+        driver: i40e
+        link: link6
+        model: Intel-X710
+      port3:
+        # s60-t210-sut1-c1/p3 - 10GE port3 on Intel NIC x710 4p10GE.
+        mac_address: "80:61:5f:03:dd:a8"
+        pci_address: "0000:01:00.2"
+        ip4_address: "172.16.70.1"
+        driver: i40e
+        link: link7
+        model: Intel-X710
+      port4:
+        # s60-t210-sut1-c1/p4 - 10GE port4 on Intel NIC x710 4p10GE.
+        mac_address: "80:61:5f:03:dd:a9"
+        pci_address: "0000:01:00.3"
+        ip4_address: "172.16.80.1"
+        driver: i40e
+        link: link8
+        model: Intel-X710
+      port5:
+        # s60-t210-sut1-c2/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
+        mac_address: "40:a6:b7:02:89:28"
+        pci_address: "0000:41:00.0"
+        ip4_address: "172.16.30.1"
+        driver: i40e
+        link: link3
+        model: Intel-XXV710
+      port6:
+        # s60-t210-sut1-c2/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
+        mac_address: "40:a6:b7:02:89:29"
+        pci_address: "0000:41:00.1"
+        ip4_address: "172.16.40.1"
+        driver: i40e
+        link: link4
+        model: Intel-XXV710
+      port7:
+        # s60-t210-sut1-c3/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "0c:42:a1:70:ad:ba"
+        pci_address: "0000:81:00.0"
+        ip4_address: "172.16.10.2"
+        driver: mlx5_core
+        link: link1
+        model: Mellanox-CX556A
+      port8:
+        # s60-t210-sut1-c3/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "0c:42:a1:70:ad:bb"
+        pci_address: "0000:81:00.1"
+        ip4_address: "172.16.20.1"
+        driver: mlx5_core
+        link: link2
+        model: Mellanox-CX556A
