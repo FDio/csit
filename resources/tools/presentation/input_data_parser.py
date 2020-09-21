@@ -1229,7 +1229,8 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
         if test_kw.name.count(u"Show Runtime On All Duts") or \
-                test_kw.name.count(u"Show Runtime Counters On All Duts"):
+                test_kw.name.count(u"Show Runtime Counters On All Duts") or \
+                test_kw.name.count(u"Vpp Show Runtime On All Duts"):
             self._msg_type = u"test-show-runtime"
             self._sh_run_counter += 1
         else:
