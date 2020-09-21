@@ -70,6 +70,30 @@
       "revId": "50ea4739c3543e517b7dbee0898c933364379621",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bb20a9c_3d0cc5f9",
+        "filename": "docs/job_specs/report_coverage/2n-clx/l2-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-21T15:05:33Z",
+      "side": 1,
+      "message": "Well technically we should have an idea from dry-run [rc1,rc2], and someone needs to put some coefficient and then do a*b although that is also artificial.\n\nTo me:\n1) PAL producing trending /graphs/blah/tables\n2) PAL to put special file docs.fd.io/csit/trending/../detail_time_report.txt (CSV file, per test , per suite, per run results)\n3) Fetch it from link above or leave it there and watch there.\n\n\n//\nMerging this patch only after confirmed from Neale?",
+      "parentUuid": "da3996a5_6c5ba029",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "50ea4739c3543e517b7dbee0898c933364379621",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
