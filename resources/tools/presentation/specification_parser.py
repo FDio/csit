@@ -307,8 +307,9 @@ class Specification:
         else:
             raise PresentationError(f"Not supported build type: {build_type}")
         if ret_code != 0:
-            raise PresentationError(u"Not possible to get the number of the "
-                                    u"build number.")
+            raise PresentationError(
+                f"Not possible to get the build number of {job}."
+            )
         try:
             build_nr = int(build_nr)
             return build_nr
