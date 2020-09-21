@@ -77,7 +77,7 @@
 | | ... | rate=${9001}
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
-| | ... | ${duration_limit}=${1.0}
+| | ... | duration_limit=${1.0}
 
 | Additional Test Tear Down Action For packet_trace
 | | [Documentation]
