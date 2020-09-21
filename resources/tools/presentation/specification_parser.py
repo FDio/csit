@@ -314,7 +314,7 @@ class Specification:
             return build_nr
         except ValueError as err:
             raise PresentationError(
-                f"Not possible to get the number of the build number. Reason:\n"
+                f"Not possible to get the build number of {job}. Reason:\n"
                 f"{repr(err)}"
             )
 
