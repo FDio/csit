@@ -1,0 +1,937 @@
+-------------------------------------------------------------------------------
+# CSIT-2.0
+
+Version 0.1.0
+
+-------------------------------------------------------------------------------
+
+### Content
+
+- [CSIT-2.0](#csit-20)
+    + [Content](#content)
+    + [Changelog](#changelog)
+    + [TODOs](#todos)
+    + [Note](#note)
+    + [Overview](#overview)
+- [The Model](#the-model)
+  * [Components](#components)
+    + [SUT Specification](#sut-specification)
+    + [Processing Module](#processing-module)
+    + [Test Bed and Test](#test-bed-and-test)
+    + [Test Data](#test-data)
+    + [PAL](#pal)
+    + [PAL Specification](#pal-specification)
+    + [Presentation](#presentation)
+  * [Procedure](#procedure)
+- [Specification of the Topology](#specification-of-the-topology)
+  * [Structure](#structure)
+  * [Topology](#topology)
+    + [Resources](#resources)
+    + [Network](#network)
+    + [Node](#node)
+    + [Link](#link)
+  * [Test Configuration](#test-configuration)
+- [Unified Test Interface](#unified-test-interface)
+  * [Data Structure](#data-structure)
+    + [Top Level Sections](#top-level-sections)
+  * [State](#state)
+  * [Current State](#current-state)
+  * [Test](#test)
+    + [Metadata](#metadata)
+    + [Results](#results)
+      - [The structure of results](#the-structure-of-results)
+    + [Examples](#examples)
+  * [Chain of Changes](#chain-of-changes)
+  * [Unified Test Interface Lifecycle](#unified-test-interface-lifecycle)
+    + [Initialisation](#initialisation)
+    + [Data Collection](#data-collection)
+    + [Providing the Collected Data](#providing-the-collected-data)
+- [Implementation](#implementation)
+  * [Design](#design)
+  * [Tools and Libraries](#tools-and-libraries)
+
+### Changelog
+
+| Version  | Changes                                                          |
+|----------|------------------------------------------------------------------|
+| 0.1.0    | Initial revision                                                 |
+
+### TODOs
+
+1. Add implementation details here: [Implementation](#implementation)
+
+### Note
+
+The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119
+"Key Words for use in RFCs to Indicate Requirement Levels").
+
+### Overview
+
+This document describes the new model of configuring and running tests
+and collecting the operational data and results produced by them.
+The first chapter [The Model](#the-model) briefly describes the model itself.
+
+Then it deals with
+- the [Specification of the topology](#specification-of-the-topology) as a JSON
+  structure which is a full and the only description of the SUT and test
+  itself;
+- its implementation as a directed graphs with self loops and
+  parallel edges;
+- the [Unified Test Interface](#unified-test-interface) which is the only
+  output of a test (results, operational data, counters).
+
+-------------------------------------------------------------------------------
+
+# The Model
+
+![The new architecture](pics/overview.svg "The new architecture")
+
+## Components
+
+Components stored in the repository:
+- [SUT Specification](#sut-specification)
+- [PAL Specification](#pal-specification)
+
+Components running in RAM and keeping all data in RAM during the runtime:
+- [Processing Module](#processing-module),
+- [PAL](#pal)
+
+Component running on a testbed by CI/CD:
+- [Test Bed and Test](#test-bed-and-test)
+
+Components stored in a data storage:
+- [Test data](#test-data),
+- [Presentation](#presentation)
+
+### SUT Specification
+
+SUT specification is a JSON file
+([example](topology_model.json "topology_model.json")) containing the full
+information about the system under test. It includes mainly information about:
+
+- resources,
+- topology,
+- configuration,
+- placeholders for operational data and results.
+
+For more information see the section
+[Specification of the topology](#specification-of-the-topology).
+
+### Processing Module
+
+When a test starts, an instance of the processing module is created. It reads
+the SUT specification and creates a model of the tested network topology.
+Then it passes the configuration information to the test.
+
+While the test runs, it continuously collects operational data and passes it
+to the processing module together with the results. All collected information
+is preserved even the test fails in a fatal way.
+
+At the end, the data is transformed to the JSON format and sent to the storage
+by CI/CD tool.
+
+### Test Bed and Test
+
+Test running on a test bed created and configured by the processing module with
+data from SUT Specification and providing all operational data and results back
+to the processing module.
+
+### Test Data
+
+All information about a test (topology, test bed configuration, DUT
+configuration, operational data, results, ...) stored in a database.
+
+### PAL
+
+Presentation and Analytics Layer (PAL) makes possible to present and
+analyse the test results generated by CSIT Jenkins jobs.
+
+### PAL Specification
+
+PAL specification is a YAML file
+([example](../../resources/tools/presentation/specification.yaml)) which
+specifies all elements to generate by PAL.
+
+It is not necessary to modify the current version, but there is a place for
+optimization.
+
+### Presentation
+
+The presentation includes all elements generated by PAL and published.
+
+## Procedure
+
+1. Create the instance of "Test Data Processing" module.
+1. Read the specification of the test bed and test.
+1. Create the test bed and configure it.
+1. Configure the test.
+1. Run the test.
+1. Collect data while running the test. The data must be collected separately
+   for each test.
+1. Collect the results from the test. The results must be collected separately
+   for each test.
+1. Save the test data locally. Save all collected data and results even
+   the test / suite / build fails.
+1. Upload all data to the storage.
+
+-------------------------------------------------------------------------------
+
+# Specification of the Topology
+
+The **specification of the topology** or topology model is considered to be an
+**input information**. It includes all information to
+- allocate resources,
+- build the topology,
+- configure all elements in the topology and
+- perform the test.
+
+The **unified test interface** is considered to be an
+**output information**. It MUST provide all information. It includes the same
+information as specification of the topology and
+- test results,
+- operational data,
+  - states, the resources, nodes and test went through,
+  - run-time data,
+  - counters.
+
+The specification of the topology CAN include also placeholders for operational
+data, e.g. states.
+
+See an example SUT specification [here](topology_model.json).
+
+## Structure
+
+The topology specification is a JSON file which includes the information
+about the resources, network, its nodes and links. It specifies its setup and
+configuration and collects its states and operational data.
+
+## Topology
+
+The topology is described as a network by nodes with termination points and
+links between them. Each element in this model has attributes, some of them
+have configuration data. See below.
+
+```json
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "reference": {},
+  "resource": [],
+  "network": []
+}
+```
+
+**version**
+
+Version of the specification. Versioned is the structure of the specification
+not data in it. This key MUST be present in the specification and its name
+MUST NOT be changed. Its value MUST be changed after each update of the
+structure. It consists of three parts separated by a dot: MAJOR.MINOR.PATCH.
+Increment the:
+  - MAJOR version when the changes are incompatible with the previous version,
+  - MINOR version when the changes are backwards compatible with the previous
+    version, and
+  - PATCH version when the changes are backwards compatible bug fixes.
+
+The version of the data specification, and the version of this document MUST be
+the same.
+
+**metadata**
+
+Key-value pairs defining the metadata of the model. It is a placeholder, not
+specified yet.
+
+**reference**
+
+```json
+{
+  "reference": {
+    "ref_1_ID": {},
+    "ref_2_ID": {},
+    "ref_N_ID": {}
+  }
+}
+```
+
+There can be specified any element in this section and then used anywhere in
+the model. For example, if there is a high amount of very similar elements in
+the network, it can be defined here and then used as a reference anywhere in
+the model.
+
+In that case, the reference is replaced by the dictionary with corresponding
+reference ID from this section. After replacement, another key-value pairs
+CAN be added, or the existing CAN be changed.
+
+**resource**
+
+List of resources, and their properties used in the topology.
+
+**network**
+
+The network itself, see the description below.
+
+### Resources
+
+```json
+{
+  "resource": [
+    {
+      "resource-id": "str",
+      "resource-type": "str",
+      "attr": {},
+      "parent": "str resource-id",
+      "children": "list of resource-id",
+      "configuration": "dict depends on resource-type"
+    }
+  ]
+}
+```
+
+Resource is a list of hardware and virtual resources needed to build the
+testbed. There can be listed chassis, processor cores, memory, interfaces,
+containers, ..., and their relationship (parent, child).
+
+**resource-id**
+
+Unique ID identifying the resource. The ID is unique within the model.
+
+**resource-type**
+
+The type of the resource, e.g.:
+- chassis,
+- processor core,
+- memory,
+- interface, ...
+
+**attr**
+
+Key-value pairs defining the attributes of the resource, e.g. size of memory if
+the resource is a RAM.
+
+**parent**
+
+`resource-id` of the parent resource. There can be only one parent for the
+resource. If the `parent` is not defined (this key does not exist), the
+resource is not a nested resource.
+
+**children**
+
+List of children of the resource. It includes the `resource-id` of all
+resources directly nested in this resource. If the `children` is empty, or it
+is not defined (this key does not exist), the resource has no nested resources.
+
+**configuration**
+
+A dictionary specifying the pre-configuration of the resource. If the resource
+is not configurable, this key does not exist.
+
+### Network
+
+```json
+{
+  "network": [
+    {
+      "network-id": "str",
+      "attr": {},
+      "node": [],
+      "link": []
+    }
+  ]
+}
+```
+
+A network is defined by [nodes](#node) with termination points connected by
+[links](#link).
+
+The item `network` in the model is a list as there can be more than one
+network specified. They CAN be multiple logical network topologies that are or
+are not interconnected.
+
+**network-id**
+
+Unique ID identifying the network. The ID is unique within the model.
+
+**attr**
+
+Key-value pairs defining the attributes of the network.
+
+**node**
+
+List of nodes in the network, see [Node](#node).
+
+**link**
+
+List of links connecting the nodes, see [Link](#link).
+
+### Node
+
+A node in the network CAN be software providing a network function (e.g. VPP)
+or a container, VM, etc.
+
+A node can include zero, one, or more nested nodes. The node with nested
+node(s) is the parent, a node nested in another node is its child.
+
+```json
+{
+  "network": {
+
+    "node": [
+      {
+        "node-id": "str",
+        "node-type": "str TG | DUT | ...",
+        "attr": {},
+        "parent": "str node-id",
+        "children": "list of node-ids",
+        "resource": "str resource-id or list of resource-id",
+        "configuration": {
+          "pre-configuration": {},
+          "run-time": [
+            {},
+            {
+              "traffic-profile": "TG runtime conf str path to file",
+              "traffic-specification": "TG runtime conf str path to file or JSON"
+            }
+          ]
+        },
+        "command-history": [],
+        "termination-point": []
+      }
+    ]
+
+  }
+}
+```
+
+**node-id**
+
+Unique ID identifying a node in the network.
+
+**node-type**
+
+The functional type of the node, e.g.:
+- traffic generator,
+- DUT, ...
+
+**attr**
+
+Key-value pairs defining the attributes of the node. They depend on the
+node-type.
+
+**parent**
+
+`node-id` of the parent node. There can be only one parent for the
+node. If the `parent` is not defined (this key does not exist), the node is not
+a nested node.
+
+**children**
+
+List of children of the node. It includes the `node-id` of all nodes nested in
+this node. If the `children` is empty, or it is not defined (this key does not
+exist), the node has no nested nodes.
+
+**resource**
+
+A list of resources used by this node.
+
+**configuration**
+
+Configuration of the node. The structure of this item depends on the
+`node-type` of the node. The structure of the configuration MUST be JSON
+compatible.
+
+- *pre-configuration* - the configuration used before DUT starts
+- *run-time* - the configuration used to configure the DUT while it
+  runs, e.g. to configure it for the specific test. If the DUT is reconfigured
+  during its run-time, this item is a list with configurations in the correct
+  order.
+
+Example of run-time configuration for the `node-type == TG`:
+- *traffic-profile* - the path to the traffic profile used for the test. Traffic
+  profile depends on the TG used.
+- *traffic-specification* - JSON data structure fully describing all parameters
+  of the traffic used for the test.
+
+> **NOTE:** The items `traffic-profile` and `traffic-specification` are covered
+> in a separate document.
+>
+> **TODO:** Add a link to the document.
+
+**command-history**
+
+Some nodes CAN be configured by a set of commands during the test. This item
+lists them in the chronological order. There also MUST be a timestamp to make
+possible to reconstruct the command flow in the context of the whole network.
+
+```json
+{
+
+        "command-history": [
+          {
+            "timestamp": "datetime",
+            "command": "str",
+            "return-code": "int",
+            "response": "str"
+          },
+          {}
+        ]
+
+}
+```
+
+> **TODO:** Data type of "command" and "response" : str or JSON?
+
+**termination-point**
+
+A termination point is a point belonging to a node which makes possible to
+connect nodes by links.
+
+```json
+{
+
+        "termination-point": [
+          {
+            "tp-id": "str",
+            "attr": {}
+          },
+          {}
+        ]
+
+}
+```
+
+Each termination point MUST have a unique ID and CAN have a set of attributes.
+
+### Link
+
+Nodes are connected to each other by links which begin and end in termination
+points.
+
+```json
+{
+  "network": {
+
+    "link": [
+      {
+        "link-id": "str",
+        "attr": {},
+        "end-1": {
+          "end-1-node": "node-id",
+          "end-1-tp": "tp-id"
+        },
+        "end-2": {
+          "end-2-node": "node-id",
+          "end-2-tp": "tp-id"
+        }
+      },
+      {}
+    ]
+
+  }
+}
+```
+
+**link-id**
+
+Unique ID identifying a link in the network.
+
+**attr**
+
+Key-value pairs defining the attributes of the link.
+
+**end-1**
+
+The node and the termination point where the link connected to the node.
+
+**end-2**
+
+The node and the termination point where the link connected to the node.
+
+## Test Configuration
+
+This item specifies the information necessary to run the test.
+
+```json
+{
+  "test": {
+    "metadata": {
+      "attr": {
+        "test-id": "str fullname",
+        "test-type": "str [NDRPDR | MRR | SOAK | ...]"
+      }
+    }
+  }
+}
+```
+
+**test-id**
+
+*Current state*
+
+The `test-id` must be structured as it is in the current version of CSIT, so
+the test generator is able to create the test.
+
+*Proposal to the future*
+
+The `test-id` is a unique (in the whole database of tests) string assigned to
+the test when it is created the first time and never changed. If it is changed,
+it means, the test has been changed.
+
+It will be independent of the full test name. So, if the full name changes
+(change of test name, suite name or directory tree), it will be still
+identified by this ID. It would be the best solution for the time series
+(trending) and comparison tables. However, the suite (or test) generator must
+respect it.
+
+**test-type**
+
+The `test-type` specifies what and how MUST be tested. Using this information,
+the test generator includes the right testing method into the test.
+
+-------------------------------------------------------------------------------
+
+# Unified Test Interface
+
+The described JSON data structure is a single source of output data from a
+test. The data included in it is collected during the setup and testing phases
+of each test. At the end a dedicated RF keyword prints created JSON structure
+as a human-readable string into the output.xml file, level info. It is not
+necessary to print it as the test message. The information can be then parsed
+out processed by PAL.
+
+## Data Structure
+
+### Top Level Sections
+
+For detailed information see the [example](unified_test_interface.json).
+
+```json
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "reference": {},
+  "resource": [],
+  "network": {},
+  "state": [],
+  "current-state": {},
+  "test": {
+    "metadata": {},
+    "results": {}
+  }
+}
+```
+
+The items
+
+- version,
+- metadata,
+- reference,
+- resource,
+- network and
+- test --> metadata
+
+are the same and with the same structure as defined in
+[Specification of the topology](#specification-of-the-topology).
+
+The items
+
+- network --> node --> command-history
+- state,
+- current-state  and
+- almost all items in `test`
+
+are filled with data during the runtime of the test.
+
+The item `test` includes all information about the test:
+- **metadata** - This key SHOULD be present in the structure and its name
+  SHOULD NOT be changed. If there are any changes in this section, the
+  `data_structure_version` MUST be increased.
+- **results** - This key SHOULD be present in the structure and its name SHOULD
+  NOT be changed. If there are any changes in this section, the
+  `data_structure_version` MUST be increased.
+
+## State
+
+This item lists all states the chronological order. There also MUST
+be a timestamp to make possible to reconstruct the state of the whole network.
+
+```json
+{
+
+  "state": [
+    {
+      "origin": {
+        "type": "str node | resource | test | ...",
+        "id": "str node-id | resource-id | test-id | ..."
+      },
+      "state-id": "str",
+      "timestamp": "datetime",
+      "operational-data": {}
+    },
+    {}
+  ]
+
+}
+```
+
+**origin**
+
+A part of the system where the state changed and the data comes from.
+
+**state-id**
+
+Identification of the state.
+
+**timestamp**
+
+The date and time when the state changed.
+
+**operational-data**
+
+The operational data collected at the particular state.
+
+> TODO: Specify the full list of states.
+
+
+## Current State
+
+The current state of the whole system. It is changed each time an item is
+appended to the `state`. This information is important in a situation when
+the test fails.
+
+```json
+{
+
+  "current-state": {}
+
+}
+```
+
+> TODO: Specify the structure of current-state
+
+## Test
+
+### Metadata
+
+```json
+{
+
+    "metadata": {
+      "execution": {
+        "ci": "str [jenkins | s5ci | manual]",
+        "job": "str",
+        "build": "int",
+        "csit-commit": "str hash",
+        "csit-gerrit-change": "str url",
+        "start_time": "str datetime",
+        "end_time": "str datetime",
+        "status": "str [PASS | FAIL]"
+      },
+      "attr": {
+        "test-id": "str fullname",
+        "test-type": "str [NDRPDR | MRR | SOAK | ...]",
+        "tags": "list [str]",
+        "documentation": "str",
+        "chain": {
+          "hash": "str hash",
+          "previous_hash": "str previous hash"
+        }
+      }
+    }
+}
+```
+
+This section includes data about:
+
+**execution**
+
+Parameters of test execution, e.g. status and executor (e.g. Jenkins) and its
+base parameters e.g. job name and build number.
+
+- *csit-gerrit-change* - If it does not exist, use empty string.
+
+**attr**
+
+Test attributes, e.g. test ID, tags, documentation, ...
+
+### Results
+
+Results of the test. Their structure and items present in it, depend on the
+test type.
+
+There are two main sections:
+
+**test**
+
+It includes test results in both directions (sub-items `forward` and `reverse`)
+if applicable, and total results (sub-item `total`).
+
+**node**
+
+It is a list of nodes with data from counters.
+
+#### The structure of results
+
+**NRDPDR**
+
+```json
+{
+
+    "results": {
+      "test": {
+        "ndr": {
+          "unit": "str",
+          "value": {
+            "lower": "float",
+            "upper": "float"
+          }
+        },
+        "pdr": {
+          "unit": "str",
+          "value": {
+            "lower": "float",
+            "upper": "float"
+          }
+        },
+        "hdrh": {
+          "forward": {
+            "pdr-90": "str",
+            "pdr-50": "str",
+            "pdr-10": "str",
+            "pdr-0": "str"
+          },
+          "reverse": {
+            "pdr-90": "str",
+            "pdr-50": "str",
+            "pdr-10": "str",
+            "pdr-0": "str"
+          }
+        }
+      },
+      "node": [
+        {
+          "node-id": "str",
+          "pdr": {
+            "rx-counters": {},
+            "tx-counters": {},
+            "error-counters": {},
+            "show-runtime-node-counters": {}
+          },
+          "ndr": {
+            "rx-counters": {},
+            "tx-counters": {},
+            "error-counters": {},
+            "show-runtime-node-counters": {}
+          }
+        },
+        {}
+      ]
+    }
+
+}
+```
+
+**MRR**
+
+```json
+{
+
+    "results": {
+      "test": {
+        "unit": "pps",
+        "receive-rate": "list of floats"
+      },
+      "node": [
+        {
+          "node-id": "str",
+          "mrr": {
+            "rx-counters": {},
+            "tx-counters": {},
+            "error-counters": {},
+            "show-runtime-node-counters": {}
+          }
+        },
+        {}
+      ]
+    }
+
+}
+```
+
+**soak**
+
+```json
+{
+
+    "results": {
+      "test": {
+        "unit": "pps",
+        "value": {
+          "lower": "float",
+          "upper": "float"
+        }
+      }
+    }
+
+}
+```
+
+> TODO: Describe the structure of results of currently existing test types.
+
+### Examples
+
+**NDRPDR**
+
+Source: [64B-1c-ethip4-ip4base-ndrpdr](https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-2101-2n-clx/1/archives/log.html.gz#s1-s1-s1-s1-s4-t1)
+
+Example: [UTI NDRPDR](uti_example_ndrpdr.json)
+
+**MRR**
+
+Source: [64B-1c-ethip4-ip4base-mrr](https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-2101-2n-clx/53/archives/log.html.gz#s1-s1-s1-s2-s4-t1)
+
+Example: [UTI MRR](uti_example_mrr.json)
+
+**Soak**
+
+Source: [64B-1c-ethip4-ip4base-soak](https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-2101-2n-clx/58/archives/log.html.gz#s1-s1-s1-s2-s2-t1)
+
+Example: [UTI Soak](uti_example_soak.json)
+
+## Chain of Changes
+
+TODO
+
+## Unified Test Interface Lifecycle
+
+TODO
+
+### Initialisation
+
+TODO
+
+### Data Collection
+
+TODO
+
+### Providing the Collected Data
+
+TODO
+
+-------------------------------------------------------------------------------
+
+# Implementation
+
+TODO
+
+## Design
+
+TODO
+
+## Tools and Libraries
+
+TODO
+
+[NetworkX](https://networkx.org/documentation/stable/index.html
+"NetworkX - Network Analysis in Python")
