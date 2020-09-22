@@ -1,0 +1,1098 @@
+{
+    "version": "0.1.0",
+    "metadata": {},
+    "resource": [],
+    "network": [],
+    "log": [{
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show logging')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "show_version()",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_set_flags(sw_if_index=2,flags=1)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "hw_interface_set_mtu(sw_if_index=2,mtu=9200)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_set_flags(sw_if_index=1,flags=1)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "hw_interface_set_mtu(sw_if_index=1,mtu=9200)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "l2_patch_add_del(rx_sw_if_index=2,tx_sw_if_index=1,is_add=True)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "l2_patch_add_del(rx_sw_if_index=1,tx_sw_if_index=2,is_add=True)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_set_flags(sw_if_index=2,flags=1)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "hw_interface_set_mtu(sw_if_index=2,mtu=9200)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_set_flags(sw_if_index=1,flags=1)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "hw_interface_set_mtu(sw_if_index=1,mtu=9200)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear runtime')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "vpp-stats(path='^/sys/node')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show runtime')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear errors')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear hardware')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='event-logger trace api cli barrier')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show errors')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show hardware verbose')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show event-logger')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear runtime')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "vpp-stats(path='^/sys/node')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show runtime')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear errors')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear hardware')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='event-logger trace api cli barrier')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show errors')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show hardware verbose')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut1"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show event-logger')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show logging')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "show_version()",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_set_flags(sw_if_index=2,flags=1)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "hw_interface_set_mtu(sw_if_index=2,mtu=9200)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_set_flags(sw_if_index=1,flags=1)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "hw_interface_set_mtu(sw_if_index=1,mtu=9200)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "l2_patch_add_del(rx_sw_if_index=2,tx_sw_if_index=1,is_add=True)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "l2_patch_add_del(rx_sw_if_index=1,tx_sw_if_index=2,is_add=True)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_set_flags(sw_if_index=2,flags=1)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "hw_interface_set_mtu(sw_if_index=2,mtu=9200)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_set_flags(sw_if_index=1,flags=1)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "hw_interface_set_mtu(sw_if_index=1,mtu=9200)",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear runtime')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "vpp-stats(path='^/sys/node')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show runtime')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear errors')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear hardware')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='event-logger trace api cli barrier')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show errors')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show hardware verbose')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show event-logger')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear runtime')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "vpp-stats(path='^/sys/node')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show runtime')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear errors')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='clear hardware')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='event-logger trace api cli barrier')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show errors')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show hardware verbose')",
+        "data": {}
+    }, {
+        "source": {
+            "type": "node",
+            "id": "dut2"
+        },
+        "msg-type": "papi",
+        "log-level": "INFO",
+        "timestamp": "20210128 14:23:54.430",
+        "msg": "cli_inband(cmd='show event-logger')",
+        "data": {}
+    }],
+    "test": {
+        "test-id": "tests.vpp.perf.l2.40ge2p1xl710-eth-l2patch-ndrpdr.64b-1t1c-eth-l2patch-ndrpdr",
+        "test-type": "NDRPDR",
+        "tags": ["1C", "1T1C", "3_NODE_SINGLE_LINK_TOPO", "64B", "BASE", "DRV_VFIO_PCI", "ETH", "eth-l2patch", "HW_ENV", "L2PATCH", "NDRPDR", "NIC_Intel-XL710", "PERFTEST", "RXQ_SIZE_0", "STHREAD", "TXQ_SIZE_0"],
+        "documentation": "",
+        "execution": {
+            "start_time": "20210128 14:23:54.430",
+            "end_time": "20210128 14:27:39.143",
+            "status": "PASS",
+            "ci": "jenkins.fd.io",
+            "job": "csit-vpp-perf-report-iterative-2101-3n-hsw",
+            "build": "64",
+            "suite-id": "tests.vpp.perf.l2.40ge2p1xl710-eth-l2patch-ndrpdr",
+            "suite-doc": "*RFC2544: Pkt throughput L2patch test cases*\n*[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\nwith single links between nodes.\n*[Enc] Packet Encapsulations:* Eth-IPv4 for L2 patch.\n*[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 patch DUT1 and DUT2 tested with Intel-XL710. *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop Rate) with zero packet loss tolerance and throughput PDR (Partial Drop Rate) with non-zero packet loss tolerance (LT) expressed in percentage of packets transmitted. NDR and PDR are discovered for different Ethernet L2 frame sizes using MLRsearch library. Test packets are generated by TG on links to DUTs. TG traffic profile contains two L3 flow-groups (flow-group per direction, 254 flows per flow-group) with all packets containing Ethernet header,IPv4 header with static payload. MAC addresses are matching MAC addresses of the TG node interfaces.\n*[Ref] Applicable standard specifications:* RFC2544.",
+            "testbed": "10.30.51.20",
+            "sut-version": "21.01-release"
+        },
+        "metric": [],
+        "results": {
+            "test": {
+                "ndr": {
+                    "value_pps": {
+                        "lower": 21554816.721912965,
+                        "upper": 21663131.285634764
+                    },
+                    "value_gbps": {
+                        "lower": 14.484836837125513,
+                        "upper": 14.557624223946561
+                    }
+                },
+                "pdr": {
+                    "value_pps": {
+                        "lower": 21991351.663540296,
+                        "upper": 22101858.68879103
+                    },
+                    "value_gbps": {
+                        "lower": 14.778188317899078,
+                        "upper": 14.85244903886757
+                    }
+                },
+                "hdrh": {
+                    "forward": {
+                        "pdr-90": {
+                            "min": 17.0,
+                            "avg": 34.0,
+                            "max": 71.0,
+                            "hdrh": "HISTFAAAAGd4nJNpmSzMwMDgzgABzFCaEUzOmNZg/wEioMjCwsPGJmFQ9YPpH2sDT5/4PcU/2lPMj9i8sZ/i2uU4y+aG2Trde0pfJB7x/ePoYOtgPcb8h+kB4wRGLxM1Li4eJiDgYBFmAgAZghti"
+                        },
+                        "pdr-50": {
+                            "min": 12.0,
+                            "avg": 24.0,
+                            "max": 57.0,
+                            "hdrh": "HISTFAAAAG54nJNpmSzMwMDgwwABzFCaEUzOmNZg/wEiIM5ntIn1ktA+mUMKF9QPmXW43vLsc/1h8U39kswl0Q1C+wTf8S/jOcXzhPcA7xfeO9w3OM+xzWBtYrnF9IlxDaOLjIJLVpQMFwcTExMjExMAWKAfxw=="
+                        },
+                        "pdr-10": {
+                            "min": 11.0,
+                            "avg": 28.0,
+                            "max": 95.0,
+                            "hdrh": "HISTFAAAAKl4nJNpmSzMwMDQxgABzFCaEUzOmNZg/wEiIMqT0Mb0hmkNcxfbO5Zp/JeKp9mc0flnvcb1l8097h3sZzj2cL1gvcB5he0H2y7uVRLPeL6wPWF5xXOMcwPHFfZZHFPYFrHf4DjC0cTRwfuA9RPTIcZFjDeA8AjjPsa0jEuM8xhXMTYwTmOM8EuQMzMQYuNgY2NhYRZgEuDjEpKQkBIRkxDhEWBhAgCYfTB0"
+                        },
+                        "pdr-0": {
+                            "min": 15.0,
+                            "avg": 23.0,
+                            "max": 36.0,
+                            "hdrh": "HISTFAAAAEB4nJNpmSzMwMCgwAABzFCaEUzOmNZg/wEiICvFqifCtGgiy5vZjEVCJ5heMH/iiGNhZGEUYGJiZlJmAgBjJwtg"
+                        }
+                    },
+                    "reverse": {
+                        "pdr-90": {
+                            "min": 17.0,
+                            "avg": 34.0,
+                            "max": 64.0,
+                            "hdrh": "HISTFAAAAG54nJNpmSzMwMDgwwABzFCaEUzOmNZg/wEiIMnExcXFx8TExsSjsYTxDNMa9jc8PWItCmc0e4xmWB1y3uPyzeGBVZ/xGa1PCt8kNgns4z7GsYD9Fts0lh9MrxinMda4KGkI8bBxcLCxMwEAMIMcUw=="
+                        },
+                        "pdr-50": {
+                            "min": 12.0,
+                            "avg": 22.0,
+                            "max": 52.0,
+                            "hdrh": "HISTFAAAAGJ4nJNpmSzMwMDgxAABzFCaEUzOmNZg/wEiIC53gvEV6zqeW2IHVHocX0RMitwX0uH6xGiD8j+JDeKbhNsEtvFt4z7B+YZtH8s/pmVMhxir4jws+CTExPikuLiYgAAA+bgbQA=="
+                        },
+                        "pdr-10": {
+                            "min": 11.0,
+                            "avg": 26.0,
+                            "max": 73.0,
+                            "hdrh": "HISTFAAAAIl4nJNpmSzMwMCQxgABzFCaEUzOmNZg/wEiIMrEqjSBaQlTA3tX6TW1SaoTvPddZ1wl0cb9iu0VxxemY8wvONZwvmOfwLdP5AdbA/sL1hnM55jPMP1iXMC0hHkR8xbmNuZfrCvYj7CeY1vAsodpDdM1pg+MWX42BjIaUiZSSlI8PBxszFwAsP0m5A=="
+                        },
+                        "pdr-0": {
+                            "min": 15.0,
+                            "avg": 23.0,
+                            "max": 35.0,
+                            "hdrh": "HISTFAAAADt4nJNpmSzMwMAgwwABzFCaEUzOmNZg/wEiICvGzGQgxbTsKHPLO8ZPrHJm05irZBiZmJjYmJgAJ/IKNA=="
+                        }
+                    }
+                }
+            },
+            "node": {
+                "dut1": {
+                    "host": "10.30.51.21",
+                    "socket": "/run/vpp/stats.sock",
+                    "runtime": [{
+                        "calls": [0, 11454],
+                        "clocks": [0, 269748200],
+                        "name": "dpdk-input",
+                        "suspends": [0, 0],
+                        "vectors": [0, 5853952]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [160400, 0],
+                        "name": "api-rx-from-ring",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [1132, 0],
+                        "name": "ip6-sv-reassembly-expire-walk",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [10968, 0],
+                        "name": "ip6-full-reassembly-expire-walk",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [920, 0],
+                        "name": "ip4-sv-reassembly-expire-walk",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [1816, 0],
+                        "name": "ip4-full-reassembly-expire-walk",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 22908],
+                        "clocks": [0, 44283848],
+                        "name": "l2-patch",
+                        "suspends": [0, 0],
+                        "vectors": [0, 5853952]
+                    }, {
+                        "calls": [3582, 11],
+                        "clocks": [610586132, 23528],
+                        "name": "unix-epoll-input",
+                        "suspends": [0, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 11454],
+                        "clocks": [0, 116127216],
+                        "name": "FortyGigabitEthernet88/0/0-tx",
+                        "suspends": [0, 0],
+                        "vectors": [0, 2932224]
+                    }, {
+                        "calls": [0, 11454],
+                        "clocks": [0, 32227032],
+                        "name": "FortyGigabitEthernet88/0/0-output",
+                        "suspends": [0, 0],
+                        "vectors": [0, 2932224]
+                    }, {
+                        "calls": [0, 11454],
+                        "clocks": [0, 115382864],
+                        "name": "FortyGigabitEthernet88/0/1-tx",
+                        "suspends": [0, 0],
+                        "vectors": [0, 2921728]
+                    }, {
+                        "calls": [0, 11454],
+                        "clocks": [0, 32440868],
+                        "name": "FortyGigabitEthernet88/0/1-output",
+                        "suspends": [0, 0],
+                        "vectors": [0, 2921728]
+                    }]
+                },
+                "dut2": {
+                    "host": "10.30.51.22",
+                    "socket": "/run/vpp/stats.sock",
+                    "runtime": [{
+                        "calls": [0, 232011164],
+                        "clocks": [0, 176609930120],
+                        "name": "dpdk-input",
+                        "suspends": [0, 0],
+                        "vectors": [0, 3193360316]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [60820320, 0],
+                        "name": "dpdk-process",
+                        "suspends": [57, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [12648, 0],
+                        "name": "admin-up-down-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [2278088, 0],
+                        "name": "statseg-collector-process",
+                        "suspends": [17, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [232445940, 0],
+                        "name": "api-rx-from-ring",
+                        "suspends": [25, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [12168, 0],
+                        "name": "rd-cp-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [105908, 0],
+                        "name": "ip6-ra-process",
+                        "suspends": [170, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [8388, 0],
+                        "name": "ip6-rs-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [116916, 0],
+                        "name": "ip6-mld-process",
+                        "suspends": [170, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [146456, 0],
+                        "name": "fib-walk",
+                        "suspends": [85, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [6624, 0],
+                        "name": "virtio-send-interrupt-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [6652, 0],
+                        "name": "vhost-user-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [7172, 0],
+                        "name": "vhost-user-send-interrupt-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [5728, 0],
+                        "name": "flow-report-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [7460, 0],
+                        "name": "bfd-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [6996, 0],
+                        "name": "ip-neighbor-event",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [9228, 0],
+                        "name": "ip6-neighbor-age-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [5632, 0],
+                        "name": "ip4-neighbor-age-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [27364, 0],
+                        "name": "ip6-sv-reassembly-expire-walk",
+                        "suspends": [17, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [26700, 0],
+                        "name": "ip6-full-reassembly-expire-walk",
+                        "suspends": [17, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [23292, 0],
+                        "name": "ip4-sv-reassembly-expire-walk",
+                        "suspends": [17, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [31276, 0],
+                        "name": "ip4-full-reassembly-expire-walk",
+                        "suspends": [17, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [6072, 0],
+                        "name": "bond-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 13461253],
+                        "clocks": [0, 24726038000],
+                        "name": "l2-patch",
+                        "suspends": [0, 0],
+                        "vectors": [0, 3193360316]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [5904, 0],
+                        "name": "l2fib-mac-age-scanner-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [5584, 0],
+                        "name": "l2-arp-term-publisher",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [16416, 0],
+                        "name": "vpe-link-state-process",
+                        "suspends": [6, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [1, 0],
+                        "clocks": [10004, 0],
+                        "name": "startup-config-process",
+                        "suspends": [1, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [2272284, 226355],
+                        "clocks": [388741551568, 345709872],
+                        "name": "unix-epoll-input",
+                        "suspends": [0, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 6735698],
+                        "clocks": [0, 63800635120],
+                        "name": "FortyGigabitEthernet88/0/0-tx",
+                        "suspends": [0, 0],
+                        "vectors": [0, 1595640576]
+                    }, {
+                        "calls": [0, 6735698],
+                        "clocks": [0, 17437848080],
+                        "name": "FortyGigabitEthernet88/0/0-output",
+                        "suspends": [0, 0],
+                        "vectors": [0, 1595640576]
+                    }, {
+                        "calls": [0, 6725555],
+                        "clocks": [0, 63681675240],
+                        "name": "FortyGigabitEthernet88/0/1-tx",
+                        "suspends": [0, 0],
+                        "vectors": [0, 1597719740]
+                    }, {
+                        "calls": [0, 6725555],
+                        "clocks": [0, 17686113632],
+                        "name": "FortyGigabitEthernet88/0/1-output",
+                        "suspends": [0, 0],
+                        "vectors": [0, 1597719740]
+                    }, {
+                        "calls": [5, 0],
+                        "clocks": [125401531903559045, 0],
+                        "name": "unix-cli-local:4",
+                        "suspends": [10, 0],
+                        "vectors": [0, 0]
+                    }, {
+                        "calls": [0, 0],
+                        "clocks": [2438397305, 0],
+                        "name": "unix-cli-new-session",
+                        "suspends": [14, 0],
+                        "vectors": [0, 0]
+                    }]
+                }
+            }
+        }
+    }
+}
