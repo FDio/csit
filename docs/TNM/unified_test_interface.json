@@ -1,0 +1,96 @@
+{
+  "version": "0.1.0",
+  "ci": "str [jenkins | s5ci | manual]",
+  "job": "str",
+  "build_number": "int",
+  "testbed": "str TG IP",
+  "suite_id": "str",
+  "suite_doc": "str",
+  "sut_version": "str",
+  "test_id": "str fullname",
+  "test_type": "str [NDRPDR | MRR | SOAK | ...]",
+  "test_doc": "str",
+  "tags": ["str", "list of all tags"],
+  "start_time": "str datetime",
+  "end_time": "str datetime",
+  "status": "str [PASS | FAIL]",
+  "message": "str",
+  "results": {},
+  "resource": [
+    {
+      "resource_id": "str",
+      "resource_type": "str",
+      "parent": "str resource_id",
+      "children": "list of resource_id",
+      "configuration": "dict depends on resource_type"
+    },
+    {}
+  ],
+  "network": [
+    {
+      "network_id": "str",
+      "attr": {
+        "nodes": "int",
+        "topology": "str relative or full path"
+      },
+      "node": [
+        {
+          "node_id": "str",
+          "node_type": "str TG | DUT | ...",
+          "node_topo": "str node ID used in topology file",
+          "parent": "str node_id",
+          "children": "list of node_ids",
+          "resource": "str resource_id or list of resource_id",
+          "command_history": [
+            {
+              "timestamp": "datetime",
+              "command": "str",
+              "return_code": "int",
+              "response": "str"
+            },
+            {}
+          ],
+          "termination_point": [
+            {
+              "tp_id": "str",
+              "attr": {}
+            },
+            {}
+          ]
+        }
+      ],
+      "link": [
+        {
+          "link_id": "str",
+          "attr": {
+            "bonding_as_an_example": "list of link_id"
+          },
+          "end_1": {
+            "end_1_node": "node_id",
+            "end_1_tp": "tp_id"
+          },
+          "end_2": {
+            "end_2_node": "node_id",
+            "end_2_tp": "tp_id"
+          }
+        },
+        {}
+      ]
+    },
+    {}
+  ],
+  "log": [
+    {
+      "source": {
+        "type": "str node | resource | test ...",
+        "id": "str node_id | resource_id | test_id | ..."
+      },
+      "msg_type": "str papi | log | metric ...",
+      "log_level": "str or int NOTSET=0 | DEBUG=10 | INFO=20 | WARNING=30 | ERROR=40 | CRITICAL=50",
+      "timestamp": "datetime",
+      "msg": "str",
+      "data": {}
+    },
+    {}
+  ]
+}

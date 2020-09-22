@@ -1,0 +1,203 @@
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "resource": [],
+  "network": [
+    {
+      "network-id": "network-1",
+      "attr": {
+        "nodes": 2,
+        "topology": "../topology/lf_2n_clx_testbed27.yaml"
+      },
+      "node": [
+        {
+          "node-id": "dut1",
+          "node-type": "DUT",
+          "node-topo": "DUT1",
+          "parent": "",
+          "children": [],
+          "resource": "not defined in this example yet",
+          "configuration": {
+            "pre-configuration": [
+              {
+                "cmd": "Add Unix Log",
+                "args": {}
+              },
+              {
+                "cmd": "Add Unix CLI Listen",
+                "args": {}
+              },
+              {
+                "cmd": "Add Unix Nodaemon",
+                "args": {}
+              },
+              {
+                "cmd": "Add Unix Coredump",
+                "args": {}
+              },
+              {
+                "cmd": "Add Socksvr",
+                "args": {
+                  "path": "/run/vpp/api.sock"
+                }
+              },
+              {
+                "cmd": "Add Main Heap Size",
+                "args": {
+                  "size": "2G"
+                }
+              },
+              {
+                "cmd": "Add Main Heap Page Size",
+                "args": {
+                  "size": "2M"
+                }
+              },
+              {
+                "cmd": "Add Statseg Size",
+                "args": {
+                  "size": "2G"
+                }
+              },
+              {
+                "cmd": "Add Statseg Page Size",
+                "args": {
+                  "size": "2M"
+                }
+              },
+              {
+                "cmd": "Add Statseg Per Node Counters",
+                "args": {
+                  "value": "on"
+                }
+              },
+              {
+                "cmd": "Add Plugin",
+                "args": {
+                  "state": "disable",
+                  "plugins": "default"
+                }
+              },
+              {
+                "cmd": "Add Plugin",
+                "args": {
+                  "state": "enable",
+                  "plugins": ["dpdk_plugin.so"]
+                }
+              },
+              {
+                "cmd": "Add IP6 Hash Buckets",
+                "args": {
+                  "value": 2000000
+                }
+              },
+              {
+                "cmd": "Add IP6 Heap Size",
+                "args": {
+                  "size": "4G"
+                }
+              },
+              {
+                "cmd": "Add Graph Node Variant",
+                "args": {
+                  "variant": ""
+                }
+              }
+            ],
+            "run-time": [
+              {}
+            ]
+          },
+          "termination-point": [
+            {
+              "tp-id": "TenGigabitEthernet18/0/0",
+              "attr": {
+                "interface": "port1"
+              }
+            },
+            {
+              "tp-id": "TenGigabitEthernet18/0/1",
+              "attr": {
+                "interface": "port2"
+              }
+            }
+          ]
+        },
+        {
+          "node-id": "tg1",
+          "node-type": "TG",
+          "node-topo": "TG",
+          "parent": "",
+          "children": [],
+          "resource": "not defined in this example yet",
+          "configuration": {
+            "pre-configuration": [],
+            "run-time": [
+              {
+                "traffic-profile": "TG runtime conf str path to file",
+                "traffic-specification": "TG runtime conf str path to file or JSON"
+              }
+            ]
+          },
+          "termination-point": [
+            {
+              "tp-id": "TenGigabitEthernet18/0/0",
+              "attr": {
+                "interface": "port1"
+              }
+            },
+            {
+              "tp-id": "TenGigabitEthernet18/0/1",
+              "attr": {
+                "interface": "port2"
+              }
+            },
+            {}
+          ]
+        }
+      ],
+      "link": [
+        {
+          "link-id": "link1",
+          "attr": {},
+          "end-1": {
+            "end-1-node": "tg1",
+            "end-1-tp": "TenGigabitEthernet18/0/0"
+          },
+          "end-2": {
+            "end-2-node": "dut1",
+            "end-2-tp": "TenGigabitEthernet18/0/0"
+          }
+        },
+        {
+          "link-id": "link2",
+          "attr": {},
+          "end-1": {
+            "end-1-node": "tg1",
+            "end-1-tp": "TenGigabitEthernet18/0/1"
+          },
+          "end-2": {
+            "end-2-node": "dut1",
+            "end-2-tp": "TenGigabitEthernet18/0/1"
+          }
+        }
+      ]
+    }
+  ],
+  "suite": {
+    "suite-id": "tests.vpp.perf.ip4.2n1l-10ge2p1x710-ethip4-ip4base",
+    "test-type": "NDRPDR",
+    "tags": ["NDRPDR", "2_NODE_SINGLE_LINK_TOPO", "BASE", "DRV_VFIO_PCI", "ETH", "ethip4-ip4base", "HW_ENV", "IP4BASE", "IP4FWD", "MTHREAD", "NIC_Intel-X710", "PERFTEST", "RXQ_SIZE_0", "TXQ_SIZE_0"],
+    "documentation": "RFC2544: Pkt throughput IPv4 routing test cases [Top] Network Topologies: TG-DUT1-TG 2-node circular topology with single links between nodes. [Enc] Packet Encapsulations: Eth-IPv4 for IPv4 routing. [Cfg] DUT configuration: DUT1 is configured with IPv4 routing and two static IPv4 /24 route entries. DUT1 tested with Intel-X710. [Ver] TG verification: TG finds and reports throughput NDR (Non Drop Rate) with zero packet loss tolerance and throughput PDR (Partial Drop Rate) with non-zero packet loss tolerance (LT) expressed in percentage of packets transmitted. NDR and PDR are discovered for different Ethernet L2 frame sizes using MLRsearch library. Test packets are generated by TG on links to DUTs. TG traffic profile contains two L3 flow-groups (flow-group per direction, 253 flows per flow-group) with all packets containing Ethernet header, IPv4 header with IP protocol=61 and static payload. MAC addresses are matching MAC addresses of the TG node interfaces. [Ref] Applicable standard specifications: RFC2544."
+  },
+  "test": [
+    {
+      "parameters": ["framesize", "core"],
+      "test-id": "{framesize}-{core}-ethip4-ip4base",
+      "tags": ["{framesize}", "{core}"],
+      "framesize": ["64B", "1518B", "9000B", "IMIX"],
+      "core": ["1C", "2C", "4C"]
+    },
+    {}
+  ]
+}
