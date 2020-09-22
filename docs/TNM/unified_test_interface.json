@@ -1,0 +1,140 @@
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "reference": {
+    "ref_1_ID": {},
+    "ref_2_ID": {},
+    "ref_N_ID": {}
+  },
+  "network": {
+    "network-id": "str",
+    "attr": {},
+    "node": [
+      {
+        "node-id": "str",
+        "attr": {},
+        "start-up-configuration": {},
+        "run-time-configuration": {},
+        "state": [
+          {
+            "state-id": "str",
+            "timestamp": "datetime",
+            "operational-data": {}
+          },
+          {}
+        ],
+        "command-history": [
+          {
+            "timestamp": "datetime",
+            "command": "str",
+            "return-code": "int",
+            "response": "str"
+          },
+          {}
+        ],
+        "termination-point": [
+          {
+            "tp-id": "str",
+            "attr": {}
+          },
+          {}
+        ]
+      }
+    ],
+    "link": [
+      {
+        "link-id": "str",
+        "attr": {},
+        "source": {
+          "source-node": "node-id",
+          "source-tp": "tp-id"
+        },
+        "destination": {
+          "destination-node": "node-id",
+          "destination-tp": "tp-id"
+        }
+      },
+      {}
+    ]
+  },
+  "test": {
+    "metadata": {
+      "execution": {
+        "ci": "str [jenkins | s5ci | manual]",
+        "job": "str",
+        "build": "int",
+        "start_time": "str datetime",
+        "end_time": "str datetime",
+        "status": "str [PASS | FAIL]"
+      },
+      "attr": {
+        "id": "str fullname",
+        "type": "str [NDRPDR | MRR | SOAK | ...]",
+        "tags": "list [str]",
+        "documentation": "str",
+        "chain": {
+          "hash": "str hash",
+          "previous_hash": "str previous hash"
+        }
+      }
+    },
+    "results": {
+      "total": {
+        "forward": {
+          "throughput": {
+            "ndr": {
+              "lower_pps": "float",
+              "upper_pps": "float"
+            },
+            "pdr": {
+              "lower_pps": "float",
+              "upper_pps": "float"
+            }
+          },
+          "latency": {
+            "ndr": {
+              "min": "float",
+              "avg": "float",
+              "max": "float"
+            },
+            "pdr": {
+              "min": "float",
+              "avg": "float",
+              "max": "float"
+            },
+            "hdrh": {
+              "PDR-90": ["str", "str"],
+              "PDR-50": ["str", "str"],
+              "PDR-10": ["str", "str"],
+              "PDR-0": ["str", "str"]
+            }
+          },
+          "mrr": {
+            "receive_rate": "list [mrr1, mrr2, ...]"
+          },
+          "soak": {
+            "lower": "float",
+            "upper": "float"
+          },
+          "another_item": {}
+        },
+        "reverse": {},
+        "total": {}
+      },
+      "node": [
+        {
+          "node-id": "str",
+          "termination-point": [
+            {
+              "tp-id": "str",
+              "rx-counters": {},
+              "tx-counters": {}
+            },
+            {}
+          ]
+        },
+        {}
+      ]
+    }
+  }
+}

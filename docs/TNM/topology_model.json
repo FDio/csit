@@ -1,0 +1,60 @@
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "reference": {
+    "ref_1_ID": {},
+    "ref_2_ID": {},
+    "ref_N_ID": {}
+  },
+  "network": {
+    "network-id": "str",
+    "attr": {},
+    "node": [
+      {
+        "node-id": "str",
+        "attr": {},
+        "start-up-configuration": {},
+        "run-time-configuration": {},
+        "state": [
+          {
+            "state-id": "str",
+            "timestamp": "datetime",
+            "operational-data": {}
+          },
+          {}
+        ],
+        "command-history": [
+          {
+            "timestamp": "datetime",
+            "command": "str",
+            "return-code": "int",
+            "response": "str"
+          },
+          {}
+        ],
+        "termination-point": [
+          {
+            "tp-id": "str",
+            "attr": {}
+          },
+          {}
+        ]
+      }
+    ],
+    "link": [
+      {
+        "link-id": "str",
+        "attr": {},
+        "source": {
+          "source-node": "node-id",
+          "source-tp": "tp-id"
+        },
+        "destination": {
+          "destination-node": "node-id",
+          "destination-tp": "tp-id"
+        }
+      },
+      {}
+    ]
+  }
+}
