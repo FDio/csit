@@ -1,0 +1,88 @@
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "reference": {
+    "ref_1_ID": {},
+    "ref_2_ID": {},
+    "ref_N_ID": {}
+  },
+  "resource": [
+    {
+      "resource-id": "str",
+      "resource-type": "str",
+      "parent": "str resource-id",
+      "attr": {},
+      "children": "list of resource-id",
+      "configuration": "dict depends on resource-type"
+    },
+    {}
+  ],
+  "network": [
+    {
+      "network-id": "str",
+      "attr": {},
+      "node": [
+        {
+          "node-id": "str",
+          "node-type": "str TG | DUT | ...",
+          "attr": {},
+          "parent": "str node-id",
+          "children": "list of node-ids",
+          "resource": "str resource-id or list of resource-id",
+          "configuration": {
+            "pre-configuration": {},
+            "run-time": [
+              {},
+              {
+                "traffic-profile": "TG runtime conf str path to file",
+                "traffic-specification": "TG runtime conf str path to file or JSON"
+              }
+            ]
+          },
+          "command-history": [
+            {
+              "timestamp": "datetime",
+              "command": "str",
+              "return-code": "int",
+              "response": "str"
+            },
+            {}
+          ],
+          "termination-point": [
+            {
+              "tp-id": "str",
+              "attr": {}
+            },
+            {}
+          ]
+        }
+      ],
+      "link": [
+        {
+          "link-id": "str",
+          "attr": {
+            "bonding-as-an-example": "list of link-id"
+          },
+          "end-1": {
+            "end-1-node": "node-id",
+            "end-1-tp": "tp-id"
+          },
+          "end-2": {
+            "end-2-node": "node-id",
+            "end-2-tp": "tp-id"
+          }
+        },
+        {}
+      ]
+    },
+    {}
+  ],
+  "test": {
+    "metadata": {
+      "attr": {
+        "test-id": "str fullname",
+        "test-type": "str [NDRPDR | MRR | SOAK | ...]"
+      }
+    }
+  }
+}
