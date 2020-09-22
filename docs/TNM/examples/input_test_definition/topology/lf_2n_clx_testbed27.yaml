@@ -1,0 +1,192 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/2_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 2-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "10.32.8.19"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port1:
+        # s34-t27-tg1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:ca:e9:88"
+        pci_address: "0000:18:00.0"
+        ip4_address: "172.16.10.2"
+        driver: i40e
+        link: link1
+        model: Intel-X710
+      port2:
+        # s34-t27-tg1-c2/p2 - 10GE port2 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:ca:e9:89"
+        pci_address: "0000:18:00.1"
+        ip4_address: "172.16.20.2"
+        driver: i40e
+        link: link2
+        model: Intel-X710
+      port3:
+        # s34-t27-tg1-c2/p3 - 10GE port3 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:ca:e9:8a"
+        pci_address: "0000:18:00.2"
+        ip4_address: "172.16.30.2"
+        driver: i40e
+        link: link3
+        model: Intel-X710
+      port4:
+        # s34-t27-tg1-c2/p4 - 10GE port4 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:ca:e9:8b"
+        pci_address: "0000:18:00.3"
+        ip4_address: "172.16.40.2"
+        driver: i40e
+        link: link4
+        model: Intel-X710
+      port5:
+        # s34-t27-tg1-c4/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
+        mac_address: "3c:fd:fe:dd:d4:28"
+        pci_address: "0000:3b:00.0"
+        ip4_address: "172.16.50.2"
+        driver: i40e
+        link: link5
+        model: Intel-XXV710
+      port6:
+        # s34-t27-tg1-c4/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
+        mac_address: "3c:fd:fe:dd:d4:29"
+        pci_address: "0000:3b:00.1"
+        ip4_address: "172.16.60.2"
+        driver: i40e
+        link: link6
+        model: Intel-XXV710
+      port7:
+        # s34-t27-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "ec:0d:9a:8c:c6:a6"
+        pci_address: "0000:5e:00.0"
+        ip4_address: "172.16.70.2"
+        driver: mlx5_core
+        link: link7
+        model: Mellanox-CX556A
+      port8:
+        # s34-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "ec:0d:9a:8c:c6:a7"
+        pci_address: "0000:5e:00.1"
+        ip4_address: "172.16.70.1"
+        driver: mlx5_core
+        link: link8
+        model: Mellanox-CX556A
+      port9:
+        # s34-t27-tg1-c6/p1 - 100GE-port1 Intel E810-CQDA2 2p100GE.
+        mac_address: "b4:96:91:a4:24:e8"
+        pci_address: "0000:86:00.0"
+        ip4_address: "172.16.80.2"
+        driver: ice
+        link: link9
+        model: Intel-E810CQ
+      port10:
+        # s34-t27-tg1-c6/p2 - 100GE-port1 Intel E810-CQDA2 2p100GE.
+        mac_address: "b4:96:91:a4:24:e9"
+        pci_address: "0000:86:00.1"
+        ip4_address: "172.16.90.1"
+        driver: ice
+        link: link10
+        model: Intel-E810CQ
+  DUT1:
+    type: DUT
+    host: "10.32.8.18"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    uio_driver: vfio-pci
+    honeycomb:
+      user: admin
+      passwd: admin
+      port: 8183
+      netconf_port: 2831
+    interfaces:
+      port1:
+        # s33-t27-sut1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:ca:e9:98"
+        pci_address: "0000:18:00.0"
+        ip4_address: "172.16.10.1"
+        driver: i40e
+        link: link1
+        model: Intel-X710
+      port2:
+        # s33-t27-sut1-c2/p2 - 10GE port2 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:ca:e9:99"
+        pci_address: "0000:18:00.1"
+        ip4_address: "172.16.20.1"
+        driver: i40e
+        link: link2
+        model: Intel-X710
+      port3:
+        # s33-t27-sut1-c2/p3 - 10GE port3 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:ca:e9:9a"
+        pci_address: "0000:18:00.2"
+        ip4_address: "172.16.30.1"
+        driver: i40e
+        link: link3
+        model: Intel-X710
+      port4:
+        # s33-t27-sut1-c2/p4 - 10GE port4 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:ca:e9:9b"
+        pci_address: "0000:18:00.3"
+        ip4_address: "172.16.40.1"
+        driver: i40e
+        link: link4
+        model: Intel-X710
+      port5:
+        # s33-t27-sut1-c2/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
+        mac_address: "3c:fd:fe:cf:69:e8"
+        pci_address: "0000:3b:00.0"
+        ip4_address: "172.16.50.1"
+        driver: i40e
+        link: link5
+        model: Intel-XXV710
+      port6:
+        # s33-t27-sut1-c2/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
+        mac_address: "3c:fd:fe:cf:69:e9"
+        pci_address: "0000:3b:00.1"
+        ip4_address: "172.16.60.1"
+        driver: i40e
+        link: link6
+        model: Intel-XXV710
+      port7:
+        # s33-t27-sut1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "ec:0d:9a:8c:c6:96"
+        pci_address: "0000:5e:00.0"
+        ip4_address: "172.16.70.2"
+        driver: mlx5_core
+        link: link7
+        model: Mellanox-CX556A
+      port8:
+        # s33-t27-sut1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "ec:0d:9a:8c:c6:96"
+        pci_address: "0000:5e:00.1"
+        ip4_address: "172.16.70.1"
+        driver: mlx5_core
+        link: link8
+        model: Mellanox-CX556A
+      port9:
+        # s33-t27-sut1-c6/p1 - 100GE-port1 Intel E810-CQDA2 2p100GE.
+        mac_address: "b4:96:91:a2:fb:d0"
+        pci_address: "0000:86:00.0"
+        ip4_address: "172.16.80.2"
+        driver: ice
+        link: link9
+        model: Intel-E810CQ
+      port10:
+        # s33-t27-sut1-c6/p2 - 100GE-port1 Intel E810-CQDA2 2p100GE.
+        mac_address: "b4:96:91:a2:fb:d1"
+        pci_address: "0000:86:00.1"
+        ip4_address: "172.16.90.1"
+        driver: ice
+        link: link10
+        model: Intel-E810CQ
