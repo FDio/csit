@@ -1,0 +1,310 @@
+{
+    "version": "0.1.0",
+    "test": {
+        "test-id": "tests.vpp.device.ip4.eth2p-ethipv4-ip4base-dev.64b-ethipv4-ip4base-dev",
+        "test-type": "DEVICETEST",
+        "tags": [
+            "0T0C",
+            "2_NODE_SINGLE_LINK_TOPO",
+            "64B",
+            "BASE",
+            "DCR_ENV",
+            "DEVICETEST",
+            "DRV_VFIO_PCI",
+            "ETH",
+            "ethipv4-ip4base",
+            "HW_ENV",
+            "IP4BASE",
+            "IP4FWD",
+            "NIC_Virtual",
+            "RXQ_SIZE_0",
+            "SCAPY",
+            "STHREAD",
+            "TXQ_SIZE_0"
+        ],
+        "documentation": "",
+        "execution": {
+            "start_time": "20210128 07:05:16.670",
+            "end_time": "20210128 07:05:31.655",
+            "status": "PASS",
+            "ci": "jenkins.fd.io",
+            "job": "csit-vpp-device-2101-ubuntu1804-1n-skx",
+            "build": "358"
+        },
+        "results": {}
+    },
+    "metadata": {
+        "suite-id": "tests.vpp.device.ip4.eth2p-ethipv4-ip4base-dev",
+        "suite-doc": "*IPv4 routing test cases*\n\n*[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology  with single links between nodes.\n*[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing on both  links.\n*[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and  two static IPv4 /24 route entries.\n*[Ver] TG verification:* Test IPv4 packet with IP protocol=61 is sent  in one direction by TG on links to DUT1; on receive TG verifies packet  for correctness and their IPv4 src-addr, dst-addr and MAC addresses.\n*[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792",
+        "testbed": "10.30.51.50",
+        "sut-version": ""
+    },
+    "resource": [],
+    "network": [],
+    "log": [
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "cli_inband(cmd='show logging')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "show_version()",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "cli_inband(cmd='trace add dpdk-input 50')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "cli_inband(cmd='trace add vhost-user-input 50')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "cli_inband(cmd='trace add memif-input 50')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "cli_inband(cmd='trace add avf-input 50')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "sw_interface_set_flags(sw_if_index=1,flags=1)",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "hw_interface_set_mtu(sw_if_index=1,mtu=9200)",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "sw_interface_set_flags(sw_if_index=2,flags=1)",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "hw_interface_set_mtu(sw_if_index=2,mtu=9200)",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "sw_interface_set_flags(sw_if_index=1,flags=1)",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "hw_interface_set_mtu(sw_if_index=1,mtu=9200)",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "sw_interface_set_flags(sw_if_index=2,flags=1)",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "hw_interface_set_mtu(sw_if_index=2,mtu=9200)",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "ip_neighbor_add_del(is_add=True,neighbor={'sw_if_index': 1, 'flags': 0, 'mac_address': 'fa:ce:00:00:02:00', 'ip_address': '10.10.10.2'})",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "ip_neighbor_add_del(is_add=True,neighbor={'sw_if_index': 2, 'flags': 0, 'mac_address': 'fa:ce:00:00:02:01', 'ip_address': '20.20.20.2'})",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "sw_interface_add_del_address(sw_if_index=1,is_add=True,del_all=False,prefix={'len': 24, 'address': {'af': 0, 'un': {'ip4': b'\\n\\n\\n\\x01'}}})",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "sw_interface_add_del_address(sw_if_index=2,is_add=True,del_all=False,prefix={'len': 24, 'address': {'af': 0, 'un': {'ip4': b'\\x14\\x14\\x14\\x01'}}})",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "ip_route_add_del(is_add=True,is_multipath=False,route={'table_id': 0, 'prefix': {'len': 32, 'address': {'af': 0, 'un': {'ip4': b'\\xc0\\xa8\\x00\\x01'}}}, 'n_paths': 1, 'paths': [{'sw_if_index': 1, 'table_id': 0, 'rpf_id': 4294967295, 'weight': 1, 'preference': 1, 'type': 0, 'flags': 0, 'proto': 0, 'nh': {'address': {'ip4': b'\\n\\n\\n\\x02'}, 'via_label': 1048576, 'obj_id': 4294967295}, 'n_labels': 0, 'label_stack': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}]})",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 07:05:16.670",
+            "msg": "ip_route_add_del(is_add=True,is_multipath=False,route={'table_id': 0, 'prefix': {'len': 32, 'address': {'af': 0, 'un': {'ip4': b'\\xc0\\xa8\\x00\\x02'}}}, 'n_paths': 1, 'paths': [{'sw_if_index': 2, 'table_id': 0, 'rpf_id': 4294967295, 'weight': 1, 'preference': 1, 'type': 0, 'flags': 0, 'proto': 0, 'nh': {'address': {'ip4': b'\\x14\\x14\\x14\\x02'}, 'via_label': 1048576, 'obj_id': 4294967295}, 'n_labels': 0, 'label_stack': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}]})",
+            "data": {}
+        }
+    ]
+}

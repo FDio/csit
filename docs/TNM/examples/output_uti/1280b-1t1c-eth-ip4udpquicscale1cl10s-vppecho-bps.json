@@ -1,0 +1,270 @@
+{
+    "version": "0.1.0",
+    "test": {
+        "test-id": "tests.vpp.perf.hoststack.40ge2p1xl710-eth-ip4udpquicscale1cl10s-vppecho-bps.1280b-1t1c-eth-ip4udpquicscale1cl10s-vppecho-bps",
+        "test-type": "HOSTSTACK",
+        "tags": [
+            "10STREAM",
+            "1280B",
+            "1C",
+            "1CLIENT",
+            "1T1C",
+            "3_NODE_SINGLE_LINK_TOPO",
+            "DRV_VFIO_PCI",
+            "eth-ip4udpquicscale1cl10s-vppecho",
+            "HOSTSTACK",
+            "HW_ENV",
+            "NIC_Intel-XL710",
+            "PERFTEST",
+            "QUIC",
+            "RXQ_SIZE_0",
+            "STHREAD",
+            "TXQ_SIZE_0",
+            "UDP",
+            "VPPECHO"
+        ],
+        "documentation": "",
+        "execution": {
+            "start_time": "20210128 11:12:00.116",
+            "end_time": "20210128 11:13:16.677",
+            "status": "PASS",
+            "ci": "jenkins.fd.io",
+            "job": "csit-vpp-perf-report-iterative-2101-3n-hsw",
+            "build": "69"
+        },
+        "results": {
+            "client": {
+                "role": "client",
+                "time": "49.246309372",
+                "start_evt": "sconnect",
+                "start_evt_missing": "False",
+                "end_evt": "lastbyte",
+                "end_evt_missing": "False",
+                "rx_data": 0,
+                "tx_data": 10737418240,
+                "rx_bits_per_second": 0.0,
+                "tx_bits_per_second": 1744279866.2
+            },
+            "server": {
+                "role": "server",
+                "time": "49.236072432",
+                "start_evt": "sconnect",
+                "start_evt_missing": "False",
+                "end_evt": "lastbyte",
+                "end_evt_missing": "False",
+                "rx_data": 10737418240,
+                "tx_data": 0,
+                "rx_bits_per_second": 1744642528.9,
+                "tx_bits_per_second": 0.0
+            }
+        }
+    },
+    "metadata": {
+        "suite-id": "tests.vpp.perf.hoststack.40ge2p1xl710-eth-ip4udpquicscale1cl10s-vppecho-bps",
+        "suite-doc": "*QUIC Unidirectional Echo Client -> Echo Server goodput.\n*[Top] Network Topologies:* DUT-DUT 2-node topology\nwith single link between nodes.\n*[Enc] Packet Encapsulations:* Eth-IPv4-UDP-QUIC\n*[Cfg] DUT configuration:*\n*[Ref] Applicable standard specifications:*",
+        "testbed": "10.30.51.24",
+        "sut-version": "21.01-release"
+    },
+    "resource": [],
+    "network": [],
+    "log": [
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "cli_inband(cmd='show logging')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "show_version()",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "cli_inband(cmd='quic set fifo-size 4M')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "sw_interface_set_flags(sw_if_index=1,flags=1)",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "sw_interface_add_del_address(sw_if_index=1,is_add=True,del_all=False,prefix={'len': 24, 'address': {'af': 0, 'un': {'ip4': b'\\xac\\x11\\x17\\x01'}}})",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut1"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "cli_inband(cmd='show error')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut2"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "cli_inband(cmd='show logging')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut2"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "show_version()",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut2"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut2"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "cli_inband(cmd='quic set fifo-size 4M')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut2"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut2"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "sw_interface_set_flags(sw_if_index=1,flags=1)",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut2"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "sw_interface_add_del_address(sw_if_index=1,is_add=True,del_all=False,prefix={'len': 24, 'address': {'af': 0, 'un': {'ip4': b'\\xac\\x11\\x17\\x02'}}})",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut2"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+            "data": {}
+        },
+        {
+            "source": {
+                "type": "node",
+                "id": "dut2"
+            },
+            "msg-type": "papi",
+            "log-level": "INFO",
+            "timestamp": "20210128 11:12:00.116",
+            "msg": "cli_inband(cmd='show error')",
+            "data": {}
+        }
+    ]
+}
