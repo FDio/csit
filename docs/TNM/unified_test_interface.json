@@ -1,0 +1,149 @@
+
+IGNORE FOR NOW
+
+{
+  "data_structure_version": "0.1.0",
+  "metadata": {
+    "test_executor": {
+      "ci": "str [jenkins | s5ci | manual]",
+      "job": "str",
+      "build": "int"
+    },
+    "test_execution": {
+      "start_time": "str datetime",
+      "end_time": "str datetime",
+      "status": "str [PASS | FAIL]"
+    },
+
+    rozbit,
+
+    "system_under_test": {
+      "testbed_name": "str if possible",
+      "node_count": "int [1 | 2 | 3 | ...]",
+      "nodes": "list [unique node id, ]",
+      "platform": "str [hsw | skx | clx | tsh | dnv | ...]"
+    },
+
+
+
+    "test": {
+      "id": "str fullname",
+      "type": "str [NDRPDR | MRR | SOAK | ...]",
+      "tags": "list [str]",
+      "documentation": "str",
+      "history": {
+        "hash": "str hash",
+        "previous_hash": "str previous hash"
+      }
+    }
+  },
+  "data": {
+    "configuration": {
+      "nodes": [
+        {
+          "id": "str see metadata --> system_under_test --> nodes",
+          "type": "TG",
+          "sub_type": "str [TRex | ...]",
+          "hostname": "str e.g. TG",
+          "ip_addr": "str",
+          "traffic_profile": "str",
+          "bidirectional": "bool",
+          "flow_count": "int",
+          "nic": "str",
+          "version": "str",
+          "cores": "int",
+          "threads": "int"
+        },
+        {
+          "type": "DUT",
+          "sub_type": "str [vpp | dpdk-testpmd | ...]",
+          "hostname": "str e.g. DUTn",
+          "ip_addr": "str",
+          "startup_config": "dict (json)",
+          "running_config": "list [str]",
+          "nic": "str",
+          "version": "str",
+          "cores": "int",
+          "threads": "int"
+        },
+        {
+          "type": "NF",
+          "sub_type": "str [vpp | dpdk | ...]",
+          "hostname": "str e.g. DUTm_NFn",
+          "ip_addr": "str",
+          "startup_config": "dict (json)",
+          "running_config": "list [str]",
+          "nic": "str",
+          "version": "str",
+          "cores": "int",
+          "threads": "int"
+        }
+      ]
+    },
+    "results": {
+      "total": {
+        "forward": {
+          "throughput": {
+            "ndr": {
+              "lower_bps": "float",
+              "upper_bps": "float",
+              "lower_pps": "float",
+              "upper_pps": "float"
+            },
+            "pdr": {
+              "lower_bps": "float",
+              "upper_bps": "float",
+              "lower_pps": "float",
+              "upper_pps": "float"
+            }
+          },
+          "latency": {
+            "ndr": {
+              "min": "float",
+              "avg": "float",
+              "max": "float",
+              "hdrh": "str"
+            },
+            "pdr": {
+              "min": "float",
+              "avg": "float",
+              "max": "float",
+              "hdrh": "str"
+            }
+          },
+          "mrr": {
+            "receive_rate": "list [mrr1, mrr2, ...]"
+          },
+          "soak": {
+            "lower": "float",
+            "upper": "float"
+          },
+          "another_item": {}
+        },
+        "reverse": {},
+        "total": {}
+      },
+      "nodes": [
+        {
+          "id": "str see metadata --> system_under_test --> nodes",
+          "forward": {},
+          "reverse": {},
+          "total": {}
+        },
+        {}
+      ]
+    },
+    "operational_data": {
+      "nodes": [
+        {
+          "id": "str see metadata --> system_under_test --> nodes",
+          "data": "list or dict (json), as the first step, show-run structure is enough; TBD"
+        },
+        {
+          "id": "str see metadata --> system_under_test --> nodes",
+          "data": "list or dict (json), as the first step, show-run structure is enough; TBD"
+        }
+      ]
+    }
+  }
+}
