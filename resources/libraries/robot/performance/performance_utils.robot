@@ -564,7 +564,7 @@
 | | FOR | ${action} | IN | @{pre_run_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
-| | Sleep | ${duration}
+| | Sleep | ${1.0}
 | | FOR | ${action} | IN | @{post_run_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
