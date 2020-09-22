@@ -1,0 +1,752 @@
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "reference": {},
+  "resource": [],
+  "network": [
+    {
+      "network-id": "network-1",
+      "attr": {
+        "nodes": 2
+      },
+      "node": [
+        {
+          "node-id": "dut1",
+          "node-type": "DUT",
+          "attr": {
+            "host": "10.32.8.18",
+            "arch": "x86_64",
+            "port": 22,
+            "username": "testuser",
+            "password": "Csit1234",
+            "uio_driver": "vfio-pci",
+            "interfaces": {
+              "port1": {
+                "mac_address": "3c:fd:fe:ca:e9:98",
+                "pci_address": "0000:18:00.0",
+                "ip4_address": "172.16.10.1",
+                "driver": "i40e",
+                "link": "link1",
+                "model": "Intel-X710"
+              },
+              "port2": {
+                "mac_address": "3c:fd:fe:ca:e9:99",
+                "pci_address": "0000:18:00.1",
+                "ip4_address": "172.16.20.1",
+                "driver": "i40e",
+                "link": "link2",
+                "model": "Intel-X710"
+              },
+              "port3": {
+                "mac_address": "3c:fd:fe:ca:e9:9a",
+                "pci_address": "0000:18:00.2",
+                "ip4_address": "172.16.30.1",
+                "driver": "i40e",
+                "link": "link3",
+                "model": "Intel-X710"
+              },
+              "port4": {
+                "mac_address": "3c:fd:fe:ca:e9:9b",
+                "pci_address": "0000:18:00.3",
+                "ip4_address": "172.16.40.1",
+                "driver": "i40e",
+                "link": "link4",
+                "model": "Intel-X710"
+              },
+              "port5": {
+                "mac_address": "3c:fd:fe:cf:69:e8",
+                "pci_address": "0000:3b:00.0",
+                "ip4_address": "172.16.50.1",
+                "driver": "i40e",
+                "link": "link5",
+                "model": "Intel-XXV710"
+              },
+              "port6": {
+                "mac_address": "3c:fd:fe:cf:69:e9",
+                "pci_address": "0000:3b:00.1",
+                "ip4_address": "172.16.60.1",
+                "driver": "i40e",
+                "link": "link6",
+                "model": "Intel-XXV710"
+              },
+              "port7": {
+                "mac_address": "ec:0d:9a:8c:c6:96",
+                "pci_address": "0000:5e:00.0",
+                "ip4_address": "172.16.70.2",
+                "driver": "mlx5_core",
+                "link": "link7",
+                "model": "Mellanox-CX556A"
+              },
+              "port8": {
+                "mac_address": "ec:0d:9a:8c:c6:96",
+                "pci_address": "0000:5e:00.1",
+                "ip4_address": "172.16.70.1",
+                "driver": "mlx5_core",
+                "link": "link8",
+                "model": "Mellanox-CX556A"
+              },
+              "port9": {
+                "mac_address": "b4:96:91:a2:fb:d0",
+                "pci_address": "0000:86:00.0",
+                "ip4_address": "172.16.80.2",
+                "driver": "ice",
+                "link": "link9",
+                "model": "Intel-E810CQ"
+              },
+              "port10": {
+                "mac_address": "b4:96:91:a2:fb:d1",
+                "pci_address": "0000:86:00.1",
+                "ip4_address": "172.16.90.1",
+                "driver": "ice",
+                "link": "link10",
+                "model": "Intel-E810CQ"
+              }
+            }
+          },
+          "parent": "",
+          "children": [],
+          "resource": "not defined in this example yet",
+          "configuration": {
+            "pre-configuration": [
+              {
+                "cmd": "Add Unix Log",
+                "args": {}
+              },
+              {
+                "cmd": "Add Unix CLI Listen",
+                "args": {}
+              },
+              {
+                "cmd": "Add Unix Nodaemon",
+                "args": {}
+              },
+              {
+                "cmd": "Add Unix Coredump",
+                "args": {}
+              },
+              {
+                "cmd": "Add Socksvr",
+                "args": {
+                  "path": "/run/vpp/api.sock"
+                }
+              },
+              {
+                "cmd": "Add Main Heap Size",
+                "args": {
+                  "size": "2G"
+                }
+              },
+              {
+                "cmd": "Add Main Heap Page Size",
+                "args": {
+                  "size": "2M"
+                }
+              },
+              {
+                "cmd": "Add Statseg Size",
+                "args": {
+                  "size": "2G"
+                }
+              },
+              {
+                "cmd": "Add Statseg Page Size",
+                "args": {
+                  "size": "2M"
+                }
+              },
+              {
+                "cmd": "Add Statseg Per Node Counters",
+                "args": {
+                  "value": "on"
+                }
+              },
+              {
+                "cmd": "Add Plugin",
+                "args": {
+                  "state": "disable",
+                  "plugins": "default"
+                }
+              },
+              {
+                "cmd": "Add Plugin",
+                "args": {
+                  "state": "enable",
+                  "plugins": ["dpdk_plugin.so"]
+                }
+              },
+              {
+                "cmd": "Add IP6 Hash Buckets",
+                "args": {
+                  "value": 2000000
+                }
+              },
+              {
+                "cmd": "Add IP6 Heap Size",
+                "args": {
+                  "size": "4G"
+                }
+              },
+              {
+                "cmd": "Add Graph Node Variant",
+                "args": {
+                  "variant": ""
+                }
+              }
+            ],
+            "run-time": [
+              {}
+            ]
+          },
+          "command-history": [
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='show logging')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "show_version()",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "sw_interface_set_flags(sw_if_index=1,flags=1)",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "hw_interface_set_mtu(sw_if_index=1,mtu=9200)",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "sw_interface_set_flags(sw_if_index=2,flags=1)",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "hw_interface_set_mtu(sw_if_index=2,mtu=9200)",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "sw_interface_set_flags(sw_if_index=1,flags=1)",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "hw_interface_set_mtu(sw_if_index=1,mtu=9200)",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "sw_interface_set_flags(sw_if_index=2,flags=1)",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "hw_interface_set_mtu(sw_if_index=2,mtu=9200)",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "sw_interface_dump(name_filter_valid=False,name_filter='')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "ip_neighbor_add_del(is_add=True,neighbor={'sw_if_index': 1, 'flags': 0, 'mac_address': '3c:fd:fe:ca:e9:88', 'ip_address': '10.10.10.2'})",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "ip_neighbor_add_del(is_add=True,neighbor={'sw_if_index': 2, 'flags': 0, 'mac_address': '3c:fd:fe:ca:e9:89', 'ip_address': '20.20.20.2'})",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "sw_interface_add_del_address(sw_if_index=1,is_add=True,del_all=False,prefix={'len': 24, 'address': {'af': 0, 'un': {'ip4': b'\\n\\n\\n\\x01'}}})",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "sw_interface_add_del_address(sw_if_index=2,is_add=True,del_all=False,prefix={'len': 24, 'address': {'af': 0, 'un': {'ip4': b'\\x14\\x14\\x14\\x01'}}})",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='clear runtime')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "vpp-stats(path='^/sys/node'",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='show runtime')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='clear errors')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='clear hardware')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='event-logger trace api cli barrier')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='show errors')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='show hardware verbose')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='show event-logger')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='clear runtime')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "vpp-stats(path='^/sys/node')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='show runtime')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='clear errors')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='clear hardware')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='event-logger trace api cli barrier')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='show errors')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='show hardware verbose')",
+              "return-code": "int",
+              "response": "str"
+            },
+            {
+              "timestamp": "datetime",
+              "command": "cli_inband(cmd='show event-logger')",
+              "return-code": "int",
+              "response": "str"
+            }
+          ],
+          "termination-point": [
+            {
+              "tp-id": "TenGigabitEthernet18/0/0",
+              "attr": {
+                "interface": "port1"
+              }
+            },
+            {
+              "tp-id": "TenGigabitEthernet18/0/1",
+              "attr": {
+                "interface": "port2"
+              }
+            }
+          ]
+        },
+        {
+          "node-id": "tg1",
+          "node-type": "TG",
+          "attr": {
+            "subtype": "TREX",
+            "host": "10.32.8.19",
+            "arch": "x86_64",
+            "port": 22,
+            "username": "testuser",
+            "password": "Csit1234",
+            "interfaces": {
+              "port1": {
+                "mac_address": "3c:fd:fe:ca:e9:88",
+                "pci_address": "0000:18:00.0",
+                "ip4_address": "172.16.10.2",
+                "driver": "i40e",
+                "link": "link1",
+                "model": "Intel-X710"
+              },
+              "port2": {
+                "mac_address": "3c:fd:fe:ca:e9:89",
+                "pci_address": "0000:18:00.1",
+                "ip4_address": "172.16.20.2",
+                "driver": "i40e",
+                "link": "link2",
+                "model": "Intel-X710"
+              },
+              "port3": {
+                "mac_address": "3c:fd:fe:ca:e9:8a",
+                "pci_address": "0000:18:00.2",
+                "ip4_address": "172.16.30.2",
+                "driver": "i40e",
+                "link": "link3",
+                "model": "Intel-X710"
+              },
+              "port4": {
+                "mac_address": "3c:fd:fe:ca:e9:8b",
+                "pci_address": "0000:18:00.3",
+                "ip4_address": "172.16.40.2",
+                "driver": "i40e",
+                "link": "link4",
+                "model": "Intel-X710"
+              },
+              "port5": {
+                "mac_address": "3c:fd:fe:dd:d4:28",
+                "pci_address": "0000:3b:00.0",
+                "ip4_address": "172.16.50.2",
+                "driver": "i40e",
+                "link": "link5",
+                "model": "Intel-XXV710"
+              },
+              "port6": {
+                "mac_address": "3c:fd:fe:dd:d4:29",
+                "pci_address": "0000:3b:00.1",
+                "ip4_address": "172.16.60.2",
+                "driver": "i40e",
+                "link": "link6",
+                "model": "Intel-XXV710"
+              },
+              "port7": {
+                "mac_address": "ec:0d:9a:8c:c6:a6",
+                "pci_address": "0000:5e:00.0",
+                "ip4_address": "172.16.70.2",
+                "driver": "mlx5_core",
+                "link": "link7",
+                "model": "Mellanox-CX556A"
+              },
+              "port8": {
+                "mac_address": "ec:0d:9a:8c:c6:a7",
+                "pci_address": "0000:5e:00.1",
+                "ip4_address": "172.16.70.1",
+                "driver": "mlx5_core",
+                "link": "link8",
+                "model": "Mellanox-CX556A"
+              },
+              "port9": {
+                "mac_address": "b4:96:91:a4:24:e8",
+                "pci_address": "0000:86:00.0",
+                "ip4_address": "172.16.80.2",
+                "driver": "ice",
+                "link": "link9",
+                "model": "Intel-E810CQ"
+              },
+              "port10": {
+                "mac_address": "b4:96:91:a4:24:e9",
+                "pci_address": "0000:86:00.1",
+                "ip4_address": "172.16.90.1",
+                "driver": "ice",
+                "link": "link10",
+                "model": "Intel-E810CQ"
+              }
+            }
+          },
+          "parent": "",
+          "children": [],
+          "resource": "not defined in this example yet",
+          "configuration": {
+            "pre-configuration": [],
+            "run-time": [
+              {
+                "traffic-profile": "TG runtime conf str path to file",
+                "traffic-specification": "TG runtime conf str path to file or JSON"
+              }
+            ]
+          },
+          "command-history": [
+            {
+              "timestamp": "datetime",
+              "command": "str",
+              "return-code": "int",
+              "response": "str"
+            },
+            {}
+          ],
+          "termination-point": [
+            {
+              "tp-id": "TenGigabitEthernet18/0/0",
+              "attr": {
+                "interface": "port1"
+              }
+            },
+            {
+              "tp-id": "TenGigabitEthernet18/0/1",
+              "attr": {
+                "interface": "port2"
+              }
+            },
+            {}
+          ]
+        }
+      ],
+      "link": [
+        {
+          "link-id": "link1",
+          "attr": {},
+          "end-1": {
+            "end-1-node": "tg1",
+            "end-1-tp": "TenGigabitEthernet18/0/0"
+          },
+          "end-2": {
+            "end-2-node": "dut1",
+            "end-2-tp": "TenGigabitEthernet18/0/0"
+          }
+        },
+        {
+          "link-id": "link2",
+          "attr": {},
+          "end-1": {
+            "end-1-node": "tg1",
+            "end-1-tp": "TenGigabitEthernet18/0/1"
+          },
+          "end-2": {
+            "end-2-node": "dut1",
+            "end-2-tp": "TenGigabitEthernet18/0/1"
+          }
+        }
+      ]
+    },
+    {}
+  ],
+  "state": [],
+  "current-state": {},
+  "test": {
+    "metadata": {
+      "execution": {
+        "ci": "jenkins",
+        "job": "csit-vpp-perf-report-coverage-2101-2n-clx",
+        "build": 1,
+        "csit-commit": "hash",
+        "csit-gerrit-change": "",
+        "start_time": "20210206 22:54:13.707",
+        "end_time": "20210206 22:57:58.647",
+        "status": "PASS"
+      },
+      "attr": {
+        "test-id": "tests.vpp.perf.ip4.2n1l-10ge2p1x710-ethip4-ip4base-ndrpdr.64b-1c-ethip4-ip4base-ndrpdr",
+        "test-type": "NDRPDR",
+        "tags": ["1C", "2_NODE_SINGLE_LINK_TOPO", "2T1C", "64B", "BASE", "DRV_VFIO_PCI", "ETH", "ethip4-ip4base", "HW_ENV", "IP4BASE", "IP4FWD", "MTHREAD", "NDRPDR", "NIC_Intel-X710", "PERFTEST", "RXQ_SIZE_0", "TXQ_SIZE_0"],
+        "documentation": "RFC2544: Pkt throughput IPv4 routing test cases [Top] Network Topologies: TG-DUT1-TG 2-node circular topology with single links between nodes. [Enc] Packet Encapsulations: Eth-IPv4 for IPv4 routing. [Cfg] DUT configuration: DUT1 is configured with IPv4 routing and two static IPv4 /24 route entries. DUT1 tested with Intel-X710. [Ver] TG verification: TG finds and reports throughput NDR (Non Drop Rate) with zero packet loss tolerance and throughput PDR (Partial Drop Rate) with non-zero packet loss tolerance (LT) expressed in percentage of packets transmitted. NDR and PDR are discovered for different Ethernet L2 frame sizes using MLRsearch library. Test packets are generated by TG on links to DUTs. TG traffic profile contains two L3 flow-groups (flow-group per direction, 253 flows per flow-group) with all packets containing Ethernet header, IPv4 header with IP protocol=61 and static payload. MAC addresses are matching MAC addresses of the TG node interfaces. [Ref] Applicable standard specifications: RFC2544.",
+        "chain": {
+          "hash": "hash",
+          "previous_hash": "previous hash"
+        }
+      }
+    },
+    "results": {
+      "test": {
+        "ndr": {
+          "unit": "pps",
+          "value": {
+            "lower": "16005189.18033835",
+            "upper": "16085616.035761887"
+          }
+        },
+        "pdr": {
+          "unit": "pps",
+          "value": {
+            "lower": "16576737.004486663",
+            "upper": "16660035.472118674"
+          }
+        },
+        "hdrh": {
+          "forward": {
+            "pdr-90": "11/29/53/HISTFAAAAGt4nJNpmSzMwMDgxQABzFCaEUzOmNZg/wEiIMrExNfFuIrxGNM6ljaOJu4moW9i66R2yK5SPKPcpLFFv8GkwXCHWYvNE/M3Ok3KE8Rm8bZxXWJvYr3AfIlpA9Mtxio7OSEuDg5GJiYAQvwcSw==",
+            "pdr-50": "9/15/36/HISTFAAAAFB4nJNpmSzMwMCgzwABzFCaEUzOmNZg/wEiIHiD84DNtehLWo/UH7ltCJsSuMKlRfWbzD2ZZ4L7OI+xneM4wLOMUUxFQkKGi4WPjQkAFLMVrA==",
+            "pdr-10": "9/16/46/HISTFAAAAG54nJNpmSzMwMDgzQABzFCaEUzOmNZg/wEiILjiDeMPjQb1TbZnNLYob1PdIfCPs4vzE/s7/gVctzgucbzgfMb5inkO6xX2Kxxn2NexnmC5xLKB4xf3DI4tzHdY/7DeYP3A9IPpFmORHgsAbtAjvg==",
+            "pdr-0": "9/9/16/HISTFAAAACh4nJNpmSzMwMDAyQABzFCaEUzOmNZg/wEiIHhlH6sFJ5MhEwCADgZP"
+          },
+          "reverse": {
+            "pdr-90": "12/29/51/HISTFAAAAGp4nJNpmSzMwMDgwQABzFCaEUzOmNZg/wEiIM7RxHiNuYOphWkX8wGWe8w/WE9xPOFu4v8jtU7rj9I/xR8av4yn2K5y++a2wXybToP8D9FtQpME/nFsYXnGdIixhzHIiE9CgoORBQCu6R/F",
+            "pdr-50": "8/16/34/HISTFAAAAFJ4nJNpmSzMwMBgyAABzFCaEUzOmNZg/wEiwM8yTWKGyRXzIxqb1K+5zgs55vhLd5faNb0TdrdUDvAd4rzDuoblDWPGFsYTjG2MBhIsTAAvEher",
+            "pdr-10": "8/17/44/HISTFAAAAGt4nJNpmSzMwMDgwQABzFCaEUzOmNZg/wEiwK/x7S/jH4kvonOEjgk/krrBv0TwnOgRqX08BySOid8T3SLcw7GA9wLvJ745XC1sD5incZzhvMT+hXMFzya+V+xTWD+xdDAtYnJjYwEA7QsgvQ==",
+            "pdr-0": "8/9/15/HISTFAAAACd4nJNpmSzMwMDAwQABzFCaEUzOmNZg/wEiwK92aB+rGjsTAHffBhk="
+          }
+        }
+      },
+      "node": [
+        {
+          "node-id": "dut1",
+          "termination-point": [
+            {
+              "tp-id": "TenGigabitEthernet18/0/0",
+              "pdr": {
+                "rx-counters": {
+                  "rx-frames-ok": 8249138,
+                  "rx-bytes-ok": 497302140,
+                  "rx-missed": 39231,
+                  "rx_good_packets": 8249138,
+                  "rx_good_bytes": 497302140,
+                  "rx_missed_errors": 39231,
+                  "rx_unicast_packets": 8288369,
+                  "rx_unknown_protocol_packets": 8288369,
+                  "rx_size_64_packets": 8288369
+                },
+                "tx-counters": {
+                  "tx-frames-ok": 8248885,
+                  "tx-bytes-ok": 494933100,
+                  "tx_good_packets": 8248885,
+                  "tx_good_bytes": 494933100,
+                  "tx_unicast_packets": 8248885,
+                  "tx_size_64_packets": 8248885
+                },
+                "error-counters": {},
+                "show-runtime-node-counters": {}
+              },
+              "ndr": {
+                "rx-counters": {
+                  "rx-frames-ok": 8002595,
+                  "rx-bytes-ok": 480155700,
+                  "rx_good_packets": 8002595,
+                  "rx_good_bytes": 480155700,
+                  "rx_unicast_packets": 8002595,
+                  "rx_unknown_protocol_packets": 8002595,
+                  "rx_size_64_packets": 8002595
+                },
+                "tx-counters": {
+                  "tx-frames-ok": 8002515,
+                  "tx-bytes-ok": 480150900,
+                  "tx_good_packets": 8002515,
+                  "tx_good_bytes": 480150900,
+                  "tx_unicast_packets": 8002515,
+                  "tx_size_64_packets": 8002515
+                },
+                "error-counters": {},
+                "show-runtime-node-counters": {}
+              }
+            },
+            {
+              "tp-id": "TenGigabitEthernet18/0/1",
+              "pdr": {
+                "rx-counters": {
+                  "rx-frames-ok": 8248885,
+                  "rx-bytes-ok": 497297160,
+                  "rx-missed": 39401,
+                  "rx_good_packets": 8248885,
+                  "rx_good_bytes": 497297160,
+                  "rx_missed_errors": 39401,
+                  "rx_unicast_packets": 8288286,
+                  "rx_unknown_protocol_packets": 8288286,
+                  "rx_size_64_packets": 8288286
+                },
+                "tx-counters": {
+                  "tx-frames-ok": 8249138,
+                  "tx-bytes-ok": 494948280,
+                  "tx_good_packets": 8249138,
+                  "tx_good_bytes": 494948280,
+                  "tx_unicast_packets": 8249138,
+                  "tx_size_64_packets": 8249138
+                },
+                "error-counters": {},
+                "show-runtime-node-counters": {}
+              },
+              "ndr": {
+                "rx-counters": {
+                  "rx-frames-ok": 8002515,
+                  "rx-bytes-ok": 480150900,
+                  "rx_good_packets": 8002515,
+                  "rx_good_bytes": 480150900,
+                  "rx_unicast_packets": 8002515,
+                  "rx_unknown_protocol_packets": 8002515,
+                  "rx_size_64_packets": 8002515
+                },
+                "tx-counters": {
+                  "tx-frames-ok": 8002595,
+                  "tx-bytes-ok": 480155700,
+                  "tx_good_packets": 8002595,
+                  "tx_good_bytes": 480155700,
+                  "tx_unicast_packets": 8002595,
+                  "tx_size_64_packets": 8002595
+                },
+                "error-counters": {},
+                "show-runtime-node-counters": {}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
