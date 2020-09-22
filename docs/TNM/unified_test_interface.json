@@ -1,0 +1,100 @@
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "resource": [
+    {
+      "resource-id": "str",
+      "resource-type": "str",
+      "parent": "str resource-id",
+      "children": "list of resource-id",
+      "configuration": "dict depends on resource-type"
+    },
+    {}
+  ],
+  "network": [
+    {
+      "network-id": "str",
+      "attr": {
+        "nodes": "int",
+        "topology": "str relative or full path"
+      },
+      "node": [
+        {
+          "node-id": "str",
+          "node-type": "str TG | DUT | ...",
+          "node-topo": "str node ID used in topology file",
+          "parent": "str node-id",
+          "children": "list of node-ids",
+          "resource": "str resource-id or list of resource-id",
+          "command-history": [
+            {
+              "timestamp": "datetime",
+              "command": "str",
+              "return-code": "int",
+              "response": "str"
+            },
+            {}
+          ],
+          "termination-point": [
+            {
+              "tp-id": "str",
+              "attr": {}
+            },
+            {}
+          ]
+        }
+      ],
+      "link": [
+        {
+          "link-id": "str",
+          "attr": {
+            "bonding-as-an-example": "list of link-id"
+          },
+          "end-1": {
+            "end-1-node": "node-id",
+            "end-1-tp": "tp-id"
+          },
+          "end-2": {
+            "end-2-node": "node-id",
+            "end-2-tp": "tp-id"
+          }
+        },
+        {}
+      ]
+    },
+    {}
+  ],
+  "state": [
+    {
+      "origin": {
+        "type": "str node | resource | test | ...",
+        "id": "str node-id | resource-id | test-id | ..."
+      },
+      "state-id": "str",
+      "timestamp": "datetime",
+      "operational-data": {}
+    },
+    {}
+  ],
+  "current-state": {},
+  "test": {
+    "test-id": "str fullname",
+    "test-type": "str [NDRPDR | MRR | SOAK | ...]",
+    "tags": ["str", "list of all tags"],
+    "documentation": "str",
+    "execution": {
+      "ci": "str [jenkins | s5ci | manual]",
+      "job": "str",
+      "build": "int",
+      "csit-commit": "hash",
+      "csit-gerrit-change": "str url",
+      "start_time": "str datetime",
+      "end_time": "str datetime",
+      "status": "str [PASS | FAIL]"
+    },
+    "results": {
+      "test": {},
+      "node": []
+    }
+  }
+}
