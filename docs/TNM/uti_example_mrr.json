@@ -1,0 +1,50 @@
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "reference": {},
+  "resource": [],
+  "network": {},
+  "state": [],
+  "current-state": {},
+  "test": {
+    "metadata": {
+      "execution": {
+        "ci": "str [jenkins | s5ci | manual]",
+        "job": "str",
+        "build": "int",
+        "csit-commit": "str hash",
+        "csit-gerrit-change": "str url",
+        "start_time": "str datetime",
+        "end_time": "str datetime",
+        "status": "str [PASS | FAIL]"
+      },
+      "attr": {
+        "test-id": "str fullname",
+        "test-type": "str [NDRPDR | MRR | SOAK | ...]",
+        "tags": "list [str]",
+        "documentation": "str",
+        "chain": {
+          "hash": "str hash",
+          "previous_hash": "str previous hash"
+        }
+      }
+    },
+    "results": {
+      "test": {
+        "receive-rate": "list of floats"
+      },
+      "node": [
+        {
+          "node-id": "str",
+          "mrr": {
+            "rx-counters": {},
+            "tx-counters": {},
+            "error-counters": {},
+            "show-runtime-node-counters": {}
+          }
+        },
+        {}
+      ]
+    }
+  }
+}
