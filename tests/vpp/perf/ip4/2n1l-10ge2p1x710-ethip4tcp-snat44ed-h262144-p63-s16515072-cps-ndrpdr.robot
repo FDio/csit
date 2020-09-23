@@ -87,7 +87,7 @@
 | ${n_ports}= | ${63}
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
 | ${transaction_directions}= | ${1}
-| ${packets_per_transaction_and_direction}= | ${3}
+| ${packets_per_transaction_and_direction}= | ${4}
 # Traffic profile:
 | ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h
 | ${transaction_type}= | tcp_cps
