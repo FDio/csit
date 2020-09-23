@@ -461,6 +461,10 @@ function get_test_code () {
             NODENESS="2n"
             FLAVOR="skx"
             ;;
+        *"2n-zn2"*)
+            NODENESS="2n"
+            FLAVOR="zn2"
+            ;;
         *"3n-skx"*)
             NODENESS="3n"
             FLAVOR="skx"
@@ -757,7 +761,7 @@ function select_tags () {
         *"3n-tsh"*)
             default_nic="nic_intel-x520-da2"
             ;;
-        *"3n-skx"* | *"2n-skx"* | *"2n-clx"*)
+        *"3n-skx"* | *"2n-skx"* | *"2n-clx"* | *"2n-zn2"*)
             default_nic="nic_intel-xxv710"
             ;;
         *"3n-hsw"* | *"mrr-daily-master")
@@ -835,7 +839,7 @@ function select_tags () {
     # TODO: Add missing reasons here (if general) or where used (if specific).
     case "${TEST_CODE}" in
         *"2n-skx"*)
-            test_tag_array+=("!ipsechw")
+            test_tag_array+=("!ipsec")
             ;;
         *"3n-skx"*)
             test_tag_array+=("!ipsechw")
@@ -843,7 +847,10 @@ function select_tags () {
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             ;;
         *"2n-clx"*)
-            test_tag_array+=("!ipsechw")
+            test_tag_array+=("!ipsec")
+            ;;
+        *"2n-zn2"*)
+            test_tag_array+=("!ipsec")
             ;;
         *"2n-dnv"*)
             test_tag_array+=("!ipsechw")
@@ -866,10 +873,6 @@ function select_tags () {
             test_tag_array+=("!ipsechw")
             ;;
         *"3n-hsw"*)
-            # TODO: Introduce NOIOMMU version of AVF tests.
-            # TODO: Make (both) AVF tests work on Haswell,
-            # or document why (some of) it is not possible.
-            # https://github.com/FDio/vpp/blob/master/src/plugins/avf/README.md
             test_tag_array+=("!drv_avf")
             # All cards have access to QAT. But only one card (xl710)
             # resides in same NUMA as QAT. Other cards must go over QPI
