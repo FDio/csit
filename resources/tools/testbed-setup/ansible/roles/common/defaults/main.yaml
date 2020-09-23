@@ -19,6 +19,7 @@ packages_by_distro:
   ubuntu:
     - "build-essential"
     - "libpcap-dev"
+    - "net-tools"
     - "python-all"
     - "python-apt"
     - "python-cffi"
