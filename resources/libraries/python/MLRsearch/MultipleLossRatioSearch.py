@@ -157,7 +157,7 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         :returns: The relative width of double logarithmic size.
         :rtype: float
         """
-        return 1.999 * relative_width - relative_width * relative_width
+        return 1.99999 * relative_width - relative_width * relative_width
         # The number should be 2.0, but we want to avoid rounding errors,
         # and ensure half of double is not larger than the original value.
 
