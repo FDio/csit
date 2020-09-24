@@ -285,7 +285,13 @@ class Constants:
         u"Intel-XL710": 18750000,
         u"Intel-XXV710": 18750000,
         u"Intel-E810CQ": 58500000,
-        u"Mellanox-CX556A": 60000000, # 148809523,
+        # 2n-clx testbeds show duration stretching on high rates,
+        # depending on encapsulation TRex has to generate.
+        # 40 Mpps is still too much for dot1q (~8% stretching).
+        # 36 Mpps is around the maximal VPP throughput (l2patch 4c8t).
+        # Vxlan traffic will still show stretching at 36 Mpps (>12%),
+        # but we do not care about those tests that much.
+        u"Mellanox-CX556A": 36000000, # 148809523,
         u"Amazon-Nitro-50G": 1500000,
         u"virtual": 14880952,
     }
