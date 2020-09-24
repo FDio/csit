@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b31eacc_ac49dac8",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-24T11:21:03Z",
+      "side": 1,
+      "message": "https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-clx/493/archives/log.html.gz#s1-s1-s1-s2-s1-t1-k2-k10-k1-k8-k1-k1",
+      "range": {
+        "startLine": 290,
+        "startChar": 47,
+        "endLine": 290,
+        "endChar": 50
+      },
+      "revId": "8ea5b015aaa22bac7ae5cbe43d41f30811ed8cde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7602d6c3_6ee2b2c2",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-24T11:21:03Z",
+      "side": 1,
+      "message": "https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-clx/497/archives/log.html.gz#s1-s1-s1-s3-s2-t1-k2-k9-k1-k8-k1-k1",
+      "range": {
+        "startLine": 291,
+        "startChar": 56,
+        "endLine": 291,
+        "endChar": 63
+      },
+      "revId": "8ea5b015aaa22bac7ae5cbe43d41f30811ed8cde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d59b4f9_9776f6d4",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-24T11:21:03Z",
+      "side": 1,
+      "message": "https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-clx/497/archives/log.html.gz#s1-s1-s1-s5-s1-t1-k2-k13-k1-k8-k1-k1\n\nLook at other tests in that run to see 36 Mpps is safe for other tests.\nIp6Scale2M got unlucky that run, but other runs it worked well:\nhttps://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-clx/495/archives/log.html.gz#s1-s1-s1-s2-s2-t1-k2-k9-k1-k8-k1-k1",
+      "range": {
+        "startLine": 292,
+        "startChar": 63,
+        "endLine": 292,
+        "endChar": 67
+      },
+      "revId": "8ea5b015aaa22bac7ae5cbe43d41f30811ed8cde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
