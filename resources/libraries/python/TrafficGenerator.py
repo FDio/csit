@@ -165,7 +165,7 @@ class TrafficGenerator(AbstractMeasurer):
         self._stop_time = None
         self._rate = None
         self._target_duration = None
-        self._computed_duration = None
+        self._duration = None
         # Other input parameters, not knowable from measure() signature.
         self.frame_size = None
         self.traffic_profile = None
@@ -582,17 +582,14 @@ class TrafficGenerator(AbstractMeasurer):
             duration = float(duration)
 
         # Duration logic.
-        computed_duration = duration
-        if computed_duration > 0.0:
+        if duration > 0.0:
             if self.transaction_scale:
-                computed_duration = self.transaction_scale / multiplier
-                computed_duration += self.transaction_duration
-                # TODO: Expose as stretch_tolerance arg?
-                computed_duration *= 1.001
-                computed_duration += 0.1
+                duration = self.transaction_scale / multiplier
+                logger.debug(f"Vanilla duration {duration}")
+                duration += 0.10
         # Else keep -1.
         if self.duration_limit:
-            computed_duration = min(computed_duration, self.duration_limit)
+            duration = min(duration, self.duration_limit)
 
         command_line = OptionString().add(u"python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
@@ -602,7 +599,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_with_value(
             u"profile", f"'{dirname}/{self.traffic_profile}.py'"
         )
-        command_line.add_with_value(u"duration", f"{computed_duration!r}")
+        command_line.add_with_value(u"duration", f"{duration!r}")
         command_line.add_with_value(u"frame_size", self.frame_size)
         command_line.add_with_value(u"multiplier", multiplier)
         command_line.add_with_value(u"port_0", p_0)
@@ -617,14 +614,14 @@ class TrafficGenerator(AbstractMeasurer):
         self._start_time = time.monotonic()
         self._rate = multiplier
         stdout, _ = exec_cmd_no_error(
-            self._node, command_line, timeout=computed_duration + 10.0,
+            self._node, command_line, timeout=duration + 10.0,
             message=u"T-Rex ASTF runtime error!"
         )
 
         if async_call:
             # no result
             self._target_duration = None
-            self._computed_duration = None
+            self._duration = None
             self._received = None
             self._sent = None
             self._loss = None
@@ -666,7 +663,7 @@ class TrafficGenerator(AbstractMeasurer):
             self._xstats = tuple(xstats)
         else:
             self._target_duration = duration
-            self._computed_duration = computed_duration
+            self._duration = duration
             self._parse_traffic_results(stdout)
 
     def trex_stl_start_remote_exec(self, duration, rate, async_call=False):
@@ -726,7 +723,7 @@ class TrafficGenerator(AbstractMeasurer):
         if async_call:
             # no result
             self._target_duration = None
-            self._computed_duration = None
+            self._duration = None
             self._received = None
             self._sent = None
             self._loss = None
@@ -743,7 +740,7 @@ class TrafficGenerator(AbstractMeasurer):
             self._xstats = tuple(xstats)
         else:
             self._target_duration = duration
-            self._computed_duration = duration
+            self._duration = duration
             self._parse_traffic_results(stdout)
 
     def send_traffic_on_tg(
@@ -1074,9 +1071,9 @@ class TrafficGenerator(AbstractMeasurer):
         except ValueError:  # "manual"
             approximated_duration = None
         if not approximated_duration:
-            if self._computed_duration:
+            if self._duration > 0:
                 # Known recomputed targed duration.
-                approximated_duration = self._computed_duration
+                approximated_duration = self._duration
             else:
                 # It was an explicit stop.
                 if not self._stop_time:

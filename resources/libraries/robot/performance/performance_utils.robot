@@ -190,7 +190,7 @@
 | | ... | final_trial_duration=${30.0}
 | | ... | initial_trial_duration=${1.0}
 | | ... | number_of_intermediate_phases=${2}
-| | ... | timeout=${720}
+| | ... | timeout=${1800}
 | | ... | doublings=${2}
 | | ... | resetter=${resetter}
 | | ... | traffic_directions=${traffic_directions}
