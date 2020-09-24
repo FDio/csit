@@ -1038,11 +1038,16 @@ class ExecutionChecker(ResultVisitor):
             name = test.name.lower()
 
         # Remove TC number from the TC long name (backward compatibility):
-        self._test_id = re.sub(self.REGEX_TC_NUMBER, u"", longname)
+        self._test_id = re.sub(
+            self.REGEX_TC_NUMBER, u"", longname.replace(u"snat", u"nat")
+        )
         # Remove TC number from the TC name (not needed):
-        test_result[u"name"] = re.sub(self.REGEX_TC_NUMBER, "", name)
+        test_result[u"name"] = re.sub(
+            self.REGEX_TC_NUMBER, "", name.replace(u"snat", u"nat")
+        )
 
-        test_result[u"parent"] = test.parent.name.lower()
+        test_result[u"parent"] = test.parent.name.lower().\
+            replace(u"snat", u"nat")
         test_result[u"tags"] = tags
         test_result["doc"] = test.doc.\
             replace(u'"', u"'").\
