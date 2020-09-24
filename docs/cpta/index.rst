@@ -31,6 +31,7 @@ analysis and anomaly detection methodology.
     trending/ip6
     trending/srv6
     trending/ip4_tunnels
+    trending/nat44
     trending/vhost
     trending/container_memif
     trending/ipsec
@@ -47,6 +48,7 @@ analysis and anomaly detection methodology.
     ndrpdr_trending/ip6
     ndrpdr_trending/srv6
     ndrpdr_trending/ip4_tunnels
+    ndrpdr_trending/nat44
     ndrpdr_trending/vhost
     ndrpdr_trending/container_memif
     ndrpdr_trending/ipsec
