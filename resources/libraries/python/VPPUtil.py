@@ -18,7 +18,7 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology, SocketType, NodeType
 
 
@@ -144,6 +144,12 @@ class VPPUtil:
         exec_cmd_no_error(
             node, cmd, sudo=True, message=u"VPP failed to start!", retries=120
         )
+
+        # Properly enable cards in case they were disabled. This will be
+        # followed in https://jira.fd.io/browse/VPP-1934.
+        cmd = u"for i in $(sudo vppctl sho int | grep Eth | cut -d' ' -f1); do"\
+              u" sudo vppctl set int sta $i up; done"
+        exec_cmd(node, cmd, sudo=False)
 
     @staticmethod
     def verify_vpp(node):
