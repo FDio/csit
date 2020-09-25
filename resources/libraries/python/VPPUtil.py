@@ -145,6 +145,12 @@ class VPPUtil:
             node, cmd, sudo=True, message=u"VPP failed to start!", retries=120
         )
 
+        # Properly enable cards in case they were disabled. This will be
+        # followed in https://jira.fd.io/browse/VPP-1934.
+        cmd = u"for i in $(sudo vppctl sho int | grep Eth | cut -d' ' -f1); do"\
+              u"sudo vppctl set int sta $i up; done"
+        exec_cmd(node, cmd, sudo=False)
+
     @staticmethod
     def verify_vpp(node):
         """Verify that VPP is installed and started on the specified topology
