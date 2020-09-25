@@ -34,6 +34,7 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and\
 | ... | two static IPv4 /14 and IPv4 /24 route entries.\
+| ... | FIXME: NAT, state not being reset between trials, missing warmup.
 | ... | DUT1 is tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
@@ -75,12 +76,13 @@
 | ${in_mask}= | ${14}
 | ${out_net}= | 68.142.68.0
 | ${out_mask}= | ${24}
+| ${do_not_reset_nat}= | ${True}
 # Scale settings
 | ${n_hosts}= | ${262144}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
-# Traffic profile
-| ${traffic_profile}= | trex-stl-ethip4udp-262144u63p
+# Traffic profile:
+| ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
 
 *** Keywords ***
 | Local Template
