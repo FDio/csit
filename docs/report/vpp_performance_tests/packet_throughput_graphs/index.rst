@@ -150,6 +150,7 @@ Additional information about graph data:
     ip6
     srv6
     ip4_tunnels
+    nat44
     vm_vhost
     container_memif
     ipsec
