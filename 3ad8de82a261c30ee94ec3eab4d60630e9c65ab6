@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c433f741_fdbcc710",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-28T11:53:33Z",
+      "side": 1,
+      "message": "update",
+      "range": {
+        "startLine": 575,
+        "startChar": 10,
+        "endLine": 576,
+        "endChar": 19
+      },
+      "revId": "3ad8de82a261c30ee94ec3eab4d60630e9c65ab6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "668851f7_55a9a117",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-28T11:53:33Z",
+      "side": 1,
+      "message": "ltl",
+      "range": {
+        "startLine": 599,
+        "startChar": 65,
+        "endLine": 599,
+        "endChar": 83
+      },
+      "revId": "3ad8de82a261c30ee94ec3eab4d60630e9c65ab6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
