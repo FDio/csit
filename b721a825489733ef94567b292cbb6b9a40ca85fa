@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4afde55_ca4c2033",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-28T11:33:46Z",
+      "side": 1,
+      "message": "Why this torture?\nJust call Send traffic with duration no?",
+      "range": {
+        "startLine": 600,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 22
+      },
+      "revId": "b721a825489733ef94567b292cbb6b9a40ca85fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
