@@ -1107,7 +1107,9 @@ class ExecutionChecker(ResultVisitor):
                     return
 
         if test.status == u"PASS":
-            if u"NDRPDR" in tags:
+            if u"DEVICETEST" in tags:
+                test_result[u"type"] = u"DEVICETEST"
+            elif u"NDRPDR" in tags:
                 test_result[u"type"] = u"NDRPDR"
                 test_result[u"throughput"], test_result[u"status"] = \
                     self._get_ndrpdr_throughput(test.message)
@@ -1160,8 +1162,6 @@ class ExecutionChecker(ResultVisitor):
                     }
                 except (AttributeError, IndexError, ValueError, TypeError):
                     test_result[u"status"] = u"FAIL"
-            elif u"DEVICETEST" in tags:
-                test_result[u"type"] = u"DEVICETEST"
             else:
                 test_result[u"status"] = u"FAIL"
                 self._data[u"tests"][self._test_id] = test_result
