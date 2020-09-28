@@ -986,6 +986,10 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
+        "2n_zn2")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_zn2*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
         *)
             # No falling back to 3n_hsw default, that should have been done
             # by the function which has set NODENESS and FLAVOR.
