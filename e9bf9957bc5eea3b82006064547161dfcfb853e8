@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dbc38c73_a3934513",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-09-28T12:12:01Z",
+      "side": 1,
+      "message": "The two previous numbers here are not the sum of numbers in the corresponding columns. Should we add count the numbers for 1-Node-VIRL here?",
+      "range": {
+        "startLine": 91,
+        "startChar": 41,
+        "endLine": 91,
+        "endChar": 48
+      },
+      "revId": "e9bf9957bc5eea3b82006064547161dfcfb853e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9d2876f_dbffb06e",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-09-28T12:12:01Z",
+      "side": 1,
+      "message": "Add the ipmi address for the two new thx2 servers.",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 27
+      },
+      "revId": "e9bf9957bc5eea3b82006064547161dfcfb853e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ae04dc2_4a128bab",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-09-28T12:12:01Z",
+      "side": 1,
+      "message": "IPMI IP address for one tx2",
+      "range": {
+        "startLine": 826,
+        "startChar": 6,
+        "endLine": 826,
+        "endChar": 26
+      },
+      "revId": "e9bf9957bc5eea3b82006064547161dfcfb853e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6534dad7_21797072",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-09-28T12:12:01Z",
+      "side": 1,
+      "message": "IPMI address for the other tx2",
+      "range": {
+        "startLine": 837,
+        "startChar": 6,
+        "endLine": 837,
+        "endChar": 26
+      },
+      "revId": "e9bf9957bc5eea3b82006064547161dfcfb853e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
