@@ -16,7 +16,7 @@ TRex is installed and run on the TG compute node. The typical procedure is:
 
       $ sudo -E -S sh -c 'cat << EOF > /etc/trex_cfg.yaml
       - version: 2
-        c: 15
+        c: 8
         limit_memory: 8192
         interfaces: ["${pci1}","${pci2}"]
         port_info:
@@ -26,10 +26,10 @@ TRex is installed and run on the TG compute node. The typical procedure is:
             src_mac: [${src_mac2}]
         platform :
           master_thread_id: 0
-          latency_thread_id: 16
+          latency_thread_id: 9
           dual_if:
               - socket: 0
-                threads: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+                threads: [1, 2, 3, 4, 5, 6, 7, 8]
       EOF'
 
 - TRex is started in the interactive mode as a background service

@@ -73,7 +73,7 @@ rst_epilog = u"""
 
 .. _pdf version of this report: https://docs.fd.io/csit/{release}/report/_static/archive/csit_{release}.{report_week}.pdf
 .. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h={release}
-.. _TRex driver: https://git.fd.io/csit/tree/GPL/tools/trex/trex_stateless_profile.py?h={release}
+.. _TRex driver: https://git.fd.io/csit/tree/GPL/tools/trex/trex_stl_profile.py?h={release}
 .. _CSIT DPDK Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.dpdk.perf.html
 .. _CSIT VPP Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.perf.html
 .. _CSIT VPP Device Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.device.html
@@ -82,19 +82,19 @@ rst_epilog = u"""
 .. _FD.io CSIT testbeds - Xeon Skylake, Arm, Atom: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Cascade Lake: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_clx_hw_bios_cfg.md?h={release}
 .. _Ansible inventory - hosts: https://git.fd.io/csit/tree/resources/tools/testbed-setup/ansible/inventories/lf_inventory/host_vars?h={release}
-.. _FD.io test executor dpdk performance job 3n-hsw: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-3n-hsw
-.. _FD.io test executor dpdk performance job 3n-skx: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-3n-skx
-.. _FD.io test executor dpdk performance job 2n-skx: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-2n-skx
-.. _FD.io test executor dpdk performance job 2n-clx: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-2n-clx
-.. _FD.io test executor vpp performance job 3n-hsw: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-hsw
-.. _FD.io test executor vpp performance job 3n-skx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-skx
-.. _FD.io test executor vpp performance job 2n-skx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-2n-skx
-.. _FD.io test executor vpp performance job 3n-tsh: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-tsh
-.. _FD.io test executor vpp performance job 3n-dnv: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-dnv
-.. _FD.io test executor vpp performance job 2n-dnv: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-2n-dnv
-.. _FD.io test executor vpp performance job 2n-clx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-2n-clx
+.. _FD.io test executor dpdk performance job 3n-hsw: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-hsw
+.. _FD.io test executor dpdk performance job 3n-skx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-skx
+.. _FD.io test executor dpdk performance job 2n-skx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-skx
+.. _FD.io test executor dpdk performance job 2n-clx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-clx
+.. _FD.io test executor vpp performance job 3n-hsw: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-hsw
+.. _FD.io test executor vpp performance job 3n-skx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-skx
+.. _FD.io test executor vpp performance job 2n-skx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-skx
+.. _FD.io test executor vpp performance job 3n-tsh: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-tsh
+.. _FD.io test executor vpp performance job 3n-dnv: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-dnv
+.. _FD.io test executor vpp performance job 2n-dnv: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-dnv
+.. _FD.io test executor vpp performance job 2n-clx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-clx
 .. _FD.io test executor vpp device jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-device-{srelease}-ubuntu1804-1n-skx
-.. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1804/
+.. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1804-x86_64/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}&id={vpp_release_commit_id}
 """.format(release=u'rls2009',
@@ -105,10 +105,10 @@ rst_epilog = u"""
            csit_prev_release=u'2005',
            vpprelease=u'20.09',
            vpp_prev_release=u'20.05',
-           dpdkrelease=u'20.02',  # TODO
-           dpdk_prev_release=u'19.08',  # TODO
-           sdpdkrelease=u'2002',  # TODO
-           trex_version=u'v2.82',  # TODO
+           dpdkrelease=u'20.08',
+           dpdk_prev_release=u'20.02',
+           sdpdkrelease=u'2008',
+           trex_version=u'v2.82',
            vpp_release_commit_id=u'fce396738f865293f0a023bc7f172086f81da456')  # TODO
 
 # The language for content autogenerated by Sphinx. Refer to documentation
