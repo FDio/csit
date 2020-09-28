@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c44eaa93_02cbcfdf",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-09-28T14:04:29Z",
+      "side": 1,
+      "message": "Also add the portnames of the ConnectX5 NIC to both testbeds.",
+      "range": {
+        "startLine": 832,
+        "startChar": 0,
+        "endLine": 832,
+        "endChar": 16
+      },
+      "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f5e72bb_fce0a83d",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-09-28T14:04:29Z",
+      "side": 1,
+      "message": "We don\u0027t have two port1\u0027s in one NIC :-)\n\nThis should be:\nc4/p1\nc4/p2\nc14/p1\nc14/p2",
+      "range": {
+        "startLine": 833,
+        "startChar": 23,
+        "endLine": 833,
+        "endChar": 28
+      },
+      "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a87314a6_bc491414",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-09-28T14:04:29Z",
+      "side": 1,
+      "message": "Same as the first server",
+      "range": {
+        "startLine": 844,
+        "startChar": 23,
+        "endLine": 844,
+        "endChar": 29
+      },
+      "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07dc5f36_8d1d4193",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-09-28T14:04:29Z",
+      "side": 1,
+      "message": "Also add the rings for the ConnectX5 NIC.",
+      "range": {
+        "startLine": 1548,
+        "startChar": 0,
+        "endLine": 1548,
+        "endChar": 12
+      },
+      "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
