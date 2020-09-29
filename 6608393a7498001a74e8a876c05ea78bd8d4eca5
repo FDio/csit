@@ -68,6 +68,52 @@
       "revId": "6608393a7498001a74e8a876c05ea78bd8d4eca5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb941d18_ede4f269",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-09-29T13:35:50Z",
+      "side": 1,
+      "message": "Should add drv_vfiopci (dpdk) variants of baseline nat44det.",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 76
+      },
+      "revId": "6608393a7498001a74e8a876c05ea78bd8d4eca5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ea161d2_14d93855",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-09-29T13:35:50Z",
+      "side": 1,
+      "message": "Should add drv_vfiopci (dpdk) variants of baseline nat44det.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 73
+      },
+      "revId": "6608393a7498001a74e8a876c05ea78bd8d4eca5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
