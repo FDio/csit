@@ -254,6 +254,7 @@
         - 10  # RC2 NDRPDR iter env5
         - 12  # RC2 NDRPDR iter env5
         - 14  # RC2 NDRPDR iter env5
+        - 15  # RC2 NDRPDR iter env5
 
     plot-vpp-hdrh-lat-2n-skx:
       # TODO: Add:
@@ -329,11 +330,12 @@
         - 9   # RC2 NDRPDR iter env5
         - 10  # RC2 NDRPDR iter env5
         - 12  # RC2 NDRPDR iter env5
+        - 14  # RC2 NDRPDR iter env5
 
     plot-vpp-hdrh-lat-2n-clx:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
-        - 7   # RC2 NDRPDR iter env5
+        - 14  # RC2 NDRPDR iter env5
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       # TODO: Replace:
@@ -506,6 +508,7 @@
         - 10  # RC2 NDRPDR iter env5
         - 12  # RC2 NDRPDR iter env5
         - 14  # RC2 NDRPDR iter env5
+        - 15  # RC2 NDRPDR iter env5
 
     vpp-nic-comparison-3n-skx-mrr:
       # TODO: Replace:
@@ -740,6 +743,7 @@
         - 10  # RC2 NDRPDR iter env5
         - 12  # RC2 NDRPDR iter env5
         - 14  # RC2 NDRPDR iter env5
+        - 15  # RC2 NDRPDR iter env5
 
     vpp-performance-changes-2n-clx-h1:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -770,6 +774,7 @@
         - 9   # RC2 NDRPDR iter env5
         - 10  # RC2 NDRPDR iter env5
         - 12  # RC2 NDRPDR iter env5
+        - 14  # RC2 NDRPDR iter env5
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-2001-2n-dnv:
@@ -1356,6 +1361,7 @@
         - 10  # RC2 NDRPDR iter env5
         - 12  # RC2 NDRPDR iter env5
         - 14  # RC2 NDRPDR iter env5
+        - 15  # RC2 NDRPDR iter env5
     vpp-compare-testbeds-skx-clx-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -1363,6 +1369,7 @@
         - 9   # RC2 NDRPDR iter env5
         - 10  # RC2 NDRPDR iter env5
         - 12  # RC2 NDRPDR iter env5
+        - 14  # RC2 NDRPDR iter env5
 
     vpp-compare-testbeds-hsw-clx-ref:
       # TODO: Add:
@@ -1379,6 +1386,7 @@
         - 9   # RC2 NDRPDR iter env5
         - 10  # RC2 NDRPDR iter env5
         - 12  # RC2 NDRPDR iter env5
+        - 14  # RC2 NDRPDR iter env5
 
     vpp-compare-testbeds-mrr-ref:
       # TODO: Replace:
@@ -1479,6 +1487,7 @@
         - 10  # RC2 NDRPDR iter env5
         - 12  # RC2 NDRPDR iter env5
         - 14  # RC2 NDRPDR iter env5
+        - 15  # RC2 NDRPDR iter env5
 
     vpp-compare-topologies-mrr-ref:
       # TODO: Replace:
@@ -2187,6 +2196,7 @@
       - 10  # RC2 NDRPDR iter env5
       - 12  # RC2 NDRPDR iter env5
       - 14  # RC2 NDRPDR iter env5
+      - 15  # RC2 NDRPDR iter env5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-skx:
       - 7   # RC2 env5 2n-skx-ip4-00
@@ -2242,6 +2252,7 @@
       - 9   # RC2 NDRPDR iter env5
       - 10  # RC2 NDRPDR iter env5
       - 12  # RC2 NDRPDR iter env5
+      - 14  # RC2 NDRPDR iter env5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-clx:
       - 1   # RC2 env5 2n-clx-ip4-00
