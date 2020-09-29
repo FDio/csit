@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1eadd7b2_ebc7f445",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-09-29T06:04:49Z",
+      "side": 1,
+      "message": "Linux says otherwise:\n        Supported link modes:   1000baseKX/Full \n                                10000baseKR/Full \n                                25000baseCR/Full \n                                25000baseKR/Full \n                                25000baseSR/Full \n        Supported pause frame use: Symmetric\n        Supports auto-negotiation: Yes\n        Supported FEC modes: None BaseR RS\n        Advertised link modes:  1000baseKX/Full \n                                10000baseKR/Full \n                                25000baseCR/Full \n                                25000baseKR/Full \n                                25000baseSR/Full\n\nAnd also according to\ntestuser@vpp-tx2-02:~$ cat /sys/bus/pci/devices/0000:9a:00.0/vendor\n0x15b3\ntestuser@vpp-tx2-02:~$ cat /sys/bus/pci/devices/0000:9a:00.0/device\n0x1017\ntestuser@vpp-tx2-02:~$ cat /sys/bus/pci/devices/0000:9a:00.0/subsystem_device\n0x0020\n\nand http://pci-ids.ucw.cz/v2.2/pci.ids it\u0027s:\n15b3 0020  ConnectX®-5 EN network interface card, 10/25GbE dual-port SFP28, PCIe3.0 x8, tall bracket ; MCX512A-ACAT",
+      "parentUuid": "42c48a65_a702c4ba",
+      "range": {
+        "startLine": 651,
+        "startChar": 47,
+        "endLine": 651,
+        "endChar": 54
+      },
+      "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c44eaa93_02cbcfdf",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 7
@@ -92,6 +116,30 @@
       "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02241200_5f7d18d9",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-09-29T06:04:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c58ce4ea_9359594f",
+      "range": {
+        "startLine": 833,
+        "startChar": 23,
+        "endLine": 833,
+        "endChar": 28
+      },
+      "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
