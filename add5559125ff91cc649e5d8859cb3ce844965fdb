@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b9ed92e_1deac644",
+        "filename": "docs/report/introduction/test_environment_intro.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-29T15:07:58Z",
+      "side": 1,
+      "message": "Oh, that reminds me: https://gerrit.fd.io/r/c/csit/+/29154",
+      "range": {
+        "startLine": 67,
+        "startChar": 86,
+        "endLine": 67,
+        "endChar": 102
+      },
+      "revId": "add5559125ff91cc649e5d8859cb3ce844965fdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d735c756_9102973c",
+        "filename": "docs/report/introduction/test_environment_intro.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-29T15:07:58Z",
+      "side": 1,
+      "message": "9",
+      "range": {
+        "startLine": 68,
+        "startChar": 46,
+        "endLine": 68,
+        "endChar": 47
+      },
+      "revId": "add5559125ff91cc649e5d8859cb3ce844965fdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
