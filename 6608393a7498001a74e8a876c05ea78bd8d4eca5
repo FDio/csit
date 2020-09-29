@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ab0be17_330a45c1",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-29T11:04:15Z",
+      "side": 1,
+      "message": "While we are waiting for merge of NAT44-affecting change, maybe we can discuss optimal length of one run? I think at 39 hours it is worth splitting the file into two (or more).",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 19
+      },
+      "revId": "6608393a7498001a74e8a876c05ea78bd8d4eca5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
