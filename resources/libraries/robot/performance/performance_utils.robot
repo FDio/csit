@@ -403,7 +403,14 @@
 | | | # Relative receive rate gives bad results at big duration stretching,
 | | | # but profile driver should have stopped the measurement soon enough.
 | | | # For extreme cases (CPS MRR) this gives the more reasonable estimate.
-| | | Append To List | ${results} | ${result.relative_receive_rate}
+| | | # For UDP_PPS, the output unit does not match input unit,
+| | | # and it is easier to convert here than in the parent keyword.
+| | | ${receive_rate} = | Set Variable  | ${result.relative_receive_rate}
+| | | ${converted_receive_rate} = | Evaluate
+| | | ... | ${receive_rate} * ${packets_per_transaction}
+| | | ${receive_rate} = | Set Variable If | "${transaction_is}" == "udp_pps"
+| | | ... | ${converted_receive_rate} | ${receive_rate}
+| | | Append To List | ${results} | ${receive_rate}
 | | END
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
