@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa2147ee_ef698b90",
+        "filename": "docs/data_structure/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-29T12:08:11Z",
+      "side": 1,
+      "message": "https://semver.org/",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 12
+      },
+      "revId": "f3116b241a1736d4996e6de9aa4495ba0b0ffbd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be684ef5_7fed1add",
+        "filename": "docs/data_structure/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-29T12:08:11Z",
+      "side": 1,
+      "message": "Passed tests only, right?",
+      "range": {
+        "startLine": 8,
+        "startChar": 7,
+        "endLine": 8,
+        "endChar": 11
+      },
+      "revId": "f3116b241a1736d4996e6de9aa4495ba0b0ffbd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ab85eba_f8fafe25",
+        "filename": "docs/data_structure/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-09-29T12:08:11Z",
+      "side": 1,
+      "message": "Remove trailing spaces.",
+      "range": {
+        "startLine": 11,
+        "startChar": 21,
+        "endLine": 11,
+        "endChar": 22
+      },
+      "revId": "f3116b241a1736d4996e6de9aa4495ba0b0ffbd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
