@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "42c48a65_a702c4ba",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-09-29T05:07:28Z",
+      "side": 1,
+      "message": "I got from Lijian that the Mellanox NICs we installed on two new thx2 servers are 40GE NICs.",
+      "range": {
+        "startLine": 651,
+        "startChar": 47,
+        "endLine": 651,
+        "endChar": 54
+      },
+      "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c44eaa93_02cbcfdf",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 7
@@ -48,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "c58ce4ea_9359594f",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-09-29T05:07:28Z",
+      "side": 1,
+      "message": "Oh, my bad, sorry.",
+      "parentUuid": "4f5e72bb_fce0a83d",
+      "range": {
+        "startLine": 833,
+        "startChar": 23,
+        "endLine": 833,
+        "endChar": 28
+      },
+      "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a87314a6_bc491414",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 7
@@ -71,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "a32e9de2_905c547d",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-09-29T05:07:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a87314a6_bc491414",
+      "range": {
+        "startLine": 844,
+        "startChar": 23,
+        "endLine": 844,
+        "endChar": 29
+      },
+      "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07dc5f36_8d1d4193",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 7
@@ -91,6 +162,30 @@
       "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e252c65e_89f402e3",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1964
+      },
+      "writtenOn": "2020-09-29T05:07:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07dc5f36_8d1d4193",
+      "range": {
+        "startLine": 1548,
+        "startChar": 0,
+        "endLine": 1548,
+        "endChar": 12
+      },
+      "revId": "a059ac371839fe55be1d00a777ee2a220086681e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
