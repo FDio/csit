@@ -668,7 +668,7 @@
         - 35  # NDRPDR sel 2001.0-4
         - 36  # NDRPDR sel 2001.0-4
         - 38  # NDRPDR sel 2001.0-4
-    vpp-performance-changes-3n-hsw-ref:
+    vpp-performance-changes-3n-hsw-ref-env4:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
         - 20  # NDRPDR sel env 4
         - 21  # NDRPDR sel env 4
@@ -680,6 +680,18 @@
         - 27  # NDRPDR sel env 4
         - 28  # NDRPDR sel env 4
         - 29  # NDRPDR sel env 4
+    vpp-performance-changes-3n-hsw-ref-env5:
+      csit-vpp-perf-report-iterative-2009-3n-hsw:
+        - 9   # rls2005 NDRPDR iter env 5
+        - 10  # rls2005 NDRPDR iter env 5
+        - 11  # rls2005 NDRPDR iter env 5
+        - 12  # rls2005 NDRPDR iter env 5
+        - 13  # rls2005 NDRPDR iter env 5
+        - 14  # rls2005 NDRPDR iter env 5
+        - 15  # rls2005 NDRPDR iter env 5
+        - 16  # rls2005 NDRPDR iter env 5
+        - 17  # rls2005 NDRPDR iter env 5
+        - 19  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-3n-hsw-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
@@ -696,7 +708,7 @@
         - 52  # NDRPDR sel 2001.0-4
         - 53  # NDRPDR sel 2001.0-4
         - 54  # NDRPDR sel 2001.0-4
-    vpp-performance-changes-3n-skx-ref:
+    vpp-performance-changes-3n-skx-ref-env4:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 42  # NDRPDR sel env 4
         - 43  # NDRPDR sel env 4
@@ -724,7 +736,7 @@
         - 103 # NDRPDR sel 2001.0-4
         - 104 # NDRPDR sel 2001.0-4
         - 105 # NDRPDR sel 2001.0-4
-    vpp-performance-changes-2n-skx-ref:
+    vpp-performance-changes-2n-skx-ref-env4:
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 88  # NDRPDR sel env 4
         - 89  # NDRPDR sel env 4
@@ -736,6 +748,14 @@
         - 125 # NDRPDR sel env 4
         - 126 # NDRPDR sel env 4
         - 127 # NDRPDR sel env 4
+    vpp-performance-changes-2n-skx-ref-env5:
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 13  # rls2005 NDRPDR iter env 5
+        - 16  # rls2005 NDRPDR iter env 5
+        - 17  # rls2005 NDRPDR iter env 5
+        - 18  # rls2005 NDRPDR iter env 5
+        - 19  # rls2005 NDRPDR iter env 5
+        - 21  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-2n-skx-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -755,7 +775,7 @@
         - 78  # NDRPDR sel 2001.0-4
         - 79  # NDRPDR sel 2001.0-4
         - 80  # NDRPDR sel 2001.0-4
-    vpp-performance-changes-2n-clx-ref:
+    vpp-performance-changes-2n-clx-ref-env4:
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 62  # NDRPDR sel env 4
         - 63  # NDRPDR sel env 4
@@ -767,6 +787,11 @@
         - 70  # NDRPDR sel env 4
         - 103 # NDRPDR sel env 4
         - 104 # NDRPDR sel env 4
+    vpp-performance-changes-2n-clx-ref-env5:
+      csit-vpp-perf-report-iterative-2009-2n-clx:
+        - 13  # rls2005 NDRPDR iter env 5
+        - 15  # rls2005 NDRPDR iter env 5
+        - 17  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-2n-clx-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -859,7 +884,7 @@
         - 28  # NDRPDR sel 2001.0-4
         - 29  # NDRPDR sel 2001.0-4
         - 31  # NDRPDR sel 2001.0-4
-    vpp-performance-changes-3n-tsh-ref:
+    vpp-performance-changes-3n-tsh-ref-env4:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 23  # NDRPDR sel env 4
         - 25  # NDRPDR sel env 4
@@ -871,6 +896,9 @@
         - 38  # NDRPDR sel env 4
         - 39  # NDRPDR sel env 4
         - 40  # NDRPDR sel env 4
+    vpp-performance-changes-3n-tsh-ref-env5:
+      csit-vpp-perf-report-iterative-2009-3n-tsh:
+        - 8   # rls2005 NDRPDR iter env 5
     vpp-performance-changes-3n-tsh-cmp:
       # TODO: Replace:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
@@ -953,9 +981,12 @@
     vpp-performance-changes-3n-hsw-mrr-h1:
       csit-vpp-perf-verify-2001-3n-hsw:
         - 17  # MRR sel
-    vpp-performance-changes-3n-hsw-mrr-ref:
+    vpp-performance-changes-3n-hsw-mrr-ref-env4:
       csit-vpp-perf-report-iterative-2005-3n-hsw:
         - 30  # MRR env 4
+    vpp-performance-changes-3n-hsw-mrr-ref-env5:
+      csit-vpp-perf-report-iterative-2009-3n-hsw:
+        - 18  # rls2005 MRR iter env 5
     vpp-performance-changes-3n-hsw-mrr-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2009-3n-hsw:
@@ -966,7 +997,7 @@
       csit-vpp-perf-verify-2001-3n-skx:
         - 50  # MRR sel
         - 53  # MRR sel addition
-    vpp-performance-changes-3n-skx-mrr-ref:
+    vpp-performance-changes-3n-skx-mrr-ref-env4:
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 49  # MRR sel env 4
     vpp-performance-changes-3n-skx-mrr-cmp:
@@ -979,9 +1010,12 @@
       csit-vpp-perf-verify-2001-2n-skx:
         - 101 # MRR sel
         - 128 # MRR sel addition
-    vpp-performance-changes-2n-skx-mrr-ref:
+    vpp-performance-changes-2n-skx-mrr-ref-env4:
       csit-vpp-perf-report-iterative-2005-2n-skx:
         - 99  # MRR sel env 4
+    vpp-performance-changes-2n-skx-mrr-ref-env5:
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 20  # rls2005 MRR iter env 5
     vpp-performance-changes-2n-skx-mrr-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -991,9 +1025,12 @@
     vpp-performance-changes-2n-clx-mrr-h1:
       csit-vpp-perf-verify-2001-2n-clx:
         - 39  # MRR
-    vpp-performance-changes-2n-clx-mrr-ref:
+    vpp-performance-changes-2n-clx-mrr-ref-env4:
       csit-vpp-perf-report-iterative-2005-2n-clx:
         - 72   # MRR sel env 4
+    vpp-performance-changes-2n-clx-mrr-ref-env5:
+      csit-vpp-perf-report-iterative-2009-2n-clx:
+        - 16  # rls2005 MRR iter env 5
     vpp-performance-changes-2n-clx-mrr-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -1035,7 +1072,7 @@
     vpp-performance-changes-3n-tsh-mrr-h1:
       csit-vpp-perf-verify-2001-3n-tsh:
         - 9   # MRR sel
-    vpp-performance-changes-3n-tsh-mrr-ref:
+    vpp-performance-changes-3n-tsh-mrr-ref-env4:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
         - 27  # MRR sel env 4
     vpp-performance-changes-3n-tsh-mrr-cmp:
@@ -2103,6 +2140,17 @@
       - 6   # RC2 NDRPDR iter env5
       - 7   # RC2 NDRPDR iter env5
       - 8   # RC2 NDRPDR iter env5
+      - 18  # rls2005 MRR iter env 5
+      - 9   # rls2005 NDRPDR iter env 5
+      - 10  # rls2005 NDRPDR iter env 5
+      - 11  # rls2005 NDRPDR iter env 5
+      - 12  # rls2005 NDRPDR iter env 5
+      - 13  # rls2005 NDRPDR iter env 5
+      - 14  # rls2005 NDRPDR iter env 5
+      - 15  # rls2005 NDRPDR iter env 5
+      - 16  # rls2005 NDRPDR iter env 5
+      - 17  # rls2005 NDRPDR iter env 5
+      - 19  # rls2005 NDRPDR iter env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-3n-hsw:
       - 2   # RC2 env5 3n-hsw-ip4-00
@@ -2197,6 +2245,13 @@
       - 12  # RC2 NDRPDR iter env5
       - 14  # RC2 NDRPDR iter env5
       - 15  # RC2 NDRPDR iter env5
+      - 20  # rls2005 MRR iter env 5
+      - 13  # rls2005 NDRPDR iter env 5
+      - 16  # rls2005 NDRPDR iter env 5
+      - 17  # rls2005 NDRPDR iter env 5
+      - 18  # rls2005 NDRPDR iter env 5
+      - 19  # rls2005 NDRPDR iter env 5
+      - 21  # rls2005 NDRPDR iter env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-skx:
       - 7   # RC2 env5 2n-skx-ip4-00
@@ -2253,6 +2308,10 @@
       - 10  # RC2 NDRPDR iter env5
       - 12  # RC2 NDRPDR iter env5
       - 14  # RC2 NDRPDR iter env5
+      - 16  # rls2005 MRR iter env 5
+      - 13  # rls2005 NDRPDR iter env 5
+      - 15  # rls2005 NDRPDR iter env 5
+      - 17  # rls2005 NDRPDR iter env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-clx:
       - 1   # RC2 env5 2n-clx-ip4-00
@@ -2283,6 +2342,7 @@
     # TODO: Add:
     csit-vpp-perf-report-iterative-2009-3n-tsh:
       - 7   # RC2 NDRPDR iter env5
+      - 8   # rls2005 NDRPDR iter env 5
 
     csit-vpp-perf-verify-2001-3n-dnv:
       - 5   # NDRPDR sel
@@ -3000,20 +3060,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-hsw-ref"
+      data-set: "vpp-performance-changes-3n-hsw-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-hsw-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
 #      rca-file: "rca/rca-3n-hsw-1t1c-pdr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-hsw-1t1c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-hsw with xl710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-hsw 2t2c pdr
 - type: "table"
@@ -3026,20 +3093,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-hsw-ref"
+      data-set: "vpp-performance-changes-3n-hsw-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-hsw-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-3n-hsw-1t1c-pdr-rca1.yaml"
+#      rca-file: "rca/rca-3n-hsw-2t2c-pdr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-hsw-2t2c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-hsw with xl710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-hsw 1t1c ndr
 - type: "table"
@@ -3052,20 +3126,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-hsw-ref"
+      data-set: "vpp-performance-changes-3n-hsw-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-hsw-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
 #      rca-file: "rca/rca-3n-hsw-1t1c-ndr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-hsw-1t1c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-hsw 2t2c ndr
 - type: "table"
@@ -3078,20 +3159,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-hsw-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-hsw-ref"
+      data-set: "vpp-performance-changes-3n-hsw-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-hsw-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-hsw-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-3n-hsw-1t1c-ndr-rca1.yaml"
+#      rca-file: "rca/rca-3n-hsw-2t2c-ndr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-hsw-2t2c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-skx 2t1c pdr
 - type: "table"
@@ -3104,7 +3192,7 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-skx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-set: "vpp-performance-changes-3n-skx-ref-env4"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-skx-cmp"
   comparisons:
@@ -3130,14 +3218,14 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-skx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-set: "vpp-performance-changes-3n-skx-ref-env4"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-skx-cmp"
   comparisons:
     - title: "2009.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-3n-skx-2t1c-pdr-rca1.yaml"
+#      rca-file: "rca/rca-3n-skx-4t2c-pdr-rca1.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-skx with xxv710.'
@@ -3156,7 +3244,7 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-skx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-set: "vpp-performance-changes-3n-skx-ref-env4"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-skx-cmp"
   comparisons:
@@ -3182,14 +3270,14 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-skx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-skx-ref"
+      data-set: "vpp-performance-changes-3n-skx-ref-env4"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-skx-cmp"
   comparisons:
     - title: "2009.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-3n-skx-2t1c-ndr-rca1.yaml"
+#      rca-file: "rca/rca-3n-skx-4t2c-ndr-rca1.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-skx with xxv710.'
@@ -3208,20 +3296,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-set: "vpp-performance-changes-2n-skx-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-skx-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-skx-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
 #      rca-file: "rca/rca-2n-skx-2t1c-pdr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-skx-2t1c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-skx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-skx 4t2c pdr
 - type: "table"
@@ -3234,20 +3329,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-set: "vpp-performance-changes-2n-skx-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-skx-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-skx-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-2n-skx-2t1c-pdr-rca1.yaml"
+#      rca-file: "rca/rca-2n-skx-4t2c-pdr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-skx-4t2c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-skx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-skx 2t1c ndr
 - type: "table"
@@ -3260,20 +3362,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-set: "vpp-performance-changes-2n-skx-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-skx-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-skx-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
 #      rca-file: "rca/rca-2n-skx-2t1c-ndr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-skx-2t1c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-skx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-skx 4t2c ndr
 - type: "table"
@@ -3286,20 +3395,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-2n-skx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-skx-ref"
+      data-set: "vpp-performance-changes-2n-skx-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-skx-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-skx-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-2n-skx-2t1c-ndr-rca1.yaml"
+#      rca-file: "rca/rca-2n-skx-4t2c-ndr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-skx-4t2c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-skx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 2t1c pdr
 - type: "table"
@@ -3312,20 +3428,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-clx-ref"
+      data-set: "vpp-performance-changes-2n-clx-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
+#      rca-file: "rca/rca-2n-clx-2t1c-pdr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
 #      rca-file: "rca/rca-2n-clx-2t1c-pdr-rca1.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 4t2c pdr
 - type: "table"
@@ -3338,20 +3461,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-clx-ref"
+      data-set: "vpp-performance-changes-2n-clx-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-2n-clx-2t1c-pdr-rca1.yaml"
+#      rca-file: "rca/rca-2n-clx-4t2c-pdr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-4t2c-pdr-rca1.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 2t1c ndr
 - type: "table"
@@ -3364,20 +3494,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-clx-ref"
+      data-set: "vpp-performance-changes-2n-clx-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
+#      rca-file: "rca/rca-2n-clx-2t1c-ndr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
 #      rca-file: "rca/rca-2n-clx-2t1c-ndr-rca1.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 4t2c ndr
 - type: "table"
@@ -3390,20 +3527,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-2n-clx-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-clx-ref"
+      data-set: "vpp-performance-changes-2n-clx-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-clx-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-2n-clx-2t1c-ndr-rca1.yaml"
+#      rca-file: "rca/rca-2n-clx-4t2c-ndr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-4t2c-ndr-rca1.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 ## VPP Performance Changes 2n-clx-x556 2t1c pdr
 #- type: "table"
@@ -3414,7 +3558,7 @@
 #  filter: "'2T1C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
 #  columns:
 #    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-clx-ref"
+#      data-set: "vpp-performance-changes-2n-clx-ref-env4"
 #    - title: "2005.0-3"
 #      data-set: "vpp-performance-changes-2n-clx-cmp"
 #  comparisons:
@@ -3438,7 +3582,7 @@
 #  filter: "'4T2C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
 #  columns:
 #    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-clx-ref"
+#      data-set: "vpp-performance-changes-2n-clx-ref-env4"
 #    - title: "2005.0-3"
 #      data-set: "vpp-performance-changes-2n-clx-cmp"
 #  comparisons:
@@ -3462,7 +3606,7 @@
 #  filter: "'2T1C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
 #  columns:
 #    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-clx-ref"
+#      data-set: "vpp-performance-changes-2n-clx-ref-env4"
 #    - title: "2005.0-3"
 #      data-set: "vpp-performance-changes-2n-clx-cmp"
 #  comparisons:
@@ -3486,7 +3630,7 @@
 #  filter: "'4T2C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
 #  columns:
 #    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-clx-ref"
+#      data-set: "vpp-performance-changes-2n-clx-ref-env4"
 #    - title: "2005.0-3"
 #      data-set: "vpp-performance-changes-2n-clx-cmp"
 #  comparisons:
@@ -3712,20 +3856,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-tsh-ref"
+      data-set: "vpp-performance-changes-3n-tsh-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-tsh-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
 #      rca-file: "rca/rca-3n-tsh-1t1c-pdr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-tsh-1t1c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 2t2c pdr
 - type: "table"
@@ -3738,20 +3889,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-tsh-ref"
+      data-set: "vpp-performance-changes-3n-tsh-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-tsh-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-3n-tsh-1t1c-pdr-rca1.yaml"
+#      rca-file: "rca/rca-3n-tsh-2t2c-pdr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-tsh-2t2c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 1t1c ndr
 - type: "table"
@@ -3764,20 +3922,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-tsh-ref"
+      data-set: "vpp-performance-changes-3n-tsh-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-tsh-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-3n-tsh-1t1c-pdr-rca1.yaml"
+#      rca-file: "rca/rca-3n-tsh-1t1c-ndr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-tsh-1t1c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 2t2c ndr
 - type: "table"
@@ -3790,20 +3955,27 @@
     - title: "2001.0-4"
       data-set: "vpp-performance-changes-3n-tsh-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-tsh-ref"
+      data-set: "vpp-performance-changes-3n-tsh-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-tsh-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-tsh-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-3n-tsh-1t1c-pdr-rca1.yaml"
+#      rca-file: "rca/rca-3n-tsh-2t2c-ndr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-tsh-2t2c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr
 - type: "table"
@@ -4168,20 +4340,27 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
 #      rca-file: "rca/rca-3n-hsw-1t1c-mrr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-hsw-1t1c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-hsw 2t2c mrr
 - type: "table"
@@ -4194,20 +4373,27 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-3n-hsw-1t1c-mrr-rca1.yaml"
+#      rca-file: "rca/rca-3n-hsw-2t2c-mrr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-hsw-2t2c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-hsw 4t4c mrr
 - type: "table"
@@ -4220,20 +4406,27 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-3n-hsw-1t1c-mrr-rca1.yaml"
+#      rca-file: "rca/rca-3n-hsw-4t4c-mrr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-hsw-4t4c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-skx 2t1c mrr
 - type: "table"
@@ -4246,7 +4439,7 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-3n-skx-mrr-ref-env4"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-skx-mrr-cmp"
   comparisons:
@@ -4272,7 +4465,7 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-3n-skx-mrr-ref-env4"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-skx-mrr-cmp"
   comparisons:
@@ -4298,7 +4491,7 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-skx-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-3n-skx-mrr-ref-env4"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-skx-mrr-cmp"
   comparisons:
@@ -4324,7 +4517,9 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-skx-mrr-cmp"
   comparisons:
@@ -4332,12 +4527,17 @@
       reference: 2
       compare: 3
 #      rca-file: "rca/rca-2n-skx-2t1c-mrr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-4"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-skx-2t1c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-skx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-skx 4t2c mrr
 - type: "table"
@@ -4350,20 +4550,27 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-skx-mrr-cmp"
   comparisons:
     - title: "2009.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-2n-skx-2t1c-mrr-rca1.yaml"
+#      rca-file: "rca/rca-2n-skx-4t2c-mrr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-4"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-skx-4t2c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-skx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-skx 8t4c mrr
 - type: "table"
@@ -4376,20 +4583,27 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-skx-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-skx-mrr-ref"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-skx-mrr-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-skx-mrr-cmp"
   comparisons:
     - title: "2009.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-2n-skx-2t1c-mrr-rca1.yaml"
+#      rca-file: "rca/rca-2n-skx-8t4c-mrr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-4"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-skx-8t4c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-skx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 2t1c mrr
 - type: "table"
@@ -4402,20 +4616,27 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
 #      rca-file: "rca/rca-2n-clx-2t1c-mrr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-2t1c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 4t2c mrr
 - type: "table"
@@ -4428,20 +4649,27 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-2n-clx-2t1c-mrr-rca1.yaml"
+#      rca-file: "rca/rca-2n-clx-4t2c-mrr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-4t2c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 8t4c mrr
 - type: "table"
@@ -4454,20 +4682,27 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-2n-clx-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env4"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env5"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
   comparisons:
-    - title: "2009.0-5 vs 2005.0-4"
+    - title: "2005.0-5 vs 2005.0-4"
       reference: 2
       compare: 3
-#      rca-file: "rca/rca-2n-clx-2t1c-mrr-rca1.yaml"
+#      rca-file: "rca/rca-2n-clx-8t4c-mrr-rca1.yaml"
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-8t4c-mrr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-5 vs 2005.0-4: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2005.0-5 vs 2005.0-4: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 ## VPP Performance Changes 2n-clx-x556 2t1c mrr
 #- type: "table"
@@ -4478,7 +4713,7 @@
 #  filter: "'2T1C' and 'MRR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
 #  columns:
 #    - title: "2001"
-#      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+#      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env4"
 #    - title: "2005"
 #      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
 #  comparisons:
@@ -4499,7 +4734,7 @@
 #  filter: "'4T2C' and 'MRR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
 #  columns:
 #    - title: "2001"
-#      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+#      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env4"
 #    - title: "2005"
 #      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
 #  comparisons:
@@ -4520,7 +4755,7 @@
 #  filter: "'8T4C' and 'MRR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
 #  columns:
 #    - title: "2001"
-#      data-set: "vpp-performance-changes-2n-clx-mrr-ref"
+#      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env4"
 #    - title: "2005"
 #      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
 #  comparisons:
@@ -4693,7 +4928,7 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-ref-env4"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-tsh-mrr-cmp"
   comparisons:
@@ -4719,7 +4954,7 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-ref-env4"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-tsh-mrr-cmp"
   comparisons:
@@ -4745,7 +4980,7 @@
     - title: "2001.0-2"
       data-set: "vpp-performance-changes-3n-tsh-mrr-h1"
     - title: "2005.0-4"
-      data-set: "vpp-performance-changes-3n-tsh-mrr-ref"
+      data-set: "vpp-performance-changes-3n-tsh-mrr-ref-env4"
     - title: "2009.0-5"
       data-set: "vpp-performance-changes-3n-tsh-mrr-cmp"
   comparisons:
