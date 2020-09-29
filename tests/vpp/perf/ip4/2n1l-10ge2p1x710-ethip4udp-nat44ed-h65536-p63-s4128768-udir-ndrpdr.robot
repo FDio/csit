@@ -82,6 +82,7 @@
 | ${out_mask}= | ${26}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-ethip4udp-65536u63p-udir
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -113,7 +114,6 @@
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
 | | Then Find NDR and PDR intervals using optimized search
-| | ... | traffic_directions=${1}
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr
