@@ -113,7 +113,6 @@
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
 | | Then Find NDR and PDR intervals using optimized search
-| | ... | traffic_directions=${1}
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr

@@ -34,6 +34,7 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and\
 | ... | two static IPv4 /22 and IPv4 /24 route entries.\
+| ... | FIXME: NAT, state not being reset between trials, missing warmup.
 | ... | DUT1 is tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
@@ -75,12 +76,16 @@
 | ${in_mask}= | ${22}
 | ${out_net}= | 68.142.68.0
 | ${out_mask}= | ${32}
+| ${do_not_reset_nat}= | ${True}
 # Scale settings
 | ${n_hosts}= | ${1024}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
-# Traffic profile
-| ${traffic_profile}= | trex-stl-ethip4udp-1024u63p
+# Ramp-up settings
+| ${ramp_up_rate}= | ${500000}
+| ${ramp_up_duration}= | ${1}
+# Traffic profile:
+| ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
 
 *** Keywords ***
 | Local Template
@@ -100,13 +105,6 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
-| | ${pre_stats}= | Create List
-| | ... | clear-show-runtime-with-traffic | vpp-det44-verify-sessions
-| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
-| | Set Test Variable | ${pre_stats}
-| | # Reduce the rate for pre_stat action
-| | Set Test Variable | ${pre_stats_rate} | ${500000}
-| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
@@ -115,6 +113,8 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 deterministic mode in circular topology
+| | And Ramp Up
+| | And Check Det44 Sessions
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
