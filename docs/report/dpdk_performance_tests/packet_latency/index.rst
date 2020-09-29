@@ -45,6 +45,4 @@ Additional information about graph data:
     3n-skx-xxv710
     2n-clx-xxv710
     3n-hsw-xl710
-
-..
     3n-tsh-x520

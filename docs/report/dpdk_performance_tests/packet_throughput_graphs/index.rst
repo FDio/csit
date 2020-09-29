@@ -68,10 +68,8 @@ Additional information about graph data:
     2n-clx-x710
     3n-hsw-xl710
     3n-hsw-x710
+    3n-tsh-x520
 
 ..
     2n-dnv-x553
     3n-dnv-x553
-
-..
-    3n-tsh-x520
