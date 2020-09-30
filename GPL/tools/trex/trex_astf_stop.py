@@ -94,10 +94,10 @@ def main():
     total_lost = total_sent - total_rcvd
     # TODO: Add latency.
     print(
-        f"cps='unknown', total_received={total_rcvd}, total_sent={total_sent}, "
-        f"frame_loss={total_lost}, "
-        f"latency_stream_0(usec)=-1/-1/-1, latency_stream_1(usec)=-1/-1/-1, "
-        u"latency_hist_stream_0={}, latency_hist_stream_1={}, "
+        f"cps='unknown'; total_received={total_rcvd}; total_sent={total_sent}; "
+        f"frame_loss={total_lost}; "
+        f"latency_stream_0(usec)=-1/-1/-1; latency_stream_1(usec)=-1/-1/-1; "
+        u"latency_hist_stream_0={}; latency_hist_stream_1={};"
     )
 
 
