@@ -1060,7 +1060,10 @@ class TrafficGenerator(AbstractMeasurer):
         :rtype: ReceiveRateMeasurement
         """
         try:
-            client_data = self._l7_data[u"client"]
+            # Client duration seems to include a setup period
+            # where TRex does not send any packets yet.
+            # Server duration does not include it.
+            client_data = self._l7_data[u"server"]
             approximated_duration = float(client_data[u"traffic_duration"])
         except (KeyError, AttributeError, ValueError, TypeError):
             approximated_duration = None
@@ -1081,6 +1084,7 @@ class TrafficGenerator(AbstractMeasurer):
         target_duration = self._target_duration
         if not target_duration:
             target_duration = approximated_duration
+        # Convert back to aggregate assumed by search algorithms.
         transmit_rate = self._rate * self.transaction_directions
         if self.transaction_type == u"packet":
             attempt_count = int(self.get_sent())
@@ -1096,6 +1100,13 @@ class TrafficGenerator(AbstractMeasurer):
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit tcp_cps.")
             # TODO: Is there a better packet-based counter?
+            pass_count = self._l7_data[u"server"][u"tcp"][u"closed_flows"]
+            # We do not care whether TG is slow, it should have attempted all.
+            attempt_count = self.transaction_scale
+            fail_count = attempt_count - pass_count
+        elif self.transaction_type == u"udp_pps":
+            if not self.transaction_scale:
+                raise RuntimeError(u"Add support for no-limit udp_pps.")
             pass_count = self._l7_data[u"server"][u"tcp"][u"closed_flows"]
             # We do not care whether TG is slow, it should have attempted all.
             attempt_count = self.transaction_scale
@@ -1135,19 +1146,27 @@ class TrafficGenerator(AbstractMeasurer):
         time_stop = time_start + duration
         if self.resetter:
             self.resetter()
-        # TG needs target Tr per stream, but reports aggregate Tx and Dx.
+        # TG needs target rate per active direction, search algos use aggregate.
         unit_rate = transmit_rate / float(self.transaction_directions)
-        self._send_traffic_on_tg_internal(
-            duration=duration,
-            rate=unit_rate,
-            async_call=False,
-        )
-        result = self.get_measurement_result()
-        logger.trace(f"trial measurement result: {result!r}")
-        # In PLRsearch, computation needs the specified time.
+        try:
+            self._send_traffic_on_tg_internal(
+                duration=duration,
+                rate=unit_rate,
+                async_call=False,
+            )
+            result = self.get_measurement_result()
+        except RuntimeError:
+            # A workaround. TRex can fail on too high CPS.
+            result = ReceiveRateMeasurement(
+                duration, transmit_rate, 1, 1
+            )
+        logger.debug(f"trial measurement result: {result!r}")
+        # In PLRsearch, computation needs the specified time to complete.
         if self.sleep_till_duration:
             sleeptime = time_stop - time.monotonic()
             if sleeptime > 0.0:
+                # TODO: Sometimes we have time to do additional trials here,
+                # adapt PLRsearch to accept all the results.
                 time.sleep(sleeptime)
         return result
 
