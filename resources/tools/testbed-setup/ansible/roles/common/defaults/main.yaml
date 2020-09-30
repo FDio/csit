@@ -39,7 +39,9 @@ packages_by_arch:
   aarch64:
     - "gfortran"
     - "libblas-dev"
+    - "libffi-dev"
     - "liblapack-dev"
+    - "libssl-dev"
   x86_64:
     - []
 
