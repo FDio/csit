@@ -1,19 +1,11 @@
 ---
-# file: host_vars/10.30.51.69.yaml
+# file: host_vars/10.30.51.70.yaml
 
-hostname: "s27-t13-sut1"
+hostname: "s55-t36-sut1"
+inventory_ipmi_hostname: "10.30.50.70"
+vfs_data_file: "csit-initialize-vfs-tx2.sh"
 grub:
-  isolcpus: "1-111,113-223"
-  nohz_full: "1-111,113-223"
-  rcu_nocbs: "1-111,113-223"
-sysctl:
-  kernel:
-  watchdog_cpumask: "0,112"
-  vm:
-  nr_hugepages: 57344
-  max_map_count: 20000
-
-inventory_ipmi_hostname: "10.30.50.69"
+  nr_hugepages: 65536
 cpu_microarchitecture: "thunderx2"
 
 # User management.
@@ -30,3 +22,24 @@ users:
     ssh_key:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgObJFDIMmPwQhhkjAynvlbwpM5yeSewyaE7vTLaFf4uFz4vmsE2hFf6B2xXHUGLVwoVfk91UeK7LOGrdDpoDDHzvPZXj5NmZI+WiWax5y2pQZNkcSZws0ENCeEc4hPwc4veJ1JmhokF4Bsmu14HyFMaFUhM8897jtJwsh+9fLA/no0iPGaQqEtRUQhkV+P4jCEPoY0qdRZAzVw/rY4EGAMhsJe3EJmyj63OfrrkG3+hvSLFo5pDxHQr3pZd/c6ukI7xMef48PosAvGCm3oxzb/Gu9PZIGuHLczY+tCnzCkY7MO7E+IWgjXrUAfYwSWz8XmFmA9LLe26DT5jkcK8hGQ== pmikus@cisco.com"
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXUbbhesOpvPF+KI8nq4TXvEO/Un1aU/ehZ9clCyw9C40xjDkX2BlcX8WeHxFHe7fjFaCd07Vg73rn/3M9uNDnDxvjH1GQ0twvi3iBTO4PkHBBfGF9qnE8MYzno6FvlsVKLuUuPbfm8kbOQ+ZDfdXq6gdtXh0hSYYkqC1heNPCNsqaakkB99Edyle+Ot0V7cpW+Yo2wo98KuX/cgUEhVoA8QnNVE7zaWcjSXBZEteoA4gLpAbV6p67/d6H/2ykHTidBViYTEsHco56tJoA4nTPuAupDOLBcWXgF5TAN6z1aCn2JA1DDfniLakgrZ5oVj2qHhUmbxQAtnKQfHADjqzV jlinkes@jlinkes"
+
+# Nomad settings.
+nomad_certificates:
+  - src: "{{ vault_nomad_v1_ca_file }}"
+    dest: "{{ nomad_ca_file }}"
+  - src: "{{ vault_nomad_v1_cert_file }}"
+    dest: "{{ nomad_cert_file }}"
+  - src: "{{ vault_nomad_v1_key_file }}"
+    dest: "{{ nomad_key_file }}"
+nomad_datacenter: "yul1"
+nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
+nomad_node_role: "client"
+nomad_node_class: "csitarm"
+nomad_options:
+  driver.raw_exec.enable: 1
+  docker.cleanup.image: false
+  docker.privileged.enabled: true
+  docker.volumes.enabled: true
+  driver.whitelist: "docker,raw_exec,exec"
+nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
+nomad_cpu_total_compute: "40000"
