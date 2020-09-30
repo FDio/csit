@@ -1090,6 +1090,7 @@ class TrafficGenerator(AbstractMeasurer):
         target_duration = self._target_duration
         if not target_duration:
             target_duration = approximated_duration
+        # Convert back to aggregate assumed by search algorithms.
         transmit_rate = self._rate * self.transaction_directions
         if self.transaction_type == u"packet":
             attempt_count = int(self.get_sent())
@@ -1114,6 +1115,14 @@ class TrafficGenerator(AbstractMeasurer):
             fail_count = attempt_count - pass_count
             ctca = self._l7_data[u"client"][u"tcp"][u"connattempt"]
             partial_attempt_count = ctca
+        elif self.transaction_type == u"udp_pps":
+            if not self.transaction_scale:
+                raise RuntimeError(u"Add support for no-limit udp_pps.")
+            pass_count = self._l7_data[u"client"][u"udp"][u"closed_flows"]
+            # We do not care whether TG is slow, it should have attempted all.
+            attempt_count = self.transaction_scale
+            fail_count = attempt_count - pass_count
+            partial_attempt_count = self._l7_data[u"client"][u"udp"][u"open_flows"]
         else:
             raise RuntimeError(f"Unknown parsing {self.transaction_type!r}")
         if fail_count < 0 and not self.negative_loss:
@@ -1150,19 +1159,27 @@ class TrafficGenerator(AbstractMeasurer):
         time_stop = time_start + duration
         if self.resetter:
             self.resetter()
-        # TG needs target Tr per stream, but reports aggregate Tx and Dx.
+        # TG needs target rate per active direction, search algos use aggregate.
         unit_rate = transmit_rate / float(self.transaction_directions)
-        self._send_traffic_on_tg_internal(
-            duration=duration,
-            rate=unit_rate,
-            async_call=False,
-        )
-        result = self.get_measurement_result()
-        logger.trace(f"trial measurement result: {result!r}")
-        # In PLRsearch, computation needs the specified time.
+        try:
+            self._send_traffic_on_tg_internal(
+                duration=duration,
+                rate=unit_rate,
+                async_call=False,
+            )
+            result = self.get_measurement_result()
+        except RuntimeError:
+            # A workaround. TRex can fail on too high CPS.
+            result = ReceiveRateMeasurement(
+                duration, transmit_rate, 1, 1
+            )
+        logger.debug(f"trial measurement result: {result!r}")
+        # In PLRsearch, computation needs the specified time to complete.
         if self.sleep_till_duration:
             sleeptime = time_stop - time.monotonic()
             if sleeptime > 0.0:
+                # TODO: Sometimes we have time to do additional trials here,
+                # adapt PLRsearch to accept all the results.
                 time.sleep(sleeptime)
         return result
 

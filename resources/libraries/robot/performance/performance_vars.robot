@@ -152,7 +152,7 @@
 | | ${traffic_directions} = | Get Traffic Directions
 | | # TODO: Verify the following works for when ASTF has two transaction dirs.
 | | ${ppta} = | Evaluate | ${pptad} * ${traffic_directions}
-| | Return From Keyword | ${pptad}
+| | Return From Keyword | ${ppta}
 
 | Get Packets Per Transaction And Direction
 | | [Documentation]

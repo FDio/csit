@@ -134,14 +134,8 @@
 
 | Display single bound
 | | [Documentation]
-| | ... | Display one bound of NDR+PDR search,
-| | ... | aggregate in units given by trasaction type, e.g. by default
-| | ... | in packet per seconds and Gbps total bandwidth
-| | ... | (for initial packet size).
-| | ... | Througput is calculated as:
-| | ... | Sum of measured rates over streams
-| | ... | Bandwidth is calculated as:
-| | ... | (Throughput * (L2 Frame Size + IPG) * 8)
+| | ... | Compute and display one bound of NDR+PDR (or soak) search result,
+| | ... | aggregate in units given by trasaction type (usually pps or cps).
 | | ... | If the latency string is present, it is displayed as well.
 | |
 | | ... | *Test (or broader scope) variables read:*
@@ -149,7 +143,7 @@
 | | ... | transactions. Default is "packet".
 | | ... | *Arguments:*
 | | ... | - text - Flavor text describing which bound is this. Type: string
-| | ... | - rate_total - Total (not per stream) measured Tr [pps]. Type: float
+| | ... | - tps - Unidir (per direction) transaction rate [tps]. Type: float
 | | ... | - latency - Latency data to display if non-empty. Type: string
 | |
 | | ... | *Example:*
@@ -157,14 +151,12 @@
 | | ... | \| Display single bound \| NDR lower bound \| \${12345.67} \
 | | ... | \| latency=\${EMPTY} \|
 | |
-| | [Arguments] | ${text} | ${rate_total} | ${latency}=${EMPTY}
+| | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
 | |
 | | ${transaction_type} = | Get Transaction Type
-| | Run Keyword And Return If | """${transaction_type}""" == """packet"""
-| | ... | Display single pps bound | ${text} | ${rate_total} | ${latency}
 | | Run Keyword And Return If | """_cps""" in """${transaction_type}"""
-| | ... | Display single cps bound | ${text} | ${rate_total} | ${latency}
-| | Fail | Unknown transaction type: ${transaction_type}
+| | ... | Display single cps bound | ${text} | ${tps} | ${latency}
+| | Display single pps bound | ${text} | ${tps} | ${latency}
 
 | Display single cps bound
 | | [Documentation]
@@ -175,7 +167,7 @@
 | |
 | | ... | *Arguments:*
 | | ... | - text - Flavor text describing which bound is this. Type: string
-| | ... | - rate_total - Total (not per stream) measured Tr [pps]. Type: float
+| | ... | - tps - Unidir (per direction) transaction rate [tps]. Type: float
 | | ... | - latency - Latency data to display if non-empty. Type: string
 | |
 | | ... | *Example:*
@@ -183,9 +175,11 @@
 | | ... | \| Display single cps bound \| NDR lower bound \| \${12345.67} \
 | | ... | \| latency=\${EMPTY} \|
 | |
-| | [Arguments] | ${text} | ${rate_total} | ${latency}=${EMPTY}
+| | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
 | |
-| | Set Test Message | ${\n}${text}: ${rate_total} CPS | append=yes
+| | ${transaction_directions} = | Get Transaction Directions
+| | ${cps} = | Evaluate | ${tps} * ${transaction_directions}
+| | Set Test Message | ${\n}${text}: ${cps} CPS | append=yes
 | | Return From Keyword If | not """${latency}"""
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
@@ -203,7 +197,7 @@
 | |
 | | ... | *Arguments:*
 | | ... | - text - Flavor text describing which bound is this. Type: string
-| | ... | - rate_total - Total (not per stream) measured Tr [pps]. Type: float
+| | ... | - tps - Unidir (per direction) transaction rate [tps]. Type: float
 | | ... | - latency - Latency data to display if non-empty. Type: string
 | |
 | | ... | *Example:*
@@ -211,11 +205,13 @@
 | | ... | \| Display single pps bound \| NDR lower bound \| \${12345.67} \
 | | ... | \| latency=\${EMPTY} \|
 | |
-| | [Arguments] | ${text} | ${rate_total} | ${latency}=${EMPTY}
+| | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
 | |
-| | ${bandwidth_total} = | Evaluate | $rate_total * ($avg_frame_size+20)*8 / 1e9
-| | Set Test Message | ${\n}${text}: ${rate_total} pps, | append=yes
-| | Set Test Message | ${bandwidth_total} Gbps (initial) | append=yes
+| | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${pps} = | Evaluate | ${tps} * ${ppta}
+| | ${bandwidth} = | Evaluate | ${pps} * (${avg_frame_size}+20)*8 / 1e9
+| | Set Test Message | ${\n}${text}: ${pps} pps, | append=yes
+| | Set Test Message | ${bandwidth} Gbps (initial) | append=yes
 | | Return From Keyword If | not """${latency}"""
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes

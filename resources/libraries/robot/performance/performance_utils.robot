@@ -417,6 +417,7 @@
 | | [Arguments] | ${trial_duration} | ${rate} | ${trial_multiplicity}
 | | ... | ${use_latency}=${False} | ${duration_limit}=${0.0}
 | |
+| | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_directions} = | Get Transaction Directions
 | | ${transaction_duration} = | Get Transaction Duration
@@ -452,7 +453,13 @@
 | | | # Partial receive rate gives bad results at big duration stretching,
 | | | # but profile driver should have stopped the measurement soon enough.
 | | | # For extreme cases (CPS MRR) this gives the more reasonable estimate.
-| | | Append To List | ${results} | ${result.partial_receive_rate}
+| | | # For UDP_PPS, the output unit does not match input unit,
+| | | # and it is easier to convert here than in the parent keyword.
+| | | ${receive_rate} = | Set Variable  | ${result.relative_receive_rate}
+| | | ${converted_receive_rate} = | Evaluate | ${receive_rate} * ${ppta}
+| | | ${receive_rate} = | Set Variable If | "_pps" in "${transaction_type}"
+| | | ... | ${converted_receive_rate} | ${receive_rate}
+| | | Append To List | ${results} | ${receive_rate}
 | | END
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
