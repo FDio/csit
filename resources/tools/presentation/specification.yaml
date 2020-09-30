@@ -3233,9 +3233,9 @@
       compare: 3
 #      rca-file: "rca/rca-3n-skx-2t1c-pdr-rca1.yaml"
     - title: "2009.0-5 vs 2005.0-5"
-        reference: 3
-        compare: 4
-#        rca-file: "rca/rca-3n-skx-2t1c-pdr-rca2.yaml"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-skx-2t1c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-skx with xxv710.'
@@ -3266,9 +3266,9 @@
       compare: 3
 #      rca-file: "rca/rca-3n-skx-4t2c-pdr-rca1.yaml"
     - title: "2009.0-5 vs 2005.0-5"
-        reference: 3
-        compare: 4
-#        rca-file: "rca/rca-3n-skx-4t2c-pdr-rca2.yaml"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-skx-4t2c-pdr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: PDR throughput on 3n-skx with xxv710.'
@@ -3299,9 +3299,9 @@
       compare: 3
 #      rca-file: "rca/rca-3n-skx-2t1c-ndr-rca1.yaml"
     - title: "2009.0-5 vs 2005.0-5"
-        reference: 3
-        compare: 4
-#        rca-file: "rca/rca-3n-skx-2t1c-ndr-rca2.yaml"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-skx-2t1c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-skx with xxv710.'
@@ -3332,9 +3332,9 @@
       compare: 3
 #      rca-file: "rca/rca-3n-skx-4t2c-ndr-rca1.yaml"
     - title: "2009.0-5 vs 2005.0-5"
-        reference: 3
-        compare: 4
-#        rca-file: "rca/rca-3n-skx-4t2c-ndr-rca2.yaml"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-3n-skx-4t2c-ndr-rca2.yaml"
   legend:
     - ''
     - 'Test Case:            Test cases executed for: NDR throughput on 3n-skx with xxv710.'
