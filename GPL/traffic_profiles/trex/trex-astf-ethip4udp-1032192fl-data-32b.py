@@ -51,7 +51,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         self.ndata = 32  # TODO: set via input parameter
         self.nburst = 1
         self.delay = 12000000  # delay 12s (12,000,000 usec)
-        self.u_delay = 4  #inter packet delay 125usec
+        self.u_delay = 4  # inter packet delay 125usec
         self.limit = 1032192
 
     def define_profile(self):
@@ -71,10 +71,10 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # client commands
         prog_c = ASTFProgram(stream=False)
-        prog_c.set_keepalive_msg(20000)
+        prog_c.set_keepalive_msg(6000000)
         prog_c.send_msg(self.udp_data)
 
-        prog_c.delay(self.delay)
+#        prog_c.delay(self.delay)
 
         prog_c.set_var(u"var11", self.nburst)
         prog_c.set_label(u"a1:")
@@ -86,14 +86,14 @@ class TrafficProfile(TrafficProfileBaseClass):
         prog_c.delay(self.u_delay)
         prog_c.jmp_nz(u"var11", u"a1:")
 
-        prog_c.delay(self.delay)
+#        prog_c.delay(self.delay)
 
         # server commands
         prog_s = ASTFProgram(stream=False)
-        prog_s.set_keepalive_msg(20000)
+        prog_s.set_keepalive_msg(6000000)
         prog_s.send_msg(self.udp_data)
 
-        prog_s.delay(self.delay)
+#        prog_s.delay(self.delay)
 
         prog_s.set_var(u"var21", self.nburst)
         prog_s.set_label(u"b1:")
@@ -105,7 +105,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         prog_s.delay(self.u_delay)
         prog_s.jmp_nz(u"var21", u"b1:")
 
-        prog_s.delay(self.delay)
+#        prog_s.delay(self.delay)
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
