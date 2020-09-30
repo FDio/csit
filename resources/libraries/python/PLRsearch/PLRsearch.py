@@ -54,7 +54,7 @@ class PLRsearch:
 
     def __init__(
             self, measurer, trial_duration_per_trial, packet_loss_ratio_target,
-            trial_number_offset=0, timeout=1800.0, trace_enabled=False):
+            trial_number_offset=0, timeout=7200.0, trace_enabled=False):
         """Store rate measurer and additional parameters.
 
         The measurer must never report negative loss count.
@@ -461,12 +461,10 @@ class PLRsearch:
             log_avg_loss_per_trial = (
                 log_avg_loss_per_second + math.log(result.duration)
             )
-            # Poisson probability computation works nice for logarithms.
-            log_trial_likelihood = (
-                result.loss_count * log_avg_loss_per_trial
-                - math.exp(log_avg_loss_per_trial)
-            )
-            log_trial_likelihood -= math.lgamma(1 + result.loss_count)
+            # Geometric probability computation for logarithms.
+            log_trial_likelihood = log_plus(0.0, -log_avg_loss_per_trial)
+            log_trial_likelihood *= -result.loss_count
+            log_trial_likelihood -= log_plus(0.0, +log_avg_loss_per_trial)
             log_likelihood += log_trial_likelihood
             trace(u"avg_loss_per_trial", math.exp(log_avg_loss_per_trial))
             trace(u"log_trial_likelihood", log_trial_likelihood)
