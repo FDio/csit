@@ -726,7 +726,7 @@
         - 61  # NDRPDR sel env 4
         - 62  # NDRPDR sel env 4
     vpp-performance-changes-3n-skx-ref-env5:
-      csit-vpp-perf-report-iterative-2005-3n-skx:
+      csit-vpp-perf-report-iterative-2009-3n-skx:
         - 13  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-3n-skx-cmp:
       # TODO: Add:
@@ -765,6 +765,7 @@
         - 18  # rls2005 NDRPDR iter env 5
         - 19  # rls2005 NDRPDR iter env 5
         - 21  # rls2005 NDRPDR iter env 5
+        - 23  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-2n-skx-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -1012,7 +1013,7 @@
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 49  # MRR sel env 4
     vpp-performance-changes-3n-skx-mrr-ref-env5:
-      csit-vpp-perf-report-iterative-2005-3n-skx:
+      csit-vpp-perf-report-iterative-2009-3n-skx:
         - 17  # rls2005 MRR iter env 5
     vpp-performance-changes-3n-skx-mrr-cmp:
       # TODO: Replace:
@@ -2276,6 +2277,7 @@
       - 18  # rls2005 NDRPDR iter env 5
       - 19  # rls2005 NDRPDR iter env 5
       - 21  # rls2005 NDRPDR iter env 5
+      - 23  # rls2005 NDRPDR iter env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-skx:
       - 7   # RC2 env5 2n-skx-ip4-00
