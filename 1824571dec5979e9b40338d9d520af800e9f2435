@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "062f6fd8_7e2f2e3a",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-30T13:27:33Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "1824571dec5979e9b40338d9d520af800e9f2435",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6275f1bb_f4867b03",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/files/csit-initialize-vfs-tx2.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-09-30T13:27:33Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "1824571dec5979e9b40338d9d520af800e9f2435",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
