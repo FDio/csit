@@ -35,7 +35,6 @@
       - "dill==0.2.8.2"
       - "numpy==1.17.3"
       - "hdrhistogram==0.6.1"
-      - "pandas==0.25.3"
       - "plotly==4.1.1"
       - "PTable==0.9.2"
       - "Sphinx==2.2.1"
@@ -76,9 +75,10 @@
   tags:
     - install-pip
 
-- name: Install CSIT PIP requirements - SciPy workaround
+- name: Install CSIT PIP requirements - Pandas and SciPy workaround
   pip:
     name:
+      - "pandas==0.25.3"
       - "scipy==1.1.0"
   tags:
     - install-pip
