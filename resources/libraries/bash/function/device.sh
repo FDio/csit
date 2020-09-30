@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -276,16 +276,12 @@ function get_available_interfaces () {
             pci_id="0x154c"
             tg_netdev=(enp5s2 enp5s3 enp5s4 enp5s5
                        enp5s6 enp5s7 enp5s8 enp5s9)
-            tg_netdev+=(enp8s2 enp8s3 enp8s4 enp8s5
-                        enp8s6 enp8s7 enp8s8 enp8s9)
-            tg_netdev+=(enp8s10 enp8s11 enp8s12 enp8s13
-                        enp8s14 enp8s15 enp8s16 enp8s17)
-            dut1_netdev=(enp133s2 enp133s3 enp133s4 enp133s5
-                         enp133s6 enp133s7 enp133s8 enp133s9)
-            dut1_netdev+=(enp133s10 enp133s11 enp133s12 enp133s13
-                          enp133s14 enp133s15 enp133s16 enp133s17)
-            dut1_netdev+=(enp5s10 enp5s11 enp5s12 enp5s13
-                          enp5s14 enp5s15 enp5s16 enp5s17)
+            tg_netdev+=(enp5s10 enp5s11 enp5s12 enp5s13
+                        enp5s14 enp5s15 enp5s16 enp5s17)
+            dut1_netdev=(enp145s2 enp145s3 enp145s4 enp145s5
+                         enp145s6 enp145s7 enp145s8 enp145s9)
+            dut1_netdev+=(enp145s10 enp145s11 enp145s12 enp145s13
+                          enp145s14 enp145s15 enp145s16 enp145s17)
             ;;
        "1n_vbox")
             # Add Intel Corporation 82545EM Gigabit Ethernet Controller to the
