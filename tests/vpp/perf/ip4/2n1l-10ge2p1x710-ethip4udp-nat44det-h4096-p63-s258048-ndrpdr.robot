@@ -75,6 +75,7 @@
 | ${in_mask}= | ${20}
 | ${out_net}= | 68.142.68.0
 | ${out_mask}= | ${30}
+| ${do_not_reset_nat}= | ${True}
 # Scale settings
 | ${n_hosts}= | ${4096}
 | ${n_ports}= | ${63}
@@ -82,7 +83,7 @@
 # Ramp-up settings
 | ${ramp_up_rate}= | ${400000}
 | ${ramp_up_duration}= | ${1.6}
-# Traffic profil
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
 
 *** Keywords ***
