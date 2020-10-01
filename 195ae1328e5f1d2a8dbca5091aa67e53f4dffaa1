@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "314f3f2f_a387a43d",
+        "filename": "resources/libraries/python/NATUtil.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-01T12:25:38Z",
+      "side": 1,
+      "message": ":returns:\n:rtype:",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 144,
+        "endChar": 9
+      },
+      "revId": "195ae1328e5f1d2a8dbca5091aa67e53f4dffaa1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
