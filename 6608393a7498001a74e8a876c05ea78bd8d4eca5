@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2564fd69_5a3998ec",
+        "filename": "docs/job_specs/report_coverage/2n-clx/ip4-05.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-10-01T05:22:41Z",
+      "side": 1,
+      "message": "Yes, done.",
+      "parentUuid": "5f135e50_b7348888",
+      "range": {
+        "startLine": 323,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 84
+      },
+      "revId": "6608393a7498001a74e8a876c05ea78bd8d4eca5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8e2bde8_372fc6dc",
         "filename": "docs/job_specs/report_coverage/2n-clx/ip4-05.md",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-29T13:32:09Z",
       "side": 1,
       "message": "Due to the volume of nat combinations, we discussed and agreed to test only baseline with DPDK, and do all combinations with AVF driver and primary NIC per testbed only.",
+      "range": {
+        "startLine": 333,
+        "startChar": 0,
+        "endLine": 622,
+        "endChar": 95
+      },
+      "revId": "6608393a7498001a74e8a876c05ea78bd8d4eca5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9466f171_ae2280ed",
+        "filename": "docs/job_specs/report_coverage/2n-clx/ip4-05.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-10-01T05:22:41Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "d8e2bde8_372fc6dc",
       "range": {
         "startLine": 333,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b954a430_4e91ec42",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-10-01T05:22:41Z",
+      "side": 1,
+      "message": "Is CSIT able to run 2 or more test sets in one daily and weekly job?",
+      "parentUuid": "9ab0be17_330a45c1",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 19
+      },
+      "revId": "6608393a7498001a74e8a876c05ea78bd8d4eca5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb941d18_ede4f269",
         "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mlr-00.md",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ceef7212_43eb6201",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-10-01T05:22:41Z",
+      "side": 1,
+      "message": "see line 281",
+      "parentUuid": "fb941d18_ede4f269",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 76
+      },
+      "revId": "6608393a7498001a74e8a876c05ea78bd8d4eca5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ea161d2_14d93855",
         "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mrr-00.md",
         "patchSetId": 3
@@ -105,6 +201,30 @@
       "writtenOn": "2020-09-29T13:35:50Z",
       "side": 1,
       "message": "Should add drv_vfiopci (dpdk) variants of baseline nat44det.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 73
+      },
+      "revId": "6608393a7498001a74e8a876c05ea78bd8d4eca5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45897a83_e6944828",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-10-01T05:22:41Z",
+      "side": 1,
+      "message": "see line 281",
+      "parentUuid": "6ea161d2_14d93855",
       "range": {
         "startLine": 132,
         "startChar": 0,
