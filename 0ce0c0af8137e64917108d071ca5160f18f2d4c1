@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9aba21a_7e2daa14",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-10-01T12:13:17Z",
+      "side": 1,
+      "message": "Should I shift testbed types since we no longer have B4? i.e. B5-\u003eB4, B6-\u003eB5 etc.\n\nMaybe we should think about restructuring the types though - they seem arbitrary to me (or at least the B category seems to be a mish-mash of everything). E.g. having a category for arm hardware would make sense.",
+      "range": {
+        "startLine": 511,
+        "startChar": 3,
+        "endLine": 511,
+        "endChar": 17
+      },
+      "revId": "0ce0c0af8137e64917108d071ca5160f18f2d4c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
