@@ -7,7 +7,7 @@ all:
         10.30.51.24: #t3-tg1 - haswell
         10.30.51.45: #s4-t21-tg1 - skylake
         10.30.51.48: #s13-t31-tg1 - skylake
-        10.30.51.49: #s19-t33t34-tg1 - skylake
+        10.30.51.49: #s19-t33-tg1 - skylake
         10.30.51.53: #s6-t22-tg1 - skylake
         10.30.51.55: #s8-t23-tg1 - skylake
         10.30.51.57: #s10-t24-tg1 - skylake
