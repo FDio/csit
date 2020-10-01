@@ -805,6 +805,7 @@
         - 17  # rls2005 NDRPDR iter env 5
         - 18  # rls2005 NDRPDR iter env 5
         - 19  # rls2005 NDRPDR iter env 5
+        - 20  # rls2005 NDRPDR iter env 5
         - 21  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-2n-clx-cmp:
       # TODO: Add:
@@ -913,6 +914,7 @@
     vpp-performance-changes-3n-tsh-ref-env5:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
         - 8   # rls2005 NDRPDR iter env 5
+        - 11  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-3n-tsh-cmp:
       # TODO: Replace:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
@@ -2343,6 +2345,7 @@
       - 17  # rls2005 NDRPDR iter env 5
       - 18  # rls2005 NDRPDR iter env 5
       - 19  # rls2005 NDRPDR iter env 5
+      - 20  # rls2005 NDRPDR iter env 5
       - 21  # rls2005 NDRPDR iter env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-clx:
@@ -2375,6 +2378,7 @@
     csit-vpp-perf-report-iterative-2009-3n-tsh:
       - 7   # RC2 NDRPDR iter env5
       - 8   # rls2005 NDRPDR iter env 5
+      - 11  # rls2005 NDRPDR iter env 5
     csit-vpp-perf-report-coverage-2009-3n-tsh:
       - 1   # 3n-tsh-ip4-00
 
