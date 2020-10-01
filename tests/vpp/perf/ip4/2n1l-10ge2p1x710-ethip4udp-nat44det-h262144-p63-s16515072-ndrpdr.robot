@@ -79,13 +79,14 @@
 | ${n_hosts}= | ${262144}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Main heap size multiplicator
+| ${heap_size_mult}= | ${3}
 # Ramp-up settings
+| ${do_not_reset_nat}= | ${True}
 | ${ramp_up_rate}= | ${200000}
 | ${ramp_up_duration}= | ${82.8}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
-# Main heap size multiplicator
-| ${heap_size_mult}= | ${3}
 
 *** Keywords ***
 | Local Template

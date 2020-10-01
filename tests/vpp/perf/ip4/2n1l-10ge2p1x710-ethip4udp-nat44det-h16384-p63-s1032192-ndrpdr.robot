@@ -75,6 +75,7 @@
 | ${in_mask}= | ${18}
 | ${out_net}= | 68.142.68.0
 | ${out_mask}= | ${28}
+| ${do_not_reset_nat}= | ${True}
 # Scale settings
 | ${n_hosts}= | ${16384}
 | ${n_ports}= | ${63}

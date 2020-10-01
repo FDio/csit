@@ -65,7 +65,7 @@
 # TG subnets used by T-Rex
 | ${tg_if1_net}= | 10.10.10.0
 | ${tg_if2_net}= | 20.20.20.0
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src254
 
 *** Keywords ***

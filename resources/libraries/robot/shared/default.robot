@@ -58,7 +58,6 @@
 | Resource | resources/libraries/robot/overlay/lisp.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/overlay/lisp_api.robot
-| Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/container.robot
@@ -376,3 +375,28 @@
 | | ... | ${setup_vpp_pids} | ${teardown_vpp_pids}
 | | Run Keyword And Return If | '${rc}'=='FAIL' | Log | ${err_msg}
 | | ... | console=yes | level=WARN
+
+# TODO: Sort keywords alphabetically.
+
+| Maybe Call Resetter
+| | [Documentation]
+| | ... | Check for a presence of test variable \${resetter}.
+| | ... | If it exists (and is not None) and if no ramp-up,
+| | ... | call the resetter (as a Python callable).
+| | ... | This is usually used to reset any state on DUT before next trial.
+| |
+| | ... | TODO: Move to a more specific library if needed.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Maybe Call Resetter \|
+| |
+| | ${resetter} = | Get Variable Value | \${resetter} | ${None}
+| | Return From Keyword Unless | ${resetter}
+| | # Suites requiring reset are exactly those that do not perform ramp-up.
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | Return From Keyword Unless | ${ramp_up_duration}
+| | # See http://robotframework.org/robotframework/3.1.2/libraries/BuiltIn.html
+| | # #Evaluating%20expressions for $variable (without braces) syntax.
+| | # Parens are there to perform the call.
+| | Evaluate | $resetter()
