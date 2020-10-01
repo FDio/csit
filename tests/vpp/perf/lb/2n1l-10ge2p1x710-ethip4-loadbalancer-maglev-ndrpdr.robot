@@ -59,6 +59,7 @@
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-2n-ethip4udp-lb
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -85,7 +86,6 @@
 | | And Initialize layer interface
 | | And Initialize loadbalancer maglev
 | | Then Find NDR and PDR intervals using optimized search
-| | ... | traffic_directions=${1}
 
 *** Test Cases ***
 | 64B-1c-ethip4-loadbalancer-maglev-ndrpdr
