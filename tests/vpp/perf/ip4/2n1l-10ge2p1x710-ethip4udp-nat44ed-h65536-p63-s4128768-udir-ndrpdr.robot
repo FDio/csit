@@ -83,10 +83,14 @@
 | ${n_hosts}= | ${65536}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
-# Traffic profile:
-| ${traffic_profile}= | trex-stl-ethip4udp-65536u63p-udir
 # Main heap size multiplicator
 | ${heap_size_mult}= | ${2}
+# Ramp-up settings
+| ${ramp_up_rate}= | ${500000}
+| ${ramp_up_duration}= | ${18.2}
+# Traffic profile:
+| ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p-udir
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -119,8 +123,9 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
-| | Then Find NDR and PDR intervals using optimized search
-| | ... | traffic_directions=${1}
+| | Then Send ramp-up traffic
+| | And Verify NAT44 UDP sessions number on DUT1 node
+| | And Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr
