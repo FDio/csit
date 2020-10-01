@@ -40,10 +40,18 @@
 | Initialize NAT44 endpoint-dependent mode in circular topology
 | | [Documentation] | Initialization of NAT44 endpoint-dependent mode on DUT1
 | |
+| | ... | This keyword also sets a test variable \${resetter}
+| | ... | to hold a callable which resets VPP state.
+| | ... | Keywords performing search will call it to get consistent trials.
+| | ... | Unless \${do_not_reset_nat} variable is true (disables the reset).
+| |
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
-| | Set NAT44 Address Range
+| | ${resetter} = | Set NAT44 Address Range
 | | ... | ${dut1} | ${out_net} | ${out_net_end}
+| | ${return} = | Get Variable Value | \${do_not_reset_nat} | ${False}
+| | Return From Keyword If | ${return}
+| | Set Test Variable | \${resetter}
 
 # TODO: Remove when 'ip4.Initialize IPv4 forwarding in circular topology' KW
 # adapted to use IP values from variables
@@ -108,6 +116,38 @@
 | | ... | ${dut2} | ${out_net} | ${out_mask} | gateway=${dut1_if2_ip4}
 | | ... | interface=${DUT2_${int}1}[0]
 
+| Verify NAT44 TCP sessions number on DUT1 node
+| | [Documentation] | Verify that all required NAT44 TCP sessions are
+| | ... | established on DUT1 node.
+| |
+| | Verify NAT44 sessions number | ${nodes['DUT1']} | ${n_sessions} | TCP
+
+| Verify NAT44 UDP sessions number on DUT1 node
+| | [Documentation] | Verify that all required NAT44 UDP sessions are
+| | ... | established on DUT1 node.
+| |
+| | Verify NAT44 sessions number | ${nodes['DUT1']} | ${n_sessions} | UDP
+
+| Verify NAT44 sessions number
+| | [Documentation] | Verify that all required NAT44 sessions of required
+| | ... | protocol are established.
+| |
+| | ... | *Arguments:*
+| | ... | - node - DUT node. Type: dictionary
+| | ... | - exp_n_sessions - Expected number of NAT44 sessions. Type: integer
+| | ... | - proto - Required protocol. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Verify NAT44 sessions number \| ${nodes['DUT1']} \| ${64512} \
+| | ... | \| UDP \|
+| |
+| | [Arguments] | ${node} | ${exp_n_sessions} | ${proto}
+| |
+| | ${nat44_sessions}= | Get NAT44 Sessions Number | ${node} | ${proto}
+| | Should Be Equal As Integers | ${nat44_sessions} | ${exp_n_sessions}
+| | ... | Not all NAT44 ${proto} sessions have been established
+
 # DET44 - NAT44 deterministic
 | Enable DET44 plugin on DUT
 | | [Documentation] | Enable DET44 plugin on DUT.
@@ -149,6 +189,11 @@
 | Configure deterministic mode for NAT44
 | | [Documentation] | Set deterministic behaviour of NAT44 (DET44).
 | |
+| | ... | This keyword also sets a test variable \${resetter}
+| | ... | to hold a callable which resets VPP state.
+| | ... | Keywords performing search will call it to get consistent trials.
+| | ... | Unless \${do_not_reset_nat} variable is true (disables the reset).
+| |
 | | ... | *Arguments:*
 | | ... | - node - DUT node to set deterministic mode for NAT44 on.
 | | ... | Type: dictionary
@@ -164,12 +209,15 @@
 | |
 | | [Arguments] | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
 | |
-| | Set DET44 Mapping
+| | ${resetter} = | Set DET44 Mapping
 | | ... | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
+| | ${return} = | Get Variable Value | \${do_not_reset_nat} | ${False}
+| | Return From Keyword If | ${return}
+| | Set Test Variable | \${resetter}
 
 | Initialize NAT44 deterministic mode in circular topology
 | | [Documentation] | Initialization of NAT44 deterministic mode (DET44)
-| | ... | on DUT1.
+| | ... | on DUT1 node.
 | |
 | | Enable DET44 plugin on DUT | ${dut1}
 | | Configure DET44 interfaces
