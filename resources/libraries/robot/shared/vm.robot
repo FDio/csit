@@ -12,9 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | Keywords related to vm lifecycle management
-...
 | Library | resources.libraries.python.InterfaceUtil
+|
+| Documentation | Keywords related to vm lifecycle management
 
 *** Keywords ***
 | Configure chains of NFs connected via vhost-user
@@ -44,6 +44,7 @@
 | | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
 | | ... | ${auto_scale}=${True} | ${vnf}=vpp | ${pinning}=${True}
 | |
+| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
 | | Import Library | resources.libraries.python.QemuManager | ${nodes}
 | | ... | WITH NAME | vnf_manager
 | | Run Keyword | vnf_manager.Construct VMs on all nodes
@@ -52,8 +53,8 @@
 | | ... | auto_scale=${auto_scale} | vnf=${vnf}
 | | ... | tg_pf1_mac=${TG_pf1_mac}[0] | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
-| | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
-| | ... | enable_gso=${False}
+| | ... | rxq_count_int=${rxq_count_int}
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
 | | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
 | | Set Test Variable | ${cpu_alloc_str}
@@ -78,6 +79,7 @@
 | | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ... | - vnf - Network function as a payload. Type: string
 | | ... | - pinning - Whether to pin QEMU VMs to specific cores
+| | ... | - validate - Validate interfaces are up. Type: boolean
 | |
 | | ... | *Example:*
 | |
@@ -88,8 +90,9 @@
 | | [Arguments] | ${node} | ${nf_chains}=${1} | ${nf_nodes}=${1}
 | | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${1024}
 | | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True} | ${vnf}=vpp
-| | ... | ${pinning}=${True}
+| | ... | ${pinning}=${True} | ${validate}=${True}
 | |
+| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
 | | Import Library | resources.libraries.python.QemuManager | ${nodes}
 | | ... | WITH NAME | vnf_manager
 | | Run Keyword | vnf_manager.Initialize
@@ -100,12 +103,13 @@
 | | ... | auto_scale=${auto_scale} | vnf=${vnf}
 | | ... | tg_pf1_mac=${TG_pf1_mac}[0] | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
-| | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
-| | ... | enable_gso=${False}
+| | ... | rxq_count_int=${rxq_count_int}
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
 | | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
 | | Set Test Variable | ${cpu_alloc_str}
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
+| | Run Keyword If | ${validate}
+| | ... | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
 | Configure chains of NFs connected via passtrough
@@ -135,6 +139,7 @@
 | | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
 | | ... | ${auto_scale}=${True} | ${vnf}=vpp | ${pinning}=${True}
 | |
+| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
 | | Import Library | resources.libraries.python.QemuManager | ${nodes}
 | | ... | WITH NAME | vnf_manager
 | | Run Keyword | vnf_manager.Construct VMs on all nodes
@@ -143,8 +148,8 @@
 | | ... | auto_scale=${auto_scale} | vnf=${vnf}
 | | ... | tg_pf1_mac=${TG_pf1_mac}[0] | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
-| | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
-| | ... | enable_gso=${False}
+| | ... | rxq_count_int=${rxq_count_int}
+| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | ... | if1=${DUT1_${int}1}[0] | if2=${DUT1_${int}2}[0]
 | | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
 | | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
