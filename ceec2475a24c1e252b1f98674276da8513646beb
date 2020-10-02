@@ -22,6 +22,30 @@
       "revId": "ceec2475a24c1e252b1f98674276da8513646beb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a473d72_05d7bf38",
+        "filename": "docs/job_specs/report_coverage/2n-clx/ip4-05.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-10-02T16:39:10Z",
+      "side": 1,
+      "message": "That\u0027s the reason they are disabled in this file",
+      "parentUuid": "9cd83799_3924df51",
+      "range": {
+        "startLine": 112,
+        "startChar": 40,
+        "endLine": 112,
+        "endChar": 44
+      },
+      "revId": "ceec2475a24c1e252b1f98674276da8513646beb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
