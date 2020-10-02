@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -103,6 +103,13 @@
 | | | Run Keyword If Test Failed
 | | | ... | Show Geneve Tunnel Data | ${nodes['${dut}']}
 | | END
+
+| Additional Test Tear Down Action For iPerf3
+| | [Documentation]
+| | ... | Additional teardown for test which uses iPerf3 server.
+| |
+| | Run Keyword And Ignore Error
+| | ... | Teardown iPerf | ${nodes['${iperf_server_node}']}
 
 | Additional Test Tear Down Action For ipsec_sa
 | | [Documentation]

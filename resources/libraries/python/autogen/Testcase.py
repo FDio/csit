@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -109,5 +109,23 @@ class Testcase:
             template_string = f'''
 | ${{frame_str}}-${{cores_str}}c-{suite_id[:-4]}-{suite_id[-3:]}
 | | [Tags] | ${{cores_str}}C\n| | phy_cores=${{cores_num}}
+'''
+        return cls(template_string)
+
+    @classmethod
+    def iperf3(cls, suite_id):
+        """Factory method for creating "iperf3" testcase objects.
+
+        Testcase name will contain core count, but not frame size.
+
+        :param suite_id: Part of suite name to distinguish from other suites.
+        :type suite_id: str
+        :returns: Instance for generating testcase text of this type.
+        :rtype: Testcase
+        """
+        template_string = f'''
+| 128KB-${{cores_str}}c-{suite_id}
+| | [Tags] | 128KB | ${{cores_str}}C
+| | frame_size=${{frame_num}} | phy_cores=${{cores_num}}
 '''
         return cls(template_string)
