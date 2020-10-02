@@ -158,7 +158,9 @@ class QemuUtils:
             u"chardev", f"socket,path={self._temp.get(u'qga')},"
             f"server,nowait,id=qga0"
         )
-        self._params.add_with_value(u"device", u"isa-serial,chardev=qga0")
+        self._params.add_with_value(
+            u"device", u"isa-serial,chardev=qga0"
+        )
         self._params.add_with_value(
             u"qmp", f"unix:{self._temp.get(u'qmp')},server,nowait"
         )
@@ -167,8 +169,11 @@ class QemuUtils:
         """Set serial to file redirect."""
         self._params.add_with_value(
             u"chardev", f"socket,host=127.0.0.1,"
-            f"port={self._vm_info[u'serial']},id=gnc0,server,nowait")
-        self._params.add_with_value(u"device", u"isa-serial,chardev=gnc0")
+            f"port={self._vm_info[u'serial']},id=gnc0,server,nowait"
+        )
+        self._params.add_with_value(
+            u"device", u"isa-serial,chardev=gnc0"
+        )
         self._params.add_with_value(
             u"serial", f"file:{self._temp.get(u'log')}"
         )
@@ -210,8 +215,12 @@ class QemuUtils:
         self._params.add_with_value(
             u"device", u"virtio-9p-pci,fsdev=root9p,mount_tag=virtioroot"
         )
-        self._params.add_with_value(u"kernel", f"{self._opt.get(u'img')}")
-        self._params.add_with_value(u"initrd", f"{self._opt.get(u'initrd')}")
+        self._params.add_with_value(
+            u"kernel", f"{self._opt.get(u'img')}"
+        )
+        self._params.add_with_value(
+            u"initrd", f"{self._opt.get(u'initrd')}"
+        )
         self._params.add_with_value(
             u"append", f"'ro rootfstype=9p rootflags=trans=virtio "
             f"root=virtioroot console={self._opt.get(u'console')} "
@@ -402,17 +411,33 @@ class QemuUtils:
 
         self._opt[u"vnf_bin"] = f"{self._testpmd_path}/{testpmd_cmd}"
 
+    def create_kernelvm_config_iperf3_server(self, **kwargs):
+        """Create QEMU iperf3_server command line.
+
+        :param kwargs: Key-value pairs to construct command line parameters.
+        :type kwargs: dict
+        """
+        self._opt[u"vnf_bin"] = f"iperf3 --server --verbose"
+
+    def create_kernelvm_config_iperf3_client(self, **kwargs):
+        """Create QEMU iperf3_client command line.
+
+        :param kwargs: Key-value pairs to construct command line parameters.
+        :type kwargs: dict
+        """
+        self._opt[u"vnf_bin"] = \
+            f"sleep 5; iperf3 --client 2.2.2.2 --time 30.0 --zerocopy --json"
+
     def create_kernelvm_init(self, **kwargs):
         """Create QEMU init script.
 
         :param kwargs: Key-value pairs to replace content of init startup file.
         :type kwargs: dict
         """
-        template = f"{Constants.RESOURCES_TPL}/vm/init.sh"
         init = self._temp.get(u"ini")
         exec_cmd_no_error(self._node, f"rm -f {init}", sudo=True)
 
-        with open(template, u"rt") as src_file:
+        with open(kwargs[u"template"], u"rt") as src_file:
             src = Template(src_file.read())
             exec_cmd_no_error(
                 self._node, f"echo '{src.safe_substitute(**kwargs)}' | "
@@ -428,13 +453,38 @@ class QemuUtils:
         """
         if u"vpp" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_vpp(**kwargs)
-            self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
+            self.create_kernelvm_init(
+                template=f"{Constants.RESOURCES_TPL}/vm/init.sh",
+                vnf_bin=self._opt.get(u"vnf_bin")
+            )
         elif u"testpmd_io" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_testpmd_io(**kwargs)
-            self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
+            self.create_kernelvm_init(
+                template=f"{Constants.RESOURCES_TPL}/vm/init.sh",
+                vnf_bin=self._opt.get(u"vnf_bin")
+            )
         elif u"testpmd_mac" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_testpmd_mac(**kwargs)
-            self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
+            self.create_kernelvm_init(
+                template=f"{Constants.RESOURCES_TPL}/vm/init.sh",
+                vnf_bin=self._opt.get(u"vnf_bin")
+            )
+        elif u"iperf3_client" in self._opt.get(u"vnf"):
+            self.create_kernelvm_config_iperf3_client(**kwargs)
+            self.create_kernelvm_init(
+                template=f"{Constants.RESOURCES_TPL}/vm/init_iperf3.sh",
+                vnf_bin=self._opt.get(u"vnf_bin"),
+                ip_address_l="1.1.1.1/30",
+                ip_address_r="1.1.1.2"
+            )
+        elif u"iperf3_server" in self._opt.get(u"vnf"):
+            self.create_kernelvm_config_iperf3_server(**kwargs)
+            self.create_kernelvm_init(
+                template=f"{Constants.RESOURCES_TPL}/vm/init_iperf3.sh",
+                vnf_bin=self._opt.get(u"vnf_bin"),
+                ip_address_l="2.2.2.2/30",
+                ip_address_r="2.2.2.1"
+            )
         else:
             raise RuntimeError(u"QEMU: Unsupported VNF!")
 
@@ -638,6 +688,34 @@ class QemuUtils:
             raise RuntimeError(
                 f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
             )
+
+    def _wait_iperf3_client(self, retries=60):
+        """Wait until QEMU with iPerf3_client is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        grep = u"fast init done"
+        cmd = f"fgrep '{grep}' {self._temp.get(u'log')}"
+        message = f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
+        exec_cmd_no_error(
+            self._node,  cmd=cmd, sudo=True, message=message, retries=retries,
+            include_reason=True
+        )
+
+    def _wait_iperf3_server(self, retries=60):
+        """Wait until QEMU with iPerf3_server is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        grep = u"Server listening on "
+        cmd = f"fgrep '{grep}' {self._temp.get(u'log')}"
+        message = f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
+        exec_cmd_no_error(
+            self._node,  cmd=cmd, sudo=True, message=message, retries=retries,
+            include_reason=True
+        )
 
     def _update_vm_interfaces(self):
         """Update interface names in VM node dict."""
