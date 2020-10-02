@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.PerfUtil
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.iPerf3
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
@@ -483,6 +484,111 @@
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
+| | END
+| | FOR | ${action} | IN | @{post_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Return From Keyword | ${results}
+
+| Traffic should pass with maximum rate on iPerf3
+| | [Documentation]
+| | ... | Send traffic at maximum rate on iPerf3.
+| |
+| | ... | *Arguments:*
+| | ... | - trial_duration - Duration of single trial [s]. Type: float
+| | ... | - fail_no_traffic - Whether to fail on zero receive count;
+| | ... | default value: True. Type: boolean
+| | ... | - trial_multiplicity - How many trials in this measurement.
+| | ... | Type: integer
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic;
+| | ... | default value: 2. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Traffic should pass with maximum rate on iPerf3 \| \${1} \| \
+| | ... | \| \${False} \| \${10.0} \| \${2} \|
+| |
+| | [Arguments] | ${trial_duration}=${trial_duration}
+| | ... | ${fail_no_traffic}=${True}
+| | ... | ${trial_multiplicity}=${trial_multiplicity}
+| | ... | ${traffic_directions}=${1}
+| |
+| | ${results}= | Send iPerf3 traffic at specified rate
+| | ... | ${trial_duration} | 100000 | ${frame_size}
+| | ... | ${trial_multiplicity} | ${traffic_directions}
+| | Set Test Message | ${\n}iPerf3 trial results
+| | Set Test Message | in bits per second: ${results}
+| | ... | append=yes
+#| | Run Keyword If | ${fail_no_traffic} | Fail if no traffic forwarded
+
+| Send iPerf3 traffic at specified rate
+| | [Documentation]
+| | ... | Perform a warmup, show runtime counters during it.
+| | ... | Then send traffic at specified rate, possibly multiple trials.
+| | ... | Show various DUT stats, optionally also packet trace.
+| | ... | Return list of measured receive rates.
+| |
+| | ... | *Arguments:*
+| | ... | - trial_duration - Duration of single trial [s]. Type: float
+| | ... | - rate - Target aggregate transmit rate [pps] / Connections per second
+| | ... | (CPS) for UDP/TCP flows. Type: float
+| | ... | - frame_size - L2 Frame Size [B]. Type: integer or string
+| | ... | - trial_multiplicity - How many trials in this measurement.
+| | ... | Type: integer
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: integer
+| | ... | - extended_debug - True to enable extended debug.
+| | ... | Type: boolean
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Send traffic at specified rate \| \${1.0} \| ${4000000.0} \
+| | ... | \| \${64} \| \${10} \| \${2} \| \${0} \| \${1} \
+| | ... | \| ${False} \|
+| |
+| | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
+| | ... | ${trial_multiplicity}=${trial_multiplicity}
+| | ... | ${traffic_directions}=${1} | ${extended_debug}=${extended_debug}
+| |
+| | Set Test Variable | ${extended_debug}
+| | # Following setting of test variables is needed for some pre_stats actions.
+| | Set Test Variable | ${rate}
+| | Set Test Variable | ${traffic_directions}
+| |
+#| | FOR | ${action} | IN | @{pre_stats}
+#| | | Run Keyword | Additional Statistics Action For ${action}
+#| | END
+| | Initialize iPerf Server
+| | ... | ${nodes['DUT1']}
+| | ... | if1_pci=${DUT1_pf1_pci}[0]
+| | ... | if2_pci=${DUT1_pf2_pci}[0]
+| | ... | interface=${iperf_server_interface}
+| | ... | bind=${iperf_server_bind}
+| | ... | bind_mask=${iperf_server_bind_mask}
+| | ... | namespace=${iperf_server_interface}_namespace
+| | ... | cpu_skip_cnt=${10}
+| | Set Linux Interface IP
+| | ... | ${nodes['DUT1']}
+| | ... | interface=${iperf_client_interface}
+| | ... | ip_addr=${iperf_client_bind}
+| | ... | prefix=${iperf_client_bind_mask}
+| | ... | namespace=${iperf_client_interface}_namespace
+| | Add Default Route To Namespace
+| | ... | ${nodes['DUT1']}
+| | ... | namespace=${iperf_client_interface}_namespace
+| | ... | default_route=${iperf_client_bind}
+| | ${results} = | Create List
+| | FOR | ${i} | IN RANGE | ${trial_multiplicity}
+| | | ${rr} = | iPerf Client Start Remote Exec
+| | | ... | ${nodes['DUT1']}
+| | | ... | duration=${trial_duration}
+| | | ... | rate=${rate}
+| | | ... | frame_size=${frame_size}
+| | | ... | async_call=False
+| | | ... | warmup_time=5.0
+| | | ... | traffic_directions=${traffic_directions}
+| | | ... | namespace=${iperf_client_interface}_namespace
+| | | Append To List | ${results} | ${rr['sum_received']['bits_per_second']}
 | | END
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
