@@ -392,3 +392,31 @@ class CpuUtils:
             smt_used=False)
 
         return master_thread_id[0], latency_thread_id[0], cpu_node, threads
+
+    @staticmethod
+    def get_affinity_iperf(
+            node, if1_pci, if2_pci, cpu_skip_cnt=0, tg_mtc=1):
+        """Get affinity for iPerf. Result will be used to pin iPerf threads.
+
+        :param node: Topology node.
+        :param if1_pci: TG first interface.
+        :param if2_pci: TG second interface.
+        :param cpu_skip_cnt: Amount of CPU cores to skip.
+        :param tg_mtc: iPerf main thread count.
+        :type node: dict
+        :type if1_pci: str
+        :type if2_pci: str
+        :type cpu_skip_cnt: int
+        :type tg_mtc: int
+        :returns: List of CPUs allocated to iPerf.
+        :rtype: str
+        """
+        smt_used = CpuUtils.is_smt_enabled(node[u"cpuinfo"])
+
+        interface_list = [if1_pci, if2_pci]
+        cpu_node = Topology.get_interfaces_numa_node(node, *interface_list)
+
+        return CpuUtils.cpu_list_per_node_str(
+            node, cpu_node, skip_cnt=cpu_skip_cnt, cpu_cnt=tg_mtc,
+            smt_used=smt_used
+        )
