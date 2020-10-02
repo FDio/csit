@@ -44,10 +44,17 @@
 | | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
 | | ... | maximal MTU.*
 | |
+| | ... | *Arguments:*
+| | ... | - validate - Validate interfaces are up.
+| | ... | Type: boolean
+| |
+| | [Arguments] | ${validate}=${True}
+| |
 | | FOR | ${dut} | IN | @{duts}
 | | | Set interfaces in path up on node | ${dut}
 | | END
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${60}
+| | Run Keyword If | ${validate}
+| | ... | All VPP Interfaces Ready Wait | ${nodes} | retries=${60}
 
 | Set interfaces in path up on node
 | | [Documentation]
@@ -108,6 +115,18 @@
 | | [Arguments] | ${driver}
 | |
 | | Run Keyword | Pre-initialize layer ${driver} on all DUTs
+
+| Pre-initialize layer tap on all DUTs
+| | [Documentation]
+| | ... | Pre-initialize tap driver. Currently no operation.
+| |
+| | No operation
+
+| Pre-initialize layer vhost on all DUTs
+| | [Documentation]
+| | ... | Pre-initialize vhost driver. Currently no operation.
+| |
+| | No operation
 
 | Pre-initialize layer vfio-pci on all DUTs
 | | [Documentation]
@@ -179,18 +198,20 @@
 | | ... | *Arguments:*
 | | ... | - driver - NIC driver used in test [vfio-pci|avf|rdma-core].
 | | ... | Type: string
+| | ... | - validate - Validate interfaces are up.
+| | ... | Type: boolean
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Initialize layer driver \| vfio-pci \|
 | |
-| | [Arguments] | ${driver}
+| | [Arguments] | ${driver} | ${validate}=${True}
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Initialize layer driver on node | ${dut} | ${driver}
 | | END
 | | Set Test Variable | ${int} | vf
-| | Set interfaces in path up
+| | Set interfaces in path up | validate=${validate}
 
 | Initialize layer driver on node
 | | [Documentation]
@@ -235,6 +256,72 @@
 | | | ... | ${${dut}_vf${pf}_vlan} | ${_vlan}
 | | | Run Keyword | Initialize layer ${driver} on node | ${dut} | ${pf}
 | | END
+
+| Initialize layer tap on node
+| | [Documentation]
+| | ... | Initialize tap interfaces on DUT.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node.
+| | ... | Type: string
+| | ... | - pf - TAP ID (logical port).
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer tap on node \| DUT1 \| 0 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
+| |
+| | Create Namespace
+| | ... | ${nodes['${dut}']} | tap${${pf}-1}_namespace
+| | ${tap_feature_mask}= | Create Tap feature mask | gso=${enable_gso}
+| | ${_tap}=
+| | ... | And Add Tap Interface | ${nodes['${dut}']} | tap${${pf}-1}
+| | ... | host_namespace=tap${${pf}-1}_namespace
+| | ... | num_rx_queues=${rxq_count_int}
+| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
+| | ... | tap_feature_mask=${tap_feature_mask}
+| | ${_mac}=
+| | ... | Get Interface MAC | ${nodes['${dut}']} | tap${pf}
+| | ${_tap}= | Create List | ${_tap}
+| | ${_mac}= | Create List | ${_mac}
+| | Vhost User Affinity
+| | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0]
+| | ... | skip_cnt=${${CPU_CNT_MAIN}+${CPU_CNT_SYSTEM}+${cpu_count_int}}
+| | Set Test Variable
+| | ... | ${${dut}_vf${pf}} | ${_tap}
+| | Set Test Variable
+| | ... | ${${dut}_vf${pf}_mac} | ${_mac}
+
+| Initialize layer vhost on node
+| | [Documentation]
+| | ... | Initialize vhost interfaces on DUT.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node.
+| | ... | Type: string
+| | ... | - pf - VHOST ID (logical port).
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer vhost on node \| DUT1 \| 0 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
+| |
+| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
+| | ${vhost}= | Vpp Create Vhost User Interface
+| | ... | ${nodes['${dut}']} | /var/run/vpp/sock-${pf}-1
+| | ... | is_server=${True} | virtio_feature_mask=${virtio_feature_mask}
+| | ${_mac}=
+| | ... | Get Interface MAC | ${nodes['${dut}']} | vhost${pf}
+| | ${_vhost}= | Create List | ${_vhost}
+| | ${_mac}= | Create List | ${_mac}
+| | Set Test Variable
+| | ... | ${${dut}_vf${pf}} | ${_vhost}
+| | Set Test Variable
+| | ... | ${${dut}_vf${pf}_mac} | ${_mac}
 
 | Initialize layer vfio-pci on node
 | | [Documentation]
