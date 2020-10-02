@@ -27,7 +27,7 @@ from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.VhostUser import Virtio, VirtioFeaturesFlags
+from resources.libraries.python.VhostUser import VirtioFeaturesFlags
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
 __all__ = [u"QemuUtils"]
@@ -253,9 +253,9 @@ class QemuUtils:
             gso = False
             csum = False
         else:
-            gso = Virtio.is_feature_enabled(
+            gso = VirtioFeaturesFlags.is_feature_enabled(
                 virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_GSO)
-            csum = Virtio.is_feature_enabled(
+            csum = VirtioFeaturesFlags.is_feature_enabled(
                 virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_CSUM)
         self._params.add_with_value(
             u"device", f"virtio-net-pci,netdev=vhost{self._nic_id},mac={mac},"
