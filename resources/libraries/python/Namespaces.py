@@ -13,6 +13,8 @@
 
 """Linux namespace utilities library."""
 
+from copy import deepcopy
+
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 
 
@@ -145,5 +147,6 @@ class Namespaces:
             Namespaces.delete_namespace(node, namespace)
             return
 
-        for namespace_name in Namespaces.__namespaces:
+        namespace_copy = deepcopy(Namespaces.__namespaces)
+        for namespace_name in namespace_copy:
             Namespaces.delete_namespace(node, namespace_name)
