@@ -12,9 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | Keywords related to vm lifecycle management
-...
 | Library | resources.libraries.python.InterfaceUtil
+|
+| Documentation | Keywords related to vm lifecycle management
 
 *** Keywords ***
 | Configure chains of NFs connected via vhost-user
@@ -78,6 +78,7 @@
 | | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ... | - vnf - Network function as a payload. Type: string
 | | ... | - pinning - Whether to pin QEMU VMs to specific cores
+| | ... | - validate - Validate interfaces are up. Type: boolean
 | |
 | | ... | *Example:*
 | |
@@ -88,7 +89,7 @@
 | | [Arguments] | ${node} | ${nf_chains}=${1} | ${nf_nodes}=${1}
 | | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${1024}
 | | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True} | ${vnf}=vpp
-| | ... | ${pinning}=${True}
+| | ... | ${pinning}=${True} | ${validate}=${True}
 | |
 | | Import Library | resources.libraries.python.QemuManager | ${nodes}
 | | ... | WITH NAME | vnf_manager
@@ -105,7 +106,8 @@
 | | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
 | | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
 | | Set Test Variable | ${cpu_alloc_str}
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
+| | Run Keyword If | ${validate}
+| | ... | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
 | Configure chains of NFs connected via passtrough
