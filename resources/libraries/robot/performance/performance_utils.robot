@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.PerfUtil
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.Iperf3
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
@@ -445,6 +446,233 @@
 | | END
 | | Return From Keyword | ${results}
 
+<<<<<<< HEAD
+=======
+| Traffic should pass with maximum rate on iPerf3
+| | [Documentation]
+| | ... | Send traffic at maximum rate on iPerf3.
+| |
+| | ... | *Arguments:*
+| | ... | - trial_duration - Duration of single trial [s].
+| | ... | Type: float
+| | ... | - trial_multiplicity - How many trials in this measurement.
+| | ... | Type: integer
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic;
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Traffic should pass with maximum rate on iPerf3 \| \${1} \| \
+| | ... | \| \${10.0} \| \${2} \|
+| |
+| | [Arguments] | ${trial_duration}=${trial_duration}
+| | ... | ${trial_multiplicity}=${trial_multiplicity}
+| | ... | ${traffic_directions}=${1}
+| |
+| | ${results}= | Send iPerf3 traffic at specified rate
+| | ... | ${trial_duration} | ${None} | ${None}
+| | ... | ${trial_multiplicity} | ${traffic_directions}
+| | Set Test Message | ${\n}iPerf3 trial results
+| | Set Test Message | in Gbits per second: ${results}
+| | ... | append=yes
+
+| Send iPerf3 traffic at specified rate
+| | [Documentation]
+| | ... | Perform a warmup, show runtime counters during it.
+| | ... | Then send traffic at specified rate, possibly multiple trials.
+| | ... | Show various DUT stats, optionally also packet trace.
+| | ... | Return list of measured receive rates.
+| |
+| | ... | *Arguments:*
+| | ... | - trial_duration - Duration of single trial [s].
+| | ... | Type: float
+| | ... | - rate - Target aggregate transmit rate [bps] / Bits per second
+| | ... | Type: float
+| | ... | - frame_size - L2 Frame Size [B].
+| | ... | Type: integer or string
+| | ... | - trial_multiplicity - How many trials in this measurement.
+| | ... | Type: integer
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: integer
+| | ... | - extended_debug - True to enable extended debug.
+| | ... | Type: boolean
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Send traffic at specified rate \| \${1.0} \| ${4000000.0} \
+| | ... | \| \${64} \| \${10} \| \${1} \| ${False} \|
+| |
+| | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
+| | ... | ${trial_multiplicity}=${trial_multiplicity}
+| | ... | ${traffic_directions}=${1} | ${extended_debug}=${extended_debug}
+| |
+| | Set Test Variable | ${extended_debug}
+| | Set Test Variable | ${rate}
+| | Set Test Variable | ${traffic_directions}
+| |
+#| | FOR | ${action} | IN | @{pre_stats}
+#| | | Run Keyword | Additional Statistics Action For ${action}
+#| | END
+| | Initialize iPerf Server
+| | ... | ${nodes['DUT1']}
+| | ... | if1=${DUT1_pf1}[0]
+| | ... | if2=${DUT1_pf2}[0]
+| | ... | interface=${iperf_server_interface}
+| | ... | bind=${iperf_server_bind}
+| | ... | bind_gw=${iperf_server_bind_gw}
+| | ... | bind_mask=${iperf_server_bind_mask}
+| | ... | namespace=${iperf_server_interface}_namespace
+| | ... | cpu_skip_cnt=${${CPU_CNT_MAIN}+${CPU_CNT_SYSTEM}+${cpu_count_int}}
+| | ... | cpu_cnt=${cpu_count_int}
+| | Set Linux Interface IP
+| | ... | ${nodes['DUT1']}
+| | ... | interface=${iperf_client_interface}
+| | ... | ip_addr=${iperf_client_bind}
+| | ... | prefix=${iperf_client_bind_mask}
+| | ... | namespace=${iperf_client_interface}_namespace
+| | Add Default Route To Namespace
+| | ... | ${nodes['DUT1']}
+| | ... | namespace=${iperf_client_interface}_namespace
+| | ... | default_route=${iperf_client_bind_gw}
+| | ${results} = | Create List
+| | FOR | ${i} | IN RANGE | ${trial_multiplicity}
+| | | ${rr} = | iPerf Client Start Remote Exec
+| | | ... | ${nodes['DUT1']}
+| | | ... | duration=${trial_duration}
+| | | ... | rate=${rate}
+| | | ... | frame_size=${frame_size}
+| | | ... | async_call=False
+| | | ... | warmup_time=0
+| | | ... | traffic_directions=${traffic_directions}
+| | | ... | namespace=${iperf_client_interface}_namespace
+| | | ... | udp=${iperf_client_udp}
+| | | ${conv} = | Convert To Number | ${rr['sum_received']['bits_per_second']}
+| | | ${conv} = | Evaluate | ${conv} / ${1000} / ${1000} / ${1000}
+| | | ${conv} = | Evaluate | "{:.3f}".format(${conv})
+| | | Append To List
+| | | ... | ${results} | ${conv}
+| | END
+| | FOR | ${action} | IN | @{post_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Return From Keyword | ${results}
+
+| Measure and show latency at specified rate
+| | [Documentation]
+| | ... | Send traffic at specified rate, single trial.
+| | ... | Extract latency information and append it to text message.
+| | ... | The rate argument is int, so should not include "pps".
+| | ... | If the given rate is too low, a safe value is used instead.
+| |
+| | ... | *Arguments:*
+| | ... | - message_prefix - Preface to test message addition. Type: string
+| | ... | - trial_duration - Duration of single trial [s]. Type: float
+| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
+| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
+| | ... | Type: float
+| | ... | - frame_size - L2 Frame Size [B]. Type: integer or string
+| | ... | - traffic_profile - Name of module defining traffic for measurements.
+| | ... | Type: string
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG; default value: 1. Type: integer
+| | ... | - safe_rate - To apply if rate is below this, as latency pps is fixed.
+| | ... | In pps. Type: integer.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Measure and show latency at specified rate \| Latency at 90% NDR \
+| | ... | \| \${1.0} \| ${10000000} \| \${64} \| 3-node-IPv4 \| \${2} \
+| | ... | \| \${0} \| \${1} \| ${9500} \|
+| |
+| | [Arguments] | ${message_prefix} | ${trial_duration} | ${rate}
+| | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}=${2}
+| | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${safe_rate}=${9001}
+| |
+| | ${real_rate} = | Evaluate | max(${rate}, ${safe_rate})
+| | # The following line is skipping some default arguments,
+| | # that is why subsequent arguments have to be named.
+| | Send traffic on tg | ${trial_duration} | ${real_rate} | ${frame_size}
+| | ... | ${traffic_profile} | warmup_time=${0}
+| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | ... | rx_port=${rx_port} | latency=${True}
+| | ${latency} = | Get Latency Int
+| | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
+
+| Clear and show runtime counters with running traffic
+| | [Documentation]
+| | ... | Start traffic at specified rate then clear runtime counters on all
+| | ... | DUTs. Wait for specified amount of time and capture runtime counters
+| | ... | on all DUTs. Finally stop traffic
+| |
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
+| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
+| | ... | Type: float
+| | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer or string
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG, default value: 1. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Clear and show runtime counters with running traffic \| \${10} \
+| | ... | \| ${4000000.0} \| \${64} \| 3-node-IPv4 \| \${2} \| \${0} \| \${1} \|
+| |
+| | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
+| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
+| |
+| | # Duration of -1 means we will stop traffic manually.
+| | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
+| | ... | warmup_time=${0} | async_call=${True} | latency=${False}
+| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | ... | rx_port=${rx_port}
+| | FOR | ${action} | IN | @{pre_run_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Sleep | ${duration}
+| | FOR | ${action} | IN | @{post_run_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Stop traffic on tg
+
+| Send ramp-up traffic
+| | [Documentation]
+| | ... | Start ramp-up traffic at specified rate for defined duration.
+| |
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate [pps] for sending packets in case of T-Rex stateless
+| | ... | mode or multiplier of profile CPS in case of T-Rex astf mode.
+| | ... | Type: float
+| | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer or string
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: integer
+| | ... | - tx_port - TX port of TG; default value: 0. Type: integer
+| | ... | - rx_port - RX port of TG, default value: 1. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Send ramp-up traffic \| \${10} \| ${400000.0} \| ${64} \
+| | ... | \| ${2} \| ${0} \| ${1} \|
+| |
+| | [Arguments] | ${duration}=${ramp_up_duration} | ${rate}=${ramp_up_rate}
+| | ... | ${frame_size}=${frame_size} | ${traffic_profile}=${traffic_profile}
+| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
+| |
+| | Send traffic on tg
+| | ... | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
+| | ... | warmup_time=${0} | traffic_directions=${traffic_directions}
+| | ... | tx_port=${tx_port} | rx_port=${rx_port} | latency=${False}
+
+>>>>>>> 58b60f6d5... GSO: TAP use case
 | Start Traffic on Background
 | | [Documentation]
 | | ... | Start traffic at specified rate then return control to Robot.
