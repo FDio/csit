@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.PerfUtil
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.Iperf3
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
@@ -439,6 +440,162 @@
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
 | | | Append To List | ${results} | ${result.approximated_receive_rate}
+| | END
+| | FOR | ${action} | IN | @{post_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Return From Keyword | ${results}
+
+| Clear and show runtime counters with running iperf3
+| | [Documentation]
+| | ... | Start traffic at specified rate then clear runtime counters on all
+| | ... | DUTs. Wait for specified amount of time and capture runtime counters
+| | ... | on all DUTs. Finally stop traffic.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Clear and show runtime counters with running traffic \|
+| |
+| | ${runtime_duration} = | Get Runtime Duration
+| | ${pids}= | iPerf Client Start Remote Exec
+| | | ... | ${nodes['${iperf_client_node}']}
+| | | ... | duration=${-1}
+| | | ... | rate=${None}
+| | | ... | frame_size=${None}
+| | | ... | async_call=True
+| | | ... | warmup_time=0
+| | | ... | traffic_directions=${1}
+| | | ... | namespace=${iperf_client_namespace}
+| | | ... | udp=${iperf_client_udp}
+| | | ... | host=${iperf_server_bind}
+| | | ... | bind=${iperf_client_bind}
+| | | ... | affinity=${iperf_client_affinity}
+| | FOR | ${action} | IN | @{pre_run_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | Sleep | ${runtime_duration}
+| | FOR | ${action} | IN | @{post_run_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | iPerf Client Stop Remote Exec | ${nodes['${iperf_client_node}']} | ${pids}
+
+| Traffic should pass with maximum rate on iPerf3
+| | [Documentation]
+| | ... | Send traffic at maximum rate on iPerf3.
+| |
+| | ... | *Arguments:*
+| | ... | - trial_duration - Duration of single trial [s].
+| | ... | Type: float
+| | ... | - trial_multiplicity - How many trials in this measurement.
+| | ... | Type: integer
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic;
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Traffic should pass with maximum rate on iPerf3 \| \${1} \| \
+| | ... | \| \${10.0} \| \${2} \|
+| |
+| | [Arguments] | ${trial_duration}=${trial_duration}
+| | ... | ${trial_multiplicity}=${trial_multiplicity}
+| | ... | ${traffic_directions}=${1}
+| |
+| | ${results}= | Send iPerf3 traffic at specified rate
+| | ... | ${trial_duration} | ${None} | ${None}
+| | ... | ${trial_multiplicity} | ${traffic_directions}
+| | Set Test Message | ${\n}iPerf3 trial results
+| | Set Test Message | in Gbits per second: ${results}
+| | ... | append=yes
+
+| Send iPerf3 traffic at specified rate
+| | [Documentation]
+| | ... | Perform a warmup, show runtime counters during it.
+| | ... | Then send traffic at specified rate, possibly multiple trials.
+| | ... | Show various DUT stats, optionally also packet trace.
+| | ... | Return list of measured receive rates.
+| |
+| | ... | *Arguments:*
+| | ... | - trial_duration - Duration of single trial [s].
+| | ... | Type: float
+| | ... | - rate - Target aggregate transmit rate [bps] / Bits per second
+| | ... | Type: float
+| | ... | - frame_size - L2 Frame Size [B].
+| | ... | Type: integer or string
+| | ... | - trial_multiplicity - How many trials in this measurement.
+| | ... | Type: integer
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: integer
+| | ... | - extended_debug - True to enable extended debug.
+| | ... | Type: boolean
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Send iPerf3 traffic at specified rate \| \${1.0} \| ${4000000.0} \
+| | ... | \| \${64} \| \${10} \| \${1} \| ${False} \|
+| |
+| | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
+| | ... | ${trial_multiplicity}=${trial_multiplicity}
+| | ... | ${traffic_directions}=${1} | ${extended_debug}=${extended_debug}
+| |
+| | Set Test Variable | ${extended_debug}
+| | Set Test Variable | ${rate}
+| | Set Test Variable | ${traffic_directions}
+| |
+| | ${smt_used}= | Is SMT enabled | ${nodes['${iperf_server_node}']['cpuinfo']}
+| | ${vm_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Get Library Instance | vnf_manager
+| | ${vth}= | Evaluate | (${thr_count_int} + 1)
+| | ${cpu_skip_cnt}= | Set Variable If | '${vm_status}' == 'PASS'
+| | ... | ${CPU_CNT_SYSTEM}
+| | ... | ${${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${cpu_count_int} + ${vth}}
+| |
+| | Initialize iPerf Server
+| | ... | ${nodes['${iperf_server_node}']}
+| | ... | pf_key=${iperf_server_pf_key}
+| | ... | interface=${iperf_server_interface}
+| | ... | bind=${iperf_server_bind}
+| | ... | bind_gw=${iperf_server_bind_gw}
+| | ... | bind_mask=${iperf_server_bind_mask}
+| | ... | namespace=${iperf_server_namespace}
+| | ... | cpu_skip_cnt=${cpu_skip_cnt}
+| | Run Keyword If | '${iperf_client_namespace}' is not '${None}'
+| | ... | Set Linux Interface IP
+| | ... | ${nodes['${iperf_client_node}']}
+| | ... | interface=${iperf_client_interface}
+| | ... | ip_addr=${iperf_client_bind}
+| | ... | prefix=${iperf_client_bind_mask}
+| | ... | namespace=${iperf_client_namespace}
+| | Run Keyword If | '${iperf_client_namespace}' is not '${None}'
+| | ... | Add Default Route To Namespace
+| | ... | ${nodes['${iperf_client_node}']}
+| | ... | namespace=${iperf_client_namespace}
+| | ... | default_route=${iperf_client_bind_gw}
+| | ${pre_stats}= | Create List
+| | ... | clear-show-runtime-with-iperf3
+| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
+| | FOR | ${action} | IN | @{pre_stats}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | ${results} = | Create List
+| | FOR | ${i} | IN RANGE | ${trial_multiplicity}
+| | | ${rr} = | iPerf Client Start Remote Exec
+| | | ... | ${nodes['${iperf_client_node}']}
+| | | ... | duration=${trial_duration}
+| | | ... | rate=${rate}
+| | | ... | frame_size=${frame_size}
+| | | ... | async_call=False
+| | | ... | warmup_time=0
+| | | ... | traffic_directions=${traffic_directions}
+| | | ... | namespace=${iperf_client_namespace}
+| | | ... | udp=${iperf_client_udp}
+| | | ... | host=${iperf_server_bind}
+| | | ... | bind=${iperf_client_bind}
+| | | ... | affinity=${iperf_client_affinity}
+| | | ${conv} = | Convert To Number | ${rr['sum_received']['bits_per_second']}
+| | | ${conv} = | Evaluate | ${conv} / ${1000} / ${1000} / ${1000}
+| | | ${conv} = | Evaluate | "{:.3f}".format(${conv})
+| | | Append To List
+| | | ... | ${results} | ${conv}
 | | END
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
