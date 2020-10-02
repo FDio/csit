@@ -153,17 +153,12 @@
     plot-vpp-throughput-lat-tsa-3n-hsw:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
-        - 4   # RC2 NDRPDR iter env5
-        - 5   # RC2 NDRPDR iter env5
-        - 6   # RC2 NDRPDR iter env5
-        - 7   # RC2 NDRPDR iter env5
-        - 8   # RC2 NDRPDR iter env5
-        - 20  # RC2 NDRPDR iter env5
+        - 21  # rls2009 NDRPDR iter env 5
+        - 22  # rls2009 NDRPDR iter env 5
 
     plot-vpp-hdrh-lat-3n-hsw:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
-        - 4   # RC2 NDRPDR iter env5
+        - 22  # rls2009 NDRPDR iter env 5
 
     plot-vpp-hoststack-3n-hsw:
       # TODO: Replace:
@@ -264,11 +259,9 @@
         - 14  # RC2 NDRPDR iter env5
 
     plot-vpp-soak-2n-skx:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-2n-skx:
-      csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 122 # Soak
-        - 123 # Soak
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 33  # rls2009 soak env 5
+        - 34  # rls2009 soak env 5
 
     plot-vpp-nfv-2n-skx-ndrpdr:
       # TODO: Replace:
@@ -292,19 +285,14 @@
         - 115 # nf-density-sel env 4
 
     plot-vpp-nfv-reconf-2n-skx:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-2n-skx:
-      csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 106 # Reconf env 4
-        - 107 # Reconf env 4
-        - 108 # Reconf env 4
-        - 109 # Reconf env 4
-        - 110 # Reconf env 4
-        - 111 # Reconf env 4
-        - 112 # Reconf env 4
-        - 118 # Reconf env 4
-        - 120 # Reconf env 4
-        - 121 # Reconf env 4
+      # TODO: Add:
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 27  # rls2009 reconf env 5
+        - 28  # rls2009 reconf env 5
+        - 29  # rls2009 reconf env 5
+        - 30  # rls2009 reconf env 5
+        - 31  # rls2009 reconf env 5
+        - 32  # rls2009 reconf env 5
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-report-iterative-2009-2n-skx:
@@ -361,26 +349,20 @@
         - 96  # MRR
 
     plot-vpp-nfv-reconf-2n-clx:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-2n-clx:
-      csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 81  # Reconf env 4
-        - 82  # Reconf env 4
-        - 83  # Reconf env 4
-        - 84  # Reconf env 4
-        - 85  # Reconf env 4
-        - 86  # Reconf env 4
-        - 87  # Reconf env 4
-        - 88  # Reconf env 4
-        - 89  # Reconf env 4
-        - 90  # Reconf env 4
+      # TODO: Add:
+      csit-vpp-perf-report-iterative-2009-2n-clx:
+        - 25  # rls2009 reconf env 5
+        - 27  # rls2009 reconf env 5
+        - 28  # rls2009 reconf env 5
+        - 29  # rls2009 reconf env 5
+        - 30  # rls2009 reconf env 5
+        - 30  # rls2009 reconf env 5
+        - 32  # rls2009 reconf env 5
 
     plot-vpp-soak-2n-clx:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-2n-clx:
-      csit-vpp-perf-report-iterative-2005-2n-clx:
-        - 101 # Soak
-        - 102 # Soak
+      # TODO: Add:
+      csit-vpp-perf-report-iterative-2009-2n-clx:
+        - 33  # rls2009 soak env 5
 
     plot-dpdk-throughput-latency-2n-clx:
       csit-dpdk-perf-report-iterative-2009-2n-clx:
@@ -522,10 +504,8 @@
         - 49  # MRR sel env 4
 
     vpp-nic-comparison-2n-skx-mrr:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-2n-skx:
-      csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 99  # MRR sel env 4
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 26  # rls2009 MRR iter env 5
 
     # Results
 
@@ -580,10 +560,8 @@
         - 6   # perf-full-2n-dnv-l2_II
 
     vpp-mrr-results-3n-hsw:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-3n-hsw:
-      csit-vpp-perf-report-iterative-2005-3n-hsw:
-        - 30  # MRR env 4
+      csit-vpp-perf-report-iterative-2009-3n-hsw:
+        - 23  # rls2009 MRR iter env 5
 
     vpp-mrr-results-3n-skx:
       # TODO: Replace:
@@ -592,10 +570,8 @@
         - 49  # MRR sel env 4
 
     vpp-mrr-results-2n-skx:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-2n-skx:
-      csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 99  # MRR sel env 4
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 26  # rls2009 MRR iter env 5
 
     vpp-mrr-results-2n-clx:
       # TODO: Replace:
@@ -624,7 +600,7 @@
     vpp-device-results-ubuntu:
       # TODO: Replace:
       csit-vpp-device-2009-ubuntu1804-1n-skx:
-        - 89  # RC2 env 5
+        - 131 # rls2009 env 5
 
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-report-iterative-2009-3n-hsw:
@@ -699,12 +675,8 @@
     vpp-performance-changes-3n-hsw-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
-        - 4   # RC2 NDRPDR iter env5
-        - 5   # RC2 NDRPDR iter env5
-        - 6   # RC2 NDRPDR iter env5
-        - 7   # RC2 NDRPDR iter env5
-        - 8   # RC2 NDRPDR iter env5
-        - 20  # RC2 NDRPDR iter env5
+        - 21  # rls2009 NDRPDR iter env 5
+        - 22  # rls2009 NDRPDR iter env 5
 
     vpp-performance-changes-3n-skx-h1:
       csit-vpp-perf-report-iterative-2005-3n-skx:
@@ -728,6 +700,8 @@
     vpp-performance-changes-3n-skx-ref-env5:
       csit-vpp-perf-report-iterative-2009-3n-skx:
         - 13  # rls2005 NDRPDR iter env 5
+        - 18  # rls2005 NDRPDR iter env 5
+        - 19  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-3n-skx-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-skx:
@@ -767,6 +741,8 @@
         - 21  # rls2005 NDRPDR iter env 5
         - 22  # rls2005 NDRPDR iter env 5
         - 23  # rls2005 NDRPDR iter env 5
+        - 24  # rls2005 NDRPDR iter env 5
+        - 25  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-2n-skx-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -807,6 +783,7 @@
         - 19  # rls2005 NDRPDR iter env 5
         - 20  # rls2005 NDRPDR iter env 5
         - 21  # rls2005 NDRPDR iter env 5
+        - 22  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-2n-clx-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -915,6 +892,7 @@
       csit-vpp-perf-report-iterative-2009-3n-tsh:
         - 8   # rls2005 NDRPDR iter env 5
         - 11  # rls2005 NDRPDR iter env 5
+        - 12  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-3n-tsh-cmp:
       # TODO: Replace:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
@@ -1004,10 +982,8 @@
       csit-vpp-perf-report-iterative-2009-3n-hsw:
         - 18  # rls2005 MRR iter env 5
     vpp-performance-changes-3n-hsw-mrr-cmp:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-3n-hsw:
-      csit-vpp-perf-report-iterative-2005-3n-hsw:
-        - 30  # MRR env 4
+      csit-vpp-perf-report-iterative-2009-3n-hsw:
+        - 23  # rls2009 MRR iter env 5
 
     vpp-performance-changes-3n-skx-mrr-h1:
       csit-vpp-perf-verify-2001-3n-skx:
@@ -1036,10 +1012,8 @@
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 20  # rls2005 MRR iter env 5
     vpp-performance-changes-2n-skx-mrr-cmp:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-2n-skx:
-      csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 99  # MRR sel env 4
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 26  # rls2009 MRR iter env 5
 
     vpp-performance-changes-2n-clx-mrr-h1:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -1399,12 +1373,8 @@
     vpp-compare-testbeds-ref:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
-        - 4   # RC2 NDRPDR iter env5
-        - 5   # RC2 NDRPDR iter env5
-        - 6   # RC2 NDRPDR iter env5
-        - 7   # RC2 NDRPDR iter env5
-        - 8   # RC2 NDRPDR iter env5
-        - 20  # RC2 NDRPDR iter env5
+        - 21  # rls2009 NDRPDR iter env 5
+        - 22  # rls2009 NDRPDR iter env 5
     vpp-compare-testbeds-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-skx:
@@ -1434,12 +1404,8 @@
     vpp-compare-testbeds-hsw-clx-ref:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
-        - 4   # RC2 NDRPDR iter env5
-        - 5   # RC2 NDRPDR iter env5
-        - 6   # RC2 NDRPDR iter env5
-        - 7   # RC2 NDRPDR iter env5
-        - 8   # RC2 NDRPDR iter env5
-        - 20  # RC2 NDRPDR iter env5
+        - 21  # rls2009 NDRPDR iter env 5
+        - 22  # rls2009 NDRPDR iter env 5
     vpp-compare-testbeds-hsw-clx-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -1450,10 +1416,8 @@
         - 14  # RC2 NDRPDR iter env5
 
     vpp-compare-testbeds-mrr-ref:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-3n-hsw:
-      csit-vpp-perf-report-iterative-2005-3n-hsw:
-        - 30  # MRR env 4
+      csit-vpp-perf-report-iterative-2009-3n-hsw:
+        - 23  # rls2009 MRR iter env 5
     vpp-compare-testbeds-mrr-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2009-3n-skx:
@@ -1461,10 +1425,8 @@
         - 49  # MRR sel env 4
 
     vpp-compare-testbeds-mrr-skx-clx-ref:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-2n-skx:
-      csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 99  # MRR sel env 4
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 26  # rls2009 MRR iter env 5
     vpp-compare-testbeds-mrr-skx-clx-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -1472,10 +1434,8 @@
         - 72  # MRR env 4
 
     vpp-compare-testbeds-mrr-hsw-clx-ref:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-3n-hsw:
-      csit-vpp-perf-report-iterative-2005-3n-hsw:
-        - 30  # MRR env 4
+      csit-vpp-perf-report-iterative-2009-3n-hsw:
+        - 23  # rls2009 MRR iter env 5
     vpp-compare-testbeds-mrr-hsw-clx-cmp:
       # TODO: Replace:
       # csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -1557,10 +1517,8 @@
       csit-vpp-perf-report-iterative-2005-3n-skx:
         - 49  # MRR sel env 4
     vpp-compare-topologies-mrr-cmp:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-2n-skx:
-      csit-vpp-perf-report-iterative-2005-2n-skx:
-        - 99  # MRR sel env 4
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 26  # rls2009 MRR iter env 5
 
     dpdk-compare-topologies-ref:
       csit-dpdk-perf-report-iterative-2009-3n-skx:
@@ -2160,12 +2118,6 @@
       - 13  # hoststack
     # TODO: Add:
     csit-vpp-perf-report-iterative-2009-3n-hsw:
-      - 4   # RC2 NDRPDR iter env5
-      - 5   # RC2 NDRPDR iter env5
-      - 6   # RC2 NDRPDR iter env5
-      - 7   # RC2 NDRPDR iter env5
-      - 8   # RC2 NDRPDR iter env5
-      - 20  # RC2 NDRPDR iter env5
       - 18  # rls2005 MRR iter env 5
       - 9   # rls2005 NDRPDR iter env 5
       - 10  # rls2005 NDRPDR iter env 5
@@ -2177,13 +2129,12 @@
       - 16  # rls2005 NDRPDR iter env 5
       - 17  # rls2005 NDRPDR iter env 5
       - 19  # rls2005 NDRPDR iter env 5
+      - 23  # rls2009 MRR iter env 5
+      - 21  # rls2009 NDRPDR iter env 5
+      - 22  # rls2009 NDRPDR iter env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-3n-hsw:
       - 2   # RC2 env5 3n-hsw-ip4-00
-
-    # TODO: Add for hoststack:
-    # csit-vpp-perf-report-iterative-2009-3n-hsw: OR
-    # csit-vpp-perf-verify-2009-3n-hsw:
 
     csit-vpp-perf-verify-2001-3n-skx:
       - 50  # MRR sel
@@ -2219,6 +2170,8 @@
       - 16  # RC2 NDRPDR iter env5
       - 17  # rls2005 MRR iter env 5
       - 13  # rls2005 NDRPDR iter env 5
+      - 18  # rls2005 NDRPDR iter env 5
+      - 19  # rls2005 NDRPDR iter env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-3n-skx:
       - 1   # RC2 env5 3n-skx-ip4-00
@@ -2244,16 +2197,6 @@
       - 104 # NDRPDR sel 2001.0-4
       - 105 # NDRPDR sel 2001.0-4
       - 99  # MRR sel env 4
-      - 106 # Reconf env 4
-      - 107 # Reconf env 4
-      - 108 # Reconf env 4
-      - 109 # Reconf env 4
-      - 110 # Reconf env 4
-      - 111 # Reconf env 4
-      - 112 # Reconf env 4
-      - 118 # Reconf env 4
-      - 120 # Reconf env 4
-      - 121 # Reconf env 4
       - 122 # Soak
       - 123 # Soak
       - 113 # nf-density-sel env 4
@@ -2283,6 +2226,17 @@
       - 21  # rls2005 NDRPDR iter env 5
       - 22  # rls2005 NDRPDR iter env 5
       - 23  # rls2005 NDRPDR iter env 5
+      - 24  # rls2005 NDRPDR iter env 5
+      - 25  # rls2005 NDRPDR iter env 5
+      - 26  # rls2009 MRR iter env 5
+      - 27  # rls2009 reconf env 5
+      - 28  # rls2009 reconf env 5
+      - 29  # rls2009 reconf env 5
+      - 30  # rls2009 reconf env 5
+      - 31  # rls2009 reconf env 5
+      - 32  # rls2009 reconf env 5
+      - 33  # rls2009 soak env 5
+      - 34  # rls2009 soak env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-skx:
       - 7   # RC2 env5 2n-skx-ip4-00
@@ -2309,18 +2263,6 @@
       - 79  # NDRPDR sel 2001.0-4
       - 80  # NDRPDR sel 2001.0-4
       - 72  # MRR env 4
-      - 81  # Reconf env 4
-      - 82  # Reconf env 4
-      - 83  # Reconf env 4
-      - 84  # Reconf env 4
-      - 85  # Reconf env 4
-      - 86  # Reconf env 4
-      - 87  # Reconf env 4
-      - 88  # Reconf env 4
-      - 89  # Reconf env 4
-      - 90  # Reconf env 4
-      - 101 # Soak
-      - 102 # Soak
       - 91  # nfv-density-00 env 4
       - 92  # nfv-density-00 env 4
       - 93  # nfv-density-00 env 4
@@ -2347,6 +2289,15 @@
       - 19  # rls2005 NDRPDR iter env 5
       - 20  # rls2005 NDRPDR iter env 5
       - 21  # rls2005 NDRPDR iter env 5
+      - 22  # rls2005 NDRPDR iter env 5
+      - 25  # rls2009 reconf env 5
+      - 27  # rls2009 reconf env 5
+      - 28  # rls2009 reconf env 5
+      - 29  # rls2009 reconf env 5
+      - 30  # rls2009 reconf env 5
+      - 30  # rls2009 reconf env 5
+      - 32  # rls2009 reconf env 5
+      - 33  # rls2009 soak env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-clx:
       - 1   # RC2 env5 2n-clx-ip4-00
@@ -2379,6 +2330,7 @@
       - 7   # RC2 NDRPDR iter env5
       - 8   # rls2005 NDRPDR iter env 5
       - 11  # rls2005 NDRPDR iter env 5
+      - 12  # rls2005 NDRPDR iter env 5
     csit-vpp-perf-report-coverage-2009-3n-tsh:
       - 1   # 3n-tsh-ip4-00
 
@@ -2710,7 +2662,7 @@
 
     # TODO: Add:
     csit-vpp-device-2009-ubuntu1804-1n-skx:
-      - 89  # RC2 env 5
+      - 131 # rls2009 env 5
 
 - type: "output"
   output: "report"
