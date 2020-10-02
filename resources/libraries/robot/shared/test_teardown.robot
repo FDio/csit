@@ -104,6 +104,13 @@
 | | | ... | Show Geneve Tunnel Data | ${nodes['${dut}']}
 | | END
 
+| Additional Test Tear Down Action For iPerf3
+| | [Documentation]
+| | ... | Additional teardown for test which uses iPerf3 server.
+| |
+| | Run Keyword And Ignore Error
+| | ... | Teardown iPerf | ${nodes['${iperf_server_node}']}
+
 | Additional Test Tear Down Action For linux_bridge
 | | [Documentation]
 | | ... | Additional teardown for tests which uses linux_bridge.
