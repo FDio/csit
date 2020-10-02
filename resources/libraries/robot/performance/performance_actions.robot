@@ -35,6 +35,15 @@
 | |
 | | Clear and show runtime counters with running traffic
 
+| Additional Statistics Action For clear-show-runtime-with-iperf3
+| | [Documentation]
+| | ... | Additional Statistics Action for clear and show runtime counters with
+| | ... | iPerf3 running traffic.
+| |
+| | ... | See documentation of the called keyword for required test variables.
+| |
+| | Clear and show runtime counters with running iperf3
+
 | Additional Statistics Action For noop
 | | [Documentation]
 | | ... | Additional Statistics Action for no operation.
