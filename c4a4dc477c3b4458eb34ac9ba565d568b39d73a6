@@ -22,6 +22,30 @@
       "revId": "c4a4dc477c3b4458eb34ac9ba565d568b39d73a6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "034a5562_e3983c2a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 124
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-02T15:30:41Z",
+      "side": 1,
+      "message": "I had a discussion about that with Maciek today. Currently I think ramp-up for ASTF profile is not guaranteed to work, as we are not sure TRex will chose the same client L4 source ports. Will update when I have an ASTF suite with ramp-up.",
+      "parentUuid": "fc84b0ad_076f6438",
+      "range": {
+        "startLine": 547,
+        "startChar": 41,
+        "endLine": 548,
+        "endChar": 48
+      },
+      "revId": "c4a4dc477c3b4458eb34ac9ba565d568b39d73a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
