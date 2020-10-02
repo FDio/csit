@@ -46,6 +46,30 @@
       "revId": "9d171a4152e7e9195110be0cca559bd94b584929",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a28905c2_fab875bb",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-10-02T09:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e286ab8_632b0483",
+      "range": {
+        "startLine": 1439,
+        "startChar": 20,
+        "endLine": 1439,
+        "endChar": 23
+      },
+      "revId": "9d171a4152e7e9195110be0cca559bd94b584929",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
