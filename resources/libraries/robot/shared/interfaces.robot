@@ -109,6 +109,12 @@
 | |
 | | Run Keyword | Pre-initialize layer ${driver} on all DUTs
 
+| Pre-initialize layer tap on all DUTs
+| | [Documentation]
+| | ... | Pre-initialize tap driver. Currently no operation.
+| |
+| | No operation
+
 | Pre-initialize layer vfio-pci on all DUTs
 | | [Documentation]
 | | ... | Pre-initialize vfio-pci driver by adding related sections to startup
@@ -235,6 +241,39 @@
 | | | ... | ${${dut}_vf${pf}_vlan} | ${_vlan}
 | | | Run Keyword | Initialize layer ${driver} on node | ${dut} | ${pf}
 | | END
+
+| Initialize layer tap on node
+| | [Documentation]
+| | ... | Initialize tap interfaces on DUT.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node.
+| | ... | Type: string
+| | ... | - pf - TAP ID (logical port).
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer tap on node \| DUT1 \| 0 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
+| |
+| | ${tap_feature_mask}= | Create Tap feature mask | gso=${enable_gso}
+| | ${_tap}=
+| | ... | And Add Tap Interface | ${nodes['${dut}']} | tap${${pf}-1}
+| | ... | tap_feature_mask=${tap_feature_mask}
+| | ${_mac}=
+| | ... | Get Interface MAC | ${nodes['${dut}']} | tap${pf}
+| | ${_tap}= | Create List | ${_tap}
+| | ${_mac}= | Create List | ${_mac}
+| | And Create Namespace
+| | ... | ${nodes['${dut}']} | tap${${pf}-1}_namespace
+| | And Attach Interface To Namespace
+| | ... | ${nodes['${dut}']} | tap${${pf}-1}_namespace | tap${${pf}-1}
+| | Set Test Variable
+| | ... | ${${dut}_vf${pf}} | ${_tap}
+| | Set Test Variable
+| | ... | ${${dut}_vf${pf}_mac} | ${_mac}
 
 | Initialize layer vfio-pci on node
 | | [Documentation]

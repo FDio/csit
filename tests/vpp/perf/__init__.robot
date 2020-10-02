@@ -22,7 +22,7 @@
 | Suite Setup | Run Keywords | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
-| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
+#| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
 | ... | AND | Verify Vpp on All Duts | ${nodes}
 | ... | AND | Verify UIO Driver on all DUTs | ${nodes}
 | ... | AND | Show Vpp Version on All Duts | ${nodes}
@@ -30,7 +30,7 @@
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True}
 |
-| Suite Teardown | Cleanup Framework | ${nodes}
+#| Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup Global Variables
