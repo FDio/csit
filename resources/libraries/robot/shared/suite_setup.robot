@@ -22,6 +22,7 @@
 | Variables | resources/libraries/python/Constants.py
 |
 | Documentation | Suite setup keywords.
+
 *** Keywords ***
 | Create suite topology variables
 | | [Documentation]
@@ -187,6 +188,15 @@
 | | ... | ${dut1} | ${DUT1_${int}1}[0]
 | | ... | ${dut${duts_count}} | ${DUT${duts_count}_${int}2}[0]
 | | ... | ${osi_layer}
+
+| Additional Suite Setup Action For performance-iperf3
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance iperf3 measurement.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | ${nic_vfs} > 0
+| | | ... | Additional Suite Setup Action For performance vf | ${dut}
+| | END
 
 | Additional Suite Setup Action For ipsechw
 | | [Documentation]

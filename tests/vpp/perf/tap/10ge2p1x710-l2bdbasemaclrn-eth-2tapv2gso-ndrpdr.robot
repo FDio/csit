@@ -14,31 +14,28 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 3_NODE_DOUBLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST | 1VM
-| ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
-| ... | LBOND_2L | NF_TESTPMD | DRV_VFIO_PCI
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | IP4FWD | BASE | IP4BASE | DRV_TAPV2
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | GSO
-| ... | 2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm
+| ... | l2bdbasemaclrn-2tapv2gso
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Setup suite topology interfaces | performance-iperf3
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance | vhost
+| Test Teardown | Tear down test | performance
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput L2XC test cases with vhost and vpp
+| Documentation | *RFC2544: Pkt throughput L2BD test cases with vhost and vpp
 | ... | link bonding*
 |
-| ... | *[Top] Network Topologies:* TG-DUT1=DUT2-TG 3-node circular topology
-| ... | with single links between TG and DUT nodes and double link between DUT
-| ... | nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect. 802.1q
+| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
+| ... | with single links between nodes.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP for L2 switching of IPv4. 802.1q
 | ... | tagging is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with VPP
 | ... | link bonding (mode LACP, transmit policy l34) on link between DUT1 and
-| ... | DUT2 and L2 cross- connect. Qemu VNFs are \
+| ... | DUT2 and L2 bridge-domain with MAC learning enabled. Qemu VNFs are \
 | ... | connected to VPP via vhost-user interfaces. Guest is running testpmd \
 | ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1/DUT2 is \
 | ... | tested with ${nic_name}.
@@ -55,34 +52,24 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | lacp_plugin.so
+| @{plugins_to_enable}= | @{EMPTY}
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
-| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | tap
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
-| ${nic_pfs}= | 4
+| ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
-| ${osi_layer}= | L2
-| ${overhead}= | ${4}
-| ${subid}= | 10
-| ${tag_rewrite}= | pop-1
-| ${nf_dtcr}= | ${1}
-| ${nf_dtc}= | ${1}
-| ${nf_chains}= | ${1}
-| ${nf_nodes}= | ${1}
+| ${osi_layer}= | L3
+| ${overhead}= | ${0}
 | ${enable_gso}= | ${True}
-# Link bonding config
-| ${bond_mode}= | lacp
-| ${lb_mode}= | l34
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip4-ip4src254
+| ${traffic_profile}= | iperf3-ethip4udp
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config.
-| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | [Cfg] On DUT1 configure two TAPv2 interfaces with IPv4 addresses.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | |
 | | ... | *Arguments:*
@@ -94,68 +81,60 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Set Test Variable | ${vlan_strip_off} | ${TRUE}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
-| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
 | | When Initialize layer driver | ${nic_driver}
-| | And Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
-| | ... | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
-| | And Configure chains of NFs connected via vhost-user
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
-| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=testpmd_io
-| | ... | virtio_feature_mask=${virtio_feature_mask}
-| | Then Find NDR and PDR intervals using optimized search
+| | And Initialize layer interface
+| | And Initialize IPv4 forwarding in circular topology
 
 *** Test Cases ***
-| 64B-1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | 64B | 1C
+| 64B-1c-l2bdbasemaclrn-2tapv2gso-ndrpdr
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| 64B-2c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| 64B-4c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| 1518B-1c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| 1518B-2c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| 1518B-4c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| 9000B-1c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| 9000B-2c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| 9000B-4c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| IMIX-1c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| IMIX-2c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
+| IMIX-4c-l2bdbasemaclrn-2tapv2gso-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
