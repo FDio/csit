@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f38c8a4f_3f0df91f",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-10-02T08:36:07Z",
+      "side": 1,
+      "message": "I would leave the t33t34 to mark that server can be shared. I do not see a reason to change the hostname now. We might onboard replacement in future for new platforms",
+      "range": {
+        "startLine": 1439,
+        "startChar": 20,
+        "endLine": 1439,
+        "endChar": 23
+      },
+      "revId": "9d171a4152e7e9195110be0cca559bd94b584929",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
