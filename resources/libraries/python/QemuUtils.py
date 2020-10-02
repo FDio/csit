@@ -27,7 +27,7 @@ from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.VhostUser import Virtio, VirtioFeaturesFlags
+from resources.libraries.python.VhostUser import VirtioFeaturesFlags
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
 __all__ = [u"QemuUtils"]
