@@ -52,6 +52,8 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
+# Qemu settings:
+| ${enable_gso}= | ${False}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
 | ${nf_dtc} | ${1}
