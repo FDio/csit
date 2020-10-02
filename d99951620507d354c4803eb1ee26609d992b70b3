@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a47a7805_0077b284",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-02T11:07:05Z",
+      "side": 1,
+      "message": "If this were a robot keyword, you could access test variables (instead of listing arguments and return value).\nBut we can postpone such improvements for a more general \"hide variables from Local Template code\" task.\n\nSpeaking of tasks, I have opened CSIT-1758 and CSIT-1759.",
+      "range": {
+        "startLine": 126,
+        "startChar": 38,
+        "endLine": 126,
+        "endChar": 73
+      },
+      "revId": "d99951620507d354c4803eb1ee26609d992b70b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
