@@ -15,25 +15,27 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2XCFWD | BASE | VHOST | 1VM | VHOST_1024
-| ... | NF_TESTPMD | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | GSO
-| ... | eth-l2xcbase-eth-2vhostvr1024gso-1vm
+| ... | NIC_Intel-X710 | IP4FWD | BASE | IP4BASE | DRV_TAPV2
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | GSO_FALSE
+| ... | l2bdbasemaclrn-2tapv2gso
 |
-| Suite Setup | Setup suite topology interfaces | performance
-| Suite Teardown | Tear down suite | performance
-| Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance | vhost
+| Suite Setup | Setup suite topology interfaces
+| Suite Teardown | Tear down suite
+| Test Setup | Setup test
+| Test Teardown | Tear down test
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput L2XC test cases with vhost*
+| Documentation | *RFC2544: Pkt throughput L2BD test cases with vhost and vpp
+| ... | link bonding*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
-| ... | connect. Qemu VNFs are \
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP for L2 switching of IPv4. 802.1q
+| ... | tagging is applied on link between DUT1 and DUT2.
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with VPP
+| ... | link bonding (mode LACP, transmit policy l34) on link between DUT1 and
+| ... | DUT2 and L2 bridge-domain with MAC learning enabled. Qemu VNFs are \
 | ... | connected to VPP via vhost-user interfaces. Guest is running testpmd \
 | ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1/DUT2 is \
 | ... | tested with ${nic_name}.
@@ -50,29 +52,25 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so
+| @{plugins_to_enable}= | @{EMPTY}
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
-| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | tap
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
-| ${osi_layer}= | L2
+| ${osi_layer}= | L3
 | ${overhead}= | ${0}
-| ${nf_dtcr}= | ${1}
-| ${nf_dtc}= | ${1}
-| ${nf_chains}= | ${1}
-| ${nf_nodes}= | ${1}
 | ${enable_gso}= | ${True}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip4-ip4src254
+| ${traffic_profile}= | iperf3-ethip4udp
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config.
-| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | [Cfg] On DUT1 configure two TAPv2 interfaces with IPv4 addresses
+| | ... | and IP4 routing.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | |
 | | ... | *Arguments:*
@@ -89,62 +87,11 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
-| | ${virtio_feature_mask}= | Create Virtio feature mask | gso=${enable_gso}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize L2 xconnect with Vhost-User | nf_nodes=${nf_nodes}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
-| | And Configure chains of NFs connected via vhost-user
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
-| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=testpmd_io
-| | ... | virtio_feature_mask=${virtio_feature_mask}
-| | Then Find NDR and PDR intervals using optimized search
+| | And Initialize IPv4 forwarding in circular topology
 
 *** Test Cases ***
-| 64B-1c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | 64B | 1C
+| 1460B-1c-ethip4-ip4base-2tap-gso-ndrpdr
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
-
-| 64B-2c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | 64B | 2C
-| | frame_size=${64} | phy_cores=${2}
-
-| 64B-4c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | 64B | 4C
-| | frame_size=${64} | phy_cores=${4}
-
-| 1518B-1c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | 1518B | 1C
-| | frame_size=${1518} | phy_cores=${1}
-
-| 1518B-2c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | 1518B | 2C
-| | frame_size=${1518} | phy_cores=${2}
-
-| 1518B-4c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | 1518B | 4C
-| | frame_size=${1518} | phy_cores=${4}
-
-| 9000B-1c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | 9000B | 1C
-| | frame_size=${9000} | phy_cores=${1}
-
-| 9000B-2c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | 9000B | 2C
-| | frame_size=${9000} | phy_cores=${2}
-
-| 9000B-4c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | 9000B | 4C
-| | frame_size=${9000} | phy_cores=${4}
-
-| IMIX-1c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | IMIX | 1C
-| | frame_size=IMIX_v4_1 | phy_cores=${1}
-
-| IMIX-2c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | IMIX | 2C
-| | frame_size=IMIX_v4_1 | phy_cores=${2}
-
-| IMIX-4c-eth-l2xcbase-eth-2vhostvr1024gso-1vm-ndrpdr
-| | [Tags] | IMIX | 4C
-| | frame_size=IMIX_v4_1 | phy_cores=${4}
