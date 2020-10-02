@@ -392,3 +392,57 @@ class CpuUtils:
             smt_used=False)
 
         return master_thread_id[0], latency_thread_id[0], cpu_node, threads
+
+    @staticmethod
+    def get_affinity_iperf(
+            node, pf_key, cpu_skip_cnt=0, cpu_cnt=1):
+        """Get affinity for iPerf3. Result will be used to pin iPerf3 threads.
+
+        :param node: Topology node.
+        :param pf_key: Topology interface.
+        :param cpu_skip_cnt: Amount of CPU cores to skip.
+        :param cpu_cnt: CPU threads count.
+        :type node: dict
+        :type pf_key: str
+        :type cpu_skip_cnt: int
+        :type cpu_cnt: int
+        :returns: List of CPUs allocated to iPerf3.
+        :rtype: str
+        """
+        if pf_key:
+            cpu_node = Topology.get_interface_numa_node(node, pf_key)
+        else:
+            cpu_node = 0
+
+        return CpuUtils.cpu_range_per_node_str(
+            node, cpu_node, skip_cnt=cpu_skip_cnt, cpu_cnt=cpu_cnt,
+            smt_used=False)
+
+    @staticmethod
+    def get_affinity_vhost(
+            node, pf_key, skip_cnt=0, cpu_cnt=1):
+        """Get affinity for vhost. Result will be used to pin vhost threads.
+
+        :param node: Topology node.
+        :param pf_key: Topology interface.
+        :param skip_cnt: Amount of CPU cores to skip.
+        :param cpu_cnt: CPU threads count.
+        :type node: dict
+        :type pf_key: str
+        :type skip_cnt: int
+        :type cpu_cnt: int
+        :returns: List of CPUs allocated to vhost process.
+        :rtype: str
+        """
+        if pf_key:
+            cpu_node = Topology.get_interface_numa_node(node, pf_key)
+        else:
+            cpu_node = 0
+
+        smt_used = CpuUtils.is_smt_enabled(node[u"cpuinfo"])
+        if smt_used:
+            cpu_cnt = cpu_cnt // CpuUtils.NR_OF_THREADS
+
+        return CpuUtils.cpu_slice_of_list_per_node(
+            node, cpu_node=cpu_node, skip_cnt=skip_cnt, cpu_cnt=cpu_cnt,
+            smt_used=smt_used)
