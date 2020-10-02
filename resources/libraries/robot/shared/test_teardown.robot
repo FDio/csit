@@ -183,3 +183,10 @@
 | | ... | Show SR Steering Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Show SR LocalSIDs on all DUTs | ${nodes}
+
+| Additional Test Tear Down Action For iPerf3
+| | [Documentation]
+| | ... | Additional teardown for test which uses iPerf3 server.
+| |
+| | Run Keyword And Ignore Error
+| | ... | Teardown iPerf | ${nodes['${iperf_server_node}']}
