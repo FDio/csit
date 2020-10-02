@@ -22,6 +22,7 @@
 | Variables | resources/libraries/python/Constants.py
 |
 | Documentation | Suite setup keywords.
+
 *** Keywords ***
 | Create suite topology variables
 | | [Documentation]
@@ -105,7 +106,7 @@
 | | ${nic_model_list}= | Create list | ${nic_name}
 | | &{info}= | Compute Circular Topology
 | | ... | ${nodes} | filter_list=${nic_model_list} | nic_pfs=${nic_pfs}
-| | ... | always_same_link=${True} | topo_has_tg=${False}
+| | ... | always_same_link=${False} | topo_has_tg=${False}
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
 
