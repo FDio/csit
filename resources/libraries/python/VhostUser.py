@@ -17,9 +17,11 @@ from enum import IntEnum
 
 from robot.api import logger
 
+from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 class VirtioFeaturesFlags(IntEnum):
@@ -150,6 +152,26 @@ class VhostUser:
 
         logger.debug(f"Vhost-user details:\n{details}")
         return details
+
+    @staticmethod
+    def vhost_user_affinity(node, pf_key, skip_cnt=0):
+        """Set vhost-user affinity for the given node.
+
+        :param node: Topology node.
+        :param pf_key: Interface key to compute numa location.
+        :param skip_cnt: Skip first "skip_cnt" CPUs.
+        :type node: dict
+        :type pf_key: str
+        :type skip_cnt: int
+        """
+        pids, _ = exec_cmd_no_error(
+            node, f"grep -h vhost /proc/*/comm | uniq | xargs pidof")
+
+        affinity = CpuUtils.get_affinity_vhost(
+            node, pf_key, skip_cnt=skip_cnt, cpu_cnt=len(pids.split(" ")))
+
+        for cpu, pid in zip(affinity, pids.split(" ")):
+            exec_cmd_no_error(node, f"taskset -pc {cpu} {pid}", sudo=True)
 
 
 class VirtioFeatureMask:

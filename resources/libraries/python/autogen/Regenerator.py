@@ -177,6 +177,20 @@ def add_tcp_testcases(testcase, file_out, tc_kwargs_list):
         file_out.write(testcase.generate(**kwargs))
 
 
+def add_iperf3_testcases(testcase, file_out, tc_kwargs_list):
+    """Add iperf3 testcases to file.
+
+    :param testcase: Testcase class.
+    :param file_out: File to write testcases to.
+    :param tc_kwargs_list: Key-value pairs used to construct testcases.
+    :type testcase: Testcase
+    :type file_out: file
+    :type tc_kwargs_list: dict
+    """
+    for kwargs in tc_kwargs_list:
+        file_out.write(testcase.generate(**kwargs))
+
+
 def write_default_files(in_filename, in_prolog, kwargs_list):
     """Using given filename and prolog, write all generated suites.
 
@@ -434,6 +448,34 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
             add_tcp_testcases(testcase, file_out, kwargs_list)
 
 
+def write_iperf3_files(in_filename, in_prolog, kwargs_list):
+    """Using given filename and prolog, write all generated iperf3 suites.
+
+    :param in_filename: Template filename to derive real filenames from.
+    :param in_prolog: Template content to derive real content from.
+    :param kwargs_list: List of kwargs for add_default_testcase.
+    :type in_filename: str
+    :type in_prolog: str
+    :type kwargs_list: list of dict
+    """
+    _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
+    testcase = Testcase.iperf3(suite_id)
+    out_filename = replace_defensively(
+        in_filename, u"10ge2p1x710",
+        Constants.NIC_NAME_TO_CODE[u"Intel-X710"], 1,
+        u"File name should contain NIC code once.", in_filename
+    )
+    out_prolog = replace_defensively(
+        in_prolog, u"Intel-X710", u"Intel-X710", 2,
+        u"NIC name should appear twice (tag and variable).",
+        in_filename
+    )
+    check_suite_tag(suite_tag, out_prolog)
+    with open(out_filename, u"wt") as file_out:
+        file_out.write(out_prolog)
+        add_iperf3_testcases(testcase, file_out, kwargs_list)
+
+
 class Regenerator:
     """Class containing file generating methods."""
 
@@ -485,6 +527,11 @@ class Regenerator:
         hs_quic_kwargs_list = [
             {u"frame_size": 1280, u"phy_cores": 1},
         ]
+        iperf3_kwargs_list = [
+            {u"frame_size": 128000, u"phy_cores": 1},
+            {u"frame_size": 128000, u"phy_cores": 2},
+            {u"frame_size": 128000, u"phy_cores": 4}
+        ]
 
         for in_filename in glob(pattern):
             if not self.quiet:
@@ -514,6 +561,8 @@ class Regenerator:
                     hs_quic_kwargs_list if u"quic" in in_filename \
                     else hs_bps_kwargs_list
                 write_tcp_files(in_filename, in_prolog, hoststack_kwargs_list)
+            elif in_filename.endswith(u"-iperf3.robot"):
+                write_iperf3_files(in_filename, in_prolog, iperf3_kwargs_list)
             else:
                 raise RuntimeError(
                     f"Error in {in_filename}: non-primary suite type found."

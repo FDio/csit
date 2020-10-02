@@ -51,8 +51,9 @@ class QemuManager:
         nf_nodes = int(kwargs[u"nf_nodes"])
         queues = kwargs[u"rxq_count_int"] if kwargs[u"auto_scale"] else 1
         vs_dtc = kwargs[u"vs_dtc"]
-        nf_dtc = kwargs[u"vs_dtc"] if kwargs[u"auto_scale"] \
-            else kwargs[u"nf_dtc"]
+        nf_dtc = kwargs[u"nf_dtc"]
+        if kwargs[u"auto_scale"] and not kwargs[u"fixed_auto_scale"]:
+            nf_dtc = kwargs[u"vs_dtc"]
         nf_dtcr = kwargs[u"nf_dtcr"] \
             if isinstance(kwargs[u"nf_dtcr"], int) else 2
 
@@ -418,4 +419,39 @@ class QemuManager:
         self.machines[name].add_vfio_pci_if(
             pci=Topology.get_interface_pci_addr(
                 self.nodes[kwargs[u"node"]], kwargs[u"if1"])
+        )
+
+    def _c_iperf3(self, **kwargs):
+        """Instantiate one VM with iperf3 configuration.
+
+        :param kwargs: Named parameters.
+        :type kwargs: dict
+        """
+        qemu_id = kwargs[u"qemu_id"]
+        name = kwargs[u"name"]
+        virtio_feature_mask = kwargs[u"virtio_feature_mask"] \
+            if u"virtio_feature_mask" in kwargs else None
+
+        self.machines[name] = QemuUtils(
+            node=self.nodes[kwargs[u"node"]],
+            qemu_id=qemu_id,
+            smp=len(self.machines_affinity[name]),
+            mem=4096,
+            vnf=kwargs[u"vnf"],
+            img=Constants.QEMU_VM_KERNEL
+        )
+        self.machines[name].add_default_params()
+        self.machines[name].add_kernelvm_params()
+        self.machines[name].configure_kernelvm_vnf(
+            queues=kwargs[u"queues"],
+            jumbo_frames=kwargs[u"jumbo"]
+        )
+        self.machines[name].add_net_user()
+        self.machines[name].add_vhost_user_if(
+            f"/run/vpp/sock-{qemu_id}-1",
+            server=False,
+            jumbo_frames=kwargs[u"jumbo"],
+            queues=kwargs[u"queues"],
+            queue_size=kwargs[u"perf_qemu_qsz"],
+            virtio_feature_mask=virtio_feature_mask
         )
