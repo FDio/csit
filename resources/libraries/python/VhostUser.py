@@ -66,9 +66,9 @@ class VhostUser:
         if virtio_feature_mask is None:
             enable_gso = False
         else:
-            enable_gso = Virtio.is_feature_enabled(virtio_feature_mask,
-                                                   VirtioFeaturesFlags.
-                                                   VIRTIO_NET_F_API_GSO)
+            enable_gso = VirtioFeatureMask.is_feature_enabled(
+                virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_GSO
+            )
         args = dict(
             is_server=bool(is_server),
             sock_filename=str(socket),
@@ -152,8 +152,8 @@ class VhostUser:
         return details
 
 
-class Virtio:
-    """Virtio utilities"""
+class VirtioFeatureMask:
+    """Virtio features utilities"""
 
     @staticmethod
     def create_virtio_feature_mask(**kwargs):
@@ -168,9 +168,9 @@ class Virtio:
                 virtio_feature_mask |= 1 << virtio_feature_flag.value
         else:
             for feature_name, enabled in kwargs.items():
-                virtio_feature_name = 'VIRTIO_NET_F_API_' + feature_name.upper()
+                virtio_feature_name = u"VIRTIO_NET_F_API_" + feature_name.upper()
                 if virtio_feature_name not in VirtioFeaturesFlags.__members__:
-                    raise ValueError("Unsupported virtio feature flag name")
+                    raise ValueError(u"Unsupported virtio feature flag name")
                 elif enabled:
                     virtio_feature_mask |= \
                         1 << VirtioFeaturesFlags[virtio_feature_name].value
