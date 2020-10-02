@@ -12,9 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | Keywords related to vm lifecycle management
-...
 | Library | resources.libraries.python.InterfaceUtil
+|
+| Documentation | Keywords related to vm lifecycle management
 
 *** Keywords ***
 | Configure chains of NFs connected via vhost-user
@@ -146,6 +146,61 @@
 | | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
 | | ... | enable_gso=${False}
 | | ... | if1=${DUT1_${int}1}[0] | if2=${DUT1_${int}2}[0]
+| | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
+| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
+| | Set Test Variable | ${cpu_alloc_str}
+
+| Configure iperf3 NFs connected via vhost-user on single node
+| | [Documentation]
+| | ... | Start 1..N chains of 1..N QEMU guests (VNFs) with two vhost-user\
+| | ... | interfaces and interconnecting NF on single DUT node.
+| |
+| | ... | *Arguments:*
+| | ... | - node - DUT node. Type: dictionary
+| | ... | - nf_chains - Number of chains of NFs. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
+| | ... | in the test. Type: boolean
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: integer
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
+| | ... | Type: boolean
+| | ... | - auto_scale - Whether to use same amount of RXQs for vhost interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
+| | ... | - vnf - Network function as a payload. Type: string
+| | ... | - pinning - Whether to pin QEMU VMs to specific cores
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Configure iperf3 NFs connected via vhost-user on single node
+| | ... | \| DUT1 \| 1 \| 1 \| False \| 1024 \| False \| False \| True \|
+| |
+| | [Arguments] | ${node} | ${nf_chains}=${1} | ${nf_nodes}=${2}
+| | ... | ${jumbo}=${True} | ${perf_qemu_qsz}=${1024}
+| | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True}
+| | ... | ${pinning}=${True}
+| |
+| | Import Library | resources.libraries.python.QemuManager | ${nodes}
+| | ... | WITH NAME | vnf_manager
+| | Run Keyword | vnf_manager.Initialize
+| | Run Keyword | vnf_manager.Construct VMs on node
+| | ... | node=${node} | qemu_id=${1}
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
+| | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
+| | ... | auto_scale=${auto_scale} | vnf=iperf3_server
+| | ... | tg_pf1_mac=${DUT1_pf1_mac}[0] | tg_pf2_mac=${DUT1_pf2_mac}[0]
+| | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
+| | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
+| | ... | enable_gso=${enable_gso}
+| |
+| | Run Keyword | vnf_manager.Construct VMs on node
+| | ... | node=${node} | qemu_id=${2}
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
+| | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
+| | ... | auto_scale=${auto_scale} | vnf=iperf3_client
+| | ... | tg_pf1_mac=${DUT1_pf1_mac}[0] | tg_pf2_mac=${DUT1_pf2_mac}[0]
+| | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
+| | ... | rxq_count_int=${rxq_count_int} | enable_csum=${False}
+| | ... | enable_gso=${enable_gso}
 | | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
 | | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
 | | Set Test Variable | ${cpu_alloc_str}
