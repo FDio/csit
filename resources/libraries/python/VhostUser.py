@@ -17,9 +17,11 @@ from enum import IntEnum
 
 from robot.api import logger
 
+from resources.libraries.python.CpuUtils import CpuUtils
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 class VirtioFeaturesFlags(IntEnum):
@@ -151,6 +153,29 @@ class VhostUser:
         logger.debug(f"Vhost-user details:\n{details}")
         return details
 
+    @staticmethod
+    def vhost_user_affinity(node, pf_key, skip_cnt=0):
+        """Set vhost-user affinity for the given node.
+
+        :param node: Topology node.
+        :param pf_key: Interface key to compute numa location.
+        :param skip_cnt: Skip first "skip_cnt" CPUs.
+        :type node: dict
+        :type pf_key: str
+        :type skip_cnt: int
+        """
+        pids, _ = exec_cmd_no_error(
+            node, f"grep -h vhost /proc/*/comm | uniq | xargs pidof")
+
+        cpu_cnt = len(pids.split(" "))
+        cpu_node = Topology.get_interface_numa_node(node, pf_key)
+
+        affinity = CpuUtils.cpu_slice_of_list_per_node(
+            node, cpu_node=cpu_node, skip_cnt=skip_cnt, cpu_cnt=cpu_cnt,
+            smt_used=False)
+
+        for cpu, pid in zip(affinity, pids.split(" ")):
+            exec_cmd_no_error(node, f"sudo taskset -pc {cpu} {pid}")
 
 class VirtioFeatureMask:
     """Virtio features utilities"""
