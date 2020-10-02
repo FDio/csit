@@ -80,8 +80,8 @@ class QemuUtils:
             u"type": NodeType.VM,
             u"port": 10021 + qemu_id,
             u"serial": 4555 + qemu_id,
-            u"username": 'cisco',
-            u"password": 'cisco',
+            u"username": 'testuser',
+            u"password": 'Csit1234',
             u"interfaces": {},
         }
         if node[u"port"] != 22:
@@ -142,10 +142,10 @@ class QemuUtils:
         self._params.add_with_value(u"numa", u"node,memdev=mem")
         self._params.add_with_value(u"balloon", u"none")
 
-    def add_net_user(self):
+    def add_net_user(self, net="10.0.2.0/24"):
         """Set managment port forwarding."""
         self._params.add_with_value(
-            u"netdev", f"user,id=mgmt,net=172.16.255.0/24,"
+            u"netdev", f"user,id=mgmt,net={net},"
             f"hostfwd=tcp::{self._vm_info[u'port']}-:22"
         )
         self._params.add_with_value(
@@ -158,7 +158,9 @@ class QemuUtils:
             u"chardev", f"socket,path={self._temp.get(u'qga')},"
             f"server,nowait,id=qga0"
         )
-        self._params.add_with_value(u"device", u"isa-serial,chardev=qga0")
+        self._params.add_with_value(
+            u"device", u"isa-serial,chardev=qga0"
+        )
         self._params.add_with_value(
             u"qmp", f"unix:{self._temp.get(u'qmp')},server,nowait"
         )
@@ -167,8 +169,11 @@ class QemuUtils:
         """Set serial to file redirect."""
         self._params.add_with_value(
             u"chardev", f"socket,host=127.0.0.1,"
-            f"port={self._vm_info[u'serial']},id=gnc0,server,nowait")
-        self._params.add_with_value(u"device", u"isa-serial,chardev=gnc0")
+            f"port={self._vm_info[u'serial']},id=gnc0,server,nowait"
+        )
+        self._params.add_with_value(
+            u"device", u"isa-serial,chardev=gnc0"
+        )
         self._params.add_with_value(
             u"serial", f"file:{self._temp.get(u'log')}"
         )
@@ -210,8 +215,12 @@ class QemuUtils:
         self._params.add_with_value(
             u"device", u"virtio-9p-pci,fsdev=root9p,mount_tag=virtioroot"
         )
-        self._params.add_with_value(u"kernel", f"{self._opt.get(u'img')}")
-        self._params.add_with_value(u"initrd", f"{self._opt.get(u'initrd')}")
+        self._params.add_with_value(
+            u"kernel", f"{self._opt.get(u'img')}"
+        )
+        self._params.add_with_value(
+            u"initrd", f"{self._opt.get(u'initrd')}"
+        )
         self._params.add_with_value(
             u"append", f"'ro rootfstype=9p rootflags=trans=virtio "
             f"root=virtioroot console={self._opt.get(u'console')} "
@@ -250,19 +259,19 @@ class QemuUtils:
             f"{self._nic_id:02x}"
         queue_size = f"rx_queue_size={queue_size},tx_queue_size={queue_size}" \
             if queue_size else u""
-        if virtio_feature_mask is None:
-            gso = False
-            csum = False
-        else:
-            gso = VirtioFeatureMask.is_feature_enabled(
-                virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_GSO)
-            csum = VirtioFeatureMask.is_feature_enabled(
-                virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_CSUM)
+        gso = VirtioFeatureMask.is_feature_enabled(
+            virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_GSO)
+        csum = VirtioFeatureMask.is_feature_enabled(
+            virtio_feature_mask, VirtioFeaturesFlags.VIRTIO_NET_F_API_CSUM)
+
         self._params.add_with_value(
             u"device", f"virtio-net-pci,netdev=vhost{self._nic_id},mac={mac},"
             f"addr={self._nic_id+5}.0,mq=on,vectors={2 * queues + 2},"
-            f"csum={u'on' if csum else u'off'},gso={u'on' if gso else u'off'},"
-            f"guest_tso4=off,guest_tso6=off,guest_ecn=off,"
+            f"csum={u'on' if csum else u'off'},"
+            f"gso={u'on' if gso else u'off'},"
+            f"guest_tso4={u'on' if gso else u'off'},"
+            f"guest_tso6={u'on' if gso else u'off'},"
+            f"guest_ecn={u'on' if gso else u'off'},"
             f"{queue_size}"
         )
 
@@ -402,17 +411,20 @@ class QemuUtils:
 
         self._opt[u"vnf_bin"] = f"{self._testpmd_path}/{testpmd_cmd}"
 
+    def create_kernelvm_config_iperf3(self):
+        """Create QEMU iperf3 command line."""
+        self._opt[u"vnf_bin"] = f"mkdir /run/sshd; /usr/sbin/sshd -D -d"
+
     def create_kernelvm_init(self, **kwargs):
         """Create QEMU init script.
 
         :param kwargs: Key-value pairs to replace content of init startup file.
         :type kwargs: dict
         """
-        template = f"{Constants.RESOURCES_TPL}/vm/init.sh"
         init = self._temp.get(u"ini")
         exec_cmd_no_error(self._node, f"rm -f {init}", sudo=True)
 
-        with open(template, u"rt") as src_file:
+        with open(kwargs[u"template"], u"rt") as src_file:
             src = Template(src_file.read())
             exec_cmd_no_error(
                 self._node, f"echo '{src.safe_substitute(**kwargs)}' | "
@@ -428,13 +440,32 @@ class QemuUtils:
         """
         if u"vpp" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_vpp(**kwargs)
-            self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
+            self.create_kernelvm_init(
+                template=f"{Constants.RESOURCES_TPL}/vm/init.sh",
+                vnf_bin=self._opt.get(u"vnf_bin")
+            )
         elif u"testpmd_io" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_testpmd_io(**kwargs)
-            self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
+            self.create_kernelvm_init(
+                template=f"{Constants.RESOURCES_TPL}/vm/init.sh",
+                vnf_bin=self._opt.get(u"vnf_bin")
+            )
         elif u"testpmd_mac" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_testpmd_mac(**kwargs)
-            self.create_kernelvm_init(vnf_bin=self._opt.get(u"vnf_bin"))
+            self.create_kernelvm_init(
+                template=f"{Constants.RESOURCES_TPL}/vm/init.sh",
+                vnf_bin=self._opt.get(u"vnf_bin")
+            )
+        elif u"iperf3" in self._opt.get(u"vnf"):
+            qemu_id = self._opt.get(u'qemu_id') % 2
+            self.create_kernelvm_config_iperf3()
+            self.create_kernelvm_init(
+                template=f"{Constants.RESOURCES_TPL}/vm/init_iperf3.sh",
+                vnf_bin=self._opt.get(u"vnf_bin"),
+                ip_address_l=u"2.2.2.2/30" if qemu_id else u"1.1.1.1/30",
+                ip_address_r=u"2.2.2.1" if qemu_id else u"1.1.1.2",
+                ip_route_r=u"1.1.1.0/30" if qemu_id else u"2.2.2.0/30"
+            )
         else:
             raise RuntimeError(u"QEMU: Unsupported VNF!")
 
@@ -638,6 +669,20 @@ class QemuUtils:
             raise RuntimeError(
                 f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
             )
+
+    def _wait_iperf3(self, retries=60):
+        """Wait until QEMU with iPerf3 is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        grep = u"Server listening on 0.0.0.0 port 22."
+        cmd = f"fgrep '{grep}' {self._temp.get(u'log')}"
+        message = f"QEMU: Timeout, VM not booted on {self._node[u'host']}!"
+        exec_cmd_no_error(
+            self._node, cmd=cmd, sudo=True, message=message, retries=retries,
+            include_reason=True
+        )
 
     def _update_vm_interfaces(self):
         """Update interface names in VM node dict."""
