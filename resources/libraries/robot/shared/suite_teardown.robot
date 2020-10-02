@@ -41,6 +41,14 @@
 | |
 | | Run Keyword And Ignore Error | Teardown traffic generator | ${tg}
 
+| Additional Suite Tear Down Action For iperf3
+| | [Documentation]
+| | ... | Additional teardown for suites which uses iperf3 server.
+| |
+| | FOR | ${node} | IN | @{nodes}
+| | | Run Keyword And Ignore Error | Teardown iPerf | ${nodes['${node}']}
+| | END
+
 | Additional Suite Tear Down Action For dpdk
 | | [Documentation]
 | | ... | Additional teardown for suites which uses dpdk.
