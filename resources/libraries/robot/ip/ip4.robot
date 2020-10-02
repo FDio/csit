@@ -46,8 +46,6 @@
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
 | |
-| | Set interfaces in path up
-| |
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | 10.10.10.2 | ${TG_pf1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -118,8 +116,6 @@
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
-| |
-| | Set interfaces in path up
 | |
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | 1.1.1.1 | ${TG_pf1_mac}[0]

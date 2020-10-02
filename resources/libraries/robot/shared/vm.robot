@@ -12,9 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | Keywords related to vm lifecycle management
-...
 | Library | resources.libraries.python.InterfaceUtil
+|
+| Documentation | Keywords related to vm lifecycle management
 
 *** Keywords ***
 | Configure chains of NFs connected via vhost-user
