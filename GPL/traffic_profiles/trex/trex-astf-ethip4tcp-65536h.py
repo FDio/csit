@@ -25,6 +25,9 @@ Traffic profile:
      on port 1
    - Destination IP address range: source IP address from packet received
      on port 1
+
+This is a profile for CPS tests, it only sets up and tears down TCP session.
+No delays, no data transfer.
 """
 
 from trex.astf.api import *
@@ -49,9 +52,6 @@ class TrafficProfile(TrafficProfileBaseClass):
         # header length for TCP packet with 0B payload
         self.headers_size = 58  # 14B l2 + 20B ipv4 + 24B tcp incl. 4B options
 
-        # Delay for keeping tcp sessions active
-        self.delay = 2000000  # delay 2s (2,000,000 usec)
-
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
@@ -68,8 +68,6 @@ class TrafficProfile(TrafficProfileBaseClass):
         prog_c.connect()
         # receive syn-ack (0B sent in tcp syn-ack packet) and send ack
         prog_c.recv(0)
-        # wait defined time, then send fin-ack
-        prog_c.delay(self.delay)
 
         # server commands
         prog_s = ASTFProgram()
