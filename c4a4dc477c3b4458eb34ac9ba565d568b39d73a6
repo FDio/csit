@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc84b0ad_076f6438",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 124
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-02T07:20:50Z",
+      "side": 1,
+      "message": "That\u0027s true only in case of CPS measurement. In case of PPS (throughput) measurement we need to run traffic in sustain phase (there is implemented \"Send ramp-up traffic\" to reach sustain phase) so no reset of DUT state (e.i. removing all nat sessions entries) before each trial.",
+      "range": {
+        "startLine": 547,
+        "startChar": 41,
+        "endLine": 548,
+        "endChar": 48
+      },
+      "revId": "c4a4dc477c3b4458eb34ac9ba565d568b39d73a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
