@@ -232,6 +232,9 @@ class Constants:
     # Duration of one trial in MRR test.
     PERF_TRIAL_DURATION = get_float_from_env(u"PERF_TRIAL_DURATION", 1.0)
 
+    # Whether to use latency streams in main search trials.
+    PERF_USE_LATENCY = get_pessimistic_bool_from_env(u"PERF_USE_LATENCY")
+
     # Duration of one latency-specific trial in NDRPDR test.
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
         u"PERF_TRIAL_LATENCY_DURATION", 5.0)
