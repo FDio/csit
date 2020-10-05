@@ -9,7 +9,10 @@ Test Methodology
     methodology_terminology
     methodology_vpp_forwarding_modes
     methodology_tunnel_encapsulations
-    methodology_vpp_features
+    methodology_ipsec
+    methodology_ipsec_on_intel_qat
+    methodology_nat44
+    methodology_acls
     methodology_data_plane_throughput/index
     methodology_packet_latency
     methodology_multi_core_speedup
@@ -20,5 +23,4 @@ Test Methodology
     methodology_lxc_drc_container_memif
     methodology_nfv_service_density
     methodology_vpp_device_functional
-    methodology_ipsec_on_intel_qat
     methodology_trex_traffic_generator

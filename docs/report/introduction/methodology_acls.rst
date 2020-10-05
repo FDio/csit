@@ -1,5 +1,5 @@
-VPP Features
-------------
+Access Control Lists
+--------------------
 
 VPP is tested in a number of data plane feature configurations across
 different forwarding modes. Following sections list features tested.
@@ -66,15 +66,3 @@ entries and number of flows:
 - {F} - number of UDP flows with different tuple (dst-ip4, dst-mac),
   {F} = [100, 10k, 100k]
 - All {E}x{F} combinations are tested per ACL type, total of 9.
-
-NAT44
-~~~~~
-
-NAT44 is tested in baseline and scale configurations with IPv4 routing:
-
-- *ip4base-nat44*: baseline test with single NAT entry (addr, port),
-  single UDP flow.
-- *ip4base-udpsrcscale{U}-nat44*: baseline test with {U} NAT entries
-  (addr, {U}ports), {U}=15.
-- *ip4scale{R}-udpsrcscale{U}-nat44*: scale tests with {R}*{U} NAT
-  entries ({R}addr, {U}ports), {R}=[100, 1k, 2k, 4k], {U}=15.
