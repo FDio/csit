@@ -82,7 +82,7 @@
 # Ramp-up settings
 | ${ramp_up_rate}= | ${400000}
 | ${ramp_up_duration}= | ${1.6}
-# Traffic profil
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
 
 *** Keywords ***
