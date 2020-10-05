@@ -1,3 +1,5 @@
+.. _data_plane_throughput:
+
 Data Plane Throughput Tests
 ---------------------------
 
