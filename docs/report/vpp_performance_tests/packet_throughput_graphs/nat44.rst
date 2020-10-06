@@ -18,3 +18,4 @@ CSIT source code for the test cases used for plots can be found in
 .. toctree::
 
     nat44-2n-clx-xxv710
+    nat44-2n-skx-xxv710
