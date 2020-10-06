@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cba2576a_34255589",
+        "filename": "docs/report/vpp_device_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-10-06T07:03:36Z",
+      "side": 1,
+      "message": "Aligned ...",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 11
+      },
+      "revId": "0bb88a1e4a7136b7f07f9e27f48c05bf942a143e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
