@@ -22,7 +22,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.topology import (Topology, NodeType)
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
@@ -96,6 +96,10 @@ class NATUtil:
             flag=u"NAT_IS_NONE"):
         """Set NAT44 address range.
 
+        The return value is a callable (zero argument Python function)
+        which can be used to reset NAT state, so repeated trial measurements
+        hit the same slow path.
+
         :param node: DUT node.
         :param start_ip: IP range start.
         :param end_ip: IP range end.
@@ -106,6 +110,8 @@ class NATUtil:
         :type end_ip: str
         :type vrf_id: int
         :type flag: str
+        :returns: Resetter of the NAT state.
+        :rtype: Callable[[], None]
         """
         cmd = u"nat44_add_del_address_range"
         err_msg = f"Failed to set NAT44 address range on host {node[u'host']}"
@@ -119,6 +125,18 @@ class NATUtil:
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
+
+        # A closure, accessing the variables above.
+        def resetter():
+            """Delete and re-add the NAT range setting."""
+            with PapiSocketExecutor(node) as papi_exec:
+                args_in[u"is_add"] = False
+                papi_exec.add(cmd, **args_in)
+                args_in[u"is_add"] = True
+                papi_exec.add(cmd, **args_in)
+                papi_exec.get_replies(err_msg)
+
+        return resetter
 
     @staticmethod
     def show_nat_config(node):
@@ -279,6 +297,10 @@ class NATUtil:
     def set_det44_mapping(node, ip_in, subnet_in, ip_out, subnet_out):
         """Set DET44 mapping.
 
+        The return value is a callable (zero argument Python function)
+        which can be used to reset NAT state, so repeated trial measurements
+        hit the same slow path.
+
         :param node: DUT node.
         :param ip_in: Inside IP.
         :param subnet_in: Inside IP subnet.
@@ -303,6 +325,18 @@ class NATUtil:
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
+        # A closure, accessing the variables above.
+        def resetter():
+            """Delete and re-add the deterministic NAT mapping."""
+            with PapiSocketExecutor(node) as papi_exec:
+                args_in[u"is_add"] = False
+                papi_exec.add(cmd, **args_in)
+                args_in[u"is_add"] = True
+                papi_exec.add(cmd, **args_in)
+                papi_exec.get_replies(err_msg)
+
+        return resetter
+
     @staticmethod
     def get_det44_mapping(node):
         """Get DET44 mapping data.
@@ -325,14 +359,12 @@ class NATUtil:
     def get_det44_sessions_number(node):
         """Get number of established DET44 sessions from actual DET44 mapping
         data.
-
         :param node: DUT node.
         :type node: dict
         :returns: Number of established DET44 sessions.
         :rtype: int
         """
         det44_data = NATUtil.get_det44_mapping(node)
-
         return det44_data.get(u"ses_num", 0)
 
     @staticmethod
