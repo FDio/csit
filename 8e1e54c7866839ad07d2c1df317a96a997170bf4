@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a42a157f_5c8cac9a",
+        "filename": "docs/report/vpp_device_tests/overview.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-06T08:54:44Z",
+      "side": 1,
+      "message": "This has been renamed in VPP. In CSIT, only the plugin name is edited [0]. As we still use old API names, I guess we can still call this COP.\n\n[0] https://gerrit.fd.io/r/c/csit/+/27947",
+      "range": {
+        "startLine": 118,
+        "startChar": 2,
+        "endLine": 118,
+        "endChar": 5
+      },
+      "revId": "8e1e54c7866839ad07d2c1df317a96a997170bf4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
