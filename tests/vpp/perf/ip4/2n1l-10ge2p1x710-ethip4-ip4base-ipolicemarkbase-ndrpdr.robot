@@ -60,7 +60,7 @@
 | ${cir}= | ${100}
 | ${eir}= | ${150}
 | ${dscp}= | AF22
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src253
 
 *** Keywords ***
@@ -78,14 +78,10 @@
 | |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
-| | ${cb}= | Get Average Frame Size | ${frame_size}
-| | ${eb}= | Get Average Frame Size | ${frame_size}
-| |
 | | Set Test Variable | \${frame_size}
-| | Set Test Variable | \${cb}
-| | Set Test Variable | \${eb}
-| |
 | | Given Set Max Rate And Jumbo
+| | Set Test Variable | \${cb} | ${max_frame_size}
+| | Set Test Variable | \${eb} | ${max_frame_size}
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs

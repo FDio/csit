@@ -85,12 +85,11 @@
 | ${n_hosts}= | ${1024}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
-# Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-1024h
-| ${cps}= | ${64512}
-# Trial data overwrite
-| ${trial_duration}= | ${1.1}
-| ${trial_multiplicity}= | ${1}
+| ${transaction_scale}= | ${n_sessions}
+# Traffic profile
+| ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h
+| ${transaction_type}= | udp_cps
+| ${disable_latency}= | ${True}
 
 *** Keywords ***
 | Local Template
@@ -109,7 +108,6 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Set Test Variable | \${max_rate} | ${cps}
 | | ${pre_stats}= | Create List
 | | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
 | | ... | vpp-clear-runtime
@@ -119,7 +117,7 @@
 | | ... | vpp-show-runtime
 | | Set Test Variable | ${post_stats}
 | |
-| | Given Set Jumbo
+| | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Add NAT to all DUTs | nat_mode=${nat_mode}
@@ -132,7 +130,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
-| | Then Find NDR and PDR intervals using optimized search | latency=${False}
+| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr
