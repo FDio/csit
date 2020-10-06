@@ -162,12 +162,12 @@ class TrafficGenerator(AbstractMeasurer):
         self._start_time = None
         self._rate = None
         # Other input parameters, not knowable from measure() signature.
-        self.frame_size = None
-        self.traffic_profile = None
-        self.warmup_time = None
-        self.traffic_directions = None
-        self.negative_loss = None
-        self.use_latency = None
+        self._frame_size = None
+        self._traffic_profile = None
+        self._warmup_time = None
+        self._traffic_directions = None
+        self._negative_loss = None
+        self._use_latency = None
         # Transient data needed for async measurements.
         self._xstats = (None, None)
         # TODO: Rename "xstats" to something opaque, so T-Rex is not privileged?
@@ -503,7 +503,7 @@ class TrafficGenerator(AbstractMeasurer):
                     self._result.get(u"server_established_flows")
                 self._l7_data[u"server"][u"err_rx_throttled"] = \
                     self._result.get(u"client_err_rx_throttled")
-                if u"udp" in self.traffic_profile:
+                if u"udp" in self._traffic_profile:
                     self._l7_data[u"client"][u"udp"] = dict()
                     self._l7_data[u"client"][u"udp"][u"established_flows"] = \
                         self._result.get(u"client_udp_connects")
@@ -532,7 +532,7 @@ class TrafficGenerator(AbstractMeasurer):
                         self._result.get(u"server_udp_tx_packets")
                     self._l7_data[u"server"][u"udp"][u"rx_packets"] = \
                         self._result.get(u"server_udp_rx_packets")
-                elif u"tcp" in self.traffic_profile:
+                elif u"tcp" in self._traffic_profile:
                     self._l7_data[u"client"][u"tcp"] = dict()
                     self._l7_data[u"client"][u"tcp"][u"initiated_flows"] = \
                         self._result.get(u"client_tcp_connect_inits")
@@ -613,9 +613,9 @@ class TrafficGenerator(AbstractMeasurer):
         """
         subtype = check_subtype(self._node)
         if subtype == NodeSubTypeTG.TREX:
-            if u"trex-astf" in self.traffic_profile:
+            if u"trex-astf" in self._traffic_profile:
                 self.trex_astf_stop_remote_exec(self._node)
-            elif u"trex-stl" in self.traffic_profile:
+            elif u"trex-stl" in self._traffic_profile:
                 self.trex_stl_stop_remote_exec(self._node)
             else:
                 raise ValueError(u"Unsupported T-Rex traffic profile!")
@@ -687,12 +687,12 @@ class TrafficGenerator(AbstractMeasurer):
 
         stdout, _ = exec_cmd_no_error(
             self._node, command_line,
-            timeout=int(duration) + 600 if u"tcp" in self.traffic_profile
+            timeout=int(duration) + 600 if u"tcp" in self._traffic_profile
             else 60,
             message=u"T-Rex ASTF runtime error!"
         )
 
-        self.traffic_directions = traffic_directions
+        self._traffic_directions = traffic_directions
         if async_call:
             # no result
             self._start_time = time.time()
@@ -709,14 +709,14 @@ class TrafficGenerator(AbstractMeasurer):
             self._l7_data[u"server"] = dict()
             self._l7_data[u"server"][u"active_flows"] = None
             self._l7_data[u"server"][u"established_flows"] = None
-            if u"udp" in self.traffic_profile:
+            if u"udp" in self._traffic_profile:
                 self._l7_data[u"client"][u"udp"] = dict()
                 self._l7_data[u"client"][u"udp"][u"established_flows"] = None
                 self._l7_data[u"client"][u"udp"][u"closed_flows"] = None
                 self._l7_data[u"server"][u"udp"] = dict()
                 self._l7_data[u"server"][u"udp"][u"accepted_flows"] = None
                 self._l7_data[u"server"][u"udp"][u"closed_flows"] = None
-            elif u"tcp" in self.traffic_profile:
+            elif u"tcp" in self._traffic_profile:
                 self._l7_data[u"client"][u"tcp"] = dict()
                 self._l7_data[u"client"][u"tcp"][u"initiated_flows"] = None
                 self._l7_data[u"client"][u"tcp"][u"established_flows"] = None
@@ -808,7 +808,7 @@ class TrafficGenerator(AbstractMeasurer):
             message=u"T-Rex STL runtime error"
         )
 
-        self.traffic_directions = traffic_directions
+        self._traffic_directions = traffic_directions
         if async_call:
             # no result
             self._start_time = time.time()
@@ -884,18 +884,18 @@ class TrafficGenerator(AbstractMeasurer):
         """
         subtype = check_subtype(self._node)
         if subtype == NodeSubTypeTG.TREX:
-            if self.traffic_profile != str(traffic_profile):
-                self.traffic_profile = str(traffic_profile)
-            if u"trex-astf" in self.traffic_profile:
+            if self._traffic_profile != str(traffic_profile):
+                self._traffic_profile = str(traffic_profile)
+            if u"trex-astf" in self._traffic_profile:
                 self.trex_astf_start_remote_exec(
-                    duration, int(rate), frame_size, self.traffic_profile,
+                    duration, int(rate), frame_size, self._traffic_profile,
                     async_call, latency, warmup_time, traffic_directions,
                     tx_port, rx_port
                 )
-            elif u"trex-stl" in self.traffic_profile:
+            elif u"trex-stl" in self._traffic_profile:
                 unit_rate_str = str(rate) + u"pps"
                 self.trex_stl_start_remote_exec(
-                    duration, unit_rate_str, frame_size, self.traffic_profile,
+                    duration, unit_rate_str, frame_size, self._traffic_profile,
                     async_call, latency, warmup_time, traffic_directions,
                     tx_port, rx_port
                 )
@@ -973,12 +973,12 @@ class TrafficGenerator(AbstractMeasurer):
         :type negative_loss: bool
         :type latency: bool
         """
-        self.frame_size = frame_size
-        self.traffic_profile = str(traffic_profile)
-        self.warmup_time = float(warmup_time)
-        self.traffic_directions = traffic_directions
-        self.negative_loss = negative_loss
-        self.use_latency = latency
+        self._frame_size = frame_size
+        self._traffic_profile = str(traffic_profile)
+        self._warmup_time = float(warmup_time)
+        self._traffic_directions = traffic_directions
+        self._negative_loss = negative_loss
+        self._use_latency = latency
 
     def get_measurement_result(self, duration=None, transmit_rate=None):
         """Return the result of last measurement as ReceiveRateMeasurement.
@@ -1001,10 +1001,10 @@ class TrafficGenerator(AbstractMeasurer):
             duration = time.time() - self._start_time
             self._start_time = None
         if transmit_rate is None:
-            transmit_rate = self._rate * self.traffic_directions
+            transmit_rate = self._rate * self._traffic_directions
         transmit_count = int(self.get_sent())
         loss_count = int(self.get_loss())
-        if loss_count < 0 and not self.negative_loss:
+        if loss_count < 0 and not self._negative_loss:
             loss_count = 0
         measurement = ReceiveRateMeasurement(
             duration, transmit_rate, transmit_count, loss_count
@@ -1030,15 +1030,15 @@ class TrafficGenerator(AbstractMeasurer):
         """
         duration = float(duration)
         # TG needs target Tr per stream, but reports aggregate Tx and Dx.
-        unit_rate_int = transmit_rate / float(self.traffic_directions)
+        unit_rate_int = transmit_rate / float(self._traffic_directions)
         self.send_traffic_on_tg(
             duration,
             unit_rate_int,
-            self.frame_size,
-            self.traffic_profile,
-            warmup_time=self.warmup_time,
-            latency=self.use_latency,
-            traffic_directions=self.traffic_directions
+            self._frame_size,
+            self._traffic_profile,
+            warmup_time=self._warmup_time,
+            latency=self._use_latency,
+            traffic_directions=self._traffic_directions
         )
         return self.get_measurement_result(duration, transmit_rate)
 
