@@ -81,24 +81,36 @@
 | | ... | \| \${0.005} \| \${30.0} \| \${1.0} \| \${2} \| \${600.0} \| \${2} \
 | | ... | \| \${2} \| ${5.0} \|
 | |
-| | [Arguments] | ${packet_loss_ratio}=${0.005}
-| | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
+| | [Arguments]
+| | ... | ${packet_loss_ratio}=${0.005}
+| | ... | ${final_relative_width}=${0.005}
+| | ... | ${final_trial_duration}=${30.0}
 | | ... | ${initial_trial_duration}=${1.0}
-| | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${720.0}
-| | ... | ${doublings}=${2} | ${traffic_directions}=${2}
+| | ... | ${number_of_intermediate_phases}=${2}
+| | ... | ${timeout}=${720.0}
+| | ... | ${doublings}=${2}
+| | ... | ${traffic_directions}=${2}
 | | ... | ${latency_duration}=${PERF_TRIAL_LATENCY_DURATION}
 | | ... | ${latency}=${True}
 | |
 | | # Latency measurements will need more than 9000 pps.
-| | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${9001} | ${max_rate}
-| | ... | ${packet_loss_ratio} | ${final_relative_width}
-| | ... | ${final_trial_duration} | ${initial_trial_duration}
-| | ... | ${number_of_intermediate_phases} | timeout=${timeout}
-| | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
+| | ${result} = | Perform optimized ndrpdr search
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | ${9001}
+| | ... | ${max_rate}
+| | ... | ${packet_loss_ratio}
+| | ... | ${final_relative_width}
+| | ... | ${final_trial_duration}
+| | ... | ${initial_trial_duration}
+| | ... | ${number_of_intermediate_phases}
+| | ... | timeout=${timeout}
+| | ... | doublings=${doublings}
+| | ... | traffic_directions=${traffic_directions}
 | | ... | latency=${latency}
 | | Display result of NDRPDR search | ${result}
-| | Check NDRPDR interval validity | ${result.pdr_interval}
+| | Check NDRPDR interval validity
+| | ... | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result.ndr_interval}
 | | ${pdr_sum}= | Set Variable | ${result.pdr_interval.measured_low.target_tr}
@@ -172,21 +184,33 @@
 | | ... | \| \${0.001} \| \${10.0}\| \${1.0} \| \${1} \| \${720.0} \| \${2} \
 | | ... | \| \${2} \|
 | |
-| | [Arguments] | ${packet_loss_ratio}=${0.0}
-| | ... | ${final_relative_width}=${0.001} | ${final_trial_duration}=${10.0}
+| | [Arguments]
+| | ... | ${packet_loss_ratio}=${0.0}
+| | ... | ${final_relative_width}=${0.001}
+| | ... | ${final_trial_duration}=${10.0}
 | | ... | ${initial_trial_duration}=${1.0}
-| | ... | ${number_of_intermediate_phases}=${1} | ${timeout}=${720.0}
-| | ... | ${doublings}=${2} | ${traffic_directions}=${2} | ${latency}=${False}
+| | ... | ${number_of_intermediate_phases}=${1}
+| | ... | ${timeout}=${720.0}
+| | ... | ${doublings}=${2}
+| | ... | ${traffic_directions}=${2}
+| | ... | ${latency}=${False}
 | |
-| | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${10000} | ${max_rate}
-| | ... | ${packet_loss_ratio} | ${final_relative_width}
-| | ... | ${final_trial_duration} | ${initial_trial_duration}
-| | ... | ${number_of_intermediate_phases} | timeout=${timeout}
-| | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
-| | ... | latency=${latency}
-| | Check NDRPDR interval validity | ${result.pdr_interval}
+| | ${result} = | Perform optimized ndrpdr search
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | ${10000}
+| | ... | ${max_rate}
 | | ... | ${packet_loss_ratio}
+| | ... | ${final_relative_width}
+| | ... | ${final_trial_duration}
+| | ... | ${initial_trial_duration}
+| | ... | ${number_of_intermediate_phases}
+| | ... | timeout=${timeout}
+| | ... | doublings=${doublings}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | latency=${latency}
+| | Check NDRPDR interval validity
+| | ... | ${result.pdr_interval} | ${packet_loss_ratio}
 | | Return From Keyword | ${result.pdr_interval.measured_low.target_tr}
 
 | Find critical load using PLRsearch
@@ -220,14 +244,22 @@
 | | ... | \| Find critical load using PLR search \| \${1e-7} \| \${120} \
 | | ... | \| \${2} \|
 | |
-| | [Arguments] | ${packet_loss_ratio}=${1e-7} | ${timeout}=${1800.0}
-| | ... | ${traffic_directions}=${2} | ${latency}=${False}
+| | [Arguments]
+| | ... | ${packet_loss_ratio}=${1e-7}
+| | ... | ${timeout}=${1800.0}
+| | ... | ${traffic_directions}=${2}
+| | ... | ${latency}=${False}
 | |
 | | ${min_rate} = | Set Variable | ${10000}
-| | ${average} | ${stdev} = | Perform soak search | ${frame_size}
-| | ... | ${traffic_profile} | ${min_rate} | ${max_rate}
-| | ... | ${packet_loss_ratio} | timeout=${timeout}
-| | ... | traffic_directions=${traffic_directions} | latency=${latency}
+| | ${average} | ${stdev} = | Perform soak search
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | ${min_rate}
+| | ... | ${max_rate}
+| | ... | ${packet_loss_ratio}
+| | ... | timeout=${timeout}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | latency=${latency}
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Should Not Be True | 1.1 * ${traffic_directions} * ${min_rate} > ${lower}
@@ -255,7 +287,11 @@
 | | ... | \| Display single bound \| NDR lower bound \| \${12345.67} \
 | | ... | \| \${64} \| latency=\${EMPTY} \|
 | |
-| | [Arguments] | ${text} | ${rate_total} | ${frame_size} | ${latency}=${EMPTY}
+| | [Arguments]
+| | ... | ${text}
+| | ... | ${rate_total}
+| | ... | ${frame_size}
+| | ... | ${latency}=${EMPTY}
 | |
 | | ${bandwidth_total} = | Evaluate | ${rate_total} * (${frame_size}+20)*8 / 1e9
 | | Set Test Message | ${\n}${text}: ${rate_total} pps, | append=yes
@@ -411,16 +447,25 @@
 | | ... | \| Traffic should pass with maximum rate \| \${1} \| \${False} \
 | | ... | \| \${10.0} \| \${2} \| \${0} \| \${1} \| \${True} \|
 | |
-| | [Arguments] | ${trial_duration}=${trial_duration}
+| | [Arguments]
+| | ... | ${trial_duration}=${trial_duration}
 | | ... | ${fail_no_traffic}=${True}
 | | ... | ${trial_multiplicity}=${trial_multiplicity}
-| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
+| | ... | ${traffic_directions}=${2}
+| | ... | ${tx_port}=${0}
+| | ... | ${rx_port}=${1}
 | | ... | ${latency}=${False}
 | |
 | | ${results}= | Send traffic at specified rate
-| | ... | ${trial_duration} | ${max_rate} | ${frame_size}
-| | ... | ${traffic_profile} | ${trial_multiplicity}
-| | ... | ${traffic_directions} | ${tx_port} | ${rx_port} | latency=${latency}
+| | ... | ${trial_duration}
+| | ... | ${max_rate}
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | ${trial_multiplicity}
+| | ... | ${traffic_directions}
+| | ... | ${tx_port}
+| | ... | ${rx_port}
+| | ... | latency=${latency}
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
 | | ... | append=yes
@@ -457,10 +502,17 @@
 | | ... | \| \${64} \| 3-node-IPv4 \| \${10} \| \${2} \| \${0} \| \${1} \
 | | ... | \| ${False} \| ${True} \|
 | |
-| | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
-| | ... | ${traffic_profile} | ${trial_multiplicity}=${trial_multiplicity}
-| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
-| | ... | ${extended_debug}=${extended_debug} | ${latency}=${False}
+| | [Arguments]
+| | ... | ${trial_duration}
+| | ... | ${rate}
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | ${trial_multiplicity}=${trial_multiplicity}
+| | ... | ${traffic_directions}=${2}
+| | ... | ${tx_port}=${0}
+| | ... | ${rx_port}=${1}
+| | ... | ${extended_debug}=${extended_debug}
+| | ... | ${latency}=${False}
 | |
 | | Set Test Variable | ${extended_debug}
 | | # Following setting of test variables is needed for some pre_stats actions.
@@ -477,9 +529,15 @@
 | | | # The following line is skipping some default arguments,
 | | | # that is why subsequent arguments have to be named.
 | | | Send traffic on tg
-| | | ... | ${trial_duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | | ... | warmup_time=${0} | traffic_directions=${traffic_directions}
-| | | ... | tx_port=${tx_port} | rx_port=${rx_port} | latency=${latency}
+| | | ... | ${trial_duration}
+| | | ... | ${rate}
+| | | ... | ${frame_size}
+| | | ... | ${traffic_profile}
+| | | ... | warmup_time=${0}
+| | | ... | traffic_directions=${traffic_directions}
+| | | ... | tx_port=${tx_port}
+| | | ... | rx_port=${rx_port}
+| | | ... | latency=${latency}
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
@@ -518,17 +576,30 @@
 | | ... | \| \${1.0} \| ${10000000} \| \${64} \| 3-node-IPv4 \| \${2} \
 | | ... | \| \${0} \| \${1} \| ${9500} \|
 | |
-| | [Arguments] | ${message_prefix} | ${trial_duration} | ${rate}
-| | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}=${2}
-| | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${safe_rate}=${9001}
+| | [Arguments]
+| | ... | ${message_prefix}
+| | ... | ${trial_duration}
+| | ... | ${rate}
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | ${traffic_directions}=${2}
+| | ... | ${tx_port}=${0}
+| | ... | ${rx_port}=${1}
+| | ... | ${safe_rate}=${9001}
 | |
 | | ${real_rate} = | Evaluate | max(${rate}, ${safe_rate})
 | | # The following line is skipping some default arguments,
 | | # that is why subsequent arguments have to be named.
-| | Send traffic on tg | ${trial_duration} | ${real_rate} | ${frame_size}
-| | ... | ${traffic_profile} | warmup_time=${0}
-| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
-| | ... | rx_port=${rx_port} | latency=${True}
+| | Send traffic on tg
+| | ... | ${trial_duration}
+| | ... | ${real_rate}
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | warmup_time=${0}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | tx_port=${tx_port}
+| | ... | rx_port=${rx_port}
+| | ... | latency=${True}
 | | ${latency} = | Get Latency Int
 | | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
 
@@ -556,13 +627,26 @@
 | | ... | \| Clear and show runtime counters with running traffic \| \${10} \
 | | ... | \| ${4000000.0} \| \${64} \| 3-node-IPv4 \| \${2} \| \${0} \| \${1} \|
 | |
-| | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
+| | [Arguments]
+| | ... | ${duration}
+| | ... | ${rate}
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | ${traffic_directions}=${2}
+| | ... | ${tx_port}=${0}
+| | ... | ${rx_port}=${1}
 | |
 | | # Duration of -1 means we will stop traffic manually.
-| | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | warmup_time=${0} | async_call=${True} | latency=${False}
-| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | Send traffic on tg
+| | ... | ${-1}
+| | ... | ${rate}
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | warmup_time=${0}
+| | ... | async_call=${True}
+| | ... | latency=${False}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | tx_port=${tx_port}
 | | ... | rx_port=${rx_port}
 | | FOR | ${action} | IN | @{pre_run_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
@@ -595,14 +679,25 @@
 | | ... | \| Send ramp-up traffic \| \${10} \| ${400000.0} \| ${64} \
 | | ... | \| ${2} \| ${0} \| ${1} \|
 | |
-| | [Arguments] | ${duration}=${ramp_up_duration} | ${rate}=${ramp_up_rate}
-| | ... | ${frame_size}=${frame_size} | ${traffic_profile}=${traffic_profile}
-| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
+| | [Arguments]
+| | ... | ${duration}=${ramp_up_duration}
+| | ... | ${rate}=${ramp_up_rate}
+| | ... | ${frame_size}=${frame_size}
+| | ... | ${traffic_profile}=${traffic_profile}
+| | ... | ${traffic_directions}=${2}
+| | ... | ${tx_port}=${0}
+| | ... | ${rx_port}=${1}
 | |
 | | Send traffic on tg
-| | ... | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | warmup_time=${0} | traffic_directions=${traffic_directions}
-| | ... | tx_port=${tx_port} | rx_port=${rx_port} | latency=${False}
+| | ... | ${duration}
+| | ... | ${rate}
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | warmup_time=${0}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | tx_port=${tx_port}
+| | ... | rx_port=${rx_port}
+| | ... | latency=${False}
 
 | Start Traffic on Background
 | | [Documentation]
@@ -629,13 +724,23 @@
 | | ... | \| Start Traffic on Background \| ${4000000.0} \| \${2} \| \${0} \
 | | ... | \| \${1} \|
 | |
-| | [Arguments] | ${rate} | ${traffic_directions}=${2} | ${tx_port}=${0}
+| | [Arguments]
+| | ... | ${rate}
+| | ... | ${traffic_directions}=${2}
+| | ... | ${tx_port}=${0}
 | | ... | ${rx_port}=${1}
 | |
 | | # Duration of -1 means we will stop traffic manually.
-| | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | warmup_time=${0} | async_call=${True} | latency=${False}
-| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | Send traffic on tg
+| | ... | ${-1}
+| | ... | ${rate}
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | warmup_time=${0}
+| | ... | async_call=${True}
+| | ... | latency=${False}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | tx_port=${tx_port}
 | | ... | rx_port=${rx_port}
 
 | Stop Running Traffic
@@ -650,7 +755,7 @@
 | |
 | | ... | \${result}= \| Stop Running Traffic \|
 | |
-| | ${result}= | Stop traffic on tg
+| | ${result} = | Stop traffic on tg
 | | Return From Keyword | ${result}
 
 | Additional Statistics Action For vpp-clear-stats
@@ -716,9 +821,13 @@
 | | ... | running traffic.
 | |
 | | Clear and show runtime counters with running traffic
-| | ... | ${trial_duration} | ${rate}
-| | ... | ${frame_size} | ${traffic_profile} | ${traffic_directions}
-| | ... | ${tx_port} | ${rx_port}
+| | ... | ${trial_duration}
+| | ... | ${rate}
+| | ... | ${frame_size}
+| | ... | ${traffic_profile}
+| | ... | ${traffic_directions}
+| | ... | ${tx_port}
+| | ... | ${rx_port}
 
 | Additional Statistics Action For noop
 | | [Documentation]
