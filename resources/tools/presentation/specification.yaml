@@ -614,10 +614,9 @@
         - 15  # rls2006 MRR iter env 5
 
     vpp-mrr-results-3n-dnv:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-3n-dnv:
-      csit-vpp-perf-report-iterative-2005-3n-dnv:
-        - 8   # MRR
+      # TODO: Replace by rls2009:
+      csit-vpp-perf-report-iterative-2009-3n-dnv:
+        - 19  # rls2005 MRR iter env 5
 
     vpp-mrr-results-2n-dnv:
       csit-vpp-perf-report-iterative-2009-2n-dnv:
@@ -854,19 +853,14 @@
         - 13  # NDRPDR sel
         - 16  # NDRPDR sel
     vpp-performance-changes-2n-dnv-ref:
-      csit-vpp-perf-report-iterative-2005-2n-dnv:
-        - 3   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-    vpp-performance-changes-2n-dnv-cmp:
       # TODO: Add:
+      csit-vpp-perf-report-iterative-2009-2n-dnv:
+        - 16  # rls2005 NDRPDR iter env 5
+        - 17  # rls2005 NDRPDR iter env 5
+        - 18  # rls2005 NDRPDR iter env 5
+        - 19  # rls2005 NDRPDR iter env 5
+        - 21  # rls2005 NDRPDR iter env 5
+    vpp-performance-changes-2n-dnv-cmp:
       csit-vpp-perf-report-iterative-2009-2n-dnv:
         - 3   # rls2009 NDRPDR iter env 5
         - 5   # rls2009 NDRPDR iter env 5
@@ -892,17 +886,9 @@
         - 17  # NDRPDR sel
         - 18  # NDRPDR sel
     vpp-performance-changes-3n-dnv-ref:
-      csit-vpp-perf-report-iterative-2005-3n-dnv:
-        - 2   # NDRPDR sel
-        - 3   # NDRPDR sel
-        - 4   # NDRPDR sel
-        - 5   # NDRPDR sel
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
+      # TODO: Add:
+      csit-vpp-perf-report-iterative-2009-3n-dnv:
+        - 16  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-3n-dnv-cmp:
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-dnv:
@@ -1066,8 +1052,8 @@
       csit-vpp-perf-verify-2001-2n-dnv:
         - 12  # MRR sel
     vpp-performance-changes-2n-dnv-mrr-ref:
-      csit-vpp-perf-report-iterative-2005-2n-dnv:
-        - 15  # MRR sel
+      csit-vpp-perf-report-iterative-2009-2n-dnv:
+        - 23  # rls2005 MRR iter env 5
     vpp-performance-changes-2n-dnv-mrr-cmp:
       csit-vpp-perf-report-iterative-2009-2n-dnv:
         - 13  # rls2009 MRR iter env 5
@@ -1076,13 +1062,12 @@
       csit-vpp-perf-verify-2001-3n-dnv:
         - 11  # MRR sel
     vpp-performance-changes-3n-dnv-mrr-ref:
-      csit-vpp-perf-report-iterative-2005-3n-dnv:
-        - 8   # MRR
+      csit-vpp-perf-report-iterative-2009-3n-dnv:
+        - 19  # rls2005 MRR iter env 5
     vpp-performance-changes-3n-dnv-mrr-cmp:
-      # TODO: Replace:
-      # csit-vpp-perf-report-iterative-2009-3n-dnv:
-      csit-vpp-perf-report-iterative-2005-3n-dnv:
-        - 8   # MRR
+      # TODO: Replace by rls2009:
+      csit-vpp-perf-report-iterative-2009-3n-dnv:
+        - 19  # rls2005 MRR iter env 5
 
     vpp-performance-changes-3n-tsh-mrr-h1:
       csit-vpp-perf-verify-2001-3n-tsh:
@@ -2459,20 +2444,22 @@
 #    csit-vpp-perf-report-coverage-2009-3n-tsh:
 #      - 1   # RC2 3n-tsh-ip4-00
 
-#    csit-vpp-perf-verify-2001-3n-dnv:
-#      - 5   # NDRPDR sel
-#      - 6   # NDRPDR sel
-#      - 7   # NDRPDR sel
-#      - 8   # NDRPDR sel
-#      - 9   # NDRPDR sel
-#      - 10  # NDRPDR sel
-#      - 12  # NDRPDR sel
-#      - 16  # NDRPDR sel
-#      - 17  # NDRPDR sel
-#      - 18  # NDRPDR sel
-#      - 11  # MRR sel
+    csit-vpp-perf-verify-2001-3n-dnv:
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 16  # NDRPDR sel
+      - 17  # NDRPDR sel
+      - 18  # NDRPDR sel
+      - 11  # MRR sel
     # TODO: Add:
     csit-vpp-perf-report-iterative-2009-3n-dnv:
+      - 16  # rls2005 NDRPDR iter env 5
+      - 19  # rls2005 MRR iter env 5
       - 3   # rls2009 NDRPDR iter env 5
       - 6   # rls2009 NDRPDR iter env 5
       - 7   # rls2009 NDRPDR iter env 5
@@ -2486,20 +2473,26 @@
     csit-vpp-perf-report-coverage-2009-3n-dnv:
       - 2   # rls2009 NDRPDR cov 3n-dnv-crypto-01
 
-#    csit-vpp-perf-verify-2001-2n-dnv:
-#      - 4   # NDRPDR sel
-#      - 5   # NDRPDR sel
-#      - 6   # NDRPDR sel
-#      - 7   # NDRPDR sel
-#      - 8   # NDRPDR sel
-#      - 9   # NDRPDR sel
-#      - 10  # NDRPDR sel
-#      - 11  # NDRPDR sel
-#      - 13  # NDRPDR sel
-#      - 16  # NDRPDR sel
-#      - 12  # MRR sel
+    csit-vpp-perf-verify-2001-2n-dnv:
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 13  # NDRPDR sel
+      - 16  # NDRPDR sel
+      - 12  # MRR sel
     # TODO: Add:
     csit-vpp-perf-report-iterative-2009-2n-dnv:
+      - 16  # rls2005 NDRPDR iter env 5
+      - 17  # rls2005 NDRPDR iter env 5
+      - 18  # rls2005 NDRPDR iter env 5
+      - 19  # rls2005 NDRPDR iter env 5
+      - 21  # rls2005 NDRPDR iter env 5
+      - 23  # rls2005 MRR iter env 5
       - 3   # rls2009 NDRPDR iter env 5
       - 5   # rls2009 NDRPDR iter env 5
       - 6   # rls2009 NDRPDR iter env 5
@@ -3775,205 +3768,205 @@
 #    - '2005.0-3 vs 2001.0-2: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
 ##    - '                RCA1: root cause analysis reference for 2001.0-4 vs 2001.0-2.'
 
-## VPP Performance Changes 2n-dnv 1t1c pdr
-#- type: "table"
-#  title: "VPP Performance Changes 2n-dnv 1t1c pdr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-pdr"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'1T1C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-dnv-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-2n-dnv-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-2n-dnv-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: PDR throughput on 2n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 2n-dnv 2t2c pdr
-#- type: "table"
-#  title: "VPP Performance Changes 2n-dnv 2t2c pdr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-pdr"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T2C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-dnv-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-2n-dnv-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-2n-dnv-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: PDR throughput on 2n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 2n-dnv 1t1c ndr
-#- type: "table"
-#  title: "VPP Performance Changes 2n-dnv 1t1c ndr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-ndr"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'1T1C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-dnv-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-2n-dnv-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-2n-dnv-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: NDR throughput on 2n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 2n-dnv 2t2c ndr
-#- type: "table"
-#  title: "VPP Performance Changes 2n-dnv 2t2c ndr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-ndr"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T2C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-dnv-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-2n-dnv-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-2n-dnv-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: NDR throughput on 2n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 3n-dnv 1t1c pdr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-dnv 1t1c pdr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-pdr"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'1T1C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-dnv-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-dnv-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-3n-dnv-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: PDR throughput on 3n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 3n-dnv 2t2c pdr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-dnv 2t2c pdr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-pdr"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T2C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-dnv-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-dnv-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-3n-dnv-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: PDR throughput on 3n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 3n-dnv 1t1c ndr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-dnv 1t1c ndr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-ndr"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'1T1C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-dnv-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-dnv-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-3n-dnv-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: NDR throughput on 3n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 3n-dnv 2t2c ndr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-dnv 2t2c ndr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-ndr"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T2C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-dnv-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-dnv-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-3n-dnv-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: NDR throughput on 3n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
+# VPP Performance Changes 2n-dnv 1t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 1t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-dnv-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: PDR throughput on 2n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-dnv 2t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 2t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-dnv-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: PDR throughput on 2n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-dnv 1t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 1t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-dnv-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: NDR throughput on 2n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-dnv 2t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 2t2c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-dnv-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: NDR throughput on 2n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 3n-dnv 1t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 1t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-dnv-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: PDR throughput on 3n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 3n-dnv 2t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 2t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-dnv-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: PDR throughput on 3n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 3n-dnv 1t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 1t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-dnv-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: NDR throughput on 3n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 3n-dnv 2t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 2t2c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-dnv-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: NDR throughput on 3n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 1t1c pdr
 - type: "table"
@@ -4918,155 +4911,155 @@
 #    - "2001, 2005 - VPP versions tested."
 #    - "Diff - difference between 2001 and 2005 VPP version."
 
-## VPP Performance Changes 2n-dnv 1t1c mrr
-#- type: "table"
-#  title: "VPP Performance Changes 2n-dnv 1t1c mrr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'1T1C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-dnv-mrr-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: MRR throughput on 2n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 2n-dnv 2t2c mrr
-#- type: "table"
-#  title: "VPP Performance Changes 2n-dnv 2t2c mrr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T2C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-dnv-mrr-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: MRR throughput on 2n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 2n-dnv 4t4c mrr
-#- type: "table"
-#  title: "VPP Performance Changes 2n-dnv 4t4c mrr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-4t4c-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T4C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-2n-dnv-mrr-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: MRR throughput on 2n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 3n-dnv 1t1c mrr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-dnv 1t1c mrr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'1T1C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-dnv-mrr-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: MRR throughput on 3n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 3n-dnv 2t2c mrr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-dnv 2t2c mrr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T2C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-dnv-mrr-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: MRR throughput on 3n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
-#
-## VPP Performance Changes 3n-dnv 4t4c mrr
-#- type: "table"
-#  title: "VPP Performance Changes 3n-dnv 4t4c mrr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-4t4c-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T4C'"
-#  columns:
-#    - title: "2001.0-2"
-#      data-set: "vpp-performance-changes-3n-dnv-mrr-h1"
-#    - title: "2005.0-3"
-#      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
-#    - title: "2009.0-5"
-#      data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
-#  comparisons:
-#    - title: "2009.0-5 vs 2005.0-3"
-#      reference: 2
-#      compare: 3
-#  legend:
-#    - ''
-#    - 'Test Case:            Test cases executed for: MRR throughput on 3n-dnv with x553.'
-#    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
-#    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#    - '2009.0-5 vs 2005.0-3: Compares CSIT environment current vs previous with previous VPP code.'
+# VPP Performance Changes 2n-dnv 1t1c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 1t1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 2n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-dnv 2t2c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 2t2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 2n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-dnv 4t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-dnv 4t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-4t4c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T4C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-dnv-mrr-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 2n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 3n-dnv 1t1c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 1t1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-1t1c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 3n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 3n-dnv 2t2c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 2t2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-2t2c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 3n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 3n-dnv 4t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-dnv 4t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-dnv-4t4c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T4C'"
+  columns:
+    - title: "2001.0-2"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-h1"
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-ref"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-3n-dnv-mrr-cmp"
+  comparisons:
+    - title: "2009.0-5 vs 2005.0-5"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 3n-dnv with x553.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "2" for CSIT rls2001, "4" for CSIT rls2005).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-5 vs 2005.0-5: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 1t1c mrr
 - type: "table"
@@ -5518,39 +5511,39 @@
   - "parent"
   - "msg"
 
-## Detailed Test Results - VPP Performance Results 3n-dnv
-#- type: "table"
-#  title: "Detailed Test Results - VPP Performance Results 3n-dnv"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTR,PERF,VPP,3N,DNV]}/"
-#  columns:
-#    - title: " |prein| Test Name |preout| "
-#      data: "data name"
-#    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-#      data: "data msg"
-#  data: "vpp-perf-results-3n-dnv"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
-#
-## Detailed Test Results - VPP Performance Results 2n-dnv
-#- type: "table"
-#  title: "Detailed Test Results - VPP Performance Results 2n-dnv"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTR,PERF,VPP,2N,DNV]}/vpp_performance_results_2n_dnv"
-#  columns:
-#    - title: " |prein| Test Name |preout| "
-#      data: "data name"
-#    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-#      data: "data msg"
-#  data: "vpp-perf-results-2n-dnv"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
+# Detailed Test Results - VPP Performance Results 3n-dnv
+- type: "table"
+  title: "Detailed Test Results - VPP Performance Results 3n-dnv"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,VPP,3N,DNV]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
+  data: "vpp-perf-results-3n-dnv"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - VPP Performance Results 2n-dnv
+- type: "table"
+  title: "Detailed Test Results - VPP Performance Results 2n-dnv"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,VPP,2N,DNV]}/vpp_performance_results_2n_dnv"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
+  data: "vpp-perf-results-2n-dnv"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
 
 # Test configuration - VPP Performance Test Configs 3n-hsw
 - type: "table"
@@ -5637,39 +5630,39 @@
   - "name"
   - "conf-history"
 
-## Test configuration - VPP Performance Test Configs 3n-dnv
-#- type: "table"
-#  title: "Test configuration - VPP Performance Test Configs 3n-dnv"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTC,PERF,VPP,3N,DNV]}/"
-#  columns:
-#    - title: " |prein| Test Name |preout| "
-#      data: "data name"
-#    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-#      data: "data conf-history"
-#  data: "vpp-perf-results-3n-dnv"
-#  filter: "all"
-#  parameters:
-#  - "parent"
-#  - "name"
-#  - "conf-history"
-#
-## Test configuration - VPP Performance Test Configs 2n-dnv
-#- type: "table"
-#  title: "Test configuration - VPP Performance Test Configs 2n-dnv"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTC,PERF,VPP,2N,DNV]}/"
-#  columns:
-#    - title: " |prein| Test Name |preout| "
-#      data: "data name"
-#    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-#      data: "data conf-history"
-#  data: "vpp-perf-results-2n-dnv"
-#  filter: "all"
-#  parameters:
-#  - "parent"
-#  - "name"
-#  - "conf-history"
+# Test configuration - VPP Performance Test Configs 3n-dnv
+- type: "table"
+  title: "Test configuration - VPP Performance Test Configs 3n-dnv"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,PERF,VPP,3N,DNV]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-perf-results-3n-dnv"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP Performance Test Configs 2n-dnv
+- type: "table"
+  title: "Test configuration - VPP Performance Test Configs 2n-dnv"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,PERF,VPP,2N,DNV]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-perf-results-2n-dnv"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
 
 # Test Operational Data - VPP Performance Operational Data 3n-hsw
 - type: "table"
@@ -5711,21 +5704,21 @@
   data: "vpp-perf-results-3n-tsh"
   filter: "all"
 
-## Test Operational Data - VPP Performance Operational Data 3n-dnv
-#- type: "table"
-#  title: "Test Operational Data - VPP Performance Operational Data 3n-dnv"
-#  algorithm: "table_oper_data_html"
-#  output-file: "{DIR[DTO,PERF,VPP,3N,DNV]}/"
-#  data: "vpp-perf-results-3n-dnv"
-#  filter: "all"
-#
-## Test Operational Data - VPP Performance Operational Data 2n-dnv
-#- type: "table"
-#  title: "Test Operational Data - VPP Performance Operational Data 2n-dnv"
-#  algorithm: "table_oper_data_html"
-#  output-file: "{DIR[DTO,PERF,VPP,2N,DNV]}/"
-#  data: "vpp-perf-results-2n-dnv"
-#  filter: "all"
+# Test Operational Data - VPP Performance Operational Data 3n-dnv
+- type: "table"
+  title: "Test Operational Data - VPP Performance Operational Data 3n-dnv"
+  algorithm: "table_oper_data_html"
+  output-file: "{DIR[DTO,PERF,VPP,3N,DNV]}/"
+  data: "vpp-perf-results-3n-dnv"
+  filter: "all"
+
+# Test Operational Data - VPP Performance Operational Data 2n-dnv
+- type: "table"
+  title: "Test Operational Data - VPP Performance Operational Data 2n-dnv"
+  algorithm: "table_oper_data_html"
+  output-file: "{DIR[DTO,PERF,VPP,2N,DNV]}/"
+  data: "vpp-perf-results-2n-dnv"
+  filter: "all"
 
 # Detailed Test Results - VPP MRR Results 3n-hsw
 - type: "table"
@@ -5812,39 +5805,39 @@
   - "parent"
   - "msg"
 
-## Detailed Test Results - VPP MRR Results 3n-dnv
-#- type: "table"
-#  title: "Detailed Test Results - VPP MRR Results 3n-dnv"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTR,MRR,VPP,3N,DNV]}/"
-#  columns:
-#    - title: " |prein| Test Name |preout| "
-#      data: "data name"
-#    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-#      data: "data msg"
-#  data: "vpp-mrr-results-3n-dnv"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
-#
-## Detailed Test Results - VPP MRR Results 2n-dnv
-#- type: "table"
-#  title: "Detailed Test Results - VPP MRR Results 2n-dnv"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTR,MRR,VPP,2N,DNV]}/"
-#  columns:
-#    - title: " |prein| Test Name |preout| "
-#      data: "data name"
-#    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-#      data: "data msg"
-#  data: "vpp-mrr-results-2n-dnv"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
+# Detailed Test Results - VPP MRR Results 3n-dnv
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 3n-dnv"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,MRR,VPP,3N,DNV]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
+  data: "vpp-mrr-results-3n-dnv"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - VPP MRR Results 2n-dnv
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 2n-dnv"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,MRR,VPP,2N,DNV]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
+  data: "vpp-mrr-results-2n-dnv"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
 
 # Test configuration - VPP MRR Test Configs 3n-hsw
 - type: "table"
@@ -5931,39 +5924,39 @@
   - "name"
   - "conf-history"
 
-## Test configuration - VPP MRR Test Configs 3n-dnv
-#- type: "table"
-#  title: "Test configuration - VPP MRR Test Configs 3n-dnv"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTC,MRR,VPP,3N,DNV]}/"
-#  columns:
-#    - title: " |prein| Test Name |preout| "
-#      data: "data name"
-#    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-#      data: "data conf-history"
-#  data: "vpp-mrr-results-3n-dnv"
-#  filter: "all"
-#  parameters:
-#  - "parent"
-#  - "name"
-#  - "conf-history"
-#
-## Test configuration - VPP MRR Test Configs 2n-dnv
-#- type: "table"
-#  title: "Test configuration - VPP MRR Test Configs 2n-dnv"
-#  algorithm: "table_merged_details"
-#  output-file: "{DIR[DTC,MRR,VPP,2N,DNV]}/"
-#  columns:
-#    - title: " |prein| Test Name |preout| "
-#      data: "data name"
-#    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-#      data: "data conf-history"
-#  data: "vpp-mrr-results-2n-dnv"
-#  filter: "all"
-#  parameters:
-#  - "parent"
-#  - "name"
-#  - "conf-history"
+# Test configuration - VPP MRR Test Configs 3n-dnv
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 3n-dnv"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,MRR,VPP,3N,DNV]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-mrr-results-3n-dnv"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP MRR Test Configs 2n-dnv
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 2n-dnv"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,MRR,VPP,2N,DNV]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-mrr-results-2n-dnv"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
 
 # Detailed Test Results - VPP Device Results - Ubuntu
 - type: "table"
@@ -6908,16 +6901,16 @@
     - "{DIR[DTR,PERF,VPP,2N,CLX]}"
     - "{DIR[DTR,PERF,VPP,3N,HSW]}"
     - "{DIR[DTR,PERF,VPP,3N,TSH]}"
-#    - "{DIR[DTR,PERF,VPP,2N,DNV]}"
-#    - "{DIR[DTR,PERF,VPP,3N,DNV]}"
+    - "{DIR[DTR,PERF,VPP,2N,DNV]}"
+    - "{DIR[DTR,PERF,VPP,3N,DNV]}"
   data:
     - "vpp-perf-results-2n-skx"
     - "vpp-perf-results-3n-skx"
     - "vpp-perf-results-2n-clx"
     - "vpp-perf-results-3n-hsw"
     - "vpp-perf-results-3n-tsh"
-#    - "vpp-perf-results-2n-dnv"
-#    - "vpp-perf-results-3n-dnv"
+    - "vpp-perf-results-2n-dnv"
+    - "vpp-perf-results-3n-dnv"
   filter: "all"
   data-start-level: 4
   order-chapters:
@@ -6964,16 +6957,16 @@
     - "{DIR[DTC,PERF,VPP,2N,CLX]}"
     - "{DIR[DTC,PERF,VPP,3N,HSW]}"
     - "{DIR[DTC,PERF,VPP,3N,TSH]}"
-#    - "{DIR[DTC,PERF,VPP,2N,DNV]}"
-#    - "{DIR[DTC,PERF,VPP,3N,DNV]}"
+    - "{DIR[DTC,PERF,VPP,2N,DNV]}"
+    - "{DIR[DTC,PERF,VPP,3N,DNV]}"
   data:
     - "vpp-perf-results-2n-skx"
     - "vpp-perf-results-3n-skx"
     - "vpp-perf-results-2n-clx"
     - "vpp-perf-results-3n-hsw"
     - "vpp-perf-results-3n-tsh"
-#    - "vpp-perf-results-2n-dnv"
-#    - "vpp-perf-results-3n-dnv"
+    - "vpp-perf-results-2n-dnv"
+    - "vpp-perf-results-3n-dnv"
   filter: "all"
   data-start-level: 4
   order-chapters:
@@ -7020,16 +7013,16 @@
     - "{DIR[DTO,PERF,VPP,2N,CLX]}"
     - "{DIR[DTO,PERF,VPP,3N,HSW]}"
     - "{DIR[DTO,PERF,VPP,3N,TSH]}"
-#    - "{DIR[DTO,PERF,VPP,2N,DNV]}"
-#    - "{DIR[DTO,PERF,VPP,3N,DNV]}"
+    - "{DIR[DTO,PERF,VPP,2N,DNV]}"
+    - "{DIR[DTO,PERF,VPP,3N,DNV]}"
   data:
     - "vpp-perf-results-2n-skx"
     - "vpp-perf-results-3n-skx"
     - "vpp-perf-results-2n-clx"
     - "vpp-perf-results-3n-hsw"
     - "vpp-perf-results-3n-tsh"
-#    - "vpp-perf-results-2n-dnv"
-#    - "vpp-perf-results-3n-dnv"
+    - "vpp-perf-results-2n-dnv"
+    - "vpp-perf-results-3n-dnv"
   filter: "all"
   data-start-level: 4
   order-chapters:
@@ -7076,16 +7069,16 @@
     - "{DIR[DTR,MRR,VPP,2N,CLX]}"
     - "{DIR[DTR,MRR,VPP,3N,HSW]}"
     - "{DIR[DTR,MRR,VPP,3N,TSH]}"
-#    - "{DIR[DTR,MRR,VPP,2N,DNV]}"
-#    - "{DIR[DTR,MRR,VPP,3N,DNV]}"
+    - "{DIR[DTR,MRR,VPP,2N,DNV]}"
+    - "{DIR[DTR,MRR,VPP,3N,DNV]}"
   data:
     - "vpp-mrr-results-2n-skx"
     - "vpp-mrr-results-3n-skx"
     - "vpp-mrr-results-2n-clx"
     - "vpp-mrr-results-3n-hsw"
     - "vpp-mrr-results-3n-tsh"
-#    - "vpp-mrr-results-2n-dnv"
-#    - "vpp-mrr-results-3n-dnv"
+    - "vpp-mrr-results-2n-dnv"
+    - "vpp-mrr-results-3n-dnv"
   filter: "all"
   data-start-level: 4
   order-chapters:
@@ -7140,8 +7133,8 @@
     - "vpp-mrr-results-2n-clx"
     - "vpp-mrr-results-3n-hsw"
     - "vpp-mrr-results-3n-tsh"
-#    - "vpp-mrr-results-2n-dnv"
-#    - "vpp-mrr-results-3n-dnv"
+    - "vpp-mrr-results-2n-dnv"
+    - "vpp-mrr-results-3n-dnv"
   filter: "all"
   data-start-level: 4
   order-chapters:
