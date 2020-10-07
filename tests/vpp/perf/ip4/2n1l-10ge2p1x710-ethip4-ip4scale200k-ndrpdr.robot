@@ -57,7 +57,7 @@
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${100000}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4dst${rts_per_flow}
 
 *** Keywords ***
