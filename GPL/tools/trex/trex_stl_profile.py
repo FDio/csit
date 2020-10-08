@@ -105,8 +105,7 @@ def simple_burst(
     client = None
     total_rcvd = 0
     total_sent = 0
-    approximated_duration = 0
-    approximated_rate = 0
+    approximated_duration = 0.0
     lost_a = 0
     lost_b = 0
     lat_a = u"-1/-1/-1/"
@@ -254,10 +253,6 @@ def simple_burst(
             else:
                 total_sent = stats[port_0][u"opackets"]
                 total_rcvd = stats[port_1][u"ipackets"]
-            try:
-                approximated_rate = total_sent / approximated_duration
-            except ZeroDivisionError:
-                pass
 
             print(f"\npackets lost from {port_0} --> {port_1}: {lost_a} pkts")
             if traffic_directions > 1:
@@ -275,13 +270,12 @@ def simple_burst(
             if client:
                 client.disconnect()
             print(
-                f"rate={rate!r}, total_received={total_rcvd}, "
-                f"total_sent={total_sent}, frame_loss={lost_a + lost_b}, "
-                f"target_duration={duration!r}, "
-                f"approximated_duration={approximated_duration!r}, "
-                f"approximated_rate={approximated_rate}, "
-                f"latency_stream_0(usec)={lat_a}, "
-                f"latency_stream_1(usec)={lat_b}, "
+                f"rate={rate!r}; total_received={total_rcvd}; "
+                f"total_sent={total_sent}; frame_loss={lost_a + lost_b}; "
+                f"target_duration={duration!r}; "
+                f"approximated_duration={approximated_duration!r}; "
+                f"latency_stream_0(usec)={lat_a}; "
+                f"latency_stream_1(usec)={lat_b}; "
             )
 
 
