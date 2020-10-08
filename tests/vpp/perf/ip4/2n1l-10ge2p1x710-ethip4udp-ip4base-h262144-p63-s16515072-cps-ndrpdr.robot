@@ -98,7 +98,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
-| | ... | 172.16.0.0 | 20.16.0.0 | ${14}
+| | ... | 172.16.0.0 | 20.16.0.0 | ${18}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

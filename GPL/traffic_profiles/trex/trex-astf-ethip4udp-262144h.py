@@ -91,11 +91,11 @@ class TrafficProfile(TrafficProfileBaseClass):
         # ip generators
         ip_gen_c = ASTFIPGenDist(
             ip_range=[self.p1_src_start_ip, self.p1_src_end_ip],
-            distribution=u"seq"
+            distribution=u"rand"
         )
         ip_gen_s = ASTFIPGenDist(
             ip_range=[self.p1_dst_start_ip, self.p1_dst_end_ip],
-            distribution=u"seq"
+            distribution=u"rand"
         )
         ip_gen = ASTFIPGen(
             glob=ASTFIPGenGlobal(ip_offset=u"0.0.0.1"),

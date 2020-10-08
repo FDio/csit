@@ -129,12 +129,16 @@ class NATUtil:
         # A closure, accessing the variables above.
         def resetter():
             """Delete and re-add the NAT range setting."""
+            logger.trace(f"before reset:")
+            NATUtil.show_nat44_summary(node)
             with PapiSocketExecutor(node) as papi_exec:
                 args_in[u"is_add"] = False
                 papi_exec.add(cmd, **args_in)
                 args_in[u"is_add"] = True
                 papi_exec.add(cmd, **args_in)
                 papi_exec.get_replies(err_msg)
+            logger.trace(f"after reset:")
+            NATUtil.show_nat44_summary(node)
 
         return resetter
 
