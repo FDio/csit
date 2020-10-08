@@ -49,6 +49,7 @@
 | |
 | | ... | \| Clear and show runtime counters with running traffic \|
 | |
+| | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${runtime_duration} = | Get Runtime Duration
 | | ${runtime_rate} = | Get Runtime Rate
 | | ${traffic_directions} = | Get Traffic Directions
@@ -63,8 +64,8 @@
 | | ... | rate=${runtime_rate}
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | warmup_time=${0}
 | | ... | async_call=${True}
+| | ... | ppta=${ppta}
 | | ... | use_latency=${use_latency}
 | | ... | traffic_directions=${traffic_directions}
 | | ... | transaction_directions=${transaction_directions}
@@ -107,6 +108,7 @@
 | | # Get values via performance_vars.
 | | ${max_rate} = | Get Max Rate
 | | ${min_rate} = | Get Min Rate
+| | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${resetter} = | Get Resetter
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_directions} = | Get Transaction Directions
@@ -122,6 +124,7 @@
 | | ... | plr_target=${1e-7}
 | | ... | tdpt=${0.1}
 | | ... | initial_count=${50}
+| | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
 | | ... | timeout=${7200.0}
 | | ... | trace_enabled=${False}
@@ -178,6 +181,7 @@
 | | ${min_rate} = | Get Min Rate
 | | # \${packet_loss_ratio} is used twice so it is worth a variable.
 | | ${packet_loss_ratio} = | Get Packet Loss Ratio
+| | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${resetter} = | Get Resetter
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_directions} = | Get Transaction Directions
@@ -197,6 +201,7 @@
 | | ... | number_of_intermediate_phases=${2}
 | | ... | timeout=${1800}
 | | ... | doublings=${2}
+| | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
 | | ... | traffic_directions=${traffic_directions}
 | | ... | transaction_directions=${transaction_directions}
@@ -219,7 +224,7 @@
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
-| | Run Keyword If | $ndr_per_dir != $pdr_per_dir
+| | Run Keyword If | ${ndr_per_dir} != ${pdr_per_dir}
 | | ... | Send traffic at specified rate
 | | ... | rate=${ndr_per_dir}
 | | ... | trial_duration=${1.0}
@@ -264,6 +269,7 @@
 | |
 | | ${max_rate} = | Get Max Rate
 | | ${min_rate} = | Get Min Rate
+| | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${resetter} = | Get Resetter
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_directions} = | Get Transaction Directions
@@ -283,6 +289,7 @@
 | | ... | number_of_intermediate_phases=${1}
 | | ... | timeout=${720}
 | | ... | doublings=${2}
+| | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
 | | ... | traffic_directions=${traffic_directions}
 | | ... | transaction_directions=${transaction_directions}
@@ -316,21 +323,22 @@
 | | [Arguments] | ${message_prefix} | ${rate}
 | |
 | | ${min_rate} = | Get Min Rate
+| | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${real_rate} = | Evaluate | max(${rate}, ${min_rate})
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_directions} = | Get Transaction Directions
 | | ${transaction_duration} = | Get Transaction Duration
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
-| | ${real_rate} = | Evaluate | max(${rate}, ${min_rate})
 | | Call Resetter
 | | Send traffic on tg
 | | ... | duration=${PERF_TRIAL_LATENCY_DURATION}
 | | ... | rate=${real_rate}
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | warmup_time=${0.0}
 | | ... | async_call=${False}
 | | ... | duration_limit=${PERF_TRIAL_LATENCY_DURATION}
+| | ... | ppta=${ppta}
 | | ... | traffic_directions=${traffic_directions}
 | | ... | transaction_directions=${transaction_directions}
 | | ... | transaction_duration=${transaction_duration}
@@ -368,6 +376,7 @@
 | | ${ramp_up_duration} = | Get Ramp Up Duration
 | | Run Keyword Unless | ${ramp_up_duration} > 0.0 | Return From Keyword
 | | ${ramp_up_rate} = | Get Ramp Up Rate
+| | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_directions} = | Get Transaction Directions
 | | ${transaction_duration} = | Get Transaction Duration
@@ -379,15 +388,15 @@
 | | ... | rate=${ramp_up_rate}
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | warmup_time=${0}
 | | ... | async_call=${False}
+| | ... | duration_limit=${0.0}
+| | ... | ppta=${ppta}
 | | ... | use_latency=${use_latency}
 | | ... | traffic_directions=${traffic_directions}
 | | ... | transaction_directions=${transaction_directions}
 | | ... | transaction_duration=${transaction_duration}
 | | ... | transaction_scale=${transaction_scale}
 | | ... | transaction_type=${transaction_type}
-| | ... | duration_limit=${0.0}
 
 | Send traffic at specified rate
 | | [Documentation]
@@ -435,9 +444,9 @@
 | | | ... | rate=${rate}
 | | | ... | frame_size=${frame_size}
 | | | ... | traffic_profile=${traffic_profile}
-| | | ... | warmup_time=${0}
 | | | ... | async_call=${False}
 | | | ... | duration_limit=0.0
+| | | ... | ppta=${ppta}
 | | | ... | traffic_directions=${traffic_directions}
 | | | ... | transaction_directions=${transaction_directions}
 | | | ... | transaction_duration=${transaction_duration}
@@ -450,12 +459,14 @@
 | | | # and the profile waits for retransmits do not happen within duration.
 | | | # Thus, approx rate is too low in that case. At least logging it here.
 | | | Log | ${result.approximated_receive_rate}
-| | | # Partial receive rate gives bad results at big duration stretching,
-| | | # but profile driver should have stopped the measurement soon enough.
-| | | # For extreme cases (CPS MRR) this gives the more reasonable estimate.
+| | | # Partial receive rate gives reasonable results
+| | | # even at big duration stretching, when profile driver stops
+| | | # the measurement soon enough. The value is still measured at
+| | | # lower offered load, but that is not a big deal for MRR.
 | | | ${receive_rate} = | Set Variable  | ${result.partial_receive_rate}
-| | | # For UDP_PPS, the output unit does not match input unit,
-| | | # and it is easier to convert here than in the parent keyword.
+| | | # One downside of the partial receive rate is the fact it is computed
+| | | # from the input rate, which is TPS and unidirectional.
+| | | # Packet related tests need to convert.
 | | | ${converted_receive_rate} = | Evaluate | ${receive_rate} * ${ppta}
 | | | ${receive_rate} = | Set Variable If | "_pps" in "${transaction_type}"
 | | | ... | ${converted_receive_rate} | ${receive_rate}
@@ -490,6 +501,7 @@
 | |
 | | [Arguments] | ${rate}
 | |
+| | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_directions} = | Get Transaction Directions
 | | ${transaction_duration} = | Get Transaction Duration
@@ -503,9 +515,9 @@
 | | ... | rate=${rate}
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | warmup_time=${0.0}
 | | ... | async_call=${True}
 | | ... | duration_limit=${0.0}
+| | ... | ppta=${ppta}
 | | ... | traffic_directions=${traffic_directions}
 | | ... | transaction_directions=${transaction_directions}
 | | ... | transaction_duration=${transaction_duration}
@@ -560,8 +572,8 @@
 | | ... | trial_multiplicity=${trial_multiplicity}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${0.0}
-| | ${unit} = | Set Variable If | """${transaction_type}""" == """packet"""
-| | ... | packets per second | estimated connections per second
+| | ${unit} = | Set Variable If | """_cps""" in """${transaction_type}"""
+| | ... | estimated connections per second | packets per second
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in ${unit}: ${results}
 | | ... | append=yes

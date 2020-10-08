@@ -67,7 +67,7 @@ class TGDropRateSearchImpl(DropRateSearch):
 
     def measure_loss(
             self, rate, frame_size, loss_acceptance, loss_acceptance_type,
-            traffic_profile, skip_warmup=False):
+            traffic_profile):
         """Runs the traffic and evaluate the measured results.
 
         :param rate: Offered traffic load.
@@ -76,13 +76,11 @@ class TGDropRateSearchImpl(DropRateSearch):
         :param loss_acceptance_type: Type of permitted loss.
         :param traffic_profile: Module name as a traffic profile identifier.
             See GPL/traffic_profiles/trex for implemented modules.
-        :param skip_warmup: Start TRex without warmup traffic if true.
         :type rate: float
         :type frame_size: str
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
         :type traffic_profile: str
-        :type skip_warmup: bool
         :returns: Drop threshold exceeded? (True/False)
         :rtype: bool
         :raises NotImplementedError: If TG is not supported.
@@ -96,15 +94,9 @@ class TGDropRateSearchImpl(DropRateSearch):
         subtype = check_subtype(tg_instance.node)
         if subtype == NodeSubTypeTG.TREX:
             unit_rate = str(rate) + self.get_rate_type_str()
-            if skip_warmup:
-                tg_instance.trex_stl_start_remote_exec(
-                    self.get_duration(), unit_rate, frame_size, traffic_profile,
-                    warmup_time=0.0
-                )
-            else:
-                tg_instance.trex_stl_start_remote_exec(
-                    self.get_duration(), unit_rate, frame_size, traffic_profile
-                )
+            tg_instance.trex_stl_start_remote_exec(
+                self.get_duration(), unit_rate, frame_size, traffic_profile
+            )
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
             if self.loss_acceptance_type_is_percentage():
@@ -169,13 +161,11 @@ class TrafficGenerator(AbstractMeasurer):
         # Other input parameters, not knowable from measure() signature.
         self.frame_size = None
         self.traffic_profile = None
-        self.warmup_time = None
-        self.tx_port = None
-        self.rx_port = None
         self.traffic_directions = None
         self.transaction_directions = None
         self.negative_loss = None
         self.use_latency = None
+        self.ppta = None
         self.resetter = None
         self.transaction_scale = None
         self.transaction_duration = None
@@ -544,9 +534,6 @@ class TrafficGenerator(AbstractMeasurer):
         In sync mode, measurement results are stored internally.
         In async mode, initial data including xstats are stored internally.
 
-        Warmup time is not supported, as ASTF profiles typically
-        need a DUT state reset before each trial.
-
         This method contains the logic to compute duration as maximum time
         if transaction_scale is nonzero.
         There is n_transaction argument, which limits how many transactions
@@ -574,8 +561,7 @@ class TrafficGenerator(AbstractMeasurer):
         :raises RuntimeError: In case of T-Rex driver issue.
         """
         self.check_mode(TrexMode.ASTF)
-        p_0, p_1 = (self.rx_port, self.tx_port) if self._ifaces_reordered \
-            else (self.tx_port, self.rx_port)
+        p_0, p_1 = (1, 0) if self._ifaces_reordered else (0, 1)
         if not isinstance(duration, (float, int)):
             duration = float(duration)
 
@@ -683,10 +669,7 @@ class TrafficGenerator(AbstractMeasurer):
         :raises RuntimeError: In case of T-Rex driver issue.
         """
         self.check_mode(TrexMode.STL)
-        p_0, p_1 = (self.rx_port, self.tx_port) if self._ifaces_reordered \
-            else (self.tx_port, self.rx_port)
-        if not isinstance(self.warmup_time, (float, int)):
-            warmup_time = float(warmup_time)
+        p_0, p_1 = (1, 0) if self._ifaces_reordered else (0, 1)
         if not isinstance(duration, (float, int)):
             duration = float(duration)
         if self.duration_limit:
@@ -703,7 +686,6 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_with_value(u"duration", f"{duration!r}")
         command_line.add_with_value(u"frame_size", self.frame_size)
         command_line.add_with_value(u"rate", f"{rate!r}")
-        command_line.add_with_value(u"warmup_time", f"{self.warmup_time!r}")
         command_line.add_with_value(u"port_0", p_0)
         command_line.add_with_value(u"port_1", p_1)
         command_line.add_with_value(
@@ -750,17 +732,15 @@ class TrafficGenerator(AbstractMeasurer):
             rate,
             frame_size,
             traffic_profile,
-            warmup_time=0.0,
             async_call=False,
-            use_latency=False,
+            ppta=1,
             traffic_directions=2,
             transaction_directions=2,
-            tx_port=0,
-            rx_port=1,
-            transaction_scale=0,
             transaction_duration=0.0,
+            transaction_scale=0,
             transaction_type=u"packet",
             duration_limit=0.0,
+            use_latency=False,
         ):
         """Send traffic from all configured interfaces on TG.
 
@@ -790,42 +770,39 @@ class TrafficGenerator(AbstractMeasurer):
         :param frame_size: Frame size (L2) in Bytes.
         :param traffic_profile: Module name as a traffic profile identifier.
             See GPL/traffic_profiles/trex for implemented modules.
-        :param warmup_time: Warmup phase in seconds.
         :param async_call: Async mode.
-        :param use_latency: Whether to measure latency during the trial.
-            Default: False.
+        :param ppta: Packets per transaction, aggregated over directions.
+            Needed for udp_pps which does not have a good transaction counter,
+            so we need to compute expected number of packets.
+            Default: 1.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
         :param transaction_directions: Traffic from input rate point of view
             is initiated in bi- (2) or uni- (1) directional way.
             Default: 2
-        :param tx_port: Traffic generator transmit port for first flow.
-            Default: 0
-        :param rx_port: Traffic generator receive port for first flow.
-            Default: 1
+        :param transaction_duration: Total expected time to close transaction.
         :param transaction_scale: Number of transactions to perform.
             0 (default) means unlimited.
-        :param transaction_duration: Total expected time to close transaction.
         :param transaction_type: An identifier specifying which counters
             and formulas to use when computing attempted and failed
             transactions. Default: "packet".
         :param duration_limit: Zero or maximum limit for computed (or given)
             duration.
+        :param use_latency: Whether to measure latency during the trial.
+            Default: False.
         :type duration: float
         :type rate: float
         :type frame_size: str
         :type traffic_profile: str
-        :type warmup_time: float
         :type async_call: bool
-        :type use_latency: bool
+        :type ppta: int
         :type traffic_directions: int
         :type transaction_directions: int
-        :type tx_port: int
-        :type rx_port: int
-        :type transaction_scale: int
         :type transaction_duration: float
+        :type transaction_scale: int
         :type transaction_type: str
         :type duration_limit: float
+        :type use_latency: bool
         :returns: TG results.
         :rtype: str
         :raises ValueError: If TG traffic profile is not supported.
@@ -833,16 +810,14 @@ class TrafficGenerator(AbstractMeasurer):
         self.set_rate_provider_defaults(
             frame_size=frame_size,
             traffic_profile=traffic_profile,
-            warmup_time=warmup_time,
-            tx_port=tx_port,
-            rx_port=rx_port,
+            ppta=ppta,
             traffic_directions=traffic_directions,
             transaction_directions=transaction_directions,
-            use_latency=use_latency,
-            transaction_scale=transaction_scale,
             transaction_duration=transaction_duration,
+            transaction_scale=transaction_scale,
             transaction_type=transaction_type,
             duration_limit=duration_limit,
+            use_latency=use_latency,
         )
         self._send_traffic_on_tg_internal(duration, rate, async_call)
 
@@ -873,14 +848,6 @@ class TrafficGenerator(AbstractMeasurer):
         subtype = check_subtype(self._node)
         if subtype == NodeSubTypeTG.TREX:
             if u"trex-astf" in self.traffic_profile:
-                if self.warmup_time:
-                    raise RuntimeError(
-                        u"Warmup is not supported. Issue a separate trial"
-                        u" and ignore its results to mimic the warmup"
-                        u" functionality. Note that a typical ASTF profile"
-                        u" changes the DUT state, so you may need to reset"
-                        u" the DUT state between the warmup and a real trial."
-                    )
                 self.trex_astf_start_remote_exec(
                     duration, float(rate), async_call
                 )
@@ -1097,8 +1064,8 @@ class TrafficGenerator(AbstractMeasurer):
         # Convert back to aggregate assumed by search algorithms.
         transmit_rate = self._rate * self.transaction_directions
         if self.transaction_type == u"packet":
-            attempt_count = int(self.get_sent())
-            fail_count = int(self.get_loss())
+            attempt_count = self._sent
+            fail_count = self._loss
             partial_attempt_count = attempt_count
         elif self.transaction_type == u"udp_cps":
             if not self.transaction_scale:
@@ -1118,6 +1085,12 @@ class TrafficGenerator(AbstractMeasurer):
             fail_count = attempt_count - pass_count
             ctca = self._l7_data[u"client"][u"tcp"][u"connattempt"]
             partial_attempt_count = ctca
+        elif self.transaction_type == u"udp_pps":
+            if not self.transaction_scale:
+                raise RuntimeError(u"Add support for no-limit udp_pps.")
+            attempt_count = self.transaction_scale * self.ppta
+            partial_attempt_count = self._sent
+            fail_count = self._loss + (attempt_count - self._sent)
         else:
             raise RuntimeError(f"Unknown parsing {self.transaction_type!r}")
         if fail_count < 0 and not self.negative_loss:
@@ -1182,83 +1155,75 @@ class TrafficGenerator(AbstractMeasurer):
             self,
             frame_size,
             traffic_profile,
-            warmup_time=0.0,
-            tx_port=0,
-            rx_port=1,
+            ppta=1,
+            resetter=None,
             traffic_directions=2,
             transaction_directions=2,
-            negative_loss=True,
-            use_latency=False,
-            resetter=None,
-            transaction_scale=0,
             transaction_duration=0.0,
-            sleep_till_duration=False,
+            transaction_scale=0,
             transaction_type=u"packet",
             duration_limit=0.0,
+            negative_loss=True,
+            sleep_till_duration=False,
+            use_latency=False,
         ):
         """Store values accessed by measure().
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
             See GPL/traffic_profiles/trex for implemented modules.
-        :param warmup_time: Traffic duration before measurement starts [s].
+        :param ppta: Packets per transaction, aggregated over directions.
+            Needed for udp_pps which does not have a good transaction counter,
+            so we need to compute expected number of packets.
+            Default: 1.
+        :param resetter: Callable to reset DUT state for repeated trials.
         :param traffic_directions: Traffic from packet counting point of view
             is bi- (2) or uni- (1) directional.
             Default: 2
         :param transaction_directions: Traffic from input rate point of view
             is initiated in bi- (2) or uni- (1) directional way.
             Default: 2
-        :param tx_port: Traffic generator transmit port for first flow.
-            Default: 0
-        :param rx_port: Traffic generator receive port for first flow.
-            Default: 1
-        :param negative_loss: If false, negative loss is reported as zero loss.
-        :param use_latency: Whether to measure latency during the trial.
-            Default: False.
-        :param resetter: Callable to reset DUT state for repeated trials.
+        :param transaction_duration: Total expected time to close transaction.
         :param transaction_scale: Number of transactions to perform.
             0 (default) means unlimited.
-        :param transaction_duration: Total expected time to close transaction.
-        :param sleep_till_duration: If true and measurement returned faster,
-            sleep until it matches duration. Needed for PLRsearch.
         :param transaction_type: An identifier specifying which counters
             and formulas to use when computing attempted and failed
             transactions. Default: "packet".
             TODO: Does this also specify parsing for the measured duration?
         :param duration_limit: Zero or maximum limit for computed (or given)
             duration.
+        :param negative_loss: If false, negative loss is reported as zero loss.
+        :param sleep_till_duration: If true and measurement returned faster,
+            sleep until it matches duration. Needed for PLRsearch.
+        :param use_latency: Whether to measure latency during the trial.
+            Default: False.
         :type frame_size: str or int
         :type traffic_profile: str
-        :type warmup_time: float
+        :type ppta: int
+        :type resetter: Optional[Callable[[], None]]
         :type traffic_directions: int
         :type transaction_directions: int
-        :type tx_port: int
-        :type rx_port: int
-        :type negative_loss: bool
-        :type use_latency: bool
-        :type resetter: Optional[Callable[[], None]]
-        :type transaction_scale: int
         :type transaction_duration: float
-        :type sleep_till_duration: bool
+        :type transaction_scale: int
         :type transaction_type: str
         :type duration_limit: float
+        :type negative_loss: bool
+        :type sleep_till_duration: bool
+        :type use_latency: bool
         """
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
-        self.warmup_time = float(warmup_time)
-        self.tx_port = int(tx_port)
-        self.rx_port = int(rx_port)
+        self.resetter = resetter
+        self.ppta = ppta
         self.traffic_directions = int(traffic_directions)
         self.transaction_directions = int(transaction_directions)
-        self.negative_loss = bool(negative_loss)
-        self.use_latency = bool(use_latency)
-        self.resetter = resetter
-        self.traffic_directions = int(traffic_directions)
-        self.transaction_scale = int(transaction_scale)
         self.transaction_duration = float(transaction_duration)
-        self.sleep_till_duration = bool(sleep_till_duration)
+        self.transaction_scale = int(transaction_scale)
         self.transaction_type = str(transaction_type)
         self.duration_limit = float(duration_limit)
+        self.negative_loss = bool(negative_loss)
+        self.sleep_till_duration = bool(sleep_till_duration)
+        self.use_latency = bool(use_latency)
 
 
 class OptimizedSearch:
@@ -1281,13 +1246,14 @@ class OptimizedSearch:
             number_of_intermediate_phases=2,
             timeout=720.0,
             doublings=1,
+            ppta=1,
+            resetter=None,
             traffic_directions=2,
             transaction_directions=2,
-            use_latency=False,
-            resetter=None,
-            transaction_scale=0,
             transaction_duration=0.0,
+            transaction_scale=0,
             transaction_type=u"packet",
+            use_latency=False,
     ):
         """Setup initialized TG, perform optimized search, return intervals.
 
@@ -1296,7 +1262,6 @@ class OptimizedSearch:
         and zero intermediate phases are used.
         The initial phase still uses 1.0 seconds, to force remeasurement.
         That makes initial phase act as a warmup.
-        TODO: Switch to 1.0 for all trials if ASTF does not need warmup.
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
@@ -1318,20 +1283,24 @@ class OptimizedSearch:
         :param doublings: How many doublings to do in external search step.
             Default 1 is suitable for fairly stable tests,
             less stable tests might get better overal duration with 2 or more.
+        :param ppta: Packets per transaction, aggregated over directions.
+            Needed for udp_pps which does not have a good transaction counter,
+            so we need to compute expected number of packets.
+            Default: 1.
+        :param resetter: Callable to reset DUT state for repeated trials.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
         :param transaction_directions: Traffic from input rate point of view
             is initiated in bi- (2) or uni- (1) directional way.
             Default: 2
-        :param use_latency: Whether to measure latency during the trial.
-            Default: False.
-        :param resetter: Callable to reset DUT state for repeated trials.
+        :param transaction_duration: Total expected time to close transaction.
         :param transaction_scale: Number of transactions to perform.
             0 (default) means unlimited.
-        :param transaction_duration: Total expected time to close transaction.
         :param transaction_type: An identifier specifying which counters
             and formulas to use when computing attempted and failed
             transactions. Default: "packet".
+        :param use_latency: Whether to measure latency during the trial.
+            Default: False.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1343,13 +1312,14 @@ class OptimizedSearch:
         :type number_of_intermediate_phases: int
         :type timeout: float
         :type doublings: int
+        :type ppta: int
+        :type resetter: Optional[Callable[[], None]]
         :type traffic_directions: int
         :type transaction_directions: int
-        :type use_latency: bool
-        :type resetter: Optional[Callable[[], None]]
-        :type transaction_scale: int
         :type transaction_duration: float
+        :type transaction_scale: int
         :type transaction_type: str
+        :type use_latency: bool
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: NdrPdrResult
@@ -1370,14 +1340,15 @@ class OptimizedSearch:
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
             traffic_profile=traffic_profile,
+            sleep_till_duration=False,
+            ppta=ppta,
+            resetter=resetter,
             traffic_directions=traffic_directions,
             transaction_directions=transaction_directions,
-            use_latency=use_latency,
-            resetter=resetter,
-            transaction_scale=transaction_scale,
             transaction_duration=transaction_duration,
-            sleep_till_duration=False,
+            transaction_scale=transaction_scale,
             transaction_type=transaction_type,
+            use_latency=use_latency,
         )
         algorithm = MultipleLossRatioSearch(
             measurer=tg_instance,
@@ -1405,14 +1376,15 @@ class OptimizedSearch:
             tdpt=0.1,
             initial_count=50,
             timeout=7200.0,
+            ppta=1,
+            resetter=None,
             trace_enabled=False,
             traffic_directions=2,
             transaction_directions=2,
-            use_latency=False,
-            resetter=None,
-            transaction_scale=0,
             transaction_duration=0.0,
+            transaction_scale=0,
             transaction_type=u"packet",
+            use_latency=False,
     ):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
@@ -1432,6 +1404,11 @@ class OptimizedSearch:
             This is needed because initial "search" phase of integrator
             takes significant time even without any trial results.
         :param timeout: The search will stop after this overall time [s].
+        :param ppta: Packets per transaction, aggregated over directions.
+            Needed for udp_pps which does not have a good transaction counter,
+            so we need to compute expected number of packets.
+            Default: 1.
+        :param resetter: Callable to reset DUT state for repeated trials.
         :param trace_enabled: True if trace enabled else False.
             This is very verbose tracing on numeric computations,
             do not use in production.
@@ -1441,15 +1418,14 @@ class OptimizedSearch:
         :param transaction_directions: Traffic from input rate point of view
             is initiated in bi- (2) or uni- (1) directional way.
             Default: 2
-        :param use_latency: Whether to measure latency during the trial.
-            Default: False.
-        :param resetter: Callable to reset DUT state for repeated trials.
+        :param transaction_duration: Total expected time to close transaction.
         :param transaction_scale: Number of transactions to perform.
             0 (default) means unlimited.
-        :param transaction_duration: Total expected time to close transaction.
         :param transaction_type: An identifier specifying which counters
             and formulas to use when computing attempted and failed
             transactions. Default: "packet".
+        :param use_latency: Whether to measure latency during the trial.
+            Default: False.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1457,14 +1433,15 @@ class OptimizedSearch:
         :type plr_target: float
         :type initial_count: int
         :type timeout: float
+        :type ppta: int
+        :type resetter: Optional[Callable[[], None]]
         :type trace_enabled: bool
         :type traffic_directions: int
         :type transaction_directions: int
-        :type use_latency: bool
-        :type resetter: Optional[Callable[[], None]]
-        :type transaction_scale: int
         :type transaction_duration: float
+        :type transaction_scale: int
         :type transaction_type: str
+        :type use_latency: bool
         :returns: Average and stdev of estimated aggregate rate giving PLR.
         :rtype: 2-tuple of float
         """
@@ -1476,15 +1453,16 @@ class OptimizedSearch:
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
             traffic_profile=traffic_profile,
+            negative_loss=False,
+            sleep_till_duration=True,
+            ppta=ppta,
+            resetter=resetter,
             traffic_directions=traffic_directions,
             transaction_directions=transaction_directions,
-            negative_loss=False,
-            use_latency=use_latency,
-            resetter=resetter,
-            transaction_scale=transaction_scale,
             transaction_duration=transaction_duration,
-            sleep_till_duration=True,
+            transaction_scale=transaction_scale,
             transaction_type=transaction_type,
+            use_latency=use_latency,
         )
         algorithm = PLRsearch(
             measurer=tg_instance,
