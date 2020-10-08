@@ -1584,11 +1584,11 @@
 
     plot-soak-throughput:
       titlefont:
-        size: 18
+        size: 16
       xaxis:
         title: "<b>Test Cases [Index]</b>"
         titlefont:
-          size: 16
+          size: 14
         autorange: True
         fixedrange: False
         gridcolor: "rgb(230, 230, 230)"
@@ -1600,12 +1600,12 @@
         tickcolor: "rgb(220, 220, 220)"
         tickmode: "linear"
         tickfont:
-          size: 16
+          size: 14
         zeroline: False
       yaxis:
         title: "<b>Critical Rate Lower Bound [Mpps]</b>"
         titlefont:
-          size: 16
+          size: 14
         gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4r"
         tickformat: ".3r"
@@ -1616,7 +1616,7 @@
         showticklabels: True
         tickcolor: "rgb(220, 220, 220)"
         tickfont:
-          size: 16
+          size: 14
         zeroline: False
         range: [0,50]
       autosize: False
@@ -1629,7 +1629,7 @@
       legend:
         orientation: "h"
         font:
-          size: 16
+          size: 14
       width: 700
       height: 900
       paper_bgcolor: "#fff"
@@ -1639,7 +1639,7 @@
 
     plot-service-density:
       titlefont:
-        size: 18
+        size: 16
       xaxis:
         side: "top"
         autorange: True
@@ -1727,11 +1727,11 @@
 
     plot-throughput:
       titlefont:
-        size: 18
+        size: 16
       xaxis:
         title: "<b>Test Cases [Index]</b>"
         titlefont:
-          size: 16
+          size: 14
         autorange: True
         fixedrange: False
         gridcolor: "rgb(230, 230, 230)"
@@ -1743,12 +1743,12 @@
         tickcolor: "rgb(220, 220, 220)"
         tickmode: "linear"
         tickfont:
-          size: 16
+          size: 14
         zeroline: False
       yaxis:
         title: "<b>Packet Throughput [Mpps]</b>"
         titlefont:
-          size: 16
+          size: 14
         gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4r"
         tickformat: ".3r"
@@ -1759,7 +1759,7 @@
         showticklabels: True
         tickcolor: "rgb(220, 220, 220)"
         tickfont:
-          size: 16
+          size: 14
         zeroline: False
         range: [0,50]
       autosize: False
@@ -1772,7 +1772,7 @@
       legend:
         orientation: "h"
         font:
-          size: 16
+          size: 14
       width: 700
       height: 900
       paper_bgcolor: "#fff"
@@ -1782,11 +1782,11 @@
 
     plot-throughput-speedup-analysis:
       titlefont:
-        size: 18
+        size: 16
       xaxis:
         title: "<b>Number of Cores [Qty]</b>"
         titlefont:
-          size: 16
+          size: 14
         autorange: True
         fixedrange: False
         gridcolor: "rgb(230, 230, 230)"
@@ -1798,12 +1798,12 @@
         tickcolor: "rgb(238, 238, 238)"
         tickmode: "linear"
         tickfont:
-          size: 16
+          size: 14
         zeroline: False
       yaxis:
         title: "<b>Packet Throughput [Mpps]</b>"
         titlefont:
-          size: 16
+          size: 14
         type: "linear"
         gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4s"
@@ -1815,14 +1815,14 @@
         tickcolor: "rgb(220, 220, 220)"
         tickformat: ".4s"
         tickfont:
-          size: 16
+          size: 14
         zeroline: True
         rangemode: "tozero"
         range: [0,100]
       legend:
         orientation: "h"
         font:
-          size: 16
+          size: 14
         xanchor: "left"
         yanchor: "top"
         x: 0
@@ -1856,7 +1856,7 @@
           y: -0.13,
           font: {
             family: "Consolas, Courier New",
-            size: 15
+            size: 13
           },
         },
         {
@@ -1871,18 +1871,18 @@
           y: -0.15,
           font: {
             family: "Consolas, Courier New",
-            size: 15
+            size: 13
           },
         },
       ]
 
     plot-latency:
       titlefont:
-        size: 18
+        size: 16
       xaxis:
         title: "<b>Direction</b>"
         titlefont:
-          size: 16
+          size: 14
         autorange: True
         fixedrange: False
         gridcolor: "rgb(230, 230, 230)"
@@ -1894,12 +1894,12 @@
         tickcolor: "rgb(220, 220, 220)"
         tickmode: "linear"
         tickfont:
-          size: 16
+          size: 14
         zeroline: False
       yaxis:
         title: "<b>Packet Latency [uSec]</b>"
         titlefont:
-          size: 16
+          size: 14
         type: "linear"
         gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4s"
@@ -1911,13 +1911,13 @@
         tickcolor: "rgb(220, 220, 220)"
         tickformat: ".4s"
         tickfont:
-          size: 16
+          size: 14
         zeroline: True
         rangemode: "tozero"
       legend:
         orientation: "h"
         font:
-          size: 16
+          size: 14
         traceorder: "normal"  # "grouped" does not work: bug https://github.com/plotly/plotly.js/issues/1913
       autosize: False
       margin:
@@ -1991,12 +1991,12 @@
         xanchor: "center"
         x: 0.5
         font:
-          size: 18
+          size: 16
       xaxis:
         type: "log"
         title: "<b>Percentile [%]</b>"
         titlefont:
-          size: 16
+          size: 14
         autorange: True
         fixedrange: False
         gridcolor: "rgb(230, 230, 230)"
@@ -2009,11 +2009,11 @@
         tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8]
         ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999, 99.99999, 99.999999]
         tickfont:
-          size: 16
+          size: 14
       yaxis:
         title: "<b>Packet Latency [uSec]</b>"
         titlefont:
-          size: 16
+          size: 14
         gridcolor: "rgb(230, 230, 230)"
         linecolor: "rgb(220, 220, 220)"
         linewidth: 1
@@ -2022,14 +2022,14 @@
         showticklabels: True
         tickcolor: "rgb(220, 220, 220)"
         tickfont:
-          size: 16
+          size: 14
       autosize: False
       showlegend: True
       legend:
         traceorder: "normal"
         orientation: "h"
         font:
-          size: 16
+          size: 14
         xanchor: "left"
         yanchor: "top"
         x: 0
