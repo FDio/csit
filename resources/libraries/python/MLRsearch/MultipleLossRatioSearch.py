@@ -157,7 +157,7 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         :returns: The relative width of double logarithmic size.
         :rtype: float
         """
-        return 1.999 * relative_width - relative_width * relative_width
+        return 1.99999 * relative_width - relative_width * relative_width
         # The number should be 2.0, but we want to avoid rounding errors,
         # and ensure half of double is not larger than the original value.
 
@@ -280,16 +280,16 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         for _ in range(self.number_of_intermediate_phases):
             initial_width_goal = self.double_relative_width(initial_width_goal)
         max_lo = maximum_transmit_rate * (1.0 - initial_width_goal)
-        mrr = max(
-            minimum_transmit_rate, min(max_lo, line_measurement.receive_rate)
-        )
+        mrr = max(minimum_transmit_rate, min(
+            max_lo, line_measurement.partial_receive_rate
+        ))
         mrr_measurement = self.measurer.measure(
             self.initial_trial_duration, mrr
         )
         # Attempt to get narrower width.
         if mrr_measurement.loss_fraction > 0.0:
             max2_lo = mrr * (1.0 - initial_width_goal)
-            mrr2 = min(max2_lo, mrr_measurement.receive_rate)
+            mrr2 = min(max2_lo, mrr_measurement.partial_receive_rate)
         else:
             mrr2 = mrr / (1.0 - initial_width_goal)
         if minimum_transmit_rate < mrr2 < maximum_transmit_rate:
