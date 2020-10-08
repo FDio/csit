@@ -1705,8 +1705,6 @@
         tickfont:
           size: 14
         zeroline: False
-      boxmode: "group"
-      boxgroupgap: 0.5
       autosize: False
       margin:
         t: 50
