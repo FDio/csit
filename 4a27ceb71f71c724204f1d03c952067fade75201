@@ -597,6 +597,30 @@
       "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6a596d5_b41cfb39",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-08T14:46:38Z",
+      "side": 1,
+      "message": "\u003e receive rate (line 222).\n\nFirstly, I do not see any formula at line 222. Probably I forgot to hit SAVE.\nSecondly, the current code has two different formulas for receive rate. For ndrpdr (initial phase) this is used:\n\n  target_rate * c_ipackets / expected_c_opackets\n\nFor UDP_CPS, expected_c_opackets is just the transaction number (it is more complicated for UDP_PPS). The upside is the result is a transaction rate (not packet rate), as that is what ndrpdr searches for.\n\nFor MRR output (where we want packets, not transactions) a different formula is used:\n\n  c_ipackets / s_traffic_duration\n\nThat is the formula I had for line 222. It works when the traffic is stopped without all being sent.",
+      "parentUuid": "6d235980_21480d7f",
+      "range": {
+        "startLine": 235,
+        "startChar": 42,
+        "endLine": 235,
+        "endChar": 62
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
