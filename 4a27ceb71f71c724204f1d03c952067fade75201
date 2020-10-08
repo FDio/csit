@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "614ca083_45ef1ef4",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "694f7817_f7b36c1f",
+      "range": {
+        "startLine": 68,
+        "startChar": 34,
+        "endLine": 68,
+        "endChar": 46
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a26889e8_e7b6bde1",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -114,6 +138,30 @@
       "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5abc434_8ca93362",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a26889e8_e7b6bde1",
+      "range": {
+        "startLine": 74,
+        "startChar": 3,
+        "endLine": 74,
+        "endChar": 21
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +188,30 @@
     },
     {
       "key": {
+        "uuid": "ecfa4078_60229d11",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58d3593a_ec91e2a7",
+      "range": {
+        "startLine": 82,
+        "startChar": 60,
+        "endLine": 82,
+        "endChar": 63
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd8c6d06_84645609",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -160,6 +232,30 @@
       "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbbb9fef_d9e5094a",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Removed then.",
+      "parentUuid": "fd8c6d06_84645609",
+      "range": {
+        "startLine": 84,
+        "startChar": 18,
+        "endLine": 84,
+        "endChar": 29
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +282,30 @@
     },
     {
       "key": {
+        "uuid": "f54fc487_e06ae8b0",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "- `multiplier`, target number of transactions per second to be executed.\n  Multiplier applies to connect phase. Close phases is initiated\n  automatically based on arrival of the last expected packet.",
+      "parentUuid": "e3bb3a81_37c84a95",
+      "range": {
+        "startLine": 111,
+        "startChar": 32,
+        "endLine": 111,
+        "endChar": 41
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53eca9fa_4f38fc25",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -206,6 +326,30 @@
       "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86a9fb97_a55cb51f",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "- Source and destination addresses changing packet-by-packet with two\n    separate profiles i) incrementing sequentially pair-wise\n    (implemented) and ii) changed randomly (with seed) pair-wise (not\n    implemented yet).",
+      "parentUuid": "53eca9fa_4f38fc25",
+      "range": {
+        "startLine": 116,
+        "startChar": 12,
+        "endLine": 116,
+        "endChar": 32
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -232,6 +376,30 @@
     },
     {
       "key": {
+        "uuid": "4717d0f7_c8389a81",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "s/trial_cps_rate/multiplier/",
+      "parentUuid": "448b2300_388b1157",
+      "range": {
+        "startLine": 118,
+        "startChar": 58,
+        "endLine": 118,
+        "endChar": 72
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "940a5ff1_73b6fbc3",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -243,6 +411,30 @@
       "writtenOn": "2020-10-08T12:44:22Z",
       "side": 1,
       "message": "Currently I think it is more like ramp_up_delay, and it is fixed to 0.112 seconds.",
+      "range": {
+        "startLine": 123,
+        "startChar": 7,
+        "endLine": 123,
+        "endChar": 22
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57b2cf02_745853b5",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "I thought this is after the test (hence cool_down_delay) waiting for last packets to arrive to client, and not before (indicated by ramp_up_delay). Which?",
+      "parentUuid": "940a5ff1_73b6fbc3",
       "range": {
         "startLine": 123,
         "startChar": 7,
@@ -278,6 +470,30 @@
     },
     {
       "key": {
+        "uuid": "f01181c1_6418963b",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "See comment re UDP.",
+      "parentUuid": "0d0493e0_8eda0318",
+      "range": {
+        "startLine": 126,
+        "startChar": 7,
+        "endLine": 126,
+        "endChar": 22
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "114f2d11_0f7bbc96",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -298,6 +514,30 @@
       "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98dd28af_3846b63b",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "114f2d11_0f7bbc96",
+      "range": {
+        "startLine": 139,
+        "startChar": 9,
+        "endLine": 139,
+        "endChar": 16
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -324,6 +564,30 @@
     },
     {
       "key": {
+        "uuid": "e30760eb_85b59723",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ae8cfe7_4f0b7fea",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 6
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f00e927a_4b58f882",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -344,6 +608,30 @@
       "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d9f859c_2a2bff47",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f00e927a_4b58f882",
+      "range": {
+        "startLine": 142,
+        "startChar": 5,
+        "endLine": 142,
+        "endChar": 6
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -370,6 +658,30 @@
     },
     {
       "key": {
+        "uuid": "33accc6f_554a5e8a",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3987c901_8a71a5f3",
+      "range": {
+        "startLine": 145,
+        "startChar": 5,
+        "endLine": 145,
+        "endChar": 6
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e80958c6_8cef9d53",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -390,6 +702,30 @@
       "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20e6b1b8_74b68cdd",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e80958c6_8cef9d53",
+      "range": {
+        "startLine": 146,
+        "startChar": 5,
+        "endLine": 146,
+        "endChar": 6
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -439,6 +775,30 @@
     },
     {
       "key": {
+        "uuid": "80eea2dd_982daa4a",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Any commentary that should be added to this in terms of how it is used in MRR and MLRsearch?",
+      "parentUuid": "b3101e41_8e146148",
+      "range": {
+        "startLine": 160,
+        "startChar": 5,
+        "endLine": 160,
+        "endChar": 6
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f165abe8_6673aac5",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -459,6 +819,30 @@
       "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1defeb2_9c1f4cf3",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "OK, I do remember you complaining about it. I have replaced above with the following:\n\nTRex counters are polled once TRex confirms traffic is stopped, after it\nis explicitly instructed to stop it. Early attempts to use periodic TRex\ncounter polling affected TRex behaviour and test results, hence counter\npolling is consider as invasive.",
+      "parentUuid": "f165abe8_6673aac5",
+      "range": {
+        "startLine": 171,
+        "startChar": 14,
+        "endLine": 171,
+        "endChar": 37
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -485,6 +869,30 @@
     },
     {
       "key": {
+        "uuid": "81bec030_5064f75a",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "pktloss_ratio \u003d (c_opackets - c_ipackets) / c_opackets",
+      "parentUuid": "b9e2b126_73a8e8d0",
+      "range": {
+        "startLine": 190,
+        "startChar": 20,
+        "endLine": 190,
+        "endChar": 21
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "233010dd_ffc9ca57",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -505,6 +913,30 @@
       "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fbb8a23_564c6fed",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "233010dd_ffc9ca57",
+      "range": {
+        "startLine": 191,
+        "startChar": 32,
+        "endLine": 191,
+        "endChar": 38
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -531,6 +963,30 @@
     },
     {
       "key": {
+        "uuid": "8c938ae7_9ac7c36b",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "OK. Removed.",
+      "parentUuid": "771b7047_29e21ed2",
+      "range": {
+        "startLine": 209,
+        "startChar": 15,
+        "endLine": 209,
+        "endChar": 27
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35ca02d5_ab045358",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -554,6 +1010,30 @@
     },
     {
       "key": {
+        "uuid": "881d5a26_287cc46f",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "OK. Removed. And as TRex session level counters are not involved at all at this stage in PASS/FAIL criteria, removing the whole section.",
+      "parentUuid": "35ca02d5_ab045358",
+      "range": {
+        "startLine": 211,
+        "startChar": 32,
+        "endLine": 211,
+        "endChar": 39
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21ab9b6e_fbc44e98",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -565,6 +1045,30 @@
       "writtenOn": "2020-10-08T12:44:22Z",
       "side": 1,
       "message": "We have suites which replace nat44ed with ip4base, NDR_lower from those is probably safe (assuming the different IP ranges on server side do not affect TRex performance).",
+      "range": {
+        "startLine": 226,
+        "startChar": 24,
+        "endLine": 226,
+        "endChar": 45
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22bb63c5_6176407c",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "In order to ensure a determnistic region of TRex ASTF operation, a\nseparate set of tests is run for each traffic profile, with vpp-ip4base\nDUT instead of vpp-nat44ed. Result of this is test is used as a safe\nCPS-MTR value (Maximum Transmit Rate) to be used for CPS-MRR tests.",
+      "parentUuid": "21ab9b6e_fbc44e98",
       "range": {
         "startLine": 226,
         "startChar": 24,
@@ -611,6 +1115,30 @@
       "writtenOn": "2020-10-08T14:46:38Z",
       "side": 1,
       "message": "\u003e receive rate (line 222).\n\nFirstly, I do not see any formula at line 222. Probably I forgot to hit SAVE.\nSecondly, the current code has two different formulas for receive rate. For ndrpdr (initial phase) this is used:\n\n  target_rate * c_ipackets / expected_c_opackets\n\nFor UDP_CPS, expected_c_opackets is just the transaction number (it is more complicated for UDP_PPS). The upside is the result is a transaction rate (not packet rate), as that is what ndrpdr searches for.\n\nFor MRR output (where we want packets, not transactions) a different formula is used:\n\n  c_ipackets / s_traffic_duration\n\nThat is the formula I had for line 222. It works when the traffic is stopped without all being sent.",
+      "parentUuid": "6d235980_21480d7f",
+      "range": {
+        "startLine": 235,
+        "startChar": 42,
+        "endLine": 235,
+        "endChar": 62
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3fcac2e_1873b540",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-08T20:27:39Z",
+      "side": 1,
+      "message": "CPS-PDR \u003d `trial_cps_rate`, if the following condition is met:\n\n- `pktloss_ratio` \u003c `target_loss_ratio`",
       "parentUuid": "6d235980_21480d7f",
       "range": {
         "startLine": 235,
