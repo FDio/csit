@@ -58,7 +58,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src253
 
 *** Keywords ***

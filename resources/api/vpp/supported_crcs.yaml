@@ -204,6 +204,7 @@
     nat44_user_dump: '0x51077d14'  # dev teardown
     nat44_user_session_details: '0x1965fd69'  # dev teardown
     nat44_user_session_dump: '0xe1899c98'  # dev teardown
+    # FIXME: Which test to run to verify nat44-* messages.
     nat_show_config: '0x51077d14'  # dev teardown
     nat_show_config_reply: '0x7903ef06'  # dev teardown
     nat_worker_details: '0x84bf06fc'  # dev teardown
