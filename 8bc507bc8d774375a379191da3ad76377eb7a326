@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75e5d087_7c560b4e",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-08T14:09:49Z",
+      "side": 1,
+      "message": "Oh, I missed this in https://gerrit.fd.io/r/c/csit/+/28205/8/resources/libraries/robot/performance/performance_utils.robot#b53\nThe idea of https://gerrit.fd.io/r/c/csit/+/28038 was to disable it everywhere except \"Measure and show latency at specified rate\" keyword.",
+      "range": {
+        "startLine": 86,
+        "startChar": 10,
+        "endLine": 86,
+        "endChar": 28
+      },
+      "revId": "8bc507bc8d774375a379191da3ad76377eb7a326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b752a909_01825b53",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-08T14:09:49Z",
+      "side": 1,
+      "message": "I prefer 9001, less risk for future when we maybe enable latency in some tests.",
+      "range": {
+        "startLine": 89,
+        "startChar": 31,
+        "endLine": 89,
+        "endChar": 38
+      },
+      "revId": "8bc507bc8d774375a379191da3ad76377eb7a326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
