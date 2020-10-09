@@ -265,6 +265,10 @@
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 35  # rls2009 NDRPDR iter env 5
 
+    plot-vpp-hdrh-lat-2n-skx-nat44:
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 51  # rls2009 NDRPDR iter NAT44 env 5
+
     plot-vpp-soak-2n-skx:
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 33  # rls2009 soak env 5
@@ -328,6 +332,7 @@
         - 40  # rls2009 NDRPDR iter env 5
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
+        - 64  # rls2009 NDRPDR iter env 5
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -542,6 +547,9 @@
         - 10  # rls2009 NDRPDR cov 2n-skx-ip4-02
         - 20  # rls2009 NDRPDR cov 2n-skx-ip4-03
         - 13  # rls2009 NDRPDR cov 2n-skx-ip4-05
+        - 23  # rls2009 NDRPDR cov 2n-skx-ip6-01
+        - 24  # rls2009 NDRPDR cov 2n-skx-l2-00
+        - 25  # rls2009 NDRPDR cov 2n-skx-l2-01
         - 27  # rls2009 NDRPDR cov 2n-skx-memif-00
         - 30  # rls2009 NDRPDR cov 2n-skx-vts-00
 
@@ -817,6 +825,7 @@
         - 40  # rls2009 NDRPDR iter env 5
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
+        - 64  # rls2009 NDRPDR iter env 5
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-2001-2n-dnv:
@@ -951,6 +960,7 @@
         - 40  # rls2009 NDRPDR iter env 5
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
+        - 64  # rls2009 NDRPDR iter env 5
     vpp-soak-vs-ndr-2n-clx-cmp:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 33  # rls2009 soak env 5
@@ -964,6 +974,7 @@
         - 40  # rls2009 NDRPDR iter env 5
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
+        - 64  # rls2009 NDRPDR iter env 5
         - 33  # rls2009 soak env 5
         - 34  # rls2009 soak env 5
 
@@ -1359,6 +1370,7 @@
         - 40  # rls2009 NDRPDR iter env 5
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
+        - 64  # rls2009 NDRPDR iter env 5
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
@@ -1381,6 +1393,7 @@
         - 40  # rls2009 NDRPDR iter env 5
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
+        - 64  # rls2009 NDRPDR iter env 5
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
@@ -2258,6 +2271,9 @@
       - 10  # rls2009 NDRPDR cov 2n-skx-ip4-02
       - 20  # rls2009 NDRPDR cov 2n-skx-ip4-03
       - 13  # rls2009 NDRPDR cov 2n-skx-ip4-05
+      - 23  # rls2009 NDRPDR cov 2n-skx-ip6-01
+      - 24  # rls2009 NDRPDR cov 2n-skx-l2-00
+      - 25  # rls2009 NDRPDR cov 2n-skx-l2-01
       - 27  # rls2009 NDRPDR cov 2n-skx-memif-00
       - 30  # rls2009 NDRPDR cov 2n-skx-vts-00
 
@@ -2303,6 +2319,7 @@
       - 40  # rls2009 NDRPDR iter env 5
       - 41  # rls2009 NDRPDR iter env 5
       - 42  # rls2009 NDRPDR iter env 5
+      - 64  # rls2009 NDRPDR iter env 5
       - 37  # rls2009 nf-density iter env 5
       - 43  # rls2009 nf-density iter env 5
       - 45  # rls2009 MRR nf-density iter env 5
@@ -19320,6 +19337,17 @@
   output-file-links: "{DIR[LAT,VPP]}/2n_skx.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-2n-skx"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-by-percentile"
+
+- type: "plot"
+  title: "Latency by percentile: 2n-skx-nat44"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-skx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_skx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-skx-nat44"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
