@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53e069f8_738f1aa3",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-09T11:14:52Z",
+      "side": 1,
+      "message": "I have seen the internal e-mail from Dave, \"RE: VPP Device issue with executor\".\nBut as an non-expert, the IP address looks like magic to me. Maybe add a few comment lines explaining how this fits into our infra?",
+      "range": {
+        "startLine": 53,
+        "startChar": 26,
+        "endLine": 53,
+        "endChar": 36
+      },
+      "revId": "a6e21f400d8933f1cbda2fbeb32d8fe9503f939f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
