@@ -22,6 +22,10 @@ docker_apt_repository_state: present
 docker_users:
   - "testuser"
 
+# Docker daemon settings
+docker_default_shm_size: "1073741824"
+docker_storage_driver: "overlay2"
+
 # Proxy settings.
 docker_daemon_environment_http:
   - "HTTP_PROXY={{ proxy_env.http_proxy }}"
