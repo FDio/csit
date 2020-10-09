@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8e2b1b87_5bb1769a",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-09T10:10:28Z",
+      "side": 1,
+      "message": "CPS-MRR, verified connection rate at maximal connection attempt rate,\n  regardless of an amount of not established connections. (Connections\n  per Second - Maximum Receive Rate.)",
+      "parentUuid": "390005fb_a66cfbe7",
+      "range": {
+        "startLine": 60,
+        "startChar": 11,
+        "endLine": 60,
+        "endChar": 39
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "315184a7_b4a51cee",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5991c710_f369ff77",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-09T10:10:28Z",
+      "side": 1,
+      "message": "CPS-NDR, maximal connection attempt rate at which all connections get\n  established. (Connections per Second - Non Drop Rate.)",
+      "parentUuid": "315184a7_b4a51cee",
+      "range": {
+        "startLine": 62,
+        "startChar": 11,
+        "endLine": 62,
+        "endChar": 33
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d830e96_07818b26",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -68,6 +116,30 @@
       "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11cf7574_4825d19d",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-09T10:10:28Z",
+      "side": 1,
+      "message": "CPS-PDR, maximal connection attempt rate at which ratio of not\n  established connections to attempted connections is below configured\n  threshold. (Connections per Second - Partial Drop Rate.)",
+      "parentUuid": "0d830e96_07818b26",
+      "range": {
+        "startLine": 63,
+        "startChar": 11,
+        "endLine": 63,
+        "endChar": 37
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -752,6 +824,30 @@
     },
     {
       "key": {
+        "uuid": "571688a4_326e1588",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-09T10:10:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e4c1164_3038b510",
+      "range": {
+        "startLine": 159,
+        "startChar": 5,
+        "endLine": 159,
+        "endChar": 6
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3101e41_8e146148",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -1081,6 +1177,30 @@
     },
     {
       "key": {
+        "uuid": "8058ae0c_cd67c9d7",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-09T10:10:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22bb63c5_6176407c",
+      "range": {
+        "startLine": 226,
+        "startChar": 24,
+        "endLine": 226,
+        "endChar": 45
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d235980_21480d7f",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
@@ -1140,6 +1260,30 @@
       "side": 1,
       "message": "CPS-PDR \u003d `trial_cps_rate`, if the following condition is met:\n\n- `pktloss_ratio` \u003c `target_loss_ratio`",
       "parentUuid": "6d235980_21480d7f",
+      "range": {
+        "startLine": 235,
+        "startChar": 42,
+        "endLine": 235,
+        "endChar": 62
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cef65087_96fdf0d9",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-09T10:10:28Z",
+      "side": 1,
+      "message": "Updated formula for CPS-PDR:\n\nCPS-PDR \u003d `multiplier` * `c_ipackets` / `expected_c_opackets`,\nwith `pktloss_ratio` \u003c `target_loss_ratio`\n\n`expected_c_opackets` \u003d ? (TODO)  // I read these need to be adjusted based on TRex behaviour and taking into account any test trial duration stretching, or?",
+      "parentUuid": "a3fcac2e_1873b540",
       "range": {
         "startLine": 235,
         "startChar": 42,
