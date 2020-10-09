@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3da58a1_4078094b",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-09T14:13:07Z",
+      "side": 1,
+      "message": "Well, the ip4base tests could count as an \"automated discovery\". It is the \"to be used for CPS-MRR tests\" part that is not done yet, automated nor otherwise.",
+      "range": {
+        "startLine": 201,
+        "startChar": 43,
+        "endLine": 201,
+        "endChar": 65
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03554870_58b126ae",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-09T14:13:07Z",
+      "side": 1,
+      "message": "Maybe create a subsection for general MLRsearch (and MRR) description, where `trial_cps_rate` (or what the proper RFC term is) will be defined. Then line 109 will clarify that is translated to TRex argument names as \u0027multiplier\u0027.\nCurrently `trial_cps_rate` appears first in the line 109, so the search context is missing.",
+      "range": {
+        "startLine": 210,
+        "startChar": 21,
+        "endLine": 210,
+        "endChar": 68
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7884a4c_76b7ddfd",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-09T14:13:07Z",
+      "side": 1,
+      "message": "Currently any trial measurement only fails if TRex itself fails, or if we fail to parse some counter. No criteria mentioned here is currently planned to be implemented; we rely on bad things leading to too few (maybe zero) passed transactions.",
+      "range": {
+        "startLine": 336,
+        "startChar": 5,
+        "endLine": 336,
+        "endChar": 19
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
