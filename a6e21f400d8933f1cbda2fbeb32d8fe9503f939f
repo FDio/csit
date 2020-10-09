@@ -22,6 +22,30 @@
       "revId": "a6e21f400d8933f1cbda2fbeb32d8fe9503f939f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62037f5e_3786dc30",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-10-09T17:21:41Z",
+      "side": 1,
+      "message": "This works because we use the default docker bridge network addressing:\n\n[from https://docs.docker.com/network/network-tutorial-standalone/]: \n\"the default bridge network, whose gateway is 172.17.0.1\"\n\nInvestigating this led me to a better solution which is to extract the Gateway address from the output of \u0027docker network inspect bridge\u0027:\n\ndocker_gateway_ip4\u003d\"$(sudo docker network inspect bridge | jq \u0027.[].IPAM.Config[0].Gateway\u0027 | sed -e \u0027s/\"//g\u0027)\"\n\nThen it will still work if the docker network bridge default gateway ip address changes or is explicitly configured in /etc/docker/daemon.json",
+      "parentUuid": "53e069f8_738f1aa3",
+      "range": {
+        "startLine": 53,
+        "startChar": 26,
+        "endLine": 53,
+        "endChar": 36
+      },
+      "revId": "a6e21f400d8933f1cbda2fbeb32d8fe9503f939f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
