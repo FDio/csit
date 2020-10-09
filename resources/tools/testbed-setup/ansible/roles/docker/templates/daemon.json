@@ -1,0 +1,5 @@
+{
+    "default-shm-size": {{ docker_default_shm_size | to_json }},
+    "insecure-registries": {{ docker_insecure_registries | to_json }},
+    "storage-driver": {{ docker_storage_driver | to_json }}
+}

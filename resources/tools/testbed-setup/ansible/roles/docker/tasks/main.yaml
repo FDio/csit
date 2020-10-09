@@ -12,6 +12,18 @@
   tags:
     - docker-inst-package
 
+- name: Conf - Docker Daemon
+  template:
+    src: "templates/daemon.json"
+    dest: "/etc/docker/daemon.json"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  notify:
+    - "Restart Docker"
+  tags:
+    - docker-conf-daemon
+
 - name: Conf - Docker Service
   service:
     name: docker
