@@ -22,6 +22,30 @@
       "revId": "7e1f23fdfddda991428ce66c0e1a11fddc7d62a1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "941aabea_cada17be",
+        "filename": "resources/tools/testbed-setup/ansible/roles/docker/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-10-09T16:41:00Z",
+      "side": 1,
+      "message": "This sets /dev/shm size to 1G.  I know that running vpp in a docker images requires /dev/shm \u003e\u003d 512M.  I don\u0027t know if the VPP device tests require it or not.  Peter, do you know why this was added?",
+      "parentUuid": "1cdde86b_21b9319a",
+      "range": {
+        "startLine": 28,
+        "startChar": 5,
+        "endLine": 28,
+        "endChar": 25
+      },
+      "revId": "7e1f23fdfddda991428ce66c0e1a11fddc7d62a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
