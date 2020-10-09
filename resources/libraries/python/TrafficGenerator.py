@@ -67,7 +67,7 @@ class TGDropRateSearchImpl(DropRateSearch):
 
     def measure_loss(
             self, rate, frame_size, loss_acceptance, loss_acceptance_type,
-            traffic_profile, skip_warmup=False):
+            traffic_profile):
         """Runs the traffic and evaluate the measured results.
 
         :param rate: Offered traffic load.
@@ -76,13 +76,11 @@ class TGDropRateSearchImpl(DropRateSearch):
         :param loss_acceptance_type: Type of permitted loss.
         :param traffic_profile: Module name as a traffic profile identifier.
             See GPL/traffic_profiles/trex for implemented modules.
-        :param skip_warmup: Start TRex without warmup traffic if true.
         :type rate: float
         :type frame_size: str
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
         :type traffic_profile: str
-        :type skip_warmup: bool
         :returns: Drop threshold exceeded? (True/False)
         :rtype: bool
         :raises NotImplementedError: If TG is not supported.
@@ -96,15 +94,9 @@ class TGDropRateSearchImpl(DropRateSearch):
         subtype = check_subtype(tg_instance.node)
         if subtype == NodeSubTypeTG.TREX:
             unit_rate = str(rate) + self.get_rate_type_str()
-            if skip_warmup:
-                tg_instance.trex_stl_start_remote_exec(
-                    self.get_duration(), unit_rate, frame_size, traffic_profile,
-                    warmup_time=0.0
-                )
-            else:
-                tg_instance.trex_stl_start_remote_exec(
-                    self.get_duration(), unit_rate, frame_size, traffic_profile
-                )
+            tg_instance.trex_stl_start_remote_exec(
+                self.get_duration(), unit_rate, frame_size, traffic_profile
+            )
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
             if self.loss_acceptance_type_is_percentage():
@@ -145,6 +137,8 @@ class TrafficGenerator(AbstractMeasurer):
     ROBOT_LIBRARY_SCOPE = u"TEST SUITE"
 
     def __init__(self):
+        # TODO: Separate into few dataclasses/dicts.
+        #       Pylint dislikes large unstructured state, and it is right.
         self._node = None
         self._mode = None
         # TG interface order mapping
@@ -160,14 +154,24 @@ class TrafficGenerator(AbstractMeasurer):
         self._l7_data = None
         # Measurement input fields, needed for async stop result.
         self._start_time = None
+        self._stop_time = None
         self._rate = None
+        self._target_duration = None
+        self._duration = None
         # Other input parameters, not knowable from measure() signature.
         self.frame_size = None
         self.traffic_profile = None
-        self.warmup_time = None
         self.traffic_directions = None
+        self.transaction_directions = None
         self.negative_loss = None
         self.use_latency = None
+        self.ppta = None
+        self.resetter = None
+        self.transaction_scale = None
+        self.transaction_duration = None
+        self.sleep_till_duration = None
+        self.transaction_type = None
+        self.duration_limit = None
         # Transient data needed for async measurements.
         self._xstats = (None, None)
         # TODO: Rename "xstats" to something opaque, so T-Rex is not privileged?
@@ -454,108 +458,6 @@ class TrafficGenerator(AbstractMeasurer):
                 message=u"T-Rex kill failed!"
             )
 
-    def _parse_traffic_results(self, stdout):
-        """Parse stdout of scripts into fields of self.
-
-        Block of code to reuse, by sync start, or stop after async.
-
-        :param stdout: Text containing the standard output.
-        :type stdout: str
-        """
-        subtype = check_subtype(self._node)
-        if subtype == NodeSubTypeTG.TREX:
-            # Last line from console output
-            line = stdout.splitlines()[-1]
-            results = line.split(u",")
-            if results[-1] in (u" ", u""):
-                results.pop(-1)
-            self._result = dict()
-            for result in results:
-                key, value = result.split(u"=", maxsplit=1)
-                self._result[key.strip()] = value
-            logger.info(f"TrafficGen results:\n{self._result}")
-            self._received = self._result.get(u"total_received")
-            self._sent = self._result.get(u"total_sent")
-            self._loss = self._result.get(u"frame_loss")
-            self._approximated_duration = \
-                self._result.get(u"approximated_duration")
-            self._approximated_rate = self._result.get(u"approximated_rate")
-            self._latency = list()
-            self._latency.append(self._result.get(u"latency_stream_0(usec)"))
-            self._latency.append(self._result.get(u"latency_stream_1(usec)"))
-            if self._mode == TrexMode.ASTF:
-                self._l7_data = dict()
-                self._l7_data[u"client"] = dict()
-                self._l7_data[u"client"][u"active_flows"] = \
-                    self._result.get(u"client_active_flows")
-                self._l7_data[u"client"][u"established_flows"] = \
-                    self._result.get(u"client_established_flows")
-                self._l7_data[u"client"][u"err_rx_throttled"] = \
-                    self._result.get(u"client_err_rx_throttled")
-                self._l7_data[u"client"][u"err_c_nf_throttled"] = \
-                    self._result.get(u"client_err_nf_throttled")
-                self._l7_data[u"client"][u"err_flow_overflow"] = \
-                    self._result.get(u"client_err_flow_overflow")
-                self._l7_data[u"server"] = dict()
-                self._l7_data[u"server"][u"active_flows"] = \
-                    self._result.get(u"server_active_flows")
-                self._l7_data[u"server"][u"established_flows"] = \
-                    self._result.get(u"server_established_flows")
-                self._l7_data[u"server"][u"err_rx_throttled"] = \
-                    self._result.get(u"client_err_rx_throttled")
-                if u"udp" in self.traffic_profile:
-                    self._l7_data[u"client"][u"udp"] = dict()
-                    self._l7_data[u"client"][u"udp"][u"established_flows"] = \
-                        self._result.get(u"client_udp_connects")
-                    self._l7_data[u"client"][u"udp"][u"closed_flows"] = \
-                        self._result.get(u"client_udp_closed")
-                    self._l7_data[u"client"][u"udp"][u"tx_bytes"] = \
-                        self._result.get(u"client_udp_tx_bytes")
-                    self._l7_data[u"client"][u"udp"][u"rx_bytes"] = \
-                        self._result.get(u"client_udp_rx_bytes")
-                    self._l7_data[u"client"][u"udp"][u"tx_packets"] = \
-                        self._result.get(u"client_udp_tx_packets")
-                    self._l7_data[u"client"][u"udp"][u"rx_packets"] = \
-                        self._result.get(u"client_udp_rx_packets")
-                    self._l7_data[u"client"][u"udp"][u"keep_drops"] = \
-                        self._result.get(u"client_udp_keep_drops")
-                    self._l7_data[u"server"][u"udp"] = dict()
-                    self._l7_data[u"server"][u"udp"][u"accepted_flows"] = \
-                        self._result.get(u"server_udp_accepts")
-                    self._l7_data[u"server"][u"udp"][u"closed_flows"] = \
-                        self._result.get(u"server_udp_closed")
-                    self._l7_data[u"server"][u"udp"][u"tx_bytes"] = \
-                        self._result.get(u"server_udp_tx_bytes")
-                    self._l7_data[u"server"][u"udp"][u"rx_bytes"] = \
-                        self._result.get(u"server_udp_rx_bytes")
-                    self._l7_data[u"server"][u"udp"][u"tx_packets"] = \
-                        self._result.get(u"server_udp_tx_packets")
-                    self._l7_data[u"server"][u"udp"][u"rx_packets"] = \
-                        self._result.get(u"server_udp_rx_packets")
-                elif u"tcp" in self.traffic_profile:
-                    self._l7_data[u"client"][u"tcp"] = dict()
-                    self._l7_data[u"client"][u"tcp"][u"initiated_flows"] = \
-                        self._result.get(u"client_tcp_connect_inits")
-                    self._l7_data[u"client"][u"tcp"][u"established_flows"] = \
-                        self._result.get(u"client_tcp_connects")
-                    self._l7_data[u"client"][u"tcp"][u"closed_flows"] = \
-                        self._result.get(u"client_tcp_closed")
-                    self._l7_data[u"client"][u"tcp"][u"tx_bytes"] = \
-                        self._result.get(u"client_tcp_tx_bytes")
-                    self._l7_data[u"client"][u"tcp"][u"rx_bytes"] = \
-                        self._result.get(u"client_tcp_rx_bytes")
-                    self._l7_data[u"server"][u"tcp"] = dict()
-                    self._l7_data[u"server"][u"tcp"][u"accepted_flows"] = \
-                        self._result.get(u"server_tcp_accepts")
-                    self._l7_data[u"server"][u"tcp"][u"established_flows"] = \
-                        self._result.get(u"server_tcp_connects")
-                    self._l7_data[u"server"][u"tcp"][u"closed_flows"] = \
-                        self._result.get(u"server_tcp_closed")
-                    self._l7_data[u"server"][u"tcp"][u"tx_bytes"] = \
-                        self._result.get(u"server_tcp_tx_bytes")
-                    self._l7_data[u"server"][u"tcp"][u"rx_bytes"] = \
-                        self._result.get(u"server_tcp_rx_bytes")
-
     def trex_astf_stop_remote_exec(self, node):
         """Execute T-Rex ASTF script on remote node over ssh to stop running
         traffic.
@@ -612,59 +514,67 @@ class TrafficGenerator(AbstractMeasurer):
         :raises ValueError: If TG traffic profile is not supported.
         """
         subtype = check_subtype(self._node)
-        if subtype == NodeSubTypeTG.TREX:
-            if u"trex-astf" in self.traffic_profile:
-                self.trex_astf_stop_remote_exec(self._node)
-            elif u"trex-stl" in self.traffic_profile:
-                self.trex_stl_stop_remote_exec(self._node)
-            else:
-                raise ValueError(u"Unsupported T-Rex traffic profile!")
+        if subtype != NodeSubTypeTG.TREX:
+            raise ValueError(f"Unsupported TG subtype: {subtype!r}")
+        if u"trex-astf" in self.traffic_profile:
+            self.trex_astf_stop_remote_exec(self._node)
+        elif u"trex-stl" in self.traffic_profile:
+            self.trex_stl_stop_remote_exec(self._node)
+        else:
+            raise ValueError(u"Unsupported T-Rex traffic profile!")
+        self._stop_time = time.monotonic()
 
         return self.get_measurement_result()
 
     def trex_astf_start_remote_exec(
-            self, duration, mult, frame_size, traffic_profile, async_call=False,
-            latency=True, warmup_time=5.0, traffic_directions=2, tx_port=0,
-            rx_port=1):
+            self, duration, multiplier, async_call=False):
         """Execute T-Rex ASTF script on remote node over ssh to start running
         traffic.
 
         In sync mode, measurement results are stored internally.
         In async mode, initial data including xstats are stored internally.
 
+        This method contains the logic to compute duration as maximum time
+        if transaction_scale is nonzero.
+        There is n_transaction argument, which limits how many transactions
+        will be started in total. As each transaction can take considerable
+        time (sometimes due to explicit delays in the profile), the real time
+        a trial needs to finish can be computed here. For now, in that case
+        the duration argument is ignored, assuming it comes from ASTF-unaware
+        search algorithm. The overall time a transaction needs is given
+        in parameter transaction_duration, it includes both explicit delays
+        and implicit time it takes to transfer data (or whatever
+        the transaction does).
+
+        If transaction_scale is zero, duration is not recomputed.
+        In any case, the duration is increased by 1.0 s at the end,
+        allowing for small duration stretching and other overheads.
+        It is assumed the subsequent result parsing gets the real duration
+        if the traffic stops sooner.
+
         :param duration: Time expresed in seconds for how long to send traffic.
-        :param mult: Traffic rate expressed with units (pps, %)
-        :param frame_size: L2 frame size to send (without padding and IPG).
-        :param traffic_profile: Module name as a traffic profile identifier.
-            See GPL/traffic_profiles/trex for implemented modules.
+        :param multiplier: Traffic rate expressed with units (pps, %)
         :param async_call: If enabled then don't wait for all incoming traffic.
-        :param latency: With latency measurement.
-        :param warmup_time: Warmup time period.
-        :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
-            Default: 2
-        :param tx_port: Traffic generator transmit port for first flow.
-            Default: 0
-        :param rx_port: Traffic generator receive port for first flow.
-            Default: 1
         :type duration: float
-        :type mult: int
-        :type frame_size: str
-        :type traffic_profile: str
+        :type multiplier: int
         :type async_call: bool
-        :type latency: bool
-        :type warmup_time: float
-        :type traffic_directions: int
-        :type tx_port: int
-        :type rx_port: int
         :raises RuntimeError: In case of T-Rex driver issue.
         """
         self.check_mode(TrexMode.ASTF)
-        p_0, p_1 = (rx_port, tx_port) if self._ifaces_reordered \
-            else (tx_port, rx_port)
+        p_0, p_1 = (1, 0) if self._ifaces_reordered else (0, 1)
         if not isinstance(duration, (float, int)):
             duration = float(duration)
-        if not isinstance(warmup_time, (float, int)):
-            warmup_time = float(warmup_time)
+
+        # Duration logic.
+        computed_duration = duration
+        if duration > 0.0:
+            if self.transaction_scale:
+                computed_duration = self.transaction_scale / multiplier
+                logger.debug(f"Vanilla duration {computed_duration}")
+                computed_duration += 0.112
+        # Else keep -1.
+        if self.duration_limit:
+            computed_duration = min(computed_duration, self.duration_limit)
 
         command_line = OptionString().add(u"python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
@@ -672,31 +582,31 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.change_prefix(u"--")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/traffic_profiles/trex"
         command_line.add_with_value(
-            u"profile", f"'{dirname}/{traffic_profile}.py'"
+            u"profile", f"'{dirname}/{self.traffic_profile}.py'"
         )
-        command_line.add_with_value(u"duration", f"{duration!r}")
-        command_line.add_with_value(u"frame_size", frame_size)
-        command_line.add_with_value(u"mult", int(mult))
-        command_line.add_with_value(u"warmup_time", f"{warmup_time!r}")
+        command_line.add_with_value(u"duration", f"{computed_duration!r}")
+        command_line.add_with_value(u"frame_size", self.frame_size)
+        command_line.add_with_value(u"multiplier", multiplier)
         command_line.add_with_value(u"port_0", p_0)
         command_line.add_with_value(u"port_1", p_1)
-        command_line.add_with_value(u"traffic_directions", traffic_directions)
+        command_line.add_with_value(
+            u"traffic_directions", self.traffic_directions
+        )
         command_line.add_if(u"async_start", async_call)
-        command_line.add_if(u"latency", latency)
+        command_line.add_if(u"latency", self.use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
+        self._start_time = time.monotonic()
+        self._rate = multiplier
         stdout, _ = exec_cmd_no_error(
-            self._node, command_line,
-            timeout=int(duration) + 600 if u"tcp" in self.traffic_profile
-            else 60,
+            self._node, command_line, timeout=computed_duration + 10.0,
             message=u"T-Rex ASTF runtime error!"
         )
 
-        self.traffic_directions = traffic_directions
         if async_call:
             # no result
-            self._start_time = time.time()
-            self._rate = float(mult)
+            self._target_duration = None
+            self._duration = None
             self._received = None
             self._sent = None
             self._loss = None
@@ -706,13 +616,16 @@ class TrafficGenerator(AbstractMeasurer):
             self._l7_data[u"client"] = dict()
             self._l7_data[u"client"][u"active_flows"] = None
             self._l7_data[u"client"][u"established_flows"] = None
+            self._l7_data[u"client"][u"traffic_duration"] = None
             self._l7_data[u"server"] = dict()
             self._l7_data[u"server"][u"active_flows"] = None
             self._l7_data[u"server"][u"established_flows"] = None
+            self._l7_data[u"server"][u"traffic_duration"] = None
             if u"udp" in self.traffic_profile:
                 self._l7_data[u"client"][u"udp"] = dict()
                 self._l7_data[u"client"][u"udp"][u"established_flows"] = None
                 self._l7_data[u"client"][u"udp"][u"closed_flows"] = None
+                self._l7_data[u"client"][u"udp"][u"err_cwf"] = None
                 self._l7_data[u"server"][u"udp"] = dict()
                 self._l7_data[u"server"][u"udp"][u"accepted_flows"] = None
                 self._l7_data[u"server"][u"udp"][u"closed_flows"] = None
@@ -721,6 +634,7 @@ class TrafficGenerator(AbstractMeasurer):
                 self._l7_data[u"client"][u"tcp"][u"initiated_flows"] = None
                 self._l7_data[u"client"][u"tcp"][u"established_flows"] = None
                 self._l7_data[u"client"][u"tcp"][u"closed_flows"] = None
+                self._l7_data[u"client"][u"tcp"][u"connattempt"] = None
                 self._l7_data[u"server"][u"tcp"] = dict()
                 self._l7_data[u"server"][u"tcp"][u"accepted_flows"] = None
                 self._l7_data[u"server"][u"tcp"][u"established_flows"] = None
@@ -736,14 +650,11 @@ class TrafficGenerator(AbstractMeasurer):
                     break
             self._xstats = tuple(xstats)
         else:
+            self._target_duration = duration
+            self._duration = computed_duration
             self._parse_traffic_results(stdout)
-            self._start_time = None
-            self._rate = None
 
-    def trex_stl_start_remote_exec(
-            self, duration, rate, frame_size, traffic_profile, async_call=False,
-            latency=False, warmup_time=5.0, traffic_directions=2, tx_port=0,
-            rx_port=1):
+    def trex_stl_start_remote_exec(self, duration, rate, async_call=False):
         """Execute T-Rex STL script on remote node over ssh to start running
         traffic.
 
@@ -752,37 +663,18 @@ class TrafficGenerator(AbstractMeasurer):
 
         :param duration: Time expressed in seconds for how long to send traffic.
         :param rate: Traffic rate expressed with units (pps, %)
-        :param frame_size: L2 frame size to send (without padding and IPG).
-        :param traffic_profile: Module name as a traffic profile identifier.
-            See GPL/traffic_profiles/trex for implemented modules.
         :param async_call: If enabled then don't wait for all incoming traffic.
-        :param latency: With latency measurement.
-        :param warmup_time: Warmup time period.
-        :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
-            Default: 2
-        :param tx_port: Traffic generator transmit port for first flow.
-            Default: 0
-        :param rx_port: Traffic generator receive port for first flow.
-            Default: 1
         :type duration: float
         :type rate: str
-        :type frame_size: str
-        :type traffic_profile: str
         :type async_call: bool
-        :type latency: bool
-        :type warmup_time: float
-        :type traffic_directions: int
-        :type tx_port: int
-        :type rx_port: int
         :raises RuntimeError: In case of T-Rex driver issue.
         """
         self.check_mode(TrexMode.STL)
-        p_0, p_1 = (rx_port, tx_port) if self._ifaces_reordered \
-            else (tx_port, rx_port)
+        p_0, p_1 = (1, 0) if self._ifaces_reordered else (0, 1)
         if not isinstance(duration, (float, int)):
             duration = float(duration)
-        if not isinstance(warmup_time, (float, int)):
-            warmup_time = float(warmup_time)
+        if self.duration_limit:
+            duration = min(duration, self.duration_limit)
 
         command_line = OptionString().add(u"python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
@@ -790,29 +682,32 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.change_prefix(u"--")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/traffic_profiles/trex"
         command_line.add_with_value(
-            u"profile", f"'{dirname}/{traffic_profile}.py'"
+            u"profile", f"'{dirname}/{self.traffic_profile}.py'"
         )
         command_line.add_with_value(u"duration", f"{duration!r}")
-        command_line.add_with_value(u"frame_size", frame_size)
+        command_line.add_with_value(u"frame_size", self.frame_size)
         command_line.add_with_value(u"rate", f"{rate!r}")
-        command_line.add_with_value(u"warmup_time", f"{warmup_time!r}")
         command_line.add_with_value(u"port_0", p_0)
         command_line.add_with_value(u"port_1", p_1)
-        command_line.add_with_value(u"traffic_directions", traffic_directions)
+        command_line.add_with_value(
+            u"traffic_directions", self.traffic_directions
+        )
         command_line.add_if(u"async_start", async_call)
-        command_line.add_if(u"latency", latency)
+        command_line.add_if(u"latency", self.use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
+        # TODO: This is ugly. Handle parsing better.
+        self._start_time = time.monotonic()
+        self._rate = float(rate[:-3]) if u"pps" in rate else float(rate)
         stdout, _ = exec_cmd_no_error(
             self._node, command_line, timeout=int(duration) + 60,
             message=u"T-Rex STL runtime error"
         )
 
-        self.traffic_directions = traffic_directions
         if async_call:
             # no result
-            self._start_time = time.time()
-            self._rate = float(rate[:-3]) if u"pps" in rate else float(rate)
+            self._target_duration = None
+            self._duration = None
             self._received = None
             self._sent = None
             self._loss = None
@@ -828,14 +723,26 @@ class TrafficGenerator(AbstractMeasurer):
                     break
             self._xstats = tuple(xstats)
         else:
+            self._target_duration = duration
+            self._duration = duration
             self._parse_traffic_results(stdout)
-            self._start_time = None
-            self._rate = None
 
     def send_traffic_on_tg(
-            self, duration, rate, frame_size, traffic_profile, warmup_time=5,
-            async_call=False, latency=False, traffic_directions=2, tx_port=0,
-            rx_port=1):
+            self,
+            duration,
+            rate,
+            frame_size,
+            traffic_profile,
+            async_call=False,
+            ppta=1,
+            traffic_directions=2,
+            transaction_directions=2,
+            transaction_duration=0.0,
+            transaction_scale=0,
+            transaction_type=u"packet",
+            duration_limit=0.0,
+            use_latency=False,
+        ):
         """Send traffic from all configured interfaces on TG.
 
         In async mode, xstats is stored internally,
@@ -852,6 +759,11 @@ class TrafficGenerator(AbstractMeasurer):
         This method handles that, so argument values are invariant,
         but you can see swapped valued in debug logs.
 
+        When transaction_scale is specified, the duration value is ignored
+        and the needed time is computed. For cases where this results in
+        to too long measurement (e.g. teardown trial with small rate),
+        duration_limit is applied (of non-zero), so the trial is stopped sooner.
+
         :param duration: Duration of test traffic generation in seconds.
         :param rate: Traffic rate.
             - T-Rex stateless mode => Offered load per interface in pps,
@@ -859,45 +771,92 @@ class TrafficGenerator(AbstractMeasurer):
         :param frame_size: Frame size (L2) in Bytes.
         :param traffic_profile: Module name as a traffic profile identifier.
             See GPL/traffic_profiles/trex for implemented modules.
-        :param warmup_time: Warmup phase in seconds.
         :param async_call: Async mode.
-        :param latency: With latency measurement.
+        :param ppta: Packets per transaction, aggregated over directions.
+            Needed for udp_pps which does not have a good transaction counter,
+            so we need to compute expected number of packets.
+            Default: 1.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
-        :param tx_port: Traffic generator transmit port for first flow.
-            Default: 0
-        :param rx_port: Traffic generator receive port for first flow.
-            Default: 1
+        :param transaction_directions: Traffic from input rate point of view
+            is initiated in bi- (2) or uni- (1) directional way.
+            Default: 2
+        :param transaction_duration: Total expected time to close transaction.
+        :param transaction_scale: Number of transactions to perform.
+            0 (default) means unlimited.
+        :param transaction_type: An identifier specifying which counters
+            and formulas to use when computing attempted and failed
+            transactions. Default: "packet".
+        :param duration_limit: Zero or maximum limit for computed (or given)
+            duration.
+        :param use_latency: Whether to measure latency during the trial.
+            Default: False.
         :type duration: float
         :type rate: float
         :type frame_size: str
         :type traffic_profile: str
-        :type warmup_time: float
         :type async_call: bool
-        :type latency: bool
+        :type ppta: int
         :type traffic_directions: int
-        :type tx_port: int
-        :type rx_port: int
+        :type transaction_directions: int
+        :type transaction_duration: float
+        :type transaction_scale: int
+        :type transaction_type: str
+        :type duration_limit: float
+        :type use_latency: bool
+        :returns: TG results.
+        :rtype: str
+        :raises ValueError: If TG traffic profile is not supported.
+        """
+        self.set_rate_provider_defaults(
+            frame_size=frame_size,
+            traffic_profile=traffic_profile,
+            ppta=ppta,
+            traffic_directions=traffic_directions,
+            transaction_directions=transaction_directions,
+            transaction_duration=transaction_duration,
+            transaction_scale=transaction_scale,
+            transaction_type=transaction_type,
+            duration_limit=duration_limit,
+            use_latency=use_latency,
+        )
+        self._send_traffic_on_tg_internal(duration, rate, async_call)
+
+    def _send_traffic_on_tg_internal(self, duration, rate, async_call=False):
+        """Send traffic from all configured interfaces on TG.
+
+        This is an internal function, it assumes set_rate_provider_defaults
+        has been called to remember most values.
+        The reason why need to remember various values is that
+        the traffic can be asynchronous, and parsing needs those values.
+        The reason why this is is a separate function from the one
+        which calls set_rate_provider_defaults is that some search algorithms
+        need to specify their own values, and we do not want the measure call
+        to overwrite them with defaults.
+
+        :param duration: Duration of test traffic generation in seconds.
+        :param rate: Traffic rate.
+            - T-Rex stateless mode => Offered load per interface in pps,
+            - T-Rex advanced stateful mode => multiplier of profile CPS.
+        :param async_call: Async mode.
+        :type duration: float
+        :type rate: float
+        :type async_call: bool
         :returns: TG results.
         :rtype: str
         :raises ValueError: If TG traffic profile is not supported.
         """
         subtype = check_subtype(self._node)
         if subtype == NodeSubTypeTG.TREX:
-            if self.traffic_profile != str(traffic_profile):
-                self.traffic_profile = str(traffic_profile)
             if u"trex-astf" in self.traffic_profile:
                 self.trex_astf_start_remote_exec(
-                    duration, int(rate), frame_size, self.traffic_profile,
-                    async_call, latency, warmup_time, traffic_directions,
-                    tx_port, rx_port
+                    duration, float(rate), async_call
                 )
             elif u"trex-stl" in self.traffic_profile:
                 unit_rate_str = str(rate) + u"pps"
+                # TODO: Suport transaction_scale et al?
                 self.trex_stl_start_remote_exec(
-                    duration, unit_rate_str, frame_size, self.traffic_profile,
-                    async_call, latency, warmup_time, traffic_directions,
-                    tx_port, rx_port
+                    duration, unit_rate_str, async_call
                 )
             else:
                 raise ValueError(u"Unsupported T-Rex traffic profile!")
@@ -917,6 +876,8 @@ class TrafficGenerator(AbstractMeasurer):
 
     def fail_if_no_traffic_forwarded(self):
         """Fail if no traffic forwarded.
+
+        TODO: Check number of passed transactions instead.
 
         :returns: nothing
         :raises Exception: If no traffic forwarded.
@@ -952,35 +913,122 @@ class TrafficGenerator(AbstractMeasurer):
                 f"Traffic loss {loss} above loss acceptance: {loss_acceptance}"
             )
 
-    def set_rate_provider_defaults(
-            self, frame_size, traffic_profile, warmup_time=0.0,
-            traffic_directions=2, negative_loss=True, latency=False):
-        """Store values accessed by measure().
+    def _parse_traffic_results(self, stdout):
+        """Parse stdout of scripts into fields of self.
 
-        :param frame_size: Frame size identifier or value [B].
-        :param traffic_profile: Module name as a traffic profile identifier.
-            See GPL/traffic_profiles/trex for implemented modules.
-        :param warmup_time: Traffic duration before measurement starts [s].
-        :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
-            Default: 2
-        :param negative_loss: If false, negative loss is reported as zero loss.
-        :param latency: Whether to measure latency during the trial.
-            Default: False.
-        :type frame_size: str or int
-        :type traffic_profile: str
-        :type warmup_time: float
-        :type traffic_directions: int
-        :type negative_loss: bool
-        :type latency: bool
+        Block of code to reuse, by sync start, or stop after async.
+
+        :param stdout: Text containing the standard output.
+        :type stdout: str
         """
-        self.frame_size = frame_size
-        self.traffic_profile = str(traffic_profile)
-        self.warmup_time = float(warmup_time)
-        self.traffic_directions = traffic_directions
-        self.negative_loss = negative_loss
-        self.use_latency = latency
+        subtype = check_subtype(self._node)
+        if subtype == NodeSubTypeTG.TREX:
+            # Last line from console output
+            line = stdout.splitlines()[-1]
+            results = line.split(u";")
+            if results[-1] in (u" ", u""):
+                results.pop(-1)
+            self._result = dict()
+            for result in results:
+                key, value = result.split(u"=", maxsplit=1)
+                self._result[key.strip()] = value
+            logger.info(f"TrafficGen results:\n{self._result}")
+            self._received = int(self._result.get(u"total_received"), 0)
+            self._sent = int(self._result.get(u"total_sent", 0))
+            self._loss = int(self._result.get(u"frame_loss", 0))
+            self._approximated_duration = \
+                self._result.get(u"approximated_duration", 0.0)
+            if u"manual" not in str(self._approximated_duration):
+                self._approximated_duration = float(self._approximated_duration)
+            self._latency = list()
+            self._latency.append(self._result.get(u"latency_stream_0(usec)"))
+            self._latency.append(self._result.get(u"latency_stream_1(usec)"))
+            if self._mode == TrexMode.ASTF:
+                self._l7_data = dict()
+                self._l7_data[u"client"] = dict()
+                self._l7_data[u"client"][u"sent"] = \
+                    int(self._result.get(u"client_sent", 0))
+                self._l7_data[u"client"][u"received"] = \
+                    int(self._result.get(u"client_received", 0))
+                self._l7_data[u"client"][u"active_flows"] = \
+                    int(self._result.get(u"client_active_flows", 0))
+                self._l7_data[u"client"][u"established_flows"] = \
+                    int(self._result.get(u"client_established_flows", 0))
+                self._l7_data[u"client"][u"traffic_duration"] = \
+                    float(self._result.get(u"client_traffic_duration", 0.0))
+                self._l7_data[u"client"][u"err_rx_throttled"] = \
+                    int(self._result.get(u"client_err_rx_throttled", 0))
+                self._l7_data[u"client"][u"err_c_nf_throttled"] = \
+                    int(self._result.get(u"client_err_nf_throttled", 0))
+                self._l7_data[u"client"][u"err_flow_overflow"] = \
+                    int(self._result.get(u"client_err_flow_overflow", 0))
+                self._l7_data[u"server"] = dict()
+                self._l7_data[u"server"][u"active_flows"] = \
+                    int(self._result.get(u"server_active_flows", 0))
+                self._l7_data[u"server"][u"established_flows"] = \
+                    int(self._result.get(u"server_established_flows", 0))
+                self._l7_data[u"server"][u"traffic_duration"] = \
+                    float(self._result.get(u"server_traffic_duration", 0.0))
+                self._l7_data[u"server"][u"err_rx_throttled"] = \
+                    int(self._result.get(u"client_err_rx_throttled", 0))
+                if u"udp" in self.traffic_profile:
+                    self._l7_data[u"client"][u"udp"] = dict()
+                    self._l7_data[u"client"][u"udp"][u"established_flows"] = \
+                        int(self._result.get(u"client_udp_connects", 0))
+                    self._l7_data[u"client"][u"udp"][u"closed_flows"] = \
+                        int(self._result.get(u"client_udp_closed", 0))
+                    self._l7_data[u"client"][u"udp"][u"tx_bytes"] = \
+                        int(self._result.get(u"client_udp_tx_bytes", 0))
+                    self._l7_data[u"client"][u"udp"][u"rx_bytes"] = \
+                        int(self._result.get(u"client_udp_rx_bytes", 0))
+                    self._l7_data[u"client"][u"udp"][u"tx_packets"] = \
+                        int(self._result.get(u"client_udp_tx_packets", 0))
+                    self._l7_data[u"client"][u"udp"][u"rx_packets"] = \
+                        int(self._result.get(u"client_udp_rx_packets", 0))
+                    self._l7_data[u"client"][u"udp"][u"keep_drops"] = \
+                        int(self._result.get(u"client_udp_keep_drops", 0))
+                    self._l7_data[u"client"][u"udp"][u"err_cwf"] = \
+                        int(self._result.get(u"client_err_cwf", 0))
+                    self._l7_data[u"server"][u"udp"] = dict()
+                    self._l7_data[u"server"][u"udp"][u"accepted_flows"] = \
+                        int(self._result.get(u"server_udp_accepts", 0))
+                    self._l7_data[u"server"][u"udp"][u"closed_flows"] = \
+                        int(self._result.get(u"server_udp_closed", 0))
+                    self._l7_data[u"server"][u"udp"][u"tx_bytes"] = \
+                        int(self._result.get(u"server_udp_tx_bytes", 0))
+                    self._l7_data[u"server"][u"udp"][u"rx_bytes"] = \
+                        int(self._result.get(u"server_udp_rx_bytes", 0))
+                    self._l7_data[u"server"][u"udp"][u"tx_packets"] = \
+                        int(self._result.get(u"server_udp_tx_packets", 0))
+                    self._l7_data[u"server"][u"udp"][u"rx_packets"] = \
+                        int(self._result.get(u"server_udp_rx_packets", 0))
+                elif u"tcp" in self.traffic_profile:
+                    self._l7_data[u"client"][u"tcp"] = dict()
+                    self._l7_data[u"client"][u"tcp"][u"initiated_flows"] = \
+                        int(self._result.get(u"client_tcp_connect_inits", 0))
+                    self._l7_data[u"client"][u"tcp"][u"established_flows"] = \
+                        int(self._result.get(u"client_tcp_connects", 0))
+                    self._l7_data[u"client"][u"tcp"][u"closed_flows"] = \
+                        int(self._result.get(u"client_tcp_closed", 0))
+                    self._l7_data[u"client"][u"tcp"][u"connattempt"] = \
+                        int(self._result.get(u"client_tcp_connattempt", 0))
+                    self._l7_data[u"client"][u"tcp"][u"tx_bytes"] = \
+                        int(self._result.get(u"client_tcp_tx_bytes", 0))
+                    self._l7_data[u"client"][u"tcp"][u"rx_bytes"] = \
+                        int(self._result.get(u"client_tcp_rx_bytes", 0))
+                    self._l7_data[u"server"][u"tcp"] = dict()
+                    self._l7_data[u"server"][u"tcp"][u"accepted_flows"] = \
+                        int(self._result.get(u"server_tcp_accepts", 0))
+                    self._l7_data[u"server"][u"tcp"][u"established_flows"] = \
+                        int(self._result.get(u"server_tcp_connects", 0))
+                    self._l7_data[u"server"][u"tcp"][u"closed_flows"] = \
+                        int(self._result.get(u"server_tcp_closed", 0))
+                    self._l7_data[u"server"][u"tcp"][u"tx_bytes"] = \
+                        int(self._result.get(u"server_tcp_tx_bytes", 0))
+                    self._l7_data[u"server"][u"tcp"][u"rx_bytes"] = \
+                        int(self._result.get(u"server_tcp_rx_bytes", 0))
 
-    def get_measurement_result(self, duration=None, transmit_rate=None):
+    def get_measurement_result(self):
         """Return the result of last measurement as ReceiveRateMeasurement.
 
         Separate function, as measurements can end either by time
@@ -988,26 +1036,74 @@ class TrafficGenerator(AbstractMeasurer):
 
         TODO: Fail on running or already reported measurement.
 
-        :param duration: Measurement duration [s] if known beforehand.
-            For explicitly stopped measurement it is estimated.
-        :param transmit_rate: Target aggregate transmit rate [pps].
-            If not given, computed assuming it was bidirectional.
-        :type duration: float or NoneType
-        :type transmit_rate: float or NoneType
         :returns: Structure containing the result of the measurement.
         :rtype: ReceiveRateMeasurement
         """
-        if duration is None:
-            duration = time.time() - self._start_time
-            self._start_time = None
-        if transmit_rate is None:
-            transmit_rate = self._rate * self.traffic_directions
-        transmit_count = int(self.get_sent())
-        loss_count = int(self.get_loss())
-        if loss_count < 0 and not self.negative_loss:
-            loss_count = 0
+        try:
+            # Client duration seems to include a setup period
+            # where TRex does not send any packets yet.
+            # Server duration does not include it.
+            server_data = self._l7_data[u"server"]
+            approximated_duration = float(server_data[u"traffic_duration"])
+        except (KeyError, AttributeError, ValueError, TypeError):
+            approximated_duration = None
+        try:
+            if not approximated_duration:
+                approximated_duration = float(self._approximated_duration)
+        except ValueError:  # "manual"
+            approximated_duration = None
+        if not approximated_duration:
+            if self._duration and self._duration > 0:
+                # Known recomputed or target duration.
+                approximated_duration = self._duration
+            else:
+                # It was an explicit stop.
+                if not self._stop_time:
+                    raise RuntimeError(u"Unable to determine duration.")
+                approximated_duration = self._stop_time - self._start_time
+        target_duration = self._target_duration
+        if not target_duration:
+            target_duration = approximated_duration
+        # Convert back to aggregate assumed by search algorithms.
+        transmit_rate = self._rate * self.transaction_directions
+        if self.transaction_type == u"packet":
+            attempt_count = self._sent
+            partial_attempt_count = attempt_count
+            fail_count = self._loss
+        elif self.transaction_type == u"udp_cps":
+            if not self.transaction_scale:
+                raise RuntimeError(u"Add support for no-limit udp_cps.")
+            # We do not care whether TG is slow, it should have attempted all.
+            attempt_count = self.transaction_scale
+            partial_attempt_count = self._l7_data[u"client"][u"sent"]
+            fail_count = attempt_count - self._l7_data[u"client"][u"received"]
+        elif self.transaction_type == u"tcp_cps":
+            if not self.transaction_scale:
+                raise RuntimeError(u"Add support for no-limit tcp_cps.")
+            # TODO: Is there a better packet-based counter?
+            pass_count = self._l7_data[u"server"][u"tcp"][u"established_flows"]
+            # We do not care whether TG is slow, it should have attempted all.
+            attempt_count = self.transaction_scale
+            fail_count = attempt_count - pass_count
+            ctca = self._l7_data[u"client"][u"tcp"][u"connattempt"]
+            partial_attempt_count = ctca
+        elif self.transaction_type == u"udp_pps":
+            if not self.transaction_scale:
+                raise RuntimeError(u"Add support for no-limit udp_pps.")
+            attempt_count = self.transaction_scale * self.ppta
+            partial_attempt_count = self._sent
+            fail_count = self._loss + (attempt_count - self._sent)
+        else:
+            raise RuntimeError(f"Unknown parsing {self.transaction_type!r}")
+        if fail_count < 0 and not self.negative_loss:
+            fail_count = 0
         measurement = ReceiveRateMeasurement(
-            duration, transmit_rate, transmit_count, loss_count
+            duration=target_duration,
+            target_tr=transmit_rate,
+            transmit_count=attempt_count,
+            loss_count=fail_count,
+            approximated_duration=approximated_duration,
+            partial_transmit_count=partial_attempt_count,
         )
         measurement.latency = self.get_latency_int()
         return measurement
@@ -1029,18 +1125,107 @@ class TrafficGenerator(AbstractMeasurer):
         :raises NotImplementedError: If TG is not supported.
         """
         duration = float(duration)
-        # TG needs target Tr per stream, but reports aggregate Tx and Dx.
-        unit_rate_int = transmit_rate / float(self.traffic_directions)
-        self.send_traffic_on_tg(
-            duration,
-            unit_rate_int,
-            self.frame_size,
-            self.traffic_profile,
-            warmup_time=self.warmup_time,
-            latency=self.use_latency,
-            traffic_directions=self.traffic_directions
+        time_start = time.monotonic()
+        time_stop = time_start + duration
+        if self.resetter:
+            self.resetter()
+        # TG needs target rate per active direction, search algos use aggregate.
+        unidir_rate = transmit_rate / float(self.transaction_directions)
+#        try:
+        self._send_traffic_on_tg_internal(
+            duration=duration,
+            rate=unidir_rate,
+            async_call=False,
         )
-        return self.get_measurement_result(duration, transmit_rate)
+        result = self.get_measurement_result()
+#        except RuntimeError:
+#            # A workaround. TRex can fail on too high CPS.
+#            result = ReceiveRateMeasurement(
+#                duration, transmit_rate, 1, 1
+#            )
+        logger.debug(f"trial measurement result: {result!r}")
+        # In PLRsearch, computation needs the specified time to complete.
+        if self.sleep_till_duration:
+            sleeptime = time_stop - time.monotonic()
+            if sleeptime > 0.0:
+                # TODO: Sometimes we have time to do additional trials here,
+                # adapt PLRsearch to accept all the results.
+                time.sleep(sleeptime)
+        return result
+
+    def set_rate_provider_defaults(
+            self,
+            frame_size,
+            traffic_profile,
+            ppta=1,
+            resetter=None,
+            traffic_directions=2,
+            transaction_directions=2,
+            transaction_duration=0.0,
+            transaction_scale=0,
+            transaction_type=u"packet",
+            duration_limit=0.0,
+            negative_loss=True,
+            sleep_till_duration=False,
+            use_latency=False,
+        ):
+        """Store values accessed by measure().
+
+        :param frame_size: Frame size identifier or value [B].
+        :param traffic_profile: Module name as a traffic profile identifier.
+            See GPL/traffic_profiles/trex for implemented modules.
+        :param ppta: Packets per transaction, aggregated over directions.
+            Needed for udp_pps which does not have a good transaction counter,
+            so we need to compute expected number of packets.
+            Default: 1.
+        :param resetter: Callable to reset DUT state for repeated trials.
+        :param traffic_directions: Traffic from packet counting point of view
+            is bi- (2) or uni- (1) directional.
+            Default: 2
+        :param transaction_directions: Traffic from input rate point of view
+            is initiated in bi- (2) or uni- (1) directional way.
+            Default: 2
+        :param transaction_duration: Total expected time to close transaction.
+        :param transaction_scale: Number of transactions to perform.
+            0 (default) means unlimited.
+        :param transaction_type: An identifier specifying which counters
+            and formulas to use when computing attempted and failed
+            transactions. Default: "packet".
+            TODO: Does this also specify parsing for the measured duration?
+        :param duration_limit: Zero or maximum limit for computed (or given)
+            duration.
+        :param negative_loss: If false, negative loss is reported as zero loss.
+        :param sleep_till_duration: If true and measurement returned faster,
+            sleep until it matches duration. Needed for PLRsearch.
+        :param use_latency: Whether to measure latency during the trial.
+            Default: False.
+        :type frame_size: str or int
+        :type traffic_profile: str
+        :type ppta: int
+        :type resetter: Optional[Callable[[], None]]
+        :type traffic_directions: int
+        :type transaction_directions: int
+        :type transaction_duration: float
+        :type transaction_scale: int
+        :type transaction_type: str
+        :type duration_limit: float
+        :type negative_loss: bool
+        :type sleep_till_duration: bool
+        :type use_latency: bool
+        """
+        self.frame_size = frame_size
+        self.traffic_profile = str(traffic_profile)
+        self.resetter = resetter
+        self.ppta = ppta
+        self.traffic_directions = int(traffic_directions)
+        self.transaction_directions = int(transaction_directions)
+        self.transaction_duration = float(transaction_duration)
+        self.transaction_scale = int(transaction_scale)
+        self.transaction_type = str(transaction_type)
+        self.duration_limit = float(duration_limit)
+        self.negative_loss = bool(negative_loss)
+        self.sleep_till_duration = bool(sleep_till_duration)
+        self.use_latency = bool(use_latency)
 
 
 class OptimizedSearch:
@@ -1052,12 +1237,33 @@ class OptimizedSearch:
 
     @staticmethod
     def perform_optimized_ndrpdr_search(
-            frame_size, traffic_profile, minimum_transmit_rate,
-            maximum_transmit_rate, packet_loss_ratio=0.005,
-            final_relative_width=0.005, final_trial_duration=30.0,
-            initial_trial_duration=1.0, number_of_intermediate_phases=2,
-            timeout=720.0, doublings=1, traffic_directions=2, latency=False):
+            frame_size,
+            traffic_profile,
+            minimum_transmit_rate,
+            maximum_transmit_rate,
+            packet_loss_ratio=0.005,
+            final_relative_width=0.005,
+            final_trial_duration=30.0,
+            initial_trial_duration=1.0,
+            number_of_intermediate_phases=2,
+            timeout=720.0,
+            doublings=1,
+            ppta=1,
+            resetter=None,
+            traffic_directions=2,
+            transaction_directions=2,
+            transaction_duration=0.0,
+            transaction_scale=0,
+            transaction_type=u"packet",
+            use_latency=False,
+    ):
         """Setup initialized TG, perform optimized search, return intervals.
+
+        If transaction_scale is nonzero, all non-init trial durations
+        are set to 2.0 (as they do not affect the real trial duration)
+        and zero intermediate phases are used.
+        The initial phase still uses 1.0 seconds, to force remeasurement.
+        That makes initial phase act as a warmup.
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
@@ -1079,9 +1285,23 @@ class OptimizedSearch:
         :param doublings: How many doublings to do in external search step.
             Default 1 is suitable for fairly stable tests,
             less stable tests might get better overal duration with 2 or more.
+        :param ppta: Packets per transaction, aggregated over directions.
+            Needed for udp_pps which does not have a good transaction counter,
+            so we need to compute expected number of packets.
+            Default: 1.
+        :param resetter: Callable to reset DUT state for repeated trials.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
-        :param latency: Whether to measure latency during the trial.
+        :param transaction_directions: Traffic from input rate point of view
+            is initiated in bi- (2) or uni- (1) directional way.
+            Default: 2
+        :param transaction_duration: Total expected time to close transaction.
+        :param transaction_scale: Number of transactions to perform.
+            0 (default) means unlimited.
+        :param transaction_type: An identifier specifying which counters
+            and formulas to use when computing attempted and failed
+            transactions. Default: "packet".
+        :param use_latency: Whether to measure latency during the trial.
             Default: False.
         :type frame_size: str or int
         :type traffic_profile: str
@@ -1094,44 +1314,83 @@ class OptimizedSearch:
         :type number_of_intermediate_phases: int
         :type timeout: float
         :type doublings: int
+        :type ppta: int
+        :type resetter: Optional[Callable[[], None]]
         :type traffic_directions: int
-        :type latency: bool
+        :type transaction_directions: int
+        :type transaction_duration: float
+        :type transaction_scale: int
+        :type transaction_type: str
+        :type use_latency: bool
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: NdrPdrResult
         :raises RuntimeError: If total duration is larger than timeout.
         """
-        minimum_transmit_rate *= traffic_directions
-        maximum_transmit_rate *= traffic_directions
+        minimum_transmit_rate *= transaction_directions
+        maximum_transmit_rate *= transaction_directions
         # we need instance of TrafficGenerator instantiated by Robot Framework
         # to be able to use trex_stl-*()
         tg_instance = BuiltIn().get_library_instance(
             u"resources.libraries.python.TrafficGenerator"
         )
+        # Overrides for fixed transaction amount.
+        # TODO: Move to robot code? We have two call sites, so this saves space,
+        #       even though this is surprising for log readers.
+        if transaction_scale:
+            initial_trial_duration = 1.0
+            final_trial_duration = 2.0
+            number_of_intermediate_phases = 0
+            timeout = 3600.0
         tg_instance.set_rate_provider_defaults(
-            frame_size,
-            traffic_profile,
+            frame_size=frame_size,
+            traffic_profile=traffic_profile,
+            sleep_till_duration=False,
+            ppta=ppta,
+            resetter=resetter,
             traffic_directions=traffic_directions,
-            latency=latency
+            transaction_directions=transaction_directions,
+            transaction_duration=transaction_duration,
+            transaction_scale=transaction_scale,
+            transaction_type=transaction_type,
+            use_latency=use_latency,
         )
         algorithm = MultipleLossRatioSearch(
-            measurer=tg_instance, final_trial_duration=final_trial_duration,
+            measurer=tg_instance,
+            final_trial_duration=final_trial_duration,
             final_relative_width=final_relative_width,
             number_of_intermediate_phases=number_of_intermediate_phases,
-            initial_trial_duration=initial_trial_duration, timeout=timeout,
-            doublings=doublings
+            initial_trial_duration=initial_trial_duration,
+            timeout=timeout,
+            doublings=doublings,
         )
         result = algorithm.narrow_down_ndr_and_pdr(
-            minimum_transmit_rate, maximum_transmit_rate, packet_loss_ratio
+            fail_rate=minimum_transmit_rate,
+            line_rate=maximum_transmit_rate,
+            packet_loss_ratio=packet_loss_ratio,
         )
         return result
 
     @staticmethod
     def perform_soak_search(
-            frame_size, traffic_profile, minimum_transmit_rate,
-            maximum_transmit_rate, plr_target=1e-7, tdpt=0.1,
-            initial_count=50, timeout=1800.0, trace_enabled=False,
-            traffic_directions=2, latency=False):
+            frame_size,
+            traffic_profile,
+            minimum_transmit_rate,
+            maximum_transmit_rate,
+            plr_target=1e-7,
+            tdpt=0.1,
+            initial_count=50,
+            timeout=7200.0,
+            ppta=1,
+            resetter=None,
+            trace_enabled=False,
+            traffic_directions=2,
+            transaction_directions=2,
+            transaction_duration=0.0,
+            transaction_scale=0,
+            transaction_type=u"packet",
+            use_latency=False,
+    ):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
         :param frame_size: Frame size identifier or value [B].
@@ -1150,10 +1409,27 @@ class OptimizedSearch:
             This is needed because initial "search" phase of integrator
             takes significant time even without any trial results.
         :param timeout: The search will stop after this overall time [s].
+        :param ppta: Packets per transaction, aggregated over directions.
+            Needed for udp_pps which does not have a good transaction counter,
+            so we need to compute expected number of packets.
+            Default: 1.
+        :param resetter: Callable to reset DUT state for repeated trials.
         :param trace_enabled: True if trace enabled else False.
+            This is very verbose tracing on numeric computations,
+            do not use in production.
+            Default: False
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
             Default: 2
-        :param latency: Whether to measure latency during the trial.
+        :param transaction_directions: Traffic from input rate point of view
+            is initiated in bi- (2) or uni- (1) directional way.
+            Default: 2
+        :param transaction_duration: Total expected time to close transaction.
+        :param transaction_scale: Number of transactions to perform.
+            0 (default) means unlimited.
+        :param transaction_type: An identifier specifying which counters
+            and formulas to use when computing attempted and failed
+            transactions. Default: "packet".
+        :param use_latency: Whether to measure latency during the trial.
             Default: False.
         :type frame_size: str or int
         :type traffic_profile: str
@@ -1162,29 +1438,47 @@ class OptimizedSearch:
         :type plr_target: float
         :type initial_count: int
         :type timeout: float
+        :type ppta: int
+        :type resetter: Optional[Callable[[], None]]
         :type trace_enabled: bool
         :type traffic_directions: int
-        :type latency: bool
+        :type transaction_directions: int
+        :type transaction_duration: float
+        :type transaction_scale: int
+        :type transaction_type: str
+        :type use_latency: bool
         :returns: Average and stdev of estimated aggregate rate giving PLR.
         :rtype: 2-tuple of float
         """
-        minimum_transmit_rate *= traffic_directions
-        maximum_transmit_rate *= traffic_directions
+        minimum_transmit_rate *= transaction_directions
+        maximum_transmit_rate *= transaction_directions
         tg_instance = BuiltIn().get_library_instance(
             u"resources.libraries.python.TrafficGenerator"
         )
         tg_instance.set_rate_provider_defaults(
-            frame_size,
-            traffic_profile,
-            traffic_directions=traffic_directions,
+            frame_size=frame_size,
+            traffic_profile=traffic_profile,
             negative_loss=False,
-            latency=latency
+            sleep_till_duration=True,
+            ppta=ppta,
+            resetter=resetter,
+            traffic_directions=traffic_directions,
+            transaction_directions=transaction_directions,
+            transaction_duration=transaction_duration,
+            transaction_scale=transaction_scale,
+            transaction_type=transaction_type,
+            use_latency=use_latency,
         )
         algorithm = PLRsearch(
-            measurer=tg_instance, trial_duration_per_trial=tdpt,
+            measurer=tg_instance,
+            trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
-            trial_number_offset=initial_count, timeout=timeout,
-            trace_enabled=trace_enabled
+            trial_number_offset=initial_count,
+            timeout=timeout,
+            trace_enabled=trace_enabled,
         )
-        result = algorithm.search(minimum_transmit_rate, maximum_transmit_rate)
+        result = algorithm.search(
+            min_rate=minimum_transmit_rate,
+            max_rate=maximum_transmit_rate,
+        )
         return result
