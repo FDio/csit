@@ -70,6 +70,30 @@
       "revId": "7e1f23fdfddda991428ce66c0e1a11fddc7d62a1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3a82c55_85435de2",
+        "filename": "resources/tools/testbed-setup/ansible/roles/docker/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-10-09T17:31:28Z",
+      "side": 1,
+      "message": "Sorry \u0027bout that.  We should be able to remove lines 27-28 since we won\u0027t be using dns to resolve the ip address of the host to use to connect to the csit_shim container on port 6022.",
+      "parentUuid": "2546f5b4_1df91210",
+      "range": {
+        "startLine": 28,
+        "startChar": 5,
+        "endLine": 28,
+        "endChar": 25
+      },
+      "revId": "7e1f23fdfddda991428ce66c0e1a11fddc7d62a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
