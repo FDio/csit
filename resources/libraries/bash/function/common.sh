@@ -42,7 +42,6 @@ function activate_docker_topology () {
     source "${BASH_FUNCTION_DIR}/device.sh" || {
         die "Source failed!"
     }
-
     device_image="$(< ${CSIT_DIR}/${IMAGE_VER_FILE})"
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
@@ -50,8 +49,9 @@ function activate_docker_topology () {
             # We execute reservation over csit-shim-dcr (ssh) which runs sourced
             # script's functions. Env variables are read from ssh output
             # back to localhost for further processing.
-            hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3) || die
-            ssh="ssh root@${hostname} -p 6022"
+            # Shim and Jenkins executor are in the same network on the same host
+            # Connect to docker's default gateway IP and shim's exposed port
+            ssh="ssh root@172.17.0.1 -p 6022"
             run="activate_wrapper ${NODENESS} ${FLAVOR} ${device_image}"
             # The "declare -f" output is long and boring.
             set +x
@@ -333,8 +333,7 @@ function deactivate_docker_topology () {
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
         "1n_skx" | "1n_tx2")
-            hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3) || die
-            ssh="ssh root@${hostname} -p 6022"
+            ssh="ssh root@172.17.0.1 -p 6022"
             env_vars=$(env | grep CSIT_ | tr '\n' ' ' ) || die
             # The "declare -f" output is long and boring.
             set +x
