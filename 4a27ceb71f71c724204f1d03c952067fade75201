@@ -519,6 +519,30 @@
     },
     {
       "key": {
+        "uuid": "4559d73e_9db555b2",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-09T11:07:54Z",
+      "side": 1,
+      "message": "There is a phase between TRex being told to stop traffic and TRex confirming traffic is stopped, but it is implemented as a blocking function call. So TRex takes any time it needs, without us giving any input value.\n\nI was talking about a different phase, between TRex being told to start traffic and packets actually leaving NIC. As we do not want to poll in general, the current implementation is:\n1. Compute the time TRex should send all the packets.\n2. Add a ramp_up_delay as a guess how long TRex spends not sending traffic.\n3. Tell TRex to start sending.\n4. Sleep the combined time.\n5. Tell TRex to stop the traffic (and block until it is stopped).\n6. Read counters.",
+      "parentUuid": "57b2cf02_745853b5",
+      "range": {
+        "startLine": 123,
+        "startChar": 7,
+        "endLine": 123,
+        "endChar": 22
+      },
+      "revId": "4a27ceb71f71c724204f1d03c952067fade75201",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0d0493e0_8eda0318",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 6
