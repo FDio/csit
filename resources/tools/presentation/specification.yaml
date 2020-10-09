@@ -212,7 +212,6 @@
         - 27  # rls2009 NDRPDR iter env 5
 
 #    plot-vpp-nfv-3n-skx-ndrpdr:
-#      # TODO: Replace:
 #      # csit-vpp-perf-report-iterative-2009-3n-skx:
 #      csit-vpp-perf-report-iterative-2005-3n-skx:
 #        - 4   # NDRPDR sel
@@ -222,7 +221,6 @@
 #        - 34  # NDRPDR sel
 
 #    plot-vpp-nfv-3n-skx-mrr:
-#      # TODO: Replace:
 #      # csit-vpp-perf-report-iterative-2009-3n-skx:
 #      csit-vpp-perf-report-iterative-2005-3n-skx:
 #        - 49  # MRR sel env 4
@@ -279,7 +277,6 @@
         - 34  # rls2009 soak env 5
 
     plot-vpp-nfv-2n-skx-ndrpdr:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 38  # rls2009 nf-density iter env 5
         - 41  # rls2009 nf-density iter env 5
@@ -289,6 +286,8 @@
         - 63  # rls2009 nf-density iter env 5
         - 65  # rls2009 nf-density iter env 5
         - 66  # rls2009 nf-density iter env 5
+        - 71  # rls2009 nf-density iter env 5
+        - 72  # rls2009 nf-density iter env 5
 
     plot-vpp-nfv-2n-skx-mrr:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -428,25 +427,12 @@
         - 14  # rls2009 NDRPDR iter env 5
         - 15  # rls2009 NDRPDR iter env 5
 
-    plot-dpdk-throughput-latency-3n-dnv:
-      # TODO: Replace:
-      # csit-dpdk-perf-report-iterative-2009-3n-dnv:
-      csit-dpdk-perf-report-iterative-2005-3n-dnv:
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 16  # NDRPDR sel
+#    plot-dpdk-throughput-latency-3n-dnv:
+#      csit-dpdk-perf-report-iterative-2009-3n-dnv:
 
     # 2n-dnv
 
     plot-vpp-throughput-lat-tsa-2n-dnv:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-dnv:
         - 3   # rls2009 NDRPDR iter env 5
         - 5   # rls2009 NDRPDR iter env 5
@@ -459,20 +445,8 @@
         - 14  # rls2009 NDRPDR iter env 5
         - 15  # rls2009 NDRPDR iter env 5
 
-    plot-dpdk-throughput-latency-2n-dnv:
-      # TODO: Replace:
-      # csit-dpdk-perf-report-iterative-2009-2n-dnv:
-      csit-dpdk-perf-report-iterative-2005-2n-dnv:
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
+#    plot-dpdk-throughput-latency-2n-dnv:
+#      csit-dpdk-perf-report-iterative-2009-2n-dnv:
 
     ###########################################################################
     # Simple tables (only one data set):
@@ -568,8 +542,12 @@
     vpp-perf-results-2n-skx:
       # TODO: Add:
       csit-vpp-perf-report-coverage-2009-2n-skx:
+        - 18  # rls2009 NDRPDR cov 2n-skx-ip4-00
         - 10  # rls2009 NDRPDR cov 2n-skx-ip4-02
+        - 20  # rls2009 NDRPDR cov 2n-skx-ip4-03
         - 13  # rls2009 NDRPDR cov 2n-skx-ip4-05
+        - 27  # rls2009 NDRPDR cov 2n-skx-memif-00
+        - 30  # rls2009 NDRPDR cov 2n-skx-vts-00
 
     vpp-perf-results-2n-clx:
       # TODO: Replace:
@@ -587,7 +565,10 @@
     vpp-perf-results-3n-dnv:
       # TODO: Add:
       csit-vpp-perf-report-coverage-2009-3n-dnv:
+        - 10  # rls2009 NDRPDR cov 3n-dnv-crypto-00
         - 2   # rls2009 NDRPDR cov 3n-dnv-crypto-01
+        - 12  # rls2009 NDRPDR cov 3n-dnv-ip4-01
+        - 16  # rls2009 NDRPDR cov 3n-dnv-l2-00
 
     vpp-perf-results-2n-dnv:
       csit-vpp-perf-report-coverage-2009-2n-dnv:
@@ -646,17 +627,13 @@
       csit-dpdk-perf-report-iterative-2009-2n-clx:
         - 4   # NDRPDR iter env5
 
-    dpdk-perf-results-2n-dnv:
-      # TODO: Replace:
-      # csit-dpdk-perf-report-iterative-2009-2n-dnv:
-      csit-dpdk-perf-report-iterative-2005-2n-dnv:
-        - 8   # NDRPDR sel
+#    dpdk-perf-results-2n-dnv:
+#      # No data
+#      csit-dpdk-perf-report-iterative-2009-2n-dnv:
 
-    dpdk-perf-results-3n-dnv:
-      # TODO: Replace:
-      # csit-dpdk-perf-report-iterative-2009-3n-dnv:
-      csit-dpdk-perf-report-iterative-2005-3n-dnv:
-        - 6   # NDRPDR sel
+#    dpdk-perf-results-3n-dnv:
+#      # No data
+#      csit-dpdk-perf-report-iterative-2009-3n-dnv:
 
     dpdk-perf-results-3n-tsh:
       csit-dpdk-perf-report-iterative-2009-3n-tsh:
@@ -857,7 +834,6 @@
         - 13  # NDRPDR sel
         - 16  # NDRPDR sel
     vpp-performance-changes-2n-dnv-ref:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-dnv:
         - 16  # rls2005 NDRPDR iter env 5
         - 17  # rls2005 NDRPDR iter env 5
@@ -867,6 +843,8 @@
         - 24  # rls2005 NDRPDR iter env 5
         - 27  # rls2005 NDRPDR iter env 5
         - 28  # rls2005 NDRPDR iter env 5
+        - 29  # rls2005 NDRPDR iter env 5
+        - 30  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-2n-dnv-cmp:
       csit-vpp-perf-report-iterative-2009-2n-dnv:
         - 3   # rls2009 NDRPDR iter env 5
@@ -953,7 +931,6 @@
         - 33  # rls2009 soak env 5
         - 34  # rls2009 soak env 5
     vpp-soak-vs-ndr-2n-skx:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 35  # rls2009 NDRPDR iter env 5
         - 36  # rls2009 NDRPDR iter env 5
@@ -1276,83 +1253,41 @@
         - 12  # NDRPDR iter env5
         - 13  # NDRPDR iter env5
 
-    dpdk-performance-changes-2n-dnv-h1:
-      csit-dpdk-perf-verify-2001-2n-dnv:
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-    dpdk-performance-changes-2n-dnv-ref:
-      csit-dpdk-perf-report-iterative-2005-2n-dnv:
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-    dpdk-performance-changes-2n-dnv-cmp:
-      # TODO: Replace:
-      # csit-dpdk-perf-report-iterative-2009-2n-dnv:
-      csit-dpdk-perf-report-iterative-2005-2n-dnv:
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
+#    dpdk-performance-changes-2n-dnv-h1:
+#      csit-dpdk-perf-verify-2001-2n-dnv:
+#        - 9   # NDRPDR sel
+#        - 10  # NDRPDR sel
+#        - 11  # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 13  # NDRPDR sel
+#        - 14  # NDRPDR sel
+#        - 15  # NDRPDR sel
+#        - 16  # NDRPDR sel
+#        - 17  # NDRPDR sel
+#        - 18  # NDRPDR sel
+#    dpdk-performance-changes-2n-dnv-ref:
+#      # No data
+#    dpdk-performance-changes-2n-dnv-cmp:
+#      # No data
+#      csit-dpdk-perf-report-iterative-2009-2n-dnv:
 
-    dpdk-performance-changes-3n-dnv-h1:
-      csit-dpdk-perf-verify-2001-3n-dnv:
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 22  # NDRPDR sel
-    dpdk-performance-changes-3n-dnv-ref:
-      csit-dpdk-perf-report-iterative-2005-3n-dnv:
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 16  # NDRPDR sel
-    dpdk-performance-changes-3n-dnv-cmp:
-      # TODO: Replace:
-      # csit-dpdk-perf-report-iterative-2009-3n-dnv:
-      csit-dpdk-perf-report-iterative-2005-3n-dnv:
-        - 6   # NDRPDR sel
-        - 7   # NDRPDR sel
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 16  # NDRPDR sel
+#    dpdk-performance-changes-3n-dnv-h1:
+#      csit-dpdk-perf-verify-2001-3n-dnv:
+#        - 12  # NDRPDR sel
+#        - 13  # NDRPDR sel
+#        - 14  # NDRPDR sel
+#        - 15  # NDRPDR sel
+#        - 16  # NDRPDR sel
+#        - 17  # NDRPDR sel
+#        - 18  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 20  # NDRPDR sel
+#        - 22  # NDRPDR sel
+#    dpdk-performance-changes-3n-dnv-ref:
+#      # No data
+#    dpdk-performance-changes-3n-dnv-cmp:
+#      # No data
+#      csit-dpdk-perf-report-iterative-2009-3n-dnv:
 
     dpdk-performance-changes-3n-tsh-h1:
       csit-dpdk-perf-verify-2001-3n-tsh:
@@ -2327,6 +2262,8 @@
       - 63  # rls2009 nf-density iter env 5
       - 65  # rls2009 nf-density iter env 5
       - 66  # rls2009 nf-density iter env 5
+      - 71  # rls2009 nf-density iter env 5
+      - 72  # rls2009 nf-density iter env 5
       - 50  # rls2009 MRR nf-density iter env 5
       - 27  # rls2009 reconf env 5
       - 28  # rls2009 reconf env 5
@@ -2342,8 +2279,12 @@
       - 34  # rls2009 soak env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-skx:
+      - 18  # rls2009 NDRPDR cov 2n-skx-ip4-00
       - 10  # rls2009 NDRPDR cov 2n-skx-ip4-02
+      - 20  # rls2009 NDRPDR cov 2n-skx-ip4-03
       - 13  # rls2009 NDRPDR cov 2n-skx-ip4-05
+      - 27  # rls2009 NDRPDR cov 2n-skx-memif-00
+      - 30  # rls2009 NDRPDR cov 2n-skx-vts-00
 
     csit-vpp-perf-verify-2001-2n-clx:
       - 39  # MRR
@@ -2478,7 +2419,10 @@
       - 22  # rls2009 MRR iter env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-3n-dnv:
+      - 10  # rls2009 NDRPDR cov 3n-dnv-crypto-00
       - 2   # rls2009 NDRPDR cov 3n-dnv-crypto-01
+      - 12  # rls2009 NDRPDR cov 3n-dnv-ip4-01
+      - 16  # rls2009 NDRPDR cov 3n-dnv-l2-00
 
     csit-vpp-perf-verify-2001-2n-dnv:
       - 4   # NDRPDR sel
@@ -2492,7 +2436,6 @@
       - 13  # NDRPDR sel
       - 16  # NDRPDR sel
       - 12  # MRR sel
-    # TODO: Add:
     csit-vpp-perf-report-iterative-2009-2n-dnv:
       - 16  # rls2005 NDRPDR iter env 5
       - 17  # rls2005 NDRPDR iter env 5
@@ -2502,6 +2445,8 @@
       - 24  # rls2005 NDRPDR iter env 5
       - 27  # rls2005 NDRPDR iter env 5
       - 28  # rls2005 NDRPDR iter env 5
+      - 29  # rls2005 NDRPDR iter env 5
+      - 30  # rls2005 NDRPDR iter env 5
       - 23  # rls2005 MRR iter env 5
       - 3   # rls2009 NDRPDR iter env 5
       - 5   # rls2009 NDRPDR iter env 5
@@ -2710,18 +2655,9 @@
 #      - 17  # NDRPDR sel
 #      - 18  # NDRPDR sel
 #    csit-dpdk-perf-report-iterative-2005-2n-dnv:
-#      - 8   # NDRPDR sel
-#      - 9   # NDRPDR sel
-#      - 10  # NDRPDR sel
-#      - 11  # NDRPDR sel
-#      - 12  # NDRPDR sel
-#      - 13  # NDRPDR sel
-#      - 14  # NDRPDR sel
-#      - 15  # NDRPDR sel
-#      - 16  # NDRPDR sel
-#      - 17  # NDRPDR sel
-#    # TODO: Add:
+#      # No data
 #    # csit-dpdk-perf-report-iterative-2009-2n-dnv:
+#      # No data
 
 #    csit-dpdk-perf-verify-2001-3n-dnv:
 #      - 12  # NDRPDR sel
@@ -2735,18 +2671,9 @@
 #      - 20  # NDRPDR sel
 #      - 22  # NDRPDR sel
 #    csit-dpdk-perf-report-iterative-2005-3n-dnv:
-#      - 6   # NDRPDR sel
-#      - 7   # NDRPDR sel
-#      - 8   # NDRPDR sel
-#      - 9   # NDRPDR sel
-#      - 10  # NDRPDR sel
-#      - 11  # NDRPDR sel
-#      - 12  # NDRPDR sel
-#      - 13  # NDRPDR sel
-#      - 14  # NDRPDR sel
-#      - 16  # NDRPDR sel
-#    # TODO: Add:
+#      # No data
 #    # csit-dpdk-perf-report-iterative-2009-3n-dnv:
+#      # No data
 
     csit-dpdk-perf-verify-2001-3n-tsh:
       - 3   # NDRPDR sel
@@ -2773,7 +2700,6 @@
       - 9   # NDRPDR iter env5
       - 10  # NDRPDR iter env5
 
-    # TODO: Add:
     csit-vpp-device-2009-ubuntu1804-1n-skx:
       - 131 # rls2009 env 5
 
