@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cdde86b_21b9319a",
+        "filename": "resources/tools/testbed-setup/ansible/roles/docker/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-09T16:27:28Z",
+      "side": 1,
+      "message": "Dave, what is this? Can we replace it yet?",
+      "range": {
+        "startLine": 28,
+        "startChar": 5,
+        "endLine": 28,
+        "endChar": 25
+      },
+      "revId": "7e1f23fdfddda991428ce66c0e1a11fddc7d62a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
