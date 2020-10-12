@@ -60,8 +60,18 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
 
 
 def simple_burst(
-        profile_file, duration, framesize, rate, warmup_time, port_0, port_1,
-        latency, async_start=False, traffic_directions=2, force=False):
+        profile_file,
+        duration,
+        framesize,
+        rate,
+        warmup_time,
+        port_0,
+        port_1,
+        latency,
+        async_start=False,
+        traffic_directions=2,
+        force=False,
+    ):
     """Send traffic and measure packet loss and latency.
 
     Procedure:
@@ -116,8 +126,11 @@ def simple_burst(
     try:
         print(f"### Profile file:\n{profile_file}")
         profile = STLProfile.load(
-            profile_file, direction=0, port_id=0, framesize=framesize,
-            rate=rate
+            profile_file,
+            direction=0,
+            port_id=0,
+            framesize=framesize,
+            rate=rate,
         )
         streams = profile.get_streams()
     except STLError:
@@ -169,8 +182,11 @@ def simple_burst(
 
             # Choose rate and start traffic:
             client.start(
-                ports=ports, mult=rate, duration=warmup_time, force=force,
-                core_mask=STLClient.CORE_MASK_PIN
+                ports=ports,
+                mult=rate,
+                duration=warmup_time,
+                force=force,
+                core_mask=STLClient.CORE_MASK_PIN,
             )
 
             # Block until done:
@@ -204,8 +220,11 @@ def simple_burst(
 
         # Choose rate and start traffic:
         client.start(
-            ports=ports, mult=rate, duration=duration, force=force,
-            core_mask=STLClient.CORE_MASK_PIN
+            ports=ports,
+            mult=rate,
+            duration=duration,
+            force=force,
+            core_mask=STLClient.CORE_MASK_PIN,
         )
 
         if async_start:
@@ -275,8 +294,10 @@ def simple_burst(
             if client:
                 client.disconnect()
             print(
-                f"rate={rate!r}, total_received={total_rcvd}, "
-                f"total_sent={total_sent}, frame_loss={lost_a + lost_b}, "
+                f"rate={rate!r}, "
+                f"total_received={total_rcvd}, "
+                f"total_sent={total_sent}, "
+                f"frame_loss={lost_a + lost_b}, "
                 f"target_duration={duration!r}, "
                 f"approximated_duration={approximated_duration!r}, "
                 f"approximated_rate={approximated_rate}, "
@@ -345,10 +366,17 @@ def main():
         framesize = args.frame_size
 
     simple_burst(
-        profile_file=args.profile, duration=args.duration, framesize=framesize,
-        rate=args.rate, warmup_time=args.warmup_time, port_0=args.port_0,
-        port_1=args.port_1, latency=args.latency, async_start=args.async_start,
-        traffic_directions=args.traffic_directions, force=args.force
+        profile_file=args.profile,
+        duration=args.duration,
+        framesize=framesize,
+        rate=args.rate,
+        warmup_time=args.warmup_time,
+        port_0=args.port_0,
+        port_1=args.port_1,
+        latency=args.latency,
+        async_start=args.async_start,
+        traffic_directions=args.traffic_directions,
+        force=args.force,
     )
 
 

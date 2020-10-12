@@ -66,8 +66,14 @@ class TGDropRateSearchImpl(DropRateSearch):
     #     super(TGDropRateSearchImpl, self).__init__()
 
     def measure_loss(
-            self, rate, frame_size, loss_acceptance, loss_acceptance_type,
-            traffic_profile, skip_warmup=False):
+            self,
+            rate,
+            frame_size,
+            loss_acceptance,
+            loss_acceptance_type,
+            traffic_profile,
+            skip_warmup=False,
+        ):
         """Runs the traffic and evaluate the measured results.
 
         :param rate: Offered traffic load.
@@ -98,12 +104,18 @@ class TGDropRateSearchImpl(DropRateSearch):
             unit_rate = str(rate) + self.get_rate_type_str()
             if skip_warmup:
                 tg_instance.trex_stl_start_remote_exec(
-                    self.get_duration(), unit_rate, frame_size, traffic_profile,
-                    warmup_time=0.0
+                    self.get_duration(),
+                    unit_rate,
+                    frame_size,
+                    traffic_profile,
+                    warmup_time=0.0,
                 )
             else:
                 tg_instance.trex_stl_start_remote_exec(
-                    self.get_duration(), unit_rate, frame_size, traffic_profile
+                    self.get_duration(),
+                    unit_rate,
+                    frame_size,
+                    traffic_profile,
                 )
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
@@ -575,8 +587,9 @@ class TrafficGenerator(AbstractMeasurer):
                 value = value.replace(u"'", u"\"")
                 command_line.add_equals(f"xstat{index}", f"'{value}'")
         stdout, _ = exec_cmd_no_error(
-            node, command_line,
-            message=u"T-Rex ASTF runtime error!"
+            node,
+            command_line,
+            message=u"T-Rex ASTF runtime error!",
         )
         self._parse_traffic_results(stdout)
 
@@ -599,8 +612,9 @@ class TrafficGenerator(AbstractMeasurer):
                 value = value.replace(u"'", u"\"")
                 command_line.add_equals(f"xstat{index}", f"'{value}'")
         stdout, _ = exec_cmd_no_error(
-            node, command_line,
-            message=u"T-Rex STL runtime error!"
+            node,
+            command_line,
+            message=u"T-Rex STL runtime error!",
         )
         self._parse_traffic_results(stdout)
 
@@ -623,9 +637,18 @@ class TrafficGenerator(AbstractMeasurer):
         return self.get_measurement_result()
 
     def trex_astf_start_remote_exec(
-            self, duration, mult, frame_size, traffic_profile, async_call=False,
-            latency=True, warmup_time=5.0, traffic_directions=2, tx_port=0,
-            rx_port=1):
+            self,
+            duration,
+            mult,
+            frame_size,
+            traffic_profile,
+            async_call=False,
+            latency=True,
+            warmup_time=5.0,
+            traffic_directions=2,
+            tx_port=0,
+            rx_port=1,
+        ):
         """Execute T-Rex ASTF script on remote node over ssh to start running
         traffic.
 
@@ -686,10 +709,14 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
         stdout, _ = exec_cmd_no_error(
-            self._node, command_line,
-            timeout=int(duration) + 600 if u"tcp" in self._traffic_profile
-            else 60,
-            message=u"T-Rex ASTF runtime error!"
+            self._node,
+            command_line,
+            timeout=(
+                int(duration) + 600
+                if u"tcp" in self._traffic_profile
+                else 60
+            ),
+            message=u"T-Rex ASTF runtime error!",
         )
 
         self._traffic_directions = traffic_directions
@@ -741,9 +768,18 @@ class TrafficGenerator(AbstractMeasurer):
             self._rate = None
 
     def trex_stl_start_remote_exec(
-            self, duration, rate, frame_size, traffic_profile, async_call=False,
-            latency=False, warmup_time=5.0, traffic_directions=2, tx_port=0,
-            rx_port=1):
+            self,
+            duration,
+            rate,
+            frame_size,
+            traffic_profile,
+            async_call=False,
+            latency=False,
+            warmup_time=5.0,
+            traffic_directions=2,
+            tx_port=0,
+            rx_port=1,
+        ):
         """Execute T-Rex STL script on remote node over ssh to start running
         traffic.
 
@@ -804,8 +840,10 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
         stdout, _ = exec_cmd_no_error(
-            self._node, command_line, timeout=int(duration) + 60,
-            message=u"T-Rex STL runtime error"
+            self._node,
+            command_line,
+            timeout=int(duration) + 60,
+            message=u"T-Rex STL runtime error",
         )
 
         self._traffic_directions = traffic_directions
@@ -833,9 +871,18 @@ class TrafficGenerator(AbstractMeasurer):
             self._rate = None
 
     def send_traffic_on_tg(
-            self, duration, rate, frame_size, traffic_profile, warmup_time=5,
-            async_call=False, latency=False, traffic_directions=2, tx_port=0,
-            rx_port=1):
+            self,
+            duration,
+            rate,
+            frame_size,
+            traffic_profile,
+            warmup_time=5,
+            async_call=False,
+            latency=False,
+            traffic_directions=2,
+            tx_port=0,
+            rx_port=1,
+        ):
         """Send traffic from all configured interfaces on TG.
 
         In async mode, xstats is stored internally,
@@ -888,16 +935,30 @@ class TrafficGenerator(AbstractMeasurer):
                 self._traffic_profile = str(traffic_profile)
             if u"trex-astf" in self._traffic_profile:
                 self.trex_astf_start_remote_exec(
-                    duration, int(rate), frame_size, self._traffic_profile,
-                    async_call, latency, warmup_time, traffic_directions,
-                    tx_port, rx_port
+                    duration,
+                    int(rate),
+                    frame_size,
+                    self._traffic_profile,
+                    async_call,
+                    latency,
+                    warmup_time,
+                    traffic_directions,
+                    tx_port,
+                    rx_port,
                 )
             elif u"trex-stl" in self._traffic_profile:
                 unit_rate_str = str(rate) + u"pps"
                 self.trex_stl_start_remote_exec(
-                    duration, unit_rate_str, frame_size, self._traffic_profile,
-                    async_call, latency, warmup_time, traffic_directions,
-                    tx_port, rx_port
+                    duration,
+                    unit_rate_str,
+                    frame_size,
+                    self._traffic_profile,
+                    async_call,
+                    latency,
+                    warmup_time,
+                    traffic_directions,
+                    tx_port,
+                    rx_port,
                 )
             else:
                 raise ValueError(u"Unsupported T-Rex traffic profile!")
@@ -953,8 +1014,14 @@ class TrafficGenerator(AbstractMeasurer):
             )
 
     def set_rate_provider_defaults(
-            self, frame_size, traffic_profile, warmup_time=0.0,
-            traffic_directions=2, negative_loss=True, latency=False):
+            self,
+            frame_size,
+            traffic_profile,
+            warmup_time=0.0,
+            traffic_directions=2,
+            negative_loss=True,
+            latency=False,
+        ):
         """Store values accessed by measure().
 
         :param frame_size: Frame size identifier or value [B].
@@ -1007,7 +1074,10 @@ class TrafficGenerator(AbstractMeasurer):
         if loss_count < 0 and not self._negative_loss:
             loss_count = 0
         measurement = ReceiveRateMeasurement(
-            duration, transmit_rate, transmit_count, loss_count
+            duration,
+            transmit_rate,
+            transmit_count,
+            loss_count,
         )
         measurement.latency = self.get_latency_int()
         return measurement
@@ -1038,7 +1108,7 @@ class TrafficGenerator(AbstractMeasurer):
             self._traffic_profile,
             warmup_time=self._warmup_time,
             latency=self._use_latency,
-            traffic_directions=self._traffic_directions
+            traffic_directions=self._traffic_directions,
         )
         return self.get_measurement_result(duration, transmit_rate)
 
@@ -1052,11 +1122,20 @@ class OptimizedSearch:
 
     @staticmethod
     def perform_optimized_ndrpdr_search(
-            frame_size, traffic_profile, minimum_transmit_rate,
-            maximum_transmit_rate, packet_loss_ratio=0.005,
-            final_relative_width=0.005, final_trial_duration=30.0,
-            initial_trial_duration=1.0, number_of_intermediate_phases=2,
-            timeout=720.0, doublings=1, traffic_directions=2, latency=False):
+            frame_size,
+            traffic_profile,
+            minimum_transmit_rate,
+            maximum_transmit_rate,
+            packet_loss_ratio=0.005,
+            final_relative_width=0.005,
+            final_trial_duration=30.0,
+            initial_trial_duration=1.0,
+            number_of_intermediate_phases=2,
+            timeout=720.0,
+            doublings=1,
+            traffic_directions=2,
+            latency=False,
+        ):
         """Setup initialized TG, perform optimized search, return intervals.
 
         :param frame_size: Frame size identifier or value [B].
@@ -1112,26 +1191,38 @@ class OptimizedSearch:
             frame_size,
             traffic_profile,
             traffic_directions=traffic_directions,
-            latency=latency
+            latency=latency,
         )
         algorithm = MultipleLossRatioSearch(
-            measurer=tg_instance, final_trial_duration=final_trial_duration,
+            measurer=tg_instance,
+            final_trial_duration=final_trial_duration,
             final_relative_width=final_relative_width,
             number_of_intermediate_phases=number_of_intermediate_phases,
-            initial_trial_duration=initial_trial_duration, timeout=timeout,
-            doublings=doublings
+            initial_trial_duration=initial_trial_duration,
+            timeout=timeout,
+            doublings=doublings,
         )
         result = algorithm.narrow_down_ndr_and_pdr(
-            minimum_transmit_rate, maximum_transmit_rate, packet_loss_ratio
+            minimum_transmit_rate,
+            maximum_transmit_rate,
+            packet_loss_ratio,
         )
         return result
 
     @staticmethod
     def perform_soak_search(
-            frame_size, traffic_profile, minimum_transmit_rate,
-            maximum_transmit_rate, plr_target=1e-7, tdpt=0.1,
-            initial_count=50, timeout=1800.0, trace_enabled=False,
-            traffic_directions=2, latency=False):
+            frame_size,
+            traffic_profile,
+            minimum_transmit_rate,
+            maximum_transmit_rate,
+            plr_target=1e-7,
+            tdpt=0.1,
+            initial_count=50,
+            timeout=1800.0,
+            trace_enabled=False,
+            traffic_directions=2,
+            latency=False,
+        ):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
         :param frame_size: Frame size identifier or value [B].
@@ -1178,13 +1269,18 @@ class OptimizedSearch:
             traffic_profile,
             traffic_directions=traffic_directions,
             negative_loss=False,
-            latency=latency
+            latency=latency,
         )
         algorithm = PLRsearch(
-            measurer=tg_instance, trial_duration_per_trial=tdpt,
+            measurer=tg_instance,
+            trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
-            trial_number_offset=initial_count, timeout=timeout,
-            trace_enabled=trace_enabled
+            trial_number_offset=initial_count,
+            timeout=timeout,
+            trace_enabled=trace_enabled,
         )
-        result = algorithm.search(minimum_transmit_rate, maximum_transmit_rate)
+        result = algorithm.search(
+            minimum_transmit_rate,
+            maximum_transmit_rate,
+        )
         return result

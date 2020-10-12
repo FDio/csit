@@ -60,8 +60,17 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
 
 
 def simple_burst(
-        profile_file, duration, framesize, mult, warmup_time, port_0, port_1,
-        latency, async_start=False, traffic_directions=2):
+        profile_file,
+        duration,
+        framesize,
+        mult,
+        warmup_time,
+        port_0,
+        port_1,
+        latency,
+        async_start=False,
+        traffic_directions=2
+    ):
     """Send traffic and measure packet loss and latency.
 
     Procedure:
@@ -177,8 +186,11 @@ def simple_burst(
 
         # Choose CPS and start traffic.
         client.start(
-            mult=mult, duration=duration, nc=True,
-            latency_pps=mult if latency else 0, client_mask=2**len(ports)-1
+            mult=mult,
+            duration=duration,
+            nc=True,
+            latency_pps=mult if latency else 0,
+            client_mask=2**len(ports)-1,
         )
         time_start = time.monotonic()
         # t-rex starts the packet flow with the delay
@@ -384,8 +396,10 @@ def simple_burst(
                 client.disconnect()
                 print(
                     f"trex_start_time={trex_start_time}, "
-                    f"cps={mult!r}, total_received={total_rcvd}, "
-                    f"total_sent={total_sent}, frame_loss={lost_a + lost_b}, "
+                    f"cps={mult!r}, "
+                    f"total_received={total_rcvd}, "
+                    f"total_sent={total_sent}, "
+                    f"frame_loss={lost_a + lost_b}, "
                     f"approximated_duration={approximated_duration}, "
                     f"latency_stream_0(usec)={lat_a}, "
                     f"latency_stream_1(usec)={lat_b}, "
@@ -451,10 +465,16 @@ def main():
         framesize = args.frame_size
 
     simple_burst(
-        profile_file=args.profile, duration=args.duration, framesize=framesize,
-        mult=args.mult, warmup_time=args.warmup_time, port_0=args.port_0,
-        port_1=args.port_1, latency=args.latency, async_start=args.async_start,
-        traffic_directions=args.traffic_directions
+        profile_file=args.profile,
+        duration=args.duration,
+        framesize=framesize,
+        mult=args.mult,
+        warmup_time=args.warmup_time,
+        port_0=args.port_0,
+        port_1=args.port_1,
+        latency=args.latency,
+        async_start=args.async_start,
+        traffic_directions=args.traffic_directions,
     )
 
 
