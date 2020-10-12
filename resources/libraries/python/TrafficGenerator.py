@@ -1093,16 +1093,20 @@ class TrafficGenerator(AbstractMeasurer):
                 raise RuntimeError(u"Add support for no-limit udp_pps.")
             partial_attempt_count = self._sent
             expected_attempt_count = self.transaction_scale * self.ppta
-            fail_count = self._loss + (attempt_count - self._sent)
+            fail_count = self._loss + (expected_attempt_count - self._sent)
         elif self.transaction_type == u"tcp_pps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit tcp_pps.")
-            # As in "packet", but susceptible to big ASTF duration stretching.
             partial_attempt_count = self._sent
-            # TODO: Figure out the expected pkt count when there is no pkt loss.
-            # The following gives max NDR if TRex rate is less than VPP rate.
-            expected_attempt_count = self._sent
-            fail_count = self._loss
+            expected_attempt_count = self.transaction_scale * self.ppta
+            # One loss-like scenario happens when TRex receives all packets
+            # on L2 level, but is not fast enough to process them all
+            # at L7 level, which leadt to retransmissions.
+            # Those manifest as opackets larger than expected.
+            # A simple workaround is to add absolute difference.
+            # Probability of retransmissions exactly cancelling
+            # packets unsent due to duration stretching is quite low.
+            fail_count = self._loss + abs(expected_attempt_count - self._sent)
         else:
             raise RuntimeError(f"Unknown parsing {self.transaction_type!r}")
         if fail_count < 0 and not self.negative_loss:
