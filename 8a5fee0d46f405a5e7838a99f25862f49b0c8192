@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b72c03a_a88685e3",
+        "filename": "resources/tools/presentation/specification.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-12T10:52:16Z",
+      "side": 1,
+      "message": "The current unidirectional limit is 36 Mpps [0], so the value here should be 72000000 maybe?\nBut it seems also other values here do not match. Are the limits here just the hardware limits (as opposed to the TRex software limits in Constants)?\n\n[0] https://github.com/FDio/csit/blob/rls2009/resources/libraries/python/Constants.py#L294",
+      "range": {
+        "startLine": 134,
+        "startChar": 14,
+        "endLine": 134,
+        "endChar": 26
+      },
+      "revId": "8a5fee0d46f405a5e7838a99f25862f49b0c8192",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
