@@ -206,6 +206,10 @@
         - 27  # rls2009 NDRPDR iter env 5
         - 28  # rls2009 NDRPDR iter env 5
         - 29  # rls2009 NDRPDR iter env 5
+        - 35  # rls2009 NDRPDR iter env 5
+        - 36  # rls2009 NDRPDR iter env 5
+        - 37  # rls2009 NDRPDR iter env 5
+        - 39  # rls2009 NDRPDR iter env 5
 
     plot-vpp-hdrh-lat-3n-skx:
       csit-vpp-perf-report-iterative-2009-3n-skx:
@@ -324,7 +328,6 @@
     # 2n-clx
 
     plot-vpp-throughput-lat-tsa-2n-clx:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 36  # rls2009 NDRPDR iter env 5
         - 38  # rls2009 NDRPDR iter env 5
@@ -333,6 +336,9 @@
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
         - 64  # rls2009 NDRPDR iter env 5
+        - 65  # rls2009 NDRPDR iter env 5
+        - 66  # rls2009 NDRPDR iter env 5
+        - 67  # rls2009 NDRPDR iter env 5
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -343,6 +349,9 @@
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 37  # rls2009 nf-density iter env 5
         - 43  # rls2009 nf-density iter env 5
+        - 69  # rls2009 nf-density iter env 5
+        - 72  # rls2009 nf-density iter env 5
+        - 75  # rls2009 nf-density iter env 5
 
     plot-vpp-nfv-2n-clx-mrr:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -389,6 +398,8 @@
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
         - 14  # rls2009 NDRPDR iter env 5
+        - 20  # rls2009 NDRPDR iter env 5
+        - 23  # rls2009 NDRPDR iter env 5
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
@@ -414,7 +425,6 @@
     # 3n-dnv
 
     plot-vpp-throughput-lat-tsa-3n-dnv:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-dnv:
         - 3   # rls2009 NDRPDR iter env 5
         - 6   # rls2009 NDRPDR iter env 5
@@ -425,6 +435,7 @@
         - 12  # rls2009 NDRPDR iter env 5
         - 14  # rls2009 NDRPDR iter env 5
         - 15  # rls2009 NDRPDR iter env 5
+        - 24  # rls2009 NDRPDR iter env 5
 
 #    plot-dpdk-throughput-latency-3n-dnv:
 #      # No data
@@ -461,6 +472,10 @@
         - 27  # rls2009 NDRPDR iter env 5
         - 28  # rls2009 NDRPDR iter env 5
         - 29  # rls2009 NDRPDR iter env 5
+        - 35  # rls2009 NDRPDR iter env 5
+        - 36  # rls2009 NDRPDR iter env 5
+        - 37  # rls2009 NDRPDR iter env 5
+        - 39  # rls2009 NDRPDR iter env 5
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -541,24 +556,34 @@
 #        -
 
     vpp-perf-results-2n-skx:
-      # TODO: Add:
       csit-vpp-perf-report-coverage-2009-2n-skx:
         - 18  # rls2009 NDRPDR cov 2n-skx-ip4-00
+        - 19  # rls2009 NDRPDR cov 2n-skx-ip4-01
         - 10  # rls2009 NDRPDR cov 2n-skx-ip4-02
         - 20  # rls2009 NDRPDR cov 2n-skx-ip4-03
+        - 21  # rls2009 NDRPDR cov 2n-skx-ip4-04
         - 13  # rls2009 NDRPDR cov 2n-skx-ip4-05
+        - 22  # rls2009 NDRPDR cov 2n-skx-ip6-00
         - 23  # rls2009 NDRPDR cov 2n-skx-ip6-01
         - 24  # rls2009 NDRPDR cov 2n-skx-l2-00
         - 25  # rls2009 NDRPDR cov 2n-skx-l2-01
+        - 26  # rls2009 NDRPDR cov 2n-skx-lb-00
         - 27  # rls2009 NDRPDR cov 2n-skx-memif-00
+        - 28  # rls2009 NDRPDR cov 2n-skx-vhost-00
+        - 29  # rls2009 NDRPDR cov 2n-skx-vhost-01
         - 30  # rls2009 NDRPDR cov 2n-skx-vts-00
 
     vpp-perf-results-2n-clx:
-      # TODO: Replace:
-      csit-vpp-perf-report-iterative-2009-2n-clx:
-        - 36  # rls2009 NDRPDR iter env 5
-#      csit-vpp-perf-report-coverage-2009-2n-clx:
-#        -
+      # TODO: Add:
+      csit-vpp-perf-report-coverage-2009-2n-clx:
+        - 2   # rls2009 NDRPDR cov 2n-clx-ip4-00
+        - 3   # rls2009 NDRPDR cov 2n-clx-ip4-01
+        - 4   # rls2009 NDRPDR cov 2n-clx-ip4-02
+        - 7   # rls2009 NDRPDR cov 2n-clx-ip4-05
+        - 9   # rls2009 NDRPDR cov 2n-clx-ip6-01
+        - 13  # rls2009 NDRPDR cov 2n-clx-memif-00
+        - 15  # rls2009 NDRPDR cov 2n-clx-vhost-01
+        - 16  # rls2009 NDRPDR cov 2n-clx-vts-00
 
     vpp-perf-results-3n-tsh:
       # TODO: Replace???
@@ -568,12 +593,16 @@
 #        -
 
     vpp-perf-results-3n-dnv:
-      # TODO: Add:
       csit-vpp-perf-report-coverage-2009-3n-dnv:
         - 10  # rls2009 NDRPDR cov 3n-dnv-crypto-00
         - 2   # rls2009 NDRPDR cov 3n-dnv-crypto-01
+        - 11  # rls2009 NDRPDR cov 3n-dnv-ip4-00
         - 12  # rls2009 NDRPDR cov 3n-dnv-ip4-01
+        - 13  # rls2009 NDRPDR cov 3n-dnv-ip4tun-00
+        - 14  # rls2009 NDRPDR cov 3n-dnv-ip6-00
+        - 15  # rls2009 NDRPDR cov 3n-dnv-ip6-01
         - 16  # rls2009 NDRPDR cov 3n-dnv-l2-00
+        - 17  # rls2009 NDRPDR cov 3n-dnv-l2-01
 
     vpp-perf-results-2n-dnv:
       csit-vpp-perf-report-coverage-2009-2n-dnv:
@@ -726,6 +755,10 @@
         - 27  # rls2009 NDRPDR iter env 5
         - 28  # rls2009 NDRPDR iter env 5
         - 29  # rls2009 NDRPDR iter env 5
+        - 35  # rls2009 NDRPDR iter env 5
+        - 36  # rls2009 NDRPDR iter env 5
+        - 37  # rls2009 NDRPDR iter env 5
+        - 39  # rls2009 NDRPDR iter env 5
 
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-report-iterative-2005-2n-skx:
@@ -817,7 +850,6 @@
         - 23  # rls2005 NDRPDR iter env 5
         - 24  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-2n-clx-cmp:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 36  # rls2009 NDRPDR iter env 5
         - 38  # rls2009 NDRPDR iter env 5
@@ -826,6 +858,9 @@
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
         - 64  # rls2009 NDRPDR iter env 5
+        - 65  # rls2009 NDRPDR iter env 5
+        - 66  # rls2009 NDRPDR iter env 5
+        - 67  # rls2009 NDRPDR iter env 5
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-2001-2n-dnv:
@@ -880,8 +915,14 @@
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-dnv:
         - 16  # rls2005 NDRPDR iter env 5
+        - 23  # rls2005 NDRPDR iter env 5
+        - 25  # rls2005 NDRPDR iter env 5
+        - 26  # rls2005 NDRPDR iter env 5
+        - 27  # rls2005 NDRPDR iter env 5
+        - 28  # rls2005 NDRPDR iter env 5
+        - 29  # rls2005 NDRPDR iter env 5
+        - 30  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-3n-dnv-cmp:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-dnv:
         - 3   # rls2009 NDRPDR iter env 5
         - 6   # rls2009 NDRPDR iter env 5
@@ -892,6 +933,7 @@
         - 12  # rls2009 NDRPDR iter env 5
         - 14  # rls2009 NDRPDR iter env 5
         - 15  # rls2009 NDRPDR iter env 5
+        - 24  # rls2009 NDRPDR iter env 5
 
     vpp-performance-changes-3n-tsh-h1:
       csit-vpp-perf-report-iterative-2005-3n-tsh:
@@ -919,6 +961,8 @@
       # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
         - 14  # rls2009 NDRPDR iter env 5
+        - 20  # rls2009 NDRPDR iter env 5
+        - 23  # rls2009 NDRPDR iter env 5
 
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -952,7 +996,6 @@
         - 34  # rls2009 soak env 5
 
     vpp-soak-vs-ndr-2n-clx-ref:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 36  # rls2009 NDRPDR iter env 5
         - 38  # rls2009 NDRPDR iter env 5
@@ -961,12 +1004,14 @@
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
         - 64  # rls2009 NDRPDR iter env 5
+        - 65  # rls2009 NDRPDR iter env 5
+        - 66  # rls2009 NDRPDR iter env 5
+        - 67  # rls2009 NDRPDR iter env 5
     vpp-soak-vs-ndr-2n-clx-cmp:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 33  # rls2009 soak env 5
         - 34  # rls2009 soak env 5
     vpp-soak-vs-ndr-2n-clx:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 36  # rls2009 NDRPDR iter env 5
         - 38  # rls2009 NDRPDR iter env 5
@@ -975,6 +1020,9 @@
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
         - 64  # rls2009 NDRPDR iter env 5
+        - 65  # rls2009 NDRPDR iter env 5
+        - 66  # rls2009 NDRPDR iter env 5
+        - 67  # rls2009 NDRPDR iter env 5
         - 33  # rls2009 soak env 5
         - 34  # rls2009 soak env 5
 
@@ -1338,6 +1386,10 @@
         - 27  # rls2009 NDRPDR iter env 5
         - 28  # rls2009 NDRPDR iter env 5
         - 29  # rls2009 NDRPDR iter env 5
+        - 35  # rls2009 NDRPDR iter env 5
+        - 36  # rls2009 NDRPDR iter env 5
+        - 37  # rls2009 NDRPDR iter env 5
+        - 39  # rls2009 NDRPDR iter env 5
 
     vpp-compare-testbeds-skx-clx-ref:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -1362,7 +1414,6 @@
         - 59  # rls2009 NDRPDR iter NAT44 env 5
         - 60  # rls2009 NDRPDR iter NAT44 env 5
     vpp-compare-testbeds-skx-clx-cmp:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 36  # rls2009 NDRPDR iter env 5
         - 38  # rls2009 NDRPDR iter env 5
@@ -1371,6 +1422,9 @@
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
         - 64  # rls2009 NDRPDR iter env 5
+        - 65  # rls2009 NDRPDR iter env 5
+        - 66  # rls2009 NDRPDR iter env 5
+        - 67  # rls2009 NDRPDR iter env 5
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
@@ -1385,7 +1439,6 @@
         - 30  # rls2009 NDRPDR iter env 5
         - 31  # rls2009 NDRPDR iter env 5
     vpp-compare-testbeds-hsw-clx-cmp:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 36  # rls2009 NDRPDR iter env 5
         - 38  # rls2009 NDRPDR iter env 5
@@ -1394,6 +1447,9 @@
         - 41  # rls2009 NDRPDR iter env 5
         - 42  # rls2009 NDRPDR iter env 5
         - 64  # rls2009 NDRPDR iter env 5
+        - 65  # rls2009 NDRPDR iter env 5
+        - 66  # rls2009 NDRPDR iter env 5
+        - 67  # rls2009 NDRPDR iter env 5
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
@@ -1475,6 +1531,10 @@
         - 27  # rls2009 NDRPDR iter env 5
         - 28  # rls2009 NDRPDR iter env 5
         - 29  # rls2009 NDRPDR iter env 5
+        - 35  # rls2009 NDRPDR iter env 5
+        - 36  # rls2009 NDRPDR iter env 5
+        - 37  # rls2009 NDRPDR iter env 5
+        - 39  # rls2009 NDRPDR iter env 5
     vpp-compare-topologies-cmp:
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 35  # rls2009 NDRPDR iter env 5
@@ -2183,6 +2243,10 @@
       - 27  # rls2009 NDRPDR iter env 5
       - 28  # rls2009 NDRPDR iter env 5
       - 29  # rls2009 NDRPDR iter env 5
+      - 35  # rls2009 NDRPDR iter env 5
+      - 36  # rls2009 NDRPDR iter env 5
+      - 37  # rls2009 NDRPDR iter env 5
+      - 39  # rls2009 NDRPDR iter env 5
     # TODO: Add:
 #    csit-vpp-perf-report-coverage-2009-3n-skx:
 #      -
@@ -2265,16 +2329,21 @@
       - 70  # rls2009 reconf env 5
       - 33  # rls2009 soak env 5
       - 34  # rls2009 soak env 5
-    # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-skx:
       - 18  # rls2009 NDRPDR cov 2n-skx-ip4-00
+      - 19  # rls2009 NDRPDR cov 2n-skx-ip4-01
       - 10  # rls2009 NDRPDR cov 2n-skx-ip4-02
       - 20  # rls2009 NDRPDR cov 2n-skx-ip4-03
+      - 21  # rls2009 NDRPDR cov 2n-skx-ip4-04
       - 13  # rls2009 NDRPDR cov 2n-skx-ip4-05
+      - 22  # rls2009 NDRPDR cov 2n-skx-ip6-00
       - 23  # rls2009 NDRPDR cov 2n-skx-ip6-01
       - 24  # rls2009 NDRPDR cov 2n-skx-l2-00
       - 25  # rls2009 NDRPDR cov 2n-skx-l2-01
+      - 26  # rls2009 NDRPDR cov 2n-skx-lb-00
       - 27  # rls2009 NDRPDR cov 2n-skx-memif-00
+      - 28  # rls2009 NDRPDR cov 2n-skx-vhost-00
+      - 29  # rls2009 NDRPDR cov 2n-skx-vhost-01
       - 30  # rls2009 NDRPDR cov 2n-skx-vts-00
 
     csit-vpp-perf-verify-2001-2n-clx:
@@ -2320,8 +2389,14 @@
       - 41  # rls2009 NDRPDR iter env 5
       - 42  # rls2009 NDRPDR iter env 5
       - 64  # rls2009 NDRPDR iter env 5
+      - 65  # rls2009 NDRPDR iter env 5
+      - 66  # rls2009 NDRPDR iter env 5
+      - 67  # rls2009 NDRPDR iter env 5
       - 37  # rls2009 nf-density iter env 5
       - 43  # rls2009 nf-density iter env 5
+      - 69  # rls2009 nf-density iter env 5
+      - 72  # rls2009 nf-density iter env 5
+      - 75  # rls2009 nf-density iter env 5
       - 45  # rls2009 MRR nf-density iter env 5
       - 25  # rls2009 reconf env 5
       - 27  # rls2009 reconf env 5
@@ -2335,8 +2410,15 @@
       - 33  # rls2009 soak env 5
       - 34  # rls2009 soak env 5
     # TODO: Add:
-#    csit-vpp-perf-report-coverage-2009-2n-clx:
-#      -
+    csit-vpp-perf-report-coverage-2009-2n-clx:
+      - 2   # rls2009 NDRPDR cov 2n-clx-ip4-00
+      - 3   # rls2009 NDRPDR cov 2n-clx-ip4-01
+      - 4   # rls2009 NDRPDR cov 2n-clx-ip4-02
+      - 7   # rls2009 NDRPDR cov 2n-clx-ip4-05
+      - 9   # rls2009 NDRPDR cov 2n-clx-ip6-01
+      - 13  # rls2009 NDRPDR cov 2n-clx-memif-00
+      - 15  # rls2009 NDRPDR cov 2n-clx-vhost-01
+      - 16  # rls2009 NDRPDR cov 2n-clx-vts-00
 
     csit-vpp-perf-verify-2001-3n-tsh:
       - 9   # MRR sel
@@ -2362,6 +2444,8 @@
       - 12  # rls2005 NDRPDR iter env 5
       - 13  # rls2005 MRR iter env 5
       - 14  # rls2009 NDRPDR iter env 5
+      - 20  # rls2009 NDRPDR iter env 5
+      - 23  # rls2009 NDRPDR iter env 5
       - 15  # rls2006 MRR iter env 5
 #    csit-vpp-perf-report-coverage-2009-3n-tsh:
 #      -
@@ -2381,6 +2465,13 @@
     # TODO: Add:
     csit-vpp-perf-report-iterative-2009-3n-dnv:
       - 16  # rls2005 NDRPDR iter env 5
+      - 23  # rls2005 NDRPDR iter env 5
+      - 25  # rls2005 NDRPDR iter env 5
+      - 26  # rls2005 NDRPDR iter env 5
+      - 27  # rls2005 NDRPDR iter env 5
+      - 28  # rls2005 NDRPDR iter env 5
+      - 29  # rls2005 NDRPDR iter env 5
+      - 30  # rls2005 NDRPDR iter env 5
       - 19  # rls2005 MRR iter env 5
       - 3   # rls2009 NDRPDR iter env 5
       - 6   # rls2009 NDRPDR iter env 5
@@ -2391,13 +2482,18 @@
       - 12  # rls2009 NDRPDR iter env 5
       - 14  # rls2009 NDRPDR iter env 5
       - 15  # rls2009 NDRPDR iter env 5
+      - 24  # rls2009 NDRPDR iter env 5
       - 22  # rls2009 MRR iter env 5
-    # TODO: Add:
     csit-vpp-perf-report-coverage-2009-3n-dnv:
       - 10  # rls2009 NDRPDR cov 3n-dnv-crypto-00
       - 2   # rls2009 NDRPDR cov 3n-dnv-crypto-01
+      - 11  # rls2009 NDRPDR cov 3n-dnv-ip4-00
       - 12  # rls2009 NDRPDR cov 3n-dnv-ip4-01
+      - 13  # rls2009 NDRPDR cov 3n-dnv-ip4tun-00
+      - 14  # rls2009 NDRPDR cov 3n-dnv-ip6-00
+      - 15  # rls2009 NDRPDR cov 3n-dnv-ip6-01
       - 16  # rls2009 NDRPDR cov 3n-dnv-l2-00
+      - 17  # rls2009 NDRPDR cov 3n-dnv-l2-01
 
     csit-vpp-perf-verify-2001-2n-dnv:
       - 4   # NDRPDR sel
