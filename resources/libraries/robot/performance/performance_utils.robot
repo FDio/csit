@@ -551,7 +551,7 @@
 | | ${use_latency} = | Get Use Latency
 | | # The following also sets \${rate_for_teardown}
 | | ${results} = | Send traffic at specified rate
-| | ... | rate=${max_rate}
+| | ... | rate=${9001}
 | | ... | trial_duration=${trial_duration}
 | | ... | trial_multiplicity=${trial_multiplicity}
 | | ... | use_latency=${use_latency}
