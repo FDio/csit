@@ -44,10 +44,12 @@ Additional information about graph data:
 
     l2
     ip4
-    ip6
-    srv6
     ip4_tunnels
     nat44
     vm_vhost
     container_memif
     ipsec
+
+..
+    ip6
+    srv6
