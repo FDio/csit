@@ -9,6 +9,14 @@
   tags:
     - nomad-inst-prerequisites
 
+- name: Nomad - add X-Host in nginx replies
+  patch:
+    src: "files/nginx-send-hostname.patch"
+    basedir: "/"
+    strip: 1
+  tags:
+    - nomad-patch-nginx
+
 - name: Conf - Add Nomad Group
   group:
     name: "{{ nomad_group }}"

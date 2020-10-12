@@ -11,6 +11,7 @@ packages_base:
   - "libcgroup1"
   - "unzip"
   - "htop"
+  - "nginx"
 packages_by_distro:
   ubuntu:
     - []

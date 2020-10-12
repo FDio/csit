@@ -1,0 +1,13 @@
+*** a/etc/nginx/sites-enabled/default.old	2020-10-12 14:35:44.641158889 +0000
+--- b/etc/nginx/sites-enabled/default	2020-10-12 14:48:06.886319798 +0000
+***************
+*** 49,54 ****
+--- 49,56 ----
+  		# First attempt to serve request as file, then
+  		# as directory, then fall back to displaying a 404.
+  		try_files $uri $uri/ =404;
++ 		# Tell which hostname we are running on
++ 		add_header 'X-Host' "$hostname"
+  	}
+  
+  	# pass PHP scripts to FastCGI server
