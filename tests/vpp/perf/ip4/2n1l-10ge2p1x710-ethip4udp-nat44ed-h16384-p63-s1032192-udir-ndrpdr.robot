@@ -86,8 +86,9 @@
 # Ramp-up settings
 | ${ramp_up_rate}= | ${500000}
 | ${ramp_up_duration}= | ${4.5}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p-udir
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -123,7 +124,6 @@
 | | Then Send ramp-up traffic
 | | And Verify NAT44 UDP sessions number on DUT1 node
 | | And Find NDR and PDR intervals using optimized search
-| | ... | traffic_directions=${1}
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr
