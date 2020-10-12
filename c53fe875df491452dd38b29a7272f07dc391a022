@@ -22,6 +22,30 @@
       "revId": "c53fe875df491452dd38b29a7272f07dc391a022",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24831799_7194001b",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-12T13:55:59Z",
+      "side": 1,
+      "message": "Added. But still need to complete.",
+      "parentUuid": "d5a3fcd5_99e0cc1b",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 21
+      },
+      "revId": "c53fe875df491452dd38b29a7272f07dc391a022",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
