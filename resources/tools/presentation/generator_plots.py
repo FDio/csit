@@ -721,7 +721,7 @@ def plot_tsa_name(plot, input_data):
                 mode=u"lines",
                 line=dict(
                     dash=u"dot",
-                    color=COLORS[-2],
+                    color=COLORS[-1],
                     width=1),
                 hoverinfo=u"none"
             ))
@@ -735,7 +735,7 @@ def plot_tsa_name(plot, input_data):
                 text=f"Link: {lnk_limit:.2f}Mpps",
                 font=dict(
                     size=14,
-                    color=COLORS[-2],
+                    color=COLORS[-1],
                 ),
                 align=u"left",
                 showarrow=False
@@ -753,7 +753,7 @@ def plot_tsa_name(plot, input_data):
                 mode=u"lines",
                 line=dict(
                     dash=u"dot",
-                    color=COLORS[-3],
+                    color=COLORS[-1],
                     width=1),
                 hoverinfo=u"none"
             ))
@@ -767,7 +767,7 @@ def plot_tsa_name(plot, input_data):
                 text=f"PCIe: {pci_limit:.2f}Mpps",
                 font=dict(
                     size=14,
-                    color=COLORS[-3],
+                    color=COLORS[-1],
                 ),
                 align=u"left",
                 showarrow=False

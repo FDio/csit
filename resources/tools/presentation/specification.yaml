@@ -131,7 +131,7 @@
       x710: 35800000
       xxv710: 35800000
       xl710: 35800000
-      cx556a: 60000000
+      cx556a: 148809523.81
 
     link:
       10ge: 14880952.38
@@ -350,6 +350,7 @@
         - 37  # rls2009 nf-density iter env 5
         - 43  # rls2009 nf-density iter env 5
         - 69  # rls2009 nf-density iter env 5
+        - 70  # rls2009 nf-density iter env 5
         - 72  # rls2009 nf-density iter env 5
         - 75  # rls2009 nf-density iter env 5
 
@@ -579,9 +580,11 @@
         - 2   # rls2009 NDRPDR cov 2n-clx-ip4-00
         - 3   # rls2009 NDRPDR cov 2n-clx-ip4-01
         - 4   # rls2009 NDRPDR cov 2n-clx-ip4-02
+        - 5   # rls2009 NDRPDR cov 2n-clx-ip4-03
         - 7   # rls2009 NDRPDR cov 2n-clx-ip4-05
         - 9   # rls2009 NDRPDR cov 2n-clx-ip6-01
         - 13  # rls2009 NDRPDR cov 2n-clx-memif-00
+        - 14  # rls2009 NDRPDR cov 2n-clx-vhost-00
         - 15  # rls2009 NDRPDR cov 2n-clx-vhost-01
         - 16  # rls2009 NDRPDR cov 2n-clx-vts-00
 
@@ -1851,7 +1854,7 @@
           xanchor: "left",
           yanchor: "top",
           x: 0,
-          y: -0.13,
+          y: -0.14,
           font: {
             family: "Consolas, Courier New",
             size: 13
@@ -2395,6 +2398,7 @@
       - 37  # rls2009 nf-density iter env 5
       - 43  # rls2009 nf-density iter env 5
       - 69  # rls2009 nf-density iter env 5
+      - 70  # rls2009 nf-density iter env 5
       - 72  # rls2009 nf-density iter env 5
       - 75  # rls2009 nf-density iter env 5
       - 45  # rls2009 MRR nf-density iter env 5
@@ -2414,9 +2418,11 @@
       - 2   # rls2009 NDRPDR cov 2n-clx-ip4-00
       - 3   # rls2009 NDRPDR cov 2n-clx-ip4-01
       - 4   # rls2009 NDRPDR cov 2n-clx-ip4-02
+      - 5   # rls2009 NDRPDR cov 2n-clx-ip4-03
       - 7   # rls2009 NDRPDR cov 2n-clx-ip4-05
       - 9   # rls2009 NDRPDR cov 2n-clx-ip6-01
       - 13  # rls2009 NDRPDR cov 2n-clx-memif-00
+      - 14  # rls2009 NDRPDR cov 2n-clx-vhost-00
       - 15  # rls2009 NDRPDR cov 2n-clx-vhost-01
       - 16  # rls2009 NDRPDR cov 2n-clx-vts-00
 
@@ -13206,31 +13212,31 @@
     title: "3n-tsh-x520-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
     layout: "plot-throughput"
 
-- type: "plot"
-  title: "Throughput: 3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-ndr"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-dnv"
-  include:
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-1t1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-  layout:
-    title: "3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-dnv"
-  include:
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-1t1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-  layout:
-    title: "3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
-    layout: "plot-throughput"
+#- type: "plot"
+#  title: "Throughput: 3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-ndr"
+#  algorithm: "plot_perf_box_name"
+#  output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-ndr"
+#  data: "plot-vpp-throughput-lat-tsa-3n-dnv"
+#  include:
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-1t1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
+#  layout:
+#    title: "3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "Throughput: 3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
+#  algorithm: "plot_perf_box_name"
+#  output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
+#  data: "plot-vpp-throughput-lat-tsa-3n-dnv"
+#  include:
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-1t1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
+#  layout:
+#    title: "3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
+#    layout: "plot-throughput"
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-avf-ndr"
@@ -16574,31 +16580,31 @@
     title: "3n-dnv-x553-64b-features-l2switching-base-ixgbe-pdr-tsa"
     layout: "plot-throughput-speedup-analysis"
 
-- type: "plot"
-  title: "Speedup: 3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-dnv"
-  include:
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-.t.c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-  layout:
-    title: "3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr-tsa"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-dnv"
-  include:
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-.t.c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-  layout:
-    title: "3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr-tsa"
-    layout: "plot-throughput-speedup-analysis"
+#- type: "plot"
+#  title: "Speedup: 3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr-tsa"
+#  algorithm: "plot_tsa_name"
+#  output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr-tsa"
+#  data: "plot-vpp-throughput-lat-tsa-3n-dnv"
+#  include:
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-.t.c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
+#  layout:
+#    title: "3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr-tsa"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#- type: "plot"
+#  title: "Speedup: 3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr-tsa"
+#  algorithm: "plot_tsa_name"
+#  output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr-tsa"
+#  data: "plot-vpp-throughput-lat-tsa-3n-dnv"
+#  include:
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-.t.c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
+#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
+#  layout:
+#    title: "3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr-tsa"
+#    layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
 
