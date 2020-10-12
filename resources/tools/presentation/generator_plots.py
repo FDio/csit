@@ -586,7 +586,7 @@ def plot_tsa_name(plot, input_data):
     y_max = list()
     nic_limit = 0
     lnk_limit = 0
-    pci_limit = plot[u"limits"][u"pci"][u"pci-g3-x8"]
+    pci_limit = 0
     for test_name, test_vals in y_vals.items():
         try:
             if test_vals[u"1"][1]:
@@ -670,49 +670,53 @@ def plot_tsa_name(plot, input_data):
         if limit > lnk_limit:
             lnk_limit = limit
 
+        if u"cx556a" in test_name:
+            limit = plot[u"limits"][u"pci"][u"pci-g3-x8"]
+        else:
+            limit = plot[u"limits"][u"pci"][u"pci-g3-x16"]
+        if limit > pci_limit:
+            pci_limit = limit
+
     traces = list()
     annotations = list()
     x_vals = [1, 2, 4]
 
     # Limits:
     if u"-gbps" not in plot_title:
-        try:
-            threshold = 1.1 * max(y_max)  # 10%
-        except ValueError as err:
-            logging.error(err)
-            return
         nic_limit /= 1e6
-        traces.append(plgo.Scatter(
-            x=x_vals,
-            y=[nic_limit, ] * len(x_vals),
-            name=f"NIC: {nic_limit:.2f}Mpps",
-            showlegend=False,
-            mode=u"lines",
-            line=dict(
-                dash=u"dot",
-                color=COLORS[-1],
-                width=1),
-            hoverinfo=u"none"
-        ))
-        annotations.append(dict(
-            x=1,
-            y=nic_limit,
-            xref=u"x",
-            yref=u"y",
-            xanchor=u"left",
-            yanchor=u"bottom",
-            text=f"NIC: {nic_limit:.2f}Mpps",
-            font=dict(
-                size=14,
-                color=COLORS[-1],
-            ),
-            align=u"left",
-            showarrow=False
-        ))
-        y_max.append(nic_limit)
-
         lnk_limit /= 1e6
-        if lnk_limit < threshold:
+        pci_limit /= 1e6
+        min_limit = min((nic_limit, lnk_limit, pci_limit))
+        if nic_limit == min_limit:
+            traces.append(plgo.Scatter(
+                x=x_vals,
+                y=[nic_limit, ] * len(x_vals),
+                name=f"NIC: {nic_limit:.2f}Mpps",
+                showlegend=False,
+                mode=u"lines",
+                line=dict(
+                    dash=u"dot",
+                    color=COLORS[-1],
+                    width=1),
+                hoverinfo=u"none"
+            ))
+            annotations.append(dict(
+                x=1,
+                y=nic_limit,
+                xref=u"x",
+                yref=u"y",
+                xanchor=u"left",
+                yanchor=u"bottom",
+                text=f"NIC: {nic_limit:.2f}Mpps",
+                font=dict(
+                    size=14,
+                    color=COLORS[-1],
+                ),
+                align=u"left",
+                showarrow=False
+            ))
+            y_max.append(nic_limit)
+        elif lnk_limit == min_limit:
             traces.append(plgo.Scatter(
                 x=x_vals,
                 y=[lnk_limit, ] * len(x_vals),
@@ -741,10 +745,7 @@ def plot_tsa_name(plot, input_data):
                 showarrow=False
             ))
             y_max.append(lnk_limit)
-
-        pci_limit /= 1e6
-        if (pci_limit < threshold and
-                (pci_limit < lnk_limit * 0.95 or lnk_limit > lnk_limit * 1.05)):
+        elif pci_limit == min_limit:
             traces.append(plgo.Scatter(
                 x=x_vals,
                 y=[pci_limit, ] * len(x_vals),
