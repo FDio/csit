@@ -70,6 +70,30 @@
       "revId": "a6e21f400d8933f1cbda2fbeb32d8fe9503f939f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b9942c2_a15ba5f7",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-10-12T08:02:32Z",
+      "side": 1,
+      "message": "The executor doesn\u0027t have access to the docker on the host, so we\u0027ll have to think of something else (giving the executor access is too much of a security hole IMO). We could hardcode it to 172.17.0.1, set it as Jenkins variable or maybe something else.",
+      "parentUuid": "2eb1f94d_f6e2e3fc",
+      "range": {
+        "startLine": 53,
+        "startChar": 26,
+        "endLine": 53,
+        "endChar": 36
+      },
+      "revId": "a6e21f400d8933f1cbda2fbeb32d8fe9503f939f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
