@@ -3,12 +3,12 @@
 
 hostname: "s60-t210-sut1"
 grub:
-  isolcpus: "1-63"
-  nohz_full: "1-63"
-  rcu_nocbs: "1-63"
+  isolcpus: "0-15,17-31,33-47,49-63"
+  nohz_full: "0-15,17-31,33-47,49-63"
+  rcu_nocbs: "0-15,17-31,33-47,49-63"
 sysctl:
   kernel:
-    watchdog_cpumask: "0"
+    watchdog_cpumask: "0,16,32,48"
   vm:
     nr_hugepages: 8192
     max_map_count: 20000

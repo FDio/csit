@@ -962,6 +962,10 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_skx*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
+        "2n_zn2")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_zn2*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
         "3n_skx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_skx*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
