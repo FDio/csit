@@ -148,6 +148,7 @@
 | | ${ppta} = | Get Variable Value | \${packets_per_transaction_aggregated}
 | | ... | ${0}
 | | Return From Keyword If | "${ppta}" != "0" | ${ppta}
+| | # TODO: Insert TCP computation from packet size here.
 | | ${pptad} = | Get Packets Per Transaction And Direction
 | | ${traffic_directions} = | Get Traffic Directions
 | | # We do not support ASTF profiles with multiple transactions, yet.
