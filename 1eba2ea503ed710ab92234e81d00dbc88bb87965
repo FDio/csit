@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b28c972c_7c2739eb",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-12T12:29:56Z",
+      "side": 1,
+      "message": "Do we want to run them in iterative jobs (on 3n-hsw as they are ipsechw)?",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 23
+      },
+      "revId": "1eba2ea503ed710ab92234e81d00dbc88bb87965",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8a993da_c8455732",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-12T12:29:56Z",
+      "side": 1,
+      "message": "bound",
+      "range": {
+        "startLine": 93,
+        "startChar": 113,
+        "endLine": 93,
+        "endChar": 117
+      },
+      "revId": "1eba2ea503ed710ab92234e81d00dbc88bb87965",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
