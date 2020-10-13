@@ -45,6 +45,30 @@
       "revId": "1eba2ea503ed710ab92234e81d00dbc88bb87965",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a5f1839_14c1dafd",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-13T10:59:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8a993da_c8455732",
+      "range": {
+        "startLine": 93,
+        "startChar": 113,
+        "endLine": 93,
+        "endChar": 117
+      },
+      "revId": "1eba2ea503ed710ab92234e81d00dbc88bb87965",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
