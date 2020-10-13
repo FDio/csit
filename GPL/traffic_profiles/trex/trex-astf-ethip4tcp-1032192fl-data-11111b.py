@@ -51,6 +51,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         # Headers length; not used in this profile, just for the record of
         # header length for TCP packet with 0B payload
         self.headers_size = 58  # 14B l2 + 20B ipv4 + 24B tcp incl. 4B options
+        self.data_size = 11111
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
@@ -64,17 +65,15 @@ class TrafficProfile(TrafficProfileBaseClass):
         """
         # client commands
         prog_c = ASTFProgram()
-        # send syn
         prog_c.connect()
-        # receive syn-ack (0B sent in tcp syn-ack packet) and send ack
-        prog_c.recv(0)
+        prog_c.send(u"1" * self.data_size)
+        prog_c.recv(self.data_size)
 
         # server commands
         prog_s = ASTFProgram()
-        # receive syn, send syn-ack
         prog_s.accept()
-        # receive fin-ack, send ack + fin-ack
-        prog_s.wait_for_peer_close()
+        prog_c.recv(self.data_size)
+        prog_c.send(u"1" * self.data_size)
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
