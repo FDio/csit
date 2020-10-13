@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "84140c06_71d6ce47",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T12:40:08Z",
+      "side": 1,
+      "message": "Are we planning to add other rows in later releases? If not, it is not much of a scheme.",
+      "parentUuid": "cf022785_c12f6f02",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 2
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc8cd984_5c2ba23b",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 3
