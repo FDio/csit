@@ -22,6 +22,30 @@
       "revId": "ef6cfb8413369d5eb7692fc11c7bf968b67c0fd4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a39e5ffb_bc2dc9fc",
+        "filename": "resources/tools/testbed-setup/ansible/roles/docker/defaults/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-10-13T06:54:55Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll let Dave comment, since it was his suggestion.",
+      "parentUuid": "c5c00dd0_096d7c26",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "ef6cfb8413369d5eb7692fc11c7bf968b67c0fd4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
