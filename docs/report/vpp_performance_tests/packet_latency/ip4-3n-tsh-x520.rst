@@ -28,19 +28,6 @@
 
     </script>
 
-..
-    10ge2p1x520-64b-1t1c-dot1q-ip4base
-    10ge2p1x520-64b-1t1c-ethip4-ip4scale20k
-    10ge2p1x520-64b-1t1c-ethip4-ip4scale200k
-    10ge2p1x520-64b-1t1c-ethip4-ip4scale2m
-
-    10ge2p1x520-64b-1t1c-ethip4udp-ip4base-iacl50sf-10kflows
-    10ge2p1x520-64b-1t1c-ethip4udp-ip4base-iacl50sl-10kflows
-    10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sf-10kflows
-    10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sl-10kflows
-    10ge2p1x520-64b-1t1c-ethip4udp-ip4base-nat44
-    10ge2p1x520-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44
-
 3n-tsh-x520
 ~~~~~~~~~~~
 
@@ -204,44 +191,4 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sl-10kflows}
             \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-oacl50sl-10kflows}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-nat44.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-nat44.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-nat44}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4base-nat44}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44}
     \end{figure}

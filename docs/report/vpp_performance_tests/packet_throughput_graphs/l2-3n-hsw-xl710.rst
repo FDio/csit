@@ -28,23 +28,6 @@
 
     </script>
 
-..
-    ## 3n-hsw-xl710
-    ### 64b-?t?c-l2switching-base-scale-dpdk
-    10ge2p1xl710-eth-l2patch-ndrpdr
-    10ge2p1xl710-dot1q-l2xcbase-ndrpdr
-    10ge2p1xl710-eth-l2xcbase-ndrpdr
-    10ge2p1xl710-dot1q-l2bdbasemaclrn-ndrpdr
-    10ge2p1xl710-eth-l2bdbasemaclrn-ndrpdr
-    10ge2p1xl710-eth-l2bdscale1mmaclrn-ndrpdr
-
-    Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Patch-Ndrpdr.64B-1t1c-eth-l2patch-ndrpdr
-    Tests.Vpp.Perf.L2.40Ge2P1Xl710-Dot1Q-L2Xcbase-Ndrpdr.64B-1t1c-dot1q-l2xcbase-ndrpdr
-    Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Xcbase-Ndrpdr.64B-1t1c-eth-l2xcbase-ndrpdr
-    Tests.Vpp.Perf.L2.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-ndrpdr
-    Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-ndrpdr
-    Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale1mmaclrn-ndrpdr
-
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
@@ -63,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{/3n-hsw-xl710-64b-1t1c-l2switching-base-avf-ndr}
-            \label{fig:/3n-hsw-xl710-64b-1t1c-l2switching-base-avf-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-l2switching-base-avf-ndr}
+            \label{fig:3n-hsw-xl710-64b-1t1c-l2switching-base-avf-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -83,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{/3n-hsw-xl710-64b-1t1c-l2switching-base-avf-pdr}
-            \label{fig:/3n-hsw-xl710-64b-1t1c-l2switching-base-avf-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-l2switching-base-avf-pdr}
+            \label{fig:3n-hsw-xl710-64b-1t1c-l2switching-base-avf-pdr}
     \end{figure}

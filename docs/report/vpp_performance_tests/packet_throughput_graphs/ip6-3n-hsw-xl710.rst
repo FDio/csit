@@ -28,17 +28,6 @@
 
     </script>
 
-..
-    ## 3n-hsw-xl710
-    ### 78b-?t?c-ip6routing-base-scale-dpdk
-    10ge2p1xl710-dot1q-ip6base-ndrpdr
-    10ge2p1xl710-ethip6-ip6base-ndrpdr
-    10ge2p1xl710-ethip6-ip6scale2m-ndrpdr
-
-    Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-Ndrpdr.78B-1t1c-dot1q-ip6base-ndrpdr
-    Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-Ndrpdr.78B-1t1c-ethip6-ip6base-ndrpdr
-    Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-ndrpdr
-
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
@@ -57,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-xl710-78b-1t1c-base-ndr}
-            \label{fig:ip6-3n-hsw-xl710-78b-1t1c-base-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-dpdk-ndr}
+            \label{fig:3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-dpdk-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -77,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-xl710-78b-1t1c-base-pdr}
-            \label{fig:ip6-3n-hsw-xl710-78b-1t1c-base-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-dpdk-pdr}
+            \label{fig:3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-dpdk-pdr}
     \end{figure}

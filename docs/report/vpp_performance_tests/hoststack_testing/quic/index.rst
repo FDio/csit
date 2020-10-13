@@ -49,7 +49,7 @@ QUIC/UDP/IP with vpp_echo
 
     \begin{figure}[H]
         \centering
-            \graphicspath{{../../_build/_static/vpp/}}
+            \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho-bps}
             \label{fig:3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho-bps}
     \end{figure}
