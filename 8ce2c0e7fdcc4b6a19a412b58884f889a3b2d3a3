@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0d458453_3415c84f",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T15:36:40Z",
+      "side": 1,
+      "message": "\u003e The difference is in destination. Nat44det sends everything to 20.0.0.0/32 port 1024, nat44ed sends to sequenced addresses 20.16.0.0/14 port 8080.\n\nNAT44det creates 3-tuple inside-to-outside bindings (protocol, src-addr, src-port).\nNAT44ed cerates 5-tuple inside-to-outside bindings (protocol, src-addr, src-port, dst-addr, dst-port), enabling overload of outside (src-addr, src-port) by reusing it for different (dst-addr, dst-port).\n\n\u003e I guess we could create an alternative nat44ed tests with the same destination 2-tuple as in nat44det, but VPP would complain about running out of sufficiently random outside source 2-tuples for that destination.\n\nYes, I expect that too.",
+      "parentUuid": "b961fd63_a059d397",
+      "range": {
+        "startLine": 47,
+        "startChar": 43,
+        "endLine": 49,
+        "endChar": 43
+      },
+      "revId": "8ce2c0e7fdcc4b6a19a412b58884f889a3b2d3a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5783d6e0_642da9ec",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "8ce2c0e7fdcc4b6a19a412b58884f889a3b2d3a3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c066ee96_adf3bb07",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T15:36:40Z",
+      "side": 1,
+      "message": "NAT44det translation entries are created during the ramp-up phase\npreceding the throughput test, followed by verification that all entries\nare present, before proceeding to the throughput test. This ensures\nsession setup does not impact the forwarding performance test.",
+      "parentUuid": "5783d6e0_642da9ec",
+      "range": {
+        "startLine": 99,
+        "startChar": 9,
+        "endLine": 99,
+        "endChar": 12
+      },
+      "revId": "8ce2c0e7fdcc4b6a19a412b58884f889a3b2d3a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
