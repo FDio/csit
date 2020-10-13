@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6c742a5_e88181d0",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T09:00:39Z",
+      "side": 1,
+      "message": "Maybe host/hosts is easier after all? For some reason both you and I have trouble distinguishing singular and plural of address.\n\ninside-hosts, ports-per-inside-host",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 42
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "021aa251_c06dd508",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T09:00:39Z",
+      "side": 1,
+      "message": "The other way around.",
+      "range": {
+        "startLine": 19,
+        "startChar": 45,
+        "endLine": 19,
+        "endChar": 46
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43b67564_f44c8ae6",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T09:00:39Z",
+      "side": 1,
+      "message": "Oh, only now I realized we prefer powers of two, because Classless Inter-Domain Routing naturally makes people consider ranges sized power of two (and aligned). Even though VPP (I believe) can handle arbitrary sizes and alignments.\n\nI do not know why we would prefer ports-per-inside-host to be multiple of 63 otherwise.",
+      "range": {
+        "startLine": 25,
+        "startChar": 65,
+        "endLine": 26,
+        "endChar": 15
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0696c52a_0383b4b1",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T09:00:39Z",
+      "side": 1,
+      "message": "Is this table even needed, considering we explain our choice in lines 39-43?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 2
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc8cd984_5c2ba23b",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T09:00:39Z",
+      "side": 1,
+      "message": "Not relevant here.",
+      "range": {
+        "startLine": 62,
+        "startChar": 23,
+        "endLine": 62,
+        "endChar": 45
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81f7ecec_f16e4da5",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T09:00:39Z",
+      "side": 1,
+      "message": "Single space please.",
+      "range": {
+        "startLine": 84,
+        "startChar": 13,
+        "endLine": 84,
+        "endChar": 15
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
