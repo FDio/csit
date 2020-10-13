@@ -27,9 +27,9 @@ Changes in |csit-release|
 
 #. PRESENTATION AND ANALYTICS LAYER
 
-   - **Graphs layout improvements**: Improved performance graphs layout
-     for better readibility and maintenance: test grouping, axis
-     labels, descriptions, other informative decoration.
+   - **Graphs improvements**: Added possibility to use Gbps on Y-axis in
+     Packet Throughput and Speedup Multi-Core graphs, added unidirectional
+     mode to the Latency graphs.
 
 .. raw:: latex
 
