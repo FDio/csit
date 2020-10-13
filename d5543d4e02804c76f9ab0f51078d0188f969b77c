@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "3926ff18_806a8a9f",
+        "filename": "docs/report/introduction/methodology_ipsec.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T12:38:23Z",
+      "side": 1,
+      "message": "No, those are different:\nhttps://github.com/FDio/csit/blob/rls2009/tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1tnlhwasync-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot\nhttps://github.com/FDio/csit/blob/rls2009/tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+      "parentUuid": "c37c994e_47390135",
+      "revId": "d5543d4e02804c76f9ab0f51078d0188f969b77c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a06d7a3f_b089b83b",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 4
