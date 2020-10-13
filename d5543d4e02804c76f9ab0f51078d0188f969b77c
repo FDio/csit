@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "6039cb67_4d3d67d3",
+        "filename": "docs/report/introduction/methodology_ipsec.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-13T10:20:15Z",
+      "side": 1,
+      "message": "What about IPSec async mode tests?",
+      "revId": "d5543d4e02804c76f9ab0f51078d0188f969b77c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a06d7a3f_b089b83b",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 4
@@ -110,6 +127,29 @@
         "startChar": 0,
         "endLine": 95,
         "endChar": 48
+      },
+      "revId": "d5543d4e02804c76f9ab0f51078d0188f969b77c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1bf8a31_8c7bbbf2",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-13T10:20:15Z",
+      "side": 1,
+      "message": "throughput tests\n\n- ramp-up not valid for cps tests",
+      "range": {
+        "startLine": 116,
+        "startChar": 31,
+        "endLine": 116,
+        "endChar": 37
       },
       "revId": "d5543d4e02804c76f9ab0f51078d0188f969b77c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
