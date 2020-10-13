@@ -114,6 +114,24 @@
     },
     {
       "key": {
+        "uuid": "223eb914_2fcfd2ae",
+        "filename": "docs/report/introduction/methodology_ipsec.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T16:02:32Z",
+      "side": 1,
+      "message": "Not sure I get what you mean, in QAT HW section following are listed:\n\n- ESP-AES[128|256]-GCM, tested in IPsec tunnel interface, scale tested 1\n  and 1k tunnels.\n\n- ESP-AES[128|256]-GCM Async for jumbo flows, tested in IPsec tunnel\n  interface and policy modes, scale tested 1 and 1k tunnels.\n\nSo we have two types of tests. I agree the 2nd one could be described a bit better :)",
+      "parentUuid": "d812dbe1_3b1b82c9",
+      "revId": "d5543d4e02804c76f9ab0f51078d0188f969b77c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a06d7a3f_b089b83b",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 4
