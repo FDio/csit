@@ -571,7 +571,7 @@ class TrafficGenerator(AbstractMeasurer):
             if self.transaction_scale:
                 computed_duration = self.transaction_scale / multiplier
                 logger.debug(f"Vanilla duration {computed_duration}")
-                computed_duration += 0.113
+                computed_duration += 0.1115
         # Else keep -1.
         if self.duration_limit:
             computed_duration = min(computed_duration, self.duration_limit)
