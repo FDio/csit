@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6873c6e_e227e9a0",
+        "filename": "docs/report/vpp_performance_tests/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T13:09:36Z",
+      "side": 1,
+      "message": "Convert this line into an invisible comment?",
+      "range": {
+        "startLine": 272,
+        "startChar": 33,
+        "endLine": 272,
+        "endChar": 37
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
