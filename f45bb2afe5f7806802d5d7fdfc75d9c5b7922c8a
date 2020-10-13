@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02798b1d_4d5925ac",
+        "filename": "docs/lab/testbeds_sm_zn2_hw_bios_cfg.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T15:33:02Z",
+      "side": 1,
+      "message": "T20200528164548. ?",
+      "range": {
+        "startLine": 631,
+        "startChar": 41,
+        "endLine": 631,
+        "endChar": 45
+      },
+      "revId": "f45bb2afe5f7806802d5d7fdfc75d9c5b7922c8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03cafaed_710da13a",
+        "filename": "docs/lab/testbeds_sm_zn2_hw_bios_cfg.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T15:33:02Z",
+      "side": 1,
+      "message": "0x8301038. ?",
+      "range": {
+        "startLine": 631,
+        "startChar": 70,
+        "endLine": 631,
+        "endChar": 79
+      },
+      "revId": "f45bb2afe5f7806802d5d7fdfc75d9c5b7922c8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
