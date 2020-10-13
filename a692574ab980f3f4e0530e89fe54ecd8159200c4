@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fdc833e_be8c0948",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T20:06:29Z",
+      "side": 1,
+      "message": "2n",
+      "range": {
+        "startLine": 28,
+        "startChar": 135,
+        "endLine": 28,
+        "endChar": 137
+      },
+      "revId": "a692574ab980f3f4e0530e89fe54ecd8159200c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
