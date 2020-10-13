@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1c0c1b8e_5146cf65",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T12:09:14Z",
+      "side": 1,
+      "message": "Right, I was inconsistent indeed. Hopefully new text fixes it. Sticking to inside-addresses 😊",
+      "parentUuid": "e6c742a5_e88181d0",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 42
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "021aa251_c06dd508",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8e0e081_3a4aceae",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T12:09:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "021aa251_c06dd508",
+      "range": {
+        "startLine": 19,
+        "startChar": 45,
+        "endLine": 19,
+        "endChar": 46
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "cf022785_c12f6f02",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T12:09:14Z",
+      "side": 1,
+      "message": "I think it is good illustration of the scheme applied in CSIT. I have updated the text, and reduce number of rows. See what you think.",
+      "parentUuid": "0696c52a_0383b4b1",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 2
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc8cd984_5c2ba23b",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 3
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "e85ba1d7_e7dc53e3",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T12:09:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc8cd984_5c2ba23b",
+      "range": {
+        "startLine": 62,
+        "startChar": 23,
+        "endLine": 62,
+        "endChar": 45
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81f7ecec_f16e4da5",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 3
@@ -137,6 +233,30 @@
       "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aefe0bc8_5d7059a9",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T12:09:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81f7ecec_f16e4da5",
+      "range": {
+        "startLine": 84,
+        "startChar": 13,
+        "endLine": 84,
+        "endChar": 15
+      },
+      "revId": "6baa2d9134c710cf5f719eb133e712941d8d048e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
