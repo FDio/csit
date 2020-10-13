@@ -46,6 +46,30 @@
       "revId": "ef6cfb8413369d5eb7692fc11c7bf968b67c0fd4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec7784de_0ee50650",
+        "filename": "resources/tools/testbed-setup/ansible/roles/docker/defaults/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2020-10-13T12:59:37Z",
+      "side": 1,
+      "message": "I\u0027m fine with removing it since it is configured from the outside.",
+      "parentUuid": "a39e5ffb_bc2dc9fc",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "ef6cfb8413369d5eb7692fc11c7bf968b67c0fd4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
