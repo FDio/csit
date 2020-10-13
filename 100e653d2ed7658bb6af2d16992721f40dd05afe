@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b39315c8_9e69d119",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-13T13:58:10Z",
+      "side": 1,
+      "message": "Yes, that\u0027s true... Going to create corresponding CSIT ticket and will add it to known issues.",
+      "parentUuid": "cd0fe490_98bd1cfa",
+      "range": {
+        "startLine": 25,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 4
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "91ae5746_372b596c",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 4
@@ -45,6 +69,54 @@
       "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe24e6af_c20db8a5",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-13T13:58:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91ae5746_372b596c",
+      "range": {
+        "startLine": 23,
+        "startChar": 26,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4fe4f73a_ea3392e8",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-13T13:58:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91ae5746_372b596c",
+      "range": {
+        "startLine": 23,
+        "startChar": 26,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +143,54 @@
     },
     {
       "key": {
+        "uuid": "65988066_a6ac3262",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-13T13:58:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad2bf6be_ccea19c3",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 38
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4fadb2_4db943aa",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-13T13:58:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad2bf6be_ccea19c3",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 38
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80c4a9cf_53add582",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 4
@@ -94,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "dac1da3a_db84700a",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-13T13:58:10Z",
+      "side": 1,
+      "message": "We did not run nat44det or nat44ed tests with jumbo frames (they are not part of daily or report-iterative jobs) yet so wee need to wait for corresponding coverage test to be finished but I did run nat44ed as part of imix preparation for astf: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-skx/2255/archives/log.html.gz#s1-s1-s1-s1-s1-t3.\nI expect the same issue with nat44det tests but will confirm by some short runs for sure.",
+      "parentUuid": "80c4a9cf_53add582",
+      "range": {
+        "startLine": 80,
+        "startChar": 85,
+        "endLine": 80,
+        "endChar": 90
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5bcc1ff2_b6cf2360",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 4
@@ -105,6 +249,30 @@
       "writtenOn": "2020-10-13T13:20:08Z",
       "side": 1,
       "message": "I thought this got addressed by Vratko, no?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 118
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d030e26_e3212589",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-13T13:58:10Z",
+      "side": 1,
+      "message": "Vratko was working on it and testing new solution (async messages) on CSIT side but still it took too much time to configure high numbers of ip4 routes.",
+      "parentUuid": "5bcc1ff2_b6cf2360",
       "range": {
         "startLine": 82,
         "startChar": 0,
