@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6bdfd963_18b1a65a",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T13:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c6e20e4_3eff6c93",
+      "range": {
+        "startLine": 18,
+        "startChar": 10,
+        "endLine": 18,
+        "endChar": 17
+      },
+      "revId": "4aae5ba6ba337617b20a1aae1c6363ba01bf3902",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4558de02_e4e9b97a",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "4aae5ba6ba337617b20a1aae1c6363ba01bf3902",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c879f321_986cf714",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T13:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4558de02_e4e9b97a",
+      "range": {
+        "startLine": 20,
+        "startChar": 26,
+        "endLine": 20,
+        "endChar": 27
+      },
+      "revId": "4aae5ba6ba337617b20a1aae1c6363ba01bf3902",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a6f777b5_84b5f95d",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T13:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74cd8000_d914971a",
+      "range": {
+        "startLine": 70,
+        "startChar": 51,
+        "endLine": 70,
+        "endChar": 65
+      },
+      "revId": "4aae5ba6ba337617b20a1aae1c6363ba01bf3902",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc8c3fd2_cdf02770",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2020-10-13T12:38:23Z",
       "side": 1,
       "message": "No, they do not. The issue is TRex (allegedly) not being deterministic when asigning port numbers for clients. Instead we reset NAT state before each trial. PPS includes both establishing connections and some small data transfer.\n\nI should verify whether TRex is really not deterministic.\nAlso I should verify whether VPP in nat44ed mode is really not willing to use the full outside port range (which should be mentioned when discussing sharing ratios).",
+      "range": {
+        "startLine": 133,
+        "startChar": 54,
+        "endLine": 133,
+        "endChar": 71
+      },
+      "revId": "4aae5ba6ba337617b20a1aae1c6363ba01bf3902",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be0f6281_8ad187bc",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T13:12:29Z",
+      "side": 1,
+      "message": "Re ramp-up phase being present in nat44ed astf - my bad, removed. Added ramp-up phase in nat44ed uni-dir stateless tests.\n\nI added this text to highlight an indeterministic sharing-ratio for nat44ed:\n\nInitial CSIT NAT44 tests, including associated TG/TRex traffic profiles,\nare based on ports-per-inside-address set to 63 and the sharing ratio of\n1024. This approach is currently used for all NAT44 tests including\nNAT44det (NAT44 deterministic used for Carrier Grade NAT applications)\nand NAT44ed. Note that in the latter case, due to overloading of\n(ouside-address,outside-port) tuple for different endpoint destinations\nthe actual sharing ratio will be different.",
+      "parentUuid": "cc8c3fd2_cdf02770",
       "range": {
         "startLine": 133,
         "startChar": 54,
