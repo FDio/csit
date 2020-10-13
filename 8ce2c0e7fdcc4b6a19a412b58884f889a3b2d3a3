@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b961fd63_a059d397",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T14:07:40Z",
+      "side": 1,
+      "message": "So I finally looked at the configuration we are using, and I am confused.\nI compared similar suited at the same scale. See nat44det DUT config [0] and profile [1] compared to nat44ed DUT config [2] and profile [3].\n\nThe inside (source) address ranges are the same: 172.16.0.0/14.\nThe outside (source) address ranges are also the same: 68.142.68.0/24.\nAs expected with 1:1024 sharing ratios, we use 63 ports on inside and 64512 on outside. In nat44det set explicitly (1024-1086 and 1024-65535), in nat44ed implicitly (by specifying sequence addressing and using limit value that goes 63 times over the address range).\nThe difference is in destination. Nat44det sends everything to 20.0.0.0/32 port 1024, nat44ed sends to sequenced addresses 20.16.0.0/14 port 8080.\n\nFrom that I conclude the outside (source) address-port 2-tuples are densely covered (no unopened pair) also in the nat4ed case. (So I was wrong about different sharing ratio).\nThe indeterminism is not (necessarily) on TRex side, it is in VPP deciding which destination address is targeted by which outside source 2-tuple.\n\nI guess we could create an alternative nat44ed tests with the same destination 2-tuple as in nat44det, but VPP would complain about running out of sufficiently random outside source 2-tuples for that destination.\n\n[0] https://github.com/FDio/csit/blob/master/tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr.robot#L74-L77\n[1] https://github.com/FDio/csit/blob/master/GPL/traffic_profiles/trex/trex-stl-ethip4udp-262144u63p.py#L43-L63\n[2] https://github.com/FDio/csit/blob/master/tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.robot#L79-L83\n[3] https://github.com/FDio/csit/blob/master/GPL/traffic_profiles/trex/trex-astf-ethip4tcp-262144h.py#L43-L46",
+      "range": {
+        "startLine": 47,
+        "startChar": 43,
+        "endLine": 49,
+        "endChar": 43
+      },
+      "revId": "8ce2c0e7fdcc4b6a19a412b58884f889a3b2d3a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5783d6e0_642da9ec",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T14:07:40Z",
+      "side": 1,
+      "message": "binding entries are?\nI think VPP code calls those \"translations\". Not sure what RFCs say.",
+      "range": {
+        "startLine": 99,
+        "startChar": 9,
+        "endLine": 99,
+        "endChar": 12
+      },
+      "revId": "8ce2c0e7fdcc4b6a19a412b58884f889a3b2d3a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
