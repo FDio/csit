@@ -132,6 +132,24 @@
     },
     {
       "key": {
+        "uuid": "be2283a9_d3b9c459",
+        "filename": "docs/report/introduction/methodology_ipsec.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-13T16:09:15Z",
+      "side": 1,
+      "message": "Oh, wow. Thrice I looked and three times my visual cortex took a shortcut.\n\"I see two items, one is GCM, so surely the other one is CBC-HMAC (as in the section before).\"\n\nSo I am retracting my comments about Async, replacing them with comments about CBC.",
+      "parentUuid": "223eb914_2fcfd2ae",
+      "revId": "d5543d4e02804c76f9ab0f51078d0188f969b77c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a06d7a3f_b089b83b",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 4
