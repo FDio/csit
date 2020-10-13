@@ -558,6 +558,7 @@
       # TODO: Add:
       csit-vpp-perf-report-coverage-2009-3n-skx:
         - 9   # rls2009 NDRPDR cov 3n-skx-ip4-03
+        - 16  # rls2009 NDRPDR cov 3n-skx-ip4tun-02
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-report-coverage-2009-2n-skx:
@@ -590,7 +591,7 @@
         - 9   # rls2009 NDRPDR cov 2n-clx-ip6-01
         - 17  # rls2009 NDRPDR cov 2n-clx-l2-00
 #        - 18  # rls2009 NDRPDR cov 2n-clx-l2-01
-#        - 12  # rls2009 NDRPDR cov 2n-clx-lb-00
+        - 12  # rls2009 NDRPDR cov 2n-clx-lb-00
         - 13  # rls2009 NDRPDR cov 2n-clx-memif-00
         - 14  # rls2009 NDRPDR cov 2n-clx-vhost-00
         - 15  # rls2009 NDRPDR cov 2n-clx-vhost-01
@@ -2268,6 +2269,7 @@
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-3n-skx:
       - 9   # rls2009 NDRPDR cov 3n-skx-ip4-03
+      - 16  # rls2009 NDRPDR cov 3n-skx-ip4tun-02
 
     csit-vpp-perf-verify-2001-2n-skx:
       - 101  # MRR sel - old
@@ -2443,7 +2445,7 @@
       - 9   # rls2009 NDRPDR cov 2n-clx-ip6-01
       - 17  # rls2009 NDRPDR cov 2n-clx-l2-00
 #      - 18  # rls2009 NDRPDR cov 2n-clx-l2-01
-#      - 12  # rls2009 NDRPDR cov 2n-clx-lb-00
+      - 12  # rls2009 NDRPDR cov 2n-clx-lb-00
       - 13  # rls2009 NDRPDR cov 2n-clx-memif-00
       - 14  # rls2009 NDRPDR cov 2n-clx-vhost-00
       - 15  # rls2009 NDRPDR cov 2n-clx-vhost-01

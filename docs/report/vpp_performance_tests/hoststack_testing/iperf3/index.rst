@@ -49,7 +49,7 @@ TCP/IP with iperf3
 
     \begin{figure}[H]
         \centering
-            \graphicspath{{../../_build/_static/vpp/}}
+            \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-ldpreload-iperf3-bps}
             \label{fig:3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-ldpreload-iperf3-bps}
     \end{figure}
@@ -69,7 +69,7 @@ TCP/IP with iperf3
 
     \begin{figure}[H]
         \centering
-            \graphicspath{{../../_build/_static/vpp/}}
+            \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps}
             \label{fig:3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps}
     \end{figure}
