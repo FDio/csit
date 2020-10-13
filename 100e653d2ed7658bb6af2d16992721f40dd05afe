@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "cd0fe490_98bd1cfa",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T13:20:08Z",
+      "side": 1,
+      "message": "Aren\u0027t DPDK tests failing in 2n-dnv and 3n-dnv testbeds?",
+      "range": {
+        "startLine": 25,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 4
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91ae5746_372b596c",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T13:20:08Z",
+      "side": 1,
+      "message": ",",
+      "range": {
+        "startLine": 23,
+        "startChar": 26,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad2bf6be_ccea19c3",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T13:20:08Z",
+      "side": 1,
+      "message": "it is",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 38
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80c4a9cf_53add582",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T13:20:08Z",
+      "side": 1,
+      "message": "which NAT, NAT44det or NAT44ed?",
+      "range": {
+        "startLine": 80,
+        "startChar": 85,
+        "endLine": 80,
+        "endChar": 90
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bcc1ff2_b6cf2360",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-13T13:20:08Z",
+      "side": 1,
+      "message": "I thought this got addressed by Vratko, no?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 118
+      },
+      "revId": "100e653d2ed7658bb6af2d16992721f40dd05afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6873c6e_e227e9a0",
         "filename": "docs/report/vpp_performance_tests/overview.rst",
         "patchSetId": 4
