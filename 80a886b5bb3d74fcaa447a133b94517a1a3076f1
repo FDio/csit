@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6d1b918_97232684",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-14T11:02:31Z",
+      "side": 1,
+      "message": "It is easier to review when cherry-picks are not combined, and only created after we know which patch set gt merged into master.",
+      "range": {
+        "startLine": 16,
+        "startChar": 32,
+        "endLine": 16,
+        "endChar": 37
+      },
+      "revId": "80a886b5bb3d74fcaa447a133b94517a1a3076f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff1bd789_affec0ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-14T11:02:31Z",
+      "side": 1,
+      "message": "For example patch set 4 now has a better code comment than this.",
+      "range": {
+        "startLine": 17,
+        "startChar": 32,
+        "endLine": 17,
+        "endChar": 37
+      },
+      "revId": "80a886b5bb3d74fcaa447a133b94517a1a3076f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
