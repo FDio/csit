@@ -65,7 +65,7 @@ Changes in |csit-release|
 Known Issues
 ------------
 
-List of known issues in |csit-release| for VPP performance tests: TODO: check
+List of known issues in |csit-release| for VPP performance tests:
 
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | #  | JiraID                                  | Issue Description                                                                                         |
@@ -89,7 +89,7 @@ List of known issues in |csit-release| for VPP performance tests: TODO: check
 |    | <https://jira.fd.io/browse/VPP-1675>`_  | Reason: chained buffers are not supported.                                                                |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  6 | `VPP-1934                               | [i40e] Interfaces are not brought up from carrier-down.                                                   |
-|    | <https://jira.fd.io/browse/VPP-1934 >`_ | In case of i40e -based interface (e.g Intel x700 series NIC) is bound to kernel driver (i40e) and is in   |
+|    | <https://jira.fd.io/browse/VPP-1934>`_  | In case of i40e -based interface (e.g Intel x700 series NIC) is bound to kernel driver (i40e) and is in   |
 |    |                                         | state "no-carrier" (<NO-CARRIER,BROADCAST,MULTICAST,UP>) because previously it was disabled via           |
 |    |                                         | "I40E_AQ_PHY_LINK_ENABLED" call, then VPP during initialization of AVF interface is not re-enabling       |
 |    |                                         | interface link via i40e driver to up.                                                                     |
