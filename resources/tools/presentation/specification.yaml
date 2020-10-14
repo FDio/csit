@@ -559,6 +559,8 @@
       # TODO: Add:
       csit-vpp-perf-report-coverage-2009-3n-skx:
         - 9   # rls2009 NDRPDR cov 3n-skx-ip4-03
+        - 12  # rls2009 NDRPDR cov 3n-skx-ip4-06
+        - 15  # rls2009 NDRPDR cov 3n-skx-ip4tun-01
         - 16  # rls2009 NDRPDR cov 3n-skx-ip4tun-02
 
     vpp-perf-results-2n-skx:
@@ -2272,6 +2274,7 @@
     csit-vpp-perf-report-coverage-2009-3n-skx:
       - 9   # rls2009 NDRPDR cov 3n-skx-ip4-03
       - 12  # rls2009 NDRPDR cov 3n-skx-ip4-06
+      - 15  # rls2009 NDRPDR cov 3n-skx-ip4tun-01
       - 16  # rls2009 NDRPDR cov 3n-skx-ip4tun-02
 
     csit-vpp-perf-verify-2001-2n-skx:
