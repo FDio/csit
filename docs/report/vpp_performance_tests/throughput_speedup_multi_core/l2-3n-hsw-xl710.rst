@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-l2switching-base-avf-ndr-tsa}
-            \label{fig:3n-hsw-xl710-64b-l2switching-base-avf-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-l2switching-base-scale-dpdk-ndr-tsa}
+            \label{fig:3n-hsw-xl710-64b-l2switching-base-scale-dpdk-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-l2switching-base-avf-pdr-tsa}
-            \label{fig:3n-hsw-xl710-64b-l2switching-base-avf-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-l2switching-base-scale-dpdk-pdr-tsa}
+            \label{fig:3n-hsw-xl710-64b-l2switching-base-scale-dpdk-pdr-tsa}
     \end{figure}
