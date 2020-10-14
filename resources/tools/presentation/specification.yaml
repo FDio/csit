@@ -2865,166 +2865,166 @@
 
 ################################################################################
 
-## VPP Compare NICs 3n-skx 2t1c ndr
-#- type: "table"
-#  title: "VPP Compare NICs 3n-skx 2t1c ndr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-ndr"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "x710"
-#      data-set: "vpp-nic-comparison-3n-skx"
-#      tag: "NIC_Intel-X710"
-#    - title: "xxv710"
-#      data-set: "vpp-nic-comparison-3n-skx"
-#      tag: "NIC_Intel-XXV710"
-#  comparisons:
-#    - title: "Diff"
-#      reference: 1
-#      compare: 2
-#  legend:
-#    - ""
-#    - "x710, xxv710 - NICs tested."
-#    - "Diff - difference between x710 and xxv710 NIC."
-#
-## VPP Compare NICs 3n-skx 4t2c ndr
-#- type: "table"
-#  title: "VPP Compare NICs 3n-skx 4t2c ndr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-ndr"
-#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "x710"
-#      data-set: "vpp-nic-comparison-3n-skx"
-#      tag: "NIC_Intel-X710"
-#    - title: "xxv710"
-#      data-set: "vpp-nic-comparison-3n-skx"
-#      tag: "NIC_Intel-XXV710"
-#  comparisons:
-#    - title: "Diff"
-#      reference: 1
-#      compare: 2
-#  legend:
-#    - ""
-#    - "x710, xxv710 - NICs tested."
-#    - "Diff - difference between x710 and xxv710 NIC."
-#
-## VPP Compare NICs 3n-skx 2t1c pdr
-#- type: "table"
-#  title: "VPP Compare NICs 3n-skx 2t1c pdr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-pdr"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "x710"
-#      data-set: "vpp-nic-comparison-3n-skx"
-#      tag: "NIC_Intel-X710"
-#    - title: "xxv710"
-#      data-set: "vpp-nic-comparison-3n-skx"
-#      tag: "NIC_Intel-XXV710"
-#  comparisons:
-#    - title: "Diff"
-#      reference: 1
-#      compare: 2
-#  legend:
-#    - ""
-#    - "x710, xxv710 - NICs tested."
-#    - "Diff - difference between x710 and xxv710 NIC."
-#
-## VPP Compare NICs 3n-skx 4t2c pdr
-#- type: "table"
-#  title: "VPP Compare NICs 3n-skx 4t2c pdr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-pdr"
-#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "x710"
-#      data-set: "vpp-nic-comparison-3n-skx"
-#      tag: "NIC_Intel-X710"
-#    - title: "xxv710"
-#      data-set: "vpp-nic-comparison-3n-skx"
-#      tag: "NIC_Intel-XXV710"
-#  comparisons:
-#    - title: "Diff"
-#      reference: 1
-#      compare: 2
-#  legend:
-#    - ""
-#    - "x710, xxv710 - NICs tested."
-#    - "Diff - difference between x710 and xxv710 NIC."
+# VPP Compare NICs 3n-skx 2t1c ndr
+- type: "table"
+  title: "VPP Compare NICs 3n-skx 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
-## VPP Compare NICs 3n-skx 2t1c mrr
-#- type: "table"
-#  title: "VPP Compare NICs 3n-skx 2t1c mrr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "x710"
-#      data-set: "vpp-nic-comparison-3n-skx-mrr"
-#      tag: "NIC_Intel-X710"
-#    - title: "xxv710"
-#      data-set: "vpp-nic-comparison-3n-skx-mrr"
-#      tag: "NIC_Intel-XXV710"
-#  comparisons:
-#    - title: "Diff"
-#      reference: 1
-#      compare: 2
-#  legend:
-#    - ""
-#    - "x710, xxv710 - NICs tested."
-#    - "Diff - difference between x710 and xxv710 NIC."
-#
-## VPP Compare NICs 3n-skx 4t2c mrr
-#- type: "table"
-#  title: "VPP Compare NICs 3n-skx 4t2c mrr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "x710"
-#      data-set: "vpp-nic-comparison-3n-skx-mrr"
-#      tag: "NIC_Intel-X710"
-#    - title: "xxv710"
-#      data-set: "vpp-nic-comparison-3n-skx-mrr"
-#      tag: "NIC_Intel-XXV710"
-#  comparisons:
-#    - title: "Diff"
-#      reference: 1
-#      compare: 2
-#  legend:
-#    - ""
-#    - "x710, xxv710 - NICs tested."
-#    - "Diff - difference between x710 and xxv710 NIC."
-#
-## VPP Compare NICs 3n-skx 8t4c mrr
-#- type: "table"
-#  title: "VPP Compare NICs 3n-skx 8t4c mrr"
-#  algorithm: "table_comparison"
-#  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-nics-mrr"
-#  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-#  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
-#  columns:
-#    - title: "x710"
-#      data-set: "vpp-nic-comparison-3n-skx-mrr"
-#      tag: "NIC_Intel-X710"
-#    - title: "xxv710"
-#      data-set: "vpp-nic-comparison-3n-skx-mrr"
-#      tag: "NIC_Intel-XXV710"
-#  comparisons:
-#    - title: "Diff"
-#      reference: 1
-#      compare: 2
-#  legend:
-#    - ""
-#    - "x710, xxv710 - NICs tested."
-#    - "Diff - difference between x710 and xxv710 NIC."
+# VPP Compare NICs 3n-skx 4t2c ndr
+- type: "table"
+  title: "VPP Compare NICs 3n-skx 4t2c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
+
+# VPP Compare NICs 3n-skx 2t1c pdr
+- type: "table"
+  title: "VPP Compare NICs 3n-skx 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and not 'NF_DENSITY'"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
+
+# VPP Compare NICs 3n-skx 4t2c pdr
+- type: "table"
+  title: "VPP Compare NICs 3n-skx 4t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and not 'NF_DENSITY'"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
+
+# VPP Compare NICs 3n-skx 2t1c mrr
+- type: "table"
+  title: "VPP Compare NICs 3n-skx 2t1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'MRR' and not 'NF_DENSITY'"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
+
+# VPP Compare NICs 3n-skx 4t2c mrr
+- type: "table"
+  title: "VPP Compare NICs 3n-skx 4t2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'MRR' and not 'NF_DENSITY'"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
+
+# VPP Compare NICs 3n-skx 8t4c mrr
+- type: "table"
+  title: "VPP Compare NICs 3n-skx 8t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-nics-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C' and 'MRR' and not 'NF_DENSITY'"
+  columns:
+    - title: "x710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-X710"
+    - title: "xxv710"
+      data-set: "vpp-nic-comparison-3n-skx-mrr"
+      tag: "NIC_Intel-XXV710"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "x710, xxv710 - NICs tested."
+    - "Diff - difference between x710 and xxv710 NIC."
 
 # VPP Compare NICs 2n-skx 2t1c ndr
 - type: "table"
