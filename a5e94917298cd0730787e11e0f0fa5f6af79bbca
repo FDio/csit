@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "47ab6d62_73b474dd",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-14T08:15:00Z",
+      "side": 1,
+      "message": "Should have been defined in line 18 (similarly to line 15)?",
+      "range": {
+        "startLine": 22,
+        "startChar": 22,
+        "endLine": 22,
+        "endChar": 47
+      },
+      "revId": "a5e94917298cd0730787e11e0f0fa5f6af79bbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dabc89c_0f1e51b9",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-14T08:15:00Z",
+      "side": 1,
+      "message": "Remove.",
+      "range": {
+        "startLine": 47,
+        "startChar": 13,
+        "endLine": 49,
+        "endChar": 43
+      },
+      "revId": "a5e94917298cd0730787e11e0f0fa5f6af79bbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66cf29ec_8239491e",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-14T08:15:00Z",
+      "side": 1,
+      "message": "Inside-addresses?",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 68,
+        "endChar": 17
+      },
+      "revId": "a5e94917298cd0730787e11e0f0fa5f6af79bbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdf9c26d_2d4a6877",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-14T08:15:00Z",
+      "side": 1,
+      "message": "Is this needed? It just restates line 87.",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 39
+      },
+      "revId": "a5e94917298cd0730787e11e0f0fa5f6af79bbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7b813e2b_2340239b",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 8
@@ -18,6 +110,52 @@
         "startChar": 33,
         "endLine": 113,
         "endChar": 62
+      },
+      "revId": "a5e94917298cd0730787e11e0f0fa5f6af79bbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cb5f86c_c50b90f3",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-14T08:15:00Z",
+      "side": 1,
+      "message": "In actual test names we use the exact numbers (no rounding, no k nor M).\nAlso applies to line 151.",
+      "range": {
+        "startLine": 113,
+        "startChar": 33,
+        "endLine": 113,
+        "endChar": 62
+      },
+      "revId": "a5e94917298cd0730787e11e0f0fa5f6af79bbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d80564c_93d0f3bf",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-14T08:15:00Z",
+      "side": 1,
+      "message": "Once again just restating the table above.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 61
       },
       "revId": "a5e94917298cd0730787e11e0f0fa5f6af79bbca",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
