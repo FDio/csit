@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b813e2b_2340239b",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-14T08:14:39Z",
+      "side": 1,
+      "message": "This can be understood that testcase name is\nethip4udp-nat44det-h1024-p63-s64.5k-mrr\ninstead of correct name ethip4udp-nat44det-h1024-p63-s64515-mrr\n\nPlease, use exact numbers here to avoid any discrepancy.",
+      "range": {
+        "startLine": 113,
+        "startChar": 33,
+        "endLine": 113,
+        "endChar": 62
+      },
+      "revId": "a5e94917298cd0730787e11e0f0fa5f6af79bbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2ea5f48_398c0a9e",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-14T08:14:39Z",
+      "side": 1,
+      "message": "see line #113",
+      "range": {
+        "startLine": 151,
+        "startChar": 33,
+        "endLine": 151,
+        "endChar": 61
+      },
+      "revId": "a5e94917298cd0730787e11e0f0fa5f6af79bbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b14c06b_02d76bef",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-14T08:14:39Z",
+      "side": 1,
+      "message": "see line #113",
+      "range": {
+        "startLine": 160,
+        "startChar": 33,
+        "endLine": 160,
+        "endChar": 61
+      },
+      "revId": "a5e94917298cd0730787e11e0f0fa5f6af79bbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
