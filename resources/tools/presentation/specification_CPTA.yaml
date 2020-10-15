@@ -352,7 +352,7 @@
 
     plot-performance-trending-dpdk-3n-tsh:
       csit-dpdk-perf-mrr-weekly-master-3n-tsh:
-        start: 1
+        start: 4
         end: "lastCompletedBuild"
 
     # 3n-dnv
@@ -653,7 +653,7 @@
         - 192
 
     csit-dpdk-perf-mrr-weekly-master-3n-tsh:
-      start: 1
+      start: 4
       end: "lastCompletedBuild"
       max-builds: 26  # Max nr of builds to download
 
@@ -6227,6 +6227,30 @@
       include:
         - "tests.dpdk.perf.25ge2p1xxv710-eth-l2xcbase-testpmd-mrr.64b-8t4c-eth-l2xcbase-testpmd-mrr"
         - "tests.dpdk.perf.25ge2p1xxv710-ethip4-ip4base-l3fwd-mrr.64b-8t4c-ethip4-ip4base-l3fwd-mrr"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-64b-1t1c-dpdk"
+      output-file-name: "3n-tsh-x520-64b-1t1c-dpdk"
+      data: "plot-performance-trending-dpdk-3n-tsh"
+      include:
+        - "Tests.Dpdk.Perf.10Ge2P1X520-Eth-L2Xcbase-Testpmd-Mrr.64B-1t1c-eth-l2xcbase-testpmd-mrr"
+        - "Tests.Dpdk.Perf.10Ge2P1X520-Ethip4-Ip4Base-L3Fwd-Mrr.64B-1t1c-ethip4-ip4base-l3fwd-mrr"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-64b-2t2c-dpdk"
+      output-file-name: "3n-tsh-x520-64b-2t2c-dpdk"
+      data: "plot-performance-trending-dpdk-3n-tsh"
+      include:
+        - "Tests.Dpdk.Perf.10Ge2P1X520-Eth-L2Xcbase-Testpmd-Mrr.64B-2t2c-eth-l2xcbase-testpmd-mrr"
+        - "Tests.Dpdk.Perf.10Ge2P1X520-Ethip4-Ip4Base-L3Fwd-Mrr.64B-2t2c-ethip4-ip4base-l3fwd-mrr"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-64b-4t4c-dpdk"
+      output-file-name: "3n-tsh-x520-64b-4t4c-dpdk"
+      data: "plot-performance-trending-dpdk-3n-tsh"
+      include:
+        - "Tests.Dpdk.Perf.10Ge2P1X520-Eth-L2Xcbase-Testpmd-Mrr.64B-4t4c-eth-l2xcbase-testpmd-mrr"
+        - "Tests.Dpdk.Perf.10Ge2P1X520-Ethip4-Ip4Base-L3Fwd-Mrr.64B-4t4c-ethip4-ip4base-l3fwd-mrr"
       layout: "plot-cpta"
 
 ################################################################################
