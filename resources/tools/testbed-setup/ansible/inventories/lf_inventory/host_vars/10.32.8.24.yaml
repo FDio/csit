@@ -3,9 +3,19 @@
 
 hostname: "s60-t210-sut1"
 grub:
-  isolcpus: "0-15,17-31,33-47,49-63"
-  nohz_full: "0-15,17-31,33-47,49-63"
-  rcu_nocbs: "0-15,17-31,33-47,49-63"
+  amd_iommu: "on"
+  audit: 0
+  hpet: "disable"
+  iommu: "pt"
+  isolcpus: "1-15,17-31,33-47,49-63"
+  nmi_watchdog: 0
+  nohz_full: "off"
+  nosoftlockup: ""
+  numa_balancing: "disable"
+  processor.max_cstate: 0
+  rcu_nocbs: "1-15,17-31,33-47,49-63"
+  tsc: "reliable"
+  vt.handoff: 1
 sysctl:
   kernel:
     watchdog_cpumask: "0,16,32,48"

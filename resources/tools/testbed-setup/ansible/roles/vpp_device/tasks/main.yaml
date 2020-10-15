@@ -82,7 +82,7 @@
     path: "/etc/default/grub"
     state: "present"
     regexp: "^GRUB_CMDLINE_LINUX="
-    line: 'GRUB_CMDLINE_LINUX="hugepagesz=2M hugepages={{ grub.nr_hugepages }}"'
+    line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value %}{{key}}={{value}} {% else %}{{key}} {% endif %}{% endfor %}\""
   notify:
     - "Update GRUB"
     - "Reboot server"
