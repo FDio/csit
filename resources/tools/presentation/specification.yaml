@@ -558,6 +558,8 @@
     vpp-perf-results-3n-skx:
       # TODO: Add:
       csit-vpp-perf-report-coverage-2009-3n-skx:
+        - 3   # rls2009 NDRPDR cov 3n-skx-crypto-01
+        - 6   # rls2009 NDRPDR cov 3n-skx-ip4-00
         - 9   # rls2009 NDRPDR cov 3n-skx-ip4-03
         - 12  # rls2009 NDRPDR cov 3n-skx-ip4-06
         - 15  # rls2009 NDRPDR cov 3n-skx-ip4tun-01
@@ -582,7 +584,6 @@
         - 30  # rls2009 NDRPDR cov 2n-skx-vts-00
 
     vpp-perf-results-2n-clx:
-      # TODO: Add:
       csit-vpp-perf-report-coverage-2009-2n-clx:
         - 2   # rls2009 NDRPDR cov 2n-clx-ip4-00
         - 3   # rls2009 NDRPDR cov 2n-clx-ip4-01
@@ -590,7 +591,7 @@
         - 5   # rls2009 NDRPDR cov 2n-clx-ip4-03
         - 6   # rls2009 NDRPDR cov 2n-clx-ip4-04
         - 7   # rls2009 NDRPDR cov 2n-clx-ip4-05
-        - 8   # rls2009 NDRPDR cov 2n-clx-ip6-00
+        - 22  # rls2009 NDRPDR cov 2n-clx-ip6-00
         - 9   # rls2009 NDRPDR cov 2n-clx-ip6-01
         - 17  # rls2009 NDRPDR cov 2n-clx-l2-00
         - 21  # rls2009 NDRPDR cov 2n-clx-l2-01
@@ -2272,6 +2273,8 @@
       - 40  # rls2009 NDRPDR iter env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-3n-skx:
+      - 3   # rls2009 NDRPDR cov 3n-skx-crypto-01
+      - 6   # rls2009 NDRPDR cov 3n-skx-ip4-00
       - 9   # rls2009 NDRPDR cov 3n-skx-ip4-03
       - 12  # rls2009 NDRPDR cov 3n-skx-ip4-06
       - 15  # rls2009 NDRPDR cov 3n-skx-ip4tun-01
@@ -2439,7 +2442,6 @@
       - 68  # rls2009 reconf env 5
       - 33  # rls2009 soak env 5
       - 34  # rls2009 soak env 5
-    # TODO: Add:
     csit-vpp-perf-report-coverage-2009-2n-clx:
       - 2   # rls2009 NDRPDR cov 2n-clx-ip4-00
       - 3   # rls2009 NDRPDR cov 2n-clx-ip4-01
@@ -2447,7 +2449,7 @@
       - 5   # rls2009 NDRPDR cov 2n-clx-ip4-03
       - 6   # rls2009 NDRPDR cov 2n-clx-ip4-04
       - 7   # rls2009 NDRPDR cov 2n-clx-ip4-05
-      - 8   # rls2009 NDRPDR cov 2n-clx-ip6-00
+      - 22  # rls2009 NDRPDR cov 2n-clx-ip6-00
       - 9   # rls2009 NDRPDR cov 2n-clx-ip6-01
       - 17  # rls2009 NDRPDR cov 2n-clx-l2-00
       - 21  # rls2009 NDRPDR cov 2n-clx-l2-01
