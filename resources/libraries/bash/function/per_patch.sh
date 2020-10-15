@@ -54,12 +54,12 @@ function archive_parse_test_results () {
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
     # - archive_test_results - Archiving results.
-    # - parse_bmrr_results - See definition in this file.
+    # - parse_results - See definition in this file.
 
     set -exuo pipefail
 
     archive_test_results "$1" || die
-    parse_bmrr_results "${TARGET}" || {
+    parse_results "${TARGET}" || {
         die "The function should have died on error."
     }
 }
@@ -114,7 +114,6 @@ function compare_test_results () {
     #   of parent build.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
-    # - parse_bmrr_results - See definition in this file.
     # Exit code:
     # - 0 - If the comparison utility sees no regression (nor data error).
     # - 1 - If the comparison utility sees a regression (or data error).
@@ -152,10 +151,17 @@ function initialize_csit_dirs () {
 }
 
 
-function parse_bmrr_results () {
+function parse_results () {
 
-    # Currently "parsing" is just two greps.
+    # Currently "parsing" is just few greps.
     # TODO: Re-use PAL parsing code, make parsing more general and centralized.
+    #
+    # The current implementation attempts to parse for BMRR, PDR and passrate.
+    # If failures are present, they are reported as fake throughput values,
+    # enabling bisection to focus on the cause (or the fix) of the failures.
+    #
+    # The fake values are created with MRR multiplicity,
+    # otherwise jumpavg (which dislikes short groups) could misclassify them.
     #
     # Arguments:
     # - ${1} - Path to (existing) directory holding robot output.xml result.
@@ -163,22 +169,193 @@ function parse_bmrr_results () {
     # - output.xml - From argument location.
     # Files updated:
     # - results.txt - (Re)created, in argument location.
+    # Variables read:
+    # - CSIT_PERF_TRIAL_MULTIPLICITY - To create fake results of this length.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+    # - parse_results_mrr - See definition in this file.
+    # - parse_results_ndrpdr - See definition in this file.
+    # - parse_results_passrate - See definition in this file.
+    # - parse_results_soak - See definition in this file.
+
+    set -exuo pipefail
+
+    rel_dir="$(readlink -e "${1}")" || die "Readlink failed."
+    in_file="${rel_dir}/output.xml" || die
+    out_file="${rel_dir}/results.txt" || die
+    echo "Parsing ${in_file} putting results into ${out_file}" || die
+    # Frst attempt: (B)MRR.
+    if parse_results_mrr "${in_file}" "${out_file}"; then
+        return 0
+    fi
+    # BMRR parsing failed. Attempt PDR/NDR.
+    if parse_results_ndrpdr "${in_file}" "${out_file}"; then
+        return 0
+    fi
+    # PDR/NDR parsing failed. Attempt soak.
+    if parse_results_soak "${in_file}" "${out_file}"; then
+        return 0
+    fi
+    # Soak parsing failed.
+    # Probably not a perf test at all (or a failed one),
+    # but we can still bisect by passrate.
+    parse_results_passrate "${in_file}" "${out_file}" || die
+}
+
+
+function parse_results_mrr () {
+
+    # Parse MRR test message(s) into JSON-readable output.
+    #
+    # Return non-zero if parsing fails.
+    #
+    # Arguments:
+    # - ${1} - Path to (existing) input file. Required.
+    # - ${2} - Path to (overwritten if exists) output file. Required.
+    # Files read:
+    # - output.xml - The input file from argument location.
+    # Files updated:
+    # - results.txt - (Re)created, in argument location.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
     set -exuo pipefail
 
-    rel_dir="$(readlink -e "${1}")" || die "Readlink failed."
-    in_file="${rel_dir}/output.xml"
-    out_file="${rel_dir}/results.txt"
-    # TODO: Do we need to check echo exit code explicitly?
-    echo "Parsing ${in_file} putting results into ${out_file}"
-    echo "TODO: Re-use parts of PAL when they support subsample test parsing."
-    pattern='Maximum Receive Rate trial results in packets'
-    pattern+=' per second: .*\]</status>'
-    grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}" || {
-        die "Some parsing grep command has failed."
-    }
+    in_file="${1}" || die "Two arguments needed."
+    out_file="${2}" || die "Two arguments needed."
+    pattern='Maximum Receive Rate trial results in .*' || die
+    pattern+=' per second: .*\]</status>' || die
+    # RC of the following line is returned.
+    grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}"
+}
+
+
+function parse_results_ndrpdr () {
+
+    # Parse NDRPDR test message(s) for PDR_LOWER, into JSON-readable output.
+    #
+    # Return non-zero if parsing fails.
+    # Parse for PDR, unless environment variable says NDR.
+    #
+    # Arguments:
+    # - ${1} - Path to (existing) input file. Required.
+    # - ${2} - Path to (overwritten if exists) output file. Required.
+    # Variables read:
+    # - FDIO_CSIT_PERF_PARSE_NDR - If defined and "yes", parse for NDR, not PDR.
+    # Files read:
+    # - output.xml - The input file from argument location.
+    # Files updated:
+    # - results.txt - (Re)created, in argument location.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
+
+    in_file="${1}" || die "Two arguments needed."
+    out_file="${2}" || die "Two arguments needed."
+    if [[ "${FDIO_CSIT_PERF_PARSE_NDR:-no}" == "yes" ]]; then
+        pattern1='NDR_LOWER: .*, .*<' || die
+    else
+        pattern1='PDR_LOWER: .*, .*<' || die
+    fi
+    # Adapted from https://superuser.com/a/377084
+    pattern2='(?<=: ).*(?= pps)' || die
+    if grep "${pattern1}" "${in_file}" | grep -Po "${pattern2}" >> "${out_file}"
+    then
+        # Add bracket https://www.shellhacks.com/sed-awk-add-end-beginning-line/
+        sed -i 's/.*/[&]/' "${out_file}"
+        # Returns nonzero if fails.
+    else
+        return 1
+    fi
+}
+
+
+function parse_results_passrate () {
+
+    # Create fake values for failed tests.
+    #
+    # This function always passes (or dies).
+    #
+    # A non-zero but small value is chosen for failed run, to distinguish from
+    # real nonzero perf (which are big in general) and real zero values.
+    # A medium sized value is chosen for a passed run.
+    # This way bisect can search for breakages and fixes in device tests.
+    # At least in theory, as device tests are bootstrapped too differently.
+    #
+    # The fake value is repeated according to BMRR multiplicity,
+    # because a single value can be lost in high stdev data.
+    # (And it does not hurt for single value outputs such as NDR.)
+    #
+    # TODO: Count number of tests and generate fake results for every one.
+    #       Currently that would interfere with test retry logic.
+    #
+    # Arguments:
+    # - ${1} - Path to (existing) input file. Required.
+    # - ${2} - Path to (overwritten if exists) output file. Required.
+    # Variables read:
+    # - CSIT_PERF_TRIAL_MULTIPLICITY - To create fake results of this length.
+    # Files read:
+    # - output.xml - The input file from argument location.
+    # Files updated:
+    # - results.txt - (Re)created, in argument location.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
+
+    in_file="${1}" || die "Two arguments needed."
+    out_file="${2}" || die "Two arguments needed."
+    # The last status is the top level (global) robot status.
+    # It only passes if there were no (critical) test failures.
+    if fgrep '<status status=' "${out_file}" | tail -n 1 | fgrep '"PASS"'; then
+        fake_value="30.0" || die
+    else
+        fake_value="2.0" || die
+    fi
+    out_arr=("[") || die
+    for i in `seq "${CSIT_PERF_TRIAL_MULTIPLICITY:-1}"`; do
+        out_arr+=("${fake_value}" ",") || die
+    done
+    # The Python part uses JSON parser, the last comma has to be removed.
+    # Requires Bash 4.3 https://stackoverflow.com/a/36978740
+    out_arr[-1]="]" || die
+    # TODO: Is it possible to avoid space separation by manipulating IFS?
+    echo "${out_arr[@]}" > "${out_file}" || die
+}
+
+
+function parse_results_soak () {
+
+    # Parse soak test message(s) for lower bound, into JSON-readable output.
+    #
+    # Return non-zero if parsing fails.
+    #
+    # Arguments:
+    # - ${1} - Path to (existing) input file. Required.
+    # - ${2} - Path to (overwritten if exists) output file. Required.
+    # Files read:
+    # - output.xml - The input file from argument location.
+    # Files updated:
+    # - results.txt - (Re)created, in argument location.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
+
+    in_file="${1}" || die "Two arguments needed."
+    out_file="${2}" || die "Two arguments needed."
+    pattern1='PLRsearch lower bound: .*, .*<' || die
+    # Adapted from https://superuser.com/a/377084
+    pattern2='(?<=: ).*(?= pps)' || die
+    if grep "${pattern1}" "${in_file}" | grep -Po "${pattern2}" >> "${out_file}"
+    then
+        # Add bracket https://www.shellhacks.com/sed-awk-add-end-beginning-line/
+        sed -i 's/.*/[&]/' "${out_file}"
+        # Returns nonzero if fails.
+    else
+        return 1
+    fi
 }
 
 
