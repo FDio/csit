@@ -491,6 +491,8 @@ function get_test_tag_string () {
     # Variables set:
     # - TEST_TAG_STRING - The string following trigger word in gerrit comment.
     #   May be empty, or even not set on event types not adding comment.
+    # Variables exported optionally:
+    # - GRAPH_NODE_VARIANT - Node variant to test with, set if found in trigger.
 
     # TODO: ci-management scripts no longer need to perform this.
 
@@ -943,16 +945,13 @@ function select_tags () {
     TAGS=()
     prefix=""
 
-    set +x
-    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
-        # Automatic prefixing for VPP jobs to limit the NIC used and
-        # traffic evaluation to MRR.
-        if [[ "${TEST_TAG_STRING-}" == *"nic_"* ]]; then
-            prefix="${prefix}mrrAND"
-        else
-            prefix="${prefix}mrrAND${default_nic}AND"
-        fi
+    # Automatic limiting of NIC used if not specified.
+    if [[ "${TEST_TAG_STRING-}" == *"nic_"* ]]; then
+        prefix=""
+    else
+        prefix="${default_nic}AND"
     fi
+    set +x
     for tag in "${test_tag_array[@]}"; do
         if [[ "${tag}" == "!"* ]]; then
             # Exclude tags are not prefixed.
