@@ -19,7 +19,7 @@
     path: "/etc/default/grub"
     state: "present"
     regexp: "^GRUB_CMDLINE_LINUX="
-    line: "{{ grub_cmdline_linux[ansible_machine] | join() }}"
+    line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value %}{{key}}={{value}} {% else %}{{key}} {% endif %}{% endfor %}\""
   notify:
     - "Update GRUB"
   tags:
