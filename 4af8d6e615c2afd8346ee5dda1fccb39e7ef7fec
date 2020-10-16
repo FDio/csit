@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd1bff5a_23e1ab6d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-16T11:06:00Z",
+      "side": 1,
+      "message": "I forgot to mention we need to do this, because he is not responding, and thus preventing us to use the new license on his code.",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "4af8d6e615c2afd8346ee5dda1fccb39e7ef7fec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
