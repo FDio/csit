@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b908101_edbff9df",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-16T13:51:02Z",
+      "side": 1,
+      "message": "Why is this needed? The previous line should have logged the value (level info).\nThe value is a small line in the middle of longer output (would be last, but we have get_service_logs in \"finally\" clause).\nYou can see it here [0] at 13:46:51.529 (CEST, I presume).\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/9244/archives/log.html.gz#s1-s1-s1-k1-k5",
+      "range": {
+        "startLine": 27,
+        "startChar": 14,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "ce50430ebfc07997341094abc81d478a6d8c279c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
