@@ -208,7 +208,11 @@ class RxQueue(PacketVerifier):
 
         Returns scapy's Ether() object created from next packet in the queue.
         Queue is being filled in parallel in subprocess. If no packet
-        arrives in given timeout queue.Empty exception will be risen.
+        arrives in given timeout None is returned.
+
+        If the list of packets to ignore is given, they are logged
+        but otherwise ignored upon arrival, not adding to the timeout.
+        Each time a packet is ignored, it is removed from the ignored list.
 
         :param timeout: How many seconds to wait for next packet.
         :param ignore: List of packets that should be ignored.
@@ -220,36 +224,34 @@ class RxQueue(PacketVerifier):
         :returns: Ether() initialized object from packet data.
         :rtype: scapy.Ether
         """
-        rlist, _, _ = select.select([self._sock], [], [], timeout)
-        if self._sock not in rlist:
-            return None
-        try:
-            with interruptingcow.timeout(timeout,
-                                         exception=RuntimeError('Timeout')):
-                ignore_list = list()
-                if ignore is not None:
-                    for ig_pkt in ignore:
-                        # Auto pad all packets in ignore list
-                        ignore_list.append(str(auto_pad(ig_pkt)))
-                while True:
-                    pkt = self._sock.recv(0x7fff)
-                    pkt_pad = str(auto_pad(pkt))
-                    print(f"Received packet on {self._ifname} of len {len(pkt)}")
-                    if verbose:
-                        if hasattr(pkt, u"show2"):
-                            pkt.show2()
-                        else:
-                            # Never happens in practice, but Pylint does not know that.
-                            print(f"Unexpected instance: {pkt!r}")
-                        print()
-                    if pkt_pad in ignore_list:
-                        ignore_list.remove(pkt_pad)
-                        print(u"Received packet ignored.")
-                        continue
-                    else:
-                        return pkt
-        except RuntimeError:
-            return None
+        time_end = time.monotonic() + timeout
+        ignore = ignore if ignore else list()
+        # Auto pad all packets in ignore list
+        ignore = [str(auto_pad(ig_pkt)) for ig_pkt in ignore]
+        while 1:
+            time_now = time.monotonic()
+            if time_now >= time_end:
+                return None
+            timedelta = time_end - time_now
+            rlist, _, _ = select.select([self._sock], [], [], timedelta)
+            if self._sock not in rlist:
+                # Might have been an interrupt.
+                continue
+            pkt = self._sock.recv(0x7fff)
+            pkt_pad = str(auto_pad(pkt))
+            print(f"Received packet on {self._ifname} of len {len(pkt)}")
+            if verbose:
+                if hasattr(pkt, u"show2"):
+                    pkt.show2()
+                else:
+                    # Never happens in practice, but Pylint does not know that.
+                    print(f"Unexpected instance: {pkt!r}")
+                print()
+            if pkt_pad in ignore:
+                ignore_list.remove(pkt_pad)
+                print(u"Received packet ignored.")
+                continue
+            return pkt
 
 
 class TxQueue(PacketVerifier):
