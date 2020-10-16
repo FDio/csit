@@ -77,7 +77,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Configure topology for IPv6 LISPoIP4 testing
-| | And Vpp All RA Suppress Link Layer | ${nodes}
+| | And Vpp Interfaces RA Suppress On All Nodes | ${nodes}
 | | And Configure LISP in 2-node circular topology
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid}
