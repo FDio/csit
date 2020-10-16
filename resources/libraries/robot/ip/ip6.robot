@@ -75,7 +75,7 @@
 | | VPP Interface Set IP Address
 | | ... | ${dut} | ${dut_if2} | 2001:2::1 | 64
 | |
-| | Vpp All Ra Suppress Link Layer | ${nodes}
+| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:3::2
@@ -140,7 +140,7 @@
 | | ... | ELSE | Set Variable | ${DUT1_${int}2}[0]
 | | VPP Interface Set IP Address
 | | ... | ${dut} | ${dut_if2} | 2001:5::1 | ${prefix}
-| | Vpp All Ra Suppress Link Layer | ${nodes}
+| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:3::2 | ${TG_pf1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -188,7 +188,7 @@
 | |
 | | [Arguments] | ${nf_nodes}=${1}
 | |
-| | Vpp All Ra Suppress Link Layer | ${nodes}
+| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
 | | Set interfaces in path up
 | | ${prefix}= | Set Variable | 64
 | | ${fib_table_1}= | Set Variable | ${101}
@@ -317,7 +317,7 @@
 | | ... | VPP Interface Set IP Address | ${dut2} | ${subif_index_2} | 2002:2::2
 | | ... | ${prefix}
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 2002:3::2 | ${prefix}
-| | Vpp All Ra Suppress Link Layer | ${nodes}
+| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
 | | Vpp Route Add | ${dut1} | ${tg_if1_net} | ${host_prefix}
 | | ... | gateway=2002:1::1 | interface=${DUT1_${int}1}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
