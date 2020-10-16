@@ -224,27 +224,24 @@ class RxQueue(PacketVerifier):
         if ignore is not None:
             for ig_pkt in ignore:
                 # Auto pad all packets in ignore list
-                ignore_list.append(str(auto_pad(ig_pkt)))
+                ignore_list.append(auto_pad(ig_pkt))
         while True:
-            rlist, _, _ = select.select([self._sock], [], [], timeout)
+            (rlist, _, _) = select.select([self._sock], [], [], timeout)
             if self._sock not in rlist:
                 return None
-
             pkt = self._sock.recv(0x7fff)
-            pkt_pad = str(auto_pad(pkt))
-            print(f"Received packet on {self._ifname} of len {len(pkt)}")
+            pkt_pad = auto_pad(pkt)
+            print 'Received packet on {0} of len {1}'\
+                .format(self._ifname, len(pkt))
             if verbose:
-                if hasattr(pkt, u"show2"):
-                    pkt.show2()
-                else:
-                    # Never happens in practice, but Pylint does not know that.
-                    print(f"Unexpected instance: {pkt!r}")
-                print()
+                pkt.show2()  # pylint: disable=no-member
+                print
             if pkt_pad in ignore_list:
                 ignore_list.remove(pkt_pad)
-                print(u"Received packet ignored.")
+                print 'Received packet ignored.'
                 continue
-            return pkt
+            else:
+                return pkt
 
 
 class TxQueue(PacketVerifier):
