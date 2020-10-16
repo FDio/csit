@@ -22,6 +22,30 @@
       "revId": "4af8d6e615c2afd8346ee5dda1fccb39e7ef7fec",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5793b82_9ac938d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-16T11:07:19Z",
+      "side": 1,
+      "message": "\u003e his code\n\nhttps://gerrit.fd.io/r/c/csit/+/11530",
+      "parentUuid": "dd1bff5a_23e1ab6d",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "4af8d6e615c2afd8346ee5dda1fccb39e7ef7fec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
