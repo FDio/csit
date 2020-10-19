@@ -46,6 +46,30 @@
       "revId": "ce50430ebfc07997341094abc81d478a6d8c279c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2ea4e54_f44a53c0",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-19T11:22:18Z",
+      "side": 1,
+      "message": "I think it is sufficient to cover API messages (and/or stats access), no need to cover every Robot/Python implementation we have for it.\n\nIf we want to have an explicit line to remind us show_version is still covered, that line can be in the suite (with other stat lines).",
+      "parentUuid": "8c798935_01e511c3",
+      "range": {
+        "startLine": 27,
+        "startChar": 14,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "ce50430ebfc07997341094abc81d478a6d8c279c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
