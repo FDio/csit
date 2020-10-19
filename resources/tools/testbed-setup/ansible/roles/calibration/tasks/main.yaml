@@ -1,7 +1,7 @@
 ---
 # file: roles/calibration/tasks/main.yaml
 
-- name: Calibration - Install Distribution - Release - Machine Prerequisites
+- name: Install Distribution - Release - Machine Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
@@ -9,41 +9,42 @@
   tags:
     - install-dependencies
 
-- name: Calibration - Check CPU Power States
+- name: Check CPU Power States
   shell: "lscpu"
   register: current_lscpu
   changed_when: false
-  failed_when: |
-    'CPU min MHz' in current_lscpu.stdout and
-    'Intel(R) Xeon(R)' in current_lscpu.stdout
   tags:
     - check-cpu-frequency
 
-- name: Calibration - Check Kernel Version of "{{ kernel_version }}"
-  shell: "uname -r"
-  register: current_kernel_version
-  changed_when: false
-  failed_when: |
-    current_kernel_version.stdout not in kernel_version
+- name: Check CPU Power States
+  assert:
+    that:
+      - "'CPU min MHz' not in current_lscpu.stdout or 'Intel(R) Xeon(R)' not in ansible_processor"
+    fail_msg: "CPU configuration!"
+    success_msg: "CPU configuration match."
+  tags:
+    - check-cpu-frequency
+
+- name: Check Kernel Parameters
+  assert:
+    that:
+      - item in ansible_cmdline and grub[item] == ansible_cmdline[item]
+    fail_msg: "Kernel parameters!"
+    success_msg: "Kernel parameters match."
+  loop: "{{ grub.keys()|sort }}"
+  tags:
+    - check-kernel-params
+
+- name: Check Kernel Version
+  assert:
+    that:
+      - ansible_kernel not in kernel_version_by_distro_by_arch
+    fail_msg: "Kernel version!"
+    success_msg: "Kernel version match."
   tags:
     - check-kernel-version
 
-- name: Calibration - Check Kernel Parameters
-  shell: "cat /proc/cmdline"
-  register: current_kernel_parameters
-  changed_when: false
-  failed_when: |
-    'isolcpus' not in current_kernel_parameters.stdout or
-    'nohz_full' not in current_kernel_parameters.stdout or
-    'rcu_nocbs' not in current_kernel_parameters.stdout or
-    'processor.max_cstate=1' not in current_kernel_parameters.stdout or
-    'nmi_watchdog=0' not in current_kernel_parameters.stdout or
-    'intel_iommu=on' not in current_kernel_parameters.stdout or
-    'nosoftlockup' not in current_kernel_parameters.stdout
-  tags:
-    - check-cmdline
-
-- name: Calibration - Get Spectre Meltdown Checker
+- name: Get Spectre Meltdown Checker
   get_url:
     url: "https://meltdown.ovh"
     dest: "/opt/spectre-meltdown-checker.sh"
@@ -51,7 +52,7 @@
   tags:
     - check-spectre-meltdown
 
-- name: Calibration - Run Spectre Meltdown Checker
+- name: Run Spectre Meltdown Checker
   shell: "/opt/spectre-meltdown-checker.sh --no-color || true"
   async: 60
   poll: 0
@@ -60,13 +61,13 @@
   tags:
     - check-spectre-meltdown
 
-- name: Calibration - {{ ansible_machine }} Specific
+- name: "{{ ansible_machine }} Specific"
   include_tasks: "{{ ansible_machine }}.yaml"
   tags:
     - check-machine-specific
     - check-jitter-tool
 
-- name: Check sync status
+- name: Check Sync Status
   async_status:
     jid: "{{ spectre_meltdown_async.ansible_job_id }}"
   register: "spectre_meltdown_poll_results"
