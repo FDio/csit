@@ -22,6 +22,30 @@
       "revId": "ce50430ebfc07997341094abc81d478a6d8c279c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c798935_01e511c3",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-19T07:52:41Z",
+      "side": 1,
+      "message": "It\u0027s there from the same reason as all stats commands - to verify KW that is used by performance tests.",
+      "parentUuid": "5b908101_edbff9df",
+      "range": {
+        "startLine": 27,
+        "startChar": 14,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "ce50430ebfc07997341094abc81d478a6d8c279c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
