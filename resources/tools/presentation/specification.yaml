@@ -572,6 +572,7 @@
         - 16  # rls2009 NDRPDR cov 3n-skx-ip4tun-02
         - 18  # rls2009 NDRPDR cov 3n-skx-ip6-01
         - 19  # rls2009 NDRPDR cov 3n-skx-ip6tun-00
+        - 20  # rls2009 NDRPDR cov 3n-skx-l2-00
         - 21  # rls2009 NDRPDR cov 3n-skx-l2-01
         - 22  # rls2009 NDRPDR cov 3n-skx-l2-02
         - 23  # rls2009 NDRPDR cov 3n-skx-l2-03
@@ -2302,6 +2303,7 @@
       - 16  # rls2009 NDRPDR cov 3n-skx-ip4tun-02
       - 18  # rls2009 NDRPDR cov 3n-skx-ip6-01
       - 19  # rls2009 NDRPDR cov 3n-skx-ip6tun-00
+      - 20  # rls2009 NDRPDR cov 3n-skx-l2-00
       - 21  # rls2009 NDRPDR cov 3n-skx-l2-01
       - 22  # rls2009 NDRPDR cov 3n-skx-l2-02
       - 23  # rls2009 NDRPDR cov 3n-skx-l2-03
