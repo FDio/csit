@@ -85,12 +85,11 @@
 | ${n_hosts}= | ${65536}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
-# Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-65536h
-| ${cps}= | ${4128768}
-# Trial data overwrite
-| ${trial_duration}= | ${1.1}
-| ${trial_multiplicity}= | ${1}
+| ${transaction_scale}= | ${n_sessions}
+# Traffic profile
+| ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h
+| ${transaction_type}= | udp_cps
+| ${disable_latency}= | ${True}
 
 *** Keywords ***
 | Local Template
@@ -109,7 +108,6 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Set Test Variable | \${max_rate} | ${cps}
 | | ${pre_stats}= | Create List
 | | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
 | | ... | vpp-clear-runtime
@@ -119,7 +117,7 @@
 | | ... | vpp-show-runtime
 | | Set Test Variable | ${post_stats}
 | |
-| | Given Set Jumbo
+| | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Add NAT to all DUTs | nat_mode=${nat_mode}
@@ -132,7 +130,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
-| | Then Find NDR and PDR intervals using optimized search | latency=${False}
+| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
@@ -146,39 +144,3 @@
 | 64B-4c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
-
-| 1518B-1c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
-| | [Tags] | 1518B | 1C
-| | frame_size=${1518} | phy_cores=${1}
-
-| 1518B-2c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
-| | [Tags] | 1518B | 2C
-| | frame_size=${1518} | phy_cores=${2}
-
-| 1518B-4c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
-| | [Tags] | 1518B | 4C
-| | frame_size=${1518} | phy_cores=${4}
-
-| 9000B-1c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
-| | [Tags] | 9000B | 1C
-| | frame_size=${9000} | phy_cores=${1}
-
-| 9000B-2c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
-| | [Tags] | 9000B | 2C
-| | frame_size=${9000} | phy_cores=${2}
-
-| 9000B-4c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
-| | [Tags] | 9000B | 4C
-| | frame_size=${9000} | phy_cores=${4}
-
-| IMIX-1c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
-| | [Tags] | IMIX | 1C
-| | frame_size=IMIX_v4_1 | phy_cores=${1}
-
-| IMIX-2c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
-| | [Tags] | IMIX | 2C
-| | frame_size=IMIX_v4_1 | phy_cores=${2}
-
-| IMIX-4c-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr
-| | [Tags] | IMIX | 4C
-| | frame_size=IMIX_v4_1 | phy_cores=${4}
