@@ -15,7 +15,6 @@ grub:
   processor.max_cstate: "0"
   rcu_nocbs: "1-15,17-31,33-47,49-63"
   tsc: "reliable"
-  vt.handoff: "1"
 sysctl:
   kernel:
     watchdog_cpumask: "0,16,32,48"
