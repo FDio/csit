@@ -70,6 +70,30 @@
       "revId": "ce50430ebfc07997341094abc81d478a6d8c279c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24f2160d_66230ba5",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-20T10:34:04Z",
+      "side": 1,
+      "message": "Ah, you are correct, there is already check of \"show_version\" API as a part of \"Verify Vpp on All Duts\" KW.",
+      "parentUuid": "c2ea4e54_f44a53c0",
+      "range": {
+        "startLine": 27,
+        "startChar": 14,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "ce50430ebfc07997341094abc81d478a6d8c279c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
