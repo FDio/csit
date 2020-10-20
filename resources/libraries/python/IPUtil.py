@@ -326,17 +326,23 @@ class IPUtil:
         return None
 
     @staticmethod
-    def set_linux_interface_up(node, interface):
+    def set_linux_interface_up(
+            node, interface, namespace=None):
         """Set the specified interface up.
-
         :param node: VPP/TG node.
         :param interface: Interface in namespace.
+        :param namespace: Execute command in namespace. Optional
         :type node: dict
         :type interface: str
+        :type namespace: str
         :raises RuntimeError: If the interface could not be set up.
         """
-        cmd = f"ip link set {interface} up"
+        if namespace is not None:
+            cmd = f"ip netns exec {namespace} ip link set dev {interface} up"
+        else:
+            cmd = f"ip link set dev {interface} up"
         exec_cmd_no_error(node, cmd, timeout=30, sudo=True)
+
 
     @staticmethod
     def set_linux_interface_ip(
