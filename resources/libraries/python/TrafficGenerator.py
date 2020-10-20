@@ -580,7 +580,7 @@ class TrafficGenerator(AbstractMeasurer):
                 # so we can compare with what telemetry suggests
                 # the real duration was.
                 logger.debug(f"Expected duration {computed_duration}")
-                computed_duration += 0.1115
+                computed_duration += 0.1115 
         # Else keep -1.
         if self.duration_limit:
             computed_duration = min(computed_duration, self.duration_limit)
