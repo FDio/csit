@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b97e975_820d81b7",
+        "filename": "docs/uti/data_structure.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-21T14:38:20Z",
+      "side": 1,
+      "message": "Are there any restrictions on the format to use? I guess the time should be in UTC timezone, but there are several formats combining it with date.\nFor bash, I prefer these two, one is more machine friendly, the other looks better to humans:\n\n $ date -u --iso-8601\u003dns\n 2020-10-21T13:42:09,911392815+00:00\n\n $ date -u --rfc-3339\u003dns\n 2020-10-21 13:40:46.116420845+00:00\n\nBut looking at [0], PAL should be quite versatile in accepting various formats. At least in future, if I recall correctly jobs are using python3.6, and locally I have 3.7 so I cannot tests whether datetime module is flexible enough in 3.6.\n\n[0] https://docs.python.org/3/library/datetime.html#datetime.datetime.fromisoformat",
+      "range": {
+        "startLine": 10,
+        "startChar": 13,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "0a1b7c90c00be26fc7799d5a4db1e2573dec58e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b41a18bd_ece40aa4",
+        "filename": "docs/uti/data_structure.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-21T14:38:20Z",
+      "side": 1,
+      "message": "Include an example. Personaly, I refer to testbeds in various ways, most frequently like \"TB24\".\nThe machine-friendly name would be \"lf_2n_skx_testbed24.yaml\" (with the usual caveat that we may decide to rename the file in the future).",
+      "range": {
+        "startLine": 15,
+        "startChar": 38,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "0a1b7c90c00be26fc7799d5a4db1e2573dec58e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c074ac00_80179852",
+        "filename": "docs/uti/data_structure.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-21T14:38:20Z",
+      "side": 1,
+      "message": "Example please.",
+      "range": {
+        "startLine": 17,
+        "startChar": 29,
+        "endLine": 17,
+        "endChar": 36
+      },
+      "revId": "0a1b7c90c00be26fc7799d5a4db1e2573dec58e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d14c1a5c_2a8da84e",
+        "filename": "docs/uti/data_structure.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-21T14:38:20Z",
+      "side": 1,
+      "message": "Example needed. Capitalization from filesystem or from Robot output? Directories included?",
+      "range": {
+        "startLine": 21,
+        "startChar": 17,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "0a1b7c90c00be26fc7799d5a4db1e2573dec58e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "565205ac_9ae3bbd2",
+        "filename": "docs/uti/data_structure.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-21T14:38:20Z",
+      "side": 1,
+      "message": "Is this for CSIT git repository?\n\n $ git rev-parse HEAD",
+      "range": {
+        "startLine": 26,
+        "startChar": 9,
+        "endLine": 26,
+        "endChar": 13
+      },
+      "revId": "0a1b7c90c00be26fc7799d5a4db1e2573dec58e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5591d911_29cdf8cf",
+        "filename": "docs/uti/data_structure.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-21T14:38:20Z",
+      "side": 1,
+      "message": "Can this json file include comments? I am interested to see why we need this.",
+      "range": {
+        "startLine": 27,
+        "startChar": 9,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "0a1b7c90c00be26fc7799d5a4db1e2573dec58e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
