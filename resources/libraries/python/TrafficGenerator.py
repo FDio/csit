@@ -800,6 +800,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_with_value(u"port_1", p_1)
         command_line.add_with_value(u"traffic_directions", traffic_directions)
         command_line.add_if(u"async_start", async_call)
+        latency = True
         command_line.add_if(u"latency", latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
 
