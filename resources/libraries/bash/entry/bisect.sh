@@ -102,20 +102,33 @@ get_test_tag_string || die
 # Unfortunately, git bisect only works at the top of the repo.
 cd "${VPP_DIR}" || die
 
+# Save the current commit.
+git branch "latest"
+# Save the lower bound commit.
+git branch "earliest"
+git reset --hard "${GIT_BISECT_FROM}"
+
 # This is the place for custom code manipulating local git history.
+
+git branch "alter"
+# Move l2patch fix and use it as fixup.
+# https://stackoverflow.com/a/24455872
+git reset --hard dfb19cabe20ccf1cbd1aa714f493ccd322839b91
+git cherry-pick 52e9aaf0b55e7742a39d75e5dffb813a3b0c011d
+git reset --soft dfb19cabe20ccf1cbd1aa714f493ccd322839b91
+git commit --amend --no-edit
+git checkout "latest"
+git rebase "alter" || git rebase --skip
 
 git bisect start || die
 # TODO: Can we add a trap for "git bisect reset" or even "deactivate",
 # without affecting the inner trap for unreserve and cleanup?
-# Save the current commit.
-git branch "latest" || die "Failed to create branch: latest"
+git checkout "latest"
 git status || die
 git describe || die
 git bisect new || die
 # Performing first iteration early to avoid testing or even building.
-git checkout "${GIT_BISECT_FROM}" || die "Failed to checkout earliest commit."
-# Save the current commit.
-git branch "earliest" || die "Failed to create branch: earliest"
+git checkout "earliest" || die "Failed to checkout earliest commit."
 git status || die
 git describe || die
 # The first iteration.
