@@ -570,6 +570,7 @@
         - 14  # rls2009 NDRPDR cov 3n-skx-ip4tun-00
         - 15  # rls2009 NDRPDR cov 3n-skx-ip4tun-01
         - 16  # rls2009 NDRPDR cov 3n-skx-ip4tun-02
+        - 40  # rls2009 NDRPDR cov 3n-skx-ip6-00
         - 18  # rls2009 NDRPDR cov 3n-skx-ip6-01
         - 19  # rls2009 NDRPDR cov 3n-skx-ip6tun-00
         - 20  # rls2009 NDRPDR cov 3n-skx-l2-00
@@ -577,7 +578,11 @@
         - 22  # rls2009 NDRPDR cov 3n-skx-l2-02
         - 23  # rls2009 NDRPDR cov 3n-skx-l2-03
         - 24  # rls2009 NDRPDR cov 3n-skx-l2-04
+        - 41  # rls2009 NDRPDR cov 3n-skx-l2-05
+        - 43  # rls2009 NDRPDR cov 3n-skx-l2-07
         - 28  # rls2009 NDRPDR cov 3n-skx-l2-08
+        - 44  # rls2009 NDRPDR cov 3n-skx-l2-09
+        - 47  # rls2009 NDRPDR cov 3n-skx-srv6-00
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-report-coverage-2009-2n-skx:
@@ -616,11 +621,8 @@
         - 16  # rls2009 NDRPDR cov 2n-clx-vts-00
 
     vpp-perf-results-3n-tsh:
-      # TODO: Replace???
       csit-vpp-perf-report-iterative-2009-3n-tsh:
         - 14  # rls2009 NDRPDR iter env 5
-#      csit-vpp-perf-report-coverage-2009-3n-tsh:
-#        -
 
     vpp-perf-results-3n-dnv:
       csit-vpp-perf-report-coverage-2009-3n-dnv:
@@ -2301,6 +2303,7 @@
       - 14  # rls2009 NDRPDR cov 3n-skx-ip4tun-00
       - 15  # rls2009 NDRPDR cov 3n-skx-ip4tun-01
       - 16  # rls2009 NDRPDR cov 3n-skx-ip4tun-02
+      - 40  # rls2009 NDRPDR cov 3n-skx-ip6-00
       - 18  # rls2009 NDRPDR cov 3n-skx-ip6-01
       - 19  # rls2009 NDRPDR cov 3n-skx-ip6tun-00
       - 20  # rls2009 NDRPDR cov 3n-skx-l2-00
@@ -2308,7 +2311,11 @@
       - 22  # rls2009 NDRPDR cov 3n-skx-l2-02
       - 23  # rls2009 NDRPDR cov 3n-skx-l2-03
       - 24  # rls2009 NDRPDR cov 3n-skx-l2-04
+      - 41  # rls2009 NDRPDR cov 3n-skx-l2-05
+      - 43  # rls2009 NDRPDR cov 3n-skx-l2-07
       - 28  # rls2009 NDRPDR cov 3n-skx-l2-08
+      - 44  # rls2009 NDRPDR cov 3n-skx-l2-09
+      - 47  # rls2009 NDRPDR cov 3n-skx-srv6-00
 
     csit-vpp-perf-verify-2001-2n-skx:
       - 101  # MRR sel - old
@@ -2519,8 +2526,6 @@
       - 22  # rls2009 NDRPDR iter env 5
       - 23  # rls2009 NDRPDR iter env 5
       - 15  # rls2006 MRR iter env 5
-#    csit-vpp-perf-report-coverage-2009-3n-tsh:
-#      -
 
     csit-vpp-perf-verify-2001-3n-dnv:
       - 5   # NDRPDR sel
