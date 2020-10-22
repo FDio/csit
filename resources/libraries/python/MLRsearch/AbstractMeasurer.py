@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -24,7 +24,7 @@ class AbstractMeasurer(metaclass=ABCMeta):
         """Perform trial measurement and return the result.
 
         :param duration: Trial duration [s].
-        :param transmit_rate: Target transmit rate [pps].
+        :param transmit_rate: Target transmit rate [tps].
         :type duration: float
         :type transmit_rate: float
         :returns: Structure containing the result of the measurement.
