@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22549855_ce1ba727",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "output",
+      "range": {
+        "startLine": 93,
+        "startChar": 27,
+        "endLine": 93,
+        "endChar": 33
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed891070_cfb9eb17",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "Are we sure that this value will be valid for all t-rex astf profiles (current ones and possible future ones)? What about use optional parameter (e.g. duration_correction) that defaults to value 1.0?",
+      "range": {
+        "startLine": 172,
+        "startChar": 32,
+        "endLine": 172,
+        "endChar": 35
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2df614fe_493f164c",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "Duplicate of lines #325-326",
+      "range": {
+        "startLine": 334,
+        "startChar": 20,
+        "endLine": 335,
+        "endChar": 77
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b22c3404_4c9405c4",
+        "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "Why not minimal_rate? fail_rate indicates that if result of measurement is equal to this fail_rate it means failure of the measurement.\nMoreover the doc string says: \"Minimal target transmit rate [pps]\"",
+      "range": {
+        "startLine": 258,
+        "startChar": 38,
+        "endLine": 258,
+        "endChar": 47
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f422448_909cd7b1",
+        "filename": "resources/libraries/python/MLRsearch/ReceiveRateMeasurement.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "Also possible in this format:\n\n        self.approximated_duration \u003d float(approximated_duration)\n            if approximated_duration else self.duration",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 54
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2db08fff_f5677973",
+        "filename": "resources/libraries/python/MLRsearch/ReceiveRateMeasurement.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "What about\n\n        self.approximated_receive_rate \u003d (\n            self.receive_count / self.approximated_duration\n            if self.approximated_duration \u003e 0.0 else 0.0\n        )\n?",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 48
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c4429a4_05300c0b",
+        "filename": "resources/libraries/python/MLRsearch/ReceiveRateMeasurement.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "Similar to line #70.",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 61
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bb00fe3_261dd3d1",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "If another TG tool / TG subtype (e.g. iperf) will be integrated we will need to change this part again...",
+      "range": {
+        "startLine": 516,
+        "startChar": 8,
+        "endLine": 523,
+        "endChar": 67
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78c4d909_1362b244",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "expressed",
+      "range": {
+        "startLine": 561,
+        "startChar": 30,
+        "endLine": 561,
+        "endChar": 39
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

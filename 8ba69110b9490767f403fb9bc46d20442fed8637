@@ -1,0 +1,216 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6470c0ed_7028bdd6",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 165
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "works",
+      "range": {
+        "startLine": 673,
+        "startChar": 51,
+        "endLine": 673,
+        "endChar": 56
+      },
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21bf6ba1_f2eff417",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-ipolicemarkbase-dev.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "avg_frame_size",
+      "range": {
+        "startLine": 69,
+        "startChar": 35,
+        "endLine": 69,
+        "endChar": 49
+      },
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb4a30e3_f33fa9f9",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-ipolicemarkbase-dev.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "Either move these two lines above to test variable setting part (preferred solution) or add \"And \" at the begging of lines.",
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17f16037_62e21ace",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-ipolicemarkbase-dev.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "avg_frame_size",
+      "range": {
+        "startLine": 70,
+        "startChar": 35,
+        "endLine": 70,
+        "endChar": 49
+      },
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da17863e_44bd6beb",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-ethip4-ip4base-ipolicemarkbase-ndrpdr.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "Either move these two lines above to test variable setting part (preferred solution) or add \"And \" at the begging of lines.",
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16935762_96a8c479",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-ethip4-ip4base-ipolicemarkbase-ndrpdr.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "avg_frame_size",
+      "range": {
+        "startLine": 85,
+        "startChar": 35,
+        "endLine": 85,
+        "endChar": 49
+      },
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a954328_fa08b6af",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-ethip4-ip4base-ipolicemarkbase-ndrpdr.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "avg_frame_size",
+      "range": {
+        "startLine": 86,
+        "startChar": 35,
+        "endLine": 86,
+        "endChar": 49
+      },
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76e0fbb7_98e57107",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-ipolicemarkbase-ndrpdr.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "avg_frame_size",
+      "range": {
+        "startLine": 83,
+        "startChar": 35,
+        "endLine": 83,
+        "endChar": 49
+      },
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdf7ee97_c0f5d521",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-ipolicemarkbase-ndrpdr.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "Either move these two lines above to test variable setting part (preferred solution) or add \"And \" at the begging of lines.",
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e10f391_f8590ee5",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-ipolicemarkbase-ndrpdr.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-22T09:10:39Z",
+      "side": 1,
+      "message": "avg_frame_size",
+      "range": {
+        "startLine": 84,
+        "startChar": 35,
+        "endLine": 84,
+        "endChar": 49
+      },
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
