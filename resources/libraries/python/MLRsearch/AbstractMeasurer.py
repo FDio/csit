@@ -24,7 +24,7 @@ class AbstractMeasurer(metaclass=ABCMeta):
         """Perform trial measurement and return the result.
 
         :param duration: Trial duration [s].
-        :param transmit_rate: Target transmit rate [pps].
+        :param transmit_rate: Target transmit rate [tps].
         :type duration: float
         :type transmit_rate: float
         :returns: Structure containing the result of the measurement.

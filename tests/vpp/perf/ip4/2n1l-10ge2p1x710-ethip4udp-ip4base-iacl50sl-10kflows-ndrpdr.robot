@@ -73,7 +73,7 @@
 | ${port_step}= | ${1}
 | ${trex_stream1_subnet}= | 10.10.10.0/24
 | ${trex_stream2_subnet}= | 20.20.20.0/24
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-2n-ethip4udp-10u1000p-conc
 
 *** Keywords ***

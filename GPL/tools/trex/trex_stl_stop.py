@@ -91,13 +91,16 @@ def main():
 
     total_rcvd, total_sent = rx_0 + rx_1, tx_0 + tx_1
     total_lost = total_sent - total_rcvd
-    # TODO: Add latency.
     print(
-        f"rate='unknown', total_received={total_rcvd}, "
-        f"total_sent={total_sent}, frame_loss={total_lost}, "
-        f"target_duration='manual', approximated_duration='manual', "
-        f"approximated_rate='unknown', "
-        f"latency_stream_0(usec)=-1/-1/-1, latency_stream_1(usec)=-1/-1/-1"
+        f"rate='unknown'; "
+        f"total_received={total_rcvd}; "
+        f"total_sent={total_sent}; "
+        f"frame_loss={total_lost}; "
+        f"target_duration='manual'; "
+        f"approximated_duration='manual'; "
+        f"approximated_rate='unknown'; "
+        f"latency_stream_0(usec)=-1/-1/-1; "
+        f"latency_stream_1(usec)=-1/-1/-1; "
     )
 
 

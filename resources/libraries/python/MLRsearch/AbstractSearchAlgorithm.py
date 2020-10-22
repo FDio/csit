@@ -30,16 +30,19 @@ class AbstractSearchAlgorithm(metaclass=ABCMeta):
 
     @abstractmethod
     def narrow_down_ndr_and_pdr(
-            self, fail_rate, line_rate, packet_loss_ratio):
+            self, min_rate, max_rate, packet_loss_ratio):
         """Perform measurements to narrow down intervals, return them.
 
         This will be renamed when custom loss ratio lists are supported.
 
-        :param fail_rate: Minimal target transmit rate [pps].
-        :param line_rate: Maximal target transmit rate [pps].
+        :param min_rate: Minimal target transmit rate [tps].
+            Usually, test are set to fail if search reaches this or below.
+        :param max_rate: Maximal target transmit rate [tps].
+            Usually computed from line rate and various other limits,
+            to prevent failures or duration stretching in Traffic Generator.
         :param packet_loss_ratio: Fraction of packets lost, for PDR [1].
-        :type fail_rate: float
-        :type line_rate: float
+        :type min_rate: float
+        :type max_rate: float
         :type packet_loss_ratio: float
         :returns: Structure containing narrowed down intervals
             and their measurements.
