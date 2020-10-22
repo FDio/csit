@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e9b52e0f_088162ca",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22549855_ce1ba727",
+      "range": {
+        "startLine": 93,
+        "startChar": 27,
+        "endLine": 93,
+        "endChar": 33
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed891070_cfb9eb17",
         "filename": "GPL/tools/trex/trex_astf_profile.py",
         "patchSetId": 164
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b9a4cfc0_7ff3e26e",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Added comment and \"if\" in case we start supporting async traffic (duration \u003d\u003d -1).",
+      "parentUuid": "ed891070_cfb9eb17",
+      "range": {
+        "startLine": 172,
+        "startChar": 32,
+        "endLine": 172,
+        "endChar": 35
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2df614fe_493f164c",
         "filename": "GPL/tools/trex/trex_astf_profile.py",
         "patchSetId": 164
@@ -68,6 +116,30 @@
       "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da1b330f_bce02baf",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Replaced the old block.",
+      "parentUuid": "2df614fe_493f164c",
+      "range": {
+        "startLine": 334,
+        "startChar": 20,
+        "endLine": 335,
+        "endChar": 77
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -118,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "bd180505_a6e5414e",
+        "filename": "GPL/tools/trex/trex_astf_stop.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7573c3d_f9debb5a",
+      "range": {
+        "startLine": 95,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 24
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e4eee6e_9669e29d",
         "filename": "GPL/tools/trex/trex_stl_profile.py",
         "patchSetId": 164
@@ -165,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "313be12a_8b30f118",
+        "filename": "GPL/tools/trex/trex_stl_profile.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "281b8be8_8c7d9035",
+      "range": {
+        "startLine": 72,
+        "startChar": 19,
+        "endLine": 72,
+        "endChar": 20
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8621bb9_e5f4cc99",
         "filename": "GPL/tools/trex/trex_stl_stop.py",
         "patchSetId": 164
@@ -185,6 +305,30 @@
       "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88aab30d_a97ce1f8",
+        "filename": "GPL/tools/trex/trex_stl_stop.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8621bb9_e5f4cc99",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 24
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -235,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "17b58023_85e84745",
+        "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "784fcb9f_ac3d5c50",
+      "range": {
+        "startLine": 258,
+        "startChar": 38,
+        "endLine": 258,
+        "endChar": 47
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f422448_909cd7b1",
         "filename": "resources/libraries/python/MLRsearch/ReceiveRateMeasurement.py",
         "patchSetId": 164
@@ -255,6 +423,30 @@
       "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a3c3b6e_e48ac685",
+        "filename": "resources/libraries/python/MLRsearch/ReceiveRateMeasurement.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Parens (or \\ at the end of the line) is needed.\nNot sure what is more readable, but lines 62, 66 and 85 were already using that pattern, so it is better to be consistent.",
+      "parentUuid": "1f422448_909cd7b1",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 54
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -281,6 +473,30 @@
     },
     {
       "key": {
+        "uuid": "dd95af5a_60debc3e",
+        "filename": "resources/libraries/python/MLRsearch/ReceiveRateMeasurement.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2db08fff_f5677973",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 48
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c4429a4_05300c0b",
         "filename": "resources/libraries/python/MLRsearch/ReceiveRateMeasurement.py",
         "patchSetId": 164
@@ -301,6 +517,30 @@
       "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8902559_3ae2cda4",
+        "filename": "resources/libraries/python/MLRsearch/ReceiveRateMeasurement.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c4429a4_05300c0b",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 61
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -351,6 +591,30 @@
     },
     {
       "key": {
+        "uuid": "807dee9c_6601aade",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1f5281aa_90c3859c",
+      "range": {
+        "startLine": 516,
+        "startChar": 8,
+        "endLine": 523,
+        "endChar": 67
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78c4d909_1362b244",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 164
@@ -371,6 +635,30 @@
       "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "855b087e_92ae7853",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:13:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78c4d909_1362b244",
+      "range": {
+        "startLine": 561,
+        "startChar": 30,
+        "endLine": 561,
+        "endChar": 39
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
