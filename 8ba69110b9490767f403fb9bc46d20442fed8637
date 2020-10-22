@@ -65,6 +65,24 @@
     },
     {
       "key": {
+        "uuid": "88df2764_3f5723d8",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-ipolicemarkbase-dev.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:07:51Z",
+      "side": 1,
+      "message": "The max/avg frame size values are computed in Set Max Rate And Jumbo, so variable table is not good.",
+      "parentUuid": "bb4a30e3_f33fa9f9",
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "17f16037_62e21ace",
         "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-ipolicemarkbase-dev.robot",
         "patchSetId": 165
@@ -76,6 +94,30 @@
       "writtenOn": "2020-10-22T09:10:39Z",
       "side": 1,
       "message": "avg_frame_size",
+      "range": {
+        "startLine": 70,
+        "startChar": 35,
+        "endLine": 70,
+        "endChar": 49
+      },
+      "revId": "8ba69110b9490767f403fb9bc46d20442fed8637",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc40c389_87805d44",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-ipolicemarkbase-dev.robot",
+        "patchSetId": 165
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:07:51Z",
+      "side": 1,
+      "message": "I took a quick look, and those values are expected to be in kbps?\nAnyway, restoring avg_frame_size.",
+      "parentUuid": "17f16037_62e21ace",
       "range": {
         "startLine": 70,
         "startChar": 35,

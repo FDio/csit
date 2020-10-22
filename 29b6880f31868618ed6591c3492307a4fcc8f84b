@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "d7573c3d_f9debb5a",
+        "filename": "GPL/tools/trex/trex_astf_stop.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:07:51Z",
+      "side": 1,
+      "message": "It is in print, but suites have latency disabled, because profiles do not support it. No need for TODO here.",
+      "parentUuid": "fbf6681b_1af3bc39",
+      "range": {
+        "startLine": 95,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 24
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e4eee6e_9669e29d",
         "filename": "GPL/tools/trex/trex_stl_profile.py",
         "patchSetId": 164
@@ -105,6 +129,30 @@
       "writtenOn": "2020-10-22T11:08:55Z",
       "side": 1,
       "message": "Not necessary.",
+      "range": {
+        "startLine": 72,
+        "startChar": 19,
+        "endLine": 72,
+        "endChar": 20
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "281b8be8_8c7d9035",
+        "filename": "GPL/tools/trex/trex_stl_profile.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:07:51Z",
+      "side": 1,
+      "message": "It is a feature for easier reordering.\nI wasted around 5 runs when reordering new arguments, and putting a comma is faster than running pylint before uploading each new patch set.",
+      "parentUuid": "1e4eee6e_9669e29d",
       "range": {
         "startLine": 72,
         "startChar": 19,
@@ -151,6 +199,30 @@
       "writtenOn": "2020-10-22T09:10:39Z",
       "side": 1,
       "message": "Why not minimal_rate? fail_rate indicates that if result of measurement is equal to this fail_rate it means failure of the measurement.\nMoreover the doc string says: \"Minimal target transmit rate [pps]\"",
+      "range": {
+        "startLine": 258,
+        "startChar": 38,
+        "endLine": 258,
+        "endChar": 47
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "784fcb9f_ac3d5c50",
+        "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:07:51Z",
+      "side": 1,
+      "message": "That argument names come from AbstractSearchAlgorithm.py\nBut I guess I can edit those instead.",
+      "parentUuid": "b22c3404_4c9405c4",
       "range": {
         "startLine": 258,
         "startChar": 38,
@@ -243,6 +315,30 @@
       "writtenOn": "2020-10-22T09:10:39Z",
       "side": 1,
       "message": "If another TG tool / TG subtype (e.g. iperf) will be integrated we will need to change this part again...",
+      "range": {
+        "startLine": 516,
+        "startChar": 8,
+        "endLine": 523,
+        "endChar": 67
+      },
+      "revId": "29b6880f31868618ed6591c3492307a4fcc8f84b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f5281aa_90c3859c",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 164
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-22T12:07:51Z",
+      "side": 1,
+      "message": "Yes, but another TG will have different inputs (likely) and different outputs (definitely L7 data), so a big rewrite will be needed anyway.\nCurrently, get_measurement_result is quite tightly coupled to TRex counters, and _parse_traffic_results can be renamed to _parse_trex_traffic_results already.\nThere is a lot of technical dept in this file, but I run out of time trying to clean it up for 2009.",
+      "parentUuid": "4bb00fe3_261dd3d1",
       "range": {
         "startLine": 516,
         "startChar": 8,
