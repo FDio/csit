@@ -83,8 +83,6 @@
 | ${n_hosts}= | ${65536}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
-# Main heap size multiplicator
-| ${heap_size_mult}= | ${2}
 # Ramp-up settings
 | ${ramp_up_rate}= | ${500000}
 | ${ramp_up_duration}= | ${18.2}
