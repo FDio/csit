@@ -86,6 +86,8 @@
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
 | ${transaction_scale}= | ${n_sessions}
+# Main heap size multiplicator
+| ${heap_size_mult}= | ${2}
 # Traffic profile
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h
 | ${transaction_type}= | udp_cps
