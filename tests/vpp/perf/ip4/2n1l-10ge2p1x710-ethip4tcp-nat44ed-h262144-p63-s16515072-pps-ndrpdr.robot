@@ -67,7 +67,7 @@
 | ${dut1_if1_mask}= | ${24}
 | ${dut1_if2_ip4}= | 12.0.0.1
 | ${dut1_if2_mask}= | ${24}
-| ${dest_net}= | 20.0.0.0
+| ${dest_net}= | 20.16.0.0
 | ${dest_mask}= | ${14}
 # NAT settings
 | ${nat_mode}= | endpoint-dependent
@@ -82,7 +82,6 @@
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
 | ${packets_per_transaction_and_direction}= | ${11}
 | ${transaction_scale}= | ${n_sessions}
-| ${transaction_directions}= | ${1}
 # Main heap size multiplicator
 | ${heap_size_mult}= | ${7}
 # Traffic profile

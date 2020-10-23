@@ -82,7 +82,6 @@
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
 | ${packets_per_transaction_and_direction}= | ${11}
 | ${transaction_scale}= | ${n_sessions}
-| ${transaction_directions}= | ${1}
 # Main heap size multiplicator
 | ${heap_size_mult}= | ${2}
 # Traffic profile

@@ -15,25 +15,24 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | NAT44 | TCP | TCP_PPS | DRV_VFIO_PCI
-| ... | SCALE | HOSTS_16384 | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4tcp-nat44ed-h16384-p63-s1032192-pps
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | UDP_PPS | DRV_VFIO_PCI
+| ... | SCALE | HOSTS_262144 | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | ethip4udp-ip4base-h262144-p63-s16515072-pps
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance | nat-ed
+| Test Teardown | Tear down test | performance
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput NAT44 endpoint-dependent mode
-| ... | performance test cases*
+| Documentation | *RFC2544: Pkt throughput IPv4 routing test cases*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4
-| ... | routing and two static IPv4 /24 route entries. DUT1 tested with
+| ... | routing and two static IPv4 /14 route entries. DUT1 tested with
 | ... | ${nic_name}.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
@@ -48,7 +47,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | nat_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
@@ -58,39 +57,20 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
-# IP settings
-| ${tg_if1_ip4}= | 10.0.0.2
-| ${tg_if1_mask}= | ${20}
-| ${tg_if2_ip4}= | 12.0.0.2
-| ${tg_if2_mask}= | ${20}
-| ${dut1_if1_ip4}= | 10.0.0.1
-| ${dut1_if1_mask}= | ${24}
-| ${dut1_if2_ip4}= | 12.0.0.1
-| ${dut1_if2_mask}= | ${24}
-| ${dest_net}= | 20.0.0.0
-| ${dest_mask}= | ${18}
-# NAT settings
-| ${nat_mode}= | endpoint-dependent
-| ${in_net}= | 192.168.0.0
-| ${in_mask}= | ${18}
-| ${out_net}= | 68.142.68.0
-| ${out_net_end}= | 68.142.68.15
-| ${out_mask}= | ${28}
 # Scale settings
-| ${n_hosts}= | ${16384}
+| ${n_hosts}= | ${262144}
 | ${n_ports}= | ${63}
-| ${n_sessions}= | ${${n_hosts} * ${n_ports}}
-| ${packets_per_transaction_and_direction}= | ${11}
-| ${transaction_scale}= | ${n_sessions}
-# Traffic profile
-| ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h-pps
-| ${transaction_type}= | tcp_pps
+| ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
+| ${packets_per_transaction_and_direction}= | ${33}
+# Traffic profile:
+| ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
+| ${transaction_type}= | udp_pps
 | ${disable_latency}= | ${True}
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs NAT44 ${nat_mode} configuration.\
+| | ... | [Cfg] DUT runs IPv4 routing config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | |
@@ -118,19 +98,19 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv4 forwarding for NAT44 in circular topology
-| | And Initialize NAT44 endpoint-dependent mode in circular topology
+| | And Initialize IPv4 forwarding in circular topology
+| | ... | 172.16.0.0 | 20.16.0.0 | ${14}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr
+| 64B-1c-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr
+| 64B-2c-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr
+| 64B-4c-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
