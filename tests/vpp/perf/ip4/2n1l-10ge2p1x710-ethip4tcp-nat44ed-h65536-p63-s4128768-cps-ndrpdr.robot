@@ -88,6 +88,8 @@
 | ${transaction_scale}= | ${n_sessions}
 | ${packets_per_transaction_and_direction}= | ${4}
 | ${packets_per_transaction_aggregated}= | ${7}
+# Main heap size multiplicator
+| ${heap_size_mult}= | ${2}
 # Traffic profile
 | ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h
 | ${transaction_type}= | tcp_cps
