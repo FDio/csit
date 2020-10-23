@@ -189,6 +189,36 @@ Scaling Tags
     Traffic stream with 100 000 unique flows (100 IPs/users x 1000 UDP ports) in
     one direction.
 
+.. topic:: HOSTS_1024
+
+    Stateless or stateful traffic stream with 1024 client source IP4 addresses,
+    usually with 63 flow differing in source port number. Could be UDP or TCP.
+    If NAT is used, the clients are inside. Outside IP range can differ.
+
+.. topic:: HOSTS_4096
+
+    Stateless or stateful traffic stream with 4096 client source IP4 addresses,
+    usually with 63 flow differing in source port number. Could be UDP or TCP.
+    If NAT is used, the clients are inside. Outside IP range can differ.
+
+.. topic:: HOSTS_16384
+
+    Stateless or stateful traffic stream with 16384 client source IP4 addresses,
+    usually with 63 flow differing in source port number. Could be UDP or TCP.
+    If NAT is used, the clients are inside. Outside IP range can differ.
+
+.. topic:: HOSTS_65536
+
+    Stateless or stateful traffic stream with 65536 client source IP4 addresses,
+    usually with 63 flow differing in source port number. Could be UDP or TCP.
+    If NAT is used, the clients are inside. Outside IP range can differ.
+
+.. topic:: HOSTS_262144
+
+    Stateless or stateful traffic stream with 262144 client source IP4 addresses
+    usually with 63 flow differing in source port number. Could be UDP or TCP.
+    If NAT is used, the clients are inside. Outside IP range can differ.
+
 Test Category Tags
 ------------------
 
@@ -278,11 +308,12 @@ Test Type Tags
 .. topic:: BASE
 
     Baseline test cases, no encapsulation, no feature(s) configured in tests.
+    No scaling whatsoever, beyond minimum needed for RSS.
 
 .. topic:: IP4BASE
 
     IPv4 baseline test cases, no encapsulation, no feature(s) configured in
-    tests.
+    tests. Minimal number of routes. Other quantities may be scaled.
 
 .. topic:: IP6BASE
 
@@ -306,7 +337,8 @@ Test Type Tags
 
 .. topic:: SCALE
 
-    Scale test cases.
+    Scale test cases. Other tags specify which quantities are scaled.
+    Also applies if scaling is set on TG only (e.g. DUT works as IP4BASE).
 
 .. topic:: ENCAP
 
@@ -316,21 +348,41 @@ Test Type Tags
 
     At least one feature is configured in test cases. Use also feature tag(s).
 
+.. topic:: UDP
+
+    Tests which use any kind of UDP traffic.
+
 .. topic:: TCP
 
-    Tests which use TCP.
+    Tests which use any kind of TCP traffic.
+
+.. topic:: UDP_CPS
+
+    Tests which measure connections per second on minimal UDP pseudoconnections.
+    This tag selects specific output processing in PAL.
 
 .. topic:: TCP_CPS
 
-    Performance tests which measure connections per second using http requests.
+    Tests which measure connections per second on empty TCP connections.
+    This tag selects specific output processing in PAL.
 
-.. topic:: TCP_RPS
+.. topic:: UDP_PPS
 
-    Performance tests which measure requests per second using http requests.
+    Tests which measure packets per second on lightweight UDP transactions.
+    This tag selects specific output processing in PAL.
+
+.. topic:: TCP_PPS
+
+    Tests which measure packets per second on lightweight TCP transactions.
+    This tag selects specific output processing in PAL.
 
 .. topic:: HTTP
 
-    Tests which use HTTP.
+    Tests which use traffic formed of valid HTTP requests (and responses).
+
+..
+    TODO: Add HTTP tag to the current hoststack tests.
+    TODO: Document other tags already used by hoststack tests.
 
 .. topic:: NF_DENSITY
 
@@ -867,23 +919,3 @@ Multi-Threading Tags
     8 worker threads each pinned to a separate logical core within 4 dedicated
     physical cores. 4 receive queues per interface. Main thread pinned to core
     1.
-
-Honeycomb Tags
---------------
-
-.. topic:: HC_FUNC
-
-    Honeycomb functional test cases.
-
-.. topic:: HC_NSH
-
-    Honeycomb NSH test cases.
-
-.. topic:: HC_PERSIST
-
-    Honeycomb persistence test cases.
-
-.. topic:: HC_REST_ONLY
-
-    (Exclusion tag) Honeycomb test cases that cannot be run in Netconf mode
-    using ODL client for Restfconf -> Netconf translation.

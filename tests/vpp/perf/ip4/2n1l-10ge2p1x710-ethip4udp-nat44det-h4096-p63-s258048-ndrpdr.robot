@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | NAT44_DETERMINISTIC
-| ... | SRC_USER_4096 | SCALE | DRV_VFIO_PCI
+| ... | SCALE | HOSTS_4096 | UDP | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udp-nat44det-h4096-p63-s258048
 |
@@ -82,7 +82,7 @@
 # Ramp-up settings
 | ${ramp_up_rate}= | ${400000}
 | ${ramp_up_duration}= | ${1.6}
-# Traffic profil
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
 
 *** Keywords ***

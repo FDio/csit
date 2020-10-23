@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | NAT44_DETERMINISTIC
-| ... | SRC_USER_65536 | SCALE | DRV_VFIO_PCI
+| ... | SCALE | HOSTS_65536 | UDP | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udp-nat44det-h65536-p63-s4128758
 |
@@ -79,13 +79,13 @@
 | ${n_hosts}= | ${65536}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Main heap size multiplicator
+| ${heap_size_mult}= | ${2}
 # Ramp-up settings
 | ${ramp_up_rate}= | ${200000}
 | ${ramp_up_duration}= | ${23.5}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
-# Main heap size multiplicator
-| ${heap_size_mult}= | ${2}
 
 *** Keywords ***
 | Local Template

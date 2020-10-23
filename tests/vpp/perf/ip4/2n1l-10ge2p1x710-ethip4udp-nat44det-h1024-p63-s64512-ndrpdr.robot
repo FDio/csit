@@ -16,8 +16,8 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | NAT44_DETERMINISTIC
-| ... | SCALE | DRV_VFIO_PCI
-| ... | SRC_USER_1024 | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | SCALE | HOSTS_1024 | UDP | DRV_VFIO_PCI
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udp-nat44det-h1024-p63-s64512
 |
 | Suite Setup | Setup suite topology interfaces | performance
