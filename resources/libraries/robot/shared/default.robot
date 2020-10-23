@@ -57,7 +57,6 @@
 | Resource | resources/libraries/robot/overlay/lisp.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/overlay/lisp_api.robot
-| Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/container.robot
@@ -73,6 +72,26 @@
 | ${cpu_alloc_str}= | ${0}
 
 *** Keywords ***
+# TODO: Sort keywords alphabetically.
+
+| Call Resetter
+| | [Documentation]
+| | ... | Check for a presence of test variable \${resetter}.
+| | ... | If it exists (and not None), call the resetter (as a Python callable).
+| | ... | This is usually used to reset any state on DUT before next trial.
+| |
+| | ... | TODO: Move to a more specific library if needed.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Call Resetter \|
+| |
+| | ${resetter} = | Get Resetter
+| | # See http://robotframework.org/robotframework/3.1.2/libraries/BuiltIn.html
+| | # #Evaluating%20expressions for $variable (without braces) syntax.
+| | # Parens are there to perform the call.
+| | Run Keyword If | $resetter | Evaluate | $resetter()
+
 | Configure crypto device on all DUTs
 | | [Documentation] | Verify if Crypto QAT device virtual functions are
 | | ... | initialized on all DUTs. If parameter force_init is set to True, then
