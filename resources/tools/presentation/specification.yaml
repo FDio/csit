@@ -559,6 +559,7 @@
     vpp-perf-results-3n-skx:
       # TODO: Add:
       csit-vpp-perf-report-coverage-2009-3n-skx:
+        - 36  # rls2009 NDRPDR cov 3n-skx-crypto-00
         - 3   # rls2009 NDRPDR cov 3n-skx-crypto-01
         - 4   # rls2009 NDRPDR cov 3n-skx-crypto-02
         - 37  # rls2009 NDRPDR cov 3n-skx-crypto-03
@@ -568,6 +569,7 @@
         - 9   # rls2009 NDRPDR cov 3n-skx-ip4-03
         - 10  # rls2009 NDRPDR cov 3n-skx-ip4-04
         - 12  # rls2009 NDRPDR cov 3n-skx-ip4-06
+        - 39  # rls2009 NDRPDR cov 3n-skx-ip4-07
         - 14  # rls2009 NDRPDR cov 3n-skx-ip4tun-00
         - 15  # rls2009 NDRPDR cov 3n-skx-ip4tun-01
         - 16  # rls2009 NDRPDR cov 3n-skx-ip4tun-02
@@ -2297,6 +2299,7 @@
       - 40  # rls2009 NDRPDR iter env 5
     # TODO: Add:
     csit-vpp-perf-report-coverage-2009-3n-skx:
+      - 36  # rls2009 NDRPDR cov 3n-skx-crypto-00
       - 3   # rls2009 NDRPDR cov 3n-skx-crypto-01
       - 4   # rls2009 NDRPDR cov 3n-skx-crypto-02
       - 37  # rls2009 NDRPDR cov 3n-skx-crypto-03
@@ -2306,6 +2309,7 @@
       - 9   # rls2009 NDRPDR cov 3n-skx-ip4-03
       - 10  # rls2009 NDRPDR cov 3n-skx-ip4-04
       - 12  # rls2009 NDRPDR cov 3n-skx-ip4-06
+      - 39  # rls2009 NDRPDR cov 3n-skx-ip4-07
       - 14  # rls2009 NDRPDR cov 3n-skx-ip4tun-00
       - 15  # rls2009 NDRPDR cov 3n-skx-ip4tun-01
       - 16  # rls2009 NDRPDR cov 3n-skx-ip4tun-02
