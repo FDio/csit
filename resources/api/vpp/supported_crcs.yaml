@@ -88,6 +88,7 @@
     det44_plugin_enable_disable: '0xfc4b5d73'  # perf
     det44_plugin_enable_disable_reply: '0xe8d4e804'  # perf
     det44_session_dump: '0xe45a3af7'  # perf teardown
+    # TODO: Which test to run to verify det44_* messages?
     # dhcp_proxy_dump / details # honeycomb
     gbp_bridge_domain_add: '0x8454bfdf'  # dev
     gbp_bridge_domain_add_reply: '0xe8d4e804'  # dev
@@ -208,8 +209,7 @@
     nat_show_config_reply: '0x7903ef06'  # dev teardown
     nat_worker_details: '0x84bf06fc'  # dev teardown
     nat_worker_dump: '0x51077d14'  # dev teardown
-    # 6x^ tc01-64B-1c-ethip4udp-snat44det-h1-p1-s1-mrr
-    # ^ nat44NOTscaleNOTsrc_user_1
+    # TODO: Which test to run to verify nat* messages?
     nsim_configure: '0x16ed400f'  # perf
     nsim_configure_reply: '0xe8d4e804'  # perf
     nsim_output_feature_enable_disable: '0x3865946c'  # perf
