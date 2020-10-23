@@ -83,6 +83,8 @@
 | ${transaction_scale}= | ${n_sessions}
 | ${packets_per_transaction_and_direction}= | ${33}
 | ${transaction_directions}= | ${1}
+# Main heap size multiplicator
+| ${heap_size_mult}= | ${7}
 # Traffic profile
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
 | ${transaction_type}= | udp_pps
