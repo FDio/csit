@@ -128,26 +128,27 @@ class TrafficStreamsBaseClass:
 
         # Frame size is defined as an integer, e.g. 64, 1518:
         if isinstance(self.framesize, int):
-            # Create a base packet and pad it to size
-            payload_len = max(0, self.framesize - len(base_pkt_a) - 4)  # No FCS
+            # Create a base packet and pad it to size; deduct FCS
+            payload_len_a = max(0, self.framesize - len(base_pkt_a) - 4)
+            payload_len_b = max(0, self.framesize - len(base_pkt_b) - 4)
 
             # Direction 0 --> 1
             pkt_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1
+                pkt=base_pkt_a / self._gen_payload(payload_len_a), vm=vm1
             )
             # Direction 1 --> 0
             pkt_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2
+                pkt=base_pkt_b / self._gen_payload(payload_len_b), vm=vm2
             )
 
             # Packets for latency measurement:
             # Direction 0 --> 1
             pkt_lat_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1
+                pkt=base_pkt_a / self._gen_payload(payload_len_a), vm=vm1
             )
             # Direction 1 --> 0
             pkt_lat_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2
+                pkt=base_pkt_b / self._gen_payload(payload_len_b), vm=vm2
             )
 
             # Create the streams:
