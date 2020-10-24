@@ -43,6 +43,8 @@
     # 6x^ tc01-64B-1c-ethip4udp-ip4base-iacl1sf-10kflows-mrr
     #     tc01-64B-1c-ethip4udp-ip4base-iacl1sl-10kflows-mrr
     # ^^ ip4fwdANDiaclANDacl10AND100_flows
+    add_node_next: '0x2457116d'  # dev
+    add_node_next_reply: '0x2ed75f32'  # dev
     avf_create: '0xdaab8ae2'  # dev
     avf_create_reply: '0x5383d31f'  # dev
     bond_create: '0x48883c7e'  # perf
@@ -90,6 +92,10 @@
     det44_session_dump: '0xe45a3af7'  # perf teardown
     # TODO: Which test to run to verify det44_* messages?
     # dhcp_proxy_dump / details # honeycomb
+    geneve_add_del_tunnel2: '0x8c2a9999'  # dev
+    geneve_add_del_tunnel2_reply: '0x5383d31f'  # dev
+    geneve_tunnel_details: '0xe27e2748'  # dev
+    geneve_tunnel_dump: '0xf9e6675e'  # dev
     gpe_enable_disable: '0xc264d7bf'  # dev
     gpe_enable_disable_reply: '0xe8d4e804'  # dev
     # gre_tunnel_add_del / reply # unused L1 keyword: create_gre_tunnel_interface
@@ -249,6 +255,8 @@
     # ^ dot1qANDl2bdmaclrnANDbaseANDmemif
     sw_interface_set_flags: '0x6a2b491a'  # dev
     sw_interface_set_flags_reply: '0xe8d4e804'  # dev
+    sw_interface_set_geneve_bypass: '0x65247409'  # dev
+    sw_interface_set_geneve_bypass_reply: '0xe8d4e804'  # dev
     sw_interface_set_l2_bridge: '0x2e483cd0'  # dev
     sw_interface_set_l2_bridge_reply: '0xe8d4e804'  # dev
     sw_interface_set_l2_xconnect: '0x1aaa2dbb'  # dev
