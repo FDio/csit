@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TEST
 | ... | ethipv4-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | scapy
