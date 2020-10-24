@@ -227,7 +227,8 @@ class Constants:
     SOCKSVR_PATH = u"/run/vpp/api.sock"
 
     # Number of trials to execute in MRR test.
-    PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
+    # PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
+    PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 1)
 
     # Duration of one trial in MRR test.
     PERF_TRIAL_DURATION = get_float_from_env(u"PERF_TRIAL_DURATION", 1.0)
@@ -242,7 +243,8 @@ class Constants:
     # Extended debug (incl. vpp packet trace, linux perf stat, ...).
     # Full list is available as suite variable (__init__.robot) or is
     # override by test.
-    EXTENDED_DEBUG = get_pessimistic_bool_from_env(u"EXTENDED_DEBUG")
+    # EXTENDED_DEBUG = get_pessimistic_bool_from_env(u"EXTENDED_DEBUG")
+    EXTENDED_DEBUG = True
 
     # UUID string of DUT1 /tmp volume created outside of the
     # DUT1 docker in case of vpp-device test. ${EMPTY} value means that
@@ -253,9 +255,10 @@ class Constants:
     SOCKSTAT_PATH = u"/run/vpp/stats.sock"
 
     # Global "kill switch" for CRC checking during runtime.
-    FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
-        u"FAIL_ON_CRC_MISMATCH"
-    )
+    # FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
+    #     u"FAIL_ON_CRC_MISMATCH"
+    # )
+    FAIL_ON_CRC_MISMATCH = False
 
     # Default IP4 prefix length (if not defined in topology file)
     DEFAULT_IP4_PREFIX_LENGTH = u"24"
