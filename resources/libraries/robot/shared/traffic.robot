@@ -16,6 +16,7 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPv6Util
+| Library | resources.libraries.python.JsonUtil
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Policer
 | Library | resources.libraries.python.topology.Topology
@@ -609,3 +610,39 @@
 | | ... | --src_port_in ${src_port_in} | --src_port_out ${src_port_out}
 | | ... | --dst_port ${dst_port}
 | | Run Traffic Script On Node | nat.py | ${tg_node} | ${args}
+
+| Send IP packet and verify GENEVE encapcapsulation in received packets
+| | [Documentation] | Send IP packet from TG to DUT. Receive GENEVE packet\
+| | ... | from DUT on TG and verify GENEVE encapsulation. Send GENEVE packet in\
+| | ... | opposite direction and verify received IP packet.
+| |
+| | ... | *Arguments:*
+| | ... | - node - TG node. Type: dictionary
+| | ... | - tx_interface - TG Interface 1. Type: string
+| | ... | - rx_interface - TG Interface 2. Type: string
+| | ... | - tx_dst_mac - Destination MAC for TX interface / DUT interface 1 MAC.
+| | ... | Type: string
+| | ... | - rx_src_mac - Source MAC for RX interface / DUT interface 2 MAC.
+| | ... | Type: string
+| |
+| | ... | *Example:*
+| | ... | \| Send IP packet and verify GENEVE encapcapsulation in received packets\
+| | ... | \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| ${encr_alg} \
+| | ... | \| sixteenbytes_key \| ${auth_alg} \| twentybytessecretkey \
+| | ... | \| ${1001} \| ${1000} \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \
+| | ... | \| 192.168.100.3 \|
+| |
+| | [Arguments] | ${node} | ${tx_interface} | ${rx_interface}
+| | ... | ${tx_dst_mac} | ${rx_src_mac} | ${tunnels}
+| |
+| | ${tx_src_mac}= | Get Interface Mac | ${node} | ${tx_interface}
+| | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_interface}
+| | ${rx_dst_mac}= | Get Interface Mac | ${node} | ${rx_interface}
+| | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_interface}
+| | ${tunnels_json}= | Convert To JSON | ${tunnels}
+| | ${args}= | Catenate | --rx_if ${rx_if_name} | --tx_if ${tx_if_name}
+| | ... | --tx_src_mac ${tx_src_mac} | --tx_dst_mac ${tx_dst_mac}
+| | ... | --rx_src_mac ${rx_src_mac} | --rx_dst_mac ${rx_dst_mac}
+| | ... | --tunnels ${tunnels_json}
+| | Run Traffic Script On Node | geneve_tunnel.py | ${node} | ${args}
