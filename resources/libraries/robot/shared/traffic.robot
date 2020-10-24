@@ -16,6 +16,7 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPv6Util
+| Library | resources.libraries.python.JsonUtil
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Policer
 | Library | resources.libraries.python.topology.Topology
@@ -609,3 +610,51 @@
 | | ... | --src_port_in ${src_port_in} | --src_port_out ${src_port_out}
 | | ... | --dst_port ${dst_port}
 | | Run Traffic Script On Node | nat.py | ${tg_node} | ${args}
+
+| Send IP packet and verify GENEVE encapsulation in received packets
+| | [Documentation] | Send IP packet from TG to DUT. Receive GENEVE packet\
+| | ... | from DUT on TG and verify GENEVE encapsulation. Send GENEVE packet in\
+| | ... | opposite direction and verify received IP packet.
+| |
+| | ... | *Arguments:*
+| | ... | - node - TG node. Type: dictionary
+| | ... | - tx_interface - TG Interface 1. Type: string
+| | ... | - rx_interface - TG Interface 2. Type: string
+| | ... | - tx_dst_mac - Destination MAC for TX interface / DUT interface 1 MAC.
+| | ... | Type: string
+| | ... | - rx_src_mac - Source MAC for RX interface / DUT interface 2 MAC.
+| | ... | Type: string
+| | ... | - tunnel - GENEVE tunnel data:
+| | ... |   - local - GENEVE tunnel source IP address. Type: string
+| | ... |   - remote - GENEVE tunnel destination IP address. Type: string
+| | ... |   - vni - GENEVE tunnel VNI. Type: integer
+| | ... |   - src_ip - Source IP address of original IP packet / inner source IP
+| | ... |     address of GENEVE packet. Type: string
+| | ... |   - dst_ip - Destination IP address of original IP packet / inner
+| | ... |     destination IP address of GENEVE packet. Type: string
+| | ... |   - ip_mask - Mask for source adn destination IP addresses.
+| | ... |     Type: integer
+| | ... |   - if_ip - IP address of GENEVE tunnel. Type: string
+| | ... | Type: dictionary
+| |
+| | ... | *Example:*
+| | ... | \| Send IP packet and verify GENEVE encapsulation in received packets\
+| | ... | \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \
+| | ... | \| {'dst_ip': '10.0.1.0', 'if_ip': '11.0.1.2', 'ip_mask': 24,
+| | ... | 'local': '1.1.1.2', 'remote': '1.1.1.1', 'src_ip': '10.128.1.0',
+| | ... | 'vni': 1} \|
+| |
+| | [Arguments] | ${node} | ${tx_interface} | ${rx_interface}
+| | ... | ${tx_dst_mac} | ${rx_src_mac} | &{tunnel}
+| |
+| | ${tx_src_mac}= | Get Interface Mac | ${node} | ${tx_interface}
+| | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_interface}
+| | ${rx_dst_mac}= | Get Interface Mac | ${node} | ${rx_interface}
+| | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_interface}
+| | ${tunnel_json}= | Convert To JSON | ${tunnel}
+| | ${args}= | Catenate | --rx_if ${rx_if_name} | --tx_if ${tx_if_name}
+| | ... | --tx_src_mac ${tx_src_mac} | --tx_dst_mac ${tx_dst_mac}
+| | ... | --rx_src_mac ${rx_src_mac} | --rx_dst_mac ${rx_dst_mac}
+| | ... | --tunnel '${tunnel_json}'
+| | Run Traffic Script On Node | geneve_tunnel.py | ${node} | ${args}

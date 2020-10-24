@@ -219,6 +219,10 @@ Scaling Tags
     usually with 63 flow differing in source port number. Could be UDP or TCP.
     If NAT is used, the clients are inside. Outside IP range can differ.
 
+.. topic:: GENEVE4_1TUN
+
+    Test with 1 GENEVE IPv4 tunnel.
+
 Test Category Tags
 ------------------
 
@@ -586,6 +590,14 @@ Encapsulation Tags
 .. topic:: SRv6_2SID_NODECAP
 
     All SRv6 test cases with two SIDs and without decapsulation.
+
+.. topic:: GENEVE
+
+    All test cases with GENEVE.
+
+.. topic:: GENEVE_L3MODE
+
+    All test cases with GENEVE tunnel in L3 mode.
 
 Interface Tags
 --------------
