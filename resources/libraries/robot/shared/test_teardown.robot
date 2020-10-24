@@ -61,6 +61,92 @@
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
 
+# Additional Test Tear Down Actions in alphabetical order
+| Additional Test Tear Down Action For acl
+| | [Documentation]
+| | ... | Additional teardown for tests which uses ACL feature.
+| |
+| | Run Keyword If Test Failed
+| | ... | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed
+| | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
+
+| Additional Test Tear Down Action For classify
+| | [Documentation]
+| | ... | Additional teardown for tests which uses classify tables.
+| |
+| | Run Keyword If Test Failed
+| | ... | Show Classify Tables Verbose on all DUTs | ${nodes}
+
+| Additional Test Tear Down Action For container
+| | [Documentation]
+| | ... | Additional teardown for tests which uses containers.
+| |
+| | FOR | ${container_group} | IN | @{container_groups}
+| | | Destroy all '${container_group}' containers
+| | END
+
+| Additional Test Tear Down Action For det44
+| | [Documentation]
+| | ... | Additional teardown for tests which uses DET44 feature.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If Test Failed
+| | | ... | Show DET44 verbose | ${nodes['${dut}']}
+| | END
+
+| Additional Test Tear Down Action For geneve4
+| | [Documentation]
+| | ... | Additional teardown for tests which uses GENEVE IPv4 tunnel.
+| |
+#| | FOR | ${dut} | IN | @{duts}
+#| | | Run Keyword If Test Failed
+#| | | ... | Show DET44 verbose | ${nodes['${dut}']}
+#| | END
+| | No Operation
+
+| Additional Test Tear Down Action For linux_bridge
+| | [Documentation]
+| | ... | Additional teardown for tests which uses linux_bridge.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Linux Del Bridge | ${nodes['${dut}']} | ${bid_TAP}
+| | END
+
+| Additional Test Tear Down Action For macipacl
+| | [Documentation]
+| | ... | Additional teardown for tests which uses MACIP ACL feature.
+| |
+| | Run Keyword If Test Failed
+| | ... | Vpp Log Macip Acl Settings | ${dut1}
+| | Run Keyword If Test Failed
+| | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
+
+| Additional Test Tear Down Action For namespace
+| | [Documentation]
+| | ... | Additional teardown for tests which uses namespace.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Clean Up Namespaces | ${nodes['${dut}']}
+| | END
+
+| Additional Test Tear Down Action For nat-ed
+| | [Documentation]
+| | ... | Additional teardown for tests which uses NAT feature.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Show NAT Config | ${nodes['${dut}']}
+| | | Show NAT44 Summary | ${nodes['${dut}']}
+| | | Show NAT Base Data | ${nodes['${dut}']}
+| | | Vpp Get Ip Table Summary | ${nodes['${dut}']}
+| | END
+
+| Additional Test Tear Down Action For packet_trace
+| | [Documentation]
+| | ... | Additional teardown for tests which uses packet trace.
+| |
+| | Show Packet Trace on All DUTs | ${nodes}
+
 | Additional Test Tear Down Action For performance
 | | [Documentation]
 | | ... | Additional teardown for tests which uses performance measurement.
@@ -80,19 +166,16 @@
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
 
-| Additional Test Tear Down Action For packet_trace
+| Additional Test Tear Down Action For srv6
 | | [Documentation]
-| | ... | Additional teardown for tests which uses packet trace.
+| | ... | Additional teardown for tests which uses SRv6.
 | |
-| | Show Packet Trace on All DUTs | ${nodes}
-
-| Additional Test Tear Down Action For container
-| | [Documentation]
-| | ... | Additional teardown for tests which uses containers.
-| |
-| | FOR | ${container_group} | IN | @{container_groups}
-| | | Destroy all '${container_group}' containers
-| | END
+| | Run Keyword If Test Failed
+| | ... | Show SR Policies on all DUTs | ${nodes}
+| | Run Keyword If Test Failed
+| | ... | Show SR Steering Policies on all DUTs | ${nodes}
+| | Run Keyword If Test Failed
+| | ... | Show SR LocalSIDs on all DUTs | ${nodes}
 
 | Additional Test Tear Down Action For vhost
 | | [Documentation]
@@ -110,76 +193,3 @@
 | | ${vnf_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Keyword Should Exist | vnf_manager.Kill All VMs
 | | Run Keyword If | '${vnf_status}' == 'PASS' | vnf_manager.Kill All VMs
-
-| Additional Test Tear Down Action For det44
-| | [Documentation]
-| | ... | Additional teardown for tests which uses DET44 feature.
-| |
-| | FOR | ${dut} | IN | @{duts}
-#| | | Run Keyword If Test Failed
-#| | | ... | Show DET44 verbose | ${nodes['${dut}']}
-| | | Show DET44 verbose | ${nodes['${dut}']}
-| | END
-
-| Additional Test Tear Down Action For nat-ed
-| | [Documentation]
-| | ... | Additional teardown for tests which uses NAT feature.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Show NAT Config | ${nodes['${dut}']}
-| | | Show NAT44 Summary | ${nodes['${dut}']}
-| | | Show NAT Base Data | ${nodes['${dut}']}
-| | | Vpp Get Ip Table Summary | ${nodes['${dut}']}
-| | END
-
-| Additional Test Tear Down Action For namespace
-| | [Documentation]
-| | ... | Additional teardown for tests which uses namespace.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Clean Up Namespaces | ${nodes['${dut}']}
-| | END
-
-| Additional Test Tear Down Action For linux_bridge
-| | [Documentation]
-| | ... | Additional teardown for tests which uses linux_bridge.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Linux Del Bridge | ${nodes['${dut}']} | ${bid_TAP}
-| | END
-
-| Additional Test Tear Down Action For acl
-| | [Documentation]
-| | ... | Additional teardown for tests which uses ACL feature.
-| |
-| | Run Keyword If Test Failed
-| | ... | Vpp Log Plugin Acl Settings | ${dut1}
-| | Run Keyword If Test Failed
-| | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
-
-| Additional Test Tear Down Action For macipacl
-| | [Documentation]
-| | ... | Additional teardown for tests which uses MACIP ACL feature.
-| |
-| | Run Keyword If Test Failed
-| | ... | Vpp Log Macip Acl Settings | ${dut1}
-| | Run Keyword If Test Failed
-| | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
-
-| Additional Test Tear Down Action For classify
-| | [Documentation]
-| | ... | Additional teardown for tests which uses classify tables.
-| |
-| | Run Keyword If Test Failed
-| | ... | Show Classify Tables Verbose on all DUTs | ${nodes}
-
-| Additional Test Tear Down Action For srv6
-| | [Documentation]
-| | ... | Additional teardown for tests which uses SRv6.
-| |
-| | Run Keyword If Test Failed
-| | ... | Show SR Policies on all DUTs | ${nodes}
-| | Run Keyword If Test Failed
-| | ... | Show SR Steering Policies on all DUTs | ${nodes}
-| | Run Keyword If Test Failed
-| | ... | Show SR LocalSIDs on all DUTs | ${nodes}
