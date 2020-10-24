@@ -356,3 +356,25 @@ class VPPUtil:
         logger.trace(f"show threads:\n{threads_data}")
 
         return threads_data
+
+    @staticmethod
+    def vpp_add_node_next(node, node_name, next_name):
+        """Set the next node for a given node.
+
+        :param node: Node to run command on.
+        :param node_name: Node to add the next node on.
+        :param next_name: Node to add as the next node.
+        :type node: dict
+        :type node_name: str
+        :type next_name: str
+        :returns: The index of the next node.
+        :rtype: int
+        """
+        cmd = u"add_node_next"
+        args = dict(
+            node_name=node_name,
+            next_name=next_name
+        )
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply()
+        return reply[u"next_index"]
