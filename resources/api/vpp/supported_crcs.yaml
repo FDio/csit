@@ -43,6 +43,7 @@
     # 6x^ tc01-64B-1c-ethip4udp-ip4base-iacl1sf-10kflows-mrr
     #     tc01-64B-1c-ethip4udp-ip4base-iacl1sl-10kflows-mrr
     # ^^ ip4fwdANDiaclANDacl10AND100_flows
+    add_node_next: '0x2457116d'  # dev
     avf_create: '0xdaab8ae2'  # dev
     avf_create_reply: '0x5383d31f'  # dev
     bond_create: '0x48883c7e'  # perf
