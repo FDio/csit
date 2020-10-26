@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1711465e_ed3860a7",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 173
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-26T13:52:12Z",
+      "side": 1,
+      "message": "That is why I renamed the suite from -tput to -pps.\nWhen I start working on it, I got information from Maciek that somebody (Maros?) saw TRex assigning random L4 source ports in ASTF mode, which means repeated trials create different sessions.\nSince then I found (in table \"Table 18. dns ipg from pcap file\" of non-advanced stateful mode [3]) a hint that maybe TRex assigns L4 ports sequentially.\nBut 2009 was too close to run experiment on that. At that point it was long ago agreed that 2009 will have only pps (not tput) tests.\nWe still need to make that clear in various methodology documents.\n\n[3] https://trex-tgn.cisco.com/trex/doc/trex_manual.html#_dns_reduce_the_number_of_clients",
+      "parentUuid": "e67e86c9_fd32bf63",
+      "range": {
+        "startLine": 424,
+        "startChar": 6,
+        "endLine": 424,
+        "endChar": 19
+      },
+      "revId": "f8c7cbc652263a7cf2ad0a64d79ef1a597e9b079",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6e36ad6_832324b7",
         "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.robot",
         "patchSetId": 173
