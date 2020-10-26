@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "5a272237_c569d9c3",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 173
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-26T15:15:36Z",
+      "side": 1,
+      "message": "Of course we need resetter also in CPS tests. Only STL tests should avoid reset, and they have ramp-up.\n\nI had few patch sets with the keyword named Maybe Call Resetter, but then decided the logic here looks better without the Maybe part.\nCurrently the two NAT keywords (one for DET, one for ED) are checking for ramp-up duration; ${resetter} is only set if ${rampup_duration} is not set (or zero).\nThe main motivation is NAT being initialized only once per test, but resetter maybe called before each of possibly many trials.",
+      "parentUuid": "c98a7991_92f59577",
+      "range": {
+        "startLine": 424,
+        "startChar": 6,
+        "endLine": 424,
+        "endChar": 19
+      },
+      "revId": "f8c7cbc652263a7cf2ad0a64d79ef1a597e9b079",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6e36ad6_832324b7",
         "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.robot",
         "patchSetId": 173
