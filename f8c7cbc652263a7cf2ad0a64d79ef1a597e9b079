@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "c98a7991_92f59577",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 173
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-26T14:54:59Z",
+      "side": 1,
+      "message": "Then we should call resetter only if ${transaction_type} is tcp_pps or udp_pps.",
+      "parentUuid": "1711465e_ed3860a7",
+      "range": {
+        "startLine": 424,
+        "startChar": 6,
+        "endLine": 424,
+        "endChar": 19
+      },
+      "revId": "f8c7cbc652263a7cf2ad0a64d79ef1a597e9b079",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6e36ad6_832324b7",
         "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.robot",
         "patchSetId": 173
