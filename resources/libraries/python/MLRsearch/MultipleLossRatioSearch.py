@@ -157,7 +157,7 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         :returns: The relative width of double logarithmic size.
         :rtype: float
         """
-        return 1.999 * relative_width - relative_width * relative_width
+        return 1.99999 * relative_width - relative_width * relative_width
         # The number should be 2.0, but we want to avoid rounding errors,
         # and ensure half of double is not larger than the original value.
 
@@ -255,52 +255,50 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
             1.0 - MultipleLossRatioSearch.half_relative_width(relative_width)
         )
 
-    def narrow_down_ndr_and_pdr(
-            self, minimum_transmit_rate, maximum_transmit_rate,
-            packet_loss_ratio):
+    def narrow_down_ndr_and_pdr(self, min_rate, max_rate, packet_loss_ratio):
         """Perform initial phase, create state object, proceed with next phases.
 
-        :param minimum_transmit_rate: Minimal target transmit rate [pps].
-        :param maximum_transmit_rate: Maximal target transmit rate [pps].
+        :param min_rate: Minimal target transmit rate [tps].
+        :param max_rate: Maximal target transmit rate [tps].
         :param packet_loss_ratio: Fraction of packets lost, for PDR [1].
-        :type minimum_transmit_rate: float
-        :type maximum_transmit_rate: float
+        :type min_rate: float
+        :type max_rate: float
         :type packet_loss_ratio: float
         :returns: Structure containing narrowed down intervals
             and their measurements.
         :rtype: NdrPdrResult.NdrPdrResult
         :raises RuntimeError: If total duration is larger than timeout.
         """
-        minimum_transmit_rate = float(minimum_transmit_rate)
-        maximum_transmit_rate = float(maximum_transmit_rate)
+        minimum_transmit_rate = float(min_rate)
+        maximum_transmit_rate = float(max_rate)
         packet_loss_ratio = float(packet_loss_ratio)
-        line_measurement = self.measurer.measure(
+        max_measurement = self.measurer.measure(
             self.initial_trial_duration, maximum_transmit_rate)
         initial_width_goal = self.final_relative_width
         for _ in range(self.number_of_intermediate_phases):
             initial_width_goal = self.double_relative_width(initial_width_goal)
         max_lo = maximum_transmit_rate * (1.0 - initial_width_goal)
-        mrr = max(
-            minimum_transmit_rate, min(max_lo, line_measurement.receive_rate)
-        )
+        mrr = max(minimum_transmit_rate, min(
+            max_lo, max_measurement.relative_receive_rate
+        ))
         mrr_measurement = self.measurer.measure(
             self.initial_trial_duration, mrr
         )
         # Attempt to get narrower width.
         if mrr_measurement.loss_fraction > 0.0:
             max2_lo = mrr * (1.0 - initial_width_goal)
-            mrr2 = min(max2_lo, mrr_measurement.receive_rate)
+            mrr2 = min(max2_lo, mrr_measurement.relative_receive_rate)
         else:
             mrr2 = mrr / (1.0 - initial_width_goal)
         if minimum_transmit_rate < mrr2 < maximum_transmit_rate:
-            line_measurement = mrr_measurement
+            max_measurement = mrr_measurement
             mrr_measurement = self.measurer.measure(
                 self.initial_trial_duration, mrr2)
             if mrr2 > mrr:
-                line_measurement, mrr_measurement = \
-                    (mrr_measurement, line_measurement)
+                max_measurement, mrr_measurement = \
+                    (mrr_measurement, max_measurement)
         starting_interval = ReceiveRateInterval(
-            mrr_measurement, line_measurement)
+            mrr_measurement, max_measurement)
         starting_result = NdrPdrResult(starting_interval, starting_interval)
         state = self.ProgressState(
             starting_result, self.number_of_intermediate_phases,

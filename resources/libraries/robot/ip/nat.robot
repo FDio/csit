@@ -40,13 +40,26 @@
 | Initialize NAT44 endpoint-dependent mode in circular topology
 | | [Documentation] | Initialization of NAT44 endpoint-dependent mode on DUT1
 | |
+| | ... | This keyword also sets a test variable \${resetter}
+| | ... | to hold a callable which resets VPP state.
+| | ... | Keywords performing search will call it to get consistent trials.
+| | ... | Tests which do not wish to reset NAT state should use ramp-up,
+| | ... | so the resetter is not set if \${ramp_up_duration} variable
+| | ... | is (defined and) nonzero.
+| |
+| | ... | *Test variables read:*
+| | ... | - n_sessions - Expected number of opened sessions.
+| |
 | | ${max_sessions}= | Compute Max Translations Per Thread
 | | ... | ${n_sessions} | ${thr_count_int}
 | | Enable NAT44 Plugin | ${dut1} | mode=${nat_mode} | sessions=${max_sessions}
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
-| | Set NAT44 Address Range
+| | ${resetter} = | Set NAT44 Address Range
 | | ... | ${dut1} | ${out_net} | ${out_net_end}
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | Return From Keyword If | ${ramp_up_duration}
+| | Set Test Variable | \${resetter}
 
 # TODO: Remove when 'ip4.Initialize IPv4 forwarding in circular topology' KW
 # adapted to use IP values from variables
@@ -184,6 +197,13 @@
 | Configure deterministic mode for NAT44
 | | [Documentation] | Set deterministic behaviour of NAT44 (DET44).
 | |
+| | ... | This keyword also sets a test variable \${resetter}
+| | ... | to hold a callable which resets VPP state.
+| | ... | Keywords performing search will call it to get consistent trials.
+| | ... | Tests which do not wish to reset NAT state should use ramp-up,
+| | ... | so the resetter is not set if \${ramp_up_duration} variable
+| | ... | is (defined and) nonzero.
+| |
 | | ... | *Arguments:*
 | | ... | - node - DUT node to set deterministic mode for NAT44 on.
 | | ... | Type: dictionary
@@ -199,8 +219,11 @@
 | |
 | | [Arguments] | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
 | |
-| | Set DET44 Mapping
+| | ${resetter} = | Set DET44 Mapping
 | | ... | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | Return From Keyword If | ${ramp_up_duration}
+| | Set Test Variable | \${resetter}
 
 | Initialize NAT44 deterministic mode in circular topology
 | | [Documentation] | Initialization of NAT44 deterministic mode (DET44)

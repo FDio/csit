@@ -60,8 +60,17 @@ def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
 
 
 def simple_burst(
-        profile_file, duration, framesize, rate, warmup_time, port_0, port_1,
-        latency, async_start=False, traffic_directions=2, force=False):
+        profile_file,
+        duration,
+        framesize,
+        rate,
+        port_0,
+        port_1,
+        latency,
+        async_start=False,
+        traffic_directions=2,
+        force=False,
+    ):
     """Send traffic and measure packet loss and latency.
 
     Procedure:
@@ -83,7 +92,6 @@ def simple_burst(
     :param framesize: Frame size.
     :param duration: Duration of traffic run in seconds (-1=infinite).
     :param rate: Traffic rate [percentage, pps, bps].
-    :param warmup_time: Traffic warm-up time in seconds, 0 = disable.
     :param port_0: Port 0 on the traffic generator.
     :param port_1: Port 1 on the traffic generator.
     :param latency: With latency stats.
@@ -94,7 +102,6 @@ def simple_burst(
     :type framesize: int or str
     :type duration: float
     :type rate: str
-    :type warmup_time: float
     :type port_0: int
     :type port_1: int
     :type latency: bool
@@ -105,8 +112,7 @@ def simple_burst(
     client = None
     total_rcvd = 0
     total_sent = 0
-    approximated_duration = 0
-    approximated_rate = 0
+    approximated_duration = 0.0
     lost_a = 0
     lost_b = 0
     lat_a = u"-1/-1/-1/"
@@ -162,40 +168,6 @@ def simple_burst(
         ports = [port_0]
         if traffic_directions > 1:
             ports.append(port_1)
-        # Warm-up phase:
-        if warmup_time > 0:
-            # Clear the stats before injecting:
-            client.clear_stats()
-
-            # Choose rate and start traffic:
-            client.start(
-                ports=ports, mult=rate, duration=warmup_time, force=force,
-                core_mask=STLClient.CORE_MASK_PIN
-            )
-
-            # Block until done:
-            time_start = time.monotonic()
-            client.wait_on_traffic(ports=ports, timeout=warmup_time+30)
-            time_stop = time.monotonic()
-            approximated_duration = time_stop - time_start
-
-            if client.get_warnings():
-                for warning in client.get_warnings():
-                    print(warning)
-
-            # Read the stats after the test:
-            stats = client.get_stats()
-
-            print(u"##### Warmup statistics #####")
-            print(json.dumps(stats, indent=4, separators=(u",", u": ")))
-
-            lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
-            if traffic_directions > 1:
-                lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
-
-            print(f"\npackets lost from {port_0} --> {port_1}: {lost_a} pkts")
-            if traffic_directions > 1:
-                print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
 
         # Clear the stats before injecting:
         client.clear_stats()
@@ -204,8 +176,11 @@ def simple_burst(
 
         # Choose rate and start traffic:
         client.start(
-            ports=ports, mult=rate, duration=duration, force=force,
-            core_mask=STLClient.CORE_MASK_PIN
+            ports=ports,
+            mult=rate,
+            duration=duration,
+            force=force,
+            core_mask=STLClient.CORE_MASK_PIN,
         )
 
         if async_start:
@@ -254,10 +229,6 @@ def simple_burst(
             else:
                 total_sent = stats[port_0][u"opackets"]
                 total_rcvd = stats[port_1][u"ipackets"]
-            try:
-                approximated_rate = total_sent / approximated_duration
-            except ZeroDivisionError:
-                pass
 
             print(f"\npackets lost from {port_0} --> {port_1}: {lost_a} pkts")
             if traffic_directions > 1:
@@ -275,13 +246,14 @@ def simple_burst(
             if client:
                 client.disconnect()
             print(
-                f"rate={rate!r}, total_received={total_rcvd}, "
-                f"total_sent={total_sent}, frame_loss={lost_a + lost_b}, "
-                f"target_duration={duration!r}, "
-                f"approximated_duration={approximated_duration!r}, "
-                f"approximated_rate={approximated_rate}, "
-                f"latency_stream_0(usec)={lat_a}, "
-                f"latency_stream_1(usec)={lat_b}, "
+                f"rate={rate!r}; "
+                f"total_received={total_rcvd}; "
+                f"total_sent={total_sent}; "
+                f"frame_loss={lost_a + lost_b}; "
+                f"target_duration={duration!r}; "
+                f"approximated_duration={approximated_duration!r}; "
+                f"latency_stream_0(usec)={lat_a}; "
+                f"latency_stream_1(usec)={lat_b}; "
             )
 
 
@@ -307,10 +279,6 @@ def main():
     parser.add_argument(
         u"-r", u"--rate", required=True,
         help=u"Traffic rate with included units (pps)."
-    )
-    parser.add_argument(
-        u"-w", u"--warmup_time", type=float, default=5.0,
-        help=u"Traffic warm-up time in seconds, 0 = disable."
     )
     parser.add_argument(
         u"--port_0", required=True, type=int,
@@ -345,10 +313,16 @@ def main():
         framesize = args.frame_size
 
     simple_burst(
-        profile_file=args.profile, duration=args.duration, framesize=framesize,
-        rate=args.rate, warmup_time=args.warmup_time, port_0=args.port_0,
-        port_1=args.port_1, latency=args.latency, async_start=args.async_start,
-        traffic_directions=args.traffic_directions, force=args.force
+        profile_file=args.profile,
+        duration=args.duration,
+        framesize=framesize,
+        rate=args.rate,
+        port_0=args.port_0,
+        port_1=args.port_1,
+        latency=args.latency,
+        async_start=args.async_start,
+        traffic_directions=args.traffic_directions,
+        force=args.force,
     )
 
 
