@@ -96,6 +96,29 @@
     },
     {
       "key": {
+        "uuid": "e67e86c9_fd32bf63",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 173
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-10-26T13:19:09Z",
+      "side": 1,
+      "message": "It leads to situation that packet throughput measurement is not run in sustain phase as required by KPI Throughput [0].\n\nIt means that e.g. test 64B-1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-mrr [1] should measure packet throughput when all 16,515,072 TCP sessions are established and all this sessions have corresponding entries in vpp nat44 hash table.\nBut using of resetter clears the nat44 hash table, the first packet of each transaction is routed via slowpath and the hash table doesn\u0027t contain all required entries - see nat44 summary [2] - as there is not enough time to establish all sessions.\n\nFrom this point of view the pps measurement for nat44ed tests is not valid.\n\n\n[0] https://tools.ietf.org/html/draft-ietf-bmwg-ngfw-performance-03.html#section-6.1\n[1] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-skx/2407/archives/log.html.gz#s1-s1-s1-s1-s3-t1\n[2] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-skx/2407/archives/log.html.gz#s1-s1-s1-s1-s3-t1-k3-k7-k2-k1-k1-k1-k1-k2",
+      "range": {
+        "startLine": 424,
+        "startChar": 6,
+        "endLine": 424,
+        "endChar": 19
+      },
+      "revId": "f8c7cbc652263a7cf2ad0a64d79ef1a597e9b079",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6e36ad6_832324b7",
         "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.robot",
         "patchSetId": 173
