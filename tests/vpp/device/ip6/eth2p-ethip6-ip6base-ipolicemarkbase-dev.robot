@@ -65,10 +65,9 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Set Test Variable | \${cb} | ${frame_size}
-| | Set Test Variable | \${eb} | ${frame_size}
 | |
 | | Given Set Max Rate And Jumbo
+| | And Set Rates For Policer
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
