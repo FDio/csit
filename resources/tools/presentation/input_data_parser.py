@@ -229,9 +229,17 @@ class ExecutionChecker(ResultVisitor):
         r'Latency at 50% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
         r'Latency at 10% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
     )
+    REGEX_CPS_MSG_INFO = re.compile(
+        r'NDR_LOWER:\s(\d+.\d+)\s.*\s.*\n.*\n.*\n'
+        r'PDR_LOWER:\s(\d+.\d+)\s.*\s.*\n.*\n.*'
+    )
+    REGEX_PPS_MSG_INFO = re.compile(
+        r'NDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*\n'
+        r'PDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*'
+    )
     REGEX_MRR_MSG_INFO = re.compile(r'.*\[(.*)\]')
 
-    # TODO: Remove when not needed
+    # Needed for CPS and PPS tests
     REGEX_NDRPDR_LAT_BASE = re.compile(
         r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
         r'LATENCY.*\[\'(.*)\', \'(.*)\'\]'
@@ -244,18 +252,7 @@ class ExecutionChecker(ResultVisitor):
         r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
         r'Latency.*\[\'(.*)\', \'(.*)\'\]'
     )
-    # TODO: Remove when not needed
-    REGEX_NDRPDR_LAT_LONG = re.compile(
-        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
-        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]'
-    )
+
     REGEX_VERSION_VPP = re.compile(
         r"(return STDOUT Version:\s*|"
         r"VPP Version:\s*|VPP version:\s*)(.*)"
@@ -392,12 +389,76 @@ class ExecutionChecker(ResultVisitor):
         except (AttributeError, IndexError, ValueError, KeyError):
             return u"Test Failed."
 
+    def _get_data_from_cps_test_msg(self, msg):
+        """Get info from message of NDRPDR CPS tests.
+
+        :param msg: Message to be processed.
+        :type msg: str
+        :returns: Processed message or "Test Failed." if a problem occurs.
+        :rtype: str
+        """
+
+        groups = re.search(self.REGEX_CPS_MSG_INFO, msg)
+        if not groups or groups.lastindex != 2:
+            return u"Test Failed."
+
+        try:
+            data = {
+                u"ndr_low": float(groups.group(1)),
+                u"pdr_low": float(groups.group(2)),
+            }
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return u"Test Failed."
+
+        try:
+            return (
+                f"1. {(data[u'ndr_low'] / 1e6):5.2f}\n"
+                f"2. {(data[u'pdr_low'] / 1e6):5.2f}"
+            )
+
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return u"Test Failed."
+
+    def _get_data_from_pps_test_msg(self, msg):
+        """Get info from message of NDRPDR PPS tests.
+
+        :param msg: Message to be processed.
+        :type msg: str
+        :returns: Processed message or "Test Failed." if a problem occurs.
+        :rtype: str
+        """
+
+        groups = re.search(self.REGEX_PPS_MSG_INFO, msg)
+        if not groups or groups.lastindex != 4:
+            return u"Test Failed."
+
+        try:
+            data = {
+                u"ndr_low": float(groups.group(1)),
+                u"ndr_low_b": float(groups.group(2)),
+                u"pdr_low": float(groups.group(3)),
+                u"pdr_low_b": float(groups.group(4)),
+            }
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return u"Test Failed."
+
+        try:
+            return (
+                f"1. {(data[u'ndr_low'] / 1e6):5.2f}      "
+                f"{data[u'ndr_low_b']:5.2f}\n"
+                f"2. {(data[u'pdr_low'] / 1e6):5.2f}      "
+                f"{data[u'pdr_low_b']:5.2f}"
+            )
+
+        except (AttributeError, IndexError, ValueError, KeyError):
+            return u"Test Failed."
+
     def _get_data_from_perf_test_msg(self, msg):
         """Get info from message of NDRPDR performance tests.
 
         :param msg: Message to be processed.
         :type msg: str
-        :returns: Processed message or original message if a problem occurs.
+        :returns: Processed message or "Test Failed." if a problem occurs.
         :rtype: str
         """
 
@@ -816,10 +877,7 @@ class ExecutionChecker(ResultVisitor):
             },
         }
 
-        # TODO: Rewrite when long and base are not needed
-        groups = re.search(self.REGEX_NDRPDR_LAT_LONG, msg)
-        if groups is None:
-            groups = re.search(self.REGEX_NDRPDR_LAT, msg)
+        groups = re.search(self.REGEX_NDRPDR_LAT, msg)
         if groups is None:
             groups = re.search(self.REGEX_NDRPDR_LAT_BASE, msg)
         if groups is None:
@@ -1060,9 +1118,18 @@ class ExecutionChecker(ResultVisitor):
 
         if test.status == u"PASS":
             if u"NDRPDR" in tags:
-                test_result[u"msg"] = self._get_data_from_perf_test_msg(
-                    test.message).replace(u'\n', u' |br| ').\
-                    replace(u'\r', u'').replace(u'"', u"'")
+                if u"TCP_PPS" in tags or u"UDP_PPS" in tags:
+                    test_result[u"msg"] = self._get_data_from_pps_test_msg(
+                        test.message).replace(u'\n', u' |br| '). \
+                        replace(u'\r', u'').replace(u'"', u"'")
+                elif u"TCP_CPS" in tags or u"UDP_CPS" in tags:
+                    test_result[u"msg"] = self._get_data_from_cps_test_msg(
+                        test.message).replace(u'\n', u' |br| '). \
+                        replace(u'\r', u'').replace(u'"', u"'")
+                else:
+                    test_result[u"msg"] = self._get_data_from_perf_test_msg(
+                        test.message).replace(u'\n', u' |br| ').\
+                        replace(u'\r', u'').replace(u'"', u"'")
             elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
                 test_result[u"msg"] = self._get_data_from_mrr_test_msg(
                     test.message).replace(u'\n', u' |br| ').\
