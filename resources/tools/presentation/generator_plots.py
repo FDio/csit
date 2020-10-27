@@ -477,7 +477,7 @@ def plot_perf_box_name(plot, input_data):
         # Create plot
         layout = deepcopy(plot[u"layout"])
         if layout.get(u"title", None):
-            if test_type in (u"HOSTSTACK", ):
+            if test_type in (u"HOSTSTACK", u"CPS"):
                 layout[u"title"] = f"<b>Bandwidth:</b> {layout[u'title']}"
             else:
                 layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
