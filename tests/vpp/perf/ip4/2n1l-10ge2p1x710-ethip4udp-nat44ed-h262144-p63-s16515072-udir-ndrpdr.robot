@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | UDP_SYN
-| ... | NAT44_ENDPOINT_DEPENDENT | BASE | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | UDP | UDP_UDIR
+| ... | NAT44_ENDPOINT_DEPENDENT | SCALE | HOSTS_262144 | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udp-nat44ed-h262144-p63-s16515072-udir
 |
@@ -83,13 +83,14 @@
 | ${n_hosts}= | ${262144}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
+# Main heap size multiplicator
+| ${heap_size_mult}= | ${7}
 # Ramp-up settings
 | ${ramp_up_rate}= | ${500000}
 | ${ramp_up_duration}= | ${72.7}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p-udir
-# Main heap size multiplicator
-| ${heap_size_mult}= | ${3}
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -112,11 +113,6 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | And Add NAT to all DUTs | nat_mode=${nat_mode}
-| | ${max_translations_per_thread}= | Compute Max Translations Per Thread
-| | ... | ${n_sessions} | ${thr_count_int}
-| | And Add NAT max translations per thread to all DUTs
-| | ... | ${max_translations_per_thread}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
@@ -125,7 +121,6 @@
 | | Then Send ramp-up traffic
 | | And Verify NAT44 UDP sessions number on DUT1 node
 | | And Find NDR and PDR intervals using optimized search
-| | ... | traffic_directions=${1}
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr
