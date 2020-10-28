@@ -1153,8 +1153,6 @@ class ExecutionChecker(ResultVisitor):
                     return
 
         if test.status == u"PASS":
-            logging.info(self._test_id)
-            logging.info(tags)
             if u"DEVICETEST" in tags:
                 test_result[u"type"] = u"DEVICETEST"
             elif u"NDRPDR" in tags:
@@ -1168,9 +1166,6 @@ class ExecutionChecker(ResultVisitor):
                     self._get_ndrpdr_throughput_gbps(test.message)
                 test_result[u"latency"], test_result[u"status"] = \
                     self._get_ndrpdr_latency(test.message)
-                logging.info(test_result[u"throughput"])
-                logging.info(test_result[u"gbps"])
-                logging.info(test_result[u"latency"])
             elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
                 if u"MRR" in tags:
                     test_result[u"type"] = u"MRR"
@@ -1192,7 +1187,6 @@ class ExecutionChecker(ResultVisitor):
                     groups = re.search(self.REGEX_MRR, test.message)
                     test_result[u"result"][u"receive-rate"] = \
                         float(groups.group(3)) / float(groups.group(1))
-                logging.info(test_result[u"result"][u"receive-rate"])
             elif u"SOAK" in tags:
                 test_result[u"type"] = u"SOAK"
                 test_result[u"throughput"], test_result[u"status"] = \
