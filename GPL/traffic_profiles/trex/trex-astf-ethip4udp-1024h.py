@@ -25,6 +25,10 @@ Traffic profile:
      on port 1
    - Destination IP address range: source IP address from packet received
      on port 1
+
+This is a profile for CPS tests, it only sets up UDP session.
+No delays, no data transfer.
+Keepalive mechanism cannot be disabled, so it is at least set to long waits.
 """
 
 from trex.astf.api import *
@@ -54,7 +58,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B udp
 
         # Required UDP keepalive value for T-Rex
-        self.udp_keepalive = 2000  # 2s (2,000 msec)
+        self.udp_keepalive = 2000*1000*100  # 200000s (200,000,000 msec)
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
@@ -70,27 +74,19 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # client commands
         prog_c = ASTFProgram(stream=False)
-        # set the keepalive timer for UDP flows to not close udp session
-        # immediately after packet exchange
         prog_c.set_keepalive_msg(self.udp_keepalive)
         # send REQ message
         prog_c.send_msg(self.udp_req)
         # receive RES message
         prog_c.recv_msg(1)
 
-        prog_c.delay(self.udp_keepalive * 1000)  # delay is defined in usec
-
         # server commands
         prog_s = ASTFProgram(stream=False)
-        # set the keepalive timer for UDP flows to not close udp session
-        # immediately after packet exchange
         prog_c.set_keepalive_msg(self.udp_keepalive)
         # receive REQ message
         prog_s.recv_msg(1)
         # send RES message
         prog_s.send_msg(self.udp_res)
-
-        prog_s.delay(self.udp_keepalive * 1000)  # delay is defined in usec
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
