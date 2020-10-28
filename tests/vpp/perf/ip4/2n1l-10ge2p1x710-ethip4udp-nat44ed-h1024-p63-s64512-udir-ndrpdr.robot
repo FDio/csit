@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | UDP_SYN
-| ... | NAT44_ENDPOINT_DEPENDENT | BASE | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | UDP | UDP_UDIR
+| ... | NAT44_ENDPOINT_DEPENDENT | SCALE | HOSTS_1024 | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udp-nat44ed-h1024-p63-s64512-udir
 |
@@ -86,8 +86,9 @@
 # Ramp-up settings
 | ${ramp_up_rate}= | ${500000}
 | ${ramp_up_duration}= | ${1}
-# Traffic profile:
+# Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p-udir
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -123,7 +124,6 @@
 | | Then Send ramp-up traffic
 | | And Verify NAT44 UDP sessions number on DUT1 node
 | | And Find NDR and PDR intervals using optimized search
-| | ... | traffic_directions=${1}
 
 *** Test Cases ***
 | 64B-1c-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr
