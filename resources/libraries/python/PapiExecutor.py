@@ -549,6 +549,8 @@ class PapiSocketExecutor:
                     # *_details messages do not contain retval.
                     retval = dict_item[u"retval"]
                     if retval != exp_rv:
+                        logger.debug(f"item {dict_item}")
+                        logger.debug(f"reply {reply}")
                         # TODO: What exactly to log and raise here?
                         raise AssertionError(
                             f"Retval {retval!r} does not match expected "
