@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "e76715bf_b61fba52",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "Two developed, one more (pure throughput, with sessions already established) planned.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 5
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16b4401e_82526b35",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "Currently only 64B for UDP and default (no explicit mss set) for TCP.",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 19
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ffcf13a_37b0b375",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "late_traffic_start_correction\n\nCurrently hardcoded to 0.1115 seconds.",
+      "range": {
+        "startLine": 124,
+        "startChar": 51,
+        "endLine": 124,
+        "endChar": 68
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e3da58a1_4078094b",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -41,6 +110,328 @@
         "startChar": 21,
         "endLine": 210,
         "endChar": 68
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e95d5083_5dd27910",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "This one? https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-2009-2n-skx/28/archives/log.html.gz#s1-s1-s1-s1-s63-t1-k2-k12-k6-k10-k1-k1-k1-k1",
+      "range": {
+        "startLine": 250,
+        "startChar": 2,
+        "endLine": 250,
+        "endChar": 26
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9740e59_fefbd001",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-2009-2n-skx/28/archives/log.html.gz#s1-s1-s1-s1-s63-t1-k2-k12-k6-k7-k1-k1-k1-k1-k12-k1-k1-k1-k1",
+      "range": {
+        "startLine": 256,
+        "startChar": 2,
+        "endLine": 256,
+        "endChar": 26
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae38f722_86a9e3c7",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "(d)",
+      "range": {
+        "startLine": 289,
+        "startChar": 4,
+        "endLine": 289,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "579f1915_f16fd152",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "(d)",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 290,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0f67cd4_5c974e7b",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "(d)",
+      "range": {
+        "startLine": 292,
+        "startChar": 4,
+        "endLine": 292,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80fc67c3_219e800f",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "(d)",
+      "range": {
+        "startLine": 293,
+        "startChar": 4,
+        "endLine": 293,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea39d54a_b85919a9",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "(d)",
+      "range": {
+        "startLine": 296,
+        "startChar": 4,
+        "endLine": 296,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffd98e79_c0fc0b79",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "(d)",
+      "range": {
+        "startLine": 297,
+        "startChar": 4,
+        "endLine": 297,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf716748_ae81b96c",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "(r)",
+      "range": {
+        "startLine": 298,
+        "startChar": 4,
+        "endLine": 298,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e67c9ca1_cefa6e57",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "(d)",
+      "range": {
+        "startLine": 303,
+        "startChar": 4,
+        "endLine": 303,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48aae7e2_0afae106",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "(r)",
+      "range": {
+        "startLine": 306,
+        "startChar": 4,
+        "endLine": 306,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f315ffac_0e548d5b",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "only once (after traffic is stopped)",
+      "range": {
+        "startLine": 312,
+        "startChar": 21,
+        "endLine": 312,
+        "endChar": 33
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56583d92_2a6ae46c",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "Only Final-Counters are read.",
+      "range": {
+        "startLine": 318,
+        "startChar": 2,
+        "endLine": 318,
+        "endChar": 17
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f37f827c_8515bf16",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-10-29T12:39:13Z",
+      "side": 1,
+      "message": "Currently s_tcp_connects is used for counting successful sessions.\nBut now I am not sure whether it is correct, as already c_tcps_connects counts NAT session is established (even though TCP is not fully connected yet). Not sure how the counters behave when the third packet is lost and retransmitted.",
+      "range": {
+        "startLine": 326,
+        "startChar": 5,
+        "endLine": 326,
+        "endChar": 17
       },
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
