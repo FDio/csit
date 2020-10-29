@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27c19a6a_b517bb9a",
+        "filename": "resources/libraries/robot/ip/geneve.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-10-29T10:49:22Z",
+      "side": 1,
+      "message": "These two lines need to be replaced by VPP IPv4 routing configuration, with IPv4 routing interfaces added towards TG/TRex.\nNo L2BD configuration, IPv4 routing only.\n\n       - geneve tunnel interface configuration\n         + geneve tunnel carries an Ethernet L2 frame with ipv4 payload\n         + geneve tunnel is terminated directly into an IPv4 interface\n         + the configuration follows the above patch, sample config below\n           * create geneve tunnel local 10.10.10.10 remote 10.10.10.9 vni 48 decap-next node ethernet-input l3-mode\n           * set interface ip address geneve_tunnel0 11.11.11.12/24",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 76
+      },
+      "revId": "0a517f6f726e09d46d8e8b92afa61b764d07c044",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
