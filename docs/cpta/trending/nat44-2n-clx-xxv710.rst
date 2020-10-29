@@ -91,183 +91,363 @@
     <p><br></p>
     </center>
 
-..
-    64b-nat44ed-ip4routing-udp-stf-cps-avf
-    ``````````````````````````````````````
+64b-nat44ed-ip4routing-udp-stf-cps-avf
+``````````````````````````````````````
 
-    2t1c
-    ::::
+2t1c
+::::
 
-    .. raw:: html
+.. raw:: html
 
-        <a name="64b-2t1c-udp-stf-cps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+    <a name="64b-2t1c-udp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    4t2c
-    ::::
+4t2c
+::::
 
-    .. raw:: html
+.. raw:: html
 
-        <a name="64b-4t2c-udp-stf-cps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+    <a name="64b-4t2c-udp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    8t4c
-    ::::
+8t4c
+::::
 
-    .. raw:: html
+.. raw:: html
 
-        <a name="64b-8t4c-udp-stf-cps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+    <a name="64b-8t4c-udp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    64b-nat44ed-ip4routing-tcp-stf-cps-avf
-    ``````````````````````````````````````
 
-    2t1c
-    ::::
+64b-nat44ed-ip4routing-udp-stf-pps-avf
+``````````````````````````````````````
 
-    .. raw:: html
+2t1c
+::::
 
-        <a name="64b-2t1c-tcp-stf-cps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+.. raw:: html
 
-    4t2c
-    ::::
+    <a name="64b-2t1c-udp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: html
+4t2c
+::::
 
-        <a name="64b-4t2c-tcp-stf-cps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+.. raw:: html
 
-    8t4c
-    ::::
+    <a name="64b-4t2c-udp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: html
+8t4c
+::::
 
-        <a name="64b-8t4c-tcp-stf-cps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+.. raw:: html
 
-    64b-nat44ed-ip4routing-udp-stf-pps-avf
-    ``````````````````````````````````````
+    <a name="64b-8t4c-udp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    2t1c
-    ::::
+64b-ip4base-ip4routing-udp-stf-cps-avf
+``````````````````````````````````````
 
-    .. raw:: html
+2t1c
+::::
 
-        <a name="64b-2t1c-udp-stf-pps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+.. raw:: html
 
-    4t2c
-    ::::
+    <a name="64b-2t1c-udp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-udp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: html
+4t2c
+::::
 
-        <a name="64b-4t2c-udp-stf-pps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+.. raw:: html
 
-    8t4c
-    ::::
+    <a name="64b-4t2c-udp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-udp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: html
+8t4c
+::::
 
-        <a name="64b-8t4c-udp-stf-pps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+.. raw:: html
 
-    64b-nat44ed-ip4routing-tcp-stf-pps-avf
-    ``````````````````````````````````````
+    <a name="64b-8t4c-udp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-udp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    2t1c
-    ::::
+64b-ip4base-ip4routing-udp-stf-pps-avf
+``````````````````````````````````````
 
-    .. raw:: html
+2t1c
+::::
 
-        <a name="64b-2t1c-tcp-stf-pps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+.. raw:: html
 
-    4t2c
-    ::::
+    <a name="64b-2t1c-udp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-udp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: html
+4t2c
+::::
 
-        <a name="64b-4t2c-tcp-stf-pps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+.. raw:: html
 
-    8t4c
-    ::::
+    <a name="64b-4t2c-udp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-udp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: html
+8t4c
+::::
 
-        <a name="64b-8t4c-tcp-stf-pps-avf"></a>
-        <center>
-        Links to builds:
-        <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-        <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-        <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf.html"></iframe>
-        <p><br></p>
-        </center>
+.. raw:: html
+
+    <a name="64b-8t4c-udp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-udp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+64b-nat44ed-ip4routing-tcp-stf-cps-avf
+``````````````````````````````````````
+
+2t1c
+::::
+
+.. raw:: html
+
+    <a name="64b-2t1c-tcp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+4t2c
+::::
+
+.. raw:: html
+
+    <a name="64b-4t2c-tcp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+8t4c
+::::
+
+.. raw:: html
+
+    <a name="64b-8t4c-tcp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+64b-nat44ed-ip4routing-tcp-stf-pps-avf
+``````````````````````````````````````
+
+2t1c
+::::
+
+.. raw:: html
+
+    <a name="64b-2t1c-tcp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+4t2c
+::::
+
+.. raw:: html
+
+    <a name="64b-4t2c-tcp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+8t4c
+::::
+
+.. raw:: html
+
+    <a name="64b-8t4c-tcp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+64b-ip4base-ip4routing-tcp-stf-cps-avf
+``````````````````````````````````````
+
+2t1c
+::::
+
+.. raw:: html
+
+    <a name="64b-2t1c-tcp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-tcp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+4t2c
+::::
+
+.. raw:: html
+
+    <a name="64b-4t2c-tcp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-tcp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+8t4c
+::::
+
+.. raw:: html
+
+    <a name="64b-8t4c-tcp-stf-cps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-tcp-stf-cps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+64b-ip4base-ip4routing-tcp-stf-pps-avf
+``````````````````````````````````````
+
+2t1c
+::::
+
+.. raw:: html
+
+    <a name="64b-2t1c-tcp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-tcp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+4t2c
+::::
+
+.. raw:: html
+
+    <a name="64b-4t2c-tcp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-tcp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
+
+8t4c
+::::
+
+.. raw:: html
+
+    <a name="64b-8t4c-tcp-stf-pps-avf"></a>
+    <center>
+    Links to builds:
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-ip4base-ip4routing-tcp-stf-pps-avf.html"></iframe>
+    <p><br></p>
+    </center>
