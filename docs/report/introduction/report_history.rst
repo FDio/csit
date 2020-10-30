@@ -14,7 +14,7 @@ below.
 |                |      - 3n-skx                                              |
 |                |      - 3n-tsh                                              |
 |                |                                                            |
-|                | 2. Added NAT44 data and graphs:                            |
+|                | 2. Added NAT44 iterative and coverage data and graphs:     |
 |                |                                                            |
 |                |    - 2n-clx                                                |
 |                |    - 2n-skx                                                |

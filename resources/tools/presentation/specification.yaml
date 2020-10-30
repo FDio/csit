@@ -255,16 +255,8 @@
         - 44  # rls2009 NDRPDR iter env 5
         - 46  # rls2009 NDRPDR iter env 5
         - 48  # rls2009 NDRPDR iter env 5
-        - 51  # rls2009 NDRPDR iter NAT44 env 5
-        - 52  # rls2009 NDRPDR iter NAT44 env 5
-        - 53  # rls2009 NDRPDR iter NAT44 env 5
-        - 54  # rls2009 NDRPDR iter NAT44 env 5
-        - 55  # rls2009 NDRPDR iter NAT44 env 5
-        - 56  # rls2009 NDRPDR iter NAT44 env 5
-        - 57  # rls2009 NDRPDR iter NAT44 env 5
-        - 58  # rls2009 NDRPDR iter NAT44 env 5
-        - 59  # rls2009 NDRPDR iter NAT44 env 5
-        - 60  # rls2009 NDRPDR iter NAT44 env 5
+        - 74  # rls2009 NDRPDR iter NAT44 env 5
+        - 75  # rls2009 NDRPDR iter NAT44 env 5
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -272,7 +264,7 @@
 
     plot-vpp-hdrh-lat-2n-skx-nat44:
       csit-vpp-perf-report-iterative-2009-2n-skx:
-        - 51  # rls2009 NDRPDR iter NAT44 env 5
+        - 74  # rls2009 NDRPDR iter NAT44 env 5
 
     plot-vpp-soak-2n-skx:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -340,10 +332,15 @@
         - 88  # rls2009 NDRPDR iter env 5
         - 89  # rls2009 NDRPDR iter env 5
         - 90  # rls2009 NDRPDR iter env 5
+        - 91  # rls2009 NDRPDR iter NAT44 env 5
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 36  # rls2009 NDRPDR iter env 5
+
+    plot-vpp-hdrh-lat-2n-clx-nat44:
+      csit-vpp-perf-report-iterative-2009-2n-clx:
+        - 91  # rls2009 NDRPDR iter NAT44 env 5
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -499,16 +496,8 @@
         - 44  # rls2009 NDRPDR iter env 5
         - 46  # rls2009 NDRPDR iter env 5
         - 48  # rls2009 NDRPDR iter env 5
-        - 51  # rls2009 NDRPDR iter NAT44 env 5
-        - 52  # rls2009 NDRPDR iter NAT44 env 5
-        - 53  # rls2009 NDRPDR iter NAT44 env 5
-        - 54  # rls2009 NDRPDR iter NAT44 env 5
-        - 55  # rls2009 NDRPDR iter NAT44 env 5
-        - 56  # rls2009 NDRPDR iter NAT44 env 5
-        - 57  # rls2009 NDRPDR iter NAT44 env 5
-        - 58  # rls2009 NDRPDR iter NAT44 env 5
-        - 59  # rls2009 NDRPDR iter NAT44 env 5
-        - 60  # rls2009 NDRPDR iter NAT44 env 5
+        - 74  # rls2009 NDRPDR iter NAT44 env 5
+        - 75  # rls2009 NDRPDR iter NAT44 env 5
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-report-iterative-2009-3n-skx:
@@ -855,16 +844,8 @@
         - 44  # rls2009 NDRPDR iter env 5
         - 46  # rls2009 NDRPDR iter env 5
         - 48  # rls2009 NDRPDR iter env 5
-        - 51  # rls2009 NDRPDR iter NAT44 env 5
-        - 52  # rls2009 NDRPDR iter NAT44 env 5
-        - 53  # rls2009 NDRPDR iter NAT44 env 5
-        - 54  # rls2009 NDRPDR iter NAT44 env 5
-        - 55  # rls2009 NDRPDR iter NAT44 env 5
-        - 56  # rls2009 NDRPDR iter NAT44 env 5
-        - 57  # rls2009 NDRPDR iter NAT44 env 5
-        - 58  # rls2009 NDRPDR iter NAT44 env 5
-        - 59  # rls2009 NDRPDR iter NAT44 env 5
-        - 60  # rls2009 NDRPDR iter NAT44 env 5
+        - 74  # rls2009 NDRPDR iter NAT44 env 5
+        - 75  # rls2009 NDRPDR iter NAT44 env 5
 
     vpp-performance-changes-2n-clx-h1:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -912,6 +893,7 @@
         - 88  # rls2009 NDRPDR iter env 5
         - 89  # rls2009 NDRPDR iter env 5
         - 90  # rls2009 NDRPDR iter env 5
+        - 91  # rls2009 NDRPDR iter NAT44 env 5
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-2001-2n-dnv:
@@ -1464,16 +1446,8 @@
         - 44  # rls2009 NDRPDR iter env 5
         - 46  # rls2009 NDRPDR iter env 5
         - 48  # rls2009 NDRPDR iter env 5
-        - 51  # rls2009 NDRPDR iter NAT44 env 5
-        - 52  # rls2009 NDRPDR iter NAT44 env 5
-        - 53  # rls2009 NDRPDR iter NAT44 env 5
-        - 54  # rls2009 NDRPDR iter NAT44 env 5
-        - 55  # rls2009 NDRPDR iter NAT44 env 5
-        - 56  # rls2009 NDRPDR iter NAT44 env 5
-        - 57  # rls2009 NDRPDR iter NAT44 env 5
-        - 58  # rls2009 NDRPDR iter NAT44 env 5
-        - 59  # rls2009 NDRPDR iter NAT44 env 5
-        - 60  # rls2009 NDRPDR iter NAT44 env 5
+        - 74  # rls2009 NDRPDR iter NAT44 env 5
+        - 75  # rls2009 NDRPDR iter NAT44 env 5
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 36  # rls2009 NDRPDR iter env 5
@@ -1486,6 +1460,7 @@
         - 88  # rls2009 NDRPDR iter env 5
         - 89  # rls2009 NDRPDR iter env 5
         - 90  # rls2009 NDRPDR iter env 5
+        - 91  # rls2009 NDRPDR iter NAT44 env 5
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
@@ -2700,16 +2675,18 @@
       - 44  # rls2009 NDRPDR iter env 5
       - 46  # rls2009 NDRPDR iter env 5
       - 48  # rls2009 NDRPDR iter env 5
-      - 51  # rls2009 NDRPDR iter NAT44 env 5
-      - 52  # rls2009 NDRPDR iter NAT44 env 5
-      - 53  # rls2009 NDRPDR iter NAT44 env 5
-      - 54  # rls2009 NDRPDR iter NAT44 env 5
-      - 55  # rls2009 NDRPDR iter NAT44 env 5
-      - 56  # rls2009 NDRPDR iter NAT44 env 5
-      - 57  # rls2009 NDRPDR iter NAT44 env 5
-      - 58  # rls2009 NDRPDR iter NAT44 env 5
-      - 59  # rls2009 NDRPDR iter NAT44 env 5
-      - 60  # rls2009 NDRPDR iter NAT44 env 5
+      - 74  # rls2009 NDRPDR iter NAT44 env 5
+      - 75  # rls2009 NDRPDR iter NAT44 env 5
+#      - 51  # rls2009 NDRPDR iter NAT44 env 5
+#      - 52  # rls2009 NDRPDR iter NAT44 env 5
+#      - 53  # rls2009 NDRPDR iter NAT44 env 5
+#      - 54  # rls2009 NDRPDR iter NAT44 env 5
+#      - 55  # rls2009 NDRPDR iter NAT44 env 5
+#      - 56  # rls2009 NDRPDR iter NAT44 env 5
+#      - 57  # rls2009 NDRPDR iter NAT44 env 5
+#      - 58  # rls2009 NDRPDR iter NAT44 env 5
+#      - 59  # rls2009 NDRPDR iter NAT44 env 5
+#      - 60  # rls2009 NDRPDR iter NAT44 env 5
       - 38  # rls2009 nf-density iter env 5
       - 41  # rls2009 nf-density iter env 5
       - 45  # rls2009 nf-density iter env 5
@@ -2795,6 +2772,7 @@
       - 88  # rls2009 NDRPDR iter env 5
       - 89  # rls2009 NDRPDR iter env 5
       - 90  # rls2009 NDRPDR iter env 5
+      - 91  # rls2009 NDRPDR iter NAT44 env 5
       - 37  # rls2009 nf-density iter env 5
       - 43  # rls2009 nf-density iter env 5
       - 69  # rls2009 nf-density iter env 5
@@ -20316,6 +20294,17 @@
   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-2n-clx"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-by-percentile"
+
+- type: "plot"
+  title: "Latency by percentile: 2n-clx-nat44"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-clx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-clx-nat44"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
