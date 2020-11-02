@@ -546,7 +546,7 @@ def plot_tsa_name(plot, input_data):
                         u"4": list()
                     }
                 try:
-                    if test[u"type"] not in (u"NDRPDR",):
+                    if test[u"type"] not in (u"NDRPDR", u"CPS"):
                         continue
 
                     if u"-pdr" in plot_title:
@@ -682,7 +682,7 @@ def plot_tsa_name(plot, input_data):
     x_vals = [1, 2, 4]
 
     # Limits:
-    if u"-gbps" not in plot_title:
+    if u"-gbps" not in plot_title and u"-cps-" not in plot_title:
         nic_limit /= 1e6
         lnk_limit /= 1e6
         pci_limit /= 1e6
