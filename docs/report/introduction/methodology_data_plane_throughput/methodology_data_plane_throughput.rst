@@ -13,6 +13,9 @@ Following throughput test methods are used:
 - MRR - Maximum Receive Rate
 - PLRsearch - Probabilistic Loss Ratio search
 
+..
+    TODO: Add RECONF.
+
 Description of each test method is followed by generic test properties
 shared by all methods.
 
