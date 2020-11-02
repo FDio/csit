@@ -1,9 +1,9 @@
 # 3n-dnv
 ### tests 54
 ### job hrs est. 2.5
-### job hrs real xx.x
+### job hrs real 2.5
 ### test mins est. 2.8
-### test mins real x.x
+### test mins real 2.5
 ## ./container_memif
 ## ./crypto
 ### intel-x553
