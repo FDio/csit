@@ -1,9 +1,9 @@
 # 2n-skx
 ### tests 84
-### job hrs est. 7.15
-### job hrs real 7.15
-### test mins est. 5.1
-### test mins real 5.1
+### job hrs est. 4.7
+### job hrs real 4.7
+### test mins est. 3.36
+### test mins real 3.36
 ## ./container_memif
 ## ./crypto
 ## ./ip4
