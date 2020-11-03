@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49a010f6_43d22840",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-03T11:51:24Z",
+      "side": 1,
+      "message": "multiple",
+      "range": {
+        "startLine": 8,
+        "startChar": 40,
+        "endLine": 8,
+        "endChar": 48
+      },
+      "revId": "bf2f3c780d2d3667177cc27fad057666882d1c79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "746370ed_6a3f1344",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-03T11:51:24Z",
+      "side": 1,
+      "message": "Line too long. Check everywhere.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 82
+      },
+      "revId": "bf2f3c780d2d3667177cc27fad057666882d1c79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21fb76e7_3868d627",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-03T11:51:24Z",
+      "side": 1,
+      "message": "Consider adding the abbreviation as for STL.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 13
+      },
+      "revId": "bf2f3c780d2d3667177cc27fad057666882d1c79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a15c9371_648f1516",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-03T11:51:24Z",
+      "side": 1,
+      "message": "clients",
+      "range": {
+        "startLine": 43,
+        "startChar": 3,
+        "endLine": 43,
+        "endChar": 10
+      },
+      "revId": "bf2f3c780d2d3667177cc27fad057666882d1c79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a186c67b_44856c14",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-03T11:51:24Z",
+      "side": 1,
+      "message": "... which address and port ...",
+      "range": {
+        "startLine": 44,
+        "startChar": 38,
+        "endLine": 44,
+        "endChar": 50
+      },
+      "revId": "bf2f3c780d2d3667177cc27fad057666882d1c79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54bc2673_0f5b3bea",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-03T11:51:24Z",
+      "side": 1,
+      "message": "traffic",
+      "range": {
+        "startLine": 188,
+        "startChar": 20,
+        "endLine": 188,
+        "endChar": 29
+      },
+      "revId": "bf2f3c780d2d3667177cc27fad057666882d1c79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
