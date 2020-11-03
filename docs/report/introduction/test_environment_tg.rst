@@ -1,3 +1,5 @@
+.. _test_environment_tg:
+
 TG Settings - TRex
 ------------------
 
@@ -53,6 +55,16 @@ Also, Python client is now starting traffic with:
 ::
 
   core_mask=STLClient.CORE_MASK_PIN
+
+TG Startup Command (Stateful Mode)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+  $ sudo -E -S sh -c "cd '${trex_install_dir}/scripts/' && \
+    nohup ./t-rex-64 -i --prefix $(hostname) --astf --hdrh --no-scapy-server \
+    --mbuf-factor 32 > /tmp/trex.log 2>&1 &" > /dev/null
+
 
 TG API Driver
 ~~~~~~~~~~~~~
