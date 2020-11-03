@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f5700837_ed238812",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e76715bf_b61fba52",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 5
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16b4401e_82526b35",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8977e771_502f929b",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Added:  Current code is using 64B only for UDP\nand default MSS 1460B for TCP/IP.",
+      "parentUuid": "16b4401e_82526b35",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 19
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a5ea0749_29f0fab7",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "- For UDP:\n    - `trial_duration` \u003d `target_setup_duration` + `late_traffic_start_correction`\n    - `late_traffic_start_correction` \u003d 0.1115 seconds (hardcoded for now)\n  - For TCP:\n    - `trial_duration` \u003d 2 * `target_setup_duration` + `late_traffic_start_correction`\n    - `late_traffic_start_correction` \u003d 0.1115 seconds (hardcoded for now)",
+      "parentUuid": "2ffcf13a_37b0b375",
+      "range": {
+        "startLine": 124,
+        "startChar": 51,
+        "endLine": 124,
+        "endChar": 68
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3da58a1_4078094b",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -91,6 +163,30 @@
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0be007fa_a0af103e",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "In order to ensure a determnistic region of TRex ASTF operation, a\nseparate set of tests is run for each traffic profile, with vpp-ip4base\nDUT instead of vpp-nat44ed, to auto-discover the maximum rate TRex ASTF\ntraffic profile is capable of. Result of this test is used as a side\nreference to compare with the results of NAT44ed CPS-MRR tests.",
+      "parentUuid": "e3da58a1_4078094b",
+      "range": {
+        "startLine": 201,
+        "startChar": 43,
+        "endLine": 201,
+        "endChar": 65
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "b78a17a3_71f9a3ef",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Okay, agree, no point repeating what\u0027s already in line 109. Here is adjust text, with reference to MLRsearch:\n\nCPS-PDR \u003d max(`trial_cps_rate`) found for `pktloss_ratio` \u003c\n`target_loss_ratio`, according to MLRsearch criteria for PDR.",
+      "parentUuid": "03554870_58b126ae",
+      "range": {
+        "startLine": 210,
+        "startChar": 21,
+        "endLine": 210,
+        "endChar": 68
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e95d5083_5dd27910",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -137,6 +257,30 @@
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "051758cc_feb41860",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e95d5083_5dd27910",
+      "range": {
+        "startLine": 250,
+        "startChar": 2,
+        "endLine": 250,
+        "endChar": 26
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "306c7124_c337454b",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "I think you meant this for nat44ed (not for nat44det): https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-2009-2n-skx/28/archives/log.html.gz#s1-s1-s1-s1-s73-t1-k2-k17-k6-k10-k4-k1-k1-k1",
+      "parentUuid": "e9740e59_fefbd001",
+      "range": {
+        "startLine": 256,
+        "startChar": 2,
+        "endLine": 256,
+        "endChar": 26
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae38f722_86a9e3c7",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -183,6 +351,30 @@
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a7b6216_72a7eeb3",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae38f722_86a9e3c7",
+      "range": {
+        "startLine": 289,
+        "startChar": 4,
+        "endLine": 289,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "2cbaffe3_a0ce8d69",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "579f1915_f16fd152",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 290,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0f67cd4_5c974e7b",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -229,6 +445,30 @@
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76eb763d_d08e2f01",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0f67cd4_5c974e7b",
+      "range": {
+        "startLine": 292,
+        "startChar": 4,
+        "endLine": 292,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "8233ab52_00505f41",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80fc67c3_219e800f",
+      "range": {
+        "startLine": 293,
+        "startChar": 4,
+        "endLine": 293,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ea39d54a_b85919a9",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -275,6 +539,30 @@
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e62ef756_ecc24e9e",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea39d54a_b85919a9",
+      "range": {
+        "startLine": 296,
+        "startChar": 4,
+        "endLine": 296,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "73e27c7d_a0697587",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffd98e79_c0fc0b79",
+      "range": {
+        "startLine": 297,
+        "startChar": 4,
+        "endLine": 297,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf716748_ae81b96c",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -321,6 +633,30 @@
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0cbd15d_562e0dfd",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf716748_ae81b96c",
+      "range": {
+        "startLine": 298,
+        "startChar": 4,
+        "endLine": 298,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -347,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "29b75e2d_5204a248",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e67c9ca1_cefa6e57",
+      "range": {
+        "startLine": 303,
+        "startChar": 4,
+        "endLine": 303,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48aae7e2_0afae106",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -367,6 +727,30 @@
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f8cf25b_7e632ff4",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48aae7e2_0afae106",
+      "range": {
+        "startLine": 306,
+        "startChar": 4,
+        "endLine": 306,
+        "endChar": 7
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -393,6 +777,30 @@
     },
     {
       "key": {
+        "uuid": "85de2560_f57a7c6f",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f315ffac_0e548d5b",
+      "range": {
+        "startLine": 312,
+        "startChar": 21,
+        "endLine": 312,
+        "endChar": 33
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56583d92_2a6ae46c",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -413,6 +821,30 @@
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d318718_6ad2a6ae",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56583d92_2a6ae46c",
+      "range": {
+        "startLine": 318,
+        "startChar": 2,
+        "endLine": 318,
+        "endChar": 17
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -439,6 +871,30 @@
     },
     {
       "key": {
+        "uuid": "8408ba88_957941eb",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f37f827c_8515bf16",
+      "range": {
+        "startLine": 326,
+        "startChar": 5,
+        "endLine": 326,
+        "endChar": 17
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7884a4c_76b7ddfd",
         "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
         "patchSetId": 9
@@ -459,6 +915,30 @@
       "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b90bf75e_194dd5b0",
+        "filename": "docs/test_specs/csit-nat44ed-cps-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-03T19:28:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7884a4c_76b7ddfd",
+      "range": {
+        "startLine": 336,
+        "startChar": 5,
+        "endLine": 336,
+        "endChar": 19
+      },
+      "revId": "622e206f50ba70ca27f74dd37106e8b3d6a0dbb8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
