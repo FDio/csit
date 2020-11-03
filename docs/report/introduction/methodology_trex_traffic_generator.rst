@@ -138,15 +138,6 @@ With a slight abuse of nomenclature, bidirectional stateless tests
 set "packets per transaction" value to 2, just to keep the TPS semantics
 as a unidirectional input value.
 
-Startup delay
-_____________
-
-By investigating Trex behavior, it was found that TRex does not start
-the traffic in ASTF mode immediately. There is a delay of zero traffic,
-after which the traffic rate ramps up to the defined TPS value.
-
-
-
 Duration stretching
 ___________________
 
@@ -196,26 +187,6 @@ so a fixed constant (0.1115 seconds) works well.
 
 Some result processing needs a precise enough duration of the real traffic,
 luckily server side of Trex has precise enough counter for that.
-
-..
-    TODO: Mention :command:`trex.stl.api.STLClient`?
-
-TODO: Update the rest.
-
-Measuring Packet Loss
-~~~~~~~~~~~~~~~~~~~~~
-
-Following sequence is followed to measure packet loss:
-
-- Create an instance of STLClient.
-- Connect to the client.
-- Add all streams.
-- Clear statistics.
-- Send the traffic for defined time.
-- Get the statistics.
-
-If there is a warm-up phase required, the traffic is sent also before
-test and the statistics are ignored.
 
 Measuring Latency
 ~~~~~~~~~~~~~~~~~
