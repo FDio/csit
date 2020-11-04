@@ -145,7 +145,7 @@ function archive_tests () {
 
     set -exuo pipefail
 
-    tar c "${GENERATED_DIR}/tests" | xz -9e > "${ARCHIVE_DIR}/tests.tar.xz" || {
+    tar c "${GENERATED_DIR}/tests" | xz -3 > "${ARCHIVE_DIR}/tests.tar.xz" || {
         die "Error creating archive of generated tests."
     }
 }
