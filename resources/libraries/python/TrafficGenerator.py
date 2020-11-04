@@ -1091,8 +1091,10 @@ class TrafficGenerator(AbstractMeasurer):
             partial_attempt_count = ctca
             # We do not care whether TG is slow, it should have attempted all.
             expected_attempt_count = self.transaction_scale
-            # TODO: Is there a better packet-based counter?
-            pass_count = self._l7_data[u"server"][u"tcp"][u"connects"]
+            # From TCP point of view, server/connects counts full connections,
+            # but we are testing NAT session so client/connects counts that
+            # (half connections from TCP point of view).
+            pass_count = self._l7_data[u"client"][u"tcp"][u"connects"]
             fail_count = expected_attempt_count - pass_count
         elif self.transaction_type == u"udp_pps":
             if not self.transaction_scale:
