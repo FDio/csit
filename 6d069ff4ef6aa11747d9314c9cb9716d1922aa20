@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0bf7f5f_411b5431",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-04T13:41:19Z",
+      "side": 1,
+      "message": "I think for lts branches we will only have weekly jobs, right? Not sure whether we want to keep job specs for daily if they are not run.\nEither way, lts branch has report_iterative mrr test set with basically the same content. Either remove that (as report will not be executed from lts branch), or keep it and for mrr weekly use syminks to that.\nThe current patch set duplicates tests specs, making them hard to maintain.",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "6d069ff4ef6aa11747d9314c9cb9716d1922aa20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
