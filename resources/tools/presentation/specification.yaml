@@ -265,6 +265,16 @@
         - 81  # rls2009 NDRPDR iter NAT44 env 5
         - 82  # rls2009 NDRPDR iter NAT44 env 5
         - 83  # rls2009 NDRPDR iter NAT44 env 5
+        - 86  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 87  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 88  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 90  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 92  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 93  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 94  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 95  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 97  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 98  # rls2009 NDRPDR iter NAT44 part 2 env 5
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -273,6 +283,10 @@
     plot-vpp-hdrh-lat-2n-skx-nat44:
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 74  # rls2009 NDRPDR iter NAT44 env 5
+
+    plot-vpp-hdrh-lat-2n-skx-nat44-2:
+      csit-vpp-perf-report-iterative-2009-2n-skx:
+        - 86  # rls2009 NDRPDR iter NAT44 part 2 env 5
 
     plot-vpp-soak-2n-skx:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -350,6 +364,16 @@
         - 99  # rls2009 NDRPDR iter NAT44 env 5
         - 100 # rls2009 NDRPDR iter NAT44 env 5
         - 101 # rls2009 NDRPDR iter NAT44 env 5
+        - 103 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 104 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 105 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 106 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 107 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 108 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 109 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 110 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 111 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 112 # rls2009 NDRPDR iter NAT44 part 2 env 5
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -358,6 +382,10 @@
     plot-vpp-hdrh-lat-2n-clx-nat44:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 91  # rls2009 NDRPDR iter NAT44 env 5
+
+    plot-vpp-hdrh-lat-2n-clx-nat44-2:
+      csit-vpp-perf-report-iterative-2009-2n-clx:
+        - 103 # rls2009 NDRPDR iter NAT44 part 2 env 5
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -524,6 +552,16 @@
         - 81  # rls2009 NDRPDR iter NAT44 env 5
         - 82  # rls2009 NDRPDR iter NAT44 env 5
         - 83  # rls2009 NDRPDR iter NAT44 env 5
+        - 86  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 87  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 88  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 90  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 92  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 93  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 94  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 95  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 97  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 98  # rls2009 NDRPDR iter NAT44 part 2 env 5
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-report-iterative-2009-3n-skx:
@@ -532,6 +570,7 @@
     vpp-nic-comparison-2n-skx-mrr:
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 85  # rls2009 MRR iter env 5
+        - 96  # rls2009 MRR iter NAT44 env 5
 
     # Results
 
@@ -688,10 +727,12 @@
     vpp-mrr-results-2n-skx:
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 85  # rls2009 MRR iter env 5
+        - 96  # rls2009 MRR iter NAT44 env 5
 
     vpp-mrr-results-2n-clx:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 102 # rls2009 MRR iter env 5
+        - 113 # rls2009 MRR iter NAT44 env 5
 
     vpp-mrr-results-3n-tsh:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
@@ -886,6 +927,16 @@
         - 81  # rls2009 NDRPDR iter NAT44 env 5
         - 82  # rls2009 NDRPDR iter NAT44 env 5
         - 83  # rls2009 NDRPDR iter NAT44 env 5
+        - 86  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 87  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 88  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 90  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 92  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 93  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 94  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 95  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 97  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 98  # rls2009 NDRPDR iter NAT44 part 2 env 5
 
     vpp-performance-changes-2n-clx-h1:
       csit-vpp-perf-report-iterative-2005-2n-clx:
@@ -943,6 +994,16 @@
         - 99  # rls2009 NDRPDR iter NAT44 env 5
         - 100 # rls2009 NDRPDR iter NAT44 env 5
         - 101 # rls2009 NDRPDR iter NAT44 env 5
+        - 103 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 104 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 105 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 106 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 107 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 108 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 109 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 110 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 111 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 112 # rls2009 NDRPDR iter NAT44 part 2 env 5
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-verify-2001-2n-dnv:
@@ -1158,6 +1219,7 @@
     vpp-performance-changes-2n-skx-mrr-cmp:
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 85  # rls2009 MRR iter env 5
+        - 96  # rls2009 MRR iter NAT44 env 5
 
     vpp-performance-changes-2n-clx-mrr-h1:
       csit-vpp-perf-verify-2001-2n-clx:
@@ -1171,6 +1233,7 @@
     vpp-performance-changes-2n-clx-mrr-cmp:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 102 # rls2009 MRR iter env 5
+        - 113 # rls2009 MRR iter NAT44 env 5
 
     vpp-performance-changes-2n-dnv-mrr-h1:
       csit-vpp-perf-verify-2001-2n-dnv:
@@ -1506,6 +1569,16 @@
         - 81  # rls2009 NDRPDR iter NAT44 env 5
         - 82  # rls2009 NDRPDR iter NAT44 env 5
         - 83  # rls2009 NDRPDR iter NAT44 env 5
+        - 86  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 87  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 88  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 90  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 92  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 93  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 94  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 95  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 97  # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 98  # rls2009 NDRPDR iter NAT44 part 2 env 5
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 36  # rls2009 NDRPDR iter env 5
@@ -1528,6 +1601,16 @@
         - 99  # rls2009 NDRPDR iter NAT44 env 5
         - 100 # rls2009 NDRPDR iter NAT44 env 5
         - 101 # rls2009 NDRPDR iter NAT44 env 5
+        - 103 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 104 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 105 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 106 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 107 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 108 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 109 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 110 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 111 # rls2009 NDRPDR iter NAT44 part 2 env 5
+        - 112 # rls2009 NDRPDR iter NAT44 part 2 env 5
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
@@ -1564,9 +1647,11 @@
     vpp-compare-testbeds-mrr-skx-clx-ref:
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 85  # rls2009 MRR iter env 5
+        - 96  # rls2009 MRR iter NAT44 env 5
     vpp-compare-testbeds-mrr-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 102 # rls2009 MRR iter env 5
+        - 113 # rls2009 MRR iter NAT44 env 5
 
     vpp-compare-testbeds-mrr-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2009-3n-hsw:
@@ -1574,6 +1659,7 @@
     vpp-compare-testbeds-mrr-hsw-clx-cmp:
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 102 # rls2009 MRR iter env 5
+        - 113 # rls2009 MRR iter NAT44 env 5
 
     dpdk-compare-testbeds-ref:
       csit-dpdk-perf-report-iterative-2009-3n-hsw:
@@ -2733,6 +2819,7 @@
       - 24  # rls2005 NDRPDR iter env 5
       - 25  # rls2005 NDRPDR iter env 5
       - 85  # rls2009 MRR iter env 5
+      - 96  # rls2009 MRR iter NAT44 env 5
 #      - 26  # rls2009 MRR iter env 5
       - 35  # rls2009 NDRPDR iter env 5
       - 36  # rls2009 NDRPDR iter env 5
@@ -2754,6 +2841,16 @@
       - 81  # rls2009 NDRPDR iter NAT44 env 5
       - 82  # rls2009 NDRPDR iter NAT44 env 5
       - 83  # rls2009 NDRPDR iter NAT44 env 5
+      - 86  # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 87  # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 88  # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 90  # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 92  # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 93  # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 94  # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 95  # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 97  # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 98  # rls2009 NDRPDR iter NAT44 part 2 env 5
 #      - 51  # rls2009 NDRPDR iter NAT44 env 5
 #      - 52  # rls2009 NDRPDR iter NAT44 env 5
 #      - 53  # rls2009 NDRPDR iter NAT44 env 5
@@ -2841,6 +2938,7 @@
       - 23  # rls2005 NDRPDR iter env 5
       - 24  # rls2005 NDRPDR iter env 5
       - 102 # rls2009 MRR iter env 5
+      - 113 # rls2009 MRR iter NAT44 env 5
 #      - 78  # rls2009 MRR iter env 5
       - 36  # rls2009 NDRPDR iter env 5
       - 39  # rls2009 NDRPDR iter env 5
@@ -2862,6 +2960,16 @@
       - 99  # rls2009 NDRPDR iter NAT44 env 5
       - 100 # rls2009 NDRPDR iter NAT44 env 5
       - 101 # rls2009 NDRPDR iter NAT44 env 5
+      - 103 # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 104 # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 105 # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 106 # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 107 # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 108 # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 109 # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 110 # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 111 # rls2009 NDRPDR iter NAT44 part 2 env 5
+      - 112 # rls2009 NDRPDR iter NAT44 part 2 env 5
       - 37  # rls2009 nf-density iter env 5
       - 43  # rls2009 nf-density iter env 5
       - 69  # rls2009 nf-density iter env 5
@@ -11719,7 +11827,7 @@
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-ndr"
@@ -11732,9 +11840,9 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-ndr"
@@ -11747,10 +11855,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf-ndr"
@@ -11763,10 +11875,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf-ndr"
@@ -11779,10 +11895,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf-ndr"
@@ -11795,10 +11915,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf-ndr"
@@ -11813,7 +11937,7 @@
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-pdr"
@@ -11826,9 +11950,9 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-pdr"
@@ -11841,10 +11965,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf-pdr"
@@ -11857,10 +11985,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf-pdr"
@@ -11873,10 +12005,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf-pdr"
@@ -11889,10 +12025,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf-pdr"
@@ -14591,7 +14731,7 @@
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44det-ip4routing-stl-bidir-avf-ndr"
@@ -14604,7 +14744,9 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-udir-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44ed-ip4routing-stl-unidir-avf-ndr"
@@ -14617,10 +14759,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44ed-ip4routing-udp-stf-cps-avf-ndr"
@@ -14633,10 +14779,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44ed-ip4routing-udp-stf-pps-avf-ndr"
@@ -14649,10 +14799,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44ed-ip4routing-tcp-stf-cps-avf-ndr"
@@ -14665,10 +14819,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44ed-ip4routing-tcp-stf-pps-avf-ndr"
@@ -14683,7 +14841,7 @@
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44det-ip4routing-stl-bidir-avf-pdr"
@@ -14696,7 +14854,9 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-udir-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44ed-ip4routing-stl-unidir-avf-pdr"
@@ -14709,10 +14869,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44ed-ip4routing-udp-stf-cps-avf-pdr"
@@ -14725,10 +14889,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44ed-ip4routing-udp-stf-pps-avf-pdr"
@@ -14741,10 +14909,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44ed-ip4routing-tcp-stf-cps-avf-pdr"
@@ -14757,10 +14929,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-nat44ed-ip4routing-tcp-stf-pps-avf-pdr"
@@ -17799,7 +17975,7 @@
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-ndr"
@@ -17812,9 +17988,9 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-ndr"
@@ -17827,10 +18003,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf-ndr"
@@ -17843,10 +18023,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf-ndr"
@@ -17859,10 +18043,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf-ndr"
@@ -17875,10 +18063,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf-ndr"
@@ -17893,7 +18085,7 @@
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr.64b-2t1c-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-pdr"
@@ -17906,9 +18098,9 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-udir-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-pdr"
@@ -17921,10 +18113,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf-pdr"
@@ -17937,10 +18133,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf-pdr"
@@ -17953,10 +18153,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf-pdr"
@@ -17969,10 +18173,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-2t1c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf-pdr"
@@ -18923,7 +19131,7 @@
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-nat44det-ip4routing-stl-bidir-avf-ndr"
@@ -18951,10 +19159,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-nat44ed-ip4routing-udp-stf-cps-avf-ndr"
@@ -18967,10 +19179,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-nat44ed-ip4routing-udp-stf-pps-avf-ndr"
@@ -18983,10 +19199,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-nat44ed-ip4routing-tcp-stf-cps-avf-ndr"
@@ -18999,10 +19219,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-nat44ed-ip4routing-tcp-stf-pps-avf-ndr"
@@ -19017,7 +19241,7 @@
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h4096-p63-s258048-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
-#    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr.64b-.t.c-avf-ethip4udp-nat44det-h262144-p63-s16515072-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-nat44det-ip4routing-stl-bidir-avf-pdr"
@@ -19045,10 +19269,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-nat44ed-ip4routing-udp-stf-cps-avf-pdr"
@@ -19061,10 +19289,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-nat44ed-ip4routing-udp-stf-pps-avf-pdr"
@@ -19077,10 +19309,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-nat44ed-ip4routing-tcp-stf-cps-avf-pdr"
@@ -19093,10 +19329,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-clx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h65536-p63-s4128758-pps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-.t.c-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
   layout:
     title: "2n-clx-xxv710-64b-nat44ed-ip4routing-tcp-stf-pps-avf-pdr"
@@ -19921,6 +20161,17 @@
     layout: "plot-hdrh-latency-by-percentile"
 
 - type: "plot"
+  title: "Latency by percentile: 2n-skx-nat44-2"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-skx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_skx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-skx-nat44-2"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-by-percentile"
+
+- type: "plot"
   title: "Latency by percentile: 3n-skx"
   algorithm: "plot_hdrh_lat_by_percentile"
   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-skx"
@@ -19949,6 +20200,17 @@
   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-2n-clx-nat44"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-by-percentile"
+
+- type: "plot"
+  title: "Latency by percentile: 2n-clx-nat44-2"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-clx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-clx-nat44-2"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-by-percentile"
