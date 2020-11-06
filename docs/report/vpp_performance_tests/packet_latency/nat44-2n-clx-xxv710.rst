@@ -183,6 +183,26 @@
 .. raw:: html
 
     <center>
+    <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir}
+            \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-udir}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
     <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir.html"></iframe>
     <p><br></p>
     </center>
@@ -194,6 +214,26 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir}
             \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-udir}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir}
+            \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir}
     \end{figure}
 
 .. raw:: latex
