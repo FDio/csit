@@ -22,6 +22,30 @@
       "revId": "6d069ff4ef6aa11747d9314c9cb9716d1922aa20",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa23edf3_8a465b09",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-11-06T08:45:35Z",
+      "side": 1,
+      "message": "\u003e I think for lts branches we will only have weekly jobs, right? Not sure whether we want to keep job specs for daily if they are not run.\nYes, that\u0027s the intention at the moment. But we need to think about LTS branches as master branches for these releases and we should keep there all the information and code base. We also don\u0027t use to delete unused job specs in rls branches.\n\n\u003e Either way, lts branch has report_iterative mrr test set with basically the same content. Either remove that (as report will not be executed from lts branch),\nAs stated above, LTS is like master branch for the release and all possible maintenance releases will be pulled out from this LTS branch so we need to keep there all the data needed for the report.\n\n or keep it and for mrr weekly use syminks to that.\n\u003e The current patch set duplicates tests specs, making them hard to maintain.\nWell, currently that\u0027s true. We used to use one spec file for more job in the past but later there we agreed to use separate job spec file per csit job so even non-developers are able to easily read and change what tests are run in what job - and simlink breaks this concept.",
+      "parentUuid": "e0bf7f5f_411b5431",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "6d069ff4ef6aa11747d9314c9cb9716d1922aa20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
