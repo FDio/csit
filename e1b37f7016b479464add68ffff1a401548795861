@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9f634b2_0e0ff947",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-11-06T10:09:23Z",
+      "side": 1,
+      "message": "Please, use commas at the end of intermediate items and dot at the end of the last one:\n\n- xxx,\n- xxx,\n- xxx.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 55
+      },
+      "revId": "e1b37f7016b479464add68ffff1a401548795861",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "012c14bf_d4efa0d2",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-11-06T10:09:23Z",
+      "side": 1,
+      "message": "traffic",
+      "range": {
+        "startLine": 124,
+        "startChar": 15,
+        "endLine": 124,
+        "endChar": 23
+      },
+      "revId": "e1b37f7016b479464add68ffff1a401548795861",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9efbc351_a05be0a0",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-11-06T10:09:23Z",
+      "side": 1,
+      "message": "I guess these are not standard throughput tests but PPS tests.",
+      "range": {
+        "startLine": 154,
+        "startChar": 17,
+        "endLine": 154,
+        "endChar": 28
+      },
+      "revId": "e1b37f7016b479464add68ffff1a401548795861",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
