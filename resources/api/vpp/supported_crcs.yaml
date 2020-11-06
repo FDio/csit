@@ -209,8 +209,8 @@
     policer_classify_set_interface: '0xde7ad708'  # dev
     policer_classify_set_interface_reply: '0xe8d4e804'  # dev
     # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
-    rdma_create: '0x076fe418'  # perf
-    rdma_create_reply: '0x5383d31f'  # perf
+    rdma_create_v2: '0xb5f35fee'  # perf
+    rdma_create_v2_reply: '0x5383d31f'  # perf
     # 2x^ Any test with drv_rdma. Currently only available on 2n-clx.
     # - Not testable by devicetest (until we have environment with right NICs).
     show_threads: '0x51077d14'  # dev
