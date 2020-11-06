@@ -1177,7 +1177,7 @@ class InterfaceUtil:
     @staticmethod
     def vpp_create_rdma_interface(
             node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0,
-            mode=u"auto", no_multi_seg=1):
+            mode=u"auto", no_multi_seg=0):
         """Create RDMA interface on VPP node.
 
         :param node: DUT node from topology.
