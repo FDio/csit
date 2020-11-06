@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c74a8ca9_aa463b98",
+        "filename": "resources/libraries/python/VhostUser.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-11-06T15:45:15Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 178,
+        "startChar": 38,
+        "endLine": 178,
+        "endChar": 43
+      },
+      "revId": "43f24eadfaec45fe372281f50c52b0757e6e03a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
