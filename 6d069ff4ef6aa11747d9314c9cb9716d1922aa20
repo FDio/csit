@@ -46,6 +46,30 @@
       "revId": "6d069ff4ef6aa11747d9314c9cb9716d1922aa20",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b5c1f2d_4ba77c81",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-06T12:45:54Z",
+      "side": 1,
+      "message": "\u003e even non-developers are able to easily read and change what tests are run in what job\n\nCurrently I see mix of files and symlinks in [0]. Diff between docs/job_specs/report_iterative/2n-zn2/vpp-mrr-00.md and docs/job_specs/mrr_daily/vpp-2n-zn2.md shows we are already failing at keeping the content maintained without symlinks (the latter still contains -gbp tests removed from the former).\n\nIf we want to remove symlinks, we should introduce a tox checker that ensures files intended to have the same content remain synced.\n\nAnyway, we can discuss and improve on master, and update rls branches when we have a solution ready. This change is OK until then.\n\n[0] https://github.com/FDio/csit/tree/master/docs/job_specs/mrr_daily",
+      "parentUuid": "aa23edf3_8a465b09",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "6d069ff4ef6aa11747d9314c9cb9716d1922aa20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
