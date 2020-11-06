@@ -1177,7 +1177,7 @@ class InterfaceUtil:
     @staticmethod
     def vpp_create_rdma_interface(
             node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0,
-            mode=u"auto"):
+            mode=u"auto", no_multi_seg=1):
         """Create RDMA interface on VPP node.
 
         :param node: DUT node from topology.
@@ -1202,7 +1202,7 @@ class InterfaceUtil:
             node, u"set logging class rdma level debug"
         )
 
-        cmd = u"rdma_create"
+        cmd = u"rdma_create_v2"
         pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
@@ -1211,6 +1211,7 @@ class InterfaceUtil:
             rxq_size=rxq_size,
             txq_size=txq_size,
             mode=getattr(RdmaMode, f"RDMA_API_MODE_{mode.upper()}").value,
+            no_multi_seg=no_multi_seg
         )
         err_msg = f"Failed to create RDMA interface on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
