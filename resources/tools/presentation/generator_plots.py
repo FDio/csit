@@ -380,54 +380,124 @@ def plot_perf_box_name(plot, input_data):
         multiplier = 1.0
     y_vals = OrderedDict()
     test_type = u""
-    for job in data:
-        for build in job:
-            for test in build:
-                if y_vals.get(test[u"parent"], None) is None:
-                    y_vals[test[u"parent"]] = list()
-                try:
-                    if test[u"type"] in (u"NDRPDR", u"CPS"):
-                        test_type = test[u"type"]
 
-                        if u"-pdr" in plot_title:
-                            ttype = u"PDR"
-                        elif u"-ndr" in plot_title:
-                            ttype = u"NDR"
-                        else:
-                            raise RuntimeError(
-                                u"Wrong title. No information about test type. "
-                                u"Add '-ndr' or '-pdr' to the test title."
-                            )
-
-                        y_vals[test[u"parent"]].append(
-                            test[value][ttype][u"LOWER"] * multiplier
-                        )
-
-                    elif test[u"type"] in (u"SOAK", ):
-                        y_vals[test[u"parent"]].\
-                            append(test[u"throughput"][u"LOWER"])
-                        test_type = u"SOAK"
-
-                    elif test[u"type"] in (u"HOSTSTACK", ):
-                        if u"LDPRELOAD" in test[u"tags"]:
-                            y_vals[test[u"parent"]].append(
-                                float(test[u"result"][u"bits_per_second"]) / 1e3
-                            )
-                        elif u"VPPECHO" in test[u"tags"]:
-                            y_vals[test[u"parent"]].append(
-                                (float(test[u"result"][u"client"][u"tx_data"])
-                                 * 8 / 1e3) /
-                                ((float(test[u"result"][u"client"][u"time"]) +
-                                  float(test[u"result"][u"server"][u"time"])) /
-                                 2)
-                            )
-                        test_type = u"HOSTSTACK"
-
-                    else:
+    for item in plot.get(u"include", tuple()):
+        reg_ex = re.compile(str(item).lower())
+        break_looping = False
+        for job in data:
+            for build in job:
+                for test_id, test in build.iteritems():
+                    if not re.match(reg_ex, str(test_id).lower()):
                         continue
+                    break_looping = True
+                    if y_vals.get(test[u"parent"], None) is None:
+                        y_vals[test[u"parent"]] = list()
+                    try:
+                        if test[u"type"] in (u"NDRPDR", u"CPS"):
+                            test_type = test[u"type"]
 
-                except (KeyError, TypeError):
-                    y_vals[test[u"parent"]].append(None)
+                            if u"-pdr" in plot_title:
+                                ttype = u"PDR"
+                            elif u"-ndr" in plot_title:
+                                ttype = u"NDR"
+                            else:
+                                raise RuntimeError(
+                                    u"Wrong title. No information about test "
+                                    u"type. Add '-ndr' or '-pdr' to the test "
+                                    u"title."
+                                )
+
+                            y_vals[test[u"parent"]].append(
+                                test[value][ttype][u"LOWER"] * multiplier
+                            )
+
+                        elif test[u"type"] in (u"SOAK",):
+                            y_vals[test[u"parent"]]. \
+                                append(test[u"throughput"][u"LOWER"])
+                            test_type = u"SOAK"
+
+                        elif test[u"type"] in (u"HOSTSTACK",):
+                            if u"LDPRELOAD" in test[u"tags"]:
+                                y_vals[test[u"parent"]].append(
+                                    float(
+                                        test[u"result"][u"bits_per_second"]
+                                    ) / 1e3
+                                )
+                            elif u"VPPECHO" in test[u"tags"]:
+                                y_vals[test[u"parent"]].append(
+                                    (float(
+                                        test[u"result"][u"client"][u"tx_data"]
+                                    ) * 8 / 1e3) /
+                                    ((float(
+                                        test[u"result"][u"client"][u"time"]
+                                    ) +
+                                      float(
+                                          test[u"result"][u"server"][u"time"])
+                                      ) / 2)
+                                )
+                            test_type = u"HOSTSTACK"
+
+                        else:
+                            continue
+
+                    except (KeyError, TypeError):
+                        y_vals[test[u"parent"]].append(None)
+
+                    break
+
+                if break_looping:
+                    break
+            if break_looping:
+                break
+
+    # for job in data:
+    #     for build in job:
+    #         for test in build:
+    #             if y_vals.get(test[u"parent"], None) is None:
+    #                 y_vals[test[u"parent"]] = list()
+    #             try:
+    #                 if test[u"type"] in (u"NDRPDR", u"CPS"):
+    #                     test_type = test[u"type"]
+    #
+    #                     if u"-pdr" in plot_title:
+    #                         ttype = u"PDR"
+    #                     elif u"-ndr" in plot_title:
+    #                         ttype = u"NDR"
+    #                     else:
+    #                         raise RuntimeError(
+    #                             u"Wrong title. No information about test type. "
+    #                             u"Add '-ndr' or '-pdr' to the test title."
+    #                         )
+    #
+    #                     y_vals[test[u"parent"]].append(
+    #                         test[value][ttype][u"LOWER"] * multiplier
+    #                     )
+    #
+    #                 elif test[u"type"] in (u"SOAK", ):
+    #                     y_vals[test[u"parent"]].\
+    #                         append(test[u"throughput"][u"LOWER"])
+    #                     test_type = u"SOAK"
+    #
+    #                 elif test[u"type"] in (u"HOSTSTACK", ):
+    #                     if u"LDPRELOAD" in test[u"tags"]:
+    #                         y_vals[test[u"parent"]].append(
+    #                             float(test[u"result"][u"bits_per_second"]) / 1e3
+    #                         )
+    #                     elif u"VPPECHO" in test[u"tags"]:
+    #                         y_vals[test[u"parent"]].append(
+    #                             (float(test[u"result"][u"client"][u"tx_data"])
+    #                              * 8 / 1e3) /
+    #                             ((float(test[u"result"][u"client"][u"time"]) +
+    #                               float(test[u"result"][u"server"][u"time"])) /
+    #                              2)
+    #                         )
+    #                     test_type = u"HOSTSTACK"
+    #
+    #                 else:
+    #                     continue
+    #
+    #             except (KeyError, TypeError):
+    #                 y_vals[test[u"parent"]].append(None)
 
     # Add None to the lists with missing data
     max_len = 0
