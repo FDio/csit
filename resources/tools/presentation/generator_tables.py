@@ -1046,6 +1046,18 @@ def _generate_url(testbed, test_name):
         bsf = u"features-oacl10"
     elif u"oacl50s" in test_name:
         bsf = u"features-oacl50"
+    elif u"nat44det" in test_name:
+        bsf = u"nat44det"
+    elif u"nat44ed" in test_name and u"udir" in test_name:
+        bsf = u"nat44ed-udir"
+    elif u"-cps" in test_name and u"ethip4udp" in test_name:
+        bsf = u"udp-cps"
+    elif u"-cps" in test_name and u"ethip4tcp" in test_name:
+        bsf = u"tcp-cps"
+    elif u"-pps" in test_name and u"ethip4udp" in test_name:
+        bsf = u"udp-pps"
+    elif u"-pps" in test_name and u"ethip4tcp" in test_name:
+        bsf = u"tcp-pps"
     elif u"udpsrcscale" in test_name:
         bsf = u"features-udp"
     elif u"iacl" in test_name:
@@ -1067,6 +1079,8 @@ def _generate_url(testbed, test_name):
 
     if u"114b" in test_name and u"vhost" in test_name:
         domain = u"vts"
+    elif u"nat44" in test_name or u"-pps" in test_name or u"-vps" in test_name:
+        domain = u"nat44"
     elif u"testpmd" in test_name or u"l3fwd" in test_name:
         domain = u"dpdk"
     elif u"memif" in test_name:
