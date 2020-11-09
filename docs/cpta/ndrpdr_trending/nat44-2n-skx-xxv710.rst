@@ -1,4 +1,4 @@
-2n-clx-xxv710
+2n-skx-xxv710
 -------------
 
 64b-nat44det-ip4routing-stl-bidir-avf
@@ -13,8 +13,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-ndr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -27,8 +27,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-pdr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -44,8 +44,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-ndr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -58,8 +58,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-pdr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -75,8 +75,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf-ndr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -89,8 +89,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf-pdr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -106,8 +106,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf-ndr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -120,8 +120,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf-pdr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-cps-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -137,8 +137,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf-ndr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -151,8 +151,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf-pdr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-pps-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -168,8 +168,8 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf-ndr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -182,7 +182,7 @@
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf-pdr.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-tcp-stf-pps-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
