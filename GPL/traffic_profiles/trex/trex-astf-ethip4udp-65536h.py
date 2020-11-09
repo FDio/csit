@@ -57,8 +57,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         # Headers length
         self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B udp
 
-        # Required UDP keepalive value for T-Rex
-        self.udp_keepalive = 2000*1000*100  # 200000s (200,000,000 msec)
+        # No need to set keepalive, both programs end just after start&send.
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
@@ -74,19 +73,18 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # client commands
         prog_c = ASTFProgram(stream=False)
-        prog_c.set_keepalive_msg(self.udp_keepalive)
         # send REQ message
         prog_c.send_msg(self.udp_req)
-        # receive RES message
-        prog_c.recv_msg(1)
+        # No need to process the response, seeing L2 counter is enough.
+        # Client program can end here.
 
         # server commands
         prog_s = ASTFProgram(stream=False)
-        prog_c.set_keepalive_msg(self.udp_keepalive)
-        # receive REQ message
-        prog_s.recv_msg(1)
+        # When server instance is created means REQ is visible in L2 counter.
+        # No need to receive explicitly?
         # send RES message
         prog_s.send_msg(self.udp_res)
+        # Server program can end here.
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
