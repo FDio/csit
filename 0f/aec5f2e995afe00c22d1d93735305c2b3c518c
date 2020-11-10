@@ -1,0 +1,8 @@
+Code-Review+2: Juraj Linke? <juraj.linkes@pantheon.tech>
+Code-Review+1: Vratko Polak <vrpolak@cisco.com>
+Verified+1: fd.io JJB <jobbuilder@projectrotterdam.info>
+Submitted-by: Vratko Polak <vrpolak@cisco.com>
+Submitted-at: Tue, 10 Nov 2020 13:04:55 +0000
+Reviewed-on: https://gerrit.fd.io/r/c/csit/+/29745
+Project: csit
+Branch: refs/heads/master
