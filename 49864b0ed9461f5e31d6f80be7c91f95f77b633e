@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcac6b00_867d5234",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-10T12:39:20Z",
+      "side": 1,
+      "message": "... a large number ...",
+      "range": {
+        "startLine": 113,
+        "startChar": 19,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "49864b0ed9461f5e31d6f80be7c91f95f77b633e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b55e41ee_c0bc432d",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-10T12:39:20Z",
+      "side": 1,
+      "message": "transaction",
+      "range": {
+        "startLine": 119,
+        "startChar": 35,
+        "endLine": 119,
+        "endChar": 46
+      },
+      "revId": "49864b0ed9461f5e31d6f80be7c91f95f77b633e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b231a9e_bb5b9c60",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-10T12:39:20Z",
+      "side": 1,
+      "message": "... so default ...",
+      "range": {
+        "startLine": 132,
+        "startChar": 26,
+        "endLine": 132,
+        "endChar": 39
+      },
+      "revId": "49864b0ed9461f5e31d6f80be7c91f95f77b633e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2b25660_dafe7b6f",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-10T12:39:20Z",
+      "side": 1,
+      "message": "breaks?",
+      "range": {
+        "startLine": 154,
+        "startChar": 12,
+        "endLine": 154,
+        "endChar": 18
+      },
+      "revId": "49864b0ed9461f5e31d6f80be7c91f95f77b633e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa762f7f_c193d677",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-10T12:39:20Z",
+      "side": 1,
+      "message": "\"A result processing needs\" OR \"Some of the result manipulations need\"",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 28
+      },
+      "revId": "49864b0ed9461f5e31d6f80be7c91f95f77b633e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
