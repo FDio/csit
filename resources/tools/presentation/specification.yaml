@@ -11857,14 +11857,14 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
-    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
-    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
-    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
-    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h4096-p63-s258048-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
+    - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-cps-ndrpdr"
     - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr.64b-2t1c-avf-ethip4udp-ip4base-h262144-p63-s16515072-cps-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-stf-cps-avf-ndr"
