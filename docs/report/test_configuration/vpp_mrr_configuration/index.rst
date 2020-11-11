@@ -11,6 +11,7 @@ VPP MRR
     `FD.io test executor vpp performance job 3n-tsh`_,
     `FD.io test executor vpp performance job 2n-dnv`_,
     `FD.io test executor vpp performance job 3n-dnv`_,
+    `FD.io test executor vpp performance job 2n-zn2`_,
     ii) archived FD.io jobs test results
     `output files <../../_static/archive/>`_.
 

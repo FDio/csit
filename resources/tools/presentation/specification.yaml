@@ -49,6 +49,7 @@
     DIR[DTR,MRR,VPP,3N,TSH]: "{DIR[DTR]}/vpp_mrr_results_3n_tsh"
     DIR[DTR,MRR,VPP,3N,DNV]: "{DIR[DTR]}/vpp_mrr_results_3n_dnv"
     DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
+    DIR[DTR,MRR,VPP,2N,ZN2]: "{DIR[DTR]}/vpp_mrr_results_2n_zn2"
     DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
 
     # Detailed test configurations
@@ -69,6 +70,7 @@
     DIR[DTC,MRR,VPP,3N,TSH]: "{DIR[DTC]}/vpp_mrr_configuration_3n_tsh"
     DIR[DTC,MRR,VPP,3N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_3n_dnv"
     DIR[DTC,MRR,VPP,2N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_2n_dnv"
+    DIR[DTC,MRR,VPP,2N,ZN2]: "{DIR[DTC]}/vpp_mrr_configuration_2n_zn2"
     DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTC]}/vpp_device_configuration_ubuntu"
 
     # Detailed tests operational data
@@ -745,6 +747,10 @@
     vpp-mrr-results-2n-dnv:
       csit-vpp-perf-report-iterative-2009-2n-dnv:
         - 13  # rls2009 MRR iter env 5
+
+    vpp-mrr-results-2n-zn2:
+      csit-vpp-perf-verify-master-2n-zn2:
+        - 23  # master MRR iter env 5
 
     vpp-device-results-ubuntu:
       csit-vpp-device-2009-ubuntu1804-1n-skx:
@@ -3139,6 +3145,9 @@
       - 5   # rls2009 NDRPDR cov 2n-dnv-ip6-01
       - 6   # rls2009 NDRPDR cov 2n-dnv-l2-00
       - 7   # rls2009 NDRPDR cov 2n-dnv-l2-01
+
+    csit-vpp-perf-verify-master-2n-zn2:
+      - 23  # master MRR iter env 5
 
     csit-dpdk-perf-verify-2001-3n-hsw:
       - 4   # NDRPDR sel
@@ -6448,6 +6457,23 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP MRR Results 2n-zn2
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 2n-zn2"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,MRR,VPP,2N,ZN2]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
+  data: "vpp-mrr-results-2n-zn2"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
 # Test configuration - VPP MRR Test Configs 3n-hsw
 - type: "table"
   title: "Test configuration - VPP MRR Test Configs 3n-hsw"
@@ -6561,6 +6587,23 @@
     - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
       data: "data conf-history"
   data: "vpp-mrr-results-2n-dnv"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP MRR Test Configs 2n-zn2
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 2n-zn2"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,MRR,VPP,2N,ZN2]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-mrr-results-2n-zn2"
   filter: "all"
   parameters:
   - "parent"
@@ -7680,6 +7723,7 @@
     - "{DIR[DTR,MRR,VPP,3N,TSH]}"
     - "{DIR[DTR,MRR,VPP,2N,DNV]}"
     - "{DIR[DTR,MRR,VPP,3N,DNV]}"
+    - "{DIR[DTR,MRR,VPP,2N,ZN2]}"
   data:
     - "vpp-mrr-results-2n-skx"
     - "vpp-mrr-results-3n-skx"
@@ -7688,6 +7732,7 @@
     - "vpp-mrr-results-3n-tsh"
     - "vpp-mrr-results-2n-dnv"
     - "vpp-mrr-results-3n-dnv"
+    - "vpp-mrr-results-2n-zn2"
   filter: "all"
   data-start-level: 4
   order-chapters:
@@ -7713,6 +7758,7 @@
       - "3n-tsh"
       - "2n-dnv"
       - "3n-dnv"
+      - "2n-zn2"
     level-3:
       - "xl710"
       - "x520"
@@ -7736,6 +7782,7 @@
     - "{DIR[DTC,MRR,VPP,3N,TSH]}"
     - "{DIR[DTC,MRR,VPP,2N,DNV]}"
     - "{DIR[DTC,MRR,VPP,3N,DNV]}"
+    - "{DIR[DTC,MRR,VPP,2N,ZN2]}"
   data:
     - "vpp-mrr-results-2n-skx"
     - "vpp-mrr-results-3n-skx"
@@ -7744,6 +7791,7 @@
     - "vpp-mrr-results-3n-tsh"
     - "vpp-mrr-results-2n-dnv"
     - "vpp-mrr-results-3n-dnv"
+    - "vpp-mrr-results-2n-zn2"
   filter: "all"
   data-start-level: 4
   order-chapters:
@@ -7769,6 +7817,7 @@
       - "3n-tsh"
       - "2n-dnv"
       - "3n-dnv"
+      - "2n-zn2"
     level-3:
       - "xl710"
       - "x520"
