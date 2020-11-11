@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,9 +12,8 @@
 # limitations under the License.
 
 FROM ubuntu:18.04
-MAINTAINER csit-dev <csit-dev@lists.fd.io>
 LABEL Description="CSIT vpp-device ubuntu 18.04 SUT image"
-LABEL Version="1.0"
+LABEL Version="master"
 
 # Setup the environment
 ENV DEBIAN_FRONTEND=noninteractive
@@ -57,6 +56,7 @@ RUN apt-get -q update \
         python-cffi \
         python-cffi-backend \
         python-dev \
+        python-enum34 \
         python-pip \
         python-setuptools \
         python-virtualenv \
@@ -114,11 +114,9 @@ RUN pip3 install \
         scapy==2.4.3 \
         scp==0.13.2 \
         ansible==2.7.8 \
-        ply==3.11 \
         dill==0.2.8.2 \
         numpy==1.17.3 \
         hdrhistogram==0.6.1 \
-        pandas==0.25.3 \
         plotly==4.1.1 \
         PTable==0.9.2 \
         Sphinx==2.2.1 \
@@ -158,7 +156,9 @@ RUN pip3 install \
         urllib3==1.25.6
 
 # ARM workaround
-RUN pip3 install scipy==1.1.0
+RUN pip3 install \
+        pandas==0.25.3 \
+        scipy==1.1.0
 
 # SSH settings
 RUN echo 'root:Csit1234' | chpasswd \

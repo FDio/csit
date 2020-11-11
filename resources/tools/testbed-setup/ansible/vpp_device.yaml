@@ -16,6 +16,8 @@
       tags: vpp_device
     - role: kernel_vm
       tags: kernel_vm
+    - role: csit_sut_image
+      tags: csit_sut_image
     - role: nomad
       tags: nomad
     - role: cleanup
