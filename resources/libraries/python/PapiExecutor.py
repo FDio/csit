@@ -207,6 +207,7 @@ class PapiSocketExecutor:
             # Cannot use loglevel parameter, robot.api.logger lacks support.
             # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
         finally:
+            # Rmtree can raise exception, but then something is wrong anyway.
             shutil.rmtree(tmp_dir)
             if sys.path[-1] == package_path:
                 sys.path.pop()
@@ -321,7 +322,12 @@ class PapiSocketExecutor:
         run([
             u"ssh", u"-S", self._ssh_control_socket, u"-O", u"exit", u"0.0.0.0"
         ], check=False)
-        shutil.rmtree(self._temp_dir)
+        try:
+            shutil.rmtree(self._temp_dir)
+        except FileNotFoundError:
+            # There is a race condition with ssh removing its ssh.sock file.
+            # Single retry should be enough to ensure the complete removal.
+            shutil.rmtree(self._temp_dir)
 
     def add(self, csit_papi_command, history=True, **kwargs):
         """Add next command to internal command list; return self.
