@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "682fd3ee_5881d318",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-11T16:14:05Z",
+      "side": 1,
+      "message": "The one time it happened:\nhttps://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/9598/archives/log.html.gz#s1-s1-s1-s3-s3-t1-k2-k11",
+      "range": {
+        "startLine": 12,
+        "startChar": 17,
+        "endLine": 12,
+        "endChar": 34
+      },
+      "revId": "90d8dabb0abcf031a0684d210a08ef1c9cc4c466",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
