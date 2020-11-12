@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db439244_9bc58920",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-12T14:13:14Z",
+      "side": 1,
+      "message": "Turns out this is not entirely true. Maximal scale is 16515072 transactions and minimal TPS is 9001.0, which would be trial duration of 1834.804 seconds. But the keepalive (udp_pps, as that is the only profile leaving an instance hanging indefinitely if a packet is lost) is only 1200 second. With that, no keepalive is guaranteed only for TPS of 13762.56 or above, translating to 908328.96 pps or above.\nOn the other hand, total duration limit for L7 ndrpdr search is 3600 seconds, so searches that need to visit low TPS are likely to fail due to overstepping the limit.\nEven in the worst case, each server instance sends only one keepalive packet max (instead of 33 it would send if no client packet got lost), so no big effect on NDR/PDR. MRR trial durations are short enough already.\n\nLooking at udp_pps results, all seems to be safely above 1 Mpps, so no re-run needed.",
+      "range": {
+        "startLine": 293,
+        "startChar": 57,
+        "endLine": 293,
+        "endChar": 68
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
