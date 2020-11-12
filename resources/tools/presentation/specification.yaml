@@ -20012,17 +20012,6 @@
     layout: "plot-hdrh-latency-by-percentile"
 
 - type: "plot"
-  title: "Latency by percentile: 2n-clx-nat44-2"
-  algorithm: "plot_hdrh_lat_by_percentile"
-  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-clx"
-  output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
-  target-links: "../../_static/vpp"
-  data: "plot-vpp-hdrh-lat-2n-clx-nat44-2"
-  filter: "'2T1C' and 'NIC_Intel-XXV710'"
-  layout:
-    layout: "plot-hdrh-latency-by-percentile"
-
-- type: "plot"
   title: "Latency by percentile: 3n-hsw"
   algorithm: "plot_hdrh_lat_by_percentile"
   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-hsw"
