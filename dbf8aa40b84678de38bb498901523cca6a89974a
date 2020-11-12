@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ff92c98_655cf6fc",
+        "filename": "GPL/traffic_profiles/trex/contrib/geneve.py",
+        "patchSetId": 95
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-12T18:11:21Z",
+      "side": 1,
+      "message": "Rebase.\n\nLook at resources/tools/block_replacer/apache2gpl.sh to fix licenses.",
+      "range": {
+        "startLine": 2,
+        "startChar": 21,
+        "endLine": 2,
+        "endChar": 27
+      },
+      "revId": "dbf8aa40b84678de38bb498901523cca6a89974a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
