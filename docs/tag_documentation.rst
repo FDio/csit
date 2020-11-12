@@ -587,6 +587,18 @@ Encapsulation Tags
 
     All SRv6 test cases with two SIDs and without decapsulation.
 
+.. topic:: FLOW
+
+    All test cases with FLOW
+
+.. topic:: IP4_N_TUPLE
+
+    All test cases with IP4_N_TUPLE flow.
+
+.. topic:: IP6_N_TUPLE
+
+    All test cases with IP6_N_TUPLE flow.
+
 Interface Tags
 --------------
 
