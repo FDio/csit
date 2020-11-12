@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a87846d_7699d25d",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2020-11-12T13:07:14Z",
+      "side": 1,
+      "message": "Please, finish.",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 4
+      },
+      "revId": "ff8ed2708a1779bd6d6c0fa96b8cebd103f96dd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
