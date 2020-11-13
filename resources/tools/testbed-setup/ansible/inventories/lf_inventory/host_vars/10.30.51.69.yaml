@@ -1,19 +1,19 @@
 ---
 # file: host_vars/10.30.51.69.yaml
 
-hostname: "s27-t13-sut1"
+hostname: "s27-t34-sut1"
 grub:
   audit: "0"
   intel_iommu: "on"
-  isolcpus: "1-111,113-223"
+  isolcpus: "1-27,29-55"
   nmi_watchdog: "0"
-  nohz_full: "1-111,113-223"
+  nohz_full: "1-27,29-55"
   nosoftlockup: True
   processor.max_cstate: "1"
-  rcu_nocbs: "1-111,113-223"
+  rcu_nocbs: "1-27,29-55"
 sysctl:
   kernel:
-    watchdog_cpumask: "0,112"
+    watchdog_cpumask: "0,28"
   vm:
     nr_hugepages: 57344
     max_map_count: 20000
