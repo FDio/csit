@@ -611,6 +611,9 @@ function start_topology_containers () {
     dcr_stc_params+="--volume /opt/boot/:/opt/boot/ "
     # Mount host hugepages for VMs.
     dcr_stc_params+="--volume /dev/hugepages/:/dev/hugepages/ "
+    # Disable IPv6.
+    dcr_stc_params+="--sysctl net.ipv6.all.disable_ipv6=1 "
+    dcr_stc_params+="--sysctl net.ipv6.default.disable_ipv6=1 "
 
     # Docker Container UUIDs.
     declare -gA DCR_UUIDS
