@@ -98,15 +98,11 @@ function bind_interfaces_to_driver () {
 
     pci_path="/sys/bus/pci/devices/${ADDR}"
     drv_path="/sys/bus/pci/drivers/${DRIVER}"
-    vd=$(cat ${pci_path}/vendor ${pci_path}/device) || {
-        die "Failed to retrieve interface details!"
-    }
-    set +e
-    echo ${vd} | sudo tee ${drv_path}/new_id
-    set -e
-    echo ${ADDR} | sudo tee ${pci_path}/driver/unbind || {
-        die "Failed to unbind interface ${ADDR}!"
-    }
+    if [ -d "${pci_path}/driver" ]; then
+        echo ${ADDR} | sudo tee ${pci_path}/driver/unbind || {
+            die "Failed to unbind interface ${ADDR}!"
+        }
+    fi
     echo ${ADDR} | sudo tee ${drv_path}/bind || {
         die "Failed to bind interface ${ADDR}!"
     }
