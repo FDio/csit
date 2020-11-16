@@ -23,7 +23,11 @@
     - csit-sut-image
 
 - name: Build CSIT SUT Docker Image
+<<<<<<< HEAD   (6572e3 Framework: Qemu 4.2 compatibility fix)
   shell: "docker build -t csit_sut-ubuntu2004:local ."
+=======
+  shell: "docker build -t csit_sut-ubuntu1804:local ."
+>>>>>>> CHANGE (54fa83 Ansible: Remove vpp_device snergster dependency)
   args:
     chdir: "/opt/csit-sut"
   tags:

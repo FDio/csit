@@ -1,1 +1,5 @@
+<<<<<<< HEAD   (6572e3 Framework: Qemu 4.2 compatibility fix)
 csit_sut-ubuntu2004:local
+=======
+csit_sut-ubuntu1804:local
+>>>>>>> CHANGE (54fa83 Ansible: Remove vpp_device snergster dependency)

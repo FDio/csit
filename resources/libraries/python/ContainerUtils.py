@@ -1000,13 +1000,13 @@ class Docker(ContainerEngine):
                 else Constants.DOCKER_SUT_IMAGE_UBUNTU
             setattr(self.container, u"image", img)
 
-        cmd = f"docker pull {self.container.image}"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to create container {self.container.name}."
-            )
+        if "/" in self.container.image:
+            cmd = f"docker pull {self.container.image}"
+            ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
+            if int(ret) != 0:
+                raise RuntimeError(
+                    f"Failed to create container {self.container.name}."
+                )
 
         if self.container.cpuset_cpus:
             self._configure_cgroup(u"docker")
