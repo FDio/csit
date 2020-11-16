@@ -5,6 +5,7 @@ hostname: "s56-t37-sut1"
 inventory_ipmi_hostname: "10.30.50.71"
 vfs_data_file: "csit-initialize-vfs-tx2.sh"
 grub:
+  hugepagesz: "2M"
   nr_hugepages: 65536
 cpu_microarchitecture: "thunderx2"
 
