@@ -32,6 +32,14 @@
 # https://logs.fd.io/production/vex-yul-rot-jenkins-1
 # /vpp-merge-master-ubuntu1804-x86_64/184/
 21.01-rc0~283:
+    flow_add: '0x3e5bf1a9'  # dev
+    flow_add_reply: '0x8587dc85'  # dev
+    flow_enable: '0x2024be69' # dev
+    flow_enable_reply: '0xe8d4e804' # dev
+    flow_disable: '0x2024be69' #dev
+    flow_disable_reply: '0xe8d4e804' #dev
+    flow_del: '0xb6b9b02c' #dev
+    flow_del_reply: '0xe8d4e804' #dev
     acl_add_replace: '0x1cabdeab'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
     acl_details: '0x7a97f21c'  # perf teardown
