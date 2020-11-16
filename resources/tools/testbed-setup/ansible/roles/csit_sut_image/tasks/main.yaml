@@ -1,0 +1,27 @@
+---
+# file: roles/csit_sut_image/tasks/main.yaml
+
+- name: Create a directory if it does not exist
+  file:
+    path: "/opt/csit-sut/"
+    state: "directory"
+    mode: 0755
+  tags: csit-sut-image
+
+- name: Copy Build Items
+  copy:
+    src: "{{ item }}"
+    dest: "/opt/csit-sut/"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  with_items:
+    - Dockerfile
+    - supervisord.conf
+  tags: csit-sut-image
+
+- name: Build CSIT SUT Docker Image
+  shell: "docker build -t csit_sut-ubuntu1804:local ."
+  args:
+    chdir: "/opt/csit-sut"
+  tags: csit-sut-image

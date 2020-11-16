@@ -15,9 +15,3 @@ packages_by_arch:
     - []
   x86_64:
     - []
-
-grub_cmdline_linux:
-  aarch64:
-    - "GRUB_CMDLINE_LINUX=\"isolcpus={{ grub.isolcpus }} nohz_full={{ grub.nohz_full }} rcu_nocbs={{ grub.rcu_nocbs }} intel_iommu=on nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1\""
-  x86_64:
-    - "GRUB_CMDLINE_LINUX=\"isolcpus={{ grub.isolcpus }} nohz_full={{ grub.nohz_full }} rcu_nocbs={{ grub.rcu_nocbs }} numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off\""
