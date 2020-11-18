@@ -414,7 +414,6 @@
     # 3n-tsh
 
     plot-vpp-throughput-lat-tsa-3n-tsh:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
         - 14  # rls2009 NDRPDR iter env 5
         - 20  # rls2009 NDRPDR iter env 5
@@ -425,6 +424,7 @@
         - 30  # rls2009 NDRPDR iter env 5
         - 33  # rls2009 NDRPDR iter env 5
         - 38  # rls2009 NDRPDR iter env 5
+        - 41  # rls2009 NDRPDR iter env 5
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
@@ -1048,7 +1048,6 @@
         - 39  # rls2005 NDRPDR iter env 5
         - 40  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-3n-tsh-cmp:
-      # TODO: Add:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
         - 14  # rls2009 NDRPDR iter env 5
         - 20  # rls2009 NDRPDR iter env 5
@@ -1059,6 +1058,7 @@
         - 30  # rls2009 NDRPDR iter env 5
         - 33  # rls2009 NDRPDR iter env 5
         - 38  # rls2009 NDRPDR iter env 5
+        - 41  # rls2009 NDRPDR iter env 5
 
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-report-iterative-2009-2n-skx:
@@ -2934,6 +2934,7 @@
       - 30  # rls2009 NDRPDR iter env 5
       - 33  # rls2009 NDRPDR iter env 5
       - 38  # rls2009 NDRPDR iter env 5
+      - 41  # rls2009 NDRPDR iter env 5
       - 15  # rls2009 MRR iter env 5
 
     csit-vpp-perf-verify-2001-3n-dnv:
