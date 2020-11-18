@@ -185,7 +185,7 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"csit_sut-ubuntu1804:local"
 
     # TRex install directory
-    TREX_INSTALL_DIR = u"/opt/trex-core-2.82"
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.86"
 
     # TODO: Find the right way how to use it in trex profiles
     # TRex pcap files directory
