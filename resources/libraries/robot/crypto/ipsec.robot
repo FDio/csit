@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -230,4 +230,42 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | VPP Ipsec Set Async Mode | ${nodes['${dut}']}
+| | END
+
+| Disable Crypto Work of VPP Worker Threads on all VPP DUTs
+| | [Documentation]
+| | ... | Disable crypto work for specified vpp worker threads
+| | ... | on all DUT nodes.
+| |
+| | ... | *Arguments:*
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| |
+| | [Arguments] | ${phy_cores}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Disable Crypto Work of VPP Worker Threads on node | ${dut}
+| | ... | ${phy_cores}
+| | END
+
+| Disable Crypto Work of VPP Worker Threads on node
+| | [Documentation]
+| | ... | Disable crypto work for specified vpp worker threads
+| | ... | on DUT node.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| |
+| | [Arguments] | ${dut} | ${phy_cores}
+| |
+| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
+| | ${thr_count_int} | Convert to Integer | ${phy_cores}
+| | Run keyword if | ${smt_used} == ${False} |
+| | ... | VPP Set Interface Rx Placement in loop | ${nodes['${dut}']}
+| | ... | ${2} | ${cpu_count_int}
+| | ${thr_count_int}= | Run keyword if | ${smt_used} == ${True} |
+| | ... | Evaluate | int(${cpu_count_int}*2) | ELSE | Set variable
+| | ... | ${thr_count_int}
+| | FOR | ${thread} | IN RANGE | ${thr_count_int}
+| | | VPP IPSec Crypto SW Scheduler Set Worker | ${nodes['${dut}']} | ${thread}
 | | END

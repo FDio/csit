@@ -1678,6 +1678,23 @@ class InterfaceUtil:
         return sorted(details, key=lambda k: k[u"sw_if_index"])
 
     @staticmethod
+    def vpp_set_interface_rx_placement_in_loop(
+            node, sw_if_index, core_count):
+        """Set interface RX placement to worker on node in loop.
+
+        :param node: Node to run command on.
+        :param sw_if_index: VPP SW interface index.
+        :param core_count: Number of cores.
+        :type node: dict
+        :type sw_if_index: int
+        :type core_count: int
+        """
+        for thread in range(core_count):
+            InterfaceUtil.vpp_sw_interface_set_rx_placement(
+                node, sw_if_index, thread, thread
+            )
+
+    @staticmethod
     def vpp_sw_interface_set_rx_placement(
             node, sw_if_index, queue_id, worker_id):
         """Set interface RX placement to worker on node.
