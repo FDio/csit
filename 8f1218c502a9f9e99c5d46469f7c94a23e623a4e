@@ -801,6 +801,30 @@
     },
     {
       "key": {
+        "uuid": "895270a2_28f32531",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:19:23Z",
+      "side": 1,
+      "message": "Maybe, but I am not sure it fits here.\nDo we have a document describing differences between CSIT versions?\n\nCreated [1], so 2009.1 testing will conform to the current methodology.\n\n[1] https://gerrit.fd.io/r/c/csit/+/30006",
+      "parentUuid": "cba903af_c2a78b55",
+      "range": {
+        "startLine": 293,
+        "startChar": 57,
+        "endLine": 293,
+        "endChar": 68
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a62b99ef_1c86648c",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
