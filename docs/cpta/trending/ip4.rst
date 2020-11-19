@@ -13,6 +13,9 @@ IPv4 Routing
     ip4-3n-tsh-x520
     ip4-2n-dnv-x553
     ip4-3n-dnv-x553
+    ip4-2n-zn2-xxv710
+    ip4-2n-zn2-x710
+    ip4-2n-zn2-cx556a
 
 ..
     ip4-2n-clx-cx556a
