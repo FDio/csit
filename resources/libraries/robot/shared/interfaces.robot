@@ -705,3 +705,20 @@
 | |
 | | ${vhost_dump}= | Vhost User Dump | ${dut}
 | | Return From Keyword | ${vhost_dump}
+
+| Set Interface Rx Placement on node
+| | [Documentation]
+| | ... | Set interface RX placement to worker on DUT node.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - dut_int_index - DUT node interface index. Type: integer
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| |
+| | [Arguments] | ${dut} | ${dut_int_index} | ${phy_cores}
+| |
+| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
+| | FOR | ${thread} | IN RANGE | ${cpu_count_int}
+| | | VPP Sw Interface Set Rx Placement
+| | | ... | ${dut} | ${dut_int_index} | ${thread} | ${thread}
+| | END
