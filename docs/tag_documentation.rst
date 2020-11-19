@@ -832,6 +832,10 @@ Encryption Tags
 
     IPSec using HMAC SHA 512 integrity algorithms.
 
+.. topic:: SCHEDULER
+
+    IPSec using crypto sw scheduler engine.
+
 Client-Workload Tags
 --------------------
 
