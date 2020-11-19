@@ -32,8 +32,8 @@
       1. [2-Node-Skylake Servers (2n-skx) PROD](#2-node-skylake-servers-2n-skx-prod)
       1. [2-Node-Denverton Servers (2n-dnv) TODO](#2-node-denverton-servers-2n-dnv-todo)
       1. [2-Node-IxiaPS1L47 Servers (2n-ps1) VERIFY](#2-node-ixiaps1l47-servers-2n-ps1-verify)
-      1. [2-Node-Cascadelake Servers (2n-clx) SETUP](#2-node-cascadelake-servers-2n-clx-setup)
-      1. [2-Node-Zen2 Servers (2n-zn2) SETUP](#2-node-zen2-servers-2n-zn2-setup])
+      1. [2-Node-Cascadelake Servers (2n-clx) PROD](#2-node-cascadelake-servers-2n-clx-prod)
+      1. [2-Node-Zen2 Servers (2n-zn2) PROD](#2-node-zen2-servers-2n-zn2-prod])
       1. [2-Node-ThunderX2 Servers (2n-tx2) WIP](#2-node-thunderx2-servers-2n-tx2-wip)
       1. [3-Node-Haswell Servers (3n-hsw) PROD](#3-node-haswell-servers-3n-hsw-prod)
       1. [3-Node-Skylake Servers (3n-skx) PROD](#3-node-skylake-servers-3n-skx-prod)
@@ -42,12 +42,12 @@
    1. [Per Testbed Wiring](#per-testbed-wiring)
       1. [1-Node-Skylake Wiring (1n-skx) PROD](#1-node-skylake-wiring-1n-skx-prod)
       1. [1-Node-ThunderX2 Wiring (1n-tx2) PROD](#1-node-thunderx2-wiring-1n-tx2-prod)
-      1. [1-Node-Cascadelake Wiring (1n-clx) SETUP](#1-node-cascadelake-wiring-1n-clx-setup)
+      1. [1-Node-Cascadelake Wiring (1n-clx) PROD](#1-node-cascadelake-wiring-1n-clx-prod)
       1. [2-Node-Skylake Wiring (2n-skx) PROD](#2-node-skylake-wiring-2n-skx-prod)
       1. [2-Node-Denverton Wiring (2n-dnv) TODO](#2-node-denverton-wiring-2n-dnv-todo)
       1. [2-Node-IxiaPS1L47 Wiring (2n-ps1) VERIFY](#2-node-ixiaps1l47-wiring-2n-ps1-verify)
       1. [2-Node-Cascadelake Wiring (2n-clx) PROD](#2-node-cascadelake-wiring-2n-clx-prod)
-      1. [2-Node-Zen2 Wiring (2n-zen2) SETUP](#2-node-zen2-wiring-2n-zen2-setup])
+      1. [2-Node-Zen2 Wiring (2n-zn2) PROD](#2-node-zen2-wiring-2n-zn2-prod])
       1. [2-Node-ThunderX2 Wiring (2n-tx2) WIP](#2-node-thunderx2-wiring-2n-tx2-wip)
       1. [3-Node-Haswell Wiring (3n-hsw) PROD](#3-node-haswell-wiring-3n-hsw-prod)
       1. [3-Node-Skylake Wiring (3n-skx) PROD](#3-node-skylake-wiring-3n-skx-prod)
@@ -1039,7 +1039,7 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s26-t25-tg1-p4 - 10GE-port4.
 ```
 
-#### 2-Node-Cascadelake Servers (2n-clx) SETUP
+#### 2-Node-Cascadelake Servers (2n-clx) PROD
 
 ```
 - SUT [Server-Type-C2]:
@@ -1054,6 +1054,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s33-t27-sut1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s33-t27-sut1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s33-t27-sut1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s33-t27-sut1-c6/p1 - 100GE-port1 e810-2p100GE.
+        - s33-t27-sut1-c6/p2 - 100GE-port2 e810-2p100GE.
         - s33-t27-sut1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
         - s33-t27-sut1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
 - TG [Server-Type-C3]:
@@ -1068,6 +1070,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s34-t27-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s34-t27-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s34-t27-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s34-t27-tg1-c6/p1 - 100GE-port1 e810-2p100GE.
+        - s34-t27-tg1-c6/p2 - 100GE-port2 e810-2p100GE.
         - s34-t27-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
         - s34-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
 - SUT [Server-Type-C2]:
@@ -1082,6 +1086,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s35-t28-sut1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s35-t28-sut1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s35-t28-sut1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s35-t28-sut1-c6/p1 - 100GE-port1 e810-2p100GE.
+        - s35-t28-sut1-c6/p2 - 100GE-port2 e810-2p100GE.
         - s35-t28-sut1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
         - s35-t28-sut1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
 - TG [Server-Type-C3]:
@@ -1096,6 +1102,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s36-t28-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s36-t28-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s36-t28-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s36-t28-tg1-c6/p1 - 100GE-port1 e810-2p100GE.
+        - s36-t28-tg1-c6/p2 - 100GE-port2 e810-2p100GE.
         - s36-t28-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
         - s36-t28-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
 - SUT [Server-Type-C2]:
@@ -1110,8 +1118,10 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s37-t29-sut1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s37-t29-sut1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s37-t29-sut1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s37-t29-sut1-c9/p1 - FUTURE 100GE-port1 ConnectX5-2p100GE.
-        - s37-t29-sut1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
+        - s37-t29-sut1-c6/p1 - 100GE-port1 e810-2p100GE.
+        - s37-t29-sut1-c6/p2 - 100GE-port2 e810-2p100GE.
+        - s37-t29-sut1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s37-t29-sut1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
 - TG [Server-Type-C3]:
     - testbedname: testbed29.
     - hostname: s38-t29-tg1.
@@ -1124,11 +1134,13 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s38-t29-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s38-t29-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s38-t29-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s38-t29-tg1-c9/p1 - FUTURE 100GE-port1 ConnectX5-2p100GE.
-        - s38-t29-tg1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
+        - s38-t29-tg1-c6/p1 - 100GE-port1 e810-2p100GE.
+        - s38-t29-tg1-c6/p2 - 100GE-port2 e810-2p100GE.
+        - s38-t29-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s38-t29-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
 ```
 
-#### 2-Node-Zen2 Servers (2n-zn2) SETUP
+#### 2-Node-Zen2 Servers (2n-zn2) PROD
 
 ```
 - SUT [Server-Type-D1]:
@@ -1593,7 +1605,7 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
         - s55-t37-sut1-c8/p2 - s55-t37-sut1-c26/p2.
 ```
 
-#### 1-Node-Cascadelake Wiring (1n-clx) SETUP
+#### 1-Node-Cascadelake Wiring (1n-clx) PROD
 
 ```
 - testbed14:
@@ -1694,6 +1706,9 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
     - ring4 100GE-ports ConnectX5-2p100GE on SUT:
         - s34-t27-tg1-c9/p1 to s33-t27-sut1-c9/p1.
         - s33-t27-sut1-c9/p2 to s34-t27-tg1-c9/p2.
+    - ring5 100GE-ports e810-2p100GE on SUT:
+        - s34-t27-tg1-c6/p1 to s33-t27-sut1-c6/p1.
+        - s33-t27-sut1-c6/p2 to s34-t27-tg1-c6/p2.
 - testbed28:
     - ring1 10GE-ports x710-4p10GE on SUT:
         - s36-t28-tg1-c2/p1 to s35-t28-sut1-c2/p1.
@@ -1704,9 +1719,12 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
     - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
         - s36-t28-tg1-c4/p1 to s35-t28-sut1-c4/p1.
         - s35-t28-sut1-c4/p2 to s36-t28-tg1-c4/p2.
-    - FUTURE ring4 100GE-ports ConnectX5-2p100GE on SUT:
+    - ring4 100GE-ports ConnectX5-2p100GE on SUT:
         - s36-t28-tg1-c9/p1 to s35-t28-sut1-c9/p1.
         - s35-t28-sut1-c9/p2 to s36-t28-tg1-c9/p2.
+    - ring5 100GE-ports e810-2p100GE on SUT:
+        - s36-t28-tg1-c6/p1 to s35-t28-sut1-c6/p1.
+        - s35-t28-sut1-c6/p2 to s36-t28-tg1-c6/p2.
 - testbed29:
     - ring1 10GE-ports x710-4p10GE on SUT:
         - s38-t29-tg1-c2/p1 to s37-t29-sut1-c2/p1.
@@ -1717,12 +1735,15 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
     - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
         - s38-t29-tg1-c4/p1 to s37-t29-sut1-c4/p1.
         - s37-t29-sut1-c4/p2 to s38-t29-tg1-c4/p2.
-    - FUTURE ring4 100GE-ports ConnectX5-2p100GE on SUT:
+    - ring4 100GE-ports ConnectX5-2p100GE on SUT:
         - s38-t29-tg1-c9/p1 to s37-t29-sut1-c9/p1.
         - s37-t29-sut1-c9/p2 to s38-t29-tg1-c9/p2.
+    - ring6 100GE-ports e810-2p100GE on SUT:
+        - s38-t29-tg1-c6/p1 to s37-t29-sut1-c6/p1.
+        - s37-t29-sut1-c6/p2 to s38-t29-tg1-c6/p2.
 ```
 
-#### 2-Node-Zen2 Wiring (2n-zen2) SETUP
+#### 2-Node-Zen2 Wiring (2n-zn2) PROD
 
 ```
 - testbed210:
