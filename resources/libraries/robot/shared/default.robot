@@ -94,6 +94,29 @@
 | | # Parens are there to perform the call.
 | | Run Keyword If | $resetter | Evaluate | $resetter()
 
+| Workers From Physical Cores
+| | [Documentation]
+| | ... | Convert from core count to worker count.
+| |
+| | ... | This just calls CpuUtils.worker_count_from_cores_and_smt keyword
+| | ... | with the global \${smt_used} value.
+| | ... | See documentation there.
+| |
+| | ... | *Arguments:*
+| | ... | - phy_cores - Number of physical cores to convert from. Type: integer.
+| |
+| | ... | *Return value:*
+| | ... | - Number of workers active on the given number of cores.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| \${dp_workers} = \| Workers from Physical Cores \| \${1} \|
+| |
+| | [Arguments] | ${phy_cores}
+| |
+| | Run Keyword And Return | Worker Count From Cores And Smt
+| | ... | phy_cores=${phy_cores} | smt_used=${smt_used}
+
 | Configure crypto device on all DUTs
 | | [Documentation] | Verify if Crypto QAT device virtual functions are
 | | ... | initialized on all DUTs. If parameter force_init is set to True, then

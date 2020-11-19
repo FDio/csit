@@ -536,6 +536,22 @@ class Regenerator:
             {u"frame_size": 128000, u"phy_cores": 2},
             {u"frame_size": 128000, u"phy_cores": 4}
         ]
+        # List for tests with one dataplane core
+        # (and variable number of other cores).
+        dp1_kwargs_list = [
+            {u"frame_size": min_frame_size, u"phy_cores": 2},
+            {u"frame_size": min_frame_size, u"phy_cores": 3},
+            {u"frame_size": min_frame_size, u"phy_cores": 4},
+            {u"frame_size": 1518, u"phy_cores": 2},
+            {u"frame_size": 1518, u"phy_cores": 3},
+            {u"frame_size": 1518, u"phy_cores": 4},
+            {u"frame_size": 9000, u"phy_cores": 2},
+            {u"frame_size": 9000, u"phy_cores": 3},
+            {u"frame_size": 9000, u"phy_cores": 4},
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 2},
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 3},
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4}
+        ]
 
         for in_filename in glob(pattern):
             if not self.quiet:
@@ -557,7 +573,14 @@ class Regenerator:
                     file_in.read().partition(u"*** Test Cases ***")[:-1]
                 )
             if in_filename.endswith(u"-ndrpdr.robot"):
-                write_default_files(in_filename, in_prolog, default_kwargs_list)
+                if u"scheduler" in in_filename:
+                    write_default_files(
+                        in_filename, in_prolog, dp1_kwargs_list
+                    )
+                else:
+                    write_default_files(
+                        in_filename, in_prolog, default_kwargs_list
+                    )
             elif in_filename.endswith(u"-reconf.robot"):
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename.endswith(u"-bps.robot"):

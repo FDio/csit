@@ -85,6 +85,29 @@ class CpuUtils:
                     )
 
     @staticmethod
+    def worker_count_from_cores_and_smt(phy_cores, smt_used):
+        """Simple conversion utility, needs smt from caller.
+
+        The implementation assumes we pack 1 or 2 workers per core,
+        depending on hyperthreading.
+
+        Some keywords use None to indicate no core/worker limit,
+        so this converts None to None.
+
+        :param phy_cores: How many physical cores to use for workers.
+        :param smt_used: Whether symmetric multithreading is used.
+        :type phy_cores: Optional[int]
+        :type smt_used: bool
+        :returns: How many VPP workers fit into the given number of cores.
+        :rtype: Optional[int]
+        """
+        if phy_cores is None:
+            return None
+        workers_per_core = CpuUtils.NR_OF_THREADS if smt_used else 1
+        workers = phy_cores * workers_per_core
+        return workers
+
+    @staticmethod
     def cpu_node_count(node):
         """Return count of numa nodes.
 
