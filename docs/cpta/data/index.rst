@@ -22,6 +22,10 @@ in the CSV formats:
 
         - `CSV format <../_static/vpp/csit-vpp-perf-mrr-daily-master-2n-clx-trending.csv>`_
 
+    - 2n-zn2
+
+        - `CSV format <../_static/vpp/csit-vpp-perf-mrr-daily-master-2n-zn2-trending.csv>`_
+
     - 3n-tsh
 
         - `CSV format <../_static/vpp/csit-vpp-perf-mrr-daily-master-3n-tsh-trending.csv>`_
@@ -69,3 +73,7 @@ in the CSV formats:
     - 2n-clx
 
         - `CSV format <../_static/vpp/csit-dpdk-perf-mrr-weekly-master-2n-clx-trending.csv>`_
+
+    - 2n-zn2
+
+        - `CSV format <../_static/vpp/csit-dpdk-perf-mrr-weekly-master-2n-zn2-trending.csv>`_
