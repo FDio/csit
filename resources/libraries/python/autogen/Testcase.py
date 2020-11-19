@@ -87,6 +87,25 @@ class Testcase:
         return cls(template_string)
 
     @classmethod
+    def crypto_sw_scheduler(cls, suite_id):
+        """Factory method for creating "crypto_sw_scheduler" testcase objects.
+
+        Testcase name will contain both frame size and async core count.
+
+        :param suite_id: Part of suite name to distinguish from other suites.
+        :type suite_id: str
+        :returns: Instance for generating testcase text of this type.
+        :rtype: Testcase
+        """
+        if u"scheduler" in suite_id:
+            template_string = f'''
+| ${{frame_str}}-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{frame_str}} | ${{cores_str}}C
+| | frame_size=${{frame_num}} | async_cores=${{cores_num}}
+'''
+        return cls(template_string)
+
+    @classmethod
     def tcp(cls, suite_id):
         """Factory method for creating "tcp" testcase objects.
 
