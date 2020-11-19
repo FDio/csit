@@ -1,0 +1,510 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "219bb078_d4a4055f",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "type of state or kind of state?",
+      "range": {
+        "startLine": 15,
+        "startChar": 13,
+        "endLine": 15,
+        "endChar": 36
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea583a73_12211d21",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "Networking industry term for this state is \"data plane driven state\" as oppose to control plane or admin plane drive state.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 60
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19e1d01e_d7dc0bf3",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "dynamically created",
+      "range": {
+        "startLine": 16,
+        "startChar": 26,
+        "endLine": 16,
+        "endChar": 33
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3a5db68_0a3606b9",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "two types?",
+      "range": {
+        "startLine": 30,
+        "startChar": 28,
+        "endLine": 30,
+        "endChar": 37
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "705db11f_0259d64a",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "matching? (as it is about per packet looking up runtime data structures using data from the packet header)",
+      "range": {
+        "startLine": 32,
+        "startChar": 19,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7f1034d_db6f2d26",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "Ramp-up",
+      "range": {
+        "startLine": 44,
+        "startChar": 1,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aefc80bc_43dbbd72",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "ramp-up trial",
+      "range": {
+        "startLine": 48,
+        "startChar": 22,
+        "endLine": 48,
+        "endChar": 27
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ddee4da_da2a6161",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "TPS (Transactions per Second), unless it is defined somewhere central, but I don\u0027t see that 😊",
+      "range": {
+        "startLine": 52,
+        "startChar": 39,
+        "endLine": 52,
+        "endChar": 42
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df5d8b1c_ad556cda",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "set a",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1362c8f0_d4e8f9b5",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "ramp-up",
+      "range": {
+        "startLine": 58,
+        "startChar": 18,
+        "endLine": 58,
+        "endChar": 25
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec133d99_13147202",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "usually",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 6
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b51d311f_435bd7ea",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "behaviour (British English)",
+      "range": {
+        "startLine": 71,
+        "startChar": 33,
+        "endLine": 71,
+        "endChar": 41
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a08466db_7dc77fe4",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "ramp-up",
+      "range": {
+        "startLine": 76,
+        "startChar": 39,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c807fac1_1859652e",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "into main and",
+      "range": {
+        "startLine": 81,
+        "startChar": 22,
+        "endLine": 81,
+        "endChar": 32
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b8d1182_bcc40d94",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "behaviour (British English)",
+      "range": {
+        "startLine": 83,
+        "startChar": 58,
+        "endLine": 83,
+        "endChar": 66
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "464f5bba_15b44656",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "IETF draft - which draft? https://tools.ietf.org/html/draft-ietf-bmwg-ngfw-performance-05",
+      "range": {
+        "startLine": 103,
+        "startChar": 7,
+        "endLine": 103,
+        "endChar": 17
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ce4035a_6a9ca962",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "behaviour (British English)",
+      "range": {
+        "startLine": 108,
+        "startChar": 52,
+        "endLine": 108,
+        "endChar": 60
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "784f6059_7ca63887",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "configurations,",
+      "range": {
+        "startLine": 118,
+        "startChar": 17,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e3accf1_942d0a55",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "NAT44ed",
+      "range": {
+        "startLine": 126,
+        "startChar": 64,
+        "endLine": 126,
+        "endChar": 67
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20fd54ba_aa0d810a",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "stateless (STL)",
+      "range": {
+        "startLine": 132,
+        "startChar": 53,
+        "endLine": 132,
+        "endChar": 62
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c9c34e7_d0d83a5b",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "packet traffic",
+      "range": {
+        "startLine": 133,
+        "startChar": 64,
+        "endLine": 133,
+        "endChar": 71
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "803ebbc2_af9c281c",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T12:35:59Z",
+      "side": 1,
+      "message": "as a base for comparison",
+      "range": {
+        "startLine": 139,
+        "startChar": 60,
+        "endLine": 139,
+        "endChar": 78
+      },
+      "revId": "c49715e79cbb6f5d4844d61d3a1ae43a17d01b97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
