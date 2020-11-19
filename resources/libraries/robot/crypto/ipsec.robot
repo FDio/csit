@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.IPsecUtil
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Util
+| Library | resources.libraries.python.CpuUtils
 |
 | Documentation | IPsec keywords.
 
@@ -230,4 +231,60 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | VPP Ipsec Set Async Mode | ${nodes['${dut}']}
+| | END
+
+| Disable Crypto Work of VPP Worker Threads on all VPP DUTs
+| | [Documentation]
+| | ... | Disable crypto work for specified vpp worker threads
+| | ... | on all DUT nodes.
+| |
+| | ... | *Arguments:*
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| |
+| | [Arguments] | ${phy_cores}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Disable Crypto Work of VPP Worker Threads on node | ${dut}
+| | ... | ${phy_cores}
+| | END
+
+| Disable Crypto Work of VPP Worker Threads on node
+| | [Documentation]
+| | ... | Disable crypto work for specified vpp worker threads
+| | ... | on DUT node.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| |
+| | [Arguments] | ${dut} | ${phy_cores}
+| |
+| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
+| | ${thr_count_int} | Convert to Integer | ${phy_cores}
+| | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | Run keyword if | ${smt_used} == ${False} |
+| | ... | Set Interface Rx Placement on node | ${nodes['${dut}']}
+| | ... | ${2} | ${cpu_count_int}
+| | ${thr_count_int}= | Run keyword if | ${smt_used} == ${True} |
+| | ... | Evaluate | int(${cpu_count_int}*2) | ELSE | Set variable
+| | ... | ${thr_count_int}
+| | FOR | ${thread} | IN RANGE | ${thr_count_int}
+| | | VPP IPSec Crypto SW Scheduler Set Worker | ${nodes['${dut}']} | ${thread}
+| | END
+
+| Set Interface Rx Placement on node
+| | [Documentation]
+| | ... | Set interface RX placement to worker on DUT node.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - dut_int_index - DUT node interface index. Type: integer
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| |
+| | [Arguments] | ${dut} | ${dut_int_index} | ${phy_cores}
+| |
+| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
+| | FOR | ${thread} | IN RANGE | ${cpu_count_int}
+| | | VPP Sw Interface Set Rx Placement
+| | | ... | ${dut} | ${dut_int_index} | ${thread} | ${thread}
 | | END
