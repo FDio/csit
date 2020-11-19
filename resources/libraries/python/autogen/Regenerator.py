@@ -163,6 +163,40 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
             file_out.write(testcase.generate(**kwargs))
 
 
+def add_crypto_sw_scheduler_testcases(
+        testcase, iface, suite_id, file_out, tc_kwargs_list):
+    """Add crypto sw scheduler testcases to file.
+
+    :param testcase: Testcase class.
+    :param iface: Interface.
+    :param suite_id: Suite ID.
+    :param file_out: File to write testcases to.
+    :param tc_kwargs_list: Key-value pairs used to construct testcases.
+    :type testcase: Testcase
+    :type iface: str
+    :type suite_id: str
+    :type file_out: file
+    :type tc_kwargs_list: dict
+    """
+    for kwargs in tc_kwargs_list:
+        emit = True
+        if kwargs[u"frame_size"] == 9000:
+            if u"vic1227" in iface:
+                # Not supported in HW.
+                emit = False
+            if u"vic1385" in iface:
+                # Not supported in HW.
+                emit = False
+        if u"soak" in suite_id:
+            # Soak test take too long, do not risk other than tc01.
+            if kwargs[u"phy_cores"] != 1:
+                emit = False
+            if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
+                emit = False
+        if emit:
+            file_out.write(testcase.generate(**kwargs))
+
+
 def add_tcp_testcases(testcase, file_out, tc_kwargs_list):
     """Add TCP testcases to file.
 
@@ -319,6 +353,106 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                 with open(out_filename, u"wt") as file_out:
                     file_out.write(out_prolog)
                     add_default_testcases(
+                        testcase, iface, suite_id, file_out, kwargs_list
+                    )
+
+
+def write_crypto_sw_scheduler_files(in_filename, in_prolog, kwargs_list):
+    """Using given filename and prolog, write all generated crypto sw scheduler
+    suites.
+
+    :param in_filename: Template filename to derive real filenames from.
+    :param in_prolog: Template content to derive real content from.
+    :param kwargs_list: List of kwargs for add_crypto_sw_scheduler_testcase.
+    :type in_filename: str
+    :type in_prolog: str
+    :type kwargs_list: list of dict
+    """
+    for suite_type in Constants.PERF_TYPE_TO_KEYWORD:
+        tmp_filename = replace_defensively(
+            in_filename, u"ndrpdr", suite_type, 1,
+            u"File name should contain suite type once.", in_filename
+        )
+        tmp_prolog = replace_defensively(
+            in_prolog, u"ndrpdr".upper(), suite_type.upper(), 1,
+            u"Suite type should appear once in uppercase (as tag).",
+            in_filename
+        )
+        tmp_prolog = replace_defensively(
+            tmp_prolog,
+            u"Find NDR and PDR intervals using optimized search",
+            Constants.PERF_TYPE_TO_KEYWORD[suite_type], 1,
+            u"Main search keyword should appear once in suite.",
+            in_filename
+        )
+        tmp_prolog = replace_defensively(
+            tmp_prolog,
+            Constants.PERF_TYPE_TO_SUITE_DOC_VER[u"ndrpdr"],
+            Constants.PERF_TYPE_TO_SUITE_DOC_VER[suite_type],
+            1, u"Exact suite type doc not found.", in_filename
+        )
+        tmp_prolog = replace_defensively(
+            tmp_prolog,
+            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[u"ndrpdr"],
+            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[suite_type],
+            1, u"Exact template type doc not found.", in_filename
+        )
+        _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
+        testcase = Testcase.crypto_sw_scheduler(suite_id)
+        for nic_name in Constants.NIC_NAME_TO_CODE:
+            tmp2_filename = replace_defensively(
+                tmp_filename, u"10ge2p1x710",
+                Constants.NIC_NAME_TO_CODE[nic_name], 1,
+                u"File name should contain NIC code once.", in_filename
+            )
+            tmp2_prolog = replace_defensively(
+                tmp_prolog, u"Intel-X710", nic_name, 2,
+                u"NIC name should appear twice (tag and variable).",
+                in_filename
+            )
+            iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
+                tmp2_filename
+            )
+            for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+                out_filename = replace_defensively(
+                    tmp2_filename, old_suite_id,
+                    Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
+                    1, u"Error adding driver prefix.", in_filename
+                )
+                out_prolog = replace_defensively(
+                    tmp2_prolog, u"vfio-pci", driver, 1,
+                    u"Driver name should appear once.", in_filename
+                )
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_DRIVER_TO_TAG[u"vfio-pci"],
+                    Constants.NIC_DRIVER_TO_TAG[driver], 1,
+                    u"Driver tag should appear once.", in_filename
+                )
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
+                    Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                    u"Driver plugin should appear once.", in_filename
+                )
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_DRIVER_TO_VFS[u"vfio-pci"],
+                    Constants.NIC_DRIVER_TO_VFS[driver], 1,
+                    u"NIC VFs argument should appear once.", in_filename
+                )
+                iface, suite_id, suite_tag = get_iface_and_suite_ids(
+                    out_filename
+                )
+                # The next replace is probably a noop, but it is safer to
+                # maintain the same structure as for other edits.
+                out_prolog = replace_defensively(
+                    out_prolog, old_suite_tag, suite_tag, 1,
+                    f"Perf suite tag {old_suite_tag} should appear once.",
+                    in_filename
+                )
+                check_suite_tag(suite_tag, out_prolog)
+                testcase = Testcase.crypto_sw_scheduler(suite_id)
+                with open(out_filename, u"wt") as file_out:
+                    file_out.write(out_prolog)
+                    add_crypto_sw_scheduler_testcases(
                         testcase, iface, suite_id, file_out, kwargs_list
                     )
 
@@ -506,7 +640,14 @@ class Regenerator:
                     file_in.read().partition(u"*** Test Cases ***")[:-1]
                 )
             if in_filename.endswith(u"-ndrpdr.robot"):
-                write_default_files(in_filename, in_prolog, default_kwargs_list)
+                if u"scheduler" in in_filename:
+                    write_crypto_sw_scheduler_files(
+                        in_filename, in_prolog, default_kwargs_list
+                    )
+                else:
+                    write_default_files(
+                        in_filename, in_prolog, default_kwargs_list
+                    )
             elif in_filename.endswith(u"-reconf.robot"):
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename.endswith(u"-bps.robot"):
