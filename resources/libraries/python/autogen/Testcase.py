@@ -79,7 +79,14 @@ class Testcase:
         :returns: Instance for generating testcase text of this type.
         :rtype: Testcase
         """
-        template_string = f'''
+        if u"scheduler" in suite_id:
+            template_string = f'''
+| ${{frame_str}}-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{frame_str}} | ${{cores_str}}C
+| | frame_size=${{frame_num}} | async_cores=${{cores_num}}
+'''
+        else:
+            template_string = f'''
 | ${{frame_str}}-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{frame_str}} | ${{cores_str}}C
 | | frame_size=${{frame_num}} | phy_cores=${{cores_num}}

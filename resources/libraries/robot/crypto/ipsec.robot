@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.IPsecUtil
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Util
+| Library | resources.libraries.python.CpuUtils
 |
 | Documentation | IPsec keywords.
 
@@ -230,4 +231,40 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | VPP Ipsec Set Async Mode | ${nodes['${dut}']}
+| | END
+
+| Disable Crypto Work of VPP Worker Threads on all VPP DUTs
+| | [Documentation]
+| | ... | Disable crypto work for specified vpp worker threads
+| | ... | on all DUT nodes.
+| |
+| | ... | *Arguments:*
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| |
+| | [Arguments] | ${phy_cores}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Disable Crypto Work of VPP Worker Threads on node | ${dut}
+| | ... | ${phy_cores}
+| | END
+
+| Disable Crypto Work of VPP Worker Threads on node
+| | [Documentation]
+| | ... | Disable crypto work for specified vpp worker threads
+| | ... | on DUT node.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| |
+| | [Arguments] | ${dut} | ${phy_cores}
+| |
+| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
+| | ${thr_count_int} | Convert to Integer | ${phy_cores}
+| | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | ${thr_count_int}= | Run keyword if | ${smt_used} |
+| | ... | Evaluate | int(${cpu_count_int}*2) | ELSE | Set variable
+| | ... | ${thr_count_int}
+| | FOR | ${thread} | IN RANGE | ${thr_count_int}
+| | | VPP IPSec Crypto SW Scheduler Set Worker | ${nodes['${dut}']} | ${thread}
 | | END
