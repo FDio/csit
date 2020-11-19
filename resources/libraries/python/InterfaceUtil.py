@@ -20,6 +20,7 @@ from ipaddress import ip_address
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
@@ -1706,17 +1707,29 @@ class InterfaceUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_round_robin_rx_placement(node, prefix):
+    def vpp_round_robin_rx_placement(
+        node, prefix, dp_worker_limit=None
+    ):
         """Set Round Robin interface RX placement on all worker threads
         on node.
 
+        If specified, dp_core_limit limits the number of physical cores used
+        for data plane I/O work. Other cores are presumed to do something else,
+        e.g. asynchronous crypto processing.
+        None means all workers are used for data plane work.
+        Note this keyword specifies workers, not cores.
+
         :param node: Topology nodes.
         :param prefix: Interface name prefix.
+        :param dp_worker_limit: How many cores for data plane work.
         :type node: dict
         :type prefix: str
+        :type dp_worker_limit: Optional[int]
         """
         worker_id = 0
         worker_cnt = len(VPPUtil.vpp_show_threads(node)) - 1
+        if dp_worker_limit is not None:
+            worker_cnt = min(worker_cnt, dp_worker_limit)
         if not worker_cnt:
             return
         for placement in InterfaceUtil.vpp_sw_interface_rx_placement_dump(node):
@@ -1730,15 +1743,31 @@ class InterfaceUtil:
                     worker_id += 1
 
     @staticmethod
-    def vpp_round_robin_rx_placement_on_all_duts(nodes, prefix):
+    def vpp_round_robin_rx_placement_on_all_duts(
+        nodes, prefix, dp_core_limit=None
+    ):
         """Set Round Robin interface RX placement on all worker threads
         on all DUTs.
 
+        If specified, dp_core_limit limits the number of physical cores used
+        for data plane I/O work. Other cores are presumed to do something else,
+        e.g. asynchronous crypto processing.
+        None means all cores are used for data plane work.
+        Note this keyword specifies cores, not workers.
+
         :param nodes: Topology nodes.
         :param prefix: Interface name prefix.
+        :param dp_worker_limit: How many cores for data plane work.
         :type nodes: dict
         :type prefix: str
+        :type dp_worker_limit: Optional[int]
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                InterfaceUtil.vpp_round_robin_rx_placement(node, prefix)
+                dp_worker_limit = CpuUtils.worker_count_from_cores_and_smt(
+                    phy_cores=dp_core_limit,
+                    smt_used=CpuUtils.is_smt_enabled(node[u"cpuinfo"]),
+                )
+                InterfaceUtil.vpp_round_robin_rx_placement(
+                    node, prefix, dp_worker_limit
+                )
