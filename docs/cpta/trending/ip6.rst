@@ -13,6 +13,9 @@ IPv6 Routing
     ip6-3n-tsh-x520
     ip6-2n-dnv-x553
     ip6-3n-dnv-x553
+    ip6-2n-zn2-xxv710
+    ip6-2n-zn2-x710
+    ip6-2n-zn2-cx556a
 
 ..
     ip6-2n-clx-cx556a
