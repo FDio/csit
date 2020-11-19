@@ -22,6 +22,30 @@
       "revId": "ff8ed2708a1779bd6d6c0fa96b8cebd103f96dd8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "144faf0c_8d3f753b",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:23:13Z",
+      "side": 1,
+      "message": "Done in https://gerrit.fd.io/r/c/csit/+/29803",
+      "parentUuid": "2a87846d_7699d25d",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 4
+      },
+      "revId": "ff8ed2708a1779bd6d6c0fa96b8cebd103f96dd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
