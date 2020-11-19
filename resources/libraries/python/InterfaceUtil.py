@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1676,6 +1676,23 @@ class InterfaceUtil:
                     papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
             details = papi_exec.get_details(err_msg)
         return sorted(details, key=lambda k: k[u"sw_if_index"])
+
+    @staticmethod
+    def vpp_set_interface_rx_placement_in_loop(
+            node, sw_if_index, core_count):
+        """Set interface RX placement to worker on node in loop.
+
+        :param node: Node to run command on.
+        :param sw_if_index: VPP SW interface index.
+        :param core_count: Number of cores.
+        :type node: dict
+        :type sw_if_index: int
+        :type core_count: int
+        """
+        for thread in range(core_count):
+            InterfaceUtil.vpp_sw_interface_set_rx_placement(
+                node, sw_if_index, thread, thread
+            )
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(
