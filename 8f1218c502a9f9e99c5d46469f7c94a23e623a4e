@@ -2,6 +2,374 @@
   "comments": [
     {
       "key": {
+        "uuid": "5fca0d5e_0dd747c1",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "in some cases",
+      "range": {
+        "startLine": 222,
+        "startChar": 47,
+        "endLine": 222,
+        "endChar": 52
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d100cbfe_d87196c3",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 233,
+        "startChar": 10,
+        "endLine": 233,
+        "endChar": 14
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6167083a_4e6b7d00",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "choosing",
+      "range": {
+        "startLine": 242,
+        "startChar": 34,
+        "endLine": 242,
+        "endChar": 41
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e5fe930_fd1cba05",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "choosing",
+      "range": {
+        "startLine": 247,
+        "startChar": 4,
+        "endLine": 247,
+        "endChar": 11
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2faa573c_a498d0a4",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 251,
+        "startChar": 11,
+        "endLine": 251,
+        "endChar": 15
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db30d627_2a334f74",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 259,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 4
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43b1ada0_1296c999",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex\u0027s Rx or Tx",
+      "range": {
+        "startLine": 262,
+        "startChar": 32,
+        "endLine": 262,
+        "endChar": 40
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c6cd5bd_e67951f3",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 263,
+        "startChar": 67,
+        "endLine": 263,
+        "endChar": 71
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fef99832_eb57bbf1",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "behaviour",
+      "range": {
+        "startLine": 265,
+        "startChar": 68,
+        "endLine": 265,
+        "endChar": 76
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6995c108_542d4fed",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 267,
+        "endChar": 8
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7347cfb_d560d944",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 4
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "845ca225_e87bd8e2",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 276,
+        "startChar": 7,
+        "endLine": 276,
+        "endChar": 11
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e8285f6_0dd3caa8",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "this results in higher",
+      "range": {
+        "startLine": 276,
+        "startChar": 48,
+        "endLine": 277,
+        "endChar": 3
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad7378ac_d2e2f38a",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 283,
+        "startChar": 45,
+        "endLine": 283,
+        "endChar": 49
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17d77a0f_a6392781",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 285,
+        "startChar": 4,
+        "endLine": 285,
+        "endChar": 8
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f046ca2_537e1119",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "outside the program",
+      "range": {
+        "startLine": 285,
+        "startChar": 48,
+        "endLine": 285,
+        "endChar": 63
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db439244_9bc58920",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -46,6 +414,466 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a62b99ef_1c86648c",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "within",
+      "range": {
+        "startLine": 294,
+        "startChar": 42,
+        "endLine": 294,
+        "endChar": 49
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e33a2a7b_5e2f0d51",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "at Layer-7 (L7)",
+      "range": {
+        "startLine": 301,
+        "startChar": 41,
+        "endLine": 301,
+        "endChar": 52
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3931b588_92aeccbf",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 303,
+        "startChar": 33,
+        "endLine": 303,
+        "endChar": 37
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8d2aaf0_d10572f5",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "(ipackets, opackets, called L2 counters)",
+      "range": {
+        "startLine": 306,
+        "startChar": 29,
+        "endLine": 306,
+        "endChar": 68
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0defa180_1ad8c6f0",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "NAT44ED",
+      "range": {
+        "startLine": 311,
+        "startChar": 17,
+        "endLine": 311,
+        "endChar": 20
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78ba4ff3_bb6e4b15",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "NAT44ED",
+      "range": {
+        "startLine": 316,
+        "startChar": 41,
+        "endLine": 316,
+        "endChar": 44
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d752dccb_6cfc7947",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 317,
+        "startChar": 36,
+        "endLine": 317,
+        "endChar": 40
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7700687a_2ce33aae",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 320,
+        "startChar": 20,
+        "endLine": 320,
+        "endChar": 24
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a61f524a_ac402b04",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 324,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 4
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40216a60_26e49a83",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "NAT44ED",
+      "range": {
+        "startLine": 335,
+        "startChar": 55,
+        "endLine": 335,
+        "endChar": 58
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abe6e1db_89c896a4",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "NAT44ED",
+      "range": {
+        "startLine": 350,
+        "startChar": 55,
+        "endLine": 350,
+        "endChar": 58
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf20f99c_ac3940c6",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "from client",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 18
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c374f41_ef0efab8",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "direction respectively",
+      "range": {
+        "startLine": 360,
+        "startChar": 13,
+        "endLine": 360,
+        "endChar": 22
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c9aa597_3923814f",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "session got created",
+      "range": {
+        "startLine": 361,
+        "startChar": 68,
+        "endLine": 361,
+        "endChar": 75
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e71e3abe_1a6438a3",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "NAT44ED",
+      "range": {
+        "startLine": 361,
+        "startChar": 5,
+        "endLine": 361,
+        "endChar": 8
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e04ac993_9c14f8a8",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "Aside TODO: 32 was chosen as it is a batch size DPDK driver puts on the PCIe bus at a time. May want to verify this with TRex ASTF devs and see if better UDP transaction sizes can be found to yield higher performance out of TRex.",
+      "range": {
+        "startLine": 380,
+        "startChar": 56,
+        "endLine": 380,
+        "endChar": 73
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8de21a29_62e0f7c2",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "66 packet transaction (33 packets per direction)",
+      "range": {
+        "startLine": 388,
+        "startChar": 48,
+        "endLine": 388,
+        "endChar": 69
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7c0aad0_c0ef97a6",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 396,
+        "startChar": 46,
+        "endLine": 396,
+        "endChar": 50
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "434bd9cc_274c177a",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "Question: what was the criteria used to arrive to this value? TRex performance with vpp-ip4base, else?",
+      "range": {
+        "startLine": 412,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 42
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6a956d0_b4255e2c",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-19T13:12:54Z",
+      "side": 1,
+      "message": "exchanged",
+      "range": {
+        "startLine": 413,
+        "startChar": 26,
+        "endLine": 413,
+        "endChar": 35
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
