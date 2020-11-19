@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d2ee8eca_f05979ed",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fca0d5e_0dd747c1",
+      "range": {
+        "startLine": 222,
+        "startChar": 47,
+        "endLine": 222,
+        "endChar": 52
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d100cbfe_d87196c3",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cee57701_6c03f4e2",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d100cbfe_d87196c3",
+      "range": {
+        "startLine": 233,
+        "startChar": 10,
+        "endLine": 233,
+        "endChar": 14
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8e9da171_33dbba61",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6167083a_4e6b7d00",
+      "range": {
+        "startLine": 242,
+        "startChar": 34,
+        "endLine": 242,
+        "endChar": 41
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e5fe930_fd1cba05",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -91,6 +163,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "086e1905_60fa6e6d",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e5fe930_fd1cba05",
+      "range": {
+        "startLine": 247,
+        "startChar": 4,
+        "endLine": 247,
+        "endChar": 11
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3584ea6f_fbd1903e",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2faa573c_a498d0a4",
+      "range": {
+        "startLine": 251,
+        "startChar": 11,
+        "endLine": 251,
+        "endChar": 15
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db30d627_2a334f74",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -137,6 +257,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "655fb676_13425c10",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db30d627_2a334f74",
+      "range": {
+        "startLine": 259,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 4
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "533e9360_2723a656",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43b1ada0_1296c999",
+      "range": {
+        "startLine": 262,
+        "startChar": 32,
+        "endLine": 262,
+        "endChar": 40
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c6cd5bd_e67951f3",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -183,6 +351,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcbe0fda_45d40ab4",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c6cd5bd_e67951f3",
+      "range": {
+        "startLine": 263,
+        "startChar": 67,
+        "endLine": 263,
+        "endChar": 71
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "15be86d8_28842112",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fef99832_eb57bbf1",
+      "range": {
+        "startLine": 265,
+        "startChar": 68,
+        "endLine": 265,
+        "endChar": 76
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6995c108_542d4fed",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -229,6 +445,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e93c573_d8e92b70",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6995c108_542d4fed",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 267,
+        "endChar": 8
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "14f63249_ba53f6a5",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7347cfb_d560d944",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 4
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "845ca225_e87bd8e2",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -275,6 +539,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fa4a44d_6f155a8a",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "845ca225_e87bd8e2",
+      "range": {
+        "startLine": 276,
+        "startChar": 7,
+        "endLine": 276,
+        "endChar": 11
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "34675f1c_582c9c22",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Rewritten the sentence.",
+      "parentUuid": "8e8285f6_0dd3caa8",
+      "range": {
+        "startLine": 276,
+        "startChar": 48,
+        "endLine": 277,
+        "endChar": 3
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad7378ac_d2e2f38a",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -321,6 +633,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67035cb6_f02646cf",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad7378ac_d2e2f38a",
+      "range": {
+        "startLine": 283,
+        "startChar": 45,
+        "endLine": 283,
+        "endChar": 49
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -367,6 +703,54 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4588399c_1bcf89d2",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f046ca2_537e1119",
+      "range": {
+        "startLine": 285,
+        "startChar": 48,
+        "endLine": 285,
+        "endChar": 63
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d4447bd_60c31db1",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17d77a0f_a6392781",
+      "range": {
+        "startLine": 285,
+        "startChar": 4,
+        "endLine": 285,
+        "endChar": 8
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -440,6 +824,30 @@
     },
     {
       "key": {
+        "uuid": "ef22118a_5509a8f4",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a62b99ef_1c86648c",
+      "range": {
+        "startLine": 294,
+        "startChar": 42,
+        "endLine": 294,
+        "endChar": 49
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e33a2a7b_5e2f0d51",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -460,6 +868,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca0b1bab_2b3358eb",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e33a2a7b_5e2f0d51",
+      "range": {
+        "startLine": 301,
+        "startChar": 41,
+        "endLine": 301,
+        "endChar": 52
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -486,6 +918,30 @@
     },
     {
       "key": {
+        "uuid": "4fbb8d52_4888761a",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3931b588_92aeccbf",
+      "range": {
+        "startLine": 303,
+        "startChar": 33,
+        "endLine": 303,
+        "endChar": 37
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8d2aaf0_d10572f5",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -506,6 +962,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc232bba_7a25f2a6",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "lower-level counters are called L2 counters. ipackets+opackets are just examples of the names used.",
+      "parentUuid": "d8d2aaf0_d10572f5",
+      "range": {
+        "startLine": 306,
+        "startChar": 29,
+        "endLine": 306,
+        "endChar": 68
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -532,6 +1012,30 @@
     },
     {
       "key": {
+        "uuid": "1938f4a2_746fbe5e",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0defa180_1ad8c6f0",
+      "range": {
+        "startLine": 311,
+        "startChar": 17,
+        "endLine": 311,
+        "endChar": 20
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78ba4ff3_bb6e4b15",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -552,6 +1056,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bbaa212_41018223",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78ba4ff3_bb6e4b15",
+      "range": {
+        "startLine": 316,
+        "startChar": 41,
+        "endLine": 316,
+        "endChar": 44
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -578,6 +1106,30 @@
     },
     {
       "key": {
+        "uuid": "6262d46a_5dd87c67",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d752dccb_6cfc7947",
+      "range": {
+        "startLine": 317,
+        "startChar": 36,
+        "endLine": 317,
+        "endChar": 40
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7700687a_2ce33aae",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -598,6 +1150,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bccc195_9d4f61b8",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7700687a_2ce33aae",
+      "range": {
+        "startLine": 320,
+        "startChar": 20,
+        "endLine": 320,
+        "endChar": 24
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -624,6 +1200,30 @@
     },
     {
       "key": {
+        "uuid": "98c8d06a_7ac3e76c",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a61f524a_ac402b04",
+      "range": {
+        "startLine": 324,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 4
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "40216a60_26e49a83",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -644,6 +1244,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2fcd4ab_c899af40",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40216a60_26e49a83",
+      "range": {
+        "startLine": 335,
+        "startChar": 55,
+        "endLine": 335,
+        "endChar": 58
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -670,6 +1294,30 @@
     },
     {
       "key": {
+        "uuid": "dc69b34d_4cfecdef",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abe6e1db_89c896a4",
+      "range": {
+        "startLine": 350,
+        "startChar": 55,
+        "endLine": 350,
+        "endChar": 58
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf20f99c_ac3940c6",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -693,6 +1341,30 @@
     },
     {
       "key": {
+        "uuid": "2f9f135e_ff3f41a0",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf20f99c_ac3940c6",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 18
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c374f41_ef0efab8",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -713,6 +1385,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dfbc984_0289a1ff",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c374f41_ef0efab8",
+      "range": {
+        "startLine": 360,
+        "startChar": 13,
+        "endLine": 360,
+        "endChar": 22
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -762,6 +1458,54 @@
     },
     {
       "key": {
+        "uuid": "1fe637db_37fd4a93",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e71e3abe_1a6438a3",
+      "range": {
+        "startLine": 361,
+        "startChar": 5,
+        "endLine": 361,
+        "endChar": 8
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "792cbf7c_f1efbc8d",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c9aa597_3923814f",
+      "range": {
+        "startLine": 361,
+        "startChar": 68,
+        "endLine": 361,
+        "endChar": 75
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e04ac993_9c14f8a8",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -782,6 +1526,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca6959c7_89c5d3af",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e04ac993_9c14f8a8",
+      "range": {
+        "startLine": 380,
+        "startChar": 56,
+        "endLine": 380,
+        "endChar": 73
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -808,6 +1576,30 @@
     },
     {
       "key": {
+        "uuid": "34acb206_d8763f4b",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "The point of the sentence is that we do not track the big transactions (e.g. what if the 66th packet is lost). 33/32 numbers are mentioned enough times in lines 377-380.",
+      "parentUuid": "8de21a29_62e0f7c2",
+      "range": {
+        "startLine": 388,
+        "startChar": 48,
+        "endLine": 388,
+        "endChar": 69
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7c0aad0_c0ef97a6",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -828,6 +1620,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f220fb32_ba703b93",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7c0aad0_c0ef97a6",
+      "range": {
+        "startLine": 396,
+        "startChar": 46,
+        "endLine": 396,
+        "endChar": 50
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -854,6 +1670,30 @@
     },
     {
       "key": {
+        "uuid": "42df6d54_1cf9749d",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "I wanted tens of packets, I chose a value that is easy to type and to search for, and as results were good I have not touched it since.",
+      "parentUuid": "434bd9cc_274c177a",
+      "range": {
+        "startLine": 412,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 42
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6a956d0_b4255e2c",
         "filename": "docs/report/introduction/methodology_nat44.rst",
         "patchSetId": 9
@@ -874,6 +1714,30 @@
       "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d8160aa_654eb249",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-19T15:05:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6a956d0_b4255e2c",
+      "range": {
+        "startLine": 413,
+        "startChar": 26,
+        "endLine": 413,
+        "endChar": 35
+      },
+      "revId": "8f1218c502a9f9e99c5d46469f7c94a23e623a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
