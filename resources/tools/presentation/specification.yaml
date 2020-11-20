@@ -1047,6 +1047,7 @@
         - 31  # rls2005 NDRPDR iter env 5
         - 39  # rls2005 NDRPDR iter env 5
         - 40  # rls2005 NDRPDR iter env 5
+        - 42  # rls2005 NDRPDR iter env 5
     vpp-performance-changes-3n-tsh-cmp:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
         - 14  # rls2009 NDRPDR iter env 5
@@ -2913,7 +2914,6 @@
       - 29  # NDRPDR sel 2001.0-4
       - 31  # NDRPDR sel 2001.0-4
       - 27  # MRR sel env 4
-    # TODO: Add:
     csit-vpp-perf-report-iterative-2009-3n-tsh:
       - 8   # rls2005 NDRPDR iter env 5
       - 11  # rls2005 NDRPDR iter env 5
@@ -2924,6 +2924,7 @@
       - 31  # rls2005 NDRPDR iter env 5
       - 39  # rls2005 NDRPDR iter env 5
       - 40  # rls2005 NDRPDR iter env 5
+      - 42  # rls2005 NDRPDR iter env 5
       - 13  # rls2005 MRR iter env 5
       - 14  # rls2009 NDRPDR iter env 5
       - 20  # rls2009 NDRPDR iter env 5
