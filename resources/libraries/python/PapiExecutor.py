@@ -23,6 +23,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import trace
 
 from pprint import pformat
 from robot.api import logger
@@ -38,6 +39,7 @@ from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
 
 __all__ = [u"PapiExecutor", u"PapiSocketExecutor"]
+trace_done = False
 
 
 def dictize(obj):
@@ -212,6 +214,18 @@ class PapiSocketExecutor:
                 sys.path.pop()
 
     def __enter__(self):
+        # Tracer seems to have truble accessing arguments?
+        def callabl():
+            return self._enter_internal()
+        if trace_done:
+            return callabl()
+        trace_done = True
+        tracer = trace.Trace(timing=True)
+        ret = tracer.run(u"callabl()")
+        tracer.results().write_results_file(path=u"trace.log")
+        return ret
+
+    def _enter_internal(self):
         """Create a tunnel, connect VPP instance.
 
         Only at this point a local socket names are created
