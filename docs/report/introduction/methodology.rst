@@ -8,11 +8,13 @@ Test Methodology
 
     methodology_terminology
     methodology_vpp_forwarding_modes
+    methodology_data_plane_throughput/index
+    methodology_trex_traffic_generator
+    methodology_dut_state
+    methodology_nat44
     methodology_tunnel_encapsulations
     methodology_ipsec
-    methodology_nat44
     methodology_acls
-    methodology_data_plane_throughput/index
     methodology_packet_latency
     methodology_multi_core_speedup
     methodology_hoststack_testing/index
@@ -22,4 +24,3 @@ Test Methodology
     methodology_lxc_drc_container_memif
     methodology_nfv_service_density
     methodology_vpp_device_functional
-    methodology_trex_traffic_generator
