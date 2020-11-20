@@ -23,6 +23,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import trace
 
 from pprint import pformat
 from robot.api import logger
@@ -133,6 +134,7 @@ class PapiSocketExecutor:
     """Takes long time to create, stores all PAPI functions and types."""
     crc_checker = None
     """Accesses .api.json files at creation, caching allows deleting them."""
+    trace_done = False
 
     def __init__(self, node, remote_vpp_socket=Constants.SOCKSVR_PATH):
         """Store the given arguments, declare managed variables.
@@ -212,6 +214,19 @@ class PapiSocketExecutor:
                 sys.path.pop()
 
     def __enter__(self):
+        # Tracer seems to have truble accessing arguments?
+        def callabl():
+            return self._enter_internal()
+        if self.__class__.trace_done:
+            return callabl()
+        self.__class__.trace_done = True
+        globals()[u"callabl"] = callabl
+        tracer = trace.Trace(timing=True)
+        ret = tracer.run(u"callabl()")
+        tracer.results().write_results_file(path=u"trace.log")
+        return ret
+
+    def _enter_internal(self):
         """Create a tunnel, connect VPP instance.
 
         Only at this point a local socket names are created
