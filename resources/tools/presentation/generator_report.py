@@ -195,8 +195,10 @@ def generate_pdf_report(release, spec, report_week):
     plots.extend(
         get_files(spec.environment[u"paths"][u"DIR[STATIC,DPDK]"], u"html")
     )
+    pdf_plots = list()
     for plot in plots:
         file_name = f"{plot.rsplit(u'.', 1)[0]}.pdf"
+        pdf_plots.append(file_name)
         logging.info(f"Converting {plot} to {file_name}")
         execute_command(convert_plots.format(html=plot, pdf=file_name))
 
@@ -223,6 +225,10 @@ def generate_pdf_report(release, spec, report_week):
 
     for cmd in cmds:
         execute_command(cmd)
+
+    # Delete temporary pdf files:
+    for plot in pdf_plots:
+        execute_command(f"rm {plot}")
 
     logging.info(u"  Done.")
 
