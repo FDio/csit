@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -23,6 +21,8 @@ set -exuo pipefail
 # Consequences (and specific assumptions) are multiple,
 # examine tree of functions for current description.
 
+# FIXME: Define API contract (as opposed to just help) for bootstrap.
+
 # "set -eu" handles failures from the following two lines.
 BASH_ENTRY_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
 BASH_FUNCTION_DIR="$(readlink -e "${BASH_ENTRY_DIR}/../function")"
@@ -31,6 +31,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
+source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 get_test_code "${1-}" || die
@@ -46,5 +47,6 @@ activate_docker_topology || die
 select_verify_hw_offload_tags || die
 compose_pybot_arguments || die
 run_pybot || die
+untrap_and_unreserve_testbed || die
 copy_archives || die
 die_on_pybot_error || die
