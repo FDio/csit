@@ -1,0 +1,5 @@
+---
+# file: roles/consul/vars/main.yaml
+
+consul_node_client: "{{ (consul_node_role == 'client') or (consul_node_role == 'both') }}"
+consul_node_server: "{{ (consul_node_role == 'server') or (consul_node_role == 'both') }}"

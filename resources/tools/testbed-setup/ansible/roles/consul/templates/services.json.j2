@@ -1,0 +1,13 @@
+{
+    "services": [
+{% for item in consul_services %}
+        {
+            "name": "{{ item.name }}",
+            "port": {{ item.port }}
+        }
+{%- if not loop.last %},
+{% endif %}
+{% endfor %}
+
+    ]
+}
