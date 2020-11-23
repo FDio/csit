@@ -1,5 +1,5 @@
 [Unit]
-Description=Nomad Service
+Description=Consul Service
 Documentation=https://www.nomadproject.io/docs/
 Wants=network-online.target
 After=network-online.target
@@ -7,7 +7,7 @@ After=network-online.target
 [Service]
 # TODO: Decrease privilege
 ExecReload=/bin/kill -SIGHUP $MAINPID
-ExecStart={{ nomad_bin_dir }}/nomad agent -config={{ nomad_config_dir }}
+ExecStart={{ consul_bin_dir }}/consul agent -config-dir {{ consul_config_dir }}
 KillSignal=SIGTERM
 LimitNOFILE=infinity
 LimitNPROC=infinity

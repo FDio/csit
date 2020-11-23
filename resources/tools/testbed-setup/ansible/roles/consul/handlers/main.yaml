@@ -1,0 +1,23 @@
+---
+# file roles/consul/handlers/main.yaml
+
+- name: Restart Nomad
+  systemd:
+    daemon_reload: true
+    enabled: true
+    name: "nomad"
+    state: "{{ nomad_restart_handler_state }}"
+
+- name: Restart Consul
+  systemd:
+    daemon_reload: true
+    enabled: true
+    name: "consul"
+    state: "{{ consul_restart_handler_state }}"
+
+- name: Stop Systemd-resolved
+  systemd:
+    daemon_reload: true
+    enabled: false
+    name: "systemd-resolved"
+    state: "{{ systemd_resolved_state }}"
