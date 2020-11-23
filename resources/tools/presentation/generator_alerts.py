@@ -352,7 +352,9 @@ class Alerting:
             device = u""
             try:
                 groups = re.search(
-                    re.compile(r'((vpp|dpdk)-\dn-(skx|clx|hsw|tsh|dnv)-.*)'),
+                    re.compile(
+                        r'((vpp|dpdk)-\dn-(skx|clx|hsw|tsh|dnv|zn2)-.*)'
+                    ),
                     test_set
                 )
                 test_set_short = groups.group(1)
