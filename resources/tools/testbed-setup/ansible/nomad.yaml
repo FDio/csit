@@ -12,3 +12,5 @@
       tags: docker
     - role: nomad
       tags: nomad
+    - role: consul
+      tags: consul
