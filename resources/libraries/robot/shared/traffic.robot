@@ -20,6 +20,7 @@
 | Library | resources.libraries.python.Policer
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
+| Library | resources.libraries.python.FlowUtil
 |
 | Documentation | Traffic keywords
 
@@ -609,3 +610,51 @@
 | | ... | --src_port_in ${src_port_in} | --src_port_out ${src_port_out}
 | | ... | --dst_port ${dst_port}
 | | Run Traffic Script On Node | nat.py | ${tg_node} | ${args}
+
+| Send flow packet and verify action
+| | [Documentation] | Send flow packet and verify the expected action.
+| |
+| | ... | *Arguments:*
+| |
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ... | TG(if1)->(if1)DUT
+| |
+| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - tx_interface - TG Interface 1. Type: string
+| | ... | - tx_src_mac - MAC address of TG-if1. Type: string
+| | ... | - tx_dst_mac - MAC address of DUT-if1. Type: string
+| | ... | - src_ip - Source ip address. Type: string
+| | ... | - dst_ip - Destination IP address. Type: string
+| | ... | - src_port - Source port. Type: int
+| | ... | - dst_port - Destination port. Type: int
+| | ... | - value - actions value. Type: integer
+| | ... | - flow_type - IP4_N_TUPLE or IP6_N_TUPLE. Type: string
+| | ... | - proto - TCP or UDP. Type: string
+| | ... | - traffic_script - Scapy Traffic script used for validation.
+| | ... | Type: string
+| | ... | - action - drop, mark or redirect-to-queue. Type: string
+| |
+| | ... | *Return:*
+| | ... | - No value returned
+| |
+| | ... | *Example:*
+| | ... | \| Send flow packet and verify actions \| ${nodes['TG']} \| eth2 \
+| | ... | \| 08:00:27:ee:fd:b3 \| 08:00:27:a2:52:5b \
+| | ... | \| 1.1.1.1 \| 2.2.2.2 \| ${100} \| ${200} \|
+| | ... | \| IP4_N_TUPLE \| UDP \| ${7} \| send_flow_packet \| drop \|
+| |
+| | [Arguments] | ${tg_node} | ${tx_interface} | ${tx_src_mac} | ${tx_dst_mac}
+| | ... | ${src_ip}=${None} | ${dst_ip}=${None}
+| | ... | ${src_port}=${None} | ${dst_port}=${None}
+| | ... | ${flow_type}=${None} | ${proto}=${None} | ${value}=${None}
+| | ... | ${traffic_script}=send_flow_packet | ${action}=redirect-to-queue
+| |
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_interface}
+| | ${args}= | Catenate
+| | ... | --tg_if1_mac ${tx_src_mac} | --dut_if1_mac ${tx_dst_mac}
+| | ... | --tx_if ${tx_port_name} | --flow_type ${flow_type} | --proto ${proto}
+| | ... | --src_ip ${src_ip} | --dst_ip ${dst_ip}
+| | ... | --src_port ${src_port} | --dst_port ${dst_port}
+| | Run Traffic Script On Node | ${traffic_script}.py | ${tg_node} | ${args}
+| | Vpp Flow Verify action | ${dut1} | ${action} | ${value}
+| | ... | ${tx_src_mac} | ${tx_dst_mac}
