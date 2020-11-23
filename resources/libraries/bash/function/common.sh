@@ -273,12 +273,16 @@ function compose_pybot_arguments () {
     PYBOT_ARGS=("--loglevel" "TRACE")
     PYBOT_ARGS+=("--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
 
+    echo ${TEST_CODE}
     case "${TEST_CODE}" in
         *"device"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.device")
             ;;
         *"perf"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
+            ;;
+        *"hwoffload"*)
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.hwoffload")
             ;;
         *)
             die "Unknown specification: ${TEST_CODE}"
@@ -514,6 +518,9 @@ function get_test_tag_string () {
                 ;;
             *"perf"*)
                 trigger="perftest"
+                ;;
+            *"hwoffload"*)
+                trigger="hwoffloadtest"
                 ;;
             *)
                 die "Unknown specification: ${TEST_CODE}"
@@ -1046,6 +1053,65 @@ function select_vpp_device_tags () {
     # We will prefix with devicetest to prevent running other tests
     # (e.g. Functional).
     prefix="devicetestAND"
+    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
+        # Automatic prefixing for VPP jobs to limit testing.
+        prefix="${prefix}"
+    fi
+    for tag in "${test_tag_array[@]}"; do
+        if [[ ${tag} == "!"* ]]; then
+            # Exclude tags are not prefixed.
+            TAGS+=("${tag}")
+        else
+            TAGS+=("${prefix}${tag}")
+        fi
+    done
+}
+
+function select_verify_hw_offload_tags () {
+
+    # Variables read:
+    # - TEST_CODE - String affecting test selection, usually jenkins job name.
+    # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
+    #   Can be unset.
+    # Variables set:
+    # - TAGS - Array of processed tag boolean expressions.
+
+    set -exuo pipefail
+
+    case "${TEST_CODE}" in
+        # Select specific hw offload tests based on jenkins job type variable.
+        *"-flow-"* )
+            if [[ -z "${TEST_TAG_STRING-}" ]]; then
+                # If nothing is specified, we will run pre-selected tests by
+                # following tags. Items of array will be concatenated by OR
+                # in Robot Framework.
+                test_tag_array=()
+            else
+                # If trigger contains tags, split them into array.
+                test_tag_array=(${TEST_TAG_STRING//:/ })
+            fi
+            ;;
+    esac
+
+    # Blacklisting certain tags per topology.
+    #
+    # Reasons for blacklisting:
+    # - avf - AVF is not possible to run on enic driver of VirtualBox.
+    # - vhost - VirtualBox does not support nesting virtualization on Intel CPU.
+    case "${TEST_CODE}" in
+        *"1n-vbox"*)
+            test_tag_array+=("!avf")
+            test_tag_array+=("!vhost")
+            ;;
+        *)
+            ;;
+    esac
+
+    TAGS=()
+
+    # We will prefix with hwoffloadtest to prevent running other tests
+    # (e.g. Functional).
+    prefix="hwoffloadtestAND"
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
         # Automatic prefixing for VPP jobs to limit testing.
         prefix="${prefix}"
