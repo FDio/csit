@@ -22778,6 +22778,17 @@
     layout: "plot-hdrh-latency-by-percentile"
 
 - type: "plot"
+  title: "Latency by percentile: DPDK 2n-zn2"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-2n-zn2"
+  output-file-links: "{DIR[LAT,DPDK]}/2n_zn2.rst"
+  target-links: "../../_static/dpdk"
+  data: "plot-dpdk-hdrh-lat-2n-zn2"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-by-percentile"
+
+- type: "plot"
   title: "Latency by percentile: DPDK 3n-hsw"
   algorithm: "plot_hdrh_lat_by_percentile"
   output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-3n-hsw"
