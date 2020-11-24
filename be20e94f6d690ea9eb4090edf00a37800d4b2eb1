@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24247133_92f61aa3",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-24T09:33:16Z",
+      "side": 1,
+      "message": "${rxq_ratio} \u003d | Get Variable Value | \\${rxq_ratio} | ${2}\n\nThat way only suites which override rxq_ratio (as a suite variable) are affected, and you do not need to edit arguments.",
+      "range": {
+        "startLine": 228,
+        "startChar": 6,
+        "endLine": 228,
+        "endChar": 65
+      },
+      "revId": "be20e94f6d690ea9eb4090edf00a37800d4b2eb1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
