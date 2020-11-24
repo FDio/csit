@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2019 Cisco and/or its affiliates.
+   Copyright (c) 2020 Cisco and/or its affiliates.
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at:
@@ -125,6 +125,18 @@ Safety
     + Another example: "set -e" in your function has no effect
       if any ancestor call is done with logical or,
       for example in "func || code=$?" construct.
+
+    + The exact behavior depends on Bash version.
+      A simplest surprise is "echo $(false)" not exiting.
+
+    + The worst case are here strings.
+      Example: readarray -t test_tag_array <<< $(false)
+      Here strings are values, not commands, so they do not accept blocks
+      ('{' is interpreted as a string) while they accept $() subshells.
+      Die in the subshell means nothing to the parent shell,
+      and return code of $() is ignored (so appending "|| die" does not help).
+      We do not have a better solution than to check the result
+      after the (probably empty/wrong) here string is applied.
 
   + As there is no reliable method of error detection, and there are two
     largely independent unreliable methods, the best what we can do
