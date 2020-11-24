@@ -29,6 +29,7 @@ Both approaches can be hacked by malicious values.
 """
 
 import subprocess
+import time
 
 from robot.api import logger
 
@@ -79,7 +80,10 @@ def run(command, msg=u"", check=True, log=False, console=False):
     ret_code = 0
     output = u""
     try:
+        logger.debug(f"subprocess.check_output {command}")
+        time_start = time.monotonic()
         output = subprocess.check_output(command, stderr=subprocess.STDOUT)
+        logger.debug(f"Took {time.monotonic() - time_start}")
     except subprocess.CalledProcessError as err:
         output = err.output
         ret_code = err.returncode

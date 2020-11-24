@@ -23,6 +23,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import trace
 
 from pprint import pformat
 from robot.api import logger
@@ -133,6 +134,7 @@ class PapiSocketExecutor:
     """Takes long time to create, stores all PAPI functions and types."""
     crc_checker = None
     """Accesses .api.json files at creation, caching allows deleting them."""
+    trace_done = False
 
     def __init__(self, node, remote_vpp_socket=Constants.SOCKSVR_PATH):
         """Store the given arguments, declare managed variables.
@@ -298,7 +300,10 @@ class PapiSocketExecutor:
         # Single retry seems to help.
         for _ in range(2):
             try:
+                time_conn = time.monotonic()
                 vpp_instance.connect_sync(u"csit_socket")
+                duration_conn = time.monotonic() - time_conn
+                logger.debug(f"Connect_sync took {duration_conn}")
             except (IOError, struct.error) as err:
                 logger.warn(f"Got initial connect error {err!r}")
                 vpp_instance.disconnect()
