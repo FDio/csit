@@ -519,7 +519,12 @@ function get_test_tag_string () {
                 die "Unknown specification: ${TEST_CODE}"
         esac
         # Ignore lines not containing the trigger word.
-        comment=$(fgrep "${trigger}" <<< "${GERRIT_EVENT_COMMENT_TEXT}") || true
+        comment=$(fgrep "${trigger}" <<< "${GERRIT_EVENT_COMMENT_TEXT}" || true)
+        # If we got multiple lines, it means multiple triggers, which is wrong.
+        lines=$(echo "comment" | wc -l)
+        if [[ "${lines}" != "1" ]]; then
+            die "Wrong number of trigger lines. Use just one."
+        fi
         # The vpp-csit triggers trail stuff we are not interested in.
         # Removing them and trigger word: https://unix.stackexchange.com/a/13472
         # (except relying on \s whitespace, \S non-whitespace and . both).
