@@ -195,6 +195,7 @@
 | | ... | *Arguments:*
 | | ... | - phy_cores - Number of physical cores to use. Type: integer
 | | ... | - rx_queues - Number of RX queues. Type: integer
+| | ... | - rxq_thr - Number of RX queues equals to Thread count. Type: boolean
 | | ... | - rxd - Number of RX descriptors. Type: integer
 | | ... | - txd - Number of TX descriptors. Type: integer
 | |
@@ -202,8 +203,8 @@
 | |
 | | ... | \| Add worker threads to all DUTs \| ${1} \| ${1} \|
 | |
-| | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${rxd}=${None}
-| | ... | ${txd}=${None}
+| | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${rxq_thr}=${False}
+| | ... | ${rxd}=${None} | ${txd}=${None}
 | |
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
@@ -224,9 +225,10 @@
 | | | ${thr_count_int}= | Run Keyword If | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
+| | | ${rxq_ratio} = | Set variable If | ${rxq_thr} | ${1} | ${2}
 | | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/2)
+| | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
 | | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
