@@ -38,7 +38,7 @@
       1. [3-Node-Haswell Servers (3n-hsw) PROD](#3-node-haswell-servers-3n-hsw-prod)
       1. [3-Node-Skylake Servers (3n-skx) PROD](#3-node-skylake-servers-3n-skx-prod)
       1. [3-Node-Rangeley Servers (3n-rng) VERIFY](#3-node-rangeley-servers-3n-rng-verify)
-      1. [3-Node-Taishan Servers (3n-tsh) PROD](#3-node-taishan-servers-3n-tsh-wip)
+      1. [3-Node-Taishan Servers (3n-tsh) PROD](#3-node-taishan-servers-3n-tsh-prod)
    1. [Per Testbed Wiring](#per-testbed-wiring)
       1. [1-Node-Skylake Wiring (1n-skx) PROD](#1-node-skylake-wiring-1n-skx-prod)
       1. [1-Node-ThunderX2 Wiring (1n-tx2) PROD](#1-node-thunderx2-wiring-1n-tx2-prod)
@@ -52,7 +52,7 @@
       1. [3-Node-Haswell Wiring (3n-hsw) PROD](#3-node-haswell-wiring-3n-hsw-prod)
       1. [3-Node-Skylake Wiring (3n-skx) PROD](#3-node-skylake-wiring-3n-skx-prod)
       1. [3-Node-Rangeley Wiring (3n-rng) TODO](#3-node-rangeley-wiring-3n-rng-todo)
-      1. [3-Node-Taishan Wiring (3n-tsh) PROD](#3-node-taishan-wiring-3n-tsh-wip)
+      1. [3-Node-Taishan Wiring (3n-tsh) PROD](#3-node-taishan-wiring-3n-tsh-prod)
 1. [Inventory](#inventory)
    1. [Appliances](#appliances)
    1. [Arm Servers](#arm-servers)
@@ -167,7 +167,7 @@ Used for FD.io performance tests.
 ### 3-Node-TaiShan Arm Huawei (3n-tsh)
 
 Each 3-Node-TaiShan testbed includes two SUTs (Server-Type-B3) and one
-TG (Server-Type-B2) connected in a 3-node circular topology
+TG (Server-Type-B12) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
@@ -512,7 +512,7 @@ FD.io CSIT lab contains following server types:
         - NIC ports connected into 3-node topology.
     - Main HW configuration:
         - Chassis: Huawei TaiShan 2280.
-        - Processors: 1* hip07-d05 ~ 64* Arm Cortex-A72
+        - Processors: 2* hip07-d05 ~ 32* Arm Cortex-A72
         - RAM Memory: 8* 16GB DDR4-2400MT/s
         - Disks: 1* 4TB SATA HDD
     - NICs configuration:
@@ -1476,8 +1476,10 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
 
 #### 3-Node-Taishan Servers (3n-tsh) PROD
 
+Note: Server19 (TG) is shared between testbed33 & testbed34
+
 ```
-- ServerB17 [Server-Type-B3]:
+- SUT [Server-Type-B3]:
     - testbedname: testbed33.
     - hostname: s17-t33-sut1.
     - IPMI IP: 10.30.50.36
@@ -1487,7 +1489,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s17-t33-sut1-c6/p2 - 10GE-port2 x520-2p10GE.
         - s17-t33-sut1-c4/p1 - 25GE-port1 cx4-2p25GE.
         - s17-t33-sut1-c4/p2 - 25GE-port2 cx4-2p25GE.
-- ServerB18 [Server-Type-B3]:
+- SUT [Server-Type-B3]:
     - testbedname: testbed33.
     - hostname: s18-t33-sut2.
     - IPMI IP: 10.30.50.37
@@ -1497,7 +1499,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s18-t33-sut2-c6/p2 - 10GE-port2 x520-2p10GE.
         - s18-t33-sut2-c4/p1 - 25GE-port1 cx4-2p25GE.
         - s18-t33-sut2-c4/p2 - 25GE-port2 cx4-2p25GE.
-- ServerB19 [Server-Type-B2]:
+- TG [Server-Type-B12]:
     - testbedname: testbed33 and testbed34.
     - hostname: s19-t33t34-tg1.
     - IPMI IP: 10.30.50.46
@@ -1509,6 +1511,8 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s19-t33t34-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s19-t33t34-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s19-t33t34-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s19-t33t34-tg1-c8/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s19-t33t34-tg1-c8/p2 - 40GE-port1 xl710-QDA2-2p40GE.
         - s19-t33t34-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
         - s19-t33t34-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
         - s19-t33t34-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
@@ -1934,7 +1938,7 @@ To be completed.
         - Disks: 1* 480GB SSD Micron, 1* 1000GB HDD Seagate_25
     - 2 * Huawei TaiShan 2280.
         - Chassis: Huawei TaiShan 2280.
-        - Processors: 1* hip07-d05 ~ 64* Arm Cortex-A72.
+        - Processors: 2* hip07-d05 ~ 32* Arm Cortex-A72.
         - RAM Memory: 8* 16GB DDR4-2400MT/s.
         - Disks: 1* 4TB SATA HDD.
 ```
