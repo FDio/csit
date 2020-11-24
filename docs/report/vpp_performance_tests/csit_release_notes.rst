@@ -27,8 +27,12 @@ Changes in |csit-release|
        in stateless mode.
 
      - Added new NAT44 endpoint-dependent mode CPS tests that measure
-       connections per second with usage of TRex in stateful mode.
-       NOTE: CPS measurement data will be added in two weeks.
+       connections per second with usage of TRex in stateful mode. Tests added
+       for both UDP and TCP protocol.
+
+     - Added new NAT44 endpoint-dependent mode PPS tests that measure
+       packets per second (protocol and data together) with usage of TRex
+       in stateful mode. Tests added for both UDP and TCP protocol.
 
    - **IPSec async mode tests**: Added VPP performance tests for async crypto
      engine.
@@ -85,8 +89,8 @@ List of known issues in |csit-release| for VPP performance tests:
 |    | `VPP-1763                               | commands in flight over socket), the VPP configuration for large scale tests (millions of messages) takes |
 |    | <https://jira.fd.io/browse/VPP-1763>`_  | too long.                                                                                                 |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `VPP-1675                               | IPv4 IPSEC 9000B packet tests are failing as no packet is forwarded.                                      |
-|    | <https://jira.fd.io/browse/VPP-1675>`_  | Reason: chained buffers are not supported.                                                                |
+|  5 | `CSIT-1771                              | IPv4 IPSEC 9000B packet tests had been failing when chained buffers were not supported.                   |
+|    | <https://jira.fd.io/browse/CSIT-1771>`_ | This has been fixed on VPP side, but CSIT still needs to re-enable jumbo tests.                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  6 | `VPP-1934                               | [i40e] Interfaces are not brought up from carrier-down.                                                   |
 |    | <https://jira.fd.io/browse/VPP-1934>`_  | In case of i40e -based interface (e.g Intel x700 series NIC) is bound to kernel driver (i40e) and is in   |
