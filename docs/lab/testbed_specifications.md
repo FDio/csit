@@ -36,7 +36,7 @@
       1. [3-Node-Haswell Servers (3n-hsw) PROD](#3-node-haswell-servers-3n-hsw-prod)
       1. [3-Node-Skylake Servers (3n-skx) PROD](#3-node-skylake-servers-3n-skx-prod)
       1. [3-Node-Rangeley Servers (3n-rng) VERIFY](#3-node-rangeley-servers-3n-rng-verify)
-      1. [3-Node-Taishan Servers (3n-tsh) PROD](#3-node-taishan-servers-3n-tsh-wip)
+      1. [3-Node-Taishan Servers (3n-tsh) PROD](#3-node-taishan-servers-3n-tsh-prod)
    1. [Per Testbed Wiring](#per-testbed-wiring)
       1. [1-Node-Skylake Wiring (1n-skx) PROD](#1-node-skylake-wiring-1n-skx-prod)
       1. [1-Node-Thunderx2 Wiring (1n-tx2) WIP](#1-node-thunderx2-wiring-1n-tx2-wip)
@@ -49,7 +49,7 @@
       1. [3-Node-Haswell Wiring (3n-hsw) PROD](#3-node-haswell-wiring-3n-hsw-prod)
       1. [3-Node-Skylake Wiring (3n-skx) PROD](#3-node-skylake-wiring-3n-skx-prod)
       1. [3-Node-Rangeley Wiring (3n-rng) TODO](#3-node-rangeley-wiring-3n-rng-todo)
-      1. [3-Node-Taishan Wiring (3n-tsh) PROD](#3-node-taishan-wiring-3n-tsh-wip)
+      1. [3-Node-Taishan Wiring (3n-tsh) PROD](#3-node-taishan-wiring-3n-tsh-prod)
 1. [Inventory](#inventory)
    1. [Appliances](#appliances)
    1. [Arm Servers](#arm-servers)
@@ -157,7 +157,7 @@ Used for FD.io performance tests.
 ### 3-Node-TaiShan Arm Huawei (3n-tsh)
 
 Each 3-Node-TaiShan testbed includes two SUTs (Server-Type-B3) and one
-TG (Server-Type-B2) connected in a 3-node circular topology
+TG (Server-Type-B12) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
@@ -502,7 +502,7 @@ FD.io CSIT lab contains following server types:
         - NIC ports connected into 3-node topology.
     - Main HW configuration:
         - Chassis: Huawei TaiShan 2280.
-        - Processors: 1* hip07-d05 ~ 64* Arm Cortex-A72
+        - Processors: 2* hip07-d05 ~ 32* Arm Cortex-A72
         - RAM Memory: 8* 16GB DDR4-2400MT/s
         - Disks: 1* 4TB SATA HDD
     - NICs configuration:
@@ -629,8 +629,28 @@ FD.io CSIT lab contains following server types:
         - Numa1:
             - PCIe Slot14 91:00.xx: XL710-QDA2-2p40GE Intel.
             - PCIe Slot26 9a:00.xx: ConnectX5-2p10/25GE Mellanox.
+14. Server-Type-B12: Purpose - Skylake Xeon TG for FD.io performance testing.
+    - Quantity: ---
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node and 3-node topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-7049GP-TRT.
+        - Motherboard: SuperMicro X11DPG-QT.
+        - Processors: 2* Intel Platinum 8180 2.5 GHz.
+        - RAM Memory: 16* 16GB DDR4-2666MHz.
+        - Disks: 2* 1.6TB 6G SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe3.0 lanes)
+            - PCIe Slot2 18:00.xx: x710-4p10GE Intel.
+            - PCIe Slot4 3b:00.xx: xxv710-DA2 2p25GE Intel.
+            - PCIe Slot9 5e:00.xx: empty.
+        - Numa1: (x16, x16, x16 PCIe3.0 lanes)
+            - PCIe Slot6 86:00.xx: empty.
+            - PCIe Slot8 af:00.xx: XL710-QDA2-2p40GE Intel.
+            - PCIe Slot10 d8:00.xx: x710-4p10GE Intel.
 
-14. Server-Type-C1: Purpose - Cascadelake Xeon SUT for FD.io VPP_Device functional tests.
+15. Server-Type-C1: Purpose - Cascadelake Xeon SUT for FD.io VPP_Device functional tests.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -650,7 +670,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-15. Server-Type-C2: Purpose - Cascadelake Xeon SUT for FD.io performance testing.
+16. Server-Type-C2: Purpose - Cascadelake Xeon SUT for FD.io performance testing.
     - Quantity: 3
     - Physical connectivity:
         - IPMI and host management ports.
@@ -670,7 +690,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-16. Server-Type-C3: Purpose - Cascadelake Xeon TG for FD.io performance testing.
+17. Server-Type-C3: Purpose - Cascadelake Xeon TG for FD.io performance testing.
     - Quantity: 3.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -690,7 +710,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-17. Server-Type-C4: Purpose - Cascadelake Xeon Backend hosts for FD.io builds and data processing.
+18. Server-Type-C4: Purpose - Cascadelake Xeon Backend hosts for FD.io builds and data processing.
     - Quantity: 3.
     - Physical connectivity:
         - CIMC and host management ports.
@@ -707,7 +727,7 @@ FD.io CSIT lab contains following server types:
         - Numa1:
             - no cards.
 
-18. Server-Type-D1: Purpose - Zen2 EPYC SUT for FD.io performance testing.
+19. Server-Type-D1: Purpose - Zen2 EPYC SUT for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -722,7 +742,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot1 01:00.xx: x710-4p10GE Intel.
             - PCIe Slot2 41:00.xx: xxv710-DA2-2p25GE Intel.
             - PCIe Slot3 81:00.xx: mcx556a-edat ConnectX5-2p100GE Mellanox.
-19. Server-Type-D2: Purpose - Zen2 EPYC TG for FD.io performance testing.
+20. Server-Type-D2: Purpose - Zen2 EPYC TG for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -1413,8 +1433,10 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
 
 #### 3-Node-Taishan Servers (3n-tsh) PROD
 
+Note: Server19 (TG) is shared between testbed33 & testbed34
+
 ```
-- ServerB17 [Server-Type-B3]:
+- SUT [Server-Type-B3]:
     - testbedname: testbed33.
     - hostname: s17-t33-sut1.
     - IPMI IP: 10.30.50.36
@@ -1424,7 +1446,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s17-t33-sut1-c6/p2 - 10GE-port2 x520-2p10GE.
         - s17-t33-sut1-c4/p1 - 25GE-port1 cx4-2p25GE.
         - s17-t33-sut1-c4/p2 - 25GE-port2 cx4-2p25GE.
-- ServerB18 [Server-Type-B3]:
+- SUT [Server-Type-B3]:
     - testbedname: testbed33.
     - hostname: s18-t33-sut2.
     - IPMI IP: 10.30.50.37
@@ -1434,7 +1456,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s18-t33-sut2-c6/p2 - 10GE-port2 x520-2p10GE.
         - s18-t33-sut2-c4/p1 - 25GE-port1 cx4-2p25GE.
         - s18-t33-sut2-c4/p2 - 25GE-port2 cx4-2p25GE.
-- ServerB19 [Server-Type-B2]:
+- TG [Server-Type-B12]:
     - testbedname: testbed33 and testbed34.
     - hostname: s19-t33t34-tg1.
     - IPMI IP: 10.30.50.46
@@ -1446,6 +1468,8 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
         - s19-t33t34-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s19-t33t34-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s19-t33t34-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s19-t33t34-tg1-c8/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s19-t33t34-tg1-c8/p2 - 40GE-port1 xl710-QDA2-2p40GE.
         - s19-t33t34-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
         - s19-t33t34-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
         - s19-t33t34-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
@@ -1861,7 +1885,7 @@ To be completed.
         - Disks: 1* 480GB SSD Micron, 1* 1000GB HDD Seagate_25
     - 2 * Huawei TaiShan 2280.
         - Chassis: Huawei TaiShan 2280.
-        - Processors: 1* hip07-d05 ~ 64* Arm Cortex-A72.
+        - Processors: 2* hip07-d05 ~ 32* Arm Cortex-A72.
         - RAM Memory: 8* 16GB DDR4-2400MT/s.
         - Disks: 1* 4TB SATA HDD.
 ```
