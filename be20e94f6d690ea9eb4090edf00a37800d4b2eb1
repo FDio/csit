@@ -70,6 +70,30 @@
       "revId": "be20e94f6d690ea9eb4090edf00a37800d4b2eb1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "828de352_3fecf823",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-11-25T14:47:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc58870a_ec686294",
+      "range": {
+        "startLine": 228,
+        "startChar": 6,
+        "endLine": 228,
+        "endChar": 65
+      },
+      "revId": "be20e94f6d690ea9eb4090edf00a37800d4b2eb1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
