@@ -116,9 +116,8 @@
 | | ... | Additional teardown for tests which uses DET44 feature.
 | |
 | | FOR | ${dut} | IN | @{duts}
-#| | | Run Keyword If Test Failed
-#| | | ... | Show DET44 verbose | ${nodes['${dut}']}
-| | | Show DET44 verbose | ${nodes['${dut}']}
+| | | Run Keyword If Test Failed
+| | | ... | Show DET44 verbose | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For nat-ed
@@ -126,7 +125,7 @@
 | | ... | Additional teardown for tests which uses NAT feature.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Show NAT Config | ${nodes['${dut}']}
+| | | Show NAT44 Config | ${nodes['${dut}']}
 | | | Show NAT44 Summary | ${nodes['${dut}']}
 | | | Show NAT Base Data | ${nodes['${dut}']}
 | | | Vpp Get Ip Table Summary | ${nodes['${dut}']}
