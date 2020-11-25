@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -27,7 +27,7 @@ set -exuo pipefail
 # + Directories build_root, build and csit are reset during the run.
 # + The following directories (relative to VPP repo) are (re)created:
 # ++ csit_new, csit_parent, build_new, build_parent,
-# ++ archive, csit/archive, csit_download_dir.
+# ++ archives, csit/archives, csit_download_dir.
 
 # TODO: Implement some kind of VPP build caching.
 
@@ -48,8 +48,6 @@ build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
 build_vpp_ubuntu_amd64 "PARENT" || die
 set_aside_parent_build_artifacts || die
-## Replace previous 4 lines with this to speed up testing.
-#download_builds "REPLACE_WITH_URL" || die
 initialize_csit_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
@@ -74,16 +72,16 @@ for ((iter=0; iter<iterations; iter++)); do
     select_build "build_current" || die
     check_download_dir || die
     run_pybot || die
-    copy_archives || die
-    archive_parse_test_results "csit_current/${iter}" || die
+    move_archives || die
+    parse_bmrr_results "csit_current/${iter}" || die
     die_on_pybot_error || die
     # TODO: Use less heavy way to avoid apt remove failures.
     ansible_playbook "cleanup" || die
     select_build "build_parent" || die
     check_download_dir || die
     run_pybot || die
-    copy_archives || die
-    archive_parse_test_results "csit_parent/${iter}" || die
+    move_archives || die
+    parse_bmrr_results "csit_parent/${iter}" || die
     die_on_pybot_error || die
 done
 untrap_and_unreserve_testbed || die
