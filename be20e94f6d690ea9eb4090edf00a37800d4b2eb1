@@ -46,6 +46,30 @@
       "revId": "be20e94f6d690ea9eb4090edf00a37800d4b2eb1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc58870a_ec686294",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-25T10:15:11Z",
+      "side": 1,
+      "message": "My current preference (after ASTF excercise) is:\n1. Use explicit parameters in Python L1 keywords.\n2. Use variables table for everything visible in suites.\n3. Have translation layers in Robot L2 keywords as needed: https://github.com/FDio/csit/blob/023fa41e51c966a1956bda6b915ffd894ff10e84/resources/libraries/robot/performance/performance_vars.robot",
+      "parentUuid": "7e533f8a_02456f8f",
+      "range": {
+        "startLine": 228,
+        "startChar": 6,
+        "endLine": 228,
+        "endChar": 65
+      },
+      "revId": "be20e94f6d690ea9eb4090edf00a37800d4b2eb1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
