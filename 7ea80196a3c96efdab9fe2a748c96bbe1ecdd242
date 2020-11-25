@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "ab3421b3_2f29710b",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-25T09:55:14Z",
+      "side": 1,
+      "message": "Add: See updated methodology sections for more details.",
+      "range": {
+        "startLine": 30,
+        "startChar": 67,
+        "endLine": 31,
+        "endChar": 37
+      },
+      "revId": "7ea80196a3c96efdab9fe2a748c96bbe1ecdd242",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "304f02f7_de59c575",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-25T09:55:14Z",
+      "side": 1,
+      "message": "Add: See updated methodology sections for more details.",
+      "range": {
+        "startLine": 35,
+        "startChar": 25,
+        "endLine": 35,
+        "endChar": 67
+      },
+      "revId": "7ea80196a3c96efdab9fe2a748c96bbe1ecdd242",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d657871d_e1e8ec94",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 1
