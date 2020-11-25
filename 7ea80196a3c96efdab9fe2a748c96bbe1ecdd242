@@ -68,6 +68,30 @@
       "revId": "7ea80196a3c96efdab9fe2a748c96bbe1ecdd242",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcde780d_662b5637",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-25T09:58:09Z",
+      "side": 1,
+      "message": "Not publishing today. More work required to qualify the results and also update methodology and rls note sections, as they way 2n-zn2 are tested are different than other testbeds (core frequency management is different and load dependent).",
+      "parentUuid": "d657871d_e1e8ec94",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 58
+      },
+      "revId": "7ea80196a3c96efdab9fe2a748c96bbe1ecdd242",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
