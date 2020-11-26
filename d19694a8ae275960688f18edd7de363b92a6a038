@@ -22,6 +22,30 @@
       "revId": "d19694a8ae275960688f18edd7de363b92a6a038",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbe18607_91dc094a",
+        "filename": "resources/tools/integrated/check_crc.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-26T18:02:31Z",
+      "side": 1,
+      "message": "Currently there is only one job, that is why I did not bother naming an environment variable.\nConstants.py sits in CSIT repo, and this (L31-32) is a path to a subdir in cloned VPP repo, so ci-management would be the place to hold the correct value.\nConstants.py could hold the other value (L44-45).\n\nBut still, I do not see much demand for this kind of configurability yet.",
+      "parentUuid": "6fa58dde_7e559b58",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 43
+      },
+      "revId": "d19694a8ae275960688f18edd7de363b92a6a038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
