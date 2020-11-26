@@ -22,6 +22,30 @@
       "revId": "96b0d08e98232de0aee73c9549c5fb113389348e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94252b63_6f7ff81b",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2020-11-26T15:16:55Z",
+      "side": 1,
+      "message": "Europe/London \u003d\u003d UTC if no DST.",
+      "parentUuid": "90f2a499_08ec2e06",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "96b0d08e98232de0aee73c9549c5fb113389348e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
