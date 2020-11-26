@@ -104,6 +104,15 @@
 | | | ... | Show Geneve Tunnel Data | ${nodes['${dut}']}
 | | END
 
+| Additional Test Tear Down Action For ipsec_sa
+| | [Documentation]
+| | ... | Additional teardown for tests which uses IPSec security association.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If Test Failed
+| | | ... | Show Ipsec Security Association | ${nodes['${dut}']}
+| | END
+
 | Additional Test Tear Down Action For linux_bridge
 | | [Documentation]
 | | ... | Additional teardown for tests which uses linux_bridge.
