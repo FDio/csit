@@ -128,39 +128,10 @@ function compare_test_results () {
 }
 
 
-function download_builds () {
-
-    # This is mostly useful only for Sandbox testing, to avoid recompilation.
-    #
-    # Arguments:
-    # - ${1} - URL to download VPP builds from.
-    # Variables read:
-    # - VPP_DIR - Path to WORKSPACE, parent of created directories.
-    # Directories created:
-    # - archive - Ends up empty, not to be confused with ${ARCHIVE_DIR}.
-    # - build_current - Holding built artifacts of the patch under test (PUT).
-    # - built_parent - Holding built artifacts of parent of PUT.
-    # Functions called:
-    # - die - Print to stderr and exit, defined in common.sh
+function initialize_csit_dirs () {
 
     set -exuo pipefail
 
-    cd "${VPP_DIR}" || die "Change directory operation failed."
-    dirs=("build-root" "build_parent" "build_current" "archive" "csit_current")
-    rm -rf ${dirs[@]} || {
-        die "Directory removal failed."
-    }
-    wget -N --progress=dot:giga "${1}" || die "Wget download failed."
-    unzip "archive.zip" || die "Archive extraction failed."
-    mv "archive/build_parent" ./ || die "Move operation failed."
-    mv "archive/build_current" ./ || die "Move operation failed."
-}
-
-
-function initialize_csit_dirs () {
-
-    # This could be in prepare_test, but download_builds also needs this.
-    #
     # Variables read:
     # - VPP_DIR - Path to WORKSPACE, parent of created directories.
     # Directories created:
