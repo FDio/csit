@@ -569,6 +569,7 @@ class ContainerEngine:
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
+        # TODO: Disconnect a possibly connected PAPI client.
         self.execute(u"pkill vpp")
         self.start_vpp()
 
