@@ -284,8 +284,13 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
-            node, u"elog trace api cli barrier")
+        try:
+            PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+                node, u"event-logger trace api cli barrier")
+        except AssertionError:
+            # Perhaps an older VPP build is tested.
+            PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+                node, u"elog trace api cli barrier")
 
     @staticmethod
     def vpp_enable_elog_traces_on_all_duts(nodes):
