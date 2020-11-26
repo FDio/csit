@@ -367,14 +367,9 @@ class Alerting:
             build, version, passed, failed, failed_tests = \
                 self._get_compressed_failed_tests(alert, test_set)
             if build is None:
-                ret_code, build_nr, _ = get_last_completed_build_number(
-                    self._spec.environment[u"urls"][u"URL[JENKINS,CSIT]"],
-                    alert[u"urls"][idx].split(u'/')[-1])
-                if ret_code != 0:
-                    build_nr = u''
                 text += (
                     f"\n\nNo input data available for {test_set_short}. "
-                    f"See CSIT build {alert[u'urls'][idx]}/{build_nr} for more "
+                    f"See CSIT job {alert[u'urls'][idx]} for more "
                     f"information.\n"
                 )
                 continue
