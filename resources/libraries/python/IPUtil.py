@@ -65,6 +65,31 @@ class FibPathNhProto(IntEnum):
     FIB_PATH_NH_PROTO_BIER = 4
 
 
+class IpDscp(IntEnum):
+    """DSCP code points."""
+    IP_API_DSCP_CS0 = 0,
+    IP_API_DSCP_CS1 = 8,
+    IP_API_DSCP_AF11 = 10,
+    IP_API_DSCP_AF12 = 12,
+    IP_API_DSCP_AF13 = 14,
+    IP_API_DSCP_CS2 = 16,
+    IP_API_DSCP_AF21 = 18,
+    IP_API_DSCP_AF22 = 20,
+    IP_API_DSCP_AF23 = 22,
+    IP_API_DSCP_CS3 = 24,
+    IP_API_DSCP_AF31 = 26,
+    IP_API_DSCP_AF32 = 28,
+    IP_API_DSCP_AF33 = 30,
+    IP_API_DSCP_CS4 = 32,
+    IP_API_DSCP_AF41 = 34,
+    IP_API_DSCP_AF42 = 36,
+    IP_API_DSCP_AF43 = 38,
+    IP_API_DSCP_CS5 = 40,
+    IP_API_DSCP_EF = 46,
+    IP_API_DSCP_CS6 = 48,
+    IP_API_DSCP_CS7 = 50
+
+
 class IPUtil:
     """Common IP utilities"""
 

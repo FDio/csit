@@ -113,10 +113,16 @@
     # ip_source_check_interface_add_del / reply # unused L1 keyword vpp_ip_source_check_setup
     ip_table_add_del: '0x0ffdaec0'  # dev
     ip_table_add_del_reply: '0xe8d4e804'  # dev
+    ipip_add_tunnel: '0xa9decfcd'  # dev
+    ipip_add_tunnel_reply: '0x5383d31f'  # dev
     ipsec_interface_add_del_spd: '0x80f80cbb'  # dev
     ipsec_interface_add_del_spd_reply: '0xe8d4e804'  # dev
+    ipsec_sa_v2_details: '0xe2130051'  # dev
+    ipsec_sa_v2_dump: '0x2076c2f4'  # dev
     ipsec_sad_entry_add_del: '0xb8def364'  # dev
     ipsec_sad_entry_add_del_reply: '0x9ffac24b'  # dev
+    ipsec_sad_entry_add_del_v2: '0xaca78b27'  # dev
+    ipsec_sad_entry_add_del_v2_reply: '0x9ffac24b'  # dev
     ipsec_select_backend: '0x5bcfd3b7'  # perf
     ipsec_select_backend_reply: '0xe8d4e804'  # perf
     # ^^ tc01-64B-1c-ethip4ipsec1tnlsw-ip4base-int-aes256gcm-mrr
@@ -125,8 +131,8 @@
     ipsec_spd_add_del_reply: '0xe8d4e804'  # dev
     ipsec_spd_entry_add_del: '0x9f384b8d'  # dev
     ipsec_spd_entry_add_del_reply: '0x9ffac24b'  # dev
-    ipsec_tunnel_if_add_del: '0x2b135e68'  # perf
-    ipsec_tunnel_if_add_del_reply: '0x5383d31f'  # perf
+    ipsec_tunnel_protect_update: '0x143f155d'  # dev
+    ipsec_tunnel_protect_update_reply: '0xe8d4e804'  # dev
     ipsec_set_async_mode: '0xa6465f7c'  #perf
     ipsec_set_async_mode_reply: '0xe8d4e804'  #perf
     # ^^ tc01-64B-1c-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-mrr
