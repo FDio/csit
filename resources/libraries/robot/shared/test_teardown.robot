@@ -182,3 +182,11 @@
 | | ... | Show SR Steering Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Show SR LocalSIDs on all DUTs | ${nodes}
+
+| Additional Test Tear Down Action For ipsec_sa
+| | [Documentation]
+| | ... | Additional teardown for tests which uses IPSec security association.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Show Ipsec Security Association | ${nodes['${dut}']}
+| | END
