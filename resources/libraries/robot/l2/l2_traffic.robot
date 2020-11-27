@@ -46,18 +46,18 @@
 | |
 | | ... | _NOTE:_ Default IP is IPv4
 | |
-| | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
-| | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
-| | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
-| | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=100 \|
-| | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
-| | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1ad \| vlan1=110 \
+| | ... | \| Send IP packet and verify received packet \| \${nodes['TG']} \
+| | ... | \| \${tg_to_dut_if1} \| \${tg_to_dut_if2} \|
+| | ... | \| Send IP packet and verify received packet \| \${nodes['TG']} \
+| | ... | \| \${tg_to_dut1} \| \${tg_to_dut2} \| encaps=Dot1q \| vlan1=100 \|
+| | ... | \| Send IP packet and verify received packet \| \${nodes['TG']} \
+| | ... | \| \${tg_to_dut1} \| \${tg_to_dut2} \| encaps=Dot1ad \| vlan1=110 \
 | | ... | \| vlan2=220 \|
-| | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
-| | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \
+| | ... | \| Send IP packet and verify received packet \| \${nodes['TG']} \
+| | ... | \| \${tg_to_dut1} \| \${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \
 | | ... | \| encaps_rx=Dot1q \|
-| | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
-| | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \
+| | ... | \| Send IP packet and verify received packet \| \${nodes['TG']} \
+| | ... | \| \${tg_to_dut1} \| \${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \
 | | ... | \| encaps_rx=Dot1q \| vlan1_rx=120 \|
 | |
 | | [Arguments] | ${tg_node} | ${tx_src_port} | ${rx_dst_port}
@@ -94,7 +94,7 @@
 | | ... | *Example:*
 | |
 | | ... | \| Send IPv4 bidirectionally and verify received packets \
-| | ... | \| ${nodes['TG']} \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
+| | ... | \| \${nodes['TG']} \| \${tg_to_dut_if1} \| \${tg_to_dut_if2} \|
 | |
 | | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=192.168.100.1 |
 | | ... | ${dst_ip}=192.168.100.2
