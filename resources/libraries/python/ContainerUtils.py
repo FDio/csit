@@ -549,6 +549,8 @@ class ContainerEngine:
             u"setsid /usr/bin/vpp -c /etc/vpp/startup.conf "
             u">/tmp/vppd.log 2>&1 < /dev/null &")
 
+        api_socket = f"/tmp/vpp_sockets/{self.container.name}/api.sock"
+        self.container[u"api_socket"] = api_socket
         topo_instance = BuiltIn().get_library_instance(
             u"resources.libraries.python.topology.Topology"
         )
@@ -556,19 +558,24 @@ class ContainerEngine:
             self.container.node,
             SocketType.PAPI,
             self.container.name,
-            f"/tmp/vpp_sockets/{self.container.name}/api.sock"
+            api_socket,
         )
         topo_instance.add_new_socket(
             self.container.node,
             SocketType.STATS,
             self.container.name,
-            f"/tmp/vpp_sockets/{self.container.name}/stats.sock"
+            f"/tmp/vpp_sockets/{self.container.name}/stats.sock",
         )
         self.verify_vpp()
         self.adjust_privileges()
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
+        # TODO: Make Container a class with documented members!
+        PapiSocketExecutor.disconnect_by_node_and_socket(
+            self.container[u"node"],
+            self.container[u"api_socket"],
+        )
         self.execute(u"pkill vpp")
         self.start_vpp()
 
