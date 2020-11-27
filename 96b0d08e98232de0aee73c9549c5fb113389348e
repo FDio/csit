@@ -46,6 +46,30 @@
       "revId": "96b0d08e98232de0aee73c9549c5fb113389348e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dd162331_f4579104",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-27T16:16:53Z",
+      "side": 1,
+      "message": "Europe/London includes the fact the offset (relative to UTC) changes twice a year (at specific date+time).\n\nMy first reaction was to comment on line 32 instead, but I decided it is not worth it.",
+      "parentUuid": "94252b63_6f7ff81b",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "96b0d08e98232de0aee73c9549c5fb113389348e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
