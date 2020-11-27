@@ -23,8 +23,9 @@ import threading
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants as con
-from resources.libraries.python.ssh import exec_cmd_no_error, scp_node
 from resources.libraries.python.LocalExecution import run
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.ssh import exec_cmd_no_error, scp_node
 from resources.libraries.python.topology import NodeType
 
 __all__ = [u"SetupFramework"]
@@ -301,6 +302,8 @@ class CleanupFramework:
         :type nodes: dict
         :raises RuntimeError: If cleanup framework failed.
         """
+
+        PapiSocketExecutor.disconnect_all_papi_connections()
 
         results = list()
         threads = list()
