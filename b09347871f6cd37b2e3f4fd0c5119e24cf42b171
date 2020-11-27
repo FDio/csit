@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85231ecd_e0b803d4",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-27T15:08:40Z",
+      "side": 1,
+      "message": "I see the same failures in devicetest, so this probably does not work.\nHow do I get the right values?",
+      "range": {
+        "startLine": 574,
+        "startChar": 12,
+        "endLine": 575,
+        "endChar": 64
+      },
+      "revId": "b09347871f6cd37b2e3f4fd0c5119e24cf42b171",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
