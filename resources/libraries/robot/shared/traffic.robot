@@ -61,7 +61,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Send packet and verify headers \| ${nodes['TG']} \| 10.0.0.1 \
+| | ... | \| Send packet and verify headers \| \${nodes['TG']} \| 10.0.0.1 \
 | | ... | \| 32.0.0.1 \| eth2 \| 08:00:27:ee:fd:b3 \| 08:00:27:a2:52:5b \
 | | ... | \| eth3 \| 08:00:27:4d:ca:7a \| 08:00:27:7d:fd:10 \|
 | |
