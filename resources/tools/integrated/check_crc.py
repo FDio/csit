@@ -25,6 +25,41 @@ import sys
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
 
+def edit_file(error):
+    """Based on CRC mismatch detected, edit the CSIT CRC list file.
+
+    A new file with .log extension is created in the same directory.
+
+    :param error: The error raised by CRC checker.
+    :type error: RuntimeError with particularly formatted message.
+    """
+    file_name = u"supported_crcs.yaml"
+    file_dir = op.normpath(op.join(
+        op.dirname(op.abspath(__file__)), u"..", u"..", u"..",
+        u"resources", u"api", u"vpp"))
+    file_in_path = op.join(file_dir, file_name)
+    file_out_path = op.join(file_dir, file_name + u".log")
+    # Remove prolog, epilog and intros, including outside double-quotes.
+    changes = str(error)[43:-3].split(u'",\n "')
+    len_changes = len(changes)
+    with open(file_in_path, u"r") as fin, open(file_out_path, u"w") as fout:
+        index = 0
+        # Remove inside double-quotes
+        message, new_crc = changes[index].split(u'":"')
+        for line in fin:
+            if message and message in line:
+                # CRC is the thing between single quotes.
+                _, old_crc, _ = line.split(u"'")
+                line = line.replace(old_crc, new_crc)
+                index += 1
+                if index < len_changes:
+                    message, new_crc = changes[index].split(u'":"')
+                else:
+                    # Signal no other changes are to be done.
+                    message = u""
+            fout.write(line)
+
+
 def main():
     """Execute the logic, return the return code.
 
@@ -70,6 +105,7 @@ def main():
             u"",
             u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
         ]
+        edit_file(err)
         ret_code = 1
     else:
         stderr_lines = [
