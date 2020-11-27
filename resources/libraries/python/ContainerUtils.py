@@ -569,6 +569,8 @@ class ContainerEngine:
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
+        # We rely on vSwitch restart to disconnect also containers.
+        # TODO: Track separately, so future improvements are not surprised.
         self.execute(u"pkill vpp")
         self.start_vpp()
 
