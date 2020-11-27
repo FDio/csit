@@ -23,6 +23,7 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
@@ -549,6 +550,8 @@ class ContainerEngine:
             u"setsid /usr/bin/vpp -c /etc/vpp/startup.conf "
             u">/tmp/vppd.log 2>&1 < /dev/null &")
 
+        api_socket = f"/tmp/vpp_sockets/{self.container.name}/api.sock"
+        setattr(self.container, u"api_socket", api_socket)
         topo_instance = BuiltIn().get_library_instance(
             u"resources.libraries.python.topology.Topology"
         )
@@ -556,21 +559,33 @@ class ContainerEngine:
             self.container.node,
             SocketType.PAPI,
             self.container.name,
-            f"/tmp/vpp_sockets/{self.container.name}/api.sock"
+            api_socket,
         )
         topo_instance.add_new_socket(
             self.container.node,
             SocketType.STATS,
             self.container.name,
-            f"/tmp/vpp_sockets/{self.container.name}/stats.sock"
+            f"/tmp/vpp_sockets/{self.container.name}/stats.sock",
         )
         self.verify_vpp()
         self.adjust_privileges()
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
+        self.disconnect_papi()
         self.execute(u"pkill vpp")
         self.start_vpp()
+
+    def disconnect_papi(self):
+        """Disconnect (P)API socket connections.
+
+        Call before destroying containers or restarting VPP in them.
+        """
+        # TODO: Make Container a class with documented members!
+        PapiSocketExecutor.disconnect_by_node_and_socket(
+            self.container[u"node"],
+            self.container[u"api_socket"],
+        )
 
     # TODO Rewrite to use the VPPUtil.py functionality and remove this.
     def verify_vpp(self, retries=120, retry_wait=1):
@@ -900,6 +915,7 @@ class LXC(ContainerEngine):
 
         :raises RuntimeError: If destroying container failed.
         """
+        self.disconnect_papi()
         cmd = f"lxc-destroy --force --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -1093,6 +1109,7 @@ class Docker(ContainerEngine):
 
         :raises RuntimeError: If removing a container failed.
         """
+        self.disconnect_papi()
         cmd = f"docker rm --force {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
