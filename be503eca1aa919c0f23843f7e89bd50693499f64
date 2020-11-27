@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16abab65_53e28ab0",
+        "filename": "resources/libraries/python/NATUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-11-27T16:59:20Z",
+      "side": 1,
+      "message": "try:\n  with ... (cmd) ...\nexcept AssertionError:\n  # Perhaps VPP is an older version.\n  old_cmd \u003d u\"nat_show_config\"\n  with ... (old_cmd) ...\n\nThat way, grep for \"cmd \u003d\" catches all used commands, but old_ marks those that do not need to be in crc yaml.\n\nWe should also mark (somehow) when the new command was added, so we know when it is safe to remove support for old commands.\nI do not have a nice pattern invented for that yet, but it will probably be something in the comment line.",
+      "range": {
+        "startLine": 214,
+        "startChar": 8,
+        "endLine": 214,
+        "endChar": 12
+      },
+      "revId": "be503eca1aa919c0f23843f7e89bd50693499f64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
