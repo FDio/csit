@@ -58,11 +58,15 @@ class VPPUtil:
     def restart_vpp_service(node, node_key=None):
         """Restart VPP service on the specified topology node.
 
+        Disconnect possibly connected PAPI executor.
+
         :param node: Topology node.
         :param node_key: Topology node key.
         :type node: dict
         :type node_key: str
         """
+        # Update if VPPs in containers have a different lifecycle.
+        PapiSocketExecutor.disconnect_all_sockets_by_node(node)
         DUTSetup.restart_service(node, Constants.VPP_UNIT)
         if node_key:
             Topology.add_new_socket(
@@ -85,11 +89,15 @@ class VPPUtil:
     def stop_vpp_service(node, node_key=None):
         """Stop VPP service on the specified topology node.
 
+        Disconnect possibly connected PAPI executor.
+
         :param node: Topology node.
         :param node_key: Topology node key.
         :type node: dict
         :type node_key: str
         """
+        # Containers have a separate lifecycle, but better be safe.
+        PapiSocketExecutor.disconnect_all_sockets_by_node(node)
         DUTSetup.stop_service(node, Constants.VPP_UNIT)
         if node_key:
             Topology.del_node_socket_id(node, SocketType.PAPI, node_key)

@@ -569,6 +569,11 @@ class ContainerEngine:
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
+        # TODO: Make Container a class with documented members!
+        PapiSocketExecutor.disconnect_by_node_and_socket(
+            self.container[u"node"],
+            self.container.get(u"path", Constants.SOCKSVR_PATH),
+        )
         self.execute(u"pkill vpp")
         self.start_vpp()
 
