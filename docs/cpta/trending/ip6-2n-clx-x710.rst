@@ -15,8 +15,8 @@
     <a name="78b-2t1c-scale-avf"></a>
     <center>
     Links to builds:
-    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <a href="https://packagecloud.io/app/fdio/2009/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-2009_lts-2n-clx" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-x710-78b-2t1c-ip6-base-scale-avf-dpdk.html"></iframe>
     <p><br></p>
     </center>
@@ -32,8 +32,8 @@
     <a name="78b-4t2c-scale-avf"></a>
     <center>
     Links to builds:
-    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <a href="https://packagecloud.io/app/fdio/2009/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-2009_lts-2n-clx" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-x710-78b-4t2c-ip6-base-scale-avf-dpdk.html"></iframe>
     <p><br></p>
     </center>
@@ -49,8 +49,8 @@
     <a name="78b-8t4c-scale-avf"></a>
     <center>
     Links to builds:
-    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <a href="https://packagecloud.io/app/fdio/2009/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-2009_lts-2n-clx" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-x710-78b-8t4c-ip6-base-scale-avf-dpdk.html"></iframe>
     <p><br></p>
     </center>

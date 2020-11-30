@@ -77,26 +77,6 @@
 .. raw:: html
 
     <center>
-    <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-dot1q-l2bdbasemaclrn-gbp" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-dot1q-l2bdbasemaclrn-gbp.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-dot1q-l2bdbasemaclrn-gbp}
-            \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-dot1q-l2bdbasemaclrn-gbp}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
     <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-eth-l2patch" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-avf-eth-l2patch.html"></iframe>
     <p><br></p>
     </center>
@@ -252,26 +232,6 @@
                 \graphicspath{{../_build/_static/vpp/}}
                 \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn}
                 \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn}
-        \end{figure}
-
-    .. raw:: latex
-
-        \clearpage
-
-    .. raw:: html
-
-        <center>
-        <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-gbp" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-gbp.html"></iframe>
-        <p><br></p>
-        </center>
-
-    .. raw:: latex
-
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-gbp}
-                \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-dot1q-l2bdbasemaclrn-gbp}
         \end{figure}
 
     .. raw:: latex

@@ -18,52 +18,12 @@ Legend to the tables:
 
 .. include:: ../../../_build/_static/vpp/failed-tests-2n-skx.rst
 
-2n-skx-ndrpdr
--------------
-
-.. include:: ../../../_build/_static/vpp/failed-tests-2n-skx-ndrpdr.rst
-
 3n-skx-mrr
 ----------
 
 .. include:: ../../../_build/_static/vpp/failed-tests-3n-skx.rst
 
-3n-skx-ndrpdr
--------------
-
-.. include:: ../../../_build/_static/vpp/failed-tests-3n-skx-ndrpdr.rst
-
-3n-hsw-mrr
-----------
-
-.. include:: ../../../_build/_static/vpp/failed-tests-3n-hsw.rst
-
-3n-hsw-ndrpdr
--------------
-
-.. include:: ../../../_build/_static/vpp/failed-tests-3n-hsw-ndrpdr.rst
-
-3n-tsh-mrr
-----------
-
-.. include:: ../../../_build/_static/vpp/failed-tests-3n-tsh.rst
-
-2n-dnv-mrr
-----------
-
-.. include:: ../../../_build/_static/vpp/failed-tests-2n-dnv.rst
-
-3n-dnv-mrr
-----------
-
-.. include:: ../../../_build/_static/vpp/failed-tests-3n-dnv.rst
-
 2n-clx-mrr
 ----------
 
 .. include:: ../../../_build/_static/vpp/failed-tests-2n-clx.rst
-
-2n-clx-ndrpdr
--------------
-
-.. include:: ../../../_build/_static/vpp/failed-tests-2n-clx-ndrpdr.rst
