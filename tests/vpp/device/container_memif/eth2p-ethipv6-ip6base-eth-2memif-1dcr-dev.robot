@@ -83,6 +83,8 @@
 | | ... | ${dut1} | memif-DUT1_CNF | memif-DUT1_CNF
 | | ... | memif_if1=memif_if1 | memif_if2=memif_if2
 | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
+| | # It takes some time for memifs to go up.
+| | All Vpp Interfaces Ready Wait | ${nodes}
 | | And Add Fib Table | ${dut1} | 20 | ipv6=${True}
 | | And Assign Interface To Fib Table
 | | ... | ${dut1} | ${memif_if2} | 20 | ipv6=${True}

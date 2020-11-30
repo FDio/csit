@@ -1139,4 +1139,6 @@ class Topology:
         """
         for node in nodes.values():
             if u"sockets" in list(node.keys()):
-                node.pop(u"sockets")
+                sockets = node.pop(u"sockets")
+                # Containers are disconnected and destroyed already.
+                logger.debug(f"Popped sockets: {sockets}")
