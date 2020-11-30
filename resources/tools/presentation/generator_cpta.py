@@ -208,6 +208,8 @@ def _generate_trending_traces(in_data, job_name, build_info,
             )
         else:
             hover_str = hover_str.replace(u"<stdev>", u"")
+        if u"-cps" in name:
+            hover_str = hover_str.replace(u"[Mpps]", u"[Mcps]")
         if u"dpdk" in job_name:
             hover_text.append(hover_str.format(
                 date=date,
@@ -220,7 +222,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
                 build_nr=str_key,
                 testbed=build_info[job_name][str_key][2]))
         elif u"vpp" in job_name:
-            hover_text.append(hover_str.format(
+            hover_str = hover_str.format(
                 date=date,
                 property=u"average" if incl_tests == u"MRR" else u"throughput",
                 value=data_y_mpps[index],
@@ -229,7 +231,10 @@ def _generate_trending_traces(in_data, job_name, build_info,
                 test=incl_tests.lower(),
                 period=u"daily" if incl_tests == u"MRR" else u"weekly",
                 build_nr=str_key,
-                testbed=build_info[job_name][str_key][2]))
+                testbed=build_info[job_name][str_key][2])
+            if u"-cps" in name:
+                hover_str = hover_str.replace(u"throughput", u"connection rate")
+            hover_text.append(hover_str)
 
         xaxis.append(datetime(int(date[0:4]), int(date[4:6]), int(date[6:8]),
                               int(date[9:11]), int(date[12:])))
