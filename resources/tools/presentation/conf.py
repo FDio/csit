@@ -46,7 +46,7 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
-report_week = u'44'
+report_week = u'49'
 project = u'FD.io CSIT-2009.{week}'.format(week=report_week)
 copyright = u'2020, FD.io'
 author = u'FD.io CSIT'
@@ -86,6 +86,10 @@ rst_epilog = u"""
 .. _FD.io test executor dpdk performance job 3n-skx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-skx
 .. _FD.io test executor dpdk performance job 2n-skx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-skx
 .. _FD.io test executor dpdk performance job 2n-clx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-clx
+.. _FD.io test executor dpdk performance job 2n-dnv: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-dnv
+.. _FD.io test executor dpdk performance job 3n-dnv: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-dnv
+.. _FD.io test executor dpdk performance job 3n-tsh: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-tsh
+.. _FD.io test executor dpdk performance job 2n-zn2: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-zn2
 .. _FD.io test executor vpp performance job 3n-hsw: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-hsw
 .. _FD.io test executor vpp performance job 3n-skx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-skx
 .. _FD.io test executor vpp performance job 2n-skx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-skx
@@ -93,6 +97,7 @@ rst_epilog = u"""
 .. _FD.io test executor vpp performance job 3n-dnv: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-dnv
 .. _FD.io test executor vpp performance job 2n-dnv: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-dnv
 .. _FD.io test executor vpp performance job 2n-clx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-clx
+.. _FD.io test executor vpp performance job 2n-zn2: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-zn2
 .. _FD.io test executor vpp device jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-device-{srelease}-ubuntu1804-1n-skx
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1804-x86_64/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
