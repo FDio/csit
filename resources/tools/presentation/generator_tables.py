@@ -1002,15 +1002,15 @@ def _generate_url(testbed, test_name):
         cores = u"4t4c"
     elif u"2t1c" in test_name or \
          (u"-1c-" in test_name and
-          testbed in (u"2n-skx", u"3n-skx", u"2n-clx")):
+          testbed in (u"2n-skx", u"3n-skx", u"2n-clx", u"2n-zn2")):
         cores = u"2t1c"
     elif u"4t2c" in test_name or \
          (u"-2c-" in test_name and
-          testbed in (u"2n-skx", u"3n-skx", u"2n-clx")):
+          testbed in (u"2n-skx", u"3n-skx", u"2n-clx", u"2n-zn2")):
         cores = u"4t2c"
     elif u"8t4c" in test_name or \
          (u"-4c-" in test_name and
-          testbed in (u"2n-skx", u"3n-skx", u"2n-clx")):
+          testbed in (u"2n-skx", u"3n-skx", u"2n-clx", u"2n-zn2")):
         cores = u"8t4c"
     else:
         cores = u""
@@ -1047,7 +1047,7 @@ def _generate_url(testbed, test_name):
     elif u"oacl50s" in test_name:
         bsf = u"features-oacl50"
     elif u"nat44det" in test_name:
-        bsf = u"nat44det"
+        bsf = u"nat44det-bidir"
     elif u"nat44ed" in test_name and u"udir" in test_name:
         bsf = u"nat44ed-udir"
     elif u"-cps" in test_name and u"ethip4udp" in test_name:
@@ -1079,8 +1079,22 @@ def _generate_url(testbed, test_name):
 
     if u"114b" in test_name and u"vhost" in test_name:
         domain = u"vts"
-    elif u"nat44" in test_name or u"-pps" in test_name or u"-vps" in test_name:
+    elif u"nat44" in test_name or u"-pps" in test_name or u"-cps" in test_name:
         domain = u"nat44"
+        if u"nat44det" in test_name:
+            domain += u"-det-bidir"
+        else:
+            domain += u"-ed"
+        if u"udir" in test_name:
+            domain += u"-unidir"
+        elif u"-ethip4udp-" in test_name:
+            domain += u"-udp"
+        elif u"-ethip4tcp-" in test_name:
+            domain += u"-tcp"
+        if u"-cps" in test_name:
+            domain += u"-cps"
+        elif u"-pps" in test_name:
+            domain += u"-pps"
     elif u"testpmd" in test_name or u"l3fwd" in test_name:
         domain = u"dpdk"
     elif u"memif" in test_name:
