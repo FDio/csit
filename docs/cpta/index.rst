@@ -14,6 +14,8 @@ analysis and anomaly detection methodology.
     Description <introduction/introduction>
     Dashboard <introduction/dashboard>
     Failed Tests <introduction/failures>
+
+..
     Weekly Comparison <introduction/weekly>
 
 .. toctree::
@@ -29,28 +31,12 @@ analysis and anomaly detection methodology.
     trending/l2
     trending/ip4
     trending/ip6
-    trending/srv6
     trending/ip4_tunnels
+    trending/nat44
     trending/vhost
     trending/container_memif
     trending/ipsec
     trending/vts
-    trending/nf_service_density
-    trending/dpdk
-
-.. toctree::
-    :maxdepth: 2
-    :caption: NDRPDR Trending Graphs
-
-    ndrpdr_trending/l2
-    ndrpdr_trending/ip4
-    ndrpdr_trending/ip6
-    ndrpdr_trending/srv6
-    ndrpdr_trending/ip4_tunnels
-    ndrpdr_trending/vhost
-    ndrpdr_trending/container_memif
-    ndrpdr_trending/ipsec
-    ndrpdr_trending/vts
 
 .. toctree::
     :maxdepth: 2
