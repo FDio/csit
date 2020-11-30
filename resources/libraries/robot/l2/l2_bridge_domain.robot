@@ -612,6 +612,8 @@
 | | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
 | | | ... | auto_scale=${auto_scale}
 | | END
+| | # Do not return before making sure all new interfaces are up.
+| | All Vpp Interfaces Ready Wait
 
 | Initialize L2 Bridge Domain for multiple chains with memif pairs
 | | [Documentation]
