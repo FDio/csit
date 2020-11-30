@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "676fa128_3d6313b7",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-11-30T20:01:31Z",
+      "side": 1,
+      "message": "i think useless print unless pop is not doing its job. save the time and storage.",
+      "range": {
+        "startLine": 1142,
+        "startChar": 0,
+        "endLine": 1144,
+        "endChar": 58
+      },
+      "revId": "269f0b48d7626d7332c5d3dfc251cf824bb6b817",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c95d1e78_638e526b",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-11-30T20:01:31Z",
+      "side": 1,
+      "message": "I do not like it there as main call is KW L618 which will have the same Call \"| | Set interfaces in path up\"\nSo rater use KW L618 in test case",
+      "range": {
+        "startLine": 615,
+        "startChar": 0,
+        "endLine": 616,
+        "endChar": 44
+      },
+      "revId": "269f0b48d7626d7332c5d3dfc251cf824bb6b817",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a768ec6_35e7fe25",
+        "filename": "tests/vpp/device/container_memif/eth2p-ethipv6-ip6base-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-11-30T20:01:31Z",
+      "side": 1,
+      "message": "mode line 81 here it is time savy",
+      "revId": "269f0b48d7626d7332c5d3dfc251cf824bb6b817",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
