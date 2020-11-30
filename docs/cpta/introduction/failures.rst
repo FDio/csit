@@ -67,3 +67,8 @@ Legend to the tables:
 -------------
 
 .. include:: ../../../_build/_static/vpp/failed-tests-2n-clx-ndrpdr.rst
+
+2n-zn2-mrr
+----------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-2n-zn2.rst
