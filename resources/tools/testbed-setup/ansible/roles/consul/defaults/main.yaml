@@ -68,16 +68,12 @@ consul_certificates:
   - src: "{{ vault_consul_key_file }}"
     dest: "{{ consul_key_file }}"
 
-consul_address: "127.0.0.1:8500"
-consul_auth: ""
 consul_auto_advertise: true
-consul_checks_use_advertise: false
+consul_checks_use_advertise: true
 consul_server_service_name: "nomad"
 consul_client_service_name: "nomad-client"
 consul_server_auto_join: false
-consul_client_auto_join: false
-consul_ssl: true
-consul_verify_ssl: true
+consul_client_auto_join: true
 consul_ACL_token_set: false
 consul_token: "consul_token_default"
 

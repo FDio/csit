@@ -1,18 +1,10 @@
 consul {
-    address = "{{ consul_address }}"
-    auth = "{{ consul_auth }}"
     auto_advertise = {{ consul_auto_advertise | bool | lower }}
-    ca_file = "{{ consul_ca_file }}"
-    cert_file = "{{ consul_cert_file }}"
     checks_use_advertise = {{ consul_checks_use_advertise | bool | lower }}
     client_auto_join = {{ consul_client_auto_join | bool | lower }}
     client_service_name = "{{ consul_client_service_name }}"
-    key_file = "{{ consul_key_file }}"
     server_service_name = "{{ consul_server_service_name }}"
     server_auto_join = {{ consul_server_auto_join | bool | lower }}
-    ssl = {{ consul_ssl | bool | lower }}
-    verify_ssl = {{ consul_verify_ssl | bool | lower }}
-
 {% if consul_ACL_token_set == True %}
     token = "{{ consul_token }}"
 {% endif %}
