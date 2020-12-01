@@ -22,6 +22,30 @@
       "revId": "f812e769b3e170206ecbc8dcfc6ab84d8f69f0d6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2a417a2_c72a95c6",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-01T20:14:55Z",
+      "side": 1,
+      "message": "Cache invalidation is hard.\n\n\u003e it cannot be there.\n\nWhy not? If PAPI is not connected (maybe because VPP was never in this container), PapiSocketExecutor.disconnect_by_node_and_socket will detect that and return as if success. On the other hand, if PAPI is connected, we want to avoid leaking resurces.\n\nPAPI disconnect (for socket transport) attempts to send a specific message (sockclnt_delete) to notify VPP. Error (e.g. when VPP is already killed) is ignored, but I think there can be a delay before such error is detected.\n\n\u003e I prefer to rather have something like garbage cleanup in PAPI utils\n\nPAPI connection to a VPP inside container becomes garbage (also) when the container is destroyed, and this is the place it happens (we have no guarantee VPP is stopped explicitly before this line).\nIn more \"pluggable\" software designs, PAPI would register its disconnect as a callback, but that callback would be called in this line.",
+      "parentUuid": "56ce923a_2ba843da",
+      "range": {
+        "startLine": 924,
+        "startChar": 8,
+        "endLine": 924,
+        "endChar": 30
+      },
+      "revId": "f812e769b3e170206ecbc8dcfc6ab84d8f69f0d6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
