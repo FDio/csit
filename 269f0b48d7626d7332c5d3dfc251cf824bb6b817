@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "47cbe31c_c571fc53",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-01T17:57:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "676fa128_3d6313b7",
+      "range": {
+        "startLine": 1142,
+        "startChar": 0,
+        "endLine": 1144,
+        "endChar": 58
+      },
+      "revId": "269f0b48d7626d7332c5d3dfc251cf824bb6b817",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c95d1e78_638e526b",
         "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
         "patchSetId": 20
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e1582533_1f6791a7",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-01T17:57:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c95d1e78_638e526b",
+      "range": {
+        "startLine": 615,
+        "startChar": 0,
+        "endLine": 616,
+        "endChar": 44
+      },
+      "revId": "269f0b48d7626d7332c5d3dfc251cf824bb6b817",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a768ec6_35e7fe25",
         "filename": "tests/vpp/device/container_memif/eth2p-ethipv6-ip6base-eth-2memif-1dcr-dev.robot",
         "patchSetId": 20
@@ -62,6 +110,24 @@
       "revId": "269f0b48d7626d7332c5d3dfc251cf824bb6b817",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12795ada_dd9e4cae",
+        "filename": "tests/vpp/device/container_memif/eth2p-ethipv6-ip6base-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-01T17:57:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a768ec6_35e7fe25",
+      "revId": "269f0b48d7626d7332c5d3dfc251cf824bb6b817",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
