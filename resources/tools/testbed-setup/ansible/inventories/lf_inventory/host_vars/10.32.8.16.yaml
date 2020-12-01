@@ -51,10 +51,8 @@ consul_certificates:
 consul_datacenter: "yul1"
 consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 consul_node_name: "{{ hostname }}"
-consul_node_role: "both"
+consul_node_role: "client"
 consul_retry_servers:
   - "10.30.51.30"
   - "10.30.51.32"
   - "10.30.51.33"
-  - "10.32.8.14"
-  - "10.32.8.15"
