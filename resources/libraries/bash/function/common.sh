@@ -519,14 +519,20 @@ function get_test_tag_string () {
                 die "Unknown specification: ${TEST_CODE}"
         esac
         # Ignore lines not containing the trigger word.
-        comment=$(fgrep "${trigger}" <<< "${GERRIT_EVENT_COMMENT_TEXT}") || true
+        comment=$(fgrep "${trigger}" <<< "${GERRIT_EVENT_COMMENT_TEXT}" || true)
         # The vpp-csit triggers trail stuff we are not interested in.
         # Removing them and trigger word: https://unix.stackexchange.com/a/13472
         # (except relying on \s whitespace, \S non-whitespace and . both).
         # The last string is concatenated, only the middle part is expanded.
         cmd=("grep" "-oP" '\S*'"${trigger}"'\S*\s\K.+$') || die "Unset trigger?"
         # On parsing error, TEST_TAG_STRING probably stays empty.
-        TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}") || true
+        TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}" || true)
+        if [[ -z "${TEST_TAG_STRING-}" ]]; then
+            # Probably we got a base64 encoded comment.
+            comment=$(base64 --decode <<< "${GERRIT_EVENT_COMMENT_TEXT}" || true)
+            comment=$(fgrep "${trigger}" <<< "${comment}" || true)
+            TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}" || true)
+        fi
         if [[ -n "${TEST_TAG_STRING-}" ]]; then
             test_tag_array=(${TEST_TAG_STRING})
             if [[ "${test_tag_array[0]}" == "icl" ]]; then
