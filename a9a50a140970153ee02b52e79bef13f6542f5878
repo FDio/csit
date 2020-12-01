@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0d101b8_ac6ffc42",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-01T14:21:31Z",
+      "side": 1,
+      "message": "We are keeping APIs in alphabetical order here.",
+      "range": {
+        "startLine": 126,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 60
+      },
+      "revId": "a9a50a140970153ee02b52e79bef13f6542f5878",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7b2679a_30c814ff",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-01T14:21:31Z",
+      "side": 1,
+      "message": "Capital D",
+      "range": {
+        "startLine": 292,
+        "startChar": 30,
+        "endLine": 292,
+        "endChar": 31
+      },
+      "revId": "a9a50a140970153ee02b52e79bef13f6542f5878",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cde849bc_089917cc",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-01T14:21:31Z",
+      "side": 1,
+      "message": "disable/enable\n\nor better\n\n{u\u0027enable\u0027 if crypto_enable else u\u0027disable\u0027}",
+      "range": {
+        "startLine": 300,
+        "startChar": 30,
+        "endLine": 300,
+        "endChar": 38
+      },
+      "revId": "a9a50a140970153ee02b52e79bef13f6542f5878",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bacaafa_aaafa696",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-01T14:21:31Z",
+      "side": 1,
+      "message": "Not here, this class method is for default test case. Use separate class method for scheduler - see tcp class method below + corresponding method in Regenerator.py as in case of tcp: https://git.fd.io/csit/tree/resources/libraries/python/autogen/Regenerator.py#n166",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 5
+      },
+      "revId": "a9a50a140970153ee02b52e79bef13f6542f5878",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3869071d_0d1b245d",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlsw-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-01T14:21:31Z",
+      "side": 1,
+      "message": "File name should contain \"async\":\n10ge2p1x710-ethip4ipsec1000tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+      "revId": "a9a50a140970153ee02b52e79bef13f6542f5878",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbc7cb2c_0a765e40",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlsw-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-01T14:21:31Z",
+      "side": 1,
+      "message": "Add tag to https://git.fd.io/csit/tree/docs/tag_documentation.rst",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 18
+      },
+      "revId": "a9a50a140970153ee02b52e79bef13f6542f5878",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "394b77cd_70adc318",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlsw-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-01T14:21:31Z",
+      "side": 1,
+      "message": "add there info about async mode and scheduler settings.",
+      "range": {
+        "startLine": 38,
+        "startChar": 35,
+        "endLine": 45,
+        "endChar": 57
+      },
+      "revId": "a9a50a140970153ee02b52e79bef13f6542f5878",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c37a9102_0cf4468c",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlsw-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-01T14:21:31Z",
+      "side": 1,
+      "message": "I think it can be in line 59 without exceeding the maximum line length.",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "a9a50a140970153ee02b52e79bef13f6542f5878",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a7660d9_896e594e",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlsw-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-01T14:21:31Z",
+      "side": 1,
+      "message": "Please, add also 900B test versions as chained buffers are already supported by IPSec in VPP.",
+      "revId": "a9a50a140970153ee02b52e79bef13f6542f5878",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
