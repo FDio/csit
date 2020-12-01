@@ -800,6 +800,7 @@
 | | ... | Add interface to bridge domain
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${bd_id2}
 | |
+| | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
 
