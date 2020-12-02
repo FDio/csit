@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "77c8a41a_da0d64b4",
+        "filename": "GPL/traffic_scripts/PacketVerifier.py",
+        "patchSetId": 122
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-02T16:05:10Z",
+      "side": 1,
+      "message": "This looks like a partial revert of [0]. I prefer 64 as it matches perf tests.\nIf there is a reason to go back to 60, ad a comment here (and/or to the commit message).\n\n[0] https://gerrit.fd.io/r/c/csit/+/28677",
+      "range": {
+        "startLine": 336,
+        "startChar": 47,
+        "endLine": 336,
+        "endChar": 49
+      },
+      "revId": "f5970f85896ea822514d77a570b7e86e4fd9af2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f529aa5_fe3ef46d",
+        "filename": "GPL/traffic_scripts/geneve_tunnel.py",
+        "patchSetId": 122
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-02T16:05:10Z",
+      "side": 1,
+      "message": "GPL.\n\nMaybe we need a verify job to check that.",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 27
+      },
+      "revId": "f5970f85896ea822514d77a570b7e86e4fd9af2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ff6ddd89_d9c10aec",
         "filename": "tests/vpp/device/ip4_tunnels/eth2p-ethip4--ethip4udpgeneve-1tun-ip4base-dev.robot",
         "patchSetId": 122
