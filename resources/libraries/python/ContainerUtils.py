@@ -23,9 +23,11 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
+from resources.libraries.python.VPPUtil import VPPUtil
 
 
 __all__ = [
@@ -527,13 +529,32 @@ class ContainerEngine:
         """
         raise NotImplementedError
 
+    def api_socket(self):
+        """Return string path of VPP api socket reserved for this container."""
+        return f"/tmp/vpp_sockets/{self.container.name}/api.sock"
+
+    def stats_socket(self):
+        """Return string path of stats socket reserved for this container."""
+        return f"/tmp/vpp_sockets/{self.container.name}/stats.sock"
+
+    def disconnect_papi(self):
+        """Disconnect (P)API socket connections.
+
+        Call before destroying containers or restarting VPP in them.
+        No-op if PAPI is already disconnected or never connected.
+        """
+        PapiSocketExecutor.disconnect_by_node_and_socket(
+            self.container.node,
+            self.api_socket(),
+        )
+
     def stop(self):
         """Stop container."""
-        raise NotImplementedError
+        self.disconnect_papi()
 
     def destroy(self):
         """Destroy/remove container."""
-        raise NotImplementedError
+        self.disconnect_papi()
 
     def info(self):
         """Info about container."""
@@ -556,19 +577,20 @@ class ContainerEngine:
             self.container.node,
             SocketType.PAPI,
             self.container.name,
-            f"/tmp/vpp_sockets/{self.container.name}/api.sock"
+            self.api_socket(),
         )
         topo_instance.add_new_socket(
             self.container.node,
             SocketType.STATS,
             self.container.name,
-            f"/tmp/vpp_sockets/{self.container.name}/stats.sock"
+            self.stats_socket(),
         )
         self.verify_vpp()
         self.adjust_privileges()
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
+        self.disconnect_papi()
         self.execute(u"pkill vpp")
         self.start_vpp()
 
@@ -581,13 +603,20 @@ class ContainerEngine:
         """
         for _ in range(retries + 1):
             try:
+                # Using PAPI here ensures VPP is ready for PAPI connections.
+                VPPUtil.vpp_show_version(
+                    node=self.container.node,
+                    remote_vpp_socket=self.api_socket(),
+                    log=False,
+                )
+                # Also show PCI for debug purposes.
                 self.execute(
                     u"vppctl show pci 2>&1 | "
                     u"fgrep -v 'Connection refused' | "
                     u"fgrep -v 'No such file or directory'"
                 )
                 break
-            except RuntimeError:
+            except (RuntimeError, AssertionError):
                 sleep(retry_wait)
         else:
             self.execute(u"cat /tmp/vppd.log")
@@ -886,6 +915,7 @@ class LXC(ContainerEngine):
 
         :raises RuntimeError: If stopping the container failed.
         """
+        super().stop()
         cmd = f"lxc-stop --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -900,6 +930,7 @@ class LXC(ContainerEngine):
 
         :raises RuntimeError: If destroying container failed.
         """
+        super().destroy()
         cmd = f"lxc-destroy --force --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -1080,6 +1111,7 @@ class Docker(ContainerEngine):
 
         :raises RuntimeError: If stopping a container failed.
         """
+        super().stop()
         cmd = f"docker stop {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -1093,6 +1125,7 @@ class Docker(ContainerEngine):
 
         :raises RuntimeError: If removing a container failed.
         """
+        super().destroy()
         cmd = f"docker rm --force {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
