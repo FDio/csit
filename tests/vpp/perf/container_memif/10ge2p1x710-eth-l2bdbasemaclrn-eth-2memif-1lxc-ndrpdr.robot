@@ -90,7 +90,8 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Start containers for test
-| | And Initialize L2 Bridge Domain with memif pairs
+| | # The keyword without "multiple chains" does not verify memifs are up.
+| | And Initialize L2 Bridge Domain for multiple chains with memif pairs
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
