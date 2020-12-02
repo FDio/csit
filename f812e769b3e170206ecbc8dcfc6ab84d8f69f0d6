@@ -46,6 +46,30 @@
       "revId": "f812e769b3e170206ecbc8dcfc6ab84d8f69f0d6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb2c8fd9_2e85f62a",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-02T06:56:15Z",
+      "side": 1,
+      "message": "it must be done on container manager level not on these classes, these classes are managing lxc and docker....not vpp",
+      "parentUuid": "d2a417a2_c72a95c6",
+      "range": {
+        "startLine": 924,
+        "startChar": 8,
+        "endLine": 924,
+        "endChar": 30
+      },
+      "revId": "f812e769b3e170206ecbc8dcfc6ab84d8f69f0d6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
