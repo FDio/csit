@@ -23,9 +23,11 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
+from resources.libraries.python.VPPUtil import VPPUtil
 
 
 __all__ = [
@@ -157,7 +159,8 @@ class ContainerManager:
         """Verify that VPP is installed and running in all containers."""
         for container in self.containers:
             self.engine.container = self.containers[container]
-            self.engine.verify_vpp()
+            self.engine.verify_vppctl()
+            self.engine.verify_vpp_papi()
 
     def configure_vpp_in_all_containers(self, chain_topology, **kwargs):
         """Configure VPP in all containers.
@@ -527,13 +530,32 @@ class ContainerEngine:
         """
         raise NotImplementedError
 
+    def api_socket(self):
+        """Return string path of VPP api socket reserved for this container."""
+        return f"/tmp/vpp_sockets/{self.container.name}/api.sock"
+
+    def stats_socket(self):
+        """Return string path of stats socket reserved for this container."""
+        return f"/tmp/vpp_sockets/{self.container.name}/stats.sock"
+
+    def disconnect_papi(self):
+        """Disconnect (P)API socket connections.
+
+        Call before destroying containers or restarting VPP in them.
+        No-op if PAPI is already disconnected or never connected.
+        """
+        PapiSocketExecutor.disconnect_by_node_and_socket(
+            self.container.node,
+            self.api_socket(),
+        )
+
     def stop(self):
         """Stop container."""
-        raise NotImplementedError
+        self.disconnect_papi()
 
     def destroy(self):
         """Destroy/remove container."""
-        raise NotImplementedError
+        self.disconnect_papi()
 
     def info(self):
         """Info about container."""
@@ -556,25 +578,32 @@ class ContainerEngine:
             self.container.node,
             SocketType.PAPI,
             self.container.name,
-            f"/tmp/vpp_sockets/{self.container.name}/api.sock"
+            self.api_socket(),
         )
         topo_instance.add_new_socket(
             self.container.node,
             SocketType.STATS,
             self.container.name,
-            f"/tmp/vpp_sockets/{self.container.name}/stats.sock"
+            self.stats_socket(),
         )
-        self.verify_vpp()
+        self.verify_vppctl()
         self.adjust_privileges()
+        self.verify_vpp_papi()
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
+        self.disconnect_papi()
         self.execute(u"pkill vpp")
         self.start_vpp()
 
     # TODO Rewrite to use the VPPUtil.py functionality and remove this.
-    def verify_vpp(self, retries=120, retry_wait=1):
+    def verify_vppctl(self, retries=120, retry_wait=1):
         """Verify that VPP is installed and running inside container.
+
+        This function waits a while so VPP can start.
+        PCI interfaces are listed for debug purposes.
+        When the check passes, VPP API socket is created on remote side,
+        but perhaps its directory does not have the correct access rights yet.
 
         :param retries: Check for VPP for this number of times Default: 120
         :param retry_wait: Wait for this number of seconds between retries.
@@ -587,7 +616,7 @@ class ContainerEngine:
                     u"fgrep -v 'No such file or directory'"
                 )
                 break
-            except RuntimeError:
+            except (RuntimeError, AssertionError):
                 sleep(retry_wait)
         else:
             self.execute(u"cat /tmp/vppd.log")
@@ -598,6 +627,28 @@ class ContainerEngine:
     def adjust_privileges(self):
         """Adjust privileges to control VPP without sudo."""
         self.execute("chmod -R o+rwx /run/vpp")
+
+    def verify_vpp_papi(self, retries=120, retry_wait=1):
+        """Verify that VPP is available for PAPI.
+
+        :param retries: Check for VPP for this number of times Default: 120
+        :param retry_wait: Wait for this number of seconds between retries.
+        """
+        for _ in range(retries + 1):
+            try:
+                VPPUtil.vpp_show_version(
+                    node=self.container.node,
+                    remote_vpp_socket=self.api_socket(),
+                    log=False,
+                )
+                break
+            except (RuntimeError, AssertionError):
+                sleep(retry_wait)
+        else:
+            self.execute(u"cat /tmp/vppd.log")
+            raise RuntimeError(
+                f"VPP PAPI fails in container: {self.container.name}"
+            )
 
     def create_base_vpp_startup_config(self, cpuset_cpus=None):
         """Create base startup configuration of VPP on container.
@@ -886,6 +937,7 @@ class LXC(ContainerEngine):
 
         :raises RuntimeError: If stopping the container failed.
         """
+        super().stop()
         cmd = f"lxc-stop --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -900,6 +952,7 @@ class LXC(ContainerEngine):
 
         :raises RuntimeError: If destroying container failed.
         """
+        super().destroy()
         cmd = f"lxc-destroy --force --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -1080,6 +1133,7 @@ class Docker(ContainerEngine):
 
         :raises RuntimeError: If stopping a container failed.
         """
+        super().stop()
         cmd = f"docker stop {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -1093,6 +1147,7 @@ class Docker(ContainerEngine):
 
         :raises RuntimeError: If removing a container failed.
         """
+        super().destroy()
         cmd = f"docker rm --force {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
