@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "769956ca_4075be7d",
+        "filename": "GPL/traffic_scripts/geneve_tunnel.py",
+        "patchSetId": 122
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-02T16:09:37Z",
+      "side": 1,
+      "message": "Not sure why some parameters are packed into tunnel object and json-serialized (while other are not).",
+      "range": {
+        "startLine": 270,
+        "startChar": 20,
+        "endLine": 270,
+        "endChar": 55
+      },
+      "revId": "f5970f85896ea822514d77a570b7e86e4fd9af2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ff6ddd89_d9c10aec",
         "filename": "tests/vpp/device/ip4_tunnels/eth2p-ethip4--ethip4udpgeneve-1tun-ip4base-dev.robot",
         "patchSetId": 122
