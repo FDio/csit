@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff6ddd89_d9c10aec",
+        "filename": "tests/vpp/device/ip4_tunnels/eth2p-ethip4--ethip4udpgeneve-1tun-ip4base-dev.robot",
+        "patchSetId": 122
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-02T09:32:39Z",
+      "side": 1,
+      "message": "this is done twice in test",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 50
+      },
+      "revId": "f5970f85896ea822514d77a570b7e86e4fd9af2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
