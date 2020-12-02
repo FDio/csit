@@ -70,6 +70,30 @@
       "revId": "f812e769b3e170206ecbc8dcfc6ab84d8f69f0d6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30ba3ca4_966982fe",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-02T13:02:13Z",
+      "side": 1,
+      "message": "\u003e it must be done on container manager level\n\nCan it be done at ContainerEngine level (patch set 25)?\nContainerManager seems to handle groups of containers, while ContainerEngine has methods such as restart_vpp that are closely related to PAPI connections.",
+      "parentUuid": "fb2c8fd9_2e85f62a",
+      "range": {
+        "startLine": 924,
+        "startChar": 8,
+        "endLine": 924,
+        "endChar": 30
+      },
+      "revId": "f812e769b3e170206ecbc8dcfc6ab84d8f69f0d6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
