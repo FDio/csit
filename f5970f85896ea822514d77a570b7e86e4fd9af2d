@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3ec50f64_04a5befb",
+        "filename": "GPL/traffic_scripts/PacketVerifier.py",
+        "patchSetId": 122
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-03T14:42:06Z",
+      "side": 1,
+      "message": "\u003e deduct the length of FCS part\n\nOk. We need a document explaining the main CSIT code (Apache) refers to different length than traffic scripts (GPL). Also, I am confused about 78 for IPv6 staying the same.\n\nIf a document is too much work, just add a short TODO we need such document later.",
+      "parentUuid": "7969da94_00a41c52",
+      "range": {
+        "startLine": 336,
+        "startChar": 47,
+        "endLine": 336,
+        "endChar": 49
+      },
+      "revId": "f5970f85896ea822514d77a570b7e86e4fd9af2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f529aa5_fe3ef46d",
         "filename": "GPL/traffic_scripts/geneve_tunnel.py",
         "patchSetId": 122
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "There are two reasons:\n1. The same dictionary with geneve tunnel related parameters is used for configuration KW.\n2. To clearly and easily separate geneve tunnel parameters from standard parameters of traffic scripts.",
       "parentUuid": "769956ca_4075be7d",
+      "range": {
+        "startLine": 270,
+        "startChar": 20,
+        "endLine": 270,
+        "endChar": 55
+      },
+      "revId": "f5970f85896ea822514d77a570b7e86e4fd9af2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34b4e9f3_117e7a72",
+        "filename": "GPL/traffic_scripts/geneve_tunnel.py",
+        "patchSetId": 122
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-03T14:42:06Z",
+      "side": 1,
+      "message": "1. That is problematic from license point of view. The more data structures are similar the more it looks as components of the same program (as opposed to two independent programs).\n2. Why do the argument have to be separated? I imagine other forms of encapsulations may use some of them in future.\n\nI recommend to use \"scalar\" arguments (named after check_geneve argument names) for now, and add TODO to later replace all arguments with one big structured json (for machine readability).\nEven later we may need to define and maintain versioned data model for the json, so we can say we are using official APIs (for license discussion).",
+      "parentUuid": "5da0e327_cc5113fd",
       "range": {
         "startLine": 270,
         "startChar": 20,
