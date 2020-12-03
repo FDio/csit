@@ -23,9 +23,11 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
+from resources.libraries.python.VPPUtil import VPPUtil
 
 
 __all__ = [
@@ -141,23 +143,36 @@ class ContainerManager:
             self.engine.container = self.containers[container]
             self.engine.execute(command)
 
-    def start_vpp_in_all_containers(self):
+    def start_vpp_in_all_containers(self, verify=True):
         """Start VPP in all containers."""
         for container in self.containers:
             self.engine.container = self.containers[container]
-            self.engine.start_vpp()
+            # For multiple containers, delayed verify is faster.
+            self.engine.start_vpp(verify=False)
+        if verify:
+            self.verify_vpp_in_all_containers()
 
-    def restart_vpp_in_all_containers(self):
+    def restart_vpp_in_all_containers(self, verify=True):
         """Restart VPP in all containers."""
         for container in self.containers:
             self.engine.container = self.containers[container]
-            self.engine.restart_vpp()
+            # For multiple containers, delayed verify is faster.
+            self.engine.restart_vpp(verify=False)
+        if verify:
+            self.verify_vpp_in_all_containers()
 
     def verify_vpp_in_all_containers(self):
         """Verify that VPP is installed and running in all containers."""
+        # For multiple containers, multiple fors are faster.
         for container in self.containers:
             self.engine.container = self.containers[container]
-            self.engine.verify_vpp()
+            self.engine.verify_vppctl()
+        for container in self.containers:
+            self.engine.container = self.containers[container]
+            self.engine.adjust_privileges()
+        for container in self.containers:
+            self.engine.container = self.containers[container]
+            self.engine.verify_vpp_papi()
 
     def configure_vpp_in_all_containers(self, chain_topology, **kwargs):
         """Configure VPP in all containers.
@@ -498,6 +513,7 @@ class ContainerEngine:
     def __init__(self):
         """Init ContainerEngine object."""
         self.container = None
+        self.pre_vpp_teardown = None
 
     def initialize(self):
         """Initialize container object."""
@@ -527,12 +543,63 @@ class ContainerEngine:
         """
         raise NotImplementedError
 
+    def register_pre_vpp_teardown(self, callback):
+        """Register a callable to be called before VPP in container ends.
+
+        This is useful for transient statefull objects whose lifecycle
+        is tied to VPP lifecycle (which is tied to container lifecycle).
+        Typical example: Open PAPI connection.
+
+        The callback is a function that receives container engine (self)
+        as an argument, as there may be other metadata related to VPP.
+        The callback should tolerate multiple execution (by doing its work
+        on first call and doin noop on all subsequent calls, until re-register).
+
+        The callback is executed and unregistered on any VPP or container
+        lifecycle even that can make VPP unresponsive or resetted.
+        Any exception raised by the callback may disrupt various lifecycles.
+
+        :param callback: Function to call before VPP ends.
+        :type callback: Callable[[ContainerEngine], None]
+        :raise RuntimeError: If a different callback is registered already.
+        """
+        previous = self.pre_vpp_teardown
+        if previous is not None and previous != callback:
+            raise RuntimeError(
+                f"register_pre_vpp_teardown: "
+                f"Unable to register {callback}, "
+                f"already registered: {previous}"
+            )
+        self.pre_vpp_teardown = callback
+
+    def _fire_pre_vpp_teardown(self):
+        """Execute a the registered teardown (if any) and unregister it."""
+        callback = self.pre_vpp_teardown
+        if callback is None:
+            return
+        callback(self)
+        self.pre_vpp_teardown = None
+
+    def _fire_pre_container_stop(self):
+        """Notify derived objects about container going to stop.
+
+        Currently nothing besides calling the vpp callback.
+        """
+        self._fire_pre_vpp_teardown()
+
     def stop(self):
-        """Stop container."""
+        """Notify derived objects and stop container."""
         raise NotImplementedError
 
+    def _fire_pre_container_destroy(self):
+        """Notify derived objects about container going to be destroyed.
+
+        Currently nothing besides calling the vpp callback.
+        """
+        self._fire_pre_vpp_teardown()
+
     def destroy(self):
-        """Destroy/remove container."""
+        """Notify derived objects and destroy/remove container."""
         raise NotImplementedError
 
     def info(self):
@@ -543,7 +610,13 @@ class ContainerEngine:
         """System info."""
         raise NotImplementedError
 
-    def start_vpp(self):
+    def restart_vpp(self, verify=True):
+        """Restart VPP service inside a container."""
+        self._fire_pre_vpp_teardown()
+        self.execute(u"pkill vpp")
+        self.start_vpp(verify=verify)
+
+    def start_vpp(self, verify=True):
         """Start VPP inside a container."""
         self.execute(
             u"setsid /usr/bin/vpp -c /etc/vpp/startup.conf "
@@ -556,25 +629,31 @@ class ContainerEngine:
             self.container.node,
             SocketType.PAPI,
             self.container.name,
-            f"/tmp/vpp_sockets/{self.container.name}/api.sock"
+            self.container.api_socket,
         )
         topo_instance.add_new_socket(
             self.container.node,
             SocketType.STATS,
             self.container.name,
-            f"/tmp/vpp_sockets/{self.container.name}/stats.sock"
+            self.container.stats_socket,
         )
-        self.verify_vpp()
-        self.adjust_privileges()
+        if verify:
+            self.verify_vpp()
 
-    def restart_vpp(self):
-        """Restart VPP service inside a container."""
-        self.execute(u"pkill vpp")
-        self.start_vpp()
+    def verify_vpp(self):
+        """Verify VPP is running and ready"""
+        self.verify_vppctl()
+        self.adjust_privileges()
+        self.verify_vpp_papi()
 
     # TODO Rewrite to use the VPPUtil.py functionality and remove this.
-    def verify_vpp(self, retries=120, retry_wait=1):
+    def verify_vppctl(self, retries=120, retry_wait=1):
         """Verify that VPP is installed and running inside container.
+
+        This function waits a while so VPP can start.
+        PCI interfaces are listed for debug purposes.
+        When the check passes, VPP API socket is created on remote side,
+        but perhaps its directory does not have the correct access rights yet.
 
         :param retries: Check for VPP for this number of times Default: 120
         :param retry_wait: Wait for this number of seconds between retries.
@@ -587,7 +666,7 @@ class ContainerEngine:
                     u"fgrep -v 'No such file or directory'"
                 )
                 break
-            except RuntimeError:
+            except (RuntimeError, AssertionError):
                 sleep(retry_wait)
         else:
             self.execute(u"cat /tmp/vppd.log")
@@ -598,6 +677,44 @@ class ContainerEngine:
     def adjust_privileges(self):
         """Adjust privileges to control VPP without sudo."""
         self.execute("chmod -R o+rwx /run/vpp")
+
+    def _disconnect_papi(self):
+        """Disconnect PAPI connection, if any. Usable as a callback."""
+        PapiSocketExecutor.disconnect_by_node_and_socket(
+            self.container.node,
+            self.container.api_socket,
+        )
+
+    def verify_vpp_papi(self, retries=120, retry_wait=1):
+        """Verify that VPP is available for PAPI.
+
+        This also opens and caches PAPI connection for quick reuse.
+        A cleanup callback is registered to avoid leaking PAPI connections.
+        Such connections are still leaked if VPP is started (and later accessed)
+        without this PAPI verify.
+
+        :param retries: Check for VPP for this number of times Default: 120
+        :param retry_wait: Wait for this number of seconds between retries.
+        """
+        # Register a callback first, PAPI connection may go up
+        # even if retval is bad.
+        self.register_pre_vpp_teardown(self._disconnect_papi)
+        # Wait for success.
+        for _ in range(retries + 1):
+            try:
+                VPPUtil.vpp_show_version(
+                    node=self.container.node,
+                    remote_vpp_socket=self.container.api_socket,
+                    log=False,
+                )
+                break
+            except (RuntimeError, AssertionError):
+                sleep(retry_wait)
+        else:
+            self.execute(u"cat /tmp/vppd.log")
+            raise RuntimeError(
+                f"VPP PAPI fails in container: {self.container.name}"
+            )
 
     def create_base_vpp_startup_config(self, cpuset_cpus=None):
         """Create base startup configuration of VPP on container.
@@ -886,6 +1003,7 @@ class LXC(ContainerEngine):
 
         :raises RuntimeError: If stopping the container failed.
         """
+        self._fire_pre_container_stop()
         cmd = f"lxc-stop --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -900,6 +1018,7 @@ class LXC(ContainerEngine):
 
         :raises RuntimeError: If destroying container failed.
         """
+        self._fire_pre_container_destroy()
         cmd = f"lxc-destroy --force --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -1080,6 +1199,7 @@ class Docker(ContainerEngine):
 
         :raises RuntimeError: If stopping a container failed.
         """
+        self._fire_pre_container_stop()
         cmd = f"docker stop {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -1093,6 +1213,7 @@ class Docker(ContainerEngine):
 
         :raises RuntimeError: If removing a container failed.
         """
+        self._fire_pre_container_destroy()
         cmd = f"docker rm --force {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
@@ -1190,6 +1311,11 @@ class Container:
             if attr == u"node":
                 self.__dict__[u"ssh"] = SSH()
                 self.__dict__[u"ssh"].connect(value)
+            elif attr == u"name":
+                path = f"/tmp/vpp_sockets/{value}/api.sock"
+                self.__dict__[u"api_socket"] = path
+                path = f"/tmp/vpp_sockets/{value}/stats.sock"
+                self.__dict__[u"stats_socket"] = path
             self.__dict__[attr] = value
         else:
             # Updating attribute base of type
