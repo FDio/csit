@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -450,6 +450,8 @@
 | | ${bps_limit} = | Get From Dictionary
 | | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}
 | | Set Numeric Frame Sizes
+| | # We need to add 20B (Ethernet preamble and inter-frame gap)
+| | # to avg_frame_size
 | | ${rate} = | Evaluate | ${bps_limit} / ((${avg_frame_size} + 20.0) * 8)
 | | ${max_rate} = | Set Variable If | ${rate} > ${pps_limit}
 | | ... | ${pps_limit} | ${rate}
