@@ -223,6 +223,26 @@ Scaling Tags
 
     Test with 1 GENEVE IPv4 tunnel.
 
+.. topic:: GENEVE4_4TUN
+
+    Test with 4 GENEVE IPv4 tunnels.
+
+.. topic:: GENEVE4_16TUN
+
+    Test with 16 GENEVE IPv4 tunnels.
+
+.. topic:: GENEVE4_64TUN
+
+    Test with 64 GENEVE IPv4 tunnels.
+
+.. topic:: GENEVE4_256TUN
+
+    Test with 256 GENEVE IPv4 tunnels.
+
+.. topic:: GENEVE4_1024TUN
+
+    Test with 1024 GENEVE IPv4 tunnels.
+
 Test Category Tags
 ------------------
 
