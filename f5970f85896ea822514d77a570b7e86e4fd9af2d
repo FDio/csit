@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7969da94_00a41c52",
+        "filename": "GPL/traffic_scripts/PacketVerifier.py",
+        "patchSetId": 122
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-03T10:38:13Z",
+      "side": 1,
+      "message": "Yes, it\u0027s partial revert of [0]. The reason is to align with perf tests - see [1]. We need to deduct the length of FCS part when generating payload otherwise the packet lenth is 68B instead of required 64B.\n\n[1] https://git.fd.io/csit/tree/GPL/traffic_profiles/trex/profile_trex_stateless_base_class.py#n132",
+      "parentUuid": "77c8a41a_da0d64b4",
+      "range": {
+        "startLine": 336,
+        "startChar": 47,
+        "endLine": 336,
+        "endChar": 49
+      },
+      "revId": "f5970f85896ea822514d77a570b7e86e4fd9af2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f529aa5_fe3ef46d",
         "filename": "GPL/traffic_scripts/geneve_tunnel.py",
         "patchSetId": 122
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8dba449e_87937492",
+        "filename": "GPL/traffic_scripts/geneve_tunnel.py",
+        "patchSetId": 122
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-03T10:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f529aa5_fe3ef46d",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 27
+      },
+      "revId": "f5970f85896ea822514d77a570b7e86e4fd9af2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "769956ca_4075be7d",
         "filename": "GPL/traffic_scripts/geneve_tunnel.py",
         "patchSetId": 122
@@ -59,6 +107,30 @@
       "writtenOn": "2020-12-02T16:09:37Z",
       "side": 1,
       "message": "Not sure why some parameters are packed into tunnel object and json-serialized (while other are not).",
+      "range": {
+        "startLine": 270,
+        "startChar": 20,
+        "endLine": 270,
+        "endChar": 55
+      },
+      "revId": "f5970f85896ea822514d77a570b7e86e4fd9af2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5da0e327_cc5113fd",
+        "filename": "GPL/traffic_scripts/geneve_tunnel.py",
+        "patchSetId": 122
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-03T10:38:13Z",
+      "side": 1,
+      "message": "There are two reasons:\n1. The same dictionary with geneve tunnel related parameters is used for configuration KW.\n2. To clearly and easily separate geneve tunnel parameters from standard parameters of traffic scripts.",
+      "parentUuid": "769956ca_4075be7d",
       "range": {
         "startLine": 270,
         "startChar": 20,
