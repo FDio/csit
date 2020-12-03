@@ -450,6 +450,8 @@
 | | ${bps_limit} = | Get From Dictionary
 | | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}
 | | Set Numeric Frame Sizes
+| | # We need to add 20B (Ethernet preamble and inter-frame gap)
+| | # to avg_frame_size
 | | ${rate} = | Evaluate | ${bps_limit} / ((${avg_frame_size} + 20.0) * 8)
 | | ${max_rate} = | Set Variable If | ${rate} > ${pps_limit}
 | | ... | ${pps_limit} | ${rate}
