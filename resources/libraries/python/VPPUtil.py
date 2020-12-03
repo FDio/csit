@@ -390,7 +390,7 @@ class VPPUtil:
         :type node: dict
         :type graph_node_name: str
         :type graph_next_name: str
-        :returns: The index of the next node.
+        :returns: The index of the next graph node.
         :rtype: int
         """
         cmd = u"add_node_next"
