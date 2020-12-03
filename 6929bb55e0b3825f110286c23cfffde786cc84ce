@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba57d397_9977d0f8",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-03T06:38:09Z",
+      "side": 1,
+      "message": "self.socket_path, this is not a java code.",
+      "range": {
+        "startLine": 547,
+        "startChar": 15,
+        "endLine": 547,
+        "endChar": 65
+      },
+      "revId": "6929bb55e0b3825f110286c23cfffde786cc84ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "174f4476_e8c0a3bb",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-03T06:38:09Z",
+      "side": 1,
+      "message": "i will not accept anything it there.",
+      "range": {
+        "startLine": 566,
+        "startChar": 1,
+        "endLine": 566,
+        "endChar": 30
+      },
+      "revId": "6929bb55e0b3825f110286c23cfffde786cc84ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91394b45_a4605312",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-03T06:38:09Z",
+      "side": 1,
+      "message": "i will not accept general container kill to have PAPI in it.",
+      "range": {
+        "startLine": 570,
+        "startChar": 0,
+        "endLine": 570,
+        "endChar": 30
+      },
+      "revId": "6929bb55e0b3825f110286c23cfffde786cc84ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
