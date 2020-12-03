@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "d13d4bec_be19696e",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-03T06:46:47Z",
+      "side": 1,
+      "message": "self.socket_stats, this is not a java code.",
+      "range": {
+        "startLine": 551,
+        "startChar": 0,
+        "endLine": 551,
+        "endChar": 67
+      },
+      "revId": "6929bb55e0b3825f110286c23cfffde786cc84ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "174f4476_e8c0a3bb",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 32
@@ -64,6 +87,52 @@
         "startChar": 0,
         "endLine": 570,
         "endChar": 30
+      },
+      "revId": "6929bb55e0b3825f110286c23cfffde786cc84ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b15b09d8_de7fd4d6",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-03T06:46:47Z",
+      "side": 1,
+      "message": "self.container.socket_api",
+      "range": {
+        "startLine": 599,
+        "startChar": 12,
+        "endLine": 599,
+        "endChar": 30
+      },
+      "revId": "6929bb55e0b3825f110286c23cfffde786cc84ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efc30bd3_3dd6e982",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-03T06:46:47Z",
+      "side": 1,
+      "message": "self.container.socket_stats",
+      "range": {
+        "startLine": 605,
+        "startChar": 12,
+        "endLine": 605,
+        "endChar": 32
       },
       "revId": "6929bb55e0b3825f110286c23cfffde786cc84ce",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
