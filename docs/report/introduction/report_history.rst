@@ -7,7 +7,12 @@ below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-| .49            | 1. Added 2n-zn2 iterative data, graphs and tables.         |
+| .50            | 1. Added 2n-zn2 with turbo boost off iterative data,       |
+|                |    graphs, and tables.                                     |
+|                |                                                            |
++----------------+------------------------------------------------------------+
+| .49            | 1. Added 2n-zn2 with turbo boost on iterative data, graphs |
+|                |    and tables.                                             |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .48            | 1. Modified the release notes.                             |

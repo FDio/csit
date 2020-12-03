@@ -69,6 +69,8 @@ Additional information about graph data:
     2n-clx-x710
     2n-zn2-xxv710
     2n-zn2-x710
+    2n-zn2-turbo-xxv710
+    2n-zn2-turbo-x710
     3n-hsw-xl710
     3n-hsw-x710
     3n-tsh-x520
