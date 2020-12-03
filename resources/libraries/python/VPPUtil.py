@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -390,7 +390,7 @@ class VPPUtil:
         :type node: dict
         :type graph_node_name: str
         :type graph_next_name: str
-        :returns: The index of the next node.
+        :returns: The index of the next graph node.
         :rtype: int
         """
         cmd = u"add_node_next"

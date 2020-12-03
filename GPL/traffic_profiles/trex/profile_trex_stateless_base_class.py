@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -12,7 +12,8 @@
 #
 # Note: If this file is linked with Scapy, which is GPLv2+, your use of it
 # must be under GPLv2+.  If at any point in the future it is no longer linked
-# with Scapy (or other GPLv2+ licensed software), you are free to choose Apache 2.
+# with Scapy (or other GPLv2+ licensed software), you are free to choose
+# Apache 2.
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,7 +24,6 @@
 """Base class for stream profiles for T-rex traffic generator.
 """
 
-import sys
 import socket
 import struct
 
@@ -128,35 +128,39 @@ class TrafficStreamsBaseClass:
 
         # Frame size is defined as an integer, e.g. 64, 1518:
         if isinstance(self.framesize, int):
-            # Create a base packet and pad it to size
-            payload_len = max(0, self.framesize - len(base_pkt_a) - 4)  # No FCS
+            # Create a base packet and pad it to size; deduct FCS
+            payload_len_a = max(0, self.framesize - len(base_pkt_a) - 4)
+            payload_len_b = max(0, self.framesize - len(base_pkt_b) - 4)
 
             # Direction 0 --> 1
             pkt_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1
+                pkt=base_pkt_a / self._gen_payload(payload_len_a), vm=vm1
             )
             # Direction 1 --> 0
             pkt_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2
+                pkt=base_pkt_b / self._gen_payload(payload_len_b), vm=vm2
             )
 
             # Packets for latency measurement:
             # Direction 0 --> 1
             pkt_lat_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1
+                pkt=base_pkt_a / self._gen_payload(payload_len_a), vm=vm1
             )
             # Direction 1 --> 0
             pkt_lat_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2
+                pkt=base_pkt_b / self._gen_payload(payload_len_b), vm=vm2
             )
 
             # Create the streams:
             # Direction 0 --> 1
-            stream1 = STLStream(packet=pkt_a, mode=STLTXCont(pps=9000))
+            stream1 = STLStream(
+                packet=pkt_a, mode=STLTXCont(pps=9000)
+            )
             # Direction 1 --> 0
             # second traffic stream with a phase of 10ns (inter-stream gap)
-            stream2 = STLStream(packet=pkt_b, isg=10.0,
-                                mode=STLTXCont(pps=9000))
+            stream2 = STLStream(
+                packet=pkt_b, isg=10.0, mode=STLTXCont(pps=9000)
+            )
 
             # Streams for latency measurement:
             # Direction 0 --> 1
@@ -188,10 +192,12 @@ class TrafficStreamsBaseClass:
                 # Create a base packet and pad it to size
                 pkt_a = STLPktBuilder(
                     pkt=base_pkt_a / self._gen_payload(payload_len_a),
-                    vm=vm1)
+                    vm=vm1
+                )
                 pkt_b = STLPktBuilder(
                     pkt=base_pkt_b / self._gen_payload(payload_len_b),
-                    vm=vm2)
+                    vm=vm2
+                )
 
                 # Create the streams:
                 stream1.append(STLStream(
