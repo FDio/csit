@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c894990_a1086585",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-03T18:38:50Z",
+      "side": 1,
+      "message": "At least I think that is the problem in [1], although I do not understand why it simply did not fail to parse the single quoted arguments.\n\n[1] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/9862/archives/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k8-k9-k1-k1",
+      "range": {
+        "startLine": 632,
+        "startChar": 47,
+        "endLine": 632,
+        "endChar": 60
+      },
+      "revId": "ad60d9675169871aab95de1b0914bf7af5a544fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
