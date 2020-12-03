@@ -16,6 +16,7 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPv6Util
+| Library | resources.libraries.python.JsonUtil
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Policer
 | Library | resources.libraries.python.topology.Topology
