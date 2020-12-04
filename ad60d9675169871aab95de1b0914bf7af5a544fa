@@ -22,6 +22,30 @@
       "revId": "ad60d9675169871aab95de1b0914bf7af5a544fa",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1605df3f_25499173",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-04T11:47:51Z",
+      "side": 1,
+      "message": "Anyway, [2] shows parent is not waiting for VPP startup properly, while this [3] does now.\n\n[2] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/9827/archives/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k8-k9-k1-k1\n[3] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/9864/archives/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k8-k9-k1-k1",
+      "parentUuid": "9c894990_a1086585",
+      "range": {
+        "startLine": 632,
+        "startChar": 47,
+        "endLine": 632,
+        "endChar": 60
+      },
+      "revId": "ad60d9675169871aab95de1b0914bf7af5a544fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
