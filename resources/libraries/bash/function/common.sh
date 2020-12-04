@@ -264,6 +264,7 @@ function compose_pybot_arguments () {
     # - TAGS - Array variable holding selected tag boolean expressions.
     # - TOPOLOGIES_TAGS - Tag boolean expression filtering tests for topology.
     # - TEST_CODE - The test selection string from environment or argument.
+    # - SELECTION_MODE - Selection criteria [test, suite, include, exclude].
     # Variables set:
     # - PYBOT_ARGS - String holding part of all arguments for pybot.
     # - EXPANDED_TAGS - Array of strings pybot arguments compiled from tags.
@@ -290,9 +291,11 @@ function compose_pybot_arguments () {
         if [[ ${tag} == "!"* ]]; then
             EXPANDED_TAGS+=("--exclude" "${tag#$"!"}")
         else
-            EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}AND${tag}")
+            EXPANDED_TAGS+=("${SELECTION_MODE}" "${tag}")
         fi
     done
+
+    EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}")
 }
 
 
@@ -756,6 +759,7 @@ function select_tags () {
     # - BASH_FUNCTION_DIR - Directory with input files to process.
     # Variables set:
     # - TAGS - Array of processed tag boolean expressions.
+    # - SELECTION_MODE - Selection criteria [test, suite, include, exclude].
 
     set -exuo pipefail
 
@@ -795,48 +799,59 @@ function select_tags () {
     esac
 
     sed_nic_sub_cmd="sed s/\${default_nic}/${default_nic}/"
-    sed_nics_sub_cmd="sed -e s/ANDxxv710/ANDnic_intel-xxv710/"
-    sed_nics_sub_cmd+=" | sed -e s/ANDx710/ANDnic_intel-x710/"
-    sed_nics_sub_cmd+=" | sed -e s/ANDxl710/ANDnic_intel-xl710/"
-    sed_nics_sub_cmd+=" | sed -e s/ANDx520-da2/ANDnic_intel-x520-da2/"
-    sed_nics_sub_cmd+=" | sed -e s/ANDx553/ANDnic_intel-x553/"
-    sed_nics_sub_cmd+=" | sed -e s/ANDcx556a/ANDnic_mellanox-cx556a/"
-    sed_nics_sub_cmd+=" | sed -e s/ANDvic1227/ANDnic_cisco-vic-1227/"
-    sed_nics_sub_cmd+=" | sed -e s/ANDvic1385/ANDnic_cisco-vic-1385/"
+    awk_nics_sub_cmd=""
+    awk_nics_sub_cmd+='gsub("xxv710","25ge2p1xxv710");'
+    awk_nics_sub_cmd+='gsub("x710","10ge2p1x710");'
+    awk_nics_sub_cmd+='gsub("xl710","40ge2p1xl710");'
+    awk_nics_sub_cmd+='gsub("x520","10ge2p1x520");'
+    awk_nics_sub_cmd+='gsub("x553","10ge2p1x553");'
+    awk_nics_sub_cmd+='gsub("cx556a","10ge2p1cx556a");'
+    awk_nics_sub_cmd+='gsub("vic1227","10ge2p1vic1227");'
+    awk_nics_sub_cmd+='gsub("vic1385","10ge2p1vic1385");'
+    awk_nics_sub_cmd+='if ($9 =="drv_avf") drv="avf-";'
+    awk_nics_sub_cmd+='else if ($9 =="drv_rdma_core") drv ="rdma-";'
+    awk_nics_sub_cmd+='else drv="";'
+    awk_nics_sub_cmd+='print "*"$7"-" drv $11"-"$5"."$3"-"$1"-" drv $11"-"$5'
+
     # Tag file directory shorthand.
     tfd="${JOB_SPECS_DIR}"
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
         *"ndrpdr-weekly"* )
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
+            readarray -t test_tag_array <<< $(grep -v "#" \
                 ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd} || echo "perftest") || die
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
             ;;
         *"mrr-daily"* )
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
+            readarray -t test_tag_array <<< $(grep -v "#" \
                 ${tfd}/mrr_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd} || echo "perftest") || die
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
             ;;
         *"mrr-weekly"* )
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
+            readarray -t test_tag_array <<< $(grep -v "#" \
                 ${tfd}/mrr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
-                eval ${sed_nics_sub_cmd} || echo "perftest") || die
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
             ;;
         *"report-iterative"* )
             test_sets=(${TEST_TAG_STRING//:/ })
             # Run only one test set per run
             report_file=${test_sets[0]}.md
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
+            readarray -t test_tag_array <<< $(grep -v "#" \
                 ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} |
-                eval ${sed_nics_sub_cmd} || echo "perftest") || die
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
             ;;
         *"report-coverage"* )
             test_sets=(${TEST_TAG_STRING//:/ })
             # Run only one test set per run
             report_file=${test_sets[0]}.md
-            readarray -t test_tag_array <<< $(sed 's/ //g' \
+            readarray -t test_tag_array <<< $(grep -v "#" \
                 ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} |
-                eval ${sed_nics_sub_cmd} || echo "perftest") || die
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
             ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
@@ -851,6 +866,7 @@ function select_tags () {
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
             fi
+            SELECTION_MODE="--include"
             ;;
     esac
 
@@ -912,10 +928,8 @@ function select_tags () {
     test_tag_array+=("${exclude_nics[@]/#/!NIC_}")
 
     TAGS=()
+    prefix=""
 
-    # We will prefix with perftest to prevent running other tests
-    # (e.g. Functional).
-    prefix="perftestAND"
     set +x
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
         # Automatic prefixing for VPP jobs to limit the NIC used and
