@@ -22,19 +22,19 @@ job "prod-nginx" {
     # The "max_parallel" parameter specifies the maximum number of updates to
     # perform in parallel. In this case, this specifies to update a single task
     # at a time.
-    max_parallel = 0
+    max_parallel      = 0
 
     # The "min_healthy_time" parameter specifies the minimum time the allocation
     # must be in the healthy state before it is marked as healthy and unblocks
     # further allocations from being updated.
-    min_healthy_time = "10s"
+    min_healthy_time  = "10s"
 
     # The "healthy_deadline" parameter specifies the deadline in which the
     # allocation must be marked as healthy after which the allocation is
     # automatically transitioned to unhealthy. Transitioning to unhealthy will
     # fail the deployment and potentially roll back the job if "auto_revert" is
     # set to true.
-    healthy_deadline = "3m"
+    healthy_deadline  = "3m"
 
     # The "progress_deadline" parameter specifies the deadline in which an
     # allocation must be marked as healthy. The deadline begins when the first
@@ -47,7 +47,7 @@ job "prod-nginx" {
     # The "auto_revert" parameter specifies if the job should auto-revert to the
     # last stable job on deployment failure. A job is marked as stable if all the
     # allocations as part of its deployment were marked healthy.
-    auto_revert = false
+    auto_revert       = false
 
     # The "canary" parameter specifies that changes to the job that would result
     # in destructive updates should create the specified number of canaries
@@ -58,8 +58,15 @@ job "prod-nginx" {
     # Further, setting "canary" equal to the count of the task group allows
     # blue/green deployments. When the job is updated, a full set of the new
     # version is deployed and upon promotion the old version is stopped.
-    canary = 0
+    canary            = 0
   }
+
+  reschedule {
+    delay             = "2m"
+    delay_function    = "constant"
+    unlimited         = true
+  }
+
 
   # The "group" stanza defines a series of tasks that should be co-located on
   # the same Nomad client. Any task within a group will be placed on the same
