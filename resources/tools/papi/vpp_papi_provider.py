@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -67,7 +67,7 @@ if do_import:
                 break
     if modules_path:
         sys.path.append(modules_path)
-        from vpp_papi import VPP
+        from vpp_papi import VPPApiClient
         from vpp_papi.vpp_stats import VPPStats
     else:
         raise RuntimeError(u"vpp_papi module not found")
@@ -140,7 +140,7 @@ def process_json_request(args):
     """
 
     try:
-        vpp = VPP()
+        vpp = VPPApiClient()
     except Exception as err:
         raise RuntimeError(f"PAPI init failed:\n{err!r}")
 
