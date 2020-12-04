@@ -1,0 +1,27 @@
+
+Not listed: Profile configurability, tags, suite naming, documentation, code style, ...
+
++ Create pure throughput tests:
+  + Experiment with "persistent sessions" (rampup instead reset) to get pure throughput tests.
+    + Ramp-up for size-limited profiles: ignore duration.
+  - Delays to separate connect, transfer and disconenct phases.
+  + NAT44ed scenario where the outside source address and port is limited to just one value.
+    + Would enable STL bidir test for NAT44ED.
+    - May be prohibited by outside address+port selection logic in VPP
++ Use MSS to influence data packet size in TCP tests.
+  + Either data size or expected packet count needs to be updated/computed.
+- Tweak UDP burst size, maybe 64 could work.
+- Change TCP data size from the current 11111 B.
++ Investigate whether latency can be made work with ASTF profiles.
+  + If yes, enable.
+- Support IMIX in ASTF profiles.
++ Investigate validity of traffic delay compensation constants on all platforms (min scale).
+  + Report traffic delay to Trex devs.
++ Measure how duration stretching depends on TPS (and profile), graphs etc.
+  + Report to Trex devs.
+- Investigate quantitative impact of polling counters during traffic.
+  - Report to Trex devs.
+- Measure how L7 counters suffer depending on TPS (and profile).
+  - Report to Trex devs.
++ Unify runtime trials (currently ASTF override the STL way).
++ Make VPP session timeouts configurable to avoid issues at big scales.
