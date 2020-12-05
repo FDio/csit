@@ -61,11 +61,11 @@ consul_user_state: "present"
 # Conf - nomad.d/consul.hcl
 consul_nomad_integration: true
 consul_certificates:
-  - src: "{{ vault_consul_ca_file }}"
+  - src: "{{ vault_consul_v1_ca_file }}"
     dest: "{{ consul_ca_file }}"
-  - src: "{{ vault_consul_cert_file }}"
+  - src: "{{ vault_consul_v1_cert_file }}"
     dest: "{{ consul_cert_file }}"
-  - src: "{{ vault_consul_key_file }}"
+  - src: "{{ vault_consul_v1_key_file }}"
     dest: "{{ consul_key_file }}"
 
 consul_auto_advertise: true
