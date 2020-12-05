@@ -158,7 +158,7 @@
     mode: 0644
   notify:
     - "Restart Consul"
-    - "Stop Systemd-resolved"
+#    - "Stop Systemd-resolved"
 #    - "Restart Nomad"
   tags:
     - consul-conf

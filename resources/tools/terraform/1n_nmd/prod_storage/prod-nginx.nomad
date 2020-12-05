@@ -61,8 +61,13 @@ job "prod-nginx" {
     canary            = 0
   }
 
+  # The reschedule stanza specifies the group's rescheduling strategy. If
+  # specified at the job level, the configuration will apply to all groups
+  # within the job. If the reschedule stanza is present on both the job and the
+  # group, they are merged with the group stanza taking the highest precedence
+  # and then the job.
   reschedule {
-    delay             = "2m"
+    delay             = "30s"
     delay_function    = "constant"
     unlimited         = true
   }
@@ -83,6 +88,15 @@ job "prod-nginx" {
     # to 1.
     count = 1
 
+    # The restart stanza configures a tasks's behavior on task failure. Restarts
+    # happen on the client that is running the task.
+    restart {
+      interval  = "10m"
+      attempts  = 2
+      delay     = "15s"
+      mode      = "fail"
+    }
+
     # All groups in this job should be scheduled on different hosts.
     constraint {
       operator  = "distinct_hosts"
@@ -96,6 +110,12 @@ job "prod-nginx" {
       weight    = 100
     }
 
+    # The volume stanza allows the group to specify that it requires a given
+    # volume from the cluster.
+    #
+    # For more information and examples on the "volume" stanza, please see
+    # the online documentation at:
+    #
     # https://www.nomadproject.io/docs/job-specification/volume
     volume "prod-volume1-storage" {
       type      = "host"
