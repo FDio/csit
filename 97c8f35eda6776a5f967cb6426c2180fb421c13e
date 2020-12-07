@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cfb0409e_fb13ffe5",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-07T14:45:18Z",
+      "side": 1,
+      "message": "Added ContainerManager._disconnect_papi_to_all_containers and calling it from VPP-ending methods of ContainerManager.\n\nI still do not understand which parts of VPP-related object lifecycle belong to ContainerEngine and which ones to ContainerManager (and why), so docstrings are quite short.",
+      "parentUuid": "abf5fcc8_eca6226d",
+      "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38d2b737_c56a5534",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 37
@@ -39,6 +57,30 @@
       "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "842f4b4b_893fb7c1",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-07T14:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38d2b737_c56a5534",
+      "range": {
+        "startLine": 571,
+        "startChar": 11,
+        "endLine": 571,
+        "endChar": 39
+      },
+      "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "063e2e92_b48be1e3",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-07T14:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a73da9e_ed4c5db0",
+      "range": {
+        "startLine": 613,
+        "startChar": 37,
+        "endLine": 613,
+        "endChar": 42
+      },
+      "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f836b7e2_e97f3f54",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 37
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "691c9e18_52662243",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-07T14:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f836b7e2_e97f3f54",
+      "range": {
+        "startLine": 965,
+        "startChar": 0,
+        "endLine": 965,
+        "endChar": 39
+      },
+      "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "538d6691_87e00b9d",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 37
@@ -108,6 +198,30 @@
       "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6820a1e9_602569a5",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-07T14:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "538d6691_87e00b9d",
+      "range": {
+        "startLine": 980,
+        "startChar": 0,
+        "endLine": 980,
+        "endChar": 42
+      },
+      "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
