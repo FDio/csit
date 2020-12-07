@@ -67,12 +67,12 @@ Additional information about graph data:
     3n-skx-x710
     2n-clx-xxv710
     2n-clx-x710
-    2n-zn2-xxv710
-    2n-zn2-x710
     3n-hsw-xl710
     3n-hsw-x710
     3n-tsh-x520
 
 ..
+    2n-zn2-xxv710
+    2n-zn2-x710
     2n-dnv-x553
     3n-dnv-x553
