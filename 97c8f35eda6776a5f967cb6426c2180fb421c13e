@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abf5fcc8_eca6226d",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-07T09:22:00Z",
+      "side": 1,
+      "message": "here is your place to code vpp socket cleanup.\n\n      def stop_all_containers(self):\n        \"\"\"Stop all containers.\"\"\"\n        for container in self.containers:\n            self.engine.container \u003d self.containers[container]\n            self.engine.stop()\n            self.engine.fire()\n\nif you need selectively fire only one container, create function for that here.",
+      "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38d2b737_c56a5534",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-07T09:22:00Z",
+      "side": 1,
+      "message": "Destroy/....",
+      "range": {
+        "startLine": 571,
+        "startChar": 11,
+        "endLine": 571,
+        "endChar": 39
+      },
+      "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a73da9e_ed4c5db0",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-07T09:22:00Z",
+      "side": 1,
+      "message": "ready.",
+      "range": {
+        "startLine": 613,
+        "startChar": 37,
+        "endLine": 613,
+        "endChar": 42
+      },
+      "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f836b7e2_e97f3f54",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-07T09:22:00Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 965,
+        "startChar": 0,
+        "endLine": 965,
+        "endChar": 39
+      },
+      "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "538d6691_87e00b9d",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-07T09:22:00Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 980,
+        "startChar": 0,
+        "endLine": 980,
+        "endChar": 42
+      },
+      "revId": "97c8f35eda6776a5f967cb6426c2180fb421c13e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
