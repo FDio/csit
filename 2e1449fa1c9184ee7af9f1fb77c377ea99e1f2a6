@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb9d48aa_c99a6ee1",
+        "filename": "docs/toi/branches.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-07T14:27:36Z",
+      "side": 1,
+      "message": "CSIT operational branch\n\n+ probably add link to csit wiki where usage of operational branches is described",
+      "range": {
+        "startLine": 38,
+        "startChar": 5,
+        "endLine": 38,
+        "endChar": 11
+      },
+      "revId": "2e1449fa1c9184ee7af9f1fb77c377ea99e1f2a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b642fac7_1c942e06",
+        "filename": "docs/toi/branches.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-07T14:27:36Z",
+      "side": 1,
+      "message": "VPP stable version\n\n + probably add link to csti wiki page where concept of vpp stable build for csit is described",
+      "range": {
+        "startLine": 51,
+        "startChar": 5,
+        "endLine": 51,
+        "endChar": 19
+      },
+      "revId": "2e1449fa1c9184ee7af9f1fb77c377ea99e1f2a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
