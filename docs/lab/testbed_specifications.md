@@ -251,10 +251,10 @@ Name         | Comment
 10.30.50.30  | s40-nomad
 10.30.51.30  | s23-t35-sut2 screen -r /dev/ttyusb1
 10.30.51.30  | s24-t35-sut3 screen -r /dev/ttyusb2
-10.30.50.32  | s42-nomad (formerly nomad1)
-10.30.50.33  | s43-nomad (formerly nomad2)
-10.30.50.34  | s44-nomad (formerly nomad3)
-10.30.50.35  | s45-nomad (formerly nomad4)
+10.30.50.32  | s42-nomad
+10.30.50.33  | s43-nomad
+10.30.50.34  | s44-nomad
+10.30.50.35  | s45-nomad
 10.30.50.36  | s17-t33-sut1
 10.30.50.37  | s18-t33-sut2
 10.30.50.38  | fdio-marvell-dev
@@ -295,10 +295,10 @@ n/a          | s21-t34-sut2
 10.30.55.11  | s29-t26-sut1
 10.30.55.12  | s30-t35-sut1
 10.30.55.13  | s31-t35-sut2
-10.30.55.14  | s46-nomad (formerly server-type-c4-1)
-10.30.55.15  | s47-nomad (formerly server-type-c4-2)
-10.30.55.16  | s48-nomad (formerly server-type-c4-3)
-10.30.55.17  | s32-t14-sut1
+10.30.55.14  | s46-nomad
+10.30.55.15  | s47-nomad
+10.30.55.16  | s48-nomad
+10.30.55.17  | s57-nomad
 10.30.55.18  | s33-t27-sut1
 10.30.55.19  | s34-t27-tg1
 10.30.55.20  | s35-t28-sut1
@@ -341,10 +341,10 @@ Name                      | Comment
 10.30.51.28               | s41-nomad
 10.30.51.29               | s39-nomad
 10.30.51.30               | s40-nomad
-10.30.51.32               | s42-nomad (formerly nomad1)
-10.30.51.33               | s43-nomad (formerly nomad2)
-10.30.51.34               | s44-nomad (formerly nomad3)
-10.30.51.35               | s45-nomad (formerly nomad4)
+10.30.51.32               | s42-nomad
+10.30.51.33               | s43-nomad
+10.30.51.34               | s44-nomad
+10.30.51.35               | s45-nomad
 10.30.51.36               | s17-t33-sut1
 10.30.51.37               | s18-t33-sut2
 10.30.51.38               | fdio-marvell-dev
@@ -389,10 +389,10 @@ Name                      | Comment
 10.32.8.11                | s29-t26-sut1
 10.32.8.12                | s30-t35-sut1
 10.32.8.13                | s31-t35-sut2
-10.32.8.14                | s46-nomad (formerly server-type-c4-1)
-10.32.8.15                | s47-nomad (formerly server-type-c4-2)
-10.32.8.16                | s48-nomad (formerly server-type-c4-3)
-10.32.8.17                | s32-t14-sut1
+10.32.8.14                | s46-nomad
+10.32.8.15                | s47-nomad
+10.32.8.16                | s48-nomad
+10.32.8.17                | s57-nomad
 10.32.8.18                | s33-t27-sut1
 10.32.8.19                | s34-t27-tg1
 10.32.8.20                | s35-t28-sut1
