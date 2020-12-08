@@ -361,26 +361,3 @@ class VPPUtil:
         logger.trace(f"show threads:\n{threads_data}")
 
         return threads_data
-
-    @staticmethod
-    def vpp_add_graph_node_next(node, graph_node_name, graph_next_name):
-        """Set the next node for a given node.
-
-        :param node: Node to run command on.
-        :param graph_node_name: Graph node to add the next node on.
-        :param graph_next_name: Graph node to add as the next node.
-        :type node: dict
-        :type graph_node_name: str
-        :type graph_next_name: str
-        :returns: The index of the next node.
-        :rtype: int
-        """
-        cmd = u"add_node_next"
-        args = dict(
-            node_name=graph_node_name,
-            next_name=graph_next_name
-        )
-        with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add(cmd, **args).get_reply()
-
-        return reply[u"next_index"]

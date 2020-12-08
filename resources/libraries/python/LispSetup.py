@@ -40,8 +40,8 @@ class LispEid:
         :type eid: str
         :type prefix_len: int
         """
-        eid_addr = dict(
-            prefix=IPUtil.create_prefix_object(ip_address(eid), prefix_len)
+        eid_addr = dict(prefix=IPUtil.create_prefix_object(
+            ip_address(eid), prefix_len)
         ) if prefix_len else dict(mac=str(eid))
 
         return dict(

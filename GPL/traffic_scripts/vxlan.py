@@ -37,6 +37,5 @@ class VXLAN(Packet):
     def mysummary(self):
         return self.sprintf(f"VXLAN (vni={VXLAN.vni})")
 
-
 bind_layers(UDP, VXLAN, dport=4789)
 bind_layers(VXLAN, Ether)
