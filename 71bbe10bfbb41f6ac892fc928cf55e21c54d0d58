@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80bba7e1_3eb57f37",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-08T07:27:34Z",
+      "side": 1,
+      "message": "Yes, per my comment below. The target would be to control -\u003e\"VPP\"\u003c- lifecycle from VPP classes and control -\u003e\"Constainer\"\u003c- lifecycle from these classes. \nSo that is your answer for lifecycle of things. Onion approach to control higher layer by suitable classes not mixing higher class lifecycle with low layer lifecycle. \nI admit that \"Container manager\" should also be modified to call special classes (like VPPUtil.py or VPPManager.py). But this long life todo can be done in future, maybe part of retouch (wish).\n\nThe ideal state would be to rename it to \"destroy_all_vpp_containers()\" but for now this is good. If someone will need he can easily create forks with own implementation of these functions or put parameter to control payload from RF KW directly. No need to needle it down to Docker or LXD which have nothing to do with VPP.\n\nRight now this class and approach is +1",
+      "range": {
+        "startLine": 515,
+        "startChar": 1,
+        "endLine": 515,
+        "endChar": 78
+      },
+      "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7d0ae49_eee292e0",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-08T07:27:34Z",
+      "side": 1,
+      "message": "Yeah, if we would unify those libraries, then this would be controlled from outside vpputil.py class and no need to modify container classes. Maybe next time one more time.\n\nBut for now this is ok.",
+      "range": {
+        "startLine": 616,
+        "startChar": 0,
+        "endLine": 616,
+        "endChar": 71
+      },
+      "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2af81e9e_b20beff6",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-08T07:27:34Z",
+      "side": 1,
+      "message": "put todo to remove \"vpp\" out of name to make this universal socket dir.",
+      "range": {
+        "startLine": 1267,
+        "startChar": 0,
+        "endLine": 1271,
+        "endChar": 53
+      },
+      "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad94a459_c0b0d13d",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-08T07:27:34Z",
+      "side": 1,
+      "message": "No, i am not accepting VPP stuff in general classes. If we are running non VPP stuff this is wrong by design. So remove from there.",
+      "range": {
+        "startLine": 306,
+        "startChar": 0,
+        "endLine": 306,
+        "endChar": 60
+      },
+      "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e187a90_4a9c1449",
+        "filename": "tests/vpp/perf/container_memif/2n1l-10ge2p1x710-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-08T07:27:34Z",
+      "side": 1,
+      "message": "I do not think these comments are worth of blowing size of the file.",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 74
+      },
+      "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
