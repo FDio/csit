@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba57f9fd_89e34b55",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-08T16:14:47Z",
+      "side": 1,
+      "message": "Yeah, ContainerManager also acts as a VppInContainerManager, and I am adding parts of PapiForVppInContainerManager functionality there.\nAlso, onion approach is mostly explicit, relying on keywords doing changes imperatively in the correct order.\nIn my view, it is safer to code known interactions into few unavoidable sections to ensure dependencies. If you know PAPI connection needs to be disconnected before VPP ends, it is good idea to register this dependency in VPP lifecycle. Similarly, if container ends and has VPP in it, VPP indirectly also ends (so PAPI has to be disconnected, that can be done if the container lifecycle manager notifies the VPP lifecycle manager). But all those interactions are \"mixing higher class lifecycle with low layer lifecycle\".\n\nAnyway, I see no more low hanging fruits for this Change.",
+      "parentUuid": "80bba7e1_3eb57f37",
+      "range": {
+        "startLine": 515,
+        "startChar": 1,
+        "endLine": 515,
+        "endChar": 78
+      },
+      "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7d0ae49_eee292e0",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 40
@@ -45,6 +69,30 @@
       "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e20eec1_b86b3a01",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-08T16:14:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c7d0ae49_eee292e0",
+      "range": {
+        "startLine": 616,
+        "startChar": 0,
+        "endLine": 616,
+        "endChar": 71
+      },
+      "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "21778988_e998b4e8",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-08T16:14:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2af81e9e_b20beff6",
+      "range": {
+        "startLine": 1267,
+        "startChar": 0,
+        "endLine": 1271,
+        "endChar": 53
+      },
+      "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad94a459_c0b0d13d",
         "filename": "resources/libraries/python/SetupFramework.py",
         "patchSetId": 40
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "97bf6e9e_ab477eec",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-08T16:14:47Z",
+      "side": 1,
+      "message": "Moved to top level VPP suite teardown (__init__.robot).",
+      "parentUuid": "ad94a459_c0b0d13d",
+      "range": {
+        "startLine": 306,
+        "startChar": 0,
+        "endLine": 306,
+        "endChar": 60
+      },
+      "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e187a90_4a9c1449",
         "filename": "tests/vpp/perf/container_memif/2n1l-10ge2p1x710-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr.robot",
         "patchSetId": 40
@@ -114,6 +210,30 @@
       "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "074b1a2e_6e417f94",
+        "filename": "tests/vpp/perf/container_memif/2n1l-10ge2p1x710-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-08T16:14:47Z",
+      "side": 1,
+      "message": "Moved to keyword documentation.",
+      "parentUuid": "7e187a90_4a9c1449",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 74
+      },
+      "revId": "71bbe10bfbb41f6ac892fc928cf55e21c54d0d58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }

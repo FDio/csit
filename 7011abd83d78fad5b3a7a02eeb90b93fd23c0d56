@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e0922da_12d89483",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 41
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-08T16:14:47Z",
+      "side": 1,
+      "message": "VPP lifecycle is shifted compared to test/suite lifecycle. We apply startup.conf changes by restarting VPP in the middle of the test, and suite starts with VPP running (we actually need to wait before we can safely restart it), so to save time we leave VPP running after test/suite ends. That is why we need one more explicit teardown at the very end.\nNot sure whether some of that should be added as a short code comment.",
+      "range": {
+        "startLine": 34,
+        "startChar": 34,
+        "endLine": 34,
+        "endChar": 65
+      },
+      "revId": "7011abd83d78fad5b3a7a02eeb90b93fd23c0d56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
