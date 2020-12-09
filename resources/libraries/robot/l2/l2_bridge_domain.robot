@@ -595,6 +595,9 @@
 | | ... | Memif interface to separate L2 bridge domain with one physical or
 | | ... | virtual interface to create a chain accross DUT node.
 | |
+| | ... | This keyword does not wait for memifs to go up.
+| | ... | Use the "for multiple chains" keyword for that functionality.
+| |
 | | ... | *Arguments:*
 | | ... | - nf_chain - NF chain. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
@@ -800,6 +803,7 @@
 | | ... | Add interface to bridge domain
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${bd_id2}
 | |
+| | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
 
