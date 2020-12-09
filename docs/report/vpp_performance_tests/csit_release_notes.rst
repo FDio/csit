@@ -28,11 +28,16 @@ Changes in |csit-release|
 
      - Added new NAT44 endpoint-dependent mode CPS tests that measure
        connections per second with usage of TRex in stateful mode.
-       See updated methodology sections for more details.
+       UPD packet size is 64 bytes. Size of TCP control packets
+       is not configurable, please ignore the -64b- part of test names.
 
      - Added new NAT44 endpoint-dependent mode PPS tests that measure
-       packets per second (protocol and data together) with usage of TRex
-       in stateful mode. See updated methodology sections for more details.
+       packets per second (control and data together) with usage of TRex
+       in stateful mode. UPD packet size is 64 bytes. Size of TCP
+       data packets is governed by the default MSS value, so most data packets
+       are 1460 bytes long, please ignore the -64b- part of test names.
+
+     - See :ref:`nat44_methodology` for more details.
 
    - **IPSec async mode tests**: Added VPP performance tests for async crypto
      engine.
