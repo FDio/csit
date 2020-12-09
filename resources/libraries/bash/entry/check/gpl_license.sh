@@ -21,13 +21,8 @@ set -exuo pipefail
 # This script runs a few grep-based commands and fails
 # if it detects any file edited or added since HEAD~
 # containing a copyright notice in first 3 lines,
-# but not the current year (in the same line).
-# The offending lines are stored to copyright_year.log (overwriting).
-#
-# 3 lines were chosen, because first two lines could be shebang and empty line,
-# and more than 3 lines would start failing on files with multiple copyright
-# holders. There, only the last updating entity needs to bump its year,
-# and put other copyright lines below.
+# but not GPL-based license.
+# The offending files are stored to gpl_license.log (overwriting).
 
 # "set -eu" handles failures from the following two lines.
 BASH_CHECKS_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
@@ -37,34 +32,42 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 
-year=$(date +'%Y')
 IFS=$'\n'
-files=($(git diff --name-only HEAD~ || true))
+gpl_files=($(git diff --name-only HEAD~ | grep '^GPL/' || true))
 unset IFS
-truncate -s 0 "copyright_year.log" || die
+logfile="gpl_license.log"
+truncate -s 0 "${logfile}" || die
 # A change can have thousands of files, supress console output in the cycle.
 set +x
-for fil in "${files[@]}"; do
-    # Greps do "fail" on 0 line output, we need to ignore that
-    # as 0 lines is good. We need both set +e to ensure everything executes,
-    # and || true later to avoid dying on zero.
-    piped_command="set +ex; head -n 3 '${fil}' | fgrep -i 'Copyright'"
-    piped_command+=" | fgrep -v '${year}' | awk '{print \"${fil}: \" \$0}'"
-    piped_command+=" >> 'copyright_year.log'"
-    wrong_strings="$(bash -c "${piped_command}" || true)" || die
+for fil in "${gpl_files[@]}"; do
+    if head -n 3 "${fil}" | fgrep -iq 'Copyright'; then
+        # Copyrighted file, processed below.
+        true
+    else
+        # Uncopyrighted files are allowed.
+        # TODO: Should we have list of extesions that require Copyright?
+        continue
+    fi
+    if fgrep -q 'GNU General Public License v2.0 or later' "${fil}"; then
+        # This can be GPL only or the OR license, we accept both.
+        # TODO: Should we require "Apache-2.0 OR GPL-2.0-or-later"?
+        continue
+    else
+        echo "GPL license not detected: ${fil}" >> "${logfile}"
+    fi
 done
 set -x
-lines="$(< "copyright_year.log" wc -l)"
+lines="$(< "${logfile}" wc -l)"
 if [ "${lines}" != "0" ]; then
     # TODO: Decide which text goes to stdout and which to stderr.
-    warn "Copyright lines with wrong year detected: ${lines}"
+    warn "Wrong licensed files in GPL directory detected: ${lines}"
     # TODO: Disable when output size does more harm than good.
     pwd
-    cat "copyright_year.log" >&2
+    cat "${logfile}" >&2
     warn
-    warn "Copyright year checker: FAIL"
+    warn "GPL license checker: FAIL"
     exit 1
 fi
 
 warn
-warn "Copyright year checker: PASS"
+warn "GPL license checker: PASS"
