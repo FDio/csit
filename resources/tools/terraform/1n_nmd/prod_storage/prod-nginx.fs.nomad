@@ -157,8 +157,7 @@ job "prod-nginx" {
           "/etc/consul.d/ssl/consul.pem:/etc/ssl/certs/nginx-cert.pem",
           "/etc/consul.d/ssl/consul-key.pem:/etc/ssl/private/nginx-key.pem",
           "custom/logs.conf:/etc/nginx/conf.d/logs.conf",
-          "custom/docs.conf:/etc/nginx/conf.d/docs.conf",
-          "custom/upstream.conf:/etc/nginx/conf.d/upstream.conf"
+          "custom/docs.conf:/etc/nginx/conf.d/docs.conf"
         ]
       }
 
@@ -173,17 +172,6 @@ job "prod-nginx" {
       #
       template {
         data = <<EOH
-          upstream storage {
-            server storage0.storage.service.consul:9000;
-            server storage1.storage.service.consul:9000;
-            server storage2.storage.service.consul:9000;
-            server storage3.storage.service.consul:9000;
-          }
-        EOH
-        destination = "custom/upstream.conf"
-      }
-      template {
-        data = <<EOH
           server {
             listen 443 ssl default_server;
             server_name logs.nginx.service.consul;
@@ -196,47 +184,29 @@ job "prod-nginx" {
             ssl_certificate /etc/ssl/certs/nginx-cert.pem;
             ssl_certificate_key /etc/ssl/private/nginx-key.pem;
             location / {
-              chunked_transfer_encoding off;
-              proxy_connect_timeout 300;
-              proxy_http_version 1.1;
-              proxy_set_header Host $host:$server_port;
-              proxy_set_header Connection "";
-              proxy_pass http://storage/logs.fd.io/;
-              server_name_in_redirect off;
+              root /data/logs.fd.io;
+              index _;
+              autoindex on;
+              autoindex_exact_size on;
+              autoindex_format html;
+              autoindex_localtime off;
             }
-            location ~ (.*html.gz)$ {
+            location ~ \.(html.gz)$ {
+              root /data/logs.fd.io;
               add_header Content-Encoding gzip;
               add_header Content-Type text/html;
-              chunked_transfer_encoding off;
-              proxy_connect_timeout 300;
-              proxy_http_version 1.1;
-              proxy_set_header Host $host:$server_port;
-              proxy_set_header Connection "";
-              proxy_pass http://storage/logs.fd.io/$1;
-              server_name_in_redirect off;
             }
-            location ~ (.*txt.gz|.*log.gz)$ {
+            location ~ \.(txt.gz|log.gz)$ {
+              root /data/logs.fd.io;
               add_header Content-Encoding gzip;
               add_header Content-Type text/plain;
-              chunked_transfer_encoding off;
-              proxy_connect_timeout 300;
-              proxy_http_version 1.1;
-              proxy_set_header Host $host:$server_port;
-              proxy_set_header Connection "";
-              proxy_pass http://storage/logs.fd.io/$1;
-              server_name_in_redirect off;
             }
-            location ~ (.*xml.gz)$ {
+            location ~ \.(xml.gz)$ {
+              root /data/logs.fd.io;
               add_header Content-Encoding gzip;
               add_header Content-Type application/xml;
-              chunked_transfer_encoding off;
-              proxy_connect_timeout 300;
-              proxy_http_version 1.1;
-              proxy_set_header Host $host:$server_port;
-              proxy_set_header Connection "";
-              proxy_pass http://storage/logs.fd.io/$1;
-              server_name_in_redirect off;
             }
+          }
         }
         EOH
         destination = "custom/logs.conf"
@@ -246,22 +216,17 @@ job "prod-nginx" {
           server {
             listen 443 ssl;
             server_name docs.nginx.service.consul;
-            keepalive_timeout 70;
-            ssl_session_cache shared:SSL:10m;
-            ssl_session_timeout 10m;
-            ssl_protocols TLSv1.2;
-            ssl_prefer_server_ciphers on;
-            ssl_ciphers "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384";
+  	        keepalive_timeout 70;
+  	        ssl_session_cache shared:SSL:10m;
+          	ssl_session_timeout 10m;
+  	        ssl_protocols TLSv1.2;
+	          ssl_prefer_server_ciphers on;
+  	        ssl_ciphers "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384";
             ssl_certificate /etc/ssl/certs/nginx-cert.pem;
             ssl_certificate_key /etc/ssl/private/nginx-key.pem;
             location / {
-              chunked_transfer_encoding off;
-              proxy_connect_timeout 300;
-              proxy_http_version 1.1;
-              proxy_set_header Host $host:$server_port;
-              proxy_set_header Connection "";
-              proxy_pass http://storage/docs.fd.io/;
-              server_name_in_redirect off;
+              root /data/docs.fd.io;
+              index index.html index.htm;
             }
           }
         EOH
@@ -278,7 +243,7 @@ job "prod-nginx" {
       service {
         name       = "nginx"
         port       = "https"
-        tags       = [ "docs", "logs" ]
+        tags       = [ "docs", "logs", "test" ]
       }
 
       # The "resources" stanza describes the requirements a task needs to

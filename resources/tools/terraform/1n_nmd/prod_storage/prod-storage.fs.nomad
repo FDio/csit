@@ -106,12 +106,12 @@ job "prod-storage" {
     task "prod-task1-storage" {
       # The "driver" parameter specifies the task driver that should be used to
       # run the task.
-      driver         = "docker"
+      driver = "docker"
 
       volume_mount {
-        volume       = "prod-volume1-storage"
-        destination  = "/data/"
-        read_only    = false
+        volume      = "prod-volume1-storage"
+        destination = "/data/"
+        read_only   = false
       }
 
       # The "config" stanza specifies the driver configuration, which is passed
@@ -119,15 +119,14 @@ job "prod-storage" {
       # are specific to each driver, so please see specific driver
       # documentation for more information.
       config {
-        image        = "minio/minio:RELEASE.2020-12-03T05-49-24Z"
-        dns_servers  = [ "${attr.unique.network.ip-address}" ]
-        network_mode = "host"
-        command      = "server"
-        args         = [ "http://10.32.8.1{4...7}:9000/data" ]
+        image       = "minio/minio:RELEASE.2020-12-03T05-49-24Z"
+        dns_servers = [ "${attr.unique.network.ip-address}" ]
+        command     = "server"
+        args        = [ "/data/" ]
         port_map {
-          http       = 9000
+          http      = 9000
         }
-        privileged   = false
+        privileged  = false
       }
 
       env {
@@ -144,11 +143,11 @@ job "prod-storage" {
       #     https://www.nomadproject.io/docs/job-specification/service.html
       #
       service {
-        name       = "storage"
+        name       = "Min.io Server HTTP Check"
         port       = "http"
         tags       = [ "storage${NOMAD_ALLOC_INDEX}" ]
         check {
-          name     = "Min.io Server HTTP Check"
+          name     = "alive"
           type     = "http"
           port     = "http"
           protocol = "http"
@@ -178,6 +177,82 @@ job "prod-storage" {
             static = 9000
           }
         }
+      }
+    }
+
+    task "prod-task2-sync" {
+      # The "raw_exec" parameter specifies the task driver that should be used
+      # to run the task.
+      driver = "raw_exec"
+
+      # The "template" stanza instructs Nomad to manage a template, such as
+      # a configuration file or script. This template can optionally pull data
+      # from Consul or Vault to populate runtime configuration data.
+      #
+      # For more information and examples on the "template" stanza, please see
+      # the online documentation at:
+      #
+      #     https://www.nomadproject.io/docs/job-specification/template.html
+      #
+      template {
+        data        = <<EOH
+#!/bin/bash
+
+INOTIFY_OPTONS=()
+INOTIFY_OPTION+=("--recursive")
+INOTIFY_OPTION+=("--monitor")
+VOLUMES=()
+VOLUMES=("/data/logs.fd.io")
+VOLUMES=("/data/docs.fd.io")
+
+if [ '{{ env "attr.unique.network.ip-address" }}' = "10.32.8.14" ]; then
+echo "Running notify daemon"
+    inotifywait -e moved_to "${INOTIFY_OPTONS[@]}" ${VOLUMES[@]} | \
+        while read path action file; do
+            key="testuser"
+            secret="Csit1234"
+
+            resource=${path#"/data"}${file}
+            date=$(date -R)
+            _signature="PUT\n\napplication/octet-stream\n${date}\n${resource}"
+            signature=$(echo -en ${_signature} | openssl sha1 -hmac ${secret} -binary | base64)
+
+            curl -v -X PUT -T "${path}${file}" \
+                -H "Host: storage0.storage.service.consul:9000" \
+                -H "Date: ${date}" \
+                -H "Content-Type: application/octet-stream" \
+                -H "Authorization: AWS ${key}:${signature}" \
+                http://storage0.storage.service.consul:9000${resource}
+        done
+else
+    while :; do sleep 2073600; done
+fi
+EOH
+        destination = "local/sync.sh"
+        perms       = "744"
+      }
+
+      # The "config" stanza specifies the driver configuration, which is passed
+      # directly to the driver to start the task. The details of configurations
+      # are specific to each driver, so please see specific driver
+      # documentation for more information.
+      config {
+        command     = "local/sync.sh"
+      }
+
+      # The "resources" stanza describes the requirements a task needs to
+      # execute. Resource requirements include memory, network, cpu, and more.
+      # This ensures the task will execute on a machine that contains enough
+      # resource capacity.
+      #
+      # For more information and examples on the "resources" stanza, please see
+      # the online documentation at:
+      #
+      #     https://www.nomadproject.io/docs/job-specification/resources.html
+      #
+      resources {
+        cpu         = 500
+        memory      = 256
       }
     }
   }
