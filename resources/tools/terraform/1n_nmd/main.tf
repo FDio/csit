@@ -32,9 +32,9 @@ module "prod_storage" {
 # prod_vpp_device
 # + prod-csit-shim-amd
 # + prod-csit-shim-arm
-module "prod_vpp_device" {
-  source = "./prod_vpp_device"
-  providers = {
-    nomad = nomad.yul1
-  }
-}
+#module "prod_vpp_device" {
+#  source = "./prod_vpp_device"
+#  providers = {
+#    nomad = nomad.yul1
+#  }
+#}

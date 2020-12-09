@@ -1,8 +1,8 @@
 ---
-# file: host_vars/10.32.8.15.yaml
+# file: host_vars/10.32.8.17.yaml
 
-hostname: "s47-nomad"
-inventory_ipmi_hostname: "10.30.55.15"
+hostname: "s57-nomad"
+inventory_ipmi_hostname: "10.30.55.17"
 
 # User management.
 users:
@@ -38,11 +38,7 @@ nomad_options:
   driver.whitelist: "docker,raw_exec,exec"
   fingerprint.network.disallow_link_local: true
 nomad_retry_servers: [ "10.30.51.30", "10.30.51.32", "10.30.51.33" ]
-nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
-nomad_volumes:
-  - name: "prod-volume-data2-1"
-    path: "/data"
-    read_only: false
+nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647", "10.30.51.30:4647" ]
 
 # Consul settigs.
 consul_nomad_integration: true

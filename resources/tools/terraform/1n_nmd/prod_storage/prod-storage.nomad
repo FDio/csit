@@ -16,13 +16,13 @@ job "prod-storage" {
   #
   #     https://www.nomadproject.io/docs/jobspec/schedulers.html
   #
-  type = "service"
+  type        = "service"
 
   update {
     # The "max_parallel" parameter specifies the maximum number of updates to
     # perform in parallel. In this case, this specifies to update a single task
     # at a time.
-    max_parallel = 0
+    max_parallel = 1
 
     # The "min_healthy_time" parameter specifies the minimum time the allocation
     # must be in the healthy state before it is marked as healthy and unblocks
@@ -58,7 +58,7 @@ job "prod-storage" {
     # Further, setting "canary" equal to the count of the task group allows
     # blue/green deployments. When the job is updated, a full set of the new
     # version is deployed and upon promotion the old version is stopped.
-    canary = 0
+    canary = 1
   }
 
   # All groups in this job should be scheduled on different hosts.
@@ -67,6 +67,7 @@ job "prod-storage" {
     value    = "true"
   }
 
+  # The "group" stanza defines a series of tasks that should be co-located on
   # the same Nomad client. Any task within a group will be placed on the same
   # client.
   #
@@ -79,14 +80,7 @@ job "prod-storage" {
     # The "count" parameter specifies the number of the task groups that should
     # be running under this group. This value must be non-negative and defaults
     # to 1.
-    count = 2
-
-    # Hard coding prefered node as primary.
-    affinity {
-      attribute = "${attr.unique.hostname}"
-      value     = "s46-nomad"
-      weight    = 100
-    }
+    count       = 4
 
     # https://www.nomadproject.io/docs/job-specification/volume
     volume "prod-volume1-storage" {
@@ -106,12 +100,12 @@ job "prod-storage" {
     task "prod-task1-storage" {
       # The "driver" parameter specifies the task driver that should be used to
       # run the task.
-      driver = "docker"
+      driver         = "docker"
 
       volume_mount {
-        volume      = "prod-volume1-storage"
-        destination = "/data/"
-        read_only   = false
+        volume       = "prod-volume1-storage"
+        destination  = "/data/"
+        read_only    = false
       }
 
       # The "config" stanza specifies the driver configuration, which is passed
@@ -119,14 +113,15 @@ job "prod-storage" {
       # are specific to each driver, so please see specific driver
       # documentation for more information.
       config {
-        image       = "minio/minio:RELEASE.2020-11-19T23-48-16Z"
-        dns_servers = [ "${attr.unique.network.ip-address}" ]
-        command     = "server"
-        args        = [ "/data/" ]
+        image        = "minio/minio:RELEASE.2020-12-03T05-49-24Z"
+        dns_servers  = [ "${attr.unique.network.ip-address}" ]
+        network_mode = "host"
+        command      = "server"
+        args         = [ "http://10.32.8.1{4...7}:9000/data" ]
         port_map {
-          http      = 9000
+          http       = 9000
         }
-        privileged  = false
+        privileged   = false
       }
 
       env {
@@ -147,12 +142,23 @@ job "prod-storage" {
         port       = "http"
         tags       = [ "storage${NOMAD_ALLOC_INDEX}" ]
         check {
-          name     = "alive"
+          name     = "Min.io Server HTTP Check Live"
           type     = "http"
           port     = "http"
           protocol = "http"
           method   = "GET"
           path     = "/minio/health/live"
+          interval = "10s"
+          timeout  = "2s"
+          task     = "${TASK}"
+        }
+        check {
+          name     = "Min.io Server HTTP Check Ready"
+          type     = "http"
+          port     = "http"
+          protocol = "http"
+          method   = "GET"
+          path     = "/minio/health/ready"
           interval = "10s"
           timeout  = "2s"
           task     = "${TASK}"
@@ -179,11 +185,29 @@ job "prod-storage" {
         }
       }
     }
+    task "prod-task2-storage-mgmt" {
+      # The "driver" parameter specifies the task driver that should be used to
+      # run the task.
+      driver         = "docker"
 
-    task "prod-task2-sync" {
-      # The "raw_exec" parameter specifies the task driver that should be used
-      # to run the task.
-      driver = "raw_exec"
+      # The "config" stanza specifies the driver configuration, which is passed
+      # directly to the driver to start the task. The details of configurations
+      # are specific to each driver, so please see specific driver
+      # documentation for more information.
+      config {
+        image        = "minio/mc:RELEASE.2020-12-10T01-26-17Z"
+        entrypoint   = [
+          "/bin/sh",
+          "-c",
+          "sleep 80000"
+        ]
+        dns_servers  = [ "${attr.unique.network.ip-address}" ]
+        privileged   = false
+        volumes      = [
+          "custom/config.json:/config.json",
+          "custom/putonly.json:/putonly.json"
+        ]
+      }
 
       # The "template" stanza instructs Nomad to manage a template, such as
       # a configuration file or script. This template can optionally pull data
@@ -195,46 +219,41 @@ job "prod-storage" {
       #     https://www.nomadproject.io/docs/job-specification/template.html
       #
       template {
-        data        = <<EOH
-#!/bin/bash
-
-INOTIFY_OPTONS="--recursive --monitor"
-VOLUMES="/data/logs.fd.io /data/docs.fd.io"
-
-if [ '{{ env "attr.unique.network.ip-address" }}' = "10.32.8.14" ]; then
-echo "Running notify daemon"
-    inotifywait -e moved_to ${INOTIFY_OPTONS} ${VOLUMES} | \
-        while read path action file; do
-            key="testuser"
-            secret="Csit1234"
-
-            resource=${path#"/data"}${file}
-            date=$(date -R)
-            _signature="PUT\n\napplication/octet-stream\n${date}\n${resource}"
-            signature=$(echo -en ${_signature} | openssl sha1 -hmac ${secret} -binary | base64)
-
-            curl -v -X PUT -T "${path}${file}" \
-                -H "Host: storage0.storage.service.consul:9000" \
-                -H "Date: ${date}" \
-                -H "Content-Type: application/octet-stream" \
-                -H "Authorization: AWS ${key}:${signature}" \
-                http://storage0.storage.service.consul:9000${resource}
-        done
-else
-    while :; do sleep 2073600; done
-fi
-
-EOH
-        destination = "local/sync.sh"
-        perms       = "755"
+        data = <<EOH
+          {
+            "version": "10",
+            "aliases": {
+              "storage": {
+                "url": "http://storage.service.consul:9000",
+                "accessKey": "minio",
+                "secretKey": "minio123",
+                "api": "s3v4",
+                "path": "auto"
+              }
+            }
+          }
+        EOH
+        destination = "custom/config.json"
       }
-
-      # The "config" stanza specifies the driver configuration, which is passed
-      # directly to the driver to start the task. The details of configurations
-      # are specific to each driver, so please see specific driver
-      # documentation for more information.
-      config {
-        command     = "local/sync.sh"
+      template {
+        data = <<EOH
+          {
+            "Statement": [
+              {
+                "Action": [
+                  "s3:PutObject"
+                ],
+                "Effect": "Allow",
+                "Resource": [
+                  "arn:aws:s3:::docs.fd.io/*",
+                  "arn:aws:s3:::logs.fd.io/*"
+                ]
+              }
+            ],
+            "Version": "2012-10-17"
+          }
+        EOH
+        destination = "custom/putonly.json"
       }
 
       # The "resources" stanza describes the requirements a task needs to
@@ -249,7 +268,10 @@ EOH
       #
       resources {
         cpu         = 500
-        memory      = 256
+        memory      = 128
+        network {
+          mode = "bridge"
+        }
       }
     }
   }
