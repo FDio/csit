@@ -58,11 +58,15 @@ class VPPUtil:
     def restart_vpp_service(node, node_key=None):
         """Restart VPP service on the specified topology node.
 
+        Disconnect possibly connected PAPI executor.
+
         :param node: Topology node.
         :param node_key: Topology node key.
         :type node: dict
         :type node_key: str
         """
+        # Containers have a separate lifecycle, but better be safe.
+        PapiSocketExecutor.disconnect_all_sockets_by_node(node)
         DUTSetup.restart_service(node, Constants.VPP_UNIT)
         if node_key:
             Topology.add_new_socket(
@@ -85,11 +89,15 @@ class VPPUtil:
     def stop_vpp_service(node, node_key=None):
         """Stop VPP service on the specified topology node.
 
+        Disconnect possibly connected PAPI executor.
+
         :param node: Topology node.
         :param node_key: Topology node key.
         :type node: dict
         :type node_key: str
         """
+        # Containers have a separate lifecycle, but better be safe.
+        PapiSocketExecutor.disconnect_all_sockets_by_node(node)
         DUTSetup.stop_service(node, Constants.VPP_UNIT)
         if node_key:
             Topology.del_node_socket_id(node, SocketType.PAPI, node_key)
@@ -184,18 +192,28 @@ class VPPUtil:
                 VPPUtil.verify_vpp(node)
 
     @staticmethod
-    def vpp_show_version(node):
+    def vpp_show_version(
+            node, remote_vpp_socket=Constants.SOCKSVR_PATH, log=True):
         """Run "show_version" PAPI command.
 
+        Socket is configurable, so VPP inside container can be accessed.
+
         :param node: Node to run command on.
+        :param remote_vpp_socket: Path to remote socket to target VPP.
+        :param log: If true, show the result in Robot log.
         :type node: dict
+        :type remote_vpp_socket: str
+        :type log: bool
         :returns: VPP version.
         :rtype: str
+        :raises RuntimeError: If PAPI connection fails.
+        :raises AssertionError: If PAPI retcode is nonzero.
         """
         cmd = u"show_version"
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
             reply = papi_exec.add(cmd).get_reply()
-        logger.info(f"VPP version: {reply[u'version']}\n")
+        if log:
+            logger.info(f"VPP version: {reply[u'version']}\n")
         return f"{reply[u'version']}"
 
     @staticmethod
