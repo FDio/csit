@@ -88,7 +88,6 @@
 | | ... | Fail if computed lower bound is 110% of the minimal rate or less.
 | | ... | Input rates are understood as uni-directional,
 | | ... | reported result contains aggregate rates.
-| | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
@@ -105,7 +104,7 @@
 | |
 | | # Get values via performance_vars.
 | | ${max_rate} = | Get Max Rate
-| | ${min_rate} = | Get Min Rate
+| | ${soft_min_rate} = | Get Soft Min Rate
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${resetter} = | Get Resetter
 | | ${traffic_directions} = | Get Traffic Directions
@@ -116,7 +115,7 @@
 | | ${average} | ${stdev} = | Perform soak search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate}
+| | ... | minimum_transmit_rate=${soft_min_rate}
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | plr_target=${1e-7}
 | | ... | tdpt=${0.1}
@@ -133,8 +132,8 @@
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Set Test Variable | \${rate for teardown} | ${lower}
-| | Should Not Be True | 1.1 * ${min_rate} > ${lower}
-| | ... | Lower bound ${lower} too small for unidirectional minimum ${min_rate}.
+| | Should Not Be True | 1.1 * ${soft_min_rate} > ${lower}
+| | ... | Lower bound ${lower} too small for unidir minimum ${soft_min_rate}.
 
 | Find NDR and PDR intervals using optimized search
 | | [Documentation]
@@ -148,9 +147,6 @@
 | | ... | even if latency stream is disabled in search. Their results
 | | ... | are also displayed.
 | | ... | Finally, two measurements for runtime stats are done (not displayed).
-| | ... | Currently, the min_rate value is hardcoded to 90kpps,
-| | ... | allowing measurement at 10% of the discovered rate
-| | ... | without breaking latency streams.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
@@ -174,7 +170,7 @@
 | | # Get values via performance_vars.
 | | ${disable_latency} = | Get Disable Latency
 | | ${max_rate} = | Get Max Rate
-| | ${min_rate} = | Get Min Rate
+| | ${soft_min_rate} = | Get Soft Min Rate
 | | # \${packet_loss_ratio} is used twice so it is worth a variable.
 | | ${packet_loss_ratio} = | Get Packet Loss Ratio
 | | ${ppta} = | Get Packets Per Transaction Aggregated
@@ -187,7 +183,7 @@
 | | ${result} = | Perform optimized ndrpdr search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate}
+| | ... | minimum_transmit_rate=${soft_min_rate}
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | packet_loss_ratio=${packet_loss_ratio}
 | | ... | final_relative_width=${0.005}
@@ -237,7 +233,6 @@
 | | ... | Find and return lower bound NDR (zero PLR)
 | | ... | aggregate throughput using MLRsearch algorithm.
 | | ... | Input rates are understood as uni-directional.
-| | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
@@ -260,7 +255,7 @@
 | | ... | \| \${throughpt}= \| Find Throughput Using MLRsearch \|
 | |
 | | ${max_rate} = | Get Max Rate
-| | ${min_rate} = | Get Min Rate
+| | ${soft_min_rate} = | Get Soft Min Rate
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${resetter} = | Get Resetter
 | | ${traffic_directions} = | Get Traffic Directions
@@ -271,7 +266,7 @@
 | | ${result} = | Perform optimized ndrpdr search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate}
+| | ... | minimum_transmit_rate=${soft_min_rate}
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | packet_loss_ratio=${0.0}
 | | ... | final_relative_width=${0.001}
@@ -311,9 +306,9 @@
 | |
 | | [Arguments] | ${message_prefix} | ${rate}
 | |
-| | ${min_rate} = | Get Min Rate
+| | ${hard_min_rate} = | Get Hard Min Rate
 | | ${ppta} = | Get Packets Per Transaction Aggregated
-| | ${real_rate} = | Evaluate | max(${rate}, ${min_rate})
+| | ${real_rate} = | Evaluate | max(${rate}, ${hard_min_rate})
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
 | | ${transaction_scale} = | Get Transaction Scale
