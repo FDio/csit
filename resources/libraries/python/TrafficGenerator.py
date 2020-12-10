@@ -171,6 +171,11 @@ class TrafficGenerator(AbstractMeasurer):
         self.sleep_till_duration = None
         self.transaction_type = None
         self.duration_limit = None
+        self.ramp_up_start = None
+        self.ramp_up_rate = None
+        self.ramp_up_duration = None
+        self.state_timeout = None
+        self.trials_since_rampup = None
         # Transient data needed for async measurements.
         self._xstats = (None, None)
         # TODO: Rename "xstats" to something opaque, so T-Rex is not privileged?
@@ -755,6 +760,10 @@ class TrafficGenerator(AbstractMeasurer):
             transaction_type=u"packet",
             duration_limit=0.0,
             use_latency=False,
+            ramp_up_rate=None,
+            ramp_up_duration=None,
+            state_timeout=300.0,
+            ramp_up_only=False,
         ):
         """Send traffic from all configured interfaces on TG.
 
@@ -797,6 +806,10 @@ class TrafficGenerator(AbstractMeasurer):
             duration.
         :param use_latency: Whether to measure latency during the trial.
             Default: False.
+        :param ramp_up_rate: Rate to use in ramp-up trials [pps].
+        :param ramp_up_duration: Duration of ramp-up trials [s].
+        :param state_timeout: Time of life of DUT state [s].
+        :param ramp_up_only: If true, do not perform main trial measurement.
         :type duration: float
         :type rate: float
         :type frame_size: str
@@ -809,6 +822,10 @@ class TrafficGenerator(AbstractMeasurer):
         :type transaction_type: str
         :type duration_limit: float
         :type use_latency: bool
+        :type ramp_up_rate: float
+        :type ramp_up_duration: float
+        :type state_timeout: float
+        :type ramp_up_only: bool
         :returns: TG results.
         :rtype: str
         :raises ValueError: If TG traffic profile is not supported.
@@ -823,10 +840,19 @@ class TrafficGenerator(AbstractMeasurer):
             transaction_type=transaction_type,
             duration_limit=duration_limit,
             use_latency=use_latency,
+            ramp_up_rate=ramp_up_rate,
+            ramp_up_duration=ramp_up_duration,
+            state_timeout=state_timeout,
         )
-        self._send_traffic_on_tg_internal(duration, rate, async_call)
+        self._send_traffic_on_tg_with_ramp_up(
+            duration=duration,
+            rate=rate,
+            async_call=async_call,
+            ramp_up_only=ramp_up_only,
+        )
 
-    def _send_traffic_on_tg_internal(self, duration, rate, async_call=False):
+    def _send_traffic_on_tg_internal(
+            self, duration, rate, async_call=False):
         """Send traffic from all configured interfaces on TG.
 
         This is an internal function, it assumes set_rate_provider_defaults
@@ -837,6 +863,9 @@ class TrafficGenerator(AbstractMeasurer):
         which calls set_rate_provider_defaults is that some search algorithms
         need to specify their own values, and we do not want the measure call
         to overwrite them with defaults.
+
+        This function is used both for automated ramp-up trials
+        and for explicitly called trials.
 
         :param duration: Duration of test traffic generation in seconds.
         :param rate: Traffic rate in transactions per second.
@@ -864,6 +893,77 @@ class TrafficGenerator(AbstractMeasurer):
                 raise ValueError(u"Unsupported T-Rex traffic profile!")
 
         return self._result
+
+    def _send_traffic_on_tg_with_ramp_up(
+            self, duration, rate, async_call=False, ramp_up_only=False):
+        """Send traffic from all interfaces on TG, maybe after ramp-up.
+
+        This is an internal function, it assumes set_rate_provider_defaults
+        has been called to remember most values.
+        The reason why need to remember various values is that
+        the traffic can be asynchronous, and parsing needs those values.
+        The reason why this is is a separate function from the one
+        which calls set_rate_provider_defaults is that some search algorithms
+        need to specify their own values, and we do not want the measure call
+        to overwrite them with defaults.
+
+        If ramp-up tracking is detected, a computation is performed,
+        and if state timeout is near, trial at ramp-up rate and duration
+        is inserted before the main trial measurement.
+
+        :param duration: Duration of test traffic generation in seconds.
+        :param rate: Traffic rate in transactions per second.
+        :param async_call: Async mode.
+        :param ramp_up_only: If true, do not perform main trial measurement.
+        :type duration: float
+        :type rate: float
+        :type async_call: bool
+        :type ramp_up_only: bool
+        :returns: TG results.
+        :rtype: str
+        :raises ValueError: If TG traffic profile is not supported.
+        """
+        if self.ramp_up_rate:
+            # TODO: Give up on async_call=True?
+            ramp_up_neded = False
+            if self.ramp_up_start is None:
+                ramp_up_neded = True
+            elif not self.trials_since_ramp_up:
+                ramp_up_neded = True
+            else:
+                delay_since_ramp_up = time.monotonic() - self.ramp_up_start
+                timeout_fraction = self.state_timeout / delay_since_ramp_up
+                average_trial_fraction = timeout_fraction / self.trials_since_ramp_up
+                fraction_left = 1.0 - timeout_fraction
+                expected_trials_left = fraction_left / average_trial_fraction
+                # TODO: What is a safe estimate of nex vs average duration?
+                if expected_trials_left < 2.0:
+                    ramp_up_neded = True
+            if ramp_up_neded:
+                logger.debug(
+                    u"State may time out during next real trial, "
+                    u"inserting a ramp-up trial."
+                )
+                self.ramp_up_start = time.monotonic()
+                self.trials_since_ramp_up = 1
+                self._send_traffic_on_tg_internal(
+                    duration=self.ramp_up_duration,
+                    rate=self.ramp_up_rate,
+                    async_call=async_call,
+                )
+            else:
+                logger.debug(
+                    u"State will probably not time out during next real trial, "
+                    u"no ramp-up trial needed just yet."
+                )
+        if ramp_up_only:
+            return
+        self.trials_since_ramp_up += 1
+        return self._send_traffic_on_tg_internal(
+            duration=duration,
+            rate=rate,
+            async_call=async_call,
+        )
 
     def no_traffic_loss_occurred(self):
         """Fail if loss occurred in traffic run.
@@ -1158,7 +1258,7 @@ class TrafficGenerator(AbstractMeasurer):
         time_stop = time_start + duration
         if self.resetter:
             self.resetter()
-        self._send_traffic_on_tg_internal(
+        self._send_traffic_on_tg_with_ramp_up(
             duration=duration,
             rate=transmit_rate,
             async_call=False,
@@ -1188,6 +1288,9 @@ class TrafficGenerator(AbstractMeasurer):
             negative_loss=True,
             sleep_till_duration=False,
             use_latency=False,
+            ramp_up_rate=None,
+            ramp_up_duration=None,
+            state_timeout=300.0,
         ):
         """Store values accessed by measure().
 
@@ -1216,6 +1319,9 @@ class TrafficGenerator(AbstractMeasurer):
             sleep until it matches duration. Needed for PLRsearch.
         :param use_latency: Whether to measure latency during the trial.
             Default: False.
+        :param ramp_up_rate: Rate to use in ramp-up trials [pps].
+        :param ramp_up_duration: Duration of ramp-up trials [s].
+        :param state_timeout: Time of life of DUT state [s].
         :type frame_size: str or int
         :type traffic_profile: str
         :type ppta: int
@@ -1228,6 +1334,9 @@ class TrafficGenerator(AbstractMeasurer):
         :type negative_loss: bool
         :type sleep_till_duration: bool
         :type use_latency: bool
+        :type ramp_up_rate: float
+        :type ramp_up_duration: float
+        :type state_timeout: float
         """
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
@@ -1241,6 +1350,9 @@ class TrafficGenerator(AbstractMeasurer):
         self.negative_loss = bool(negative_loss)
         self.sleep_till_duration = bool(sleep_till_duration)
         self.use_latency = bool(use_latency)
+        self.ramp_up_rate = float(ramp_up_rate)
+        self.ramp_up_duration = float(ramp_up_duration)
+        self.state_timeout = float(state_timeout)
 
 
 class OptimizedSearch:
@@ -1270,6 +1382,9 @@ class OptimizedSearch:
             transaction_scale=0,
             transaction_type=u"packet",
             use_latency=False,
+            ramp_up_rate=None,
+            ramp_up_duration=None,
+            state_timeout=300.0,
     ):
         """Setup initialized TG, perform optimized search, return intervals.
 
@@ -1312,6 +1427,9 @@ class OptimizedSearch:
             transactions. Default: "packet".
         :param use_latency: Whether to measure latency during the trial.
             Default: False.
+        :param ramp_up_rate: Rate to use in ramp-up trials [pps].
+        :param ramp_up_duration: Duration of ramp-up trials [s].
+        :param state_timeout: Time of life of DUT state [s].
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1330,6 +1448,9 @@ class OptimizedSearch:
         :type transaction_scale: int
         :type transaction_type: str
         :type use_latency: bool
+        :type ramp_up_rate: float
+        :type ramp_up_duration: float
+        :type state_timeout: float
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: NdrPdrResult
@@ -1359,6 +1480,9 @@ class OptimizedSearch:
             transaction_scale=transaction_scale,
             transaction_type=transaction_type,
             use_latency=use_latency,
+            ramp_up_rate=ramp_up_rate,
+            ramp_up_duration=ramp_up_duration,
+            state_timeout=state_timeout,
         )
         algorithm = MultipleLossRatioSearch(
             measurer=tg_instance,
@@ -1394,6 +1518,9 @@ class OptimizedSearch:
             transaction_scale=0,
             transaction_type=u"packet",
             use_latency=False,
+            ramp_up_rate=None,
+            ramp_up_duration=None,
+            state_timeout=300.0,
     ):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
@@ -1430,6 +1557,9 @@ class OptimizedSearch:
             transactions. Default: "packet".
         :param use_latency: Whether to measure latency during the trial.
             Default: False.
+        :param ramp_up_rate: Rate to use in ramp-up trials [pps].
+        :param ramp_up_duration: Duration of ramp-up trials [s].
+        :param state_timeout: Time of life of DUT state [s].
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1445,6 +1575,9 @@ class OptimizedSearch:
         :type transaction_scale: int
         :type transaction_type: str
         :type use_latency: bool
+        :type ramp_up_rate: float
+        :type ramp_up_duration: float
+        :type state_timeout: float
         :returns: Average and stdev of estimated aggregate rate giving PLR.
         :rtype: 2-tuple of float
         """
@@ -1468,6 +1601,9 @@ class OptimizedSearch:
             transaction_scale=transaction_scale,
             transaction_type=transaction_type,
             use_latency=use_latency,
+            ramp_up_rate=ramp_up_rate,
+            ramp_up_duration=ramp_up_duration,
+            state_timeout=state_timeout,
         )
         algorithm = PLRsearch(
             measurer=tg_instance,
