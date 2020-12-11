@@ -41,6 +41,22 @@
 | | ${disable_latency} = | Get Variable Value | \${disable_latency} | ${False}
 | | Return From Keyword | ${disable_latency}
 
+| Get Hard Min Rate
+| | [Documentation]
+| | ... | Return a hardcoded value.
+| | ... | The return value controls the minimal unidirectional packet rate,
+| | ... | to be used anywhere, including latency measurements at 0% load.
+| | ... | The value is also usable for minimal TPS value for ASTF tests.
+| | ... | The current value is the smallest one permitted
+| | ... | by STL profiles with latency streams.
+| | ... | Return type: float.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| \${hard_min_rate} = \| Get Hard Min Rate \|
+| |
+| | Return From Keyword | ${9001.0}
+
 | Get Max Rate
 | | [Documentation]
 | | ... | Return value of \${max_rate} variable,
@@ -59,25 +75,6 @@
 | | ${max_rate} = | Get Variable Value | \${max_rate} | ${0.0}
 | | Return From Keyword If | ${max_rate} | ${max_rate}
 | | Fail | \${max_rate} is not defined. Call Set Max Rate And Jumbo keyword.
-
-| Get Min Rate
-| | [Documentation]
-| | ... | Return a hardcoded value. This is an abstraction, useful in case
-| | ... | we start allowing various other overrides or computations.
-| | ... | Call this just before calling a Python keyword,
-| | ... | as those have restricted access to Robot variables.
-| |
-| | ... | The return value controls the minimal unidirectional packet rate.
-| | ... | The value is also usable for minimal TPS value for ASTF tests.
-| | ... | The current value is the smallest one permitted
-| | ... | by STL profiles with latency streams.
-| | ... | Return type: float.
-| |
-| | ... | *Example:*
-| |
-| | ... | \| \${min_rate} = \| Get Min Rate \|
-| |
-| | Return From Keyword | ${9001.0}
 
 | Get Mrr Trial Duration
 | | [Documentation]
@@ -179,7 +176,7 @@
 | |
 | | ... | The return value determines the required duration of ramp-up phase.
 | | ... | Typically used to prepare a specific state on DUT.
-| | ... | If the value is zero, ramp-up phase is skipped.
+| | ... | If the value is zero, ramp-up phase is either skipped or size-limited.
 | | ... | Return type: float.
 | |
 | | ... | *Example:*
@@ -192,12 +189,13 @@
 | Get Ramp Up Rate
 | | [Documentation]
 | | ... | Return value of \${ramp_up_rate},
-| | ... | if not defined return \${max_rate}.
+| | ... | if not defined, return zero.
 | |
 | | ... | The return value determines the rate for ramp-up phase.
 | | ... | Typically used to limit the rate when max rate
 | | ... | would lose packets in the ramp up phase, thus not setting
 | | ... | the DUT state correctly.
+| | ... | If the value is zero, ramp-up phase is skipped.
 | | ... | Return type: float.
 | |
 | | ... | *Example:*
@@ -205,13 +203,12 @@
 | | ... | \| \${ramp_up_rate} = \| Get Ramp Up Rate \|
 | |
 | | ${ramp_up_rate} = | Get Variable Value | \${ramp_up_rate} | ${0.0}
-| | Return From Keyword If | ${ramp_up_rate} | ${ramp_up_rate}
-| | Run Keyword And Return | Get Max Rate
+| | Return From Keyword | ${ramp_up_rate}
 
 | Get Rate For Teardown
 | | [Documentation]
 | | ... | Return value of \${rate_for_teardown},
-| | ... | if not defined (or zero) return the min rate.
+| | ... | if not defined (or zero) return the soft min rate.
 | |
 | | ... | The return value determines the rate for teardown trial,
 | | ... | that is executed if a perf test fails.
@@ -226,7 +223,7 @@
 | |
 | | ${rate_for_teardown} = | Get Variable Value | \${rate_for_teardown} | ${0.0}
 | | Return From Keyword If | ${rate_for_teardown} | ${rate_for_teardown}
-| | Run Keyword And Return | Get Min Rate
+| | Run Keyword And Return | Get Soft Min Rate
 
 | Get Resetter
 | | [Documentation]
@@ -278,6 +275,31 @@
 | | ${runtime_rate} = | Get Variable Value | \${runtime_rate} | ${0.0}
 | | Return From Keyword If | ${runtime_rate} | ${runtime_rate}
 | | Run Keyword And Return | Get Max Rate
+
+| Get Soft Min Rate
+| | [Documentation]
+| | ... | If ramp up rate is not defined, return the hard min value.
+| | ... | If ramp up rate is defined, return that value.
+| | ... | The reason is, ramp up rate should already guarantee no loss.
+| |
+| | ... | The return value controls the minimal unidirectional packet rate,
+| | ... | to be used in various search algorithms.
+| | ... | Latency measurements may want even lower loads, use hard min for that.
+| |
+| | ... | The value is also usable for minimal TPS value for ASTF tests.
+| | ... | Return type: float.
+| |
+| | ... | Currently, undefined ramp up rate is reported as zero,
+| | ... | so we return the maximum of ramp up rate and the hardcoded value.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| \${soft_min_rate} = \| Get Soft Min Rate \|
+| |
+| | ${hard_min_rate} = | Get Hard Min Rate
+| | ${ramp_up_rate} = | Get Ramp Up Rate
+| | ${soft_min_rate} = | Evaluate | max(${ramp_up_rate}, ${hard_min_rate})
+| | Return From Keyword | ${soft_min_rate}
 
 | Get Traffic Directions
 | | [Documentation]
