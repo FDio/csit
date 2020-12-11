@@ -1048,24 +1048,28 @@ class InterfaceUtil:
         return sw_if_index
 
     @staticmethod
-    def vpp_create_bond_interface(node, mode, load_balance=None, mac=None):
+    def vpp_create_bond_interface(
+            node, mode, load_balance=None, mac=None, gso=False):
         """Create bond interface on VPP node.
 
         :param node: DUT node from topology.
         :param mode: Link bonding mode.
         :param load_balance: Load balance (optional, valid for xor and lacp
-            modes, otherwise ignored).
+            modes, otherwise ignored). Default: None.
         :param mac: MAC address to assign to the bond interface (optional).
+            Default: None.
+        :param gso: Enable GSO support (optional). Default: False.
         :type node: dict
         :type mode: str
         :type load_balance: str
         :type mac: str
+        :type gso: bool
         :returns: Interface key (name) in topology.
         :rtype: str
         :raises RuntimeError: If it is not possible to create bond interface on
             the node.
         """
-        cmd = u"bond_create"
+        cmd = u"bond_create2"
         args = dict(
             id=int(Constants.BITWISE_NON_ZERO),
             use_custom_mac=bool(mac is not None),
@@ -1078,7 +1082,8 @@ class InterfaceUtil:
                 LinkBondLoadBalanceAlgo,
                 f"BOND_API_LB_ALGO_{load_balance.upper()}"
             ).value,
-            numa_only=False
+            numa_only=False,
+            enable_gso=gso
         )
         err_msg = f"Failed to create bond interface on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
@@ -1227,8 +1232,8 @@ class InterfaceUtil:
         return Topology.get_interface_by_sw_index(node, sw_if_index)
 
     @staticmethod
-    def vpp_enslave_physical_interface(node, interface, bond_if):
-        """Enslave physical interface to bond interface on VPP node.
+    def vpp_add_bond_member(node, interface, bond_if):
+        """Add member interface to bond interface on VPP node.
 
         :param node: DUT node from topology.
         :param interface: Physical interface key from topology file.
@@ -1236,18 +1241,18 @@ class InterfaceUtil:
         :type node: dict
         :type interface: str
         :type bond_if: str
-        :raises RuntimeError: If it is not possible to enslave physical
-            interface to bond interface on the node.
+        :raises RuntimeError: If it is not possible to add member to bond
+            interface on the node.
         """
-        cmd = u"bond_enslave"
+        cmd = u"bond_add_member"
         args = dict(
             sw_if_index=Topology.get_interface_sw_index(node, interface),
             bond_sw_if_index=Topology.get_interface_sw_index(node, bond_if),
             is_passive=False,
             is_long_timeout=False
         )
-        err_msg = f"Failed to enslave physical interface {interface} to bond " \
-            f"interface {bond_if} on host {node[u'host']}"
+        err_msg = f"Failed to add member {interface} to bond interface " \
+            f"{bond_if} on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
@@ -1260,7 +1265,7 @@ class InterfaceUtil:
         :type node: dict
         :type verbose: bool
         """
-        cmd = u"sw_interface_bond_dump"
+        cmd = u"sw_bond_interface_dump"
         err_msg = f"Failed to get bond interface dump on host {node[u'host']}"
 
         data = f"Bond data on node {node[u'host']}:\n"
@@ -1275,26 +1280,26 @@ class InterfaceUtil:
             data += u"  load balance: {lb}\n".format(
                 lb=bond[u"lb"].name.replace(u"BOND_API_LB_ALGO_", u"").lower()
             )
-            data += f"  number of active slaves: {bond[u'active_slaves']}\n"
+            data += f"  number of active members: {bond[u'active_members']}\n"
             if verbose:
-                slave_data = InterfaceUtil.vpp_bond_slave_dump(
+                member_data = InterfaceUtil.vpp_bond_member_dump(
                     node, Topology.get_interface_by_sw_index(
                         node, bond[u"sw_if_index"]
                     )
                 )
-                for slave in slave_data:
-                    if not slave[u"is_passive"]:
-                        data += f"    {slave[u'interface_name']}\n"
-            data += f"  number of slaves: {bond[u'slaves']}\n"
+                for member in member_data:
+                    if not member[u"is_passive"]:
+                        data += f"    {member[u'interface_name']}\n"
+            data += f"  number of members: {bond[u'members']}\n"
             if verbose:
-                for slave in slave_data:
-                    data += f"    {slave[u'interface_name']}\n"
+                for member in member_data:
+                    data += f"    {member[u'interface_name']}\n"
             data += f"  interface id: {bond[u'id']}\n"
             data += f"  sw_if_index: {bond[u'sw_if_index']}\n"
         logger.info(data)
 
     @staticmethod
-    def vpp_bond_slave_dump(node, interface):
+    def vpp_bond_member_dump(node, interface):
         """Get bond interface slave(s) data on VPP node.
 
         :param node: DUT node from topology.
@@ -1304,7 +1309,7 @@ class InterfaceUtil:
         :returns: Bond slave interface data.
         :rtype: dict
         """
-        cmd = u"sw_interface_slave_dump"
+        cmd = u"sw_member_interface_dump"
         args = dict(
             sw_if_index=Topology.get_interface_sw_index(node, interface)
         )
@@ -1313,7 +1318,7 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
-        logger.debug(f"Slave data:\n{details}")
+        logger.debug(f"Member data:\n{details}")
         return details
 
     @staticmethod

@@ -318,26 +318,6 @@ class VppConfigGenerator:
             path = [u"dpdk", cryptodev_config]
             self.add_config_item(self._nodeconfig, u"", path)
 
-    def add_dpdk_eth_bond_dev(self, ethbond_id, mode, xmit_policy, *slaves):
-        """Add DPDK Eth_bond device configuration.
-
-        :param ethbond_id: Eth_bond device ID.
-        :param mode: Link bonding mode.
-        :param xmit_policy: Transmission policy.
-        :param slaves: PCI device(s) to be bonded (format xxxx:xx:xx.x).
-        :type ethbond_id: str or int
-        :type mode: str or int
-        :type xmit_policy: str
-        :type slaves: list
-        """
-        slaves_config = u"slave=" + u",slave=".join(
-            slave if pci_dev_check(slave) else u"" for slave in slaves
-        )
-        ethbond_config = f"vdev eth_bond{ethbond_id}," \
-            f"mode={mode}{slaves_config},xmit_policy={xmit_policy}"
-        path = [u"dpdk", ethbond_config]
-        self.add_config_item(self._nodeconfig, u"", path)
-
     def add_dpdk_dev_default_rxq(self, value):
         """Add DPDK dev default rxq configuration.
 
