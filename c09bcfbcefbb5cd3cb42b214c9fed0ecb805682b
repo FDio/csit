@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06998572_ab607671",
+        "filename": "tests/vpp/device/container_memif/eth2p-ethipv4-l2bdbasemaclrn-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 46
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-11T12:52:47Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 80,
+        "startChar": 72,
+        "endLine": 80,
+        "endChar": 93
+      },
+      "revId": "c09bcfbcefbb5cd3cb42b214c9fed0ecb805682b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
