@@ -346,6 +346,12 @@
     plot-dpdk-throughput-latency-2n-zn2:
       csit-dpdk-perf-report-iterative-2009-2n-zn2:
         - 16  # NDRPDR iter env5
+        - 21  # NDRPDR iter env5
+        - 22  # NDRPDR iter env5
+        - 23  # NDRPDR iter env5
+        - 24  # NDRPDR iter env5
+        - 25  # NDRPDR iter env5
+        - 29  # NDRPDR iter env5
 
     plot-dpdk-hdrh-lat-2n-zn2:
       csit-dpdk-perf-report-iterative-2009-2n-zn2:
@@ -3247,6 +3253,12 @@
 
     csit-dpdk-perf-report-iterative-2009-2n-zn2:
       - 16  # NDRPDR iter env5
+      - 21  # NDRPDR iter env5
+      - 22  # NDRPDR iter env5
+      - 23  # NDRPDR iter env5
+      - 24  # NDRPDR iter env5
+      - 25  # NDRPDR iter env5
+      - 29  # NDRPDR iter env5
 
 #    csit-dpdk-perf-verify-2001-2n-dnv:
 #      - 9   # NDRPDR sel
