@@ -415,9 +415,9 @@
 | | ... | ${nodes['${dut}']} | ${bond_mode} | load_balance=${lb_mode}
 | | ... | mac=00:00:00:01:01:01
 | | Set Interface State | ${nodes['${dut}']} | ${if_index} | up
-| | VPP Enslave Physical Interface
+| | VPP Add Bond Member
 | | ... | ${nodes['${dut}']} | ${${dut}_${int}1_1} | ${if_index}
-| | VPP Enslave Physical Interface
+| | VPP Add Bond Member
 | | ... | ${nodes['${dut}']} | ${${dut}_${int}2_1} | ${if_index}
 | | FOR | ${id} | IN RANGE | 1 | ${count} + 1
 | | | Set Test Variable | ${${dut}_bond1_${id}} | ${if_index}
