@@ -217,11 +217,12 @@
 | Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Create one
-| | ... | link bonding (BondEthernet) interface on both VPP nodes. Enslave one
-| | ... | physical interface towards next DUT by BondEthernet interface. Setup
-| | ... | VLAN on BondEthernet interfaces between DUTs. Cross connect one Vhost
-| | ... | interface with physical interface towards TG and other Vhost interface
-| | ... | with VLAN sub-interface. All interfaces are brought up.
+| | ... | link bonding (BondEthernet) interface on both VPP nodes. Add one
+| | ... | physical interface towards next DUT as a member of BondEthernet
+| | ... | interface. Setup VLAN on BondEthernet interfaces between DUTs. Cross
+| | ... | connect one Vhost interface with physical interface towards TG and
+| | ... | other Vhost interface with VLAN sub-interface. All interfaces are
+| | ... | brought up.
 | |
 | | ... | *Arguments:*
 | | ... | - subid - ID of the sub-interface to be created. Type: string
@@ -247,7 +248,7 @@
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | ${_even}= | Evaluate | ${pf} % 2
 | | | Run Keyword Unless | ${even}
-| | | ... | VPP Enslave Physical Interface
+| | | ... | VPP Add Bond Member
 | | | ... | ${dut1} | ${DUT1_${int}${pf}}[0] | ${dut1_eth_bond_if1}
 | | END
 | | ${dut2_eth_bond_if1}= | VPP Create Bond Interface
@@ -257,7 +258,7 @@
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | ${_even}= | Evaluate | ${pf} % 2
 | | | Run Keyword If | ${even}
-| | | ... | VPP Enslave Physical Interface
+| | | ... | VPP Add Bond Member
 | | | ... | ${dut2} | ${DUT2_${int}${pf}}[0] | ${dut2_eth_bond_if1}
 | | END
 | | VPP Show Bond Data On All Nodes | ${nodes} | verbose=${TRUE}
