@@ -40,7 +40,7 @@ class NsimUtil():
                 and not vpp_nsim_attr[u"xc_nsim_enable"]:
             raise RuntimeError(f"No NSIM features enabled on host {host}:\n"
                                f"vpp_nsim_attr = {vpp_nsim_attr}")
-        cmd = u"nsim_configure"
+        cmd = u"nsim_configure2"
         args = dict(
             delay_in_usec=vpp_nsim_attr[u"delay_in_usec"],
             average_packet_size=vpp_nsim_attr[u"average_packet_size"],
@@ -48,10 +48,18 @@ class NsimUtil():
                 u"bw_in_bits_per_second"
             ],
             packets_per_drop=vpp_nsim_attr[u"packets_per_drop"],
+            packets_per_reorder=vpp_nsim_attr.get(u"packets_per_reorder", 0)
         )
         err_msg = f"Failed to configure NSIM on host {host}"
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_reply(err_msg)
+        try:
+            with PapiSocketExecutor(node) as papi_exec:
+                papi_exec.add(cmd, **args).get_reply(err_msg)
+        except AssertionError:
+            # Perhaps VPP is an older version
+            old_cmd = u"nsim_configure"
+            args.pop(u"packets_per_reorder")
+            with PapiSocketExecutor(node) as papi_exec:
+                papi_exec.add(old_cmd, **args).get_reply(err_msg)
 
         if vpp_nsim_attr[u"output_nsim_enable"]:
             cmd = u"nsim_output_feature_enable_disable"
