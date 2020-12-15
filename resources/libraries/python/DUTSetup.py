@@ -58,7 +58,7 @@ class DUTSetup:
                 DUTSetup.get_service_logs(node, service)
 
     @staticmethod
-    def restart_service(node, service):
+    def restart_service(node, service, lock_file=None):
         """Restart the named service on node.
 
         :param node: Node in the topology.
@@ -70,6 +70,9 @@ class DUTSetup:
             if DUTSetup.running_in_container(node) \
             else f"service {service} restart"
         message = f"Node {node[u'host']} failed to restart service {service}"
+
+        if lock_file:
+            command = f"flock -w 300 {lock_file} -c '{command}'"
 
         exec_cmd_no_error(
             node, command, timeout=180, sudo=True, message=message
