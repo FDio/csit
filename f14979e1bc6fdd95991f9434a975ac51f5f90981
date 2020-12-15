@@ -22,6 +22,30 @@
       "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "753f1909_e2b61e94",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-15T18:32:32Z",
+      "side": 1,
+      "message": "This is my request, as keeping backward compatibility helps with bisection. I ask for it if it is cheap as in NAT [0], but not ask for it if it is expensive as in ipsec [1].\nHere it is cheap enough.\n\n[0] https://gerrit.fd.io/r/c/csit/+/30152\n[1] https://gerrit.fd.io/r/c/csit/+/30260",
+      "parentUuid": "d051242e_cd74bfcf",
+      "range": {
+        "startLine": 1093,
+        "startChar": 2,
+        "endLine": 1099,
+        "endChar": 75
+      },
+      "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
