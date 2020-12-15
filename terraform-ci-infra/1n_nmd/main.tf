@@ -43,7 +43,7 @@ module "minio" {
   mc_extra_commands     = [
     "mc policy set public LOCALMINIO/logs.fd.io",
     "mc policy set public LOCALMINIO/docs.fd.io",
-    "mc ilm add --expiry-days "180" LOCALMINIO/logs.fd.io",
+    "mc ilm add --expiry-days '180' LOCALMINIO/logs.fd.io",
     "mc admin user add LOCALMINIO storage Storage1234",
     "mc admin policy set LOCALMINIO writeonly user=storage"
   ]
