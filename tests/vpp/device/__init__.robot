@@ -15,6 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 |
+| Library | resources.libraries.python.PapiExecutor.Disconnector
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.CpuUtils
@@ -27,7 +28,8 @@
 | ... | AND | Get CPU Info from All Nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 |
-| Suite Teardown | Cleanup Framework | ${nodes}
+| Suite Teardown | Run Keywords | Disconnect All Papi Connections
+| ... | AND | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup Global Variables

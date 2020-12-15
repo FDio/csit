@@ -77,7 +77,8 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Start containers for test | auto_scale=${False} | pinning=${False}
-| | And Initialize L2 Bridge Domain with memif pairs | auto_scale=${False}
+| | And Initialize L2 Bridge Domain for multiple chains with memif pairs
+| | ... | auto_scale=${False}
 | | Then Send IPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 
