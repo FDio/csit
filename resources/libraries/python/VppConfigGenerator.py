@@ -675,7 +675,7 @@ class VppConfigGenerator:
             self._node, cmd, message=u"Writing config file failed!"
         )
 
-    def apply_config(self, filename=None, verify_vpp=True):
+    def apply_config(self, filename=None, verify_vpp=True, lock_file=None):
         """Generate and write VPP startup configuration to file and restart VPP.
 
         Use data from calls to this class to form a startup.conf file and
@@ -683,12 +683,15 @@ class VppConfigGenerator:
 
         :param filename: Startup configuration file name.
         :param verify_vpp: Verify VPP is running after restart.
+        :param lock_file: Use file lock to prevent simultaneous VPP startups.
         :type filename: str
         :type verify_vpp: bool
+        :type lock_file: str
         """
         self.write_config(filename=filename)
 
-        VPPUtil.restart_vpp_service(self._node, self._node_key)
+        VPPUtil.restart_vpp_service(self._node, self._node_key,
+                                    lock_file=lock_file)
         if verify_vpp:
             VPPUtil.verify_vpp(self._node)
 
