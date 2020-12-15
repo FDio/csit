@@ -55,19 +55,22 @@ class VPPUtil:
             exec_cmd_no_error(node, command, timeout=30, sudo=True)
 
     @staticmethod
-    def restart_vpp_service(node, node_key=None):
+    def restart_vpp_service(node, node_key=None, lock_path=None):
         """Restart VPP service on the specified topology node.
 
         Disconnect possibly connected PAPI executor.
 
         :param node: Topology node.
         :param node_key: Topology node key.
+        :param lock_path: Use file/dir lock to prevent simultaneous
+                          VPP restarts.
         :type node: dict
         :type node_key: str
+        :type lock_path: str
         """
         # Containers have a separate lifecycle, but better be safe.
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
-        DUTSetup.restart_service(node, Constants.VPP_UNIT)
+        DUTSetup.restart_service(node, Constants.VPP_UNIT, lock_path)
         if node_key:
             Topology.add_new_socket(
                 node, SocketType.PAPI, node_key, Constants.SOCKSVR_PATH)
@@ -160,7 +163,7 @@ class VPPUtil:
         exec_cmd(node, cmd, sudo=False)
 
     @staticmethod
-    def verify_vpp(node):
+    def verify_vpp(node, lock_path):
         """Verify that VPP is installed and started on the specified topology
         node. Adjust privileges so user can connect without sudo.
 
@@ -168,7 +171,7 @@ class VPPUtil:
         :type node: dict
         :raises RuntimeError: If VPP service fails to start.
         """
-        DUTSetup.verify_program_installed(node, 'vpp')
+        DUTSetup.verify_program_installed(node, 'vpp', lock_path)
         try:
             # Verify responsiveness of vppctl.
             VPPUtil.verify_vpp_started(node)
@@ -181,7 +184,7 @@ class VPPUtil:
             DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
     @staticmethod
-    def verify_vpp_on_all_duts(nodes):
+    def verify_vpp_on_all_duts(nodes, lock_path):
         """Verify that VPP is installed and started on all DUT nodes.
 
         :param nodes: Nodes in the topology.
@@ -189,7 +192,7 @@ class VPPUtil:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                VPPUtil.verify_vpp(node)
+                VPPUtil.verify_vpp(node, lock_path)
 
     @staticmethod
     def vpp_show_version(
