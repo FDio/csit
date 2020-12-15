@@ -45,13 +45,13 @@ variable "minio_port" {
 variable "minio_cpu" {
   description = "CPU allocation for Minio"
   type        = number
-  default     = 200
+  default     = 40000
 }
 
 variable "minio_memory" {
   description = "Memory allocation for Minio"
   type        = number
-  default     = 1024
+  default     = 40000
 }
 
 variable "minio_container_image" {

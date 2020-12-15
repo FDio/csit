@@ -31,10 +31,6 @@ module "minio" {
   minio_data_dir        = "/data/"
   minio_use_host_volume = true
   minio_use_canary      = true
-  minio_resource_proxy  = {
-    cpu    = 200
-    memory = 128
-  }
   minio_envs            = [ "MINIO_BROWSER=\"off\"" ]
 
   # minio client
@@ -43,7 +39,7 @@ module "minio" {
   mc_extra_commands     = [
     "mc policy set public LOCALMINIO/logs.fd.io",
     "mc policy set public LOCALMINIO/docs.fd.io",
-    "mc ilm add --expiry-days "180" LOCALMINIO/logs.fd.io",
+    "mc ilm add --expiry-days '180' LOCALMINIO/logs.fd.io",
     "mc admin user add LOCALMINIO storage Storage1234",
     "mc admin policy set LOCALMINIO writeonly user=storage"
   ]
