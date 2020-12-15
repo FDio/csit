@@ -78,11 +78,12 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Start containers for test | auto_scale=${False} | pinning=${False}
-| | And Set interfaces in path up
 | | And Set up memif interfaces on DUT node
 | | ... | ${dut1} | memif-DUT1_CNF | memif-DUT1_CNF
 | | ... | memif_if1=memif_if1 | memif_if2=memif_if2
 | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
+| | # It takes some time for memifs to go up.
+| | And Set interfaces in path up
 | | And Add Fib Table | ${dut1} | 20 | ipv6=${True}
 | | And Assign Interface To Fib Table
 | | ... | ${dut1} | ${memif_if2} | 20 | ipv6=${True}
