@@ -55,19 +55,22 @@ class VPPUtil:
             exec_cmd_no_error(node, command, timeout=30, sudo=True)
 
     @staticmethod
-    def restart_vpp_service(node, node_key=None):
+    def restart_vpp_service(node, node_key=None, lock_path=None):
         """Restart VPP service on the specified topology node.
 
         Disconnect possibly connected PAPI executor.
 
         :param node: Topology node.
         :param node_key: Topology node key.
+        :param lock_path: Use file/dir lock to prevent simultaneous
+                          VPP restarts.
         :type node: dict
         :type node_key: str
+        :type lock_path: str
         """
         # Containers have a separate lifecycle, but better be safe.
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
-        DUTSetup.restart_service(node, Constants.VPP_UNIT)
+        DUTSetup.restart_service(node, Constants.VPP_UNIT, lock_path)
         if node_key:
             Topology.add_new_socket(
                 node, SocketType.PAPI, node_key, Constants.SOCKSVR_PATH)

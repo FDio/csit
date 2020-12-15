@@ -57,3 +57,5 @@
 | | Set Global Variable | ${post_run_stats}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
 | | Set Global Variable | ${nodes}
+| | Set Global Variable | ${lock_dir}
+| | ... | /tmp/device_lock_dir/

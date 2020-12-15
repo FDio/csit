@@ -323,10 +323,10 @@
 | |
 | | ... | \| Apply startup configuration on all VPP DUTs \| False \|
 | |
-| | [Arguments] | ${with_trace}=${False}
+| | [Arguments] | ${with_trace}=${False} | ${lock_path}=${None}
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword | ${dut}.Apply Config
+| | | Run Keyword | ${dut}.Apply Config | lock_path=${lock_path}
 | | END
 | | Save VPP PIDs
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
@@ -340,9 +340,9 @@
 | | ... | - dut - DUT on which to apply the configuration. Type: string
 | | ... | - with_trace - Enable packet trace after VPP restart Type: boolean
 | |
-| | [Arguments] | ${dut} | ${with_trace}=${False}
+| | [Arguments] | ${dut} | ${with_trace}=${False} | ${lock_path}=${None}
 | |
-| | Run Keyword | ${dut}.Apply Config
+| | Run Keyword | ${dut}.Apply Config | lock_path=${lock_path}
 | | Save VPP PIDs on DUT | ${dut}
 | | Enable Coredump Limit VPP on DUT | ${nodes['${dut}']}
 | | ${dutnode}= | Copy Dictionary | ${nodes}
