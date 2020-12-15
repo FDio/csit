@@ -58,18 +58,24 @@ class DUTSetup:
                 DUTSetup.get_service_logs(node, service)
 
     @staticmethod
-    def restart_service(node, service):
+    def restart_service(node, service, lock_path=None):
         """Restart the named service on node.
 
         :param node: Node in the topology.
         :param service: Service unit name.
+        :param lock_path: Use file/dir lock to prevent simultaneous service
+                          restarts.
         :type node: dict
         :type service: str
+        :type lock_path: str
         """
         command = f"supervisorctl restart {service}" \
             if DUTSetup.running_in_container(node) \
             else f"service {service} restart"
         message = f"Node {node[u'host']} failed to restart service {service}"
+
+        if lock_path:
+            command = f"flock -w 300 {lock_path} -c '{command}'"
 
         exec_cmd_no_error(
             node, command, timeout=180, sudo=True, message=message
@@ -411,35 +417,67 @@ class DUTSetup:
         )
 
     @staticmethod
-    def pci_driver_unbind(node, pci_addr):
-        """Unbind PCI device from current driver on node.
+    def check_driver_bound(node, driver, pci_addr):
+        """Check whether a PCI device is bound to a particular driver.
 
         :param node: DUT node.
+        :param driver: Driver to check.
         :param pci_addr: PCI device address.
         :type node: dict
+        :type driver: str
         :type pci_addr: str
-        :raises RuntimeError: If PCI device unbind failed.
         """
         pci = pci_addr.replace(u":", r"\:")
-        command = f"sh -c \"echo {pci_addr} | " \
-            f"tee /sys/bus/pci/devices/{pci}/driver/unbind\""
-        message = f"Failed to unbind PCI device {pci_addr} on {node[u'host']}"
+        command = f"sh -c \"basename \$(realpath " \
+                  f"/sys/bus/pci/devices/${pci}/driver)\""
+        message = f"Failed to get the driver of " \
+                  f"PCI device {pci_addr} on {node[u'host']}"
 
-        exec_cmd_no_error(
+        stdout, _ = exec_cmd_no_error(
             node, command, timeout=120, sudo=True, message=message
         )
 
+        if stdout.strip() == driver:
+            return True
+        else:
+            return False
+
     @staticmethod
-    def pci_driver_unbind_list(node, *pci_addrs):
-        """Unbind PCI devices from current driver on node.
+    def pci_driver_unbind(node, driver, pci_addr):
+        """Unbind PCI device if it's bound to a driver different than
+           the input one.
 
         :param node: DUT node.
+        :param driver: Driver to keep, unbind if different.
+        :param pci_addr: PCI device address.
+        :type node: dict
+        :type driver: str
+        :type pci_addr: str
+        :raises RuntimeError: If PCI device unbind failed.
+        """
+        if not DUTSetup.check_driver_bound(node, driver, pci_addr):
+            pci = pci_addr.replace(u":", r"\:")
+            command = f"sh -c \"echo {pci_addr} | " \
+                      f"tee /sys/bus/pci/devices/{pci}/driver/unbind\""
+            message = f"Failed to unbind PCI device {pci_addr} on {node[u'host']}"
+            exec_cmd_no_error(
+                node, command, timeout=120, sudo=True, message=message
+            )
+
+    @staticmethod
+    def pci_driver_unbind_list(node, driver, *pci_addrs):
+        """Unbind PCI devices if they're bound to a driver different than
+           the input one.
+
+        :param node: DUT node.
+        :param driver: Driver to keep, unbind if different.
         :param pci_addrs: PCI device addresses.
         :type node: dict
+        :type driver: str
         :type pci_addrs: list
         """
         for pci_addr in pci_addrs:
-            DUTSetup.pci_driver_unbind(node, pci_addr)
+            DUTSetup.pci_driver_unbind(node, driver, pci_addr)
 
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
