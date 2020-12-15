@@ -1,0 +1,7 @@
+---
+# file roles/cleanup/handlers/main.yaml
+
+- name: Restart Docker Daemon
+  systemd:
+    name: "docker"
+    state: "restarted"
