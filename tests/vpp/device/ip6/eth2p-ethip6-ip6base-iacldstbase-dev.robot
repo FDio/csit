@@ -69,6 +69,7 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | ... | lock_file=${lock_file_path}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv6 forwarding in circular topology

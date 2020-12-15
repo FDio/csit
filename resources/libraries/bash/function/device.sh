@@ -607,6 +607,8 @@ function start_topology_containers () {
     dcr_stc_params+="--volume /opt/boot/:/opt/boot/ "
     # Mount host hugepages for VMs.
     dcr_stc_params+="--volume /dev/hugepages/:/dev/hugepages/ "
+    # Mount lock file to prevent simultaneous VPP startups.
+    dcr_stc_params+="--volume /tmp/device_lock_dir/:/tmp/device_lock_dir/ "
     # Disable IPv6.
     dcr_stc_params+="--sysctl net.ipv6.conf.all.disable_ipv6=1 "
     dcr_stc_params+="--sysctl net.ipv6.conf.default.disable_ipv6=1 "
