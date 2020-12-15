@@ -118,7 +118,7 @@
 | | Run Keyword If | ${index} >= 0 | Return From Keyword
 | | FOR | ${dut} | IN | @{duts}
 | | | Stop VPP Service | ${nodes['${dut}']}
-| | | PCI Driver Unbind List | ${nodes['${dut}']} | @{${dut}_pf_pci}
+| | | PCI Driver Unbind List | ${nodes['${dut}']} | vfio-pci | @{${dut}_pf_pci}
 | | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
 | | | ... | ${dut}.Add DPDK No Tx Checksum Offload
