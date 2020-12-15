@@ -203,8 +203,6 @@ job "${job_name}" {
       #     https://www.nomadproject.io/docs/job-specification/resources.html
       #
       resources {
-        cpu        = ${cpu}
-        memory     = ${memory}
         # The network stanza specifies the networking requirements for the task
         # group, including the network mode and port allocations. When scheduling
         # jobs in Nomad they are provisioned across your fleet of machines along
@@ -217,6 +215,8 @@ job "${job_name}" {
         #
         #     https://www.nomadproject.io/docs/job-specification/network.html
         #
+        cpu      = ${cpu}
+        memory   = ${memory}
         network {
           port "http" {
             static = ${port}
