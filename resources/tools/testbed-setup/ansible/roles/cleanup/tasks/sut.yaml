@@ -33,25 +33,37 @@
         process: "vpp_echo"
       tags: kill-process
 
+    - name: Find file or dir - Core zip file
+      find:
+        paths: "/tmp/"
+        patterns: "*tar.lzo.lrz.xz*"
+      register: files_to_delete
+      tags: remove-file-dir
+
     - name: Remove file or dir - Core zip file
       file:
+        path: "{{ item.path }}"
         state: absent
-        path: "/tmp/*tar.lzo.lrz.xz*"
+      with_items: "{{ files_to_delete.files }}"
+      tags: remove-file-dir
+
+    - name: Find file or dir - Core dump file
+      find:
+        paths: "/tmp/"
+        patterns: "*core*"
+      register: files_to_delete
       tags: remove-file-dir
 
     - name: Remove file or dir - Core dump file
       file:
+        path: "{{ item.path }}"
         state: absent
-        path: "/tmp/*core*"
+      with_items: "{{ files_to_delete.files }}"
       tags: remove-file-dir
 
     - name: Kill containers - Remove all containers
       import_tasks: kill_containers.yaml
       tags: kill-containers
-
-    - name: Kubernetes - Reset
-      raw: 'kubeadm reset --force'
-      tags: kill-kubernetes
 
     - name: Remove packages - Remove VPP
       import_tasks: remove_package.yaml

@@ -1,29 +1,38 @@
 ---
 # file: roles/cleanup/tasks/kill_containers.yaml
 
-- name: Kill containers
+- name: Kill Docker Containers
   block:
-  - name: Kill container - Get running Docker containers
+  - name: Kill container - Get Running Docker Containers
     shell: "docker ps -aq"
     register: running_containers
     changed_when: no
     tags: kill-containers
 
-  - name: Kill container - Remove all Docker containers
+  - name: Kill container - Remove All Docker Containers
     shell: "docker rm --force {{ item }}"
     with_items: "{{ running_containers.stdout_lines }}"
     tags: kill-containers
 
-  - name: Kill container - Get running LXC containers
+  rescue:
+  - name: Restart Docker Daemon
+    systemd:
+      name: "docker"
+      state: "restarted"
+
+- name: Kill LXC Containers
+  block:
+  - name: Kill container - Get Running LXC Containers
     shell: "lxc-ls"
     register: running_containers
     changed_when: no
     tags: kill-containers
 
-  - name: Kill container - Remove all LXC containers
+  - name: Kill container - Remove All LXC Containers
     shell: "lxc-destroy --force -n {{ item }}"
     with_items: "{{ running_containers.stdout_lines }}"
     tags: kill-containers
+
   rescue:
   - fail:
-      msg: "Kill containers failed!"
+      msg: "Kill LXC containers failed!"
