@@ -24,6 +24,7 @@
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
 | ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
+| ... | ${lock_dir}
 | ... | AND | Verify Vpp on All Duts | ${nodes}
 | ... | AND | Get CPU Info from All Nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
@@ -57,3 +58,5 @@
 | | Set Global Variable | ${post_run_stats}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
 | | Set Global Variable | ${nodes}
+| | Set Global Variable | ${lock_dir}
+| | ... | /tmp/device_lock_dir/
