@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d051242e_cd74bfcf",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-15T18:01:10Z",
+      "side": 1,
+      "message": "I thought this will either work or not once we bump VPP version. If some feature is not supported yet, we should not support it. And add it only when it is ready",
+      "range": {
+        "startLine": 1093,
+        "startChar": 2,
+        "endLine": 1099,
+        "endChar": 75
+      },
+      "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
