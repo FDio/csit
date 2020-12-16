@@ -29,7 +29,8 @@ the following processor architectures:
 - Intel Xeon: Skylake Platinum 8180, Haswell-SP E5-2699v3,
   Cascade Lake Platinum 8280, Cascade Lake 6252N.
 - Intel Atom: Denverton C3858.
-- ARM: TaiShan 2280, hip07-d05.
+- Arm: TaiShan 2280, hip07-d05.
+- AMD EPYC: Zen2 7532.
 
 Server SUT performance depends on server and processor type, hence
 results for testbeds based on different servers must be reported
@@ -40,6 +41,47 @@ physical testbeds are maintained in FD.io CSIT repository:
 https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md.
 
 Following is the description of existing production testbeds.
+
+2-Node AMD EPYC Zen2 (2n-zn2)
+-----------------------------
+
+One 2n-zn2 testbed in in operation in FD.io labs. It is built based on
+two SuperMicro SuperMicro AS-1114S-WTRT servers, with SUT and TG servers
+equipped with one AMD EPYC Zen2 7532 processor each (256 MB Cache, 2.40
+GHz, 32 cores). 2n-zn2 physical topology is shown below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{testbed-2n-zn2}
+                \label{fig:testbed-2n-zn2}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: testbed-2n-zn2.svg
+        :alt: testbed-2n-zn2
+        :align: center
+
+SUT server is populated with the following NIC models:
+
+#. NIC-1: x710-DA4 4p10GE Intel.
+#. NIC-2: xxv710-DA2 2p25GE Intel.
+#. NIC-3: cx556a-edat ConnectX5 2p100GE Mellanox.
+
+TG server runs TRex application and is populated with the following
+NIC models:
+
+#. NIC-1: x710-DA4 4p10GE Intel.
+#. NIC-2: xxv710-DA2 2p25GE Intel.
+#. NIC-3: cx556a-edat ConnectX5 2p100GE Mellanox.
+
+All AMD EPYC Zen2 7532 servers run with AMD SMT enabled, doubling the
+number of logical cores exposed to Linux.
 
 2-Node Xeon Cascade Lake (2n-clx)
 ---------------------------------

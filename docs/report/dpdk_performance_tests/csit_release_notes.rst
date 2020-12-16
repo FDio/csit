@@ -8,6 +8,9 @@ Changes in |csit-release|
 
    - Fixed DPDK compilation on ARM systems.
 
+   - **AMD 2n-zn2 testbed**: New physical testbed type installed in
+     FD.io CSIT, with DPDK performance data added to this report.
+
 #. DPDK RELEASE VERSION CHANGE
 
    - |csit-release| tested |dpdk-release|, as used by |vpp-release|.
