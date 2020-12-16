@@ -42,8 +42,9 @@ Changes in |csit-release|
    - **IPSec async mode tests**: Added VPP performance tests for async crypto
      engine.
 
-   - **AMD 2n-zn2 testbed**: New physical testbed type installed in FD.io CSIT,
-     VPP performance data will be added in upcoming weeks.
+   - **AMD 2n-zn2 testbed**: New physical testbed type installed in
+     FD.io CSIT, with VPP and DPDK performance data added to CSIT
+     trending and this report.
 
 #. TEST FRAMEWORK
 
