@@ -70,6 +70,30 @@
       "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d5ac5a5_da7b6486",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-16T16:24:20Z",
+      "side": 1,
+      "message": "One idea: Have a non-voting tox checker, that greps for \"old_cmd\", uses git blame to find commit that added it, extract date of that commit, and add a line to a log file if the commit is older than (say) 6 months.\n\nI do not think we can keep verifying the old command, mainly because we do not keep the old versions for all API changes and we do not want to maintain a separate test selection to run with released VPP.",
+      "parentUuid": "012a1eb9_096bf097",
+      "range": {
+        "startLine": 1093,
+        "startChar": 2,
+        "endLine": 1099,
+        "endChar": 75
+      },
+      "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
