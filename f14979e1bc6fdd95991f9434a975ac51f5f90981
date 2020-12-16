@@ -94,6 +94,30 @@
       "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "692a0205_8df1d1aa",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-16T19:44:25Z",
+      "side": 1,
+      "message": "No tox, that is \"nobody reading\", I want to see a process of removal these crapy lines from repo. Running older version is easy with previous operbranch. No excuse",
+      "parentUuid": "2d5ac5a5_da7b6486",
+      "range": {
+        "startLine": 1093,
+        "startChar": 2,
+        "endLine": 1099,
+        "endChar": 75
+      },
+      "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
