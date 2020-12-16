@@ -363,6 +363,7 @@
         - 18  # rls2009 NDRPDR iter env 5
         - 31  # rls2009 NDRPDR iter env 5
         - 33  # rls2009 NDRPDR iter env 5
+        - 34  # rls2009 NDRPDR iter env 5
 
     plot-vpp-hdrh-lat-2n-zn2:
       csit-vpp-perf-report-iterative-2009-2n-zn2:
@@ -2980,6 +2981,7 @@
       - 18  # rls2009 NDRPDR iter env 5
       - 31  # rls2009 NDRPDR iter env 5
       - 33  # rls2009 NDRPDR iter env 5
+      - 34  # rls2009 NDRPDR iter env 5
 
     csit-vpp-perf-verify-2001-3n-tsh:
       - 9   # MRR sel
