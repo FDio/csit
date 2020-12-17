@@ -142,6 +142,30 @@
       "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d1fb581_25c53d95",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-17T14:17:24Z",
+      "side": 1,
+      "message": "\u003e that means it is available in whole release 21.01 cycle so no workaround for the old api is needed\nValid for all affected bond apis.",
+      "parentUuid": "0e027724_4497711a",
+      "range": {
+        "startLine": 1093,
+        "startChar": 2,
+        "endLine": 1099,
+        "endChar": 75
+      },
+      "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
