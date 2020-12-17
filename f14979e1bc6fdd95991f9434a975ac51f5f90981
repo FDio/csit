@@ -166,6 +166,30 @@
       "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d37d6a0_45331497",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-17T14:33:41Z",
+      "side": 1,
+      "message": "\u003e Running older version is easy with previous operbranch.\n\nOn the contrary, when examining past anomalies I frequently find the oper branch was removed already, once I need to check the github to confirm what a particular oper branch commit hash was.\n\n\u003e No tox, that is \"nobody reading\"\n\nWell, we can make it voting. :)\n\n\u003e I want to see a process of removal these crapy lines from repo.\n\nDo you have any ideas? I doubt adding \"TODO: Remove after rls2101\" will help much.\n\nAnyway, it is a discussion for other Changes as Jan has removed the old_cmd.",
+      "parentUuid": "4d1fb581_25c53d95",
+      "range": {
+        "startLine": 1093,
+        "startChar": 2,
+        "endLine": 1099,
+        "endChar": 75
+      },
+      "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
