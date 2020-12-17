@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fb51f67_0ad9d9c7",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-17T14:03:25Z",
+      "side": 1,
+      "message": "This selects all perf tests if SELECTION_MODE is not \"--test\".",
+      "range": {
+        "startLine": 298,
+        "startChar": 17,
+        "endLine": 298,
+        "endChar": 20
+      },
+      "revId": "37877d670e7e2d81673222b6c3d9e7649ccd5cd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
