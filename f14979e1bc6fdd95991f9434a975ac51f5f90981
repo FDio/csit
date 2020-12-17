@@ -118,6 +118,30 @@
       "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e027724_4497711a",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-17T14:06:29Z",
+      "side": 1,
+      "message": "I found that new bond_create2 was introduced by patch [0], corresponding vpp build is 20.09-rc0~368-g42845dd56 - that means it is available in whole release 21.01 cycle so no workaround for the old api is needed - going to remove the workaroung.\n\n\n[0] https://gerrit.fd.io/r/c/vpp/+/28112",
+      "parentUuid": "692a0205_8df1d1aa",
+      "range": {
+        "startLine": 1093,
+        "startChar": 2,
+        "endLine": 1099,
+        "endChar": 75
+      },
+      "revId": "f14979e1bc6fdd95991f9434a975ac51f5f90981",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
