@@ -91,10 +91,10 @@
 | | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
 | | And Add Fib Table | ${dut2} | 1 | ipv6=${TRUE}
 | | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
-| | And COP Add whitelist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
-| | And COP Add whitelist Entry | ${dut2} | ${DUT2_${int}2}[0] | ip6 | 1
-| | And COP interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
-| | And COP interface enable or disable | ${dut2} | ${DUT2_${int}2}[0] | enable
+| | And ADL Add allowlist entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
+| | And ADL Add allowlist entry | ${dut2} | ${DUT2_${int}2}[0] | ip6 | 1
+| | And ADL interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
+| | And ADL interface enable or disable | ${dut2} | ${DUT2_${int}2}[0] | enable
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
