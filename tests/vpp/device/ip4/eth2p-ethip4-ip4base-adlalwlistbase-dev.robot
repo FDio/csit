@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | IP6FWD | FEATURE | COPWHLIST | DRV_VFIO_PCI
+| ... | NIC_Virtual | ETH | IP4FWD | FEATURE | ADLALWLIST | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip6-ip6base-copwhtlistbase
+| ... | ethip4-ip4base-adlalwlistbase
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
@@ -25,15 +25,15 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *COP Security IPv6 whitelist test cases*
+| Documentation | *ADL Security IPv4 whitelist test cases*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6 on all links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and \
-| ... | static routes. COP security white-lists are applied on DUT1 ingress \
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 on all links.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
+| ... | static routes. ADL security white-lists is applied on DUT1 ingress \
 | ... | interface from TG.
-| ... | *[Ver] TG verification:* Test IPv6 packets are sent in one direction \
+| ... | *[Ver] TG verification:* Test IPv4 packets are sent in one direction \
 | ... | by TG on link to DUT1; on receive TG verifies packets for correctness \
 | ... | and drops as applicable.
 | ... | *[Ref] Applicable standard specifications:*
@@ -52,8 +52,8 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IPv6 on its interface to DUT1; \
-| | ... | verify received IPv6 pkts are correct.
+| | ... | [Ver] Make TG send IPv4 on its interface to DUT1; \
+| | ... | verify received IPv4 pkts are correct.
 | |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
@@ -70,17 +70,17 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv6 forwarding in circular topology
-| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
-| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
-| | And COP Add whitelist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
-| | And COP interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
+| | And Initialize IPv4 forwarding in circular topology
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And ADL Add allowlist entry | ${dut1} | ${DUT1_${int}1}[0] | ip4 | 1
+| | And ADL interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
 | | Then Send packet and verify headers
-| | ... | ${tg} | 2001:1::2 | 2001:2::2
+| | ... | ${tg} | 10.10.10.2 | 20.20.20.2
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
 | | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
 *** Test Cases ***
-| 78B-ethip6-ip6base-copwhtlistbase-dev
-| | [Tags] | 78B
-| | frame_size=${78} | phy_cores=${0}
+| 64B-ethip4-ip4base-adlalwlistbase-dev
+| | [Tags] | 64B
+| | frame_size=${64} | phy_cores=${0}
