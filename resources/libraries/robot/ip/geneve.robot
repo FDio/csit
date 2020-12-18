@@ -57,10 +57,12 @@
 | | | VPP Interface Set IP Address
 | | | ... | ${dut1} | ${tunnel_if_key} | ${if_ip} | 24
 | | | VPP Add IP Neighbor
-| | | ... | ${dut1} | ${tunnel_if_key} | ${dut1_if2_ip4} | ${DUT1_vf2_mac}[0]
+| | | ... | ${dut1} | ${tunnel_if_key} | ${dst_ip} | ${TG_pf2_mac}[0]
+#| | | ... | ${dut1} | ${tunnel_if_key} | ${dut1_if2_ip4} | ${DUT1_vf2_mac}[0]
 | | | Vpp Route Add
-| | | ... | ${dut1} | ${dst_ip} | ${gen_tunnel.ip_mask}
-| | | ... | gateway=${dut1_if2_ip4} | interface=${tunnel_if_key}
+| | | ... | ${dut1} | ${dst_ip} | ${gen_tunnel.ip_mask} | interface=${tunnel_if_key}
+#| | | ... | gateway=${tg_if2_ip4} | interface=${tunnel_if_key}
+#| | | ... | gateway=${dut1_if2_ip4} | interface=${tunnel_if_key}
 | | | Vpp Route Add
 | | | ... | ${dut1} | ${gen_tunnel.remote} | 32
 | | | ... | gateway=${tg_if2_ip4} | interface=${DUT1_${int}2}[0]
