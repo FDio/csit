@@ -20,6 +20,7 @@
 | Library | OperatingSystem
 | Library | String
 |
+| Library | resources.libraries.python.Adl
 | Library | resources.libraries.python.Classify
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.CoreDumpUtil
