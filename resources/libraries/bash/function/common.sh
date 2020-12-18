@@ -465,6 +465,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="dnv"
             ;;
+        *"2n-tx2"*)
+            NODENESS="2n"
+            FLAVOR="tx2"
+            ;;
         *"3n-tsh"*)
             NODENESS="3n"
             FLAVOR="tsh"
@@ -796,7 +800,7 @@ function select_tags () {
         *"3n-skx"* | *"2n-skx"* | *"2n-clx"* | *"2n-zn2"*)
             default_nic="nic_intel-xxv710"
             ;;
-        *"3n-hsw"* | *"mrr-daily-master")
+        *"3n-hsw"* | *"2n-tx2"* | *"mrr-daily-master")
             default_nic="nic_intel-xl710"
             ;;
         *)
@@ -903,6 +907,9 @@ function select_tags () {
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
+            ;;
+        *"2n-tx2"*)
+            test_tag_array+=("!ipsechw")
             ;;
         *"3n-dnv"*)
             test_tag_array+=("!memif")
