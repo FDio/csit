@@ -456,6 +456,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="dnv"
             ;;
+        *"2n-tx2"*)
+            NODENESS="2n"
+            FLAVOR="tx2"
+            ;;
         *"3n-tsh"*)
             NODENESS="3n"
             FLAVOR="tsh"
@@ -786,7 +790,7 @@ function select_tags () {
         *"3n-skx"* | *"2n-skx"* | *"2n-clx"* | *"2n-zn2"*)
             default_nic="nic_intel-xxv710"
             ;;
-        *"3n-hsw"* | *"mrr-daily-master")
+        *"3n-hsw"* | *"2n-tx2"* | *"mrr-daily-master")
             default_nic="nic_intel-xl710"
             ;;
         *)
@@ -881,6 +885,9 @@ function select_tags () {
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
+            ;;
+        *"2n-tx2"*)
+            test_tag_array+=("!ipsechw")
             ;;
         *"3n-dnv"*)
             test_tag_array+=("!memif")
@@ -1011,6 +1018,10 @@ function select_topology () {
         "3n_tsh")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "2n_tx2")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         *)
             # No falling back to 3n_hsw default, that should have been done
