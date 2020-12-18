@@ -693,7 +693,7 @@ function run_pybot () {
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
-    robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
+    robot --dryrun "${all_options[@]}" "${GENERATED_DIR}/tests/"
     PYBOT_EXIT_STATUS="$?"
     set -e
 
@@ -863,16 +863,22 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
-                                "mrrAND${default_nic}AND1cAND78bANDip6base"
-                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
-                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
-                                "!dot1q" "!drv_avf")
+#                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
+#                                "mrrAND${default_nic}AND1cAND78bANDip6base"
+#                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
+#                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
+#                                "!dot1q" "!drv_avf")
+                # Run only one test set per run
+                report_file=vpp-mlr-00.md
+                readarray -t test_tag_array <<< $(grep -v "#" \
+                    ${tfd}/report_iterative/${NODENESS}-${FLAVOR}/${report_file} |
+                    awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+                SELECTION_MODE="--test"
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
             fi
-            SELECTION_MODE="--include"
+#            SELECTION_MODE="--include"
             ;;
     esac
 
@@ -950,12 +956,12 @@ function select_tags () {
         if [[ "${tag}" == "!"* ]]; then
             # Exclude tags are not prefixed.
             TAGS+=("${tag}")
-        elif [[ "${tag}" == " "* || "${tag}" == *"perftest"* ]]; then
-            # Badly formed tag expressions can trigger way too much tests.
-            set -x
-            warn "The following tag expression hints at bad trigger: ${tag}"
-            warn "Possible cause: Multiple triggers in a single comment."
-            die "Aborting to avoid triggering too many tests."
+#        elif [[ "${tag}" == " "* || "${tag}" == *"perftest"* ]]; then
+#            # Badly formed tag expressions can trigger way too much tests.
+#            set -x
+#            warn "The following tag expression hints at bad trigger: ${tag}"
+#            warn "Possible cause: Multiple triggers in a single comment."
+#            die "Aborting to avoid triggering too many tests."
         elif [[ "${tag}" == *"OR"* ]]; then
             # If OR had higher precedence than AND, it would be useful here.
             # Some people think it does, thus triggering way too much tests.
