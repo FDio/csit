@@ -45,6 +45,10 @@
     # ^^ ip4fwdANDiaclANDacl10AND100_flows
     add_node_next: '0x2457116d'  # dev
     add_node_next_reply: '0x2ed75f32'  # dev
+    adl_allowlist_enable_disable: '0xea88828d' # dev
+    adl_allowlist_enable_disable_reply: '0xe8d4e804' # dev
+    adl_interface_enable_disable: '0x5501adee' # dev
+    adl_interface_enable_disable_reply: '0xe8d4e804' # dev
     avf_create: '0xdaab8ae2'  # dev
     avf_create_reply: '0x5383d31f'  # dev
     bond_create: '0x48883c7e'  # perf
