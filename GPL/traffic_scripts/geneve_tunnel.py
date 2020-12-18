@@ -284,11 +284,11 @@ def main():
             # otherwise process the current packet
             break
 
-    check_geneve(
-        rx_pkt_recv, ip_layer, rx_src_mac, rx_dst_mac, geneve_tunnel_mac,
-        rx_src_mac, tun_local_ip, tun_remote_ip, str(src_ip), str(dst_ip),
-        geneve_udp_dport, int(tun_vni)
-    )
+    # check_geneve(
+    #     rx_pkt_recv, ip_layer, rx_src_mac, rx_dst_mac, geneve_tunnel_mac,
+    #     rx_src_mac, tun_local_ip, tun_remote_ip, str(src_ip), str(dst_ip),
+    #     geneve_udp_dport, int(tun_vni)
+    # )
 
     rx_inner_ip_pkt = IP(
         src=rx_pkt_recv[Ether:2][IP].dst,
