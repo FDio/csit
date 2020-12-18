@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -286,7 +286,7 @@ def main():
 
     check_geneve(
         rx_pkt_recv, ip_layer, rx_src_mac, rx_dst_mac, geneve_tunnel_mac,
-        rx_src_mac, tun_local_ip, tun_remote_ip, str(src_ip), str(dst_ip),
+        rx_dst_mac, tun_local_ip, tun_remote_ip, str(src_ip), str(dst_ip),
         geneve_udp_dport, int(tun_vni)
     )
 
