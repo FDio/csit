@@ -290,9 +290,24 @@ function compose_pybot_arguments () {
         if [[ ${tag} == "!"* ]]; then
             EXPANDED_TAGS+=("--exclude" "${tag#$"!"}")
         else
+<<<<<<< HEAD   (3a3dfa fix: use csit lts branch in vpp-csit lts jobs)
             EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}AND${tag}")
+=======
+            if [[ ${SELECTION_MODE} == "--test" ]]; then
+                EXPANDED_TAGS+=("--test" "${tag}")
+            else
+                EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}AND${tag}")
+            fi
+>>>>>>> CHANGE (e62ade FIX: Backward compatibility include selection)
         fi
     done
+<<<<<<< HEAD   (3a3dfa fix: use csit lts branch in vpp-csit lts jobs)
+=======
+
+    if [[ ${SELECTION_MODE} == "--test" ]]; then
+        EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}")
+    fi
+>>>>>>> CHANGE (e62ade FIX: Backward compatibility include selection)
 }
 
 
@@ -1058,6 +1073,7 @@ function select_vpp_device_tags () {
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
             fi
+            SELECTION_MODE="--include"
             ;;
     esac
 
