@@ -863,16 +863,22 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
-                                "mrrAND${default_nic}AND1cAND78bANDip6base"
-                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
-                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
-                                "!dot1q" "!drv_avf")
+#                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
+#                                "mrrAND${default_nic}AND1cAND78bANDip6base"
+#                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
+#                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
+#                                "!dot1q" "!drv_avf")
+                # Run only one test set per run
+                report_file=vpp-mlr-00.md
+                readarray -t test_tag_array <<< $(grep -v "#" \
+                    ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} |
+                    awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+                SELECTION_MODE="--test"
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
             fi
-            SELECTION_MODE="--include"
+#            SELECTION_MODE="--include"
             ;;
     esac
 
