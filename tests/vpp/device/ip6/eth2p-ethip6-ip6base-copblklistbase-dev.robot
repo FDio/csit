@@ -73,8 +73,8 @@
 | | And Initialize IPv6 forwarding in circular topology
 | | And Add Fib Table | ${dut1} | 1 | ipv6=${True}
 | | And Vpp Route Add | ${dut1} | 2002:1::0 | 64 | vrf=1 | local=${True}
-| | And COP Add whitelist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
-| | And COP interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
+| | And ADL Add allowlist entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
+| | And ADL interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
 | | Then Packet transmission from port to port should fail
 | | ... | ${tg} | 2002:1::2 | 2002:2::2
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
