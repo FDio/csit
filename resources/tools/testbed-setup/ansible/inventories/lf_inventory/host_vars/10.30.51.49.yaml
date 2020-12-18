@@ -22,8 +22,9 @@ sysctl:
   kernel:
     watchdog_cpumask: "0,28,56,84"
   vm:
-    nr_hugepages: 8192
+    nr_hugepages: 16384
     max_map_count: 20000
 
 inventory_ipmi_hostname: '10.30.50.46'
 cpu_microarchitecture: "skylake"
+docker_tg: true
