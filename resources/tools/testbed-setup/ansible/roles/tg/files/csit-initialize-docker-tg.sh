@@ -33,7 +33,7 @@ case "${1:-start}" in
             # containers.
             dcr_stc_params+="--privileged "
             # Publish all exposed ports to random ports on the host interfaces.
-            dcr_stc_params+="--publish 600${cnt}:22 "
+            dcr_stc_params+="--publish 600${cnt}:2222 "
             # Automatically remove the container when it exits.
             dcr_stc_params+="--rm "
             # Size of /dev/shm.

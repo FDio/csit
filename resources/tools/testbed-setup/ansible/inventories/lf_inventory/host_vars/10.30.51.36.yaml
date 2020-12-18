@@ -8,7 +8,7 @@ grub:
   isolcpus: "1-15,17-31,33-47,49-63"
   nmi_watchdog: "0"
   nohz_full: "1-15,17-31,33-47,49-63"
-  nosoftlockup: True
+  nosoftlockup: null
   processor.max_cstate: "1"
   rcu_nocbs: "1-15,17-31,33-47,49-63"
 sysctl:
