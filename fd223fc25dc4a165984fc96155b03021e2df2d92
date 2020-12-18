@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4325362a_a0e8a37e",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-18T15:13:05Z",
+      "side": 1,
+      "message": "Remove.",
+      "range": {
+        "startLine": 27,
+        "startChar": 39,
+        "endLine": 27,
+        "endChar": 42
+      },
+      "revId": "fd223fc25dc4a165984fc96155b03021e2df2d92",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
