@@ -291,11 +291,17 @@ function compose_pybot_arguments () {
         if [[ ${tag} == "!"* ]]; then
             EXPANDED_TAGS+=("--exclude" "${tag#$"!"}")
         else
-            EXPANDED_TAGS+=("${SELECTION_MODE}" "${tag}")
+            if [[ ${SELECTION_MODE} == "--test" ]]; then
+                EXPANDED_TAGS+=("--test" "${tag}")
+            else
+                EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}AND${tag}")
+            fi
         fi
     done
 
-    EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}")
+    if [[ ${SELECTION_MODE} == "--test" ]]; then
+        EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}")
+    fi
 }
 
 
