@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fca888c4_08bcf0a6",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2020-12-21T10:07:47Z",
+      "side": 1,
+      "message": "This is not used no? Candidate for removal.",
+      "range": {
+        "startLine": 803,
+        "startChar": 34,
+        "endLine": 803,
+        "endChar": 53
+      },
+      "revId": "f06bef3af8b879a91ca85c4df6196efee916040e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
