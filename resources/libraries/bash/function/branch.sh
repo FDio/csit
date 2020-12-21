@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -57,6 +57,10 @@ function checkout_csit_for_vpp () {
     set -exuo pipefail
 
     case "${1}" in
+        "stable/2009")
+            # LTS branch
+            branch_id="origin/${1/stable\//oper-rls}_lts"
+            ;;
         "stable/"*)
             branch_id="origin/${1/stable\//oper-rls}"
             ;;
