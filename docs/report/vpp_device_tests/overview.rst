@@ -115,7 +115,7 @@ environment:
 |                       | Bridge-Domain MAC switching, IPv4 routing,   |
 |                       | IPv6 routing.                                |
 +-----------------------+----------------------------------------------+
-| COP                   | COP address white-list and black-list        |
+| ADL                   | ADL address allow-list and block-list        |
 |                       | filtering for IPv4 and IPv6 routing.         |
 +-----------------------+----------------------------------------------+
 | IPSec                 | IPSec tunnel and transport modes.            |

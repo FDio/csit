@@ -1064,7 +1064,7 @@ def _generate_url(testbed, test_name):
         bsf = u"features"
     elif u"policer" in test_name:
         bsf = u"features"
-    elif u"cop" in test_name:
+    elif u"adl" in test_name:
         bsf = u"features"
     elif u"nat" in test_name:
         bsf = u"features"
