@@ -56,7 +56,11 @@ function checkout_csit_for_vpp () {
 
     set -exuo pipefail
 
+    lts_branch="stable/2009"
     case "${1}" in
+        "${lts_branch}")
+            branch_id="origin/${1/stable\//oper-rls}_lts"
+            ;;
         "stable/"*)
             branch_id="origin/${1/stable\//oper-rls}"
             ;;
