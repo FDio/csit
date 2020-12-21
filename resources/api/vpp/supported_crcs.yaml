@@ -40,6 +40,10 @@
     acl_interface_list_dump: '0xf9e6675e'  # perf teardown
     acl_interface_set_acl_list: '0x473982bd'  # perf
     acl_interface_set_acl_list_reply: '0xe8d4e804'  # perf
+    adl_allowlist_enable_disable: '0xea88828d'  # dev
+    adl_allowlist_enable_disable_reply: '0xe8d4e804'  # dev
+    adl_interface_enable_disable: '0x5501adee'  # dev
+    adl_interface_enable_disable_reply: '0xe8d4e804'  # dev
     # 6x^ tc01-64B-1c-ethip4udp-ip4base-iacl1sf-10kflows-mrr
     #     tc01-64B-1c-ethip4udp-ip4base-iacl1sl-10kflows-mrr
     # ^^ ip4fwdANDiaclANDacl10AND100_flows
