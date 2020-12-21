@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea6ef863_ce26af5f",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2020-12-21T14:48:02Z",
+      "side": 1,
+      "message": "remove import of non-existing library",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 42
+      },
+      "revId": "1d7acb96235b5df411350499ef18b07c83df41ca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
