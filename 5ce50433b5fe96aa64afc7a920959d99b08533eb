@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "17160ebc_625808f6",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2020-12-22T10:46:48Z",
+      "side": 1,
+      "message": "I added sleep 5 here as a quick measure.\n\nWhen \"service vpp restart\" exits, vpp is not yet fully initialized (DPDK init hasn\u0027t started yet), leading to the possibility of the race condition happening, hence the sleep.\n\nI tried 3 second, but I still observed the i40e issue (I looked at other jobs (without this lock) that could interfere, but there were none, suggesting that sleep 3 is insufficient). With 10 seconds, I didn\u0027t see it. I\u0027m trying 5 seconds now.\n\nIt\u0027s possible that we need something better than simple sleep, but that may be unnecessarily complicated for what is supposed to be a workaround. Something like locking the dir/file in a separate thread and unlocking after all the checks are done.",
+      "range": {
+        "startLine": 78,
+        "startChar": 62,
+        "endLine": 78,
+        "endChar": 73
+      },
+      "revId": "5ce50433b5fe96aa64afc7a920959d99b08533eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
