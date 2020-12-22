@@ -22,6 +22,29 @@
       "revId": "5ce50433b5fe96aa64afc7a920959d99b08533eb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8c41944_44e286d5",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-22T12:15:07Z",
+      "side": 1,
+      "message": "Put the default value into Constants and use it here. That way you do not need to edit suites.",
+      "range": {
+        "startLine": 658,
+        "startChar": 69,
+        "endLine": 658,
+        "endChar": 73
+      },
+      "revId": "5ce50433b5fe96aa64afc7a920959d99b08533eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
