@@ -1,0 +1,239 @@
+# Copyright (c) 2020 Cisco and/or its affiliates.
+#
+# SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
+#
+# Licensed under the Apache License 2.0 or
+# GNU General Public License v2.0 or later;  you may not use this file
+# except in compliance with one of these Licenses. You
+# may obtain a copy of the Licenses at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#     https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+#
+# Note: If this file is linked with Scapy, which is GPLv2+, your use of it
+# must be under GPLv2+.  If at any point in the future it is no longer linked
+# with Scapy (or other GPLv2+ licensed software), you are free to choose Apache 2.
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""Stream profile for T-rex traffic generator.
+
+Stream profile:
+ - Two streams sent in directions 0 --> 1 and 1 --> 0 at the same time.
+ - Packet: ETH / IP /
+ - Direction 0 --> 1:
+   - Source MAC address range:      ca:fe:00:00:00:00 - ca:fe:00:07:a1:1f
+   - Destination MAC address range: fa:ce:00:00:00:00 - fa:ce:00:07:a1:1f
+   - Source IP address range:       10.0.0.0 - 10.7.161.31
+   - Destination IP address range:  20.0.0.0 - 20.7.161.31
+ - Direction 1 --> 0:
+   - Source MAC address range:      fa:ce:00:00:00:00 - fa:ce:00:07:a1:1f
+   - Destination MAC address range: ca:fe:00:00:00:00 - ca:fe:00:07:a1:1f
+   - Source IP address range:       20.0.0.0 - 20.7.161.31
+   - Destination IP address range:  10.0.0.0 - 10.7.161.31
+"""
+
+from trex.stl.api import *
+from profile_trex_stateless_base_class import TrafficStreamsBaseClass
+
+
+class TrafficStreams(TrafficStreamsBaseClass):
+    """Stream profile."""
+
+    def __init__(self):
+        """Initialization and setting of streams' parameters."""
+
+        super(TrafficStreamsBaseClass, self).__init__()
+
+        self.clients = 500000
+
+        # MACs used in packet headers.
+        self.p1_src_start_mac = u"ca:fe:00:00:00:00" # mask: 00:00:FF:FF:FF:FF
+        self.p1_dst_start_mac = u"fa:ce:00:00:00:00" # mask: 00:00:FF:FF:FF:FF
+
+        self.p2_src_start_mac = u"fa:ce:00:00:00:00" # mask: 00:00:FF:FF:FF:FF
+        self.p2_dst_start_mac = u"ca:fe:00:00:00:00" # mask: 00:00:FF:FF:FF:FF
+
+        # IPs used in packet headers.
+        self.p1_src_start_ip = u"10.0.0.0"
+        self.p1_src_end_ip = u"10.7.161.31"
+
+        self.p1_dst_start_ip = u"20.0.0.0"
+        self.p1_dst_end_ip = u"20.7.161.31"
+
+        self.p2_src_start_ip = u"20.0.0.0"
+        self.p2_src_end_ip = u"20.7.161.31"
+
+        self.p2_dst_start_ip = u"10.0.0.0"
+        self.p2_dst_end_ip = u"10.7.161.31"
+
+    def define_packets(self):
+        """Defines the packets to be sent from the traffic generator.
+
+        Packet definition: | ETH | IP |
+
+        :returns: Packets to be sent from the traffic generator.
+        :rtype: tuple
+        """
+
+        # Direction 0 --> 1
+        base_pkt_a = (
+            Ether(
+                src=self.p1_src_start_mac,
+                dst=self.p1_dst_start_mac
+            ) /
+            IP(
+                src=self.p1_src_start_ip,
+                dst=self.p1_dst_start_ip,
+                proto=61
+            )
+        )
+        # Direction 1 --> 0
+        base_pkt_b = (
+          Ether(
+              src=self.p2_src_start_mac,
+              dst=self.p2_dst_start_mac
+          ) /
+          IP(
+              src=self.p2_src_start_ip,
+              dst=self.p2_dst_start_ip,
+              proto=61
+          )
+        )
+
+        # Direction 0 --> 1
+        vm1 = STLScVmRaw(
+            [
+                STLVmFlowVarRepeatableRandom(
+                    name=u"mac_src",
+                    min_value=0,
+                    max_value=self.clients-1,
+                    size=4,
+                    seed=1,
+                    # Cycle length. TRex does not allow any higher value.
+                    limit=(2**24 - 1)
+                ),
+                STLVmFlowVarRepeatableRandom(
+                    name=u"mac_dst",
+                    min_value=0,
+                    max_value=self.clients-1,
+                    size=4,
+                    # Using a different seed to be extra sure
+                    # nothing useful gets cached.
+                    seed=2,
+                    limit=(2**24 - 1)
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"mac_src",
+                    pkt_offset= 8
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"mac_dst",
+                    pkt_offset= 2
+                ),
+                STLVmFlowVarRepeatableRandom(
+                    name=u"ip_src",
+                    min_value=self.p1_src_start_ip,
+                    max_value=self.p1_src_end_ip,
+                    size=4,
+                    # Using a different seed to be extra sure
+                    # nothing useful gets cached.
+                    seed=3,
+                    limit=(2**24 - 1)
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"ip_src",
+                    pkt_offset=u"IP.src"
+                ),
+                STLVmFlowVarRepeatableRandom(
+                    name=u"ip_dst",
+                    min_value=self.p1_dst_start_ip,
+                    max_value=self.p1_dst_end_ip,
+                    size=4,
+                    # Using a different seed to be extra sure
+                    # nothing useful gets cached.
+                    seed=4,
+                    limit=(2**24 - 1)
+                ),
+                STLVmWrFlowVar(
+                      fv_name=u"ip_dst",
+                      pkt_offset=u"IP.dst"
+                ),
+                STLVmFixIpv4(
+                      offset=u"IP"
+                )
+            ]
+        )
+        # Direction 1 --> 0
+        vm2 = STLScVmRaw(
+            [
+                STLVmFlowVarRepeatableRandom(
+                    name=u"mac_src",
+                    min_value=0,
+                    max_value=self.clients-1,
+                    size=4,
+                    seed=1,
+                    limit=(2**24 - 1)
+                ),
+                STLVmFlowVarRepeatableRandom(
+                    name=u"mac_dst",
+                    min_value=0,
+                    max_value=self.clients-1,
+                    size=4,
+                    seed=2,
+                    limit=(2**24 - 1)
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"mac_src",
+                    pkt_offset= 8
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"mac_dst",
+                    pkt_offset= 2
+                ),
+                STLVmFlowVarRepeatableRandom(
+                    name=u"ip_src",
+                    min_value=self.p2_src_start_ip,
+                    max_value=self.p2_src_end_ip,
+                    size=4,
+                    seed=3,
+                    limit=(2**24 - 1)
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"ip_src",
+                    pkt_offset=u"IP.src"
+                ),
+                STLVmFlowVarRepeatableRandom(
+                    name=u"ip_dst",
+                    min_value=self.p2_dst_start_ip,
+                    max_value=self.p2_dst_end_ip,
+                    size=4,
+                    seed=4,
+                    limit=(2**24 - 1)
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"ip_dst",
+                    pkt_offset=u"IP.dst"
+                ),
+                STLVmFixIpv4(
+                    offset=u"IP"
+                )
+            ]
+        )
+
+        return base_pkt_a, base_pkt_b, vm1, vm2
+
+
+def register():
+    """Register this traffic profile to T-rex.
+
+    Do not change this function.
+
+    :return: Traffic streams.
+    :rtype: Object
+    """
+    return TrafficStreams()
