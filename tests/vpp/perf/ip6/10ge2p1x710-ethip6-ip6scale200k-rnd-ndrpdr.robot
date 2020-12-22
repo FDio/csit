@@ -17,7 +17,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP6FWD | SCALE | FIB_200K | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip6-ip6scale200k
+| ... | ethip6-ip6scale200k-rnd
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -43,7 +43,7 @@
 | ... | contains two L3 flow-groups (flow-group per direction, 100k flows per\
 | ... | flow-group) with all packets containing Ethernet header, IPv6 header\
 | ... | with IP and static payload. MAC addresses are matching MAC addresses\
-| ... | of the TG node interfaces. Incrementing of IP.dst (IPv6 destination\
+| ... | of the TG node interfaces. Randomization of IP.dst (IPv6 destination\
 | ... | address) field is applied to both streams.
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
@@ -60,7 +60,7 @@
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${100000}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-ethip6-ip6dst${rts_per_flow}
+| ${traffic_profile}= | trex-stl-ethip6-ip6dst${rts_per_flow}-rnd
 
 *** Keywords ***
 | Local Template
@@ -90,50 +90,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 78B-1c-ethip6-ip6scale200k-ndrpdr
+| 78B-1c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | 78B | 1C
 | | frame_size=${78} | phy_cores=${1}
 
-| 78B-2c-ethip6-ip6scale200k-ndrpdr
+| 78B-2c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | 78B | 2C
 | | frame_size=${78} | phy_cores=${2}
 
-| 78B-4c-ethip6-ip6scale200k-ndrpdr
+| 78B-4c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | 78B | 4C
 | | frame_size=${78} | phy_cores=${4}
 
-| 1518B-1c-ethip6-ip6scale200k-ndrpdr
+| 1518B-1c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip6-ip6scale200k-ndrpdr
+| 1518B-2c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip6-ip6scale200k-ndrpdr
+| 1518B-4c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip6-ip6scale200k-ndrpdr
+| 9000B-1c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip6-ip6scale200k-ndrpdr
+| 9000B-2c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip6-ip6scale200k-ndrpdr
+| 9000B-4c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip6-ip6scale200k-ndrpdr
+| IMIX-1c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip6-ip6scale200k-ndrpdr
+| IMIX-2c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip6-ip6scale200k-ndrpdr
+| IMIX-4c-ethip6-ip6scale200k-rnd-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
