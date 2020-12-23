@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5c611a41_00d64a2c",
+        "filename": "resources/libraries/python/Adl.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2020-12-23T13:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f52c099_e1b2c9d7",
+      "range": {
+        "startLine": 26,
+        "startChar": 19,
+        "endLine": 26,
+        "endChar": 24
+      },
+      "revId": "092c73d651a64dd0dcab2e736fbf450285268574",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26688718_be2a0300",
         "filename": "resources/libraries/python/Adl.py",
         "patchSetId": 20
@@ -45,6 +69,30 @@
       "revId": "092c73d651a64dd0dcab2e736fbf450285268574",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c5a10f5_0bf6f0a9",
+        "filename": "resources/libraries/python/Adl.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2020-12-23T13:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26688718_be2a0300",
+      "range": {
+        "startLine": 28,
+        "startChar": 37,
+        "endLine": 28,
+        "endChar": 42
+      },
+      "revId": "092c73d651a64dd0dcab2e736fbf450285268574",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d8a6358c_7a53817f",
+        "filename": "resources/libraries/python/Adl.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2020-12-23T13:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b03500d4_e1bef68b",
+      "range": {
+        "startLine": 45,
+        "startChar": 38,
+        "endLine": 45,
+        "endChar": 43
+      },
+      "revId": "092c73d651a64dd0dcab2e736fbf450285268574",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c80d8885_b85b2cc0",
         "filename": "resources/libraries/python/Adl.py",
         "patchSetId": 20
@@ -91,6 +163,30 @@
       "revId": "092c73d651a64dd0dcab2e736fbf450285268574",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d76681d7_5368ac91",
+        "filename": "resources/libraries/python/Adl.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2020-12-23T13:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c80d8885_b85b2cc0",
+      "range": {
+        "startLine": 62,
+        "startChar": 37,
+        "endLine": 62,
+        "endChar": 42
+      },
+      "revId": "092c73d651a64dd0dcab2e736fbf450285268574",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
