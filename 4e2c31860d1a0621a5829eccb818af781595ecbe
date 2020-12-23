@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8162a1a4_384d1dad",
+        "filename": "docs/job_specs/report_coverage/3n-tsh/dpdk-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2020-12-23T14:02:04Z",
+      "side": 1,
+      "message": "Worth merging just for this fix.",
+      "range": {
+        "startLine": 1,
+        "startChar": 26,
+        "endLine": 1,
+        "endChar": 29
+      },
+      "revId": "4e2c31860d1a0621a5829eccb818af781595ecbe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
