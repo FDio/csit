@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "10fd144d_3ac30213",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1496
+      },
+      "writtenOn": "2020-12-30T04:42:04Z",
+      "side": 1,
+      "message": "Can you explain this further?",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 59
+      },
+      "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15343087_5f841e96",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1496
+      },
+      "writtenOn": "2020-12-30T04:42:04Z",
+      "side": 1,
+      "message": "Why do you manipulate the sys.path?",
+      "range": {
+        "startLine": 261,
+        "startChar": 11,
+        "endLine": 262,
+        "endChar": 30
+      },
+      "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
