@@ -43,7 +43,7 @@ considers two types of bash files:
 
   + Sources bash libraries and calls functions defined there.
 
-+ Library file: To be sourced by entry scipts, possibly also by other libraries.
++ Library file: To be sourced by entry scripts, possibly also by other libraries.
 
   + Sources other libraries for functions it needs.
 
@@ -89,7 +89,7 @@ Safety
       so it is NOT REQUIRED to escape the quotes in deeper levels.
 
     + Both backtics and "dollar round-bracket" provide command substitution.
-      The folowing rules are RECOMMENDED:
+      The following rules are RECOMMENDED:
 
       + For simple constructs, use "dollar round-bracket".
 
@@ -155,7 +155,7 @@ Bash options
 
 + Code MUST apply "-x" to make debugging easier.
 
-  + Code MAY temporarily supress such output in order to avoid spam
+  + Code MAY temporarily suppress such output in order to avoid spam
     (e.g. in long busy loops), but it is still NOT RECOMMENDED to do so.
 
 + Code MUST apply "-e" for early error detection.
@@ -166,14 +166,14 @@ Bash options
   + Code MAY apply "+e" temporarily for commands which (possibly nonzero)
     exit code it interested in.
 
-    + Code MUST to store "$?" and call "set -e" immediatelly afterwards.
+    + Code MUST to store "$?" and call "set -e" immediately afterwards.
 
     + Code MUST NOT use this approach when calling functions.
 
       + That is because functions are instructed to apply "set -e" on their own
         which (when triggered) will exit the whole entry script.
 
-        + Unless overriden by ERR trap.
+        + Unless overridden by ERR trap.
           But code SHOULD NOT set any ERR trap.
 
       + If code needs exit code of a function, it is RECOMMENDED to use
@@ -198,7 +198,7 @@ Bash options
 + Code MUST apply "-o pipefail" to make sure "-e" picks errors
   inside piped construct.
 
-  + Code MAY use "|| true" inside a pipe construct, in the (inprobable) case
+  + Code MAY use "|| true" inside a pipe construct, in the (improbable) case
     when non-zero exit code still results in a meaningful pipe output.
 
 + All together: "set -exuo pipefail".
@@ -254,7 +254,7 @@ here are some pros and cons:
   + There is zero risk of argument-less invocation picking arguments
     from parent context.
 
-    + This safety feature is the main reason for chosing the "function way".
+    + This safety feature is the main reason for choosing the "function way".
 
     + This allows code blocks to support optional arguments.
 
@@ -300,7 +300,7 @@ This document describes two kinds of variables: called "local" and "global".
 TODO: Find better adjectives for the two kinds defined here,
 if the usual bash meaning makes reader forget other specifics.
 For example, variable with lowercase name and not marked by "local" builtin,
-is cosidered "global" from bash point of view, but "local" from this document
+is considered "global" from bash point of view, but "local" from this document
 point of view.
 
 + Local variables:
@@ -405,7 +405,7 @@ Working directory handling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 + Functions SHOULD act correctly without neither assuming
-  what the currect working directory is, nor changing it.
+  what the current working directory is, nor changing it.
 
   + That is why global variables and arguments SHOULD contain
     (normalized) full paths.
@@ -447,7 +447,7 @@ Working directory handling
   + Motivation: Callers MAY call several functions with common
     directory of interest.
 
-    + Example: Several dowload actions to execute in sequence,
+    + Example: Several download actions to execute in sequence,
       implemented as functions assuming ${DOWNLOAD_DIR}
       is the working directory.
 
@@ -457,12 +457,12 @@ Working directory handling
   + Such functions SHOULD use command "pushd" to change the working directory.
 
   + Such functions SHOULD use "trap 'trap - RETURN; popd' RETURN"
-    imediately after the pushd.
+    immediately after the pushd.
 
     + In that case, the "trap - RETURN" part MUST be included,
       to restore any trap set by ancestor.
 
-    + Functions MAY call "trap - RETURN; popd" exlicitly.
+    + Functions MAY call "trap - RETURN; popd" explicitly.
 
     + Such functions MUST NOT call another pushd (before an explicit popd),
       as traps do not stack within a function.
@@ -543,7 +543,7 @@ Library documentation
 
 + Then SHALL be the function definitions, and inside:
 
-  + The body SHALL sart with the function documentation explaining API contract.
+  + The body SHALL start with the function documentation explaining API contract.
     Similar to Robot [Documentation] or Python function-level docstring.
 
     + See below.
@@ -553,7 +553,7 @@ Library documentation
     + TODO: Document (in an appropriate place) how TODOs differ from FIXMEs.
 
   + "set -exuo pipefail" SHALL be the first executable line
-    in the function body, except functions which legitimely need
+    in the function body, except functions which legitimately need
     different flags. Those SHALL also start with appropriate "set" command(s).
 
   + Lines containing code itself SHALL follow.
@@ -566,7 +566,7 @@ Library documentation
 More details on function documentation:
 
 Generally, code SHOULD use comments to explain anything
-not obvious from the funtion name.
+not obvious from the functions name.
 
 + Function documentation SHOULD start with short description of function
   operation or motivation, but only if not obvious from function name.
@@ -602,7 +602,7 @@ not obvious from the funtion name.
   + Documentation SHOULD list all external commands executed.
 
     + Because their behavior can change "out of bounds", meaning
-      the contributor changing the implementation of the extrenal command
+      the contributor changing the implementation of the external command
       can be unaware of this particular function interested in its side effects.
 
   + Documentation SHOULD explain exit code (coming from
