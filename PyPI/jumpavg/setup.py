@@ -41,7 +41,7 @@ setup(
     ],
     keywords=u"progression regression anomaly detection statistics bits",
     packages=find_packages(exclude=[]),
-    python_requires="~=3.6"
+    python_requires="~=3.6",
     install_requires=[],
     # TODO: Include simulator and tests.
     extras_require={
