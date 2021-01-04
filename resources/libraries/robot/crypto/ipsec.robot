@@ -96,7 +96,7 @@
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_if1_ip6} | ${TG_pf1_mac}[0]
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${tg_if2_ip6} | ${TG_pf2_mac}[0]
-| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
+| | Vpp All RA Suppress Link Layer | ${nodes}
 | | Vpp Route Add
 | | ... | ${dut1} | ${tg_host_ip6} | ${ip6_plen_rt} | gateway=${tg_if1_ip6}
 | | ... | interface=${DUT1_${int}1}[0]

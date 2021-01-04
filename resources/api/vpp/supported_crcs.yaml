@@ -30,8 +30,8 @@
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 # https://logs.fd.io/production/vex-yul-rot-jenkins-1
-# /vpp-merge-master-ubuntu1804-x86_64/184/
-21.01-rc0~283:
+# /vpp-merge-master-ubuntu1804/1195/
+20.05-rc0~698:
     acl_add_replace: '0x1cabdeab'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
     acl_details: '0x7a97f21c'  # perf teardown
@@ -47,14 +47,12 @@
     # 6x^ tc01-64B-1c-ethip4udp-ip4base-iacl1sf-10kflows-mrr
     #     tc01-64B-1c-ethip4udp-ip4base-iacl1sl-10kflows-mrr
     # ^^ ip4fwdANDiaclANDacl10AND100_flows
-    add_node_next: '0x2457116d'  # dev
-    add_node_next_reply: '0x2ed75f32'  # dev
     avf_create: '0xdaab8ae2'  # dev
     avf_create_reply: '0x5383d31f'  # dev
-    bond_add_member: '0xe7d14948'  # perf
-    bond_add_member_reply: '0xe8d4e804'  # perf
-    bond_create2: '0x912fda76'  # perf
-    bond_create2_reply: '0x5383d31f'  # perf
+    bond_create: '0x48883c7e'  # perf
+    bond_create_reply: '0x5383d31f'  # perf
+    bond_enslave: '0x076ecfa7'  # perf
+    bond_enslave_reply: '0xe8d4e804'  # perf
     # 4x^ tc01-64B-1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
     # ^ l2xcfwdANDlbond_1lANDnf_testpmd
     bridge_domain_add_del: '0x600b7170'  # dev
@@ -80,6 +78,8 @@
     create_vlan_subif: '0xaf34ac8b'  # dev
     create_vlan_subif_reply: '0x5383d31f'  # dev
     det44_add_del_map: '0x1150a190'  # perf
+    det44_get_timeouts: '0x51077d14'  # perf
+    det44_get_timeouts_reply: '0x3c4df4e1'  # perf
     det44_interface_add_del_feature: '0xdc17a836'  # perf
     det44_interface_add_del_feature_reply: '0xe8d4e804'  # perf
     det44_interface_details: '0xe60cc5be'  # perf teardown
@@ -87,15 +87,24 @@
     det44_map_details: '0xad91dc83'  # perf teardown
     det44_map_dump: '0x51077d14'  # perf teardown
     det44_add_del_map_reply: '0xe8d4e804'  # perf teardown
-    det44_plugin_enable_disable: '0x617b6bf8'  # perf
+    det44_plugin_enable_disable: '0xfc4b5d73'  # perf
     det44_plugin_enable_disable_reply: '0xe8d4e804'  # perf
     det44_session_dump: '0xe45a3af7'  # perf teardown
-    # TODO: Which test to run to verify det44_* messages?
     # dhcp_proxy_dump / details # honeycomb
-    geneve_add_del_tunnel2: '0x8c2a9999'  # dev
-    geneve_add_del_tunnel2_reply: '0x5383d31f'  # dev
-    geneve_tunnel_details: '0xe27e2748'  # dev
-    geneve_tunnel_dump: '0xf9e6675e'  # dev
+    gbp_bridge_domain_add: '0x8454bfdf'  # dev
+    gbp_bridge_domain_add_reply: '0xe8d4e804'  # dev
+    gbp_contract_add_del: '0x553e275b'  # dev
+    gbp_contract_add_del_reply: '0x1992deab'  # dev
+    gbp_endpoint_add: '0x9ce16d5a'  # dev
+    gbp_endpoint_add_reply: '0x1dd3ff3e'  # dev
+    gbp_endpoint_group_add: '0x8e0f4054'  # dev
+    gbp_endpoint_group_add_reply: '0xe8d4e804'  # dev
+    gbp_ext_itf_add_del: '0x12ed5700'  # dev
+    gbp_ext_itf_add_del_reply: '0xe8d4e804'  # dev
+    gbp_route_domain_add: '0x2d0afe38'  # dev
+    gbp_route_domain_add_reply: '0xe8d4e804'  # dev
+    gbp_subnet_add_del: '0x888aca35'  # dev
+    gbp_subnet_add_del_reply: '0xe8d4e804'  # dev
     gpe_enable_disable: '0xc264d7bf'  # dev
     gpe_enable_disable_reply: '0xe8d4e804'  # dev
     # gre_tunnel_add_del / reply # unused L1 keyword: create_gre_tunnel_interface
@@ -113,16 +122,10 @@
     # ip_source_check_interface_add_del / reply # unused L1 keyword vpp_ip_source_check_setup
     ip_table_add_del: '0x0ffdaec0'  # dev
     ip_table_add_del_reply: '0xe8d4e804'  # dev
-    ipip_add_tunnel: '0xa9decfcd'  # dev
-    ipip_add_tunnel_reply: '0x5383d31f'  # dev
     ipsec_interface_add_del_spd: '0x80f80cbb'  # dev
     ipsec_interface_add_del_spd_reply: '0xe8d4e804'  # dev
-    ipsec_sa_v2_details: '0xe2130051'  # dev
-    ipsec_sa_v2_dump: '0x2076c2f4'  # dev
     ipsec_sad_entry_add_del: '0xb8def364'  # dev
     ipsec_sad_entry_add_del_reply: '0x9ffac24b'  # dev
-    ipsec_sad_entry_add_del_v2: '0xaca78b27'  # dev
-    ipsec_sad_entry_add_del_v2_reply: '0x9ffac24b'  # dev
     ipsec_select_backend: '0x5bcfd3b7'  # perf
     ipsec_select_backend_reply: '0xe8d4e804'  # perf
     # ^^ tc01-64B-1c-ethip4ipsec1tnlsw-ip4base-int-aes256gcm-mrr
@@ -131,8 +134,8 @@
     ipsec_spd_add_del_reply: '0xe8d4e804'  # dev
     ipsec_spd_entry_add_del: '0x9f384b8d'  # dev
     ipsec_spd_entry_add_del_reply: '0x9ffac24b'  # dev
-    ipsec_tunnel_protect_update: '0x143f155d'  # dev
-    ipsec_tunnel_protect_update_reply: '0xe8d4e804'  # dev
+    ipsec_tunnel_if_add_del: '0x2b135e68'  # perf
+    ipsec_tunnel_if_add_del_reply: '0x5383d31f'  # perf
     ipsec_set_async_mode: '0xa6465f7c'  #perf
     ipsec_set_async_mode_reply: '0xe8d4e804'  #perf
     # ^^ tc01-64B-1c-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-mrr
@@ -197,21 +200,20 @@
     nat44_interface_addr_dump: '0x51077d14'  # dev teardown
     nat44_interface_details: '0x5d286289'  # dev teardown
     nat44_interface_dump: '0x51077d14'  # dev teardown
-    nat44_plugin_enable_disable: '0xdea0d501'  # dev
-    nat44_plugin_enable_disable_reply: '0xe8d4e804'  # dev
-    nat44_show_running_config: '0x51077d14'  # dev teardown
-    nat44_show_running_config_reply: '0x93d8e267'  # dev teardown
     nat44_static_mapping_details: '0x1a433ef7'  # dev teardown
     nat44_static_mapping_dump: '0x51077d14'  # dev teardown
     nat44_user_details: '0x355896c2'  # dev teardown
     nat44_user_dump: '0x51077d14'  # dev teardown
     nat44_user_session_details: '0x1965fd69'  # dev teardown
     nat44_user_session_dump: '0xe1899c98'  # dev teardown
+    nat_show_config: '0x51077d14'  # dev teardown
+    nat_show_config_reply: '0x7903ef06'  # dev teardown
     nat_worker_details: '0x84bf06fc'  # dev teardown
     nat_worker_dump: '0x51077d14'  # dev teardown
-    # TODO: Which test to run to verify nat* messages?
-    nsim_configure2: '0x64de8ed3'  # perf
-    nsim_configure2_reply: '0xe8d4e804'  # perf
+    # 6x^ tc01-64B-1c-ethip4udp-snat44det-h1-p1-s1-mrr
+    # ^ nat44NOTscaleNOTsrc_user_1
+    nsim_configure: '0x16ed400f'  # perf
+    nsim_configure_reply: '0xe8d4e804'  # perf
     nsim_output_feature_enable_disable: '0x3865946c'  # perf
     nsim_output_feature_enable_disable_reply: '0xe8d4e804'  # perf
     # 4x^ tc01-9000B-1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps
@@ -245,11 +247,11 @@
     sr_steering_pol_dump: '0x51077d14'  # perf teardown
     # 14x^ tc01-78B-1c-ethip6ip6-ip6base-srv6enc1sid-mrr
     # ^ srv6_1sid
-    sw_bond_interface_details: '0x9428a69c'  # perf
-    sw_bond_interface_dump: '0xf9e6675e'  # perf
-    # ^^ see bond_*
     sw_interface_add_del_address: '0x5803d5c4'  # dev
     sw_interface_add_del_address_reply: '0xe8d4e804'  # dev
+    sw_interface_bond_details: '0xf5ef2106'  # perf
+    sw_interface_bond_dump: '0x51077d14'  # perf
+    # ^^ see bond_*
     sw_interface_details: '0x17b69fa2'  # dev setup
     sw_interface_dump: '0xaa610c27'  # dev setup
     # sw_interface_get_table / reply # honeycomb
@@ -261,8 +263,6 @@
     # ^ dot1qANDl2bdmaclrnANDbaseANDmemif
     sw_interface_set_flags: '0x6a2b491a'  # dev
     sw_interface_set_flags_reply: '0xe8d4e804'  # dev
-    sw_interface_set_geneve_bypass: '0x65247409'  # dev
-    sw_interface_set_geneve_bypass_reply: '0xe8d4e804'  # dev
     sw_interface_set_l2_bridge: '0x2e483cd0'  # dev
     sw_interface_set_l2_bridge_reply: '0xe8d4e804'  # dev
     sw_interface_set_l2_xconnect: '0x1aaa2dbb'  # dev
@@ -279,14 +279,14 @@
     # ^^ see ipsec_tunnel_if_add_del
     sw_interface_set_vxlan_bypass: '0x65247409'  # dev
     sw_interface_set_vxlan_bypass_reply: '0xe8d4e804'  # dev
+    sw_interface_slave_details: '0x3c4a0e23'  # perf
+    sw_interface_slave_dump: '0xf9e6675e'  # perf
+    # ^^ see bond_*
     # sw_interface_span_dump / details # honeycomb
     sw_interface_tap_v2_dump: '0xf9e6675e'  # dev
     sw_interface_tap_v2_details: '0xe53c16de'  # dev
     sw_interface_vhost_user_details: '0x98530df1'  # dev
     sw_interface_vhost_user_dump: '0xf9e6675e'  # dev
-    sw_member_interface_details: '0x3c4a0e23'  # perf
-    sw_member_interface_dump: '0xf9e6675e'  # perf
-    # ^^ see bond_*
     tap_create_v2: '0x445835fd'  # dev
     tap_create_v2_reply: '0x5383d31f'  # dev
     vxlan_add_del_tunnel: '0xa35dc8f5'  # dev

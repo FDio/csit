@@ -50,9 +50,9 @@
 | | ... | *Test variables read:*
 | | ... | - n_sessions - Expected number of opened sessions.
 | |
-| | ${max_sessions}= | Compute Max Translations Per Thread
-| | ... | ${n_sessions} | ${thr_count_int}
-| | Enable NAT44 Plugin | ${dut1} | mode=${nat_mode} | sessions=${max_sessions}
+#| | ${max_sessions}= | Compute Max Translations Per Thread
+#| | ... | ${n_sessions} | ${thr_count_int}
+#| | Enable NAT44 Plugin | ${dut1} | mode=${nat_mode} | sessions=${max_sessions}
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
 | | ${resetter} = | Set NAT44 Address Range
@@ -234,6 +234,7 @@
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
 | | Configure deterministic mode for NAT44
 | | ... | ${dut1} | ${in_net} | ${in_mask} | ${out_net} | ${out_mask}
+#| | Show DET44 timeouts | ${dut1}
 
 | Show DET44 verbose
 | | [Documentation] | Get DET44 settings on the node.

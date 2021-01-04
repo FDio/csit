@@ -248,7 +248,7 @@
 | | Run Keyword If | ${dut2_status}
 | | ... | VPP Interface Set IP Address
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_if2_ip6} | ${prefix}
-| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
 | | FOR | ${number} | IN RANGE | 2 | ${dst_addr_nr}+2
 | | | ${hexa_nr}= | Convert To Hex | ${number}
 | | | VPP Add IP Neighbor
@@ -400,7 +400,7 @@
 | | Run Keyword If | ${dut2_status}
 | | ... | VPP Interface Set IP Address | ${dut2} | ${dut2-memif-1-if2}
 | | ... | ${dut2-memif-1-if2_ip6} | ${mem_prefix}
-| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
 | | Run Keyword If | ${dut2_status}
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6}
