@@ -94,7 +94,6 @@
 | | ... | ${DUT1_${int}2_mac}[0] | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${laddr_ip4} | ${raddr_ip4}
 | | ... | ${tun_if1_ip4} | ${tun_if2_ip4}
-| | And Show Ipsec Security Association | ${dut1}
 
 *** Test Cases ***
 | 154B-ethip4ipsec1tnlsw-ip4base-int-aes-128-cbc-sha-512-256-dev
