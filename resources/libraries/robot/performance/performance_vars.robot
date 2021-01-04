@@ -369,94 +369,94 @@
 | | ${use_latency} = | Get Variable Value | ${use_latency} | ${PERF_USE_LATENCY}
 | | Return From Keyword | ${use_latency}
 
-| Set Jumbo
-| | [Documentation]
-| | ... | For jumbo frames detection, the maximal packet size is relevant,
-| | ... | encapsulation overhead (if any) has effect.
-| |
-| | ... | This keyword computes jumbo boolean (some suites need that for
-| | ... | configuration decisions).
-| | ... | To streamline suite autogeneration, both input and output values
-| | ... | are communicated as test (or broader scope) variables,
-| | ... | instead of explicit arguments and return values.
-| |
-| | ... | *Test (or broader scope) variables read:*
-| | ... | - overhead - Overhead in bytes; default value: 0. Type: integer
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
-| | ... | string
-| |
-| | ... | *Test variables set:*
-| | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
-| | ... | enabled. Type: boolean
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Set Jumbo \|
-| |
-| | # Already called by Set Max Rate And Jumbo, but some suites (e.g. device)
-| | # are calling this directly.
-| | Set Numeric Frame Sizes
-| | ${jumbo} = | Set Variable If | ${max_frame_size} < 1522
-| | ... | ${False} | ${True}
-| | Set Test Variable | \${jumbo}
+#| Set Jumbo
+#| | [Documentation]
+#| | ... | For jumbo frames detection, the maximal packet size is relevant,
+#| | ... | encapsulation overhead (if any) has effect.
+#| |
+#| | ... | This keyword computes jumbo boolean (some suites need that for
+#| | ... | configuration decisions).
+#| | ... | To streamline suite autogeneration, both input and output values
+#| | ... | are communicated as test (or broader scope) variables,
+#| | ... | instead of explicit arguments and return values.
+#| |
+#| | ... | *Test (or broader scope) variables read:*
+#| | ... | - overhead - Overhead in bytes; default value: 0. Type: integer
+#| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+#| | ... | string
+#| |
+#| | ... | *Test variables set:*
+#| | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
+#| | ... | enabled. Type: boolean
+#| |
+#| | ... | *Example:*
+#| |
+#| | ... | \| Set Jumbo \|
+#| |
+#| | # Already called by Set Max Rate And Jumbo, but some suites (e.g. device)
+#| | # are calling this directly.
+#| | Set Numeric Frame Sizes
+#| | ${jumbo} = | Set Variable If | ${max_frame_size} < 1522
+#| | ... | ${False} | ${True}
+#| | Set Test Variable | \${jumbo}
 
-| Set Max Rate And Jumbo
-| | [Documentation]
-| | ... | Input framesize can be either integer in case of a single packet
-| | ... | in stream, or IMIX string defining mix of packets.
-| | ... | For jumbo frames detection, the maximal packet size is relevant.
-| | ... | For maximal transmit rate, the average packet size is relevant.
-| | ... | In both cases, encapsulation overhead (if any) has effect.
-| | ... | The maximal rate is computed from NIC name.
-| | ... | The implementation works by mapping from exact
-| | ... | whitelisted NIC names.
-| | ... | The mapping is hardcoded in nic_limits.yaml
-| | ... | TODO: Make the mapping from NIC names case insensistive.
-| |
-| | ... | This keyword computes maximal unidirectional transmit rate
-| | ... | and jumbo boolean (some suites need that for configuration decisions).
-| | ... | To streamline suite autogeneration, both input and output values
-| | ... | are communicated as test (or broader scope) variables,
-| | ... | instead of explicit arguments and return values.
-| |
-| | ... | If this keyword detects the test is interested in (unidirectional)
-| | ... | transactons per second maximal rate (tps), that is returned (not pps).
-| |
-| | ... | *Test (or broader scope) variables read:*
-| | ... | - nic_name - Name of bottleneck NIC. Type: string
-| | ... | - overhead - Overhead in bytes; default value: 0. Type: integer
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
-| | ... | string
-| | ... | - packets_per_transaction_and_direction - Pps-tps conversion.
-| | ... | Optional, default 1.
-| |
-| | ... | *Test variables set:*
-| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
-| | ... | This never exceeds bandwidth on TG-DUT nor DUT-DUT links.
-| | ... | Type: float
-| | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
-| | ... | enabled. Type: boolean
-| | ... | avg_frame_size - Average frame size including overhead. Type: float
-| | ... | max_frame_size - Maximal frame size including overhead. Type: float
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Set Max Rate And Jumbo \|
-| |
-| | # TODO: Re-check overhead values in suites with both traffics encapsulated.
-| | # TODO: Improve layered setup to detect encap/decap and update overhead.
-| | ${pps_limit} = | Get From Dictionary
-| | ... | ${NIC_NAME_TO_PPS_LIMIT} | ${nic_name}
-| | ${bps_limit} = | Get From Dictionary
-| | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}
-| | Set Numeric Frame Sizes
-| | ${rate} = | Evaluate | ${bps_limit} / ((${avg_frame_size} + 20.0) * 8)
-| | ${max_rate} = | Set Variable If | ${rate} > ${pps_limit}
-| | ... | ${pps_limit} | ${rate}
-| | ${pptad} = | Get Packets Per Transaction And Direction
-| | ${max_rate} = | Evaluate | ${max_rate} / ${pptad}
-| | Set Test Variable | \${max_rate}
-| | Set Jumbo
+#| Set Max Rate And Jumbo
+#| | [Documentation]
+#| | ... | Input framesize can be either integer in case of a single packet
+#| | ... | in stream, or IMIX string defining mix of packets.
+#| | ... | For jumbo frames detection, the maximal packet size is relevant.
+#| | ... | For maximal transmit rate, the average packet size is relevant.
+#| | ... | In both cases, encapsulation overhead (if any) has effect.
+#| | ... | The maximal rate is computed from NIC name.
+#| | ... | The implementation works by mapping from exact
+#| | ... | whitelisted NIC names.
+#| | ... | The mapping is hardcoded in nic_limits.yaml
+#| | ... | TODO: Make the mapping from NIC names case insensistive.
+#| |
+#| | ... | This keyword computes maximal unidirectional transmit rate
+#| | ... | and jumbo boolean (some suites need that for configuration decisions).
+#| | ... | To streamline suite autogeneration, both input and output values
+#| | ... | are communicated as test (or broader scope) variables,
+#| | ... | instead of explicit arguments and return values.
+#| |
+#| | ... | If this keyword detects the test is interested in (unidirectional)
+#| | ... | transactons per second maximal rate (tps), that is returned (not pps).
+#| |
+#| | ... | *Test (or broader scope) variables read:*
+#| | ... | - nic_name - Name of bottleneck NIC. Type: string
+#| | ... | - overhead - Overhead in bytes; default value: 0. Type: integer
+#| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
+#| | ... | string
+#| | ... | - packets_per_transaction_and_direction - Pps-tps conversion.
+#| | ... | Optional, default 1.
+#| |
+#| | ... | *Test variables set:*
+#| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
+#| | ... | This never exceeds bandwidth on TG-DUT nor DUT-DUT links.
+#| | ... | Type: float
+#| | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
+#| | ... | enabled. Type: boolean
+#| | ... | avg_frame_size - Average frame size including overhead. Type: float
+#| | ... | max_frame_size - Maximal frame size including overhead. Type: float
+#| |
+#| | ... | *Example:*
+#| |
+#| | ... | \| Set Max Rate And Jumbo \|
+#| |
+#| | # TODO: Re-check overhead values in suites with both traffics encapsulated.
+#| | # TODO: Improve layered setup to detect encap/decap and update overhead.
+#| | ${pps_limit} = | Get From Dictionary
+#| | ... | ${NIC_NAME_TO_PPS_LIMIT} | ${nic_name}
+#| | ${bps_limit} = | Get From Dictionary
+#| | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}
+#| | Set Numeric Frame Sizes
+#| | ${rate} = | Evaluate | ${bps_limit} / ((${avg_frame_size} + 20.0) * 8)
+#| | ${max_rate} = | Set Variable If | ${rate} > ${pps_limit}
+#| | ... | ${pps_limit} | ${rate}
+#| | ${pptad} = | Get Packets Per Transaction And Direction
+#| | ${max_rate} = | Evaluate | ${max_rate} / ${pptad}
+#| | Set Test Variable | \${max_rate}
+#| | Set Jumbo
 
 | Set Numeric Frame Sizes
 | | [Documentation]
