@@ -335,7 +335,7 @@
 | | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut2_dut1_address} | ${prefix}
 | | VPP Interface Set IP Address
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_tg_address} | ${prefix}
-| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:1::2 | ${TG_pf1_mac}[0]
 | | VPP Add IP Neighbor
@@ -383,7 +383,7 @@
 | | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut2_dut1_ip6_address} | ${prefix6}
 | | VPP Interface Set IP Address
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_tg_ip4_address} | ${prefix4}
-| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | 10.10.10.2 | ${TG_pf1_mac}[0]
 | | VPP Add IP Neighbor
@@ -431,7 +431,7 @@
 | | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut2_dut1_ip4_address} | ${prefix4}
 | | VPP Interface Set IP Address
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${dut2_tg_ip6_address} | ${prefix6}
-| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:1::2 | ${TG_pf1_mac}[0]
 | | VPP Add IP Neighbor
