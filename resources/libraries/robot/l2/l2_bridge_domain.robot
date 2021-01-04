@@ -100,8 +100,6 @@
 | | ... | - dut - DUT node. Type: string
 | | ... | - nf_chain - NF chain. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
-| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
-| | ... | Type: integer
 | |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
@@ -114,7 +112,6 @@
 | | ... | \| 1 \| 1 \|
 | |
 | | [Arguments] | ${dut} | ${nf_chain}=${1} | ${nf_nodes}=${1}
-| | ... | ${virtio_feature_mask}=${None}
 | |
 | | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
 | | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
@@ -130,7 +127,6 @@
 | | | ... | ${nodes['${dut}']}
 | | | ... | /var/run/vpp/sock-${qemu_id}-1 | /var/run/vpp/sock-${qemu_id}-2
 | | | ... | ${dut}-vhost-${qemu_id}-if1 | ${dut}-vhost-${qemu_id}-if2
-| | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | | ${bd_id1}= | Evaluate | ${qemu_id} + (${nf_chain} - 1)
 | | | ${bd_id2}= | Evaluate | ${bd_id1} + 1
 | | | Add interface to bridge domain
@@ -149,20 +145,16 @@
 | | ... | *Arguments:*
 | | ... | - nf_chain - NF chain. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
-| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
-| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Initialize L2 bridge domains with Vhost-User \| 1 \| 1 \|
 | |
 | | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1}
-| | ... | ${virtio_feature_mask}=${None}
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 bridge domains with Vhost-User on node
 | | | ... | ${dut} | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
-| | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | END
 
 | Initialize L2 bridge domains for multiple chains with Vhost-User
@@ -178,8 +170,6 @@
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
 | | ... | - start - Id of first chain, allows to add chains during test.
 | | ... |     Type: integer
-| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
-| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
@@ -187,13 +177,11 @@
 | | ... | \| 3 \| 1 \| 2 \|
 | |
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${start}=${1}
-| | ... | ${virtio_feature_mask}=${None}
 | |
 | | Set interfaces in path up
 | | FOR | ${nf_chain} | IN RANGE | ${start} | ${nf_chains} + 1
 | | | Initialize L2 bridge domains with Vhost-User
 | | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
-| | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | END
 
 | Initialize L2 bridge domain with VXLANoIPv4 in 3-node circular topology
@@ -293,15 +281,13 @@
 | | ... | *Arguments:*
 | | ... | - bd_id1 - Bridge domain ID. Type: integer
 | | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
-| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
 | | ... | \| L2 bridge domains with Vhost-User and VXLANoIPv4 initialized in a\
 | | ... | 3-node circular topology \| 1 \| 2 \|
 | |
-| | [Arguments] | ${bd_id1} | ${bd_id2} | ${virtio_feature_mask}=${None}
+| | [Arguments] | ${bd_id1} | ${bd_id2}
 | |
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | 172.16.0.1 | 24
@@ -314,7 +300,6 @@
 | | ... | ${dut2} | 24 | 172.16.0.2 | 172.16.0.1
 | | Configure vhost interfaces | ${dut1}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Add interface to bridge domain
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
 | | Add interface to bridge domain
@@ -325,7 +310,6 @@
 | | ... | ${dut1} | ${dut1s_vxlan} | ${bd_id2}
 | | Configure vhost interfaces | ${dut2}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Add interface to bridge domain
 | | ... | ${dut2} | ${dut2s_vxlan} | ${bd_id1}
 | | Add interface to bridge domain
@@ -403,8 +387,6 @@
 | | ... | - bd_id2 - Bridge domain ID. Type: integer
 | | ... | - subid - ID of the sub-interface to be created. Type: string
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
-| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
-| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
@@ -412,7 +394,6 @@
 | | ... | topology \| 1 \| 2 \| 10 \| pop-1 \|
 | |
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
-| | ... | ${virtio_feature_mask}=${None}
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
@@ -433,7 +414,6 @@
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
 | | Configure vhost interfaces | ${dut1}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Add interface to bridge domain
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
 | | Add interface to bridge domain
@@ -445,7 +425,6 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure vhost interfaces | ${dut2}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Add interface to bridge domain | ${dut2} | ${subif_index_2}
 | | ... | ${bd_id1}
@@ -460,13 +439,13 @@
 | Initialize L2 bridge domains with Vhost-User and VLAN with VPP link bonding in a 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Create one
-| | ... | link bonding (BondEthernet) interface on both VPP nodes. Add one
-| | ... | physical interface towards next DUT as a member of BondEthernet
-| | ... | interface. Setup VLAN on BondEthernet interfaces between DUTs. Add one
-| | ... | Vhost-User interface into L2 bridge domains with learning enabled with
-| | ... | physical interface towards TG and other Vhost-User interface into L2
-| | ... | bridge domains with learning enabled with VLAN sub-interface. All
-| | ... | interfaces are brought up.
+| | ... | link bonding (BondEthernet) interface on both VPP nodes. Enslave one
+| | ... | physical interface towards next DUT by BondEthernet interface. Setup
+| | ... | VLAN on BondEthernet interfaces between DUTs. Add one Vhost-User
+| | ... | interface into L2 bridge domains with learning enabled with physical
+| | ... | interface towards TG and other Vhost-User interface into L2 bridge
+| | ... | domains with learning enabled with VLAN sub-interface. All interfaces
+| | ... | are brought up.
 | |
 | | ... | *Arguments:*
 | | ... | - bd_id1 - Bridge domain ID. Type: integer
@@ -475,8 +454,6 @@
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
 | | ... | - bond_mode - Link bonding mode. Type: string
 | | ... | - lb_mode - Load balance mode. Type: string
-| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
-| | ... | Type: integer
 | |
 | | ... | *Example:*
 | |
@@ -485,7 +462,7 @@
 | | ... | \| 10 \| pop-1 \| xor \| l34 \|
 | |
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
-| | ... | ${bond_mode} | ${lb_mode} | ${virtio_feature_mask}=${None}
+| | ... | ${bond_mode} | ${lb_mode}
 | |
 | | Set interfaces in path up
 | | ${dut1_eth_bond_if1}= | VPP Create Bond Interface
@@ -495,7 +472,7 @@
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | ${_even}= | Evaluate | ${pf} % 2
 | | | Run Keyword Unless | ${even}
-| | | ... | VPP Add Bond Member
+| | | ... | VPP Enslave Physical Interface
 | | | ... | ${dut1} | ${DUT1_${int}${pf}}[0] | ${dut1_eth_bond_if1}
 | | END
 | | ${dut2_eth_bond_if1}= | VPP Create Bond Interface
@@ -505,7 +482,7 @@
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | ${_even}= | Evaluate | ${pf} % 2
 | | | Run Keyword If | ${even}
-| | | ... | VPP Add Bond Member
+| | | ... | VPP Enslave Physical Interface
 | | | ... | ${dut2} | ${DUT2_${int}${pf}}[0] | ${dut2_eth_bond_if1}
 | | END
 | | VPP Show Bond Data On All Nodes | ${nodes} | verbose=${TRUE}
@@ -517,7 +494,6 @@
 | | ... | ${dut2} | ${subif_index_2} | ${tag_rewrite}
 | | Configure vhost interfaces | ${dut1}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Add interface to bridge domain
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
 | | Add interface to bridge domain
@@ -528,7 +504,6 @@
 | | ... | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Configure vhost interfaces | ${dut2}
 | | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Add interface to bridge domain
 | | ... | ${dut2} | ${subif_index_2} | ${bd_id1}
 | | Add interface to bridge domain
