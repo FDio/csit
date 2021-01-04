@@ -22,6 +22,30 @@
       "revId": "ba275557b737ee616c43e070a9e7064fd85a1983",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8c51282_92602117",
+        "filename": "VPP_REPO_URL",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-01-04T10:13:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1528901_18bf8266",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 36
+      },
+      "revId": "ba275557b737ee616c43e070a9e7064fd85a1983",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
