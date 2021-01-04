@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03e08b77_94a77f8b",
+        "filename": "resources/tools/presentation/generator_tables.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1067,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-04T12:07:29Z",
+      "side": 1,
+      "message": "probably u\"cop\" or u\"adl\" needed in transitory period - let Tibor comment here.",
+      "range": {
+        "startLine": 1067,
+        "startChar": 9,
+        "endLine": 1067,
+        "endChar": 15
+      },
+      "revId": "9cae13448e4babe9633bc766b5ee2c86d36a6436",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
