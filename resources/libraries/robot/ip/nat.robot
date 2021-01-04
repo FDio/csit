@@ -234,6 +234,7 @@
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
 | | Configure deterministic mode for NAT44
 | | ... | ${dut1} | ${in_net} | ${in_mask} | ${out_net} | ${out_mask}
+| | Show DET44 timeouts | ${dut1}
 
 | Show DET44 verbose
 | | [Documentation] | Get DET44 settings on the node.
