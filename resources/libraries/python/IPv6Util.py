@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -23,9 +23,8 @@ class IPv6Util:
     """IPv6 utilities"""
 
     @staticmethod
-    def vpp_interface_ra_suppress(node, interface):
-        """Disable sending ICMPv6 router-advertisement messages on
-        an interface on a VPP node.
+    def vpp_ra_suppress_link_layer(node, interface):
+        """Suppress ICMPv6 router advertisement message for link scope address.
 
         :param node: VPP node.
         :param interface: Interface name.
@@ -37,8 +36,8 @@ class IPv6Util:
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
             suppress=1
         )
-        err_msg = f"Failed to disable sending ICMPv6 router-advertisement " \
-            f"messages on interface {interface}"
+        err_msg = f"Failed to suppress ICMPv6 router advertisement message " \
+            f"on interface {interface}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -67,9 +66,9 @@ class IPv6Util:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_interfaces_ra_suppress_on_all_nodes(nodes):
-        """Disable sending ICMPv6 router-advertisement messages on all
-        IPv6 enabled interfaces on all VPP nodes in the topology.
+    def vpp_all_ra_suppress_link_layer(nodes):
+        """Suppress ICMPv6 router advertisement message for link scope address
+        on all VPP nodes in the topology.
 
         :param nodes: Nodes of the test topology.
         :type nodes: dict
@@ -82,4 +81,22 @@ class IPv6Util:
                     node, port_k, u"ipv6"
                 )
                 if ip6_addr_list:
-                    IPv6Util.vpp_interface_ra_suppress(node, port_k)
+                    IPv6Util.vpp_ra_suppress_link_layer(node, port_k)
+
+    @staticmethod
+    def vpp_interfaces_ra_suppress_on_all_nodes(nodes):
+        """Suppress ICMPv6 router advertisement message for link scope address
+        on all VPP nodes in the topology.
+
+        :param nodes: Nodes of the test topology.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.TG:
+                continue
+            for port_k in node[u"interfaces"].keys():
+                ip6_addr_list = IPUtil.vpp_get_interface_ip_addresses(
+                    node, port_k, u"ipv6"
+                )
+                if ip6_addr_list:
+                    IPv6Util.vpp_ra_suppress_link_layer(node, port_k)
