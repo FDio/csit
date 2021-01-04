@@ -721,9 +721,9 @@ Feature Tags
 
     iACL destination.
 
-.. topic:: COPWHLIST
+.. topic:: ADLALWLIST
 
-    COP whitelist.
+    ADL allowlist.
 
 .. topic:: NAT44
 
