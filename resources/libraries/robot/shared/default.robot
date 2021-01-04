@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,10 +20,10 @@
 | Library | OperatingSystem
 | Library | String
 |
+| Library | resources.libraries.python.Adl
 | Library | resources.libraries.python.Classify
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.CoreDumpUtil
-| Library | resources.libraries.python.Cop
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
