@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,12 +13,11 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Library | resources.libraries.python.Cop
 |
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | COPWHLIST | DRV_VFIO_PCI
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | ADLALWLIST | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip6-ip6base-copwhtlistbase
+| ... | ethip6-ip6base-adlalwlistbase
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -27,15 +26,15 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput IPv6 whitelist test cases*
+| Documentation | *RFC2544: Pkt throughput IPv6 allowlist test cases*
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
+| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6
-| ... | routing, two static IPv6 /64 routes and IPv6 COP security whitelist
-| ... | ingress /64 filter entries applied on links TG - DUT1.
-| ... | DUT1 is tested with ${nic_name}.\
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6
+| ... | routing, two static IPv6 /64 routes and IPv6 ADL security allowlist
+| ... | ingress /64 filter entries applied on links TG - DUT1 and DUT2 - TG.
+| ... | DUT1 and DUT2 tested with ${nic_name}.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -61,12 +60,12 @@
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-2n-ethip6-ip6src253
+| ${traffic_profile}= | trex-stl-3n-ethip6-ip6src253
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with
+| | ... | [Cfg] DUT runs IPv6 routing and allowlist filters config with
 | | ... | ${phy_cores} phy core(s).
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | |
@@ -89,55 +88,59 @@
 | | And Initialize IPv6 forwarding in circular topology
 | | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
 | | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
-| | And COP Add whitelist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
-| | And COP interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
+| | And Add Fib Table | ${dut2} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
+| | And ADL Add allowlist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
+| | And ADL Add allowlist Entry | ${dut2} | ${DUT2_${int}2}[0] | ip6 | 1
+| | And ADL interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
+| | And ADL interface enable or disable | ${dut2} | ${DUT2_${int}2}[0] | enable
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 78B-1c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| 78B-1c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | 78B | 1C
 | | frame_size=${78} | phy_cores=${1}
 
-| 78B-2c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| 78B-2c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | 78B | 2C
 | | frame_size=${78} | phy_cores=${2}
 
-| 78B-4c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| 78B-4c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | 78B | 4C
 | | frame_size=${78} | phy_cores=${4}
 
-| 1518B-1c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| 1518B-1c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| 1518B-2c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| 1518B-4c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| 9000B-1c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| 9000B-2c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| 9000B-4c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| IMIX-1c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| IMIX-2c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| IMIX-4c-ethip6-ip6base-adlalwlistbase-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
