@@ -33,7 +33,7 @@ class DUTSetup:
         :type node: dict
         :type service: str
         """
-        command = u"cat /tmp/*supervisor*.log"\
+        command = u"echo $(< /tmp/*supervisor*.log)"\
             if DUTSetup.running_in_container(node) \
             else f"journalctl --no-pager _SYSTEMD_INVOCATION_ID=$(systemctl " \
             f"show -p InvocationID --value {service})"

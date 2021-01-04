@@ -65,31 +65,6 @@ class FibPathNhProto(IntEnum):
     FIB_PATH_NH_PROTO_BIER = 4
 
 
-class IpDscp(IntEnum):
-    """DSCP code points."""
-    IP_API_DSCP_CS0 = 0,
-    IP_API_DSCP_CS1 = 8,
-    IP_API_DSCP_AF11 = 10,
-    IP_API_DSCP_AF12 = 12,
-    IP_API_DSCP_AF13 = 14,
-    IP_API_DSCP_CS2 = 16,
-    IP_API_DSCP_AF21 = 18,
-    IP_API_DSCP_AF22 = 20,
-    IP_API_DSCP_AF23 = 22,
-    IP_API_DSCP_CS3 = 24,
-    IP_API_DSCP_AF31 = 26,
-    IP_API_DSCP_AF32 = 28,
-    IP_API_DSCP_AF33 = 30,
-    IP_API_DSCP_CS4 = 32,
-    IP_API_DSCP_AF41 = 34,
-    IP_API_DSCP_AF42 = 36,
-    IP_API_DSCP_AF43 = 38,
-    IP_API_DSCP_CS5 = 40,
-    IP_API_DSCP_EF = 46,
-    IP_API_DSCP_CS6 = 48,
-    IP_API_DSCP_CS7 = 50
-
-
 class IPUtil:
     """Common IP utilities"""
 
@@ -351,23 +326,17 @@ class IPUtil:
         return None
 
     @staticmethod
-    def set_linux_interface_up(
-            node, interface, namespace=None):
+    def set_linux_interface_up(node, interface):
         """Set the specified interface up.
+
         :param node: VPP/TG node.
         :param interface: Interface in namespace.
-        :param namespace: Execute command in namespace. Optional
         :type node: dict
         :type interface: str
-        :type namespace: str
         :raises RuntimeError: If the interface could not be set up.
         """
-        if namespace is not None:
-            cmd = f"ip netns exec {namespace} ip link set dev {interface} up"
-        else:
-            cmd = f"ip link set dev {interface} up"
+        cmd = f"ip link set {interface} up"
         exec_cmd_no_error(node, cmd, timeout=30, sudo=True)
-
 
     @staticmethod
     def set_linux_interface_ip(
