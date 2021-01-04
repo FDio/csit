@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | COPWHLIST | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | ADLALWLIST | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4-ip4base-copwhtlistbase
+| ... | ethip4-ip4base-adlalwlistbase
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -26,13 +26,13 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput IPv4 whitelist test cases*
+| Documentation | *RFC2544: Pkt throughput IPv4 allowlist test cases*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv4
-| ... | routing, two static IPv4 /24 routes and IPv4 COP security whitelist
+| ... | routing, two static IPv4 /24 routes and IPv4 ADL security allowlist
 | ... | ingress /24 filter entries applied on links TG - DUT1 and DUT2 - TG.
 | ... | DUT1 and DUT2 tested with ${nic_name}.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
@@ -89,57 +89,57 @@
 | | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
 | | And Add Fib Table | ${dut2} | 1
 | | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
-| | And COP Add whitelist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip4 | 1
-| | And COP Add whitelist Entry | ${dut2} | ${DUT2_${int}2}[0] | ip4 | 1
-| | And COP interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
-| | And COP interface enable or disable | ${dut2} | ${DUT2_${int}2}[0] | enable
+| | And ADL Add allowlist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip4 | 1
+| | And ADL Add allowlist Entry | ${dut2} | ${DUT2_${int}2}[0] | ip4 | 1
+| | And ADL interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
+| | And ADL interface enable or disable | ${dut2} | ${DUT2_${int}2}[0] | enable
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| 64B-1c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| 64B-2c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| 64B-4c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| 1518B-1c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| 1518B-2c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| 1518B-4c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| 9000B-1c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| 9000B-2c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| 9000B-4c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| IMIX-1c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| IMIX-2c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4-ip4base-copwhtlistbase-ndrpdr
+| IMIX-4c-ethip4-ip4base-adlalwlistbase-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
