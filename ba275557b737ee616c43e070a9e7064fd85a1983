@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1528901_18bf8266",
+        "filename": "VPP_REPO_URL",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-04T10:03:12Z",
+      "side": 1,
+      "message": "https://packagecloud.io/install/repositories/fdio/release",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 36
+      },
+      "revId": "ba275557b737ee616c43e070a9e7064fd85a1983",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
