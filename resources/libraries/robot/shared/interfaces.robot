@@ -502,9 +502,9 @@
 | | ... | ${nodes['${dut}']} | ${bond_mode} | load_balance=${lb_mode}
 | | ... | mac=00:00:00:01:01:01
 | | Set Interface State | ${nodes['${dut}']} | ${if_index} | up
-| | VPP Add Bond Member
+| | VPP Enslave Physical Interface
 | | ... | ${nodes['${dut}']} | ${${dut}_${int}1_1} | ${if_index}
-| | VPP Add Bond Member
+| | VPP Enslave Physical Interface
 | | ... | ${nodes['${dut}']} | ${${dut}_${int}2_1} | ${if_index}
 | | FOR | ${id} | IN RANGE | 1 | ${count} + 1
 | | | Set Test Variable | ${${dut}_bond1_${id}} | ${if_index}
@@ -748,8 +748,8 @@
 | | ... | Type: string
 | | ... | - ${is_server} - Server side of connection (Optional).
 | | ... | Type: boolean
-| | ... | - ${virtio_feature_mask} - Enabled Virtio feature flags (Optional).
-| | ... | Type: integer
+| | ... | - ${enable_gso} - Generic segmentation offloading (Optional).
+| | ... | Type: boolean
 | |
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - ${${vhost_if1}} - First Vhost-User interface.
@@ -762,14 +762,14 @@
 | |
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vhost_if1}=vhost_if1
 | | ... | ${vhost_if2}=vhost_if2 | ${is_server}=${False}
-| | ... | ${virtio_feature_mask}=${None}
+| | ... | ${enable_gso}=${False}
 | |
 | | ${vhost_1}= | Vpp Create Vhost User Interface
 | | ... | ${dut_node} | ${sock1} | is_server=${is_server}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
+| | ... | enable_gso=${enable_gso}
 | | ${vhost_2}= | Vpp Create Vhost User Interface
 | | ... | ${dut_node} | ${sock2} | is_server=${is_server}
-| | ... | virtio_feature_mask=${virtio_feature_mask}
+| | ... | enable_gso=${enable_gso}
 | | ${vhost_1_key}= | Get Interface By SW Index | ${dut_node} | ${vhost_1}
 | | ${vhost_2_key}= | Get Interface By SW Index | ${dut_node} | ${vhost_2}
 | | ${vhost_1_mac}= | Get Interface MAC | ${dut_node} | ${vhost_1_key}
