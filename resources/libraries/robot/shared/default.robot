@@ -46,6 +46,7 @@
 | Resource | resources/libraries/robot/lb/load_balancer.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | Resource | resources/libraries/robot/features/acl.robot
+| Resource | resources/libraries/robot/features/gbp.robot
 | Resource | resources/libraries/robot/features/policer.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
@@ -59,7 +60,9 @@
 | Resource | resources/libraries/robot/overlay/lisp.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/overlay/lisp_api.robot
+| Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
+| Resource | resources/libraries/robot/performance/performance_vars.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/container.robot
 | Resource | resources/libraries/robot/shared/memif.robot
@@ -74,26 +77,6 @@
 | ${cpu_alloc_str}= | ${0}
 
 *** Keywords ***
-# TODO: Sort keywords alphabetically.
-
-| Call Resetter
-| | [Documentation]
-| | ... | Check for a presence of test variable \${resetter}.
-| | ... | If it exists (and not None), call the resetter (as a Python callable).
-| | ... | This is usually used to reset any state on DUT before next trial.
-| |
-| | ... | TODO: Move to a more specific library if needed.
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Call Resetter \|
-| |
-| | ${resetter} = | Get Resetter
-| | # See http://robotframework.org/robotframework/3.1.2/libraries/BuiltIn.html
-| | # #Evaluating%20expressions for $variable (without braces) syntax.
-| | # Parens are there to perform the call.
-| | Run Keyword If | $resetter | Evaluate | $resetter()
-
 | Configure crypto device on all DUTs
 | | [Documentation] | Verify if Crypto QAT device virtual functions are
 | | ... | initialized on all DUTs. If parameter force_init is set to True, then
@@ -171,15 +154,14 @@
 | | | Run Keyword | ${dut}.Add Unix Nodaemon
 | | | Run Keyword | ${dut}.Add Unix Coredump
 | | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
-| | | Run Keyword | ${dut}.Add Main Heap Size | ${${heap_size_mult}*${2}}G
-| | | Run Keyword | ${dut}.Add Main Heap Page Size | 2M
-| | | Run Keyword | ${dut}.Add Statseg Size | 2G
-| | | Run Keyword | ${dut}.Add Statseg Page Size | 2M
+| | | Run Keyword | ${dut}.Add Heapsize | 4G
+| | | Run Keyword | ${dut}.Add Statseg size | 4G
 | | | Run Keyword | ${dut}.Add Statseg Per Node Counters | on
 | | | Run Keyword | ${dut}.Add Plugin | disable | default
 | | | Run Keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
 | | | Run Keyword | ${dut}.Add IP6 Hash Buckets | 2000000
 | | | Run Keyword | ${dut}.Add IP6 Heap Size | 4G
+| | | Run Keyword | ${dut}.Add IP Heap Size | 4G
 | | | Run Keyword | ${dut}.Add Graph Node Variant | ${GRAPH_NODE_VARIANT}
 | | END
 
@@ -225,10 +207,9 @@
 | | | ${thr_count_int}= | Run Keyword If | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${2}
 | | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
+| | | ... | ELSE | Evaluate | int(${thr_count_int}/2)
 | | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
