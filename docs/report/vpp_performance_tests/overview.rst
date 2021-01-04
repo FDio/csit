@@ -283,7 +283,7 @@ performance tested across a range of NIC drivers and NIC models:
 |                       | IPv4and IPv6 routing with iACL and oACL IP   |
 |                       | address, MAC address and L4 port security.   |
 +-----------------------+----------------------------------------------+
-| COP                   | IPv4 and IPv6 routing with COP address       |
+| ADL                   | IPv4 and IPv6 routing with ADL address       |
 |                       | security.                                    |
 +-----------------------+----------------------------------------------+
 | IPv4                  | IPv4 routing.                                |
