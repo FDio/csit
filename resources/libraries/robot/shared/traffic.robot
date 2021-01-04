@@ -61,7 +61,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Send packet and verify headers \| \${nodes['TG']} \| 10.0.0.1 \
+| | ... | \| Send packet and verify headers \| ${nodes['TG']} \| 10.0.0.1 \
 | | ... | \| 32.0.0.1 \| eth2 \| 08:00:27:ee:fd:b3 \| 08:00:27:a2:52:5b \
 | | ... | \| eth3 \| 08:00:27:4d:ca:7a \| 08:00:27:7d:fd:10 \|
 | |
@@ -120,7 +120,7 @@
 | | ... | *Example:*
 | |
 | | ... | \| Packet transmission from port to port should fail \
-| | ... | \| \${nodes['TG']} \| 10.0.0.1 \ \| 32.0.0.1 \| eth2 \
+| | ... | \| ${nodes['TG']} \| 10.0.0.1 \ \| 32.0.0.1 \| eth2 \
 | | ... | \| 08:00:27:a2:52:5b \| eth3 \| 08:00:27:4d:ca:7a \
 | | ... | \| 08:00:27:ee:fd:b3 \| 08:00:27:7d:fd:10 \|
 | | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_src_port}
@@ -150,7 +150,7 @@
 | | ... | - dst_ip - Packet destination IP address. Type: string
 | |
 | | ... | *Example:*
-| | ... | \| Send packet and verify marking \| \${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| Send packet and verify marking \| ${nodes['TG']} \| eth1 \| eth2 \
 | | ... | \| 08:00:27:87:4d:f7 \| 52:54:00:d4:d8:22 \| 192.168.122.2 \
 | | ... | \| 192.168.122.1 \|
 | |
@@ -190,9 +190,9 @@
 | | ... | *Example:*
 | |
 | | ... | \| Send VXLAN encapsulated packet and verify received packet \
-| | ... | \| \${tg_node} \| port4 \| port4 \
+| | ... | \| ${tg_node} \| port4 \| port4 \
 | | ... | \| fa:16:3e:6d:f9:c5 \| fa:16:3e:e6:6d:9a \| 192.168.0.1 \
-| | ... | \| 192.168.0.2 \| ${101} \| 192.168.0.2 \| 192.168.0.1 \| \${102} \|
+| | ... | \| 192.168.0.2 \| ${101} \| 192.168.0.2 \| 192.168.0.1 \| ${102} \|
 | |
 | | [Arguments] | ${tg_node} | ${tx_if} | ${rx_if}
 | | ... | ${tx_src_mac} | ${tx_dst_mac}
@@ -231,7 +231,7 @@
 | | ... | *Example:*
 | |
 | | ... | \| Send ICMP echo request and verify answer \
-| | ... | \| \${nodes['TG']} \| eth2 \
+| | ... | \| ${nodes['TG']} \| eth2 \
 | | ... | \| 08:00:27:46:2b:4c \| 08:00:27:66:b8:57 \
 | | ... | \| 192.168.23.10 \| 192.168.23.1 \| 10 \|
 | |
@@ -270,14 +270,14 @@
 | | ... | - r_tunnel - Remote tunnel IP address (optional). Type: string
 | |
 | | ... | *Example:*
-| | ... | \| \${encr_alg}= \| Crypto Alg AES CBC 128 \|
-| | ... | \| \${auth_alg}= \| Integ Alg SHA1 96 \|
+| | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
+| | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
 | | ... | \| Send IPsec Packet and verify ESP encapsulation in received packet\
-| | ... | \| \${nodes['TG']} \| eth1 \| eth2 \
-| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| \${encr_alg} \
+| | ... | \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| ${encr_alg} \
 | | ... | \| sixteenbytes_key \| ${auth_alg} \| twentybytessecretkey \
-| | ... | \| \${1001} \| \00} \| 192.168.3.3 \| 192.168.4.4 \
-| | ... | \| 192.168.100.2 \| 192.168.100.3 \|
+| | ... | \| ${1001} \| ${1000} \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \
+| | ... | \| 192.168.100.3 \|
 | |
 | | [Arguments] | ${node} | ${tx_interface} | ${rx_interface} | ${tx_dst_mac}
 | | ... | ${rx_src_mac} | ${crypto_alg} | ${crypto_key} | ${integ_alg}
@@ -329,7 +329,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Send packet and verify LISP encap \| \${nodes['TG']} \| 10.0.0.1 \
+| | ... | \| Send packet and verify LISP encap \| ${nodes['TG']} \| 10.0.0.1 \
 | | ... | \| 32.0.0.1 \| eth2 \| 08:00:27:ee:fd:b3 \| 08:00:27:a2:52:5b \
 | | ... | \| eth3 \| 08:00:27:4d:ca:7a \| 08:00:27:7d:fd:10 \| 10.0.1.1 \
 | | ... | \| 10.0.1.2 \|
@@ -373,14 +373,14 @@
 | | ... | - dst_tun - Destination tunnel IP address. Type: string
 | |
 | | ... | *Example:*
-| | ... | \| \${encr_alg}= \| Crypto Alg AES CBC 128 \|
-| | ... | \| \${auth_alg}= \| Integ Alg SHA1 96 \|
+| | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
+| | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
 | | ... | \| Send IPsec Packet and verify ESP encapsulation in received packet\
-| | ... | \| \${nodes['TG']} \| eth1 \| eth2 \
-| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| \${encr_alg} \
-| | ... | \| sixteenbytes_key \| \${auth_alg} \| twentybytessecretkey \
-| | ... | \| \${1001} \| \${1000} \| 192.168.3.3 \| 192.168.4.4 \
-| | ... | \| 192.168.100.2 \| 192.168.100.3 \|
+| | ... | \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| ${encr_alg} \
+| | ... | \| sixteenbytes_key \| ${auth_alg} \| twentybytessecretkey \
+| | ... | \| ${1001} \| ${1000} \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \
+| | ... | \| 192.168.100.3 \|
 | |
 | | [Arguments] | ${node} | ${tx_interface} | ${rx_interface} | ${tx_dst_mac}
 | | ... | ${rx_src_mac} | ${crypto_alg} | ${crypto_key} | ${integ_alg}
@@ -429,7 +429,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Send packet and verify LISP GPE encap \| \${nodes['TG']} \
+| | ... | \| Send packet and verify LISP GPE encap \| ${nodes['TG']} \
 | | ... | \| 10.0.0.1 \| 32.0.0.1 \
 | | ... | \| eth2 \| 08:00:27:ee:fd:b3 \| 08:00:27:a2:52:5b \
 | | ... | \| eth3 \| 08:00:27:4d:ca:7a \| 08:00:27:7d:fd:10 \
@@ -476,7 +476,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Send packet and verify LISP encap \| \${nodes['TG']} \| 10.0.0.1 \
+| | ... | \| Send packet and verify LISP encap \| ${nodes['TG']} \| 10.0.0.1 \
 | | ... | \| 32.0.0.1 \| eth2 \| 08:00:27:ee:fd:b3 \| 08:00:27:a2:52:5b \
 | | ... | \| eth3 \| 08:00:27:4d:ca:7a \| 08:00:27:7d:fd:10 \| 10.0.1.1 \
 | | ... | \| 10.0.1.2 \|
@@ -529,7 +529,7 @@
 | |
 | | ... | *Example:*
 | | ... | \| Send IPv6 Packet and verify SRv6 encapsulation in received packet\
-| | ... | \| \${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| ${nodes['TG']} \| eth1 \| eth2 \
 | | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| 2002:1:: \
 | | ... | \| 2003:2:: \| 2003:1:: \| 2002:2:: \| decap=${False} \
 | | ... | \| tg_dstsid3=2002:4:: \| dut_dstsid3=2003:4:: \
@@ -589,7 +589,7 @@
 | | ... | *Example:*
 | |
 | | ... | \| Send TCP or UDP packet and verify network address translations \
-| | ... | \| \${nodes['TG']} \| port1 \| port2 \| 08:00:27:cc:4f:54 \
+| | ... | \| ${nodes['TG']} \| port1 \| port2 \| 08:00:27:cc:4f:54 \
 | | ... | \| 08:00:27:c9:6a:d5 \| 192.168.0.0 \| 68.142.68.0 \| 20.0.0.0 \
 | | ... | \| TCP \| 1024 \| 8080 \|
 | |
@@ -609,46 +609,3 @@
 | | ... | --src_port_in ${src_port_in} | --src_port_out ${src_port_out}
 | | ... | --dst_port ${dst_port}
 | | Run Traffic Script On Node | nat.py | ${tg_node} | ${args}
-
-| Send IP packet and verify GENEVE encapsulation in received packets
-| | [Documentation] | Send IP packet from TG to DUT. Receive GENEVE packet\
-| | ... | from DUT on TG and verify GENEVE encapsulation. Send GENEVE packet in\
-| | ... | opposite direction and verify received IP packet.
-| |
-| | ... | *Arguments:*
-| | ... | - node - TG node. Type: dictionary
-| | ... | - tx_interface - TG Interface 1. Type: string
-| | ... | - rx_interface - TG Interface 2. Type: string
-| | ... | - tx_dst_mac - Destination MAC for TX interface / DUT interface 1 MAC.
-| | ... | Type: string
-| | ... | - rx_src_mac - Source MAC for RX interface / DUT interface 2 MAC.
-| | ... | Type: string
-| | ... | - tun_local_ip - GENEVE tunnel source IP address. Type: string
-| | ... | - tun_remote_ip - GENEVE tunnel destination IP address. Type: string
-| | ... | - tun_vni - GENEVE tunnel VNI. Type: integer
-| | ... | - tun_src_ip - Source IP address of original IP packet / inner source
-| | ... | IP address of GENEVE packet. Type: string
-| | ... | - tun_dst_ip - Destination IP address of original IP packet / inner
-| | ... | destination IP address of GENEVE packet. Type: string
-| |
-| | ... | *Example:*
-| | ... | \| Send IP packet and verify GENEVE encapsulation in received packets\
-| | ... | \| \${nodes['TG']} \| eth1 \| eth2 \
-| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| 1.1.1.2 \| 1.1.1.1 \
-| | ... | \| 1 \| 10.128.1.0 \| 10.0.1.0 \| 24 \|11.0.1.2\|
-| |
-| | [Arguments] | ${node} | ${tx_interface} | ${rx_interface}
-| | ... | ${tx_dst_mac} | ${rx_src_mac} | ${tun_local_ip} | ${tun_remote_ip}
-| | ... | ${tun_vni} | ${tun_src_ip} | ${tun_dst_ip}
-| |
-| | ${tx_src_mac}= | Get Interface Mac | ${node} | ${tx_interface}
-| | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_interface}
-| | ${rx_dst_mac}= | Get Interface Mac | ${node} | ${rx_interface}
-| | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_interface}
-| | ${args}= | Catenate | --rx_if ${rx_if_name} | --tx_if ${tx_if_name}
-| | ... | --tx_src_mac ${tx_src_mac} | --tx_dst_mac ${tx_dst_mac}
-| | ... | --rx_src_mac ${rx_src_mac} | --rx_dst_mac ${rx_dst_mac}
-| | ... | --tun_local_ip ${tun_local_ip} | --tun_remote_ip ${tun_remote_ip}
-| | ... | --tun_vni ${tun_vni} | --tun_src_ip ${tun_src_ip}
-| | ... | --tun_dst_ip ${tun_dst_ip}
-| | Run Traffic Script On Node | geneve_tunnel.py | ${node} | ${args}

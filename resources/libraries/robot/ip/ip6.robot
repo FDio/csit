@@ -75,7 +75,7 @@
 | | VPP Interface Set IP Address
 | | ... | ${dut} | ${dut_if2} | 2001:2::1 | 64
 | |
-| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
 | |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:3::2
@@ -140,7 +140,7 @@
 | | ... | ELSE | Set Variable | ${DUT1_${int}2}[0]
 | | VPP Interface Set IP Address
 | | ... | ${dut} | ${dut_if2} | 2001:5::1 | ${prefix}
-| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:3::2 | ${TG_pf1_mac}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -175,8 +175,6 @@
 | |
 | | ... | *Arguments:*
 | | ... | - nf_nodes - Number of guest VMs. Type: integer
-| | ... | - virtio_feature_mask - Enabled Virtio features (Optional).
-| | ... | Type: integer
 | |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
@@ -188,9 +186,9 @@
 | | ... | \| IPv6 forwarding with Vhost-User initialized in a 2-node circular\
 | | ... | topology \| 1 \|
 | |
-| | [Arguments] | ${nf_nodes}=${1} | ${virtio_feature_mask}=${None}
+| | [Arguments] | ${nf_nodes}=${1}
 | |
-| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
 | | Set interfaces in path up
 | | ${prefix}= | Set Variable | 64
 | | ${fib_table_1}= | Set Variable | ${101}
@@ -223,7 +221,6 @@
 | | | Configure vhost interfaces | ${dut1}
 | | | ... | /var/run/vpp/sock-${number}-1 | /var/run/vpp/sock-${number}-2
 | | | ... | dut1-vhost-${number}-if1 | dut1-vhost-${number}-if2
-| | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
 | | | Add Fib Table | ${dut1} | ${fib_table_1} | ipv6=${True}
@@ -320,7 +317,7 @@
 | | ... | VPP Interface Set IP Address | ${dut2} | ${subif_index_2} | 2002:2::2
 | | ... | ${prefix}
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 2002:3::2 | ${prefix}
-| | Vpp Interfaces RA Suppress On All Nodes | ${nodes}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
 | | Vpp Route Add | ${dut1} | ${tg_if1_net} | ${host_prefix}
 | | ... | gateway=2002:1::1 | interface=${DUT1_${int}1}[0]
 | | Run Keyword If | '${dut2_status}' == 'PASS'
