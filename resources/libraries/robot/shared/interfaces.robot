@@ -502,9 +502,9 @@
 | | ... | ${nodes['${dut}']} | ${bond_mode} | load_balance=${lb_mode}
 | | ... | mac=00:00:00:01:01:01
 | | Set Interface State | ${nodes['${dut}']} | ${if_index} | up
-| | VPP Add Bond Member
+| | VPP Enslave Physical Interface
 | | ... | ${nodes['${dut}']} | ${${dut}_${int}1_1} | ${if_index}
-| | VPP Add Bond Member
+| | VPP Enslave Physical Interface
 | | ... | ${nodes['${dut}']} | ${${dut}_${int}2_1} | ${if_index}
 | | FOR | ${id} | IN RANGE | 1 | ${count} + 1
 | | | Set Test Variable | ${${dut}_bond1_${id}} | ${if_index}
@@ -748,8 +748,8 @@
 | | ... | Type: string
 | | ... | - ${is_server} - Server side of connection (Optional).
 | | ... | Type: boolean
-| | ... | - ${virtio_feature_mask} - Enabled Virtio feature flags (Optional).
-| | ... | Type: integer
+| | ... | - ${enable_gso} - Generic segmentation offloading (Optional).
+| | ... | Type: boolean
 | |
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - ${${vhost_if1}} - First Vhost-User interface.
