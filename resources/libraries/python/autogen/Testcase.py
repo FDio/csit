@@ -100,7 +100,14 @@ class Testcase:
         # TODO: Choose a better frame size identifier for streamed protocols
         # (TCP, QUIC, SCTP, ...) where DUT (not TG) decides frame size.
         if u"tcphttp" in suite_id:
-            template_string = f'''
+            if u"tcphttps" in suite_id:
+                template_string = f'''
+| ${{frame_str}}-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{frame_str}} | ${{cores_str}}C
+| | frame_size=${{frame_num}} | phy_cores=${{cores_num}}
+'''
+            else:
+                template_string = f'''
 | IMIX-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{cores_str}}C
 | | phy_cores=${{cores_num}}
