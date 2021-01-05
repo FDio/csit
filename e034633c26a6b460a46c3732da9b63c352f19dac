@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac836db5_8b2cd406",
+        "filename": "resources/libraries/bash/function/branch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-05T11:53:46Z",
+      "side": 1,
+      "message": "technically we might have more than one LTS so maybe we should do \n\ncase:\n  stable/2009:\n    do\n  stable/1908:\n    do\n  stable/*:\n    do\n\nso we will have more granular options?",
+      "range": {
+        "startLine": 59,
+        "startChar": 27,
+        "endLine": 59,
+        "endChar": 28
+      },
+      "revId": "e034633c26a6b460a46c3732da9b63c352f19dac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
