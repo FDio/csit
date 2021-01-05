@@ -438,7 +438,6 @@ class InterfaceUtil:
 
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
-        logger.debug(f"Received data:\n{details!r}")
 
         data = list() if interface is None else dict()
         for dump in details:
@@ -448,7 +447,6 @@ class InterfaceUtil:
                 data = process_if_dump(dump)
                 break
 
-        logger.debug(f"Interface data:\n{data}")
         return data
 
     @staticmethod
