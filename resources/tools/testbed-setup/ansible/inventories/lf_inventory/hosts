@@ -42,7 +42,7 @@ all:
         10.32.8.20: #s35-t28-sut1 - cascadelake
         10.32.8.22: #s37-t29-sut1 - cascadelake
         10.32.8.24: #s60-t210-sut1 - epyc
-        10.30.51.69: #s27-t13-sut1 - thunderx2 9975
+        10.30.51.69: #s27-t34-sut1 - thunderx2 9975
     vpp_device:
       hosts:
         10.30.51.50: #s1-t11-sut1 - skylake
@@ -61,6 +61,7 @@ all:
         10.32.8.14: #s46-nomad - skylake
         10.32.8.15: #s47-nomad - skylake
         10.32.8.16: #s48-nomad - skylake
+        10.32.8.17: #s57-nomad - skylake
         10.30.51.39: #s53-nomad - thunderx 88xx
         10.30.51.40: #s54-nomad - thunderx 88xx
         10.30.51.65: #s52-nomad - thunderx 88xx

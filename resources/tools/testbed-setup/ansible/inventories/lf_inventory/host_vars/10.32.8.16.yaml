@@ -28,13 +28,32 @@ nomad_certificates:
 nomad_datacenter: "yul1"
 nomad_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
-nomad_node_role: "both"
+nomad_node_role: "client"
 nomad_node_class: "builder"
 nomad_options:
   driver.raw_exec.enable: 1
   docker.cleanup.image: true
   docker.privileged.enabled: true
+  docker.volumes.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
   fingerprint.network.disallow_link_local: true
 nomad_retry_servers: [ "10.30.51.30", "10.30.51.32", "10.30.51.33" ]
 nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647", "10.30.51.30:4647" ]
+
+# Consul settigs.
+consul_nomad_integration: true
+consul_certificates:
+  - src: "{{ vault_consul_v1_ca_file }}"
+    dest: "{{ consul_ca_file }}"
+  - src: "{{ vault_consul_v1_cert_file }}"
+    dest: "{{ consul_cert_file }}"
+  - src: "{{ vault_consul_v1_key_file }}"
+    dest: "{{ consul_key_file }}"
+consul_datacenter: "yul1"
+consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
+consul_node_name: "{{ hostname }}"
+consul_node_role: "client"
+consul_retry_servers:
+  - "10.30.51.30"
+  - "10.30.51.32"
+  - "10.30.51.33"

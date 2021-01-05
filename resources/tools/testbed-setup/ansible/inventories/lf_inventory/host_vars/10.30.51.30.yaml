@@ -38,3 +38,20 @@ nomad_options:
   fingerprint.network.disallow_link_local: true
 nomad_retry_servers: [ "10.30.51.32", "10.30.51.33" ]
 nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
+
+# Consul settigs.
+consul_nomad_integration: true
+consul_certificates:
+  - src: "{{ vault_consul_v1_ca_file }}"
+    dest: "{{ consul_ca_file }}"
+  - src: "{{ vault_consul_v1_cert_file }}"
+    dest: "{{ consul_cert_file }}"
+  - src: "{{ vault_consul_v1_key_file }}"
+    dest: "{{ consul_key_file }}"
+consul_datacenter: "yul1"
+consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
+consul_node_name: "{{ hostname }}"
+consul_node_role: "both"
+consul_retry_servers:
+  - "10.30.51.32"
+  - "10.30.51.33"

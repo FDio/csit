@@ -8,6 +8,19 @@ grub:
 inventory_ipmi_hostname: "10.30.50.48"
 cpu_microarchitecture: "skylake"
 
+# User management.
+users:
+  - username: localadmin
+    groups: [adm, sudo]
+    password: "$6$FIsbVDQR$5D0wgufOd2FtnmOiRNsGlgg6Loh.0x3dWSj72DSQnqisSyE9DROfgSgA6s0yxDwz4Jd5SRTXiTKuRYuSQ5POI1"
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgObJFDIMmPwQhhkjAynvlbwpM5yeSewyaE7vTLaFf4uFz4vmsE2hFf6B2xXHUGLVwoVfk91UeK7LOGrdDpoDDHzvPZXj5NmZI+WiWax5y2pQZNkcSZws0ENCeEc4hPwc4veJ1JmhokF4Bsmu14HyFMaFUhM8897jtJwsh+9fLA/no0iPGaQqEtRUQhkV+P4jCEPoY0qdRZAzVw/rY4EGAMhsJe3EJmyj63OfrrkG3+hvSLFo5pDxHQr3pZd/c6ukI7xMef48PosAvGCm3oxzb/Gu9PZIGuHLczY+tCnzCkY7MO7E+IWgjXrUAfYwSWz8XmFmA9LLe26DT5jkcK8hGQ== pmikus@cisco.com"
+  - username: testuser
+    groups: [adm, sudo]
+    password: "$6$zpBUdQ4q$P2zKclumvCndWujgP/qQ8eMk3YZk7ESAom04Fqp26hJH2jWkMXEX..jqxzMdDLJKiDaDHIaSkQMVjHzd3cRLs1"
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgObJFDIMmPwQhhkjAynvlbwpM5yeSewyaE7vTLaFf4uFz4vmsE2hFf6B2xXHUGLVwoVfk91UeK7LOGrdDpoDDHzvPZXj5NmZI+WiWax5y2pQZNkcSZws0ENCeEc4hPwc4veJ1JmhokF4Bsmu14HyFMaFUhM8897jtJwsh+9fLA/no0iPGaQqEtRUQhkV+P4jCEPoY0qdRZAzVw/rY4EGAMhsJe3EJmyj63OfrrkG3+hvSLFo5pDxHQr3pZd/c6ukI7xMef48PosAvGCm3oxzb/Gu9PZIGuHLczY+tCnzCkY7MO7E+IWgjXrUAfYwSWz8XmFmA9LLe26DT5jkcK8hGQ== pmikus@cisco.com"
+
 # Nomad settings.
 nomad_certificates:
   - src: "{{ vault_nomad_v1_ca_file }}"
@@ -27,3 +40,21 @@ nomad_options:
   docker.volumes.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
 nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
+
+# Consul settigs.
+consul_nomad_integration: true
+consul_certificates:
+  - src: "{{ vault_consul_v1_ca_file }}"
+    dest: "{{ consul_ca_file }}"
+  - src: "{{ vault_consul_v1_cert_file }}"
+    dest: "{{ consul_cert_file }}"
+  - src: "{{ vault_consul_v1_key_file }}"
+    dest: "{{ consul_key_file }}"
+consul_datacenter: "yul1"
+consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
+consul_node_name: "{{ hostname }}"
+consul_node_role: "client"
+consul_retry_servers:
+  - "10.30.51.30"
+  - "10.30.51.32"
+  - "10.30.51.33"

@@ -27,6 +27,7 @@
     shell: "kill -9 {{ item }}"
     with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
     tags: kill-process
+
   rescue:
   - fail:
       msg: "Kill process {{ process }} failed!"
