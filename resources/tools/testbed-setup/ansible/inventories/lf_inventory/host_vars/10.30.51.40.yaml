@@ -39,3 +39,24 @@ nomad_options:
   driver.whitelist: "docker,raw_exec,exec"
 nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
 nomad_cpu_total_compute: "40000"
+
+# Consul settigs.
+consul_nomad_integration: true
+consul_certificates:
+  - src: "{{ vault_consul_v1_ca_file }}"
+    dest: "{{ consul_ca_file }}"
+  - src: "{{ vault_consul_v1_cert_file }}"
+    dest: "{{ consul_cert_file }}"
+  - src: "{{ vault_consul_v1_key_file }}"
+    dest: "{{ consul_key_file }}"
+consul_datacenter: "yul1"
+consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
+consul_node_name: "{{ hostname }}"
+consul_node_role: "client"
+consul_retry_servers:
+  - "10.30.51.30"
+  - "10.30.51.32"
+  - "10.30.51.33"
+  - "10.32.8.14"
+  - "10.32.8.15"
+  - "10.32.8.16"

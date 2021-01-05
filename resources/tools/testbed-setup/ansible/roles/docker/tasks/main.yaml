@@ -7,7 +7,9 @@
 
 - name: Inst - Docker
   package:
-    name: "{{ docker_package }}"
+    name:
+      - "{{ docker_package }}"
+      - "{{ docker_package }}-cli"
     state: "{{ docker_package_state }}"
   tags:
     - docker-inst-package

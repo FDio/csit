@@ -1,0 +1,12 @@
+consul {
+    auto_advertise = {{ consul_auto_advertise | bool | lower }}
+    checks_use_advertise = {{ consul_checks_use_advertise | bool | lower }}
+    client_auto_join = {{ consul_client_auto_join | bool | lower }}
+    client_service_name = "{{ consul_client_service_name }}"
+    server_service_name = "{{ consul_server_service_name }}"
+    server_auto_join = {{ consul_server_auto_join | bool | lower }}
+{% if consul_ACL_token_set == True %}
+    token = "{{ consul_token }}"
+{% endif %}
+
+}

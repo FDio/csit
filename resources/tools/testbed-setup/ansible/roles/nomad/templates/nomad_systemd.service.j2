@@ -6,7 +6,7 @@ After=network-online.target
 
 [Service]
 # TODO: Decrease privilege
-ExecReload=/bin/kill -SIGKILL $MAINPID
+ExecReload=/bin/kill -SIGHUP $MAINPID
 ExecStart={{ nomad_bin_dir }}/nomad agent -config={{ nomad_config_dir }}
 KillSignal=SIGTERM
 LimitNOFILE=infinity

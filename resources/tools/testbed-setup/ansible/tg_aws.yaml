@@ -19,6 +19,8 @@
       tags: iperf
     - role: trex
       tags: trex
+    - role: ab
+      tags: ab
     - role: docker
       tags: docker
     - role: cleanup

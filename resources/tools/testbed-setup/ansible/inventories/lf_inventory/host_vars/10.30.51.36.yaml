@@ -15,6 +15,7 @@ sysctl:
   kernel:
     watchdog_cpumask: "0,16,32,48"
   vm:
-    nr_hugepages: 4096
-    max_map_count: 20000
+    nr_hugepages: 32768
+
+inventory_ipmi_hostname: '10.30.50.36'
 cpu_microarchitecture: "taishan"

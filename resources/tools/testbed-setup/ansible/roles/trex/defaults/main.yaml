@@ -28,6 +28,12 @@ packages_by_arch:
 trex_target_dir: "/opt"
 trex_url: "https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 trex_version:
+  # rls1908
   - "2.54"
+  # rls2001
+  # rls2005
   - "2.73"
+  # rls2009
   - "2.82"
+  # rls2101
+  - "2.86"
