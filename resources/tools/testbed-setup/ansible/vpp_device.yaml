@@ -6,19 +6,25 @@
   become: yes
   become_user: root
   roles:
+    - role: user_add
+      tags: user_add
     - role: baremetal
       tags: baremetal
     - role: common
       tags: common
     - role: docker
       tags: docker
+    - role: nomad
+      tags: nomad
+    - role: consul
+      tags: consul
     - role: vpp_device
       tags: vpp_device
     - role: kernel_vm
       tags: kernel_vm
     - role: csit_sut_image
       tags: csit_sut_image
-    - role: nomad
-      tags: nomad
+    - role: csit_shim_image
+      tags: csit_shim_image
     - role: cleanup
       tags: cleanup

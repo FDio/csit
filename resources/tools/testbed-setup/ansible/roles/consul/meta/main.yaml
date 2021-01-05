@@ -1,0 +1,9 @@
+---
+# file: roles/consul/meta/main.yaml
+
+# desc: Install consul from stable branch and configure service.
+# inst: Consul
+# conf: ?
+# info: 1.0 - added role
+
+dependencies: [ ]

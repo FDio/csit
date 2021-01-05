@@ -15,8 +15,8 @@
 
 - name: Conf - Add APT Key
   apt_key:
-    url: "{{ docker_apt_key }}"
-    state: "{{ docker_apt_key_state }}"
+    url: "{{ docker_apt_gpg_key }}"
+    state: "{{ docker_apt_gpg_key_state }}"
   tags: docker-conf-apt
 
 - name: Conf - Install APT Repository

@@ -1,7 +1,7 @@
 ---
 # file: roles/trex/tasks/main.yaml
 
-- name: T-Rex - Distribution - Release - Machine Prerequisites
+- name: Install Distribution - Release - Machine Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
@@ -9,79 +9,8 @@
   tags:
     - install-dependencies
 
-- name: T-Rex - Get Release Archive
-  get_url:
-    url: "{{ trex_url }}/v{{ item }}.tar.gz"
-    dest: "{{ trex_target_dir }}/trex-core-{{ item }}.tar.gz"
-    validate_certs: False
-    mode: 0644
+- name: Deploy Multiple T-Rex Versions
+  include_tasks: deploy_block.yaml
   loop: "{{ trex_version }}"
-  register: trex_downloaded
-  tags:
-    - install-trex
-
-- name: T-Rex - Ensure Directory Exists
-  file:
-    path: "{{ trex_target_dir }}/trex-core-{{ item }}"
-    state: "directory"
-  loop: "{{ trex_version }}"
-  tags:
-    - install-trex
-
-- name: T-Rex - Extract Release Archive
-  unarchive:
-    remote_src: true
-    src: "{{ trex_target_dir }}/trex-core-{{ item }}.tar.gz"
-    dest: "{{ trex_target_dir }}/"
-    creates: "{{ trex_target_dir }}/trex-core-{{ item }}/linux_dpdk/"
-  loop: "{{ trex_version }}"
-  register: trex_extracted
-  tags:
-    - install-trex
-
-- name: T-Rex - Azure patch I
-  patch:
-    src: "files/t-rex.patch"
-    basedir: "{{ trex_target_dir }}/trex-core-{{ item }}"
-    strip: 1
-  loop: "{{ trex_version }}"
-  when:
-    - azure is defined and "{{ item }}" == "2.73"
-  tags:
-    - install-trex
-
-- name: T-Rex - Compile Release I
-  command: "./b configure"
-  args:
-      chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/linux_dpdk/"
-  loop: "{{ trex_version }}"
-  when: trex_extracted
-  tags:
-    - install-trex
-
-- name: T-Rex - Compile Release II
-  command: "./b build"
-  args:
-      chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/linux_dpdk/"
-  loop: "{{ trex_version }}"
-  when: trex_extracted
-  tags:
-    - install-trex
-
-- name: T-Rex - Compile Release III
-  command: "make -j 16"
-  args:
-      chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
-  loop: "{{ trex_version }}"
-  when: trex_extracted
-  tags:
-    - install-trex
-
-- name: T-Rex - Compile Release IV
-  command: "make install"
-  args:
-      chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
-  loop: "{{ trex_version }}"
-  when: trex_extracted
   tags:
     - install-trex

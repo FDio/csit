@@ -10,16 +10,18 @@
       tags: baremetal
     - role: common
       tags: common
-    - role: tg
-      tags: tg
     - role: kernel
       tags: kernel
     - role: mellanox
       tags: mellanox
+    - role: tg
+      tags: tg
     - role: iperf
       tags: iperf
     - role: trex
       tags: trex
+    - role: ab
+      tags: ab
     - role: docker
       tags: docker
     - role: performance_tuning
@@ -28,5 +30,3 @@
       tags: cleanup
     - role: calibration
       tags: calibration
-    - role: ab
-      tags: ab

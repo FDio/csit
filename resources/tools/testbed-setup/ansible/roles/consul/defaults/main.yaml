@@ -1,0 +1,110 @@
+---
+# file: roles/consul/defaults/main.yaml
+
+# Inst - Prerequisites.
+packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+
+packages_base:
+  - "cgroup-bin"
+  - "curl"
+  - "git"
+  - "libcgroup1"
+  - "unzip"
+  - "htop"
+packages_by_distro:
+  ubuntu:
+    - []
+packages_by_arch:
+  aarch64:
+    - []
+  x86_64:
+    - []
+
+# Inst - Download Consul.
+consul_architecture_map:
+  amd64: "amd64"
+  x86_64: "amd64"
+  armv7l: "arm"
+  aarch64: "arm64"
+  32-bit: "386"
+  64-bit: "amd64"
+consul_architecture: "{{ consul_architecture_map[ansible_architecture] }}"
+consul_version: "1.8.6"
+consul_pkg: "consul_{{ consul_version }}_linux_{{ consul_architecture }}.zip"
+consul_zip_url: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_pkg }}"
+
+# Inst - System paths.
+consul_bin_dir: "/usr/local/bin"
+consul_config_dir: "/etc/consul.d"
+consul_data_dir: "/var/consul"
+consul_inst_dir: "/opt"
+consul_lockfile: "/var/lock/subsys/consul"
+consul_run_dir: "/var/run/consul"
+consul_ssl_dir: "/etc/consul.d/ssl"
+nomad_config_dir: "/etc/nomad.d"
+
+# Conf - Service.
+consul_node_role: "both"
+consul_restart_handler_state: "restarted"
+nomad_restart_handler_state: "restarted"
+systemd_resolved_state: "stopped"
+
+# Conf - User and group.
+consul_group: "consul"
+consul_group_state: "present"
+consul_manage_group: true
+consul_manage_user: true
+consul_user: "consul"
+consul_user_groups: [ docker, nomad, consul, root ]
+consul_user_state: "present"
+
+# Conf - nomad.d/consul.hcl
+consul_nomad_integration: true
+consul_certificates:
+  - src: "{{ vault_consul_v1_ca_file }}"
+    dest: "{{ consul_ca_file }}"
+  - src: "{{ vault_consul_v1_cert_file }}"
+    dest: "{{ consul_cert_file }}"
+  - src: "{{ vault_consul_v1_key_file }}"
+    dest: "{{ consul_key_file }}"
+
+consul_auto_advertise: true
+consul_checks_use_advertise: true
+consul_server_service_name: "nomad"
+consul_client_service_name: "nomad-client"
+consul_server_auto_join: false
+consul_client_auto_join: true
+consul_ACL_token_set: false
+consul_token: "consul_token_default"
+
+# Conf - base.hcl
+consul_bind_addr: "{{ ansible_default_ipv4.address }}"
+consul_client_addr: "0.0.0.0"
+consul_datacenter: "dc1"
+consul_disable_update_check: true
+consul_enable_debug: false
+consul_enable_syslog: true
+consul_log_level: "INFO"
+consul_node_name: "{{ inventory_hostname }}"
+consul_retry_join: true
+consul_bootstrap_expect: 2
+consul_encrypt: ""
+consul_ca_file: "{{ consul_ssl_dir }}/ca.pem"
+consul_cert_file: "{{ consul_ssl_dir }}/consul.pem"
+consul_key_file: "{{ consul_ssl_dir }}/consul-key.pem"
+consul_ui: true
+consul_recursors:
+  - 1.1.1.1
+  - 8.8.8.8
+
+# Conf - ports.hcl
+consul_port_dns: 53
+consul_port_http: 8500
+consul_port_https: 8501
+consul_port_grpc: 8502
+consul_port_serf_lan: 8301
+consul_port_serf_wan: 8302
+consul_port_server: 8300
+
+# Conf - services.json
+consul_services: false

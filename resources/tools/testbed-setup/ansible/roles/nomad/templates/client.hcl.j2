@@ -19,4 +19,13 @@ client {
     }
     {% endif %}
 
+    {% if nomad_volumes -%}
+    {% for volume in nomad_volumes -%}
+    host_volume "{{ volume.name }}" {
+        path = "{{ volume.path }}"
+        read_only = {{ volume.read_only | bool | lower }}
+    }
+    {% endfor -%}
+    {% endif %}
+
 }
