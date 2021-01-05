@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2020 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -39,6 +39,8 @@ class LispEid:
         :param prefix_len: Prefix len if the eid is IP address.
         :type eid: str
         :type prefix_len: int
+        :returns: Eid object suitable for PAPI command arguments.
+        :rtype: dict
         """
         eid_addr = dict(
             prefix=IPUtil.create_prefix_object(ip_address(eid), prefix_len)
@@ -65,6 +67,8 @@ class LispRemoteLocator:
         :type ip_addr: str
         :type priority: int
         :type weight: int
+        :returns: Remote locator object suitable for PAPI command arguments.
+        :rtype: list of single dict
         """
         return [
             dict(
