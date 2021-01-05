@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -129,6 +129,9 @@ class Constants:
 
     # shell scripts location
     RESOURCES_LIB_SH = u"resources/libraries/bash"
+
+    # shell scripts entry location
+    RESOURCES_LIB_ENTRY = u"resources/libraries/bash/entry"
 
     # Python API provider location
     RESOURCES_PAPI_PROVIDER = u"resources/tools/papi/vpp_papi_provider.py"
