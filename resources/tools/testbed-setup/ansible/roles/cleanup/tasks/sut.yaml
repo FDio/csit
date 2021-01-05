@@ -33,6 +33,12 @@
         process: "vpp_echo"
       tags: kill-process
 
+    - name: Kill processes - nginx
+      import_tasks: kill_process.yaml
+      vars:
+        process: "nginx"
+      tags: kill-process
+
     - name: Find file or dir - Core zip file
       find:
         paths: "/tmp/"
@@ -69,4 +75,16 @@
       import_tasks: remove_package.yaml
       vars:
         package: "*vpp*"
+      tags: remove-package
+
+    - name: Remove packages - Remove Openssl3
+      import_tasks: remove_package.yaml
+      vars:
+        package: "openssl3"
+      tags: remove-package
+
+    - name: Remove packages - Remove VSAP
+      import_tasks: remove_package.yaml
+      vars:
+        package: "vsap*"
       tags: remove-package

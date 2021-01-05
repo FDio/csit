@@ -408,6 +408,30 @@ Test Type Tags
     Performance tests that measure throughput of multiple VNF and CNF
     service topologies at different service densities.
 
+.. topic:: TLS
+
+    Tests which use TLS.
+
+.. topic:: TLS_CPS
+
+    Performance tests which measure connections per second using https requests.
+
+.. topic:: TLS_RPS
+
+    Performance tests which measure requests per second using https requests.
+
+.. topic:: HTTPS
+
+    Tests which use HTTPS.
+
+.. topic:: VCL_NGINX
+
+    VCL NGINX is to integrate VPP host stack directly with NgInx code change.
+
+.. topic:: LDP_NGINX
+
+    LDP NGINX is basically un-modified NgInx with VPP via LD_PRELOAD.
+
 NF Service Density Tags
 -----------------------
 
@@ -819,6 +843,14 @@ Encryption Tags
 .. topic:: AES_256_GCM
 
     IPSec using AES 256 GCM algorithms.
+
+.. topic:: AES128_SHA
+
+    NgInx using AES 128 SHA algorithms.
+
+.. topic:: AES256_SHA
+
+    NgInx using AES 256 SHA algorithms.
 
 .. topic:: HMAC
 
