@@ -22,4 +22,3 @@ CSIT source code for the test cases used for plots can be found in
     vts-2n-skx-xxv710
     vts-2n-clx-xxv710
     vts-2n-zn2-xxv710
-    vts-2n-zn2-turbo-xxv710
