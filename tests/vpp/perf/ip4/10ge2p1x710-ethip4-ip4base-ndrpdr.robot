@@ -59,6 +59,15 @@
 | ${overhead}= | ${0}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src253
+#| &{traffic_profile_params}=
+#| ... | p1_src_start_ip=10.10.10.2 | p1_src_end_ip=10.10.10.254
+#| ... | p1_dst_start_ip=20.20.20.2 | p2_src_start_ip=20.20.20.2
+#| ... | p2_src_end_ip=20.20.20.254 | p2_dst_start_ip=10.10.10.2
+| &{traffic_profile_params}=
+| ... | p1_src_ip_start=10.10.10.2 | p1_src_ip_count=254
+| ... | p1_dst_ip_start=20.20.20.2 | p1_dst_ip_count=1
+| ... | p2_src_ip_start=20.20.20.2 | p2_src_ip_count=254
+| ... | p2_dst_ip_start=10.10.10.2
 
 *** Keywords ***
 | Local Template
