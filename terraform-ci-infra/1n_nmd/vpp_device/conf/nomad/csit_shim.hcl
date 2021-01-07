@@ -1,11 +1,11 @@
-job "prod-csit-shim" {
+job "${job_name}" {
   # The "region" parameter specifies the region in which to execute the job.
   # If omitted, this inherits the default region name of "global".
   # region = "global"
   #
   # The "datacenters" parameter specifies the list of datacenters which should
   # be considered when placing this task. This must be provided.
-  datacenters = [ "yul1" ]
+  datacenters = "${datacenters}"
 
   # The "type" parameter controls the type of job, which impacts the scheduler's
   # decision on placement. This configuration is optional and defaults to
@@ -16,7 +16,7 @@ job "prod-csit-shim" {
   #
   #     https://www.nomadproject.io/docs/jobspec/schedulers.html
   #
-  type = "system"
+  type        = "system"
 
   # The "group" stanza defines a series of tasks that should be co-located on
   # the same Nomad client. Any task within a group will be placed on the same
@@ -31,18 +31,18 @@ job "prod-csit-shim" {
     # The "count" parameter specifies the number of the task groups that should
     # be running under this group. This value must be non-negative and defaults
     # to 1.
-    count       = 1
+    count            = ${group_count}
 
     constraint {
-      attribute = "${node.class}"
-      value     = "csit"
+      attribute      = "$${node.class}"
+      value          = "csit"
     }
 
     restart {
-      interval  = "1m"
-      attempts  = 3
-      delay     = "15s"
-      mode      = "delay"
+      interval       = "1m"
+      attempts       = 3
+      delay          = "15s"
+      mode           = "delay"
     }
 
     # The "task" stanza creates an individual unit of work, such as a Docker
@@ -83,10 +83,9 @@ job "prod-csit-shim" {
       #     https://www.nomadproject.io/docs/job-specification/resources.html
       #
       resources {
-        cpu          = 100
-        memory       = 128
+        cpu          = ${cpu}
+        memory       = ${mem}
         network {
-          mbits      = 10
           port "ssh" {
               static = 6022
           }
@@ -102,18 +101,18 @@ job "prod-csit-shim" {
     # The "count" parameter specifies the number of the task groups that should
     # be running under this group. This value must be non-negative and defaults
     # to 1.
-    count       = 1
+    count            = ${group_count}
 
     constraint {
-      attribute = "${node.class}"
-      value     = "csitarm"
+      attribute      = "$${node.class}"
+      value          = "csitarm"
     }
 
     restart {
-      interval = "1m"
-      attempts = 3
-      delay    = "15s"
-      mode     = "delay"
+      interval       = "1m"
+      attempts       = 3
+      delay          = "15s"
+      mode           = "delay"
     }
 
     # The "task" stanza creates an individual unit of work, such as a Docker
@@ -154,10 +153,9 @@ job "prod-csit-shim" {
       #     https://www.nomadproject.io/docs/job-specification/resources.html
       #
       resources {
-        cpu          = 100
-        memory       = 128
+        cpu          = ${cpu}
+        memory       = ${mem}
         network {
-          mbits      = 10
           port "ssh" {
               static = 6022
           }
