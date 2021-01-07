@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -exuo pipefail
+
+python3 -c "
+from AvgStdevStats import AvgStdevStats
+
+run = $*
+stats = AvgStdevStats.for_runs(run)
+print(f'{stats!r}')
+"
