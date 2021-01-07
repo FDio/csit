@@ -842,32 +842,42 @@
 | | Set single interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
-| Initialize L2 bridge domain with MACIP ACLs on DUT1 in 3-node circular topology
+| Initialize L2 bridge domain with MACIP ACLs on DUT1 in circular topology
 | | [Documentation]
 | | ... | Setup L2BD topology by adding two interfaces on DUT1 into bridge
 | | ... | domain that is created automatically with index 1. Learning is
 | | ... | enabled. Interfaces are brought up. Apply required MACIP ACL rules to
 | | ... | DUT1 interfaces.
 | |
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| |
 | | Set interfaces in path up
+| |
 | | VPP Add L2 Bridge Domain
 | | ... | ${dut1} | ${1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
-| | Configure L2XC
-| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${DUT2_${int}2}[0]
 | | Configure MACIP ACLs
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
+| |
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2XC | ${dut2} | ${DUT2_${int}1}[0] | ${DUT2_${int}2}[0]
 
-| Initialize L2 bridge domain with IPv4 ACLs on DUT1 in 3-node circular topology
+| Initialize L2 bridge domain with IPv4 ACLs on DUT1 in circular topology
 | | [Documentation]
 | | ... | Setup L2BD topology by adding two interfaces on DUT1 into bridge
 | | ... | domain that is created automatically with index 1. Learning is
 | | ... | enabled. Interfaces are brought up. Apply required ACL rules to DUT1
 | | ... | interfaces.
 | |
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| |
 | | Set interfaces in path up
+| |
 | | VPP Add L2 Bridge Domain
 | | ... | ${dut1} | ${1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
-| | Configure L2XC
-| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${DUT2_${int}2}[0]
 | | Configure IPv4 ACLs
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
+| |
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2XC | ${dut2} | ${DUT2_${int}1}[0] | ${DUT2_${int}2}[0]

@@ -29,7 +29,7 @@
 |
 | Documentation | *RFC2544: Pkt throughput for L2BD test cases*
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 2-node circular topology\
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-domain\
