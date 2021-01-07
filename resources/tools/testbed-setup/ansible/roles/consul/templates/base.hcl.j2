@@ -25,11 +25,11 @@ auto_encrypt {
 }
 {% else %}
 verify_incoming = false
-verify_outgoing = true
-verify_server_hostname = true
+verify_outgoing = false
+verify_server_hostname = false
 ca_file = "{{ consul_ca_file }}"
 auto_encrypt {
-  tls = true
+  tls = false
 }
 {% endif %}
 {% if consul_retry_join | bool -%}
