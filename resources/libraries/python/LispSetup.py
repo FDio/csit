@@ -18,7 +18,7 @@ from enum import IntEnum
 from ipaddress import ip_address
 
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 
 
 class EidType(IntEnum):
