@@ -57,13 +57,12 @@ class VppCounters:
         :type node: dict
         :type log_zeros: bool
         """
-        args = dict(path=u"^/sys/node")
         sockets = Topology.get_node_sockets(node, socket_type=SocketType.STATS)
         if sockets:
             for socket in sockets.values():
                 with PapiStatsExecutor(node) as papi_exec:
-                    stats = papi_exec.add(u"vpp-stats", **args).\
-                        get_stats(socket=socket)[0]
+                    papi_exec.add(u"vpp-stats", path=u"^/sys/node")
+                    stats = papi_exec.get_stats(socket=socket)[0]
 
                 names = stats[u"/sys/node/names"]
 
@@ -77,29 +76,33 @@ class VppCounters:
                     runtime.append({u"name": name})
 
                 for idx, runtime_item in enumerate(runtime):
+                    nonzero = False
 
-                    calls_th = []
-                    for thread in stats[u"/sys/node/calls"]:
-                        calls_th.append(thread[idx])
-                    runtime_item[u"calls"] = calls_th
+                    counter_list = list()
+                    for vpp_thread in stats[u"/sys/node/calls"]:
+                        counter_list.append(vpp_thread[idx])
+                    runtime_item[u"calls"] = counter_list
+                    nonzero = nonzero or sum(counter_list)
 
-                    vectors_th = []
-                    for thread in stats[u"/sys/node/vectors"]:
-                        vectors_th.append(thread[idx])
-                    runtime_item[u"vectors"] = vectors_th
+                    counter_list = list()
+                    for vpp_thread in stats[u"/sys/node/vectors"]:
+                        counter_list.append(vpp_thread[idx])
+                    runtime_item[u"vectors"] = counter_list
+                    nonzero = nonzero or sum(counter_list)
 
-                    suspends_th = []
-                    for thread in stats[u"/sys/node/suspends"]:
-                        suspends_th.append(thread[idx])
-                    runtime_item[u"suspends"] = suspends_th
+                    counter_list = list()
+                    for vpp_thread in stats[u"/sys/node/suspends"]:
+                        counter_list.append(vpp_thread[idx])
+                    runtime_item[u"suspends"] = counter_list
+                    nonzero = nonzero or sum(counter_list)
 
-                    clocks_th = []
-                    for thread in stats[u"/sys/node/clocks"]:
-                        clocks_th.append(thread[idx])
-                    runtime_item[u"clocks"] = clocks_th
+                    counter_list = list()
+                    for vpp_thread in stats[u"/sys/node/clocks"]:
+                        counter_list.append(vpp_thread[idx])
+                    runtime_item[u"clocks"] = counter_list
+                    nonzero = nonzero or sum(counter_list)
 
-                    if (sum(calls_th) or sum(vectors_th) or
-                            sum(suspends_th) or sum(clocks_th)):
+                    if nonzero:
                         runtime_nz.append(runtime_item)
 
                 if log_zeros:
