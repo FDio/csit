@@ -64,6 +64,7 @@
 | | ... | rate=${runtime_rate}
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
+| | ... | traffic_profile_params=${traffic_profile_params}
 | | ... | async_call=${True}
 | | ... | ppta=${ppta}
 | | ... | use_latency=${use_latency}
@@ -325,6 +326,7 @@
 | | ... | rate=${real_rate}
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
+| | ... | traffic_profile_params=${traffic_profile_params}
 | | ... | async_call=${False}
 | | ... | duration_limit=${PERF_TRIAL_LATENCY_DURATION}
 | | ... | ppta=${ppta}
@@ -375,6 +377,7 @@
 | | ... | rate=${ramp_up_rate}
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
+| | ... | traffic_profile_params=${traffic_profile_params}
 | | ... | async_call=${False}
 | | ... | duration_limit=${0.0}
 | | ... | ppta=${ppta}
@@ -428,6 +431,7 @@
 | | | ... | rate=${rate}
 | | | ... | frame_size=${frame_size}
 | | | ... | traffic_profile=${traffic_profile}
+| | | ... | traffic_profile_params=${traffic_profile_params}
 | | | ... | async_call=${False}
 | | | ... | duration_limit=${duration_limit}
 | | | ... | ppta=${ppta}
@@ -636,6 +640,7 @@
 | | ... | rate=${rate}
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
+| | ... | traffic_profile_params=${traffic_profile_params}
 | | ... | async_call=${True}
 | | ... | duration_limit=${0.0}
 | | ... | ppta=${ppta}
