@@ -125,6 +125,16 @@
   tags:
     - consul-conf
 
+- name: Conf - Telemetry Configuration
+  template:
+    src: telemetry.hcl.j2
+    dest: "{{ consul_config_dir }}/telemetry.hcl"
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+    mode: 0644
+  tags:
+    - consul-conf
+
 - name: Conf - Services Configuration
   template:
     src: services.json.j2
@@ -156,8 +166,8 @@
     owner: "root"
     group: "root"
     mode: 0644
-  notify:
-    - "Restart Consul"
+#  notify:
+#    - "Restart Consul"
 #    - "Stop Systemd-resolved"
 #    - "Restart Nomad"
   tags:
