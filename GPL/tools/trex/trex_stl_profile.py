@@ -79,6 +79,7 @@ def simple_burst(
         async_start=False,
         traffic_directions=2,
         force=False,
+        profile_params=None
     ):
     """Send traffic and measure packet loss and latency.
 
@@ -130,9 +131,10 @@ def simple_burst(
     # Read the profile:
     try:
         print(f"### Profile file:\n{profile_file}")
+        print(f"Profile parameters:\n{profile_params}")
         profile = STLProfile.load(
             profile_file, direction=0, port_id=0, framesize=framesize,
-            rate=rate
+            rate=rate, **profile_params
         )
         streams = profile.get_streams()
     except STLError:
@@ -151,7 +153,7 @@ def simple_burst(
         if u"macsrc" in profile_file:
             client.set_port_attr(ports=[port_0, port_1], promiscuous=True)
         if isinstance(framesize, int):
-            last_stream_a = int((len(streams) - 2 ) / 2)
+            last_stream_a = int((len(streams) - 2) / 2)
             last_stream_b = (last_stream_a * 2)
             client.add_streams(streams[0:last_stream_a], ports=[port_0])
             if traffic_directions > 1:
@@ -278,6 +280,10 @@ def main():
         help=u"Python traffic profile."
     )
     parser.add_argument(
+        u"--profile_params", required=True, type=str,
+        help=u"JSON formatted dictionary of python traffic profile parameters."
+    )
+    parser.add_argument(
         u"-d", u"--duration", required=True, type=float,
         help=u"Duration of traffic run."
     )
@@ -323,6 +329,7 @@ def main():
 
     simple_burst(
         profile_file=args.profile,
+        profile_params=json.loads(args.profile_params),
         duration=args.duration,
         framesize=framesize,
         rate=args.rate,
