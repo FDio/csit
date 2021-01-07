@@ -4,7 +4,7 @@
 hostname: "s1-t11-sut1"
 grub:
   hugepagesz: "2M"
-  nr_hugepages: 65536
+  nr_hugepages: 32768
 inventory_ipmi_hostname: "10.30.50.47"
 cpu_microarchitecture: "skylake"
 
