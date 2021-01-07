@@ -240,7 +240,7 @@ def cleanup_node(node, results=None):
 class SetupFramework:
     """Setup suite run on topology nodes.
 
-    Many VAT/CLI based tests need the scripts at remote hosts before executing
+    Many CLI based tests need the scripts at remote hosts before executing
     them. This class packs the whole testing directory and copies it over
     to all nodes in topology under /tmp/
     """

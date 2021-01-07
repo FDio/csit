@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Intel and/or its affiliates.
+# Copyright (c) 2021 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,7 +17,7 @@ from ipaddress import ip_address
 from socket import htonl
 
 from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 
 
 class LoadBalancerUtil:
