@@ -871,3 +871,16 @@
 | | ... | ${dut2} | ${DUT2_${int}1}[0] | ${DUT2_${int}2}[0]
 | | Configure IPv4 ACLs
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
+
+| Initialize L2 bridge domain with IPv4 ACLs on DUT1 in 2-node circular topology
+| | [Documentation]
+| | ... | Setup L2BD topology by adding two interfaces on DUT1 into bridge
+| | ... | domain that is created automatically with index 1. Learning is
+| | ... | enabled. Interfaces are brought up. Apply required ACL rules to DUT1
+| | ... | interfaces.
+| |
+| | Set interfaces in path up
+| | VPP Add L2 Bridge Domain
+| | ... | ${dut1} | ${1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
+| | Configure IPv4 ACLs
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
