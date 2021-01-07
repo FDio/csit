@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,6 +13,7 @@
 
 """Performance testing traffic generator library."""
 
+import json
 import time
 
 from robot.api import logger
@@ -161,6 +162,7 @@ class TrafficGenerator(AbstractMeasurer):
         # Other input parameters, not knowable from measure() signature.
         self.frame_size = None
         self.traffic_profile = None
+        self.traffic_profile_params = dict()
         self.traffic_directions = None
         self.negative_loss = None
         self.use_latency = None
@@ -593,6 +595,9 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_with_value(
             u"profile", f"'{dirname}/{self.traffic_profile}.py'"
         )
+        command_line.add_with_value(
+            u"profile_params", json.dumps(self.traffic_profile)
+        )
         command_line.add_with_value(u"duration", f"{computed_duration!r}")
         command_line.add_with_value(u"frame_size", self.frame_size)
         command_line.add_with_value(u"multiplier", multiplier)
@@ -698,6 +703,9 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_with_value(
             u"profile", f"'{dirname}/{self.traffic_profile}.py'"
         )
+        command_line.add_with_value(
+            u"profile_params", f"'{json.dumps(self.traffic_profile_params)}'"
+        )
         command_line.add_with_value(u"duration", f"{duration!r}")
         command_line.add_with_value(u"frame_size", self.frame_size)
         command_line.add_with_value(u"rate", f"{rate!r}")
@@ -755,6 +763,7 @@ class TrafficGenerator(AbstractMeasurer):
             transaction_type=u"packet",
             duration_limit=0.0,
             use_latency=False,
+            traffic_profile_params=None
         ):
         """Send traffic from all configured interfaces on TG.
 
@@ -823,6 +832,8 @@ class TrafficGenerator(AbstractMeasurer):
             transaction_type=transaction_type,
             duration_limit=duration_limit,
             use_latency=use_latency,
+            traffic_profile_params=traffic_profile_params
+            if traffic_profile_params else dict(),
         )
         self._send_traffic_on_tg_internal(duration, rate, async_call)
 
@@ -1188,6 +1199,7 @@ class TrafficGenerator(AbstractMeasurer):
             negative_loss=True,
             sleep_till_duration=False,
             use_latency=False,
+            traffic_profile_params=None
         ):
         """Store values accessed by measure().
 
@@ -1231,6 +1243,8 @@ class TrafficGenerator(AbstractMeasurer):
         """
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
+        self.traffic_profile_params = traffic_profile_params \
+            if traffic_profile_params else dict()
         self.resetter = resetter
         self.ppta = ppta
         self.traffic_directions = int(traffic_directions)
@@ -1270,6 +1284,7 @@ class OptimizedSearch:
             transaction_scale=0,
             transaction_type=u"packet",
             use_latency=False,
+            traffic_profile_params=None
     ):
         """Setup initialized TG, perform optimized search, return intervals.
 
@@ -1351,6 +1366,8 @@ class OptimizedSearch:
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
             traffic_profile=traffic_profile,
+            traffic_profile_params=traffic_profile_params
+            if traffic_profile_params else dict(),
             sleep_till_duration=False,
             ppta=ppta,
             resetter=resetter,
@@ -1394,6 +1411,7 @@ class OptimizedSearch:
             transaction_scale=0,
             transaction_type=u"packet",
             use_latency=False,
+            traffic_profile_params=None
     ):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
@@ -1459,6 +1477,8 @@ class OptimizedSearch:
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
             traffic_profile=traffic_profile,
+            traffic_profile_params=traffic_profile_params
+            if traffic_profile_params else dict(),
             negative_loss=False,
             sleep_till_duration=True,
             ppta=ppta,
