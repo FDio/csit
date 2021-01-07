@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,8 +17,8 @@ from pprint import pformat
 
 from robot.api import logger
 
-from resources.libraries.python.PapiExecutor import PapiExecutor, \
-    PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiStatsExecutor import PapiStatsExecutor
 from resources.libraries.python.topology import Topology, SocketType, NodeType
 
 
@@ -61,7 +61,7 @@ class VppCounters:
         sockets = Topology.get_node_sockets(node, socket_type=SocketType.STATS)
         if sockets:
             for socket in sockets.values():
-                with PapiExecutor(node) as papi_exec:
+                with PapiStatsExecutor(node) as papi_exec:
                     stats = papi_exec.add(u"vpp-stats", **args).\
                         get_stats(socket=socket)[0]
 
