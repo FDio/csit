@@ -33,6 +33,8 @@ Stream profile:
    - Destination IP address range: 10.10.10.2
 """
 
+from ipaddress import IPv4Address
+
 from trex.stl.api import *
 from profile_trex_stateless_base_class import TrafficStreamsBaseClass
 
@@ -45,16 +47,16 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         super(TrafficStreamsBaseClass, self).__init__()
 
-        # IPs used in packet headers.
-        self.p1_src_start_ip = u"10.10.10.2"
-        self.p1_src_end_ip = u"10.10.10.254"
-        self.p1_dst_start_ip = u"20.20.20.2"
+        # # IPs used in packet headers.
+        # self.p1_src_start_ip = u"10.10.10.2"
+        # self.p1_src_end_ip = u"10.10.10.254"
+        # self.p1_dst_start_ip = u"20.20.20.2"
+        #
+        # self.p2_src_start_ip = u"20.20.20.2"
+        # self.p2_src_end_ip = u"20.20.20.254"
+        # self.p2_dst_start_ip = u"10.10.10.2"
 
-        self.p2_src_start_ip = u"20.20.20.2"
-        self.p2_src_end_ip = u"20.20.20.254"
-        self.p2_dst_start_ip = u"10.10.10.2"
-
-    def define_packets(self):
+    def define_packets(self, **kwargs):
         """Defines the packets to be sent from the traffic generator.
 
         Packet definition: | ETH | IP |
@@ -63,12 +65,32 @@ class TrafficStreams(TrafficStreamsBaseClass):
         :rtype: tuple
         """
 
+        p1_src_ip_start = IPv4Address(
+            kwargs.get(u"p1_src_ip_start", u"10.10.10.2")
+        )
+        p1_src_ip_count = int(kwargs.get(u"p1_src_ip_count", 1))
+
+        p1_dst_ip_start = IPv4Address(
+            kwargs.get(u"p1_dst_ip_start", u"20.20.20.2")
+        )
+        p1_dst_ip_count = int(kwargs.get(u"p1_dst_ip_count", 1))
+
+        p2_src_ip_start = IPv4Address(
+            kwargs.get(u"p2_src_ip_start", u"20.20.20.2")
+        )
+        p2_src_ip_count = int(kwargs.get(u"p2_src_ip_count", 1))
+
+        p2_dst_ip_start = IPv4Address(
+            kwargs.get(u"p2_dst_ip_start", u"10.10.10.2")
+        )
+        p2_dst_ip_count = int(kwargs.get(u"p2_dst_ip_count", 1))
+
         # Direction 0 --> 1
         base_pkt_a = (
             Ether() /
             IP(
-                src=self.p1_src_start_ip,
-                dst=self.p1_dst_start_ip,
+                src=str(p1_src_ip_start),
+                dst=str(p1_dst_ip_start),
                 proto=61
             )
         )
@@ -76,8 +98,8 @@ class TrafficStreams(TrafficStreamsBaseClass):
         base_pkt_b = (
             Ether() /
             IP(
-                src=self.p2_src_start_ip,
-                dst=self.p2_dst_start_ip,
+                src=str(p2_src_ip_start),
+                dst=str(p2_dst_ip_start),
                 proto=61
             )
         )
@@ -86,15 +108,26 @@ class TrafficStreams(TrafficStreamsBaseClass):
         vm1 = STLScVmRaw(
             [
                 STLVmFlowVar(
-                    name=u"src",
-                    min_value=self.p1_src_start_ip,
-                    max_value=self.p1_src_end_ip,
+                    name=u"ip_src",
+                    min_value=int(p1_src_ip_start),
+                    max_value=int(p1_src_ip_start + p1_src_ip_count - 1),
                     size=4,
                     op=u"inc"
                 ),
                 STLVmWrFlowVar(
-                    fv_name=u"src",
+                    fv_name=u"ip_src",
                     pkt_offset=u"IP.src"
+                ),
+                STLVmFlowVar(
+                    name=u"ip_dst",
+                    min_value=int(p1_dst_ip_start),
+                    max_value=int(p1_dst_ip_start + p1_dst_ip_count - 1),
+                    size=4,
+                    op=u"inc"
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"ip_dst",
+                    pkt_offset=u"IP.dst"
                 ),
                 STLVmFixIpv4(
                     offset=u"IP"
@@ -105,15 +138,26 @@ class TrafficStreams(TrafficStreamsBaseClass):
         vm2 = STLScVmRaw(
             [
                 STLVmFlowVar(
-                    name=u"src",
-                    min_value=self.p2_src_start_ip,
-                    max_value=self.p2_src_end_ip,
+                    name=u"ip_src",
+                    min_value=int(p2_src_ip_start),
+                    max_value=int(p2_src_ip_start + p2_src_ip_count - 1),
                     size=4,
                     op=u"inc"
                 ),
                 STLVmWrFlowVar(
-                    fv_name=u"src",
+                    fv_name=u"ip_src",
                     pkt_offset=u"IP.src"
+                ),
+                STLVmFlowVar(
+                    name=u"ip_dst",
+                    min_value=int(p2_dst_ip_start),
+                    max_value=int(p2_dst_ip_start + p2_dst_ip_count - 1),
+                    size=4,
+                    op=u"inc"
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"ip_dst",
+                    pkt_offset=u"IP.dst"
                 ),
                 STLVmFixIpv4(
                     offset=u"IP"
