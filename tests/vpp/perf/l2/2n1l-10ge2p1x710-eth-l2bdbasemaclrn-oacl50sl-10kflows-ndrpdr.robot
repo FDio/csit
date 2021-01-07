@@ -14,11 +14,11 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | FEATURE | ACL | ACL_STATEFUL
-| ... | OACL | ACL10 | 10K_FLOWS | DRV_VFIO_PCI
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | FEATURE | ACL | ACL_STATELESS
+| ... | OACL | ACL50 | 10K_FLOWS | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | eth-l2bdbasemaclrn-oacl10sf-10kflows
+| ... | eth-l2bdbasemaclrn-oacl50sl-10kflows
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -29,13 +29,13 @@
 |
 | Documentation | *RFC2544: Packet throughput L2BD test cases with ACL*
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP for L2 switching of IPv4.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge domain\
-| ... | and MAC learning enabled. DUT2 is configured with L2 cross-connects.\
+| ... | and MAC learning enabled.\
 | ... | Required ACL rules are applied to input paths of both DUT1 intefaces.\
-| ... | DUT1 and DUT2 are tested with ${nic_name}.\
+| ... | DUT1 is tested with ${nic_name}.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -61,9 +61,9 @@
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
 # ACL test setup
-| ${acl_action}= | permit+reflect
+| ${acl_action}= | permit
 | ${acl_apply_type}= | output
-| ${no_hit_aces_number}= | 10
+| ${no_hit_aces_number}= | 50
 | ${flows_per_dir}= | 10k
 # starting points for non-hitting ACLs
 | ${src_ip_start}= | 30.30.30.1
@@ -75,7 +75,7 @@
 | ${trex_stream1_subnet}= | 10.10.10.0/24
 | ${trex_stream2_subnet}= | 20.20.20.0/24
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip4udp-10u1000p-conc
+| ${traffic_profile}= | trex-stl-2n-ethip4udp-10u1000p-conc
 
 *** Keywords ***
 | Local Template
@@ -104,50 +104,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| 64B-1c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| 64B-2c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| 64B-4c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| 1518B-1c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| 1518B-2c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| 1518B-4c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| 9000B-1c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| 9000B-2c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| 9000B-4c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| IMIX-1c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| IMIX-2c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-eth-l2bdbasemaclrn-oacl10sf-10kflows-ndrpdr
+| IMIX-4c-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
