@@ -59,6 +59,29 @@ module "nginx" {
   nginx_job_name        = "prod-nginx"
 }
 
+module "elastic" {
+  source                = "./elastic"
+  providers             = {
+    nomad = nomad.yul1
+  }
+
+  # nomad
+  nomad_datacenters     = [ "yul1" ]
+
+  # elastic
+  elastic_job_name      = "prod-elastic"
+  elastic_use_canary    = true
+  elastic_group_count   = 1
+  elastic_version       = "7.10.1"
+
+  # beats
+  beats_job_name        = "prod-beats"
+  beats_use_canary      = true
+  beats_group_count     = 1
+  beats_data_dir        = "local"
+  beats_version         = "7.10.1"
+}
+
 #module "vpp_device" {
 #  source = "./vpp_device"
 #  providers = {
