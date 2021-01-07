@@ -79,6 +79,7 @@ def simple_burst(
         async_start=False,
         traffic_directions=2,
         force=False,
+        profile_params=None
     ):
     """Send traffic and measure packet loss and latency.
 
@@ -134,7 +135,7 @@ def simple_burst(
             profile_file, direction=0, port_id=0, framesize=framesize,
             rate=rate
         )
-        streams = profile.get_streams()
+        streams = profile.get_streams(profile_params)
     except STLError:
         print(f"Error while loading profile '{profile_file}'!")
         raise
@@ -278,6 +279,10 @@ def main():
         help=u"Python traffic profile."
     )
     parser.add_argument(
+        u"-p", u"--profile_params", required=True, type=str,
+        help=u"JSON formatted dictionary of python traffic profile parameters."
+    )
+    parser.add_argument(
         u"-d", u"--duration", required=True, type=float,
         help=u"Duration of traffic run."
     )
@@ -323,6 +328,7 @@ def main():
 
     simple_burst(
         profile_file=args.profile,
+        profile_params=json.loads(args.profile_parmas),
         duration=args.duration,
         framesize=framesize,
         rate=args.rate,
