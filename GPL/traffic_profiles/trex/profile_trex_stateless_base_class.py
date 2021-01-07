@@ -54,8 +54,10 @@ class TrafficStreamsBaseClass:
         # Default value of frame size, it will be overwritten by the value of
         # "framesize" parameter of "get_streams" method.
         self.framesize = 64
+        self.rate = 0
 
         # If needed, add your own parameters.
+        self.profile_params = dict()
 
     def _gen_payload(self, length):
         """Generate payload.
@@ -101,7 +103,7 @@ class TrafficStreamsBaseClass:
             print(err)
             raise
 
-    def define_packets(self):
+    def define_packets(self, **kwargs):
         """Define the packets to be sent from the traffic generator.
 
         This method MUST return:
@@ -115,15 +117,17 @@ class TrafficStreamsBaseClass:
         """
         raise NotImplementedError
 
-    def create_streams(self):
+    def create_streams(self, **kwargs):
         """Create traffic streams.
 
         Implement your own traffic streams.
 
+        :param kwargs: Key-value pairs to create streams.
+        :type kwargs: dict
         :returns: Traffic streams.
         :rtype: list
         """
-        base_pkt_a, base_pkt_b, vm1, vm2 = self.define_packets()
+        base_pkt_a, base_pkt_b, vm1, vm2 = self.define_packets(**kwargs)
 
         # In most cases you will not have to change the code below:
 
@@ -217,11 +221,13 @@ class TrafficStreamsBaseClass:
         If needed, add your own parameters.
 
         :param kwargs: Key-value pairs used by "create_streams" method while
-        creating streams.
+            creating streams.
+        :type kwargs: dict
         :returns: Traffic streams.
         :rtype: list
         """
-        self.framesize = kwargs[u"framesize"]
-        self.rate = kwargs[u"rate"]
+        self.framesize = kwargs.pop(u"framesize")
+        self.rate = kwargs.pop(u"rate")
+        self.profile_params = kwargs if kwargs else dict()
 
-        return self.create_streams()
+        return self.create_streams(**self.profile_params)
