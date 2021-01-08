@@ -12,6 +12,10 @@
 # limitations under the License.
 
 """Python API executor library.
+
+This one does not use sockets.
+PapiNonsocketExecutor is a better name, but too long for import lines.
+PapiStatsExecutor name hints accessing stats segment needs this executor.
 """
 
 import copy
@@ -24,9 +28,7 @@ from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (SSH, SSHTimeout)
 
 
-__all__ = [
-    u"PapiStatsExecutor",
-]
+__all__ = [u"PapiStatsExecutor"]
 
 
 class PapiStatsExecutor:
@@ -115,6 +117,11 @@ class PapiStatsExecutor:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs
             )
+        # TODO: Add only just before executing,
+        # so if executing fails in the middle, history does not contain
+        # commands we know VPP has never received.
+        # Note that with async processing, CSIT is likely to send
+        # many more commands before realizing something has failed.
         self._api_command_list.append(
             dict(
                 api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)
@@ -169,14 +176,12 @@ class PapiStatsExecutor:
             if isinstance(val, dict):
                 for val_k, val_v in val.items():
                     val[str(val_k)] = process_value(val_v)
-                retval = val
-            elif isinstance(val, list):
+                return val
+            if isinstance(val, list):
                 for idx, val_l in enumerate(val):
                     val[idx] = process_value(val_l)
-                retval = val
-            else:
-                retval = val.encode().hex() if isinstance(val, str) else val
-            return retval
+                return val
+            return val.encode().hex() if isinstance(val, str) else val
 
         api_data_processed = list()
         for api in api_d:
