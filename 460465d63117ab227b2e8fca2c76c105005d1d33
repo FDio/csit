@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9ab3f16_6efb1dd9",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-01-08T14:30:02Z",
+      "side": 1,
+      "message": "This is used for 2n-tx2 and 3n-tsh",
+      "range": {
+        "startLine": 139,
+        "startChar": 25,
+        "endLine": 139,
+        "endChar": 31
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95601159_914e2b24",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-01-08T14:30:02Z",
+      "side": 1,
+      "message": "This is the 2n-tx2 server. The server name is correct, t34 is correct and the model is ThunderX2-9975.",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 61
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58673afa_f8bd3fcf",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-01-08T14:30:02Z",
+      "side": 1,
+      "message": "The name is correct, the testbed number is t36, only the purpose should be 1n-tx2 - it\u0027s a VPP device server. The model is actually ThunderX2-9980, we can add that.",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 62
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95b45141_8b2d3f2c",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-01-08T14:30:02Z",
+      "side": 1,
+      "message": "Yes, these two Taishans (s17 and s18) are in 3n-tsh",
+      "range": {
+        "startLine": 142,
+        "startChar": 20,
+        "endLine": 142,
+        "endChar": 27
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3738bb6_2301e641",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-01-08T14:30:02Z",
+      "side": 1,
+      "message": "We\u0027re missing two nomad arm servers and one arm dev server so I think those are these three:\nfdio-marvell-dev,up,N/A,dev,ThunderX-88XX,N/A,b612,u18,10.30.51.38,10.30.50.38,r?,u?,mgmt?,ipmi?\ns53-nomad,up,N/A,nomad-client/server?,ThunderX-88XX,N/A,b612,u17,10.30.51.39,10.30.50.39,r?,u?,mgmt?,ipmi?\ns54-nomad,up,N/A,nomad-client/server?,ThunderX-88XX,N/A,b612,u16,10.30.51.40,10.30.50.40,r?,u?,mgmt?,ipmi?\n\nOf course, I don\u0027t know how exactly are these ordered in the rack, so u16-u18 may not correspond.",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 85
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6665543a_8be4d1bd",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-01-08T14:30:02Z",
+      "side": 1,
+      "message": "We want to decommission these. I don\u0027t actually have access to these, so I can\u0027t help with the other info. Do we need the info if we\u0027re decommissioning the servers?",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 98
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c905a9f_9eb2e3ab",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-01-08T14:30:02Z",
+      "side": 1,
+      "message": "These four arm servers are running Jenkins jobs, so these should be nomad-clients. I\u0027m not sure about the cluster though - how do we check it?",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 126
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baea06c9_e2b1666c",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-01-08T14:30:02Z",
+      "side": 1,
+      "message": "The name is correct, the testbed number is t37, only the purpose should be 1n-tx2 - it\u0027s a VPP device server. The model is actually ThunderX2-9980, we can add that.",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 57
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
