@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91306da0_f0c83be1",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-08T11:31:36Z",
+      "side": 1,
+      "message": "${duts_count} \u003d\u003d 2\n\nand you can remove for cleaner logs/code\n```\n| | ${dut2_status} | ${value}\u003d | Run Keyword And Ignore Error\n| | ... | Variable Should Exist | ${dut2}\n```",
+      "range": {
+        "startLine": 863,
+        "startChar": 21,
+        "endLine": 863,
+        "endChar": 47
+      },
+      "revId": "6a77cf16b4cfc1ee426061cb2c9e938f0443affe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
