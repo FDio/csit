@@ -1,18 +1,9 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
-#
-# SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
-#
-# Licensed under the Apache License 2.0 or
-# GNU General Public License v2.0 or later;  you may not use this file
-# except in compliance with one of these Licenses. You
-# may obtain a copy of the Licenses at:
+# Copyright (c) 2021 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
 #
 #     http://www.apache.org/licenses/LICENSE-2.0
-#     https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
-#
-# Note: If this file is linked with Scapy, which is GPLv2+, your use of it
-# must be under GPLv2+.  If at any point in the future it is no longer linked
-# with Scapy (or other GPLv2+ licensed software), you are free to choose Apache 2.
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,10 +18,10 @@ Stream profile:
  - Packet: ETH / IP /
  - Direction 0 --> 1:
    - Source IP address range:      10.0.0.1
-   - Destination IP address range: 20.0.0.0 - 20.0.39.15
+   - Destination IP address range: 20.0.0.0 - 20.1.134.159
  - Direction 1 --> 0:
    - Source IP address range:      20.0.0.1
-   - Destination IP address range: 10.0.0.0 - 10.0.39.15
+   - Destination IP address range: 10.0.0.0 - 10.1.134.159
 """
 
 from trex.stl.api import *
@@ -48,11 +39,11 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # IPs used in packet headers.
         self.p1_src_start_ip = u"10.0.0.1"
         self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.39.15"
+        self.p1_dst_end_ip = u"20.1.134.159"
 
         self.p2_src_start_ip = u"20.0.0.1"
         self.p2_dst_start_ip = u"10.0.0.0"
-        self.p2_dst_end_ip = u"10.0.39.15"
+        self.p2_dst_end_ip = u"10.1.134.159"
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
@@ -90,7 +81,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     min_value=self.p1_dst_start_ip,
                     max_value=self.p1_dst_end_ip,
                     size=4,
-                    limit=10000
+                    limit=100000
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"dst",
@@ -101,7 +92,6 @@ class TrafficStreams(TrafficStreamsBaseClass):
                 )
             ]
         )
-
         # Direction 1 --> 0
         vm2 = STLScVmRaw(
             [
@@ -110,7 +100,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     min_value=self.p2_dst_start_ip,
                     max_value=self.p2_dst_end_ip,
                     size=4,
-                    limit=10000
+                    limit=100000
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"dst",
