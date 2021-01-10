@@ -111,12 +111,20 @@ environment:
 +-----------------------+----------------------------------------------+
 | Functionality         |  Description                                 |
 +=======================+==============================================+
-| ACL                   | Ingress Access Control List security for L2  |
+| ACL (legacy)          | Ingress Access Control List security for L2  |
 |                       | Bridge-Domain MAC switching, IPv4 routing,   |
 |                       | IPv6 routing.                                |
 +-----------------------+----------------------------------------------+
+| ACL (acl_plugin)      | Ingress and Egress Access Control List       |
+|                       | security in stateless and stateful mode for  |
+|                       | L2 Bridge-Domain MAC switching, IPv4         |
+|                       | routing, IPv6 routing.                       |
++-----------------------+----------------------------------------------+
 | ADL                   | ADL address allow-list and block-list        |
 |                       | filtering for IPv4 and IPv6 routing.         |
++-----------------------+----------------------------------------------+
+| GENEVE                | GENEVE tunnels to span multiple servers      |
+|                       | for IPv4 routing.                            |
 +-----------------------+----------------------------------------------+
 | IPSec                 | IPSec tunnel and transport modes.            |
 +-----------------------+----------------------------------------------+
@@ -129,6 +137,10 @@ environment:
 +-----------------------+----------------------------------------------+
 | L2XC                  | L2 Cross-Connect switching for untagged      |
 |                       | Ethernet.                                    |
++-----------------------+----------------------------------------------+
+| MACIP (acl_plugin)    | Ingress Access Control List security for L2  |
+|                       | Bridge-Domain MAC switching based on mix     |
+|                       | of MAC and IP address matches.               |
 +-----------------------+----------------------------------------------+
 | Memif Interface       | Baseline VPP memif interface tests.          |
 +-----------------------+----------------------------------------------+

@@ -10,8 +10,12 @@ Changes in |csit-release|
 
 #. TEST COVERAGE
 
-   - Increased test coverage: **NAT44-DET**, **NAT44-ED**.
-   - Aligned vpp_device NAT Robot Keywords with performance NAT Robot Keywords.
+   - Increased test coverage: **GENEVE**, **ACL** and **MACIP** from ACL plugin.
+
+#. DEPRECATED API MESSAGES
+
+   - Updated API calls for **link bonding**, **COP**, **IPSEC**, **NAT** and
+     **NSIM**.
 
 Known Issues
 ------------
