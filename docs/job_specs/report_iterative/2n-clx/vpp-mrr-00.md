@@ -1,9 +1,9 @@
 # 2n-clx
-### tests 489
-### job hrs est. 11.5
-### job hrs real 11.5
+### tests 504
+### job hrs est. 11.84
+### job hrs real x
 ### test mins est. 1.41
-### test mins real 1.41
+### test mins real x
 ## ./container_memif
 ### intel-xxv710
 #### avf
@@ -421,6 +421,28 @@
 2c AND 64b AND mrr AND cx556a AND drv_rdma_core AND ethip4udp-nat44det-h1024-p63-s64512
 4c AND 64b AND mrr AND cx556a AND drv_rdma_core AND ethip4udp-nat44det-h1024-p63-s64512
 ## ./ip4_tunnels
+### intel-xxv710
+#### avf
+##### ethip4--ethip4udpgeneve-1tun-ip4base
+1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-1tun-ip4base
+2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-1tun-ip4base
+4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-1tun-ip4base
+##### ethip4--ethip4udpgeneve-4tun-ip4base
+1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-4tun-ip4base
+2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-4tun-ip4base
+4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-4tun-ip4base
+##### ethip4--ethip4udpgeneve-16tun-ip4base
+1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-16tun-ip4base
+2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-16tun-ip4base
+4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-16tun-ip4base
+##### ethip4--ethip4udpgeneve-64tun-ip4base
+1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-64tun-ip4base
+2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-64tun-ip4base
+4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-64tun-ip4base
+##### ethip4--ethip4udpgeneve-256tun-ip4base
+1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
+2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
+4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
 ## ./ip6
 ### intel-x710
 #### avf
