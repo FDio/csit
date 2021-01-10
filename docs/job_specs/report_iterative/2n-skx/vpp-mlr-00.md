@@ -1,6 +1,6 @@
 # 2n-skx
-### tests 396
-### job hrs est. 38
+### tests 411
+### job hrs est. 39,46
 ### job hrs real x
 ### test mins est. 5.76
 ### test mins real x
@@ -345,6 +345,28 @@
 2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4udp-nat44det-h1-p1-s1
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4udp-nat44det-h1-p1-s1
 ## ./ip4_tunnels
+### intel-xxv710
+#### avf
+##### ethip4--ethip4udpgeneve-1tun-ip4base
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-1tun-ip4base
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-1tun-ip4base
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-1tun-ip4base
+##### ethip4--ethip4udpgeneve-4tun-ip4base
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-4tun-ip4base
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-4tun-ip4base
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-4tun-ip4base
+##### ethip4--ethip4udpgeneve-16tun-ip4base
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-16tun-ip4base
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-16tun-ip4base
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-16tun-ip4base
+##### ethip4--ethip4udpgeneve-64tun-ip4base
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-64tun-ip4base
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-64tun-ip4base
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-64tun-ip4base
+##### ethip4--ethip4udpgeneve-256tun-ip4base
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
 ## ./ip6
 ### intel-x710
 #### avf
