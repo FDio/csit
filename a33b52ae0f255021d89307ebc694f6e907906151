@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "92cb1bf4_e29f3449",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-11T09:40:31Z",
+      "side": 1,
+      "message": "Yeah, I do not remember what exactly I had in mind when writing this.\nThe comment will be simplified in https://gerrit.fd.io/r/c/csit/+/26019/139/resources/libraries/python/PapiSocketExecutor.py#282",
+      "parentUuid": "10fd144d_3ac30213",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 59
+      },
+      "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "15343087_5f841e96",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 48
@@ -36,6 +60,30 @@
       "writtenOn": "2020-12-30T04:42:04Z",
       "side": 1,
       "message": "Why do you manipulate the sys.path?",
+      "range": {
+        "startLine": 261,
+        "startChar": 11,
+        "endLine": 262,
+        "endChar": 30
+      },
+      "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3852fad5_9f03697a",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-11T09:40:31Z",
+      "side": 1,
+      "message": "The instance creation (line 254) was failing, I think because of this [1] import. Not sure how it behaves after [2].\nBasically, the issue is in CSIT we set PYTHONPATH to top of the cloned CSIT repo, but PAPI files are in some temporary directory elsewhere. Manipulation of sys.path (lines 247 and 262) was a workaround for that, and I did not touch it once it started working.\n\n[1] https://github.com/FDio/vpp/blob/9c5dd2591c1d35b793f5fda8f6be622bb1026e51/src/vpp-api/python/vpp_papi/vpp_papi.py#L431\n[2] https://gerrit.fd.io/r/c/vpp/+/30491",
+      "parentUuid": "15343087_5f841e96",
       "range": {
         "startLine": 261,
         "startChar": 11,
