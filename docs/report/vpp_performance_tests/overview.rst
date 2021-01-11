@@ -286,6 +286,8 @@ performance tested across a range of NIC drivers and NIC models:
 | ADL                   | IPv4 and IPv6 routing with ADL address       |
 |                       | security.                                    |
 +-----------------------+----------------------------------------------+
+| GENEVE                | GENEVE tunnels for IPv4 routing.             |
++-----------------------+----------------------------------------------+
 | IPv4                  | IPv4 routing.                                |
 +-----------------------+----------------------------------------------+
 | IPv6                  | IPv6 routing.                                |
