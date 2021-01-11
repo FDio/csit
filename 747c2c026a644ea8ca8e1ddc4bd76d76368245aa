@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03e70a6a_16e07f39",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-11T09:24:06Z",
+      "side": 1,
+      "message": "2021",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "747c2c026a644ea8ca8e1ddc4bd76d76368245aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51df9a55_680fd6a4",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-11T09:24:06Z",
+      "side": 1,
+      "message": "function\u0027s",
+      "range": {
+        "startLine": 569,
+        "startChar": 21,
+        "endLine": 569,
+        "endChar": 30
+      },
+      "revId": "747c2c026a644ea8ca8e1ddc4bd76d76368245aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
