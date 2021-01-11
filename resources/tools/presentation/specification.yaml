@@ -2302,13 +2302,25 @@
           yanchor: "bottom"
           yref: "paper"
 
-    plot-hdrh-latency-percentile:
+    plot-hdrh-latency-percentile-x-log:
       title:
-        text: ""
+        text: "<b>Latency by Percentile Distribution</b>"
         xanchor: "center"
         x: 0.5
         font:
+          size: 18
+      showlegend: True
+      legend:
+        traceorder: "normal"
+        orientation: "h"
+        font:
           size: 16
+        xanchor: "left"
+        yanchor: "top"
+        x: 0
+        y: -0.2
+        bgcolor: "rgba(255, 255, 255, 0)"
+        bordercolor: "rgba(255, 255, 255, 0)"
       xaxis:
         type: "log"
         title: "<b>Percentile [%]</b>"
@@ -2328,7 +2340,7 @@
         tickfont:
           size: 14
       yaxis:
-        title: "<b>Packet Latency [uSec]</b>"
+        title: "<b>One-Way Latency per Direction [uSec]</b>"
         titlefont:
           size: 14
         gridcolor: "rgb(230, 230, 230)"
@@ -2341,18 +2353,6 @@
         tickfont:
           size: 14
       autosize: False
-      showlegend: True
-      legend:
-        traceorder: "normal"
-        orientation: "h"
-        font:
-          size: 14
-        xanchor: "left"
-        yanchor: "top"
-        x: 0
-        y: -0.15
-        bgcolor: "rgba(255, 255, 255, 0)"
-        bordercolor: "rgba(255, 255, 255, 0)"
       width: 700
       height: 700
       paper_bgcolor: "white"
@@ -22549,6 +22549,17 @@
     layout: "plot-throughput"
 
 ################################################################################
+
+- type: "plot"
+  title: "Latency by percentile x-log: 2n-clx"
+  algorithm: "plot_hdrh_lat_by_percentile"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-x-log-2n-clx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
   title: "Latency by percentile: 2n-skx"
