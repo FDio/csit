@@ -856,13 +856,8 @@
         - 33  # rls2009 NDRPDR iter env 5
         - 34  # rls2009 NDRPDR iter env 5
     vpp-performance-changes-2n-zn2-ref-env-new:
-      # TODO: Re-test in new env
-      csit-vpp-perf-report-iterative-2009-2n-zn2:
-        - 17  # rls2009 NDRPDR iter env 5
-        - 18  # rls2009 NDRPDR iter env 5
-        - 31  # rls2009 NDRPDR iter env 5
-        - 33  # rls2009 NDRPDR iter env 5
-        - 34  # rls2009 NDRPDR iter env 5
+      csit-vpp-perf-report-iterative-2101-2n-zn2:
+        - 9   # rls2009 NDRPDR iter env 6
     vpp-performance-changes-2n-zn2-cmp:
       csit-vpp-perf-report-iterative-2101-2n-zn2:
         - 4   # rls2101.rc1 NDRPDR iter env 6
@@ -2326,7 +2321,7 @@
         title: "<b>Percentile [%]</b>"
         titlefont:
           size: 14
-        autorange: True
+        autorange: False
         fixedrange: False
         gridcolor: "rgb(230, 230, 230)"
         linecolor: "rgb(220, 220, 220)"
@@ -2673,6 +2668,7 @@
       - 6   # rls2101.rc1 NDRPDR iter env 6
       - 7   # rls2101.rc1 NDRPDR iter env 6
       - 8   # rls2009 MRR iter env6
+      - 9   # rls2009 NDRPDR iter env 6
 
     csit-vpp-perf-report-iterative-2009-3n-tsh:
       - 8   # rls2005 NDRPDR iter env 5
@@ -22570,16 +22566,27 @@
 
 ################################################################################
 
+# - type: "plot"
+#   title: "Latency by percentile x-log: 2n-clx"
+#   algorithm: "plot_hdrh_lat_by_percentile"
+#   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-x-log-2n-clx"
+#   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
+#   target-links: "../../_static/vpp"
+#   data: "plot-vpp-hdrh-lat-2n-clx"
+#   filter: "'2T1C' and 'NIC_Intel-XXV710'"
+#   layout:
+#     layout: "plot-hdrh-latency-percentile-x-log"
+
 - type: "plot"
-  title: "Latency by percentile x-log: 2n-clx"
+  title: "Latency by percentile x-log: 2n-skx"
   algorithm: "plot_hdrh_lat_by_percentile"
-  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-x-log-2n-clx"
-  output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-x-log-2n-skx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_skx.rst"
   target-links: "../../_static/vpp"
-  data: "plot-vpp-hdrh-lat-2n-clx"
+  data: "plot-vpp-hdrh-lat-2n-skx"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
-    layout: "plot-hdrh-latency-percentile-x-log"
+    layout: "plot-hdrh-latency-by-percentile-x-log"
 
 - type: "plot"
   title: "Latency by percentile: 2n-skx"
