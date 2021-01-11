@@ -32,7 +32,7 @@
 ~~~~~~~~~~~
 
 CSIT source code for the test cases used for plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/dpdk/perf?h=rls2009>`_.
+`CSIT git repository <https://git.fd.io/csit/tree/tests/dpdk/perf?h=rls2101>`_.
 
 .. raw:: latex
 
