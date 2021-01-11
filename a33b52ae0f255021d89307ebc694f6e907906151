@@ -93,6 +93,30 @@
       "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4ce83ba_107f331e",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1496
+      },
+      "writtenOn": "2021-01-11T15:21:02Z",
+      "side": 1,
+      "message": "I provide a non-dynamic import code path in https://gerrit.fd.io/r/c/vpp/+/30361\n\nDo you have any plans to install papi via pip?",
+      "parentUuid": "3852fad5_9f03697a",
+      "range": {
+        "startLine": 261,
+        "startChar": 11,
+        "endLine": 262,
+        "endChar": 30
+      },
+      "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
