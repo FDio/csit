@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ff7c880_5fefa594",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-11T07:50:04Z",
+      "side": 1,
+      "message": "it is not clear to me how this get into name. Not your fault but, if you have time to fix...otherwise leave it",
+      "range": {
+        "startLine": 863,
+        "startChar": 45,
+        "endLine": 863,
+        "endChar": 52
+      },
+      "revId": "41c87ea4d20450dec16991b95e01ed8bd1589a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
