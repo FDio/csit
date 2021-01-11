@@ -594,7 +594,7 @@ function start_topology_containers () {
     # Automatically remove the container when it exits.
     dcr_stc_params+="--rm "
     # Size of /dev/shm.
-    dcr_stc_params+="--shm-size 512M "
+    dcr_stc_params+="--shm-size 2G "
     # Override access to PCI bus by attaching a filesystem mount to the
     # container.
     dcr_stc_params+="--mount type=tmpfs,destination=/sys/bus/pci/devices "
