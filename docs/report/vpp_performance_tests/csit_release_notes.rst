@@ -16,6 +16,10 @@ Changes in |csit-release|
      :ref:`vpp_compare_current_vs_previous_release` and
      :ref:`vpp_known_issues`.
 
+   - **GENEVE tests**: Added VPP performance tests for GENEVE tunnels.
+
+     - See :ref:`geneve_methodology` for more details.
+
    - **NAT44 tests**: Adapted existing and added new tests.
 
      - Refactored NAT44 deterministic mode (nat44det) tests to use separate
