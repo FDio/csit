@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e017edf0_0a430309",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-11T06:44:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e9ab3f16_6efb1dd9",
+      "range": {
+        "startLine": 139,
+        "startChar": 25,
+        "endLine": 139,
+        "endChar": 31
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95601159_914e2b24",
         "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "33d57e9e_da450532",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-11T06:44:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "95601159_914e2b24",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 61
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58673afa_f8bd3fcf",
         "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2021-01-08T14:30:02Z",
       "side": 1,
       "message": "The name is correct, the testbed number is t36, only the purpose should be 1n-tx2 - it\u0027s a VPP device server. The model is actually ThunderX2-9980, we can add that.",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 62
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f845c4d_22f57f98",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-11T06:44:30Z",
+      "side": 1,
+      "message": "fix-name should point to t1nn as denoted by 1n:\n\ns55-t36-sut1 -\u003e s55-t13-sut1\n\nIt will require downtime of nomad so I think we can do that as part of move when server will be shut.\n\nI created series of todos.",
+      "parentUuid": "58673afa_f8bd3fcf",
       "range": {
         "startLine": 141,
         "startChar": 0,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "605385ac_7b500eba",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-11T06:44:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "95b45141_8b2d3f2c",
+      "range": {
+        "startLine": 142,
+        "startChar": 20,
+        "endLine": 142,
+        "endChar": 27
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3738bb6_2301e641",
         "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
         "patchSetId": 2
@@ -114,6 +210,30 @@
       "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48b64b36_e8faced2",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-11T06:44:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3738bb6_2301e641",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 85
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "b1555c5f_03582139",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-11T06:44:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6665543a_8be4d1bd",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 98
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c905a9f_9eb2e3ab",
         "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
         "patchSetId": 2
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "32aeb78d_ceb70e34",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-11T06:44:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c905a9f_9eb2e3ab",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 126
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baea06c9_e2b1666c",
         "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
         "patchSetId": 2
@@ -183,6 +351,30 @@
       "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15a4aa08_fe584679",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-11T06:44:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "baea06c9_e2b1666c",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 57
+      },
+      "revId": "460465d63117ab227b2e8fca2c76c105005d1d33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
