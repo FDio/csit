@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -594,7 +594,7 @@ function start_topology_containers () {
     # Automatically remove the container when it exits.
     dcr_stc_params+="--rm "
     # Size of /dev/shm.
-    dcr_stc_params+="--shm-size 512M "
+    dcr_stc_params+="--shm-size 2G "
     # Override access to PCI bus by attaching a filesystem mount to the
     # container.
     dcr_stc_params+="--mount type=tmpfs,destination=/sys/bus/pci/devices "
