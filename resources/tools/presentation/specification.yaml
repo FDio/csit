@@ -22566,7 +22566,7 @@
   data: "plot-vpp-hdrh-lat-2n-skx"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
-    layout: "plot-hdrh-latency-by-percentile-x-log"
+    layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
   title: "Latency by percentile: 2n-skx"
