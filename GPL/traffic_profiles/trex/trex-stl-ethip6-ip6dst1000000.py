@@ -85,8 +85,8 @@ class TrafficStreams(TrafficStreamsBaseClass):
         base_pkt_b = (
             Ether() /
             IPv6(
-                  src=self.p2_src_start_ip,
-                  dst=self.p2_dst_start_ip
+                src=self.p2_src_start_ip,
+                dst=self.p2_dst_start_ip
             )
         )
 
