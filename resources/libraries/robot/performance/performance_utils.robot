@@ -51,6 +51,8 @@
 | | ... | \| Clear and show runtime counters with running traffic \|
 | |
 | | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | ${ramp_up_rate} = | Get Ramp Up Rate
 | | ${runtime_duration} = | Get Runtime Duration
 | | ${runtime_rate} = | Get Runtime Rate
 | | ${traffic_directions} = | Get Traffic Directions
@@ -72,6 +74,8 @@
 | | ... | transaction_scale=${transaction_scale}
 | | ... | transaction_type=${transaction_type}
 | | ... | duration_limit=${0.0}
+| | ... | ramp_up_duration=${ramp_up_duration}
+| | ... | ramp_up_rate=${ramp_up_rate}
 | | FOR | ${action} | IN | @{pre_run_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
@@ -89,7 +93,6 @@
 | | ... | Fail if computed lower bound is 110% of the minimal rate or less.
 | | ... | Input rates are understood as uni-directional,
 | | ... | reported result contains aggregate rates.
-| | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
@@ -106,8 +109,10 @@
 | |
 | | # Get values via performance_vars.
 | | ${max_rate} = | Get Max Rate
-| | ${min_rate} = | Get Min Rate
+| | ${min_rate_soft} = | Get Min Rate Soft
 | | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | ${ramp_up_rate} = | Get Ramp Up Rate
 | | ${resetter} = | Get Resetter
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
@@ -117,7 +122,7 @@
 | | ${average} | ${stdev} = | Perform soak search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate}
+| | ... | minimum_transmit_rate=${min_rate_soft}
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | plr_target=${1e-7}
 | | ... | tdpt=${0.1}
@@ -131,11 +136,13 @@
 | | ... | transaction_duration=${transaction_duration}
 | | ... | transaction_type=${transaction_type}
 | | ... | use_latency=${use_latency}
+| | ... | ramp_up_duration=${ramp_up_duration}
+| | ... | ramp_up_rate=${ramp_up_rate}
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Set Test Variable | \${rate for teardown} | ${lower}
-| | Should Not Be True | 1.1 * ${min_rate} > ${lower}
-| | ... | Lower bound ${lower} too small for unidirectional minimum ${min_rate}.
+| | Should Not Be True | 1.1 * ${min_rate_soft} > ${lower}
+| | ... | Lower bound ${lower} too small for unidir minimum ${min_rate_soft}.
 
 | Find NDR and PDR intervals using optimized search
 | | [Documentation]
@@ -149,9 +156,6 @@
 | | ... | even if latency stream is disabled in search. Their results
 | | ... | are also displayed.
 | | ... | Finally, two measurements for runtime stats are done (not displayed).
-| | ... | Currently, the min_rate value is hardcoded to 90kpps,
-| | ... | allowing measurement at 10% of the discovered rate
-| | ... | without breaking latency streams.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
@@ -175,10 +179,12 @@
 | | # Get values via performance_vars.
 | | ${disable_latency} = | Get Disable Latency
 | | ${max_rate} = | Get Max Rate
-| | ${min_rate} = | Get Min Rate
+| | ${min_rate_soft} = | Get Min Rate Soft
 | | # \${packet_loss_ratio} is used twice so it is worth a variable.
 | | ${packet_loss_ratio} = | Get Packet Loss Ratio
 | | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | ${ramp_up_rate} = | Get Ramp Up Rate
 | | ${resetter} = | Get Resetter
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
@@ -188,7 +194,7 @@
 | | ${result} = | Perform optimized ndrpdr search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate}
+| | ... | minimum_transmit_rate=${min_rate_soft}
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | packet_loss_ratio=${packet_loss_ratio}
 | | ... | final_relative_width=${0.005}
@@ -204,6 +210,8 @@
 | | ... | transaction_scale=${transaction_scale}
 | | ... | transaction_type=${transaction_type}
 | | ... | use_latency=${use_latency}
+| | ... | ramp_up_duration=${ramp_up_duration}
+| | ... | ramp_up_rate=${ramp_up_rate}
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
@@ -238,7 +246,6 @@
 | | ... | Find and return lower bound NDR (zero PLR)
 | | ... | aggregate throughput using MLRsearch algorithm.
 | | ... | Input rates are understood as uni-directional.
-| | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
@@ -261,8 +268,10 @@
 | | ... | \| \${throughpt}= \| Find Throughput Using MLRsearch \|
 | |
 | | ${max_rate} = | Get Max Rate
-| | ${min_rate} = | Get Min Rate
+| | ${min_rate_soft} = | Get Min Rate Soft
 | | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | ${ramp_up_rate} = | Get Ramp Up Rate
 | | ${resetter} = | Get Resetter
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
@@ -272,7 +281,7 @@
 | | ${result} = | Perform optimized ndrpdr search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate}
+| | ... | minimum_transmit_rate=${min_rate_soft}
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | packet_loss_ratio=${0.0}
 | | ... | final_relative_width=${0.001}
@@ -288,6 +297,8 @@
 | | ... | transaction_scale=${transaction_scale}
 | | ... | transaction_type=${transaction_type}
 | | ... | use_latency=${use_latency}
+| | ... | ramp_up_duration=${ramp_up_duration}
+| | ... | ramp_up_rate=${ramp_up_rate}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${0.0}
 | | Return From Keyword | ${result.pdr_interval.measured_low.target_tr}
@@ -312,9 +323,11 @@
 | |
 | | [Arguments] | ${message_prefix} | ${rate}
 | |
-| | ${min_rate} = | Get Min Rate
+| | ${min_rate_hard} = | Get Min Rate Hard
 | | ${ppta} = | Get Packets Per Transaction Aggregated
-| | ${real_rate} = | Evaluate | max(${rate}, ${min_rate})
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | ${ramp_up_rate} = | Get Ramp Up Rate
+| | ${real_rate} = | Evaluate | max(${rate}, ${min_rate_hard})
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
 | | ${transaction_scale} = | Get Transaction Scale
@@ -333,12 +346,14 @@
 | | ... | transaction_scale=${transaction_scale}
 | | ... | transaction_type=${transaction_type}
 | | ... | use_latency=${True}
+| | ... | ramp_up_duration=${ramp_up_duration}
+| | ... | ramp_up_rate=${ramp_up_rate}
 | | ${latency} = | Get Latency Int
 | | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
 
 | Send ramp-up traffic
 | | [Documentation]
-| | ... | Do nothing unless positive ramp-up duration is specified.
+| | ... | Fail unless positive ramp-up rate is specified.
 | | ... | Else perform one trial with appropriate rate and duration.
 | | ... | This is useful for tests that set DUT state via traffic.
 | | ... | Rate has to bee low enough so packets are not lost,
@@ -361,9 +376,9 @@
 | |
 | | ... | \| Send ramp-up traffic \|
 | |
-| | ${ramp_up_duration} = | Get Ramp Up Duration
-| | Run Keyword Unless | ${ramp_up_duration} > 0.0 | Return From Keyword
 | | ${ramp_up_rate} = | Get Ramp Up Rate
+| | Run Keyword Unless | ${ramp_up_rate} > 0.0 | Fail | Ramp up rate missing!
+| | ${ramp_up_duration} = | Get Ramp Up Duration
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
@@ -383,6 +398,9 @@
 | | ... | transaction_duration=${transaction_duration}
 | | ... | transaction_scale=${transaction_scale}
 | | ... | transaction_type=${transaction_type}
+| | ... | ramp_up_duration=${ramp_up_duration}
+| | ... | ramp_up_rate=${ramp_up_rate}
+| | ... | ramp_up_only=${True}
 
 | Send traffic at specified rate
 | | [Documentation]
@@ -412,6 +430,8 @@
 | | ... | ${use_latency}=${False} | ${duration_limit}=${0.0}
 | |
 | | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | ${ramp_up_rate} = | Get Ramp Up Rate
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
 | | ${transaction_scale} = | Get Transaction Scale
@@ -423,7 +443,7 @@
 | | ${results} = | Create List
 | | FOR | ${i} | IN RANGE | ${trial_multiplicity}
 | | | Call Resetter
-| | | Send traffic on tg
+| | | ${result}= | Send traffic on tg
 | | | ... | duration=${trial_duration}
 | | | ... | rate=${rate}
 | | | ... | frame_size=${frame_size}
@@ -436,7 +456,8 @@
 | | | ... | transaction_scale=${transaction_scale}
 | | | ... | transaction_type=${transaction_type}
 | | | ... | use_latency=${use_latency}
-| | | ${result}= | Get Measurement Result
+| | | ... | ramp_up_duration=${ramp_up_duration}
+| | | ... | ramp_up_rate=${ramp_up_rate}
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
 | | | Append To List | ${results} | ${result.approximated_receive_rate}
@@ -624,6 +645,8 @@
 | | [Arguments] | ${rate}
 | |
 | | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | ${ramp_up_rate} = | Get Ramp Up Rate
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
 | | ${transaction_scale} = | Get Transaction Scale
@@ -639,11 +662,14 @@
 | | ... | async_call=${True}
 | | ... | duration_limit=${0.0}
 | | ... | ppta=${ppta}
+| | ... | ramp_up_duration=${ramp_up_duration}
+| | ... | ramp_up_rate=${ramp_up_rate}
 | | ... | traffic_directions=${traffic_directions}
 | | ... | transaction_duration=${transaction_duration}
 | | ... | transaction_scale=${transaction_scale}
 | | ... | transaction_type=${transaction_type}
 | | ... | use_latency=${use_latency}
+| | # TODO: Ramp-up?
 
 | Stop Running Traffic
 | | [Documentation]
