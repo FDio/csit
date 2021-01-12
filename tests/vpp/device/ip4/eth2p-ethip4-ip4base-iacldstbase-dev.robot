@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -48,6 +48,7 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
+| ${mask}= | 255.255.255.255
 
 *** Keywords ***
 | Local Template
@@ -72,13 +73,8 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
-| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip4 | dst | 255.255.255.255
-| | And Vpp Configures Classify Session L3
-| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip4 | dst
-| | ... | 20.20.20.2
-| | And Vpp Enable Input Acl Interface
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | ip4 | ${table_idx}
+
+
 | | Then Send packet and verify headers
 | | ... | ${tg} | 10.10.10.2 | 20.20.20.2
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
