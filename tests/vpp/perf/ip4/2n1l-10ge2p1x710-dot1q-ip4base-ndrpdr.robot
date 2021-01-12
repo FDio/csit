@@ -19,10 +19,9 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | dot1q-ip4base
 |
-| Suite Setup | Setup suite topology interfaces | performance
-| Suite Teardown | Tear down suite | performance
-| Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance
+| Suite Setup | Setup suite topology interfaces | scapy
+| Test Setup | Setup test
+| Test Teardown | Tear down test | packet_trace
 |
 | Test Template | Local Template
 |
