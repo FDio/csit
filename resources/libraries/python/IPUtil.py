@@ -736,54 +736,6 @@ class IPUtil:
         :type kwargs: dict
         :raises RuntimeError: If the argument combination is not supported.
         """
-        count = kwargs.get(u"count", 1)
-
-        if count > 100:
-            if not kwargs.get(u"multipath", True):
-                raise RuntimeError(u"VAT exec supports only multipath behavior")
-            gateway = kwargs.get(u"gateway", u"")
-            interface = kwargs.get(u"interface", u"")
-            local = kwargs.get(u"local", u"")
-            if interface:
-                interface = InterfaceUtil.vpp_get_interface_name(
-                    node, InterfaceUtil.get_interface_index(
-                        node, interface
-                    )
-                )
-            vrf = kwargs.get(u"vrf", None)
-            trailers = list()
-            if vrf:
-                trailers.append(f"table {vrf}")
-            if gateway:
-                trailers.append(f"via {gateway}")
-                if interface:
-                    trailers.append(interface)
-            elif interface:
-                trailers.append(f"via {interface}")
-            if local:
-                if gateway or interface:
-                    raise RuntimeError(u"Unsupported combination with local.")
-                trailers.append(u"local")
-            trailer = u" ".join(trailers)
-            command_parts = [u"exec ip route add", u"network goes here"]
-            if trailer:
-                command_parts.append(trailer)
-            netiter = NetworkIncrement(
-                ip_network(f"{network}/{prefix_len}", strict=strict),
-                format=u"slash"
-            )
-            tmp_filename = u"/tmp/routes.config"
-            with open(tmp_filename, u"w") as tmp_file:
-                for _ in range(count):
-                    command_parts[1] = netiter.inc_fmt()
-                    print(u" ".join(command_parts), file=tmp_file)
-            VatExecutor().execute_script(
-                tmp_filename, node, timeout=1800, json_out=False,
-                copy_on_execute=True, history=False
-            )
-            os.remove(tmp_filename)
-            return
-
         cmd = u"ip_route_add_del"
         args = dict(
             is_add=True,
@@ -796,7 +748,7 @@ class IPUtil:
             ip_network(f"{network}/{prefix_len}", strict=strict),
             format=u"addr"
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        def gen_f():
             for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, netiter.inc_fmt(), prefix_len, **kwargs

@@ -140,12 +140,6 @@ class Constants:
     # Python API provider location
     RESOURCES_PAPI_PROVIDER = u"resources/tools/papi/vpp_papi_provider.py"
 
-    # Templates location
-    RESOURCES_TPL = u"resources/templates"
-
-    # vat templates location
-    RESOURCES_TPL_VAT = u"resources/templates/vat"
-
     # Kubernetes templates location
     RESOURCES_TPL_K8S = u"resources/templates/kubernetes"
 
@@ -160,9 +154,6 @@ class Constants:
 
     # VPP Communications Library LD_PRELOAD library
     VCL_LDPRELOAD_LIBRARY = u"/usr/lib/x86_64-linux-gnu/libvcl_ldpreload.so"
-
-    # OpenVPP VAT binary name
-    VAT_BIN_NAME = u"vpp_api_test"
 
     # VPP service unit name
     VPP_UNIT = u"vpp"
