@@ -156,7 +156,11 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
                 emit = False
             if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
                 emit = False
-        if u"-cps-" in suite_id or u"-pps-" in suite_id:
+        if (
+            u"-cps-" in suite_id
+            or u"-pps-" in suite_id
+            or u"-tput-" in suite_id
+        ):
             if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
                 emit = False
         if emit:
