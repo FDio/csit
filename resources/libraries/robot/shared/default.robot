@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -46,6 +46,7 @@
 | Resource | resources/libraries/robot/lb/load_balancer.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | Resource | resources/libraries/robot/features/acl.robot
+| Resource | resources/libraries/robot/features/iacl.robot
 | Resource | resources/libraries/robot/features/policer.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
