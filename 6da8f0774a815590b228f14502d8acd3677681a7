@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "189fdb35_897a1134",
+        "filename": "GPL/traffic_profiles/trex/trex-stl-2n-ethip4-geneve-64t.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-12T08:40:32Z",
+      "side": 1,
+      "message": "U guess it more easy and representative to use IPv4Addess/IPv6Address instead of the stuff in  _get_start_end_ipv6 method. But let\u0027s discuss it on the meeting regarding traffic profiles parametrization.",
+      "parentUuid": "cfceeefe_9a57b764",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 63
+      },
+      "revId": "6da8f0774a815590b228f14502d8acd3677681a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8c5479c_26ac4983",
         "filename": "tests/vpp/perf/ip4_tunnels/2n1l-10ge2p1x710-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr.robot",
         "patchSetId": 10
