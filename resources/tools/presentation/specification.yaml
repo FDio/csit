@@ -249,14 +249,16 @@
         - 6   # rls2101.rc1 NDRPDR iter env 6
         - 7   # rls2101.rc1 NDRPDR iter env 6
         - 8   # rls2101.rc1 NDRPDR iter env 6
+        - 9   # rls2101.rc1 NDRPDR iter env 6
         - 10  # rls2101.rc1 NDRPDR iter env 6
         - 11  # rls2101.rc1 NDRPDR iter env 6
         - 12  # rls2101.rc1 NDRPDR iter env 6
         - 13  # rls2101.rc1 NDRPDR iter env 6
+        - 14  # rls2101.rc1 NDRPDR iter env 6
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-report-iterative-2101-2n-skx:
-        - 6   # rls2101.rc1 NDRPDR iter env 6
+        - 14  # rls2101.rc1 NDRPDR iter env 6
 
     plot-vpp-soak-2n-skx:
       # csit-vpp-perf-report-iterative-2101-2n-skx:
@@ -420,6 +422,7 @@
       csit-vpp-perf-report-iterative-2101-3n-tsh:
         - 3   # rls2101.rc1 NDRPDR iter env 6
         - 5   # rls2101.rc1 NDRPDR iter env 6
+        - 6   # rls2101.rc1 NDRPDR iter env 6
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-report-iterative-2101-3n-tsh:
@@ -499,10 +502,12 @@
         - 6   # rls2101.rc1 NDRPDR iter env 6
         - 7   # rls2101.rc1 NDRPDR iter env 6
         - 8   # rls2101.rc1 NDRPDR iter env 6
+        - 9   # rls2101.rc1 NDRPDR iter env 6
         - 10  # rls2101.rc1 NDRPDR iter env 6
         - 11  # rls2101.rc1 NDRPDR iter env 6
         - 12  # rls2101.rc1 NDRPDR iter env 6
         - 13  # rls2101.rc1 NDRPDR iter env 6
+        - 14  # rls2101.rc1 NDRPDR iter env 6
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-report-iterative-2101-3n-skx:
@@ -527,7 +532,7 @@
     vpp-perf-results-2n-skx:
       # csit-vpp-perf-report-coverage-2101-2n-skx:
       csit-vpp-perf-report-iterative-2101-2n-skx:
-        - 6   # rls2101.rc1 NDRPDR iter env 6
+        - 14  # rls2101.rc1 NDRPDR iter env 6
 
     vpp-perf-results-2n-zn2:
       csit-vpp-perf-report-iterative-2101-2n-zn2:
@@ -652,6 +657,9 @@
     vpp-performance-changes-3n-hsw-ref-env-new:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
         - 19  # rls2009 NDRPDR iter env 6
+        - 20  # rls2009 NDRPDR iter env 6
+        - 21  # rls2009 NDRPDR iter env 6
+        - 22  # rls2009 NDRPDR iter env 6
     vpp-performance-changes-3n-hsw-cmp:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
         - 4   # rls2101.rc1 NDRPDR iter env 6
@@ -690,18 +698,8 @@
         - 39  # rls2009 NDRPDR iter env 5
         - 40  # rls2009 NDRPDR iter env 5
     vpp-performance-changes-3n-skx-ref-env-new:
-      # TODO: Re-test in new env
-      csit-vpp-perf-report-iterative-2009-3n-skx:
-        - 26  # rls2009 NDRPDR iter env 5
-        - 27  # rls2009 NDRPDR iter env 5
-        - 28  # rls2009 NDRPDR iter env 5
-        - 29  # rls2009 NDRPDR iter env 5
-        - 35  # rls2009 NDRPDR iter env 5
-        - 36  # rls2009 NDRPDR iter env 5
-        - 37  # rls2009 NDRPDR iter env 5
-        - 38  # rls2009 NDRPDR iter env 5
-        - 39  # rls2009 NDRPDR iter env 5
-        - 40  # rls2009 NDRPDR iter env 5
+      csit-vpp-perf-report-iterative-2101-3n-skx:
+        - 14  # rls2009 NDRPDR iter env 6
     vpp-performance-changes-3n-skx-cmp:
       csit-vpp-perf-report-iterative-2101-3n-skx:
         - 5   # rls2101.rc1 NDRPDR iter env 6
@@ -773,10 +771,12 @@
         - 6   # rls2101.rc1 NDRPDR iter env 6
         - 7   # rls2101.rc1 NDRPDR iter env 6
         - 8   # rls2101.rc1 NDRPDR iter env 6
+        - 9   # rls2101.rc1 NDRPDR iter env 6
         - 10  # rls2101.rc1 NDRPDR iter env 6
         - 11  # rls2101.rc1 NDRPDR iter env 6
         - 12  # rls2101.rc1 NDRPDR iter env 6
         - 13  # rls2101.rc1 NDRPDR iter env 6
+        - 14  # rls2101.rc1 NDRPDR iter env 6
 
     vpp-performance-changes-2n-clx-h1:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -1006,6 +1006,7 @@
       csit-vpp-perf-report-iterative-2101-3n-tsh:
         - 3   # rls2101.rc1 NDRPDR iter env 6
         - 5   # rls2101.rc1 NDRPDR iter env 6
+        - 6   # rls2101.rc1 NDRPDR iter env 6
 
     vpp-soak-vs-ndr-2n-skx-ref:
       # csit-vpp-perf-report-iterative-2101-2n-skx:
@@ -1108,9 +1109,8 @@
       csit-vpp-perf-report-iterative-2009-2n-skx:
         - 120 # rls2009 MRR iter env 5
     vpp-performance-changes-2n-skx-mrr-ref-env-new:
-      # TODO: Re-test in new env
-      csit-vpp-perf-report-iterative-2009-2n-skx:
-        - 120 # rls2009 MRR iter env 5
+      csit-vpp-perf-report-iterative-2101-2n-skx:
+        - 21  # rls2009 MRR iter env 6
     vpp-performance-changes-2n-skx-mrr-cmp:
       csit-vpp-perf-report-iterative-2101-2n-skx:
         - 3   # rls2101.rc1 MRR iter env 6
@@ -1122,9 +1122,8 @@
       csit-vpp-perf-report-iterative-2009-2n-clx:
         - 125 # rls2009 MRR iter env 5
     vpp-performance-changes-2n-clx-mrr-ref-env-new:
-      # TODO: Re-test in new env
-      csit-vpp-perf-report-iterative-2009-2n-clx:
-        - 125 # rls2009 MRR iter env 55
+      csit-vpp-perf-report-iterative-2101-2n-clx:
+        - 15  # rls2009 MRR iter env 6
     vpp-performance-changes-2n-clx-mrr-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 3   # rls2101.rc1 MRR iter env 6
@@ -1436,10 +1435,12 @@
         - 6   # rls2101.rc1 NDRPDR iter env 6
         - 7   # rls2101.rc1 NDRPDR iter env 6
         - 8   # rls2101.rc1 NDRPDR iter env 6
+        - 9   # rls2101.rc1 NDRPDR iter env 6
         - 10  # rls2101.rc1 NDRPDR iter env 6
         - 11  # rls2101.rc1 NDRPDR iter env 6
         - 12  # rls2101.rc1 NDRPDR iter env 6
         - 13  # rls2101.rc1 NDRPDR iter env 6
+        - 14  # rls2101.rc1 NDRPDR iter env 6
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 4   # rls2101.rc1 NDRPDR iter env 6
@@ -1557,10 +1558,12 @@
         - 6   # rls2101.rc1 NDRPDR iter env 6
         - 7   # rls2101.rc1 NDRPDR iter env 6
         - 8   # rls2101.rc1 NDRPDR iter env 6
+        - 9   # rls2101.rc1 NDRPDR iter env 6
         - 10  # rls2101.rc1 NDRPDR iter env 6
         - 11  # rls2101.rc1 NDRPDR iter env 6
         - 12  # rls2101.rc1 NDRPDR iter env 6
         - 13  # rls2101.rc1 NDRPDR iter env 6
+        - 14  # rls2101.rc1 NDRPDR iter env 6
 
     vpp-compare-topologies-mrr-ref:
       csit-vpp-perf-report-iterative-2101-3n-skx:
@@ -2330,8 +2333,10 @@
         showline: True
         showticklabels: True
         tickcolor: "rgb(220, 220, 220)"
-        tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8]
-        ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999, 99.99999, 99.999999]
+#         tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8]
+#         ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999, 99.99999, 99.999999]
+        tickvals: [1, 2, 1e1, 20, 1e2, 1e3]
+        ticktext: [0, 50, 90, 95, 99, 99.9]
         tickfont:
           size: 14
       yaxis:
@@ -2477,6 +2482,9 @@
       - 13  # rls2101.rc1 NDRPDR iter env 6
       - 17  # rls2009 MRR iter env 6
       - 19  # rls2009 NDRPDR iter env 6
+      - 20  # rls2009 NDRPDR iter env 6
+      - 21  # rls2009 NDRPDR iter env 6
+      - 22  # rls2009 NDRPDR iter env 6
     # csit-vpp-perf-report-coverage-2101-3n-hsw:
 
 
@@ -2511,6 +2519,7 @@
       - 8   # rls2101.rc1 NDRPDR iter env 6
       - 9   # rls2101.rc1 NDRPDR iter env 6
       - 12  # rls2009 MRR iter env 6
+      - 14  # rls2009 NDRPDR iter env 6
     # csit-vpp-perf-report-coverage-2101-3n-skx:
 
 
@@ -2576,10 +2585,13 @@
       - 6   # rls2101.rc1 NDRPDR iter env 6
       - 7   # rls2101.rc1 NDRPDR iter env 6
       - 8   # rls2101.rc1 NDRPDR iter env 6
+      - 9   # rls2101.rc1 NDRPDR iter env 6
       - 10  # rls2101.rc1 NDRPDR iter env 6
       - 11  # rls2101.rc1 NDRPDR iter env 6
       - 12  # rls2101.rc1 NDRPDR iter env 6
       - 13  # rls2101.rc1 NDRPDR iter env 6
+      - 14  # rls2101.rc1 NDRPDR iter env 6
+      - 21  # rls2009 MRR iter env 6
     # csit-vpp-perf-report-coverage-2101-2n-skx:
 
 
@@ -2651,6 +2663,7 @@
       - 11  # rls2101.rc1 NDRPDR iter env 6
       - 12  # rls2101.rc1 NDRPDR iter env 6
       - 13  # rls2101.rc1 NDRPDR iter env 6
+      - 15  # rls2009 MRR iter env 6
     # csit-vpp-perf-report-coverage-2101-2n-clx:
 
 
@@ -2697,6 +2710,7 @@
       - 2   # rls2101.rc1 MRR iter env 6
       - 3   # rls2101.rc1 NDRPDR iter env 6
       - 5   # rls2101.rc1 NDRPDR iter env 6
+      - 6   # rls2101.rc1 NDRPDR iter env 6
 
     csit-vpp-perf-report-iterative-2009-3n-dnv:
       - 16  # rls2005 NDRPDR iter env 5
