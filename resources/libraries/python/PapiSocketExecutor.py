@@ -27,8 +27,8 @@ from pprint import pformat
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
+from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (exec_cmd_no_error, scp_node)
 from resources.libraries.python.topology import Topology, SocketType

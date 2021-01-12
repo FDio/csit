@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -27,8 +27,8 @@ from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
 from .PLRsearch.PLRsearch import PLRsearch
 from .OptionString import OptionString
 from .ssh import exec_cmd_no_error, exec_cmd
-from .topology import NodeType
 from .topology import NodeSubTypeTG
+from .topology import NodeType
 from .topology import Topology
 
 __all__ = [u"TGDropRateSearchImpl", u"TrafficGenerator", u"OptimizedSearch"]

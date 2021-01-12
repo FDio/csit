@@ -12,14 +12,16 @@
 # limitations under the License.
 
 """Host Stack util library."""
+
 import json
 from time import sleep
+
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.DUTSetup import DUTSetup
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 
 class HoststackUtil():
     """Utilities for Host Stack tests."""
