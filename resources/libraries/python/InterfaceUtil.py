@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -23,7 +23,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
