@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "dec3ba82_78c5ab29",
+        "filename": "GPL/traffic_profiles/trex/trex-stl-2n-ethip4-geneve-64t.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-12T14:59:24Z",
+      "side": 1,
+      "message": "I recommend to keep the new traffic profiles similar to the existing ones (e.g. IP values as str) in this Change.\nWe can always change that later when we agree on https://gerrit.fd.io/r/c/csit/+/30668",
+      "parentUuid": "189fdb35_897a1134",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 63
+      },
+      "revId": "6da8f0774a815590b228f14502d8acd3677681a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8c5479c_26ac4983",
         "filename": "tests/vpp/perf/ip4_tunnels/2n1l-10ge2p1x710-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr.robot",
         "patchSetId": 10

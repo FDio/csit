@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64a8365b_8dbde574",
+        "filename": "resources/libraries/robot/ip/geneve.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-12T14:59:24Z",
+      "side": 1,
+      "message": "In order for fast PAPI to be applied here, such cycles have to be implemented in Python.\n(And each papi command should be in its own cycle, but that is an easy refactor, Robot to Pyhton is not so easy.)\n\nBut good enough for this Change.",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "38f7269f351ea44603452e601bf7a8d17414913b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
