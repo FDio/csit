@@ -72,17 +72,8 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
-| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip4 | dst | 255.255.255.255
-| | And Vpp Configures Classify Session L3
-| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip4 | dst
-| | ... | 20.20.20.2
-| | And Vpp Enable Input Acl Interface
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | ip4 | ${table_idx}
-| | Then Send packet and verify headers
-| | ... | ${tg} | 10.10.10.2 | 20.20.20.2
-| | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
-| | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
+#new step
+| | And Initialize IPv4 iACL in circular topology
 
 *** Test Cases ***
 | 64B-ethip4-ip4base-iacldstbase-dev
