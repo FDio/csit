@@ -25,3 +25,4 @@ fi
 
 find "${1}" \( -name "*.py" -o -name "*.sh" \) -print0 | xargs -0 \
 python3 replace.py "gpl_block.txt" "apache_block.txt"
+python3 replace.py "gpl_long_block.txt" "apache_block.txt"
