@@ -85,18 +85,8 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv6 forwarding in circular topology
-| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:0
-| | And Vpp Configures Classify Session L3
-| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
-| | ... | 2001:2::0
-| | And Vpp Enable Input Acl Interface
-| | ... | ${dut1} | ${DUT1_${int}1}[0] | ip6 | ${table_idx}
-| | And Vpp Configures Classify Session L3
-| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
-| | ... | 2001:1::0
-| | And Vpp Enable Input Acl Interface
-| | ... | ${dut1} | ${DUT1_${int}2}[0] | ip6 | ${table_idx}
+#new step
+| | And Initialize IPv6 iACL in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
