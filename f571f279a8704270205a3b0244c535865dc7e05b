@@ -68,6 +68,30 @@
       "revId": "f571f279a8704270205a3b0244c535865dc7e05b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80e5d796_0c321f6d",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2021-01-13T09:18:07Z",
+      "side": 1,
+      "message": "Hi Peter,  Could you help to make clear your requirement？",
+      "parentUuid": "4b8143c4_e060c8f0",
+      "range": {
+        "startLine": 796,
+        "startChar": 2,
+        "endLine": 796,
+        "endChar": 36
+      },
+      "revId": "f571f279a8704270205a3b0244c535865dc7e05b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
