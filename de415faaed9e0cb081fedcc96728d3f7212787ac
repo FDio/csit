@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f3608c16_ca1d747f",
+        "filename": "GPL/traffic_profiles/trex/contrib/geneve.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-13T10:20:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a1d75aa3_04bae838",
+      "range": {
+        "startLine": 15,
+        "startChar": 73,
+        "endLine": 15,
+        "endChar": 81
+      },
+      "revId": "de415faaed9e0cb081fedcc96728d3f7212787ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec355041_b3f2e273",
         "filename": "GPL/traffic_profiles/trex/contrib/geneve.py",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "de415faaed9e0cb081fedcc96728d3f7212787ac",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef08c3f8_962f5d50",
+        "filename": "GPL/traffic_profiles/trex/contrib/geneve.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-13T10:20:15Z",
+      "side": 1,
+      "message": "As t-rex version used in CSIT has been moved to v2.86 that uses Scapy v2.4.3 containing geneve layer implementation this file is not needed anymore - removing.",
+      "parentUuid": "ec355041_b3f2e273",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 29
+      },
+      "revId": "de415faaed9e0cb081fedcc96728d3f7212787ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
