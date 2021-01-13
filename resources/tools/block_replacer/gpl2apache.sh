@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,3 +25,6 @@ fi
 
 find "${1}" \( -name "*.py" -o -name "*.sh" \) -print0 | xargs -0 \
 python3 replace.py "gpl_block.txt" "apache_block.txt"
+
+find "${1}" \( -name "*.py" -o -name "*.sh" \) -print0 | xargs -0 \
+python3 replace.py "gpl_long_block.txt" "apache_block.txt"
