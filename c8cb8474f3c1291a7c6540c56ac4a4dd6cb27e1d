@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22cf1280_65d71480",
+        "filename": "tests/vpp/perf/ip4_tunnels/2n1l-10ge2p1x710-ethip4--ethip4udpgeneve-1024tun-ip4base-ndrpdr.robot",
+        "patchSetId": 19
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-13T18:33:11Z",
+      "side": 1,
+      "message": "As this value was not obvious, I would prefer to have a code comment explaining how did we compute it.\nBut other suites do not have explanations either, so maybe it is not a blocking issue.",
+      "range": {
+        "startLine": 65,
+        "startChar": 17,
+        "endLine": 65,
+        "endChar": 22
+      },
+      "revId": "c8cb8474f3c1291a7c6540c56ac4a4dd6cb27e1d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
