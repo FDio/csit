@@ -213,6 +213,30 @@
       "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3eaaa86_6715903b",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-13T16:32:05Z",
+      "side": 1,
+      "message": "We use packages either built locally (vpp-csit jobs) or downloaded from packagecloud (csit-vpp jobs). Currently we do install python3-vpp-api_*.deb package on DUT (not on Robot machine; ensure_api_dirs here copies from the installed /usr/lib/python3*).\n\nNot sure pypi will help, as we need to match the PAPI used with the VPP version used, which is defined here [0] for csit-vpp verify jobs (but latest on packagecloud for csit-vpp periodic jobs).\n\n[0] https://github.com/FDio/csit/blob/master/VPP_STABLE_VER_UBUNTU_BIONIC",
+      "parentUuid": "60350418_7dbfdc5c",
+      "range": {
+        "startLine": 261,
+        "startChar": 11,
+        "endLine": 262,
+        "endChar": 30
+      },
+      "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
