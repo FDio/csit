@@ -18,14 +18,15 @@
 import re
 import logging
 
-from collections import OrderedDict
-from copy import deepcopy
-
 import hdrh.histogram
 import hdrh.codec
 import pandas as pd
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
+
+from collections import OrderedDict
+from copy import deepcopy
+from math import log
 
 from plotly.exceptions import PlotlyError
 
@@ -219,6 +220,164 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                     )
 
             layout[u"title"][u"text"] = f"<b>Latency:</b> {name}"
+            fig.update_layout(layout)
+
+            # Create plot
+            file_name = f"{plot[u'output-file']}-{name_link}.html"
+            logging.info(f"    Writing file {file_name}")
+
+            try:
+                # Export Plot
+                ploff.plot(fig, show_link=False, auto_open=False,
+                           filename=file_name)
+                # Add link to the file:
+                if file_links and target_links:
+                    with open(file_links, u"a") as file_handler:
+                        file_handler.write(
+                            f"- `{name_link} "
+                            f"<{target_links}/{file_name.split(u'/')[-1]}>`_\n"
+                        )
+            except FileNotFoundError as err:
+                logging.error(
+                    f"Not possible to write the link to the file "
+                    f"{file_links}\n{err}"
+                )
+            except PlotlyError as err:
+                logging.error(f"   Finished with error: {repr(err)}")
+
+        except hdrh.codec.HdrLengthException as err:
+            logging.warning(repr(err))
+            continue
+
+        except (ValueError, KeyError) as err:
+            logging.warning(repr(err))
+            continue
+
+
+def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_hdrh_lat_by_percentile_x_log
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    logging.info(
+        f"    Creating the data set for the {plot.get(u'type', u'')} "
+        f"{plot.get(u'title', u'')}."
+    )
+    if plot.get(u"include", None):
+        data = input_data.filter_tests_by_name(
+            plot,
+            params=[u"name", u"latency", u"parent", u"tags", u"type"]
+        )[0][0]
+    elif plot.get(u"filter", None):
+        data = input_data.filter_data(
+            plot,
+            params=[u"name", u"latency", u"parent", u"tags", u"type"],
+            continue_on_error=True
+        )[0][0]
+    else:
+        job = list(plot[u"data"].keys())[0]
+        build = str(plot[u"data"][job][0])
+        data = input_data.tests(job, build)
+
+    if data is None or len(data) == 0:
+        logging.error(u"No data.")
+        return
+
+    desc = {
+        u"LAT0": u"No-load.",
+        u"PDR10": u"Low-load, 10% PDR.",
+        u"PDR50": u"Mid-load, 50% PDR.",
+        u"PDR90": u"High-load, 90% PDR.",
+        u"PDR": u"Full-load, 100% PDR.",
+        u"NDR10": u"Low-load, 10% NDR.",
+        u"NDR50": u"Mid-load, 50% NDR.",
+        u"NDR90": u"High-load, 90% NDR.",
+        u"NDR": u"Full-load, 100% NDR."
+    }
+
+    graphs = [
+        u"LAT0",
+        u"PDR10",
+        u"PDR50",
+        u"PDR90"
+    ]
+
+    file_links = plot.get(u"output-file-links", None)
+    target_links = plot.get(u"target-links", None)
+
+    for test in data:
+        try:
+            if test[u"type"] not in (u"NDRPDR",):
+                logging.warning(f"Invalid test type: {test[u'type']}")
+                continue
+            name = re.sub(REGEX_NIC, u"", test[u"parent"].
+                          replace(u'-ndrpdr', u'').replace(u'2n1l-', u''))
+            try:
+                nic = re.search(REGEX_NIC, test[u"parent"]).group(1)
+            except (IndexError, AttributeError, KeyError, ValueError):
+                nic = u""
+            name_link = f"{nic}-{test[u'name']}".replace(u'-ndrpdr', u'')
+
+            logging.info(f"    Generating the graph: {name_link}")
+
+            fig = plgo.Figure()
+            layout = deepcopy(plot[u"layout"])
+            xaxis_max = 0
+
+            for color, graph in enumerate(graphs):
+                for idx, direction in enumerate((u"direction1", u"direction2")):
+                    xaxis = list()
+                    yaxis = list()
+                    hovertext = list()
+                    try:
+                        decoded = hdrh.histogram.HdrHistogram.decode(
+                            test[u"latency"][graph][direction][u"hdrh"]
+                        )
+                    except hdrh.codec.HdrLengthException:
+                        logging.warning(
+                            f"No data for direction {(u'W-E', u'E-W')[idx % 2]}"
+                        )
+                        continue
+
+                    for item in decoded.get_recorded_iterator():
+                        percentile = item.percentile_level_iterated_to
+                        if percentile > 99.9999999:
+                            continue
+                        xaxis.append(100.0 / (100.0 - percentile))
+                        yaxis.append(item.value_iterated_to)
+                        hovertext.append(
+                            f"<b>{desc[graph]}</b><br>"
+                            f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
+                            f"Percentile: {percentile:.5f}%<br>"
+                            f"Latency: {item.value_iterated_to}uSec"
+                        )
+                    fig.add_trace(
+                        plgo.Scatter(
+                            x=xaxis,
+                            y=yaxis,
+                            name=desc[graph],
+                            mode=u"lines",
+                            legendgroup=desc[graph],
+                            showlegend=not(bool(idx)),
+                            line=dict(
+                                color=COLORS[color],
+                                dash=u"dash" if idx % 2 else u"solid"
+                            ),
+                            hovertext=hovertext,
+                            hoverinfo=u"text"
+                        )
+                    )
+                    xaxis_max = max(xaxis) if xaxis_max < max(
+                        xaxis) else xaxis_max
+
+            layout[u"title"][u"text"] = f"<b>Latency:</b> {name}"
+            layout[u"xaxis"][u"range"] = [0, int(log(xaxis_max, 10)) + 1]
             fig.update_layout(layout)
 
             # Create plot
