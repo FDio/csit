@@ -141,6 +141,30 @@
       "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d004270_98e0e167",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1496
+      },
+      "writtenOn": "2021-01-13T14:26:12Z",
+      "side": 1,
+      "message": "For test, we do it like this:\n$(PAPI_INSTALL_DONE): $(PIP_PATCH_DONE)\n\t@bash -c \"source $(VENV_PATH)/bin/activate \u0026\u0026 $(PYTHON_INTERP) -m pip install -e $(PAPI_PYTHON_SRC_DIR)\"\n\t@touch $@\nhttps://github.com/FDio/vpp/blob/master/test/Makefile#L152\n\nThe shm transport requires cffi, but we could make that optional if it helps.  It would mean that shm users install as pip install vpp_papi[shm]\n\nYou should be able to install it with --user, but I have not tried.  We don\u0027t need to because we run it in a venv.\n\nI would not touch the .deb/.rpm\u0027s. From my perspective, they are/have been broken and are only there for someone\u0027s checkmark on a list.  Until recently, they depended on aenum, which does not have a package, so you have to install the dependencies via pip by hand.  The fixes for updating them are in gerrit.",
+      "parentUuid": "9fa88c68_ae2651a3",
+      "range": {
+        "startLine": 261,
+        "startChar": 11,
+        "endLine": 262,
+        "endChar": 30
+      },
+      "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
