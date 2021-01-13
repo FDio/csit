@@ -72,7 +72,8 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv6 forwarding in circular topology
-
+#new step
+| | And Initialize IPv6 iACL in circular topology
 
 *** Test Cases ***
 | 78B-ethip6-ip6base-iacldstbase-dev

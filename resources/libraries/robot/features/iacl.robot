@@ -16,7 +16,8 @@
 
 
 *** Keywords ***
-| | And Initialize IPv4 iACL in circular topology
+| And Initialize IPv4 iACL in circular topology
+| | Configure IPv4 IACLs
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | Run Keyword If | ${mask} == 255.255.255.255 | 255.255.255.0
 | | ... | ${dut1} | ip4 | dst | ${mask}
@@ -60,9 +61,11 @@
 
 #IP6
 
-| | And Initialize IPv6 iACL in circular topology
+| And Initialize IPv6 iACL in circular topology
+| | Configure IPv6 IACLs
+| | Run Keyword If | ${mask} == ffff:ffff:ffff:ffff:ffff:ffff:ffff:0 | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:0
+| | ... | ${dut1} | ip6 | dst | ${mask}
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
 | | ... | 2001:2::0
@@ -75,7 +78,7 @@
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ip6 | ${table_idx}
 
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+| | ... | ${dut1} | ip6 | dst | ${mask}
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
 | | ... | 2001:2::2
@@ -87,14 +90,14 @@
 | | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:0
+| | ... | ${dut1} | ip6 | dst | ${mask}
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
 | | ... | 2001:2::0
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ip6 | ${table_idx}
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut2} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:0
+| | ... | ${dut2} | ip6 | dst | ${mask}
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut2} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
 | | ... | 2001:1::0
