@@ -1,6 +1,6 @@
 # 2n-tx2
 ### tests 87
-### job hrs est. 6,09
+### job hrs est. 6.09
 ### job hrs real N/A
 ### test mins est. 4.20
 ### test mins real N/A
