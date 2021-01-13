@@ -113,6 +113,13 @@
 1c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND dot1q-ip6base
 2c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND dot1q-ip6base
 4c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND dot1q-ip6base
+<<<<<<< HEAD   (e42ba7 ansible: remove unused old ARM nomad hosts)
+=======
+##### ethip6-ip6base-iacldstbase
+1c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
+2c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
+4c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
+>>>>>>> CHANGE (55eb33 job_specs: fix 2n-tx2 ip6 iacldst job specs)
 ## ./ip6_tunnels
 ## ./l2
 ### intel-xl710
