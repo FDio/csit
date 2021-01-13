@@ -77,7 +77,8 @@ def generate_plots(spec, data):
         u"plot_tsa_name": plot_tsa_name,
         u"plot_http_server_perf_box": plot_http_server_perf_box,
         u"plot_nf_heatmap": plot_nf_heatmap,
-        u"plot_hdrh_lat_by_percentile": plot_hdrh_lat_by_percentile
+        u"plot_hdrh_lat_by_percentile": plot_hdrh_lat_by_percentile,
+        u"plot_hdrh_lat_by_percentile_x_log": plot_hdrh_lat_by_percentile_x_log
     }
 
     logging.info(u"Generating the plots ...")
