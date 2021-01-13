@@ -709,6 +709,7 @@
     vpp-performance-changes-3n-skx-ref-env-new:
       csit-vpp-perf-report-iterative-2101-3n-skx:
         - 14  # rls2009 NDRPDR iter env 6
+        - 15  # rls2009 NDRPDR iter env 6
     vpp-performance-changes-3n-skx-cmp:
       csit-vpp-perf-report-iterative-2101-3n-skx:
         - 5   # rls2101.rc1 NDRPDR iter env 6
@@ -755,6 +756,7 @@
       csit-vpp-perf-report-iterative-2101-2n-skx:
         - 22  # rls2009 NDRPDR iter env 6
         - 23  # rls2009 NDRPDR iter env 6
+        - 24  # rls2009 NDRPDR iter env 6
     vpp-performance-changes-2n-skx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-skx:
         - 5   # rls2101.rc1 NDRPDR iter env 6
@@ -2297,7 +2299,7 @@
         xanchor: "left"
         yanchor: "top"
         x: 0
-        y: -0.2
+        y: -0.5
         bgcolor: "rgba(255, 255, 255, 0)"
         bordercolor: "rgba(255, 255, 255, 0)"
       xaxis:
@@ -2314,12 +2316,12 @@
         showline: True
         showticklabels: True
         tickcolor: "rgb(220, 220, 220)"
-#         tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8]
-#         ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999, 99.99999, 99.999999]
-        tickvals: [1, 2, 1e1, 20, 1e2, 1e3]
-        ticktext: [0, 50, 90, 95, 99, 99.9]
+        tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9]
+        ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999, 99.99999, 99.999999, 99.9999999]
         tickfont:
           size: 14
+        rangeslider:
+          visible: True
       yaxis:
         title: "<b>One-Way Latency per Direction [uSec]</b>"
         titlefont:
@@ -2507,6 +2509,7 @@
       - 9   # rls2101.rc1 NDRPDR iter env 6
       - 12  # rls2009 MRR iter env 6
       - 14  # rls2009 NDRPDR iter env 6
+      - 15  # rls2009 NDRPDR iter env 6
     # csit-vpp-perf-report-coverage-2101-3n-skx:
 
 
@@ -2581,6 +2584,7 @@
       - 21  # rls2009 MRR iter env 6
       - 22  # rls2009 NDRPDR iter env 6
       - 23  # rls2009 NDRPDR iter env 6
+      - 24  # rls2009 NDRPDR iter env 6
     # csit-vpp-perf-report-coverage-2101-2n-skx:
 
 
@@ -22577,27 +22581,27 @@
 
 ################################################################################
 
-# - type: "plot"
-#   title: "Latency by percentile x-log: 2n-clx"
-#   algorithm: "plot_hdrh_lat_by_percentile"
-#   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-x-log-2n-clx"
-#   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
-#   target-links: "../../_static/vpp"
-#   data: "plot-vpp-hdrh-lat-2n-clx"
-#   filter: "'2T1C' and 'NIC_Intel-XXV710'"
-#   layout:
-#     layout: "plot-hdrh-latency-percentile-x-log"
+- type: "plot"
+  title: "Latency by percentile x-log: 2n-clx"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-x-log-2n-clx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-clx"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
 
-# - type: "plot"
-#   title: "Latency by percentile x-log: 2n-skx"
-#   algorithm: "plot_hdrh_lat_by_percentile"
-#   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-x-log-2n-skx"
-#   output-file-links: "{DIR[LAT,VPP]}/2n_skx.rst"
-#   target-links: "../../_static/vpp"
-#   data: "plot-vpp-hdrh-lat-2n-skx"
-#   filter: "'2T1C' and 'NIC_Intel-XXV710'"
-#   layout:
-#     layout: "plot-hdrh-latency-percentile-x-log"
+- type: "plot"
+  title: "Latency by percentile x-log: 2n-skx"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-x-log-2n-skx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_skx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-skx"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
   title: "Latency by percentile: 2n-skx"
