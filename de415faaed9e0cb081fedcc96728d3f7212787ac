@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "93d70cab_659a9e2c",
+        "filename": "GPL/traffic_profiles/trex/contrib/geneve.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-13T11:46:47Z",
+      "side": 1,
+      "message": "I mean since 30692 is merged already, the highlighted part should be in a separate line.",
+      "parentUuid": "f3608c16_ca1d747f",
+      "range": {
+        "startLine": 15,
+        "startChar": 73,
+        "endLine": 15,
+        "endChar": 81
+      },
+      "revId": "de415faaed9e0cb081fedcc96728d3f7212787ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec355041_b3f2e273",
         "filename": "GPL/traffic_profiles/trex/contrib/geneve.py",
         "patchSetId": 13
