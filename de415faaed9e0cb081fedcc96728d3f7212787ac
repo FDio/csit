@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1d75aa3_04bae838",
+        "filename": "GPL/traffic_profiles/trex/contrib/geneve.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-13T09:36:03Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/c/csit/+/30692",
+      "range": {
+        "startLine": 15,
+        "startChar": 73,
+        "endLine": 15,
+        "endChar": 81
+      },
+      "revId": "de415faaed9e0cb081fedcc96728d3f7212787ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec355041_b3f2e273",
+        "filename": "GPL/traffic_profiles/trex/contrib/geneve.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-13T09:36:03Z",
+      "side": 1,
+      "message": "Do we want docstrings in this file?",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 29
+      },
+      "revId": "de415faaed9e0cb081fedcc96728d3f7212787ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
