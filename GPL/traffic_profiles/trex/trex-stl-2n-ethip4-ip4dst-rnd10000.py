@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (e9a968 job_specs: fix 2n-tx2 ip6 iacldst job specs)
 # Copyright (c) 2020 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
@@ -134,3 +135,5 @@ def register():
     :rtype: Object
     """
     return TrafficStreams()
+=======
+>>>>>>> CHANGE (53e516 Add 3n ip4-rnd tests)

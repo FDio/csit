@@ -1,5 +1,4 @@
-<<<<<<< HEAD   (e9a968 job_specs: fix 2n-tx2 ip6 iacldst job specs)
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -13,7 +12,8 @@
 #
 # Note: If this file is linked with Scapy, which is GPLv2+, your use of it
 # must be under GPLv2+.  If at any point in the future it is no longer linked
-# with Scapy (or other GPLv2+ licensed software), you are free to choose Apache 2.
+# with Scapy (or other GPLv2+ licensed software), you are free to choose
+# Apache 2.
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -134,5 +134,3 @@ def register():
     :rtype: Object
     """
     return TrafficStreams()
-=======
->>>>>>> CHANGE (53e516 Add 3n ip4-rnd tests)
