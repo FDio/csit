@@ -74,9 +74,9 @@
 2c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND dot1q-ip6base
 4c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND dot1q-ip6base
 ##### ethip6-ip6base-iacldstbase
-1c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
-2c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
-4c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
+1c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
+2c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
+4c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
 ## ./ip6_tunnels
 ## ./l2
 ### intel-xl710
