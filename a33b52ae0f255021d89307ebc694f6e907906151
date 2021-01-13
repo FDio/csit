@@ -117,6 +117,30 @@
       "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fa88c68_ae2651a3",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-13T12:48:45Z",
+      "side": 1,
+      "message": "\u003e a non-dynamic import code path\n\nCreating two instances (first VppTransport then VPPApiClient) looks fine, we can start doing that (one release after 30361 is merged).\n\n\u003e Do you have any plans to install papi via pip?\n\nUsually we avoid touching the active virtualenv during tests. But if it is clear only one package is installed (no dependencies, and the test will attempt to uninstall it at the end) we can make an exception.\nWhat is the recommended way to install PAPI via pip?\nThere is python3-vpp-api_{version}.deb, but we do not want to mess with system packages on the robot machine (as it may be CSIT developer\u0027s carefully tweaked installation).",
+      "parentUuid": "e4ce83ba_107f331e",
+      "range": {
+        "startLine": 261,
+        "startChar": 11,
+        "endLine": 262,
+        "endChar": 30
+      },
+      "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
