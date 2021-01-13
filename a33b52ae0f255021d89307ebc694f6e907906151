@@ -189,6 +189,30 @@
       "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60350418_7dbfdc5c",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1496
+      },
+      "writtenOn": "2021-01-13T15:07:12Z",
+      "side": 1,
+      "message": "Peter,\nI\u0027m not following your point, can you explain further? Do you want papi exported via packagecloud so you can install it? (I\u0027d rather fix it on pypi) Do you want to install into systemenv or virtualenv?",
+      "parentUuid": "5a7fe7cf_f30d9219",
+      "range": {
+        "startLine": 261,
+        "startChar": 11,
+        "endLine": 262,
+        "endChar": 30
+      },
+      "revId": "a33b52ae0f255021d89307ebc694f6e907906151",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
