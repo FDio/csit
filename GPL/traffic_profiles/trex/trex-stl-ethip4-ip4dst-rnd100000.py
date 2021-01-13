@@ -42,7 +42,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
     """Stream profile."""
 
     def __init__(self):
-        """Initialization and setting of streams" parameters."""
+        """Initialization and setting of streams' parameters."""
 
         super(TrafficStreamsBaseClass, self).__init__()
 
@@ -66,21 +66,21 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # Direction 0 --> 1
         base_pkt_a = (
-                Ether() /
-                IP(
-                    src=self.p1_src_start_ip,
-                    dst=self.p1_dst_start_ip,
-                    proto=61
-                )
+            Ether() /
+            IP(
+                src=self.p1_src_start_ip,
+                dst=self.p1_dst_start_ip,
+                proto=61
+            )
         )
         # Direction 1 --> 0
         base_pkt_b = (
-                Ether() /
-                IP(
-                    src=self.p2_src_start_ip,
-                    dst=self.p2_dst_start_ip,
-                    proto=61
-                )
+            Ether() /
+            IP(
+                src=self.p2_src_start_ip,
+                dst=self.p2_dst_start_ip,
+                proto=61
+            )
         )
 
         # Direction 0 --> 1
@@ -91,7 +91,8 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     min_value=self.p1_dst_start_ip,
                     max_value=self.p1_dst_end_ip,
                     size=4,
-                    limit=100000
+                    seed=1,
+                    limit=(2**24 - 1)
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"dst",
@@ -110,7 +111,8 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     min_value=self.p2_dst_start_ip,
                     max_value=self.p2_dst_end_ip,
                     size=4,
-                    limit=100000
+                    seed=2,
+                    limit=(2**24 - 1)
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"dst",
