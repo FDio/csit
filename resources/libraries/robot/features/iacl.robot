@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,9 +16,10 @@
 
 
 *** Keywords ***
-| Configure IPv4 IACLs
+| | And Initialize IPv4 iACL in circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip4 | dst | 255.255.255.255
+| | Run Keyword If | ${mask} == 255.255.255.255 | 255.255.255.0
+| | ... | ${dut1} | ip4 | dst | ${mask}
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip4 | dst
 | | ... | 20.20.20.2
@@ -29,9 +30,8 @@
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
 | | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
-| Configure IPv4 IACLs
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip4 | dst | 255.255.255.0
+| | ... | ${dut1} | ip4 | dst | ${mask}
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip4 | dst
 | | ... | 20.20.20.0
@@ -43,9 +43,8 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ip4 | ${table_idx}
 
-| Configure IPv4 IACLs
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip4 | dst | 255.255.255.0
+| | ... | ${dut1} | ip4 | dst | ${mask}
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip4 | dst
 | | ... | 20.20.20.0
@@ -61,7 +60,7 @@
 
 #IP6
 
-| Configure IPv6 IACLs
+| | And Initialize IPv6 iACL in circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:0
 | | And Vpp Configures Classify Session L3
@@ -75,7 +74,6 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ip6 | ${table_idx}
 
-| Configure IPv6 IACLs
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
 | | And Vpp Configures Classify Session L3
@@ -88,7 +86,6 @@
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
 | | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
-| Configure IPv6 IACLs
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:0
 | | And Vpp Configures Classify Session L3
