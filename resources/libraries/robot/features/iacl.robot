@@ -17,7 +17,6 @@
 
 *** Keywords ***
 | And Initialize IPv4 iACL in circular topology
-| | Configure IPv4 IACLs
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | Run Keyword If | ${mask} == 255.255.255.255 | 255.255.255.0
 | | ... | ${dut1} | ip4 | dst | ${mask}
@@ -62,7 +61,6 @@
 #IP6
 
 | And Initialize IPv6 iACL in circular topology
-| | Configure IPv6 IACLs
 | | Run Keyword If | ${mask} == ffff:ffff:ffff:ffff:ffff:ffff:ffff:0 | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip6 | dst | ${mask}
