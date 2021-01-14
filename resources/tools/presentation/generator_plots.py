@@ -173,14 +173,9 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
 
             for color, graph in enumerate(graphs):
                 for idx, direction in enumerate((u"direction1", u"direction2")):
-                    xaxis = [0.0, ]
-                    yaxis = [0.0, ]
-                    hovertext = [
-                        f"<b>{desc[graph]}</b><br>"
-                        f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
-                        f"Percentile: 0.0%<br>"
-                        f"Latency: 0.0uSec"
-                    ]
+                    xaxis = list()
+                    yaxis = list()
+                    hovertext = list()
                     try:
                         decoded = hdrh.histogram.HdrHistogram.decode(
                             test[u"latency"][graph][direction][u"hdrh"]
@@ -193,7 +188,7 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
 
                     for item in decoded.get_recorded_iterator():
                         percentile = item.percentile_level_iterated_to
-                        if percentile > 99.9:
+                        if percentile > 99.9999999:
                             continue
                         xaxis.append(percentile)
                         yaxis.append(item.value_iterated_to)
