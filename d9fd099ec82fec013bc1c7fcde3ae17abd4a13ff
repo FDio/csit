@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "779de92c_8b793ee3",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-01-14T11:32:41Z",
+      "side": 1,
+      "message": "One more thing, this is the second arm VPP Device server, so the testbed should be 1n-tx2 and I guess we want to rename it to s56-t15-sut1 (so it would be after s55-t14-sut1).\n\nThe reason arm VPP Device is split between racks is that there wasn\u0027t really a way to insert the new servers without disrupting other operations (such as nomad clients): we needed one tx2 near the s19-t33t34-tg1 and there was enough space for one tx2 in each of the two racks. We may want to remedy this after the move, such as moving the other VPP Device server into this rack if we remove the softirons (looks like 2U will be freed, which is enough for the TX2).",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 39
+      },
+      "revId": "d9fd099ec82fec013bc1c7fcde3ae17abd4a13ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
