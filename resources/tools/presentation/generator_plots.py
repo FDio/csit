@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -173,6 +173,7 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
 
             for color, graph in enumerate(graphs):
                 for idx, direction in enumerate((u"direction1", u"direction2")):
+                    previous_x = 0.0
                     xaxis = list()
                     yaxis = list()
                     hovertext = list()
@@ -190,14 +191,23 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                         percentile = item.percentile_level_iterated_to
                         if percentile > 99.9999999:
                             continue
+                        xaxis.append(previous_x)
+                        yaxis.append(item.value_iterated_to)
+                        hovertext.append(
+                            f"<b>{desc[graph]}</b><br>"
+                            f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
+                            f"Percentile: {previous_x:.5f}-{percentile:.5f}%<br>"
+                            f"Latency: {item.value_iterated_to}uSec"
+                        )
                         xaxis.append(percentile)
                         yaxis.append(item.value_iterated_to)
                         hovertext.append(
                             f"<b>{desc[graph]}</b><br>"
                             f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
-                            f"Percentile: {percentile:.5f}%<br>"
+                            f"Percentile: {previous_x:.5f}-{percentile:.5f}%<br>"
                             f"Latency: {item.value_iterated_to}uSec"
                         )
+                        previous_x = percentile
                     fig.add_trace(
                         plgo.Scatter(
                             x=xaxis,
@@ -208,7 +218,8 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                             showlegend=bool(idx),
                             line=dict(
                                 color=COLORS[color],
-                                dash=u"dash" if idx % 2 else u"solid"
+                                dash=u"solid",
+                                width=1 if idx % 2 else 2
                             ),
                             hovertext=hovertext,
                             hoverinfo=u"text"
@@ -328,6 +339,8 @@ def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
 
             for color, graph in enumerate(graphs):
                 for idx, direction in enumerate((u"direction1", u"direction2")):
+                    previous_x = 0.0
+                    prev_perc = 0.0
                     xaxis = list()
                     yaxis = list()
                     hovertext = list()
@@ -345,14 +358,25 @@ def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
                         percentile = item.percentile_level_iterated_to
                         if percentile > 99.9999999:
                             continue
-                        xaxis.append(100.0 / (100.0 - percentile))
+                        xaxis.append(previous_x)
                         yaxis.append(item.value_iterated_to)
                         hovertext.append(
                             f"<b>{desc[graph]}</b><br>"
                             f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
-                            f"Percentile: {percentile:.5f}%<br>"
+                            f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
                             f"Latency: {item.value_iterated_to}uSec"
                         )
+                        next_x = 100.0 / (100.0 - percentile)
+                        xaxis.append(next_x)
+                        yaxis.append(item.value_iterated_to)
+                        hovertext.append(
+                            f"<b>{desc[graph]}</b><br>"
+                            f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
+                            f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
+                            f"Latency: {item.value_iterated_to}uSec"
+                        )
+                        previous_x = next_x
+                        prev_perc = percentile
                     fig.add_trace(
                         plgo.Scatter(
                             x=xaxis,
@@ -363,7 +387,8 @@ def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
                             showlegend=not(bool(idx)),
                             line=dict(
                                 color=COLORS[color],
-                                dash=u"dash" if idx % 2 else u"solid"
+                                dash=u"solid",
+                                width=1 if idx % 2 else 2
                             ),
                             hovertext=hovertext,
                             hoverinfo=u"text"
