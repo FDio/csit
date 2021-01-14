@@ -62,8 +62,8 @@ class TrafficProfile(TrafficProfileBaseClass):
         self.udp_data = u""
 
         self.n_data = 32  # TODO: set via input parameter
-        self.m_delay = 1200000  # delay 1200s (1,200,000 ms)
-        self.u_delay = 1000 * self.m_delay  # delay 1200s (1,200,000,000 us)
+        self.m_delay = 2000000  # delay 2000s (2,000,000 ms)
+        self.u_delay = 1000 * self.m_delay  # delay 2000s (2,000,000,000 us)
         self.limit = 16515072
 
     def define_profile(self):
