@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "052da9d7_0c671f33",
+        "filename": "docs/traffic_model/traffic_model.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-15T08:17:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "938bd413_4aa203c2",
+      "range": {
+        "startLine": 3,
+        "startChar": 49,
+        "endLine": 3,
+        "endChar": 54
+      },
+      "revId": "5d55e6b68dd714f5208df0c645c1ed3f2ee9feef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f40b3e41_0873bef8",
         "filename": "docs/traffic_model/traffic_model.md",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2021-01-15T07:31:25Z",
       "side": 1,
       "message": "Is this a documentation? I would create a new directory csit/specification/traffic_model (and csit/specification/job_specs, ...)",
+      "range": {
+        "startLine": 8,
+        "startChar": 5,
+        "endLine": 8,
+        "endChar": 9
+      },
+      "revId": "5d55e6b68dd714f5208df0c645c1ed3f2ee9feef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d4230a1_6df4bffc",
+        "filename": "docs/traffic_model/traffic_model.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-15T08:17:41Z",
+      "side": 1,
+      "message": "Yes, that\u0027s good point. We can introduce specifications directory with traffic model and later move there all other specifications in csit repository.",
+      "parentUuid": "f40b3e41_0873bef8",
       "range": {
         "startLine": 8,
         "startChar": 5,
