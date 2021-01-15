@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "aaf1f302_171ccaf6",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-15T14:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53b2045a_fa2ee1a8",
+      "revId": "c230cfbf28934f0f2ca044fc5c16772dd6b7ac40",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46194c49_110ae8b2",
         "filename": "specifications/traffic_model/traffic_model.md",
         "patchSetId": 14
@@ -30,6 +48,24 @@
       "writtenOn": "2021-01-15T09:04:08Z",
       "side": 1,
       "message": "missing latency streams and handling",
+      "revId": "c230cfbf28934f0f2ca044fc5c16772dd6b7ac40",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "201c6a0f_e8b2e459",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-15T14:00:57Z",
+      "side": 1,
+      "message": "Adding new attribute stream_type and note 4.",
+      "parentUuid": "46194c49_110ae8b2",
       "revId": "c230cfbf28934f0f2ca044fc5c16772dd6b7ac40",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
@@ -50,6 +86,24 @@
       "revId": "c230cfbf28934f0f2ca044fc5c16772dd6b7ac40",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bb98707_4e366b61",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-15T14:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "670d770a_013321eb",
+      "revId": "c230cfbf28934f0f2ca044fc5c16772dd6b7ac40",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
