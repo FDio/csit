@@ -23,7 +23,7 @@ values.
     `FD.io test executor dpdk performance job 2n-skx`_,
     `FD.io test executor dpdk performance job 2n-clx`_,
     `FD.io test executor dpdk performance job 2n-zn2`_,
-    `FD.io test executor dpdk performance job 2n-tsh`_,
+    `FD.io test executor dpdk performance job 3n-tsh`_,
     with RF result
     files csit-dpdk-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.

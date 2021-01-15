@@ -10,6 +10,7 @@ VPP Throughput
     `FD.io test executor vpp performance job 2n-zn2`_,
     `FD.io test executor vpp performance job 3n-hsw`_,
     `FD.io test executor vpp performance job 3n-tsh`_,
+    `FD.io test executor vpp performance job 2n-tx2`_,
     `FD.io test executor vpp performance job 2n-dnv`_,
     `FD.io test executor vpp performance job 3n-dnv`_,
     ii) archived FD.io jobs test results
