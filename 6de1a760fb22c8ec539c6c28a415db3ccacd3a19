@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a713b268_99ad7137",
+        "filename": "docs/report/dpdk_performance_tests/comparisons/current_vs_previous_release.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-01-15T12:15:19Z",
+      "side": 1,
+      "message": "This looks like a typo so a fixed it here.",
+      "range": {
+        "startLine": 26,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 52
+      },
+      "revId": "6de1a760fb22c8ec539c6c28a415db3ccacd3a19",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
