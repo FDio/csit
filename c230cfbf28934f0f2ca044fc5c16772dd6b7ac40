@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53b2045a_fa2ee1a8",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-15T09:04:08Z",
+      "side": 1,
+      "message": "I am missing some metadata.\nYou are missing framesize. Now framesize can be INT of STR (e.g. IMIX). So if you would have metadata storing eg IMIX table or Framesizes table, then in each stream you can do a reference to that.",
+      "revId": "c230cfbf28934f0f2ca044fc5c16772dd6b7ac40",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46194c49_110ae8b2",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-15T09:04:08Z",
+      "side": 1,
+      "message": "missing latency streams and handling",
+      "revId": "c230cfbf28934f0f2ca044fc5c16772dd6b7ac40",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "670d770a_013321eb",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-15T09:04:08Z",
+      "side": 1,
+      "message": "missing isg (interstream gap)",
+      "revId": "c230cfbf28934f0f2ca044fc5c16772dd6b7ac40",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
