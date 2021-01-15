@@ -1,5 +1,5 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
-# Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,12 +29,13 @@ function gather_build () {
     # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
     # Variables set:
     # - DUT - CSIT test/ subdirectory containing suites to execute.
+    # - VSAP_MODE - Mode of TLS with Nginx.
     # Directories updated:
     # - ${DOWNLOAD_DIR} - Files needed by tests are gathered here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
     # - gather_os - Parse os parameter for OS/distro name.
-    # - gather_dpdk, gather_vpp - See their definitions.
+    # - gather_dpdk, gather_vpp, gather_vsap  - See their definitions.
     # Multiple other side effects are possible,
     # see functions called from here for their current description.
 
@@ -57,6 +58,16 @@ function gather_build () {
             DUT="dpdk"
             gather_dpdk || die "The function should have died on error."
             ;;
+        *"vcl"*)
+            DUT="vsap"
+            VSAP_MODE="vcl"
+            gather_vsap || die "The function should have died on error."
+            ;;
+        *"ldp"*)
+            DUT="vsap"
+            VSAP_MODE="ldp"
+            gather_vsap || die "The function should have died on error."
+            ;;
         *)
             die "Unable to identify DUT type from: ${TEST_CODE}"
             ;;
@@ -64,6 +75,28 @@ function gather_build () {
     popd || die "Popd failed."
 }
 
+function gather_vsap () {
+
+    # Variables read:
+    # - BASH_FUNCTION_DIR - Bash directory with functions.
+    # - TEST_CODE - The test selection string from environment or argument.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common_functions.sh
+
+    set -exuo pipefail
+
+    case "${TEST_CODE}" in
+        "csit-"*)
+            # Use downloaded packages with specific version.
+            warn "Downloading stable VSAP packages from Packagecloud."
+            source "${BASH_FUNCTION_DIR}/artifacts.sh" || die "Source failed."
+            download_vsap ${VSAP_MODE} || die
+            ;;
+        *)
+            die "Unable to identify job type from: ${TEST_CODE}"
+            ;;
+    esac
+}
 
 function gather_dpdk () {
 
