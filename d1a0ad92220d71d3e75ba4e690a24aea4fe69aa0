@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41723064_15357360",
+        "filename": "resources/libraries/bash/entry/check/commit_message.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-15T14:31:58Z",
+      "side": 1,
+      "message": "So all the DO_NOT_MERGE commits. \nWhat about WIP: refuse of NO_NOT_MERGE refuse or TRIGGER refuse. But hope this will be solved by do not invite jjb on draft/wip.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 10
+      },
+      "revId": "d1a0ad92220d71d3e75ba4e690a24aea4fe69aa0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db5599e0_b46a17c8",
+        "filename": "resources/libraries/bash/entry/tox.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-15T14:31:58Z",
+      "side": 1,
+      "message": "Hmm really stupid tool: https://github.com/tox-dev/tox/issues/578\nSo no option to fast fail",
+      "revId": "d1a0ad92220d71d3e75ba4e690a24aea4fe69aa0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfbabe7a_51b0c20e",
+        "filename": "tox.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-15T14:31:58Z",
+      "side": 1,
+      "message": "there is a param for this to ignore_fail: true",
+      "range": {
+        "startLine": 59,
+        "startChar": 61,
+        "endLine": 59,
+        "endChar": 65
+      },
+      "revId": "d1a0ad92220d71d3e75ba4e690a24aea4fe69aa0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
