@@ -386,8 +386,47 @@ SUT1 and SUT2 servers are populated with the following NIC models:
 #. NIC-1: connectx4 2p25GE Mellanox.
 #. NIC-2: x520 2p10GE Intel.
 
-TG servers run T-Rex application and are populated with the following
+TG server runs T-Rex application and is populated with the following
 NIC models:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
+#. NIC-3: xl710-QDA2 2p40GE Intel.
+
+2-Node ARM ThunderX2 (2n-tx2)
+---------------------------
+
+One 2n-tx2 testbed is built with: i) one SuperMicro SYS-7049GP-TRT
+server acting as TG and equipped with two Intel Xeon Skylake Platinum
+8180 processors (38.5 MB Cache, 2.50 GHz, 28 cores), and ii) one Marvell
+ThnderX2 9975 (28* ThunderX2) server acting as SUT and equipped with two
+ThunderX2 ARMv8 CN9975 processors. 2n-tx2 physical topology is shown below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{testbed-2n-tx2}
+                \label{fig:testbed-2n-tx2}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: testbed-2n-tx2.svg
+        :alt: testbed-2n-tx2
+        :align: center
+
+SUT server is populated with the following NIC models:
+
+#. NIC-1: xl710-QDA2 2p40GE Intel.
+#. NIC-2: xl710-QDA2 2p40GE Intel.
+
+TG server run T-Rex application and is populated with the following
+NIC models:
+
+#. NIC-1: x710-DA4 4p10GE Intel.
+#. NIC-2: xxv710-DA2 2p25GE Intel.
+#. NIC-3: xl710-QDA2 2p40GE Intel.

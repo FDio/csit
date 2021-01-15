@@ -45,6 +45,7 @@ Graphs are split into sections as follows:
      - 2n-clx: 2-node Xeon Cascade Lake
      - 3n-hsw: 3-node Xeon Haswell
      - 3n-tsh: 3-node Arm TaiShan
+     - 2n-tx2: 2-node Arm ThunderX2
      - 2n-dnv: 2-node Atom Denverton
      - 3n-dnv: 3-node Atom Denverton
 
@@ -136,6 +137,7 @@ Additional information about graph data:
     `FD.io test executor vpp performance job 2n-zn2`_,
     `FD.io test executor vpp performance job 3n-hsw`_,
     `FD.io test executor vpp performance job 3n-tsh`_,
+    `FD.io test executor vpp performance job 2n-tx2`_,
     `FD.io test executor vpp performance job 2n-dnv`_ and
     `FD.io test executor vpp performance job 3n-dnv`_ with RF
     result files csit-vpp-perf-|srelease|-\*.zip
