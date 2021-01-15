@@ -10,7 +10,7 @@ Packet Latency
 VPP latency results are generated based on the test data obtained from
 |csit-release| NDR-PDR throughput tests executed across physical
 testbeds hosted in LF FD.io labs: 3n-hsw, 3n-skx, 2n- skx, 2n-clx,
-3n-dnv, 2n-dnv, 3n-tsh.
+3n-dnv, 2n-dnv, 3n-tsh, 2n-tx2.
 
 Latency by percentile distribution plots are used to show packet latency
 percentiles at different packet rate load levels: i) No-Load latency
@@ -38,8 +38,9 @@ Additional information about graph data:
     `FD.io test executor vpp performance job 3n-skx`_,
     `FD.io test executor vpp performance job 2n-clx`_,
     `FD.io test executor vpp performance job 2n-zn2`_,
-    `FD.io test executor vpp performance job 3n-hsw`_ and
-    `FD.io test executor vpp performance job 3n-tsh`_ with RF
+    `FD.io test executor vpp performance job 3n-hsw`_,
+    `FD.io test executor vpp performance job 3n-tsh`_ and
+    `FD.io test executor vpp performance job 2n-tx2`_ with RF
     result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
 
