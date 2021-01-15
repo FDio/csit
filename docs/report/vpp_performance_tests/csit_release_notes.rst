@@ -46,6 +46,10 @@ Changes in |csit-release|
      FD.io CSIT, with VPP and DPDK performance data added to CSIT
      trending and this report.
 
+   - **AMD 2n-tx2 testbed**: New physical testbed type installed in
+     FD.io CSIT, with VPP and DPDK performance data added to CSIT
+     trending and this report.
+
 #. TEST FRAMEWORK
 
    - **TRex ASTF**: Added capability to run TRex in advanced stateful mode.
