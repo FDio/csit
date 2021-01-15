@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "938bd413_4aa203c2",
+        "filename": "docs/traffic_model/traffic_model.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-01-15T07:31:25Z",
+      "side": 1,
+      "message": "specification",
+      "range": {
+        "startLine": 3,
+        "startChar": 49,
+        "endLine": 3,
+        "endChar": 54
+      },
+      "revId": "5d55e6b68dd714f5208df0c645c1ed3f2ee9feef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f40b3e41_0873bef8",
+        "filename": "docs/traffic_model/traffic_model.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-01-15T07:31:25Z",
+      "side": 1,
+      "message": "Is this a documentation? I would create a new directory csit/specification/traffic_model (and csit/specification/job_specs, ...)",
+      "range": {
+        "startLine": 8,
+        "startChar": 5,
+        "endLine": 8,
+        "endChar": 9
+      },
+      "revId": "5d55e6b68dd714f5208df0c645c1ed3f2ee9feef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
