@@ -52,7 +52,7 @@
     DIR[DTR,MRR,VPP,2N,ZN2]: "{DIR[DTR]}/vpp_mrr_results_2n_zn2"
     DIR[DTR,MRR,VPP,2N,CLX]: "{DIR[DTR]}/vpp_mrr_results_2n_clx"
     DIR[DTR,MRR,VPP,3N,TSH]: "{DIR[DTR]}/vpp_mrr_results_3n_tsh"
-    DIR[DTR,MRR,VPP,2N,TX2: "{DIR[DTR]}/vpp_mrr_results_2n_tx2"
+    DIR[DTR,MRR,VPP,2N,TX2]: "{DIR[DTR]}/vpp_mrr_results_2n_tx2"
     DIR[DTR,MRR,VPP,3N,DNV]: "{DIR[DTR]}/vpp_mrr_results_3n_dnv"
     DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
     DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
