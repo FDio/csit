@@ -85,20 +85,22 @@ class TrafficStreams(TrafficStreamsBaseClass):
         base_pkt_b = (
             Ether() /
             IPv6(
-              src=self.p2_src_start_ip,
-              dst=self.p2_dst_start_ip
+                src=self.p2_src_start_ip,
+                dst=self.p2_dst_start_ip
             )
         )
 
         # Direction 0 --> 1
         vm1 = STLScVmRaw(
             [
-                STLVmFlowVar(
+                STLVmFlowVarRepeatableRandom(
                     name=u"ipv6_dst",
                     min_value=base_p1,
                     max_value=base_p1 + count_p1,
                     size=8,
-                    op=u"inc"
+                    seed=1,
+                    # Cycle length. TRex does not allow any higher value.
+                    limit=(2**24 - 1)
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"ipv6_dst",
@@ -110,12 +112,13 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # Direction 1 --> 0
         vm2 = STLScVmRaw(
             [
-                STLVmFlowVar(
+                STLVmFlowVarRepeatableRandom(
                     name=u"ipv6_dst",
                     min_value=base_p2,
                     max_value=base_p2 + count_p2,
                     size=8,
-                    op=u"inc"
+                    seed=2,
+                    limit=(2**24 - 1)
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"ipv6_dst",
