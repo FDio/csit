@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e39e5ef_2db9e9ae",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T12:46:37Z",
+      "side": 1,
+      "message": "can you create metadata to model, where this text will be basically comments to specific lines in model? It is hard to follow",
+      "revId": "ed15fa56855823beaee6bb539b8d21212879b4f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85af8616_b82a08e0",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T12:46:37Z",
+      "side": 1,
+      "message": "Please rephrase. This is input for a test which will then evaluate and use as an input to configure TG/VPP/DUT... based on test type. This will be for various TG\u0027s not only T-Rex and not only for VPP.\nThis is basically input for a test to know how the traffic will look like to test can be properly configured honoring SSoT",
+      "range": {
+        "startLine": 3,
+        "startChar": 41,
+        "endLine": 5,
+        "endChar": 79
+      },
+      "revId": "ed15fa56855823beaee6bb539b8d21212879b4f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "017c497c_5cb7eec5",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T12:46:37Z",
+      "side": 1,
+      "message": "Hmm. I thought that NW is doing its own routing and switching decisions. What you wanted to achieve is where you would expect the traffic to arrive? Unless you want to do a full mesh and capture it in declarative way (e.g. openflow).",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "ed15fa56855823beaee6bb539b8d21212879b4f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5681181_22d8477b",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T12:46:37Z",
+      "side": 1,
+      "message": "no. This is model. Test will inherit behavior from it",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 78
+      },
+      "revId": "ed15fa56855823beaee6bb539b8d21212879b4f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3c0569f_d9b5177b",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T12:46:37Z",
+      "side": 1,
+      "message": "Traffic model describes how traffic looks like in test. Model cannot be created on the fly. Model is static (versioned) prepared and verfied. The real instance of it can be created during the test and validated against model (CSIT: topology_file.yml). Not vice versa. Otherwise it is a meta data for a model, but even that is not correct for this case.\nThis specific model will be an input for a test based on which test case will configure TG/SUT/DUT....",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 30
+      },
+      "revId": "ed15fa56855823beaee6bb539b8d21212879b4f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c39ed307_f5a2a909",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T12:46:37Z",
+      "side": 1,
+      "message": "preferring \"default|latency\"\n\ncan you put meta model with data type in it and also possible values?",
+      "range": {
+        "startLine": 74,
+        "startChar": 32,
+        "endLine": 74,
+        "endChar": 40
+      },
+      "revId": "ed15fa56855823beaee6bb539b8d21212879b4f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a92eab04_be3e160e",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T12:46:37Z",
+      "side": 1,
+      "message": "string/number/pointer? where can i define IMIX table or any other table size? Where is IMIX defined in here? How can i know IMIX bias looking in this model? Is IMIX modeled as combination of multiple streams? or is stream packet size applied for this stream only? Are multiple packet sizes shifted by ISG?",
+      "range": {
+        "startLine": 75,
+        "startChar": 30,
+        "endLine": 75,
+        "endChar": 33
+      },
+      "revId": "ed15fa56855823beaee6bb539b8d21212879b4f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cfc9cf5_2584fb12",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T12:46:37Z",
+      "side": 1,
+      "message": "reading nesting level this is \"stream layer\" or \"packet layer\"?",
+      "range": {
+        "startLine": 79,
+        "startChar": 17,
+        "endLine": 79,
+        "endChar": 23
+      },
+      "revId": "ed15fa56855823beaee6bb539b8d21212879b4f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd51aa78_e0965b79",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T12:46:37Z",
+      "side": 1,
+      "message": "generally this is string? shouldn\u0027t it be number?\nis there a metadata describing the ordering?",
+      "range": {
+        "startLine": 81,
+        "startChar": 37,
+        "endLine": 81,
+        "endChar": 39
+      },
+      "revId": "ed15fa56855823beaee6bb539b8d21212879b4f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c5362e1_9faf07cc",
+        "filename": "specifications/traffic_model/traffic_model.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T12:46:37Z",
+      "side": 1,
+      "message": "what is a change function? increment/random/decrement? Which bits are masked to be incremented?",
+      "range": {
+        "startLine": 85,
+        "startChar": 46,
+        "endLine": 85,
+        "endChar": 47
+      },
+      "revId": "ed15fa56855823beaee6bb539b8d21212879b4f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
