@@ -62,6 +62,30 @@
       "revId": "d1a0ad92220d71d3e75ba4e690a24aea4fe69aa0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b036cf7e_5ee5cda5",
+        "filename": "tox.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-18T13:33:10Z",
+      "side": 1,
+      "message": "I found ignore_outcome [0] instead. Created [1].\nThis will be chained after that.\n\n[0] https://tox.readthedocs.io/en/latest/config.html#conf-ignore_outcome\n[1] https://gerrit.fd.io/r/c/csit/+/30799",
+      "parentUuid": "cfbabe7a_51b0c20e",
+      "range": {
+        "startLine": 59,
+        "startChar": 61,
+        "endLine": 59,
+        "endChar": 65
+      },
+      "revId": "d1a0ad92220d71d3e75ba4e690a24aea4fe69aa0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
