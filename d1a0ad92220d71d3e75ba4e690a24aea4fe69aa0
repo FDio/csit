@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "78d1e9a4_46354827",
+        "filename": "resources/libraries/bash/entry/check/commit_message.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-18T14:05:33Z",
+      "side": 1,
+      "message": "I think fine, but with caveat that this has to be fixed. I cannot think any useful criteria apart from blocked word list",
+      "parentUuid": "f41b6823_b12d3580",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 10
+      },
+      "revId": "d1a0ad92220d71d3e75ba4e690a24aea4fe69aa0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db5599e0_b46a17c8",
         "filename": "resources/libraries/bash/entry/tox.sh",
         "patchSetId": 4
