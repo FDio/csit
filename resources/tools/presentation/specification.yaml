@@ -52,7 +52,7 @@
     DIR[DTR,MRR,VPP,2N,ZN2]: "{DIR[DTR]}/vpp_mrr_results_2n_zn2"
     DIR[DTR,MRR,VPP,2N,CLX]: "{DIR[DTR]}/vpp_mrr_results_2n_clx"
     DIR[DTR,MRR,VPP,3N,TSH]: "{DIR[DTR]}/vpp_mrr_results_3n_tsh"
-    DIR[DTR,MRR,VPP,2N,TX2: "{DIR[DTR]}/vpp_mrr_results_2n_tx2"
+    DIR[DTR,MRR,VPP,2N,TX2]: "{DIR[DTR]}/vpp_mrr_results_2n_tx2"
     DIR[DTR,MRR,VPP,3N,DNV]: "{DIR[DTR]}/vpp_mrr_results_3n_dnv"
     DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
     DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
@@ -586,6 +586,10 @@
     dpdk-perf-results-3n-tsh:
       csit-dpdk-perf-report-iterative-2101-3n-tsh:
         - 21  # rls2101 NDRPDR iter env 6
+
+    dpdk-perf-results-2n-tx2:
+      csit-dpdk-perf-report-iterative-2101-2n-tx2:
+        - 4   # rls2101 NDRPDR iter env 6
 
 ###########################################################################
     # Tables (more than one data set)
@@ -23367,7 +23371,7 @@
   data: "plot-dpdk-hdrh-lat-3n-tsh"
   filter: "'1T1C' and 'NIC_Intel-X520-DA2'"
   layout:
-    layout: "plot-hdrh-latency-percentile-x-log"+
+    layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
   title: "Latency by percentile: DPDK 2n-tx2"
