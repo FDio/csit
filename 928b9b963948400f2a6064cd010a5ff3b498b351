@@ -22,6 +22,30 @@
       "revId": "928b9b963948400f2a6064cd010a5ff3b498b351",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ef1b94d_628165f1",
+        "filename": "tests/vpp/device/l2bd/eth2p-ethipv4-l2bdbasemaclrn-iacl1sf-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-18T13:32:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e50b6c0_426cea28",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "928b9b963948400f2a6064cd010a5ff3b498b351",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
