@@ -45,26 +45,25 @@ CSIT source code for the test cases used for plots can be found in
 64b-2t1c-base
 -------------
 
-..
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-skx-x710-64b-2t1c-base-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-skx-x710-64b-2t1c-base-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/dpdk/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-x710-64b-2t1c-base-ndr}
-                \label{fig:3n-skx-x710-64b-2t1c-base-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-x710-64b-2t1c-base-ndr}
+            \label{fig:3n-skx-x710-64b-2t1c-base-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 .. raw:: html
 
@@ -89,26 +88,25 @@ CSIT source code for the test cases used for plots can be found in
 64b-4t2c-base
 -------------
 
-..
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-skx-x710-64b-4t2c-base-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-skx-x710-64b-4t2c-base-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/dpdk/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-x710-64b-4t2c-base-ndr}
-                \label{fig:3n-skx-x710-64b-4t2c-base-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-x710-64b-4t2c-base-ndr}
+            \label{fig:3n-skx-x710-64b-4t2c-base-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 .. raw:: html
 
