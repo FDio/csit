@@ -48,6 +48,11 @@ Legend to the tables:
 
 .. include:: ../../../_build/_static/vpp/failed-tests-3n-tsh.rst
 
+2n-tx2-mrr
+----------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-2n-tx2.rst
+
 2n-dnv-mrr
 ----------
 

@@ -14,3 +14,4 @@ DPDK
     dpdk-3n-hsw-xl710
     dpdk-3n-hsw-x710
     dpdk-3n-tsh-x520
+    dpdk-2n-tx2-xl710
