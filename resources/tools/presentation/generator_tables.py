@@ -1738,6 +1738,7 @@ def table_comparison(table, input_data):
                     break
             else:
                 tbl_cmp_lst.append(new_row)
+            logging.info(new_row)
 
     try:
         tbl_cmp_lst.sort(key=lambda rel: rel[0], reverse=False)
@@ -1809,6 +1810,7 @@ def table_comparison(table, input_data):
                 file_handler.write(f'"{itm}"\n')
 
     tbl_tmp = list()
+    logging.info(tbl_cmp_lst)
     max_lens = [0, ] * len(tbl_cmp_lst[0])
     for line in tbl_cmp_lst:
         row = [line[0], ]
