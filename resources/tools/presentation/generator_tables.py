@@ -1031,7 +1031,7 @@ def _generate_url(testbed, test_name):
     if u"macip-iacl1s" in test_name:
         bsf = u"features-macip-iacl1"
     elif u"macip-iacl10s" in test_name:
-        bsf = u"features-macip-iacl01"
+        bsf = u"features-macip-iacl10"
     elif u"macip-iacl50s" in test_name:
         bsf = u"features-macip-iacl50"
     elif u"iacl1s" in test_name:
