@@ -1664,11 +1664,14 @@ def table_comparison(table, input_data):
         return
 
     tbl_lst = list()
+    logging.info("tbl_lst:")
     for tst_data in tbl_dict.values():
         row = [tst_data[u"name"], ]
         for col in cols:
             row.append(tst_data.get(col[u"title"], None))
         tbl_lst.append(row)
+        logging.info(row)
+
 
     comparisons = table.get(u"comparisons", None)
     rcas = list()
@@ -1711,6 +1714,7 @@ def table_comparison(table, input_data):
 
     tbl_cmp_lst = list()
     if comparisons:
+        logging.info("new rows:")
         for row in tbl_lst:
             new_row = deepcopy(row)
             for comp in comparisons:
@@ -1738,6 +1742,7 @@ def table_comparison(table, input_data):
                     break
             else:
                 tbl_cmp_lst.append(new_row)
+            logging.info(new_row)
 
     try:
         tbl_cmp_lst.sort(key=lambda rel: rel[0], reverse=False)
@@ -1809,6 +1814,8 @@ def table_comparison(table, input_data):
                 file_handler.write(f'"{itm}"\n')
 
     tbl_tmp = list()
+    logging.info("tbl_cmp_lst:")
+    logging.info(tbl_cmp_lst)
     max_lens = [0, ] * len(tbl_cmp_lst[0])
     for line in tbl_cmp_lst:
         row = [line[0], ]
