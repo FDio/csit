@@ -15,7 +15,6 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 |
-| Library | resources.libraries.python.PapiExecutor.Disconnector
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.CpuUtils
@@ -31,8 +30,7 @@
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True}
 |
-| Suite Teardown | Run Keywords | Disconnect All Papi Connections
-| ... | AND | Cleanup Framework | ${nodes}
+| Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup Global Variables
