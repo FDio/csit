@@ -61,6 +61,9 @@ COLORS = (
 
 REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)-')
 
+# This value depends on latency stream rate (9001 pps) and duration (5s).
+PERCENTILE_MAX = 0.999995
+
 
 def generate_plots(spec, data):
     """Generate all plots specified in the specification file.
@@ -189,8 +192,6 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
 
                     for item in decoded.get_recorded_iterator():
                         percentile = item.percentile_level_iterated_to
-                        if percentile > 99.9999999:
-                            continue
                         xaxis.append(previous_x)
                         yaxis.append(item.value_iterated_to)
                         hovertext.append(
@@ -355,9 +356,10 @@ def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
                         continue
 
                     for item in decoded.get_recorded_iterator():
+                        # The real value is "percentile".
+                        # For 100%, we cut that down to "x_perc" to avoid infinity.
                         percentile = item.percentile_level_iterated_to
-                        if percentile > 99.9999999:
-                            continue
+                        x_perc = min(percentile, PERCENTILE_MAX)
                         xaxis.append(previous_x)
                         yaxis.append(item.value_iterated_to)
                         hovertext.append(
@@ -366,7 +368,7 @@ def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
                             f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
                             f"Latency: {item.value_iterated_to}uSec"
                         )
-                        next_x = 100.0 / (100.0 - percentile)
+                        next_x = 100.0 / (100.0 - x_perc)
                         xaxis.append(next_x)
                         yaxis.append(item.value_iterated_to)
                         hovertext.append(
