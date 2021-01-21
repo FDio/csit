@@ -236,8 +236,8 @@
 | Find Throughput Using MLRsearch
 | | [Documentation]
 | | ... | Find and return lower bound NDR (zero PLR)
-| | ... | aggregate throughput using MLRsearch algorithm.
-| | ... | Input rates are understood as uni-directional.
+| | ... | unidirectional throughput using MLRsearch algorithm.
+| | ... | Input and output rates are understood as uni-directional tps.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
@@ -254,7 +254,8 @@
 | | ... | transactions. Default is "packet".
 | |
 | | ... | *Returns:*
-| | ... | - Lower bound for bi-directional throughput at given PLR. Type: float
+| | ... | - Lower bound for uni-directional tps throughput at given PLR.
+| | ... | Type: float
 | |
 | | ... | *Example:*
 | |
