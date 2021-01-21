@@ -13,6 +13,8 @@
 
 """Path utilities library for nodes in the topology."""
 
+from robot.api import logger
+
 from resources.libraries.python.topology import Topology
 
 
@@ -140,7 +142,7 @@ class NodePath:
 
             self._links.append(link)
             interface1 = topo.get_interface_by_link_name(node1, link)
-            interface2 = topo.get_interface_by_link_name(node2, link)
+            interface2 = topo.get_interface_by_link_name(node2, link, second=True)
             self._path.append((interface1, node1))
             self._path.append((interface2, node2))
 
@@ -229,6 +231,7 @@ class NodePath:
         :raises RuntimeError: If unsupported combination of parameters.
         """
         t_dict = dict()
+        nodes.pop(u"DUT1")
         duts = [key for key in nodes if u"DUT" in key]
         t_dict[u"duts"] = duts
         t_dict[u"duts_count"] = len(duts)
@@ -312,6 +315,7 @@ class NodePath:
                 Topology.get_interface_ip4(node, interface)
             t_dict[f"{n_pfx.lower()}_{i_pfx}_ip4_prefix"] = \
                 Topology.get_interface_ip4_prefix_length(node, interface)
+            logger.debug(f"t_dict: {t_dict}")
 
         self.clear_path()
         return t_dict
