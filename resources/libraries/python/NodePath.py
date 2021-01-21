@@ -229,6 +229,7 @@ class NodePath:
         :raises RuntimeError: If unsupported combination of parameters.
         """
         t_dict = dict()
+        nodes.pop(u"DUT1")
         duts = [key for key in nodes if u"DUT" in key]
         t_dict[u"duts"] = duts
         t_dict[u"duts_count"] = len(duts)
