@@ -87,8 +87,8 @@
 | | ... | using PLRsearch algorithm.
 | | ... | Display results as formatted test message.
 | | ... | Fail if computed lower bound is 110% of the minimal rate or less.
-| | ... | Input rates are understood as uni-directional,
-| | ... | reported result contains aggregate rates.
+| | ... | Input rates are unidirectional, in transaction per second.
+| | ... | Reported result may contain aggregate pps rates, depending on test.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
@@ -143,8 +143,8 @@
 | | ... | using an optimized search algorithm.
 | | ... | Display findings as a formatted test message.
 | | ... | Fail if a resulting lower bound has too high loss fraction.
-| | ... | Input rates are understood as uni-directional,
-| | ... | reported result contains aggregate rates.
+| | ... | Input rates are unidirectional, in transaction per second.
+| | ... | Reported result may contain aggregate pps rates, depending on test.
 | | ... | Additional latency measurements are performed for smaller loads,
 | | ... | even if latency stream is disabled in search. Their results
 | | ... | are also displayed.
@@ -159,7 +159,7 @@
 | | ... | Type: string
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
 | | ... | string
-| | ... | - max_rate - Calculated maximal transmit rate [tps].
+| | ... | - max_rate - Calculated maximal unidirectional transmit rate [tps].
 | | ... | Type: float
 | | ... | - resetter - Callable to reset DUT state before each trial.
 | | ... | - transaction_scale - Number of ASTF transaction (zero if unlimited).
@@ -236,8 +236,8 @@
 | Find Throughput Using MLRsearch
 | | [Documentation]
 | | ... | Find and return lower bound NDR (zero PLR)
-| | ... | aggregate throughput using MLRsearch algorithm.
-| | ... | Input rates are understood as uni-directional.
+| | ... | throughput using MLRsearch algorithm.
+| | ... | Input and output rates are understood as uni-directional, in tps.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
@@ -246,7 +246,7 @@
 | | ... | Type: string
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
 | | ... | string
-| | ... | - max_rate - Calculated maximal transmit rate [tps].
+| | ... | - max_rate - Calculated maximal unidirectional transmit rate [tps].
 | | ... | Type: float
 | | ... | - resetter - Callable to reset DUT state before each trial.
 | | ... | - transaction_scale - Number of ASTF transaction (zero if unlimited).
@@ -254,7 +254,8 @@
 | | ... | transactions. Default is "packet".
 | |
 | | ... | *Returns:*
-| | ... | - Lower bound for bi-directional throughput at given PLR. Type: float
+| | ... | - Lower bound for uni-directional tps throughput at given PLR.
+| | ... | Type: float
 | |
 | | ... | *Example:*
 | |
@@ -296,13 +297,13 @@
 | | [Documentation]
 | | ... | Send traffic at specified rate, single trial.
 | | ... | Extract latency information and append it to text message.
-| | ... | The rate argument is int, so should not include "pps".
+| | ... | The rate argument is float, so should not include "pps".
 | | ... | If the given rate is too low, a safe value is used instead.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Arguments:*
 | | ... | - message_prefix - Preface to test message addition. Type: string
-| | ... | - rate - Rate [tps] for sending packets.
+| | ... | - rate - Unidirectional rate [tps] for sending packets.
 | | ... | Type: float
 | |
 | | ... | *Example:*
@@ -352,7 +353,7 @@
 | | ... | string
 | | ... | - ramp_up_duration - Suitable traffic duration [s].
 | | ... | Type: float
-| | ... | - ramp_up_rate - Suitable transmit rate [tps].
+| | ... | - ramp_up_rate - Suitable unidirectional transmit rate [tps].
 | | ... | Type: float
 | | ... | - transaction_type - String identifier to determine how to count
 | | ... | transactions. Default is "packet".
@@ -394,7 +395,7 @@
 | |
 | | ... | *Arguments:*
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
-| | ... | - rate - Target transmit rate [tps]. Type: float
+| | ... | - rate - Target unidirectional transmit rate [tps]. Type: float
 | | ... | Type: string
 | | ... | - trial_multiplicity - How many trials in this measurement.
 | | ... | Type: boolean
@@ -614,7 +615,7 @@
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
 | | ... | string
 | | ... | *Arguments:*
-| | ... | - rate - Rate [tps] for sending packets.
+| | ... | - rate - Unidirectional rate [tps] for sending packets.
 | | ... | Type: float
 | |
 | | ... | *Example:*

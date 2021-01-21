@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -109,8 +109,7 @@
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2}[0]
 | | ... | ${DUT2_${int}1}[0] | ${n_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
-| | ${bidirectional_throughput}= | Find Throughput Using MLRsearch
-| | ${unidirectional_throughput}= | Evaluate | ${bidirectional_throughput} / 2.0
+| | ${unidirectional_throughput} = | Find Throughput Using MLRsearch
 | | Start Traffic on Background | ${unidirectional_throughput}
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${DUT1_${int}2}[0]
