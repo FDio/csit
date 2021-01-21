@@ -376,16 +376,18 @@ class Topology:
         return links
 
     @staticmethod
-    def _get_interface_by_key_value(node, key, value):
+    def _get_interface_by_key_value(node, key, value, second=False):
         """Return node interface key from topology file
         according to key and value.
 
         :param node: The node dictionary.
         :param key: Key by which to select the interface.
         :param value: Value that should be found using the key.
+        :param second: Use second interface of the link. Useful for back-to-back links.
         :type node: dict
         :type key: string
         :type value: string
+        :type second: bool
         :returns: Interface key from topology file
         :rtype: string
         """
@@ -393,10 +395,16 @@ class Topology:
         retval = None
         for if_key, if_val in interfaces.items():
             k_val = if_val.get(key)
+            logger.debug(f"gibkv key {key} if_key {if_key} val {k_val}")
             if k_val is not None:
                 if k_val == value:
-                    retval = if_key
-                    break
+                    if second:
+                        logger.debug(u"gibkv seconding")
+                        second = False
+                    else:
+                        logger.debug(u"gibkv selecting")
+                        retval = if_key
+                        break
         return retval
 
     @staticmethod
@@ -416,7 +424,7 @@ class Topology:
         return Topology._get_interface_by_key_value(node, u"name", iface_name)
 
     @staticmethod
-    def get_interface_by_link_name(node, link_name):
+    def get_interface_by_link_name(node, link_name, second=False):
         """Return interface key of link on node.
 
         This method returns the interface name associated with a given link
@@ -424,12 +432,14 @@ class Topology:
 
         :param node: The node topology dictionary.
         :param link_name: Name of the link that a interface is connected to.
+        :param second: Use second interface of the link. Useful for back-to-back links.
         :type node: dict
         :type link_name: string
+        :type second: bool
         :returns: Interface key of the interface connected to the given link.
         :rtype: str
         """
-        return Topology._get_interface_by_key_value(node, u"link", link_name)
+        return Topology._get_interface_by_key_value(node, u"link", link_name, second=second)
 
     def get_interfaces_by_link_names(self, node, link_names):
         """Return dictionary of dictionaries {"interfaceN", interface name}.
