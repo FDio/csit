@@ -13,6 +13,8 @@
 
 """Path utilities library for nodes in the topology."""
 
+from robot.api import logger
+
 from resources.libraries.python.topology import Topology
 
 
@@ -140,12 +142,14 @@ class NodePath:
 
             self._links.append(link)
             interface1 = topo.get_interface_by_link_name(node1, link)
-            interface2 = topo.get_interface_by_link_name(node2, link)
+            interface2 = topo.get_interface_by_link_name(node2, link, second=True)
             self._path.append((interface1, node1))
             self._path.append((interface2, node2))
+            logger.debug(f"path: {self._path}")
 
         self._path_iter.extend(self._path)
         self._path_iter.reverse()
+        logger.debug(f"path iter: {self._path_iter}")
 
     def next_interface(self):
         """Path interface iterator.
@@ -229,6 +233,7 @@ class NodePath:
         :raises RuntimeError: If unsupported combination of parameters.
         """
         t_dict = dict()
+        nodes.pop(u"DUT1")
         duts = [key for key in nodes if u"DUT" in key]
         t_dict[u"duts"] = duts
         t_dict[u"duts_count"] = len(duts)
@@ -248,7 +253,9 @@ class NodePath:
         d_idx = 0 # DUT interface index
         prev_host = None
         while True:
-            interface, node = self.next_interface()
+            next_interface = self.next_interface()
+            logger.debug(f"next ifc: {next_interface}")
+            interface, node = next_interface
             if not interface:
                 break
             if topo_has_tg and node.get(u"type") == u"TG":
@@ -312,6 +319,7 @@ class NodePath:
                 Topology.get_interface_ip4(node, interface)
             t_dict[f"{n_pfx.lower()}_{i_pfx}_ip4_prefix"] = \
                 Topology.get_interface_ip4_prefix_length(node, interface)
+            logger.debug(f"t_dict: {t_dict}")
 
         self.clear_path()
         return t_dict
