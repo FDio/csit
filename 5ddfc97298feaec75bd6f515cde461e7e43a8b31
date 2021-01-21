@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "841f45c5_07b5586b",
+        "filename": "docs/report/vpp_device_tests/overview.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-21T14:33:23Z",
+      "side": 1,
+      "message": "We can call it \"vnet\" or \"classify\", as the tests use calls defined in src/vnet/classify/ (a non-plugin directory in VPP git repository).\n\nAlso, I see we added acl_plugin as a dependency to some [0] tests, possibly by mistake as other [1] tests do not have that.\nOr do we have three types of ACL tests?\n\n[0] https://gerrit.fd.io/r/c/csit/+/20280/30/tests/vpp/perf/l2/10ge2p1x710-eth-l2bdbasemaclrn-iacl10sf-100flows-ndrpdr.robot#b15\n[1] https://gerrit.fd.io/r/c/csit/+/20280/30/tests/vpp/perf/ip4/10ge2p1x710-ethip4-ip4base-iacldstbase-ndrpdr.robot#b15",
+      "range": {
+        "startLine": 114,
+        "startChar": 7,
+        "endLine": 114,
+        "endChar": 13
+      },
+      "revId": "5ddfc97298feaec75bd6f515cde461e7e43a8b31",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
