@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP6FWD | BASE | VHOST | 1VM | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | EXPECTED_FAILING
 | ... | ethipv6-ip6base-eth-2vhost-1vm
 |
 | Suite Setup | Setup suite topology interfaces | scapy
