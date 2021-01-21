@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -105,8 +105,7 @@
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${False} | vnf=testpmd_io
-| | ${bidirectional_throughput}= | Find Throughput Using MLRsearch
-| | ${unidirectional_throughput}= | Evaluate | ${bidirectional_throughput} / 2.0
+| | ${unidirectional_throughput} = | Find Throughput Using MLRsearch
 | | Start Traffic on Background | ${unidirectional_throughput}
 | | And Initialize layer dot1q
 | | ... | count=${nf_total_chains} | vlan_per_chain=${False}
