@@ -13,6 +13,8 @@
 
 """Path utilities library for nodes in the topology."""
 
+from robot.api import logger
+
 from resources.libraries.python.topology import Topology
 
 
@@ -312,6 +314,7 @@ class NodePath:
                 Topology.get_interface_ip4(node, interface)
             t_dict[f"{n_pfx.lower()}_{i_pfx}_ip4_prefix"] = \
                 Topology.get_interface_ip4_prefix_length(node, interface)
+            logger.debug(f"topo comp iter, t_dict: {t_dict}")
 
         self.clear_path()
         return t_dict

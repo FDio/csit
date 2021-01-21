@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,6 +13,7 @@
 
 """Module defining MultipleLossRatioSearch class."""
 
+import copy
 import logging
 import math
 import time
@@ -83,40 +84,47 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         """Structure containing data to be passed around in recursion."""
 
         def __init__(
-                self, result, phases, duration, width_goal, packet_loss_ratio,
-                minimum_transmit_rate, maximum_transmit_rate):
+                self, result, phases, duration, width_goal, packet_loss_ratios,
+                minimum_transmit_rate, maximum_transmit_rate, measurements):
             """Convert and store the argument values.
 
-            :param result: Current measured NDR and PDR intervals.
+            :param result: Current measured intervals.
             :param phases: How many intermediate phases to perform
                 before the current one.
             :param duration: Trial duration to use in the current phase [s].
             :param width_goal: The goal relative width for the curreent phase.
-            :param packet_loss_ratio: PDR fraction for the current search.
+            :param packet_loss_ratios: List of fractions for the current search.
             :param minimum_transmit_rate: Minimum target transmit rate
                 for the current search [pps].
             :param maximum_transmit_rate: Maximum target transmit rate
                 for the current search [pps].
-            :type result: NdrPdrResult.NdrPdrResult
+            :param measurements: Previous measurements if not invalidated since.
+            :type result: Iterable[ReceiveRateInterval]
             :type phases: int
             :type duration: float
             :type width_goal: float
-            :type packet_loss_ratio: float
+            :type packet_loss_ratios: Iterable[float]
             :type minimum_transmit_rate: float
             :type maximum_transmit_rate: float
+            :type measurements: Iterable[ReceiveRateMeasurement]
             """
-            self.result = result
+            self.result = [interval.copy() for interval in result]
             self.phases = int(phases)
             self.duration = float(duration)
             self.width_goal = float(width_goal)
-            self.packet_loss_ratio = float(packet_loss_ratio)
+            self.packet_loss_ratios = [
+                float(ratio) for ratio in packet_loss_ratios
+            ]
             self.minimum_transmit_rate = float(minimum_transmit_rate)
             self.maximum_transmit_rate = float(maximum_transmit_rate)
+            self.measurements = [
+                measurement.copy() for measurement in measurements
+            ]
 
     def __init__(
             self, measurer, final_relative_width=0.005,
             final_trial_duration=30.0, initial_trial_duration=1.0,
-            number_of_intermediate_phases=2, timeout=600.0, doublings=1):
+            number_of_intermediate_phases=2, timeout=600.0):
         """Store the measurer object and additional arguments.
 
         :param measurer: Rate provider to use by this search object.
@@ -129,16 +137,12 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
             to perform before the final phase [1].
         :param timeout: The search will fail itself when not finished
             before this overall time [s].
-        :param doublings: How many doublings to do in external search step.
-            Default 1 is suitable for fairly stable tests,
-            less stable tests might get better overal duration with 2 or more.
         :type measurer: AbstractMeasurer.AbstractMeasurer
         :type final_relative_width: float
         :type final_trial_duration: float
         :type initial_trial_duration: float
         :type number_of_intermediate_phases: int
         :type timeout: float
-        :type doublings: int
         """
         super(MultipleLossRatioSearch, self).__init__(measurer)
         self.final_trial_duration = float(final_trial_duration)
@@ -146,7 +150,6 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         self.number_of_intermediate_phases = int(number_of_intermediate_phases)
         self.initial_trial_duration = float(initial_trial_duration)
         self.timeout = float(timeout)
-        self.doublings = int(doublings)
 
     @staticmethod
     def double_relative_width(relative_width):
@@ -177,23 +180,23 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         )
 
     @staticmethod
-    def expand_down(relative_width, doublings, current_bound):
-        """Return rate of expanded logarithmic width below.
+    def quadruple_step_down(relative_width, current_bound):
+        """Return rate of quadrupled logarithmic width below.
 
         :param relative_width: The base relative width to double.
-        :param doublings: How many doublings to do for expansion.
         :param current_bound: The current target transmit rate to move [pps].
         :type relative_width: float
-        :type doublings: int
         :type current_bound: float
-        :returns: Transmit rate smaller by logarithmically double width [pps].
+        :returns: Transmit rate smaller by quadrupled width [pps].
         :rtype: float
         """
-        for _ in range(doublings):
-            relative_width = MultipleLossRatioSearch.double_relative_width(
-                relative_width
-            )
-        return current_bound * (1.0 - relative_width)
+        double_width = MultipleLossRatioSearch.double_relative_width(
+            relative_width
+        )
+        quadruple_width = MultipleLossRatioSearch.double_relative_width(
+            double_width
+        )
+        return current_bound * (1.0 - quadruple_width)
 
     @staticmethod
     def double_step_up(relative_width, current_bound):
@@ -211,23 +214,23 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         )
 
     @staticmethod
-    def expand_up(relative_width, doublings, current_bound):
-        """Return rate of expanded logarithmic width above.
+    def quadruple_step_up(relative_width, current_bound):
+        """Return rate of quadrupled logarithmic width above.
 
         :param relative_width: The base relative width to double.
-        :param doublings: How many doublings to do for expansion.
         :param current_bound: The current target transmit rate to move [pps].
         :type relative_width: float
-        :type doublings: int
         :type current_bound: float
-        :returns: Transmit rate smaller by logarithmically double width [pps].
+        :returns: Transmit rate smaller by quadrupled width [pps].
         :rtype: float
         """
-        for _ in range(doublings):
-            relative_width = MultipleLossRatioSearch.double_relative_width(
-                relative_width
-            )
-        return current_bound / (1.0 - relative_width)
+        double_width = MultipleLossRatioSearch.double_relative_width(
+            relative_width
+        )
+        quadruplee_width = MultipleLossRatioSearch.double_relative_width(
+            doublee_width
+        )
+        return current_bound / (1.0 - quadruple_width)
 
     @staticmethod
     def half_relative_width(relative_width):
@@ -255,8 +258,11 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
             1.0 - MultipleLossRatioSearch.half_relative_width(relative_width)
         )
 
-    def narrow_down_ndr_and_pdr(self, min_rate, max_rate, packet_loss_ratio):
+    def narrow_down_intervals(self, min_rate, max_rate, packet_loss_ratios):
         """Perform initial phase, create state object, proceed with next phases.
+
+        The current implementation requires the ration so be unique and sorted.
+        Also non-empty.
 
         :param min_rate: Minimal target transmit rate [tps].
         :param max_rate: Maximal target transmit rate [tps].
@@ -266,14 +272,21 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         :type packet_loss_ratio: float
         :returns: Structure containing narrowed down intervals
             and their measurements.
-        :rtype: NdrPdrResult.NdrPdrResult
+        :rtype: List[ReceiveRateInterval]
         :raises RuntimeError: If total duration is larger than timeout.
+            Or if ratios list is (empty or) not sorted or unique.
         """
         minimum_transmit_rate = float(min_rate)
         maximum_transmit_rate = float(max_rate)
-        packet_loss_ratio = float(packet_loss_ratio)
+        packet_loss_ratios = [float(ratio) for ratio in packet_loss_ratios]
+        if len(packet_loss_ratios) < 1:
+            raise RuntimeError(u"At least one ratio is required!")
+        if packet_loss_ratios != sorted(set(packet_loss_ratios)):
+            raise RuntimeError(u"Input ratios have to be sorted and unique!")
+        measurements = list()
         max_measurement = self.measurer.measure(
             self.initial_trial_duration, maximum_transmit_rate)
+        measurements.append(max_measurement)
         initial_width_goal = self.final_relative_width
         for _ in range(self.number_of_intermediate_phases):
             initial_width_goal = self.double_relative_width(initial_width_goal)
@@ -284,8 +297,9 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         mrr_measurement = self.measurer.measure(
             self.initial_trial_duration, mrr
         )
+        measurements.append(mrr_measurement)
         # Attempt to get narrower width.
-        if mrr_measurement.loss_fraction > 0.0:
+        if mrr_measurement.loss_fraction > packet_loss_ratios[0]:
             max2_lo = mrr * (1.0 - initial_width_goal)
             mrr2 = min(max2_lo, mrr_measurement.relative_receive_rate)
         else:
@@ -294,16 +308,18 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
             max_measurement = mrr_measurement
             mrr_measurement = self.measurer.measure(
                 self.initial_trial_duration, mrr2)
+            measurements.append(mrr_measurement)
             if mrr2 > mrr:
                 max_measurement, mrr_measurement = \
                     (mrr_measurement, max_measurement)
         starting_interval = ReceiveRateInterval(
             mrr_measurement, max_measurement)
-        starting_result = NdrPdrResult(starting_interval, starting_interval)
+        starting_result = [starting_interval.copy() for _ in packet_loss_ratios]
         state = self.ProgressState(
             starting_result, self.number_of_intermediate_phases,
             self.final_trial_duration, self.final_relative_width,
-            packet_loss_ratio, minimum_transmit_rate, maximum_transmit_rate
+            packet_loss_ratios, minimum_transmit_rate, maximum_transmit_rate,
+            measurements
         )
         state = self.ndrpdr(state)
         return state.result
@@ -406,7 +422,7 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         :rtype: ProgressState
         :raises RuntimeError: If total duration is larger than timeout.
         """
-        start_time = time.time()
+        start_time = time.monotonic()
         if state.phases > 0:
             # We need to finish preceding intermediate phases first.
             saved_phases = state.phases
@@ -418,54 +434,32 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
             state.duration = self.initial_trial_duration * math.pow(
                 duration_multiplier, phase_exponent
             )
-            # Shorter durations do not need that narrow widths.
-            saved_width = state.width_goal
-            state.width_goal = self.double_relative_width(state.width_goal)
             # Recurse.
             state = self.ndrpdr(state)
             # Restore the state for current phase.
             state.duration = saved_duration
-            state.width_goal = saved_width
             state.phases = saved_phases  # Not needed, but just in case.
 
         logging.info(
-            f"starting iterations with duration {state.duration} and relative "
-            f"width goal {state.width_goal}"
+            f"Starting iterations with {state.duration}s duration"
+            f" and {state.width_goal} relative width goal."
         )
-        while 1:
-            if time.time() > start_time + self.timeout:
-                raise RuntimeError(u"Optimized search takes too long.")
-            # Order of priorities: invalid bounds (nl, pl, nh, ph),
-            # then narrowing relative Tr widths.
-            # Durations are not priorities yet,
-            # they will settle on their own hopefully.
-            ndr_lo = state.result.ndr_interval.measured_low
-            ndr_hi = state.result.ndr_interval.measured_high
-            pdr_lo = state.result.pdr_interval.measured_low
-            pdr_hi = state.result.pdr_interval.measured_high
-            ndr_rel_width = max(
-                state.width_goal, state.result.ndr_interval.rel_tr_width
-            )
-            pdr_rel_width = max(
-                state.width_goal, state.result.pdr_interval.rel_tr_width
-            )
-            # If we are hitting maximal or minimal rate, we cannot shift,
-            # but we can re-measure.
-            new_tr = self._ndrpdr_loss_fraction(
-                state, ndr_lo, ndr_hi, pdr_lo, pdr_hi, ndr_rel_width,
-                pdr_rel_width
-            )
+        while time.monotonic() < start_time + self.timeout:
+            # Order (from high to low) of priorities:
+            # + Invalid bounds.
+            # + Previous durations.
+            # + Wide intervals.
+            # Within each category.
+            # ++ Lower bounds first (noop for wide, as they bisect).
+            # +++ Lower ratios first for lower bounds and bisects.
+            # +++ Higher ratios first for upper bounds.
 
-            if new_tr is not None:
-                state = self._measure_and_update_state(state, new_tr)
+            next_tr = self._choose_tr_by_invalid_bounds(state)
+
+            if next_tr is not None:
+                state = self._measure_and_update_state(state, next_tr)
                 continue
 
-            # If we are hitting maximum_transmit_rate,
-            # it is still worth narrowing width,
-            # hoping large enough loss fraction will happen.
-            # But if we are hitting the minimal rate (at current duration),
-            # no additional measurement will help with that,
-            # so we can stop narrowing in this phase.
             if (ndr_lo.target_tr <= state.minimum_transmit_rate
                     and ndr_lo.loss_fraction > 0.0):
                 ndr_rel_width = 0.0
@@ -473,34 +467,34 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
                     and pdr_lo.loss_fraction > state.packet_loss_ratio):
                 pdr_rel_width = 0.0
 
-            new_tr = self._ndrpdr_width_goal(
+            next_tr = self._ndrpdr_width_goal(
                 state, ndr_lo, pdr_lo, ndr_rel_width, pdr_rel_width
             )
 
-            if new_tr is not None:
-                state = self._measure_and_update_state(state, new_tr)
+            if next_tr is not None:
+                state = self._measure_and_update_state(state, next_tr)
                 continue
 
             # We do not need to improve width, but there still might be
             # some measurements with smaller duration.
-            new_tr = self._ndrpdr_duration(
+            next_tr = self._ndrpdr_duration(
                 state, ndr_lo, ndr_hi, pdr_lo, pdr_hi, ndr_rel_width,
                 pdr_rel_width
             )
 
-            if new_tr is not None:
-                state = self._measure_and_update_state(state, new_tr)
+            if next_tr is not None:
+                state = self._measure_and_update_state(state, next_tr)
                 continue
 
             # Widths are narrow (or lower bound minimal), bound measurements
             # are long enough, we can return.
             logging.info(u"phase done")
             break
+        else:
+            raise RuntimeError(u"Optimized search takes too long.")
         return state
 
-    def _ndrpdr_loss_fraction(
-            self, state, ndr_lo, ndr_hi, pdr_lo, pdr_hi, ndr_rel_width,
-            pdr_rel_width):
+    def _choose_tr_by_invalid_bounds(self, state):
         """Perform loss_fraction-based trials within a ndrpdr phase
 
         :param state: current state
@@ -520,55 +514,66 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         :returns: a new transmit rate if one should be applied
         :rtype: float
         """
-        result = None
-        if ndr_lo.loss_fraction > 0.0:
-            if ndr_lo.target_tr > state.minimum_transmit_rate:
-                result = max(
-                    state.minimum_transmit_rate, self.expand_down(
-                        ndr_rel_width, self.doublings, ndr_lo.target_tr
-                    )
+        next_tr = None
+        # Is there an invalid lower bound?
+        for index, ratio in enumerate(state.packet_loss_ratios):
+            interval = state.result[index]
+            lower_bound = state.result[index].measured_low
+            if lower_bound.loss_fraction <= ratio:
+                continue
+            # Invalid lower bound, but could be hitting the minimum.
+            tr_lo = lower_bound.target_tr
+            if tr_lo <= state.minimum_transmit_rate:
+                continue
+            # Invalid lower bound that can be lowered.
+            # But maybe
+            expanded_tr = self._select_lower_tr_(
+                interval.rel_tr_width, self.doublings, tr_lo
+            )
+            if 
+            next_tr = max(
+                state.minimum_transmit_rate, self.expand_down(
+                    ndr_rel_width, self.doublings, ndr_lo.target_tr
                 )
-                logging.info(f"ndr lo external {result}")
-            elif ndr_lo.duration < state.duration:
-                result = state.minimum_transmit_rate
-                logging.info(u"ndr lo minimal re-measure")
+            )
+            logging.info(f"ndr lo external {next_tr}")
 
-        if result is None and pdr_lo.loss_fraction > state.packet_loss_ratio:
+        if next_tr is None and pdr_lo.loss_fraction > state.packet_loss_ratio:
             if pdr_lo.target_tr > state.minimum_transmit_rate:
-                result = max(
+                next_tr = max(
                     state.minimum_transmit_rate, self.expand_down(
                         pdr_rel_width, self.doublings, pdr_lo.target_tr
                     )
                 )
-                logging.info(f"pdr lo external {result}")
+                logging.info(f"pdr lo external {next_tr}")
             elif pdr_lo.duration < state.duration:
-                result = state.minimum_transmit_rate
+                next_tr = state.minimum_transmit_rate
                 logging.info(u"pdr lo minimal re-measure")
 
-        if result is None and ndr_hi.loss_fraction <= 0.0:
+        if next_tr is None and ndr_hi.loss_fraction <= 0.0:
             if ndr_hi.target_tr < state.maximum_transmit_rate:
-                result = min(
+                next_tr = min(
                     state.maximum_transmit_rate, self.expand_up(
                         ndr_rel_width, self.doublings, ndr_hi.target_tr
                     )
                 )
-                logging.info(f"ndr hi external {result}")
+                logging.info(f"ndr hi external {next_tr}")
             elif ndr_hi.duration < state.duration:
-                result = state.maximum_transmit_rate
+                next_tr = state.maximum_transmit_rate
                 logging.info(u"ndr hi maximal re-measure")
 
-        if result is None and pdr_hi.loss_fraction <= state.packet_loss_ratio:
+        if next_tr is None and pdr_hi.loss_fraction <= state.packet_loss_ratio:
             if pdr_hi.target_tr < state.maximum_transmit_rate:
-                result = min(
+                next_tr = min(
                     state.maximum_transmit_rate, self.expand_up(
                         pdr_rel_width, self.doublings, pdr_hi.target_tr
                     )
                 )
-                logging.info(f"pdr hi external {result}")
+                logging.info(f"pdr hi external {next_tr}")
             elif pdr_hi.duration < state.duration:
-                result = state.maximum_transmit_rate
+                next_tr = state.maximum_transmit_rate
                 logging.info(u"ndr hi maximal re-measure")
-        return result
+        return next_tr
 
     def _ndrpdr_width_goal(
             self, state, ndr_lo, pdr_lo, ndr_rel_width, pdr_rel_width):
@@ -588,6 +593,16 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         :rtype: float
         Return a new transmit rate if one should be applied.
         """
+            self.rel_widths = [
+                max(self.width_goal, interval.rel_tr_width)
+                for interval in self.result
+            ]
+            # If we are hitting maximum_transmit_rate,
+            # it is still worth narrowing width,
+            # hoping large enough loss fraction will happen.
+            # But if we are hitting the minimal rate (at current duration),
+            # no additional measurement will help with that,
+            # so we can stop narrowing in this phase.
         if ndr_rel_width > state.width_goal:
             # We have to narrow NDR width first, as NDR internal search
             # can invalidate PDR (but not vice versa).

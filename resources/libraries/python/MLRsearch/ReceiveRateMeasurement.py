@@ -108,3 +108,14 @@ class ReceiveRateMeasurement:
             f"loss_count={self.loss_count!r}," \
             f"approximated_duration={self.approximated_duration!r}," \
             f"partial_transmit_count={self.partial_transmit_count!r})"
+
+    def copy(self):
+        """Return new instance with identical fields."""
+        return self.__class__(
+            duration = self.duration,
+            target_tr = self.target_tr,
+            transmit_count = self.transmit_count,
+            loss_count = self.loss_count,
+            approximated_duration = self.approximated_duration,
+            partial_transmit_count = self.partial_transmit_count,
+        )
