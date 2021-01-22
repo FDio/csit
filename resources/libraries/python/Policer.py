@@ -16,7 +16,6 @@
 from enum import IntEnum
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.IPUtil import IpDscp
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 
@@ -58,6 +57,28 @@ class PolicerPreColor(IntEnum):
     CONFORM_COLOR = 0
     EXCEED_COLOR = 1
     VIOLATE_COLOR = 2
+
+
+class DSCP(IntEnum):
+    """DSCP for mark-and-transmit action."""
+    D_CS0 = 0
+    D_CS1 = 8
+    D_CS2 = 16
+    D_CS3 = 24
+    D_CS4 = 32
+    D_vCS5 = 40
+    D_CS6 = 48
+    D_CS7 = 56
+    D_AF11 = 10
+    D_AF12 = 12
+    D_AF13 = 14
+    D_AF21 = 18
+    D_AF22 = 20
+    D_AF23 = 22
+    D_AF31 = 26
+    D_AF32 = 28
+    D_AF33 = 30
+    D_EF = 46
 
 
 class Policer:
@@ -219,4 +240,4 @@ class Policer:
         :returns: DSCP numeric value.
         :rtype: int
         """
-        return getattr(IpDscp, f"IP_API_DSCP_{dscp.upper()}").value
+        return getattr(DSCP, f"D_{dscp.upper()}").value
