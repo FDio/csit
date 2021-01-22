@@ -46,6 +46,30 @@
       "revId": "49dcca32377f5be7b5af3fb6bdef76847ad9d1b2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26ae392a_346b7e8e",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlswasync-scheduler-ip4base-int-aes128gcm-ndrpdr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-22T06:59:27Z",
+      "side": 1,
+      "message": "But in total there is no 1C/2C/4C so this is invalid TAG. Total resource count is 5C, 6C, 6C. \nYou have unbalanced RXQ and THR utilization across testcases. \nThe code will not be maintained from CSIT point of view due to crypto_cores input and becomes orphaned.",
+      "parentUuid": "77a638e6_17734b3a",
+      "range": {
+        "startLine": 153,
+        "startChar": 25,
+        "endLine": 153,
+        "endChar": 37
+      },
+      "revId": "49dcca32377f5be7b5af3fb6bdef76847ad9d1b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
