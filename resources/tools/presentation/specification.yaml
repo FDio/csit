@@ -179,10 +179,17 @@
       csit-vpp-perf-report-iterative-2101-3n-hsw:
         - 30  # rls2101.rc2 NDRPDR iter env 6
 
+    plot-vpp-ipsec-reconf-3n-hsw:
+      csit-vpp-perf-report-iterative-2101-3n-hsw:
+        - 48  # rls2101.rc2 NDRPDR reconf iter env 6
+        - 49  # rls2101.rc2 NDRPDR reconf iter env 6
+
     plot-vpp-hoststack-3n-hsw:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
         - 45  # rls2101.rc2 Hoststack iter env 6
         - 47  # rls2101.rc2 Hoststack iter env 6
+        - 50  # rls2101.rc2 Hoststack iter env 6
+        - 52  # rls2101.rc2 Hoststack iter env 6
 
     plot-dpdk-throughput-latency-3n-hsw:
       csit-dpdk-perf-report-iterative-2101-3n-hsw:
@@ -249,10 +256,12 @@
         - 37  # rls2101.rc2 NDRPDR iter env 6
         - 38  # rls2101.rc2 NDRPDR iter env 6
         - 43  # rls2101.rc2 NDRPDR iter env 6
+        - 47  # rls2101.rc2 NDRPDR iter env 6
+        - 48  # rls2101.rc2 NDRPDR iter env 6
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-report-iterative-2101-2n-skx:
-        - 37  # rls2101.rc2 NDRPDR iter env 6
+        - 48  # rls2101.rc2 NDRPDR iter env 6
 
     plot-vpp-soak-2n-skx:
       csit-vpp-perf-report-iterative-2101-2n-skx:
@@ -263,12 +272,13 @@
         - 33  # rls2101.rc2 NDRPDR nf-density iter env 6
 
     plot-vpp-nfv-2n-skx-mrr:
-      csit-vpp-perf-report-iterative-2101-2n-skx
+      csit-vpp-perf-report-iterative-2101-2n-skx:
         - 32  # rls2101.rc2 MRR nf-density iter env 6
 
     plot-vpp-nfv-reconf-2n-skx:
-      csit-vpp-perf-report-iterative-2101-2n-skx
-        - 34  # rls2101.rc2 NDRPDR reconf iter env 6
+      csit-vpp-perf-report-iterative-2101-2n-skx:
+        - 49  # rls2101.rc2 NDRPDR reconf iter env 6
+        - 50  # rls2101.rc2 NDRPDR reconf iter env 6
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-report-iterative-2101-2n-skx:
@@ -327,10 +337,12 @@
         - 29  # rls2101.rc2 NDRPDR iter env 6
         - 30  # rls2101.rc2 NDRPDR iter env 6
         - 31  # rls2101.rc2 NDRPDR iter env 6
+        - 38  # rls2101.rc2 NDRPDR iter env 6
+        - 39  # rls2101.rc2 NDRPDR iter env 6
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2101-2n-clx:
-        - 23  # rls2101.rc2 NDRPDR iter env 6
+        - 38  # rls2101.rc2 NDRPDR iter env 6
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -342,7 +354,8 @@
 
     plot-vpp-nfv-reconf-2n-clx:
       csit-vpp-perf-report-iterative-2101-2n-clx:
-        - 27  # rls2101.rc2 NDRPDR reconf iter env 6
+        - 40  # rls2101.rc2 NDRPDR reconf iter env 6
+        - 41  # rls2101.rc2 NDRPDR reconf iter env 6
 
     plot-vpp-soak-2n-clx:
       csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -461,6 +474,8 @@
         - 37  # rls2101.rc2 NDRPDR iter env 6
         - 38  # rls2101.rc2 NDRPDR iter env 6
         - 43  # rls2101.rc2 NDRPDR iter env 6
+        - 47  # rls2101.rc2 NDRPDR iter env 6
+        - 48  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-report-iterative-2101-3n-skx:
@@ -485,7 +500,7 @@
     vpp-perf-results-2n-skx:
       # csit-vpp-perf-report-coverage-2101-2n-skx:
       csit-vpp-perf-report-iterative-2101-2n-skx:
-        - 37  # rls2101.rc2 NDRPDR iter env 6
+        - 48  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-perf-results-2n-zn2:
       csit-vpp-perf-report-iterative-2101-2n-zn2:
@@ -494,7 +509,7 @@
     vpp-perf-results-2n-clx:
       # csit-vpp-perf-report-coverage-2101-2n-clx:
       csit-vpp-perf-report-iterative-2101-2n-clx:
-        - 23  # rls2101.rc2 NDRPDR iter env 6
+        - 38  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-perf-results-3n-tsh:
       csit-vpp-perf-report-iterative-2101-3n-tsh:
@@ -552,7 +567,7 @@
 
     vpp-device-results-ubuntu:
       csit-vpp-device-2101-ubuntu1804-1n-skx:
-        - 308  # rls2101.rc2 VPP DEV env 6
+        - 334  # rls2101.rc2 VPP DEV env 6
 
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-report-iterative-2101-3n-hsw:
@@ -741,6 +756,8 @@
         - 37  # rls2101.rc2 NDRPDR iter env 6
         - 38  # rls2101.rc2 NDRPDR iter env 6
         - 43  # rls2101.rc2 NDRPDR iter env 6
+        - 47  # rls2101.rc2 NDRPDR iter env 6
+        - 48  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-performance-changes-2n-clx-h1:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -784,6 +801,7 @@
         - 19  # rls2009 NDRPDR iter env 6
         - 20  # rls2009 NDRPDR iter env 6
         - 21  # rls2009 NDRPDR iter env 6
+        - 32  # rls2009 NDRPDR iter env 6
         - 33  # rls2009 NDRPDR iter env 6
         - 34  # rls2009 NDRPDR iter env 6
         - 35  # rls2009 NDRPDR iter env 6
@@ -794,6 +812,8 @@
         - 29  # rls2101.rc2 NDRPDR iter env 6
         - 30  # rls2101.rc2 NDRPDR iter env 6
         - 31  # rls2101.rc2 NDRPDR iter env 6
+        - 38  # rls2101.rc2 NDRPDR iter env 6
+        - 39  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-performance-changes-2n-zn2-ref-env-old:
       csit-vpp-perf-report-iterative-2009-2n-zn2:
@@ -811,6 +831,8 @@
         - 13  # rls2009 NDRPDR iter env 6
         - 20  # rls2009 NDRPDR iter env 6
         - 21  # rls2009 NDRPDR iter env 6
+        - 22  # rls2009 NDRPDR iter env 6
+        - 25  # rls2009 NDRPDR iter env 6
     vpp-performance-changes-2n-zn2-cmp:
       csit-vpp-perf-report-iterative-2101-2n-zn2:
         - 15  # rls2101.rc2 NDRPDR iter env 6
@@ -938,6 +960,7 @@
         - 8   # rls2009 NDRPDR iter env 6
         - 13  # rls2009 NDRPDR iter env 6
         - 14  # rls2009 NDRPDR iter env 6
+        - 15  # rls2009 NDRPDR iter env 6
     vpp-performance-changes-3n-tsh-cmp:
       csit-vpp-perf-report-iterative-2101-3n-tsh:
         - 10  # rls2101.rc2 NDRPDR iter env 6
@@ -957,6 +980,7 @@
         - 11  # rls2009 NDRPDR iter env 6
         - 12  # rls2009 NDRPDR iter env 6
         - 13  # rls2009 NDRPDR iter env 6
+        - 16  # rls2009 NDRPDR iter env 6
     vpp-performance-changes-2n-tx2-cmp:
       csit-vpp-perf-report-iterative-2101-2n-tx2:
         - 8   # rls2101.rc2 NDRPDR iter env 6
@@ -971,6 +995,8 @@
         - 37  # rls2101.rc2 NDRPDR iter env 6
         - 38  # rls2101.rc2 NDRPDR iter env 6
         - 43  # rls2101.rc2 NDRPDR iter env 6
+        - 47  # rls2101.rc2 NDRPDR iter env 6
+        - 48  # rls2101.rc2 NDRPDR iter env 6
     vpp-soak-vs-ndr-2n-skx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-skx:
         - 35  # rls2101.rc2 soak env 6
@@ -981,6 +1007,8 @@
         - 37  # rls2101.rc2 NDRPDR iter env 6
         - 38  # rls2101.rc2 NDRPDR iter env 6
         - 43  # rls2101.rc2 NDRPDR iter env 6
+        - 47  # rls2101.rc2 NDRPDR iter env 6
+        - 48  # rls2101.rc2 NDRPDR iter env 6
         - 35  # rls2101.rc2 soak env 6
 
     vpp-soak-vs-ndr-2n-clx-ref:
@@ -990,6 +1018,8 @@
         - 29  # rls2101.rc2 NDRPDR iter env 6
         - 30  # rls2101.rc2 NDRPDR iter env 6
         - 31  # rls2101.rc2 NDRPDR iter env 6
+        - 38  # rls2101.rc2 NDRPDR iter env 6
+        - 39  # rls2101.rc2 NDRPDR iter env 6
     vpp-soak-vs-ndr-2n-clx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 28  # rls2101.rc2 soak env 6
@@ -1000,6 +1030,8 @@
         - 29  # rls2101.rc2 NDRPDR iter env 6
         - 30  # rls2101.rc2 NDRPDR iter env 6
         - 31  # rls2101.rc2 NDRPDR iter env 6
+        - 38  # rls2101.rc2 NDRPDR iter env 6
+        - 39  # rls2101.rc2 NDRPDR iter env 6
         - 28  # rls2101.rc2 soak env 6
 
     vpp-performance-changes-3n-hsw-mrr-h1:
@@ -1376,6 +1408,8 @@
         - 37  # rls2101.rc2 NDRPDR iter env 6
         - 38  # rls2101.rc2 NDRPDR iter env 6
         - 43  # rls2101.rc2 NDRPDR iter env 6
+        - 47  # rls2101.rc2 NDRPDR iter env 6
+        - 48  # rls2101.rc2 NDRPDR iter env 6
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 23  # rls2101.rc2 NDRPDR iter env 6
@@ -1383,6 +1417,8 @@
         - 29  # rls2101.rc2 NDRPDR iter env 6
         - 30  # rls2101.rc2 NDRPDR iter env 6
         - 31  # rls2101.rc2 NDRPDR iter env 6
+        - 38  # rls2101.rc2 NDRPDR iter env 6
+        - 39  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -1403,6 +1439,8 @@
         - 29  # rls2101.rc2 NDRPDR iter env 6
         - 30  # rls2101.rc2 NDRPDR iter env 6
         - 31  # rls2101.rc2 NDRPDR iter env 6
+        - 38  # rls2101.rc2 NDRPDR iter env 6
+        - 39  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -1486,6 +1524,8 @@
         - 37  # rls2101.rc2 NDRPDR iter env 6
         - 38  # rls2101.rc2 NDRPDR iter env 6
         - 43  # rls2101.rc2 NDRPDR iter env 6
+        - 47  # rls2101.rc2 NDRPDR iter env 6
+        - 48  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-compare-topologies-mrr-ref:
       csit-vpp-perf-report-iterative-2101-3n-skx:
@@ -2405,6 +2445,10 @@
       - 39  # rls2101.rc2 NDRPDR iter env 6
       - 45  # rls2101.rc2 Hoststack iter env 6
       - 47  # rls2101.rc2 Hoststack iter env 6
+      - 50  # rls2101.rc2 Hoststack iter env 6
+      - 52  # rls2101.rc2 Hoststack iter env 6
+      - 48  # rls2101.rc2 NDRPDR reconf iter env 6
+      - 49  # rls2101.rc2 NDRPDR reconf iter env 6
     # csit-vpp-perf-report-coverage-2101-3n-hsw:
 
 
@@ -2503,9 +2547,12 @@
       - 37  # rls2101.rc2 NDRPDR iter env 6
       - 38  # rls2101.rc2 NDRPDR iter env 6
       - 43  # rls2101.rc2 NDRPDR iter env 6
+      - 47  # rls2101.rc2 NDRPDR iter env 6
+      - 48  # rls2101.rc2 NDRPDR iter env 6
       - 32  # rls2101.rc2 MRR nf-density iter env 6
       - 33  # rls2101.rc2 NDRPDR nf-density iter env 6
-      - 34  # rls2101.rc2 NDRPDR reconf iter env 6
+      - 49  # rls2101.rc2 NDRPDR reconf iter env 6
+      - 50  # rls2101.rc2 NDRPDR reconf iter env 6
       - 35  # rls2101.rc2 soak env 6
     # csit-vpp-perf-report-coverage-2101-2n-skx:
 
@@ -2551,6 +2598,7 @@
       - 19  # rls2009 NDRPDR iter env 6
       - 20  # rls2009 NDRPDR iter env 6
       - 21  # rls2009 NDRPDR iter env 6
+      - 32  # rls2009 NDRPDR iter env 6
       - 33  # rls2009 NDRPDR iter env 6
       - 34  # rls2009 NDRPDR iter env 6
       - 35  # rls2009 NDRPDR iter env 6
@@ -2560,9 +2608,12 @@
       - 29  # rls2101.rc2 NDRPDR iter env 6
       - 30  # rls2101.rc2 NDRPDR iter env 6
       - 31  # rls2101.rc2 NDRPDR iter env 6
+      - 38  # rls2101.rc2 NDRPDR iter env 6
+      - 39  # rls2101.rc2 NDRPDR iter env 6
       - 25  # rls2101.rc2 MRR nf-density iter env 6
       - 26  # rls2101.rc2 NDRPDR nf-density iter env 6
-      - 27  # rls2101.rc2 NDRPDR reconf iter env 6
+      - 40  # rls2101.rc2 NDRPDR reconf iter env 6
+      - 41  # rls2101.rc2 NDRPDR reconf iter env 6
       - 28  # rls2101.rc2 soak env 6
     # csit-vpp-perf-report-coverage-2101-2n-clx:
 
@@ -2583,6 +2634,8 @@
       - 13  # rls2009 NDRPDR iter env 6
       - 20  # rls2009 NDRPDR iter env 6
       - 21  # rls2009 NDRPDR iter env 6
+      - 22  # rls2009 NDRPDR iter env 6
+      - 25  # rls2009 NDRPDR iter env 6
       - 14  # rls2101.rc2 MRR iter env 6
       - 15  # rls2101.rc2 NDRPDR iter env 6
       - 16  # rls2101.rc2 NDRPDR iter env 6
@@ -2618,6 +2671,7 @@
       - 8   # rls2009 NDRPDR iter env 6
       - 13  # rls2009 NDRPDR iter env 6
       - 14  # rls2009 NDRPDR iter env 6
+      - 15  # rls2009 NDRPDR iter env 6
       - 9   # rls2101.rc2 MRR iter env 6
       - 10  # rls2101.rc2 NDRPDR iter env 6
       - 11  # rls2101.rc2 NDRPDR iter env 6
@@ -2630,6 +2684,7 @@
       - 11  # rls2009 NDRPDR iter env 6
       - 12  # rls2009 NDRPDR iter env 6
       - 13  # rls2009 NDRPDR iter env 6
+      - 16  # rls2009 NDRPDR iter env 6
       - 9   # rls2101.rc2 MRR iter env 6
       - 8   # rls2101.rc2 NDRPDR iter env 6
       - 10  # rls2101.rc2 NDRPDR iter env 6
@@ -2901,7 +2956,7 @@
       - 8   # rls2101 NDRPDR iter env 6
 
     csit-vpp-device-2101-ubuntu1804-1n-skx:
-      - 308  # rls2101.rc2 VPP DEV env 6
+      - 334  # rls2101.rc2 VPP DEV env 6
 
 - type: "output"
   output: "report"
@@ -8307,6 +8362,136 @@
     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-8t4c-avf-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
   layout:
     title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
+    layout: "plot-throughput"
+
+###############################################################################
+
+# Reconf tests 3n-hsw
+
+- type: "plot"
+  title: "Effective Blocked Time: 3n-hsw-xl710-64b-1t1c-ethip4ipsec4tnlsw-1atnl-ip4base-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-ethip4ipsec4tnlsw-1atnl-ip4base-reconf"
+  data: "plot-vpp-ipsec-reconf-3n-hsw"
+  include:
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-1t1c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-1t1c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-1t1c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-1t1c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
+  layout:
+    title: "ethip4ipsec4tnlsw-1atnl-ip4base"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Effective Blocked Time: 3n-hsw-xl710-64b-1t1c-ethip4ipsec1000tnlsw-1atnl-ip4base-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-ethip4ipsec1000tnlsw-1atnl-ip4base-reconf"
+  data: "plot-vpp-ipsec-reconf-3n-hsw"
+  include:
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-1t1c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-1t1c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-1t1c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-1t1c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
+  layout:
+    title: "ethip4ipsec1000tnlsw-1atnl-ip4base"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Effective Blocked Time: 3n-hsw-xl710-64b-1t1c-ethip4ipsec60000tnlsw-1atnl-ip4base-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-ethip4ipsec60000tnlsw-1atnl-ip4base-reconf"
+  data: "plot-vpp-ipsec-reconf-3n-hsw"
+  include:
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-1t1c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-1t1c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-1t1c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-1t1c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
+  layout:
+    title: "ethip4ipsec60000tnlsw-1atnl-ip4base"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Effective Blocked Time: 3n-hsw-xl710-64b-2t2c-ethip4ipsec4tnlsw-1atnl-ip4base-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-2t2c-ethip4ipsec4tnlsw-1atnl-ip4base-reconf"
+  data: "plot-vpp-ipsec-reconf-3n-hsw"
+  include:
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-2t2c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-2t2c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-2t2c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-2t2c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
+  layout:
+    title: "ethip4ipsec4tnlsw-1atnl-ip4base"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Effective Blocked Time: 3n-hsw-xl710-64b-2t2c-ethip4ipsec1000tnlsw-1atnl-ip4base-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-2t2c-ethip4ipsec1000tnlsw-1atnl-ip4base-reconf"
+  data: "plot-vpp-ipsec-reconf-3n-hsw"
+  include:
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-2t2c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-2t2c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-2t2c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-2t2c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
+  layout:
+    title: "ethip4ipsec1000tnlsw-1atnl-ip4base"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Effective Blocked Time: 3n-hsw-xl710-64b-2t2c-ethip4ipsec60000tnlsw-1atnl-ip4base-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-2t2c-ethip4ipsec60000tnlsw-1atnl-ip4base-reconf"
+  data: "plot-vpp-ipsec-reconf-3n-hsw"
+  include:
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-2t2c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-2t2c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-2t2c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-2t2c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
+  layout:
+    title: "ethip4ipsec60000tnlsw-1atnl-ip4base"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Effective Blocked Time: 3n-hsw-xl710-64b-4t4c-ethip4ipsec4tnlsw-1atnl-ip4base-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-4t4c-ethip4ipsec4tnlsw-1atnl-ip4base-reconf"
+  data: "plot-vpp-ipsec-reconf-3n-hsw"
+  include:
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-4t4c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-4t4c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-4t4c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-4t4c-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
+  layout:
+    title: "ethip4ipsec4tnlsw-1atnl-ip4base"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Effective Blocked Time: 3n-hsw-xl710-64b-4t4c-ethip4ipsec1000tnlsw-1atnl-ip4base-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-4t4c-ethip4ipsec1000tnlsw-1atnl-ip4base-reconf"
+  data: "plot-vpp-ipsec-reconf-3n-hsw"
+  include:
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-4t4c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-4t4c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-4t4c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-4t4c-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
+  layout:
+    title: "ethip4ipsec1000tnlsw-1atnl-ip4base"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Effective Blocked Time: 3n-hsw-xl710-64b-4t4c-ethip4ipsec60000tnlsw-1atnl-ip4base-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-4t4c-ethip4ipsec60000tnlsw-1atnl-ip4base-reconf"
+  data: "plot-vpp-ipsec-reconf-3n-hsw"
+  include:
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-4t4c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-4t4c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-4t4c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
+    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-4t4c-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
+  layout:
+    title: "ethip4ipsec60000tnlsw-1atnl-ip4base"
     layout: "plot-throughput"
 
 ###############################################################################
