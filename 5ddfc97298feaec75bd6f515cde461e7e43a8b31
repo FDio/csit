@@ -22,6 +22,30 @@
       "revId": "5ddfc97298feaec75bd6f515cde461e7e43a8b31",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f9676e3_99039463",
+        "filename": "docs/report/vpp_device_tests/overview.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-22T08:54:06Z",
+      "side": 1,
+      "message": "legacy changed to classify\n\nRe acl_plugin in [0] - that\u0027s correct as these tests (containing \u0027-[i|o]acl{nr_of_acl_rules}[sf|sl]-{nr_of_flows}flows\u0027 in test suite name) are using ACL implementation from acl_plugin.\n\nRe acl_plugin not in [1] - that\u0027s correct too as these tests (containing \u0027-iacldstbase-\u0027 in test suite name) are using ACL classify implementation in vpp/src/vnet/classify directory.",
+      "parentUuid": "841f45c5_07b5586b",
+      "range": {
+        "startLine": 114,
+        "startChar": 7,
+        "endLine": 114,
+        "endChar": 13
+      },
+      "revId": "5ddfc97298feaec75bd6f515cde461e7e43a8b31",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
