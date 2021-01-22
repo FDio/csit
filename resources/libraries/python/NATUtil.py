@@ -202,25 +202,19 @@ class NATUtil:
         return resetter
 
     @staticmethod
-    def show_nat44_config(node):
-        """Show the NAT44 plugin running configuration.
+    def show_nat_config(node):
+        """Show the NAT configuration.
 
         :param node: DUT node.
         :type node: dict
         """
-        cmd = u"nat44_show_running_config"
-        err_msg = f"Failed to get NAT44 configuration on host {node[u'host']}"
+        cmd = u"nat_show_config"
+        err_msg = f"Failed to get NAT configuration on host {node[u'host']}"
 
-        try:
-            with PapiSocketExecutor(node) as papi_exec:
-                reply = papi_exec.add(cmd).get_reply(err_msg)
-        except AssertionError:
-            # Perhaps VPP is an older version
-            old_cmd = u"nat_show_config"
-            with PapiSocketExecutor(node) as papi_exec:
-                reply = papi_exec.add(old_cmd).get_reply(err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd).get_reply(err_msg)
 
-        logger.debug(f"NAT44 Configuration:\n{pformat(reply)}")
+        logger.debug(f"NAT Configuration:\n{pformat(reply)}")
 
     @staticmethod
     def show_nat44_summary(node):
