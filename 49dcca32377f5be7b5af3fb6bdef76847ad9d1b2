@@ -22,6 +22,30 @@
       "revId": "49dcca32377f5be7b5af3fb6bdef76847ad9d1b2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77a638e6_17734b3a",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlswasync-scheduler-ip4base-int-aes128gcm-ndrpdr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2021-01-22T06:19:20Z",
+      "side": 1,
+      "message": "Hi Peter,\n\nwe set fixed core and fixed queue for packet io, here 1C 2C 4C represents crypto cores, the purpose of these test cases is to measure crypto capability of core.",
+      "parentUuid": "1d34ae9c_d89e7fc9",
+      "range": {
+        "startLine": 153,
+        "startChar": 25,
+        "endLine": 153,
+        "endChar": 37
+      },
+      "revId": "49dcca32377f5be7b5af3fb6bdef76847ad9d1b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
