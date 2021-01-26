@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d7475cf_69ee0179",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-01-26T15:34:42Z",
+      "side": 1,
+      "message": "So you do not need this variable ${crypto_cores} as an test input anymore. You can use phy_cores as an input as all other CSIT tests. and just give it how many crypto_cores you need, no? \n\n2C \u003d phy_cores:1, crypto_cores:1\n4C \u003d phy_cores:2, crypto_cores:2\n8C \u003d phy_cores:4, crypto_cores:4\n\n? Or can you better explain correlation between IO/crypto?",
+      "range": {
+        "startLine": 106,
+        "startChar": 31,
+        "endLine": 106,
+        "endChar": 46
+      },
+      "revId": "e21e481f8dcee9323e65883706115ec560ff11a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
