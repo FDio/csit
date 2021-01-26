@@ -70,6 +70,30 @@
       "revId": "49dcca32377f5be7b5af3fb6bdef76847ad9d1b2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ae237ed_e4c8382b",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000tnlswasync-scheduler-ip4base-int-aes128gcm-ndrpdr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1849
+      },
+      "writtenOn": "2021-01-26T12:39:36Z",
+      "side": 1,
+      "message": "Hi Peter, thanks for the comments. \n\nThe sw-crypto-scheduler engine was the collaboration results between FD.io contributors in multiple organizations to form this brand new use case in VPP. The purpose of the sw-crypto-engine is to add single fat IPsec flow processing capability to VPP, by getting more CPU cores collaborated to help the RX core(s) to handle the crypto workload. \n\nSo yes it is intentional to have unbalanced RXQ and THR utilized in this test - so that we will have the dedicated crypto cores to help the RX core(s). Since there are more similiar use cases are planned to be added into VPP, I strongly believe it is unfair treating this testcase as \"orphaned\" - a new test type will more tests planned to be added suits better.\n\nRegards,\nFan",
+      "parentUuid": "26ae392a_346b7e8e",
+      "range": {
+        "startLine": 153,
+        "startChar": 25,
+        "endLine": 153,
+        "endChar": 37
+      },
+      "revId": "49dcca32377f5be7b5af3fb6bdef76847ad9d1b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
