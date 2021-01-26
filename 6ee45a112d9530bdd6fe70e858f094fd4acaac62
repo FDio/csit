@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2faa9325_7a502f77",
+        "filename": "tests/vpp/device/ip6/eth2p-ethip6-ip6base-iacldstbase-dev.robot",
+        "patchSetId": 52
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-26T13:41:50Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 51,
+        "startChar": 52,
+        "endLine": 51,
+        "endChar": 54
+      },
+      "revId": "6ee45a112d9530bdd6fe70e858f094fd4acaac62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16295628_96bd02f1",
+        "filename": "tests/vpp/device/ip6/eth2p-ethip6-ip6base-iacldstbase-dev.robot",
+        "patchSetId": 52
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-26T13:41:50Z",
+      "side": 1,
+      "message": "Then Send ...",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 9
+      },
+      "revId": "6ee45a112d9530bdd6fe70e858f094fd4acaac62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35217791_73d54a24",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-dot1q-ip4base-ndrpdr.robot",
+        "patchSetId": 52
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-26T13:41:50Z",
+      "side": 1,
+      "message": "Revert back - not needed as no other change in this file so it will be removed from the patch set.",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6ee45a112d9530bdd6fe70e858f094fd4acaac62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b72d06d_4b94564c",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-ethip4-ip4base-iacldstbase-ndrpdr.robot",
+        "patchSetId": 52
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-26T13:41:50Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 63,
+        "startChar": 26,
+        "endLine": 63,
+        "endChar": 28
+      },
+      "revId": "6ee45a112d9530bdd6fe70e858f094fd4acaac62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc5f3ad4_062a450b",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-dot1q-ip4base-ndrpdr.robot",
+        "patchSetId": 52
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-26T13:41:50Z",
+      "side": 1,
+      "message": "This is performance test so, please, revert the settings back.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 47
+      },
+      "revId": "6ee45a112d9530bdd6fe70e858f094fd4acaac62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc0b3139_a649c9ef",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-iacldstbase-ndrpdr.robot",
+        "patchSetId": 52
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-26T13:41:50Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 62,
+        "startChar": 52,
+        "endLine": 62,
+        "endChar": 54
+      },
+      "revId": "6ee45a112d9530bdd6fe70e858f094fd4acaac62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "567e3666_b36409db",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-iacldstbase-ndrpdr.robot",
+        "patchSetId": 52
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-26T13:41:50Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 63,
+        "startChar": 26,
+        "endLine": 63,
+        "endChar": 28
+      },
+      "revId": "6ee45a112d9530bdd6fe70e858f094fd4acaac62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bff3f02_82c02fa2",
+        "filename": "tests/vpp/perf/ip6/10ge2p1x710-ethip6-ip6base-iacldstbase-ndrpdr.robot",
+        "patchSetId": 52
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-26T13:41:50Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 63,
+        "startChar": 49,
+        "endLine": 63,
+        "endChar": 51
+      },
+      "revId": "6ee45a112d9530bdd6fe70e858f094fd4acaac62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f64e707_aac5896d",
+        "filename": "tests/vpp/perf/ip6/2n1l-10ge2p1x710-ethip6-ip6base-iacldstbase-ndrpdr.robot",
+        "patchSetId": 52
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2021-01-26T13:41:50Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 63,
+        "startChar": 49,
+        "endLine": 63,
+        "endChar": 51
+      },
+      "revId": "6ee45a112d9530bdd6fe70e858f094fd4acaac62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
