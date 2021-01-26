@@ -271,6 +271,7 @@
         - 48  # rls2101.rc2 NDRPDR iter env 6
         - 54  # rls2101.rc2 NDRPDR iter env 6
         - 55  # rls2101.rc2 NDRPDR iter env 6
+        - 61  # rls2101.rc2 NDRPDR iter env 6
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-report-iterative-2101-2n-skx:
@@ -330,10 +331,11 @@
         - 23  # rls2101.rc2 NDRPDR iter env 6
         - 24  # rls2101.rc2 NDRPDR iter env 6
         - 27  # rls2101.rc2 NDRPDR iter env 6
+        - 28  # rls2101.rc2 NDRPDR iter env 6
 
     plot-vpp-hdrh-lat-2n-zn2:
       csit-vpp-perf-report-iterative-2101-2n-zn2:
-        - 15  # rls2101.rc2 NDRPDR iter env 6
+        - 24  # rls2101.rc2 NDRPDR iter env 6
 
     plot-dpdk-throughput-latency-2n-zn2:
       csit-dpdk-perf-report-iterative-2101-2n-zn2:
@@ -365,6 +367,7 @@
         - 39  # rls2101.rc2 NDRPDR iter env 6
         - 45  # rls2101.rc2 NDRPDR iter env 6
         - 46  # rls2101.rc2 NDRPDR iter env 6
+        - 51  # rls2101.rc2 NDRPDR iter env 6
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -519,6 +522,7 @@
         - 48  # rls2101.rc2 NDRPDR iter env 6
         - 54  # rls2101.rc2 NDRPDR iter env 6
         - 55  # rls2101.rc2 NDRPDR iter env 6
+        - 61  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-report-iterative-2101-3n-skx:
@@ -804,6 +808,7 @@
         - 48  # rls2101.rc2 NDRPDR iter env 6
         - 54  # rls2101.rc2 NDRPDR iter env 6
         - 55  # rls2101.rc2 NDRPDR iter env 6
+        - 61  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-performance-changes-2n-clx-h1:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -862,6 +867,7 @@
         - 39  # rls2101.rc2 NDRPDR iter env 6
         - 45  # rls2101.rc2 NDRPDR iter env 6
         - 46  # rls2101.rc2 NDRPDR iter env 6
+        - 51  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-performance-changes-2n-zn2-ref-env-old:
       csit-vpp-perf-report-iterative-2009-2n-zn2:
@@ -881,6 +887,7 @@
         - 21  # rls2009 NDRPDR iter env 6
         - 22  # rls2009 NDRPDR iter env 6
         - 25  # rls2009 NDRPDR iter env 6
+        - 26  # rls2009 NDRPDR iter env 6
     vpp-performance-changes-2n-zn2-cmp:
       csit-vpp-perf-report-iterative-2101-2n-zn2:
         - 15  # rls2101.rc2 NDRPDR iter env 6
@@ -891,6 +898,7 @@
         - 23  # rls2101.rc2 NDRPDR iter env 6
         - 24  # rls2101.rc2 NDRPDR iter env 6
         - 27  # rls2101.rc2 NDRPDR iter env 6
+        - 28  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-report-iterative-2009-2n-dnv:
@@ -1015,6 +1023,7 @@
         - 16  # rls2009 NDRPDR iter env 6
         - 17  # rls2009 NDRPDR iter env 6
         - 18  # rls2009 NDRPDR iter env 6
+        - 19  # rls2009 NDRPDR iter env 6
     vpp-performance-changes-3n-tsh-cmp:
       csit-vpp-perf-report-iterative-2101-3n-tsh:
         - 10  # rls2101.rc2 NDRPDR iter env 6
@@ -1057,6 +1066,7 @@
         - 48  # rls2101.rc2 NDRPDR iter env 6
         - 54  # rls2101.rc2 NDRPDR iter env 6
         - 55  # rls2101.rc2 NDRPDR iter env 6
+        - 61  # rls2101.rc2 NDRPDR iter env 6
     vpp-soak-vs-ndr-2n-skx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-skx:
         - 35  # rls2101.rc2 soak env 6
@@ -1072,6 +1082,7 @@
         - 48  # rls2101.rc2 NDRPDR iter env 6
         - 54  # rls2101.rc2 NDRPDR iter env 6
         - 55  # rls2101.rc2 NDRPDR iter env 6
+        - 61  # rls2101.rc2 NDRPDR iter env 6
         - 35  # rls2101.rc2 soak env 6
         - 52  # rls2101.rc2 soak env 6
 
@@ -1086,6 +1097,7 @@
         - 39  # rls2101.rc2 NDRPDR iter env 6
         - 45  # rls2101.rc2 NDRPDR iter env 6
         - 46  # rls2101.rc2 NDRPDR iter env 6
+        - 51  # rls2101.rc2 NDRPDR iter env 6
     vpp-soak-vs-ndr-2n-clx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 28  # rls2101.rc2 soak env 6
@@ -1101,6 +1113,7 @@
         - 39  # rls2101.rc2 NDRPDR iter env 6
         - 45  # rls2101.rc2 NDRPDR iter env 6
         - 46  # rls2101.rc2 NDRPDR iter env 6
+        - 51  # rls2101.rc2 NDRPDR iter env 6
         - 28  # rls2101.rc2 soak env 6
         - 43  # rls2101.rc2 soak env 6
 
@@ -1483,6 +1496,7 @@
         - 48  # rls2101.rc2 NDRPDR iter env 6
         - 54  # rls2101.rc2 NDRPDR iter env 6
         - 55  # rls2101.rc2 NDRPDR iter env 6
+        - 61  # rls2101.rc2 NDRPDR iter env 6
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 23  # rls2101.rc2 NDRPDR iter env 6
@@ -1494,6 +1508,7 @@
         - 39  # rls2101.rc2 NDRPDR iter env 6
         - 45  # rls2101.rc2 NDRPDR iter env 6
         - 46  # rls2101.rc2 NDRPDR iter env 6
+        - 51  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -1518,6 +1533,7 @@
         - 39  # rls2101.rc2 NDRPDR iter env 6
         - 45  # rls2101.rc2 NDRPDR iter env 6
         - 46  # rls2101.rc2 NDRPDR iter env 6
+        - 51  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -1606,6 +1622,7 @@
         - 48  # rls2101.rc2 NDRPDR iter env 6
         - 54  # rls2101.rc2 NDRPDR iter env 6
         - 55  # rls2101.rc2 NDRPDR iter env 6
+        - 61  # rls2101.rc2 NDRPDR iter env 6
 
     vpp-compare-topologies-mrr-ref:
       csit-vpp-perf-report-iterative-2101-3n-skx:
@@ -2642,6 +2659,7 @@
       - 48  # rls2101.rc2 NDRPDR iter env 6
       - 54  # rls2101.rc2 NDRPDR iter env 6
       - 55  # rls2101.rc2 NDRPDR iter env 6
+      - 61  # rls2101.rc2 NDRPDR iter env 6
       - 32  # rls2101.rc2 MRR nf-density iter env 6
       - 33  # rls2101.rc2 NDRPDR nf-density iter env 6
       - 51  # rls2101.rc2 NDRPDR nf-density iter env 6
@@ -2713,6 +2731,7 @@
       - 39  # rls2101.rc2 NDRPDR iter env 6
       - 45  # rls2101.rc2 NDRPDR iter env 6
       - 46  # rls2101.rc2 NDRPDR iter env 6
+      - 51  # rls2101.rc2 NDRPDR iter env 6
       - 25  # rls2101.rc2 MRR nf-density iter env 6
       - 26  # rls2101.rc2 NDRPDR nf-density iter env 6
       - 42  # rls2101.rc2 NDRPDR nf-density iter env 6
@@ -2747,6 +2766,7 @@
       - 21  # rls2009 NDRPDR iter env 6
       - 22  # rls2009 NDRPDR iter env 6
       - 25  # rls2009 NDRPDR iter env 6
+      - 26  # rls2009 NDRPDR iter env 6
       - 14  # rls2101.rc2 MRR iter env 6
       - 15  # rls2101.rc2 NDRPDR iter env 6
       - 16  # rls2101.rc2 NDRPDR iter env 6
@@ -2756,6 +2776,7 @@
       - 23  # rls2101.rc2 NDRPDR iter env 6
       - 24  # rls2101.rc2 NDRPDR iter env 6
       - 27  # rls2101.rc2 NDRPDR iter env 6
+      - 28  # rls2101.rc2 NDRPDR iter env 6
 
     csit-vpp-perf-report-iterative-2009-3n-tsh:
       - 8   # rls2005 NDRPDR iter env 5
@@ -2789,6 +2810,7 @@
       - 16  # rls2009 NDRPDR iter env 6
       - 17  # rls2009 NDRPDR iter env 6
       - 18  # rls2009 NDRPDR iter env 6
+      - 19  # rls2009 NDRPDR iter env 6
       - 9   # rls2101.rc2 MRR iter env 6
       - 10  # rls2101.rc2 NDRPDR iter env 6
       - 11  # rls2101.rc2 NDRPDR iter env 6
@@ -12609,6 +12631,36 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-skx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-skx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-dpdk-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-dpdk-ndr"
@@ -15690,6 +15742,36 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-ethip4udp-nat44det-h1-p1-s1-Ndrpdr.64B-.t.c-ethip4udp-nat44det-h1-p1-s1-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-features-ip4routing-base-dpdk-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-skx-xxv710-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-skx-xxv710-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -19255,6 +19337,36 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-clx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 2n-clx-x710-78b-2t1c-ip6routing-base-scale-[avf,dpdk]-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-x710-78b-2t1c-ip6routing-base-scale-[avf,dpdk]-ndr"
@@ -20424,6 +20536,36 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-nat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-rdma-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-clx-cx556a-64b-rdma-ethip4-features-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-xxv710-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-xxv710-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -21703,6 +21845,36 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-zn2-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-zn2-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 2n-zn2-x710-78b-2t1c-ip6routing-base-scale-[avf,dpdk]-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-zn2-x710-78b-2t1c-ip6routing-base-scale-[avf,dpdk]-ndr"
@@ -22872,6 +23044,36 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1Cx556A-Rdma-ethip4udp-nat44det-h1024-p63-s64512-Ndrpdr.64B-.t.c-rdma-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
   layout:
     title: "2n-zn2-cx556a-64b-rdma-ethip4-features-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-zn2-xxv710-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-zn2-xxv710-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
