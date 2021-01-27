@@ -1,5 +1,5 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
-# Copyright (c) 2020 PANTHEON.tech s.r.o.
+# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -174,7 +174,7 @@ function parse_bmrr_results () {
     # TODO: Do we need to check echo exit code explicitly?
     echo "Parsing ${in_file} putting results into ${out_file}"
     echo "TODO: Re-use parts of PAL when they support subsample test parsing."
-    pattern='Maximum Receive Rate trial results in packets'
+    pattern='Maximum Receive Rate trial results in .*'
     pattern+=' per second: .*\]</status>'
     grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}" || {
         die "Some parsing grep command has failed."
