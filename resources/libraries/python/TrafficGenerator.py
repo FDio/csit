@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1262,7 +1262,6 @@ class OptimizedSearch:
             initial_trial_duration=1.0,
             number_of_intermediate_phases=2,
             timeout=720.0,
-            doublings=1,
             ppta=1,
             resetter=None,
             traffic_directions=2,
@@ -1294,9 +1293,6 @@ class OptimizedSearch:
             to perform before the final phase [1].
         :param timeout: The search will fail itself when not finished
             before this overall time [s].
-        :param doublings: How many doublings to do in external search step.
-            Default 1 is suitable for fairly stable tests,
-            less stable tests might get better overal duration with 2 or more.
         :param ppta: Packets per transaction, aggregated over directions.
             Needed for udp_pps which does not have a good transaction counter,
             so we need to compute expected number of packets.
@@ -1322,7 +1318,6 @@ class OptimizedSearch:
         :type initial_trial_duration: float
         :type number_of_intermediate_phases: int
         :type timeout: float
-        :type doublings: int
         :type ppta: int
         :type resetter: Optional[Callable[[], None]]
         :type traffic_directions: int
@@ -1332,7 +1327,7 @@ class OptimizedSearch:
         :type use_latency: bool
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
-        :rtype: NdrPdrResult
+        :rtype: List[Receiverateinterval]
         :raises RuntimeError: If total duration is larger than timeout.
         """
         # we need instance of TrafficGenerator instantiated by Robot Framework
@@ -1367,14 +1362,18 @@ class OptimizedSearch:
             number_of_intermediate_phases=number_of_intermediate_phases,
             initial_trial_duration=initial_trial_duration,
             timeout=timeout,
-            doublings=doublings,
         )
-        result = algorithm.narrow_down_ndr_and_pdr(
+        if packet_loss_ratio:
+            packet_loss_ratios = [0.0, packet_loss_ratio]
+        else:
+            # Happens in reconf tests.
+            packet_loss_ratios = [packet_loss_ratio]
+        results = algorithm.narrow_down_intervals(
             min_rate=minimum_transmit_rate,
             max_rate=maximum_transmit_rate,
-            packet_loss_ratio=packet_loss_ratio,
+            packet_loss_ratios=packet_loss_ratios,
         )
-        return result
+        return results
 
     @staticmethod
     def perform_soak_search(
