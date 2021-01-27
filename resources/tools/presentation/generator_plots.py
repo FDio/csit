@@ -492,15 +492,20 @@ def plot_nf_reconf_box_name(plot, input_data):
                           col.lower().replace(u'-ndrpdr', u'').
                           replace(u'2n1l-', u''))
 
+        name_lst = tst_name.split(u'-')
+        if len(name_lst) > 8:
+            show_name = u'-'.join(name_lst[3:-2])
+        else:
+            show_name = u'-'.join(name_lst[2:-1])
         traces.append(plgo.Box(
             x=[str(i + 1) + u'.'] * len(df_y[col]),
-            y=[y if y else None for y in df_y[col]],
+            y=df_y[col],
             name=(
                 f"{i + 1}. "
                 f"({nr_of_samples[i]:02d} "
                 f"run{u's' if nr_of_samples[i] > 1 else u''}, "
                 f"packets lost average: {mean(loss[col]):.1f}) "
-                f"{u'-'.join(tst_name.split(u'-')[3:-2])}"
+                f"{show_name}"
             ),
             hoverinfo=u"y+name"
         ))
