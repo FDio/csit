@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -52,7 +52,7 @@
 | | ... | due to reconfiguration under traffic.
 | |
 | | ... | *Arguments:*
-| | ... | - result - Result of bidirectional measurtement.
+| | ... | - result - Result of bidirectional measurement.
 | | ... | Type: ReceiveRateMeasurement
 | |
 | | ... | *Example:*
@@ -100,15 +100,15 @@
 | | [Arguments] | ${result}
 | |
 | | Display single bound | NDR_LOWER
-| | ... | ${result.ndr_interval.measured_low.target_tr}
-| | ... | ${result.ndr_interval.measured_low.latency}
+| | ... | ${result[0].measured_low.target_tr}
+| | ... | ${result[0].measured_low.latency}
 | | Display single bound | NDR_UPPER
-| | ... | ${result.ndr_interval.measured_high.target_tr}
+| | ... | ${result[0].measured_high.target_tr}
 | | Display single bound | PDR_LOWER
-| | ... | ${result.pdr_interval.measured_low.target_tr}
-| | ... | ${result.pdr_interval.measured_low.latency}
+| | ... | ${result[1].measured_low.target_tr}
+| | ... | ${result[1].measured_low.latency}
 | | Display single bound | PDR_UPPER
-| | ... | ${result.pdr_interval.measured_high.target_tr}
+| | ... | ${result[1].measured_high.target_tr}
 
 | Display result of soak search
 | | [Documentation]
