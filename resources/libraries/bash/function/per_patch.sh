@@ -174,7 +174,7 @@ function parse_bmrr_results () {
     # TODO: Do we need to check echo exit code explicitly?
     echo "Parsing ${in_file} putting results into ${out_file}"
     echo "TODO: Re-use parts of PAL when they support subsample test parsing."
-    pattern='Maximum Receive Rate trial results in packets'
+    pattern='Maximum Receive Rate trial results in .*'
     pattern+=' per second: .*\]</status>'
     grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}" || {
         die "Some parsing grep command has failed."
