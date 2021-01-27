@@ -488,14 +488,22 @@ def plot_nf_reconf_box_name(plot, input_data):
     df_y = pd.DataFrame(y_vals)
     df_y.head()
     for i, col in enumerate(df_y.columns):
-        tst_name = re.sub(REGEX_NIC, u"",
-                          col.lower().replace(u'-ndrpdr', u'').
-                          replace(u'2n1l-', u''))
 
-        if u"ipsec" in tst_name:
-            show_name = u'-'.join(tst_name.split(u'-')[2:-1])
-        else:
-            show_name = u'-'.join(tst_name.split(u'-')[3:-2])
+        logging.info("--------------------------")
+        logging.info(col)
+
+        tst_name = re.sub(REGEX_NIC, u"",
+                          col.lower().replace(u'-reconf', u'').
+                          replace(u'2n1l-', u'').replace(u'2n-', u'').
+                          replace(u'testpmd', u''))
+
+        logging.info(tst_name)
+
+        # if u"ipsec" in tst_name:
+        #     show_name = u'-'.join(tst_name.split(u'-')[2:])
+        # else:
+        #     show_name = u'-'.join(tst_name.split(u'-')[2:-1])
+
         traces.append(plgo.Box(
             x=[str(i + 1) + u'.'] * len(df_y[col]),
             y=df_y[col],
@@ -504,7 +512,7 @@ def plot_nf_reconf_box_name(plot, input_data):
                 f"({nr_of_samples[i]:02d} "
                 f"run{u's' if nr_of_samples[i] > 1 else u''}, "
                 f"packets lost average: {mean(loss[col]):.1f}) "
-                f"{show_name}"
+                f"{tst_name.split(u'-')[2:]}"
             ),
             hoverinfo=u"y+name"
         ))
