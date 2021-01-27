@@ -32,3 +32,5 @@
       tags: cleanup
     - role: calibration
       tags: calibration
+    - role: nginx
+      tags: nginx
