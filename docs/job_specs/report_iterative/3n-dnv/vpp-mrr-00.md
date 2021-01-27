@@ -1,7 +1,7 @@
 # 3n-dnv
-### tests 54
+### tests 60
 ### job hrs est. 2.5
-### job hrs real 2.5
+### job hrs real x
 ### test mins est. 2.5
 ### test mins real 2.5
 ## ./container_memif
@@ -47,6 +47,10 @@
 1c AND 64b AND mrr AND x553 AND drv_vfio_pci AND ethip4-ip4scale20k
 2c AND 64b AND mrr AND x553 AND drv_vfio_pci AND ethip4-ip4scale20k
 4c AND 64b AND mrr AND x553 AND drv_vfio_pci AND ethip4-ip4scale20k
+##### ethip4-ip4scale20k-rnd
+1c AND 64b AND mrr AND x553 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
+2c AND 64b AND mrr AND x553 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
+4c AND 64b AND mrr AND x553 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 ## ./ip4_tunnels
 ### intel-x553
 #### dpdk-vfio-pci
@@ -69,6 +73,10 @@
 1c AND 78b AND mrr AND x553 AND drv_vfio_pci AND ethip6-ip6scale20k
 2c AND 78b AND mrr AND x553 AND drv_vfio_pci AND ethip6-ip6scale20k
 4c AND 78b AND mrr AND x553 AND drv_vfio_pci AND ethip6-ip6scale20k
+##### ethip6-ip6scale20k-rnd
+1c AND 78b AND mrr AND x553 AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
+2c AND 78b AND mrr AND x553 AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
+4c AND 78b AND mrr AND x553 AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 ## ./ip6_tunnels
 ## ./l2
 ### intel-x553
