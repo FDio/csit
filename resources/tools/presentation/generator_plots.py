@@ -488,14 +488,23 @@ def plot_nf_reconf_box_name(plot, input_data):
     df_y = pd.DataFrame(y_vals)
     df_y.head()
     for i, col in enumerate(df_y.columns):
+
+        logging.info("--------------------------")
+        logging.info(tst_name)
+
         tst_name = re.sub(REGEX_NIC, u"",
-                          col.lower().replace(u'-ndrpdr', u'').
-                          replace(u'2n1l-', u''))
+                          col.lower().replace(u'-reconf', u'').
+                          replace(u'2n1l-', u'').replace(u'2n-', u''))
+
+        logging.info(tst_name)
 
         if u"ipsec" in tst_name:
-            show_name = u'-'.join(tst_name.split(u'-')[2:-1])
+            show_name = u'-'.join(tst_name.split(u'-')[2:])
         else:
-            show_name = u'-'.join(tst_name.split(u'-')[3:-2])
+            show_name = u'-'.join(tst_name.split(u'-')[3:-1])
+
+        logging.info(show_name)
+
         traces.append(plgo.Box(
             x=[str(i + 1) + u'.'] * len(df_y[col]),
             y=df_y[col],
