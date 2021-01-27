@@ -86,6 +86,12 @@
 | | | Destroy all '${container_group}' containers
 | | END
 
+| Additional Test Tear Down Action For nginx
+| | [Documentation]
+| | ... | Additional teardown for tests which uses nginx.
+| |
+| | Kill Nginx | ${dut1}
+
 | Additional Test Tear Down Action For det44
 | | [Documentation]
 | | ... | Additional teardown for tests which uses DET44 feature.

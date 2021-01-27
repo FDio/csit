@@ -428,6 +428,10 @@ Test Type Tags
     Performance tests that measure throughput of multiple VNF and CNF
     service topologies at different service densities.
 
+.. topic:: LDP_NGINX
+
+    LDP NGINX is basically un-modified NgInx with VPP via LD_PRELOAD.
+
 NF Service Density Tags
 -----------------------
 
