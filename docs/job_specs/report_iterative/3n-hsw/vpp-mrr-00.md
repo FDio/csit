@@ -1,12 +1,12 @@
 # 3n-hsw
-### tests 150
-### job hrs est. 5.6
-### job hrs real 5.6
+### tests 156
+### job hrs est. 5.82
+### job hrs real x
 ### test mins est. 2.24
 ### test mins real 2.24
 #
 # Tests with avf driver are not executed on 3n-hsw systems as it requires
-# enabling of SoftIOMMU thats quite difficult there.
+# enabling of SoftIOMMU that is quite difficult there.
 #
 ## ./container_memif
 ## ./crypto
@@ -93,6 +93,10 @@
 1c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
 2c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
 4c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
+##### ethip4-ip4scale2m-rnd
+1c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
+2c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
+4c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 ##### dot1q-ip4base
 1c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
 2c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
@@ -119,6 +123,10 @@
 1c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m
 2c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m
 4c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m
+##### ethip6-ip6scale2m-rnd
+1c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m-rnd
+2c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m-rnd
+4c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m-rnd
 ##### dot1q-ip6base
 1c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND dot1q-ip6base
 2c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND dot1q-ip6base
