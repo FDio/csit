@@ -12657,7 +12657,7 @@
     - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
   layout:
-    title: "2n-skx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr
+    title: "2n-skx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -19363,7 +19363,7 @@
     - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
   layout:
-    title: "2n-clx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr
+    title: "2n-clx-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -21871,7 +21871,7 @@
     - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
   layout:
-    title: "2n-zn2-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr
+    title: "2n-zn2-xxv710-64b-2t1c-ethip4--ethip4udpgeneve-avf-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
