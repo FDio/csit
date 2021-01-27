@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f3ca1398_406207b2",
+        "filename": "docs/job_specs/report_coverage/2n-clx/ip6-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-01-27T19:52:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d3a847e3_aba4058c",
+      "range": {
+        "startLine": 67,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 25
+      },
+      "revId": "f130b49ad4014f3df3e3f2993641a159ab99bd65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ae972f6_ae7f9812",
         "filename": "docs/job_specs/report_iterative/2n-zn2/vpp-mlr-00.md",
         "patchSetId": 1
