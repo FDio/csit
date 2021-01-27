@@ -492,7 +492,7 @@ def plot_nf_reconf_box_name(plot, input_data):
         tst_name = re.sub(REGEX_NIC, u"",
                           col.lower().replace(u'-reconf', u'').
                           replace(u'2n1l-', u'').replace(u'2n-', u'').
-                          replace(u'testpmd', u''))
+                          replace(u'-testpmd', u''))
 
         traces.append(plgo.Box(
             x=[str(i + 1) + u'.'] * len(df_y[col]),
