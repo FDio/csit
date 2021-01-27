@@ -33,6 +33,12 @@
         process: "vpp_echo"
       tags: kill-process
 
+    - name: Kill processes - nginx
+      import_tasks: kill_process.yaml
+      vars:
+        process: "nginx"
+      tags: kill-process
+
     - name: Find file or dir - Core zip file
       find:
         paths: "/tmp/"
