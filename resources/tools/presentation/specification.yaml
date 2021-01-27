@@ -2494,29 +2494,7 @@
 
   builds:
 
-    csit-vpp-perf-report-iterative-2009-3n-hsw:
-      - 18  # rls2005 MRR iter env 5
-      - 9   # rls2005 NDRPDR iter env 5
-      - 10  # rls2005 NDRPDR iter env 5
-      - 11  # rls2005 NDRPDR iter env 5
-      - 12  # rls2005 NDRPDR iter env 5
-      - 13  # rls2005 NDRPDR iter env 5
-      - 14  # rls2005 NDRPDR iter env 5
-      - 15  # rls2005 NDRPDR iter env 5
-      - 16  # rls2005 NDRPDR iter env 5
-      - 17  # rls2005 NDRPDR iter env 5
-      - 19  # rls2005 NDRPDR iter env 5
-      - 23  # rls2009 MRR iter env 5
-      - 21  # rls2009 NDRPDR iter env 5
-      - 22  # rls2009 NDRPDR iter env 5
-      - 24  # rls2009 NDRPDR iter env 5
-      - 25  # rls2009 NDRPDR iter env 5
-      - 26  # rls2009 NDRPDR iter env 5
-      - 27  # rls2009 NDRPDR iter env 5
-      - 28  # rls2009 NDRPDR iter env 5
-      - 29  # rls2009 NDRPDR iter env 5
-      - 30  # rls2009 NDRPDR iter env 5
-      - 31  # rls2009 NDRPDR iter env 5
+
     csit-vpp-perf-report-iterative-2101-3n-hsw:
       - 17  # rls2009 MRR iter env 6
       - 19  # rls2009 NDRPDR iter env 6
