@@ -32,3 +32,30 @@
       tags: cleanup
     - role: calibration
       tags: calibration
+
+- hosts: sut_aws
+  # TODO: Ansible provisioner cannot connect with Csit1234 pw
+  # remote_user: testuser
+  become: yes
+  become_user: root
+  roles:
+    - role: user_add
+      tags: user_add
+    - role: common
+      tags: common
+    - role: vpp
+      tags: vpp
+    - role: dpdk
+      tags: dpdk
+    - role: aws
+      tags: aws
+    - role: iperf
+      tags: iperf
+    - role: docker
+      tags: docker
+    - role: cleanup
+      tags: cleanup
+    # TODO: 'Check Kernel Parameters' failing in
+    # resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml
+    # - role: calibration
+    #   tags: calibration
