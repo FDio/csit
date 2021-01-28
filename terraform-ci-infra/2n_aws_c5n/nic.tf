@@ -3,12 +3,16 @@ resource "aws_network_interface" "dut1_if1" {
   source_dest_check = false
   private_ip = var.dut1_if1_ip
   private_ips = [var.dut1_if1_ip]
-  security_groups = [aws_security_group.CSIT.id]
+  security_groups = [aws_security_group.CSITSG.id]
   attachment {
     instance = aws_instance.dut1.id
     device_index = 1
   }
-  depends_on = [aws_vpc.CSIT, aws_subnet.b]
+  depends_on = [aws_vpc.CSITVPC, aws_subnet.b]
+
+  tags = {
+    "Environment" = "CSIT-AWS"
+  }
 }
 
 data "aws_network_interface" "dut1_if1" {
@@ -20,12 +24,16 @@ resource "aws_network_interface" "dut1_if2" {
   source_dest_check = false
   private_ip = var.dut1_if2_ip
   private_ips = [var.dut1_if2_ip]
-  security_groups = [aws_security_group.CSIT.id]
+  security_groups = [aws_security_group.CSITSG.id]
   attachment {
     instance = aws_instance.dut1.id
     device_index = 2
   }
-  depends_on = [aws_vpc.CSIT]
+  depends_on = [aws_vpc.CSITVPC]
+
+  tags = {
+    "Environment" = "CSIT-AWS"
+  }
 }
 
 data "aws_network_interface" "dut1_if2" {
@@ -37,12 +45,16 @@ resource "aws_network_interface" "tg_if1" {
   source_dest_check = false
   private_ip = var.tg_if1_ip
   private_ips = [var.tg_if1_ip]
-  security_groups = [aws_security_group.CSIT.id]
+  security_groups = [aws_security_group.CSITSG.id]
   attachment {
     instance = aws_instance.tg.id
     device_index = 1
   }
-  depends_on = [aws_vpc.CSIT, aws_subnet.b]
+  depends_on = [aws_vpc.CSITVPC, aws_subnet.b]
+
+  tags = {
+    "Environment" = "CSIT-AWS"
+  }
 }
 
 data "aws_network_interface" "tg_if1" {
@@ -54,12 +66,16 @@ resource "aws_network_interface" "tg_if2" {
   source_dest_check = false
   private_ip = var.tg_if2_ip
   private_ips = [var.tg_if2_ip]
-  security_groups = [aws_security_group.CSIT.id]
+  security_groups = [aws_security_group.CSITSG.id]
   attachment {
     instance = aws_instance.tg.id
     device_index = 2
   }
-  depends_on = [aws_vpc.CSIT, aws_subnet.d]
+  depends_on = [aws_vpc.CSITVPC, aws_subnet.d]
+
+  tags = {
+    "Environment" = "CSIT-AWS"
+  }
 }
 
 data "aws_network_interface" "tg_if2" {
