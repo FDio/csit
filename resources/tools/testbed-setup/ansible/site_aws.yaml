@@ -1,8 +1,0 @@
----
-# file: site_aws.yaml
-
-- import_playbook: tg_aws.yaml
-  tags: tg
-
-- import_playbook: sut_aws.yaml
-  tags: sut

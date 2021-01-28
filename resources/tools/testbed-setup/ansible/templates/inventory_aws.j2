@@ -1,0 +1,14 @@
+---
+# file: host_vars/{{ item }}.yaml
+
+hostname: '{{ item }}'
+grub:
+  - nvme_core.io_timeout: '4294967295'
+sysctl:
+  - kernel:
+    - watchdog_cpumask: '0,28,56,84'
+  - vm:
+    - nr_hugepages: 4096
+    - max_map_count: 20000
+
+cpu_microarchitecture: "skylake"
