@@ -14,6 +14,7 @@
 """Module defining MeasurementDatabase class."""
 
 import logging
+import time
 
 from .ReceiveRateMeasurement import ReceiveRateMeasurement
 from .ReceiveRateInterval import ReceiveRateInterval
@@ -56,6 +57,7 @@ class MeasurementDatabase:
         If loss fractions differ, keep the more lossy result.
         Otherwise keep the most recent result.
         """
+        logging.debug(f"_normalize starts {self!r}")
         measurements_old = self.measurements
         measurements_new = list()
         while len(measurements_old) > 0:
@@ -95,6 +97,8 @@ class MeasurementDatabase:
             fraction_previous = max(fraction_previous, measurement.loss_fraction)
             measurement.effective_loss_fraction = fraction_previous
         self.measurements = measurements_new
+        logging.debug(f"_normalize ends {self!r}")
+        time.sleep(1)
 
     def add(self, measurement):
         """Add measurement and normalize.
