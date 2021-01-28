@@ -269,7 +269,7 @@ resource "null_resource" "deploy_tg" {
   provisioner "ansible" {
     plays {
       playbook {
-        file_path = "../../testbed-setup/ansible/site_aws.yaml"
+        file_path = "../../resources/tools/testbed-setup/ansible/site_aws.yaml"
         force_handlers = true
       }
       hosts = ["tg"]
@@ -290,7 +290,7 @@ resource "null_resource" "deploy_dut1" {
   provisioner "ansible" {
     plays {
       playbook {
-        file_path = "../../testbed-setup/ansible/site_aws.yaml"
+        file_path = "../../resources/tools/testbed-setup/ansible/site_aws.yaml"
         force_handlers = true
       }
       hosts = ["sut"]
@@ -311,7 +311,7 @@ resource "null_resource" "deploy_dut2" {
   provisioner "ansible" {
     plays {
       playbook {
-        file_path = "../../testbed-setup/ansible/site_aws.yaml"
+        file_path = "../../resources/tools/testbed-setup/ansible/site_aws.yaml"
         force_handlers = true
       }
       hosts = ["sut"]
@@ -328,7 +328,7 @@ resource "null_resource" "deploy_topology" {
   provisioner "ansible" {
     plays {
       playbook {
-        file_path = "../../testbed-setup/ansible/cloud_topology.yaml"
+        file_path = "../../resources/tools/testbed-setup/ansible/cloud_topology.yaml"
       }
       hosts = ["local"]
       extra_vars = {
