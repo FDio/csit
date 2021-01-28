@@ -33,9 +33,10 @@ nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "client"
 nomad_node_class: "builder"
 nomad_options:
-  driver.raw_exec.enable: 0
+  driver.raw_exec.enable: 1
   docker.cleanup.image: false
   docker.privileged.enabled: true
+  docker.volumes.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
 nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
 nomad_cpu_total_compute: "40000"
