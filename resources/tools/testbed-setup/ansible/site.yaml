@@ -2,16 +2,23 @@
 # file: site.yaml
 
 - import_playbook: tg.yaml
-  tags: tg
+  tags:
+    - tg
+    - tg_aws
 
 - import_playbook: sut.yaml
-  tags: sut
+  tags:
+    - sut
+    - sut_aws
 
 - import_playbook: vpp_device.yaml
-  tags: vpp-device
+  tags:
+    - vpp-device
 
 - import_playbook: nomad.yaml
-  tags: nomad
+  tags:
+    - nomad
 
 - import_playbook: dev.yaml
-  tags: dev
+  tags:
+    - dev

@@ -1,22 +1,35 @@
 ---
 # file: roles/aws/tasks/main.yaml
 
-- name: AWS - Edit repositories
-  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-  tags: edit-repo
+- name: AWS - Enable deb-src APT Repository
+  apt_repository:
+    repo: deb-src http://archive.ubuntu.com/ubuntu bionic main
+    state: present
+    update_cache: yes
 
-- name: AWS - Get vfio-pci Patcher Script
+- name: AWS - Get vfio-pci with WC patcher
   get_url:
-    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/vfio-wc-patch.sh"
-    dest: "/opt/vfio-wc-patch.sh"
+    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/get-vfio-with-wc.sh"
+    dest: "/opt/get-vfio-with-wc.sh"
     mode: "744"
-  register: "vfio_patch_downloaded"
   tags:
     - vfio-aws-patch
 
-- name: AWS - Patch vfio-pci
-  shell: "/bin/bash /opt/vfio-wc-patch.sh"
-  when: "vfio_patch_downloaded"
+- name: AWS - Create vfio-pci patch directory
+  file:
+    path: "/opt/patches/"
+    state: directory
+
+- name: AWS - Get vfio-pci WC patch
+  get_url:
+    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/patches/linux-4.10-vfio-wc.patch"
+    dest: "/opt/patches/linux-4.10-vfio-wc.patch"
+    mode: "744"
+  tags:
+    - vfio-aws-patch
+
+- name: AWS - Compile vfio-pci with WC patch
+  shell: "/bin/bash /opt/get-vfio-with-wc.sh"
   tags:
     - vfio-aws-patch
 
@@ -28,11 +41,10 @@
   with_items:
     - "vfio-pci"
     - "igb_uio"
-  register: "modules_added"
   tags:
     - load-kernel-modules
 
-- name: AWS - Add Kernel Modules Options
+- name: AWS - Add Kernel Modules Options (igb_uio)
   lineinfile:
     path: "/etc/modprobe.d/igb_uio.conf"
     state: "present"
@@ -40,8 +52,17 @@
     create: "yes"
   with_items:
     - "options igb_uio wc_activate=1"
-  when: "modules_added"
-  register: "modules_added"
+  tags:
+    - load-kernel-modules
+
+- name: AWS - Add Kernel Modules Options (vfio-pci)
+  lineinfile:
+    path: "/etc/modprobe.d/vfio-noiommu.conf"
+    state: "present"
+    line: "{{ item }}"
+    create: "yes"
+  with_items:
+    - "options vfio enable_unsafe_noiommu_mode=1"
   tags:
     - load-kernel-modules
 
@@ -49,7 +70,6 @@
   systemd:
     name: "systemd-modules-load"
     state: "restarted"
-  when: "modules_added"
   tags:
     - reload-systemd-modules
 
