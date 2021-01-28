@@ -25,5 +25,7 @@
       tags: docker
     - role: cleanup
       tags: cleanup
-#    - role: calibration
-#      tags: calibration
+    # TODO: 'Check Kernel Parameters' failing in
+    # resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml
+    # - role: calibration
+    #   tags: calibration
