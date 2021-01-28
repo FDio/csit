@@ -1,6 +1,7 @@
 output "minio_service_name" {
   description = "Minio service name"
   value       = data.template_file.nomad_job_minio.vars.service_name
+<<<<<<< HEAD   (673b20 Infra: Terraform vpp_device module)
 }
 
 output "minio_access_key" {
@@ -19,3 +20,6 @@ output "minio_port" {
   description = "Minio port number"
   value = data.template_file.nomad_job_minio.vars.port
 }
+=======
+}
+>>>>>>> CHANGE (95a7a5 Infra: Remove unwanted terraform output)
