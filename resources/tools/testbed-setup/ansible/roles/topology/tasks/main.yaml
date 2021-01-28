@@ -4,6 +4,15 @@
 - name: Create topology file
   template:
     src: 'templates/topology_{{ cloud_topology }}.j2'
-    dest: '../../../../topologies/available/{{ cloud_topology }}_testbed.yaml'
+    dest: '../../../../topologies/available/{{ cloud_topology }}_{{ testbed_name }}.yaml'
   tags:
     - create-topology-file
+
+- name: Create inventory file
+  template:
+    src: 'templates/inventory_aws.j2'
+    dest: '../../../../resources/tools/testbed-setup/ansible/inventories/lf_inventory/host_vars/{{ item }}.yaml'
+
+  loop: "{{ public_ip_list.split(',') }}"
+  tags:
+    - create-inventory-file
