@@ -25,7 +25,7 @@ data "template_file" "nomad_job_alertmanager" {
     cpu                = var.alertmanager_cpu
     mem                = var.alertmanager_mem
     port               = var.alertmanager_port
-    slack_api_url      = var.alertmanager_slack_api_url
+    slack_api_key      = var.alertmanager_slack_api_key
     slack_channel      = var.alertmanager_slack_channel
     default_receiver   = var.alertmanager_default_receiver
   }
