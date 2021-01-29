@@ -122,6 +122,8 @@ patches as an example.
 
 See the patch
 [Update of VPP_REPO_URL and VPP_STABLE_VER files](https://gerrit.fd.io/r/c/csit/+/30461)
+and / or
+[rls2101: Update VPP_STABLE_VER files to release version](https://gerrit.fd.io/r/c/csit/+/30976)
 as an example.
 
 1. Find the last successful build on the
