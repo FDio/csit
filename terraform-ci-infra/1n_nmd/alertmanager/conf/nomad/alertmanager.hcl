@@ -162,7 +162,7 @@ job "${job_name}" {
         data            = <<EOH
 global:
   # The API URL to use for Slack notifications.
-  slack_api_url: '${slack_api_url}'
+  slack_api_url: 'https://hooks.slack.com/services/${slack_api_key}'
 
 # The directory from which notification templates are read.
 templates:

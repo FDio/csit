@@ -99,7 +99,7 @@ module "alertmanager" {
   alertmanager_cpu               = 1000
   alertmanager_mem               = 1024
   alertmanager_port              = 9093
-  alertmanager_slack_api_url     = "https://hooks.slack.com/services/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"
+  alertmanager_slack_api_key     = "TE07RD1V1/B01L7PQK9S8/xncEcMAvF0GtJpTbC30E0AyL"
   alertmanager_slack_channel     = "fdio-infra-monitoring"
 }
 
@@ -145,12 +145,12 @@ module "grafana" {
   grafana_vault_secret           = {
     use_vault_provider           = false,
     vault_kv_policy_name         = "kv-secret",
-    vault_kv_path                = "secret/data/prometheus",
+    vault_kv_path                = "secret/data/grafana",
     vault_kv_field_access_key    = "access_key",
     vault_kv_field_secret_key    = "secret_key"
   }
   grafana_container_image        = "grafana/grafana:7.3.7"
-  grafana_cpu                    = 2000
+  grafana_cpu                    = 1000
   grafana_mem                    = 2048
   grafana_port                   = 3000
 }
