@@ -71,10 +71,10 @@ variable "alertmanager_default_receiver" {
   default     = "default-receiver"
 }
 
-variable "alertmanager_slack_api_url" {
-  description = "Alertmanager slack API URL"
+variable "alertmanager_slack_api_key" {
+  description = "Alertmanager slack API key"
   type        = string
-  default     = "https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX"
+  default     = "XXXXXXXXX/XXXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX"
 }
 
 variable "alertmanager_slack_channel" {
