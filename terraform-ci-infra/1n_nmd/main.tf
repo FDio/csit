@@ -1,5 +1,3 @@
-<<<<<<< HEAD   (dae934 Infra: Remove Consul TLS on clients (Nomad conflict))
-=======
 # For convenience in simple configurations, a child module automatically
 # inherits default (un-aliased) provider configurations from its parent.
 # This means that explicit provider blocks appear only in the root module,
@@ -30,7 +28,7 @@ module "alertmanager" {
   alertmanager_cpu               = 1000
   alertmanager_mem               = 1024
   alertmanager_port              = 9093
-  alertmanager_slack_api_key     = "TE07RD1V1/B01L7PQK9S8/xncEcMAvF0GtJpTbC30E0AyL"
+  alertmanager_slack_api_key     = "TE07RD1V1/B01L7PQK9S8/pbADGhhhj60JSxHRi3K0NoW6"
   alertmanager_slack_channel     = "fdio-infra-monitoring"
 }
 
@@ -185,4 +183,3 @@ module "vpp_device" {
   csit_shim_cpu                  = "1000"
   csit_shim_mem                  = "5000"
 }
->>>>>>> CHANGE (a44eef Infra: Monitoring capability)
