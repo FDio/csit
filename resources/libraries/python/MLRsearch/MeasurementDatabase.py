@@ -14,6 +14,7 @@
 """Module defining MeasurementDatabase class."""
 
 import logging
+import time
 
 from .ReceiveRateMeasurement import ReceiveRateMeasurement
 from .ReceiveRateInterval import ReceiveRateInterval
@@ -56,6 +57,7 @@ class MeasurementDatabase:
         If loss fractions differ, keep the more lossy result.
         Otherwise keep the most recent result.
         """
+#        logging.debug(f"_normalize starts {self!r}")
         measurements_old = self.measurements
         measurements_new = list()
         while len(measurements_old) > 0:
@@ -95,6 +97,8 @@ class MeasurementDatabase:
             fraction_previous = max(fraction_previous, measurement.loss_fraction)
             measurement.effective_loss_fraction = fraction_previous
         self.measurements = measurements_new
+#        logging.debug(f"_normalize ends {self!r}")
+#        time.sleep(1)
 
     def add(self, measurement):
         """Add measurement and normalize.
@@ -136,13 +140,17 @@ class MeasurementDatabase:
         :returns: Whether database has measurement good for valid lower bound.
         :rtype: ReceiveRateMeasurement
         """
+#        logging.debug(f"get_valid_upper_bound starts, ratio {ratio} duration {duration}")
         bound = None
         for measurement in reversed(self.measurements):
+#            logging.debug(f"get_valid_upper_bound investigating measurement {measurement!r}")
             if measurement.effective_loss_fraction <= ratio:
                 # Measurements are sorted, so no point searching further.
+#                logging.debug(f"get_valid_upper_bound skipping the rest")
                 break
             bound = measurement
             # Continuing to find a tighter bound.
+#        logging.debug(f"get_valid_upper_bound returning {bound}")
         return bound
 
     def select_tr_for_lower_bound(self, ratio, min_rate, max_rate):

@@ -13,6 +13,8 @@
 
 """Module defining ProgressState class."""
 
+import logging
+
 from .MeasurementDatabase import MeasurementDatabase
 
 class ProgressState:
@@ -73,12 +75,16 @@ class ProgressState:
         self.last_width = self.width_goal
         # Conditions to use the fallback.
         if tr_lo is None or tr_hi is None:
+            logging.debug(f"remember_width: None argument, setting default.")
             return
         difference = abs(tr_hi - tr_lo)
         if not difference:
+            logging.debug(f"remember_width: Zero difference, setting default.")
             return
         width = difference / max(tr_hi, tr_lo)
         if width <= self.width_goal:
+            logging.debug(f"remember_width: Computed width {width} too small, using default.")
             return
         # Set the non-fallback value.
+        logging.debug(f"remember_width: Computed width remembered: {width}")
         self.last_width = width

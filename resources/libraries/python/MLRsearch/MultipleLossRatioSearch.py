@@ -334,6 +334,7 @@ class MultipleLossRatioSearch:
         :returns: The next target transmit rate to measure at.
         :rtype: float
         """
+        logging.debug(f"_upper_bound_invalid starts, ratio {ratio} lower_bound {lower_bound}")
         data = state.database
         # External search upwards. We need previous width.
         old_width = state.last_width
@@ -346,6 +347,7 @@ class MultipleLossRatioSearch:
         )
         new_tr = min(new_tr, state.max_rate)
         state.remember_width(lower_tr, new_tr)
+        logging.debug(f"_upper_bound_invalid returns computed {new_tr}")
         return new_tr
 
     def _lower_bound_invalid(self, state, ratio):
