@@ -1,74 +1,3 @@
-<<<<<<< HEAD   (e70fee Infra: Remove Consul TLS on clients (Nomad conflict))
-# For convenience in simple configurations, a child module automatically
-# inherits default (un-aliased) provider configurations from its parent.
-# This means that explicit provider blocks appear only in the root module,
-# and downstream modules can simply declare resources for that provider
-# and have them automatically associated with the root provider
-# configurations.
-module "minio" {
-  source                = "./minio"
-  providers             = {
-    nomad = nomad.yul1
-  }
-
-  # nomad
-  nomad_datacenters     = [ "yul1" ]
-  nomad_host_volume     = "prod-volume-data1-1"
-
-  # minio
-  minio_job_name        = "prod-minio"
-  minio_group_count     = 4
-  minio_service_name    = "storage"
-  minio_host            = "http://10.32.8.1{4...7}"
-  minio_port            = 9000
-  minio_container_image = "minio/minio:RELEASE.2020-12-03T05-49-24Z"
-  minio_vault_secret    = {
-    use_vault_provider        = false,
-    vault_kv_policy_name      = "kv-secret",
-    vault_kv_path             = "secret/data/minio",
-    vault_kv_field_access_key = "access_key",
-    vault_kv_field_secret_key = "secret_key"
-  }
-  minio_data_dir        = "/data/"
-  minio_use_host_volume = true
-  minio_use_canary      = true
-  minio_envs            = [ "MINIO_BROWSER=\"off\"" ]
-
-  # minio client
-  mc_job_name           = "prod-mc"
-  mc_container_image    = "minio/mc:RELEASE.2020-12-10T01-26-17Z"
-  mc_extra_commands     = [
-    "mc policy set public LOCALMINIO/logs.fd.io",
-    "mc policy set public LOCALMINIO/docs.fd.io",
-    "mc ilm add --expiry-days '180' LOCALMINIO/logs.fd.io",
-    "mc admin user add LOCALMINIO storage Storage1234",
-    "mc admin policy set LOCALMINIO writeonly user=storage"
-  ]
-  minio_buckets         = [ "logs.fd.io", "docs.fd.io" ]
-}
-
-module "nginx" {
-  source                = "./nginx"
-  providers             = {
-    nomad = nomad.yul1
-  }
-
-  # nomad
-  nomad_datacenters     = [ "yul1" ]
-
-  # nginx
-  nginx_job_name        = "prod-nginx"
-}
-
-#module "vpp_device" {
-#  source = "./vpp_device"
-#  providers = {
-#    nomad = nomad.yul1
-#  }
-#}
-=======
-<<<<<<< HEAD   (dae934 Infra: Remove Consul TLS on clients (Nomad conflict))
-=======
 # For convenience in simple configurations, a child module automatically
 # inherits default (un-aliased) provider configurations from its parent.
 # This means that explicit provider blocks appear only in the root module,
@@ -99,7 +28,7 @@ module "alertmanager" {
   alertmanager_cpu               = 1000
   alertmanager_mem               = 1024
   alertmanager_port              = 9093
-  alertmanager_slack_api_key     = "TE07RD1V1/B01L7PQK9S8/xncEcMAvF0GtJpTbC30E0AyL"
+  alertmanager_slack_api_key     = "TE07RD1V1/B01L7PQK9S8/pbADGhhhj60JSxHRi3K0NoW6"
   alertmanager_slack_channel     = "fdio-infra-monitoring"
 }
 
@@ -254,5 +183,3 @@ module "vpp_device" {
   csit_shim_cpu                  = "1000"
   csit_shim_mem                  = "5000"
 }
->>>>>>> CHANGE (a44eef Infra: Monitoring capability)
->>>>>>> CHANGE (6717a3 Infra: Monitoring capability)
