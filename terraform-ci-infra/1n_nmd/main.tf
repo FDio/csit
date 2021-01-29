@@ -28,7 +28,7 @@ module "alertmanager" {
   alertmanager_cpu               = 1000
   alertmanager_mem               = 1024
   alertmanager_port              = 9093
-  alertmanager_slack_api_key     = "TE07RD1V1/B01L7PQK9S8/xncEcMAvF0GtJpTbC30E0AyL"
+  alertmanager_slack_api_key     = "TE07RD1V1/B01L7PQK9S8/pbADGhhhj60JSxHRi3K0NoW6"
   alertmanager_slack_channel     = "fdio-infra-monitoring"
 }
 
