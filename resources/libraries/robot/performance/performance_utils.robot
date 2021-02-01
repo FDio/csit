@@ -196,7 +196,6 @@
 | | ... | initial_trial_duration=${1.0}
 | | ... | number_of_intermediate_phases=${2}
 | | ... | timeout=${720.0}
-| | ... | doublings=${2}
 | | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
 | | ... | traffic_directions=${traffic_directions}
@@ -205,11 +204,11 @@
 | | ... | transaction_type=${transaction_type}
 | | ... | use_latency=${use_latency}
 | | Display result of NDRPDR search | ${result}
-| | Check NDRPDR interval validity | ${result.pdr_interval}
+| | Check NDRPDR interval validity | ${result[1]}
 | | ... | ${packet_loss_ratio}
-| | Check NDRPDR interval validity | ${result.ndr_interval}
-| | ${pdr} = | Set Variable | ${result.pdr_interval.measured_low.target_tr}
-| | ${ndr} = | Set Variable | ${result.ndr_interval.measured_low.target_tr}
+| | Check NDRPDR interval validity | ${result[0]}
+| | ${pdr} = | Set Variable | ${result[1].measured_low.target_tr}
+| | ${ndr} = | Set Variable | ${result[0].measured_low.target_tr}
 | | # We expect NDR and PDR to have different-looking stats.
 | | Send traffic at specified rate
 | | ... | rate=${pdr}
@@ -281,7 +280,6 @@
 | | ... | initial_trial_duration=${1.0}
 | | ... | number_of_intermediate_phases=${1}
 | | ... | timeout=${720}
-| | ... | doublings=${2}
 | | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
 | | ... | traffic_directions=${traffic_directions}
@@ -289,9 +287,8 @@
 | | ... | transaction_scale=${transaction_scale}
 | | ... | transaction_type=${transaction_type}
 | | ... | use_latency=${use_latency}
-| | Check NDRPDR interval validity | ${result.pdr_interval}
-| | ... | ${0.0}
-| | Return From Keyword | ${result.pdr_interval.measured_low.target_tr}
+| | Check NDRPDR interval validity | ${result[0]}
+| | Return From Keyword | ${result[0].measured_low.target_tr}
 
 | Measure and show latency at specified rate
 | | [Documentation]
