@@ -1,4 +1,4 @@
-This directory (and its subdirectories)
+This directory and src/plugins/*/test/ (and its subdirectories)
 contain files that have to be distributed under GPL license,
 mostly because of linking with scapy.
 
