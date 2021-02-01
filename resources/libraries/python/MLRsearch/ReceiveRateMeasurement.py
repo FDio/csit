@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,7 +19,8 @@ class ReceiveRateMeasurement:
 
     def __init__(
             self, duration, target_tr, transmit_count, loss_count,
-            approximated_duration=0.0, partial_transmit_count=0):
+            approximated_duration=0.0, partial_transmit_count=0,
+            effective_loss_fraction=None):
         """Constructor, normalize primary and compute secondary quantities.
 
         If approximated_duration is nonzero, it is stored.
@@ -36,6 +37,14 @@ class ReceiveRateMeasurement:
 
         TODO: Use None instead of zero?
 
+        Field effective_loss_fraction is specific for use in MLRsearch,
+        where measurements with lower loss ratio at higher target_tr
+        cannot be relied upon if there is a measurement with higher loss ratio
+        at lower target_tr. in this case, the higher loss ratio from
+        other measurement is stored as effective loss ratio in this measurement.
+        If None, the computed loss ratio of this measurement is used.
+        If not None, the computed ratio can still be apllied if it is larger.
+
         :param duration: Measurement duration [s].
         :param target_tr: Target transmit rate [pps].
             If bidirectional traffic is measured, this is bidirectional rate.
@@ -44,6 +53,7 @@ class ReceiveRateMeasurement:
         :param approximated_duration: Estimate of the actual time of the trial.
         :param partial_transmit_count: Estimate count of actually attempted
             transactions.
+        :param effective_loss_fraction: None or highest loss ratio so far.
         :type duration: float
         :type target_tr: float
         :type transmit_count: int
@@ -63,6 +73,10 @@ class ReceiveRateMeasurement:
             float(self.loss_count) / self.transmit_count
             if self.transmit_count > 0 else 1.0
         )
+        self.effective_loss_fraction = self.loss_fraction
+        if effective_loss_fraction is not None:
+            if effective_loss_fraction > self.loss_fraction:
+                self.effective_loss_fraction = float(effective_loss_fraction)
         self.receive_fraction = (
             float(self.receive_count) / self.transmit_count
             if self.transmit_count > 0 else 0.0
@@ -107,4 +121,17 @@ class ReceiveRateMeasurement:
             f"transmit_count={self.transmit_count!r}," \
             f"loss_count={self.loss_count!r}," \
             f"approximated_duration={self.approximated_duration!r}," \
-            f"partial_transmit_count={self.partial_transmit_count!r})"
+            f"partial_transmit_count={self.partial_transmit_count!r}," \
+            f"effective_loss_fraction={self.effective_loss_fraction!r})"
+
+    def copy(self):
+        """Return new instance with identical fields."""
+        return self.__class__(
+            duration = self.duration,
+            target_tr = self.target_tr,
+            transmit_count = self.transmit_count,
+            loss_count = self.loss_count,
+            approximated_duration = self.approximated_duration,
+            partial_transmit_count = self.partial_transmit_count,
+            effective_loss_fraction = self.effective_loss_fraction,
+        )

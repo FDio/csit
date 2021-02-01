@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -61,6 +61,22 @@ class ReceiveRateInterval:
         )
         self.rel_tr_width = self.abs_tr_width / self.measured_high.target_tr
 
+    def __str__(self):
+        """Return string as half-open interval."""
+        return f"[{self.measured_low!s};{self.measured_high!s})"
+
+    def __repr__(self):
+        """Return string evaluable as a constructor call."""
+        return f"ReceiveRateInterval(measured_low={self.measured_low!r}," \
+            f"measured_high={self.measured_high!r})"
+
+    def copy(self):
+        """Return new instance with identical fields."""
+        return self.__class__(
+            measured_low=self.measured_low.copy(),
+            measured_high=self.measured_high.copy(),
+        )
+
     def width_in_goals(self, relative_width_goal):
         """Return float value.
 
@@ -77,12 +93,3 @@ class ReceiveRateInterval:
         """
         return math.log(1.0 - self.rel_tr_width) / math.log(
             1.0 - relative_width_goal)
-
-    def __str__(self):
-        """Return string as half-open interval."""
-        return f"[{self.measured_low!s};{self.measured_high!s})"
-
-    def __repr__(self):
-        """Return string evaluable as a constructor call."""
-        return f"ReceiveRateInterval(measured_low={self.measured_low!r}," \
-            f"measured_high={self.measured_high!r})"
