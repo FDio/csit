@@ -193,7 +193,7 @@ class PLRsearch:
             zeros += 1
             # TODO: Ratio of fill rate to drain rate seems to have
             # exponential impact. Make it configurable, or is 4:3 good enough?
-            if measurement.loss_fraction >= self.packet_loss_ratio_target:
+            if measurement.loss_ratio >= self.packet_loss_ratio_target:
                 for _ in range(4 * zeros):
                     lossy_loads.append(measurement.target_tr)
             if measurement.loss_count > 0:
