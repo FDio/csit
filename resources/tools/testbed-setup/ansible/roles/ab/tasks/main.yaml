@@ -1,9 +1,14 @@
 ---
 # file: roles/ab/tasks/main.yaml
 
+- Name: Update package cache (apt)
+  apt:
+    update_cache: yes
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+
 - name: Install Apache ab tools
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: present
-    update_cache: true
   tags: install-ab

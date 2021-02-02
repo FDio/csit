@@ -1,11 +1,16 @@
 ---
 # file: roles/sut/tasks/main.yaml
 
+- Name: Update package cache (apt)
+  apt:
+    update_cache: yes
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+
 - name: SUT - Install Distribution - Release - Machine Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
-    update_cache: true
   tags:
     - install-dependencies
 
