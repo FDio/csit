@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -57,8 +57,8 @@
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
 | | ${resetter} = | Set NAT44 Address Range
 | | ... | ${dut1} | ${out_net} | ${out_net_end}
-| | ${ramp_up_duration} = | Get Ramp Up Duration
-| | Return From Keyword If | ${ramp_up_duration}
+| | ${ramp_up_rate} = | Get Ramp Up Rate
+| | Return From Keyword If | ${ramp_up_rate}
 | | Set Test Variable | \${resetter}
 
 # TODO: Remove when 'ip4.Initialize IPv4 forwarding in circular topology' KW
@@ -221,8 +221,8 @@
 | |
 | | ${resetter} = | Set DET44 Mapping
 | | ... | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
-| | ${ramp_up_duration} = | Get Ramp Up Duration
-| | Return From Keyword If | ${ramp_up_duration}
+| | ${ramp_up_rate} = | Get Ramp Up Rate
+| | Return From Keyword If | ${ramp_up_rate}
 | | Set Test Variable | \${resetter}
 
 | Initialize NAT44 deterministic mode in circular topology
