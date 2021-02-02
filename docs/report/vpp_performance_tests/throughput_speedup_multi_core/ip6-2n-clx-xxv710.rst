@@ -74,6 +74,49 @@
 
     \clearpage
 
+78b-ip6routing-rnd-base-scale-avf
+---------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="101r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr-tsa}
+            \label{fig:2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="102r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr-tsa}
+            \label{fig:2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
 78b-ip6routing-base-scale-dpdk
 ------------------------------
 
@@ -111,4 +154,47 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-78b-ip6routing-base-scale-dpdk-pdr-tsa}
             \label{fig:2n-clx-xxv710-78b-ip6routing-base-scale-dpdk-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+78b-ip6routing-rnd-base-scale-dpdk
+----------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="01r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr-tsa}
+            \label{fig:2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="02r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr-tsa}
+            \label{fig:2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr-tsa}
     \end{figure}

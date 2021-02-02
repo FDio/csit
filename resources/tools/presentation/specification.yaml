@@ -174,10 +174,24 @@
         - 83  # rls2101.rel NDRPDR iter env 6
         - 88  # rls2101.rel NDRPDR iter env 6
         - 89  # rls2101.rel NDRPDR iter env 6
+        - 128 # rls2101.rel NDRPDR iter RND env 6
+        - 129 # rls2101.rel NDRPDR iter RND env 6
+        - 130 # rls2101.rel NDRPDR iter RND env 6
+        - 131 # rls2101.rel NDRPDR iter RND env 6
+        - 132 # rls2101.rel NDRPDR iter RND env 6
+        - 133 # rls2101.rel NDRPDR iter RND env 6
+        - 134 # rls2101.rel NDRPDR iter RND env 6
+        - 135 # rls2101.rel NDRPDR iter RND env 6
+        - 136 # rls2101.rel NDRPDR iter RND env 6
+        - 137 # rls2101.rel NDRPDR iter RND env 6
 
     plot-vpp-hdrh-lat-3n-hsw:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
         - 89  # rls2101.rel NDRPDR iter env 6
+
+    plot-vpp-hdrh-lat-3n-hsw-rnd:
+      csit-vpp-perf-report-iterative-2101-3n-hsw:
+        - 128 # rls2101.rel NDRPDR iter RND env 6
 
     plot-vpp-ipsec-reconf-3n-hsw:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -293,10 +307,22 @@
         - 76  # rls2101.rel NDRPDR iter env 6
         - 77  # rls2101.rel NDRPDR iter env 6
         - 82  # rls2101.rel NDRPDR iter env 6
+        - 89  # rls2101.rel NDRPDR iter RND env 6
+        - 90  # rls2101.rel NDRPDR iter RND env 6
+        - 91  # rls2101.rel NDRPDR iter RND env 6
+        - 92  # rls2101.rel NDRPDR iter RND env 6
+        - 93  # rls2101.rel NDRPDR iter RND env 6
+        - 98  # rls2101.rel NDRPDR iter RND env 6
+        - 99  # rls2101.rel NDRPDR iter RND env 6
+        - 101 # rls2101.rel NDRPDR iter RND env 6
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-report-iterative-2101-2n-skx:
         - 63  # rls2101.rel NDRPDR iter env 6
+
+    plot-vpp-hdrh-lat-2n-skx-rnd:
+      csit-vpp-perf-report-iterative-2101-2n-skx:
+        - 89  # rls2101.rel NDRPDR iter RND env 6
 
     plot-vpp-soak-2n-skx:
       csit-vpp-perf-report-iterative-2101-2n-skx:
@@ -351,10 +377,18 @@
         - 33  # rls2101.rel NDRPDR iter env 6
         - 34  # rls2101.rel NDRPDR iter env 6
         - 35  # rls2101.rel NDRPDR iter env 6
+        - 37  # rls2101.rel NDRPDR iter env 6
+        - 40  # rls2101.rel NDRPDR iter RND env 6
+        - 42  # rls2101.rel NDRPDR iter RND env 6
+        - 43  # rls2101.rel NDRPDR iter RND env 6
 
     plot-vpp-hdrh-lat-2n-zn2:
       csit-vpp-perf-report-iterative-2101-2n-zn2:
         - 31  # rls2101.rel NDRPDR iter env 6
+
+    plot-vpp-hdrh-lat-2n-zn2-rnd:
+      csit-vpp-perf-report-iterative-2101-2n-zn2:
+        - 40  # rls2101.rel NDRPDR iter RND env 6
 
     plot-dpdk-throughput-latency-2n-zn2:
       csit-dpdk-perf-report-iterative-2101-2n-zn2:
@@ -387,6 +421,10 @@
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 59  # rls2101.rel NDRPDR iter env 6
+
+#     plot-vpp-hdrh-lat-2n-clx-rnd:
+#       csit-vpp-perf-report-iterative-2101-2n-clx:
+#         -
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -430,6 +468,7 @@
         - 24  # rls2101.rel NDRPDR iter env 6
         - 25  # rls2101.rel NDRPDR iter env 6
         - 26  # rls2101.rel NDRPDR iter env 6
+        - 28  # rls2101.rel NDRPDR iter env 6
 
     plot-vpp-hdrh-lat-3n-tsh:
       csit-vpp-perf-report-iterative-2101-3n-tsh:
@@ -464,6 +503,7 @@
         - 27  # rls2101.rel NDRPDR iter env 6
         - 28  # rls2101.rel NDRPDR iter env 6
         - 29  # rls2101.rel NDRPDR iter env 6
+        - 30  # rls2101.rel NDRPDR iter env 6
 
     plot-vpp-hdrh-lat-2n-tx2:
       csit-vpp-perf-report-iterative-2101-2n-tx2:
@@ -500,6 +540,16 @@
         - 40  # rls2101.rel NDRPDR iter env 6
         - 41  # rls2101.rel NDRPDR iter env 6
         - 42  # rls2101.rel NDRPDR iter env 6
+        - 43  # rls2101.rel NDRPDR iter RND env 6
+        - 44  # rls2101.rel NDRPDR iter RND env 6
+        - 45  # rls2101.rel NDRPDR iter RND env 6
+        - 46  # rls2101.rel NDRPDR iter RND env 6
+        - 47  # rls2101.rel NDRPDR iter RND env 6
+        - 48  # rls2101.rel NDRPDR iter RND env 6
+        - 49  # rls2101.rel NDRPDR iter RND env 6
+        - 50  # rls2101.rel NDRPDR iter RND env 6
+        - 51  # rls2101.rel NDRPDR iter RND env 6
+        - 52  # rls2101.rel NDRPDR iter RND env 6
 
 #    plot-dpdk-throughput-latency-3n-dnv:
 #      # No data
@@ -519,6 +569,16 @@
         - 43  # rls2101.rel NDRPDR iter env 6
         - 44  # rls2101.rel NDRPDR iter env 6
         - 45  # rls2101.rel NDRPDR iter env 6
+        - 46  # rls2101.rel NDRPDR iter RND env 6
+        - 47  # rls2101.rel NDRPDR iter RND env 6
+        - 48  # rls2101.rel NDRPDR iter RND env 6
+        - 49  # rls2101.rel NDRPDR iter RND env 6
+        - 50  # rls2101.rel NDRPDR iter RND env 6
+        - 51  # rls2101.rel NDRPDR iter RND env 6
+        - 52  # rls2101.rel NDRPDR iter RND env 6
+        - 53  # rls2101.rel NDRPDR iter RND env 6
+        - 54  # rls2101.rel NDRPDR iter RND env 6
+        - 55  # rls2101.rel NDRPDR iter RND env 6
 
 #    plot-dpdk-throughput-latency-2n-dnv:
 #      # No data
@@ -547,6 +607,14 @@
         - 76  # rls2101.rel NDRPDR iter env 6
         - 77  # rls2101.rel NDRPDR iter env 6
         - 82  # rls2101.rel NDRPDR iter env 6
+        - 89  # rls2101.rel NDRPDR iter RND env 6
+        - 90  # rls2101.rel NDRPDR iter RND env 6
+        - 91  # rls2101.rel NDRPDR iter RND env 6
+        - 92  # rls2101.rel NDRPDR iter RND env 6
+        - 93  # rls2101.rel NDRPDR iter RND env 6
+        - 98  # rls2101.rel NDRPDR iter RND env 6
+        - 99  # rls2101.rel NDRPDR iter RND env 6
+        - 101 # rls2101.rel NDRPDR iter RND env 6
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-report-iterative-2101-3n-skx:
@@ -773,6 +841,16 @@
         - 83  # rls2101.rel NDRPDR iter env 6
         - 88  # rls2101.rel NDRPDR iter env 6
         - 89  # rls2101.rel NDRPDR iter env 6
+        - 128 # rls2101.rel NDRPDR iter RND env 6
+        - 129 # rls2101.rel NDRPDR iter RND env 6
+        - 130 # rls2101.rel NDRPDR iter RND env 6
+        - 131 # rls2101.rel NDRPDR iter RND env 6
+        - 132 # rls2101.rel NDRPDR iter RND env 6
+        - 133 # rls2101.rel NDRPDR iter RND env 6
+        - 134 # rls2101.rel NDRPDR iter RND env 6
+        - 135 # rls2101.rel NDRPDR iter RND env 6
+        - 136 # rls2101.rel NDRPDR iter RND env 6
+        - 137 # rls2101.rel NDRPDR iter RND env 6
 
     vpp-performance-changes-3n-skx-h1:
       csit-vpp-perf-report-iterative-2009-3n-skx:
@@ -874,6 +952,14 @@
         - 76  # rls2101.rel NDRPDR iter env 6
         - 77  # rls2101.rel NDRPDR iter env 6
         - 82  # rls2101.rel NDRPDR iter env 6
+        - 89  # rls2101.rel NDRPDR iter RND env 6
+        - 90  # rls2101.rel NDRPDR iter RND env 6
+        - 91  # rls2101.rel NDRPDR iter RND env 6
+        - 92  # rls2101.rel NDRPDR iter RND env 6
+        - 93  # rls2101.rel NDRPDR iter RND env 6
+        - 98  # rls2101.rel NDRPDR iter RND env 6
+        - 99  # rls2101.rel NDRPDR iter RND env 6
+        - 101 # rls2101.rel NDRPDR iter RND env 6
 
     vpp-performance-changes-2n-clx-h1:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -956,6 +1042,10 @@
         - 33  # rls2101.rel NDRPDR iter env 6
         - 34  # rls2101.rel NDRPDR iter env 6
         - 35  # rls2101.rel NDRPDR iter env 6
+        - 37  # rls2101.rel NDRPDR iter env 6
+        - 40  # rls2101.rel NDRPDR iter RND env 6
+        - 42  # rls2101.rel NDRPDR iter RND env 6
+        - 43  # rls2101.rel NDRPDR iter RND env 6
 
     vpp-performance-changes-2n-dnv-h1:
       csit-vpp-perf-report-iterative-2009-2n-dnv:
@@ -1006,6 +1096,16 @@
         - 43  # rls2101.rel NDRPDR iter env 6
         - 44  # rls2101.rel NDRPDR iter env 6
         - 45  # rls2101.rel NDRPDR iter env 6
+        - 46  # rls2101.rel NDRPDR iter RND env 6
+        - 47  # rls2101.rel NDRPDR iter RND env 6
+        - 48  # rls2101.rel NDRPDR iter RND env 6
+        - 49  # rls2101.rel NDRPDR iter RND env 6
+        - 50  # rls2101.rel NDRPDR iter RND env 6
+        - 51  # rls2101.rel NDRPDR iter RND env 6
+        - 52  # rls2101.rel NDRPDR iter RND env 6
+        - 53  # rls2101.rel NDRPDR iter RND env 6
+        - 54  # rls2101.rel NDRPDR iter RND env 6
+        - 55  # rls2101.rel NDRPDR iter RND env 6
 
     vpp-performance-changes-3n-dnv-h1:
       csit-vpp-perf-report-iterative-2009-3n-dnv:
@@ -1056,6 +1156,16 @@
         - 40  # rls2101.rel NDRPDR iter env 6
         - 41  # rls2101.rel NDRPDR iter env 6
         - 42  # rls2101.rel NDRPDR iter env 6
+        - 43  # rls2101.rel NDRPDR iter RND env 6
+        - 44  # rls2101.rel NDRPDR iter RND env 6
+        - 45  # rls2101.rel NDRPDR iter RND env 6
+        - 46  # rls2101.rel NDRPDR iter RND env 6
+        - 47  # rls2101.rel NDRPDR iter RND env 6
+        - 48  # rls2101.rel NDRPDR iter RND env 6
+        - 49  # rls2101.rel NDRPDR iter RND env 6
+        - 50  # rls2101.rel NDRPDR iter RND env 6
+        - 51  # rls2101.rel NDRPDR iter RND env 6
+        - 52  # rls2101.rel NDRPDR iter RND env 6
 
     vpp-performance-changes-3n-tsh-h1:
       csit-vpp-perf-report-iterative-2009-3n-tsh:
@@ -1097,6 +1207,7 @@
         - 24  # rls2101.rel NDRPDR iter env 6
         - 25  # rls2101.rel NDRPDR iter env 6
         - 26  # rls2101.rel NDRPDR iter env 6
+        - 28  # rls2101.rel NDRPDR iter env 6
 
 #     vpp-performance-changes-2n-tx2-h1:
 #       csit-vpp-perf-report-iterative-2009-2n-tx2:
@@ -1126,6 +1237,7 @@
         - 27  # rls2101.rel NDRPDR iter env 6
         - 28  # rls2101.rel NDRPDR iter env 6
         - 29  # rls2101.rel NDRPDR iter env 6
+        - 30  # rls2101.rel NDRPDR iter env 6
 
     vpp-soak-vs-ndr-2n-skx-ref:
       csit-vpp-perf-report-iterative-2101-2n-skx:
@@ -1552,6 +1664,14 @@
         - 76  # rls2101.rel NDRPDR iter env 6
         - 77  # rls2101.rel NDRPDR iter env 6
         - 82  # rls2101.rel NDRPDR iter env 6
+        - 89  # rls2101.rel NDRPDR iter RND env 6
+        - 90  # rls2101.rel NDRPDR iter RND env 6
+        - 91  # rls2101.rel NDRPDR iter RND env 6
+        - 92  # rls2101.rel NDRPDR iter RND env 6
+        - 93  # rls2101.rel NDRPDR iter RND env 6
+        - 98  # rls2101.rel NDRPDR iter RND env 6
+        - 99  # rls2101.rel NDRPDR iter RND env 6
+        - 101 # rls2101.rel NDRPDR iter RND env 6
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 54  # rls2101.rel NDRPDR iter env 6
@@ -1573,6 +1693,16 @@
         - 83  # rls2101.rel NDRPDR iter env 6
         - 88  # rls2101.rel NDRPDR iter env 6
         - 89  # rls2101.rel NDRPDR iter env 6
+        - 128 # rls2101.rel NDRPDR iter RND env 6
+        - 129 # rls2101.rel NDRPDR iter RND env 6
+        - 130 # rls2101.rel NDRPDR iter RND env 6
+        - 131 # rls2101.rel NDRPDR iter RND env 6
+        - 132 # rls2101.rel NDRPDR iter RND env 6
+        - 133 # rls2101.rel NDRPDR iter RND env 6
+        - 134 # rls2101.rel NDRPDR iter RND env 6
+        - 135 # rls2101.rel NDRPDR iter RND env 6
+        - 136 # rls2101.rel NDRPDR iter RND env 6
+        - 137 # rls2101.rel NDRPDR iter RND env 6
     vpp-compare-testbeds-hsw-clx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 54  # rls2101.rel NDRPDR iter env 6
@@ -2583,6 +2713,16 @@
       - 83  # rls2101.rel NDRPDR iter env 6
       - 88  # rls2101.rel NDRPDR iter env 6
       - 89  # rls2101.rel NDRPDR iter env 6
+      - 128 # rls2101.rel NDRPDR iter RND env 6
+      - 129 # rls2101.rel NDRPDR iter RND env 6
+      - 130 # rls2101.rel NDRPDR iter RND env 6
+      - 131 # rls2101.rel NDRPDR iter RND env 6
+      - 132 # rls2101.rel NDRPDR iter RND env 6
+      - 133 # rls2101.rel NDRPDR iter RND env 6
+      - 134 # rls2101.rel NDRPDR iter RND env 6
+      - 135 # rls2101.rel NDRPDR iter RND env 6
+      - 136 # rls2101.rel NDRPDR iter RND env 6
+      - 137 # rls2101.rel NDRPDR iter RND env 6
       - 65  # rls2101.rel NDRPDR reconf iter env 6
       - 68  # rls2101.rel NDRPDR reconf iter env 6
       - 77  # rls2101.rel NDRPDR reconf iter env 6
@@ -2759,6 +2899,14 @@
       - 76  # rls2101.rel NDRPDR iter env 6
       - 77  # rls2101.rel NDRPDR iter env 6
       - 82  # rls2101.rel NDRPDR iter env 6
+      - 89  # rls2101.rel NDRPDR iter RND env 6
+      - 90  # rls2101.rel NDRPDR iter RND env 6
+      - 91  # rls2101.rel NDRPDR iter RND env 6
+      - 92  # rls2101.rel NDRPDR iter RND env 6
+      - 93  # rls2101.rel NDRPDR iter RND env 6
+      - 98  # rls2101.rel NDRPDR iter RND env 6
+      - 99  # rls2101.rel NDRPDR iter RND env 6
+      - 101 # rls2101.rel NDRPDR iter RND env 6
       - 65  # rls2101.rel MRR nf-density iter env 6
       - 67  # rls2101.rel NDRPDR nf-density iter env 6
       - 72  # rls2101.rel NDRPDR nf-density iter env 6
@@ -2867,6 +3015,10 @@
       - 33  # rls2101.rel NDRPDR iter env 6
       - 34  # rls2101.rel NDRPDR iter env 6
       - 35  # rls2101.rel NDRPDR iter env 6
+      - 37  # rls2101.rel NDRPDR iter env 6
+      - 40  # rls2101.rel NDRPDR iter RND env 6
+      - 42  # rls2101.rel NDRPDR iter RND env 6
+      - 43  # rls2101.rel NDRPDR iter RND env 6
 
     csit-vpp-perf-report-iterative-2009-3n-tsh:
       - 8   # rls2005 NDRPDR iter env 5
@@ -2906,6 +3058,7 @@
       - 24  # rls2101.rel NDRPDR iter env 6
       - 25  # rls2101.rel NDRPDR iter env 6
       - 26  # rls2101.rel NDRPDR iter env 6
+      - 28  # rls2101.rel NDRPDR iter env 6
 
     csit-vpp-perf-report-iterative-2101-2n-tx2:
       - 5   # rls2009 MRR iter env 6
@@ -2928,6 +3081,7 @@
       - 27  # rls2101.rel NDRPDR iter env 6
       - 28  # rls2101.rel NDRPDR iter env 6
       - 29  # rls2101.rel NDRPDR iter env 6
+      - 30  # rls2101.rel NDRPDR iter env 6
 
 
     csit-vpp-perf-report-iterative-2009-3n-dnv:
@@ -2965,6 +3119,16 @@
       - 40  # rls2101.rel NDRPDR iter env 6
       - 41  # rls2101.rel NDRPDR iter env 6
       - 42  # rls2101.rel NDRPDR iter env 6
+      - 43  # rls2101.rel NDRPDR iter RND env 6
+      - 44  # rls2101.rel NDRPDR iter RND env 6
+      - 45  # rls2101.rel NDRPDR iter RND env 6
+      - 46  # rls2101.rel NDRPDR iter RND env 6
+      - 47  # rls2101.rel NDRPDR iter RND env 6
+      - 48  # rls2101.rel NDRPDR iter RND env 6
+      - 49  # rls2101.rel NDRPDR iter RND env 6
+      - 50  # rls2101.rel NDRPDR iter RND env 6
+      - 51  # rls2101.rel NDRPDR iter RND env 6
+      - 52  # rls2101.rel NDRPDR iter RND env 6
     csit-vpp-perf-report-coverage-2101-3n-dnv:
       - 1   # rls2101.rel NDRPDR cov env 6 3n-dnv-crypto-00
       - 2   # rls2101.rel NDRPDR cov env 6 3n-dnv-crypto-01
@@ -3011,6 +3175,16 @@
       - 43  # rls2101.rel NDRPDR iter env 6
       - 44  # rls2101.rel NDRPDR iter env 6
       - 45  # rls2101.rel NDRPDR iter env 6
+      - 46  # rls2101.rel NDRPDR iter RND env 6
+      - 47  # rls2101.rel NDRPDR iter RND env 6
+      - 48  # rls2101.rel NDRPDR iter RND env 6
+      - 49  # rls2101.rel NDRPDR iter RND env 6
+      - 50  # rls2101.rel NDRPDR iter RND env 6
+      - 51  # rls2101.rel NDRPDR iter RND env 6
+      - 52  # rls2101.rel NDRPDR iter RND env 6
+      - 53  # rls2101.rel NDRPDR iter RND env 6
+      - 54  # rls2101.rel NDRPDR iter RND env 6
+      - 55  # rls2101.rel NDRPDR iter RND env 6
     csit-vpp-perf-report-coverage-2101-2n-dnv:
       - 1   # rls2101.rel NDRPDR cov env 6 3n-dnv-ip4-00
       - 2   # rls2101.rel NDRPDR cov env 6 3n-dnv-ip4-01
@@ -12787,6 +12961,7 @@
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Dot1Q-Ip4Base-Ndrpdr.64B-1t1c-dot1q-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Base-Ndrpdr.64B-1t1c-ethip4-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-rnd-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-rnd-ndrpdr"
   layout:
     title: "3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-dpdk-ndr"
     layout: "plot-throughput"
@@ -12800,6 +12975,7 @@
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Dot1Q-Ip4Base-Ndrpdr.64B-1t1c-dot1q-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Base-Ndrpdr.64B-1t1c-ethip4-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-rnd-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-rnd-ndrpdr"
   layout:
     title: "3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-dpdk-pdr"
     layout: "plot-throughput"
@@ -13021,6 +13197,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-1t1c-ethip4-ip4scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
     layout: "plot-throughput"
@@ -13036,6 +13213,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-1t1c-ethip4-ip4scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
     layout: "plot-throughput"
@@ -13083,6 +13261,7 @@
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-1t1c-ethip4-ip4scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "3n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
     layout: "plot-throughput"
@@ -13098,6 +13277,7 @@
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-1t1c-ethip4-ip4scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "3n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
     layout: "plot-throughput"
@@ -13277,6 +13457,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
@@ -13293,6 +13474,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
@@ -13331,6 +13513,34 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 2n-skx-xxv710-78b-2t1c-ip6routing-base-scale-avf-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-2t1c-ip6routing-base-scale-avf-ndr"
@@ -13361,6 +13571,34 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-dpdk-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-dpdk-ndr"
@@ -13369,6 +13607,7 @@
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-Ndrpdr.78B-1t1c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-Ndrpdr.78B-1t1c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-rnd-ndrpdr"
   layout:
     title: "3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-dpdk-ndr"
     layout: "plot-throughput"
@@ -13382,7 +13621,7 @@
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-Ndrpdr.78B-1t1c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-Ndrpdr.78B-1t1c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-ndrpdr"
-  layout:
+    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-rnd-ndrpdr"
     title: "3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-dpdk-pdr"
     layout: "plot-throughput"
 
@@ -15897,6 +16136,7 @@
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Dot1Q-Ip4Base-Ndrpdr.64B-.t.c-dot1q-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-ethip4-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-rnd-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-rnd-ndrpdr"
   layout:
     title: "3n-hsw-xl710-64b-ip4routing-base-scale-dpdk-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -15910,6 +16150,7 @@
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Dot1Q-Ip4Base-Ndrpdr.64B-.t.c-dot1q-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-ethip4-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-rnd-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-rnd-ndrpdr"
   layout:
     title: "3n-hsw-xl710-64b-ip4routing-base-scale-dpdk-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -16151,6 +16392,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
@@ -16167,6 +16409,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
@@ -16205,6 +16448,34 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
+  title: "Speedup: 2n-skx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-skx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
   title: "Speedup: 2n-skx-xxv710-78b-ip6routing-base-scale-avf-ndr-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-ip6routing-base-scale-avf-ndr-tsa"
@@ -16235,6 +16506,34 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
+  title: "Speedup: 2n-skx-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-skx-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
   title: "Speedup: 3n-hsw-xl710-78b-ip6routing-base-scale-dpdk-ndr-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-ip6routing-base-scale-dpdk-ndr-tsa"
@@ -16243,6 +16542,7 @@
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-rnd-ndrpdr"
   layout:
     title: "3n-hsw-xl710-78b-ip6routing-base-scale-dpdk-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -16256,6 +16556,7 @@
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-rnd-ndrpdr"
   layout:
     title: "3n-hsw-xl710-78b-ip6routing-base-scale-dpdk-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -17749,6 +18050,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-.t.c-ethip4-ip4scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr-tsa"
     layout: "plot-throughput-speedup-analysis"
@@ -17764,6 +18066,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-.t.c-ethip4-ip4scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr-tsa"
     layout: "plot-throughput-speedup-analysis"
@@ -17901,6 +18204,7 @@
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-.t.c-ethip4-ip4scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr-tsa"
     layout: "plot-throughput-speedup-analysis"
@@ -17916,6 +18220,7 @@
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-.t.c-ethip4-ip4scale200k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr-tsa"
     layout: "plot-throughput-speedup-analysis"
@@ -19485,6 +19790,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
@@ -19501,6 +19807,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
@@ -19539,6 +19846,34 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-ndr"
@@ -19566,6 +19901,34 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
   layout:
     title: "2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -20681,6 +21044,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
@@ -20697,6 +21061,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
@@ -20735,6 +21100,34 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
+  title: "Speedup: 2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
   title: "Speedup: 2n-clx-xxv710-78b-ip6routing-base-scale-dpdk-ndr-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-78b-ip6routing-base-scale-dpdk-ndr-tsa"
@@ -20762,6 +21155,34 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
   layout:
     title: "2n-clx-xxv710-78b-ip6routing-base-scale-dpdk-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -21981,6 +22402,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
@@ -21997,6 +22419,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
@@ -22035,6 +22458,34 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-avf-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 2n-zn2-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-ndr"
@@ -22062,6 +22513,34 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr"
   layout:
     title: "2n-zn2-xxv710-78b-2t1c-ip6routing-base-scale-dpdk-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-78b-2t1c-ip6routing-rnd-base-scale-dpdk-pdr"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -23183,6 +23662,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
@@ -23199,6 +23679,7 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-avf-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
@@ -23237,6 +23718,34 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
+  title: "Speedup: 2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-avf-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-avf-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-avf-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
   title: "Speedup: 2n-zn2-xxv710-78b-ip6routing-base-scale-dpdk-ndr-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-78b-ip6routing-base-scale-dpdk-ndr-tsa"
@@ -23264,6 +23773,34 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
   layout:
     title: "2n-zn2-xxv710-78b-ip6routing-base-scale-dpdk-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-dpdk-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-78b-ip6routing-rnd-base-scale-dpdk-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -23860,12 +24397,34 @@
     layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
+  title: "Latency by percentile: 2n-skx RND"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-skx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_skx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-skx-rnd"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
+
+- type: "plot"
   title: "Latency by percentile: 2n-zn2"
   algorithm: "plot_hdrh_lat_by_percentile_x_log"
   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-zn2"
   output-file-links: "{DIR[LAT,VPP]}/2n_zn2.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-2n-zn2"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
+
+- type: "plot"
+  title: "Latency by percentile: 2n-zn2 RND"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-zn2"
+  output-file-links: "{DIR[LAT,VPP]}/2n_zn2.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-zn2-rnd"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
@@ -23892,6 +24451,17 @@
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
+# - type: "plot"
+#   title: "Latency by percentile: 2n-clx RND"
+#   algorithm: "plot_hdrh_lat_by_percentile_x_log"
+#   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-clx"
+#   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
+#   target-links: "../../_static/vpp"
+#   data: "plot-vpp-hdrh-lat-2n-clx-rnd"
+#   filter: "'2T1C' and 'NIC_Intel-XXV710'"
+#   layout:
+#     layout: "plot-hdrh-latency-percentile-x-log"
+
 - type: "plot"
   title: "Latency by percentile: 3n-hsw"
   algorithm: "plot_hdrh_lat_by_percentile_x_log"
@@ -23899,6 +24469,17 @@
   output-file-links: "{DIR[LAT,VPP]}/3n_hsw.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-3n-hsw"
+  filter: "'1T1C' and 'NIC_Intel-XL710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
+
+- type: "plot"
+  title: "Latency by percentile: 3n-hsw RND"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-hsw"
+  output-file-links: "{DIR[LAT,VPP]}/3n_hsw.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-3n-hsw-rnd"
   filter: "'1T1C' and 'NIC_Intel-XL710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
