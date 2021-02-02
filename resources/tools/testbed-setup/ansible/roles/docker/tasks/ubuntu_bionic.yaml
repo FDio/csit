@@ -23,5 +23,5 @@
   apt_repository:
     repo: "{{ docker_apt_repository }}"
     state: "{{ docker_apt_repository_state }}"
-    update_cache: True
+    update_cache: yes
   tags: docker-conf-apt
