@@ -1,11 +1,17 @@
 ---
 # file: roles/consul/tasks/main.yaml
 
+- Name: Update package cache (apt)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+
 - name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
-    update_cache: true
   tags:
     - consul-inst-prerequisites
 

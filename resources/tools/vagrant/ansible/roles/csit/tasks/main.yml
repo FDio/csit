@@ -62,7 +62,6 @@
   package:
     name: "{{ csit_packages | join(',') }}"
     state: 'latest'
-    update_cache: 'yes'
 
 - name: Adjust number of hugepages
   sysctl:
