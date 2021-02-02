@@ -421,12 +421,10 @@ ThunderX2 ARMv8 CN9975 processors. 2n-tx2 physical topology is shown below.
 
 SUT server is populated with the following NIC models:
 
-#. NIC-1: xl710-QDA2 2p40GE Intel.
+#. NIC-1: xl710-QDA2 2p40GE Intel (not connected).
 #. NIC-2: xl710-QDA2 2p40GE Intel.
 
 TG server run T-Rex application and is populated with the following
 NIC models:
 
-#. NIC-1: x710-DA4 4p10GE Intel.
-#. NIC-2: xxv710-DA2 2p25GE Intel.
-#. NIC-3: xl710-QDA2 2p40GE Intel.
+#. NIC-1: xl710-QDA2 2p40GE Intel.
