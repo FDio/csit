@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,27 +25,24 @@ class AbstractSearchAlgorithm(metaclass=ABCMeta):
         :param measurer: Object able to perform trial or composite measurements.
         :type measurer: AbstractMeasurer.AbstractMeasurer
         """
-        # TODO: Type check for AbstractMeasurer?
         self.measurer = measurer
 
     @abstractmethod
-    def narrow_down_ndr_and_pdr(
-            self, min_rate, max_rate, packet_loss_ratio):
+    def narrow_down_intervals(
+            self, min_rate, max_rate, packet_loss_ratios):
         """Perform measurements to narrow down intervals, return them.
-
-        This will be renamed when custom loss ratio lists are supported.
 
         :param min_rate: Minimal target transmit rate [tps].
             Usually, tests are set to fail if search reaches this or below.
         :param max_rate: Maximal target transmit rate [tps].
             Usually computed from line rate and various other limits,
             to prevent failures or duration stretching in Traffic Generator.
-        :param packet_loss_ratio: Fraction of packets lost, for PDR [1].
+        :param packet_loss_ratios: Ratios of packet loss to search for,
+            e.g. [0.0, 0.005] for NDR and PDR.
         :type min_rate: float
         :type max_rate: float
-        :type packet_loss_ratio: float
+        :type packet_loss_ratios: Iterable[float]
         :returns: Structure containing narrowed down intervals
             and their measurements.
-        :rtype: NdrPdrResult.NdrPdrResult
+        :rtype: List[ReceiveRateInterval.ReceiveRateInterval]
         """
-        # TODO: Do we agree on arguments related to precision or trial duration?
