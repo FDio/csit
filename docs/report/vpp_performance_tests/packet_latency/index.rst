@@ -17,6 +17,8 @@ percentiles at different packet rate load levels: i) No-Load latency
 streams only, ii) Low-Load at 10% PDR, iii) Mid-Load at 50% PDR and iv)
 High-Load at 90% PDR.
 
+For more details, see :ref:`latency_methodology`.
+
 Additional information about graph data:
 
 #. **Graph Title**: describes tested DUT packet path.
