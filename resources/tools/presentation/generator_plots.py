@@ -62,7 +62,8 @@ COLORS = (
 REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)-')
 
 # This value depends on latency stream rate (9001 pps) and duration (5s).
-PERCENTILE_MAX = 99.9995
+# 99.9995 would be enough, but six nines align better with x-axis marks.
+PERCENTILE_MAX = 99.9999
 
 
 def generate_plots(spec, data):
