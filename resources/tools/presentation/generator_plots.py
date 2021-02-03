@@ -62,7 +62,7 @@ COLORS = (
 REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)-')
 
 # This value depends on latency stream rate (9001 pps) and duration (5s).
-PERCENTILE_MAX = 99.9995
+PERCENTILE_MAX = 99.9999
 
 
 def generate_plots(spec, data):
@@ -336,7 +336,7 @@ def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
 
             fig = plgo.Figure()
             layout = deepcopy(plot[u"layout"])
-            xaxis_max = 0
+            # xaxis_max = 0
 
             for color, graph in enumerate(graphs):
                 for idx, direction in enumerate((u"direction1", u"direction2")):
@@ -396,11 +396,11 @@ def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
                             hoverinfo=u"text"
                         )
                     )
-                    xaxis_max = max(xaxis) if xaxis_max < max(
-                        xaxis) else xaxis_max
+                    # xaxis_max = max(xaxis) if xaxis_max < max(
+                    #     xaxis) else xaxis_max
 
             layout[u"title"][u"text"] = f"<b>Latency:</b> {name}"
-            layout[u"xaxis"][u"range"] = [0, int(log(xaxis_max, 10)) + 1]
+            layout[u"xaxis"][u"range"] = [0, int(log(100.0 / (100.0 - PERCENTILE_MAX), 10))]  # [0, 5.302]  # [0, int(log(xaxis_max, 10)) + 1]
             fig.update_layout(layout)
 
             # Create plot
