@@ -18,6 +18,10 @@
       tags: nomad
     - role: consul
       tags: consul
+    - role: prometheus_exporter
+      tags: prometheus_exporter
+    - role: cadvisor
+      tags: cadvisor
     - role: vpp_device
       tags: vpp_device
     - role: kernel_vm

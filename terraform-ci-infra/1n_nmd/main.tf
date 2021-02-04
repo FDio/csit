@@ -32,32 +32,6 @@ module "alertmanager" {
   alertmanager_slack_channel     = "fdio-infra-monitoring"
 }
 
-module "exporter" {
-  source                         = "./exporter"
-  providers                      = {
-    nomad = nomad.yul1
-  }
-
-  # nomad
-  nomad_datacenters              = [ "yul1" ]
-
-  # exporter
-  exporter_job_name              = "prod-exporter"
-  exporter_use_canary            = false
-
-  # node
-  node_version                   = "1.0.1"
-  node_port                      = 9100
-
-  # blackbox
-  blackbox_version               = "0.18.0"
-  blackbox_port                  = 9115
-
-  # cadvisor
-  cadvisor_image                 = "gcr.io/cadvisor/cadvisor:latest"
-  cadvisor_port                  = 8080
-}
-
 module "grafana" {
   source                         = "./grafana"
   providers                      = {

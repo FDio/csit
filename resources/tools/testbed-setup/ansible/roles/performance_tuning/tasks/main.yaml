@@ -1,26 +1,28 @@
 ---
 # file: roles/performance_tuning/tasks/main.yaml
 
-- Name: Update package cache (apt)
+- name: Inst - Update Package Cache (APT)
   apt:
     update_cache: yes
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - perf-inst-prerequisites
 
-- name: Performance Tuning - Install Distribution - Release - Machine Prerequisites
+- name: Inst - Machine Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
-    - install-dependencies
+    - perf-inst-prerequisites
 
-- name: Performance Tuning - Distribution - release - machine optimizations
+- name: Distribution - release - machine optimizations
   include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
   tags:
     - machine-optimizations
 
-- name: Performance Tuning - Configure {{ ansible_machine }} Kernel Parameters
+- name: Configure {{ ansible_machine }} Kernel Parameters
   lineinfile:
     path: "/etc/default/grub"
     state: "present"
@@ -33,7 +35,7 @@
 
 - meta: flush_handlers
 
-- name: Performance Tuning - Turbo Boost
+- name: Turbo Boost
   import_tasks: turbo_boost.yaml
   when: >
     cpu_microarchitecture == "skylake" or
@@ -41,7 +43,7 @@
   tags:
     - turbo-boost
 
-- name: Performance Tuning - Adjust nr_hugepages
+- name: Adjust nr_hugepages
   # change the minimum size of the hugepage pool.
   # 2G VPP, 4GB per VNF/CNF, 2G reserve
   sysctl:
@@ -53,7 +55,7 @@
   tags:
     - set-sysctl
 
-- name: Performance Tuning - Adjust max_map_count
+- name: Adjust max_map_count
   # this file contains the maximum number of memory map areas a process
   # may have. memory map areas are used as a side-effect of calling
   # malloc, directly by mmap and mprotect, and also when loading shared
@@ -72,7 +74,7 @@
   tags:
     - set-sysctl
 
-- name: Performance Tuning - Adjust hugetlb_shm_group
+- name: Adjust hugetlb_shm_group
   # hugetlb_shm_group contains group id that is allowed to create sysv
   # shared memory segment using hugetlb page.
   sysctl:
@@ -84,7 +86,7 @@
   tags:
     - set-sysctl
 
-- name: Performance Tuning - Adjust swappiness
+- name: Adjust swappiness
   # this control is used to define how aggressive the kernel will swap
   # memory pages.  higher values will increase agressiveness, lower values
   # decrease the amount of swap.  a value of 0 instructs the kernel not to
@@ -99,7 +101,7 @@
   tags:
     - set-sysctl
 
-- name: Performance Tuning - Adjust shmmax
+- name: Adjust shmmax
   # shared memory max must be greator or equal to the total size of hugepages.
   # for 2mb pages, totalhugepagesize = vm.nr_hugepages * 2 * 1024 * 1024
   # if the existing kernel.shmmax setting (cat /sys/proc/kernel/shmmax)
@@ -114,7 +116,7 @@
   tags:
     - set-sysctl
 
-- name: Performance Tuning - Adjust watchdog_cpumask
+- name: Adjust watchdog_cpumask
   # this value can be used to control on which cpus the watchdog may run.
   # the default cpumask is all possible cores, but if no_hz_full is
   # enabled in the kernel config, and cores are specified with the
@@ -134,7 +136,7 @@
   tags:
     - set-sysctl
 
-- name: Performance Tuning - Adjust randomize_va_space
+- name: Adjust randomize_va_space
   # this option can be used to select the type of process address
   # space randomization that is used in the system, for architectures
   # that support this feature.
@@ -150,7 +152,7 @@
   tags:
     - set-sysctl
 
-- name: Performance Tuning - Copy Cpufrequtils File
+- name: Copy Cpufrequtils File
   copy:
     src: "files/cpufrequtils"
     dest: "/etc/default/cpufrequtils"
@@ -160,7 +162,7 @@
   tags:
     - copy-cpufrequtils
 
-- name: Performance Tuning - Copy Irqbalance File
+- name: Copy Irqbalance File
   template:
     src: "files/irqbalance"
     dest: "/etc/default/irqbalance"
@@ -172,14 +174,14 @@
   tags:
     - copy-irqbalance
 
-- name: Performance Tuning - Set Ondemand Service To Disable
+- name: Set Ondemand Service To Disable
   service:
     name: "ondemand"
     enabled: "no"
   tags:
     - set-ondemand
 
-- name: Performance Tuning - Load Kernel Modules By Default
+- name: Load Kernel Modules By Default
   lineinfile:
     path: "/etc/modules"
     state: "present"
