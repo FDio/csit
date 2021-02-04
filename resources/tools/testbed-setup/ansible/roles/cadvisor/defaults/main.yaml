@@ -1,0 +1,24 @@
+---
+# file: roles/cadvisor/defaults/main.yaml
+
+packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+
+packages_base:
+  - []
+
+packages_by_distro:
+  ubuntu:
+    - "python3-docker"
+    - "python3-dockerpty"
+
+packages_by_arch:
+  aarch64:
+    - []
+  x86_64:
+    - []
+
+image: "{{ image_by_arch[ansible_machine] }}"
+
+image_by_arch:
+  aarch64: "zcube/cadvisor:v0.37.0"
+  x86_64: "gcr.io/cadvisor/cadvisor:v0.38.7"

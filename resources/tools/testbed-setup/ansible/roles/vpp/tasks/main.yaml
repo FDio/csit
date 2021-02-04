@@ -1,21 +1,23 @@
 ---
-# file: roles/sut/tasks/main.yaml
+# file: roles/vpp/tasks/main.yaml
 
-- Name: Update package cache (apt)
+- name: Inst - Update Package Cache (APT)
   apt:
     update_cache: yes
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - vpp-inst-prerequisites
 
-- name: SUT - Install Distribution - Release - Machine Prerequisites
+- name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
-    - install-dependencies
+    - vpp-inst-prerequisites
 
-- name: SUT - Install VPP 19.08 PIP requirements
+- name: Inst - VPP 19.08 PIP requirements
   pip:
     name:
       - "aenum==2.1.2"
@@ -23,7 +25,7 @@
   tags:
     - install-pip
 
-- name: SUT - Copy 80-vpp.conf
+- name: Copy 80-vpp.conf
   file:
     src: "/dev/null"
     dest: "/etc/sysctl.d/80-vpp.conf"

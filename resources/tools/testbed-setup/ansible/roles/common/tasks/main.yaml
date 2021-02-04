@@ -11,19 +11,21 @@
   tags:
     - set-proxy
 
-- Name: Update package cache (apt)
+- name: Inst - Update package cache (apt)
   apt:
     update_cache: yes
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - common-inst-prerequisites
 
-- name: Install Distribution - Release - Machine Prerequisites
+- name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
-    - install-dependencies
+    - common-inst-prerequisites
 
 - name: Install CSIT PIP requirements
   pip:
