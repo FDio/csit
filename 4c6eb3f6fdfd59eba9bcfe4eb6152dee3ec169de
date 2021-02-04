@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aaed05ee_00e45bda",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/files/nginx.conf",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-02-04T05:19:17Z",
+      "side": 1,
+      "message": "add space at the end ,and  I\u0027ll modify this file in small part during the test",
+      "parentUuid": "21210ad6_6b56cdca",
+      "range": {
+        "startLine": 37,
+        "startChar": 17,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "4c6eb3f6fdfd59eba9bcfe4eb6152dee3ec169de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07ba1442_786b53ba",
         "filename": "resources/tools/testbed-setup/ansible/roles/nginx/files/vcl.conf",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2021-02-03T09:48:04Z",
       "side": 1,
       "message": "Values here seem to depend on test case. We may want to test with larger files later.\nI think it is better to create this file during the test.",
+      "range": {
+        "startLine": 5,
+        "startChar": 15,
+        "endLine": 5,
+        "endChar": 31
+      },
+      "revId": "4c6eb3f6fdfd59eba9bcfe4eb6152dee3ec169de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ca52cb4_c84787cb",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/files/vcl.conf",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-02-04T05:19:17Z",
+      "side": 1,
+      "message": "OK, remove it. I will use \\resources\\templates\\vcl\\vcl_iperf3.conf during the test",
+      "parentUuid": "07ba1442_786b53ba",
       "range": {
         "startLine": 5,
         "startChar": 15,
