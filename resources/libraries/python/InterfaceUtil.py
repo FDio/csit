@@ -20,6 +20,7 @@ from ipaddress import ip_address
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
@@ -1678,23 +1679,6 @@ class InterfaceUtil:
         return sorted(details, key=lambda k: k[u"sw_if_index"])
 
     @staticmethod
-    def vpp_set_interface_rx_placement_in_loop(
-            node, sw_if_index, core_count):
-        """Set interface RX placement to worker on node in loop.
-
-        :param node: Node to run command on.
-        :param sw_if_index: VPP SW interface index.
-        :param core_count: Number of cores.
-        :type node: dict
-        :type sw_if_index: int
-        :type core_count: int
-        """
-        for thread in range(core_count):
-            InterfaceUtil.vpp_sw_interface_set_rx_placement(
-                node, sw_if_index, thread, thread
-            )
-
-    @staticmethod
     def vpp_sw_interface_set_rx_placement(
             node, sw_if_index, queue_id, worker_id):
         """Set interface RX placement to worker on node.
@@ -1723,17 +1707,29 @@ class InterfaceUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_round_robin_rx_placement(node, prefix):
+    def vpp_round_robin_rx_placement(
+        node, prefix, dp_worker_limit=None
+    ):
         """Set Round Robin interface RX placement on all worker threads
         on node.
 
+        If specified, dp_worker_limit limits the number of workers used for
+        data plane (I/O) work. Other workers are presumed to do something else,
+        e.g. asynchronous crypto processing.
+        None means all workers are used for data plane work.
+        Note this keyword specifies workers, not cores.
+
         :param node: Topology nodes.
         :param prefix: Interface name prefix.
+        :param dp_worker_limit: How many cores for data plane work.
         :type node: dict
         :type prefix: str
+        :type dp_worker_limit: Optional[int]
         """
         worker_id = 0
         worker_cnt = len(VPPUtil.vpp_show_threads(node)) - 1
+        if dp_worker_limit is not None:
+            worker_cnt = min(worker_cnt, dp_worker_limit)
         if not worker_cnt:
             return
         for placement in InterfaceUtil.vpp_sw_interface_rx_placement_dump(node):
@@ -1747,15 +1743,33 @@ class InterfaceUtil:
                     worker_id += 1
 
     @staticmethod
-    def vpp_round_robin_rx_placement_on_all_duts(nodes, prefix):
+    def vpp_round_robin_rx_placement_on_all_duts(
+        nodes, prefix, dp_core_limit=None
+    ):
         """Set Round Robin interface RX placement on all worker threads
         on all DUTs.
 
+        If specified, dp_core_limit limits the number of cores used for
+        data plane (I/O) work. Other cores are presumed to do something else,
+        e.g. asynchronous crypto processing.
+        None means all cores are used for data plane work.
+        Note this keyword specifies cores, not workers.
+
         :param nodes: Topology nodes.
         :param prefix: Interface name prefix.
+        :param dp_worker_limit: How many cores for data plane work.
         :type nodes: dict
         :type prefix: str
+        :type dp_worker_limit: Optional[int]
         """
+        dp_worker_limit = None
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                InterfaceUtil.vpp_round_robin_rx_placement(node, prefix)
+                if dp_core_limit is not None:
+                    if CpuUtils.is_smt_enabled(node[u"cpuinfo"])
+                        dp_worker_limit = 2 * dp_core_limit
+                    else:
+                        dp_worker_limit = 1 * dp_core_limit
+                InterfaceUtil.vpp_round_robin_rx_placement(
+                    node, prefix, dp_worker_limit
+                )

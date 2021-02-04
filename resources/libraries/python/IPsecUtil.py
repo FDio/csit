@@ -322,7 +322,7 @@ class IPsecUtil:
 
     @staticmethod
     def vpp_ipsec_crypto_sw_scheduler_set_worker(
-            node, worker_index, crypto_enable=0):
+            node, worker_index, crypto_enable=False):
         """Enable or disable crypto on specific vpp worker threads.
 
         :param node: VPP node to enable or disable crypto for worker threads.
@@ -330,7 +330,7 @@ class IPsecUtil:
         :param crypto_enable: Disable or enable crypto work.
         :type node: dict
         :type worker_index: int
-        :type crypto_enable: int
+        :type crypto_enable: bool
         :raises RuntimeError: If failed to enable or disable crypto for worker
             thread or if no API reply received.
         """
