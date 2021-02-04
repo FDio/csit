@@ -62,7 +62,7 @@ COLORS = (
 REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)-')
 
 # This value depends on latency stream rate (9001 pps) and duration (5s).
-PERCENTILE_MAX = 99.9999
+PERCENTILE_MAX = 99.9995
 
 
 def generate_plots(spec, data):
@@ -398,9 +398,10 @@ def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
                     )
 
             layout[u"title"][u"text"] = f"<b>Latency:</b> {name}"
-            layout[u"xaxis"][u"range"] = [
-                0, round(log(100.0 / (100.0 - PERCENTILE_MAX), 10))
-            ]
+            layout[u"xaxis"][u"range"] = [0, 5]
+            # layout[u"xaxis"][u"range"] = [
+            #     0, round(log(100.0 / (100.0 - PERCENTILE_MAX), 10))
+            # ]
             fig.update_layout(layout)
 
             # Create plot
