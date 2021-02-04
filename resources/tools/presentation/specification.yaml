@@ -435,14 +435,15 @@
         - 68  # rls2101.rel NDRPDR iter env 6
         - 73  # rls2101.rel NDRPDR iter env 6
         - 75  # rls2101.rel NDRPDR iter env 6
+        - 87  # rls2101.rel NDRPDR iter RND env 6
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 75  # rls2101.rel NDRPDR iter env 6
 
-#     plot-vpp-hdrh-lat-2n-clx-rnd:
-#       csit-vpp-perf-report-iterative-2101-2n-clx:
-#         -
+    plot-vpp-hdrh-lat-2n-clx-rnd:
+      csit-vpp-perf-report-iterative-2101-2n-clx:
+        - 87  # rls2101.rel NDRPDR iter RND env 6
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -1054,6 +1055,7 @@
         - 68  # rls2101.rel NDRPDR iter env 6
         - 73  # rls2101.rel NDRPDR iter env 6
         - 75  # rls2101.rel NDRPDR iter env 6
+        - 87  # rls2101.rel NDRPDR iter RND env 6
 
     vpp-performance-changes-2n-zn2-ref-env-old:
       csit-vpp-perf-report-iterative-2009-2n-zn2:
@@ -1745,6 +1747,7 @@
         - 68  # rls2101.rel NDRPDR iter env 6
         - 73  # rls2101.rel NDRPDR iter env 6
         - 75  # rls2101.rel NDRPDR iter env 6
+        - 87  # rls2101.rel NDRPDR iter RND env 6
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -1778,6 +1781,7 @@
         - 68  # rls2101.rel NDRPDR iter env 6
         - 73  # rls2101.rel NDRPDR iter env 6
         - 75  # rls2101.rel NDRPDR iter env 6
+        - 87  # rls2101.rel NDRPDR iter RND env 6
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -3065,6 +3069,7 @@
       - 68  # rls2101.rel NDRPDR iter env 6
       - 73  # rls2101.rel NDRPDR iter env 6
       - 75  # rls2101.rel NDRPDR iter env 6
+      - 87  # rls2101.rel NDRPDR iter RND env 6
       - 72  # rls2101.rel MRR nf-density iter env 6
       - 57  # rls2101.rel NDRPDR nf-density iter env 6
       - 62  # rls2101.rel NDRPDR nf-density iter env 6
