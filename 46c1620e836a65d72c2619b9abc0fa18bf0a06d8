@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "394364f7_f2f25101",
+        "filename": "docs/report/introduction/methodology_packet_latency.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-04T13:10:24Z",
+      "side": 1,
+      "message": "\"3-5 usec\" or \"4 usec on average\", as the spread is what you would expect from +/- 1 usec accuracy.",
+      "range": {
+        "startLine": 33,
+        "startChar": 2,
+        "endLine": 33,
+        "endChar": 10
+      },
+      "revId": "46c1620e836a65d72c2619b9abc0fa18bf0a06d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
