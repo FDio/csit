@@ -1,21 +1,23 @@
 ---
 # file: roles/iperf/tasks/main.yaml
 
-- Name: Update package cache (apt)
+- name: Inst - Update Package Cache (APT)
   apt:
     update_cache: yes
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - iperf-inst-prerequisites
 
-- name: iPerf - Install Distribution - Release - Machine Prerequisites
+- name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
-    - install-dependencies
+    - iperf-inst-prerequisites
 
-- name: iPerf - Get Release Archive
+- name: Get Release Archive
   get_url:
     url: "https://downloads.es.net/pub/iperf/iperf-{{ item }}.tar.gz"
     dest: "{{ iperf_target_dir }}/iperf-{{ item }}.tar.gz"
@@ -25,7 +27,7 @@
   tags:
     - install-iperf
 
-- name: iPerf - Extract Release Archive
+- name: Extract Release Archive
   unarchive:
     remote_src: true
     src: "{{ iperf_target_dir }}/iperf-{{ item }}.tar.gz"
@@ -35,7 +37,7 @@
   tags:
     - install-iperf
 
-- name: iPerf - Compile Release I
+- name: Compile Release I
   command: "./configure"
   args:
       chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
@@ -43,7 +45,7 @@
   tags:
     - install-iperf
 
-- name: iPerf - Compile Release II
+- name: Compile Release II
   command: "make"
   args:
       chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
@@ -51,7 +53,7 @@
   tags:
     - install-iperf
 
-- name: iPerf - Compile Release III
+- name: Compile Release III
   command: "make install"
   args:
       chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"

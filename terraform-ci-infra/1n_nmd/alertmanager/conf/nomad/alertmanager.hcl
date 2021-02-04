@@ -196,7 +196,7 @@ route:
   # alerts as-is. This is unlikely to be what you want, unless you have
   # a very low alert volume or your upstream notification system performs
   # its own grouping. Example: group_by: [...]
-  group_by: ['alertname', 'cluster', 'service']
+  group_by: ['alertname']
 
   # When a new group of alerts is created by an incoming alert, wait at
   # least 'group_wait' to send the initial notification.

@@ -1,21 +1,23 @@
 ---
 # file: roles/dpdk/tasks/main.yaml
 
-- Name: Update package cache (apt)
+- name: Inst - Update Package Cache (APT)
   apt:
     update_cache: yes
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - dpdk-inst-prerequisites
 
-- name: DPDK - Install Distribution - Release - Machine Prerequisites
+- name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
-    - install-dependencies
+    - dpdk-inst-prerequisites
 
-- name: DPDK - Download Release Archive
+- name: Download Release Archive
   get_url:
     url: "{{ dpdk_url }}/dpdk-{{ item }}.tar.xz"
     dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
@@ -25,7 +27,7 @@
   tags:
     - install-dpdk
 
-- name: DPDK - Extract Release Archive
+- name: Extract Release Archive
   unarchive:
     remote_src: true
     src: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
@@ -37,7 +39,7 @@
   tags:
     - install-dpdk
 
-- name: DPDK - Build igb_uio by default
+- name: Build igb_uio by default
   lineinfile:
     dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}/config/common_base"
     regexp: "^CONFIG_RTE_EAL_IGB_UIO"
@@ -48,7 +50,7 @@
   tags:
     - install-dpdk
 
-- name: DPDK - Compile Release I
+- name: Compile Release I
   become: yes
   command: "make install T={{ dpdk_build_targets[item][ansible_machine] }} DESTDIR={{ dpdk_target_dir }}/dpdk-{{ item }} chdir={{ dpdk_target_dir }}/dpdk-{{ item }}"
   loop: "{{ dpdk_version }}"
@@ -57,7 +59,7 @@
   tags:
     - install-dpdk
 
-- name: DPDK - Link igb_uio Module
+- name: Link igb_uio Module
   shell: "ln -fs {{ dpdk_target_dir }}/dpdk-{{ item }}/{{ dpdk_build_targets[item][ansible_machine] }}/kmod/igb_uio.ko /lib/modules/`uname -r`/igb_uio.ko && depmod -a"
   ignore_errors: "yes"
   loop: "{{ dpdk_version }}"
