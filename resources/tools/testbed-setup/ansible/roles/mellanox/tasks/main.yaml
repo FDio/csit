@@ -1,21 +1,23 @@
 ---
 # file: roles/mellanox/tasks/main.yaml
 
-- Name: Update package cache (apt)
+- name: Inst - Update Package Cache (APT)
   apt:
     update_cache: yes
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - mellanox-inst-prerequisites
 
-- name: Mellanox Install - Install Distribution - Release - Machine Prerequisites
+- name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
-    - install-dependencies
+    - mellanox-inst-prerequisites
 
-- name: Mellanox Install - Check Presence of Mellanox Hardware
+- name: Check Presence of Mellanox Hardware
   shell: "lspci | grep Mellanox | awk '{print $1}'"
   register: mellanox_pcis
   failed_when: no
@@ -23,7 +25,7 @@
   tags:
     - install-mellanox
 
-- name: Mellanox Install - Get OFED
+- name: Get OFED
   get_url:
     url: "http://content.mellanox.com/ofed/MLNX_OFED-{{ mellanox_version }}/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
     dest: "/opt/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
@@ -32,7 +34,7 @@
   tags:
     - install-mellanox
 
-- name: Mellanox Install - Extract OFED
+- name: Extract OFED
   unarchive:
     remote_src: true
     src: "/opt/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
@@ -43,7 +45,7 @@
   tags:
     - install-mellanox
 
-- name: Mellanox Install - Install OFED
+- name: Install OFED
   command: "./mlnxofedinstall --with-mft --dpdk --force --upstream-libs"
   args:
     chdir: "/opt/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}"
@@ -51,13 +53,13 @@
   tags:
     - install-mellanox
 
-- name: Mellanox Install - Switch Infiniband to Ethernet
+- name: Switch Infiniband to Ethernet
   command: "mlxconfig --yes --dev {{ item }} set LINK_TYPE_P1=2 LINK_TYPE_P2=2"
   with_items: "{{ mellanox_pcis.stdout_lines }}"
   tags:
     - install-mellanox
 
-- name: Mellanox Install - FIX qemu-system removal
+- name: FIX qemu-system removal
   package:
     name: "qemu-system"
     state: latest

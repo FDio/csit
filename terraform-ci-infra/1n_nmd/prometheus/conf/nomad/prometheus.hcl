@@ -225,13 +225,13 @@ groups:
       summary: "Prometheus target missing (instance {{ $labels.instance }})."
       description: "A Prometheus target has disappeared. An exporter might be crashed."
   - alert: HostHighCpuLoad
-    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
+    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 95
     for: 0m
     labels:
       severity: warning
     annotations:
       summary: "Host high CPU load (instance {{ $labels.instance }})."
-      description: "CPU load is > 80%."
+      description: "CPU load is > 95%."
   - alert: HostOutOfMemory
     expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
     for: 2m
@@ -443,15 +443,30 @@ scrape_configs:
 
   - job_name: 'Consul Cluster'
     static_configs:
-      - targets: [ '10.30.51.30:8500', '10.30.51.32:8500', '10.30.51.33:8500' ]
+      - targets: [ '10.30.51.28:8500' ]
+      - targets: [ '10.30.51.29:8500' ]
+      - targets: [ '10.30.51.30:8500' ]
+      - targets: [ '10.30.51.32:8500' ]
+      - targets: [ '10.30.51.33:8500' ]
+      - targets: [ '10.30.51.34:8500' ]
+      - targets: [ '10.30.51.35:8500' ]
+      - targets: [ '10.30.51.39:8500' ]
+      - targets: [ '10.30.51.40:8500' ]
+      - targets: [ '10.30.51.50:8500' ]
+      - targets: [ '10.30.51.51:8500' ]
+      - targets: [ '10.30.51.65:8500' ]
+      - targets: [ '10.30.51.66:8500' ]
+      - targets: [ '10.30.51.67:8500' ]
+      - targets: [ '10.30.51.68:8500' ]
+      - targets: [ '10.30.51.70:8500' ]
+      - targets: [ '10.30.51.71:8500' ]
+      - targets: [ '10.32.8.14:8500' ]
+      - targets: [ '10.32.8.15:8500' ]
+      - targets: [ '10.32.8.16:8500' ]
+      - targets: [ '10.32.8.17:8500' ]
     metrics_path: /v1/agent/metrics
     params:
       format: [ 'prometheus' ]
-
-  - job_name: 'Alertmanager'
-    consul_sd_configs:
-    - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
-      services: [ 'alertmanager' ]
 
   - job_name: 'Blackbox Exporter (icmp)'
     static_configs:
@@ -485,19 +500,62 @@ scrape_configs:
     metrics_path: /probe
 
   - job_name: 'cAdvisor Exporter'
+    static_configs:
+      - targets: [ '10.30.51.28:8080' ]
+      - targets: [ '10.30.51.29:8080' ]
+      - targets: [ '10.30.51.30:8080' ]
+      #- targets: [ '10.30.51.32:8080' ]
+      - targets: [ '10.30.51.33:8080' ]
+      - targets: [ '10.30.51.34:8080' ]
+      - targets: [ '10.30.51.35:8080' ]
+      - targets: [ '10.30.51.39:8080' ]
+      - targets: [ '10.30.51.40:8080' ]
+      - targets: [ '10.30.51.50:8080' ]
+      - targets: [ '10.30.51.51:8080' ]
+      - targets: [ '10.30.51.65:8080' ]
+      - targets: [ '10.30.51.66:8080' ]
+      - targets: [ '10.30.51.67:8080' ]
+      - targets: [ '10.30.51.68:8080' ]
+      - targets: [ '10.30.51.70:8080' ]
+      - targets: [ '10.30.51.71:8080' ]
+      - targets: [ '10.32.8.14:8080' ]
+      - targets: [ '10.32.8.15:8080' ]
+      - targets: [ '10.32.8.16:8080' ]
+      - targets: [ '10.32.8.17:8080' ]
+
+  - job_name: 'Node Exporter'
+    static_configs:
+      - targets: [ '10.30.51.28:9100' ]
+      - targets: [ '10.30.51.29:9100' ]
+      - targets: [ '10.30.51.30:9100' ]
+      - targets: [ '10.30.51.32:9100' ]
+      - targets: [ '10.30.51.33:9100' ]
+      - targets: [ '10.30.51.34:9100' ]
+      - targets: [ '10.30.51.35:9100' ]
+      - targets: [ '10.30.51.39:9100' ]
+      - targets: [ '10.30.51.40:9100' ]
+      - targets: [ '10.30.51.50:9100' ]
+      - targets: [ '10.30.51.51:9100' ]
+      - targets: [ '10.30.51.65:9100' ]
+      - targets: [ '10.30.51.66:9100' ]
+      - targets: [ '10.30.51.67:9100' ]
+      - targets: [ '10.30.51.68:9100' ]
+      - targets: [ '10.30.51.70:9100' ]
+      - targets: [ '10.30.51.71:9100' ]
+      - targets: [ '10.32.8.14:9100' ]
+      - targets: [ '10.32.8.15:9100' ]
+      - targets: [ '10.32.8.16:9100' ]
+      - targets: [ '10.32.8.17:9100' ]
+
+  - job_name: 'Alertmanager'
     consul_sd_configs:
     - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
-      services: [ 'cadvisorexporter' ]
+      services: [ 'alertmanager' ]
 
   - job_name: 'Grafana'
     consul_sd_configs:
     - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
       services: [ 'grafana' ]
-
-  - job_name: 'Node Exporter'
-    consul_sd_configs:
-    - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
-      services: [ 'nodeexporter' ]
 
   - job_name: 'Prometheus'
     consul_sd_configs:

@@ -1,0 +1,16 @@
+---
+# file roles/prometheus_exporter/handlers/main.yaml
+
+- name: Restart Prometheus Node Exporter
+  systemd:
+    daemon_reload: true
+    enabled: true
+    name: "prometheus-node-exporter"
+    state: "restarted"
+
+- name: Restart Prometheus Blackbox Exporter
+  systemd:
+    daemon_reload: true
+    enabled: true
+    name: "prometheus-blackbox-exporter"
+    state: "restarted"
