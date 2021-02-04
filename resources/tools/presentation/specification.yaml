@@ -24552,16 +24552,16 @@
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
-# - type: "plot"
-#   title: "Latency by percentile: 2n-clx RND"
-#   algorithm: "plot_hdrh_lat_by_percentile_x_log"
-#   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-clx"
-#   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
-#   target-links: "../../_static/vpp"
-#   data: "plot-vpp-hdrh-lat-2n-clx-rnd"
-#   filter: "'2T1C' and 'NIC_Intel-XXV710'"
-#   layout:
-#     layout: "plot-hdrh-latency-percentile-x-log"
+- type: "plot"
+  title: "Latency by percentile: 2n-clx RND"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-clx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-clx-rnd"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
   title: "Latency by percentile: 3n-hsw"
