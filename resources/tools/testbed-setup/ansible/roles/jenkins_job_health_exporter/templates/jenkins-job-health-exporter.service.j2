@@ -1,0 +1,13 @@
+[Unit]
+Description=Jenkins Job Health Exporter
+Documentation=https://github.com/ayourtch/jenkins-job-health-exporter
+
+[Service]
+Restart=always
+ExecStart={{ jenkins_job_health_exporter_target_dir }}/jenkins-job-health-exporter {{ jenkins_job_health_exporter_conf_dir }}/jenkins-job-health-exporter.json
+ExecReload=/bin/kill -HUP $MAINPID
+TimeoutStopSec=20s
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target
