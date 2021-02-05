@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "afd66e89_d019eee2",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2021-02-05T13:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af981ad7_979de17d",
+      "revId": "8db99fd0eb306f0619fd2e4415e8b1ee27c166f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6681c6e6_db94ad2c",
         "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
         "patchSetId": 11
@@ -33,6 +51,24 @@
       "revId": "8db99fd0eb306f0619fd2e4415e8b1ee27c166f2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7447274_f5be517a",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2021-02-05T13:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6681c6e6_db94ad2c",
+      "revId": "8db99fd0eb306f0619fd2e4415e8b1ee27c166f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "29d6ec02_161e4885",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2021-02-05T13:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79cf5b19_b8a82f2a",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 11
+      },
+      "revId": "8db99fd0eb306f0619fd2e4415e8b1ee27c166f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1f3bc86_902e8ecd",
         "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
         "patchSetId": 11
@@ -79,6 +139,30 @@
       "revId": "8db99fd0eb306f0619fd2e4415e8b1ee27c166f2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81b6dc18_b921caea",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2021-02-05T13:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1f3bc86_902e8ecd",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 14
+      },
+      "revId": "8db99fd0eb306f0619fd2e4415e8b1ee27c166f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "7aa357ff_a3ce176f",
+        "filename": "resources/tools/testbed-setup/ansible/roles/topology/tasks/main.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2021-02-05T13:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32ad7b21_b648994c",
+      "range": {
+        "startLine": 14,
+        "startChar": 73,
+        "endLine": 14,
+        "endChar": 85
+      },
+      "revId": "8db99fd0eb306f0619fd2e4415e8b1ee27c166f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0192c19_42eff622",
         "filename": "resources/tools/testbed-setup/ansible/templates/inventory_aws.j2",
         "patchSetId": 11
@@ -119,6 +227,24 @@
       "revId": "8db99fd0eb306f0619fd2e4415e8b1ee27c166f2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ef06c8a_800e98a0",
+        "filename": "resources/tools/testbed-setup/ansible/templates/inventory_aws.j2",
+        "patchSetId": 11
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2021-02-05T13:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0192c19_42eff622",
+      "revId": "8db99fd0eb306f0619fd2e4415e8b1ee27c166f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
