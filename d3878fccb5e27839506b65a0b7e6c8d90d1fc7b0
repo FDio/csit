@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ac3c5acd_de67d335",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-05T09:45:58Z",
+      "side": 1,
+      "message": "My understanding is that async crypto work is only one of possibly many special workload. set_node_worker_placement is specific to data plane work, it cannot assume which other workloads are enabled/disabled on the worker.",
+      "parentUuid": "3e65591a_24cdec2c",
+      "range": {
+        "startLine": 337,
+        "startChar": 16,
+        "endLine": 337,
+        "endChar": 46
+      },
+      "revId": "d3878fccb5e27839506b65a0b7e6c8d90d1fc7b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89270a2a_0bdefad5",
         "filename": "resources/libraries/robot/crypto/ipsec.robot",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2021-02-04T18:00:09Z",
       "side": 1,
       "message": "maybe copy also to line 244.5 or vice versa put code from VPP Round Robin Rx ... to VPP Ipsec Crypto SW... (the is_smt_used). So we have precedence how to use.",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 71
+      },
+      "revId": "d3878fccb5e27839506b65a0b7e6c8d90d1fc7b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e39296f_d1ce378d",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-05T09:45:58Z",
+      "side": 1,
+      "message": "I will think about it.",
+      "parentUuid": "89270a2a_0bdefad5",
       "range": {
         "startLine": 263,
         "startChar": 0,
