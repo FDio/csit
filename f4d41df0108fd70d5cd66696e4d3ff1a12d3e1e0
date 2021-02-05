@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "825043e6_9ea0be12",
+        "filename": "resources/tools/testbed-setup/ansible/roles/jenkins_job_health_exporter/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-05T15:27:38Z",
+      "side": 1,
+      "message": "This is a manually triggered per-patch job.\n2n-skx or 2n-clx are more popular archs to test on, if we really want to monitor those.",
+      "range": {
+        "startLine": 12,
+        "startChar": 33,
+        "endLine": 12,
+        "endChar": 39
+      },
+      "revId": "f4d41df0108fd70d5cd66696e4d3ff1a12d3e1e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
