@@ -464,6 +464,7 @@
         - 88  # rls2101.rel NDRPDR nf-density iter env 6
         - 89  # rls2101.rel NDRPDR nf-density iter env 6
         - 96  # rls2101.rel NDRPDR nf-density iter env 6
+        - 97  # rls2101.rel NDRPDR nf-density iter env 6
 
     plot-vpp-nfv-2n-clx-mrr:
       csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -717,7 +718,7 @@
       csit-vpp-perf-report-coverage-2101-2n-skx:
         - 1   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-00
         - 2   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-01
-#        - 3   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-02
+        - 3   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-02
         - 4   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-03
         - 5   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-04
         - 6   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-05
@@ -3061,7 +3062,7 @@
     csit-vpp-perf-report-coverage-2101-2n-skx:
       - 1   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-00
       - 2   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-01
-#       - 3   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-02
+      - 3   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-02
       - 4   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-03
       - 5   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-04
       - 6   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-05
@@ -3146,6 +3147,7 @@
       - 88  # rls2101.rel NDRPDR nf-density iter env 6
       - 89  # rls2101.rel NDRPDR nf-density iter env 6
       - 96  # rls2101.rel NDRPDR nf-density iter env 6
+      - 97  # rls2101.rel NDRPDR nf-density iter env 6
       - 55  # rls2101.rel NDRPDR reconf iter env 6
       - 64  # rls2101.rel NDRPDR reconf iter env 6
       - 76  # rls2101.rel NDRPDR reconf iter env 6
