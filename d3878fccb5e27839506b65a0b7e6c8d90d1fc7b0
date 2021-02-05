@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "674874a7_75bdbc17",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-05T10:26:03Z",
+      "side": 1,
+      "message": "\u003e set_node_worker(thread\u003didx,node\u003dname)\n\nArguments (line 325) are simple enough. But you still need to specify which workload are you enabling/disabling. Given the message name comes from VPP (crypto_sw_sheduler is the workload name, set_worker makes sense), the name in line 324 is maybe long but straightforward.",
+      "parentUuid": "c8aec2e5_25cded3e",
+      "range": {
+        "startLine": 337,
+        "startChar": 16,
+        "endLine": 337,
+        "endChar": 46
+      },
+      "revId": "d3878fccb5e27839506b65a0b7e6c8d90d1fc7b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89270a2a_0bdefad5",
         "filename": "resources/libraries/robot/crypto/ipsec.robot",
         "patchSetId": 1
