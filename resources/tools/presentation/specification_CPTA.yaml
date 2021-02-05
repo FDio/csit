@@ -4232,7 +4232,7 @@
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-mrr.64B-4t4c-ethip4-ip4scale20k-mrr"
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale200K-mrr.64B-4t4c-ethip4-ip4scale200k-mrr"
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale2M-mrr.64B-4t4c-ethip4-ip4scale2m-mrr"
-        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-mrr.64B-2t2c-ethip4-ip4scale20k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-mrr.64B-4t4c-ethip4-ip4scale20k-rnd-mrr"
       layout: "plot-cpta"
 
     - title: "3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-dpdk"
@@ -4938,6 +4938,7 @@
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-mrr.78B-1t1c-dot1q-ip6base-mrr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-mrr.78B-1t1c-ethip6-ip6base-mrr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-mrr.78B-1t1c-ethip6-ip6scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-mrr.78B-1t1c-ethip6-ip6scale2m-rnd-mrr"
       layout: "plot-cpta"
 
     - title: "3n-hsw-xl710-78b-2t2c-ip6routing-base-scale-dpdk"
@@ -4947,6 +4948,7 @@
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-mrr.78B-2t2c-dot1q-ip6base-mrr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-mrr.78B-2t2c-ethip6-ip6base-mrr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-mrr.78B-2t2c-ethip6-ip6scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-mrr.78B-2t2c-ethip6-ip6scale2m-rnd-mrr"
       layout: "plot-cpta"
 
     - title: "3n-hsw-xl710-78b-4t4c-ip6routing-base-scale-dpdk"
@@ -4956,6 +4958,7 @@
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-mrr.78B-4t4c-dot1q-ip6base-mrr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-mrr.78B-4t4c-ethip6-ip6base-mrr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-mrr.78B-4t4c-ethip6-ip6scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-mrr.78B-4t4c-ethip6-ip6scale2m-rnd-mrr"
       layout: "plot-cpta"
 
     - title: "3n-skx-x710-78b-2t1c-ip6routing-base-scale-avf"
@@ -7684,8 +7687,8 @@
         - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-avf-ethip6-ip6scale2m-rnd-ndrpdr"
       layout: "plot-cpta"
 
-    - title: "2n-clx-xxv710-78b-2t1c-ip6-base-scale-avf-pdr"
-      output-file-name: "2n-clx-xxv710-78b-2t1c-ip6-base-scale-avf-pdr"
+    - title: "2n-clx-xxv710-78b-2t1c-ip6-rnd-base-scale-avf-pdr"
+      output-file-name: "2n-clx-xxv710-78b-2t1c-ip6-rnd-base-scale-avf-pdr"
       data: "plot-ndrpdr-comparison-2n-clx"
       include-tests: "PDR"
       include:
@@ -9371,6 +9374,7 @@
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-Ndrpdr.78B-1t1c-dot1q-ip6base-ndrpdr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-Ndrpdr.78B-1t1c-ethip6-ip6base-ndrpdr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-rnd-ndrpdr"
       layout: "plot-cpta"
 
     - title: "3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-dpdk-pdr"
@@ -9381,6 +9385,7 @@
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-Ndrpdr.78B-1t1c-dot1q-ip6base-ndrpdr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-Ndrpdr.78B-1t1c-ethip6-ip6base-ndrpdr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-rnd-ndrpdr"
       layout: "plot-cpta"
 
 # 3n-hsw l2
