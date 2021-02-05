@@ -188,6 +188,24 @@ job "${job_name}" {
         data            = <<EOH
 ---
 groups:
+- name: "Jenkins Job Health Exporter"
+  rules:
+  - alert: JenkinsJobHealthExporterFailures
+    expr: jenkins_job_failure{id=~".*"} >= 10
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Jenkins Job Health detected high failure rate on jenkins jobs."
+      description: "Job: {{ $labels.id }}"
+  - alert: JenkinsJobHealthExporterUnstable
+    expr: jenkins_job_unstable{id=~".*"} >= 10
+    for: 0m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Jenkins Job Health detected high unstable rate on jenkins jobs."
+      description: "Job: {{ $labels.id }}"
 - name: "Consul"
   rules:
   - alert: ConsulServiceHealthcheckFailed
@@ -522,6 +540,20 @@ scrape_configs:
       - targets: [ '10.32.8.15:8080' ]
       - targets: [ '10.32.8.16:8080' ]
       - targets: [ '10.32.8.17:8080' ]
+
+  - job_name: 'Jenkins Job Health Exporter'
+    static_configs:
+      - targets: [ '10.30.51.32:9186' ]
+    metric_relabel_configs:
+      - source_labels: [ __name__ ]
+        regex: '^(vpp.*|csit.*)_(success|failure|total|unstable|reqtime_ms)$'
+        action: replace
+        replacement: '$1'
+        target_label: id
+      - source_labels: [ __name__ ]
+        regex: '^(vpp.*|csit.*)_(success|failure|total|unstable|reqtime_ms)$'
+        replacement: 'jenkins_job_$2'
+        target_label: __name__
 
   - job_name: 'Node Exporter'
     static_configs:

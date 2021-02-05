@@ -65,20 +65,38 @@ variable "alertmanager_port" {
   default     = 9093
 }
 
-variable "alertmanager_default_receiver" {
-  description = "Alertmanager default receiver"
-  type        = string
-  default     = "default-receiver"
-}
-
-variable "alertmanager_slack_api_key" {
-  description = "Alertmanager slack API key"
+variable "alertmanager_slack_jenkins_api_key" {
+  description = "Alertmanager jenkins slack API key"
   type        = string
   default     = "XXXXXXXXX/XXXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX"
 }
 
-variable "alertmanager_slack_channel" {
-  description = "Alertmanager slack channel"
+variable "alertmanager_slack_jenkins_receiver" {
+  description = "Alertmanager jenkins slack receiver"
   type        = string
-  default     = "slack-channel"
+  default     = "jenkins-slack-receiver"
+}
+
+variable "alertmanager_slack_jenkins_channel" {
+  description = "Alertmanager jenkins slack channel"
+  type        = string
+  default     = "jenkins-channel"
+}
+
+variable "alertmanager_slack_default_api_key" {
+  description = "Alertmanager default slack API key"
+  type        = string
+  default     = "XXXXXXXXX/XXXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX"
+}
+
+variable "alertmanager_slack_default_receiver" {
+  description = "Alertmanager default slack receiver"
+  type        = string
+  default     = "default-slack-receiver"
+}
+
+variable "alertmanager_slack_default_channel" {
+  description = "Alertmanager default slack channel"
+  type        = string
+  default     = "default-channel"
 }
