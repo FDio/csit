@@ -398,10 +398,7 @@ def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
                     )
 
             layout[u"title"][u"text"] = f"<b>Latency:</b> {name}"
-            layout[u"xaxis"][u"range"] = [0, 5]
-            # layout[u"xaxis"][u"range"] = [
-            #     0, round(log(100.0 / (100.0 - PERCENTILE_MAX), 10))
-            # ]
+            layout[u"xaxis"][u"range"] = [0, 5.302]
             fig.update_layout(layout)
 
             # Create plot
