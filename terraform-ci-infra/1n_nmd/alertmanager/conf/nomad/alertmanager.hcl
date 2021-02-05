@@ -160,10 +160,6 @@ job "${job_name}" {
         left_delimiter  = "{{{"
         right_delimiter = "}}}"
         data            = <<EOH
-global:
-  # The API URL to use for Slack notifications.
-  slack_api_url: 'https://hooks.slack.com/services/${slack_api_key}'
-
 # The directory from which notification templates are read.
 templates:
 - '/etc/alertmanager/template/*.tmpl'
@@ -185,7 +181,7 @@ templates:
 
 # The root route on which each incoming alert enters.
 route:
-  receiver: '${default_receiver}'
+  receiver: '${slack_default_receiver}'
 
   # The labels by which incoming alerts are grouped together. For example,
   # multiple alerts coming in for cluster=A and alertname=LatencyHigh would
@@ -217,18 +213,13 @@ route:
   # overwritten on each.
   # The child route trees.
   routes:
-  # This routes performs a regular expression match on alert labels to
-  # catch alerts that are related to a list of services.
+  - match_re:
+      alertname: JenkinsJob.*
+    receiver: ${slack_jenkins_receiver}
+
   - match_re:
       service: .*
-    receiver: ${default_receiver}
-    # The service has a sub-route for critical alerts, any alerts
-    # that do not match, i.e. severity != critical, fall-back to the
-    # parent node and are sent to 'team-X-mails'
-    routes:
-    - match:
-        severity: critical
-      receiver: '${default_receiver}'
+    receiver: ${slack_default_receiver}
 
 # Inhibition rules allow to mute a set of alerts given that another alert is
 # firing.
@@ -239,17 +230,42 @@ inhibit_rules:
     severity: 'critical'
   target_match:
     severity: 'warning'
-  # Apply inhibition if the alertname is the same.
-  # CAUTION:
-  #   If all label names listed in `equal` are missing
-  #   from both the source and target alerts,
-  #   the inhibition rule will apply!
-  equal: ['alertname', 'cluster', 'service']
+  equal: ['alertname', 'instance']
 
 receivers:
-- name: '${default_receiver}'
+- name: '${slack_jenkins_receiver}'
   slack_configs:
-  - channel: '#${slack_channel}'
+  - api_url: 'https://hooks.slack.com/services/${slack_jenkins_api_key}'
+    channel: '#${slack_jenkins_channel}'
+    send_resolved: true
+    icon_url: https://avatars3.githubusercontent.com/u/3380462
+    title: |-
+     [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.job }}
+     {{- if gt (len .CommonLabels) (len .GroupLabels) -}}
+       {{" "}}(
+       {{- with .CommonLabels.Remove .GroupLabels.Names }}
+         {{- range $index, $label := .SortedPairs -}}
+           {{ if $index }}, {{ end }}
+           {{- $label.Name }}="{{ $label.Value -}}"
+         {{- end }}
+       {{- end -}}
+       )
+     {{- end }}
+    text: >-
+     {{ range .Alerts -}}
+     *Alert:* {{ .Annotations.summary }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
+
+     *Description:* {{ .Annotations.description }}
+
+     *Details:*
+       {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+       {{ end }}
+     {{ end }}
+
+- name: '${slack_default_receiver}'
+  slack_configs:
+  - api_url: 'https://hooks.slack.com/services/${slack_default_api_key}'
+    channel: '#${slack_default_channel}'
     send_resolved: true
     icon_url: https://avatars3.githubusercontent.com/u/3380462
     title: |-
