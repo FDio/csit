@@ -20,6 +20,8 @@
       tags: consul
     - role: prometheus_exporter
       tags: prometheus_exporter
+    - role: jenkins_job_health_exporter
+      tags: jenkins_job_health_exporter
     - role: cadvisor
       tags: cadvisor
     - role: vpp_device

@@ -1,0 +1,35 @@
+---
+# file: roles/jenkins_job_health_exporter/defaults/main.yaml
+
+# Conf - Jenkins Job Health Exporter.
+jenkins_host: "jenkins.fd.io"
+poll_interval_sec: 1800
+req_timeout_sec: 30
+bind_to: "0.0.0.0:9186"
+last_builds: 10
+jobs:
+  - "vpp-csit-verify-api-crc-master"
+  - "vpp-beta-verify-master-ubuntu2004-aarch64"
+  - "vpp-verify-master-centos8-aarch64"
+  - "vpp-verify-master-ubuntu1804-aarch64"
+  - "vpp-gcc-verify-master-ubuntu2004-x86_64"
+  - "vpp-verify-master-centos8-x86_64"
+  - "vpp-verify-master-debian10-x86_64"
+  - "vpp-verify-master-ubuntu2004-x86_64"
+  - "vpp-verify-master-ubuntu1804-x86_64"
+  - "vpp-debug-verify-master-ubuntu2004-x86_64"
+  - "vpp-checkstyle-verify-master-ubuntu2004-x86_64"
+  - "vpp-sphinx-docs-verify-master-ubuntu1804-x86_64"
+  - "vpp-docs-verify-master-ubuntu1804-x86_64"
+  - "vpp-make-test-docs-verify-master-ubuntu1804-x86_64"
+  - "vpp-csit-verify-device-master-1n-skx"
+  - "vpp-csit-verify-device-master-1n-tx2"
+
+# Conf - Service.
+jenkins_job_health_exporter_restart_handler_state: "restarted"
+
+# Inst - System paths.
+jenkins_job_health_exporter_target_dir: "/usr/bin"
+jenkins_job_health_exporter_conf_dir: "/etc"
+jenkins_job_health_exporter_url: "https://github.com/ayourtch/jenkins-job-health-exporter/releases/download"
+jenkins_job_health_exporter_version: "v0.0.3"
