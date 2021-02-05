@@ -962,8 +962,8 @@ class TrafficGenerator(AbstractMeasurer):
         if self.ramp_up_rate:
             # Figure out whether we need to insert a ramp-up trial.
             # TODO: Give up on async_call=True?
-            if self.ramp_up_start is None:
-                # We never ramped up yet.
+            if ramp_up_only or self.ramp_up_start is None:
+                # We never ramped up yet (at least not in this test case).
                 ramp_up_needed = True
             else:
                 # We ramped up before, but maybe it was too long ago.
