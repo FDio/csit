@@ -85,17 +85,17 @@
 | Local Template
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPSec tunneling AES_128_CBC / HMAC_SHA_256 config.\
-| | ... | Each DUT uses one physical core(s) for worker threads
-| | ... | and ${crypto_cores} physical core(s) for crypto work.
+| | ... | Each DUT uses one physical core for data plane workers
+| | ... | and rest of ${phy_cores} physical core(s) for crypto workers.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
-| | ... | - crypto_cores - Number of async physical cores. Type: integer
+| | ... | - phy_cores - Total number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${1}. Type: integer
 | |
-| | [Arguments] | ${frame_size} | ${crypto_cores} | ${rxq}=${1}
+| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${1}
 | |
 | | Set Test Variable | \${frame_size}
 | |
@@ -103,7 +103,6 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA 256 128
 | |
-| | ${phy_cores}= | Evaluate | ${crypto_cores} + 1
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
@@ -120,50 +119,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 64B | 1C
-| | frame_size=${64} | crypto_cores=${1}
-
 | 64B-2c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
 | | [Tags] | 64B | 2C
-| | frame_size=${64} | crypto_cores=${2}
+| | frame_size=${64} | phy_cores=${2}
+
+| 64B-3c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 64B | 3C
+| | frame_size=${64} | phy_cores=${3}
 
 | 64B-4c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
 | | [Tags] | 64B | 4C
-| | frame_size=${64} | crypto_cores=${4}
-
-| 1518B-1c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 1518B | 1C
-| | frame_size=${1518} | crypto_cores=${1}
+| | frame_size=${64} | phy_cores=${4}
 
 | 1518B-2c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
 | | [Tags] | 1518B | 2C
-| | frame_size=${1518} | crypto_cores=${2}
+| | frame_size=${1518} | phy_cores=${2}
+
+| 1518B-3c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 1518B | 3C
+| | frame_size=${1518} | phy_cores=${3}
 
 | 1518B-4c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
 | | [Tags] | 1518B | 4C
-| | frame_size=${1518} | crypto_cores=${4}
-
-| 9000B-1c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 9000B | 1C
-| | frame_size=${9000} | crypto_cores=${1}
+| | frame_size=${1518} | phy_cores=${4}
 
 | 9000B-2c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
 | | [Tags] | 9000B | 2C
-| | frame_size=${9000} | crypto_cores=${2}
+| | frame_size=${9000} | phy_cores=${2}
+
+| 9000B-3c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 9000B | 3C
+| | frame_size=${9000} | phy_cores=${3}
 
 | 9000B-4c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
 | | [Tags] | 9000B | 4C
-| | frame_size=${9000} | crypto_cores=${4}
-
-| IMIX-1c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | IMIX | 1C
-| | frame_size=IMIX_v4_1 | crypto_cores=${1}
+| | frame_size=${9000} | phy_cores=${4}
 
 | IMIX-2c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
 | | [Tags] | IMIX | 2C
-| | frame_size=IMIX_v4_1 | crypto_cores=${2}
+| | frame_size=IMIX_v4_1 | phy_cores=${2}
+
+| IMIX-3c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | IMIX | 3C
+| | frame_size=IMIX_v4_1 | phy_cores=${3}
 
 | IMIX-4c-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
 | | [Tags] | IMIX | 4C
-| | frame_size=IMIX_v4_1 | crypto_cores=${4}
+| | frame_size=IMIX_v4_1 | phy_cores=${4}
