@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed33310f_72afe627",
+        "filename": "resources/tools/presentation/generator_plots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-05T09:54:17Z",
+      "side": 1,
+      "message": "Did you just hardcode the result of:\n\n  log(100.0 / (100.0 - PERCENTILE_MAX), 10)\n\nfor the current value of PERCENTILE_MAX?",
+      "range": {
+        "startLine": 401,
+        "startChar": 45,
+        "endLine": 401,
+        "endChar": 50
+      },
+      "revId": "0c02e000ae58474120246c484cf5458a76510288",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
