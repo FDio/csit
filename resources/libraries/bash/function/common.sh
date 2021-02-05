@@ -902,20 +902,19 @@ function select_tags () {
             ;;
         *"2n-dnv"*)
             test_tag_array+=("!ipsechw")
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
+#            test_tag_array+=("!memif")
+#            test_tag_array+=("!srv6_proxy")
+#            test_tag_array+=("!vhost")
+#            test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
             ;;
         *"2n-tx2"*)
             test_tag_array+=("!ipsechw")
             ;;
         *"3n-dnv"*)
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
+#            test_tag_array+=("!srv6_proxy")
+#            test_tag_array+=("!vhost")
+#            test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
             ;;
         *"3n-tsh"*)
