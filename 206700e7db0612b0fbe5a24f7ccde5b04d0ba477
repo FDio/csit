@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01b3e520_a734a3c2",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 38
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-05T10:44:16Z",
+      "side": 1,
+      "message": "result",
+      "range": {
+        "startLine": 535,
+        "startChar": 18,
+        "endLine": 535,
+        "endChar": 23
+      },
+      "revId": "206700e7db0612b0fbe5a24f7ccde5b04d0ba477",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
