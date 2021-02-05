@@ -224,6 +224,30 @@
       "revId": "d3878fccb5e27839506b65a0b7e6c8d90d1fc7b0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a31f46d_c4105d2e",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-05T16:14:17Z",
+      "side": 1,
+      "message": "Some improvements in patch set #3.\nFull cleanup probably during the design retouch (central Python-accessible location for SMT info, decision whether it is per testbed or per DUT, ...).",
+      "parentUuid": "0e39296f_d1ce378d",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 71
+      },
+      "revId": "d3878fccb5e27839506b65a0b7e6c8d90d1fc7b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
