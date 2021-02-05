@@ -1,0 +1,34 @@
+---
+# file: roles/docker_cleanup/tasks/main.yaml
+
+- name: Prefetch docker images
+  cron:
+    name: "Prefetch docker images"
+    minute: "10"
+    hour: "7"
+    job: >
+      "/usr/bin/docker pull snergster/vpp-ubuntu16 & "
+  tags:
+    - docker-image-prefetch
+
+- name: Remove dangling docker images
+  cron:
+    name: "Prefetch docker images"
+    minute: "10"
+    hour: "5"
+    weekday: 7
+    job: >
+      "/usr/bin/docker rmi $(/usr/bin/docker images --filter 'dangling=true' -q)"
+  tags:
+    - docker-image-remove-dangling
+
+- name: Prune docker images
+  cron:
+    name: "Prune docker images"
+    minute: "10"
+    hour: "6"
+    weekday: 7
+    job: >
+      "/usr/bin/docker image prune --all --force"
+  tags:
+    - docker-image-prune

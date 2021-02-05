@@ -1,0 +1,21 @@
+---
+# file: roles/jenkins_job_health_exporter/defaults/main.yaml
+
+# Conf - Jenkins Job Health Exporter.
+jenkins_host: "jenkins.fd.io"
+poll_interval_sec: 1800
+req_timeout_sec: 30
+bind_to: "0.0.0.0:9186"
+last_builds: 10
+jobs:
+  - "vpp-csit-verify-device-master-1n-skx"
+  - "vpp-csit-verify-perf-master-3n-hsw"
+
+# Conf - Service.
+jenkins_job_health_exporter_restart_handler_state: "restarted"
+
+# Inst - System paths.
+jenkins_job_health_exporter_target_dir: "/usr/bin"
+jenkins_job_health_exporter_conf_dir: "/etc"
+jenkins_job_health_exporter_url: "https://github.com/ayourtch/jenkins-job-health-exporter/releases/download"
+jenkins_job_health_exporter_version: "v0.0.3"

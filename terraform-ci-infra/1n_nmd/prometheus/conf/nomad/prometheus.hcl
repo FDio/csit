@@ -188,6 +188,24 @@ job "${job_name}" {
         data            = <<EOH
 ---
 groups:
+- name: "Jenkins Job Health Exporter"
+  rules:
+  - alert: JenkinsJobHealthExporterFailed
+    expr: vpp_csit_verify_device_master_1n_skx_failure > vpp_csit_verify_device_master_1n_skx_success
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Jenkins Job Health detected high failure rate."
+      description: "Jenkins Job Health detected high failure rate: vpp_csit_verify_device_master_1n_skx."
+  - alert: JenkinsJobHealthExporterFailed
+    expr: vpp_csit_verify_perf_master_3n_hsw_failure > vpp_csit_verify_perf_master_3n_hsw_success
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Jenkins Job Health detected high failure rate."
+      description: "Jenkins Job Health detected high failure rate: vpp_csit_verify_perf_master_3n_hsw."
 - name: "Consul"
   rules:
   - alert: ConsulServiceHealthcheckFailed
@@ -522,6 +540,10 @@ scrape_configs:
       - targets: [ '10.32.8.15:8080' ]
       - targets: [ '10.32.8.16:8080' ]
       - targets: [ '10.32.8.17:8080' ]
+
+  - job_name: 'Jenkins Job Health Exporter'
+    static_configs:
+      - targets: [ '10.30.51.32:9186' ]
 
   - job_name: 'Node Exporter'
     static_configs:
