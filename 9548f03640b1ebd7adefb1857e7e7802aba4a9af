@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20a76e90_938bc726",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2021-02-07T02:41:05Z",
+      "side": 1,
+      "message": "here ${duts} should be ${nodes}, otherwise to run test cases will report error as below,\n\nAttributeError: \u0027list\u0027 object has no attribute \u0027values\u0027",
+      "revId": "9548f03640b1ebd7adefb1857e7e7802aba4a9af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
