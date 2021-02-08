@@ -12,10 +12,11 @@ Test Methodology
     methodology_trex_traffic_generator
     methodology_dut_state
     methodology_nat44
+    methodology_packet_latency
+    methodology_randomized_profiles
     methodology_tunnel_encapsulations
     methodology_ipsec
     methodology_acls
-    methodology_packet_latency
     methodology_multi_core_speedup
     methodology_hoststack_testing/index
     methodology_reconf
