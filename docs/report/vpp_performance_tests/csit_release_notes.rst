@@ -9,13 +9,6 @@ Changes in |csit-release|
    - CSIT test environment is versioned, see
      :ref:`test_environment_versioning`.
 
-   - To identify performance changes due to VPP code changes from
-     v20.05.0 to v20.09.0, both have been tested in CSIT environment
-     ver. 5 and compared against each other. All substantial
-     progressions has been marked up with RCA analysis. See
-     :ref:`vpp_compare_current_vs_previous_release` and
-     :ref:`vpp_known_issues`.
-
    - **GENEVE tests**: Added VPP performance tests for GENEVE tunnels.
 
      - See :ref:`geneve_methodology` for more details.
@@ -46,33 +39,24 @@ Changes in |csit-release|
    - **IPSec async mode tests**: Added VPP performance tests for async crypto
      engine.
 
-   - **AMD 2n-zn2 testbed**: New physical testbed type installed in
-     FD.io CSIT, with VPP and DPDK performance data added to CSIT
-     trending and this report.
-
    - **AMD 2n-tx2 testbed**: New physical testbed type installed in
      FD.io CSIT, with VPP and DPDK performance data added to CSIT
      trending and this report.
 
 #. TEST FRAMEWORK
 
-   - **TRex ASTF**: Added capability to run TRex in advanced stateful mode.
+   - **TRex ASTF**: Improved capability to run TRex in advanced stateful mode.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, VAT is
      still used in CSIT for all VPP scale tests. See known issues below.
 
-   - **General Code Housekeeping**: Ongoing RF keywords optimizations,
-     removal of redundant RF keywords and aligning of suite/test
-     setup/teardowns.
-
-   - **Intel E810CQ 100G NIC**: Added configuration for Intel E810CQ 100G NIC.
-     No tests run for this NIC as it is not present in FD.io CSIT lab yet.
+   - **General Code Housekeeping**: Ongoing code optimizations,
+     speed ups and bug fixes.
 
 #. PRESENTATION AND ANALYTICS LAYER
 
-   - **Graphs improvements**: Added possibility to use Gbps on Y-axis in
-     Packet Throughput and Speedup Multi-Core graphs, added unidirectional
-     mode to the Latency graphs.
+   - **Graphs improvements**: Updated Packet Latency graphs,
+     see :ref:`latency_methodology`.
 
 .. raw:: latex
 
@@ -112,9 +96,6 @@ List of known issues in |csit-release| for VPP performance tests:
 |    |                                         | "I40E_AQ_PHY_LINK_ENABLED" call, then VPP during initialization of AVF interface is not re-enabling       |
 |    |                                         | interface link via i40e driver to up.                                                                     |
 |    |                                         | CSIT implemented `workaround for AVF interface <https://gerrit.fd.io/r/c/csit/+/29086>`_ until fixed.     |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1760                              | All Mellanox / rdma driver tests are failing on LF testbed28 while successfully run on other LF testbeds. |
-|    | <https://jira.fd.io/browse/CSIT-1760>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Root Cause Analysis for Performance Changes
