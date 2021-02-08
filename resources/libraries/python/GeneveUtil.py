@@ -18,6 +18,7 @@ from ipaddress import ip_address
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 
@@ -124,3 +125,73 @@ class GeneveUtil:
             u"geneve_tunnel_dump",
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
+
+    @staticmethod
+    def vpp_geneve_add_multiple_tunnels(
+        node, gen_tunnel, n_tunnels, dut_if1, dut_if2, tg_if1_ip4,
+        tg_if2_ip4, tg_pf2_mac, next_idx,
+    ):
+        """Create multiple GENEVE tunnels.
+
+        :param node: DUT node.
+        :param gen_tunnel: PArameters of the GENEVE tunnel.
+        :param n_tunnels: Number of tunnels.
+        :param dut_if1: The first DUT interface.
+        :param dut_if2: The second DUT interface.
+        :param tg_if1_ip4: TG interface 1 IP address.
+        :param tg_if2_ip4: TG interface 2 IP address.
+        :param tg_pf2_mac: TG interface 2 MAC address.
+        :param next_idx: The index of the next node.
+        :type node: dict
+        :type gen_tunnel: dict
+        :type n_tunnels: int
+        :type dut_if1: str
+        :type dut_if2: str
+        :type tg_if1_ip4: str
+        :type tg_if2_ip4: str
+        :type tg_pf2_mac: str
+        :type next_idx: int
+        """
+
+        src_ip_int = IPUtil.ip_to_int(gen_tunnel[u"src_ip"])
+        dst_ip_int = IPUtil.ip_to_int(gen_tunnel[u"dst_ip"])
+        if_ip_int = IPUtil.ip_to_int(gen_tunnel[u"if_ip"])
+
+        for idx in range(n_tunnels):
+            src_ip = IPUtil.int_to_ip(src_ip_int + idx * 256)
+            dst_ip = IPUtil.int_to_ip(dst_ip_int + idx * 256)
+            if_ip = IPUtil.int_to_ip(if_ip_int + idx * 256)
+
+            IPUtil.vpp_route_add(
+                node, src_ip, gen_tunnel[u"ip_mask"],
+                **dict(gateway=tg_if1_ip4, interface=dut_if1)
+            )
+            tunnel_sw_index = GeneveUtil.add_geneve_tunnel(
+                node, gen_tunnel[u"local"], gen_tunnel[u"remote"],
+                gen_tunnel[u"vni"] + idx, l3_mode=True, next_index=next_idx
+            )
+            tunnel_if_key = Topology.get_interface_by_sw_index(
+                node, tunnel_sw_index
+            )
+            tunnel_if_mac = Topology.get_interface_mac(
+                node, tunnel_if_key
+            )
+            IPUtil.vpp_interface_set_ip_address(node, tunnel_if_key, if_ip, 24)
+            IPUtil.vpp_add_ip_neighbor(
+                node, tunnel_if_key, tg_if2_ip4, tg_pf2_mac
+            )
+            IPUtil.vpp_route_add(
+                node, dst_ip, gen_tunnel[u"ip_mask"],
+                **dict(gateway=tg_if2_ip4, interface=tunnel_if_key)
+            )
+            IPUtil.vpp_route_add(
+                node, gen_tunnel[u"remote"], 32,
+                **dict(gateway=tg_if2_ip4, interface=dut_if2)
+            )
+            IPUtil.vpp_add_ip_neighbor(
+                node, tunnel_if_key, gen_tunnel[u"local"], tunnel_if_mac
+            )
+            IPUtil.vpp_route_add(
+                node, gen_tunnel[u"local"], 32, **dict(gateway=if_ip)
+            )
+            InterfaceUtil.set_interface_state(node, tunnel_if_key, u"up")
