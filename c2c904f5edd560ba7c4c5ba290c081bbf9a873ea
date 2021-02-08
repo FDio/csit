@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4490278e_9d71afa5",
+        "filename": "docs/report/introduction/methodology_randomized_profiles.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-08T20:44:35Z",
+      "side": 1,
+      "message": "docs/report/introduction/methodology_vpp_forwarding_modes.rxt describes the way IPv4 and IPv6 incremental traffic profiles are constructed for the scale tests. This new description should be somewhat tied to the old one.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "c2c904f5edd560ba7c4c5ba290c081bbf9a873ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93dc762a_eabc67db",
+        "filename": "docs/report/introduction/methodology_randomized_profiles.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-08T20:44:35Z",
+      "side": 1,
+      "message": "destination :)",
+      "range": {
+        "startLine": 9,
+        "startChar": 46,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "c2c904f5edd560ba7c4c5ba290c081bbf9a873ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c2fb015_17ad30f3",
+        "filename": "docs/report/introduction/methodology_randomized_profiles.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-08T20:44:35Z",
+      "side": 1,
+      "message": "destination",
+      "range": {
+        "startLine": 10,
+        "startChar": 59,
+        "endLine": 10,
+        "endChar": 65
+      },
+      "revId": "c2c904f5edd560ba7c4c5ba290c081bbf9a873ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5207440_74c4b8c0",
+        "filename": "docs/report/introduction/methodology_randomized_profiles.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-08T20:44:35Z",
+      "side": 1,
+      "message": "destination",
+      "range": {
+        "startLine": 10,
+        "startChar": 36,
+        "endLine": 10,
+        "endChar": 42
+      },
+      "revId": "c2c904f5edd560ba7c4c5ba290c081bbf9a873ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1bee835_9f6a3425",
+        "filename": "docs/report/introduction/methodology_randomized_profiles.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-08T20:44:35Z",
+      "side": 1,
+      "message": "reset",
+      "range": {
+        "startLine": 35,
+        "startChar": 12,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "c2c904f5edd560ba7c4c5ba290c081bbf9a873ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf7b1c2c_f10ef596",
+        "filename": "docs/report/introduction/methodology_randomized_profiles.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-08T20:44:35Z",
+      "side": 1,
+      "message": "do",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 8
+      },
+      "revId": "c2c904f5edd560ba7c4c5ba290c081bbf9a873ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
