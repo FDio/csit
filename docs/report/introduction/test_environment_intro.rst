@@ -70,16 +70,22 @@ Following is the list of CSIT versions to date:
   - The main change is TRex data-plane core resource adjustments:
     `increase from 7 to 8 cores and pinning cores to interfaces <https://gerrit.fd.io/r/c/csit/+/28184>`_
     for better TRex performance with symmetric traffic profiles.
+- Ver. 6 associated with CSIT rls2101 branch (`HW
+  <https://git.fd.io/csit/tree/docs/lab?h=rls2101>`_, `Linux
+  <https://docs.fd.io/csit/rls2101/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+  `TRex
+  <https://docs.fd.io/csit/rls2101/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  `CSIT <https://git.fd.io/csit/tree/?h=rls2101>`_).
+
+  - The main change is TRex version upgrade:
+    `increase from 2.82 to 2.86 <https://gerrit.fd.io/r/c/csit/+/29980>`_.
 
 
-To identify performance changes due to VPP code development from
-v20.05.0 to v20.09.0, both have been tested in CSIT environment ver. 5
-and compared against each other. All substantial progressions and
+To identify performance changes due to VPP code development between previous
+and current VPP release version, both have been tested in CSIT environment of
+latest version and compared against each other. All substantial progressions and
 regressions have been marked up with RCA analysis. See
 :ref:`vpp_throughput_comparisons` and :ref:`vpp_known_issues`.
-
-CSIT environment ver. 5 has been evaluated against the ver. 4 by
-benchmarking VPP v20.05.0 in both environment versions.
 
 Physical Testbeds
 -----------------
