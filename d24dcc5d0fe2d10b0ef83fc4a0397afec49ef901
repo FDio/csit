@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84cf6855_32a68f01",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-08T15:20:32Z",
+      "side": 1,
+      "message": "NR_OF_THREADS",
+      "range": {
+        "startLine": 106,
+        "startChar": 27,
+        "endLine": 106,
+        "endChar": 29
+      },
+      "revId": "d24dcc5d0fe2d10b0ef83fc4a0397afec49ef901",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
