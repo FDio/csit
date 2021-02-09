@@ -296,3 +296,209 @@
                 \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir}
                 \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-udir}
         \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t1c-ethip4tcp-nat44ed-tput-avf
+-----------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput}
+            \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-tput" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-tput.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-tput}
+            \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h4096-p63-s258048-tput}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput}
+            \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput}
+            \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-tput" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-tput.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-tput}
+            \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4tcp-nat44ed-h262144-p63-s16515072-tput}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t1c-ethip4tcp-nat44ed-tput-avf
+-----------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput}
+            \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-tput" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-tput.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-tput}
+            \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h4096-p63-s258048-tput}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput}
+            \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput}
+            \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-tput" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-tput.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-tput}
+            \label{fig:hdrh-lat-percentile-2n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4udp-nat44ed-h262144-p63-s16515072-tput}
+    \end{figure}
