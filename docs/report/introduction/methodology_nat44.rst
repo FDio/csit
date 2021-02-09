@@ -128,15 +128,6 @@ NAT44det scenario tested:
 NAT44 Endpoint-Dependent
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-..
-    TODO: Is it possible to test a NAT44ed scenario where the outside source
-    address and port is limited to just one value?
-    In theory, as long as every inside source address&port traffic
-    uses a different destination address&port, there will be no conflicts,
-    and we could use bidirectional stateless profiles.
-    Possibly, VPP requires some amount of outside source address&port
-    to remain unused for security reasons. But we can try to see what happens.
-
 In order to excercise NAT44ed ability to translate based on both
 source and destination address and port, the inside-to-outside traffic
 varies also destination address and port. Destination port is the same
@@ -154,13 +145,17 @@ Therefore, NAT44ed is benchmarked using following methodologies:
 - Unidirectional throughput using *stateless* traffic profile.
 - Connections-per-second using *stateful* traffic profile.
 - Bidirectional PPS (see below) using *stateful* traffic profile.
+- Bidirectional throughput (see below) using *stateful* traffic profile.
 
 Unidirectional NAT44ed throughput tests are using TRex STL (Stateless)
 APIs and traffic profiles, but with packets sent only in
 inside-to-outside direction.
 Similarly to NAT44det, NAT44ed unidirectional throughput tests include
 a ramp-up phase to establish and verify the presence of required NAT44ed
-binding entries.
+binding entries. As the sessions have finite duration, the test code
+keeps inserting ramp-up trials during the search, if it detects a risk
+of sessions timing out. Any zero loss trial visits all sessions,
+so it acts also as a ramp-up.
 
 Stateful NAT44ed tests are using TRex ASTF (Advanced Stateful) APIs and
 traffic profiles, with packets sent in both directions. Tests are run
@@ -168,7 +163,9 @@ with both UDP and TCP/IP sessions.
 As both NAT44ed CPS (connections-per-second) and PPS (packets-per-second)
 stateful tests measure (also) session opening performance,
 they use state reset instead of ramp-up trial.
-That is also the reason why PPS tests are not called throughput tests.
+NAT44ed bidirectional throughput tests use the same traffic profile
+as PPS tests, but also prepend ramp-up trials as in the unidirectional tests,
+so the test results describe performance without session opening overhead.
 
 Associated CSIT test cases use the following naming scheme to indicate
 NAT44det case tested:
@@ -182,15 +179,16 @@ NAT44det case tested:
   - udir-[mrr|ndrpdr|soak], unidirectional stateless tests MRR, NDRPDR
     or SOAK.
 
-- Stateful: ethip4[udp|tcp]-nat44ed-h{H}-p{P}-s{S}-[cps|pps]-[mrr|ndrpdr]
+- Stateful: ethip4[udp|tcp]-nat44ed-h{H}-p{P}-s{S}-[cps|pps|tput]-[mrr|ndrpdr]
 
   - [udp|tcp], UDP or TCP/IP sessions
   - {H}, number of inside hosts, H = 1024, 4096, 16384, 65536, 262144.
   - {P}, number of ports per inside host, P = 63.
   - {S}, number of sessions, S = 64512, 258048, 1032192, 4128768,
     16515072.
-  - [cps|pps], connections-per-second session establishment rate or
-    packets-per-second average rate.
+  - [cps|pps|tput], connections-per-second session establishment rate or
+    packets-per-second average rate, or packets-per-second rate
+    without session establishment.
   - [mrr|ndrpdr], bidirectional stateful tests MRR, NDRPDR.
 
 Stateful traffic profiles
