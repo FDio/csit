@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ad208ca_3a964155",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-09T17:23:20Z",
+      "side": 0,
+      "message": "No. I tried in https://gerrit.fd.io/r/c/csit/+/30373",
+      "range": {
+        "startLine": 133,
+        "startChar": 49,
+        "endLine": 133,
+        "endChar": 50
+      },
+      "revId": "cf2a4f97f261a8ab27578232e9f419968e8a1fb1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b6ed123_16b16e7c",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-09T17:23:20Z",
+      "side": 1,
+      "message": "I was pleasantly surprised when I saw this improvement aimed at tput tests automatically works also for unidir tests.",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 15
+      },
+      "revId": "b4ac47c126ee9956e5601bf6b6e5415f52f381ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
