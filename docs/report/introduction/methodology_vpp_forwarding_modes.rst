@@ -50,7 +50,8 @@ IPv4 routing tests are executed in baseline and scale configurations:
   direction), ii) 200k (2x 100k flows) and iii) 2M (2x 1M). Destination
   IPv4 addresses are incremented on a packet by packet basis, ensuring
   new FIB entries are looked up at every packet, making it the worst
-  case scenario.
+  case scenario. We also test randomized profiles; for details, see
+  :ref:`randomized_profiles`.
 
 IPv6 Routing
 ~~~~~~~~~~~~
@@ -67,7 +68,8 @@ IPv6 routing tests are executed in baseline and scale configurations:
   direction), ii) 200k (2x 100k flows) and iii) 2M (2x 1M). Destination
   IPv6 addresses are incremented on a packet by packet basis, ensuring
   new FIB entries are looked up at every packet, making it the worst
-  case scenario.
+  case scenario. We also test randomized profiles; for details, see
+  :ref:`randomized_profiles`.
 
 SRv6 Routing
 ~~~~~~~~~~~~
