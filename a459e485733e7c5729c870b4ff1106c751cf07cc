@@ -22,6 +22,30 @@
       "revId": "a459e485733e7c5729c870b4ff1106c751cf07cc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf241d8c_f8759907",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-09T09:46:08Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/c/csit/+/31102/4/docs/report/introduction/methodology_packet_latency.rst#1",
+      "parentUuid": "c31eeb11_ad165245",
+      "range": {
+        "startLine": 58,
+        "startChar": 30,
+        "endLine": 58,
+        "endChar": 51
+      },
+      "revId": "a459e485733e7c5729c870b4ff1106c751cf07cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
