@@ -23,3 +23,5 @@ CSIT source code for the test cases used for plots can be found in
     nat44-ed-tcp-cps
     nat44-ed-udp-pps
     nat44-ed-tcp-pps
+    nat44-ed-udp-tput
+    nat44-ed-tcp-tput
