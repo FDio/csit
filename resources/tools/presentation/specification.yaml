@@ -333,7 +333,7 @@
         - 122 # rls2101.rel NDRPDR iter NAT env 6
         - 123 # rls2101.rel NDRPDR iter NAT env 6
         - 124 # rls2101.rel NDRPDR iter NAT env 6
-#         - 125 # rls2101.rel NDRPDR iter NAT env 6
+        - 125 # rls2101.rel NDRPDR iter NAT env 6
 
     plot-vpp-hdrh-lat-2n-skx:
       csit-vpp-perf-report-iterative-2101-2n-skx:
@@ -478,11 +478,11 @@
         - 114 # rls2101.rel NDRPDR iter NAT env 6
         - 115 # rls2101.rel NDRPDR iter NAT env 6
         - 116 # rls2101.rel NDRPDR iter NAT env 6
-#         - 117 # rls2101.rel NDRPDR iter NAT env 6
+        - 117 # rls2101.rel NDRPDR iter NAT env 6
         - 118 # rls2101.rel NDRPDR iter NAT env 6
         - 119 # rls2101.rel NDRPDR iter NAT env 6
         - 120 # rls2101.rel NDRPDR iter NAT env 6
-#         - 121 # rls2101.rel NDRPDR iter NAT env 6
+        - 121 # rls2101.rel NDRPDR iter NAT env 6
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -722,7 +722,7 @@
         - 122 # rls2101.rel NDRPDR iter NAT env 6
         - 123 # rls2101.rel NDRPDR iter NAT env 6
         - 124 # rls2101.rel NDRPDR iter NAT env 6
-#         - 125 # rls2101.rel NDRPDR iter NAT env 6
+        - 125 # rls2101.rel NDRPDR iter NAT env 6
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-report-iterative-2101-3n-skx:
@@ -784,7 +784,7 @@
 #         - 17  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-03
         - 18  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-04
 #         - 19  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-05
-#         - 20  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-06
+        - 20  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-06
         - 12  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-06
         - 13  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4tun-00
         - 26  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4tun-01
@@ -1167,7 +1167,7 @@
         - 122 # rls2101.rel NDRPDR iter NAT env 6
         - 123 # rls2101.rel NDRPDR iter NAT env 6
         - 124 # rls2101.rel NDRPDR iter NAT env 6
-#         - 125 # rls2101.rel NDRPDR iter NAT env 6
+        - 125 # rls2101.rel NDRPDR iter NAT env 6
 
     vpp-performance-changes-2n-clx-h1:
       csit-vpp-perf-report-iterative-2009-2n-clx:
@@ -1242,11 +1242,11 @@
         - 114 # rls2101.rel NDRPDR iter NAT env 6
         - 115 # rls2101.rel NDRPDR iter NAT env 6
         - 116 # rls2101.rel NDRPDR iter NAT env 6
-#         - 117 # rls2101.rel NDRPDR iter NAT env 6
+        - 117 # rls2101.rel NDRPDR iter NAT env 6
         - 118 # rls2101.rel NDRPDR iter NAT env 6
         - 119 # rls2101.rel NDRPDR iter NAT env 6
         - 120 # rls2101.rel NDRPDR iter NAT env 6
-#         - 121 # rls2101.rel NDRPDR iter NAT env 6
+        - 121 # rls2101.rel NDRPDR iter NAT env 6
 
     vpp-performance-changes-2n-zn2-ref-env-old:
       csit-vpp-perf-report-iterative-2009-2n-zn2:
@@ -1954,7 +1954,7 @@
         - 122 # rls2101.rel NDRPDR iter NAT env 6
         - 123 # rls2101.rel NDRPDR iter NAT env 6
         - 124 # rls2101.rel NDRPDR iter NAT env 6
-#         - 125 # rls2101.rel NDRPDR iter NAT env 6
+        - 125 # rls2101.rel NDRPDR iter NAT env 6
     vpp-compare-testbeds-skx-clx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 54  # rls2101.rel NDRPDR iter env 6
@@ -1982,11 +1982,11 @@
         - 114 # rls2101.rel NDRPDR iter NAT env 6
         - 115 # rls2101.rel NDRPDR iter NAT env 6
         - 116 # rls2101.rel NDRPDR iter NAT env 6
-#         - 117 # rls2101.rel NDRPDR iter NAT env 6
+        - 117 # rls2101.rel NDRPDR iter NAT env 6
         - 118 # rls2101.rel NDRPDR iter NAT env 6
         - 119 # rls2101.rel NDRPDR iter NAT env 6
         - 120 # rls2101.rel NDRPDR iter NAT env 6
-#         - 121 # rls2101.rel NDRPDR iter NAT env 6
+        - 121 # rls2101.rel NDRPDR iter NAT env 6
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -2036,11 +2036,11 @@
         - 114 # rls2101.rel NDRPDR iter NAT env 6
         - 115 # rls2101.rel NDRPDR iter NAT env 6
         - 116 # rls2101.rel NDRPDR iter NAT env 6
-#         - 117 # rls2101.rel NDRPDR iter NAT env 6
+        - 117 # rls2101.rel NDRPDR iter NAT env 6
         - 118 # rls2101.rel NDRPDR iter NAT env 6
         - 119 # rls2101.rel NDRPDR iter NAT env 6
         - 120 # rls2101.rel NDRPDR iter NAT env 6
-#         - 121 # rls2101.rel NDRPDR iter NAT env 6
+        - 121 # rls2101.rel NDRPDR iter NAT env 6
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -3195,7 +3195,7 @@
 #       - 17  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-03
       - 18  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-04
 #       - 19  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-05
-#       - 20  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-06
+      - 20  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-06
       - 12  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-06
       - 13  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4tun-00
       - 26  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4tun-01
@@ -3297,7 +3297,7 @@
       - 122 # rls2101.rel NDRPDR iter NAT env 6
       - 123 # rls2101.rel NDRPDR iter NAT env 6
       - 124 # rls2101.rel NDRPDR iter NAT env 6
-#       - 125 # rls2101.rel NDRPDR iter NAT env 6
+      - 125 # rls2101.rel NDRPDR iter NAT env 6
       - 65  # rls2101.rel MRR nf-density iter env 6
       - 67  # rls2101.rel NDRPDR nf-density iter env 6
       - 72  # rls2101.rel NDRPDR nf-density iter env 6
@@ -3413,11 +3413,11 @@
       - 114 # rls2101.rel NDRPDR iter NAT env 6
       - 115 # rls2101.rel NDRPDR iter NAT env 6
       - 116 # rls2101.rel NDRPDR iter NAT env 6
-#       - 117 # rls2101.rel NDRPDR iter NAT env 6
+      - 117 # rls2101.rel NDRPDR iter NAT env 6
       - 118 # rls2101.rel NDRPDR iter NAT env 6
       - 119 # rls2101.rel NDRPDR iter NAT env 6
       - 120 # rls2101.rel NDRPDR iter NAT env 6
-#       - 121 # rls2101.rel NDRPDR iter NAT env 6
+      - 121 # rls2101.rel NDRPDR iter NAT env 6
       - 72  # rls2101.rel MRR nf-density iter env 6
       - 57  # rls2101.rel NDRPDR nf-density iter env 6
       - 62  # rls2101.rel NDRPDR nf-density iter env 6
