@@ -1,77 +1,77 @@
-# 3n-hsw
+# 3n-tsh
 ### tests 60
 ### job hrs est. 7.6
 ### job hrs real [No data available]
 ### test mins est. 7.6
 ### test mins real [No data available]
 ## ./container_memif
-### intel-xl710
+### intel-x520-da2
 #### dpdk-vfio-pci
 ##### eth-l2bdbasemaclrn-eth-2memif-1lxc
-1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
-4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+1c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+2c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+4c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+1c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+2c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+4c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+1c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+2c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+4c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+1c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+2c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
+4c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1lxc
 ##### eth-l2xcbase-eth-2memif-1dcr
-1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
-4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+1c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+2c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+4c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+1c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+2c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+4c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+1c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+2c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+4c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+1c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+2c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+4c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
 ##### eth-l2xcbase-eth-2memif-1lxc
-1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
-4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+1c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+2c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+4c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+1c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+2c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+4c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+1c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+2c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+4c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+1c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+2c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
+4c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1lxc
 ##### ethip4-ip4base-eth-2memif-1dcr
-1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+1c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+2c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+4c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+1c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+2c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+4c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+1c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+2c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+4c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+1c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+2c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+4c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
 ##### dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-1c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-2c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-4c AND 9000b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+1c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+2c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+4c AND 64b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+1c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+2c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+4c AND 1518b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+1c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+2c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+4c AND 9000b AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+1c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+2c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+4c AND imix AND ndrpdr AND x520-da2 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
 ## ./crypto
 ## ./ip4
 ## ./ip4_tunnels
