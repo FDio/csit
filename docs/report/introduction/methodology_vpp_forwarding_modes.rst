@@ -1,9 +1,9 @@
 VPP Forwarding Modes
 --------------------
 
-VPP is tested in a number of L2 and IP packet lookup and forwarding
-modes. Within each mode baseline and scale tests are executed, the
-latter with varying number of lookup entries.
+VPP is tested in a number of L2, IPv4 and IPv6 packet lookup and
+forwarding modes. Within each mode baseline and scale tests are
+executed, the latter with varying number of FIB entries.
 
 L2 Ethernet Switching
 ~~~~~~~~~~~~~~~~~~~~~
@@ -23,15 +23,16 @@ l2bd tests are executed in baseline and scale configurations:
 
 - *l2bdbase*: low number of L2 flows (254 per direction) is switched by
   VPP. They drive the content of MAC FIB size (508 total MAC entries).
-  Both source and destination MAC addresses are incremented on a packet
-  by packet basis.
+  Both source and destination MAC addresses are incremented for every
+  packet.
 
 - *l2bdscale*: high number of L2 flows is switched by VPP. Tested MAC
   FIB sizes include: i) 10k (5k unique flows per direction), ii) 100k
   (2x 50k flows) and iii) 1M (2x 500k). Both source and destination MAC
-  addresses are incremented on a packet by packet basis, ensuring new
-  entries are learn refreshed and looked up at every packet, making it
-  the worst case scenario.
+  addresses are changed for every packet using incremental ordering
+  making VPP learn (or refresh) distinct src MAC entries and look up
+  distinct dst MAC entries for every packet. For details, see
+  :ref:`packet_flow_ordering`.
 
 Ethernet wire encapsulations tested include: untagged, dot1q, dot1ad.
 
@@ -40,34 +41,37 @@ IPv4 Routing
 
 IPv4 routing tests are executed in baseline and scale configurations:
 
-- *ip4base*: low number of IPv4 flows (253 or 254 per direction) is routed by
-  VPP. They drive the content of IPv4 FIB size (506 or 508 total /32 prefixes).
-  Destination IPv4 addresses are incremented on a packet by packet
-  basis.
+- *ip4base*: a low number of IPv4 /32 prefix FIB entries are configured
+  in VPP (506 or 508) with a corresponding number of IPv4 flows (253 or
+  254 per direction) being routed by VPP.  Destination IPv4 addresses
+  are incremented for every packet.
 
-- *ip4scale*: high number of IPv4 flows is routed by VPP. Tested IPv4
-  FIB sizes of /32 prefixes include: i) 20k (10k unique flows per
-  direction), ii) 200k (2x 100k flows) and iii) 2M (2x 1M). Destination
-  IPv4 addresses are incremented on a packet by packet basis, ensuring
-  new FIB entries are looked up at every packet, making it the worst
-  case scenario.
+- *ip4scale*: a high number of IPv4 /32 prefix FIB entries are
+  configured in VPP. Tested IPv4 FIB sizes of /32 prefixes include: i)
+  20k with 10k unique flows per direction, ii) 200k with 2x 100k flows
+  and iii) 2M with 2x 1M flows. Destination IPv4 addresses are changed
+  for every packet using either incremental or random ordering
+  depending on test type, ensuring distinct FIB entries being hit for
+  every packet. For details, see :ref:`packet_flow_ordering`.
 
 IPv6 Routing
 ~~~~~~~~~~~~
 
-IPv6 routing tests are executed in baseline and scale configurations:
+Similarly to IPv4, IPv6 routing tests are executed in baseline and scale
+configurations:
 
-- *ip6base*: low number of IPv6 flows (253 or 254 per direction) is routed by
-  VPP. They drive the content of IPv6 FIB size (506 or 508 total /128 prefixes).
-  Destination IPv6 addresses are incremented on a packet by packet
-  basis.
+- *ip6base*: a low number of IPv6 /128 prefix FIB entries are configured
+  in VPP (506 or 508) with a corresponding number of IPv6 flows (253 or
+  254 per direction) being routed by VPP.  Destination IPv6 addresses
+  are incremented for every packet.
 
-- *ip6scale*: high number of IPv6 flows is routed by VPP. Tested IPv6
-  FIB sizes of /128 prefixes include: i) 20k (10k unique flows per
-  direction), ii) 200k (2x 100k flows) and iii) 2M (2x 1M). Destination
-  IPv6 addresses are incremented on a packet by packet basis, ensuring
-  new FIB entries are looked up at every packet, making it the worst
-  case scenario.
+- *ip4scale*: a high number of IPv6 /128 prefix FIB entries are
+  configured in VPP. Tested IPv6 FIB sizes of /128 prefixes include: i)
+  20k with 10k unique flows per direction, ii) 200k with 2x 100k flows
+  and iii) 2M with 2x 1M flows. Destination IPv6 addresses are changed
+  for every packet using either incremental or random ordering
+  depending on test type, ensuring distinct FIB entries being hit for
+  every packet. For details, see :ref:`packet_flow_ordering`.
 
 SRv6 Routing
 ~~~~~~~~~~~~
