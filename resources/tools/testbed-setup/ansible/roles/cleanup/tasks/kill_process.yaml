@@ -1,32 +1,36 @@
 ---
 # file: roles/cleanup/tasks/kill_process.yaml
 
-- name: Kill process - {{ process }}
+- name: Kill Process - {{ process }}
   block:
-  - name: Kill process - Get pid of {{ process }}
+  - name: Get PID Of {{ process }}
     shell: "ps -ef | grep -v grep | grep -w {{ process }} | awk '{print $2}'"
-    when: >
-      process is defined and process != ""
+    when:
+      - process is defined and process != ""
     register: running_processes
-    tags: kill-process
+    tags:
+      - kill-process
 
-  - name: Kill process - Safe kill {{ process }}
+  - name: Safe Kill {{ process }}
     shell: "kill {{ item }}"
     with_items: "{{ running_processes.stdout_lines }}"
-    tags: kill-process
+    tags:
+      - kill-process
 
   - wait_for:
       path: "/proc/{{ item }}/status"
-      state: absent
+      state: "absent"
     with_items: "{{ running_processes.stdout_lines }}"
     ignore_errors: yes
     register: killed_processes
-    tags: kill-process
+    tags:
+      - kill-process
 
-  - name: Kill process - Force kill {{ process }}
+  - name: Kill Process - Force Kill {{ process }}
     shell: "kill -9 {{ item }}"
     with_items: "{{ killed_processes.results | select('failed') | map(attribute='item') | list }}"
-    tags: kill-process
+    tags:
+      - kill-process
 
   rescue:
   - fail:
