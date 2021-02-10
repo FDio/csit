@@ -845,7 +845,7 @@
 #         - 18  # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4tun-01
         - 8   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip6-00
         - 9   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip6-01
-#         - 10  # rls2101.rel NDRPDR cov env 6 2n-zn2-l2-00
+        - 10  # rls2101.rel NDRPDR cov env 6 2n-zn2-l2-00
         - 11  # rls2101.rel NDRPDR cov env 6 2n-zn2-l2-01
         - 12  # rls2101.rel NDRPDR cov env 6 2n-zn2-lb-00
         - 13  # rls2101.rel NDRPDR cov env 6 2n-zn2-memif-00
@@ -3529,7 +3529,7 @@
 #       - 18  # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4tun-01
       - 8   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip6-00
       - 9   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip6-01
-#       - 10  # rls2101.rel NDRPDR cov env 6 2n-zn2-l2-00
+      - 10  # rls2101.rel NDRPDR cov env 6 2n-zn2-l2-00
       - 11  # rls2101.rel NDRPDR cov env 6 2n-zn2-l2-01
       - 12  # rls2101.rel NDRPDR cov env 6 2n-zn2-lb-00
       - 13  # rls2101.rel NDRPDR cov env 6 2n-zn2-memif-00
@@ -3942,8 +3942,8 @@
   format:
     html:
     - full
-#     pdf:
-#     - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
