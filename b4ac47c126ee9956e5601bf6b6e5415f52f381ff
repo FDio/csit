@@ -46,6 +46,30 @@
       "revId": "b4ac47c126ee9956e5601bf6b6e5415f52f381ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1465cbbc_267af5d2",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-10T16:28:14Z",
+      "side": 1,
+      "message": "Two timers. Trial start since ramp-up start and trial stop since ramp-up stop. Both should be less than 300s (minus some overhead).",
+      "parentUuid": "26ff617c_9765f6e7",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 15
+      },
+      "revId": "b4ac47c126ee9956e5601bf6b6e5415f52f381ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
