@@ -1,9 +1,13 @@
 ---
 # file: roles/cleanup/tasks/tg.yaml
 
-- name: Kill processes - TRex
-  import_tasks: kill_process.yaml
-  vars:
-      process: "_t-rex"
-  when: docker_tg is undefined
-  tags: kill-process
+- name: Host Cleanup
+  block:
+    - name: Kill Processes - TRex
+      import_tasks: kill_process.yaml
+      vars:
+        process: "_t-rex"
+      when:
+        - docker_tg is undefined
+      tags:
+        - kill-process

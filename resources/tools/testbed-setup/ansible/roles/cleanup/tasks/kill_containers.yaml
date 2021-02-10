@@ -3,16 +3,18 @@
 
 - name: Kill Docker Containers
   block:
-  - name: Kill container - Get Running Docker Containers
+  - name: Kill Container - Get Running Docker Containers
     shell: "docker ps -aq"
     register: running_containers
     changed_when: no
-    tags: kill-containers
+    tags:
+      - kill-containers
 
-  - name: Kill container - Remove All Docker Containers
+  - name: Kill Container - Remove All Docker Containers
     shell: "docker rm --force {{ item }}"
     with_items: "{{ running_containers.stdout_lines }}"
-    tags: kill-containers
+    tags:
+      - kill-containers
 
   rescue:
   - name: Restart Docker Daemon
@@ -22,16 +24,18 @@
 
 - name: Kill LXC Containers
   block:
-  - name: Kill container - Get Running LXC Containers
+  - name: Kill Container - Get Running LXC Containers
     shell: "lxc-ls"
     register: running_containers
     changed_when: no
-    tags: kill-containers
+    tags:
+      - kill-containers
 
-  - name: Kill container - Remove All LXC Containers
+  - name: Kill Container - Remove All LXC Containers
     shell: "lxc-destroy --force -n {{ item }}"
     with_items: "{{ running_containers.stdout_lines }}"
-    tags: kill-containers
+    tags:
+      - kill-containers
 
   rescue:
   - fail:
