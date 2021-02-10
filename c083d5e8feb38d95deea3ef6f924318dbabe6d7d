@@ -1,0 +1,285 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a81342e2_0f4d69e8",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "\"\n\nkeep the style across code (applies everywhere)",
+      "range": {
+        "startLine": 5,
+        "startChar": 90,
+        "endLine": 5,
+        "endChar": 91
+      },
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7bf4068_a05d025b",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "tags:\n  - edit-repo",
+      "range": {
+        "startLine": 6,
+        "startChar": 8,
+        "endLine": 6,
+        "endChar": 17
+      },
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc02c5ba_ee22bbad",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/main.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "\"directory\"",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ee5d044_e3c688a8",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "ubuntu_bionic.yaml",
+      "range": {
+        "startLine": 2,
+        "startChar": 24,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40f0be6d_53d120b9",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "\"\"",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 2
+      },
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e222ab4d_8009e483",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "\"\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "446204b9_c125e568",
+        "filename": "resources/tools/testbed-setup/ansible/roles/topology/tasks/main.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "\"",
+      "range": {
+        "startLine": 6,
+        "startChar": 8,
+        "endLine": 6,
+        "endChar": 10
+      },
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a6b6695_7730bd72",
+        "filename": "resources/tools/testbed-setup/ansible/templates/topology_aws_2n_c5n.j2",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "Terraform folder is named 2n_aws_c5n. Your name change is confusing and not consistent",
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00b38df8_c15b7865",
+        "filename": "terraform-ci-infra/2n_aws_c5n/deploy/main.tf",
+        "patchSetId": 15
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "i would put this to var as well.",
+      "range": {
+        "startLine": 262,
+        "startChar": 21,
+        "endLine": 262,
+        "endChar": 84
+      },
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d0ee6a4_1a5db0e9",
+        "filename": "terraform-ci-infra/2n_aws_c5n/deploy/main.tf",
+        "patchSetId": 15
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "2n_aws_c5n",
+      "range": {
+        "startLine": 268,
+        "startChar": 26,
+        "endLine": 268,
+        "endChar": 36
+      },
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e777bb3_bc766307",
+        "filename": "terraform-ci-infra/2n_aws_c5n/deploy/nic.tf",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "https://www.terraform.io/docs/language/modules/develop/structure.html\ni would move to main.tf",
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ced68569_87295c4e",
+        "filename": "terraform-ci-infra/README.txt",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "this does no apply for 1n_nmd subfolder",
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e65e9208_b034465b",
+        "filename": "terraform-ci-infra/README.txt",
+        "patchSetId": 15
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-10T11:41:06Z",
+      "side": 1,
+      "message": "the specific version is defined in requirements.txt of CSIT root folder.",
+      "range": {
+        "startLine": 6,
+        "startChar": 11,
+        "endLine": 6,
+        "endChar": 14
+      },
+      "revId": "c083d5e8feb38d95deea3ef6f924318dbabe6d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
