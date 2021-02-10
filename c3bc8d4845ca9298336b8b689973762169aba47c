@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6a81a36_ac403fa9",
+        "filename": "docs/report/introduction/methodology_randomized_profiles.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-10T10:55:47Z",
+      "side": 1,
+      "message": "I find the current arrangement confusing. Suggest we move all content about TRex traffic profiles into this section, covering all base and scale tests. Instead of having is scattered across VPP forwarding modes and this section. Thoughts?",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "c3bc8d4845ca9298336b8b689973762169aba47c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
