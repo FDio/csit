@@ -22,6 +22,30 @@
       "revId": "b4ac47c126ee9956e5601bf6b6e5415f52f381ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26ff617c_9765f6e7",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-10T10:48:30Z",
+      "side": 1,
+      "message": "Glad you are surprised it works! :) Session timeout risk is determined based on timer, or else?",
+      "parentUuid": "5b6ed123_16b16e7c",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 15
+      },
+      "revId": "b4ac47c126ee9956e5601bf6b6e5415f52f381ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
