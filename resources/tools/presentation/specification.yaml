@@ -483,6 +483,11 @@
         - 119 # rls2101.rel NDRPDR iter NAT env 6
         - 120 # rls2101.rel NDRPDR iter NAT env 6
         - 121 # rls2101.rel NDRPDR iter NAT env 6
+        - 122 # rls2101.rel NDRPDR iter MLX env 6
+        - 123 # rls2101.rel NDRPDR iter MLX env 6
+        - 127 # rls2101.rel NDRPDR iter MLX env 6
+        - 129 # rls2101.rel NDRPDR iter MLX env 6
+        - 131 # rls2101.rel NDRPDR iter MLX env 6
 
     plot-vpp-hdrh-lat-2n-clx:
       csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -495,6 +500,10 @@
     plot-vpp-hdrh-lat-2n-clx-nat:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 118 # rls2101.rel NDRPDR iter NAT env 6
+
+    plot-vpp-hdrh-lat-2n-clx-mlx:
+      csit-vpp-perf-report-iterative-2101-2n-clx:
+        - 127 # rls2101.rel NDRPDR iter MLX env 6
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -838,11 +847,11 @@
         - 1   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-00
         - 2   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-01
         - 3   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-02
-#         - 4   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-03
+        - 4   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-03
         - 5   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-04
         - 6   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-05
         - 17  # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4tun-00
-#         - 18  # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4tun-01
+        - 18  # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4tun-01
         - 8   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip6-00
         - 9   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip6-01
         - 10  # rls2101.rel NDRPDR cov env 6 2n-zn2-l2-00
@@ -851,7 +860,7 @@
         - 13  # rls2101.rel NDRPDR cov env 6 2n-zn2-memif-00
         - 14  # rls2101.rel NDRPDR cov env 6 2n-zn2-vhost-00
         - 15  # rls2101.rel NDRPDR cov env 6 2n-zn2-vhost-00
-#         - 16  # rls2101.rel NDRPDR cov env 6 2n-zn2-vts-00
+        - 16  # rls2101.rel NDRPDR cov env 6 2n-zn2-vts-00
 
     vpp-perf-results-2n-clx:
       csit-vpp-perf-report-coverage-2101-2n-clx:
@@ -876,8 +885,25 @@
         - 18  # rls2101.rel NDRPDR cov env 6 2n-clx-vts-00
 
     vpp-perf-results-3n-tsh:
-      csit-vpp-perf-report-iterative-2101-3n-tsh:
-        - 23  # rls2101.rel NDRPDR iter env 6
+      csit-vpp-perf-report-coverage-2101-3n-tsh:
+        - 1   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4-00
+#         - 2   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4-01
+        - 3   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4-02
+#         - 4   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4-03
+        - 5   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4tun-00
+        - 6   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4tun-01
+#         - 7   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip6-00
+        - 8   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip6-01
+        - 9   # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-00
+#         - 10  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-01
+        - 11  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-02
+        - 12  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-03
+        - 13  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-04
+#         - 19  # rls2101.rel NDRPDR cov env 6 3n-tsh-memif-00
+        - 15  # rls2101.rel NDRPDR cov env 6 3n-tsh-srv6-00
+        - 16  # rls2101.rel NDRPDR cov env 6 3n-tsh-srv6-01
+#         - 17  # rls2101.rel NDRPDR cov env 6 3n-tsh-vhost-00
+        - 18  # rls2101.rel NDRPDR cov env 6 3n-tsh-vhost-01
 
     vpp-perf-results-2n-tx2:
       csit-vpp-perf-report-coverage-2101-2n-tx2:
@@ -1263,6 +1289,11 @@
         - 119 # rls2101.rel NDRPDR iter NAT env 6
         - 120 # rls2101.rel NDRPDR iter NAT env 6
         - 121 # rls2101.rel NDRPDR iter NAT env 6
+        - 122 # rls2101.rel NDRPDR iter MLX env 6
+        - 123 # rls2101.rel NDRPDR iter MLX env 6
+        - 127 # rls2101.rel NDRPDR iter MLX env 6
+        - 129 # rls2101.rel NDRPDR iter MLX env 6
+        - 131 # rls2101.rel NDRPDR iter MLX env 6
 
     vpp-performance-changes-2n-zn2-ref-env-old:
       csit-vpp-perf-report-iterative-2009-2n-zn2:
@@ -2003,6 +2034,11 @@
         - 119 # rls2101.rel NDRPDR iter NAT env 6
         - 120 # rls2101.rel NDRPDR iter NAT env 6
         - 121 # rls2101.rel NDRPDR iter NAT env 6
+        - 122 # rls2101.rel NDRPDR iter MLX env 6
+        - 123 # rls2101.rel NDRPDR iter MLX env 6
+        - 127 # rls2101.rel NDRPDR iter MLX env 6
+        - 129 # rls2101.rel NDRPDR iter MLX env 6
+        - 131 # rls2101.rel NDRPDR iter MLX env 6
 
     vpp-compare-testbeds-hsw-clx-ref:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -2057,6 +2093,11 @@
         - 119 # rls2101.rel NDRPDR iter NAT env 6
         - 120 # rls2101.rel NDRPDR iter NAT env 6
         - 121 # rls2101.rel NDRPDR iter NAT env 6
+        - 122 # rls2101.rel NDRPDR iter MLX env 6
+        - 123 # rls2101.rel NDRPDR iter MLX env 6
+        - 127 # rls2101.rel NDRPDR iter MLX env 6
+        - 129 # rls2101.rel NDRPDR iter MLX env 6
+        - 131 # rls2101.rel NDRPDR iter MLX env 6
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-report-iterative-2101-3n-hsw:
@@ -3204,11 +3245,11 @@
       - 1   # rls2101.rel NDRPDR cov env 6 3n-skx-crypto-00
       - 2   # rls2101.rel NDRPDR cov env 6 3n-skx-crypto-01
       - 3   # rls2101.rel NDRPDR cov env 6 3n-skx-crypto-02
-#       - 4   # rls2101.rel NDRPDR cov env 6 3n-skx-crypto-03
+      - 4   # rls2101.rel NDRPDR cov env 6 3n-skx-crypto-03
       - 5   # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-00
       - 16  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-01
       - 7   # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-02
-#       - 17  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-03
+      - 17  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-03
       - 18  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-04
       - 19  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-05
       - 20  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-06
@@ -3224,7 +3265,7 @@
       - 27  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-02
       - 28  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-03
       - 29  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-04
-#       - 31  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-05
+      - 31  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-05
       - 32  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-06
       - 33  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-07
       - 34  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-08
@@ -3434,6 +3475,11 @@
       - 119 # rls2101.rel NDRPDR iter NAT env 6
       - 120 # rls2101.rel NDRPDR iter NAT env 6
       - 121 # rls2101.rel NDRPDR iter NAT env 6
+      - 122 # rls2101.rel NDRPDR iter MLX env 6
+      - 123 # rls2101.rel NDRPDR iter MLX env 6
+      - 127 # rls2101.rel NDRPDR iter MLX env 6
+      - 129 # rls2101.rel NDRPDR iter MLX env 6
+      - 131 # rls2101.rel NDRPDR iter MLX env 6
       - 72  # rls2101.rel MRR nf-density iter env 6
       - 57  # rls2101.rel NDRPDR nf-density iter env 6
       - 62  # rls2101.rel NDRPDR nf-density iter env 6
@@ -3522,11 +3568,11 @@
       - 1   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-00
       - 2   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-01
       - 3   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-02
-#       - 4   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-03
+      - 4   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-03
       - 5   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-04
       - 6   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-05
       - 17  # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4tun-00
-#       - 18  # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4tun-01
+      - 18  # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4tun-01
       - 8   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip6-00
       - 9   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip6-01
       - 10  # rls2101.rel NDRPDR cov env 6 2n-zn2-l2-00
@@ -3535,7 +3581,7 @@
       - 13  # rls2101.rel NDRPDR cov env 6 2n-zn2-memif-00
       - 14  # rls2101.rel NDRPDR cov env 6 2n-zn2-vhost-00
       - 15  # rls2101.rel NDRPDR cov env 6 2n-zn2-vhost-00
-#       - 16  # rls2101.rel NDRPDR cov env 6 2n-zn2-vts-00
+      - 16  # rls2101.rel NDRPDR cov env 6 2n-zn2-vts-00
 
     csit-vpp-perf-report-iterative-2009-3n-tsh:
       - 8   # rls2005 NDRPDR iter env 5
@@ -3582,6 +3628,25 @@
       - 30  # rls2101.rel NDRPDR iter env 6
       - 31  # rls2101.rel NDRPDR iter env 6
       - 32  # rls2101.rel NDRPDR iter env 6
+    csit-vpp-perf-report-coverage-2101-3n-tsh:
+      - 1   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4-00
+#       - 2   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4-01
+      - 3   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4-02
+#       - 4   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4-03
+      - 5   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4tun-00
+      - 6   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip4tun-01
+#       - 7   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip6-00
+      - 8   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip6-01
+      - 9   # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-00
+#       - 10  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-01
+      - 11  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-02
+      - 12  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-03
+      - 13  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-04
+#       - 19  # rls2101.rel NDRPDR cov env 6 3n-tsh-memif-00
+      - 15  # rls2101.rel NDRPDR cov env 6 3n-tsh-srv6-00
+      - 16  # rls2101.rel NDRPDR cov env 6 3n-tsh-srv6-01
+#       - 17  # rls2101.rel NDRPDR cov env 6 3n-tsh-vhost-00
+      - 18  # rls2101.rel NDRPDR cov env 6 3n-tsh-vhost-01
 
     csit-vpp-perf-report-iterative-2101-2n-tx2:
       - 5   # rls2009 MRR iter env 6
@@ -20681,6 +20746,34 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-clx-cx556a-78b-2t1c-rdma-ip6routing-rnd-base-scale-ndr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-2t1c-rdma-ip6routing-rnd-base-scale-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-2t1c-rdma-ip6routing-rnd-base-scale-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-cx556a-78b-2t1c-rdma-ip6routing-rnd-base-scale-pdr"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-2t1c-rdma-ip6routing-rnd-base-scale-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-2t1c-rdma-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-2t1c-rdma-ip6routing-rnd-base-scale-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 2n-clx-x710-64b-2t1c-l2switching-base-scale-avf-ndr"
   algorithm: "plot_perf_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-x710-64b-2t1c-l2switching-base-scale-avf-ndr"
@@ -21992,6 +22085,34 @@
     - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-rdma-ethip6-ip6scale2m-ndrpdr"
   layout:
     title: "2n-clx-cx556a-78b-rdma-ip6routing-base-scale-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-78b-rdma-ip6routing-rnd-base-scale-ndr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-rdma-ip6routing-rnd-base-scale-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-rdma-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-rdma-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-rdma-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-rdma-ip6routing-rnd-base-scale-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-cx556a-78b-rdma-ip6routing-rnd-base-scale-pdr-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-78b-rdma-ip6routing-rnd-base-scale-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-rdma-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-.t.c-rdma-ethip6-ip6scale20k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale200K-rnd-Ndrpdr.78B-.t.c-rdma-ethip6-ip6scale200k-rnd-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1Cx556A-Rdma-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-rdma-ethip6-ip6scale2m-rnd-ndrpdr"
+  layout:
+    title: "2n-clx-cx556a-78b-rdma-ip6routing-rnd-base-scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -25259,6 +25380,17 @@
   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-2n-clx-nat"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
+
+- type: "plot"
+  title: "Latency by percentile: 2n-clx MLX"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-clx"
+  output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-hdrh-lat-2n-clx-mlx"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
