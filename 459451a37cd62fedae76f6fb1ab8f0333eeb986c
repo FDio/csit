@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e185759_1efd5d6c",
+        "filename": "docs/report/introduction/methodology_packet_flow_ordering.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-11T15:29:02Z",
+      "side": 1,
+      "message": "Unfinished sentence.",
+      "range": {
+        "startLine": 18,
+        "startChar": 20,
+        "endLine": 18,
+        "endChar": 21
+      },
+      "revId": "459451a37cd62fedae76f6fb1ab8f0333eeb986c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0ef93ba_632e0cad",
+        "filename": "docs/report/introduction/methodology_vpp_forwarding_modes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-11T15:29:02Z",
+      "side": 1,
+      "message": "Source.\nhttps://github.com/FDio/csit/blob/master/tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-ndrpdr.robot#L61\nhttps://github.com/FDio/csit/blob/master/GPL/traffic_profiles/trex/trex-stl-2n-ethip4-ip4src253.py#L50-L51",
+      "range": {
+        "startLine": 46,
+        "startChar": 42,
+        "endLine": 46,
+        "endChar": 54
+      },
+      "revId": "459451a37cd62fedae76f6fb1ab8f0333eeb986c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b080e6d2_8b9a9031",
+        "filename": "docs/report/introduction/methodology_vpp_forwarding_modes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-11T15:29:02Z",
+      "side": 1,
+      "message": "Randomized profiles do not ensure that. Some entries are perhaps never hit, some are hit multiple times (maybe even in a row).",
+      "range": {
+        "startLine": 54,
+        "startChar": 26,
+        "endLine": 54,
+        "endChar": 34
+      },
+      "revId": "459451a37cd62fedae76f6fb1ab8f0333eeb986c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adc77d3b_aae7bd98",
+        "filename": "docs/report/introduction/methodology_vpp_forwarding_modes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-11T15:29:02Z",
+      "side": 1,
+      "message": "Source.\nhttps://github.com/FDio/csit/blob/master/tests/vpp/perf/ip6/2n1l-10ge2p1x710-ethip6-ip6base-ndrpdr.robot#L60\nhttps://github.com/FDio/csit/blob/master/GPL/traffic_profiles/trex/trex-stl-2n-ethip6-ip6src253.py#L50-L51",
+      "range": {
+        "startLine": 65,
+        "startChar": 42,
+        "endLine": 65,
+        "endChar": 54
+      },
+      "revId": "459451a37cd62fedae76f6fb1ab8f0333eeb986c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
