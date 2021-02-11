@@ -786,11 +786,11 @@
         - 1   # rls2101.rel NDRPDR cov env 6 3n-skx-crypto-00
         - 2   # rls2101.rel NDRPDR cov env 6 3n-skx-crypto-01
         - 3   # rls2101.rel NDRPDR cov env 6 3n-skx-crypto-02
-#         - 4   # rls2101.rel NDRPDR cov env 6 3n-skx-crypto-03
+        - 4   # rls2101.rel NDRPDR cov env 6 3n-skx-crypto-03
         - 5   # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-00
         - 16  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-01
         - 7   # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-02
-#         - 17  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-03
+        - 17  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-03
         - 18  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-04
         - 19  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-05
         - 20  # rls2101.rel NDRPDR cov env 6 3n-skx-ip4-06
@@ -806,7 +806,7 @@
         - 27  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-02
         - 28  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-03
         - 29  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-04
-#         - 31  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-05
+        - 31  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-05
         - 32  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-06
         - 33  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-07
         - 34  # rls2101.rel NDRPDR cov env 6 3n-skx-l2-08
@@ -815,7 +815,7 @@
         - 37  # rls2101.rel NDRPDR cov env 6 3n-skx-memif-00
         - 38  # rls2101.rel NDRPDR cov env 6 3n-skx-srv6-00
         - 39  # rls2101.rel NDRPDR cov env 6 3n-skx-srv6-01
-#         - 40  # rls2101.rel NDRPDR cov env 6 3n-skx-vhost-00
+        - 40  # rls2101.rel NDRPDR cov env 6 3n-skx-vhost-00
         - 41  # rls2101.rel NDRPDR cov env 6 3n-skx-vhost-01
         - 42  # rls2101.rel NDRPDR cov env 6 3n-skx-vhost-02
         - 43  # rls2101.rel NDRPDR cov env 6 3n-skx-vhost-03
@@ -895,7 +895,7 @@
 #         - 7   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip6-00
         - 8   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip6-01
         - 9   # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-00
-#         - 10  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-01
+        - 10  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-01
         - 11  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-02
         - 12  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-03
         - 13  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-04
@@ -3274,7 +3274,7 @@
       - 37  # rls2101.rel NDRPDR cov env 6 3n-skx-memif-00
       - 38  # rls2101.rel NDRPDR cov env 6 3n-skx-srv6-00
       - 39  # rls2101.rel NDRPDR cov env 6 3n-skx-srv6-01
-#       - 40  # rls2101.rel NDRPDR cov env 6 3n-skx-vhost-00
+      - 40  # rls2101.rel NDRPDR cov env 6 3n-skx-vhost-00
       - 41  # rls2101.rel NDRPDR cov env 6 3n-skx-vhost-01
       - 42  # rls2101.rel NDRPDR cov env 6 3n-skx-vhost-02
       - 43  # rls2101.rel NDRPDR cov env 6 3n-skx-vhost-03
@@ -3638,7 +3638,7 @@
 #       - 7   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip6-00
       - 8   # rls2101.rel NDRPDR cov env 6 3n-tsh-ip6-01
       - 9   # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-00
-#       - 10  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-01
+      - 10  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-01
       - 11  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-02
       - 12  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-03
       - 13  # rls2101.rel NDRPDR cov env 6 3n-tsh-l2-04
