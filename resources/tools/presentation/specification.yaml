@@ -508,7 +508,7 @@
 
     plot-vpp-hdrh-lat-2n-clx-mlx:
       csit-vpp-perf-report-iterative-2101-2n-clx:
-        - 129 # rls2101.rel NDRPDR iter MLX env 6
+        - 127 # rls2101.rel NDRPDR iter MLX env 6
 
     plot-vpp-nfv-2n-clx-ndrpdr:
       csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -24788,7 +24788,7 @@
   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
   target-links: "../../_static/vpp"
   data: "plot-vpp-hdrh-lat-2n-clx-mlx"
-  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  filter: "'2T1C' and 'NIC_Mellanox-CX556A'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
