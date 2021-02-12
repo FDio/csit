@@ -74,49 +74,6 @@
 
     \clearpage
 
-64b-ip4routing-scale-avf-rnd
-----------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-64b-ip4routing-scale-avf-rnd-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-64b-ip4routing-scale-avf-rnd-ndr-tsa}
-            \label{fig:2n-clx-xxv710-64b-ip4routing-scale-avf-rnd-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-64b-ip4routing-scale-avf-rnd-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-64b-ip4routing-scale-avf-rnd-pdr-tsa}
-            \label{fig:2n-clx-xxv710-64b-ip4routing-scale-avf-rnd-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
 64b-ip4routing-base-scale-dpdk
 ------------------------------
 
@@ -154,49 +111,6 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-64b-ip4routing-base-scale-dpdk-pdr-tsa}
             \label{fig:2n-clx-xxv710-64b-ip4routing-base-scale-dpdk-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-ip4routing-scale-dpdk-rnd
------------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="111" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-64b-ip4routing-scale-dpdk-rnd-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-64b-ip4routing-scale-dpdk-rnd-ndr-tsa}
-            \label{fig:2n-clx-xxv710-64b-ip4routing-scale-dpdk-rnd-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="112" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-64b-ip4routing-scale-dpdk-rnd-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-64b-ip4routing-scale-dpdk-rnd-pdr-tsa}
-            \label{fig:2n-clx-xxv710-64b-ip4routing-scale-dpdk-rnd-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
