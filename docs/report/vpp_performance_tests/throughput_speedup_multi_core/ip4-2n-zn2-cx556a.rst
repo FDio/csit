@@ -31,8 +31,8 @@
 2n-zn2-cx556a
 ~~~~~~~~~~~~~
 
-64b-ip4routing-base-rdma-core
------------------------------
+64b-ip4routing-base-scale-rdma-core
+-----------------------------------
 
 .. raw:: html
 
@@ -74,51 +74,8 @@
 
     \clearpage
 
-64b-ip4routing-scale
--------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-zn2-cx556a-64b-rdma-ethip4-ip4scale-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-zn2-cx556a-64b-rdma-ethip4-ip4scale-ndr-tsa}
-            \label{fig:2n-zn2-cx556a-64b-rdma-ethip4-ip4scale-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-zn2-cx556a-64b-rdma-ethip4-ip4scale-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-zn2-cx556a-64b-rdma-ethip4-ip4scale-pdr-tsa}
-            \label{fig:2n-zn2-cx556a-64b-rdma-ethip4-ip4scale-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
 64b-ip4routing-features
-----------------------------
+-----------------------
 
 .. raw:: html
 
