@@ -1209,8 +1209,10 @@ class InterfaceUtil:
 
         cmd = u"rdma_create"
         pci_addr = Topology.get_interface_pci_addr(node, if_key)
+        name = InterfaceUtil.pci_to_eth(node, pci_addr)
+        logger.debug(f"name: {name}")
         args = dict(
-            name=InterfaceUtil.pci_to_eth(node, pci_addr),
+            name=name,
             host_if=InterfaceUtil.pci_to_eth(node, pci_addr),
             rxq_num=int(num_rx_queues) if num_rx_queues else 0,
             rxq_size=rxq_size,
