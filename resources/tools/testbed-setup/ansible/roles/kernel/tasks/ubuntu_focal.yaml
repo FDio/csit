@@ -1,28 +1,28 @@
 ---
-# file: roles/kernel/tasks/ubuntu_bionic.yaml
+# file: roles/kernel/tasks/ubuntu_focal.yaml
 
-- name: Get Available Kernel Versions
+- name: Inst - Get Available Kernel Versions
   command: "apt-cache showpkg linux-headers-*"
   changed_when: false
   register: apt_kernel_list
   tags:
     - kernel-inst
 
-- name: Get installed packages with APT
+- name: Inst - Get installed packages with APT
   command: "dpkg -l"
   changed_when: false
   register: apt_packages_list
   tags:
     - kernel-inst
 
-- name: Set target APT kernel version
+- name: Inst - Set target APT kernel version
   set_fact:
     _kernel: "{{ apt_kernel_list | deb_kernel(
                  kernel_version, ansible_kernel) }}"
   tags:
     - kernel-inst
 
-- name: Ensure Packages Versions
+- name: Inst - Ensure Packages Versions
   apt:
     name: "{{ apt_kernel_list | deb_kernel_pkg(
               kernel_version, ansible_kernel, ansible_distribution,
@@ -31,7 +31,7 @@
   tags:
     - kernel-inst
 
-- name: Ensure Any Other Kernel Packages Are Removed
+- name: Inst - Ensure Any Other Kernel Packages Are Removed
   apt:
     name: "{{ apt_packages_list | deb_installed_kernel(
               apt_kernel_list, kernel_version, ansible_kernel) }}"
@@ -42,7 +42,7 @@
   tags:
     - kernel-inst
 
-- name: Ensure Any Microcode Is Absent
+- name: Inst - Ensure Any Microcode Is Absent
   apt:
     name: "{{ absent_packages }}"
     state: absent
