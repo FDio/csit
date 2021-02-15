@@ -13,31 +13,16 @@ Changes in |csit-release|
 
      - See :ref:`geneve_methodology` for more details.
 
-   - **NAT44 tests**: Adapted existing and added new tests.
+   - **NAT44 tests**: Added new test type, pure throughput tests.
+     They are similar to PPS tests, but they employ ramp-up trials
+     to ensure all sessions are created (and not timing out)
+     for performance trials.
 
-     - Refactored NAT44 deterministic mode (nat44det) tests to use separate
-       det44 vpp plugin and to use the same scheme of inside and outside
-       addresses and ports, as used in new NAT44 endpoint-dependent mode tests.
+   - **Jumbo for ipsec**: Test cases with 9000 byte frames are re-enabled
+     in ipsec suites.
 
-     - Added new NAT44 endpoint-depended mode uni-directional (nat44ed-udir)
-       tests that measure packet throughput in one direction with usage of TRex
-       in stateless mode.
-
-     - Added new NAT44 endpoint-dependent mode CPS tests that measure
-       connections per second with usage of TRex in stateful mode.
-       UPD packet size is 64 bytes. Size of TCP control packets
-       is not configurable, please ignore the -64b- part of test names.
-
-     - Added new NAT44 endpoint-dependent mode PPS tests that measure
-       packets per second (control and data together) with usage of TRex
-       in stateful mode. UPD packet size is 64 bytes. Size of TCP
-       data packets is governed by the default MSS value, so most data packets
-       are 1460 bytes long, please ignore the -64b- part of test names.
-
-     - See :ref:`nat44_methodology` for more details.
-
-   - **IPSec async mode tests**: Added VPP performance tests for async crypto
-     engine.
+   - **Randomized profiles**: Improved repeatability and cycle length.
+     See :ref:`packet_flow_ordering`.
 
    - **AMD 2n-tx2 testbed**: New physical testbed type installed in
      FD.io CSIT, with VPP and DPDK performance data added to CSIT
@@ -87,10 +72,7 @@ List of known issues in |csit-release| for VPP performance tests:
 |    | `VPP-1763                               | commands in flight over socket), the VPP configuration for large scale tests (millions of messages) takes |
 |    | <https://jira.fd.io/browse/VPP-1763>`_  | too long.                                                                                                 |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1771                              | IPv4 IPSEC 9000B packet tests had been failing when chained buffers were not supported.                   |
-|    | <https://jira.fd.io/browse/CSIT-1771>`_ | This has been fixed on VPP side, but CSIT still needs to re-enable jumbo tests.                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `VPP-1934                               | [i40e] Interfaces are not brought up from carrier-down.                                                   |
+|  5 | `VPP-1934                               | [i40e] Interfaces are not brought up from carrier-down.                                                   |
 |    | <https://jira.fd.io/browse/VPP-1934>`_  | In case of i40e -based interface (e.g Intel x700 series NIC) is bound to kernel driver (i40e) and is in   |
 |    |                                         | state "no-carrier" (<NO-CARRIER,BROADCAST,MULTICAST,UP>) because previously it was disabled via           |
 |    |                                         | "I40E_AQ_PHY_LINK_ENABLED" call, then VPP during initialization of AVF interface is not re-enabling       |
