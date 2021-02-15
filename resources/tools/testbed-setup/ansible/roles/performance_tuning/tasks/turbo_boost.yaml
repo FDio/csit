@@ -10,7 +10,7 @@
   tags:
     - turbo-inst-prerequisites
 
-- name: Install msr-tools
+- name: Inst - msr-tools
   package:
     name:
       - "msr-tools"
@@ -18,27 +18,27 @@
   tags:
     - turbo-inst-prerequisites
 
-- name: Load msr By Default
+- name: Conf - Load msr By Default
   lineinfile:
     path: "/etc/modules"
     state: "present"
     line: "msr"
   tags:
-    - turbo-boost
+    - turbo-conf-msr
 
-- name: Custom Startup Service Hook
+- name: Conf - Custom Startup Service Hook
   copy:
     src: "files/disable-turbo-boost.service"
     dest: "/etc/systemd/system/disable-turbo-boost.service"
     owner: "root"
     group: "root"
-    mode: "0644"
+    mode: 0644
   tags:
-    - turbo-boost
+    - turbo-conf-msr
 
-- name: Custom Startup Service Hook Enable
+- name: Conf - Custom Startup Service Hook Enable
   service:
     name: "disable-turbo-boost"
     enabled: yes
   tags:
-    - turbo-boost
+    - turbo-conf-msr
