@@ -7,27 +7,7 @@ below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-| .07            | 1. Added data:                                             |
-|                |                                                            |
-|                |    - VPP Iterative                                         |
-|                |                                                            |
-|                |      - 2n-clx - MRR tests using Mellanox-CX556A NIC        |
-|                |                                                            |
-|                |    - VPP Coverage                                          |
-|                |                                                            |
-|                |      - 3n-tsh                                              |
-|                |                                                            |
-|                | 2. Added Latency graphs:                                   |
-|                |                                                            |
-|                |    - 2n-clx - NDRPDR tests using Mellanox-CX556A NIC       |
-|                |                                                            |
-|                | 3. Added Comparison tables Current vs Previous Release:    |
-|                |                                                            |
-|                |    - 2n-clx - NDRPDR and MRR tests using Mellanox-CX556A   |
-|                |      NIC                                                   |
-|                |                                                            |
-+----------------+------------------------------------------------------------+
-| .06            | Initial revision                                           |
+| .07            | Initial revision                                           |
 +----------------+------------------------------------------------------------+
 
 FD.io CSIT Reports follow CSIT-[yy][mm].[ww] numbering format, with version
