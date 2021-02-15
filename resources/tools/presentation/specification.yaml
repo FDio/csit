@@ -1656,9 +1656,11 @@
     vpp-performance-changes-2n-clx-mrr-ref-env-new:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 15  # rls2009 MRR iter env 6
+        - 142 # rls2009 MRR MLX iter env 6
     vpp-performance-changes-2n-clx-mrr-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 53  # rls2101.rel MRR iter env 6
+        - 133 # rls2101.rel MRR MLX iter env 6
 
     vpp-performance-changes-2n-zn2-mrr-ref-env-old:
       csit-vpp-perf-report-iterative-2009-2n-zn2:
@@ -3454,6 +3456,7 @@
       - 126 # rls2009 NDRPDR iter NAT44 env 5
     csit-vpp-perf-report-iterative-2101-2n-clx:
       - 15  # rls2009 MRR iter env 6
+      - 142 # rls2009 MRR MLX iter env 6
       - 16  # rls2009 NDRPDR iter env 6
       - 17  # rls2009 NDRPDR iter env 6
       - 18  # rls2009 NDRPDR iter env 6
@@ -3465,6 +3468,7 @@
       - 34  # rls2009 NDRPDR iter env 6
       - 35  # rls2009 NDRPDR iter env 6
       - 53  # rls2101.rel MRR iter env 6
+      - 133 # rls2101.rel MRR MLX iter env 6
       - 54  # rls2101.rel NDRPDR iter env 6
       - 59  # rls2101.rel NDRPDR iter env 6
       - 60  # rls2101.rel NDRPDR iter env 6
@@ -4932,6 +4936,138 @@
     - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
     - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
 
+# VPP Performance Changes 2n-clx-cx556a 2t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-cx556a 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-cx556a-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-h1"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-clx-ref-env-old"
+    - title: "2009.0-6"
+      data-set: "vpp-performance-changes-2n-clx-ref-env-new"
+    - title: "2101.0-6"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "2009.0-6 vs 2009.0-5"
+      reference: 2
+      compare: 3
+#      rca-file: "rca/rca-2n-clx-2t1c-pdr-rca2.yaml"
+    - title: "2101.0-6 vs 2009.0-6"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-2t1c-pdr-rca2.yaml"
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with cx556a.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-clx-cx556a 4t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-cx556a 4t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-cx556a-4t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-h1"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-clx-ref-env-old"
+    - title: "2009.0-6"
+      data-set: "vpp-performance-changes-2n-clx-ref-env-new"
+    - title: "2101.0-6"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "2009.0-6 vs 2009.0-5"
+      reference: 2
+      compare: 3
+#      rca-file: "rca/rca-2n-clx-4t2c-pdr-rca2.yaml"
+    - title: "2101.0-6 vs 2009.0-6"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-4t2c-pdr-rca2.yaml"
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: PDR throughput on 2n-clx with cx556a.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-clx-cx556a 2t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-cx556a 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-cx556a-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-h1"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-clx-ref-env-old"
+    - title: "2009.0-6"
+      data-set: "vpp-performance-changes-2n-clx-ref-env-new"
+    - title: "2101.0-6"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "2009.0-6 vs 2009.0-5"
+      reference: 2
+      compare: 3
+#      rca-file: "rca/rca-2n-clx-2t1c-ndr-rca2.yaml"
+    - title: "2101.0-6 vs 2009.0-6"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-2t1c-ndr-rca2.yaml"
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with cx556a.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-clx-cx556a 4t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-cx556a ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-cx556a-4t2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-h1"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-clx-ref-env-old"
+    - title: "2009.0-6"
+      data-set: "vpp-performance-changes-2n-clx-ref-env-new"
+    - title: "2101.0-6"
+      data-set: "vpp-performance-changes-2n-clx-cmp"
+  comparisons:
+    - title: "2009.0-6 vs 2009.0-5"
+      reference: 2
+      compare: 3
+#      rca-file: "rca/rca-2n-clx-4t2c-ndr-rca2.yaml"
+    - title: "2101.0-6 vs 2009.0-6"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-4t2c-ndr-rca2.yaml"
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: NDR throughput on 2n-clx with cx556a.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
+
 # VPP Performance Changes 2n-zn2-xxv710 2t1c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-zn2-xxv710 2t1c pdr"
@@ -6311,6 +6447,105 @@
   legend:
     - ''
     - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with xxv710.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-clx-cx556a 2t1c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-cx556a 2t1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-cx556a-2t1c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'MRR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-mrr-h1"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env-old"
+    - title: "2009.0-6"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env-new"
+    - title: "2101.0-6"
+      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
+  comparisons:
+    - title: "2009.0-6 vs 2009.0-5"
+      reference: 2
+      compare: 3
+#      rca-file: "rca/rca-2n-clx-2t1c-mrr-rca3.yaml"
+    - title: "2101.0-6 vs 2009.0-6"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-2t1c-mrr-rca4.yaml"
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with cx556a.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-clx-cx556a 4t2c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-cx556a 4t2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-cx556a-4t2c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'MRR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-mrr-h1"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env-old"
+    - title: "2009.0-6"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env-new"
+    - title: "2101.0-6"
+      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
+  comparisons:
+    - title: "2009.0-6 vs 2009.0-5"
+      reference: 2
+      compare: 3
+#      rca-file: "rca/rca-2n-clx-4t2c-mrr-rca3.yaml"
+    - title: "2101.0-6 vs 2009.0-6"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-4t2c-mrr-rca4.yaml"
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with cx556a.'
+    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
+    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-clx-cx556a 8t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-clx-cx556a 8t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-cx556a-8t4c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C' and 'MRR' and 'NIC_Mellanox-CX556A' and not 'NF_DENSITY'"
+  columns:
+    - title: "2005.0-5"
+      data-set: "vpp-performance-changes-2n-clx-mrr-h1"
+    - title: "2009.0-5"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env-old"
+    - title: "2009.0-6"
+      data-set: "vpp-performance-changes-2n-clx-mrr-ref-env-new"
+    - title: "2101.0-6"
+      data-set: "vpp-performance-changes-2n-clx-mrr-cmp"
+  comparisons:
+    - title: "2009.0-6 vs 2009.0-5"
+      reference: 2
+      compare: 3
+#      rca-file: "rca/rca-2n-clx-8t4c-mrr-rca3.yaml"
+    - title: "2101.0-6 vs 2009.0-6"
+      reference: 3
+      compare: 4
+#      rca-file: "rca/rca-2n-clx-8t4c-mrr-rca4.yaml"
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
