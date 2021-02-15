@@ -3,6 +3,11 @@
 
 - hosts: localhost
   gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
   roles:
     - role: topology
       tags: topology
